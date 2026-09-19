@@ -1,5 +1,17 @@
 # Nest progress
 
+## 19 September 2026 — native interaction shell (partial M0/M1)
+
+Implemented a development-only four-tab Quiet preview with separate native stacks, shared grocery navigation/state, one-tap sample chore completion, individual dinner replacement, calendar layer toggling and preview reset/exit. Every screen identifies fictional data. Release JS guards preview routes; no backend/auth/AI/financial/offline functionality is claimed. Generated and installed Nest icon artwork. Screens/components remain outside the route directory.
+
+Native lint, TypeScript 7 and the existing tooling-contract test pass. The iOS Metro export succeeds (1,340 modules); this is bundle evidence only, not native execution. Compatible React DOM, Worklets, Reanimated and Metro versions are explicitly pinned after detecting incompatible auto-selected peers. The existing Expo lint dependency's TypeScript peer range still excludes TypeScript 7; no compiler downgrade or diagnostic bypass was introduced.
+
+EAS project `@drrius/nest` is linked on the Free account with isolated development identifier `ch.drrius.nest.dev`. Available iOS build quota was checked (0/15 used); no build/purchase/release occurred. Simulator availability returns false; Linux has no local iOS runner. Prepared internal-development profiles and a Maestro smoke procedure, **not executed**. See [native verification](native-rewrite/native-verification.md) for exact commands and device gaps.
+
+The owner requested removal of the overnight automation. The tool reports it absent and no matching local automation configuration remains. Continue the active implementation task without recreating that automation.
+
+PR #1 (delivery contract/action inventory) has passing CI at `baa1483`; Greptile review was requested once and remains outstanding. No PR merged. M0/M1 remain partial; M2–M9 remain unimplemented. Next: real bearer membership/auth services and durable operation slice, plus native execution when a supported host/device becomes available.
+
 ## Milestone checklist
 
 “Complete” requires each milestone's exit criteria in the implementation plan. A partial implementation or successful bundle is not native verification.
@@ -55,3 +67,9 @@ Next: finish lint/compiler verification, record scope/action inventory, implemen
 Greptile is now enabled and reviewing the open PRs. Its PR #1 finding was valid: the finite action inventory omitted choosing a favorite in a meal proposal. Added `mealProposals.chooseFavorite` as a private proposal edit that selects an existing saved meal for one slot, preserves other slots and still requires explicit proposal approval before changing the household plan. Verified against the approved brief's AI proposal row; formatting passes. Implementation remains outstanding.
 
 The owner authorizes an adversarial review subagent if Greptile fails or hits a rate limit, with fixes and rereview until signoff. This does not waive CI or unresolved findings. The removed automation stays removed.
+
+## 20 September — integration status
+
+PR #1 merged as `7f1b06a` after latest-commit CI passed, Greptile rereview reported zero new comments, and its addressed conversation was resolved. PR #2 now incorporates that main commit; its only conflict was this progress document, resolved by retaining both evidence sections. No native source changed in this integration update. Earlier dated “no PR merged” and “no review response” entries are historical observations.
+
+PR #2 initial Greptile review completed; the updated integration commit requires a fresh review and CI before merge. Native execution and real backend behavior remain unverified. Other open PRs are undergoing fixes and rereviews; no production migration or deployment has run.
