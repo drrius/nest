@@ -1,0 +1,21 @@
+{
+  "name": "@nest/ai",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "ai": "7.0.106",
+    "effect": "4.0.0-rc.115"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "exports": {
+    "./schema": "./src/schema.ts",
+    "./tool": "./src/tool.ts"
+  }
+}
