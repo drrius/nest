@@ -9,7 +9,8 @@
     "**/.expo/**",
     "**/dist/**",
     "**/database.types.ts",
-    "**/*.gen.ts"
+    "**/*.gen.ts",
+    ".agents/**"
   ],
   "rules": {
     "max-lines": [
