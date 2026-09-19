@@ -81,6 +81,23 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## M6 — device availability privacy boundary (feature branch)
+
+Implemented `codex/calendar-availability`: exact Expo Calendar 57.0.4 read adapter, Effect CalendarReader and a text-free busy-interval projection. Read permission is checked before/after capture. No selected calendars, restricted/missing calendars, failed fetches, malformed dates and revocation yield unknown. Free/canceled events are excluded; all-day absolute boundaries, detached occurrences and coverage/freshness are explicit. No native writes or network publisher exists.
+
+Locally verified: 10 focused examples/service fixtures and 1,000 deterministic property cases for merged interval equivalence, clipping, ordering and duplication. TypeScript, formatting and lint limits pass. Expo config introspection confirms Calendar/full-read explanations and no Reminders usage-description keys. This is generated-config evidence, not a native permission test. CI pending PR creation; device verification absent.
+
+### Milestone checklist and blockers
+
+- [ ] M0/M1: delivery/shell PRs #1/#2 remain open. Native build/install, owner interaction/accessibility review and simulator access remain outstanding.
+- [ ] M2: PRs #3/#4/#6 cover session authorization, chore receipts and the SQLite journal. #6 now has passing current-commit CI. Live native auth/replay and AI approval/streaming proof remain incomplete.
+- [ ] M3–M5: onboarding, real daily flows and Meals remain incomplete.
+- [ ] M6: this boundary is implemented locally; agenda UI, consent storage, atomic server snapshots/RLS, opt-out races and real two-device Calendar privacy verification remain.
+- [ ] M7: CHF domain PR #5 is open; money services/UI and recurring approvals remain incomplete.
+- [ ] M8/M9: real push, migration rehearsal and release journeys remain incomplete.
+
+PRs #1–#6 have passing CI but no Greptile review response; none is merged. Exact merge blocker: Greptile must review each current commit explicitly and report no outstanding findings. Owner may need to enable/fix Greptile's drrius/nest repository access. Exact native blocker: Linux has no Xcode; EAS simulator availability returned false, and no physical iPhone development install is verified. Calendar 57 additionally requires a development build, not Expo Go. Independent work continues; no purchases, production migration or publication has occurred. Removed continuation automation remains absent.
+
 ## M2 — SQLite journal foundation (feature branch)
 
 Implemented `codex/offline-outbox`: exact pinned Expo SQLite 57.0.3, its exclusive transaction adapter, Effect `OfflineStore`, account/household-scoped canonical state and two-action outbox. Durable intent overlays, immutable attempted payloads, predecessor receipt versions, acknowledgment rollback, conflict preservation and session-lease invalidation are implemented. Logout suspends access and retains pending work for the same identity; it does not silently discard it. No UI or network replay is wired on this independent branch.
@@ -143,6 +160,12 @@ PRs #1 and #2 are merged. This branch integrates their delivery contract and nat
 
 Integrated merged PRs #1–#3, retaining both API and database CI commands and both progress histories. Updated the database README from ten to twelve tests to include the two review regressions; the earlier count was stale. This remains a synthetic legacy closure, not verification of the full recurrence engine. Native/API command wiring remains next after the reviewed foundations merge.
 
+## 20 September — calendar/native integration
+
+Integrated merged PRs #1–#4. Preserved the native shell's development bundle/EAS identity, artwork and SecureStore settings, while adding the read-only calendar plugin with reminders permission disabled. Reconciled exact dependencies and kept calendar, API and database CI checks. Real EventKit permissions, native calendar selection and server publishing remain unwired/unverified; interval and service tests do not substitute for device evidence.
+
+Verification after integration: frozen install, combined typechecks, lint/format and eleven calendar tests pass (ten examples plus the 1,000-case interval property). Expo introspection retains `ch.drrius.nest.dev`, iPhone-only targeting, the intended calendar permission text and no reminders permission keys. This is configuration evidence, not EventKit/device execution.
+
 ## 20 September — offline/native integration
 
 Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's isolated development identity/EAS settings and SecureStore plugin while adding SQLite; preserved exact dependency pins from both branches. CI retains API, chore database and offline checks. The local SQLite queue is still not wired to native session lifecycle or the chore API, so an end-to-end offline journey remains incomplete.
@@ -152,3 +175,5 @@ Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's i
 PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all addressed conversations resolved. This branch integrates PRs #1–#4 with the pure CHF rules. CI runs package tests once through `pnpm test` (including both API and domain) plus isolated database tests; the focused `test:domain` command remains available locally. Progress histories are retained. These rules remain unconnected to actual financial posting and native Money UI.
 
 Offline integration follow-up: PR #5 is now merged. Retained both domain and offline scripts/evidence when updating this branch to current main; no queue behavior changed. Current commit still requires its own CI and clean review.
+
+Calendar integration follow-up: PRs #5 and #6 are merged. This update retains calendar, SecureStore and SQLite plugins together, and preserves domain/offline/calendar test commands. No calendar projection behavior changed. Native EventKit and SQLite execution are still unverified on device.

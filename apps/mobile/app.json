@@ -11,7 +11,18 @@
     },
     "platforms": ["ios"],
     "userInterfaceStyle": "automatic",
-    "plugins": ["expo-router", "expo-secure-store", "expo-sqlite"],
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      "expo-sqlite",
+      [
+        "expo-calendar",
+        {
+          "calendarPermission": "Nest reads your calendars to show your agenda. Only calendars you choose share busy times, without event details.",
+          "remindersPermission": false
+        }
+      ]
+    ],
     "extra": {
       "router": {},
       "eas": {
