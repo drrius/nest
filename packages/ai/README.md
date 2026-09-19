@@ -1,0 +1,13 @@
+# Effect / AI SDK boundary
+
+Pinned compatibility: Effect 4.0.0-rc.115 and Vercel AI SDK 7.0.106. The latter was published on 18 September at 05:00 UTC; the newer 7.0.107 was still inside the package manager's release-age window at implementation time. The lockfile contains exact resolutions and no release-age exceptions were retained. APIs were checked in the installed SDK source/docs, not inferred from an earlier major.
+
+`effectSchema` derives draft-07 JSON Schema from the canonical Effect JSON codec and retains named definitions. The same codec validates SDK inputs/structured output, rejects excess properties and returns safe validation errors. Do not maintain parallel Zod definitions. The SDK's transitive Zod dependency does not make it Nest's contract authority. JSON Schema generation is only a model hint: Effect decoding remains authoritative.
+
+`effectTool` forwards a validated SDK invocation into the caller's shared Effect command, passes cancellation into its runtime scope, returns safe typed failures and masks unexpected defects. It adds no retries and does not create a competing agent/chat state machine. The API must bind verified actor/household and private conversation access into the supplied executor; model input is not identity.
+
+SDK 7 uses `ToolLoopAgent.toolApproval`, not tool-level `needsApproval`. Configure financial/recurring writes as `user-approval` in the finite registry, but also enforce persisted authorization in the shared command transaction. A user-supplied SDK approval response is not authorization. The adapter test proves that SDK pause/resume cannot override a supplied command denial; it does **not** prove a production approval database exists. Cancellation after a database commit can leave an uncertain response: retries must reuse the same persisted operation identity and server receipt.
+
+Nine tests exercise the real SDK with its `MockLanguageModelV4` fixture: schema checks, named references, structured output, tool execution, invalid arguments, approval pause/resume, safe defects, cancellation and SDK SSE/chat transport compatibility. No provider was called; no model spend occurred. The SDK source confirms the stream transport handles its protocol, so Nest needs no second parser.
+
+Still required for M2: authenticated API wiring, durable owner-private chats and approval records, exact payload/revision/expiry binding, approval replay/tamper/database tests, live provider structured output and streaming, Expo fetch/useChat integration and native reconnect/approve/deny journeys. This package must not be treated as a working assistant or a completed financial-approval slice.
