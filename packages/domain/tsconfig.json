@@ -1,0 +1,16 @@
+{
+  "$schema": "../../node_modules/@effect/tsgo/schema.json",
+  "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "noUncheckedIndexedAccess": true,
+    "plugins": [{ "name": "@effect/language-service" }]
+  },
+  "include": ["src/**/*.ts"]
+}

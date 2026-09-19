@@ -14,6 +14,7 @@
     "format:check": "oxfmt --check .",
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
+    "test:domain": "pnpm --filter @nest/domain test",
     "start": "pnpm --filter @nest/mobile start"
   },
   "devDependencies": {
