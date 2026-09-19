@@ -81,6 +81,27 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## M2 — Effect / AI SDK compatibility boundary (feature branch)
+
+Implemented `codex/ai-contract-adapter`: `@nest/ai` pins AI SDK 7.0.106 with Effect 4.0.0-rc.115. The schema adapter derives draft-07 JSON Schema and validates the same canonical Effect codec; named references and rejection of excess fields are preserved. The tool adapter forwards the shared executor, cancellation and safe failure codes without adding retries. SDK 7 approval uses `ToolLoopAgent.toolApproval`. No release-age exclusions were retained after choosing the preceding package patch.
+
+Locally verified: nine tests using the actual SDK with its fixture model cover invalid UUID/centime/extra fields, nested references, structured output, command execution, approval pause/resume with command denial, sanitized defects, interruption cleanup and SDK SSE-to-chat transport. TypeScript and lint limits pass. These are compatibility tests, not live-model, durable approval, authenticated API or native evidence. No model request or spend occurred. CI pending PR creation.
+
+### Milestone checklist
+
+- [ ] M0/M1: delivery/native preview in PRs #1/#2; native build/install and owner/device UX review remain.
+- [ ] M2: session adapter #3, chore receipts #4, SQLite journal #6 and this SDK boundary are foundations. Authenticated native vertical flow, durable private conversations/approvals and live provider/Expo streaming remain incomplete.
+- [ ] M3–M5: identity/settings, daily-use vertical flows and Meals remain incomplete.
+- [ ] M6: Calendar boundary #7 has successful push CI; PR CI was still running at the last check. Server sharing and device privacy journeys remain.
+- [ ] M7: pure CHF domain #5 exists; financial transactions, approvals, recurring automation and UI remain incomplete.
+- [ ] M8/M9: push, migration rehearsal, device acceptance and release preparation remain incomplete.
+
+No PR is merged. Greptile has not returned a review for any requested commit. A read-only GitHub installation lookup was rejected with HTTP 403 because the available token is not a GitHub App user token; installation/configuration cannot be verified with that credential. Owner needs to verify Greptile repository access/settings for drrius/nest if reviews remain absent. No alternate review substitutes for the explicit gate. Native execution still needs a physical iPhone development installation or available simulator service. Removed continuation automation remains absent; no purchases, production migration or publication has occurred.
+
+## 20 September — AI adapter review correction
+
+Raised the root Node floor to 24 to match CI and native TypeScript test imports, addressing Greptile's runtime compatibility finding. The nine SDK adapter fixture tests pass locally. Real provider, server approval persistence and native streaming integration remain outstanding; this correction does not change those verification gaps.
+
 ## M6 — device availability privacy boundary (feature branch)
 
 Implemented `codex/calendar-availability`: exact Expo Calendar 57.0.4 read adapter, Effect CalendarReader and a text-free busy-interval projection. Read permission is checked before/after capture. No selected calendars, restricted/missing calendars, failed fetches, malformed dates and revocation yield unknown. Free/canceled events are excluded; all-day absolute boundaries, detached occurrences and coverage/freshness are explicit. No native writes or network publisher exists.
@@ -174,6 +195,15 @@ Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's i
 
 PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all addressed conversations resolved. This branch integrates PRs #1–#4 with the pure CHF rules. CI runs package tests once through `pnpm test` (including both API and domain) plus isolated database tests; the focused `test:domain` command remains available locally. Progress histories are retained. These rules remain unconnected to actual financial posting and native Money UI.
 
+## 20 September — shared AI adapter integration
+
+Integrated merged PRs #1–#5 into the AI adapter branch. CI runs API, domain and SDK package tests once through the recursive test command and retains database/tooling checks. Kept exact AI SDK 7.0.106 and Effect pins. This prepares shared authorized command wiring; real provider streaming, native chat and durable approval integration are still incomplete.
+
+## 20 September — AI compiler diagnostics correction
+
+Investigated Greptile's compiler finding. The package's actual compiler reports `7.0.2+effect-tsgo.0.45.0`, so root patching was working; however its tsconfig lacked the Effect language-service plugin. A temporary floating-Effect probe incorrectly exited 0 before the fix and exits 1 with TS377001 `effect(floatingEffect)` afterward. Added the plugin/schema configuration and a regression exercising the package compiler. Real source typechecks without suppressions. Root Oxlint diagnostics were already enabled, but they did not substitute for the missing compiler configuration.
 Offline integration follow-up: PR #5 is now merged. Retained both domain and offline scripts/evidence when updating this branch to current main; no queue behavior changed. Current commit still requires its own CI and clean review.
 
 Calendar integration follow-up: PRs #5 and #6 are merged. This update retains calendar, SecureStore and SQLite plugins together, and preserves domain/offline/calendar test commands. No calendar projection behavior changed. Native EventKit and SQLite execution are still unverified on device.
+
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
