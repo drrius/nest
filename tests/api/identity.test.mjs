@@ -27,13 +27,7 @@ const server = createServer((request, response) => {
     return;
   }
   if (request.url === "/auth/v1/user") {
-    response.end(
-      JSON.stringify({
-        id: token === "partner" ? partner : user,
-        is_anonymous: token === "anonymous",
-        user_metadata: { household_id: "attacker" },
-      }),
-    );
+    response.end(JSON.stringify(authUser(token)));
     return;
   }
   const member = {
@@ -50,6 +44,14 @@ const server = createServer((request, response) => {
   };
   response.end(JSON.stringify(cases[token] ?? [member]));
 });
+
+function authUser(token) {
+  return {
+    id: token === "malformedauth" ? "invalid" : token === "partner" ? partner : user,
+    is_anonymous: token === "anonymous",
+    user_metadata: { household_id: "attacker" },
+  };
+}
 
 before(async () => {
   await new Promise((resolve, reject) => {
@@ -126,6 +128,7 @@ test("upstream failure and malformed data cannot be mistaken for empty membershi
     ["expired", 401, "unauthenticated"],
     ["unavailable", 503, "unavailable"],
     ["malformed", 503, "unavailable"],
+    ["malformedauth", 503, "unavailable"],
   ]) {
     const response = await handle(`Bearer ${token}`);
     assert.equal(response.status, status);

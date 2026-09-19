@@ -46,7 +46,7 @@ function verifyMember(config: IdentityConfig, token: string) {
     const headers = { apikey: config.publishableKey, Authorization: `Bearer ${token}` };
     const rawUser = yield* jsonRequest(new URL("auth/v1/user", config.url), headers);
     const user = yield* Schema.decodeUnknownEffect(AuthUser)(rawUser).pipe(
-      Effect.mapError(() => new ApiFailure({ code: "unauthenticated" })),
+      Effect.mapError(() => new ApiFailure({ code: "unavailable" })),
     );
     if (user.is_anonymous) return yield* new ApiFailure({ code: "unauthenticated" });
     const query = new URL("rest/v1/household_members", config.url);

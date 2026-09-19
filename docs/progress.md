@@ -17,3 +17,7 @@ The owner chose a separate greenfield repository after tooling compatibility wor
 Copied only approved planning/prototype materials. Added independent native tooling and the Quiet color seed. No application screens or backend implementation is claimed. TypeScript reports 7.0.2+effect-tsgo.0.45.0. Native typechecking and lint pass for the foundation. Six lint-contract checks pass: oversized files/functions, complexity, native raw text/Expo environment access, a valid native component, and Effect floating-effect diagnostics. Formatting passes. CI runs these checks on pushes and PRs.
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
+
+## 20 September — identity review corrections
+
+Greptile identified malformed successful Auth responses being classified as invalid sessions. They now return `unavailable` (503), consistent with malformed membership responses; expired credentials and anonymous users still return 401. Added malformed Auth data to the HTTP regression cases. Raised the supported Node floor to 24, matching CI and the native TypeScript-loading test commands. These changes address both review findings; native session integration is still pending.
