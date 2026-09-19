@@ -61,6 +61,7 @@ const server = createServer(async (request, response) => {
   const failures = {
     revoked: [403, "42501"],
     conflict: [409, "40001"],
+    serialization: [500, "40001"],
     invalid: [400, "22023"],
     expired: [401, "PGRST301"],
     outage: [503, "internal"],
@@ -166,6 +167,7 @@ test("revocation, version conflicts and upstream failures retain safe distinct r
   for (const [mode, status, code] of [
     ["revoked", 403, "forbidden"],
     ["conflict", 409, "conflict"],
+    ["serialization", 409, "conflict"],
     ["invalid", 400, "invalid_request"],
     ["expired", 401, "unauthenticated"],
     ["outage", 503, "unavailable"],

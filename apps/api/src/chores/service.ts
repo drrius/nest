@@ -19,7 +19,6 @@ function requestJson(config: IdentityConfig, token: string, path: string, body?:
       : HttpClient.post(url, { headers, body: yield* HttpBody.json(body) });
     if (response.status === 401) return yield* new ApiFailure({ code: "unauthenticated" });
     if (response.status === 403) return yield* new ApiFailure({ code: "forbidden" });
-    if (response.status >= 500) return yield* new ApiFailure({ code: "unavailable" });
     const value = yield* response.json;
     if (response.status < 200 || response.status >= 300) {
       const error = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
