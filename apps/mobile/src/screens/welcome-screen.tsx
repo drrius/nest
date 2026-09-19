@@ -1,6 +1,6 @@
 import { Link } from "expo-router";
-import { Text } from "react-native";
-import { Card, Note, Page, Section } from "../components/page";
+import { Note, Page, Section } from "../components/page";
+import { SignInCard } from "../components/sign-in-card";
 import { useQuiet } from "../theme";
 
 export default function WelcomeScreen() {
@@ -10,14 +10,7 @@ export default function WelcomeScreen() {
       <Section title="A little less to remember.">
         <Note>One place for your household’s day, meals and shared expenses.</Note>
       </Section>
-      <Card>
-        <Text selectable style={{ fontSize: 17, color: colors.text }}>
-          This build is not connected to your household yet.
-        </Text>
-        <Note>
-          Apple sign-in and household services are being connected. No personal data is loaded.
-        </Note>
-      </Card>
+      <SignInCard />
       {__DEV__ ? (
         <Section title="Quiet design preview">
           <Note>
