@@ -37,6 +37,12 @@ let rpcMode = "success";
 let rows = [row];
 let revoked = false;
 
+function membersFor(request) {
+  return revoked || request.headers.authorization === "Bearer outsider"
+    ? []
+    : [{ user_id: user, household_id: home, display_name: "Member" }];
+}
+
 const server = createServer(async (request, response) => {
   const chunks = [];
   for await (const chunk of request) chunks.push(chunk);
@@ -45,11 +51,7 @@ const server = createServer(async (request, response) => {
   response.setHeader("content-type", "application/json");
   if (request.url === "/auth/v1/user") return response.end(JSON.stringify({ id: user }));
   if (request.url.startsWith("/rest/v1/household_members")) {
-    const members =
-      revoked || request.headers.authorization === "Bearer outsider"
-        ? []
-        : [{ user_id: user, household_id: home, display_name: "Member" }];
-    return response.end(JSON.stringify(members));
+    return response.end(JSON.stringify(membersFor(request)));
   }
   if (request.url.startsWith("/rest/v1/routine_occurrences"))
     return response.end(JSON.stringify(rows));
