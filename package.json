@@ -15,7 +15,9 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
     "start": "pnpm --filter @nest/mobile start",
-    "test:offline": "node --test apps/mobile/tests/offline.test.mjs"
+    "test:offline": "node --test apps/mobile/tests/offline.test.mjs",
+    "test:database": "node --test tests/database/*.test.mjs",
+    "test": "pnpm -r --if-present test"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
