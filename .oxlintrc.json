@@ -1,0 +1,69 @@
+{
+  "$schema": "./node_modules/@effect/tsgo/oxlint-schema.json",
+  "plugins": ["typescript", "react", "import", "unicorn", "oxc", "effecttsgo"],
+  "categories": {
+    "correctness": "error"
+  },
+  "ignorePatterns": [
+    "**/node_modules/**",
+    "**/.expo/**",
+    "**/dist/**",
+    "**/database.types.ts",
+    "**/*.gen.ts"
+  ],
+  "rules": {
+    "max-lines": [
+      "error",
+      {
+        "max": 400,
+        "skipBlankLines": false,
+        "skipComments": false
+      }
+    ],
+    "max-lines-per-function": [
+      "error",
+      {
+        "max": 80,
+        "skipBlankLines": true,
+        "skipComments": true,
+        "IIFEs": true
+      }
+    ],
+    "complexity": [
+      "error",
+      {
+        "max": 10
+      }
+    ],
+    "max-depth": ["error", 4],
+    "max-params": ["error", 4],
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "error",
+    "no-restricted-imports": [
+      "error",
+      {
+        "paths": [
+          {
+            "name": "effect",
+            "message": "Use deep Effect imports, such as effect/Effect, for native tree shaking."
+          }
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["**/*.test.ts", "**/*.test.tsx", "**/*.spec.ts", "**/*.spec.tsx"],
+      "rules": {
+        "max-lines-per-function": "off"
+      }
+    },
+    {
+      "files": ["tests/tooling/**/*.mjs"],
+      "rules": {
+        "effecttsgo/node-builtin-import": "off"
+      }
+    }
+  ],
+  "extends": ["./node_modules/@effect/tsgo/oxlint-presets/recommended.json"]
+}

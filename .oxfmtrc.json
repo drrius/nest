@@ -1,0 +1,11 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "sortPackageJson": false,
+  "ignorePatterns": [
+    ".agents/**",
+    ".audit/**",
+    "pnpm-lock.yaml",
+    "next-env.d.ts",
+    "Household OS Designs.html"
+  ]
+}

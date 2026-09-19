@@ -1,0 +1,1347 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Nest — Quiet design baseline</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #eeede9;
+        color: #272c29;
+        font-family:
+          InterVariable,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+      }
+      button {
+        cursor: pointer;
+        border: 0;
+        color: inherit;
+        background: none;
+        min-height: 44px;
+      }
+      button:focus-visible,
+      a:focus-visible {
+        outline: 3px solid #a16b36;
+        outline-offset: 3px;
+      }
+      button:active {
+        transform: scale(0.98);
+      }
+      svg {
+        flex-shrink: 0;
+        vertical-align: middle;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        font-weight: 600;
+        text-wrap: balance;
+      }
+      h1 {
+        letter-spacing: -1.1px;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: default;
+      }
+      .studio {
+        max-width: 1300px;
+        margin: auto;
+        padding: 32px 34px 48px;
+        isolation: isolate;
+      }
+      .studio-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+      .wordmark {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: -0.5px;
+      }
+      .mark {
+        height: 28px;
+        width: 28px;
+        border: 1.5px solid;
+        border-radius: 9px;
+        display: grid;
+        place-items: center;
+      }
+      .small {
+        font-size: 13px;
+        color: #656c65;
+        line-height: 1.6;
+      }
+      .studio-header .small {
+        max-width: 290px;
+        text-align: right;
+      }
+      .intro {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 32px 0 24px;
+      }
+      .intro h1 {
+        font-size: 32px;
+      }
+      .intro p {
+        font-size: 15px;
+        line-height: 1.6;
+        max-width: 580px;
+        color: #626862;
+        padding-top: 10px;
+      }
+      .directions {
+        display: flex;
+        gap: 6px;
+        padding: 5px;
+        border: 1px solid #242c2515;
+        border-radius: 14px;
+        background: #ffffff60;
+      }
+      .directions button {
+        padding: 0 18px;
+        font-size: 14px;
+        white-space: nowrap;
+        border-radius: 10px;
+      }
+      .directions button[aria-pressed="true"] {
+        background: #fff;
+        box-shadow: 0 2px 5px #0000000a;
+      }
+      .direction-note {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        border-top: 1px solid #00000012;
+        padding: 15px 0 23px;
+      }
+      .direction-note p {
+        font-size: 14px;
+        color: #626862;
+      }
+      .direction-note strong {
+        color: #2a322c;
+      }
+      .preview-toggle {
+        font-size: 13px;
+        display: flex;
+        gap: 7px;
+        align-items: center;
+      }
+      .contents {
+        display: contents;
+      }
+      [hidden] {
+        display: none !important;
+      }
+      .phones {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 30px;
+        align-items: start;
+      }
+      .device-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 12px;
+        margin-bottom: 12px;
+        color: #626862;
+      }
+      .phone {
+        --bg: #fafbf7;
+        --surface: #fff;
+        --ink: #273a31;
+        --muted: #717b73;
+        --line: #263e2d12;
+        --accent: #335d49;
+        --soft: #eaf0e6;
+        --hero: #e9efdf;
+        --radius: 20px;
+        position: relative;
+        background: var(--bg);
+        color: var(--ink);
+        border: 6px solid #fff;
+        border-radius: 43px;
+        box-shadow:
+          0 20px 44px #1c2d2312,
+          0 0 0 1px #1c2d2312;
+        height: 758px;
+        overflow: hidden;
+        isolation: isolate;
+        container-type: inline-size;
+      }
+      .phone.dark {
+        --bg: #1c2420;
+        --surface: #253129;
+        --ink: #edf1e9;
+        --muted: #adb9ac;
+        --line: #ffffff17;
+        --accent: #bfceb1;
+        --soft: #303e32;
+        --hero: #344432;
+        border-color: #3b443e;
+      }
+      .statusbar {
+        height: 46px;
+        padding: 12px 24px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        font-size: 12px;
+        font-weight: 600;
+      }
+      .statusbar .island {
+        background: #15201a;
+        width: 87px;
+        height: 24px;
+        border-radius: 16px;
+        position: absolute;
+        left: 50%;
+        top: 10px;
+        transform: translateX(-50%);
+      }
+      .signal {
+        letter-spacing: 1px;
+        font-size: 11px;
+      }
+      .screen {
+        height: calc(100% - 122px);
+        overflow: auto;
+        scrollbar-width: none;
+        padding: 5px 20px 20px;
+      }
+      .screen::-webkit-scrollbar {
+        display: none;
+      }
+      .topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 6px;
+      }
+      .eyebrow {
+        color: var(--muted);
+        font-size: 12px;
+      }
+      .profile {
+        border: 1px solid var(--line);
+        min-width: 34px;
+        min-height: 34px;
+        border-radius: 50%;
+        font-size: 12px;
+        background: var(--surface);
+      }
+      .screen h1 {
+        font-size: 31px;
+        margin-bottom: 7px;
+      }
+      .screen .subtitle {
+        font-size: 14px;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .toolbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        padding: 14px 0 4px;
+      }
+      .segments {
+        display: flex;
+        gap: 2px;
+        background: var(--soft);
+        padding: 3px;
+        border-radius: 10px;
+        font-size: 12px;
+      }
+      .segments button {
+        min-height: 32px;
+        padding: 0 12px;
+        border-radius: 7px;
+      }
+      .segments button.active {
+        background: var(--surface);
+        color: var(--ink);
+      }
+      .iconbutton {
+        width: 44px;
+        display: grid;
+        place-items: center;
+      }
+      .section-title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-top: 18px;
+        margin-bottom: 7px;
+      }
+      .section-title h2 {
+        font-size: 16px;
+        letter-spacing: -0.3px;
+      }
+      .textbutton {
+        color: var(--accent);
+        font-size: 12px;
+        min-height: 32px;
+      }
+      .task {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        min-height: 65px;
+        border-bottom: 1px solid var(--line);
+        cursor: pointer;
+      }
+      .task:last-child {
+        border: 0;
+      }
+      .task input {
+        appearance: none;
+        width: 23px;
+        height: 23px;
+        border: 1.5px solid #909e9170;
+        border-radius: 50%;
+        flex-shrink: 0;
+        display: grid;
+        place-content: center;
+        margin: 0;
+      }
+      .task input:checked {
+        background: var(--accent);
+        border-color: var(--accent);
+      }
+      .task input:checked:after {
+        content: "✓";
+        color: var(--bg);
+        font-size: 15px;
+      }
+      .task:has(input:checked) .task-name {
+        text-decoration: line-through;
+        color: var(--muted);
+      }
+      .task-text {
+        flex: 1;
+        min-width: 0;
+      }
+      .task-name {
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .meta {
+        font-size: 11px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .who {
+        font-size: 10px;
+        color: var(--muted);
+        border: 1px solid var(--line);
+        padding: 4px 7px;
+        border-radius: 6px;
+      }
+      .hero {
+        padding: 18px;
+        border-radius: var(--radius);
+        background: var(--hero);
+        margin-top: 18px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero .meta {
+        color: var(--ink);
+        opacity: 0.75;
+      }
+      .hero-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px;
+      }
+      .hero h2 {
+        font-size: 20px;
+        letter-spacing: -0.6px;
+        margin-top: 9px;
+        max-width: 220px;
+        line-height: 1.25;
+      }
+      .hero-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 12px;
+      }
+      .meal-drawing {
+        position: absolute;
+        right: -15px;
+        top: 35px;
+        width: 100px;
+        height: 100px;
+        border: 14px solid #ffffff65;
+        border-radius: 50%;
+        box-shadow: inset 0 0 0 1px #64795420;
+        background:
+          radial-gradient(ellipse at 25% 30%, #a4b386 0 13%, transparent 14%),
+          radial-gradient(ellipse at 65% 58%, #e3b66e 0 20%, transparent 21%),
+          radial-gradient(ellipse at 35% 67%, #a4b386 0 14%, transparent 15%), #d9d4ad;
+        opacity: 0.75;
+        transform: rotate(-20deg);
+        pointer-events: none;
+      }
+      .hero h2,
+      .hero-bottom,
+      .hero-top {
+        position: relative;
+        z-index: 1;
+      }
+      .link-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 12px;
+        padding: 14px 0;
+        width: 100%;
+        text-align: left;
+      }
+      .link-row div {
+        flex: 1;
+        min-width: 0;
+      }
+      .link-row .task-name {
+        font-weight: 500;
+      }
+      .row-card {
+        border: 1px solid var(--line);
+        border-radius: 14px;
+        padding: 0 13px;
+        margin-top: 15px;
+        background: var(--surface);
+      }
+      .assistant-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        background: var(--surface);
+        width: 100%;
+        margin-top: 17px;
+        font-size: 13px;
+        color: var(--accent);
+      }
+      .tabbar {
+        height: 76px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        padding: 6px 9px 18px;
+        border-top: 1px solid var(--line);
+        background: var(--bg);
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
+      .tab {
+        font-size: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4px;
+        color: var(--muted);
+        min-width: 0;
+      }
+      .tab.active {
+        color: var(--accent);
+      }
+      .tab.active svg {
+        stroke-width: 2.2;
+      }
+      .tabbar:after {
+        content: "";
+        position: absolute;
+        bottom: 6px;
+        left: 36%;
+        right: 36%;
+        height: 4px;
+        border-radius: 4px;
+        background: var(--ink);
+        opacity: 0.8;
+      }
+      .weekbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 0;
+        font-size: 14px;
+      }
+      .weekbar button {
+        width: 35px;
+        min-height: 35px;
+      }
+      .primary {
+        background: var(--accent);
+        color: var(--bg);
+        border-radius: 12px;
+        min-height: 46px;
+        padding: 0 14px;
+        font-size: 14px;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        width: 100%;
+      }
+      .secondary {
+        background: var(--soft);
+        color: var(--accent);
+        border-radius: 12px;
+        padding: 0 12px;
+        font-size: 13px;
+        min-height: 44px;
+      }
+      .day-row {
+        display: flex;
+        gap: 12px;
+        padding: 13px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .day-label {
+        width: 35px;
+        flex-shrink: 0;
+        font-size: 10px;
+        color: var(--muted);
+        padding-top: 2px;
+      }
+      .day-label strong {
+        display: block;
+        font-size: 18px;
+        color: var(--ink);
+        font-weight: 500;
+        padding-top: 2px;
+      }
+      .day-meal {
+        flex: 1;
+        min-width: 0;
+      }
+      .day-meal button {
+        font-size: 14px;
+        text-align: left;
+        width: 100%;
+        min-height: 28px;
+        padding: 0;
+      }
+      .day-meal .meta {
+        font-size: 10px;
+      }
+      .day-row.today .day-label strong {
+        color: var(--accent);
+      }
+      .day-row.today {
+        background: var(--soft);
+        margin: 0 -9px;
+        padding: 12px 9px;
+        border-radius: 12px;
+        border: 0;
+      }
+      .tiny {
+        font-size: 10px;
+      }
+      .balance {
+        padding: 21px 0 20px;
+      }
+      .balance-amount {
+        font-size: 49px;
+        letter-spacing: -2px;
+        font-weight: 500;
+        font-variant-numeric: tabular-nums;
+        margin: 7px 0;
+      }
+      .balance p {
+        font-size: 13px;
+        color: var(--muted);
+      }
+      .balance-top {
+        font-size: 13px;
+        color: var(--accent);
+      }
+      .money-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 9px;
+      }
+      .transaction {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--line);
+      }
+      .amount {
+        font-size: 13px;
+        font-weight: 500;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .pill {
+        font-size: 10px;
+        background: var(--soft);
+        color: var(--accent);
+        padding: 4px 8px;
+        border-radius: 7px;
+      }
+      .weekdays {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+        padding: 14px 0;
+        gap: 5px;
+      }
+      .weekdays div {
+        font-size: 10px;
+        color: var(--muted);
+      }
+      .weekdays b {
+        display: grid;
+        place-items: center;
+        height: 35px;
+        font-size: 15px;
+        color: var(--ink);
+        font-weight: 500;
+        margin-top: 6px;
+      }
+      .weekdays .selected b {
+        background: var(--accent);
+        color: var(--bg);
+        border-radius: 50%;
+      }
+      .event {
+        border-left: 3px solid var(--accent);
+        background: var(--soft);
+        padding: 12px;
+        border-radius: 0 10px 10px 0;
+        margin: 9px 0 15px;
+      }
+      .event.busy {
+        background: repeating-linear-gradient(
+          -45deg,
+          var(--soft),
+          var(--soft) 6px,
+          var(--bg) 6px,
+          var(--bg) 8px
+        );
+        border-color: var(--muted);
+      }
+      .event h3 {
+        font-size: 14px;
+        margin: 4px 0;
+      }
+      .callout {
+        font-size: 12px;
+        color: var(--muted);
+        line-height: 1.6;
+        margin-top: 15px;
+      }
+      .backline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+      }
+      .backline button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 13px;
+        color: var(--accent);
+      }
+      .input-row {
+        display: flex;
+        gap: 8px;
+        margin: 20px 0 12px;
+      }
+      .input-row input {
+        min-width: 0;
+        flex: 1;
+        border: 1px solid var(--line);
+        background: var(--surface);
+        border-radius: 10px;
+        padding: 10px;
+        color: var(--ink);
+        font-size: 16px;
+      }
+      .input-row button {
+        width: 44px;
+        background: var(--soft);
+        border-radius: 10px;
+      }
+      .sheet {
+        position: absolute;
+        inset: 0;
+        background: #101c2350;
+        z-index: 8;
+        display: flex;
+        align-items: flex-end;
+      }
+      .sheet-body {
+        width: 100%;
+        max-height: 90%;
+        overflow: auto;
+        padding: 14px 22px 28px;
+        background: var(--bg);
+        border-radius: 26px 26px 0 0;
+        animation: rise 0.22s ease-out;
+        box-shadow: 0 -4px 30px #00000014;
+      }
+      .handle {
+        width: 34px;
+        height: 4px;
+        background: var(--muted);
+        opacity: 0.3;
+        border-radius: 4px;
+        margin: 0 auto 12px;
+      }
+      .sheet-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+      .sheet-header h2 {
+        font-size: 22px;
+        letter-spacing: -0.6px;
+      }
+      .field {
+        display: block;
+        font-size: 12px;
+        color: var(--muted);
+        margin: 12px 0;
+      }
+      .field input,
+      .field select {
+        display: block;
+        background: var(--surface);
+        border: 1px solid var(--line);
+        width: 100%;
+        border-radius: 10px;
+        min-height: 46px;
+        padding: 10px;
+        font-size: 16px;
+        color: var(--ink);
+        margin-top: 6px;
+      }
+      .split-summary {
+        display: flex;
+        justify-content: space-between;
+        padding: 16px 0;
+        font-size: 13px;
+      }
+      .sheet .primary {
+        margin-top: 16px;
+      }
+      .toast {
+        position: absolute;
+        bottom: 88px;
+        left: 16px;
+        right: 16px;
+        padding: 13px;
+        background: var(--ink);
+        color: var(--bg);
+        border-radius: 12px;
+        font-size: 12px;
+        text-align: center;
+        z-index: 20;
+        animation: rise 0.2s ease-out;
+      }
+      .bubble {
+        padding: 14px;
+        border-radius: 15px;
+        font-size: 14px;
+        line-height: 1.6;
+        margin: 15px 0;
+        background: var(--soft);
+      }
+      .bubble.user {
+        margin-left: 40px;
+        background: var(--accent);
+        color: var(--bg);
+      }
+      .approval {
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 16px;
+        margin-top: 15px;
+      }
+      .approval h3 {
+        font-size: 16px;
+        margin: 7px 0;
+      }
+      .approval p {
+        font-size: 13px;
+        color: var(--muted);
+        line-height: 1.6;
+      }
+      .proposal-intro {
+        padding: 12px;
+        background: var(--soft);
+        border-radius: 12px;
+        font-size: 12px;
+        line-height: 1.6;
+        margin: 14px 0;
+      }
+      .swap {
+        width: 38px;
+        flex-shrink: 0;
+        color: var(--accent);
+      }
+      .footer {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        font-size: 13px;
+        color: #666e66;
+        line-height: 1.7;
+        padding-top: 28px;
+      }
+      .footer strong {
+        color: #2d3c31;
+      }
+      .settings-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+        font-size: 14px;
+        min-height: 54px;
+        border-bottom: 1px solid var(--line);
+      }
+      input[type="checkbox"] {
+        accent-color: var(--accent);
+      }
+      .footer a {
+        color: inherit;
+      }
+      @keyframes rise {
+        from {
+          transform: translateY(15px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        * {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+      @media (max-width: 1100px) {
+        .studio {
+          padding: 24px 20px;
+        }
+        .phones {
+          gap: 16px;
+        }
+        .phone {
+          border-width: 4px;
+        }
+        .screen {
+          padding-left: 15px;
+          padding-right: 15px;
+        }
+        .intro {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+        .direction-note {
+          align-items: flex-start;
+        }
+        .phone h1 {
+          font-size: 28px;
+        }
+      }
+      @media (max-width: 760px) {
+        .studio {
+          padding: 18px 16px;
+        }
+        .studio-header .small {
+          display: none;
+        }
+        .intro {
+          padding: 22px 0 16px;
+          gap: 16px;
+        }
+        .intro h1 {
+          font-size: 27px;
+        }
+        .intro p {
+          font-size: 14px;
+        }
+        .directions {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .directions button {
+          padding: 0 13px;
+          flex: 1;
+        }
+        .direction-note {
+          padding-bottom: 16px;
+        }
+        .direction-note p {
+          font-size: 12px;
+        }
+        .phones {
+          display: block;
+          max-width: 390px;
+          margin: auto;
+        }
+        .device-wrap:not(:first-child) {
+          display: none;
+        }
+        .phone {
+          height: min(760px, calc(100svh - 40px));
+          min-height: 610px;
+        }
+        .footer {
+          display: block;
+          max-width: 390px;
+          margin: auto;
+        }
+        .footer p + p {
+          margin-top: 10px;
+        }
+        .screen {
+          padding-left: 20px;
+          padding-right: 20px;
+        }
+        .task-name {
+          font-size: 16px;
+        }
+        .day-meal button {
+          font-size: 16px;
+        }
+        .tab {
+          font-size: 11px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="studio">
+      <header class="studio-header">
+        <div class="wordmark">
+          <div class="mark">n</div>
+          Nest
+        </div>
+        <p class="small">
+          Native app · approved Quiet direction<br />Interactive examples · fictional data
+        </p>
+      </header>
+      <div class="intro">
+        <div>
+          <h1>A little less to think about.</h1>
+          <p>
+            Quiet is the approved direction. Try the everyday moments: a chore, a meal plan, an
+            expense.
+          </p>
+        </div>
+      </div>
+      <div class="direction-note">
+        <p id="direction-note">
+          <strong>Quiet · approved.</strong> Soft olive, open space, and a little warmth. Calm
+          without feeling empty.
+        </p>
+        <label class="preview-toggle"
+          ><input type="checkbox" id="dark" name="dark" />Dark preview</label
+        >
+      </div>
+      <div id="quiet"></div>
+      <footer class="footer">
+        <p>
+          <strong>Try it:</strong> complete a chore, open Groceries, plan a week with AI,<br />replace
+          a meal, or record an expense. All four tabs work.
+        </p>
+        <p>
+          This is an HTML prototype, not the native app.<br />
+          Visual direction approved on 19 September 2026.
+        </p>
+      </footer>
+    </main>
+    <script src="icons.js"></script>
+    <script>
+      const I = (n) => window.icons[n] || "";
+      let dark = false;
+      const tabs = [
+        ["today", "Sun", "Today"],
+        ["meals", "Utensils", "Meals"],
+        ["calendar", "CalendarDays", "Calendar"],
+        ["money", "Wallet", "Money"],
+      ];
+      const states = [{ page: "today" }, { page: "meals" }, { page: "money" }];
+      let groceries = ["Cherry tomatoes", "Greek yogurt", "Sourdough", "Eggs"];
+      let groceryChecked = new Set(),
+        tasks = new Set(),
+        everyone = false;
+      let meals = [
+        "Lemon chicken & couscous",
+        "Roasted tomato pasta",
+        "Salmon rice bowls",
+        "Spinach & feta wraps",
+        "Leftover night",
+        "Mushroom risotto",
+        "Dinner out",
+      ];
+      let approved = false,
+        added = false,
+        expenses = [],
+        balance = 84.5;
+      const escape = (s) =>
+        String(s).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      function button(action, text, cls = "textbutton") {
+        return `<button type="button" class="${cls}" data-action="${action}">${text}</button>`;
+      }
+      function task(name, meta, index) {
+        return `<label class="task"><input type="checkbox" name="chore-${index}" data-task="${index}" ${tasks.has(index) ? "checked" : ""}><div class="task-text"><p class="task-name">${name}</p><p class="meta">${meta}</p></div><div class="who">${index === 1 ? "You" : "Shared"}</div></label>`;
+      }
+      function header(title, sub = "") {
+        return `<div class="topline"><p class="eyebrow">${title === "Today" ? "Saturday, 19 September" : "Our household"}</p>${button("settings", "JL", "profile")}</div><h1>${title}</h1>${sub ? `<p class="subtitle">${sub}</p>` : ""}`;
+      }
+      function today() {
+        return (
+          header("Today", "A good day to keep it simple.") +
+          `<div class="toolbar"><div class="segments">${button("mine", "Me + shared", !everyone ? "active" : "")}${button("everyone", "Everyone", everyone ? "active" : "")}</div>${button("addchore", I("Plus"), "iconbutton")}</div><div class="section-title"><h2>Around the house</h2><p class="meta">${tasks.size} of ${everyone ? 4 : 3} done</p></div><div class="group">${task("Water the plants", "Today · every Saturday", 0)}${task("Put on a load of laundry", "Today", 1)}${task("Take out the recycling", "Due yesterday", 2)}${everyone ? task("Change the bed linen", "Partner · today", 3) : ""}</div><div class="hero"><div class="hero-top"><p class="meta">Tonight’s dinner</p>${I("Utensils")}</div><div class="meal-drawing"></div><h2>Lemon chicken<br>& couscous</h2><div class="hero-bottom"><p class="meta">25 min · 2 servings</p>${button("recipe", I("ChevronRight"), "iconbutton")}</div></div><div class="row-card">${button("groceries", `${I("ShoppingBasket")}<div><p class="task-name">Groceries</p><p class="meta">${groceries.length - groceryChecked.size} things to pick up</p></div>${I("ChevronRight")}`, "link-row")}</div><div class="section-title"><h2>Coming up</h2>${button("calendar", "View calendar")}</div><p class="task-name">Home insurance renewal</p><p class="meta">In 5 days · reminder set</p>${button("chat", `${I("Sparkles")} Ask your assistant`, "assistant-link")}`
+        );
+      }
+      function dayRows(proposal = false) {
+        return meals
+          .map(
+            (m, i) =>
+              `<div class="day-row ${i === 0 ? "today" : ""}"><div class="day-label">${["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"][i]}<strong>${21 + i}</strong></div><div class="day-meal"><p class="meta">Dinner</p>${button("recipe", escape(m))}<p class="meta">${[25, 20, 30, 15, 5, 35, 0][i] ? `${[25, 20, 30, 15, 5, 35, 0][i]} min · ${i % 2 === 0 ? "A favorite" : "Something new"}` : "A night off cooking"}</p></div>${proposal ? button("swap-" + i, I("RefreshCw"), "swap") : ""}</div>`,
+          )
+          .join("");
+      }
+      function mealPage() {
+        return (
+          header("Meals", "Good food. One less daily decision.") +
+          `<div class="weekbar">${button("prevweek", "‹", "iconbutton")}<strong>21–27 September</strong>${button("nextweek", "›", "iconbutton")}</div>${button("proposal", `${I("Sparkles")} ${approved ? "Adjust the week with AI" : "Plan the week with AI"}`, "primary")}<div class="section-title"><h2>${approved ? "Your week" : "This week"}</h2>${button("slots", "Dinner ▾")}</div>${dayRows()}${button("groceries", `${I("ShoppingBasket")} Open groceries`, "assistant-link")}`
+        );
+      }
+      function money() {
+        return (
+          header("Money", "All square, without the guesswork.") +
+          `<div class="balance"><p class="balance-top">Your partner owes you</p><div class="balance-amount">CHF ${balance.toFixed(2)}</div><p>Across your shared expenses</p></div><div class="money-actions">${button("expense", `${I("Plus")} Expense`, "primary")}${button("settle", "Settle up", "secondary")}</div><div class="section-title"><h2>Recent activity</h2><p class="meta">September</p></div>${[...expenses, ["Weekly groceries", "You paid · split equally", "68.40"], ["Dinner at home", "Partner paid · split equally", "32.00"], ["Internet", "You paid · monthly", "59.00"]].map((x) => `<div class="transaction"><div><p class="task-name">${escape(x[0])}</p><p class="meta">${x[1]}</p></div><p class="amount">CHF ${x[2]}</p></div>`).join("")}<div class="row-card">${button("recurring", `<div><p class="task-name">Recurring expenses</p><p class="meta">Rent · Internet · Insurance</p></div>${I("ChevronRight")}`, "link-row")}</div><p class="callout">Your history stays clear. Every expense shows who paid and how it was split.</p>${button("chat", `${I("Sparkles")} Ask about your expenses`, "assistant-link")}`
+        );
+      }
+      function calendar() {
+        return (
+          header("Calendar", "Your day, with room for everything.") +
+          `<div class="weekbar"><strong>September 2026</strong>${button("layers", I("Settings2"), "iconbutton")}</div><div class="weekdays">${["M", "T", "W", "T", "F", "S", "S"].map((d, i) => `<div class="${i === 5 ? "selected" : ""}">${d}<b>${14 + i}</b></div>`).join("")}</div><div class="section-title"><h2>Saturday 19</h2><p class="meta">Today</p></div><div class="event"><p class="meta">10:00 – 11:00 · Personal</p><h3>Morning yoga</h3><p class="meta">Only you see these details</p></div><div class="event busy"><p class="meta">13:00 – 14:30</p><h3>Partner is busy</h3><p class="meta">Event details stay private</p></div><div class="section-title"><h2>Household</h2><p class="pill">Optional layer</p></div>${task("Water the plants", "Any time today", 0)}<p class="callout">Availability updated 5 minutes ago.<br>Your existing events stay in Apple Calendar.</p>${button("layers", `${I("Settings2")} Calendars & layers`, "assistant-link")}`
+        );
+      }
+      function groceryPage() {
+        return `<div class="backline">${button("today", `${I("ArrowLeft")} Today`)}${button("expense", "Record expense")}</div><h1>Groceries</h1><p class="subtitle">${groceries.length - groceryChecked.size} things to pick up. That’s it.</p><form class="input-row" data-form="grocery"><input name="item" aria-label="Add a grocery" placeholder="Add something…" required><button type="submit" aria-label="Add grocery">${I("Plus")}</button></form><div class="group">${groceries.map((g, i) => `<label class="task"><input type="checkbox" name="grocery-${i}" data-grocery="${i}" ${groceryChecked.has(i) ? "checked" : ""}><div class="task-text"><p class="task-name">${escape(g)}</p><p class="meta">${i === 0 ? "For roasted tomato pasta" : i === 3 ? "6 eggs" : "Shared list"}</p></div></label>`).join("")}</div><p class="callout">Check things off as you go.<br>No shopping session to start or finish.</p>${button("offline", `${I("WifiOff")} Preview offline state`, "assistant-link")}`;
+      }
+      function proposal() {
+        return `<div class="backline">${button("meals", `${I("ArrowLeft")} Meals`)}<p class="pill">Not saved yet</p></div><h1>A week, sorted.</h1><p class="subtitle">A few favorites. A little variety.</p><div class="proposal-intro">Based on your saved preferences and availability. Quicker dinners on your busier evenings.</div>${dayRows(true)}${button("approveplan", "Approve this week", "primary")}<p class="callout">You’ll review the grocery list separately.</p>`;
+      }
+      function ingredients() {
+        return `<div class="backline">${button("meals", `${I("ArrowLeft")} Meals`)}<p class="pill">Week saved</p></div><h1>What do you need?</h1><p class="subtitle">Uncheck anything you already have.</p>${["Chicken · 400 g", "Couscous · 200 g", "Lemons · 2", "Spinach · 200 g", "Cherry tomatoes · 500 g"].map((g, i) => `<label class="task"><input name="ingredient-${i}" type="checkbox" data-ingredient="${escape(g)}" checked><p class="task-name">${g}</p></label>`).join("")}${button("addingredients", added ? "Added to groceries" : "Add selected to groceries", "primary")}<p class="callout">Nothing gets added until you confirm.</p>`;
+      }
+      function chat() {
+        return `<div class="backline">${button("today", `${I("ArrowLeft")} Today`)}<p class="pill">Private to you</p></div><h1>Your assistant</h1><div class="bubble user">Add CHF 42 for groceries, paid by me, split equally.</div><div class="bubble">Here’s the expense. Confirm it and I’ll add it to your shared balance.</div><div class="approval"><p class="meta">Approval needed</p><h3>Groceries · CHF 42.00</h3><p>You paid · split equally<br>Your share CHF 21.00<br>Partner’s share CHF 21.00</p>${button("approveexpense", "Approve expense", "primary")}${button("denyexpense", "Don’t add it")}</div><form data-form="chat" class="input-row"><input name="message" aria-label="Message your assistant" placeholder="Ask about your household…" required><button type="submit" aria-label="Send message">${I("ArrowUp")}</button></form><p class="meta">Scripted prototype conversation</p>`;
+      }
+      function content(page) {
+        return (
+          {
+            today,
+            meals: mealPage,
+            money,
+            calendar,
+            groceries: groceryPage,
+            proposal,
+            ingredients,
+            chat,
+          }[page] || today
+        )();
+      }
+      function render() {
+        document.getElementById("quiet").innerHTML =
+          `<div class="phones">${states.map((s, i) => `<div class="device-wrap"><div class="device-label"><span>${["01 / Your everyday", "02 / A week of meals", "03 / Shared money"][i]}</span><span>Interactive</span></div><section class="phone ${dark ? "dark" : ""}" data-theme="quiet" data-phone="${i}" aria-label="${["Everyday", "Meals", "Money"][i]} preview"><div class="statusbar"><span>9:41</span><div class="island"></div><span class="signal">▮▮▮ ▰</span></div><div class="screen">${content(s.page)}</div><nav class="tabbar" aria-label="App navigation">${tabs.map(([key, icon, label]) => button(key, `${I(icon)}<span>${label}</span>`, `tab ${s.page === key ? "active" : ""}`)).join("")}</nav></section></div>`).join("")}</div>`;
+      }
+      function toast(p, text) {
+        p.querySelector(".toast")?.remove();
+        const el = document.createElement("div");
+        el.className = "toast";
+        el.setAttribute("role", "status");
+        el.textContent = text;
+        p.append(el);
+        setTimeout(() => el.remove(), 3000);
+      }
+      function sheet(p, title, body) {
+        p.querySelector(".sheet")?.remove();
+        const s = document.createElement("div");
+        s.className = "sheet";
+        s.innerHTML = `<section class="sheet-body" role="dialog" aria-modal="true" aria-label="${title}"><div class="handle"></div><div class="sheet-header"><h2>${title}</h2>${button("close", I("X"), "iconbutton")}</div>${body}</section>`;
+        p.append(s);
+        p.querySelector(".screen").inert = true;
+        p.querySelector(".tabbar").inert = true;
+        s.querySelector("button")?.focus();
+      }
+      function close(p) {
+        p.querySelector(".sheet")?.remove();
+        p.querySelector(".screen").inert = false;
+        p.querySelector(".tabbar").inert = false;
+      }
+      document.addEventListener("click", (e) => {
+        const b = e.target.closest("[data-action]");
+        if (!b) return;
+        const p = b.closest(".phone");
+        if (!p) return;
+        const idx = +p.dataset.phone,
+          a = b.dataset.action;
+        if (["today", "meals", "money", "calendar", "groceries", "proposal", "chat"].includes(a)) {
+          states[idx].page = a;
+          render();
+          return;
+        }
+        if (a === "mine" || a === "everyone") {
+          everyone = a === "everyone";
+          render();
+          return;
+        }
+        if (a === "close") {
+          close(p);
+          return;
+        }
+        if (a.startsWith("swap-")) {
+          const i = +a.split("-")[1];
+          meals[i] =
+            meals[i] === "Chickpea & sweet potato curry"
+              ? "Pesto gnocchi & green beans"
+              : "Chickpea & sweet potato curry";
+          render();
+          return;
+        }
+        if (a === "approveplan") {
+          approved = true;
+          states[idx].page = "ingredients";
+          render();
+          return;
+        }
+        if (a === "addingredients") {
+          const chosen = [...p.querySelectorAll("[data-ingredient]:checked")].map(
+            (x) => x.dataset.ingredient,
+          );
+          if (!added) {
+            groceries.push(...chosen);
+            added = true;
+          }
+          states[idx].page = "groceries";
+          render();
+          return;
+        }
+        if (a === "expense") {
+          sheet(
+            p,
+            "New expense",
+            `<form data-form="expense"><label class="field">What was it for?<input name="description" value="Groceries" required></label><label class="field">Amount · CHF<input name="amount" inputmode="decimal" type="number" min="0.01" step="0.01" placeholder="0.00" required></label><label class="field">Paid by<select name="payer"><option>You</option><option>Your partner</option></select></label><label class="field">Split<select name="split"><option>Equally · 50/50</option></select></label><div class="split-summary"><span>Your share</span><strong data-share>CHF 0.00</strong></div><button type="submit" class="primary">Save expense</button><p class="callout">Demo only. No real expense will be created.</p></form>`,
+          );
+          return;
+        }
+        if (a === "recipe") {
+          sheet(
+            p,
+            "Lemon chicken & couscous",
+            `<p class="subtitle">25 minutes · 2 servings</p><div class="section-title"><h2>Ingredients</h2></div><p class="callout">400 g chicken · 200 g couscous<br>1 lemon · olive oil · fresh herbs</p><div class="section-title"><h2>Keep it simple</h2></div><p class="callout">1. Season and pan-fry the chicken.<br>2. Cover couscous with hot stock.<br>3. Fluff, add lemon and herbs, and serve.</p>${button("close", "Back to your day", "primary")}`,
+          );
+          return;
+        }
+        if (a === "settle") {
+          sheet(
+            p,
+            "Settle up",
+            `<p class="subtitle">Your partner owes you CHF ${balance.toFixed(2)}.</p><p class="callout">Record a transfer you’ve made outside the app.</p>${button("confirmsettle", "Record full settlement", "primary")}`,
+          );
+          return;
+        }
+        if (a === "confirmsettle") {
+          balance = 0;
+          render();
+          toast(document.querySelector(`[data-phone="${idx}"]`), "Demo settlement recorded");
+          return;
+        }
+        if (a === "approveexpense") {
+          balance += 21;
+          expenses.unshift(["Groceries", "You paid · split equally", "42.00"]);
+          states[idx].page = "money";
+          render();
+          toast(document.querySelector(`[data-phone="${idx}"]`), "Approved · demo expense added");
+          return;
+        }
+        if (a === "denyexpense") {
+          p.querySelector(".approval").innerHTML =
+            "<h3>Expense not added</h3><p>Your balance is unchanged.</p>";
+          return;
+        }
+        if (a === "settings" || a === "layers" || a === "slots") {
+          const options =
+            a === "layers"
+              ? ["My personal calendars", "Partner’s busy blocks", "Chores", "Renewals"]
+              : a === "slots"
+                ? ["Breakfast", "Lunch", "Dinner"]
+                : ["Daily summary", "Subtle haptics", "Calendar availability"];
+          sheet(
+            p,
+            a === "layers"
+              ? "Calendar layers"
+              : a === "slots"
+                ? "Meals to show"
+                : "Your preferences",
+            options
+              .map(
+                (x, i) =>
+                  `<label class="settings-row">${x}<input type="checkbox" name="setting-${i}" ${a === "slots" && i < 2 ? "" : "checked"}></label>`,
+              )
+              .join("") +
+              `<p class="callout">Layout preview. Preferences are not persisted.</p>${button("close", "Done", "primary")}`,
+          );
+          return;
+        }
+        if (a === "recurring") {
+          sheet(
+            p,
+            "Recurring expenses",
+            `<div class="transaction"><div><p class="task-name">Rent</p><p class="meta">CHF 2,000 · monthly · split equally</p></div><p class="pill">Automatic</p></div><div class="transaction"><div><p class="task-name">Internet</p><p class="meta">CHF 59 · monthly · split equally</p></div><p class="pill">Automatic</p></div><p class="callout">You approve the amount and split when setting these up. Future entries are added automatically.</p>${button("close", "Done", "primary")}`,
+          );
+          return;
+        }
+        if (a === "offline") {
+          toast(p, "Offline · your checked items will sync when connected");
+          return;
+        }
+        if (a === "addchore") {
+          sheet(
+            p,
+            "Add a chore",
+            `<form data-form="chore"><label class="field">What needs doing?<input name="title" placeholder="e.g. Vacuum the living room" required></label><label class="field">Responsibility<select name="assignment"><option>Shared</option><option>Me</option><option>Alternate</option></select></label><p class="callout">This quick prototype shows the shared, one-tap flow.</p><button class="primary" type="submit">Add chore</button></form>`,
+          );
+          return;
+        }
+        if (a === "prevweek" || a === "nextweek") toast(p, "This prototype shows one sample week");
+      });
+      document.addEventListener("change", (e) => {
+        if (e.target.id === "dark") {
+          dark = e.target.checked;
+          render();
+        }
+        if (e.target.dataset.task !== undefined) {
+          const n = +e.target.dataset.task;
+          e.target.checked ? tasks.add(n) : tasks.delete(n);
+          const count = e.target.closest(".phone").querySelector(".section-title .meta");
+          if (count) count.textContent = `${tasks.size} of ${everyone ? 4 : 3} done`;
+        }
+        if (e.target.dataset.grocery !== undefined) {
+          const n = +e.target.dataset.grocery;
+          e.target.checked ? groceryChecked.add(n) : groceryChecked.delete(n);
+        }
+      });
+      document.addEventListener("input", (e) => {
+        if (e.target.name === "amount") {
+          const out = e.target.closest("form").querySelector("[data-share]");
+          out.textContent = "CHF " + ((+e.target.value || 0) / 2).toFixed(2);
+        }
+      });
+      document.addEventListener("submit", (e) => {
+        const f = e.target;
+        if (!f.dataset.form) return;
+        e.preventDefault();
+        const p = f.closest(".phone"),
+          idx = +p.dataset.phone,
+          data = new FormData(f);
+        if (f.dataset.form === "grocery") {
+          const s = String(data.get("item")).trim();
+          if (s) groceries.push(s);
+          render();
+        } else if (f.dataset.form === "expense") {
+          const amount = +data.get("amount");
+          if (amount > 0) {
+            balance += data.get("payer") === "You" ? amount / 2 : -amount / 2;
+            expenses.unshift([
+              data.get("description"),
+              `${data.get("payer")} paid · split equally`,
+              amount.toFixed(2),
+            ]);
+            states[idx].page = "money";
+            render();
+            toast(document.querySelector(`[data-phone="${idx}"]`), "Demo expense saved");
+          }
+        } else if (f.dataset.form === "chat") {
+          toast(p, "Prototype: try the financial approval card above.");
+          f.reset();
+        } else if (f.dataset.form === "chore") {
+          const title = String(data.get("title"));
+          close(p);
+          const group = p.querySelector(".group");
+          if (group)
+            group.insertAdjacentHTML(
+              "beforeend",
+              task(escape(title), "Today · Shared", 20 + group.children.length),
+            );
+          toast(p, "Demo chore added");
+        }
+      });
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") document.querySelectorAll(".phone:has(.sheet)").forEach(close);
+      });
+      render();
+    </script>
+  </body>
+</html>

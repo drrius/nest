@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Nest",
+    "slug": "nest",
+    "scheme": "nest",
+    "version": "0.1.0",
+    "platforms": ["ios"],
+    "userInterfaceStyle": "automatic",
+    "plugins": ["expo-router"]
+  }
+}
