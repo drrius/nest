@@ -25,3 +25,11 @@ Locally verified: 12 PostgreSQL tests for authorization/privacy, opt-out races, 
 - [ ] M8/M9: real push, migration/release rehearsal and device acceptance remain incomplete.
 
 PRs #1–#10 have passing current-commit CI; no Greptile response has arrived, and none is merged. Required external help if it persists: enable/fix Greptile access for drrius/nest. Native verification needs an iPhone development install or available simulator access. No purchases, production changes, releases or replacement automation have been performed.
+
+## 20 September — busy-sharing review corrections
+
+The additive consent migration now rejects an absent Household OS tenancy baseline before creating tables. Its fixture loads the three audited legacy tenancy migrations rather than inventing the membership schema; real FK/unique constraints, member cap, grants and RLS are exercised. Full-history/hosted Supabase rehearsal remains a pre-production gate; a fresh database is not the deployment target.
+
+Reused the tested PostgreSQL harness correction from PR #12: configured client binary, bounded statements/locks/processes and idempotent exit/SIGINT/SIGTERM cleanup after startup. Added those real-process cleanup tests to this branch's focused CI command. SIGKILL/host failure cannot run cleanup. No native integration, device permission test or production application is claimed.
+
+Verification: 13 busy-sharing PostgreSQL tests plus three harness process tests pass; local security advisors report no issues. Updated-commit CI and Greptile rereview are pending.

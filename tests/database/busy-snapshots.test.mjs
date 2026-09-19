@@ -152,7 +152,9 @@ test("publisher membership revocation removes consent and cannot revive sharing 
   db.sql(`delete from public.household_members where user_id='${actor}'`);
   assert.equal(visible(partner), "0");
   assert.throws(() => db.sql(as(actor, publish(lease))), /Not authorized/);
-  db.sql(`insert into public.household_members values('${household}','${actor}')`);
+  db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${household}','${actor}','Restored')`,
+  );
   assert.equal(visible(partner), "0");
   assert.equal(current(), "");
 });
@@ -193,4 +195,17 @@ test("failed snapshot replacement leaves the previous complete snapshot intact",
   );
   db.sql("drop trigger fail_busy on public.nest_busy_snapshots");
   db.sql(as(actor, publish(newer, [{ start: 300, end: 400 }])));
+});
+
+test("an empty database cannot partially install additive busy sharing", () => {
+  const empty = startFixturePostgres();
+  try {
+    assert.throws(
+      () => empty.file("supabase/migrations/20260919214955_native_busy_snapshots.sql"),
+      /existing Household OS tenancy baseline/,
+    );
+    assert.equal(empty.sql("select to_regclass('public.nest_calendar_consent') is null"), "t");
+  } finally {
+    empty.stop();
+  }
 });

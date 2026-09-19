@@ -1,3 +1,15 @@
+-- Additive to audited Household OS tenancy; never a fresh-project bootstrap.
+do $$
+begin
+  if to_regclass('public.household_members') is null
+    or to_regnamespace('private') is null
+    or to_regprocedure('auth.uid()') is null then
+    raise exception 'Nest requires the existing Household OS tenancy baseline; do not apply to an empty project'
+      using errcode='55000';
+  end if;
+end;
+$$;
+
 -- GATED: consent-bound sanitized busy snapshots. No calendar/event text is stored.
 create table public.nest_calendar_consent (
   actor_id uuid not null, household_id uuid not null,
