@@ -107,6 +107,55 @@ Reused the tested PostgreSQL harness correction from PR #12: configured client b
 
 Verification: 13 busy-sharing PostgreSQL tests plus three harness process tests pass; local security advisors report no issues. Updated-commit CI and Greptile rereview are pending.
 
+## M4 — native grocery-check server command (feature branch)
+
+Implemented `codex/grocery-check-receipts`: gated additive checked/version columns on existing grocery rows plus authenticated `nest_set_grocery_checked` and actor-scoped operation receipts. Compatible checks converge, opposite stale intents conflict, exact retries return one receipt, and legacy edits advance the version. Shopping-session/purchase fields remain untouched; no money is posted. The audited source is Household OS `4a528c96caf41515a70291ccecbba9d7b35e3349` grocery schema and column grants.
+
+Locally verified: 12 focused PostgreSQL tests for retries, concurrent partner/duplicate operations, conflict/ABA detection, authorization/RLS/grants, failure rollback, legacy claim preservation, revoked membership and helper isolation. Supabase security advisors reported no issues against the disposable local fixture. Lint limits and formatting pass. No production migration ran; CI pending PR creation. Native/API/AI integration and full-schema rehearsal remain unverified.
+
+### Milestone checklist
+
+- [ ] M0/M1: delivery/native preview #1/#2 await review; device install and owner UX review remain.
+- [ ] M2: auth #3, chore receipts #4, SQLite #6, SDK #8 and approvals #9 are independently tested foundations, not an integrated native slice.
+- [ ] M3: real sign-in/onboarding/settings remain incomplete.
+- [ ] M4: this grocery server command is implemented; native/AI wiring, conflict UI, online checklist editing and two-device offline journeys remain.
+- [ ] M5/M6: Meals remains incomplete; Calendar boundary #7 still needs server consent/snapshots and device verification.
+- [ ] M7: CHF domain #5 and approval boundary #9 are tested; real financial services/UI, recurring scheduler and reconciliation remain.
+- [ ] M8/M9: push, full migration rehearsal and release/device acceptance remain incomplete.
+
+PRs #1–#9 have passing current-commit CI but no Greptile responses. None is merged; no silence is counted as approval. Owner may need to enable/fix Greptile access for drrius/nest. iPhone development installation/simulator access remains needed for native evidence. Removed continuation automation stays absent. No purchases, production data changes or releases have occurred.
+
+## 20 September — PostgreSQL client selection review
+
+Fixed Greptile's harness finding: synchronous queries, SQL files and concurrent requests now use `psql` from `NEST_TEST_PG_BIN`, the same installation as `initdb` and `pg_ctl`. This avoids accidental PATH selection or missing-client failures. The disposable grocery receipt suite passes with the configured PostgreSQL installation. PRs #1 and #2 have merged after clean current-commit Greptile reviews, passing CI and resolved conversations; this branch still requires its own updated review.
+
+Local setup evidence: the extracted server package lacked `psql`; the corrected harness failed explicitly with ENOENT. Verified both server and system client are PostgreSQL 18.6, linked `/usr/bin/psql` into the temporary test installation, then reran all 12 grocery tests successfully. The harness itself no longer falls back to PATH.
+
+## M2 — durable action approval boundary (feature branch)
+
+Implemented `codex/durable-approvals`: gated additive approval records with owner/current-membership RLS, exact invocation/command/version/payload binding, 15-minute non-renewing expiry, immutable approve/deny decisions and internal transaction-only consumption. Public clients cannot mutate the table or execute the consume helper. Membership identity is retained for audit after revocation; membership locks protect authorization during writes. Native financial/recurring command names follow the approved action inventory.
+
+Locally verified: nine real PostgreSQL 18.6 tests on synthetic data cover identity/tenant isolation, denied direct access, expiry/denial, payload tampering, duplicate requests, concurrent decisions/consumption, post-revocation denial and atomic rollback after a fixture write failure. Supabase security advisors against that disposable Unix-socket database returned no issues. Lint limits and formatting pass. The fixture is not a ledger; no production migration or live financial write has run. CI pending PR creation; API/native/device verification absent.
+
+### Milestone checklist
+
+- [ ] M0/M1: delivery/native preview PRs #1/#2 remain open; device build/install and owner usability/accessibility review remain.
+- [ ] M2: session #3, chore receipts #4, SQLite #6, AI SDK #8 and this approval boundary exist independently. Full native auth/offline flow, private chat persistence, actual financial command transaction and live provider streaming/approve-resume remain incomplete.
+- [ ] M3–M5: onboarding/settings, daily vertical flows and Meals remain incomplete.
+- [ ] M6: Calendar boundary #7 has passing current-commit CI; server snapshots, consent and two-device privacy checks remain.
+- [ ] M7: CHF domain #5 is tested; financial services/UI, recurring mandates/scheduler and exact history reconciliation remain incomplete.
+- [ ] M8/M9: push, migration/release rehearsal and device acceptance remain incomplete.
+
+PRs #1–#8 have passing current-commit CI and no Greptile review responses; none is merged. Required external action if this persists: verify Greptile is enabled for drrius/nest (installation metadata lookup with the available GitHub token returned HTTP 403). Native evidence still requires an iPhone development installation or available simulator access; Linux lacks Xcode and EAS simulator availability was false. No purchases, production migrations or publication have occurred. Removed continuation automation remains absent.
+
+## 20 September — approval prerequisite review correction
+
+This candidate is additive to the retained Household OS database, not a fresh-project bootstrap. Added an explicit prerequisite guard before any approval tables are created. The focused fixture now executes audited real legacy tenancy migrations with their actual constraints, cap, grants and RLS. Supabase auth infrastructure alone remains simulated; only synthetic rows are inserted. Full-history/hosted compatibility remains a separately required production gate.
+
+Reused the corrected configured-client/timeout/cleanup harness from PR #12. PRs #1–#3 have merged after current-commit clean Greptile review, passing CI and resolved conversations. No complete native vertical slice or production deployment is claimed.
+
+Verification: all ten approval PostgreSQL tests pass, including empty-database rejection; local security advisors report no issues. Updated-commit CI and Greptile rereview remain pending.
+
 ## M2 — Effect / AI SDK compatibility boundary (feature branch)
 
 Implemented `codex/ai-contract-adapter`: `@nest/ai` pins AI SDK 7.0.106 with Effect 4.0.0-rc.115. The schema adapter derives draft-07 JSON Schema and validates the same canonical Effect codec; named references and rejection of excess fields are preserved. The tool adapter forwards the shared executor, cancellation and safe failure codes without adding retries. SDK 7 approval uses `ToolLoopAgent.toolApproval`. No release-age exclusions were retained after choosing the preceding package patch.
@@ -221,6 +270,14 @@ Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's i
 
 PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all addressed conversations resolved. This branch integrates PRs #1–#4 with the pure CHF rules. CI runs package tests once through `pnpm test` (including both API and domain) plus isolated database tests; the focused `test:domain` command remains available locally. Progress histories are retained. These rules remain unconnected to actual financial posting and native Money UI.
 
+## 20 September — grocery receipt integration
+
+Integrated merged PRs #1–#5 and the corrected shared PostgreSQL lifecycle. CI runs chore/grocery and harness tests once through `test:database`; `test:groceries` remains a focused local command. Existing check receipts retain tenant/actor scoping, conflict detection and legacy shopping-history preservation. Native checklist/API/outbox wiring remains incomplete, and the grocery schema fixture is still deliberately scoped rather than a whole-history rehearsal.
+
+## 20 September — financial approval integration
+
+Integrated merged PRs #1–#5 and the corrected fixture lifecycle from PR #12. Database CI now runs the chore, approval and shared harness tests once through `test:database`; the focused approval command remains available. Kept actual audited tenancy fixtures and all prior evidence. Approval records are still not connected to financial commands, SDK streaming or native approval cards; this is shared foundation integration, not completed financial behavior.
+
 ## 20 September — shared AI adapter integration
 
 Integrated merged PRs #1–#5 into the AI adapter branch. CI runs API, domain and SDK package tests once through the recursive test command and retains database/tooling checks. Kept exact AI SDK 7.0.106 and Effect pins. This prepares shared authorized command wiring; real provider streaming, native chat and durable approval integration are still incomplete.
@@ -240,3 +297,15 @@ Local integration verification: all 31 isolated PostgreSQL tests pass (13 busy-s
 AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
 
 Busy consent integration: incorporated merged PR #8 without changing SQL or calendar behavior. Full local Supabase/PostgREST container verification remains unavailable: Docker socket access is denied to this user even outside the sandbox. Isolated PostgreSQL fixtures continue to work.
+Grocery integration follow-up: integrated reviewed PRs #6 and #7, preserving offline/calendar CI checks. Grocery SQL and receipt behavior are unchanged. Native grocery/API replay integration remains incomplete; this commit needs new CI and review.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Grocery integration: incorporated merged PR #8 while preserving receipt SQL and existing verification. Native grocery replay remains unwired.
+Approval integration follow-up: integrated reviewed PRs #6 and #7, preserving offline/calendar CI checks. Approval SQL and command authorization behavior are unchanged. Financial posting and native approval integration remain incomplete; this commit needs new CI and review.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Approval integration: incorporated merged PR #8. This metadata-only merge preserves approval SQL, all database tests and the AI compiler check. No approval or native behavior changed.
+
+Grocery/approval integration: PR #9 merged with current-head CI and explicit clean review. Integrated its approved persistence and shared fixture lifecycle. The combined database command now contains 40 tests; these remain independent fixture databases rather than a complete migration-history rehearsal.
+
+Busy-sharing integration: incorporated merged PRs #9 and #10. The combined database command contains 53 cases across isolated fixtures. Consent behavior is unchanged; final review uses the owner-authorized adversarial fallback while Greptile reports its trial cap.

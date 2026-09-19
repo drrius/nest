@@ -21,7 +21,9 @@
     "test": "pnpm -r --if-present test",
     "test:offline": "node --test apps/mobile/tests/offline.test.mjs",
     "test:domain": "pnpm --filter @nest/domain test",
-    "test:ai": "pnpm --filter @nest/ai test"
+    "test:ai": "pnpm --filter @nest/ai test",
+    "test:approvals": "node --test tests/database/approvals.test.mjs",
+    "test:groceries": "node --test tests/database/groceries.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
