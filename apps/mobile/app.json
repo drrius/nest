@@ -7,13 +7,15 @@
     "icon": "./assets/icon.png",
     "ios": {
       "bundleIdentifier": "ch.drrius.nest.dev",
-      "supportsTablet": false
+      "supportsTablet": false,
+      "usesAppleSignIn": true
     },
     "platforms": ["ios"],
     "userInterfaceStyle": "automatic",
     "plugins": [
       "expo-router",
       "expo-secure-store",
+      "expo-apple-authentication",
       "expo-sqlite",
       [
         "expo-calendar",

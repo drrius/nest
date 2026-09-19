@@ -239,3 +239,11 @@ Approval integration follow-up: integrated reviewed PRs #6 and #7, preserving of
 AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
 
 Approval integration: incorporated merged PR #8. This metadata-only merge preserves approval SQL, all database tests and the AI compiler check. No approval or native behavior changed.
+
+## 20 September — review fallback and native identity
+
+Greptile's latest review bodies explicitly report its 50-credit trial cap. The owner authorized independent adversarial subagent review when this happens. No upgrade was purchased. PR #10 merged after exact-head CI, all conversations resolved and independent signoff at `46d842d`; that reviewer separately ran all twelve grocery tests. PR #13 remains open with two accepted adversarial findings: canonical UUID receipt comparison and paused-routine exclusion. Both have real PostgreSQL/PostgREST reproductions and must be fixed/rereviewed before merge.
+
+Native identity implementation now has Apple nonce/state checks, exact Supabase SDK 2.116.0, device-only unlocked SecureStore, API-verified member state, foreground refresh, nonmember guidance and logout visibility protection. The auth SDK's logout-on-network-failure behavior is verified by a test. Nine session tests, typechecks and lint/format pass; iOS Metro exports 1,544 modules and introspection includes the Apple entitlement for `ch.drrius.nest.dev`. Expo's DOM library typing was restored to match its Fetch interfaces; no casts or diagnostics were disabled.
+
+Native/device verification remains absent. Required: an installed iPhone development build, compatible Apple App ID grouping/audiences preserving existing identity, and an isolated configured API/backend. SecureStore/device refresh, actual Apple cancellation/account flows and the Today/outbox/AI journey remain incomplete. No provider configuration, production data, purchase or release was changed. The removed automation remains absent.
