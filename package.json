@@ -14,7 +14,8 @@
     "format:check": "oxfmt --check .",
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
-    "start": "pnpm --filter @nest/mobile start"
+    "start": "pnpm --filter @nest/mobile start",
+    "test:offline": "node --test apps/mobile/tests/offline.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
