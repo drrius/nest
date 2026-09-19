@@ -81,6 +81,31 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## M2 — durable action approval boundary (feature branch)
+
+Implemented `codex/durable-approvals`: gated additive approval records with owner/current-membership RLS, exact invocation/command/version/payload binding, 15-minute non-renewing expiry, immutable approve/deny decisions and internal transaction-only consumption. Public clients cannot mutate the table or execute the consume helper. Membership identity is retained for audit after revocation; membership locks protect authorization during writes. Native financial/recurring command names follow the approved action inventory.
+
+Locally verified: nine real PostgreSQL 18.6 tests on synthetic data cover identity/tenant isolation, denied direct access, expiry/denial, payload tampering, duplicate requests, concurrent decisions/consumption, post-revocation denial and atomic rollback after a fixture write failure. Supabase security advisors against that disposable Unix-socket database returned no issues. Lint limits and formatting pass. The fixture is not a ledger; no production migration or live financial write has run. CI pending PR creation; API/native/device verification absent.
+
+### Milestone checklist
+
+- [ ] M0/M1: delivery/native preview PRs #1/#2 remain open; device build/install and owner usability/accessibility review remain.
+- [ ] M2: session #3, chore receipts #4, SQLite #6, AI SDK #8 and this approval boundary exist independently. Full native auth/offline flow, private chat persistence, actual financial command transaction and live provider streaming/approve-resume remain incomplete.
+- [ ] M3–M5: onboarding/settings, daily vertical flows and Meals remain incomplete.
+- [ ] M6: Calendar boundary #7 has passing current-commit CI; server snapshots, consent and two-device privacy checks remain.
+- [ ] M7: CHF domain #5 is tested; financial services/UI, recurring mandates/scheduler and exact history reconciliation remain incomplete.
+- [ ] M8/M9: push, migration/release rehearsal and device acceptance remain incomplete.
+
+PRs #1–#8 have passing current-commit CI and no Greptile review responses; none is merged. Required external action if this persists: verify Greptile is enabled for drrius/nest (installation metadata lookup with the available GitHub token returned HTTP 403). Native evidence still requires an iPhone development installation or available simulator access; Linux lacks Xcode and EAS simulator availability was false. No purchases, production migrations or publication have occurred. Removed continuation automation remains absent.
+
+## 20 September — approval prerequisite review correction
+
+This candidate is additive to the retained Household OS database, not a fresh-project bootstrap. Added an explicit prerequisite guard before any approval tables are created. The focused fixture now executes audited real legacy tenancy migrations with their actual constraints, cap, grants and RLS. Supabase auth infrastructure alone remains simulated; only synthetic rows are inserted. Full-history/hosted compatibility remains a separately required production gate.
+
+Reused the corrected configured-client/timeout/cleanup harness from PR #12. PRs #1–#3 have merged after current-commit clean Greptile review, passing CI and resolved conversations. No complete native vertical slice or production deployment is claimed.
+
+Verification: all ten approval PostgreSQL tests pass, including empty-database rejection; local security advisors report no issues. Updated-commit CI and Greptile rereview remain pending.
+
 ## M2 — Effect / AI SDK compatibility boundary (feature branch)
 
 Implemented `codex/ai-contract-adapter`: `@nest/ai` pins AI SDK 7.0.106 with Effect 4.0.0-rc.115. The schema adapter derives draft-07 JSON Schema and validates the same canonical Effect codec; named references and rejection of excess fields are preserved. The tool adapter forwards the shared executor, cancellation and safe failure codes without adding retries. SDK 7 approval uses `ToolLoopAgent.toolApproval`. No release-age exclusions were retained after choosing the preceding package patch.
@@ -195,6 +220,10 @@ Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's i
 
 PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all addressed conversations resolved. This branch integrates PRs #1–#4 with the pure CHF rules. CI runs package tests once through `pnpm test` (including both API and domain) plus isolated database tests; the focused `test:domain` command remains available locally. Progress histories are retained. These rules remain unconnected to actual financial posting and native Money UI.
 
+## 20 September — financial approval integration
+
+Integrated merged PRs #1–#5 and the corrected fixture lifecycle from PR #12. Database CI now runs the chore, approval and shared harness tests once through `test:database`; the focused approval command remains available. Kept actual audited tenancy fixtures and all prior evidence. Approval records are still not connected to financial commands, SDK streaming or native approval cards; this is shared foundation integration, not completed financial behavior.
+
 ## 20 September — shared AI adapter integration
 
 Integrated merged PRs #1–#5 into the AI adapter branch. CI runs API, domain and SDK package tests once through the recursive test command and retains database/tooling checks. Kept exact AI SDK 7.0.106 and Effect pins. This prepares shared authorized command wiring; real provider streaming, native chat and durable approval integration are still incomplete.
@@ -216,3 +245,7 @@ AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offli
 Chore API follow-up: integrated merged PR #8 and added corresponding AI SDK list/complete tools using the same command factory. Each invocation verifies identity/membership again; bypassing SDK schema validation cannot inject an actor into the mutation. Twenty-two API/tool/body tests pass locally, along with combined typechecks and configured lint/format gates. These execute SDK tool adapters and real HTTP requests to a fixture upstream, not a live model. Native session/replay and actual streaming remain incomplete.
 
 Real REST integration evidence: downloaded the official PostgREST 16.3 standalone binary to `/tmp`, verified its published SHA-256, and ran it against a disposable PostgreSQL 18.6 fixture. The actual embedded routine query/RLS and completion RPC pass an end-to-end API test covering cross-household denial, lost-ack replay, exactly one closure, stale conflict and revocation. This exposed SQLSTATE `40001` arriving as HTTP 500; fixed the adapter to return the intended 409 and added a regression. Twenty-two HTTP/tool/body tests also pass. Supabase Auth is still a fixture bridge and the legacy closure is synthetic; full recurrence, live provider and native verification remain outstanding. PR #9 merged after explicit clean current-head review, CI and resolved conversations.
+Approval integration follow-up: integrated reviewed PRs #6 and #7, preserving offline/calendar CI checks. Approval SQL and command authorization behavior are unchanged. Financial posting and native approval integration remain incomplete; this commit needs new CI and review.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Approval integration: incorporated merged PR #8. This metadata-only merge preserves approval SQL, all database tests and the AI compiler check. No approval or native behavior changed.

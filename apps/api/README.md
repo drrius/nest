@@ -14,6 +14,6 @@ Run `pnpm --filter @nest/api test` for ten focused HTTP-boundary cases. Tests st
 
 The read adapter deliberately refuses more than 200 returned occurrences instead of returning a knowingly incomplete snapshot. The caller cannot select an actor or household. PostgreSQL still checks current membership when executing the RPC, including revocation after API verification.
 
-HTTP fixture tests exercise the actual Effect network adapter, credential forwarding, malformed responses and failures. Database receipt tests separately verify SQL authorization/atomicity. Real PostgREST embedding, complete legacy recurrence, native session/replay wiring and a live authenticated journey remain unverified. This API factory is not yet deployed.
+HTTP fixture tests exercise the actual Effect network adapter, credential forwarding, malformed responses and failures. Database receipt tests separately verify SQL authorization/atomicity. A separate disposable PostgREST integration test now verifies embedding and the receipt RPC. Complete legacy recurrence, real Supabase Auth, native session/replay wiring and a live member journey remain unverified. This API factory is not yet deployed.
 
 `choreTools(request, config)` provides AI SDK list/complete tools over these same commands. Every execution verifies the request bearer and current membership again. The streaming route must supply the authenticated request; no live streaming route or provider is implied by this factory. SDK validation does not replace command validation.
