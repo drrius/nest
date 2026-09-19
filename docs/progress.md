@@ -107,6 +107,49 @@ Reused the tested PostgreSQL harness correction from PR #12: configured client b
 
 Verification: 13 busy-sharing PostgreSQL tests plus three harness process tests pass; local security advisors report no issues. Updated-commit CI and Greptile rereview are pending.
 
+## 20 September 2026 — private conversation persistence foundation
+
+Implemented a gated additive migration for owner-private, versioned AI transcripts and atomic save receipts. Membership is checked before receipt replay; RLS hides transcripts and receipt metadata from the partner and outsiders. Revision checks reject concurrent overwrites. Replayed older saves return their original result without replacing newer content. Receipts store request hashes instead of duplicate transcript bodies.
+
+Locally verified: nine disposable PostgreSQL tests cover owner isolation, revoked membership, concurrent writers, duplicate first saves, changed-operation rejection, older retries, rollback and envelope limits. Opaque SDK parts round-trip only as data; that is not approval enforcement or SDK validation. Supabase security advisors against this same local fixture reported no issues. Full legacy-schema and hosted Supabase compatibility remain unverified. No production data was accessed or changed.
+
+CI verification for this branch is pending. PRs #1–#11 have passing latest-commit CI but remain unmerged because Greptile has not supplied a review. A read-only check found no signed-in Greptile browser session; the available GitHub token cannot inspect app installations. Owner action: sign in to Greptile and check that drrius/nest is enabled and accessible. The precise cause of the missing reviews is not yet known. No review gate was bypassed.
+
+### Milestone checklist
+
+- [ ] M0: delivery decisions and build configuration proposed; executable native/device verification remains blocked.
+- [ ] M1: Quiet development preview proposed; owner interaction review and native accessibility checks remain.
+- [ ] M2: authorization, receipts, outbox, SDK adapter and private persistence foundations proposed; real integrated native/authenticated streaming journey remains.
+- [ ] M3: real Apple sign-in, onboarding and settings remain.
+- [ ] M4: native Today, routines and groceries with real authorized data remain.
+- [ ] M5: complete meal planning/proposals and grocery review remain.
+- [ ] M6: complete append-only Money workflows and recurring approvals remain.
+- [ ] M7: calendar privacy foundations proposed; real device calendar integration remains.
+- [ ] M8: real push delivery and notification journeys remain.
+- [ ] M9: fixture migration reconciliation, integrated acceptance and separately approved cutover/release remain.
+
+No complete native vertical slice is claimed. Conversation API validation, streaming ownership/finalization, reconnect, native chat UI and actual command approvals are outstanding. Device verification requires an executable iPhone development build and access to a test phone; Linux has no Xcode and the checked EAS simulator account is unavailable. The removed continuation automation remains removed.
+
+Owner update: Greptile had not been enabled for the new repository; the owner has now enabled it. Fresh reviews were requested once on each of PRs #1–#11 at their current commits. If Greptile stops working or is rate-limited, the owner now authorizes an adversarial review subagent as the replacement review gate, with fixes and rereview until explicit signoff. CI and addressed-conversation requirements still apply.
+
+## 20 September — conversation test reliability corrections
+
+Addressed Greptile's unchecked conflict cause: the losing concurrent save must report `Conversation changed`, not merely any subprocess failure. All PostgreSQL clients now resolve from the configured installation. Added five-second statement and three-second lock timeouts plus bounded subprocess execution. Cleanup is idempotent and registered for normal exit, SIGINT and SIGTERM after successful startup; SIGKILL cannot be handled.
+
+Locally verified all nine conversation tests plus three real-process harness tests: stalled query timeout, repeated cleanup, SIGINT and SIGTERM server/data cleanup. The actual-schema-baseline finding remains open: the minimal fixture is not sufficient evidence of migration compatibility. No production application is authorized or performed. PRs #1 and #2 are merged with clean current-commit reviews and CI; remaining PRs still follow their own gates.
+
+## 20 September — audited conversation prerequisites
+
+Replaced the simplified membership fixture with three byte-for-byte audited legacy tenancy migrations from Household OS commit `4a528c96caf41515a70291ccecbba9d7b35e3349`. The conversation tests now exercise actual membership columns, unique/FK constraints, two-member cap, grants and RLS. Only Supabase-owned auth infrastructure is simulated; all records remain synthetic. The migration rejects a missing tenancy baseline before creating tables.
+
+Ten conversation tests pass, including the new empty-database rejection. This establishes focused compatibility with the actual tenancy prerequisite source, not a full legacy migration-history rehearsal or hosted Supabase proof. Later profile-file triggers and unrelated feature migrations are not included. Full-history rehearsal remains a production gate. Greptile is asked to assess this evidence against its fixture finding; no claim of production readiness is made.
+
+## 20 September — startup/shutdown failures and concurrent first saves
+
+Fixed the two lifecycle review findings: cleanup registers before startup, tracks attempted startup before waiting, retries failed fast shutdown with immediate shutdown, and checks whether a server remains. Listener cleanup runs in `finally`. A server that cannot be confirmed stopped retains its data and reports an explicit recovery error; deleting data underneath a running PostgreSQL process would be unsafe. SIGKILL/host failure remains outside process cleanup guarantees.
+
+Added three real-PostgreSQL lifecycle regressions for failure after spawn, fast-stop failure and failed startup with no server. Running the expanded suite exposed an intermittent duplicate-first-save violation on the composite unique constraint. Changed insertion to handle all uniqueness conflicts, followed by the existing owner/household lock check; expanded duplicate requests to eight simultaneous saves. All ten conversation and six harness/lifecycle tests now pass. No production data was touched.
+
 ## M4 — native grocery-check server command (feature branch)
 
 Implemented `codex/grocery-check-receipts`: gated additive checked/version columns on existing grocery rows plus authenticated `nest_set_grocery_checked` and actor-scoped operation receipts. Compatible checks converge, opposite stale intents conflict, exact retries return one receipt, and legacy edits advance the version. Shopping-session/purchase fields remain untouched; no money is posted. The audited source is Household OS `4a528c96caf41515a70291ccecbba9d7b35e3349` grocery schema and column grants.
@@ -297,6 +340,15 @@ Local integration verification: all 31 isolated PostgreSQL tests pass (13 busy-s
 AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
 
 Busy consent integration: incorporated merged PR #8 without changing SQL or calendar behavior. Full local Supabase/PostgREST container verification remains unavailable: Docker socket access is denied to this user even outside the sandbox. Isolated PostgreSQL fixtures continue to work.
+
+## 20 September — private conversation integration
+
+Integrated reviewed main through PR #7. CI runs conversation, chore and lifecycle database fixtures once through the shared test command, alongside calendar/offline and package tests. Transcript storage is still not connected to authenticated API streaming or native chat; no live provider/device verification is claimed.
+
+Local integrated verification: 28 PostgreSQL tests pass (ten conversation, twelve chore, six lifecycle), as do frozen install, combined typechecks, configured lint gates and formatting. Review and CI must run on the new integration commit before merge.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Conversation integration: incorporated merged PR #8 without changing persistence SQL or lifecycle verification. Stored SDK parts remain untrusted data; the reviewed adapter does not yet provide a live conversation route.
 
 ## 20 September — authorized chore API integration
 
