@@ -13,3 +13,7 @@ Read docs/native-rewrite/product-and-design.md, architecture-audit.md and implem
 - Read the old repository only as a reference/migration source. Copy deliberately audited code and tests, not whole legacy screens or infrastructure defaults. Keep existing data safe; new production migrations remain gated.
 - Do not buy services, migrate/cut over production, merge, or publish releases without explicit authorization. CHF20/month is a ceiling, not a target; purchases need approval.
 - Keep docs/progress.md current with implemented slices, verification and blockers. Do not let unavailable device services block independent local work.
+
+## Expo and React Native skills
+
+The vendored Expo/EAS skill set lives in `.agents/skills/`. Use `expo-overview/SKILL.md` to select relevant skills, then read the applicable skill and its references before native implementation. These are copied from the legacy repository with their reference files intact; explicit Nest scope and user instructions take precedence.
