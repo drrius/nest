@@ -15,6 +15,7 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
     "start": "pnpm --filter @nest/mobile start",
+    "test:busy": "node --test tests/database/busy-snapshots.test.mjs",
     "test:calendar": "node --test apps/mobile/tests/calendar*.test.mjs",
     "test:session": "node --test apps/mobile/tests/session*.test.mjs",
     "test:database": "node --test tests/database/*.test.mjs",
