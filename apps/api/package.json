@@ -1,0 +1,16 @@
+{
+  "name": "@nest/api",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test ../../tests/api/*.test.mjs"
+  },
+  "dependencies": {
+    "effect": "4.0.0-rc.115"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  }
+}

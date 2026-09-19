@@ -16,7 +16,8 @@
       {
         "name": "@effect/language-service"
       }
-    ]
+    ],
+    "allowImportingTsExtensions": true
   },
   "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
