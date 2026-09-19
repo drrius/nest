@@ -19,3 +19,4 @@ jobs:
       - run: pnpm test:tooling
       - name: Test isolated PostgreSQL transactions and RLS
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" pnpm test:database
+      - run: pnpm test

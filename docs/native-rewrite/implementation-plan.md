@@ -6,7 +6,9 @@ Status: proposed execution plan, 19 September 2026. Product scope is confirmed. 
 
 Deliver a complete, focused iPhone app with Today, Meals, Calendar and Money. Do not use the old web route count as a completion metric. Each slice must include the UI, real data behavior, corresponding AI actions, permissions, failure handling and appropriate tests.
 
-Develop in reviewable branches/PRs. Do not merge, buy services, migrate production data, retire the deployed web product or publish a TestFlight release without the applicable explicit authorization. Local implementation can proceed once requested; do not ask repeatedly for routine reversible choices.
+Develop in small feature branches/PRs against `drrius/nest`; never push implementation directly to main. The owner explicitly authorized autonomous squash merges on 19 September 2026, only when the latest commit passes all required CI, Greptile has reviewed that commit with no new or outstanding findings, and every review conversation is resolved. Investigate findings and request rereview after fixes; do not duplicate requests for unchanged commits. Silence is not approval. Update local main after merges. Continue independent work when CI/review is unavailable.
+
+Purchases, production migration/cutover, retiring the existing app and TestFlight/App Store publication still require separate explicit approval. Merge workflows must not perform those actions. Make routine reversible implementation decisions autonomously. See [ADR 0001](../adr/0001-native-delivery-contract.md).
 
 Use exact pnpm dependency versions and committed lockfiles. Preserve merged migrations; new invariants receive database/property tests. Retain the required `e2e` label for affected workflows/integration and passing current-head CI. Browser E2E protects the transitional web runtime; add native verification rather than treating browser success as phone coverage.
 
