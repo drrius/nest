@@ -150,3 +150,7 @@ PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all a
 ## 20 September — shared AI adapter integration
 
 Integrated merged PRs #1–#5 into the AI adapter branch. CI runs API, domain and SDK package tests once through the recursive test command and retains database/tooling checks. Kept exact AI SDK 7.0.106 and Effect pins. This prepares shared authorized command wiring; real provider streaming, native chat and durable approval integration are still incomplete.
+
+## 20 September — AI compiler diagnostics correction
+
+Investigated Greptile's compiler finding. The package's actual compiler reports `7.0.2+effect-tsgo.0.45.0`, so root patching was working; however its tsconfig lacked the Effect language-service plugin. A temporary floating-Effect probe incorrectly exited 0 before the fix and exits 1 with TS377001 `effect(floatingEffect)` afterward. Added the plugin/schema configuration and a regression exercising the package compiler. Real source typechecks without suppressions. Root Oxlint diagnostics were already enabled, but they did not substitute for the missing compiler configuration.
