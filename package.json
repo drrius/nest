@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@11.21.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "scripts": {
     "prepare": "effect-tsgo patch --typescript --oxlint",
@@ -15,7 +15,9 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
     "start": "pnpm --filter @nest/mobile start",
-    "test:calendar": "node --test apps/mobile/tests/calendar*.test.mjs"
+    "test:calendar": "node --test apps/mobile/tests/calendar*.test.mjs",
+    "test:database": "node --test tests/database/*.test.mjs",
+    "test": "pnpm -r --if-present test"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
