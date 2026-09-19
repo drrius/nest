@@ -13,14 +13,23 @@ const actor = id(1),
 let sequence = 100;
 const next = () => id(sequence++);
 const as = (user, sql) => `set role authenticated; set request.jwt.claim.sub='${user}'; ${sql}`;
-const consent = (version, enabled = true, operation = next()) =>
-  `select public.nest_set_calendar_consent('${household}','${operation}',${version},${enabled})`;
+const state = () =>
+  JSON.parse(db.sql(as(actor, `select public.nest_get_calendar_consent('${household}')`)));
+const consent = (version, enabled = true, operation = next(), incarnation = state().incarnation) =>
+  `select public.nest_set_calendar_consent('${household}','${incarnation}','${operation}',${version},${enabled})`;
 const current = () =>
   db.sql(`select version from public.nest_calendar_consent where actor_id='${actor}'`);
 const begin = (version) =>
-  JSON.parse(db.sql(as(actor, `select public.nest_begin_busy_capture('${household}',${version})`)));
+  JSON.parse(
+    db.sql(
+      as(
+        actor,
+        `select public.nest_begin_busy_capture('${household}','${state().incarnation}',${version})`,
+      ),
+    ),
+  );
 const publish = (lease, intervals = [{ start: 100, end: 200 }], start = 0, end = 1000) =>
-  `select public.nest_publish_busy('${household}',${lease.consent},${lease.generation},${start},${end},'${JSON.stringify(intervals)}'::jsonb)`;
+  `select public.nest_publish_busy('${household}','${lease.incarnation}',${lease.consent},${lease.generation},${start},${end},'${JSON.stringify(intervals)}'::jsonb)`;
 const prepare = () => {
   const version = db.sql(as(actor, consent(current() || "0")));
   return begin(version);
@@ -208,4 +217,51 @@ test("an empty database cannot partially install additive busy sharing", () => {
   } finally {
     empty.stop();
   }
+});
+
+const rejoin = () =>
+  db.sql(`delete from public.household_members where user_id='${actor}';
+  insert into public.household_members(household_id,user_id,display_name)
+  values('${household}','${actor}','Restored')`);
+
+test("a delayed first opt-in cannot enable sharing after membership is recreated", () => {
+  rejoin();
+  const before = state();
+  assert.equal(before.enabled, false);
+  const oldRequest = consent(before.version, true, next(), before.incarnation);
+  db.sql(as(actor, oldRequest));
+  rejoin();
+  assert.throws(() => db.sql(as(actor, oldRequest)), /Calendar membership changed/);
+  const after = state();
+  assert.notEqual(after.incarnation, before.incarnation);
+  assert.equal(after.enabled, false);
+  assert.throws(() => db.sql(as(actor, oldRequest)), /Calendar membership changed/);
+  assert.equal(state().enabled, false);
+  assert.equal(visible(partner), "0");
+});
+
+test("repeated revision numbers cannot revive old captures or capture requests after rejoining", () => {
+  rejoin();
+  const old = prepare();
+  rejoin();
+  const fresh = prepare();
+  assert.equal(fresh.consent, old.consent);
+  assert.equal(fresh.generation, old.generation);
+  assert.notEqual(fresh.incarnation, old.incarnation);
+  assert.throws(() => db.sql(as(actor, publish(old))), /Busy capture superseded/);
+  assert.throws(
+    () =>
+      db.sql(
+        as(
+          actor,
+          `select public.nest_begin_busy_capture(
+    '${household}','${old.incarnation}',${old.consent})`,
+        ),
+      ),
+    /Calendar sharing changed/,
+  );
+  assert.equal(visible(partner), "0");
+  db.sql(as(actor, publish(fresh, [{ start: 300, end: 400 }])));
+  assert.throws(() => db.sql(as(actor, publish(old))), /Busy capture superseded/);
+  assert.equal(visible(partner), "1");
 });

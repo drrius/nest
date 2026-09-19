@@ -13,6 +13,7 @@ $$;
 -- GATED: consent-bound sanitized busy snapshots. No calendar/event text is stored.
 create table public.nest_calendar_consent (
   actor_id uuid not null, household_id uuid not null,
+  incarnation uuid not null default gen_random_uuid(),
   enabled boolean not null default false, version bigint not null default 0,
   generation bigint not null default 0, capture_started_at timestamptz,
   last_operation uuid, last_expected bigint, last_enabled boolean,
@@ -63,8 +64,33 @@ create policy own_calendar_consent on public.nest_calendar_consent for select to
 create policy shared_busy_snapshot on public.nest_busy_snapshots for select to authenticated
   using(expires_at > clock_timestamp() and private.nest_busy_visible(household_id,actor_id));
 
+-- Initialize disabled consent before presenting the opt-in control. Never initialize
+-- from a delayed mutation: each membership lifetime needs a fresh server identity.
+create function private.nest_get_calendar_consent(p_household uuid)
+  returns jsonb language plpgsql security definer set search_path = '' as $$
+declare
+  v_actor uuid := private.nest_calendar_member(p_household);
+  v_row public.nest_calendar_consent;
+begin
+  insert into public.nest_calendar_consent(actor_id,household_id) values(v_actor,p_household)
+    on conflict do nothing;
+  select * into strict v_row from public.nest_calendar_consent
+    where actor_id=v_actor and household_id=p_household;
+  return jsonb_build_object('incarnation',v_row.incarnation,'version',v_row.version::text,
+    'enabled',v_row.enabled);
+end;
+$$;
+revoke all on function private.nest_get_calendar_consent(uuid) from public,anon,authenticated;
+grant execute on function private.nest_get_calendar_consent(uuid) to authenticated;
+create function public.nest_get_calendar_consent(p_household uuid)
+  returns jsonb language sql security invoker set search_path='' as $$
+  select private.nest_get_calendar_consent($1);
+$$;
+revoke all on function public.nest_get_calendar_consent(uuid) from public,anon,authenticated;
+grant execute on function public.nest_get_calendar_consent(uuid) to authenticated;
+
 create function private.nest_set_calendar_consent(
-  p_household uuid,p_operation uuid,p_expected bigint,p_enabled boolean
+  p_household uuid,p_incarnation uuid,p_operation uuid,p_expected bigint,p_enabled boolean
 ) returns text language plpgsql security definer set search_path = '' as $$
 declare
   v_actor uuid := private.nest_calendar_member(p_household);
@@ -73,10 +99,11 @@ begin
   if p_operation is null or p_expected is null or p_expected < 0 or p_enabled is null then
     raise exception 'Invalid consent request' using errcode='22023';
   end if;
-  insert into public.nest_calendar_consent(actor_id,household_id) values(v_actor,p_household)
-    on conflict do nothing;
-  select * into strict v_row from public.nest_calendar_consent
+  select * into v_row from public.nest_calendar_consent
     where actor_id=v_actor and household_id=p_household for update;
+  if not found or v_row.incarnation is distinct from p_incarnation then
+    raise exception 'Calendar membership changed' using errcode='40001';
+  end if;
   if v_row.last_operation=p_operation then
     if v_row.last_expected is distinct from p_expected or v_row.last_enabled is distinct from p_enabled then
       raise exception 'Consent operation changed' using errcode='22023';
@@ -95,7 +122,7 @@ begin
 end;
 $$;
 
-create function private.nest_begin_busy_capture(p_household uuid,p_consent bigint)
+create function private.nest_begin_busy_capture(p_household uuid,p_incarnation uuid,p_consent bigint)
   returns jsonb language plpgsql security definer set search_path = '' as $$
 declare
   v_actor uuid := private.nest_calendar_member(p_household);
@@ -103,12 +130,13 @@ declare
 begin
   select * into v_row from public.nest_calendar_consent
     where actor_id=v_actor and household_id=p_household for update;
-  if not found or not v_row.enabled or v_row.version is distinct from p_consent then
+  if not found or v_row.incarnation is distinct from p_incarnation
+    or not v_row.enabled or v_row.version is distinct from p_consent then
     raise exception 'Calendar sharing changed' using errcode='40001';
   end if;
   update public.nest_calendar_consent set generation=generation+1,capture_started_at=clock_timestamp()
     where actor_id=v_actor and household_id=p_household returning * into v_row;
-  return jsonb_build_object('consent',v_row.version::text,'generation',v_row.generation::text,
+  return jsonb_build_object('incarnation',v_row.incarnation,'consent',v_row.version::text,'generation',v_row.generation::text,
     'capturedAt',v_row.capture_started_at,'expiresAt',v_row.capture_started_at+interval '15 minutes');
 end;
 $$;
@@ -167,7 +195,7 @@ end;
 $$;
 
 create function private.nest_publish_busy(
-  p_household uuid,p_consent bigint,p_generation bigint,p_start bigint,p_end bigint,p_intervals jsonb
+  p_household uuid,p_incarnation uuid,p_consent bigint,p_generation bigint,p_start bigint,p_end bigint,p_intervals jsonb
 ) returns timestamptz language plpgsql security definer set search_path = '' as $$
 declare
   v_actor uuid := private.nest_calendar_member(p_household);
@@ -177,7 +205,8 @@ declare
 begin
   select * into v_consent from public.nest_calendar_consent
     where actor_id=v_actor and household_id=p_household for update;
-  if not found or not v_consent.enabled or v_consent.version is distinct from p_consent
+  if not found or v_consent.incarnation is distinct from p_incarnation
+    or not v_consent.enabled or v_consent.version is distinct from p_consent
     or v_consent.generation is distinct from p_generation or v_consent.capture_started_at is null then
     raise exception 'Busy capture superseded' using errcode='40001';
   end if;
@@ -205,29 +234,29 @@ begin
 end;
 $$;
 
-revoke all on function private.nest_set_calendar_consent(uuid,uuid,bigint,boolean) from public,anon,authenticated;
-revoke all on function private.nest_begin_busy_capture(uuid,bigint) from public,anon,authenticated;
+revoke all on function private.nest_set_calendar_consent(uuid,uuid,uuid,bigint,boolean) from public,anon,authenticated;
+revoke all on function private.nest_begin_busy_capture(uuid,uuid,bigint) from public,anon,authenticated;
 revoke all on function private.nest_validate_busy(bigint,bigint,jsonb) from public,anon,authenticated;
 revoke all on function private.nest_validate_busy_interval(jsonb) from public,anon,authenticated;
-revoke all on function private.nest_publish_busy(uuid,bigint,bigint,bigint,bigint,jsonb) from public,anon,authenticated;
-grant execute on function private.nest_set_calendar_consent(uuid,uuid,bigint,boolean) to authenticated;
-grant execute on function private.nest_begin_busy_capture(uuid,bigint) to authenticated;
-grant execute on function private.nest_publish_busy(uuid,bigint,bigint,bigint,bigint,jsonb) to authenticated;
-create function public.nest_set_calendar_consent(p_household uuid,p_operation uuid,p_expected bigint,p_enabled boolean)
+revoke all on function private.nest_publish_busy(uuid,uuid,bigint,bigint,bigint,bigint,jsonb) from public,anon,authenticated;
+grant execute on function private.nest_set_calendar_consent(uuid,uuid,uuid,bigint,boolean) to authenticated;
+grant execute on function private.nest_begin_busy_capture(uuid,uuid,bigint) to authenticated;
+grant execute on function private.nest_publish_busy(uuid,uuid,bigint,bigint,bigint,bigint,jsonb) to authenticated;
+create function public.nest_set_calendar_consent(p_household uuid,p_incarnation uuid,p_operation uuid,p_expected bigint,p_enabled boolean)
   returns text language sql security invoker set search_path='' as $$
-  select private.nest_set_calendar_consent($1,$2,$3,$4);
+  select private.nest_set_calendar_consent($1,$2,$3,$4,$5);
 $$;
-create function public.nest_begin_busy_capture(p_household uuid,p_consent bigint)
+create function public.nest_begin_busy_capture(p_household uuid,p_incarnation uuid,p_consent bigint)
   returns jsonb language sql security invoker set search_path='' as $$
-  select private.nest_begin_busy_capture($1,$2);
+  select private.nest_begin_busy_capture($1,$2,$3);
 $$;
-create function public.nest_publish_busy(p_household uuid,p_consent bigint,p_generation bigint,p_start bigint,p_end bigint,p_intervals jsonb)
+create function public.nest_publish_busy(p_household uuid,p_incarnation uuid,p_consent bigint,p_generation bigint,p_start bigint,p_end bigint,p_intervals jsonb)
   returns timestamptz language sql security invoker set search_path='' as $$
-  select private.nest_publish_busy($1,$2,$3,$4,$5,$6);
+  select private.nest_publish_busy($1,$2,$3,$4,$5,$6,$7);
 $$;
-revoke all on function public.nest_set_calendar_consent(uuid,uuid,bigint,boolean) from public,anon,authenticated;
-revoke all on function public.nest_begin_busy_capture(uuid,bigint) from public,anon,authenticated;
-revoke all on function public.nest_publish_busy(uuid,bigint,bigint,bigint,bigint,jsonb) from public,anon,authenticated;
-grant execute on function public.nest_set_calendar_consent(uuid,uuid,bigint,boolean) to authenticated;
-grant execute on function public.nest_begin_busy_capture(uuid,bigint) to authenticated;
-grant execute on function public.nest_publish_busy(uuid,bigint,bigint,bigint,bigint,jsonb) to authenticated;
+revoke all on function public.nest_set_calendar_consent(uuid,uuid,uuid,bigint,boolean) from public,anon,authenticated;
+revoke all on function public.nest_begin_busy_capture(uuid,uuid,bigint) from public,anon,authenticated;
+revoke all on function public.nest_publish_busy(uuid,uuid,bigint,bigint,bigint,bigint,jsonb) from public,anon,authenticated;
+grant execute on function public.nest_set_calendar_consent(uuid,uuid,uuid,bigint,boolean) to authenticated;
+grant execute on function public.nest_begin_busy_capture(uuid,uuid,bigint) to authenticated;
+grant execute on function public.nest_publish_busy(uuid,uuid,bigint,bigint,bigint,bigint,jsonb) to authenticated;

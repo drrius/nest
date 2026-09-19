@@ -326,3 +326,9 @@ Busy-sharing integration: incorporated merged PRs #9 and #10. The combined datab
 Greptile reached its trial credit cap. The owner-authorized independent review found two valid PR #13 issues: PostgreSQL lowercases UUIDs, so mixed-case command IDs falsely failed receipt comparison after committing; paused routines retained current occurrences and were incorrectly listed. Normalize input IDs before the RPC and receipt check, exclude paused routines, and extend the real PostgREST fixture with paused work plus mixed-case completion/replay. These fixes require explicit adversarial rereview. PR #10 is now merged following exact-head fallback signoff and CI.
 
 Busy-sharing integration also includes merged PR #13. Its two adversarial API findings were fixed and independently rereviewed clean before merge. Consent SQL is unchanged and its combined 53-test database run passed; this final head still needs CI and independent review.
+
+## 20 September — calendar consent lifetime review fix
+
+The authorized independent reviewer found that membership deletion/rejoin reused consent revisions, allowing a delayed first opt-in to restore sharing and an older capture to publish under a new selection. Consent now receives a server-generated UUID incarnation when initialized in the disabled state. Every consent mutation, capture request and publication must match that incarnation. Membership deletion cascades the consent row; initialization after rejoin produces a different identity and cannot itself enable sharing.
+
+All 15 focused PostgreSQL cases pass locally, including both reproduced attacks and rejection before and after a new disabled consent row exists. This remains a gated migration; native/API publishing, device privacy inspection and production application are not verified. Independent rereview and latest-head CI are required before merge.
