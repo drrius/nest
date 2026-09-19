@@ -179,7 +179,9 @@ test("revoked membership blocks reads and replay without transferring the privat
   assert.equal(db.sql(as(actor, "select count(*) from public.nest_ai_conversations")), "0");
   assert.throws(() => save(actor, r), /Not authorized/);
   assert.deepEqual(row(r).transcript, transcript);
-  db.sql(`insert into public.household_members values('${household}','${actor}')`);
+  db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${household}','${actor}','Restored')`,
+  );
 });
 
 test("opaque SDK approval parts round-trip as transcript data", () => {
@@ -207,4 +209,17 @@ test("opaque SDK approval parts round-trip as transcript data", () => {
     ),
     "1",
   );
+});
+
+test("an empty database rejects the additive migration before creating Nest tables", () => {
+  const empty = startFixturePostgres();
+  try {
+    assert.throws(
+      () => empty.file("supabase/migrations/20260919220034_native_private_conversations.sql"),
+      /existing Household OS tenancy baseline/,
+    );
+    assert.equal(empty.sql("select to_regclass('public.nest_ai_conversations') is null"), "t");
+  } finally {
+    empty.stop();
+  }
 });

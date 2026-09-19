@@ -6,6 +6,6 @@ The gated migration provides owner-private transcripts, schema versions, optimis
 
 Only the bounded transcript envelope is validated in SQL. API integration must validate SDK message parts, bind verified membership, and treat saved approval messages as untrusted data. This storage function cannot authorize financial commands. Concurrent writes produce a conflict; automatic stream reconciliation, server generation ownership, cancellation/finalization and native reconnect remain unimplemented.
 
-The membership fixture is deliberately minimal. These tests do not prove compatibility with the complete legacy schema or live Supabase authentication. The harness was reused unchanged from the audited chore receipt fixture in PR #4. No production migration is run by these tests or CI.
+The membership baseline now loads the audited legacy tenancy migrations documented in `legacy-tenancy/README.md`. These tests prove focused tenancy compatibility, but do not prove compatibility with the complete legacy schema or live Supabase authentication. The harness was reused unchanged from the audited chore receipt fixture in PR #4. No production migration is run by these tests or CI.
 
 The configured PostgreSQL directory must contain `psql`, `initdb` and `pg_ctl`. Queries have database statement/lock timeouts and subprocess deadlines. After successful startup, exit/SIGINT/SIGTERM cleanup stops the server and removes its directory; SIGKILL and host failure cannot run cleanup. The test command also verifies timeouts and graceful cancellation using real subprocesses.

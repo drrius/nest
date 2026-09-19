@@ -1,3 +1,15 @@
+-- Additive to audited Household OS tenancy; never a fresh-project bootstrap.
+do $$
+begin
+  if to_regclass('public.household_members') is null
+    or to_regnamespace('private') is null
+    or to_regprocedure('auth.uid()') is null then
+    raise exception 'Nest requires the existing Household OS tenancy baseline; do not apply to an empty project'
+      using errcode='55000';
+  end if;
+end;
+$$;
+
 -- GATED: owner-private, versioned server transcripts. SDK validation belongs at the API.
 create table public.nest_ai_conversations (
   id uuid primary key,

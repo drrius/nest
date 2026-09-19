@@ -38,3 +38,9 @@ Owner update: Greptile had not been enabled for the new repository; the owner ha
 Addressed Greptile's unchecked conflict cause: the losing concurrent save must report `Conversation changed`, not merely any subprocess failure. All PostgreSQL clients now resolve from the configured installation. Added five-second statement and three-second lock timeouts plus bounded subprocess execution. Cleanup is idempotent and registered for normal exit, SIGINT and SIGTERM after successful startup; SIGKILL cannot be handled.
 
 Locally verified all nine conversation tests plus three real-process harness tests: stalled query timeout, repeated cleanup, SIGINT and SIGTERM server/data cleanup. The actual-schema-baseline finding remains open: the minimal fixture is not sufficient evidence of migration compatibility. No production application is authorized or performed. PRs #1 and #2 are merged with clean current-commit reviews and CI; remaining PRs still follow their own gates.
+
+## 20 September — audited conversation prerequisites
+
+Replaced the simplified membership fixture with three byte-for-byte audited legacy tenancy migrations from Household OS commit `4a528c96caf41515a70291ccecbba9d7b35e3349`. The conversation tests now exercise actual membership columns, unique/FK constraints, two-member cap, grants and RLS. Only Supabase-owned auth infrastructure is simulated; all records remain synthetic. The migration rejects a missing tenancy baseline before creating tables.
+
+Ten conversation tests pass, including the new empty-database rejection. This establishes focused compatibility with the actual tenancy prerequisite source, not a full legacy migration-history rehearsal or hosted Supabase proof. Later profile-file triggers and unrelated feature migrations are not included. Full-history rehearsal remains a production gate. Greptile is asked to assess this evidence against its fixture finding; no claim of production readiness is made.
