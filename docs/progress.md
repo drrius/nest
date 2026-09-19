@@ -32,3 +32,9 @@ CI verification for this branch is pending. PRs #1–#11 have passing latest-com
 No complete native vertical slice is claimed. Conversation API validation, streaming ownership/finalization, reconnect, native chat UI and actual command approvals are outstanding. Device verification requires an executable iPhone development build and access to a test phone; Linux has no Xcode and the checked EAS simulator account is unavailable. The removed continuation automation remains removed.
 
 Owner update: Greptile had not been enabled for the new repository; the owner has now enabled it. Fresh reviews were requested once on each of PRs #1–#11 at their current commits. If Greptile stops working or is rate-limited, the owner now authorizes an adversarial review subagent as the replacement review gate, with fixes and rereview until explicit signoff. CI and addressed-conversation requirements still apply.
+
+## 20 September — conversation test reliability corrections
+
+Addressed Greptile's unchecked conflict cause: the losing concurrent save must report `Conversation changed`, not merely any subprocess failure. All PostgreSQL clients now resolve from the configured installation. Added five-second statement and three-second lock timeouts plus bounded subprocess execution. Cleanup is idempotent and registered for normal exit, SIGINT and SIGTERM after successful startup; SIGKILL cannot be handled.
+
+Locally verified all nine conversation tests plus three real-process harness tests: stalled query timeout, repeated cleanup, SIGINT and SIGTERM server/data cleanup. The actual-schema-baseline finding remains open: the minimal fixture is not sufficient evidence of migration compatibility. No production application is authorized or performed. PRs #1 and #2 are merged with clean current-commit reviews and CI; remaining PRs still follow their own gates.

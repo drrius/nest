@@ -119,6 +119,8 @@ test("concurrent writers cannot silently overwrite each other", async () => {
     db.concurrent(as(actor, sql(b))),
   ]);
   assert.equal(results.filter((r) => r.status === "fulfilled").length, 1);
+  const rejected = results.find((r) => r.status === "rejected");
+  assert.match(rejected.reason.stderr, /Conversation changed/);
   assert.equal(row(r).revision, 2);
 });
 

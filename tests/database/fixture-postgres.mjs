@@ -17,7 +17,11 @@ export function startFixturePostgres() {
   const socket = join(directory, "socket");
   mkdirSync(socket, { mode: 0o700 });
   const run = (command, args) =>
-    execFileSync(join(bin, command), args, { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] });
+    execFileSync(join(bin, command), args, {
+      encoding: "utf8",
+      timeout: 30000,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
   let started = false;
   try {
     run("initdb", ["-D", data, "--auth=trust", "--no-locale", "-E", "UTF8"]);
@@ -27,7 +31,7 @@ export function startFixturePostgres() {
       "-l",
       join(directory, "server.log"),
       "-o",
-      `-k ${socket} -h '' -p 55439`,
+      `-k ${socket} -h '' -p 55439 -c statement_timeout=5000 -c lock_timeout=3000`,
       "start",
     ]);
     started = true;
@@ -43,26 +47,55 @@ export function startFixturePostgres() {
       "ON_ERROR_STOP=1",
       "-qAt",
     ];
+    const stop = registerCleanup(() => {
+      run("pg_ctl", ["-D", data, "-m", "fast", "-t", "10", "stop"]);
+      rmSync(directory, { recursive: true });
+    });
     return {
       sql: (sql) =>
-        execFileSync("psql", [...args, "-c", sql], {
+        execFileSync(join(bin, "psql"), [...args, "-c", sql], {
           encoding: "utf8",
+          timeout: 10000,
           stdio: ["pipe", "pipe", "pipe"],
         }).trim(),
       file: (file) =>
-        execFileSync("psql", [...args, "-f", file], {
+        execFileSync(join(bin, "psql"), [...args, "-f", file], {
           encoding: "utf8",
+          timeout: 10000,
           stdio: ["pipe", "pipe", "pipe"],
         }),
-      concurrent: (sql) => execute("psql", [...args, "-c", sql], { encoding: "utf8" }),
-      stop: () => {
-        run("pg_ctl", ["-D", data, "-m", "fast", "stop"]);
-        rmSync(directory, { recursive: true });
-      },
+      concurrent: (sql) =>
+        execute(join(bin, "psql"), [...args, "-c", sql], { encoding: "utf8", timeout: 10000 }),
+      stop,
     };
   } catch (error) {
     if (started) run("pg_ctl", ["-D", data, "-m", "fast", "stop"]);
     rmSync(directory, { recursive: true });
     throw error;
   }
+}
+
+function registerCleanup(cleanup) {
+  let stopped = false;
+  const stop = () => {
+    if (stopped) return;
+    cleanup();
+    stopped = true;
+    process.removeListener("exit", stop);
+    process.removeListener("SIGINT", interrupt);
+    process.removeListener("SIGTERM", terminate);
+  };
+  const signal = (code) => {
+    try {
+      stop();
+    } finally {
+      process.exit(code);
+    }
+  };
+  const interrupt = () => signal(130);
+  const terminate = () => signal(143);
+  process.once("exit", stop);
+  process.once("SIGINT", interrupt);
+  process.once("SIGTERM", terminate);
+  return stop;
 }

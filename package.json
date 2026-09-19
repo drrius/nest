@@ -15,7 +15,7 @@
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
     "start": "pnpm --filter @nest/mobile start",
-    "test:conversations": "node --test tests/database/conversations.test.mjs"
+    "test:conversations": "node --test tests/database/conversations.test.mjs tests/database/fixture-postgres.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
