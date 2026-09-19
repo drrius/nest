@@ -53,6 +53,7 @@ export function choreCommands(config: IdentityConfig, caller: AuthorizedCaller) 
           status: "eq.open",
           role: "eq.current",
           "routines.archived_at": "is.null",
+          "routines.paused_at": "is.null",
           order: "due_date.asc,id.asc",
           limit: "201",
         });
@@ -79,9 +80,14 @@ export function choreCommands(config: IdentityConfig, caller: AuthorizedCaller) 
       }),
     complete: (input: unknown) =>
       Effect.gen(function* () {
-        const command = yield* Schema.decodeUnknownEffect(CompleteChore)(input, {
+        const decoded = yield* Schema.decodeUnknownEffect(CompleteChore)(input, {
           onExcessProperty: "error",
         }).pipe(Effect.mapError(() => new ApiFailure({ code: "invalid_request" })));
+        const command = {
+          ...decoded,
+          operationId: decoded.operationId.toLowerCase(),
+          occurrenceId: decoded.occurrenceId.toLowerCase(),
+        };
         const raw = yield* requestJson(config, caller.token, "rest/v1/rpc/nest_complete_chore", {
           p_occurrence_id: command.occurrenceId,
           p_operation_id: command.operationId,

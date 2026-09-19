@@ -112,6 +112,7 @@ test("chore reads bind verified household, use caller credentials and return onl
   assert.equal(query.get("household_id"), `eq.${home}`);
   assert.equal(query.get("role"), "eq.current");
   assert.equal(query.get("status"), "eq.open");
+  assert.equal(query.get("routines.paused_at"), "is.null");
   assert.equal(call.headers.authorization, "Bearer member");
 });
 test("malformed, cross-household or truncated chore snapshots fail closed", async () => {

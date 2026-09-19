@@ -8,4 +8,4 @@ Twelve tests exercise the actual candidate migration against PostgreSQL: atomic 
 
 Local evidence: PostgreSQL 18.6 portable server package matching this host's libraries, verified against the system package-signing keyring. Twelve tests pass in about one second. CI uses its installed PostgreSQL server binaries; its version is independent of local evidence.
 
-The integrated command also runs ten approval tests against audited tenancy and six real-process lifecycle/timeout tests (28 total). `test:approvals` runs the ten approval cases alone. These fixtures are independent clusters and do not prove whole-migration-chain compatibility.
+The integrated command also runs ten approval tests against audited tenancy, twelve grocery receipt tests and six real-process lifecycle/timeout tests (40 total). `test:approvals` runs the ten approval cases alone. These fixtures are independent clusters and do not prove whole-migration-chain compatibility.

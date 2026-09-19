@@ -29,7 +29,7 @@ test("real PostgREST embedding, RLS and receipt RPC connect to the authorized ch
   const initial = await read();
   assert.equal(initial.status, 200);
   const snapshot = await initial.json();
-  assert.equal(snapshot.chores.length, 11);
+  assert.equal(snapshot.chores.length, 12);
   assert.ok(snapshot.chores.every((chore) => chore.title === "Water plants"));
   assert.equal((await complete(command, fixture.otherBearer)).status, 403);
   const first = await complete();
@@ -37,7 +37,19 @@ test("real PostgREST embedding, RLS and receipt RPC connect to the authorized ch
   const receipt = await first.json();
   assert.deepEqual(await (await complete()).json(), receipt);
   assert.equal(fixture.db.sql("select count(*) from private.fixture_closure_calls"), "1");
-  assert.equal((await (await read()).json()).chores.length, 10);
+  assert.equal((await (await read()).json()).chores.length, 11);
+  const uppercase = {
+    ...command,
+    operationId: "3ABC0000-0000-4000-8000-000000000001",
+    occurrenceId: "AAbC0000-0000-4000-8000-000000000400",
+  };
+  const mixed = await complete(uppercase);
+  assert.equal(mixed.status, 200);
+  const mixedReceipt = await mixed.json();
+  assert.equal(mixedReceipt.receipt.operationId, uppercase.operationId.toLowerCase());
+  assert.equal(mixedReceipt.receipt.occurrenceId, uppercase.occurrenceId.toLowerCase());
+  assert.deepEqual(await (await complete(uppercase)).json(), mixedReceipt);
+  assert.equal(fixture.db.sql("select count(*) from private.fixture_closure_calls"), "2");
   assert.equal(
     (
       await complete({
