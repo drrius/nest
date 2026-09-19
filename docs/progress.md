@@ -1,5 +1,13 @@
 # Nest progress
 
+## 19 September 2026 — M7 pure CHF rule extraction
+
+Audited legacy CHF parsing, equal/exact allocations, balances and meaningful tests. Added a dependency-free pure domain package with exact parsing/formatting, equal/exact/percentage allocations and validated zero-sum balance derivation. BigInt avoids unsafe intermediate arithmetic. Percentage half-cent ties favor the payer; 50% matches equal split. Opening and reversal entries remain part of derived balances.
+
+Six tests pass, including four reproducible 1,000-case property runs over safe integer amounts, percentages and balanced histories. TypeScript 7 and scoped lint pass. This is independent M7 groundwork, not financial posting, storage, approvals or a native Money vertical slice. See `packages/domain/README.md` for deliberate differences from the audited legacy helpers.
+
+PR #4 adds the native chore receipt migration candidate and ten real PostgreSQL fixture tests; current-commit CI passes. PRs #1–#4 remain open awaiting explicit Greptile review. No production changes or merges. Native verification and full legacy recurrence compatibility remain separate gaps. The removed overnight automation stays removed.
+
 ## 19 September 2026 — M2 transactional chore receipt candidate
 
 Implemented a gated additive migration wrapping the existing chore-completion engine. New receipts bind household, verified actor, operation UUID and exact request. Retries return the stored outcome; changed payloads fail. A partner who completed first remains the recorded completer, with an honest already-completed acknowledgment. Stale/rescheduled/skipped occurrences conflict. Completion and receipt commit or roll back together. Receipt RLS is actor-only with current membership, and direct writes/anonymous execution are denied.
@@ -94,6 +102,10 @@ All five earlier PRs have successful current-commit CI, but no Greptile review w
 
 Greptile found that shape-only date checks admitted impossible chore completion dates. The input schema now requires a real Gregorian date in years 0001–9999. A SQLite regression rejects invalid months/days, non-leap February 29 and year zero without leaving a queued operation, and verifies a valid leap day survives prepare. The Node floor also matches CI at 24. Native integration and device restart/conflict verification remain outstanding.
 
+## 20 September — domain review correction
+
+Raised the root Node engine floor to 24 after Greptile identified that early Node 22 releases cannot run the direct TypeScript-importing tests. This matches CI. Financial domain behavior is unchanged; the six domain tests, including four 1,000-case properties, pass on the local runtime. CI and updated-commit review remain required.
+
 ## 20 September — chore receipt review corrections
 
 Removed the receipt-to-current-membership foreign key: durable receipts must not prevent access revocation or be deleted to remove a member. Commands now lock current membership before receipt replay or completion; RLS still requires current membership. Added a database regression proving membership removal succeeds, receipts remain, and subsequent reads/replays are denied.
@@ -134,3 +146,9 @@ Integrated merged PRs #1–#3, retaining both API and database CI commands and b
 ## 20 September — offline/native integration
 
 Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's isolated development identity/EAS settings and SecureStore plugin while adding SQLite; preserved exact dependency pins from both branches. CI retains API, chore database and offline checks. The local SQLite queue is still not wired to native session lifecycle or the chore API, so an end-to-end offline journey remains incomplete.
+
+## 20 September — financial rules integration
+
+PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all addressed conversations resolved. This branch integrates PRs #1–#4 with the pure CHF rules. CI runs package tests once through `pnpm test` (including both API and domain) plus isolated database tests; the focused `test:domain` command remains available locally. Progress histories are retained. These rules remain unconnected to actual financial posting and native Money UI.
+
+Offline integration follow-up: PR #5 is now merged. Retained both domain and offline scripts/evidence when updating this branch to current main; no queue behavior changed. Current commit still requires its own CI and clean review.
