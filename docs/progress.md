@@ -177,3 +177,9 @@ PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all a
 Offline integration follow-up: PR #5 is now merged. Retained both domain and offline scripts/evidence when updating this branch to current main; no queue behavior changed. Current commit still requires its own CI and clean review.
 
 Calendar integration follow-up: PRs #5 and #6 are merged. This update retains calendar, SecureStore and SQLite plugins together, and preserves domain/offline/calendar test commands. No calendar projection behavior changed. Native EventKit and SQLite execution are still unverified on device.
+
+## 20 September — authorized chore API integration
+
+PR #8 merged after current-head CI, explicit zero-finding Greptile review and resolved conversations. Implemented authenticated current-chore reads and completion routing through the reviewed receipt RPC. Inputs reject extra fields/impossible dates, requests have bounded bodies and cancellation, read results reject cross-household data, and completion receipts must match the requested operation/occurrence. Errors remain safe and distinguish authorization, conflicts and retryable unavailability. No automatic mutation retries occur.
+
+This is API implementation, not a completed M2 vertical slice. The HTTP adapter is tested with a loopback upstream; PostgreSQL authorization/receipt invariants have separate fixture tests. Actual PostgREST integration, native auth/session/UI/outbox wiring and corresponding AI execution remain outstanding. No production data, deployment or release was touched.
