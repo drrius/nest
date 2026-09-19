@@ -1,8 +1,10 @@
 import { execFileSync, execFile } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
+
+import { fixtureLifecycle } from "./fixture-lifecycle.mjs";
 
 const execute = promisify(execFile);
 
@@ -17,20 +19,24 @@ export function startFixturePostgres() {
   const socket = join(directory, "socket");
   mkdirSync(socket, { mode: 0o700 });
   const run = (command, args) =>
-    execFileSync(join(bin, command), args, { encoding: "utf8", stdio: ["pipe", "pipe", "pipe"] });
-  let started = false;
+    execFileSync(join(bin, command), args, {
+      encoding: "utf8",
+      timeout: 30000,
+      stdio: ["pipe", "pipe", "pipe"],
+    });
+  const lifecycle = fixtureLifecycle(run, data, directory);
   try {
     run("initdb", ["-D", data, "--auth=trust", "--no-locale", "-E", "UTF8"]);
+    lifecycle.starting();
     run("pg_ctl", [
       "-D",
       data,
       "-l",
       join(directory, "server.log"),
       "-o",
-      `-k ${socket} -h '' -p 55439`,
+      `-k ${socket} -h '' -p 55439 -c statement_timeout=5000 -c lock_timeout=3000`,
       "start",
     ]);
-    started = true;
     const args = [
       "-X",
       "-h",
@@ -47,22 +53,25 @@ export function startFixturePostgres() {
       sql: (sql) =>
         execFileSync(join(bin, "psql"), [...args, "-c", sql], {
           encoding: "utf8",
+          timeout: 10000,
           stdio: ["pipe", "pipe", "pipe"],
         }).trim(),
       file: (file) =>
         execFileSync(join(bin, "psql"), [...args, "-f", file], {
           encoding: "utf8",
+          timeout: 10000,
           stdio: ["pipe", "pipe", "pipe"],
         }),
-      concurrent: (sql) => execute(join(bin, "psql"), [...args, "-c", sql], { encoding: "utf8" }),
-      stop: () => {
-        run("pg_ctl", ["-D", data, "-m", "fast", "stop"]);
-        rmSync(directory, { recursive: true });
-      },
+      concurrent: (sql) =>
+        execute(join(bin, "psql"), [...args, "-c", sql], { encoding: "utf8", timeout: 10000 }),
+      stop: lifecycle.stop,
     };
   } catch (error) {
-    if (started) run("pg_ctl", ["-D", data, "-m", "fast", "stop"]);
-    rmSync(directory, { recursive: true });
+    try {
+      lifecycle.stop();
+    } catch (cleanupError) {
+      throw new AggregateError([error, cleanupError], "Fixture startup and cleanup failed");
+    }
     throw error;
   }
 }

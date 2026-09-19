@@ -17,4 +17,6 @@ jobs:
       - run: pnpm lint
       - run: pnpm typecheck
       - run: pnpm test:tooling
-      - run: NEST_TEST_PG_BIN="$(pg_config --bindir)" pnpm test:groceries
+      - name: Test isolated PostgreSQL transactions and RLS
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" pnpm test:database
+      - run: pnpm test
