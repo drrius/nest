@@ -8,6 +8,7 @@
     "test": "node --test ../../tests/api/*.test.mjs"
   },
   "dependencies": {
+    "@nest/ai": "workspace:*",
     "effect": "4.0.0-rc.115"
   },
   "devDependencies": {

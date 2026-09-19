@@ -15,6 +15,7 @@ import { signInWithApple } from "./apple";
 import { sessionConfig } from "./config";
 import { SessionFailure, type SessionState } from "./contracts";
 import { subscribeSession } from "./subscription";
+import { signOutSession } from "./sign-out";
 import { verifySession } from "./verification";
 
 const configuration = (() => {
@@ -54,10 +55,6 @@ function useRuntime(publish: (state: SessionState) => void) {
       return;
     }
     const auth = nativeAuth(configuration);
-    let alive = true;
-    const unavailable = () => {
-      if (alive) publish({ status: "unavailable" });
-    };
     const subscription = subscribeSession(
       auth,
       (credentials) =>
@@ -69,15 +66,14 @@ function useRuntime(publish: (state: SessionState) => void) {
     runtime.current = { auth, subscription };
     const activate = (active: boolean) => {
       if (active) {
-        void auth.startAutoRefresh().catch(unavailable);
+        void auth.startAutoRefresh().catch(subscription.unavailable);
         void subscription.refresh();
-      } else void auth.stopAutoRefresh().catch(unavailable);
+      } else void auth.stopAutoRefresh().catch(subscription.unavailable);
     };
     activate(AppState.currentState === "active");
     const listener = AppState.addEventListener("change", (state) => activate(state === "active"));
     return () => {
       runtime.current = null;
-      alive = false;
       listener.remove();
       subscription.dispose();
     };
@@ -117,16 +113,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const signOut = () => {
     const current = runtime.current;
     if (!current || busy.current) return;
-    current.subscription.hide();
-    run(
-      Effect.tryPromise({
-        try: async () => {
-          const result = await current.auth.signOut({ scope: "local" });
-          if (result.error) throw result.error;
-        },
-        catch: () => new SessionFailure({ code: "unavailable" }),
-      }),
-    );
+    run(signOutSession(current.auth, current.subscription));
   };
   return (
     <SessionContext

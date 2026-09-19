@@ -126,7 +126,7 @@ test("an in-flight SDK hydration cannot restore visibility after sign-out starts
   hydration.resolve({ data: { session: credentials }, error: null });
   await Promise.resolve();
   await Promise.resolve();
-  assert.deepEqual(states, [{ status: "signed_out" }]);
+  assert.deepEqual(states, [{ status: "logout_pending" }]);
   subscription.dispose();
 });
 
@@ -167,7 +167,11 @@ test("refresh events cannot reopen a hidden session until an explicit sign-in su
   );
   subscription.hide();
   notify("TOKEN_REFRESHED", credentials);
+  notify("SIGNED_OUT", null);
+  subscription.unavailable();
   await subscription.refresh();
+  assert.deepEqual(states.at(-1), { status: "logout_pending" });
+  subscription.finishSignOut();
   assert.deepEqual(states.at(-1), { status: "signed_out" });
   subscription.signIn(credentials);
   await Promise.resolve();

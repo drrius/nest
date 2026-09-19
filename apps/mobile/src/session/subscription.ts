@@ -14,13 +14,16 @@ export function subscribeSession(
   let disposed = false;
   let hidden = false;
   const update = (credentials: Credentials | null) => {
-    if (disposed || (hidden && credentials)) return;
+    if (disposed || hidden) return;
     revision++;
     abort.abort();
     abort = new AbortController();
     void Effect.runPromise(verifier.update(credentials), { signal: abort.signal }).catch(
       () => undefined,
     );
+  };
+  const unavailable = () => {
+    if (!disposed && !hidden) publish({ status: "unavailable" });
   };
   const initial = revision;
   const {
@@ -33,27 +36,32 @@ export function subscribeSession(
       const { data, error } = await auth.getSession();
       if (disposed || current !== revision) return;
       if (error) {
-        publish({ status: "unavailable" });
+        unavailable();
         return;
       }
       update(data.session);
     } catch {
-      if (!disposed && current === revision) publish({ status: "unavailable" });
+      if (current === revision) unavailable();
     }
   };
   if (initial === revision) void refresh();
   return {
     refresh,
+    unavailable,
     signIn(credentials: Credentials) {
       hidden = false;
       update(credentials);
     },
     hide() {
+      if (disposed) return;
       hidden = true;
       revision++;
       abort.abort();
       verifier.invalidate();
-      publish({ status: "signed_out" });
+      publish({ status: "logout_pending" });
+    },
+    finishSignOut() {
+      if (!disposed && hidden) publish({ status: "signed_out" });
     },
     dispose() {
       disposed = true;

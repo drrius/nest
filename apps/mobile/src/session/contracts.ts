@@ -9,7 +9,9 @@ export const Member = Schema.Struct({
 export type Member = typeof Member.Type;
 export const VerifiedSession = Schema.Struct({ version: Schema.Literal(1), member: Member });
 export type SessionState =
-  | { readonly status: "loading" | "signed_out" | "not_a_member" | "unavailable" }
+  | {
+      readonly status: "loading" | "signed_out" | "logout_pending" | "not_a_member" | "unavailable";
+    }
   | { readonly status: "ready"; readonly member: Member };
 export class SessionFailure extends Schema.TaggedError<SessionFailure>()("SessionFailure", {
   code: Schema.Literals(["signed_out", "not_a_member", "unavailable", "cancelled"]),

@@ -15,6 +15,7 @@ export function SignInCard() {
         <Note>This development build needs its household connection configured.</Note>
       </Card>
     );
+  if (session.state.status === "logout_pending") return <LogoutCard />;
   if (session.working || session.state.status === "loading")
     return (
       <Card>
@@ -66,6 +67,24 @@ export function SignInCard() {
           {session.error}
         </Text>
       ) : null}
+    </Card>
+  );
+}
+
+function LogoutCard() {
+  const { working, signOut } = useSession();
+  return (
+    <Card>
+      <Note>
+        {working
+          ? "Signing out…"
+          : "Sign-out could not finish. Your household is hidden, but saved credentials still need to be removed. Unlock your phone and try again."}
+      </Note>
+      {working ? (
+        <ActivityIndicator accessibilityLabel="Signing out" />
+      ) : (
+        <NativeAction label="Retry sign-out" onPress={signOut} />
+      )}
     </Card>
   );
 }
