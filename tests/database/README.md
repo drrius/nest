@@ -8,4 +8,10 @@ Twelve tests exercise the actual candidate migration against PostgreSQL: atomic 
 
 Local evidence: PostgreSQL 18.6 portable server package matching this host's libraries, verified against the system package-signing keyring. Twelve tests pass in about one second. CI uses its installed PostgreSQL server binaries; its version is independent of local evidence.
 
-The integrated command also runs ten approval tests against audited tenancy, twelve grocery receipt tests and six real-process lifecycle/timeout tests (40 total). `test:approvals` runs the ten approval cases alone. These fixtures are independent clusters and do not prove whole-migration-chain compatibility.
+The integrated command also runs ten approval tests against audited tenancy, twelve grocery receipt tests and six real-process lifecycle/timeout tests (50 total, including the ten conversation cases described below). `test:approvals` runs the ten approval cases alone. These fixtures are independent clusters and do not prove whole-migration-chain compatibility.
+
+## Private conversations
+
+`pnpm test:conversations` runs ten focused cases against the audited legacy tenancy baseline. The gated migration provides owner-private transcripts, schema versions, optimistic revision checks and atomic idempotent save receipts. Older retries return their original revision without replacing newer content; receipt hashes avoid retaining duplicate transcripts. Revoked members lose access without transferring or deleting their private history.
+
+Only the bounded transcript envelope is validated in SQL. API integration must validate SDK message parts, bind verified membership and treat saved approval messages as untrusted data. This storage function cannot authorize financial commands. Stream reconciliation, server generation ownership, cancellation/finalization and native reconnect remain unimplemented. The fixtures prove focused tenancy compatibility, not the complete legacy schema or live Supabase authentication.

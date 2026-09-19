@@ -22,7 +22,8 @@
     "test:domain": "pnpm --filter @nest/domain test",
     "test:ai": "pnpm --filter @nest/ai test",
     "test:approvals": "node --test tests/database/approvals.test.mjs",
-    "test:groceries": "node --test tests/database/groceries.test.mjs"
+    "test:groceries": "node --test tests/database/groceries.test.mjs",
+    "test:conversations": "node --test tests/database/conversations.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
