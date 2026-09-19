@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import { after, before, test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
+import { choreTools } from "../../apps/api/src/chores/tools.ts";
 
 const user = "00000000-0000-4000-8000-000000000001";
 const home = "00000000-0000-4000-8000-000000000010";
@@ -34,6 +35,7 @@ let handler;
 let origin;
 let rpcMode = "success";
 let rows = [row];
+let revoked = false;
 
 const server = createServer(async (request, response) => {
   const chunks = [];
@@ -44,7 +46,7 @@ const server = createServer(async (request, response) => {
   if (request.url === "/auth/v1/user") return response.end(JSON.stringify({ id: user }));
   if (request.url.startsWith("/rest/v1/household_members")) {
     const members =
-      request.headers.authorization === "Bearer outsider"
+      revoked || request.headers.authorization === "Bearer outsider"
         ? []
         : [{ user_id: user, household_id: home, display_name: "Member" }];
     return response.end(JSON.stringify(members));
@@ -183,4 +185,50 @@ test("redirects and mismatched receipts cannot acknowledge another operation", a
     false,
   );
   rpcMode = "success";
+});
+
+test("AI chore tools use the same authorized commands and recheck membership on each invocation", async () => {
+  const tools = choreTools(
+    new Request("http://localhost/v1/chat", {
+      headers: { authorization: "Bearer member" },
+    }),
+    { url: origin, publishableKey: "sb_publishable_fixture" },
+  );
+  const options = { toolCallId: "read-1", messages: [] };
+  const result = await tools.listChores.execute({}, options);
+  assert.equal(result.ok, true);
+  const completed = await tools.completeChore.execute(command, {
+    ...options,
+    toolCallId: "complete-1",
+  });
+  assert.deepEqual(completed, { ok: true, value: receipt });
+  const before = calls.filter((call) => call.url.includes("/rpc/")).length;
+  revoked = true;
+  try {
+    assert.deepEqual(
+      await tools.completeChore.execute(command, { ...options, toolCallId: "complete-2" }),
+      { ok: false, code: "forbidden" },
+    );
+    assert.equal(calls.filter((call) => call.url.includes("/rpc/")).length, before);
+  } finally {
+    revoked = false;
+  }
+});
+
+test("AI command execution rejects forged actor fields even if tool schema validation is bypassed", async () => {
+  const tools = choreTools(
+    new Request("http://localhost/v1/chat", {
+      headers: { authorization: "Bearer member" },
+    }),
+    { url: origin, publishableKey: "sb_publishable_fixture" },
+  );
+  const before = calls.filter((call) => call.url.includes("/rpc/")).length;
+  assert.deepEqual(
+    await tools.completeChore.execute(
+      { ...command, actor: other },
+      { toolCallId: "forged", messages: [] },
+    ),
+    { ok: false, code: "forbidden" },
+  );
+  assert.equal(calls.filter((call) => call.url.includes("/rpc/")).length, before);
 });
