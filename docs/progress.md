@@ -81,6 +81,32 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## M6 — server consent and busy snapshots (feature branch)
+
+Implemented `codex/busy-snapshot-consent`: gated owner-private consent settings and aggregate sanitized snapshots. Every selection revision atomically clears shared data; current-generation leases reject stale/in-flight publication after opt-out. Snapshot retries cannot alter content or renew a server-issued 15-minute freshness window. Interval payloads reject all extra fields. Partner RLS requires enabled consent, both memberships and unexpired data; removing/re-adding membership cannot restore previous sharing.
+
+Locally verified: 12 PostgreSQL tests for authorization/privacy, opt-out races, stale generations, immutable retries, expiry, forbidden metadata, membership cleanup and replacement rollback. Supabase security advisors returned no issues on the disposable fixture. Lint limits and formatting pass. CI pending PR creation; no production migration, native integration or two-device network verification has run.
+
+### Milestone checklist
+
+- [ ] M0/M1: delivery/Quiet preview #1/#2 still need device installation and owner/native UX review.
+- [ ] M2: auth #3, chore receipts #4, SQLite #6, SDK #8 and approvals #9 remain unintegrated foundations.
+- [ ] M3/M4: real onboarding/settings and complete daily flows remain; grocery command #10 now has passing CI but needs native/API/AI wiring and online editing.
+- [ ] M5: Meals remains incomplete.
+- [ ] M6: device boundary #7 and this server boundary exist; consent UI, permission lifecycle, API integration and actual partner/AI privacy journeys remain.
+- [ ] M7: CHF #5 and approvals #9 are tested; financial services/UI, recurring execution and reconciliation remain incomplete.
+- [ ] M8/M9: real push, migration/release rehearsal and device acceptance remain incomplete.
+
+PRs #1–#10 have passing current-commit CI; no Greptile response has arrived, and none is merged. Required external help if it persists: enable/fix Greptile access for drrius/nest. Native verification needs an iPhone development install or available simulator access. No purchases, production changes, releases or replacement automation have been performed.
+
+## 20 September — busy-sharing review corrections
+
+The additive consent migration now rejects an absent Household OS tenancy baseline before creating tables. Its fixture loads the three audited legacy tenancy migrations rather than inventing the membership schema; real FK/unique constraints, member cap, grants and RLS are exercised. Full-history/hosted Supabase rehearsal remains a pre-production gate; a fresh database is not the deployment target.
+
+Reused the tested PostgreSQL harness correction from PR #12: configured client binary, bounded statements/locks/processes and idempotent exit/SIGINT/SIGTERM cleanup after startup. Added those real-process cleanup tests to this branch's focused CI command. SIGKILL/host failure cannot run cleanup. No native integration, device permission test or production application is claimed.
+
+Verification: 13 busy-sharing PostgreSQL tests plus three harness process tests pass; local security advisors report no issues. Updated-commit CI and Greptile rereview are pending.
+
 ## 20 September 2026 — private conversation persistence foundation
 
 Implemented a gated additive migration for owner-private, versioned AI transcripts and atomic save receipts. Membership is checked before receipt replay; RLS hides transcripts and receipt metadata from the partner and outsiders. Revision checks reject concurrent overwrites. Replayed older saves return their original result without replacing newer content. Receipts store request hashes instead of duplicate transcript bodies.
@@ -306,6 +332,15 @@ Offline integration follow-up: PR #5 is now merged. Retained both domain and off
 
 Calendar integration follow-up: PRs #5 and #6 are merged. This update retains calendar, SecureStore and SQLite plugins together, and preserves domain/offline/calendar test commands. No calendar projection behavior changed. Native EventKit and SQLite execution are still unverified on device.
 
+## 20 September — busy-sharing integration
+
+PR #7 merged with a clean current-commit review, passing CI and no conversations outstanding. Integrated PRs #1–#7 into this consent branch and reused the latest tested startup/shutdown cleanup. CI runs all database fixtures once, alongside native offline/calendar and package tests. The calendar adapter and server consent source are now in one branch, but publishing, selection UI and physical permission/revocation journeys are not yet connected or device-verified.
+
+Local integration verification: all 31 isolated PostgreSQL tests pass (13 busy-sharing, 12 chore receipts and six database lifecycle checks). Frozen dependency installation, combined typechecks, lint and formatting pass. Effect advisory lint warnings remain; configured error gates pass. This commit still needs its own CI and Greptile rereview before merge.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Busy consent integration: incorporated merged PR #8 without changing SQL or calendar behavior. Full local Supabase/PostgREST container verification remains unavailable: Docker socket access is denied to this user even outside the sandbox. Isolated PostgreSQL fixtures continue to work.
+
 ## 20 September — private conversation integration
 
 Integrated reviewed main through PR #7. CI runs conversation, chore and lifecycle database fixtures once through the shared test command, alongside calendar/offline and package tests. Transcript storage is still not connected to authenticated API streaming or native chat; no live provider/device verification is claimed.
@@ -336,6 +371,16 @@ Approval integration: incorporated merged PR #8. This metadata-only merge preser
 
 Grocery/approval integration: PR #9 merged with current-head CI and explicit clean review. Integrated its approved persistence and shared fixture lifecycle. The combined database command now contains 40 tests; these remain independent fixture databases rather than a complete migration-history rehearsal.
 
+Busy-sharing integration: incorporated merged PRs #9 and #10. The combined database command contains 53 cases across isolated fixtures. Consent behavior is unchanged; final review uses the owner-authorized adversarial fallback while Greptile reports its trial cap.
+
 ## 20 September — adversarial chore API corrections
 
 Greptile reached its trial credit cap. The owner-authorized independent review found two valid PR #13 issues: PostgreSQL lowercases UUIDs, so mixed-case command IDs falsely failed receipt comparison after committing; paused routines retained current occurrences and were incorrectly listed. Normalize input IDs before the RPC and receipt check, exclude paused routines, and extend the real PostgREST fixture with paused work plus mixed-case completion/replay. These fixes require explicit adversarial rereview. PR #10 is now merged following exact-head fallback signoff and CI.
+
+Busy-sharing integration also includes merged PR #13. Its two adversarial API findings were fixed and independently rereviewed clean before merge. Consent SQL is unchanged and its combined 53-test database run passed; this final head still needs CI and independent review.
+
+## 20 September — calendar consent lifetime review fix
+
+The authorized independent reviewer found that membership deletion/rejoin reused consent revisions, allowing a delayed first opt-in to restore sharing and an older capture to publish under a new selection. Consent now receives a server-generated UUID incarnation when initialized in the disabled state. Every consent mutation, capture request and publication must match that incarnation. Membership deletion cascades the consent row; initialization after rejoin produces a different identity and cannot itself enable sharing.
+
+All 15 focused PostgreSQL cases pass locally, including both reproduced attacks and rejection before and after a new disabled consent row exists. This remains a gated migration; native/API publishing, device privacy inspection and production application are not verified. Independent rereview and latest-head CI are required before merge.
