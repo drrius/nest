@@ -1,5 +1,13 @@
 # Nest progress
 
+## 19 September 2026 — M2 transactional chore receipt candidate
+
+Implemented a gated additive migration wrapping the existing chore-completion engine. New receipts bind household, verified actor, operation UUID and exact request. Retries return the stored outcome; changed payloads fail. A partner who completed first remains the recorded completer, with an honest already-completed acknowledgment. Stale/rescheduled/skipped occurrences conflict. Completion and receipt commit or roll back together. Receipt RLS is actor-only with current membership, and direct writes/anonymous execution are denied.
+
+Established real local PostgreSQL 18.6 fixture testing without Docker: verified and extracted the matching signed server package to `/tmp`, then used disposable clusters on private Unix sockets with TCP disabled. Ten tests pass, including simultaneous partner completion, duplicate operation races, rollback and RLS. Fixture clusters are removed after tests. The closure fixture does not prove the full legacy recurrence engine; actual-schema compatibility/old-writer races and Supabase advisor checks remain before any production migration. No production changes or data access occurred.
+
+This is partial M2 source/database work. It is not wired to native/API/AI yet. PR #1 documents delivery gates; #2 contains the dev-only native preview; #3 contains bearer identity. All remain unmerged awaiting explicit Greptile review. Native execution, offline SQLite and M3–M9 remain outstanding. The owner removed the overnight automation; do not recreate it from stale goal text.
+
 ## 19 September 2026 — fresh repository
 
 The owner chose a separate greenfield repository after tooling compatibility work exposed legacy coupling. This supersedes the earlier same-repository recommendation.
