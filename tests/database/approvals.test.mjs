@@ -163,7 +163,9 @@ test("membership revocation removes access and execution rights without deleting
   assert.equal(db.sql(as(actor, "select count(*) from public.nest_action_approvals")), "0");
   assert.throws(() => db.sql(as(actor, execute(request))), /Not authorized/);
   assert.equal(status(request), "approved");
-  db.sql(`insert into public.household_members values('${household}','${actor}')`);
+  db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${household}','${actor}','Restored')`,
+  );
 });
 
 test("clients cannot consume approvals through the internal helper or tamper with the visible decision", () => {
@@ -194,4 +196,17 @@ test("concurrent contradictory decisions settle on one immutable outcome", async
   ]);
   assert.equal(results.filter((result) => result.status === "fulfilled").length, 1);
   assert.ok(["approved", "denied"].includes(status(request)));
+});
+
+test("an empty database cannot partially install additive financial approvals", () => {
+  const empty = startFixturePostgres();
+  try {
+    assert.throws(
+      () => empty.file("supabase/migrations/20260919213407_native_action_approvals.sql"),
+      /existing Household OS tenancy baseline/,
+    );
+    assert.equal(empty.sql("select to_regclass('public.nest_action_approvals') is null"), "t");
+  } finally {
+    empty.stop();
+  }
 });

@@ -24,3 +24,11 @@ Locally verified: nine real PostgreSQL 18.6 tests on synthetic data cover identi
 - [ ] M8/M9: push, migration/release rehearsal and device acceptance remain incomplete.
 
 PRs #1–#8 have passing current-commit CI and no Greptile review responses; none is merged. Required external action if this persists: verify Greptile is enabled for drrius/nest (installation metadata lookup with the available GitHub token returned HTTP 403). Native evidence still requires an iPhone development installation or available simulator access; Linux lacks Xcode and EAS simulator availability was false. No purchases, production migrations or publication have occurred. Removed continuation automation remains absent.
+
+## 20 September — approval prerequisite review correction
+
+This candidate is additive to the retained Household OS database, not a fresh-project bootstrap. Added an explicit prerequisite guard before any approval tables are created. The focused fixture now executes audited real legacy tenancy migrations with their actual constraints, cap, grants and RLS. Supabase auth infrastructure alone remains simulated; only synthetic rows are inserted. Full-history/hosted compatibility remains a separately required production gate.
+
+Reused the corrected configured-client/timeout/cleanup harness from PR #12. PRs #1–#3 have merged after current-commit clean Greptile review, passing CI and resolved conversations. No complete native vertical slice or production deployment is claimed.
+
+Verification: all ten approval PostgreSQL tests pass, including empty-database rejection; local security advisors report no issues. Updated-commit CI and Greptile rereview remain pending.
