@@ -24,3 +24,7 @@ Locally verified: nine tests using the actual SDK with its fixture model cover i
 - [ ] M8/M9: push, migration rehearsal, device acceptance and release preparation remain incomplete.
 
 No PR is merged. Greptile has not returned a review for any requested commit. A read-only GitHub installation lookup was rejected with HTTP 403 because the available token is not a GitHub App user token; installation/configuration cannot be verified with that credential. Owner needs to verify Greptile repository access/settings for drrius/nest if reviews remain absent. No alternate review substitutes for the explicit gate. Native execution still needs a physical iPhone development installation or available simulator service. Removed continuation automation remains absent; no purchases, production migration or publication has occurred.
+
+## 20 September — AI adapter review correction
+
+Raised the root Node floor to 24 to match CI and native TypeScript test imports, addressing Greptile's runtime compatibility finding. The nine SDK adapter fixture tests pass locally. Real provider, server approval persistence and native streaming integration remain outstanding; this correction does not change those verification gaps.
