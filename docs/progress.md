@@ -263,6 +263,16 @@ Offline integration follow-up: PR #5 is now merged. Retained both domain and off
 
 Calendar integration follow-up: PRs #5 and #6 are merged. This update retains calendar, SecureStore and SQLite plugins together, and preserves domain/offline/calendar test commands. No calendar projection behavior changed. Native EventKit and SQLite execution are still unverified on device.
 
+## 20 September — authorized chore API integration
+
+PR #8 merged after current-head CI, explicit zero-finding Greptile review and resolved conversations. Implemented authenticated current-chore reads and completion routing through the reviewed receipt RPC. Inputs reject extra fields/impossible dates, requests have bounded bodies and cancellation, read results reject cross-household data, and completion receipts must match the requested operation/occurrence. Errors remain safe and distinguish authorization, conflicts and retryable unavailability. No automatic mutation retries occur.
+
+This is API implementation, not a completed M2 vertical slice. The HTTP adapter is tested with a loopback upstream; PostgreSQL authorization/receipt invariants have separate fixture tests. Actual PostgREST integration, native auth/session/UI/outbox wiring and corresponding AI execution remain outstanding. No production data, deployment or release was touched.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Chore API follow-up: integrated merged PR #8 and added corresponding AI SDK list/complete tools using the same command factory. Each invocation verifies identity/membership again; bypassing SDK schema validation cannot inject an actor into the mutation. Twenty-two API/tool/body tests pass locally, along with combined typechecks and configured lint/format gates. These execute SDK tool adapters and real HTTP requests to a fixture upstream, not a live model. Native session/replay and actual streaming remain incomplete.
+
+Real REST integration evidence: downloaded the official PostgREST 16.3 standalone binary to `/tmp`, verified its published SHA-256, and ran it against a disposable PostgreSQL 18.6 fixture. The actual embedded routine query/RLS and completion RPC pass an end-to-end API test covering cross-household denial, lost-ack replay, exactly one closure, stale conflict and revocation. This exposed SQLSTATE `40001` arriving as HTTP 500; fixed the adapter to return the intended 409 and added a regression. Twenty-two HTTP/tool/body tests also pass. Supabase Auth is still a fixture bridge and the legacy closure is synthetic; full recurrence, live provider and native verification remain outstanding. PR #9 merged after explicit clean current-head review, CI and resolved conversations.
 Grocery integration follow-up: integrated reviewed PRs #6 and #7, preserving offline/calendar CI checks. Grocery SQL and receipt behavior are unchanged. Native grocery/API replay integration remains incomplete; this commit needs new CI and review.
 AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
 
@@ -273,3 +283,7 @@ AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offli
 Approval integration: incorporated merged PR #8. This metadata-only merge preserves approval SQL, all database tests and the AI compiler check. No approval or native behavior changed.
 
 Grocery/approval integration: PR #9 merged with current-head CI and explicit clean review. Integrated its approved persistence and shared fixture lifecycle. The combined database command now contains 40 tests; these remain independent fixture databases rather than a complete migration-history rehearsal.
+
+## 20 September — adversarial chore API corrections
+
+Greptile reached its trial credit cap. The owner-authorized independent review found two valid PR #13 issues: PostgreSQL lowercases UUIDs, so mixed-case command IDs falsely failed receipt comparison after committing; paused routines retained current occurrences and were incorrectly listed. Normalize input IDs before the RPC and receipt check, exclude paused routines, and extend the real PostgREST fixture with paused work plus mixed-case completion/replay. These fixes require explicit adversarial rereview. PR #10 is now merged following exact-head fallback signoff and CI.

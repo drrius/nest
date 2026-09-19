@@ -7,3 +7,13 @@ Effect v4 Schema validates both upstream responses; Context/Layer supplies ident
 Configuration deliberately accepts new Supabase publishable keys only. The adapter queries the audited legacy membership shape (`user_id`, `household_id`, `display_name`) but has not been run against production or copied legacy data. No schema/migration is applied. The API is not yet deployed or connected to mobile.
 
 Run `pnpm --filter @nest/api test` for ten focused HTTP-boundary cases. Tests start a loopback fixture server, requiring local socket access. They exercise the real HTTP adapter and Effect runtime; the upstream server is a fixture, so these are **not** RLS/database tests or proof of live Supabase configuration. Database RLS, chore commands, receipts, offline sync and AI remain next.
+
+## Authorized chore commands
+
+`GET /v1/chores` returns current open occurrences using the verified member's household and caller bearer token. `POST /v1/chores/complete` accepts `operationId`, `occurrenceId`, `expectedDueDate` and `completedOn`, invokes `nest_complete_chore` once and validates the returned receipt. The same Effect command factory is the intended native/AI boundary. Bodies are limited to 8 KiB; unknown fields and impossible dates are rejected. HTTP 409 means a version conflict; authorization failures and upstream unavailability remain distinct. Callers must preserve the operation ID after an uncertain response.
+
+The read adapter deliberately refuses more than 200 returned occurrences instead of returning a knowingly incomplete snapshot. The caller cannot select an actor or household. PostgreSQL still checks current membership when executing the RPC, including revocation after API verification.
+
+HTTP fixture tests exercise the actual Effect network adapter, credential forwarding, malformed responses and failures. Database receipt tests separately verify SQL authorization/atomicity. A separate disposable PostgREST integration test now verifies embedding and the receipt RPC. Complete legacy recurrence, real Supabase Auth, native session/replay wiring and a live member journey remain unverified. This API factory is not yet deployed.
+
+`choreTools(request, config)` provides AI SDK list/complete tools over these same commands. Every execution verifies the request bearer and current membership again. The streaming route must supply the authenticated request; no live streaming route or provider is implied by this factory. SDK validation does not replace command validation.
