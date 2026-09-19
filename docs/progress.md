@@ -24,3 +24,7 @@ Locally verified: 12 focused file-backed SQLite tests cover reopen, lost acknowl
 - [ ] M8–M9: real push, full migration rehearsal, device journeys and release candidate remain incomplete.
 
 All five earlier PRs have successful current-commit CI, but no Greptile review was returned at the latest check. None is merged. Required review approval cannot be inferred from silence; owner may need to enable/fix Greptile access for drrius/nest. Independent work continues. EAS simulator availability was explicitly false; a real iPhone/development installation or authorized simulator access is needed for native evidence. No production migrations, purchases or releases have run. The continuation automation was removed at the owner's request and has not been recreated.
+
+## 20 September — offline review correction
+
+Greptile found that shape-only date checks admitted impossible chore completion dates. The input schema now requires a real Gregorian date in years 0001–9999. A SQLite regression rejects invalid months/days, non-leap February 29 and year zero without leaving a queued operation, and verifies a valid leap day survives prepare. The Node floor also matches CI at 24. Native integration and device restart/conflict verification remain outstanding.

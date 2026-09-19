@@ -166,3 +166,27 @@ test("the same actor in another household cannot read the first household queue"
   assert.deepEqual(await run(store.read(other)), { items: [], pending: [] });
   assert.equal(await run(store.prepare(other)), null);
 });
+
+test("impossible chore dates never enter the durable queue, while leap days survive replay", async (t) => {
+  const { store, session } = await fixture(t);
+  await run(
+    store.saveSnapshot(session, [
+      { kind: "chore.complete", target, version: "2024-02-29", value: 0 },
+    ]),
+  );
+  const intent = { operation, kind: "chore.complete", target, expected: "2024-02-29" };
+  for (const completedOn of [
+    "2026-99-99",
+    "2026-02-29",
+    "2024-04-31",
+    "0000-01-01",
+    "2024-00-01",
+    "2024-01-00",
+  ]) {
+    await fails(store.enqueue(session, { ...intent, completedOn }), "invalid_input");
+  }
+  assert.equal((await run(store.read(session))).pending.length, 0);
+  assert.equal(await run(store.prepare(session)), null);
+  await run(store.enqueue(session, { ...intent, completedOn: "2024-02-29" }));
+  assert.equal((await run(store.prepare(session))).completedOn, "2024-02-29");
+});

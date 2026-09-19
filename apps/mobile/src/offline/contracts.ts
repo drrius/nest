@@ -4,13 +4,24 @@ export const Account = Schema.Struct({
   actor: Schema.String.check(Schema.isUUID()),
   household: Schema.String.check(Schema.isUUID()),
 });
+const CalendarDate = Schema.String.check(
+  Schema.isPattern(/^\d{4}-\d{2}-\d{2}$/),
+  Schema.makeFilter((value: string) => {
+    const date = new Date(`${value}T00:00:00.000Z`);
+    return (
+      Number.isFinite(date.getTime()) &&
+      date.getUTCFullYear() > 0 &&
+      date.toISOString().slice(0, 10) === value
+    );
+  }),
+);
 export const Intent = Schema.Union([
   Schema.Struct({
     operation: Schema.String.check(Schema.isUUID()),
     kind: Schema.Literal("chore.complete"),
     target: Schema.String.check(Schema.isUUID()),
     expected: Schema.NonEmptyString,
-    completedOn: Schema.String.check(Schema.isPattern(/^\d{4}-\d{2}-\d{2}$/)),
+    completedOn: CalendarDate,
   }),
   Schema.Struct({
     operation: Schema.String.check(Schema.isUUID()),
