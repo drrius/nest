@@ -126,7 +126,7 @@ test("concurrent writers cannot silently overwrite each other", async () => {
 
 test("simultaneous duplicate first saves create one conversation revision and receipt", async () => {
   const r = request();
-  await Promise.all([db.concurrent(as(actor, sql(r))), db.concurrent(as(actor, sql(r)))]);
+  await Promise.all(Array.from({ length: 8 }, () => db.concurrent(as(actor, sql(r)))));
   assert.equal(row(r).revision, 1);
   assert.equal(
     db.sql(

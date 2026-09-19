@@ -1,8 +1,10 @@
 import { execFileSync, execFile } from "node:child_process";
-import { mkdtempSync, mkdirSync, rmSync } from "node:fs";
+import { mkdtempSync, mkdirSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
+
+import { fixtureLifecycle } from "./fixture-lifecycle.mjs";
 
 const execute = promisify(execFile);
 
@@ -22,9 +24,10 @@ export function startFixturePostgres() {
       timeout: 30000,
       stdio: ["pipe", "pipe", "pipe"],
     });
-  let started = false;
+  const lifecycle = fixtureLifecycle(run, data, directory);
   try {
     run("initdb", ["-D", data, "--auth=trust", "--no-locale", "-E", "UTF8"]);
+    lifecycle.starting();
     run("pg_ctl", [
       "-D",
       data,
@@ -34,7 +37,6 @@ export function startFixturePostgres() {
       `-k ${socket} -h '' -p 55439 -c statement_timeout=5000 -c lock_timeout=3000`,
       "start",
     ]);
-    started = true;
     const args = [
       "-X",
       "-h",
@@ -47,10 +49,6 @@ export function startFixturePostgres() {
       "ON_ERROR_STOP=1",
       "-qAt",
     ];
-    const stop = registerCleanup(() => {
-      run("pg_ctl", ["-D", data, "-m", "fast", "-t", "10", "stop"]);
-      rmSync(directory, { recursive: true });
-    });
     return {
       sql: (sql) =>
         execFileSync(join(bin, "psql"), [...args, "-c", sql], {
@@ -66,36 +64,14 @@ export function startFixturePostgres() {
         }),
       concurrent: (sql) =>
         execute(join(bin, "psql"), [...args, "-c", sql], { encoding: "utf8", timeout: 10000 }),
-      stop,
+      stop: lifecycle.stop,
     };
   } catch (error) {
-    if (started) run("pg_ctl", ["-D", data, "-m", "fast", "stop"]);
-    rmSync(directory, { recursive: true });
+    try {
+      lifecycle.stop();
+    } catch (cleanupError) {
+      throw new AggregateError([error, cleanupError], "Fixture startup and cleanup failed");
+    }
     throw error;
   }
-}
-
-function registerCleanup(cleanup) {
-  let stopped = false;
-  const stop = () => {
-    if (stopped) return;
-    cleanup();
-    stopped = true;
-    process.removeListener("exit", stop);
-    process.removeListener("SIGINT", interrupt);
-    process.removeListener("SIGTERM", terminate);
-  };
-  const signal = (code) => {
-    try {
-      stop();
-    } finally {
-      process.exit(code);
-    }
-  };
-  const interrupt = () => signal(130);
-  const terminate = () => signal(143);
-  process.once("exit", stop);
-  process.once("SIGINT", interrupt);
-  process.once("SIGTERM", terminate);
-  return stop;
 }

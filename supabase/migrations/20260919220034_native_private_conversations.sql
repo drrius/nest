@@ -78,7 +78,7 @@ begin
   if v_actor is null or not found then raise exception 'Not authorized' using errcode='42501'; end if;
   perform private.nest_validate_transcript(p_schema,p_transcript,p_conversation,p_operation,p_expected);
   insert into public.nest_ai_conversations(id,actor_id,household_id) values(p_conversation,v_actor,p_household)
-    on conflict(id) do nothing;
+    on conflict do nothing;
   select * into v_row from public.nest_ai_conversations
     where id=p_conversation and actor_id=v_actor and household_id=p_household for update;
   if not found then raise exception 'Not authorized' using errcode='42501'; end if;
