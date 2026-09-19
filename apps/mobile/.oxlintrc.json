@@ -3,7 +3,7 @@
   "extends": ["../../.oxlintrc.json"],
   "jsPlugins": ["eslint-plugin-react-native", "eslint-plugin-expo"],
   "rules": {
-    "react-native/no-raw-text": "error",
+    "react-native/no-raw-text": ["error", { "skip": ["Note", "Link", "NativeTabs.Trigger.Label"] }],
     "react-native/no-unused-styles": "error",
     "react-native/no-single-element-style-arrays": "error",
     "react-native/split-platform-components": "error",

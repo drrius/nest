@@ -1,0 +1,13 @@
+# Two-action SQLite journal
+
+This repository accepts only `chore.complete` and `groceries.setChecked`. It is an M2 storage foundation, not a connected offline feature yet. `OfflineStore` exposes typed Effect operations; SQLite's Promise transaction callback is contained below that service boundary. `expoDatabase` adapts the SDK 57 exclusive transaction API. The connection and authenticated session lifecycle belong to the application runtime.
+
+An authorized session supplies its actor/household and a fresh random lease UUID on every activation. These local identifiers are cache isolation, never server authorization. Every transaction checks the current lease. Suspension invalidates existing callbacks without deleting pending work. Another account sees only its own rows; switching back can recover the original queue. Before offering destructive local cleanup, the UI must explain pending work and obtain explicit discard. No credentials or private chat content belong in this database.
+
+A snapshot stores canonical versions and checked/completed state. A durable operation stores the local intent; reads overlay pending intents on existing snapshot rows. There is no separate optimistic state to lose between writes. Snapshot removal preserves the pending intent for explanation without recreating the item in the visible list.
+
+`prepare` materializes and persists the exact wire command before network dispatch. Later attempts return that payload unchanged. Per-target successor operations wait for their predecessor's receipt and use its canonical version, including compatible no-op responses. Receipts update canonical state and acknowledgment in one transaction. A conflict remains recorded and blocks dependent operations; unrelated targets can continue. Device timestamps never decide ordering.
+
+The caller must serialize its replay loop, pause when authentication expires, send the original operation identity through a server command with atomic receipts, map typed conflicts, and refresh a bounded authoritative snapshot after replay. Concurrent duplicate dispatch remains possible after interruption; only the server receipt protocol can guarantee exactly-once side effects. This journal deliberately does not claim that guarantee on its own.
+
+Outstanding before connection: explicit conflict retry/discard UI and repository operations, lifecycle wiring, full read snapshots, queue/receipt retention bounds, authenticated HTTP command mapping, actual Expo SQLite execution, iOS file-protection verification, and two-device fault journeys. Receipt history is currently retained; there is no unsafe automatic pruning. The synthetic Node adapter executes the same SQL against file-backed SQLite and reopens it; that is not an iPhone process-kill test.

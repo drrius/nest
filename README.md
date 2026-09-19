@@ -17,4 +17,4 @@ Run `pnpm install`, `pnpm lint`, `pnpm typecheck`, and `pnpm test:tooling`. Use 
 
 ## Status
 
-Repository and tooling foundation only. Native screens, backend, migrations and device verification are not implemented yet. The HTML prototype uses fictional data and is not production functionality. No GitHub remote, EAS project, bundle identity or deployment has been created for this repository; establish release identity deliberately before distribution.
+Repository and tooling foundation only. Native screens, backend, migrations and device verification are not implemented yet. The HTML prototype uses fictional data and is not production functionality. GitHub: `drrius/nest`. EAS project, bundle identity and deployment remain to be established deliberately before distribution. See [progress](docs/progress.md) for milestone evidence and external blockers, and the [action inventory](docs/native-rewrite/action-inventory.md) for UI/AI policy.
