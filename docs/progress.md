@@ -1,5 +1,13 @@
 # Nest progress
 
+## 19 September 2026 — M2 transactional chore receipt candidate
+
+Implemented a gated additive migration wrapping the existing chore-completion engine. New receipts bind household, verified actor, operation UUID and exact request. Retries return the stored outcome; changed payloads fail. A partner who completed first remains the recorded completer, with an honest already-completed acknowledgment. Stale/rescheduled/skipped occurrences conflict. Completion and receipt commit or roll back together. Receipt RLS is actor-only with current membership, and direct writes/anonymous execution are denied.
+
+Established real local PostgreSQL 18.6 fixture testing without Docker: verified and extracted the matching signed server package to `/tmp`, then used disposable clusters on private Unix sockets with TCP disabled. Ten tests pass, including simultaneous partner completion, duplicate operation races, rollback and RLS. Fixture clusters are removed after tests. The closure fixture does not prove the full legacy recurrence engine; actual-schema compatibility/old-writer races and Supabase advisor checks remain before any production migration. No production changes or data access occurred.
+
+This is partial M2 source/database work. It is not wired to native/API/AI yet. PR #1 documents delivery gates; #2 contains the dev-only native preview; #3 contains bearer identity. All remain unmerged awaiting explicit Greptile review. Native execution, offline SQLite and M3–M9 remain outstanding. The owner removed the overnight automation; do not recreate it from stale goal text.
+
 ## 19 September 2026 — M2 bearer identity boundary
 
 Implemented an Effect v4 Request/Response handler for `GET /v1/session`: validate bearer token with Supabase Auth, then read current membership under the same token. Reject anonymous identity, missing/multiple/mismatched memberships, malformed responses and secret-key configuration. No actor identity from client fields or editable metadata. Requests use Effect HTTP services with cancellation, bounded timeout and safe non-cacheable failures. No deployment, database changes or production access.
@@ -65,6 +73,12 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## 20 September — chore receipt review corrections
+
+Removed the receipt-to-current-membership foreign key: durable receipts must not prevent access revocation or be deleted to remove a member. Commands now lock current membership before receipt replay or completion; RLS still requires current membership. Added a database regression proving membership removal succeeds, receipts remain, and subsequent reads/replays are denied.
+
+Completed occurrences now validate the expected due date before returning `already_completed`. A stale partner request conflicts without storing a receipt; an unchanged compatible request retains the original completer. These address both Greptile findings. Full audited legacy-schema compatibility remains a separate gate.
+
 ## 20 September — identity review corrections
 
 Greptile identified malformed successful Auth responses being classified as invalid sessions. They now return `unavailable` (503), consistent with malformed membership responses; expired credentials and anonymous users still return 401. Added malformed Auth data to the HTTP regression cases. Raised the supported Node floor to 24, matching CI and the native TypeScript-loading test commands. These changes address both review findings; native session integration is still pending.
@@ -91,3 +105,7 @@ PR #2 initial Greptile review completed; the updated integration commit requires
 ## 20 September — identity and native shell integration
 
 PRs #1 and #2 are merged. This branch integrates their delivery contract and native preview with the bearer identity API; the only manual conflict was progress documentation, with both evidence sections retained. Dependency lockfile merged automatically and is verified through frozen installation. The API remains unconnected to the native session/UI, so this is integration preparation rather than a complete M2 journey. Current combined commit CI and Greptile review remain required before merge.
+
+## 20 September — chore integration and verification correction
+
+Integrated merged PRs #1–#3, retaining both API and database CI commands and both progress histories. Updated the database README from ten to twelve tests to include the two review regressions; the earlier count was stale. This remains a synthetic legacy closure, not verification of the full recurrence engine. Native/API command wiring remains next after the reviewed foundations merge.
