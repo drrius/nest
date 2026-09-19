@@ -124,3 +124,22 @@ test("null and non-finite dates cannot create closure or receipts", () => {
     "open",
   );
 });
+
+test("completed occurrences still reject stale expected dates without storing receipts", () => {
+  assert.throws(() => db.sql(asMember(2, complete(100, 510, "2026-09-18"))), /occurrence_conflict/);
+  assert.equal(
+    db.sql(`select count(*) from public.nest_chore_receipts where operation_id='${id(510)}'`),
+    "0",
+  );
+});
+
+test("membership can be revoked without deleting durable receipts, and replay then fails", () => {
+  const count = db.sql(`select count(*) from public.nest_chore_receipts where actor_id='${id(1)}'`);
+  db.sql(`delete from public.household_members where user_id='${id(1)}'`);
+  assert.equal(
+    db.sql(`select count(*) from public.nest_chore_receipts where actor_id='${id(1)}'`),
+    count,
+  );
+  assert.equal(db.sql(asMember(1, "select count(*) from public.nest_chore_receipts")), "0");
+  assert.throws(() => db.sql(asMember(1, complete(100, 500))), /not_found/);
+});

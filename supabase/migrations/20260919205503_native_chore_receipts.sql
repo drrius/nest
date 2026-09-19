@@ -7,9 +7,7 @@ create table public.nest_chore_receipts (
   request jsonb not null,
   result jsonb not null,
   created_at timestamptz not null default now(),
-  primary key (household_id, actor_id, operation_id),
-  foreign key (household_id, actor_id)
-    references public.household_members(household_id, user_id)
+  primary key (household_id, actor_id, operation_id)
 );
 alter table public.nest_chore_receipts enable row level security;
 revoke all on public.nest_chore_receipts from public, anon, authenticated;
@@ -41,9 +39,12 @@ begin
     raise exception 'invalid_request' using errcode = '22023';
   end if;
   select * into occurrence from public.routine_occurrences where id = p_occurrence_id;
-  if not found or not private.is_household_member(occurrence.household_id) then
+  if not found then
     raise exception 'not_found' using errcode = '42501';
   end if;
+  perform 1 from public.household_members
+    where household_id = occurrence.household_id and user_id = actor for key share;
+  if not found then raise exception 'not_found' using errcode = '42501'; end if;
   perform pg_advisory_xact_lock(hashtextextended(
     'nest:' || occurrence.household_id::text || ':' || actor::text || ':' || p_operation_id::text, 0));
   select * into prior from public.nest_chore_receipts
@@ -53,8 +54,11 @@ begin
     return prior.result;
   end if;
   select * into occurrence from public.routine_occurrences where id = p_occurrence_id for update;
+  if occurrence.due_date <> p_expected_due_date then
+    raise exception 'occurrence_conflict' using errcode = '40001';
+  end if;
   if occurrence.status = 'open' then
-    if occurrence.role <> 'current' or occurrence.due_date <> p_expected_due_date then
+    if occurrence.role <> 'current' then
       raise exception 'occurrence_conflict' using errcode = '40001';
     end if;
     perform public.complete_occurrence(p_occurrence_id,
