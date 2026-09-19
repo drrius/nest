@@ -81,6 +81,30 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## M4 — native grocery-check server command (feature branch)
+
+Implemented `codex/grocery-check-receipts`: gated additive checked/version columns on existing grocery rows plus authenticated `nest_set_grocery_checked` and actor-scoped operation receipts. Compatible checks converge, opposite stale intents conflict, exact retries return one receipt, and legacy edits advance the version. Shopping-session/purchase fields remain untouched; no money is posted. The audited source is Household OS `4a528c96caf41515a70291ccecbba9d7b35e3349` grocery schema and column grants.
+
+Locally verified: 12 focused PostgreSQL tests for retries, concurrent partner/duplicate operations, conflict/ABA detection, authorization/RLS/grants, failure rollback, legacy claim preservation, revoked membership and helper isolation. Supabase security advisors reported no issues against the disposable local fixture. Lint limits and formatting pass. No production migration ran; CI pending PR creation. Native/API/AI integration and full-schema rehearsal remain unverified.
+
+### Milestone checklist
+
+- [ ] M0/M1: delivery/native preview #1/#2 await review; device install and owner UX review remain.
+- [ ] M2: auth #3, chore receipts #4, SQLite #6, SDK #8 and approvals #9 are independently tested foundations, not an integrated native slice.
+- [ ] M3: real sign-in/onboarding/settings remain incomplete.
+- [ ] M4: this grocery server command is implemented; native/AI wiring, conflict UI, online checklist editing and two-device offline journeys remain.
+- [ ] M5/M6: Meals remains incomplete; Calendar boundary #7 still needs server consent/snapshots and device verification.
+- [ ] M7: CHF domain #5 and approval boundary #9 are tested; real financial services/UI, recurring scheduler and reconciliation remain.
+- [ ] M8/M9: push, full migration rehearsal and release/device acceptance remain incomplete.
+
+PRs #1–#9 have passing current-commit CI but no Greptile responses. None is merged; no silence is counted as approval. Owner may need to enable/fix Greptile access for drrius/nest. iPhone development installation/simulator access remains needed for native evidence. Removed continuation automation stays absent. No purchases, production data changes or releases have occurred.
+
+## 20 September — PostgreSQL client selection review
+
+Fixed Greptile's harness finding: synchronous queries, SQL files and concurrent requests now use `psql` from `NEST_TEST_PG_BIN`, the same installation as `initdb` and `pg_ctl`. This avoids accidental PATH selection or missing-client failures. The disposable grocery receipt suite passes with the configured PostgreSQL installation. PRs #1 and #2 have merged after clean current-commit Greptile reviews, passing CI and resolved conversations; this branch still requires its own updated review.
+
+Local setup evidence: the extracted server package lacked `psql`; the corrected harness failed explicitly with ENOENT. Verified both server and system client are PostgreSQL 18.6, linked `/usr/bin/psql` into the temporary test installation, then reran all 12 grocery tests successfully. The harness itself no longer falls back to PATH.
+
 ## M2 — durable action approval boundary (feature branch)
 
 Implemented `codex/durable-approvals`: gated additive approval records with owner/current-membership RLS, exact invocation/command/version/payload binding, 15-minute non-renewing expiry, immutable approve/deny decisions and internal transaction-only consumption. Public clients cannot mutate the table or execute the consume helper. Membership identity is retained for audit after revocation; membership locks protect authorization during writes. Native financial/recurring command names follow the approved action inventory.
@@ -220,6 +244,10 @@ Integrated merged PRs #1–#4 into the offline branch. Kept the native shell's i
 
 PR #4 merged after current-commit CI, a zero-comment Greptile rereview and all addressed conversations resolved. This branch integrates PRs #1–#4 with the pure CHF rules. CI runs package tests once through `pnpm test` (including both API and domain) plus isolated database tests; the focused `test:domain` command remains available locally. Progress histories are retained. These rules remain unconnected to actual financial posting and native Money UI.
 
+## 20 September — grocery receipt integration
+
+Integrated merged PRs #1–#5 and the corrected shared PostgreSQL lifecycle. CI runs chore/grocery and harness tests once through `test:database`; `test:groceries` remains a focused local command. Existing check receipts retain tenant/actor scoping, conflict detection and legacy shopping-history preservation. Native checklist/API/outbox wiring remains incomplete, and the grocery schema fixture is still deliberately scoped rather than a whole-history rehearsal.
+
 ## 20 September — financial approval integration
 
 Integrated merged PRs #1–#5 and the corrected fixture lifecycle from PR #12. Database CI now runs the chore, approval and shared harness tests once through `test:database`; the focused approval command remains available. Kept actual audited tenancy fixtures and all prior evidence. Approval records are still not connected to financial commands, SDK streaming or native approval cards; this is shared foundation integration, not completed financial behavior.
@@ -235,7 +263,13 @@ Offline integration follow-up: PR #5 is now merged. Retained both domain and off
 
 Calendar integration follow-up: PRs #5 and #6 are merged. This update retains calendar, SecureStore and SQLite plugins together, and preserves domain/offline/calendar test commands. No calendar projection behavior changed. Native EventKit and SQLite execution are still unverified on device.
 
+Grocery integration follow-up: integrated reviewed PRs #6 and #7, preserving offline/calendar CI checks. Grocery SQL and receipt behavior are unchanged. Native grocery/API replay integration remains incomplete; this commit needs new CI and review.
+AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
+
+Grocery integration: incorporated merged PR #8 while preserving receipt SQL and existing verification. Native grocery replay remains unwired.
 Approval integration follow-up: integrated reviewed PRs #6 and #7, preserving offline/calendar CI checks. Approval SQL and command authorization behavior are unchanged. Financial posting and native approval integration remain incomplete; this commit needs new CI and review.
 AI integration follow-up: PRs #6 and #7 are now merged. Preserved calendar/offline checks alongside the AI adapter and compiler regression. This integration requires new CI and Greptile review; native and live-provider integration remain incomplete.
 
 Approval integration: incorporated merged PR #8. This metadata-only merge preserves approval SQL, all database tests and the AI compiler check. No approval or native behavior changed.
+
+Grocery/approval integration: PR #9 merged with current-head CI and explicit clean review. Integrated its approved persistence and shared fixture lifecycle. The combined database command now contains 40 tests; these remain independent fixture databases rather than a complete migration-history rehearsal.
