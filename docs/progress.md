@@ -49,3 +49,9 @@ Next: finish lint/compiler verification, record scope/action inventory, implemen
 - [PR #3](https://github.com/drrius/nest/pull/3), `6682c72`: Effect v4 bearer identity and user-scoped current membership handler. Ten HTTP fixture tests pass, including concurrent handler reuse, revocation, invalid identity, outsider rejection, redirect refusal and safe errors. API source lint/typecheck pass. Not deployed, not wired to native, and not database/RLS verification.
 - Greptile review requested once per current feature commit; no responses observed yet. Do not merge on silence. No PR merged.
 - Local Docker access is denied even with elevated execution. Investigate standalone fixture PostgreSQL for transactional/RLS tests. Sandbox HTTP fixture run stalled; explicitly permitted loopback run passes. No production data accessed.
+
+## 20 September — delivery-contract review
+
+Greptile is now enabled and reviewing the open PRs. Its PR #1 finding was valid: the finite action inventory omitted choosing a favorite in a meal proposal. Added `mealProposals.chooseFavorite` as a private proposal edit that selects an existing saved meal for one slot, preserves other slots and still requires explicit proposal approval before changing the household plan. Verified against the approved brief's AI proposal row; formatting passes. Implementation remains outstanding.
+
+The owner authorizes an adversarial review subagent if Greptile fails or hits a rate limit, with fixes and rereview until signoff. This does not waive CI or unresolved findings. The removed automation stays removed.
