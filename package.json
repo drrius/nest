@@ -17,7 +17,9 @@
     "start": "pnpm --filter @nest/mobile start",
     "test:calendar": "node --test apps/mobile/tests/calendar*.test.mjs",
     "test:database": "node --test tests/database/*.test.mjs",
-    "test": "pnpm -r --if-present test"
+    "test": "pnpm -r --if-present test",
+    "test:offline": "node --test apps/mobile/tests/offline.test.mjs",
+    "test:domain": "pnpm --filter @nest/domain test"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
