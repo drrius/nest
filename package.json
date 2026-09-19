@@ -5,7 +5,7 @@
   "type": "module",
   "packageManager": "pnpm@11.21.0",
   "engines": {
-    "node": ">=22"
+    "node": ">=24"
   },
   "scripts": {
     "prepare": "effect-tsgo patch --typescript --oxlint",
@@ -14,6 +14,7 @@
     "format:check": "oxfmt --check .",
     "typecheck": "pnpm -r --if-present typecheck",
     "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
+    "test": "pnpm -r --if-present test",
     "start": "pnpm --filter @nest/mobile start"
   },
   "devDependencies": {

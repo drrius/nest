@@ -1,5 +1,15 @@
 # Nest progress
 
+## 19 September 2026 — M2 bearer identity boundary
+
+Implemented an Effect v4 Request/Response handler for `GET /v1/session`: validate bearer token with Supabase Auth, then read current membership under the same token. Reject anonymous identity, missing/multiple/mismatched memberships, malformed responses and secret-key configuration. No actor identity from client fields or editable metadata. Requests use Effect HTTP services with cancellation, bounded timeout and safe non-cacheable failures. No deployment, database changes or production access.
+
+Ten HTTP-boundary tests pass using a local fixture server: invalid headers without network access, real adapter request/response validation, concurrent-member isolation, outsider/ambiguous membership rejection, anonymous rejection, safe upstream failures, cancellation/method handling and configuration restrictions. TypeScript 7 passes. These fixtures do not prove actual database RLS or live Supabase auth; native sign-in and backend wiring remain unimplemented.
+
+Local Docker API access is denied even outside the sandbox. Investigate a standalone isolated PostgreSQL route before counting RLS/financial database checks as verified. The sandbox also prevents the fixture HTTP server from running normally; tests pass with explicitly permitted loopback access. Added these focused tests to routine CI.
+
+Open work from other branches: PR #1 delivery contract and PR #2 development-only native preview. No merges; current-commit Greptile reviews remain required. The owner removed the overnight automation; continue this task without automatically recreating it. M0/M1 are partial, M2 is in progress, and M3–M9 are not implemented. No complete vertical slice or device verification is claimed.
+
 ## 19 September 2026 — native interaction shell (partial M0/M1)
 
 Implemented a development-only four-tab Quiet preview with separate native stacks, shared grocery navigation/state, one-tap sample chore completion, individual dinner replacement, calendar layer toggling and preview reset/exit. Every screen identifies fictional data. Release JS guards preview routes; no backend/auth/AI/financial/offline functionality is claimed. Generated and installed Nest icon artwork. Screens/components remain outside the route directory.
@@ -55,6 +65,10 @@ Copied only approved planning/prototype materials. Added independent native tool
 
 Next: finish lint/compiler verification, record scope/action inventory, implement the native shell and a real end-to-end authenticated slice according to the plan. The legacy application remains at /home/drrius/Work/household-os.
 
+## 20 September — identity review corrections
+
+Greptile identified malformed successful Auth responses being classified as invalid sessions. They now return `unavailable` (503), consistent with malformed membership responses; expired credentials and anonymous users still return 401. Added malformed Auth data to the HTTP regression cases. Raised the supported Node floor to 24, matching CI and the native TypeScript-loading test commands. These changes address both review findings; native session integration is still pending.
+
 ## Feature branch evidence
 
 - [PR #2](https://github.com/drrius/nest/pull/2), `a96d964`: native preview shell, generated artwork, development-only route guards, four stacks, shared grocery state, chore completion and single-dinner replacement in fictional data. Formatting, lint, TypeScript 7, tooling-contract tests and iOS Metro export pass; current-commit CI passes. Not device-verified, not connected to backend/auth/AI, not a completed M1.
@@ -73,3 +87,7 @@ The owner authorizes an adversarial review subagent if Greptile fails or hits a 
 PR #1 merged as `7f1b06a` after latest-commit CI passed, Greptile rereview reported zero new comments, and its addressed conversation was resolved. PR #2 now incorporates that main commit; its only conflict was this progress document, resolved by retaining both evidence sections. No native source changed in this integration update. Earlier dated “no PR merged” and “no review response” entries are historical observations.
 
 PR #2 initial Greptile review completed; the updated integration commit requires a fresh review and CI before merge. Native execution and real backend behavior remain unverified. Other open PRs are undergoing fixes and rereviews; no production migration or deployment has run.
+
+## 20 September — identity and native shell integration
+
+PRs #1 and #2 are merged. This branch integrates their delivery contract and native preview with the bearer identity API; the only manual conflict was progress documentation, with both evidence sections retained. Dependency lockfile merged automatically and is verified through frozen installation. The API remains unconnected to the native session/UI, so this is integration preparation rather than a complete M2 journey. Current combined commit CI and Greptile review remain required before merge.
