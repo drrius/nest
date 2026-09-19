@@ -25,3 +25,9 @@ Locally verified: 12 focused PostgreSQL tests for retries, concurrent partner/du
 - [ ] M8/M9: push, full migration rehearsal and release/device acceptance remain incomplete.
 
 PRs #1–#9 have passing current-commit CI but no Greptile responses. None is merged; no silence is counted as approval. Owner may need to enable/fix Greptile access for drrius/nest. iPhone development installation/simulator access remains needed for native evidence. Removed continuation automation stays absent. No purchases, production data changes or releases have occurred.
+
+## 20 September — PostgreSQL client selection review
+
+Fixed Greptile's harness finding: synchronous queries, SQL files and concurrent requests now use `psql` from `NEST_TEST_PG_BIN`, the same installation as `initdb` and `pg_ctl`. This avoids accidental PATH selection or missing-client failures. The disposable grocery receipt suite passes with the configured PostgreSQL installation. PRs #1 and #2 have merged after clean current-commit Greptile reviews, passing CI and resolved conversations; this branch still requires its own updated review.
+
+Local setup evidence: the extracted server package lacked `psql`; the corrected harness failed explicitly with ENOENT. Verified both server and system client are PostgreSQL 18.6, linked `/usr/bin/psql` into the temporary test installation, then reran all 12 grocery tests successfully. The harness itself no longer falls back to PATH.

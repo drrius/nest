@@ -45,16 +45,16 @@ export function startFixturePostgres() {
     ];
     return {
       sql: (sql) =>
-        execFileSync("psql", [...args, "-c", sql], {
+        execFileSync(join(bin, "psql"), [...args, "-c", sql], {
           encoding: "utf8",
           stdio: ["pipe", "pipe", "pipe"],
         }).trim(),
       file: (file) =>
-        execFileSync("psql", [...args, "-f", file], {
+        execFileSync(join(bin, "psql"), [...args, "-f", file], {
           encoding: "utf8",
           stdio: ["pipe", "pipe", "pipe"],
         }),
-      concurrent: (sql) => execute("psql", [...args, "-c", sql], { encoding: "utf8" }),
+      concurrent: (sql) => execute(join(bin, "psql"), [...args, "-c", sql], { encoding: "utf8" }),
       stop: () => {
         run("pg_ctl", ["-D", data, "-m", "fast", "stop"]);
         rmSync(directory, { recursive: true });
