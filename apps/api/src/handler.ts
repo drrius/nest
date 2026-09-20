@@ -66,6 +66,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       "/v1/session": "GET",
       "/v1/routines": "GET",
       "/v1/routines/create": "POST",
+      "/v1/routines/edit": "POST",
       "/v1/setup/status": "GET",
       "/v1/notification-preferences": "GET",
       "/v1/notification-preferences/save": "POST",

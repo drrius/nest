@@ -25,14 +25,13 @@ export function requestDocument(
       const error = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
         value,
       );
-      const code =
-        error.code === "40001"
-          ? "conflict"
-          : error.code === "P0002"
-            ? "removed"
-            : error.code === "22023"
-              ? "invalid_request"
-              : "unavailable";
+      const code = ["40001", "55P03", "55000"].includes(error.code)
+        ? "conflict"
+        : error.code === "P0002"
+          ? "removed"
+          : error.code === "22023"
+            ? "invalid_request"
+            : "unavailable";
       return yield* new ApiFailure({ code });
     }
     return { value, range: response.headers["content-range"] };
