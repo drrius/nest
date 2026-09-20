@@ -101,6 +101,31 @@ test("check then uncheck use predecessor receipt versions, including acknowledgm
   );
 });
 
+test("three rapid checks retain original intent ancestry after two acknowledgments", async (t) => {
+  const db = await fixture(t);
+  await run(db.store.saveGroceries(db.session, [item]));
+  const intents = [operation, second, "50000000-0000-4000-8000-000000000003"];
+  for (const [index, id] of intents.entries()) {
+    await run(
+      db.store.enqueue(db.session, {
+        kind: "groceries.setChecked",
+        operation: id,
+        target,
+        expected: "1",
+        checked: index !== 1,
+      }),
+    );
+    assert.equal((await run(db.store.prepare(db.session))).expected, String(index + 1));
+    await run(
+      db.store.acknowledge(db.session, {
+        operation: id,
+        version: String(index + 2),
+        value: index !== 1,
+      }),
+    );
+  }
+});
+
 test("conflicts show canonical state and explicit discard removes dependent checks only", async (t) => {
   const db = await fixture(t);
   await run(db.store.saveGroceries(db.session, [{ ...item, checked: true }]));

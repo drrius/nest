@@ -3,10 +3,12 @@ import { AppState } from "react-native";
 import * as Haptics from "expo-haptics";
 import * as Crypto from "expo-crypto";
 import type { Grocery } from "@nest/contracts/groceries";
+import { controllerPool } from "../offline/controller-pool";
 import { useOfflineAccount } from "../offline/provider";
 import { groceryFlow } from "./flow";
 import type { GroceryClient } from "./client";
-import { groceryRuntime, initialGroceryView } from "./runtime";
+import { groceryRuntime, initialGroceryView, type GroceryView } from "./runtime";
+const subscribe = controllerPool<GroceryView, ReturnType<typeof groceryRuntime>>();
 export function useGroceries(client: GroceryClient, actor: string, household: string) {
   const { state: account, retry } = useOfflineAccount();
   const [view, setView] = useState(initialGroceryView);
@@ -15,9 +17,15 @@ export function useGroceries(client: GroceryClient, actor: string, household: st
     if (account.status !== "ready") return;
     const { session } = account.account;
     if (session.actor !== actor || session.household !== household) return;
-    const current = groceryRuntime(groceryFlow(account.account, client), setView, () => {
-      void Haptics.selectionAsync().catch(() => undefined);
-    });
+    const subscription = subscribe(
+      account.account,
+      (publish) =>
+        groceryRuntime(groceryFlow(account.account, client), publish, () => {
+          void Haptics.selectionAsync().catch(() => undefined);
+        }),
+      setView,
+    );
+    const current = subscription.controller;
     runtime.current = current;
     void current.refresh();
     const listener = AppState.addEventListener("change", (state) => {
@@ -26,7 +34,7 @@ export function useGroceries(client: GroceryClient, actor: string, household: st
     return () => {
       runtime.current = null;
       listener.remove();
-      current.dispose();
+      subscription.release();
     };
   }, [account, client, actor, household]);
   return {

@@ -104,7 +104,22 @@ function predecessor(rows: Operation[], intent: Intent, snapshot: Item) {
     previous.result_version !== snapshot.version
   )
     return;
-  return decodeIntent(JSON.parse(previous.wire)).expected === intent.expected
-    ? previous
-    : undefined;
+  return includesExpected(rows, previous, intent.expected) ? previous : undefined;
+}
+
+function includesExpected(rows: Operation[], latest: Operation, expected: string) {
+  let current: Operation | undefined = latest;
+  while (current?.status === "acknowledged" && current.wire) {
+    const wire = decodeIntent(JSON.parse(current.wire));
+    if (
+      wire.expected === expected ||
+      decodeIntent(JSON.parse(current.intent)).expected === expected
+    )
+      return true;
+    const parent = rows.find((row) => row.operation === current?.predecessor);
+    if (!parent || parent.sequence >= current.sequence || parent.result_version !== wire.expected)
+      return false;
+    current = parent;
+  }
+  return false;
 }

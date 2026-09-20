@@ -83,6 +83,7 @@ export function GroceryList({
           <Note>Checking an item never records an expense.</Note>
           <Link
             href="/household"
+            dismissTo
             style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
           >
             Back to Today
