@@ -5,6 +5,7 @@ const db = startFixturePostgres();
 after(() => db.stop());
 db.file("tests/database/conversation-fixture.sql");
 db.file("supabase/migrations/20260919220034_native_private_conversations.sql");
+db.file("supabase/migrations/20260920022841_native_ai_turn_ownership.sql");
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const actor = id(1),
   partner = id(2),
