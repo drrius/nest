@@ -233,3 +233,40 @@ test("routine edit cards require edit receipts and the tool reuses strict patch 
   for (const change of [{ operationId: id }, { patch: {} }, { patch: { instructions: "hidden" } }])
     assert.throws(() => decode({ ...input, ...change }));
 });
+
+test("lifecycle cards require canonical receipts and show the actual completed action", () => {
+  const value = {
+    actorId: "00000000-0000-4000-8000-000000000001",
+    householdId: "00000000-0000-4000-8000-000000000010",
+    operationId: "00000000-0000-4000-8000-000000000100",
+    routineId: "00000000-0000-4000-8000-000000000050",
+    version: "2026-09-20T08:00:00.000001Z",
+  };
+  for (const [action, label] of [
+    ["pause", "Routine paused"],
+    ["resume", "Routine resumed"],
+    ["archive", "Routine archived"],
+  ]) {
+    const part = {
+      type: "tool-setRoutineState",
+      state: "output-available",
+      output: { ok: true, value: { ...value, action } },
+    };
+    assert.deepEqual(actionResult(part), { label, href: "/routines" });
+    assert.match(
+      actionResult({ ...part, output: { ok: true, value: { ...value, action: "edit" } } }).label,
+      /verify/,
+    );
+  }
+  const decode = Schema.decodeUnknownSync(AssistantInputs.setRoutineState, {
+    onExcessProperty: "error",
+  });
+  const command = { routineId: value.routineId, expectedVersion: value.version, action: "pause" };
+  assert.deepEqual(decode(command), command);
+  for (const patch of [
+    { actorId: value.actorId },
+    { action: "delete" },
+    { expectedVersion: "yesterday" },
+  ])
+    assert.throws(() => decode({ ...command, ...patch }));
+});

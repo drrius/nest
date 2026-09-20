@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function writeTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    setRoutineState: write(
+      "setRoutineState",
+      "Pause, resume or archive only a routine the member explicitly requested. Read its current ID and exact version with readRoutines first. Archive removes it from active routines and preserves history; clarify an ambiguous delete request rather than implying erasure. Do not overwrite conflicts: read current state and ask before reapplying. These actions create no financial obligation or reminder consent. The server retains the original retry identity.",
+    ),
     editRoutine: write(
       "editRoutine",
       "Edit only the routine and fields the member explicitly requested. Read its current routine ID and exact version from readRoutines first. Send a nonempty patch containing only changed title, schedule or responsibility; preserve unspecified fields. Never invent member IDs or overwrite a conflict: read the current state and ask before reapplying changes. Routine definition editing is not an accepted takeover of assigned work and creates no financial obligation or reminder consent. The server retains retry identity.",

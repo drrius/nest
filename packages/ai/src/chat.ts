@@ -17,6 +17,7 @@ export const gatewayModel = (apiKey: string, model: string) => createGateway({ a
 const writeNames = new Set([
   "createRoutine",
   "editRoutine",
+  "setRoutineState",
   "completeChore",
   "addGrocery",
   "editGrocery",
