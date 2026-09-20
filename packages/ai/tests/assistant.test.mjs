@@ -130,3 +130,24 @@ test("bounded context keeps the latest prompt without dropping durable history",
   assert.ok(JSON.stringify(prompt).includes("Read chores"));
   assert.equal(history.length, 41);
 });
+
+test("unreconciled write calls cannot be silently discarded from model history", async () => {
+  const writes = { addGrocery: tools.listChores };
+  const part = { type: "tool-addGrocery", toolCallId: "write", input: {} };
+  for (const state of ["input-available", "output-error", "output-denied"]) {
+    const message = {
+      id: "assistant",
+      role: "assistant",
+      parts: [{ ...part, state, errorText: "Unknown" }],
+    };
+    await assert.rejects(validateHistory([user, message], writes));
+  }
+  const recovered = {
+    id: "assistant",
+    role: "assistant",
+    parts: [
+      { ...part, state: "output-available", output: { ok: true, value: "committed fixture" } },
+    ],
+  };
+  assert.deepEqual(await validateHistory([user, recovered], writes), [user, recovered]);
+});

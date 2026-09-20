@@ -1,0 +1,32 @@
+import * as Schema from "effect/Schema";
+import * as Struct from "effect/Struct";
+import { CompleteChore, Completion } from "./chores.ts";
+import {
+  AddGrocery,
+  EditGrocery,
+  RemoveGrocery,
+  CheckGrocery,
+  GroceryReceipt,
+  GroceryCheckReceipt,
+} from "./groceries.ts";
+
+// The same field codecs as native commands; retry identities belong to the journal.
+export const AssistantInputs = {
+  completeChore: Schema.Struct(Struct.omit(CompleteChore.fields, ["operationId"])),
+  addGrocery: Schema.Struct(Struct.omit(AddGrocery.fields, ["operationId", "itemId"])),
+  editGrocery: Schema.Struct(Struct.omit(EditGrocery.fields, ["operationId"])),
+  removeGrocery: Schema.Struct(Struct.omit(RemoveGrocery.fields, ["operationId"])),
+  checkGrocery: Schema.Struct(Struct.omit(CheckGrocery.fields, ["operationId"])),
+};
+export type AssistantAction = keyof typeof AssistantInputs;
+export const AssistantReceipts = {
+  completeChore: Completion,
+  addGrocery: GroceryReceipt,
+  editGrocery: GroceryReceipt,
+  removeGrocery: GroceryReceipt,
+  checkGrocery: GroceryCheckReceipt,
+};
+export const CommandRejection = Schema.Struct({
+  ok: Schema.Literal(false),
+  code: Schema.Literals(["conflict", "forbidden"]),
+});
