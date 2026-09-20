@@ -78,6 +78,18 @@ export function MealWeekBoard({
                   {meal?.title ?? "No meal planned"}
                 </Text>
                 {meal?.notes ? <Note>{meal.notes}</Note> : null}
+                {meal ? (
+                  <NativeAction
+                    label="Remove meal"
+                    disabled={!canAdd}
+                    onPress={() =>
+                      router.push({
+                        pathname: "/meal-remove",
+                        params: { weekStart: snapshot.weekStart, entryId: meal.entryId },
+                      })
+                    }
+                  />
+                ) : null}
                 {!meal ? (
                   <NativeAction
                     label={`Add ${names[slot].toLowerCase()}`}
