@@ -1,17 +1,11 @@
 import * as Effect from "effect/Effect";
-import type { Chore } from "@nest/contracts/chores";
-import { syncOfflineFlow } from "../offline/sync.ts";
-import type { ChoreData, ChoreFlow } from "./flow.ts";
-
-export interface ChoreView {
-  data: ChoreData | null;
-  syncing: boolean;
-  stale: boolean;
-  error: string | null;
-  notice: string | null;
-  access: "allowed" | "verify";
+import type { Grocery } from "@nest/contracts/groceries";
+import { syncOfflineFlow, type SyncView } from "../offline/sync.ts";
+import type { GroceryData, GroceryFlow } from "./flow.ts";
+export interface GroceryView extends SyncView {
+  data: GroceryData | null;
 }
-export const initialChoreView: ChoreView = {
+export const initialGroceryView: GroceryView = {
   data: null,
   syncing: false,
   stale: true,
@@ -19,16 +13,16 @@ export const initialChoreView: ChoreView = {
   notice: null,
   access: "allowed",
 };
-export function choreRuntime(
-  flow: ChoreFlow,
-  publish: (view: ChoreView) => void,
+export function groceryRuntime(
+  flow: GroceryFlow,
+  publish: (view: GroceryView) => void,
   onQueued: () => void = () => undefined,
 ) {
-  let view = initialChoreView;
-  let disposed = false;
+  let view = initialGroceryView,
+    disposed = false;
   const abort = new AbortController();
-  const enqueueing = new Set<string>();
-  const emit = (patch: Partial<ChoreView>) => {
+  const changes = new Map<string, { operation: string; checked: boolean }>();
+  const emit = (patch: Partial<GroceryView>) => {
     if (!disposed) {
       view = { ...view, ...patch };
       publish(view);
@@ -53,22 +47,18 @@ export function choreRuntime(
   };
   return {
     refresh,
-    complete(chore: Chore, operation: string, completedOn: string) {
-      const item = view.data?.chores.find((row) => row.occurrenceId === chore.occurrenceId);
-      if (
-        disposed ||
-        view.access !== "allowed" ||
-        enqueueing.has(chore.occurrenceId) ||
-        item?.done ||
-        item?.pending
-      )
-        return;
-      enqueueing.add(chore.occurrenceId);
-      return change(flow.complete(chore, operation, completedOn))
+    check(item: Grocery, checked: boolean, operation: string) {
+      const current = view.data?.groceries.find((row) => row.itemId === item.itemId);
+      if (disposed || view.access !== "allowed" || !current || current.conflict) return;
+      if ((changes.get(item.itemId)?.checked ?? current.checked) === checked) return;
+      changes.set(item.itemId, { checked, operation });
+      return change(flow.check(current, checked, operation))
         .then((saved) => {
           if (saved && !disposed) onQueued();
         })
-        .finally(() => enqueueing.delete(chore.occurrenceId));
+        .finally(() => {
+          if (changes.get(item.itemId)?.operation === operation) changes.delete(item.itemId);
+        });
     },
     discard: (operation: string) => {
       if (!disposed) void change(flow.discard(operation));

@@ -1,14 +1,19 @@
 import * as Effect from "effect/Effect";
-import type { ChoreFlow } from "./flow.ts";
-import type { ChoreView } from "./runtime.ts";
+export interface SyncView {
+  syncing: boolean;
+  stale: boolean;
+  error: string | null;
+  notice: string | null;
+  access: "allowed" | "verify";
+}
 
 type SyncPorts = {
   run: <A, E>(effect: Effect.Effect<A, E>) => Promise<A>;
   read: () => Promise<void>;
-  emit: (patch: Partial<ChoreView>) => void;
+  emit: (patch: Partial<SyncView>) => void;
   disposed: () => boolean;
 };
-function syncFailure(error: unknown): Partial<ChoreView> {
+function syncFailure(error: unknown): Partial<SyncView> {
   const code = error && typeof error === "object" && "code" in error ? error.code : null;
   const verify = code === "session" || code === "forbidden";
   return {
@@ -19,7 +24,10 @@ function syncFailure(error: unknown): Partial<ChoreView> {
       : "Could not sync. Saved changes are kept; try again when connected.",
   };
 }
-export function choreSync(flow: ChoreFlow, { run, read, emit, disposed }: SyncPorts) {
+export function syncOfflineFlow<E>(
+  flow: { sync: Effect.Effect<string | null, E> },
+  { run, read, emit, disposed }: SyncPorts,
+) {
   let active: Promise<void> | null = null;
   let again = false;
   const cycle = async () => {
@@ -34,7 +42,9 @@ export function choreSync(flow: ChoreFlow, { run, read, emit, disposed }: SyncPo
       } while (again && !disposed());
     } catch (error) {
       emit(syncFailure(error));
-      await read().catch(() => emit({ error: "Could not open saved chores. Please try again." }));
+      await read().catch(() =>
+        emit({ error: "Could not read saved household data. Please try again." }),
+      );
     } finally {
       emit({ syncing: false });
     }

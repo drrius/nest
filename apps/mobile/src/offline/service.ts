@@ -1,3 +1,5 @@
+import type { Grocery } from "@nest/contracts/groceries";
+import * as Groceries from "./groceries.ts";
 import * as Schema from "effect/Schema";
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
@@ -28,6 +30,9 @@ export function makeOfflineStore(database: Database) {
     read: (session: Session) => run(() => Journal.read(database, session)),
     saveSnapshot: (session: Session, items: readonly Item[]) =>
       run(() => Journal.saveSnapshot(database, session, items)),
+    saveGroceries: (session: Session, groceries: readonly Grocery[]) =>
+      run(() => Groceries.saveGroceries(database, session, groceries)),
+    readGroceries: (session: Session) => run(() => Groceries.readGroceries(database, session)),
     saveChores: (session: Session, chores: readonly Chore[]) =>
       run(() => Chores.saveChores(database, session, chores)),
     readChores: (session: Session) => run(() => Chores.readChores(database, session)),

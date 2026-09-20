@@ -1,5 +1,12 @@
 import * as Schema from "effect/Schema";
-import { decodeIntent, fail, Item, type Operation, type Session } from "./contracts.ts";
+import {
+  decodeIntent,
+  fail,
+  Item,
+  type Intent,
+  type Operation,
+  type Session,
+} from "./contracts.ts";
 import type { Database, Transaction } from "./database.ts";
 import { scoped } from "./session.ts";
 
@@ -27,12 +34,7 @@ export function enqueue(database: Database, session: Session, input: unknown) {
       [...scope(session), intent.kind, intent.target],
     );
     if (!items[0]) fail("missing_snapshot");
-    const previous = rows
-      .filter(
-        (row) =>
-          row.kind === intent.kind && row.target === intent.target && row.status !== "acknowledged",
-      )
-      .at(-1);
+    const previous = predecessor(rows, intent, items[0]);
     await tx.run(
       `INSERT INTO offline_operations
       (actor, household, operation, kind, target, intent, expected, predecessor, status)
@@ -87,4 +89,22 @@ export function saveSnapshot(database: Database, session: Session, items: readon
       ]);
     }
   });
+}
+
+function predecessor(rows: Operation[], intent: Intent, snapshot: Item) {
+  const previous = rows
+    .filter((row) => row.kind === intent.kind && row.target === intent.target)
+    .at(-1);
+  if (!previous || previous.status !== "acknowledged") return previous;
+  // Retain an optimistic check→uncheck chain when its acknowledgment raced the
+  // second tap. Never rebase onto a partner refresh or an unrelated old receipt.
+  if (
+    intent.kind !== "groceries.setChecked" ||
+    !previous.wire ||
+    previous.result_version !== snapshot.version
+  )
+    return;
+  return decodeIntent(JSON.parse(previous.wire)).expected === intent.expected
+    ? previous
+    : undefined;
 }
