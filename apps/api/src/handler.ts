@@ -1,3 +1,4 @@
+import { memoryRoute } from "./memory/route.ts";
 import { foodPreferences } from "./food/service.ts";
 import { cookingPreferences } from "./cooking/service.ts";
 import { assistantHandler } from "./assistant/handler.ts";
@@ -18,6 +19,8 @@ function route(request: Request, config: IdentityConfig) {
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
+    if (path.startsWith("/v1/memories"))
+      return yield* memoryRoute(request, config, { member, token });
     if (path === "/v1/cooking-preferences")
       return {
         version: 1,
@@ -73,6 +76,11 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/memories": "GET",
+      "/v1/memories/approval": "GET",
+      "/v1/memories/propose": "POST",
+      "/v1/memories/decide": "POST",
+      "/v1/memories/remove": "POST",
       "/v1/cooking-preferences": "GET",
       "/v1/cooking-preferences/save": "POST",
       "/v1/food-preferences": "GET",
