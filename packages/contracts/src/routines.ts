@@ -113,7 +113,7 @@ export type Routine = typeof Routine.Type;
 export const RoutineList = Schema.Struct({
   version: Schema.Literal(1),
   householdId: Uuid,
-  routines: Schema.Array(Routine),
+  routines: Schema.Array(Routine).check(Schema.isMaxLength(200)),
   members: Schema.Array(Schema.Struct({ actorId: Uuid, displayName: Schema.String })).check(
     Schema.isMinLength(1),
     Schema.isMaxLength(2),

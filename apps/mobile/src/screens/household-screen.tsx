@@ -73,6 +73,12 @@ function HouseholdChores({
           >
             Private assistant
           </Link>
+          <Link
+            href="/routines"
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
+          >
+            Manage routines
+          </Link>
           <ChoreStatus view={view} />
           <Link
             href="/settings"
