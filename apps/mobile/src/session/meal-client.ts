@@ -1,3 +1,4 @@
+import type { CreateRecipe } from "@nest/contracts/recipe-creation";
 import type { ReplaceMeal } from "@nest/contracts/meal-replacement";
 import type { MoveMeal } from "@nest/contracts/meal-move";
 import type { RemoveMeal } from "@nest/contracts/meal-removal";
@@ -22,6 +23,8 @@ export function sessionMeals(auth: SupabaseClient["auth"], account: Account, api
           .recipe(definitionId, revision)
           .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     },
+    createRecipe: (input: typeof CreateRecipe.Type) =>
+      client.createRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     replace: (input: ReplaceMeal) =>
       client.replace(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     move: (input: MoveMeal) =>

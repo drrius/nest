@@ -71,6 +71,11 @@ function LibraryContent({ runtime, verify }: { runtime: MealLibraryRuntime; veri
       ListHeaderComponent={
         <View style={{ gap: space.medium }}>
           <Note>Recipes saved for your household.</Note>
+          <NativeAction
+            label="Create recipe"
+            disabled={view.access === "verify"}
+            onPress={() => router.push("/recipe-create")}
+          />
           {view.notice ? <Note>{view.notice}</Note> : null}
           {view.busy ? <Note>Loading saved recipes…</Note> : null}
           <NativeAction
