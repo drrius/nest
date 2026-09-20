@@ -1,3 +1,4 @@
+import { mealPlacementClient } from "./placement-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { ReadMealWeek, MealWeekSnapshot } from "@nest/contracts/meals";
@@ -13,6 +14,7 @@ export function mealClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    place: mealPlacementClient(request, account),
     read: (weekStart: string) =>
       Effect.gen(function* () {
         const query = yield* Schema.decodeUnknownEffect(ReadMealWeek)({ weekStart }).pipe(

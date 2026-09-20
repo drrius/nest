@@ -136,7 +136,13 @@ function WeekContent({
         showAll={showAll}
         toggle={() => setShowAll(!showAll)}
       />
-      {view.snapshot ? <MealWeekBoard snapshot={view.snapshot} visibleSlots={slots} /> : null}
+      {view.snapshot ? (
+        <MealWeekBoard
+          snapshot={view.snapshot}
+          visibleSlots={slots}
+          canAdd={view.fresh && !view.busy}
+        />
+      ) : null}
     </Page>
   );
 }
