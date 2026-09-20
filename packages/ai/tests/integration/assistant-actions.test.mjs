@@ -20,6 +20,8 @@ const files = [
   "supabase/migrations/20260920033321_native_ai_command_journal.sql",
   "supabase/migrations/20260920041525_native_food_preferences.sql",
   "supabase/migrations/20260920044816_native_ai_food_preferences.sql",
+  "supabase/migrations/20260920050551_native_cooking_preferences.sql",
+  "supabase/migrations/20260920053446_native_ai_cooking_preferences.sql",
 ];
 const add = { name: "Requested apple", quantity: null, unit: null, categoryId: null };
 const call = (name, input, key = "write-1") => ({

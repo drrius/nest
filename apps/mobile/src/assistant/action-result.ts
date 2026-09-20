@@ -6,6 +6,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  saveCookingPreferences: "Household cooking preferences saved",
   saveFoodPreferences: "Your food preferences saved",
   completeChore: "Chore completed",
   addGrocery: "Grocery added",
@@ -13,16 +14,20 @@ const labels = {
   removeGrocery: "Grocery removed",
   checkGrocery: "Grocery checked",
 };
+const destinations = {
+  saveCookingPreferences: "/cooking-preferences",
+  saveFoodPreferences: "/food-preferences",
+  completeChore: "/household",
+  addGrocery: "/checklist",
+  editGrocery: "/checklist",
+  removeGrocery: "/checklist",
+  checkGrocery: "/checklist",
+} as const;
 export function actionResult(part: { type: string; state?: unknown; output?: unknown }) {
   const name = part.type.slice(5);
   if (!part.type.startsWith("tool-") || !Object.hasOwn(AssistantReceipts, name)) return null;
   const action = name as AssistantAction;
-  const href =
-    action === "saveFoodPreferences"
-      ? ("/food-preferences" as const)
-      : action === "completeChore"
-        ? ("/household" as const)
-        : ("/checklist" as const);
+  const href = destinations[action];
   const uncertain = { label: "Reload saved conversation to verify this action.", href };
   if (part.state !== "output-available" || !Schema.is(Output)(part.output)) return uncertain;
   const output = part.output;
