@@ -1,3 +1,4 @@
+import { ReplaceMealInput, MealReplacementReceipt } from "@nest/contracts/meal-replacement";
 import { MoveMealInput, MealMoveReceipt } from "@nest/contracts/meal-move";
 import { RemoveMealInput, MealRemovalReceipt } from "@nest/contracts/meal-removal";
 import * as Schema from "effect/Schema";
@@ -59,4 +60,35 @@ function matchesMoveIdentity(
     receipt.householdId === member.householdId &&
     receipt.entryId === input.entryId.toLowerCase()
   );
+}
+
+export function matchesMealReplacement(
+  input: object,
+  receipt: object,
+  member: { userId: string; householdId: string },
+) {
+  if (!Schema.is(ReplaceMealInput)(input) || !Schema.is(MealReplacementReceipt)(receipt))
+    return false;
+  return (
+    receipt.actorId === member.userId &&
+    receipt.householdId === member.householdId &&
+    receipt.previousEntryId === input.entryId.toLowerCase() &&
+    receipt.weekStart === input.weekStart &&
+    receipt.date === input.date &&
+    receipt.slot === input.slot &&
+    BigInt(receipt.revision) === BigInt(input.expectedRevision) + 2n
+  );
+}
+
+export function matchesMealAction(
+  action: string,
+  input: object,
+  receipt: object,
+  member: { userId: string; householdId: string },
+) {
+  if (action === "replaceMeal") return matchesMealReplacement(input, receipt, member);
+  if (action === "moveMeal") return matchesMealMove(input, receipt, member);
+  if (action === "removeMeal") return matchesMealRemoval(input, receipt, member);
+  if (action === "placeMeal") return matchesMealPlacement(input, receipt, member);
+  return null;
 }

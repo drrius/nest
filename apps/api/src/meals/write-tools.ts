@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    replaceMeal: write(
+      "replaceMeal",
+      "Replace only an existing meal with a named one-off meal the member explicitly requests. Read the week fresh and identify the exact original entry, date, slot, Monday and revision; ask when ambiguous. Replacing retains the original history and existing groceries, skips any open linked preparation, and creates a distinct new entry without recipe, ingredients or preparation. Explain these consequences. Active leftovers can prevent replacement; never remove dependent meals automatically. Never save generated suggestions or bypass generated-plan approval through replacement. Never emulate replacement with separate remove and place calls. Reconcile an uncertain original invocation rather than issue a new command. Reread the week before describing its current contents after a receipt.",
+    ),
     moveMeal: write(
       "moveMeal",
       "Move only an existing meal the member explicitly asks to move to a clear date and breakfast/lunch/dinner slot. Ask when the entry or destination is ambiguous. Read both source and destination weeks fresh first, using their exact Mondays and revisions; use one matching revision for a same-week move. The destination must be empty. Ingredients, instructions, groceries and linked preparation dates remain unchanged. Leftover ordering may prevent a move: never move or remove other meals automatically. Never substitute this action for generated-plan approval. Reconcile an uncertain original invocation rather than issue a new command. A receipt confirms the original move; reread both weeks before describing current contents.",

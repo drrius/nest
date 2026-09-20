@@ -1,6 +1,4 @@
 import { MealMoveReceipt } from "@nest/contracts/meal-move";
-import { MealRemovalReceipt } from "@nest/contracts/meal-removal";
-import { MealPlacementReceipt } from "@nest/contracts/meal-placement";
 import { SetupHandoff } from "@nest/contracts/setup";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
 import * as Schema from "effect/Schema";
@@ -13,6 +11,7 @@ const Output = Schema.Struct({
 });
 const labels = {
   moveMeal: "Meal moved",
+  replaceMeal: "Meal replaced",
   placeMeal: "Meal added to the week",
   removeMeal: "Meal removed from the week",
   requestChoreTransfer: "Handover requested",
@@ -35,6 +34,7 @@ const labels = {
 };
 const destinations = {
   moveMeal: "/meal-week",
+  replaceMeal: "/meal-week",
   placeMeal: "/meal-week",
   removeMeal: "/meal-week",
   requestChoreTransfer: "/chore-transfers",
@@ -91,12 +91,15 @@ function successLabel(action: AssistantAction, receipt: object) {
 }
 
 function successHref(action: AssistantAction, value: object) {
+  // actionResult already validates the complete action-specific receipt.
+  if (
+    ["replaceMeal", "removeMeal", "placeMeal"].includes(action) &&
+    "weekStart" in value &&
+    typeof value.weekStart === "string"
+  )
+    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
   if (action === "moveMeal" && Schema.is(MealMoveReceipt)(value))
     return { pathname: "/meal-week" as const, params: { weekStart: value.targetWeekStart } };
-  if (action === "removeMeal" && Schema.is(MealRemovalReceipt)(value))
-    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
-  if (action === "placeMeal" && Schema.is(MealPlacementReceipt)(value))
-    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
     return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
   return destinations[action];
