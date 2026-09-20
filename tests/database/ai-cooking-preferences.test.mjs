@@ -1,10 +1,6 @@
 import assert from "node:assert/strict";
 import { after, beforeEach, test } from "node:test";
-import { createRequire } from "node:module";
-import { FoodPreferences } from "../../packages/contracts/src/food.ts";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
-const require = createRequire(new URL("../../packages/contracts/package.json", import.meta.url));
-const Schema = await import(require.resolve("effect/Schema"));
 const db = startFixturePostgres();
 after(() => db.stop());
 for (const file of [
@@ -22,49 +18,48 @@ for (const file of [
 ])
   db.file(file);
 beforeEach(() =>
-  db.sql("delete from public.nest_food_profiles; delete from public.nest_food_profile_receipts"),
+  db.sql(
+    "delete from public.nest_cooking_preferences; delete from public.nest_cooking_preference_receipts",
+  ),
 );
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const as = (sql, actor = id(1)) =>
   `set role authenticated; set request.jwt.claim.sub='${actor}'; ${sql}`;
 const json = (value) => `'${JSON.stringify(value).replaceAll("'", "''")}'::jsonb`;
-const preferences = {
-  restrictions: ["Peanuts"],
-  dislikes: ["Olives"],
-  calorieGoal: 2200,
-  portions: 1.5,
-};
+const preferences = { cookingNotes: "Quick weekday meals", mealSlots: ["lunch", "dinner"] };
 const input = { expectedRevision: "0", preferences };
 let sequence = 1000;
-function start() {
+function start(actor = id(1)) {
   const conversation = id(sequence++),
     turn = id(sequence++);
   const message = {
     id: turn,
     role: "user",
-    parts: [{ type: "text", text: "Save my food preferences" }],
+    parts: [{ type: "text", text: "Save my cooking preferences" }],
   };
   const claim = JSON.parse(
     db.sql(
       as(
         `select public.nest_begin_ai_turn('${id(10)}','${conversation}','${turn}',0,${json(message)})`,
+        actor,
       ),
     ),
   );
-  return { conversation, turn, claim };
+  return { conversation, turn, claim, actor };
 }
-const command = (r, value = input, call = "food-save") =>
-  `select public.nest_execute_ai_command('${id(10)}','${r.conversation}','${r.turn}','${call}','saveFoodPreferences',${json(value)})`;
-const execute = (r, value, call) => JSON.parse(db.sql(as(command(r, value, call))));
+const command = (r, value = input, call = "cooking-save") =>
+  `select public.nest_execute_ai_command('${id(10)}','${r.conversation}','${r.turn}','${call}','saveCookingPreferences',${json(value)})`;
+const execute = (r, value, call) => JSON.parse(db.sql(as(command(r, value, call), r.actor)));
 const finish = (r, response = null) =>
   db.sql(
     as(
       `select public.nest_finish_ai_turn('${id(10)}','${r.conversation}','${r.turn}','interrupted',${response === null ? "null" : json(response)})`,
+      r.actor,
     ),
   );
 const count = (table) => db.sql(`select count(*) from public.${table}`);
 
-test("food journal uses owner-private native command, immutable receipt and partner isolation", () => {
+test("cooking journal saves shared preferences with private receipts and conversation isolation", () => {
   const r = start(),
     saved = execute(r);
   assert.equal(saved.ok, true);
@@ -72,14 +67,24 @@ test("food journal uses owner-private native command, immutable receipt and part
   assert.equal(saved.value.householdId, id(10));
   assert.equal(saved.value.revision, "1");
   assert.deepEqual(execute(r), saved);
-  assert.equal(count("nest_food_profile_receipts"), "1");
-  assert.equal(db.sql("select calorie_goal from public.nest_food_profiles"), "2200");
+  assert.equal(count("nest_cooking_preference_receipts"), "1");
+  assert.equal(
+    db.sql("select cooking_notes from public.nest_cooking_preferences"),
+    "Quick weekday meals",
+  );
   assert.throws(
-    () => execute(r, { ...input, preferences: { ...preferences, calorieGoal: null } }),
+    () => execute(r, { ...input, preferences: { ...preferences, cookingNotes: "Partner change" } }),
     /command changed/,
   );
   for (const actor of [id(2), id(3)]) {
-    assert.equal(db.sql(as("select count(*) from public.nest_food_profiles", actor)), "0");
+    assert.equal(
+      db.sql(as("select count(*) from public.nest_cooking_preferences", actor)),
+      actor === id(2) ? "1" : "0",
+    );
+    assert.equal(
+      db.sql(as("select count(*) from public.nest_cooking_preference_receipts", actor)),
+      "0",
+    );
     assert.equal(
       db.sql(
         as(
@@ -95,22 +100,28 @@ test("food journal uses owner-private native command, immutable receipt and part
   assert.deepEqual(execute(r), saved);
 });
 
-test("concurrent duplicate food invocations commit exactly one profile revision", async () => {
+test("concurrent duplicate cooking invocations commit exactly one profile revision", async () => {
   const r = start();
   const results = await Promise.all(Array.from({ length: 6 }, () => db.concurrent(as(command(r)))));
   const values = results.map((result) => JSON.parse(result.stdout));
   for (const value of values) assert.deepEqual(value, values[0]);
-  assert.equal(count("nest_food_profile_receipts"), "1");
-  assert.equal(db.sql("select revision from public.nest_food_profiles"), "1");
+  assert.equal(count("nest_cooking_preference_receipts"), "1");
+  assert.equal(db.sql("select revision from public.nest_cooking_preferences"), "1");
 });
 
-test("two conversations editing the same private revision save one change and journal the conflict", async () => {
+test("two partners editing the same shared revision save one change and journal the conflict", async () => {
   const first = start(),
-    second = start();
+    second = start(id(2));
   const results = await Promise.all([
     db.concurrent(as(command(first))),
     db.concurrent(
-      as(command(second, { ...input, preferences: { ...preferences, calorieGoal: null } })),
+      as(
+        command(second, {
+          ...input,
+          preferences: { ...preferences, cookingNotes: "Partner change" },
+        }),
+        id(2),
+      ),
     ),
   ]);
   const values = results.map((result) => JSON.parse(result.stdout));
@@ -119,10 +130,10 @@ test("two conversations editing the same private revision save one change and jo
     values.find((value) => !value.ok),
     { ok: false, code: "conflict" },
   );
-  assert.equal(count("nest_food_profile_receipts"), "1");
+  assert.equal(count("nest_cooking_preference_receipts"), "1");
   for (const [r, value] of [
     [first, input],
-    [second, { ...input, preferences: { ...preferences, calorieGoal: null } }],
+    [second, { ...input, preferences: { ...preferences, cookingNotes: "Partner change" } }],
   ]) {
     assert.deepEqual(execute(r, value), values[r === first ? 0 : 1]);
     finish(r);
@@ -136,18 +147,17 @@ test("nested profile commands reject caller identity, retry IDs, coercion, malfo
     [],
     { ...preferences, extra: true },
     ...[
-      { restrictions: [null] },
-      { restrictions: [4] },
-      { dislikes: {} },
-      { dislikes: [" "] },
-      { dislikes: ["x".repeat(121)] },
-      { restrictions: Array(33).fill("x") },
-      { calorieGoal: "2200" },
-      { calorieGoal: 1.5 },
-      { calorieGoal: 20001 },
-      { portions: null },
-      { portions: "1" },
-      { portions: 1.25 },
+      { cookingNotes: null },
+      { cookingNotes: [] },
+      { cookingNotes: 1 },
+      { cookingNotes: "🥘".repeat(1001) },
+      { mealSlots: [] },
+      { mealSlots: null },
+      { mealSlots: [null] },
+      { mealSlots: [1] },
+      { mealSlots: [["dinner"]] },
+      { mealSlots: ["snack"] },
+      { mealSlots: ["dinner", "dinner"] },
     ].map((patch) => ({ ...preferences, ...patch })),
   ];
   const invalid = [
@@ -162,8 +172,8 @@ test("nested profile commands reject caller identity, retry IDs, coercion, malfo
     ...badPreferences.map((preferences) => ({ ...input, preferences })),
   ];
   for (const value of invalid) assert.throws(() => execute(r, value), /Invalid|too long/);
-  assert.equal(count("nest_food_profiles"), "0");
-  assert.equal(count("nest_food_profile_receipts"), "0");
+  assert.equal(count("nest_cooking_preferences"), "0");
+  assert.equal(count("nest_cooking_preference_receipts"), "0");
   assert.equal(
     db.sql(
       `select count(*) from public.nest_ai_commands where conversation_id='${r.conversation}'`,
@@ -172,26 +182,28 @@ test("nested profile commands reject caller identity, retry IDs, coercion, malfo
   );
 });
 
-test("journal failure rolls back food profile and native receipt together", () => {
+test("journal failure rolls back cooking profile and native receipt together", () => {
   const r = start();
   db.sql(
-    "create function private.fixture_fail_food_journal() returns trigger language plpgsql as $$ begin raise exception 'fixture journal failure'; end $$; create trigger fixture_food_journal before insert on public.nest_ai_commands for each row execute function private.fixture_fail_food_journal()",
+    "create function private.fixture_fail_cooking_journal() returns trigger language plpgsql as $$ begin raise exception 'fixture journal failure'; end $$; create trigger fixture_cooking_journal before insert on public.nest_ai_commands for each row execute function private.fixture_fail_cooking_journal()",
   );
   try {
     assert.throws(() => execute(r), /fixture journal failure/);
   } finally {
     db.sql(
-      "drop trigger fixture_food_journal on public.nest_ai_commands; drop function private.fixture_fail_food_journal()",
+      "drop trigger fixture_cooking_journal on public.nest_ai_commands; drop function private.fixture_fail_cooking_journal()",
     );
   }
-  assert.equal(count("nest_food_profiles"), "0");
-  assert.equal(count("nest_food_profile_receipts"), "0");
+  assert.equal(count("nest_cooking_preferences"), "0");
+  assert.equal(count("nest_cooking_preference_receipts"), "0");
   assert.equal(execute(r).ok, true);
 });
 
-test("recovery replaces forged SDK food results with the committed private command fact", () => {
+test("recovery replaces forged SDK cooking results with the committed private command fact", () => {
   for (const forge of [false, true]) {
-    db.sql("delete from public.nest_food_profiles; delete from public.nest_food_profile_receipts");
+    db.sql(
+      "delete from public.nest_cooking_preferences; delete from public.nest_cooking_preference_receipts",
+    );
     const r = start(),
       saved = execute(r);
     const response = forge
@@ -201,7 +213,7 @@ test("recovery replaces forged SDK food results with the committed private comma
           parts: [
             { type: "text", text: "Done" },
             {
-              type: "tool-saveFoodPreferences",
+              type: "tool-saveCookingPreferences",
               toolCallId: "invented",
               state: "output-available",
               input: { expectedRevision: "99" },
@@ -214,15 +226,17 @@ test("recovery replaces forged SDK food results with the committed private comma
     const history = JSON.parse(
       db.sql(`select transcript from public.nest_ai_conversations where id='${r.conversation}'`),
     );
-    const parts = history.at(-1).parts.filter((part) => part.type === "tool-saveFoodPreferences");
+    const parts = history
+      .at(-1)
+      .parts.filter((part) => part.type === "tool-saveCookingPreferences");
     assert.equal(parts.length, 1);
     assert.deepEqual(parts[0].input, input);
     assert.deepEqual(parts[0].output, saved);
-    assert.equal(parts[0].toolCallId, "food-save");
+    assert.equal(parts[0].toolCallId, "cooking-save");
   }
 });
 
-test("revoked membership blocks private food journal replay and new writes", () => {
+test("revoked membership blocks private cooking journal replay and new writes", () => {
   const r = start();
   execute(r);
   db.sql(
@@ -231,58 +245,11 @@ test("revoked membership blocks private food journal replay and new writes", () 
   try {
     assert.throws(() => execute(r), /Not authorized/);
     assert.throws(() => execute(r, input, "new"), /Not authorized/);
-    assert.equal(db.sql(as("select count(*) from public.nest_food_profiles")), "0");
-    assert.equal(count("nest_food_profile_receipts"), "1");
+    assert.equal(db.sql(as("select count(*) from public.nest_cooking_preferences")), "0");
+    assert.equal(count("nest_cooking_preference_receipts"), "1");
   } finally {
     db.sql(
       `insert into public.household_members(household_id,user_id) values('${id(10)}','${id(1)}')`,
     );
   }
-});
-
-test("native and journal writes use shared UTF-16 bounds and reject ECMAScript-only blank text", () => {
-  const r = start();
-  for (const text of ["🥜".repeat(61), "\u00a0", "\ufeff", "\u2000\u2028\u2029\u3000"]) {
-    assert.throws(
-      () => execute(r, { ...input, preferences: { ...preferences, restrictions: [text] } }),
-      /Invalid food preferences/,
-    );
-    assert.throws(
-      () =>
-        db.sql(
-          as(
-            `select public.nest_save_food_profile('${id(10)}','${id(400)}',0,array['${text}'],array[]::text[],null,1)`,
-          ),
-        ),
-      /Invalid food preferences/,
-    );
-  }
-  assert.equal(count("nest_food_profiles"), "0");
-  assert.equal(count("nest_food_profile_receipts"), "0");
-  const saved = execute(r, {
-    ...input,
-    preferences: { ...preferences, restrictions: ["🥜".repeat(60)] },
-  });
-  assert.equal(saved.ok, true);
-  assert.equal(saved.value.revision, "1");
-});
-
-test("SQL and shared preference codecs agree across generated Unicode length and whitespace boundaries", () => {
-  const samples = [
-    [],
-    [null],
-    ...["a", "食", "🥜", "a🥜", "\u00a0", "\ufeff", "\u0085", "\u2028", "\u3000"].flatMap(
-      (character) => [1, 59, 60, 61, 119, 120, 121].map((length) => [character.repeat(length)]),
-    ),
-  ];
-  const rows = samples.map((sample, index) => `(${index},${json(sample)})`).join(",");
-  const actual = JSON.parse(
-    db.sql(
-      `select jsonb_agg(private.nest_valid_food_texts(array(select jsonb_array_elements_text(value))) order by position) from (values ${rows}) cases(position,value)`,
-    ),
-  );
-  const expected = samples.map((restrictions) =>
-    Schema.is(FoodPreferences)({ ...preferences, restrictions }),
-  );
-  assert.deepEqual(actual, expected);
 });

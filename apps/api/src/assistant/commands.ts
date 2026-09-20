@@ -11,7 +11,6 @@ import { bearerToken, currentMember } from "../identity.ts";
 import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { requestJson } from "../supabase-request.ts";
 import type { StartTurn } from "@nest/contracts/conversations";
-import { FoodPreferenceReceipt } from "@nest/contracts/food";
 
 const decode = <A>(schema: Schema.Codec<A>, value: unknown) =>
   Schema.decodeUnknownEffect(schema)(value, { onExcessProperty: "error" }).pipe(
@@ -40,7 +39,10 @@ export function assistantCommands(request: Request, config: IdentityConfig, turn
       );
       if (!matchesCommand(command, result.value, action))
         return yield* new CommandFailure({ code: "unavailable" });
-      if (action === "saveFoodPreferences" && !matchesFood(command, result.value, member))
+      if (
+        (action === "saveFoodPreferences" || action === "saveCookingPreferences") &&
+        !matchesPreferences(command, result.value, member)
+      )
         return yield* new CommandFailure({ code: "unavailable" });
       return result.value;
     }).pipe(
@@ -59,17 +61,19 @@ export function assistantCommands(request: Request, config: IdentityConfig, turn
       ),
     );
 }
-function matchesFood(
+function matchesPreferences(
   input: object,
   receipt: object,
   member: { userId: string; householdId: string },
 ) {
   return (
-    Schema.is(FoodPreferenceReceipt)(receipt) &&
+    "actorId" in receipt &&
+    "householdId" in receipt &&
+    "revision" in receipt &&
     "expectedRevision" in input &&
     receipt.actorId === member.userId &&
     receipt.householdId === member.householdId &&
-    BigInt(receipt.revision) === BigInt(String(input.expectedRevision)) + 1n
+    BigInt(String(receipt.revision)) === BigInt(String(input.expectedRevision)) + 1n
   );
 }
 function matchesCommand(input: object, receipt: object, action: AssistantAction) {

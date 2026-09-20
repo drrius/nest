@@ -13,6 +13,8 @@ for (const file of [
   "supabase/migrations/20260920033321_native_ai_command_journal.sql",
   "supabase/migrations/20260920041525_native_food_preferences.sql",
   "supabase/migrations/20260920044816_native_ai_food_preferences.sql",
+  "supabase/migrations/20260920050551_native_cooking_preferences.sql",
+  "supabase/migrations/20260920053446_native_ai_cooking_preferences.sql",
 ])
   db.file(file);
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
