@@ -14,7 +14,8 @@
     "./calendar": "./src/calendar.ts",
     "./notifications": "./src/notifications.ts",
     "./setup": "./src/setup.ts",
-    "./routines": "./src/routines.ts"
+    "./routines": "./src/routines.ts",
+    "./chore-changes": "./src/chore-changes.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
