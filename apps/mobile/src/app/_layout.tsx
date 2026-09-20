@@ -47,6 +47,7 @@ function Navigation() {
         <Stack.Screen name="grocery-edit" options={{ title: "Grocery" }} />
         <Stack.Screen name="food-preferences" options={{ title: "Food preferences" }} />
         <Stack.Screen name="cooking-preferences" options={{ title: "Household cooking" }} />
+        <Stack.Screen name="memory" options={{ title: "Private memory" }} />
         <Stack.Screen name="settings" options={{ title: "Profile and settings" }} />
       </Stack.Protected>
       <Stack.Protected guard={__DEV__}>

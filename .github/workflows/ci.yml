@@ -21,6 +21,7 @@ jobs:
       - run: pnpm test:assistant
       - run: pnpm test:food
       - run: pnpm test:cooking
+      - run: pnpm test:memory
       - run: pnpm test:session
       - run: pnpm test:checklist
       - run: pnpm test:chores
