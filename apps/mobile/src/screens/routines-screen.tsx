@@ -6,6 +6,8 @@ import { useSession } from "../session/provider";
 import { routineOwner } from "../routines/owner";
 import type { RoutineClient, RoutineSnapshot } from "../routines/client";
 import type { RoutineRuntime, RoutineView } from "../routines/runtime";
+import { RoutineMenu } from "../routines/menu";
+import { usePendingRoutineNavigation } from "../routines/use-pending-navigation";
 import { RoutineForm } from "../routines/form";
 import { scheduleLabel } from "../routines/draft";
 import { Card, Page, Note, Section } from "../components/page";
@@ -43,11 +45,13 @@ function RoutineRow({
   routine,
   members,
   edit,
+  changeState,
   disabled,
 }: {
   routine: Routine;
   members: RoutineSnapshot["members"];
   edit: () => void;
+  changeState: (action: "pause" | "resume" | "archive") => void;
   disabled: boolean;
 }) {
   const assignment = routine.definition.assignment;
@@ -73,7 +77,13 @@ function RoutineRow({
         {responsibility}
         {routine.state === "paused" ? " · Paused" : ""}
       </Note>
-      <NativeAction label="Edit routine" disabled={disabled} onPress={edit} />
+      <RoutineMenu
+        title={routine.definition.title}
+        paused={routine.state === "paused"}
+        disabled={disabled}
+        edit={edit}
+        changeState={changeState}
+      />
     </Card>
   );
 }
@@ -138,6 +148,22 @@ function RoutineWorkspace({
 }) {
   const [mode, setMode] = useState<Mode>(null);
   const list = useRef<FlatList<Routine>>(null);
+  usePendingRoutineNavigation(!mode && (view.busy || view.stage === "uncertain"));
+  const changeState = (routine: Routine, action: "pause" | "resume" | "archive") => {
+    const send = () => {
+      list.current?.scrollToOffset({ offset: 0, animated: false });
+      void runtime.setState(routine, action);
+    };
+    if (action !== "archive") return send();
+    Alert.alert(
+      "Archive routine?",
+      `“${routine.definition.title}” will leave active routines. Its history will be kept.`,
+      [
+        { text: "Cancel", style: "cancel" },
+        { text: "Archive", style: "destructive", onPress: send },
+      ],
+    );
+  };
   const colors = useQuiet();
   const discard = (action: () => void) => {
     if (!mode) return action();
@@ -165,6 +191,7 @@ function RoutineWorkspace({
         <RoutineRow
           routine={item}
           members={view.snapshot?.members ?? []}
+          changeState={(action) => changeState(item, action)}
           disabled={mode !== null || view.busy || view.stage !== "ready"}
           edit={() => {
             setMode(item);
