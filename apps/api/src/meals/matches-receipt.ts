@@ -1,3 +1,4 @@
+import { CreateRecipeInput, RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { ReplaceMealInput, MealReplacementReceipt } from "@nest/contracts/meal-replacement";
 import { MoveMealInput, MealMoveReceipt } from "@nest/contracts/meal-move";
 import { RemoveMealInput, MealRemovalReceipt } from "@nest/contracts/meal-removal";
@@ -86,9 +87,25 @@ export function matchesMealAction(
   receipt: object,
   member: { userId: string; householdId: string },
 ) {
+  if (action === "createRecipe") return matchesRecipeCreation(input, receipt, member);
   if (action === "replaceMeal") return matchesMealReplacement(input, receipt, member);
   if (action === "moveMeal") return matchesMealMove(input, receipt, member);
   if (action === "removeMeal") return matchesMealRemoval(input, receipt, member);
   if (action === "placeMeal") return matchesMealPlacement(input, receipt, member);
   return null;
+}
+
+function matchesRecipeCreation(
+  input: object,
+  receipt: object,
+  member: { userId: string; householdId: string },
+) {
+  if (!Schema.is(CreateRecipeInput)(input) || !Schema.is(RecipeCreationReceipt)(receipt))
+    return false;
+  return (
+    receipt.actorId === member.userId &&
+    receipt.householdId === member.householdId &&
+    BigInt(receipt.revision) ===
+      BigInt(input.expectedRevision) + BigInt(input.recipe.ingredients.length) + 1n
+  );
 }

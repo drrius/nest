@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    createRecipe: write(
+      "createRecipe",
+      "Save only a complete recipe the member explicitly asks to keep in the household library. Read the current library revision first. Require a title, known servings, ingredients and cooking instructions; ask for missing information instead of inventing it. Preserve separate quantities, units and ingredient order. This does not place meals or add groceries and cannot approve generated meal plans. Large recipes must use the native recipe form when native_required is returned; nothing was saved in that case. On uncertainty reconcile the original invocation; never create a second recipe. Reread before describing current recipe contents.",
+    ),
     replaceMeal: write(
       "replaceMeal",
       "Replace only an existing meal with a named one-off meal the member explicitly requests. Read the week fresh and identify the exact original entry, date, slot, Monday and revision; ask when ambiguous. Replacing retains the original history and existing groceries, skips any open linked preparation, and creates a distinct new entry without recipe, ingredients or preparation. Explain these consequences. Active leftovers can prevent replacement; never remove dependent meals automatically. Never save generated suggestions or bypass generated-plan approval through replacement. Never emulate replacement with separate remove and place calls. Reconcile an uncertain original invocation rather than issue a new command. Reread the week before describing its current contents after a receipt.",

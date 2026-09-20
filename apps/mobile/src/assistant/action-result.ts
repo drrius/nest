@@ -1,3 +1,4 @@
+import { RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { MealMoveReceipt } from "@nest/contracts/meal-move";
 import { SetupHandoff } from "@nest/contracts/setup";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
@@ -10,6 +11,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  createRecipe: "Recipe saved",
   moveMeal: "Meal moved",
   replaceMeal: "Meal replaced",
   placeMeal: "Meal added to the week",
@@ -33,6 +35,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  createRecipe: "/meal-library",
   moveMeal: "/meal-week",
   replaceMeal: "/meal-week",
   placeMeal: "/meal-week",
@@ -68,13 +71,20 @@ export function actionResult(part: { type: string; state?: unknown; output?: unk
   if (!output.ok)
     return {
       label: failureLabel(output.code, uncertain.label),
-      href,
+      href: failureHref(action, output.code),
     };
   const schema: Schema.Codec<object> = AssistantReceipts[action];
   if (!Schema.is(schema)(output.value)) return uncertain;
   return { label: successLabel(action, output.value), href: successHref(action, output.value) };
 }
+function failureHref(action: AssistantAction, code: string | undefined) {
+  return action === "createRecipe" && code === "native_required"
+    ? ("/recipe-create" as const)
+    : destinations[action];
+}
 function failureLabel(code: string | undefined, fallback: string) {
+  if (code === "native_required")
+    return "This recipe is too large for chat. Open the native recipe form; nothing was saved.";
   if (code === "conflict")
     return "This item changed. Review its current state before trying again.";
   return code === "forbidden" ? "This action was not permitted." : fallback;
@@ -92,6 +102,11 @@ function successLabel(action: AssistantAction, receipt: object) {
 
 function successHref(action: AssistantAction, value: object) {
   // actionResult already validates the complete action-specific receipt.
+  if (action === "createRecipe" && Schema.is(RecipeCreationReceipt)(value))
+    return {
+      pathname: "/saved-meal" as const,
+      params: { definitionId: value.definitionId, expectedRevision: value.revision },
+    };
   if (
     ["replaceMeal", "removeMeal", "placeMeal"].includes(action) &&
     "weekStart" in value &&

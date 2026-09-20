@@ -4,7 +4,13 @@ import * as Schema from "effect/Schema";
 import { effectSchema } from "./schema.ts";
 
 export class CommandFailure extends Schema.TaggedError<CommandFailure>()("CommandFailure", {
-  code: Schema.Literals(["approval_required", "forbidden", "conflict", "unavailable"]),
+  code: Schema.Literals([
+    "approval_required",
+    "native_required",
+    "forbidden",
+    "conflict",
+    "unavailable",
+  ]),
 }) {}
 export interface Invocation {
   readonly toolCallId: string;

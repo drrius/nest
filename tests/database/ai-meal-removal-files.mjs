@@ -11,4 +11,5 @@ export const aiMealRemovalFiles = [
   "supabase/migrations/20260920213543_native_ai_meal_removal.sql",
   "supabase/migrations/20260920220811_native_ai_meal_move.sql",
   "supabase/migrations/20260920223046_native_ai_meal_replacement.sql",
+  "supabase/migrations/20260920234838_native_ai_recipe_creation.sql",
 ];

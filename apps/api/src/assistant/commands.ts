@@ -24,6 +24,13 @@ export function assistantCommands(request: Request, config: IdentityConfig, turn
         token = yield* bearerToken(request);
       const schema: Schema.Codec<object> = AssistantInputs[action];
       const command = yield* decode(schema, input);
+      // Leave headroom for JSONB spacing within the fixed 64 KiB journal input.
+      // No write has been dispatched when this returns a native handoff.
+      if (
+        action === "createRecipe" &&
+        new TextEncoder().encode(JSON.stringify(command)).length > 49152
+      )
+        return yield* new CommandFailure({ code: "native_required" });
       const raw = yield* requestJson(config, token, "rest/v1/rpc/nest_execute_ai_command", {
         p_household: member.householdId,
         p_conversation: turn.conversationId,
