@@ -8,7 +8,7 @@ Known membership denial blocks further completion and retains pending work. A co
 
 ## Verification
 
-- `pnpm test:chores`: 13 meaningful transport/file-backed SQLite/controller cases, including lost response + restart, conflict recovery, atomic snapshots, same-frame double taps, cancellation, actor mismatch and membership denial.
+- `pnpm test:chores`: 15 meaningful transport/file-backed SQLite/controller cases, including lost response + restart, conflict recovery, atomic snapshots, same-frame double taps, cancellation, actor mismatch and membership denial.
 - `pnpm test:offline`: 13 existing journal regression cases.
 - `pnpm --filter @nest/api test`: 25 HTTP/API/tool/Node adapter cases.
 - `pnpm test:domain`: seven tests, including Zurich midnight/DST examples and 1,000 seeded date properties.
