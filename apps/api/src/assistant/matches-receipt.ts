@@ -9,8 +9,8 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
-  if (action === "editRoutine") return matchesRoutineEdit(input, receipt, member);
-  if (action === "createRoutine") return matchesRoutine(receipt, member);
+  if (["setRoutineState", "editRoutine", "createRoutine"].includes(action))
+    return matchesRoutineCommand(action, input, receipt, member);
   if (action === "proposeMemory") return matchesProposal(input, receipt, member);
   if (action === "removeMemory")
     return (
@@ -72,22 +72,21 @@ function matchesTarget(input: unknown, target: string) {
   return typeof input === "string" && input.toLowerCase() === target;
 }
 
-function matchesRoutine(receipt: object, member: Member) {
-  return (
-    Schema.is(RoutineReceipt)(receipt) &&
-    receipt.action === "create" &&
-    receipt.actorId === member.userId &&
-    receipt.householdId === member.householdId
-  );
-}
-
-function matchesRoutineEdit(input: object, receipt: object, member: Member) {
-  return (
-    Schema.is(RoutineReceipt)(receipt) &&
-    receipt.action === "edit" &&
-    receipt.actorId === member.userId &&
-    receipt.householdId === member.householdId &&
-    "routineId" in input &&
-    matchesTarget(input.routineId, receipt.routineId)
-  );
+function matchesRoutineCommand(
+  action: AssistantAction,
+  input: object,
+  receipt: object,
+  member: Member,
+) {
+  if (
+    !Schema.is(RoutineReceipt)(receipt) ||
+    receipt.actorId !== member.userId ||
+    receipt.householdId !== member.householdId
+  )
+    return false;
+  if (action === "createRoutine") return receipt.action === "create";
+  if (!("routineId" in input) || !matchesTarget(input.routineId, receipt.routineId)) return false;
+  return action === "editRoutine"
+    ? receipt.action === "edit"
+    : "action" in input && receipt.action === input.action;
 }

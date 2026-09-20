@@ -9,6 +9,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  setRoutineState: "Routine state updated",
   createRoutine: "Routine created",
   editRoutine: "Routine updated",
   saveNotificationPreferences: "Your notification preferences saved",
@@ -23,6 +24,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  setRoutineState: "/routines",
   createRoutine: "/routines",
   editRoutine: "/routines",
   saveNotificationPreferences: "/notification-preferences",
@@ -61,6 +63,7 @@ function failureLabel(code: string | undefined, fallback: string) {
   return code === "forbidden" ? "This action was not permitted." : fallback;
 }
 function successLabel(action: AssistantAction, receipt: object) {
+  if (action === "setRoutineState") return routineStateLabel(receipt);
   if ("outcome" in receipt && receipt.outcome === "already_completed")
     return "Chore was already completed";
   if (action === "checkGrocery" && "checked" in receipt && !receipt.checked)
@@ -97,4 +100,13 @@ function setupHandoff(part: { state?: unknown; output?: unknown }) {
   )
     return null;
   return { label: "Continue your setup on your iPhone", href: "/setup" as const };
+}
+
+function routineStateLabel(receipt: object) {
+  if ("action" in receipt) {
+    if (receipt.action === "pause") return "Routine paused";
+    if (receipt.action === "resume") return "Routine resumed";
+    if (receipt.action === "archive") return "Routine archived";
+  }
+  return labels.setRoutineState;
 }

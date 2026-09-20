@@ -1,4 +1,4 @@
-import { CreateRoutine, EditRoutine, RoutineReceipt } from "./routines.ts";
+import { CreateRoutine, EditRoutine, RoutineReceipt, RoutineStateCommand } from "./routines.ts";
 import { SaveNotificationPreferences, NotificationPreferenceReceipt } from "./notifications.ts";
 import * as Schema from "effect/Schema";
 import * as Struct from "effect/Struct";
@@ -23,6 +23,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  setRoutineState: Schema.Struct(Struct.omit(RoutineStateCommand.fields, ["operationId"])),
   editRoutine: Schema.Struct(Struct.omit(EditRoutine.fields, ["operationId"])),
   createRoutine: Schema.Struct(Struct.omit(CreateRoutine.fields, ["operationId"])),
   saveNotificationPreferences: Schema.Struct(
@@ -42,6 +43,10 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  setRoutineState: Schema.Struct({
+    ...RoutineReceipt.fields,
+    action: RoutineStateCommand.fields.action,
+  }),
   editRoutine: Schema.Struct({ ...RoutineReceipt.fields, action: Schema.Literal("edit") }),
   createRoutine: Schema.Struct({ ...RoutineReceipt.fields, action: Schema.Literal("create") }),
   saveNotificationPreferences: NotificationPreferenceReceipt,
