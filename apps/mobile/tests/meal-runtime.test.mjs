@@ -86,3 +86,63 @@ async function waitFor(condition) {
   }
   assert.fail("Deferred read did not start");
 }
+
+test("cancelling a queued SQLite save cannot populate or evict a cached week", async (t) => {
+  const f = await fixture(t);
+  const weeks = [
+    "2026-09-21",
+    "2026-09-28",
+    "2026-10-05",
+    "2026-10-12",
+    "2026-10-19",
+    "2026-10-26",
+    "2026-11-02",
+    "2026-11-09",
+  ];
+  for (const date of weeks) await run(f.store.saveMealWeek(f.session, snapshot(date)));
+  let resolveRead,
+    release,
+    entered = false,
+    queuedSave = false;
+  const waiting = new Promise((resolve) => {
+    resolveRead = resolve;
+  });
+  const store = {
+    ...f.store,
+    saveMealWeek: (...args) => {
+      queuedSave = true;
+      return f.store.saveMealWeek(...args);
+    },
+  };
+  const client = {
+    read: (date) =>
+      date === "2026-09-14" ? Effect.promise(() => waiting) : Effect.succeed(snapshot(date)),
+  };
+  const runtime = new MealWeekRuntime(client, { store, session: f.session }, "2026-09-14");
+  const loading = runtime.load();
+  // The network request starts only after the initial cache transaction has completed.
+  await waitFor(() => !runtime.getSnapshot().snapshot && runtime.getSnapshot().busy);
+  // Flush the queued cache read before acquiring the independent exclusive transaction.
+  await f.idle();
+  const held = f.database.transaction(async () => {
+    entered = true;
+    await new Promise((resolve) => {
+      release = resolve;
+    });
+  });
+  await waitFor(() => entered);
+  try {
+    resolveRead(snapshot("2026-09-14"));
+    await waitFor(() => queuedSave);
+    const next = runtime.load("2026-11-09");
+    release();
+    await Promise.all([held, loading, next]);
+    assert.equal(await run(f.store.readMealWeek(f.session, "2026-09-14")), null);
+    assert.deepEqual(await run(f.store.readMealWeek(f.session, weeks[0])), snapshot(weeks[0]));
+    assert.equal(f.connection.prepare("select count(*) n from offline_meal_weeks").get().n, 8);
+    assert.equal(runtime.getSnapshot().snapshot.weekStart, "2026-11-09");
+  } finally {
+    release();
+    runtime.dispose();
+  }
+});

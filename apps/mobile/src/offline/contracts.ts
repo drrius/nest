@@ -59,6 +59,7 @@ export type Item = typeof Item.Type;
 export class OfflineFailure extends Schema.TaggedError<OfflineFailure>()("OfflineFailure", {
   reason: Schema.Literals([
     "session_changed",
+    "cancelled",
     "invalid_input",
     "operation_reused",
     "missing_snapshot",

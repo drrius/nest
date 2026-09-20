@@ -80,7 +80,7 @@ export class MealWeekRuntime {
         signal: attempt.signal,
       });
       if (!current()) return;
-      const saved = await Effect.runPromise(store.saveMealWeek(session, received));
+      const saved = await Effect.runPromise(store.saveMealWeek(session, received, current));
       if (!current()) return;
       this.denied = false;
       const fresh = saved.revision === received.revision;

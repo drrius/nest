@@ -31,8 +31,8 @@ export function makeOfflineStore(database: Database) {
     initialize: run(() => initialize(database)),
     readMealWeek: (session: Session, weekStart: string) =>
       run(() => MealWeeks.readMealWeek(database, session, weekStart)),
-    saveMealWeek: (session: Session, snapshot: MealWeekSnapshot) =>
-      run(() => MealWeeks.saveMealWeek(database, session, snapshot)),
+    saveMealWeek: (session: Session, snapshot: MealWeekSnapshot, current?: () => boolean) =>
+      run(() => MealWeeks.saveMealWeek(database, session, snapshot, current)),
     readCalendarSelection: (session: Session) =>
       run(() => CalendarSelections.readCalendarSelection(database, session)),
     saveCalendarSelection: (session: Session, selection: CalendarSelection | null) =>

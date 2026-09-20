@@ -28,12 +28,19 @@ export function readMealWeek(database: Database, session: Session, weekStart: st
   if (!Schema.is(MealWeekStart)(weekStart)) fail("invalid_input");
   return scoped(database, session, (tx) => read(tx, session, weekStart));
 }
-export function saveMealWeek(database: Database, session: Session, snapshot: MealWeekSnapshot) {
+export function saveMealWeek(
+  database: Database,
+  session: Session,
+  snapshot: MealWeekSnapshot,
+  current: () => boolean = () => true,
+) {
   if (!Schema.is(MealWeekSnapshot)(snapshot) || snapshot.householdId !== session.household)
     fail("invalid_input");
   return scoped(database, session, async (tx) => {
-    const current = await read(tx, session, snapshot.weekStart, true);
-    if (current && BigInt(current.revision) > BigInt(snapshot.revision)) return current;
+    if (!current()) fail("cancelled");
+    const previous = await read(tx, session, snapshot.weekStart, true);
+    if (!current()) fail("cancelled");
+    if (previous && BigInt(previous.revision) > BigInt(snapshot.revision)) return previous;
     await tx.run(
       "INSERT OR REPLACE INTO offline_meal_weeks(actor,household,week_start,data) VALUES(?,?,?,?)",
       [...keys(session, snapshot.weekStart), Schema.encodeSync(codec)(snapshot)],
@@ -43,6 +50,7 @@ export function saveMealWeek(database: Database, session: Session, snapshot: Mea
       (SELECT rowid FROM offline_meal_weeks WHERE actor=? AND household=? ORDER BY rowid DESC LIMIT 8)`,
       [session.actor, session.household, session.actor, session.household],
     );
+    if (!current()) fail("cancelled");
     return snapshot;
   });
 }
