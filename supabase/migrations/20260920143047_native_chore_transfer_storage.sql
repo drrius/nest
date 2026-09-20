@@ -66,3 +66,20 @@ revoke all on public.nest_chore_transfer_receipts from public,anon,authenticated
 grant select on public.nest_chore_transfer_receipts to authenticated;
 create policy own_chore_transfer_receipts on public.nest_chore_transfer_receipts for select to authenticated
   using(actor_id=(select auth.uid()) and (select private.is_household_member(household_id)));
+
+-- Rejoining with the same UUID must not revive consent from an earlier membership.
+create function private.nest_invalidate_member_transfers()
+returns trigger language plpgsql security definer set search_path='' as $$
+begin
+  if tg_op='UPDATE' and new.household_id=old.household_id and new.user_id=old.user_id then
+    return null;
+  end if;
+  update public.nest_chore_transfers set state='superseded',resolved_at=clock_timestamp()
+    where household_id=old.household_id and state='pending'
+      and (from_member_id=old.user_id or to_member_id=old.user_id);
+  return null;
+end;
+$$;
+revoke all on function private.nest_invalidate_member_transfers() from public,anon,authenticated;
+create trigger nest_invalidate_member_transfers after delete or update of household_id,user_id
+  on public.household_members for each row execute function private.nest_invalidate_member_transfers();

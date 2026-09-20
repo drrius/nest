@@ -12,7 +12,7 @@ A monotonically incremented occurrence assignment revision invalidates requests 
 
 ## Authorization and retries
 
-Internal privileged helpers are private and not executable by clients. Public invoker wrappers call a narrowly granted private command which checks current membership and locks both members before a new write. Only the effective owner can request; only the named recipient can respond. RLS permits current household members to read requests and only the original actor to read operation receipts. Direct client assignment/request/receipt writes are denied.
+Internal privileged helpers are private and not executable by clients. Public invoker wrappers call a narrowly granted private command which checks current membership and locks both members before a new write. Membership removal or identity replacement permanently supersedes pending requests, so rejoining cannot revive earlier consent. Only the effective owner can request; only the named recipient can respond. RLS permits current household members to read requests and only the original actor to read operation receipts. Direct client assignment/request/receipt writes are denied.
 
 Actor/household/operation receipts retain the exact input hash and immutable result. Authorized retries replay before target lookup, including after acceptance or a rebuild. Request/acceptance and the receipt commit atomically. Occurrence then routine lock ordering matches the native closure/edit boundary; unavailable routine locks become conflicts, not silent retries. This command creates no offline outbox entry or financial approval.
 

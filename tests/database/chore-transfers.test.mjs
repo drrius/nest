@@ -112,6 +112,28 @@ test("duplicate pending requests converge, decline preserves ownership, and acce
     winner === "accept" ? id(2) : null,
   );
 });
+test("membership removal and rejoin cannot revive pending handover consent", () => {
+  const { current } = create(),
+    pending = request(current);
+  const before = db.sql(
+    `select to_jsonb(m) from public.household_members m where user_id='${id(2)}'`,
+  );
+  const baseline = JSON.parse(before);
+  db.sql(`update public.routine_occurrences set nest_accepted_assignee_id=null where nest_accepted_assignee_id='${id(2)}';
+    delete from public.household_members where user_id='${id(2)}'`);
+  assert.ok(!list().some((row) => row.requestId === pending.requestId));
+  db.sql(
+    `insert into public.household_members select * from jsonb_populate_record(null::public.household_members,${json(baseline)})`,
+  );
+  assert.ok(!list().some((row) => row.requestId === pending.requestId));
+  assert.throws(() => respond(pending), /Transfer changed/);
+  assert.equal(
+    db.sql(`select state from public.nest_chore_transfers where id='${pending.requestId}'`),
+    "superseded",
+  );
+  assert.equal(occurrence(current.id).nest_accepted_assignee_id, null);
+  assert.equal(respond(request(current)).state, "accepted");
+});
 test("accepted turns leave daily and after-completion alternating successors unchanged", () => {
   for (const schedule of [
     { kind: "daily" },
