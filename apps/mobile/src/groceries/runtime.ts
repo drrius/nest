@@ -1,3 +1,4 @@
+import { changeFailure } from "../offline/change-failure.ts";
 import * as Effect from "effect/Effect";
 import type { Grocery } from "@nest/contracts/groceries";
 import { syncOfflineFlow, type SyncView } from "../offline/sync.ts";
@@ -40,8 +41,8 @@ export function groceryRuntime(
       await read();
       void refresh();
       return true;
-    } catch {
-      emit({ error: "Could not save that change on this phone. Please try again." });
+    } catch (error) {
+      emit({ error: changeFailure(error) });
       return false;
     }
   };

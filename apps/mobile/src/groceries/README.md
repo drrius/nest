@@ -4,7 +4,7 @@ The authenticated Today screen links to `/checklist`. Native checkbox controls l
 
 Eleven local transport/controller/SQLite tests plus a real HTTP/PostgREST/PostgreSQL restart journey pass. The latter includes a lost committed response, partner convergence, concurrent description conflict and membership revocation. Node SQLite and synthetic Auth remain fixture boundaries, not an iPhone test.
 
-Still required: online add/edit/remove forms with stable retry handling, category presentation, automatic reconnect retry, cold-start offline identity recovery, journal retention and physical-device verification. No purchase or expense is created by checking; receipt/expense entry remains a separate future Money action. This screen is not the completed groceries milestone.
+Online add/edit/remove, retained retries, automatic reconnect and cold-start offline identity are implemented. Bounded local journal retention is implemented with review pending. Category presentation and physical-device verification remain outstanding. No purchase or expense is created by checking; receipt/expense entry remains a separate future Money action. This screen is not the completed groceries milestone.
 
 ## Prepared device smoke (not executed)
 

@@ -1,3 +1,4 @@
+import { unresolvedLimit } from "./retention.ts";
 import * as Schema from "effect/Schema";
 import {
   decodeIntent,
@@ -28,6 +29,8 @@ export function enqueue(database: Database, session: Session, input: unknown) {
       if (existing.intent !== serialized) fail("operation_reused");
       return;
     }
+    if (rows.filter((row) => row.status !== "acknowledged").length >= unresolvedLimit)
+      fail("queue_full");
     const items = await tx.all<Item>(
       `SELECT * FROM offline_items WHERE actor = ? AND household = ?
       AND kind = ? AND target = ?`,
