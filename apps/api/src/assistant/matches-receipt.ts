@@ -17,7 +17,11 @@ export function matchesAssistantReceipt(
       matchesTarget(input.memoryId, receipt.memoryId) &&
       receipt.removed
     );
-  if (action === "saveFoodPreferences" || action === "saveCookingPreferences")
+  if (
+    ["saveFoodPreferences", "saveCookingPreferences", "saveNotificationPreferences"].includes(
+      action,
+    )
+  )
     return matchesPreferences(input, receipt, member);
   return matchesCommand(input, receipt, action);
 }

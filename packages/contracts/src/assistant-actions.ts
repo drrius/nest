@@ -1,3 +1,4 @@
+import { SaveNotificationPreferences, NotificationPreferenceReceipt } from "./notifications.ts";
 import * as Schema from "effect/Schema";
 import * as Struct from "effect/Struct";
 import { MemoryChange, MemoryApprovalEnvelope, RemoveMemory, MemoryReceipt } from "./memory.ts";
@@ -21,6 +22,9 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  saveNotificationPreferences: Schema.Struct(
+    Struct.omit(SaveNotificationPreferences.fields, ["operationId"]),
+  ),
   proposeMemory: MemoryProposalInput,
   removeMemory: Schema.Struct(Struct.omit(RemoveMemory.fields, ["operationId"])),
   saveCookingPreferences: Schema.Struct(
@@ -35,6 +39,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  saveNotificationPreferences: NotificationPreferenceReceipt,
   proposeMemory: MemoryApprovalEnvelope,
   removeMemory: MemoryReceipt,
   saveCookingPreferences: CookingPreferenceReceipt,

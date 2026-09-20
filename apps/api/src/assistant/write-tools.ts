@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function writeTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    saveNotificationPreferences: write(
+      "saveNotificationPreferences",
+      "Save only explicitly requested changes to your own notification choices. Read current settings and exact revision first; preserve unspecified fields. For missing setup ask for all required choices instead of assuming opt-in. Daily summary time is Europe/Zurich. Settings do not grant OS permission or confirm device registration or delivery. Never change a partner's choices. The server retains retry identity.",
+    ),
     proposeMemory: write(
       "proposeMemory",
       "Propose only explicitly requested additions or edits to the member's private saved memory. New entries use memoryId null and revision 0; edits need the exact ID and current revision from readMemories. This only creates a pending proposal: tell the member to review and confirm its exact text in the native memory screen. Never claim it is saved, infer consent, or confirm it yourself.",
