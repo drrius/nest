@@ -146,3 +146,17 @@ test("calendar tool handoff opens native settings without claiming consent or re
   assert.equal(actionResult({ ...part, output: { ok: true, value: { enabled: true } } }), null);
   assert.equal(actionResult({ ...part, output: { ok: false, code: "forbidden" } }), null);
 });
+
+test("notification save receipt opens real private settings without claiming permission or delivery", () => {
+  assert.deepEqual(
+    actionResult({
+      type: "tool-saveNotificationPreferences",
+      state: "output-available",
+      output: {
+        ok: true,
+        value: { actorId: id, householdId: id, operationId: id, revision: "1" },
+      },
+    }),
+    { label: "Your notification preferences saved", href: "/notification-preferences" },
+  );
+});
