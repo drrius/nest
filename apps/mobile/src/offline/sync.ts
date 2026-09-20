@@ -35,16 +35,18 @@ export function syncOfflineFlow<E>(
     try {
       do {
         again = false;
-        await read();
-        const notice = await run(flow.sync);
-        emit({ stale: false, notice, access: "allowed" });
-        await read();
+        try {
+          await read();
+          const notice = await run(flow.sync);
+          emit({ stale: false, notice, access: "allowed" });
+          await read();
+        } catch (error) {
+          emit(syncFailure(error));
+          await read().catch(() =>
+            emit({ error: "Could not read saved household data. Please try again." }),
+          );
+        }
       } while (again && !disposed());
-    } catch (error) {
-      emit(syncFailure(error));
-      await read().catch(() =>
-        emit({ error: "Could not read saved household data. Please try again." }),
-      );
     } finally {
       emit({ syncing: false });
     }
