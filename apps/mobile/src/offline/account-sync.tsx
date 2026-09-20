@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { AppState } from "react-native";
-import * as Network from "expo-network";
+import { onNetwork, networkState } from "./network";
 import * as Haptics from "expo-haptics";
 import type { OfflineAccount } from "./owner";
 import { reconnectSync } from "./reconnect";
@@ -29,8 +29,8 @@ export function AccountSync({
       active: AppState.currentState === "active",
       onActivity: (listener) =>
         AppState.addEventListener("change", (state) => listener(state === "active")),
-      onNetwork: Network.addNetworkStateListener,
-      network: Network.getNetworkStateAsync,
+      onNetwork,
+      network: networkState,
       refresh: async () => {
         await Promise.all([chore.controller.refresh(), grocery.controller.refresh()]);
       },

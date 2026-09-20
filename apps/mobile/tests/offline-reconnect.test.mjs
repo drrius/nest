@@ -241,3 +241,77 @@ function fixtureGroceries(live, calls) {
     },
   };
 }
+
+test("reconnect before an old request fails drains both SQLite queues", async (t) => {
+  const { db, account } = await queuedFixture(t);
+  let release,
+    started = 0,
+    bothStarted;
+  const gate = new Promise((resolve) => {
+    release = resolve;
+  });
+  const ready = new Promise((resolve) => {
+    bothStarted = resolve;
+  });
+  /** @param {GroceryFailure | ChoreFailure} failure */
+  const delayedFailure = (failure) =>
+    Effect.flatMap(
+      Effect.promise(async () => {
+        if (++started === 2) bothStarted();
+        await gate;
+      }),
+      () => Effect.fail(failure),
+    );
+  let checks = 0,
+    completions = 0,
+    synced = Promise.resolve();
+  const groceries = groceryController(
+    account,
+    {
+      ...fixtureGroceries(() => true, []),
+      check: () =>
+        ++checks === 1
+          ? delayedFailure(new GroceryFailure({ code: "unavailable" }))
+          : Effect.succeed({
+              operation,
+              target,
+              version: "2",
+              checked: true,
+              outcome: "applied",
+            }),
+    },
+    () => {},
+    () => {},
+  );
+  const chores = choreController(
+    account,
+    {
+      list: () => Effect.succeed([]),
+      complete: () =>
+        ++completions === 1
+          ? delayedFailure(new ChoreFailure({ code: "unavailable" }))
+          : Effect.succeed({
+              outcome: "completed",
+              completedBy: account.session.actor,
+            }),
+    },
+    () => {},
+    () => {},
+  );
+  const source = events(async () => {
+    synced = Promise.all([chores.controller.refresh(), groceries.controller.refresh()]);
+    await synced;
+  });
+  t.after(() => {
+    source.stop();
+    chores.release();
+    groceries.release();
+  });
+  await ready;
+  source.network(connected);
+  release();
+  await synced;
+  assert.equal(checks, 2);
+  assert.equal(completions, 2);
+  assert.equal((await run(db.store.read(db.session))).pending.length, 0);
+});
