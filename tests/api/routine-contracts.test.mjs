@@ -5,6 +5,7 @@ const require = createRequire(new URL("../../apps/api/package.json", import.meta
 const Schema = await import(require.resolve("effect/Schema"));
 import {
   CreateRoutine,
+  StoredRoutineDefinition,
   EditRoutine,
   RoutineSchedule,
   RoutineAssignment,
@@ -65,7 +66,12 @@ test("assignment shape is explicit and shared work cannot silently acquire an ow
 
 test("edit versions preserve all PostgreSQL microseconds without accepting normalized dates", () => {
   const version = "2026-09-20T08:00:00.123456Z";
-  const edit = { operationId: id, routineId: id, expectedVersion: version, definition };
+  const edit = {
+    operationId: id,
+    routineId: id,
+    expectedVersion: version,
+    patch: { title: definition.title },
+  };
   assert.equal(decode(EditRoutine, edit).expectedVersion, version);
   for (const invalid of [
     "2026-02-30T08:00:00.123456Z",
@@ -129,4 +135,33 @@ test("routine titles reject unpaired UTF-16 surrogates while preserving valid em
         .title,
       title,
     );
+});
+
+test("edit patches preserve untouched legacy titles and reject empty or hidden-field changes", () => {
+  const legacy = decode(StoredRoutineDefinition, { ...definition, title: "🧹".repeat(120) });
+  const baseline = {
+    operationId: id,
+    routineId: id,
+    expectedVersion: "2026-09-20T08:00:00.000001Z",
+  };
+  const command = decode(EditRoutine, {
+    ...baseline,
+    patch: { schedule: { kind: "weekly", weekday: 2 } },
+  });
+  assert.equal(Object.hasOwn(command.patch, "title"), false);
+  assert.equal({ ...legacy, ...command.patch }.title, legacy.title);
+  for (const patch of [
+    {},
+    { title: null },
+    { title: undefined },
+    { title: legacy.title },
+    { schedule: null },
+    { instructions: null },
+    { areaId: id },
+    { assignment: { policy: "shared", memberId: id } },
+  ]) {
+    assert.throws(() => decode(EditRoutine, { ...baseline, patch }));
+  }
+  assert.throws(() => decode(EditRoutine, { ...baseline, definition }));
+  assert.deepEqual(decode(EditRoutine, { ...baseline, patch: definition }).patch, definition);
 });
