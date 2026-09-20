@@ -9,6 +9,7 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
+  if (action === "editRoutine") return matchesRoutineEdit(input, receipt, member);
   if (action === "createRoutine") return matchesRoutine(receipt, member);
   if (action === "proposeMemory") return matchesProposal(input, receipt, member);
   if (action === "removeMemory")
@@ -77,5 +78,16 @@ function matchesRoutine(receipt: object, member: Member) {
     receipt.action === "create" &&
     receipt.actorId === member.userId &&
     receipt.householdId === member.householdId
+  );
+}
+
+function matchesRoutineEdit(input: object, receipt: object, member: Member) {
+  return (
+    Schema.is(RoutineReceipt)(receipt) &&
+    receipt.action === "edit" &&
+    receipt.actorId === member.userId &&
+    receipt.householdId === member.householdId &&
+    "routineId" in input &&
+    matchesTarget(input.routineId, receipt.routineId)
   );
 }

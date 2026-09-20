@@ -16,6 +16,7 @@ export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssis
 export const gatewayModel = (apiKey: string, model: string) => createGateway({ apiKey })(model);
 const writeNames = new Set([
   "createRoutine",
+  "editRoutine",
   "completeChore",
   "addGrocery",
   "editGrocery",
