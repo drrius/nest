@@ -117,3 +117,16 @@ test("all supported recurrence presets round-trip without changing weekday order
   ])
     assert.deepEqual(decode(RoutineSchedule, schedule), schedule);
 });
+
+test("routine titles reject unpaired UTF-16 surrogates while preserving valid emoji", () => {
+  for (const title of ["\ud800", "\udfff", "Clean \ud800 kitchen", "\ud800x\udfff", "\udfff\ud800"])
+    assert.throws(() =>
+      decode(CreateRoutine, { operationId: id, definition: { ...definition, title } }),
+    );
+  for (const title of ["Clean 🧹 kitchen", "🧹".repeat(60), "Café"])
+    assert.equal(
+      decode(CreateRoutine, { operationId: id, definition: { ...definition, title } }).definition
+        .title,
+      title,
+    );
+});

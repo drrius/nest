@@ -38,7 +38,10 @@ export type RoutineAssignment = typeof RoutineAssignment.Type;
 const Title = Schema.String.check(
   Schema.isMinLength(1),
   Schema.isMaxLength(120),
-  Schema.makeFilter((value: string) => value.trim().length > 0 && !value.includes("\u0000")),
+  Schema.makeFilter(
+    (value: string) =>
+      value.trim().length > 0 && !value.includes("\u0000") && !/[\uD800-\uDFFF]/u.test(value),
+  ),
 );
 export const RoutineDefinition = Schema.Struct({
   title: Title,
