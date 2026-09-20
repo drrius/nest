@@ -84,9 +84,9 @@ export function sessionVerifier(
           }),
         );
         if (!alive(current)) return;
+        cached = state.status === "ready" ? state.member : null;
         yield* persist(identity, state);
         if (alive(current)) {
-          cached = state.status === "ready" ? state.member : null;
           publish(state);
         }
       });

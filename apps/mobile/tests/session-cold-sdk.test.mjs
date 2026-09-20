@@ -38,6 +38,10 @@ for (const expired of [false, true]) {
     await Effect.runPromise(signOutSession(f.client.auth, subscription, f.beginLogout));
     assert.deepEqual(states.at(-1), { status: "signed_out" });
     assert.equal(f.storage.has("nest.auth.v1"), false);
+    assert.ok(
+      f.calls.some((url) => String(url).includes("/logout?scope=local")),
+      "revocation is attempted despite durable local hiding",
+    );
     assert.equal(await f.identity.read(), null);
   });
 }
@@ -64,4 +68,32 @@ test("definitively rejected expired credentials cannot recover the cached identi
   await subscription.refresh();
   assert.equal(states.at(-1).status, "signed_out");
   assert.equal(await f.identity.read(), null);
+});
+
+test("online logout attempts revocation with the pre-logout token and deletes the protected record", async (t) => {
+  let authorization;
+  const f = sdkFixture({
+    wrapStorage: protectedStorage,
+    fetcher: (_url, init) => {
+      authorization = new Headers(init.headers).get("authorization");
+      return Response.json({});
+    },
+  });
+  const member = { userId: f.user.id, householdId, displayName: "A" };
+  await f.identity.save(member);
+  const states = [];
+  const subscription = subscribeSession(
+    f.client.auth,
+    () => Effect.succeed(member),
+    (state) => states.push(state),
+    f.identity,
+  );
+  t.after(() => subscription.dispose());
+  await subscription.refresh();
+  const token = (await f.client.auth.getSession()).data.session.access_token;
+  await Effect.runPromise(signOutSession(f.client.auth, subscription, f.beginLogout));
+  assert.ok(f.calls.some((url) => String(url).includes("/logout?scope=local")));
+  assert.equal(authorization, `Bearer ${token}`);
+  assert.equal(f.storage.has("nest.auth.v1"), false);
+  assert.equal(states.at(-1).status, "signed_out");
 });

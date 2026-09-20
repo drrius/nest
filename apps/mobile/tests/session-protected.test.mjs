@@ -163,3 +163,56 @@ test("durable logout intent survives a crash and rejects late token refresh writ
   await restarted.identity.save(member);
   assert.deepEqual(await restarted.identity.read(), member);
 });
+
+test("known denial cannot reopen warm identity while protected cleanup is pending", async () => {
+  const f = fixture();
+  await f.identity.save(member);
+  let clearStarted,
+    finishClear,
+    denied = false;
+  const started = new Promise((resolve) => {
+    clearStarted = resolve;
+  });
+  const gate = new Promise((resolve) => {
+    finishClear = resolve;
+  });
+  const states = [];
+  const identity = {
+    ...f.identity,
+    clear: async () => {
+      const cleared = f.identity.clear();
+      clearStarted();
+      await gate;
+      await cleared;
+    },
+  };
+  const verifier = sessionVerifier(
+    () =>
+      denied ? Effect.fail(new SessionFailure({ code: "not_a_member" })) : Effect.succeed(member),
+    (state) => states.push(state),
+    identity,
+  );
+  await run(verifier.update(credentials));
+  denied = true;
+  const pending = run(verifier.update(credentials));
+  await started;
+  await run(verifier.unavailable());
+  assert.notEqual(states.at(-1).status, "ready");
+  finishClear();
+  await pending;
+});
+
+test("malformed JSON permits explicit sign-in replacement and logout cleanup", async () => {
+  const f = fixture();
+  f.rows.set(authKey, "{broken json");
+  assert.equal(await f.identity.read(), null);
+  assert.equal(await f.storage.getItem(authKey), null);
+  await f.beginSignIn();
+  await f.storage.setItem(authKey, JSON.stringify(credentials));
+  await f.identity.save(member);
+  assert.deepEqual(await f.identity.read(), member);
+  f.rows.set(authKey, "{broken again");
+  await f.beginLogout();
+  await f.storage.removeItem(authKey);
+  assert.equal(f.rows.has(authKey), false);
+});

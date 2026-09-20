@@ -24,7 +24,12 @@ const Envelope = Schema.Struct({
   logoutPending: Schema.optional(Schema.Boolean),
 });
 function decode(raw: string | null): typeof Envelope.Type | null {
-  const value: unknown = raw === null ? null : JSON.parse(raw);
+  let value: unknown;
+  try {
+    value = raw === null ? null : JSON.parse(raw);
+  } catch {
+    return null;
+  }
   if (Schema.is(Envelope)(value)) return value;
   // The previous adapter wrote the SDK session directly. Keep its complete
   // payload, but require online membership verification before caching identity.
@@ -97,12 +102,13 @@ export function protectedStorage(disk: Storage) {
           authKey,
           JSON.stringify({ ...record, member: null, logoutPending: true }),
         );
+      return record?.session.access_token ?? null;
     });
   };
   const beginSignIn = () =>
     serial(async () => {
       const record = decode(await disk.getItem(authKey));
-      if (closing || record?.logoutPending) await disk.removeItem(authKey);
+      if (!record || closing || record.logoutPending) await disk.removeItem(authKey);
       closing = false;
     });
   return { storage, identity, beginLogout, beginSignIn };

@@ -45,9 +45,9 @@ export function sdkFixture({
   });
   const client = createClient("https://fixture.example", "sb_publishable_fixture", {
     global: {
-      fetch: async (url) => {
+      fetch: async (url, init) => {
         calls.push(url);
-        if (fetcher) return fetcher(url);
+        if (fetcher) return fetcher(url, init);
         return Response.json({ message: "Unavailable" }, { status: 503 });
       },
     },
