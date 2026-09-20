@@ -15,16 +15,18 @@ create policy "members read meal week revisions" on public.nest_meal_week_revisi
 -- Trigger-only definer: entry writers are authorized by their existing command/RLS.
 -- No caller can invoke this function or write counters directly. Both sides of a
 -- move advance in deterministic order; rollback includes the counters.
+-- Preserve legacy writes outside the native complete-week range (including infinity):
+-- only a representable side needs a counter; reads reject unsupported weeks.
 create function private.nest_advance_meal_weeks()
 returns trigger language plpgsql security definer set search_path='' as $$
 declare v_home uuid; v_week date; v_old_home uuid; v_old_week date;
   v_new_home uuid; v_new_week date;
 begin
-  if tg_op<>'INSERT' then
+  if tg_op<>'INSERT' and old.date between date '0001-01-01' and date '9999-12-26' then
     v_old_home:=old.household_id;
     v_old_week:=old.date-(extract(isodow from old.date)::integer-1);
   end if;
-  if tg_op<>'DELETE' then
+  if tg_op<>'DELETE' and new.date between date '0001-01-01' and date '9999-12-26' then
     v_new_home:=new.household_id;
     v_new_week:=new.date-(extract(isodow from new.date)::integer-1);
   end if;

@@ -10,3 +10,5 @@
 insert into public.meal_plan_entries(id,household_id,date,slot,title_snapshot) values
  ('00000000-0000-4000-8000-000000000100','00000000-0000-4000-8000-000000000010','2026-09-21','dinner','Legacy soup'),
  ('00000000-0000-4000-8000-000000000101','00000000-0000-4000-8000-000000000020','2026-09-21','lunch','Other home');
+insert into public.meal_plan_entries(id,household_id,date,slot,title_snapshot) values
+ ('00000000-0000-4000-8000-000000000106','00000000-0000-4000-8000-000000000010','infinity','dinner','Legacy unbounded date');

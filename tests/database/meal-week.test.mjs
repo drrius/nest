@@ -203,3 +203,31 @@ test("household cascade does not recreate counters or obstruct authorized admini
     "0",
   );
 });
+
+test("legacy unrepresentable dates remain writable; moves track only the supported side", () => {
+  assert.equal(
+    db.sql(`select date from public.meal_plan_entries where id='${id(106)}'`),
+    "infinity",
+  );
+  const before = revision("2026-11-02");
+  db.sql(`update public.meal_plan_entries set date='2026-11-03' where id='${id(106)}'`);
+  assert.equal(BigInt(revision("2026-11-02")), BigInt(before) + 1n);
+  db.sql(`update public.meal_plan_entries set date='infinity' where id='${id(106)}'`);
+  assert.equal(BigInt(revision("2026-11-02")), BigInt(before) + 2n);
+  assert.deepEqual(read("2026-11-02").entries, []);
+  for (const [index, date] of [
+    "-infinity",
+    "infinity",
+    "0001-01-01 BC",
+    "10000-01-01",
+    "9999-12-31",
+  ].entries()) {
+    db.sql(insert(110 + index, date, "breakfast"));
+    db.sql(
+      `update public.meal_plan_entries set title_snapshot='Still writable' where id='${id(110 + index)}'`,
+    );
+    db.sql(`delete from public.meal_plan_entries where id='${id(110 + index)}'`);
+  }
+  db.sql(`delete from public.meal_plan_entries where id='${id(106)}'`);
+  assert.equal(BigInt(revision("2026-11-02")), BigInt(before) + 2n);
+});

@@ -18,4 +18,3 @@ create trigger meal_plan_entries_set_updated_at
 before update on public.meal_plan_entries
 for each row
 execute function private.set_meals_groceries_updated_at();
-

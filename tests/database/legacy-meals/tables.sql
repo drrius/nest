@@ -54,4 +54,3 @@ create table public.meal_plan_entries (
 create unique index meal_plan_entries_active_slot_idx
   on public.meal_plan_entries (household_id, date, slot)
   where slot is not null and removed_at is null;
-

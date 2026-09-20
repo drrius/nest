@@ -7,4 +7,3 @@ create table public.grocery_categories (
   created_at timestamptz not null default now(),
   unique (household_id, id)
 );
-
