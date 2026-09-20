@@ -209,3 +209,27 @@ test("routine creation results require a create receipt and link to the real hou
   assert.deepEqual(decode(input), input);
   assert.throws(() => decode({ ...input, operationId: id }));
 });
+
+test("routine edit cards require edit receipts and the tool reuses strict patch contracts", () => {
+  const value = {
+    actorId: id,
+    householdId: id,
+    operationId: id,
+    routineId: id,
+    version: "2026-09-20T08:00:00.000001Z",
+    action: "edit",
+  };
+  const part = { type: "tool-editRoutine", state: "output-available", output: { ok: true, value } };
+  assert.deepEqual(actionResult(part), { label: "Routine updated", href: "/routines" });
+  assert.match(
+    actionResult({ ...part, output: { ok: true, value: { ...value, action: "create" } } }).label,
+    /verify/,
+  );
+  const decode = Schema.decodeUnknownSync(AssistantInputs.editRoutine, {
+    onExcessProperty: "error",
+  });
+  const input = { routineId: id, expectedVersion: value.version, patch: { title: "Edited" } };
+  assert.deepEqual(decode(input), input);
+  for (const change of [{ operationId: id }, { patch: {} }, { patch: { instructions: "hidden" } }])
+    assert.throws(() => decode({ ...input, ...change }));
+});

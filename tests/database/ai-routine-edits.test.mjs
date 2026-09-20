@@ -116,3 +116,83 @@ test("AI edit rejects extra identity, malformed baselines and hidden patch field
     "0",
   );
 });
+
+test("failed AI edit journal insertion rolls back definition, occurrences, notices and native receipt", () => {
+  const r = start(),
+    routine = create(),
+    value = editInput(routine);
+  value.patch = {
+    schedule: { kind: "weekly", weekday: 4 },
+    assignment: { policy: "assigned", memberId: id(2) },
+  };
+  const tables = [
+    "public.routines",
+    "public.routine_occurrences",
+    "public.activity_events",
+    "public.inbox_notifications",
+    "public.push_outbox",
+    "public.nest_routine_edit_receipts",
+    "private.routine_edit_receipts",
+    "public.nest_ai_commands",
+  ];
+  const snapshot = () =>
+    tables.map((table) =>
+      db.sql(
+        `select coalesce(jsonb_agg(to_jsonb(t) order by to_jsonb(t)::text),'[]') from ${table} t`,
+      ),
+    );
+  const before = snapshot();
+  db.sql(`create function private.fixture_fail_ai_edit() returns trigger language plpgsql as $$
+    begin raise exception 'fixture edit journal failure'; end $$;
+    create trigger fixture_fail_ai_edit before insert on public.nest_ai_commands
+    for each row execute function private.fixture_fail_ai_edit()`);
+  try {
+    assert.throws(() => execute(r, value), /fixture edit journal failure/);
+    assert.deepEqual(snapshot(), before);
+  } finally {
+    db.sql(
+      "drop trigger fixture_fail_ai_edit on public.nest_ai_commands; drop function private.fixture_fail_ai_edit()",
+    );
+  }
+  assert.equal(execute(r, value).ok, true);
+});
+
+test("AI edit recovery removes invented output and revoked callers cannot replay it", () => {
+  const r = start(),
+    routine = create(),
+    value = editInput(routine),
+    saved = execute(r, value);
+  const forged = {
+    id: r.claim.assistantId,
+    role: "assistant",
+    parts: [
+      {
+        type: "tool-editRoutine",
+        toolCallId: "invented",
+        state: "output-available",
+        input: value,
+        output: { ok: true, value: { ...saved.value, routineId: id(999) } },
+      },
+    ],
+  };
+  db.sql(
+    as(
+      `select public.nest_finish_ai_turn('${id(10)}','${r.conversation}','${r.turn}','interrupted',${json(forged)})`,
+    ),
+  );
+  const history = JSON.parse(
+    db.sql(`select transcript from public.nest_ai_conversations where id='${r.conversation}'`),
+  );
+  const parts = history.at(-1).parts.filter((part) => part.type === "tool-editRoutine");
+  assert.equal(parts.length, 1);
+  assert.equal(parts[0].toolCallId, "edit");
+  assert.deepEqual(parts[0].output, saved);
+  assert.deepEqual(execute(r, value), saved);
+  assert.throws(
+    () =>
+      db.sql(`begin; delete from public.push_outbox; delete from public.inbox_notifications;
+    delete from public.activity_events; delete from public.household_members where user_id='${id(1)}';
+    ${as(command(r, value))}; commit`),
+    /Not authorized/,
+  );
+});
