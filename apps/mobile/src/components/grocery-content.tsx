@@ -1,7 +1,7 @@
 import type { GroceryData } from "../groceries/flow";
 import { Checkbox, Host } from "@expo/ui";
-import { useState, type ReactNode } from "react";
-import { checklistItems } from "../groceries/checklist-view";
+import { useState, type ReactNode, type PropsWithChildren } from "react";
+import { checklistRows } from "../groceries/checklist-view";
 import { ActivityIndicator, Alert, FlatList, useColorScheme } from "react-native";
 import { Link } from "expo-router";
 import type { Grocery } from "@nest/contracts/groceries";
@@ -45,27 +45,23 @@ export function GroceryConflicts({
     </>
   );
 }
-export function GroceryList({
-  view,
-  refresh,
-  check,
-  discard,
-  add,
-}: {
+type GroceryListProps = {
   add: ReactNode;
   view: GroceryView;
   refresh: () => void;
   check: (item: Grocery, checked: boolean) => void;
   discard: (operation: string) => void;
-}) {
+};
+export function GroceryList({ view, refresh, check, discard, add }: GroceryListProps) {
+  const [grouped, setGrouped] = useState(false);
   const [showChecked, setShowChecked] = useState(false);
   const items = view.data?.groceries ?? [];
   const hidden = items.filter((item) => item.checked && !item.pending && !item.conflict).length;
   const colors = useQuiet();
   return (
     <FlatList
-      data={checklistItems(items, showChecked)}
-      keyExtractor={(item) => item.itemId}
+      data={checklistRows(items, showChecked, grouped)}
+      keyExtractor={(row) => row.key}
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
       automaticallyAdjustKeyboardInsets
@@ -73,28 +69,23 @@ export function GroceryList({
       contentContainerStyle={{ padding: space.large, gap: space.medium, paddingBottom: 48 }}
       ListHeaderComponent={
         <>
-          <Section title="For the next shop" />
-          {add}
-          <GroceryStatus view={view} />
-          <NativeAction label="Refresh and retry saved checks" onPress={refresh} />
-          <GroceryConflicts view={view} discard={discard} />
-          {hidden > 0 ? (
-            <NativeAction
-              label={showChecked ? "Hide checked" : `Show checked (${hidden})`}
-              onPress={() => setShowChecked((value) => !value)}
-            />
-          ) : null}
+          <GroceryHeader view={view} add={add} refresh={refresh} discard={discard}>
+            {grouped || items.some((item) => item.categoryName) ? (
+              <NativeAction
+                label={grouped ? "Show simple list" : "Group by category"}
+                onPress={() => setGrouped((value) => !value)}
+              />
+            ) : null}
+            {hidden > 0 ? (
+              <NativeAction
+                label={showChecked ? "Hide checked" : `Show checked (${hidden})`}
+                onPress={() => setShowChecked((value) => !value)}
+              />
+            ) : null}
+          </GroceryHeader>
         </>
       }
-      ListEmptyComponent={
-        <Note>
-          {view.data?.loaded
-            ? items.length
-              ? "Everything on your list is checked."
-              : "Your grocery checklist is empty."
-            : "Your groceries have not loaded yet."}
-        </Note>
-      }
+      ListEmptyComponent={<Note>{emptyMessage(view.data)}</Note>}
       ListFooterComponent={
         <>
           <Note>Checking an item never records an expense.</Note>
@@ -107,8 +98,33 @@ export function GroceryList({
           </Link>
         </>
       }
-      renderItem={({ item }) => <GroceryRow item={item} check={check} />}
+      renderItem={({ item: row }) =>
+        row.kind === "category" ? (
+          <Section title={row.title} />
+        ) : (
+          <GroceryRow item={row.item} check={check} showCategory={!grouped} />
+        )
+      }
     />
+  );
+}
+
+function GroceryHeader({
+  view,
+  add,
+  refresh,
+  discard,
+  children,
+}: PropsWithChildren<Omit<GroceryListProps, "check">>) {
+  return (
+    <>
+      <Section title="For the next shop" />
+      {add}
+      <GroceryStatus view={view} />
+      <NativeAction label="Refresh and retry saved checks" onPress={refresh} />
+      <GroceryConflicts view={view} discard={discard} />
+      {children}
+    </>
   );
 }
 
@@ -128,8 +144,10 @@ function GroceryStatus({ view }: { view: GroceryView }) {
 function GroceryRow({
   item,
   check,
+  showCategory,
 }: {
   item: GroceryData["groceries"][number];
+  showCategory: boolean;
   check: (item: Grocery, checked: boolean) => void;
 }) {
   const colors = useQuiet();
@@ -144,6 +162,7 @@ function GroceryRow({
           onValueChange={(checked) => check(item, checked)}
         />
       </Host>
+      {showCategory && item.categoryName ? <Note>{item.categoryName}</Note> : null}
       {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
       {!item.pending ? (
         <Link
@@ -155,4 +174,11 @@ function GroceryRow({
       ) : null}
     </Card>
   );
+}
+
+function emptyMessage(data: GroceryData | null) {
+  if (!data?.loaded) return "Your groceries have not loaded yet.";
+  return data.groceries.length
+    ? "Everything on your list is checked."
+    : "Your grocery checklist is empty.";
 }

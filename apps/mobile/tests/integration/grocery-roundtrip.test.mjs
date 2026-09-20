@@ -149,3 +149,46 @@ test("partner edit/check convergence leaves a stale opposite toggle conflicted",
     "3",
   );
 });
+
+test("native category labels survive SQLite restart and archived categories fall back without hiding groceries", async (t) => {
+  const remote = await postgrestFixture(t, files),
+    local = await sqliteFixture(t);
+  const category = "00000000-0000-4000-8000-000000000030";
+  remote.db.sql(
+    `insert into public.grocery_items(id,household_id,name,category_id) values('${target}','${household}','Apples','${category}')`,
+  );
+  const base = await start(
+    t,
+    createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" }),
+  );
+  const client = groceryClient(
+    base,
+    { actor, household },
+    Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
+  );
+  const run = Effect.runPromise;
+  const session = await run(local.store.activate({ actor, household }, lease));
+  await run(groceryFlow({ store: local.store, session }, client).sync);
+  const cached = (await run(local.store.readGroceries(session))).groceries.find(
+    (row) => row.itemId === target,
+  );
+  assert.equal(cached.categoryName, "Produce");
+  const restarted = local.reopen(),
+    resumed = await run(restarted.store.activate({ actor, household }, operation));
+  assert.equal(
+    (await run(restarted.store.readGroceries(resumed))).groceries.find(
+      (row) => row.itemId === target,
+    ).categoryName,
+    "Produce",
+  );
+  remote.db.sql(`update public.grocery_categories set archived_at=now() where id='${category}'`);
+  await run(groceryFlow({ store: restarted.store, session: resumed }, client).sync);
+  const current = (await run(restarted.store.readGroceries(resumed))).groceries.find(
+    (row) => row.itemId === target,
+  );
+  assert.equal(current.categoryId, category);
+  assert.equal(current.categoryName, null);
+  assert.equal(current.name, "Apples");
+  const other = await run(restarted.store.activate({ actor: partner, household }, lease));
+  assert.equal((await run(restarted.store.readGroceries(other))).loaded, false);
+});
