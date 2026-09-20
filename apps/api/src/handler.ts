@@ -1,3 +1,4 @@
+import { calendarRoute } from "./calendar/route.ts";
 import { memoryRoute } from "./memory/route.ts";
 import { foodPreferences } from "./food/service.ts";
 import { cookingPreferences } from "./cooking/service.ts";
@@ -19,6 +20,8 @@ function route(request: Request, config: IdentityConfig) {
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
+    if (path.startsWith("/v1/calendar/"))
+      return yield* calendarRoute(request, config, { member, token });
     if (path.startsWith("/v1/memories"))
       return yield* memoryRoute(request, config, { member, token });
     if (path === "/v1/cooking-preferences")
@@ -76,6 +79,11 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/calendar/consent": "GET",
+      "/v1/calendar/busy": "GET",
+      "/v1/calendar/consent/set": "POST",
+      "/v1/calendar/capture": "POST",
+      "/v1/calendar/publish": "POST",
       "/v1/memories": "GET",
       "/v1/memories/approval": "GET",
       "/v1/memories/propose": "POST",
