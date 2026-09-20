@@ -79,16 +79,28 @@ export function MealWeekBoard({
                 </Text>
                 {meal?.notes ? <Note>{meal.notes}</Note> : null}
                 {meal ? (
-                  <NativeAction
-                    label="Remove meal"
-                    disabled={!canAdd}
-                    onPress={() =>
-                      router.push({
-                        pathname: "/meal-remove",
-                        params: { weekStart: snapshot.weekStart, entryId: meal.entryId },
-                      })
-                    }
-                  />
+                  <>
+                    <NativeAction
+                      label="Move meal"
+                      disabled={!canAdd}
+                      onPress={() =>
+                        router.push({
+                          pathname: "/meal-move",
+                          params: { sourceWeekStart: snapshot.weekStart, entryId: meal.entryId },
+                        })
+                      }
+                    />
+                    <NativeAction
+                      label="Remove meal"
+                      disabled={!canAdd}
+                      onPress={() =>
+                        router.push({
+                          pathname: "/meal-remove",
+                          params: { weekStart: snapshot.weekStart, entryId: meal.entryId },
+                        })
+                      }
+                    />
+                  </>
                 ) : null}
                 {!meal ? (
                   <NativeAction
