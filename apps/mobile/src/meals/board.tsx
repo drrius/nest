@@ -79,28 +79,7 @@ export function MealWeekBoard({
                 </Text>
                 {meal?.notes ? <Note>{meal.notes}</Note> : null}
                 {meal ? (
-                  <>
-                    <NativeAction
-                      label="Move meal"
-                      disabled={!canAdd}
-                      onPress={() =>
-                        router.push({
-                          pathname: "/meal-move",
-                          params: { sourceWeekStart: snapshot.weekStart, entryId: meal.entryId },
-                        })
-                      }
-                    />
-                    <NativeAction
-                      label="Remove meal"
-                      disabled={!canAdd}
-                      onPress={() =>
-                        router.push({
-                          pathname: "/meal-remove",
-                          params: { weekStart: snapshot.weekStart, entryId: meal.entryId },
-                        })
-                      }
-                    />
-                  </>
+                  <MealActions meal={meal} weekStart={snapshot.weekStart} enabled={canAdd} />
                 ) : null}
                 {!meal ? (
                   <NativeAction
@@ -119,6 +98,49 @@ export function MealWeekBoard({
           })}
         </Section>
       ))}
+    </>
+  );
+}
+
+function MealActions({
+  meal,
+  weekStart,
+  enabled,
+}: {
+  meal: MealWeekSnapshot["entries"][number];
+  weekStart: string;
+  enabled: boolean;
+}) {
+  const router = useRouter();
+  return (
+    <>
+      <NativeAction
+        label="Replace meal"
+        disabled={!enabled}
+        onPress={() =>
+          router.push({
+            pathname: "/meal-replace",
+            params: { weekStart, entryId: meal.entryId, date: meal.date, slot: meal.slot ?? "" },
+          })
+        }
+      />
+      <NativeAction
+        label="Move meal"
+        disabled={!enabled}
+        onPress={() =>
+          router.push({
+            pathname: "/meal-move",
+            params: { sourceWeekStart: weekStart, entryId: meal.entryId },
+          })
+        }
+      />
+      <NativeAction
+        label="Remove meal"
+        disabled={!enabled}
+        onPress={() =>
+          router.push({ pathname: "/meal-remove", params: { weekStart, entryId: meal.entryId } })
+        }
+      />
     </>
   );
 }

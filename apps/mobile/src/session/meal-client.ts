@@ -1,3 +1,4 @@
+import type { ReplaceMeal } from "@nest/contracts/meal-replacement";
 import type { MoveMeal } from "@nest/contracts/meal-move";
 import type { RemoveMeal } from "@nest/contracts/meal-removal";
 import type { PlaceMeal } from "@nest/contracts/meal-placement";
@@ -11,6 +12,8 @@ import { sessionCredentials } from "./credentials";
 export function sessionMeals(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = mealClient(apiUrl, account, sessionCredentials(auth));
   return {
+    replace: (input: ReplaceMeal) =>
+      client.replace(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     move: (input: MoveMeal) =>
       client.move(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     remove: (input: RemoveMeal) =>

@@ -1,3 +1,4 @@
+import { mealReplacementClient } from "./replacement-client.ts";
 import { mealMoveClient } from "./move-client.ts";
 import { mealRemovalClient } from "./removal-client.ts";
 import { mealPlacementClient } from "./placement-client.ts";
@@ -17,6 +18,7 @@ export function mealClient(
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
     place: mealPlacementClient(request, account),
+    replace: mealReplacementClient(request, account),
     move: mealMoveClient(request, account),
     remove: mealRemovalClient(request, account),
     read: (weekStart: string) =>

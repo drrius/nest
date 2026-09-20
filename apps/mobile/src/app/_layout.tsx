@@ -50,6 +50,7 @@ function Navigation() {
         <Stack.Screen name="routines" options={{ title: "Routines" }} />
         <Stack.Screen name="meal-week" options={{ title: "Meals" }} />
         <Stack.Screen name="meal-add" options={{ title: "Add meal" }} />
+        <Stack.Screen name="meal-replace" options={{ title: "Replace meal" }} />
         <Stack.Screen name="meal-move" options={{ title: "Move meal" }} />
         <Stack.Screen name="meal-remove" options={{ title: "Remove meal" }} />
         <Stack.Screen name="checklist" options={{ title: "Groceries" }} />
