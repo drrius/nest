@@ -1,3 +1,5 @@
+import { sessionAssistant } from "./assistant-client";
+import type { AssistantClient } from "../assistant/client";
 import { sessionGroceries } from "./grocery-client";
 import type { GroceryClient } from "../groceries/client";
 import {
@@ -42,6 +44,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  assistant: AssistantClient | null;
   chores: ChoreClient | null;
   groceries: GroceryClient | null;
   configured: boolean;
@@ -96,20 +99,16 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const busy = useRef(false);
   const runtime = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
-  const chores = useMemo(
-    () =>
-      member && runtime.current && configuration
-        ? sessionChores(runtime.current.auth, member, configuration.apiUrl)
-        : null,
-    [member, runtime],
-  );
-  const groceries = useMemo(
-    () =>
-      member && runtime.current && configuration
-        ? sessionGroceries(runtime.current.auth, member, configuration.apiUrl)
-        : null,
-    [member, runtime],
-  );
+  const { chores, groceries, assistant } = useMemo(() => {
+    if (!member || !runtime.current || !configuration)
+      return { chores: null, groceries: null, assistant: null };
+    const { auth } = runtime.current;
+    return {
+      chores: sessionChores(auth, member, configuration.apiUrl),
+      groceries: sessionGroceries(auth, member, configuration.apiUrl),
+      assistant: sessionAssistant(auth, member, configuration.apiUrl),
+    };
+  }, [member, runtime]);
   const run = (action: Effect.Effect<void, SessionFailure>) => {
     if (busy.current) return;
     busy.current = true;
@@ -149,6 +148,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
       value={{
         chores,
         groceries,
+        assistant,
         configured: configuration !== null,
         state,
         working,

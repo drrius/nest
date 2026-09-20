@@ -27,7 +27,8 @@
     "test:groceries": "node --test tests/database/groceries.test.mjs",
     "test:conversations": "node --test tests/database/conversations.test.mjs",
     "test:chores": "node --test apps/mobile/tests/chore-*.test.mjs",
-    "test:checklist": "node --test apps/mobile/tests/grocery-*.test.mjs"
+    "test:checklist": "node --test apps/mobile/tests/grocery-*.test.mjs",
+    "test:assistant": "node --test apps/mobile/tests/assistant-*.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
