@@ -23,6 +23,14 @@ export default function SettingsScreen() {
         />
       </Card>
       <Card>
+        <Section title="Calendar" />
+        <Note>Choose calendars on this iPhone and opt in to share busy times.</Note>
+        <NativeAction
+          label="Calendar access and sharing"
+          onPress={() => router.push("/calendar-sharing")}
+        />
+      </Card>
+      <Card>
         <Section title="Private memory" />
         <Note>Review and confirm what Nest may remember for you.</Note>
         <NativeAction label="Manage private memory" onPress={() => router.push("/memory")} />

@@ -1,3 +1,5 @@
+import * as CalendarSelections from "./calendar-selection.ts";
+import type { CalendarSelection } from "../calendar/selection.ts";
 import type { Grocery } from "@nest/contracts/groceries";
 import * as Groceries from "./groceries.ts";
 import * as GroceryEdit from "./grocery-edit.ts";
@@ -24,6 +26,10 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    readCalendarSelection: (session: Session) =>
+      run(() => CalendarSelections.readCalendarSelection(database, session)),
+    saveCalendarSelection: (session: Session, selection: CalendarSelection | null) =>
+      run(() => CalendarSelections.saveCalendarSelection(database, session, selection)),
     activate: (account: Account, lease: string) =>
       run(() => SessionStore.activate(database, account, lease)),
     suspend: (session: Session) => run(() => SessionStore.suspend(database, session)),

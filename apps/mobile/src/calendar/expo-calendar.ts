@@ -1,3 +1,4 @@
+import { projectDeviceEvents } from "./device-projection.ts";
 import * as Calendar from "expo-calendar";
 import type { CalendarPort } from "./service.ts";
 
@@ -12,13 +13,7 @@ export const expoCalendarPort: CalendarPort = {
       color: calendar.color,
     })),
   events: async (ids, window) =>
-    (await Calendar.listEvents([...ids], new Date(window.start), new Date(window.end))).map(
-      (event) => ({
-        calendarId: event.calendarId,
-        startDate: event.startDate,
-        endDate: event.endDate,
-        availability: event.availability,
-        status: event.status,
-      }),
+    projectDeviceEvents(
+      await Calendar.listEvents([...ids], new Date(window.start), new Date(window.end)),
     ),
 };

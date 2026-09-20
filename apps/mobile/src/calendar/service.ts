@@ -23,7 +23,10 @@ export interface CalendarPort {
 }
 class CalendarFailure extends Schema.TaggedError<CalendarFailure>()("CalendarFailure", {}) {}
 const call = <A>(body: () => Promise<A>) =>
-  Effect.tryPromise({ try: body, catch: () => new CalendarFailure() });
+  Effect.tryPromise({ try: body, catch: () => new CalendarFailure() }).pipe(
+    Effect.timeout("15 seconds"),
+    Effect.mapError(() => new CalendarFailure()),
+  );
 
 export function makeCalendarReader(port: CalendarPort) {
   const capture = (selected: readonly string[], window: Window, capturedAt: number) =>

@@ -1,3 +1,4 @@
+import { CalendarSharingProvider } from "../calendar/provider";
 import { OfflineProvider } from "../offline/provider";
 import { ThemeProvider, DarkTheme, DefaultTheme } from "expo-router/react-navigation";
 import { Stack } from "expo-router/stack";
@@ -13,10 +14,12 @@ export default function RootLayout() {
     <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
       <SessionProvider>
         <OfflineProvider>
-          <PreviewProvider>
-            <StatusBar style="auto" />
-            <Navigation />
-          </PreviewProvider>
+          <CalendarSharingProvider>
+            <PreviewProvider>
+              <StatusBar style="auto" />
+              <Navigation />
+            </PreviewProvider>
+          </CalendarSharingProvider>
         </OfflineProvider>
       </SessionProvider>
     </ThemeProvider>
@@ -47,6 +50,7 @@ function Navigation() {
         <Stack.Screen name="grocery-edit" options={{ title: "Grocery" }} />
         <Stack.Screen name="food-preferences" options={{ title: "Food preferences" }} />
         <Stack.Screen name="cooking-preferences" options={{ title: "Household cooking" }} />
+        <Stack.Screen name="calendar-sharing" options={{ title: "Calendar sharing" }} />
         <Stack.Screen name="memory" options={{ title: "Private memory" }} />
         <Stack.Screen name="settings" options={{ title: "Profile and settings" }} />
       </Stack.Protected>
