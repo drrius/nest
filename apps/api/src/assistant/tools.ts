@@ -43,7 +43,7 @@ export function householdTools(
         ),
     });
   };
-  return {
+  const tools = {
     listChores: chores.listChores,
     listGroceries: groceries.listGroceries,
     listGroceryCategories: groceries.listGroceryCategories,
@@ -67,5 +67,11 @@ export function householdTools(
       "checkGrocery",
       "Set a requested grocery's checked state using its exact read version. Does not create a purchase or expense.",
     ),
+  };
+  return {
+    tools,
+    rejectInvalidCall: () => {
+      halted = true;
+    },
   };
 }

@@ -59,7 +59,7 @@ export function assistantHandler(config: IdentityConfig, model?: AssistantModel)
       };
       return yield* startResponse(request, store, input, {
         model,
-        tools: householdTools(request, config, { householdId: member.householdId, turn: input }),
+        ...householdTools(request, config, { householdId: member.householdId, turn: input }),
       });
     }).pipe(
       Effect.provide(supabaseIdentity(config)),
@@ -74,7 +74,11 @@ function startResponse(
   request: Request,
   store: ReturnType<typeof conversationStore>,
   input: StartTurn,
-  { model, tools }: { model: AssistantModel; tools: AssistantTools },
+  {
+    model,
+    tools,
+    rejectInvalidCall,
+  }: { model: AssistantModel; tools: AssistantTools; rejectInvalidCall: () => void },
 ) {
   return Effect.gen(function* () {
     const turn = yield* store.begin(input);
@@ -96,6 +100,7 @@ function startResponse(
           return await assistantStream({
             model,
             tools,
+            onInvalidToolCall: rejectInvalidCall,
             messages,
             assistantId: turn.assistantId,
             signal: request.signal,

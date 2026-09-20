@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { DefaultChatTransport, simulateReadableStream } from "ai";
 import { MockLanguageModelV4 } from "ai/test";
+import { validateHistory } from "../../src/chat.ts";
+import { householdTools } from "../../../../apps/api/src/assistant/tools.ts";
 import { createHandler } from "../../../../apps/api/src/handler.ts";
 import { postgrestFixture } from "../../../../tests/integration/postgrest-fixture.mjs";
 import { lostResponseProxy } from "../../../../tests/integration/lost-response-proxy.mjs";
@@ -215,4 +217,38 @@ test("SDK edit, check and remove retain command order and validate each native r
   );
   assert.equal(receipts[2].output.value.removed, true);
   assert.equal(f.db.sql(`select state from public.grocery_items where id='${id(100)}'`), "removed");
+});
+
+test("malformed or unknown SDK calls close the write guard before any queued mutation", async (t) => {
+  for (const invalid of [
+    call("checkGrocery", { itemId: id(100), expectedVersion: 99, checked: true }, "invalid"),
+    call("unknownHouseholdTool", {}, "unknown"),
+  ]) {
+    await t.test(invalid.toolName, async (t) => {
+      const f = await postgrestFixture(t, files);
+      const model = modelFor([invalid, call("addGrocery", add, "must-stop")]);
+      const { chunks, history } = await run(f, model);
+      const { tools } = householdTools(
+        new Request("http://localhost"),
+        { url: f.url, publishableKey: "sb_publishable_fixture" },
+        {
+          householdId: id(10),
+          turn: {
+            conversationId: id(700),
+            operationId: id(701),
+            expectedRevision: "0",
+            text: "Add",
+          },
+        },
+      );
+      await validateHistory(history, tools);
+      assert.equal(f.db.sql("select count(*) from public.nest_ai_commands"), "0");
+      assert.equal(
+        f.db.sql("select count(*) from public.grocery_items where name='Requested apple'"),
+        "0",
+      );
+      assert.equal(model.doStreamCalls.length, 1);
+      assert.ok(chunks.some((chunk) => chunk.type === "tool-output-error"));
+    });
+  }
 });
