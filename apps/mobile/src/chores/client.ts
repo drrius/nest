@@ -4,6 +4,7 @@ import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as HttpBody from "effect/unstable/http/HttpBody";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { ChoreList, ChoreResult, type CompleteChore } from "@nest/contracts/chores";
+import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
 
 export class ChoreFailure extends Schema.TaggedError<ChoreFailure>()("ChoreFailure", {
@@ -24,14 +25,17 @@ const statusFailure = (status: number) =>
   });
 export function choreClient(
   apiUrl: string,
-  actor: string,
+  account: Account,
   credentials: Effect.Effect<Credentials, ChoreFailure>,
 ) {
   const request = (path: string, body?: CompleteChore) =>
     Effect.gen(function* () {
       const session = yield* credentials;
-      if (session.user.id !== actor) return yield* new ChoreFailure({ code: "session" });
-      const headers = { Authorization: `Bearer ${session.access_token}` };
+      if (session.user.id !== account.actor) return yield* new ChoreFailure({ code: "session" });
+      const headers = {
+        Authorization: `Bearer ${session.access_token}`,
+        "X-Nest-Household": account.household,
+      };
       const url = new URL(path, apiUrl);
       const response = yield* body
         ? HttpClient.post(url, { headers, body: yield* HttpBody.json(body) })
@@ -51,6 +55,7 @@ export function choreClient(
       request("v1/chores").pipe(
         Effect.flatMap(Schema.decodeUnknownEffect(ChoreList)),
         Effect.flatMap((result) =>
+          result.householdId === account.household &&
           result.chores.length <= 200 &&
           new Set(result.chores.map((chore) => chore.occurrenceId)).size === result.chores.length
             ? Effect.succeed(result.chores)
@@ -63,7 +68,8 @@ export function choreClient(
     complete: (command: CompleteChore) =>
       request("v1/chores/complete", command).pipe(
         Effect.flatMap(Schema.decodeUnknownEffect(ChoreResult)),
-        Effect.flatMap(({ receipt }) =>
+        Effect.flatMap(({ receipt, householdId }) =>
+          householdId === account.household &&
           receipt.operationId === command.operationId &&
           receipt.occurrenceId === command.occurrenceId
             ? Effect.succeed(receipt)

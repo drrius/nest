@@ -8,9 +8,9 @@ Known membership denial blocks further completion and retains pending work. A co
 
 ## Verification
 
-- `pnpm test:chores`: 12 meaningful transport/file-backed SQLite/controller cases, including lost response + restart, conflict recovery, atomic snapshots, same-frame double taps, cancellation, actor mismatch and membership denial.
+- `pnpm test:chores`: 13 meaningful transport/file-backed SQLite/controller cases, including lost response + restart, conflict recovery, atomic snapshots, same-frame double taps, cancellation, actor mismatch and membership denial.
 - `pnpm test:offline`: 13 existing journal regression cases.
-- `pnpm --filter @nest/api test`: 24 HTTP/API/tool/Node adapter cases.
+- `pnpm --filter @nest/api test`: 25 HTTP/API/tool/Node adapter cases.
 - `pnpm test:domain`: seven tests, including Zurich midnight/DST examples and 1,000 seeded date properties.
 - See `tests/integration/README.md` at repository root for the targeted real Node HTTP → API → PostgREST → PostgreSQL + restarted SQLite proof.
 - iOS Metro export succeeds. It is packaging evidence, not native execution.
@@ -24,3 +24,5 @@ The Today screen covers chores only; meals, renewals, finance confirmations and 
 ## Prepared device smoke — not executed
 
 Use synthetic fixture data only. Sign in to the isolated household, open Today and verify Me + shared versus Everyone. Complete a known fixture chore; confirm its pending indicator, single subtle haptic and eventual removal after receipt. Disable connectivity, complete another loaded chore, kill/reopen the app, restore connectivity and sign in if needed; verify one server completion and no lost intent. Have the partner reschedule another queued chore; confirm the conflict requires review and that keeping the current chore sends no completion. Check logout/account isolation, large text, VoiceOver, light/dark and background/foreground. Record commit/build/device and backend fixture; a successful bundle cannot substitute for this evidence.
+
+Review corrections bind requests to the expected household as well as actor; the API checks this expectation against verified membership, and response envelopes repeat the verified household. A known denial stays blocked through later network errors. Foreground revalidation retains only a previously verified same-actor session in memory during an outage; logout, actor changes and definitive denials clear that fallback. Fourteen session tests include warm resume and SDK/network failures. Cold-start offline authorization remains unimplemented.

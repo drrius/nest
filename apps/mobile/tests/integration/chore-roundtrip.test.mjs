@@ -18,7 +18,7 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
   const handler = createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" });
   const client = choreClient(
     "http://localhost/",
-    actor,
+    { actor, household },
     Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
   );
   const server = nodeServer(handler);

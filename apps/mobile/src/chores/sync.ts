@@ -13,7 +13,7 @@ function syncFailure(error: unknown): Partial<ChoreView> {
   const verify = code === "session" || code === "forbidden";
   return {
     stale: true,
-    access: verify ? "verify" : "allowed",
+    ...(verify ? { access: "verify" as const } : {}),
     error: verify
       ? "Your account needs to be verified again. Saved changes are kept."
       : "Could not sync. Saved changes are kept; try again when connected.",

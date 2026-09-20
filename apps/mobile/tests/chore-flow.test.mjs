@@ -148,7 +148,8 @@ test("known membership denial blocks further completion while keeping uncertain 
   const { store, session } = await fixture(t);
   await run(store.saveChores(session, [chore]));
   const views = [];
-  const denied = () => Effect.fail(new ChoreFailure({ code: "forbidden" }));
+  let code = "forbidden";
+  const denied = () => (code ? Effect.fail(new ChoreFailure({ code })) : Effect.succeed([chore]));
   const runtime = choreRuntime(
     choreFlow(store, session, { list: denied, complete: denied }),
     (view) => views.push(view),
@@ -156,8 +157,14 @@ test("known membership denial blocks further completion while keeping uncertain 
   t.after(() => runtime.dispose());
   await runtime.refresh();
   assert.equal(views.at(-1).access, "verify");
+  code = "unavailable";
+  await runtime.refresh();
+  assert.equal(views.at(-1).access, "verify");
   await runtime.complete(chore, operation, "2026-09-20");
   assert.equal((await run(store.readChores(session))).pending.length, 0);
+  code = null;
+  await runtime.refresh();
+  assert.equal(views.at(-1).access, "allowed");
 });
 
 test("disposing the native controller cancels an in-flight read without publishing another account's data", async (t) => {

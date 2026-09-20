@@ -14,7 +14,11 @@ export function sessionChores(auth: SupabaseClient["auth"], member: Member, apiU
     },
     catch: () => new ChoreFailure({ code: "session" }),
   });
-  const client = choreClient(apiUrl, member.userId, credentials);
+  const client = choreClient(
+    apiUrl,
+    { actor: member.userId, household: member.householdId },
+    credentials,
+  );
   return {
     list: () => client.list().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     complete: (command: Parameters<typeof client.complete>[0]) =>

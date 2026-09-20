@@ -34,5 +34,13 @@ export const Chore = Schema.Struct({
   assigneeId: Schema.NullOr(Uuid),
 });
 export type Chore = typeof Chore.Type;
-export const ChoreList = Schema.Struct({ version: Schema.Literal(1), chores: Schema.Array(Chore) });
-export const ChoreResult = Schema.Struct({ version: Schema.Literal(1), receipt: Completion });
+export const ChoreList = Schema.Struct({
+  householdId: Uuid,
+  version: Schema.Literal(1),
+  chores: Schema.Array(Chore),
+});
+export const ChoreResult = Schema.Struct({
+  householdId: Uuid,
+  version: Schema.Literal(1),
+  receipt: Completion,
+});

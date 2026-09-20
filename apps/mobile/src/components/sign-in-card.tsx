@@ -27,19 +27,7 @@ export function SignInCard() {
   return (
     <Card>
       {session.state.status === "ready" ? (
-        <>
-          <Text style={{ color: colors.text, fontSize: 20 }}>
-            Welcome, {session.state.member.displayName}.
-          </Text>
-          <Note>Your household identity is verified.</Note>
-          <Link
-            href="/household"
-            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-          >
-            Open Today
-          </Link>
-          <NativeAction label="Sign out" onPress={session.signOut} />
-        </>
+        <ReadySession />
       ) : session.state.status === "signed_out" ? (
         <>
           <Note>Sign in with the Apple account already linked to your household.</Note>
@@ -90,5 +78,27 @@ function LogoutCard() {
         <NativeAction label="Retry sign-out" onPress={signOut} />
       )}
     </Card>
+  );
+}
+
+function ReadySession() {
+  const session = useSession();
+  const colors = useQuiet();
+  if (session.state.status !== "ready") return null;
+  return (
+    <>
+      <Text style={{ color: colors.text, fontSize: 20 }}>
+        Welcome, {session.state.member.displayName}.
+      </Text>
+      <Note>
+        {session.state.offline
+          ? "Showing your last verified household. Reconnect to refresh access."
+          : "Your household identity is verified."}
+      </Note>
+      <Link href="/household" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+        Open Today
+      </Link>
+      <NativeAction label="Sign out" onPress={session.signOut} />
+    </>
   );
 }

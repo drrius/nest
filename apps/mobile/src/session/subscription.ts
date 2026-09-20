@@ -23,7 +23,7 @@ export function subscribeSession(
     );
   };
   const unavailable = () => {
-    if (!disposed && !hidden) publish({ status: "unavailable" });
+    if (!disposed && !hidden) verifier.unavailable();
   };
   const initial = revision;
   const {

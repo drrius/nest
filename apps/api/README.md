@@ -6,7 +6,7 @@ Effect v4 Schema validates both upstream responses; Context/Layer supplies ident
 
 Configuration deliberately accepts new Supabase publishable keys only. The adapter queries the audited legacy membership shape (`user_id`, `household_id`, `display_name`) but has not been run against production or copied legacy data. No schema/migration is applied. The native chore client is connected in source. No API is deployed.
 
-Run `pnpm --filter @nest/api test` for 24 focused HTTP-boundary and Node adapter cases. Tests start a loopback fixture server, requiring local socket access. They exercise the real HTTP adapter and Effect runtime; the upstream server is a fixture, so these are **not** RLS/database tests or proof of live Supabase configuration. Separate database and PostgREST fixtures cover the invariants described below.
+Run `pnpm --filter @nest/api test` for 25 focused HTTP-boundary and Node adapter cases. Tests start a loopback fixture server, requiring local socket access. They exercise the real HTTP adapter and Effect runtime; the upstream server is a fixture, so these are **not** RLS/database tests or proof of live Supabase configuration. Separate database and PostgREST fixtures cover the invariants described below.
 
 ## Authorized chore commands
 
