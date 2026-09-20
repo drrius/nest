@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function writeTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    createRoutine: write(
+      "createRoutine",
+      "Create only a routine the member requested. Ask for an unclear title or recurrence. Responsibility is shared unless explicitly assigned or alternating; readRoutines supplies current member IDs, never invent IDs. Creating a new routine is not a takeover of existing assigned work. It creates no financial obligation or reminder opt-in. The server retains retry identity. Read the current list after an uncertain outcome before proposing another create.",
+    ),
     saveNotificationPreferences: write(
       "saveNotificationPreferences",
       "Save only explicitly requested changes to your own notification choices. Read current settings and exact revision first; preserve unspecified fields. For missing setup ask for all required choices instead of assuming opt-in. Daily summary time is Europe/Zurich. Settings do not grant OS permission or confirm device registration or delivery. Never change a partner's choices. The server retains retry identity.",

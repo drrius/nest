@@ -1,3 +1,4 @@
+import { RoutineReceipt } from "@nest/contracts/routines";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
@@ -8,6 +9,7 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
+  if (action === "createRoutine") return matchesRoutine(receipt, member);
   if (action === "proposeMemory") return matchesProposal(input, receipt, member);
   if (action === "removeMemory")
     return (
@@ -67,4 +69,13 @@ function matchesCommand(input: object, receipt: object, action: AssistantAction)
 
 function matchesTarget(input: unknown, target: string) {
   return typeof input === "string" && input.toLowerCase() === target;
+}
+
+function matchesRoutine(receipt: object, member: Member) {
+  return (
+    Schema.is(RoutineReceipt)(receipt) &&
+    receipt.action === "create" &&
+    receipt.actorId === member.userId &&
+    receipt.householdId === member.householdId
+  );
 }
