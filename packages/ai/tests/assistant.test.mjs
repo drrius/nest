@@ -132,7 +132,7 @@ test("bounded context keeps the latest prompt without dropping durable history",
 });
 
 test("unreconciled write calls cannot be silently discarded from model history", async () => {
-  for (const name of ["addGrocery", "saveFoodPreferences"]) {
+  for (const name of ["addGrocery", "saveFoodPreferences", "skipChore", "rescheduleChore"]) {
     const writes = { [name]: tools.listChores };
     const part = { type: `tool-${name}`, toolCallId: "write", input: {} };
     for (const state of ["input-available", "output-error", "output-denied"]) {

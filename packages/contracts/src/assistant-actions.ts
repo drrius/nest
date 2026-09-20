@@ -1,4 +1,13 @@
-import { CreateRoutine, EditRoutine, RoutineReceipt, RoutineStateCommand } from "./routines.ts";
+import { SkipChoreReceipt, RescheduleChoreReceipt } from "./chore-changes.ts";
+import {
+  SkipChore,
+  RescheduleChore,
+  changedChoreDate,
+  CreateRoutine,
+  EditRoutine,
+  RoutineReceipt,
+  RoutineStateCommand,
+} from "./routines.ts";
 import { SaveNotificationPreferences, NotificationPreferenceReceipt } from "./notifications.ts";
 import * as Schema from "effect/Schema";
 import * as Struct from "effect/Struct";
@@ -23,6 +32,10 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  skipChore: Schema.Struct(Struct.omit(SkipChore.fields, ["operationId"])),
+  rescheduleChore: Schema.Struct(Struct.omit(RescheduleChore.fields, ["operationId"])).check(
+    Schema.makeFilter(changedChoreDate),
+  ),
   setRoutineState: Schema.Struct(Struct.omit(RoutineStateCommand.fields, ["operationId"])),
   editRoutine: Schema.Struct(Struct.omit(EditRoutine.fields, ["operationId"])),
   createRoutine: Schema.Struct(Struct.omit(CreateRoutine.fields, ["operationId"])),
@@ -43,6 +56,8 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  skipChore: SkipChoreReceipt,
+  rescheduleChore: RescheduleChoreReceipt,
   setRoutineState: Schema.Struct({
     ...RoutineReceipt.fields,
     action: RoutineStateCommand.fields.action,

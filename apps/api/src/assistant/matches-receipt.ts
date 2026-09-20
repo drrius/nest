@@ -1,3 +1,4 @@
+import { ChoreChangeReceipt } from "@nest/contracts/chore-changes";
 import { RoutineReceipt } from "@nest/contracts/routines";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
@@ -9,6 +10,8 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
+  if (["skipChore", "rescheduleChore"].includes(action))
+    return matchesChoreChange(action, input, receipt, member);
   if (["setRoutineState", "editRoutine", "createRoutine"].includes(action))
     return matchesRoutineCommand(action, input, receipt, member);
   if (action === "proposeMemory") return matchesProposal(input, receipt, member);
@@ -89,4 +92,30 @@ function matchesRoutineCommand(
   return action === "editRoutine"
     ? receipt.action === "edit"
     : "action" in input && receipt.action === input.action;
+}
+
+function matchesChoreChange(
+  action: AssistantAction,
+  input: object,
+  receipt: object,
+  member: Member,
+) {
+  if (
+    !Schema.is(ChoreChangeReceipt)(receipt) ||
+    !("occurrenceId" in input) ||
+    !("expectedDueDate" in input)
+  )
+    return false;
+  const dueDate = "newDueDate" in input ? input.newDueDate : input.expectedDueDate;
+  return (
+    matchesMember(receipt, member) &&
+    matchesTarget(input.occurrenceId, receipt.occurrenceId) &&
+    receipt.previousDueDate === input.expectedDueDate &&
+    receipt.dueDate === dueDate &&
+    receipt.action === (action === "skipChore" ? "skip" : "reschedule")
+  );
+}
+
+function matchesMember(receipt: { actorId: string; householdId: string }, member: Member) {
+  return receipt.actorId === member.userId && receipt.householdId === member.householdId;
 }
