@@ -91,10 +91,10 @@ revoke all on function private.nest_dispatch_ai_command(uuid,uuid,text,jsonb) fr
 create function private.nest_execute_ai_command(
   p_household uuid,p_conversation uuid,p_turn uuid,p_call text,p_tool text,p_input jsonb
 ) returns jsonb language plpgsql security definer set search_path='' as $$
-declare v_turn public.nest_ai_turns; v_prior public.nest_ai_commands;
+declare v_turn public.nest_ai_turns; v_prior public.nest_ai_commands; v_row public.nest_ai_conversations;
   v_operation uuid:=gen_random_uuid(); v_result jsonb; v_count bigint; v_bytes bigint;
 begin
-  perform private.nest_lock_ai_conversation(p_household,p_conversation);
+  v_row:=private.nest_lock_ai_conversation(p_household,p_conversation);
   select * into v_turn from public.nest_ai_turns
     where conversation_id=p_conversation and operation_id=p_turn for update;
   if not found then raise exception 'AI turn not found' using errcode='P0002'; end if;
@@ -112,6 +112,10 @@ begin
   end if;
   if v_turn.state<>'running' or clock_timestamp()>=v_turn.deadline_at then
     raise exception 'AI turn no longer active' using errcode='40001';
+  end if;
+  -- Claims accepted before this migration did not reserve recovery headroom.
+  if jsonb_array_length(v_row.transcript)>=1000 or octet_length(v_row.transcript::text)>1867776 then
+    raise exception 'Conversation capacity reached' using errcode='22023';
   end if;
   select count(*),coalesce(sum(octet_length(input::text)+octet_length(result::text)),0)
     into v_count,v_bytes from public.nest_ai_commands
