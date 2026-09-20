@@ -1,3 +1,5 @@
+import { sessionRoutines } from "./routine-client";
+import type { RoutineClient } from "../routines/client";
 import { sessionSetup } from "./setup-client";
 import type { SetupClient } from "../setup/client";
 import { sessionNotification } from "./notification-client";
@@ -56,6 +58,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  routines: RoutineClient | null;
   setup: SetupClient | null;
   notification: NotificationClient | null;
   calendar: CalendarClient | null;
@@ -122,9 +125,11 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         calendar: null,
         notification: null,
         setup: null,
+        routines: null,
       };
     const { auth } = runtime.current;
     return {
+      routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),
       setup: sessionSetup(auth, { actor, household }, configuration.apiUrl),
       notification: sessionNotification(auth, { actor, household }, configuration.apiUrl),
       calendar: sessionCalendar(auth, { actor, household }, configuration.apiUrl),
