@@ -1,0 +1,17 @@
+export const aiCommandFiles = [
+  "tests/database/ai-command-fixture.sql",
+  "supabase/migrations/20260919205503_native_chore_receipts.sql",
+  "supabase/migrations/20260919214311_native_grocery_check_receipts.sql",
+  "supabase/migrations/20260920002735_native_grocery_commands.sql",
+  "supabase/migrations/20260919220034_native_private_conversations.sql",
+  "supabase/migrations/20260920022841_native_ai_turn_ownership.sql",
+  "supabase/migrations/20260920033321_native_ai_command_journal.sql",
+  "supabase/migrations/20260920041525_native_food_preferences.sql",
+  "supabase/migrations/20260920044816_native_ai_food_preferences.sql",
+  "supabase/migrations/20260920050551_native_cooking_preferences.sql",
+  "supabase/migrations/20260920053446_native_ai_cooking_preferences.sql",
+  "supabase/migrations/20260919213407_native_action_approvals.sql",
+  "supabase/migrations/20260920054303_native_private_memory.sql",
+  "supabase/migrations/20260920055247_native_memory_confirmation.sql",
+  "supabase/migrations/20260920062302_native_ai_private_memory.sql",
+];

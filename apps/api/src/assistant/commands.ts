@@ -1,3 +1,4 @@
+import { matchesAssistantReceipt } from "./matches-receipt.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -37,12 +38,7 @@ export function assistantCommands(request: Request, config: IdentityConfig, turn
         Schema.Struct({ ok: Schema.Literal(true), value: receiptSchema }),
         raw,
       );
-      if (!matchesCommand(command, result.value, action))
-        return yield* new CommandFailure({ code: "unavailable" });
-      if (
-        (action === "saveFoodPreferences" || action === "saveCookingPreferences") &&
-        !matchesPreferences(command, result.value, member)
-      )
+      if (!matchesAssistantReceipt(action, command, result.value, member))
         return yield* new CommandFailure({ code: "unavailable" });
       return result.value;
     }).pipe(
@@ -60,31 +56,4 @@ export function assistantCommands(request: Request, config: IdentityConfig, turn
             }),
       ),
     );
-}
-function matchesPreferences(
-  input: object,
-  receipt: object,
-  member: { userId: string; householdId: string },
-) {
-  return (
-    "actorId" in receipt &&
-    "householdId" in receipt &&
-    "revision" in receipt &&
-    "expectedRevision" in input &&
-    receipt.actorId === member.userId &&
-    receipt.householdId === member.householdId &&
-    BigInt(String(receipt.revision)) === BigInt(String(input.expectedRevision)) + 1n
-  );
-}
-function matchesCommand(input: object, receipt: object, action: AssistantAction) {
-  if ("occurrenceId" in input && "occurrenceId" in receipt)
-    return String(input.occurrenceId).toLowerCase() === receipt.occurrenceId;
-  if (
-    "itemId" in input &&
-    "target" in receipt &&
-    String(input.itemId).toLowerCase() !== receipt.target
-  )
-    return false;
-  if ("checked" in input && "checked" in receipt && input.checked !== receipt.checked) return false;
-  return !("removed" in receipt) || receipt.removed === (action === "removeGrocery");
 }

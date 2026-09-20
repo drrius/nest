@@ -22,6 +22,10 @@ const files = [
   "supabase/migrations/20260920044816_native_ai_food_preferences.sql",
   "supabase/migrations/20260920050551_native_cooking_preferences.sql",
   "supabase/migrations/20260920053446_native_ai_cooking_preferences.sql",
+  "supabase/migrations/20260919213407_native_action_approvals.sql",
+  "supabase/migrations/20260920054303_native_private_memory.sql",
+  "supabase/migrations/20260920055247_native_memory_confirmation.sql",
+  "supabase/migrations/20260920062302_native_ai_private_memory.sql",
 ];
 const preferences = {
   restrictions: ["Peanuts"],

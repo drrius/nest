@@ -92,3 +92,42 @@ test("cooking preference receipts link to shared settings and require a valid sa
   assert.throws(() => decode({ ...input, actorId: id }));
   assert.throws(() => decode({ ...input, operationId: id }));
 });
+
+test("memory proposals hand off to exact native approval without claiming the memory is saved", () => {
+  const value = {
+    version: 1,
+    actorId: id,
+    householdId: id,
+    approval: {
+      id,
+      operationId: id,
+      change: { memoryId: id, expectedRevision: "0", content: "Quiet mornings" },
+      status: "pending",
+      expiresAt: "2026-09-20T12:00:00Z",
+    },
+  };
+  const part = {
+    type: "tool-proposeMemory",
+    state: "output-available",
+    output: { ok: true, value },
+  };
+  assert.deepEqual(actionResult(part), {
+    label: "Review memory proposal",
+    href: { pathname: "/memory", params: { approvalId: id } },
+  });
+  assert.match(actionResult({ ...part, output: { ok: true, value: {} } }).label, /verify/);
+  const decode = Schema.decodeUnknownSync(AssistantInputs.proposeMemory, {
+    onExcessProperty: "error",
+  });
+  const input = { memoryId: null, expectedRevision: "0", content: "Quiet mornings" };
+  assert.deepEqual(decode(input), input);
+  for (const patch of [
+    { approved: true },
+    { operationId: id },
+    { approvalId: id },
+    { actorId: id },
+    { memoryId: id },
+    { expectedRevision: "1" },
+  ])
+    assert.throws(() => decode({ ...input, ...patch }));
+});
