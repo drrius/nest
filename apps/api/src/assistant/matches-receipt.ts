@@ -1,4 +1,8 @@
-import { matchesMealPlacement, matchesMealRemoval } from "../meals/matches-receipt.ts";
+import {
+  matchesMealPlacement,
+  matchesMealRemoval,
+  matchesMealMove,
+} from "../meals/matches-receipt.ts";
 import { matchesTransfer } from "./matches-transfer.ts";
 import { ChoreChangeReceipt } from "@nest/contracts/chore-changes";
 import { RoutineReceipt } from "@nest/contracts/routines";
@@ -12,6 +16,7 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
+  if (action === "moveMeal") return matchesMealMove(input, receipt, member);
   if (action === "removeMeal") return matchesMealRemoval(input, receipt, member);
   if (action === "placeMeal") return matchesMealPlacement(input, receipt, member);
   if (["requestChoreTransfer", "respondChoreTransfer"].includes(action))

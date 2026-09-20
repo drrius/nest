@@ -1,3 +1,4 @@
+import { MealMoveReceipt } from "@nest/contracts/meal-move";
 import { MealRemovalReceipt } from "@nest/contracts/meal-removal";
 import { MealPlacementReceipt } from "@nest/contracts/meal-placement";
 import { SetupHandoff } from "@nest/contracts/setup";
@@ -11,6 +12,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  moveMeal: "Meal moved",
   placeMeal: "Meal added to the week",
   removeMeal: "Meal removed from the week",
   requestChoreTransfer: "Handover requested",
@@ -32,6 +34,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  moveMeal: "/meal-week",
   placeMeal: "/meal-week",
   removeMeal: "/meal-week",
   requestChoreTransfer: "/chore-transfers",
@@ -88,6 +91,8 @@ function successLabel(action: AssistantAction, receipt: object) {
 }
 
 function successHref(action: AssistantAction, value: object) {
+  if (action === "moveMeal" && Schema.is(MealMoveReceipt)(value))
+    return { pathname: "/meal-week" as const, params: { weekStart: value.targetWeekStart } };
   if (action === "removeMeal" && Schema.is(MealRemovalReceipt)(value))
     return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
   if (action === "placeMeal" && Schema.is(MealPlacementReceipt)(value))

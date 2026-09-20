@@ -1,3 +1,4 @@
+import { MoveMealInput, MealMoveReceipt } from "./meal-move.ts";
 import { RemoveMealInput, MealRemovalReceipt } from "./meal-removal.ts";
 import { PlaceMealInput, MealPlacementReceipt } from "./meal-placement.ts";
 import {
@@ -41,6 +42,7 @@ const MemoryProposalInput = Schema.Struct({
 export const AssistantInputs = {
   placeMeal: PlaceMealInput,
   removeMeal: RemoveMealInput,
+  moveMeal: MoveMealInput,
   requestChoreTransfer: Schema.Struct(Struct.omit(RequestChoreTransfer.fields, ["operationId"])),
   respondChoreTransfer: Schema.Struct(Struct.omit(RespondChoreTransfer.fields, ["operationId"])),
   skipChore: Schema.Struct(Struct.omit(SkipChore.fields, ["operationId"])),
@@ -69,6 +71,7 @@ export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
   placeMeal: MealPlacementReceipt,
   removeMeal: MealRemovalReceipt,
+  moveMeal: MealMoveReceipt,
   requestChoreTransfer: ChoreTransferReceipt.check(
     Schema.makeFilter((value) => value.action === "request"),
   ),

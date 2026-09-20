@@ -135,6 +135,7 @@ test("unreconciled write calls cannot be silently discarded from model history",
   for (const name of [
     "placeMeal",
     "removeMeal",
+    "moveMeal",
     "addGrocery",
     "saveFoodPreferences",
     "skipChore",
