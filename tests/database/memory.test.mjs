@@ -11,6 +11,7 @@ for (const file of [
   "tests/database/approval-fixture.sql",
   "supabase/migrations/20260919213407_native_action_approvals.sql",
   "supabase/migrations/20260920054303_native_private_memory.sql",
+  "supabase/migrations/20260920055247_native_memory_confirmation.sql",
 ])
   db.file(file);
 beforeEach(() =>
