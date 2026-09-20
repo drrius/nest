@@ -1,6 +1,7 @@
 import * as Schema from "effect/Schema";
 import * as Struct from "effect/Struct";
 import { CompleteChore, Completion } from "./chores.ts";
+import { SaveFoodPreferences, FoodPreferenceReceipt } from "./food.ts";
 import {
   AddGrocery,
   EditGrocery,
@@ -12,6 +13,7 @@ import {
 
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  saveFoodPreferences: Schema.Struct(Struct.omit(SaveFoodPreferences.fields, ["operationId"])),
   completeChore: Schema.Struct(Struct.omit(CompleteChore.fields, ["operationId"])),
   addGrocery: Schema.Struct(Struct.omit(AddGrocery.fields, ["operationId", "itemId"])),
   editGrocery: Schema.Struct(Struct.omit(EditGrocery.fields, ["operationId"])),
@@ -20,6 +22,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  saveFoodPreferences: FoodPreferenceReceipt,
   completeChore: Completion,
   addGrocery: GroceryReceipt,
   editGrocery: GroceryReceipt,

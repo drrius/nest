@@ -8,6 +8,7 @@ import type { IdentityConfig } from "../supabase-identity.ts";
 import { choreTools } from "../chores/tools.ts";
 import { groceryTools } from "../groceries/tools.ts";
 import { assistantCommands } from "./commands.ts";
+import { readFoodPreferencesTool } from "../food/tools.ts";
 
 export function householdTools(
   request: Request,
@@ -44,6 +45,11 @@ export function householdTools(
     });
   };
   const tools = {
+    readFoodPreferences: readFoodPreferencesTool(bound, config),
+    saveFoodPreferences: write(
+      "saveFoodPreferences",
+      "Save only explicitly requested changes to the requesting member's food preferences. Read first, use its exact revision (0 only for unconfigured setup), and preserve every field not requested to change. Never infer a calorie goal or remove an existing restriction without a request. A missing profile is not permission to assume no restrictions: ask for any unspecified required choices. Preferences inform household meal planning; calorie goals stay private. The server retains retry identity.",
+    ),
     listChores: chores.listChores,
     listGroceries: groceries.listGroceries,
     listGroceryCategories: groceries.listGroceryCategories,
