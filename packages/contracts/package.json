@@ -23,7 +23,8 @@
     "./meal-removal": "./src/meal-removal.ts",
     "./meal-move": "./src/meal-move.ts",
     "./meal-replacement": "./src/meal-replacement.ts",
-    "./meal-library": "./src/meal-library.ts"
+    "./meal-library": "./src/meal-library.ts",
+    "./recipe-creation": "./src/recipe-creation.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
