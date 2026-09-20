@@ -106,3 +106,46 @@ test("native grocery clients converge across lost receipts and restarted SQLite 
     "3",
   );
 });
+
+test("partner edit/check convergence leaves a stale opposite toggle conflicted", async (t) => {
+  const remote = await postgrestFixture(t, files),
+    local = await sqliteFixture(t);
+  remote.db.sql(
+    `insert into public.grocery_items(id,household_id,name) values('${target}','${household}','Milk')`,
+  );
+  const base = await start(
+    t,
+    createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" }),
+  );
+  const client = groceryClient(
+    base,
+    { actor, household },
+    Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
+  );
+  const other = groceryClient(
+    base,
+    { actor: partner, household },
+    Effect.succeed({ access_token: remote.partnerBearer, user: { id: partner } }),
+  );
+  const run = Effect.runPromise;
+  const session = await run(local.store.activate({ actor, household }, lease));
+  const flow = groceryFlow({ store: local.store, session }, client);
+  await run(flow.sync);
+  const original = (await run(flow.read)).groceries[0];
+  await run(flow.check(original, true, operation));
+  await run(flow.check(original, false, "50000000-0000-4000-8000-000000000004"));
+  remote.db.sql(`update public.grocery_items set name='Oat milk' where id='${target}'`);
+  await run(
+    other.check({ operationId: lease, itemId: target, expectedVersion: "2", checked: true }),
+  );
+  await run(flow.sync);
+  const result = await run(flow.read);
+  assert.equal(result.pending.length, 1);
+  assert.equal(result.pending[0].reason, "changed");
+  assert.equal(result.groceries[0].checked, true);
+  assert.equal(result.groceries[0].version, "3");
+  assert.equal(
+    remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
+    "3",
+  );
+});

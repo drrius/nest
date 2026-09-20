@@ -219,3 +219,65 @@ test("rapid opposite taps are durable while duplicate callbacks do not add anoth
   assert.equal(view.data.pending.length, 2);
   assert.equal(view.data.groceries[0].checked, false);
 });
+
+test("a compatible partner check cannot rebase a queued opposite intent past partner edits", async (t) => {
+  const db = await fixture(t);
+  await run(db.store.saveGroceries(db.session, [item]));
+  const calls = [];
+  const flow = groceryFlow(context(db), {
+    list: () => Effect.succeed([{ ...item, name: "Oat milk", version: "3", checked: true }]),
+    check: (command) => {
+      calls.push(command);
+      if (command.checked)
+        return Effect.succeed({ ...receipt(command, "3"), outcome: "already_applied" });
+      return command.expectedVersion === "3"
+        ? Effect.succeed(receipt(command, "4"))
+        : fail("conflict");
+    },
+  });
+  await run(flow.check(item, true, operation));
+  await run(flow.check(item, false, second));
+  await run(flow.sync);
+  assert.deepEqual(
+    calls.map((command) => command.expectedVersion),
+    ["1", "1"],
+  );
+  const view = await run(flow.read);
+  assert.equal(view.pending[0].reason, "changed");
+  assert.equal(view.groceries[0].checked, true);
+  assert.equal(view.groceries[0].name, "Oat milk");
+});
+
+test("a late opposite tap after compatible acknowledgment still uses its observed version after restart", async (t) => {
+  const db = await fixture(t);
+  await run(db.store.saveGroceries(db.session, [item]));
+  await run(
+    db.store.enqueue(db.session, {
+      kind: "groceries.setChecked",
+      operation,
+      target,
+      expected: "1",
+      checked: true,
+    }),
+  );
+  await run(db.store.prepare(db.session));
+  await run(
+    db.store.acknowledge(db.session, {
+      operation,
+      version: "3",
+      value: true,
+      canRebase: false,
+    }),
+  );
+  const reopened = db.reopen();
+  await run(
+    reopened.store.enqueue(db.session, {
+      kind: "groceries.setChecked",
+      operation: second,
+      target,
+      expected: "1",
+      checked: false,
+    }),
+  );
+  assert.equal((await run(reopened.store.prepare(db.session))).expected, "1");
+});

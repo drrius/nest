@@ -33,6 +33,7 @@ export function groceryFlow({ store, session }: OfflineAccount, client: GroceryC
         operation: wire.operation,
         version: result.success.version,
         value: result.success.checked,
+        canRebase: result.success.outcome === "applied" || result.success.version === wire.expected,
       });
       notice = "Grocery changes saved.";
     }

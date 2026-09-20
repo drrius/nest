@@ -100,6 +100,7 @@ function predecessor(rows: Operation[], intent: Intent, snapshot: Item) {
   // second tap. Never rebase onto a partner refresh or an unrelated old receipt.
   if (
     intent.kind !== "groceries.setChecked" ||
+    previous.rebase_allowed !== 1 ||
     !previous.wire ||
     previous.result_version !== snapshot.version
   )
@@ -109,7 +110,7 @@ function predecessor(rows: Operation[], intent: Intent, snapshot: Item) {
 
 function includesExpected(rows: Operation[], latest: Operation, expected: string) {
   let current: Operation | undefined = latest;
-  while (current?.status === "acknowledged" && current.wire) {
+  while (current?.status === "acknowledged" && current.wire && current.rebase_allowed === 1) {
     const wire = decodeIntent(JSON.parse(current.wire));
     if (
       wire.expected === expected ||

@@ -12,7 +12,8 @@ export function prepare(database: Database, session: Session, kind?: Kind) {
     if (next.wire) return decodeIntent(JSON.parse(next.wire));
     const predecessor = rows.find((row) => row.operation === next.predecessor);
     const intent = decodeIntent(JSON.parse(next.intent));
-    const wire = { ...intent, expected: predecessor?.result_version ?? next.expected };
+    const version = predecessor?.rebase_allowed === 1 ? predecessor.result_version : null;
+    const wire = { ...intent, expected: version ?? next.expected };
     await tx.run(
       `UPDATE offline_operations SET wire = ?
       WHERE actor = ? AND household = ? AND operation = ?`,
@@ -32,6 +33,7 @@ const Receipt = Schema.Struct({
   operation: Schema.String.check(Schema.isUUID()),
   version: Schema.NonEmptyString,
   value: Schema.Boolean,
+  canRebase: Schema.optional(Schema.Boolean),
 });
 export type Receipt = typeof Receipt.Type;
 export function acknowledge(database: Database, session: Session, receipt: Receipt) {
@@ -49,9 +51,9 @@ export function acknowledge(database: Database, session: Session, receipt: Recei
       return;
     }
     await tx.run(
-      `UPDATE offline_operations SET status = 'acknowledged', result_version = ?
+      `UPDATE offline_operations SET status = 'acknowledged', result_version = ?, rebase_allowed = ?
       WHERE actor = ? AND household = ? AND operation = ?`,
-      [receipt.version, ...scope(session), receipt.operation],
+      [receipt.version, receipt.canRebase === false ? 0 : 1, ...scope(session), receipt.operation],
     );
     await tx.run(
       `INSERT INTO offline_items VALUES (?, ?, ?, ?, ?, ?)

@@ -37,4 +37,9 @@ export const initialize = (database: Database) =>
       status TEXT NOT NULL CHECK(status IN ('pending', 'conflict', 'acknowledged')),
       result_version TEXT, reason TEXT,
       UNIQUE(actor, household, operation))`);
+    const columns = await tx.all<{ name: string }>("PRAGMA table_info(offline_operations)");
+    if (!columns.some((column) => column.name === "rebase_allowed"))
+      await tx.run(
+        "ALTER TABLE offline_operations ADD COLUMN rebase_allowed INTEGER NOT NULL DEFAULT 0",
+      );
   });
