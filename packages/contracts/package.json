@@ -9,7 +9,8 @@
     "./conversations": "./src/conversations.ts",
     "./assistant-actions": "./src/assistant-actions.ts",
     "./food": "./src/food.ts",
-    "./cooking": "./src/cooking.ts"
+    "./cooking": "./src/cooking.ts",
+    "./memory": "./src/memory.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
