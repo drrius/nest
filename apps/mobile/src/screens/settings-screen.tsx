@@ -23,6 +23,11 @@ export default function SettingsScreen() {
         />
       </Card>
       <Card>
+        <Section title="Private memory" />
+        <Note>Review and confirm what Nest may remember for you.</Note>
+        <NativeAction label="Manage private memory" onPress={() => router.push("/memory")} />
+      </Card>
+      <Card>
         <Section title="Household" />
         <Note>Cooking choices and meal slots shared with your partner.</Note>
         <NativeAction

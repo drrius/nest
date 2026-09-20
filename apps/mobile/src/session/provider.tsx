@@ -1,5 +1,7 @@
 import { sessionAssistant } from "./assistant-client";
 import { sessionFood } from "./food-client";
+import { sessionMemory } from "./memory-client";
+import type { MemoryClient } from "../memory/client";
 import { sessionCooking } from "./cooking-client";
 import type { CookingClient } from "../cooking/client";
 import type { FoodClient } from "../food/client";
@@ -48,6 +50,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  memory: MemoryClient | null;
   cooking: CookingClient | null;
   food: FoodClient | null;
   assistant: AssistantClient | null;
@@ -103,9 +106,10 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
     household = member?.householdId;
   return useMemo(() => {
     if (!actor || !household || !runtime.current || !configuration)
-      return { food: null, cooking: null };
+      return { food: null, cooking: null, memory: null };
     const { auth } = runtime.current;
     return {
+      memory: sessionMemory(auth, { actor, household }, configuration.apiUrl),
       food: sessionFood(auth, { actor, household }, configuration.apiUrl),
       cooking: sessionCooking(auth, { actor, household }, configuration.apiUrl),
     };
@@ -119,7 +123,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const busy = useRef(false);
   const runtime = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
-  const { food, cooking } = usePreferenceClients(member, runtime);
+  const { food, cooking, memory } = usePreferenceClients(member, runtime);
   const { chores, groceries, assistant } = useMemo(() => {
     if (!member || !runtime.current || !configuration)
       return { chores: null, groceries: null, assistant: null };
@@ -167,6 +171,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <SessionContext
       value={{
+        memory,
         cooking,
         food,
         chores,
