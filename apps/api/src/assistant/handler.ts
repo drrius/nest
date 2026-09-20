@@ -11,8 +11,7 @@ import { ApiFailure, failureResponse } from "../errors.ts";
 import { bearerToken, currentMember } from "../identity.ts";
 import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { commandBody } from "../request-body.ts";
-import { choreTools } from "../chores/tools.ts";
-import { groceryTools } from "../groceries/tools.ts";
+import { householdTools } from "./tools.ts";
 import { recoverTurn } from "./recovery.ts";
 import { conversationStore } from "./store.ts";
 import { discoverConversations } from "./discovery.ts";
@@ -22,18 +21,6 @@ const parse = <A>(schema: Schema.Codec<A>, value: unknown) =>
   Schema.decodeUnknownEffect(schema)(value, { onExcessProperty: "error" }).pipe(
     Effect.mapError(() => new ApiFailure({ code: "invalid_request" })),
   );
-function readTools(request: Request, config: IdentityConfig, householdId: string): AssistantTools {
-  const headers = new Headers(request.headers);
-  headers.set("x-nest-household", householdId);
-  const bound = new Request(request.url, { headers, signal: request.signal });
-  const chores = choreTools(bound, config),
-    groceries = groceryTools(bound, config);
-  return {
-    listChores: chores.listChores,
-    listGroceries: groceries.listGroceries,
-    listGroceryCategories: groceries.listGroceryCategories,
-  };
-}
 export function assistantHandler(config: IdentityConfig, model?: AssistantModel) {
   return (request: Request) => {
     const path = new URL(request.url).pathname;
@@ -72,7 +59,7 @@ export function assistantHandler(config: IdentityConfig, model?: AssistantModel)
       };
       return yield* startResponse(request, store, input, {
         model,
-        tools: readTools(request, config, member.householdId),
+        tools: householdTools(request, config, { householdId: member.householdId, turn: input }),
       });
     }).pipe(
       Effect.provide(supabaseIdentity(config)),

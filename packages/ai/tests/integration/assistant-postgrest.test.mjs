@@ -273,18 +273,28 @@ test("a membership move mid-turn cannot read another household even without a cl
       body: JSON.stringify(input),
     }),
   );
-  const stream = await response.text();
+  const parts = [];
+  await assert.rejects(
+    async () => {
+      for await (const part of response.body) parts.push(part);
+    },
+    { code: "forbidden" },
+  );
+  const stream = Buffer.concat(parts).toString();
   assert.ok(stream.includes("forbidden"));
   assert.ok(!stream.includes("Private other home"));
-  const prompt = JSON.stringify(model.doStreamCalls[1].prompt);
-  assert.ok(prompt.includes("forbidden"));
-  assert.ok(!prompt.includes("Private other home"));
+  assert.equal(model.doStreamCalls.length, 1, "failed read stops the model before another step");
+  f.db.sql(`update public.household_members set household_id='${id(10)}' where user_id='${id(1)}'`);
   const saved = await handler(
     new Request(`http://localhost/v1/assistant/conversation?id=${input.conversationId}`, {
       headers,
     }),
   );
   const history = await saved.json();
-  assert.equal(history.conversation.revision, "2");
+  assert.equal(
+    history.conversation.revision,
+    "1",
+    "revoked membership cannot finalize; the turn remains recoverable",
+  );
   assert.ok(!JSON.stringify(history).includes("Private other home"));
 });

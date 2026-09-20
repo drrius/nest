@@ -65,8 +65,8 @@ function ConversationContent({ runtime }: { runtime: ConversationRuntime }) {
       ListHeaderComponent={
         <>
           <Note>
-            Private to you. Nest can currently read chores and groceries. Use their screens to make
-            changes.
+            Private to you. Nest can complete requested chores and update groceries. Saved action
+            receipts appear below. Money actions are not available here yet.
           </Note>
           {view.notice ? <Note>{view.notice}</Note> : null}
           {!view.loaded && view.busy ? <Note>Loading saved conversation…</Note> : null}

@@ -2,6 +2,7 @@ import type { AssistantMessage } from "@nest/ai/chat";
 import { Link } from "expo-router";
 import { Text } from "react-native";
 import { Card, Note } from "./page";
+import { actionResult } from "../assistant/action-result";
 import { useQuiet } from "../theme";
 export function AssistantMessageCard({ message }: { message: AssistantMessage }) {
   const colors = useQuiet();
@@ -41,7 +42,16 @@ export function AssistantMessageCard({ message }: { message: AssistantMessage })
               Open groceries
             </Link>
           );
-        return null;
+        const action = actionResult(part);
+        return action ? (
+          <Link
+            key={index}
+            href={action.href}
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
+          >
+            {action.label}
+          </Link>
+        ) : null;
       })}
       {message.parts.length === 0 ? <Note>No response content was saved.</Note> : null}
     </Card>
