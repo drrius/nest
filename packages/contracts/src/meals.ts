@@ -10,6 +10,7 @@ export const MealWeekStart = CalendarDate.check(
       new Date(`${value}T00:00:00.000Z`).getUTCDay() === 1 && value <= "9999-12-20",
   ),
 );
+export const ReadMealWeek = Schema.Struct({ weekStart: MealWeekStart });
 export const MealWeekBaseline = Schema.Struct({
   weekStart: MealWeekStart,
   revision: Revision,
