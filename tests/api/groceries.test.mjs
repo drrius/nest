@@ -20,6 +20,7 @@ const item = {
   version: "9007199254740993",
   checked: false,
   legacyState: "active",
+  category: null,
 };
 const calls = [];
 let mode = "ok",
@@ -114,6 +115,7 @@ test("grocery snapshots bind verified household and retain bigint strings and le
       version: item.version,
       checked: false,
       legacyClaimed: true,
+      categoryName: null,
     },
   ]);
   const query = new URL(calls.at(-1).url, config.url).searchParams;
@@ -271,4 +273,30 @@ test("a stale household expectation blocks grocery reads, writes and AI tools", 
           call.url.startsWith("/auth/") || call.url.startsWith("/rest/v1/household_members"),
       ),
   );
+});
+
+test("grocery categories are joined into the same authorized snapshot and cannot expose a foreign label", async () => {
+  const category = { categoryId: id(30), householdId: home, name: "Produce", archivedAt: null };
+  rows = [{ ...item, categoryId: id(30), category }];
+  let response = await call();
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).groceries[0].categoryName, "Produce");
+  assert.ok(
+    new URL(calls.at(-1).url, config.url).searchParams
+      .get("select")
+      .includes("category:grocery_categories"),
+  );
+  for (const patch of [{ householdId: id(20) }, { categoryId: id(31) }, { name: "" }]) {
+    rows = [{ ...item, categoryId: id(30), category: { ...category, ...patch } }];
+    assert.equal((await call()).status, 503);
+  }
+  for (const value of [null, { ...category, archivedAt: "2026-09-20T00:00:00Z" }]) {
+    rows = [{ ...item, categoryId: id(30), category: value }];
+    response = await call();
+    assert.equal(response.status, 200);
+    const result = (await response.json()).groceries[0];
+    assert.equal(result.categoryId, id(30));
+    assert.equal(result.categoryName, null);
+  }
+  rows = [item];
 });

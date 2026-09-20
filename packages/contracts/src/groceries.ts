@@ -31,6 +31,7 @@ export const CheckGrocery = Schema.Struct({
   checked: Schema.Boolean,
 });
 export const Grocery = Schema.Struct({
+  categoryName: Schema.optionalKey(Schema.NullOr(Schema.NonEmptyString)),
   itemId: Uuid,
   name: Schema.NonEmptyString,
   quantity: OptionalText,

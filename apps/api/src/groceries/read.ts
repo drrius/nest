@@ -8,6 +8,13 @@ import { requestDocument } from "../supabase-request.ts";
 
 const GroceryRow = Schema.Struct({
   ...Grocery.fields,
+  category: Schema.NullOr(
+    Schema.Struct({
+      ...GroceryCategory.fields,
+      householdId: Uuid,
+      archivedAt: Schema.NullOr(Schema.String),
+    }),
+  ),
   householdId: Uuid,
   legacyState: Schema.Literals(["active", "claimed"]),
   legacyClaimed: Schema.optionalKey(Schema.Boolean),
@@ -34,7 +41,7 @@ export function groceryReads(config: IdentityConfig, caller: AuthorizedCaller) {
       Effect.gen(function* () {
         const query = new URLSearchParams({
           select:
-            "itemId:id,householdId:household_id,name,quantity,unit,categoryId:category_id,version:native_version::text,checked:native_checked,legacyState:state",
+            "itemId:id,householdId:household_id,name,quantity,unit,categoryId:category_id,version:native_version::text,checked:native_checked,legacyState:state,category:grocery_categories(categoryId:id,householdId:household_id,name,archivedAt:archived_at)",
           household_id: `eq.${caller.member.householdId}`,
           state: "in.(active,claimed)",
           order: "sort_order.asc,created_at.asc,id.asc",
@@ -47,12 +54,15 @@ export function groceryReads(config: IdentityConfig, caller: AuthorizedCaller) {
         );
         const rows = yield* bounded(Schema.Array(GroceryRow), document, 500);
         if (
-          rows.some((row) => row.householdId !== caller.member.householdId) ||
+          rows.some(
+            (row) => row.householdId !== caller.member.householdId || !matchesCategory(row),
+          ) ||
           new Set(rows.map((row) => row.itemId)).size !== rows.length
         )
           return yield* new ApiFailure({ code: "unavailable" });
-        return rows.map(({ householdId: _household, legacyState, ...row }) => ({
+        return rows.map(({ householdId: _household, legacyState, category, ...row }) => ({
           ...row,
+          categoryName: category?.archivedAt === null ? category.name : null,
           legacyClaimed: legacyState === "claimed",
         }));
       }),
@@ -79,4 +89,11 @@ export function groceryReads(config: IdentityConfig, caller: AuthorizedCaller) {
         return rows.map(({ householdId: _household, ...row }) => row);
       }),
   };
+}
+
+function matchesCategory(row: typeof GroceryRow.Type) {
+  return (
+    row.category === null ||
+    (row.category.householdId === row.householdId && row.category.categoryId === row.categoryId)
+  );
 }
