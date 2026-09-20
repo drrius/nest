@@ -18,6 +18,7 @@ jobs:
       - run: pnpm typecheck
       - run: pnpm test:tooling
       - run: pnpm test:calendar
+      - run: pnpm test:assistant
       - run: pnpm test:session
       - run: pnpm test:checklist
       - run: pnpm test:chores

@@ -40,6 +40,8 @@ function Navigation() {
           state.status === "ready" || state.status === "loading" || state.status === "unavailable"
         }
       >
+        <Stack.Screen name="assistant" options={{ title: "Private assistant" }} />
+        <Stack.Screen name="conversation" options={{ title: "Private conversation" }} />
         <Stack.Screen name="household" options={{ title: "Today" }} />
         <Stack.Screen name="checklist" options={{ title: "Groceries" }} />
         <Stack.Screen name="grocery-edit" options={{ title: "Grocery" }} />
