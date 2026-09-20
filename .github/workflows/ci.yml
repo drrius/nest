@@ -23,6 +23,7 @@ jobs:
       - run: pnpm test:cooking
       - run: pnpm test:setup
       - run: pnpm test:routines
+      - run: pnpm test:meals
       - run: pnpm test:notifications
       - run: pnpm test:memory
       - run: pnpm test:session

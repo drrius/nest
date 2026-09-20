@@ -34,7 +34,8 @@
     "test:memory": "node --test apps/mobile/tests/memory-*.test.mjs",
     "test:notifications": "node --test apps/mobile/tests/notification-*.test.mjs",
     "test:setup": "node --test apps/mobile/tests/setup-*.test.mjs",
-    "test:routines": "node --test apps/mobile/tests/routine-*.test.mjs"
+    "test:routines": "node --test apps/mobile/tests/routine-*.test.mjs",
+    "test:meals": "node --test apps/mobile/tests/meal-*.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",

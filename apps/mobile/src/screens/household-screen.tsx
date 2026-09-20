@@ -104,6 +104,9 @@ function HouseholdLinks({ count }: { count: number }) {
       <Link href="/assistant" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
         Private assistant
       </Link>
+      <Link href="/meal-week" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+        Meals
+      </Link>
       <Link href="/routines" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
         Manage routines
       </Link>
