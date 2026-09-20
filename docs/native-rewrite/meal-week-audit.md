@@ -12,7 +12,7 @@ The leftover trigger rejects missing/removed sources, nested leftovers and sourc
 
 Legacy entry/definition `updated_at` uses transaction `now()`. It is not a monotonic edit generation: multiple updates in one transaction can share a timestamp. Native week concurrency therefore must not infer an untouched week from these timestamps or a list of currently occupied slots; empty-slot races and remove/reinsert changes also matter.
 
-Only these source sections have been audited for this first read-contract slice. Later legacy move, removal, recipe-edit and template lifecycle migrations need their own targeted audit before reuse. No legacy SQL or UI was copied into this change. Date helpers reuse Nest's already audited pure civil-date rules.
+The first read-contract slice audited only these source sections and copied no legacy SQL or UI. Date helpers reuse Nest's already audited pure civil-date rules. The storage-fixture audit below extends that review; recipe-edit/template lifecycle commands still need targeted audit before reuse.
 
 ## Read contract now implemented
 
@@ -22,9 +22,19 @@ Stored title validation follows PostgreSQL's ASCII-space trim and Unicode code-p
 
 The pure week helper uses civil dates and UTC arithmetic. It returns all seven days regardless of timezone/DST and rejects partial weeks beyond the supported years 0001–9999. The last complete Monday is 9999-12-20. Adjacent navigation rejects crossing that range instead of wrapping.
 
-## Next transaction work — not implemented by the read contract
+## Storage and fixture audit
 
-- Add gated per-household/week monotonic revisions, maintained for all relevant legacy and native entry writes, including moves between weeks. Read entries and revision from one authenticated, RLS-backed statement snapshot.
+The gated `20260920161318_native_meal_week_snapshots.sql` now implements per-household/week revisions without backfilling or rewriting existing meals. An absent counter means revision zero. A trigger increments the affected old/new weeks for every entry insert/update/delete within the native complete-week range, including legacy writers and unslotted ideas. Each old/new side outside years 0001–9999 or the last complete week is skipped independently, preserving legacy infinity/BC/out-of-range writes; moving into or out of the supported range still advances the supported side. It uses deterministic ordering and transactional upserts. An overflowing counter fails and rolls back the meal edit; household cascade cannot recreate counters for a deleted household. Clients have tenant-scoped SELECT only; the private definer is trigger-only and cannot be directly invoked.
+
+The snapshot RPC is authenticated, STABLE, security invoker and RLS-backed. Revision and entries use the same statement snapshot. It returns all active slotted meals in date/breakfast/lunch/dinner order, regardless of visibility preferences; legacy ideas and removed entries remain stored. Strict canonical Monday/date bounds and an overflow probe prevent partial or silently truncated weeks.
+
+`tests/database/legacy-meals/` deliberately copies only the initial migration's category/meal tables, indexes, timestamp trigger and leftover trigger declaration. `read-policy.sql` reproduces the original select RLS and privilege statements. The latest pinned `20260905072131_serialize_leftover_source_dates.sql` is copied as `leftovers.sql` (only trailing blank-line cleanup): it adds a shared lock on the source and validates active child dates/source kind. This supersedes the initial trigger's date-race gap; the original trigger still does not fire on removal-only updates. No legacy placement/materialization/move/removal command is used in this fixture. The fixture omits unrelated shopping/ledger infrastructure and does not claim full migration-chain coverage.
+
+Nine disposable PostgreSQL cases verify tenant/revocation/privilege boundaries, untouched legacy data, same-transaction timestamp ABA, moves across weeks, ideas/removal/rollback, concurrent increments, a controlled read/write snapshot race, full 21-slot boards, malformed/boundary weeks, exact bigint overflow rollback household cascades and legacy unsupported-date transitions. All regular snapshots decode through the shared Effect contract. Isolated Supabase security advisors report no issues. No API/native action is exposed by this migration.
+
+## Next transaction work — still unimplemented
+
+- Wire the authorized snapshot through API, native cache/board and assistant reads. The database revision/snapshot foundation is implemented above; production migration remains gated.
 - Native manual writes bind a stable actor/household/operation identity, exact payload and expected week revision. Check explicit occupied-slot identity before replacement. Cross-week moves lock and validate both weeks; stale forms must conflict rather than silently overwrite.
 - Preserve entry IDs, history, recipe snapshots and grocery provenance. Do not clear materialization markers or post groceries/money as a side effect. Define and test dependent-leftover behavior before enabling moves/removal.
 - Add shared authorized services, native seven-day board/forms, corresponding private AI tools and lost-response/concurrent-partner integration tests. Manual actions remain online-only; loaded snapshots may be viewed offline.
