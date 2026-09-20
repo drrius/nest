@@ -34,7 +34,8 @@ export function routineEditPatch(
 ) {
   const patch: Record<string, unknown> = {};
   // Compare before trimming: a schedule-only edit must not normalize a historical title.
-  if (title !== original.title) patch.title = title.trim();
+  const candidate = title.trim();
+  if (title !== original.title && candidate !== original.title) patch.title = candidate;
   const nextSchedule = scheduleValue(schedule);
   const previousSchedule = scheduleValue(scheduleDraft(original.schedule, ""));
   if (JSON.stringify(nextSchedule) !== JSON.stringify(previousSchedule))

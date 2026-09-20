@@ -45,3 +45,22 @@ test("editing title only never resubmits recurrence or responsibility", () => {
     "invalid",
   );
 });
+
+test("whitespace around an unchanged title does not create a mutation or add an unchanged field", () => {
+  assert.deepEqual(
+    routineEditPatch(base, "  Clean  ", scheduleDraft(base.schedule, today), base.assignment),
+    { status: "unchanged" },
+  );
+  assert.deepEqual(
+    routineEditPatch(
+      base,
+      " Clean ",
+      scheduleDraft({ kind: "weekly", weekday: 2 }, today),
+      base.assignment,
+    ),
+    {
+      status: "changed",
+      patch: { schedule: { kind: "weekly", weekday: 2 } },
+    },
+  );
+});
