@@ -1,3 +1,4 @@
+import { aiCommandFiles } from "./ai-command-files.mjs";
 import assert from "node:assert/strict";
 import { after, beforeEach, test } from "node:test";
 import { createRequire } from "node:module";
@@ -7,20 +8,7 @@ const require = createRequire(new URL("../../packages/contracts/package.json", i
 const Schema = await import(require.resolve("effect/Schema"));
 const db = startFixturePostgres();
 after(() => db.stop());
-for (const file of [
-  "tests/database/ai-command-fixture.sql",
-  "supabase/migrations/20260919205503_native_chore_receipts.sql",
-  "supabase/migrations/20260919214311_native_grocery_check_receipts.sql",
-  "supabase/migrations/20260920002735_native_grocery_commands.sql",
-  "supabase/migrations/20260919220034_native_private_conversations.sql",
-  "supabase/migrations/20260920022841_native_ai_turn_ownership.sql",
-  "supabase/migrations/20260920033321_native_ai_command_journal.sql",
-  "supabase/migrations/20260920041525_native_food_preferences.sql",
-  "supabase/migrations/20260920044816_native_ai_food_preferences.sql",
-  "supabase/migrations/20260920050551_native_cooking_preferences.sql",
-  "supabase/migrations/20260920053446_native_ai_cooking_preferences.sql",
-])
-  db.file(file);
+for (const file of aiCommandFiles) db.file(file);
 beforeEach(() =>
   db.sql("delete from public.nest_food_profiles; delete from public.nest_food_profile_receipts"),
 );

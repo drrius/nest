@@ -1,5 +1,6 @@
 import * as Schema from "effect/Schema";
 import * as Struct from "effect/Struct";
+import { MemoryChange, MemoryApprovalEnvelope, RemoveMemory, MemoryReceipt } from "./memory.ts";
 import { CompleteChore, Completion } from "./chores.ts";
 import { SaveCookingPreferences, CookingPreferenceReceipt } from "./cooking.ts";
 import { SaveFoodPreferences, FoodPreferenceReceipt } from "./food.ts";
@@ -12,8 +13,16 @@ import {
   GroceryCheckReceipt,
 } from "./groceries.ts";
 
+const MemoryProposalInput = Schema.Struct({
+  ...MemoryChange.fields,
+  memoryId: Schema.NullOr(MemoryChange.fields.memoryId),
+}).check(
+  Schema.makeFilter((input) => (input.memoryId === null) === (input.expectedRevision === "0")),
+);
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeMemory: MemoryProposalInput,
+  removeMemory: Schema.Struct(Struct.omit(RemoveMemory.fields, ["operationId"])),
   saveCookingPreferences: Schema.Struct(
     Struct.omit(SaveCookingPreferences.fields, ["operationId"]),
   ),
@@ -26,6 +35,8 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeMemory: MemoryApprovalEnvelope,
+  removeMemory: MemoryReceipt,
   saveCookingPreferences: CookingPreferenceReceipt,
   saveFoodPreferences: FoodPreferenceReceipt,
   completeChore: Completion,

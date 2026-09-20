@@ -1,4 +1,5 @@
 import * as Schema from "effect/Schema";
+import { MemoryApprovalEnvelope } from "@nest/contracts/memory";
 import { AssistantReceipts, type AssistantAction } from "@nest/contracts/assistant-actions";
 const Output = Schema.Struct({
   ok: Schema.Boolean,
@@ -6,6 +7,8 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeMemory: "Review memory proposal",
+  removeMemory: "Saved memory deleted",
   saveCookingPreferences: "Household cooking preferences saved",
   saveFoodPreferences: "Your food preferences saved",
   completeChore: "Chore completed",
@@ -15,6 +18,8 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeMemory: "/memory",
+  removeMemory: "/memory",
   saveCookingPreferences: "/cooking-preferences",
   saveFoodPreferences: "/food-preferences",
   completeChore: "/household",
@@ -38,7 +43,7 @@ export function actionResult(part: { type: string; state?: unknown; output?: unk
     };
   const schema: Schema.Codec<object> = AssistantReceipts[action];
   if (!Schema.is(schema)(output.value)) return uncertain;
-  return { label: successLabel(action, output.value), href };
+  return { label: successLabel(action, output.value), href: successHref(action, output.value) };
 }
 function failureLabel(code: string | undefined, fallback: string) {
   if (code === "conflict")
@@ -51,4 +56,10 @@ function successLabel(action: AssistantAction, receipt: object) {
   if (action === "checkGrocery" && "checked" in receipt && !receipt.checked)
     return "Grocery unchecked";
   return labels[action];
+}
+
+function successHref(action: AssistantAction, value: object) {
+  if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
+    return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
+  return destinations[action];
 }
