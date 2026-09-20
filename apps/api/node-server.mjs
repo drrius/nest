@@ -22,7 +22,7 @@ export function nodeServer(handler) {
                 ? value.map((item) => [key, item])
                 : [[key, value]],
           ),
-          body: method === "GET" || method === "HEAD" ? undefined : Readable.toWeb(incoming),
+          body: method === "GET" || method === "HEAD" ? undefined : requestStream(incoming),
           duplex: "half",
           signal: abort.signal,
         });
@@ -37,4 +37,21 @@ export function nodeServer(handler) {
       });
     },
   );
+}
+
+// Cancelling a rejected body must not abort the response socket. Drain discarded
+// bytes with Node backpressure instead of retaining an unread web-stream queue.
+function requestStream(incoming) {
+  const iterator = incoming.iterator({ destroyOnReturn: false });
+  return new ReadableStream({
+    async pull(controller) {
+      const { value, done } = await iterator.next();
+      if (done) controller.close();
+      else controller.enqueue(value);
+    },
+    cancel() {
+      void iterator.return().catch(() => undefined);
+      incoming.resume();
+    },
+  });
 }

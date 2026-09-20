@@ -47,3 +47,30 @@ test("the runnable HTTP adapter forwards command bytes and non-cacheable respons
     actor: "Bearer fixture",
   });
 });
+
+test("rejecting a partially uploaded body preserves the response without waiting for upload completion", async (t) => {
+  const { request: httpRequest } = await import("node:http");
+  const url = await listen(t, async (request) => {
+    const reader = request.body.getReader();
+    await reader.read();
+    await reader.cancel();
+    assert.equal(request.signal.aborted, false);
+    return new Response("rejected", { status: 400 });
+  });
+  await new Promise((resolve, reject) => {
+    const request = httpRequest(url, { method: "POST" }, (response) => {
+      assert.equal(response.statusCode, 400);
+      response.resume();
+      response.once("end", () => {
+        request.destroy();
+        resolve();
+      });
+    });
+    request.on("error", reject);
+    request.setTimeout(2000, () => {
+      request.destroy();
+      reject(new Error("Waited for unfinished upload"));
+    });
+    request.write("first chunk");
+  });
+});
