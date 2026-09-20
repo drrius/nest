@@ -74,6 +74,12 @@ function HouseholdChores({
             Private assistant
           </Link>
           <ChoreStatus view={view} />
+          <Link
+            href="/food-preferences"
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
+          >
+            Your food preferences
+          </Link>
           <NativeAction label="Refresh and retry saved changes" onPress={refresh} />
           <ChoreConflicts view={view} discard={discard} />
         </>
