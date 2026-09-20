@@ -1,3 +1,4 @@
+import { mealLibraryTools } from "../meals/library-tools.ts";
 import { mealWriteTools } from "../meals/write-tools.ts";
 import { readMealWeekTool } from "../meals/tools.ts";
 import { readChoreTransfersTool } from "../chores/transfer-tool.ts";
@@ -59,6 +60,7 @@ export function householdTools(
     ...setupTools(bound, config),
     readChoreTransfers: readChoreTransfersTool(bound, config),
     readMealWeek: readMealWeekTool(bound, config),
+    ...mealLibraryTools(bound, config),
     readRoutines: readRoutinesTool(bound, config),
     readNotificationPreferences: readNotificationPreferencesTool(bound, config),
     readMemories: readMemoriesTool(bound, config),

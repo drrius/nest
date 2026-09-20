@@ -1,3 +1,4 @@
+import { mealLibraryRoute } from "./library-read.ts";
 import { replaceMeal } from "./replacement.ts";
 import * as Effect from "effect/Effect";
 import type { AuthorizedCaller } from "../chores/service.ts";
@@ -10,6 +11,8 @@ import { removeMeal } from "./removal.ts";
 export function mealRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   if (new URL(request.url).pathname === "/v1/meals/week")
     return mealWeekRoute(request, config, caller);
+  if (["/v1/meals/library", "/v1/meals/recipe"].includes(new URL(request.url).pathname))
+    return mealLibraryRoute(request, config, caller);
   return Effect.gen(function* () {
     const path = new URL(request.url).pathname;
     const command =
