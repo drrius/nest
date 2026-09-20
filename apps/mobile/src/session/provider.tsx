@@ -1,3 +1,5 @@
+import { sessionGroceries } from "./grocery-client";
+import type { GroceryClient } from "../groceries/client";
 import {
   createContext,
   useContext,
@@ -41,6 +43,7 @@ type Runtime = {
 };
 interface SessionContextValue {
   chores: ChoreClient | null;
+  groceries: GroceryClient | null;
   configured: boolean;
   state: SessionState;
   working: boolean;
@@ -99,6 +102,13 @@ export function SessionProvider({ children }: PropsWithChildren) {
         : null,
     [member, runtime],
   );
+  const groceries = useMemo(
+    () =>
+      member && runtime.current && configuration
+        ? sessionGroceries(runtime.current.auth, member, configuration.apiUrl)
+        : null,
+    [member, runtime],
+  );
   const run = (action: Effect.Effect<void, SessionFailure>) => {
     if (busy.current) return;
     busy.current = true;
@@ -131,6 +141,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
     <SessionContext
       value={{
         chores,
+        groceries,
         configured: configuration !== null,
         state,
         working,

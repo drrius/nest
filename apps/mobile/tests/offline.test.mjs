@@ -190,3 +190,17 @@ test("impossible chore dates never enter the durable queue, while leap days surv
   await run(store.enqueue(session, { ...intent, completedOn: "2024-02-29" }));
   assert.equal((await run(store.prepare(session))).completedOn, "2024-02-29");
 });
+
+test("adding rebase evidence preserves old journals and treats unknown receipts conservatively", async (t) => {
+  const f = await fixture(t);
+  await run(f.store.enqueue(f.session, grocery));
+  await run(f.store.prepare(f.session));
+  await run(f.store.acknowledge(f.session, { operation, version: "v9", value: true }));
+  await run(f.store.enqueue(f.session, { ...grocery, operation: nextOperation, checked: false }));
+  f.connection.exec("ALTER TABLE offline_operations DROP COLUMN rebase_allowed");
+  const reopened = f.reopen();
+  await run(reopened.store.initialize);
+  await run(reopened.store.initialize);
+  assert.equal((await run(reopened.store.prepare(f.session))).expected, "v1");
+  assert.equal((await run(reopened.store.read(f.session))).pending.length, 1);
+});

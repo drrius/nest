@@ -131,16 +131,25 @@ export async function postgrestFixture(
   const outsider = "00000000-0000-4000-8000-000000000003";
   const bearer = token(secret, user);
   const otherBearer = token(secret, outsider);
+  const partner = "00000000-0000-4000-8000-000000000002";
+  const partnerBearer = token(secret, partner);
   server = bridge(
     socket,
     new Map([
       [bearer, user],
       [otherBearer, outsider],
+      [partnerBearer, partner],
     ]),
   );
   await new Promise((resolve, reject) => {
     server.once("error", reject);
     server.listen(0, "127.0.0.1", resolve);
   });
-  return { db, bearer, otherBearer, url: `http://127.0.0.1:${server.address().port}` };
+  return {
+    db,
+    bearer,
+    otherBearer,
+    partnerBearer,
+    url: `http://127.0.0.1:${server.address().port}`,
+  };
 }

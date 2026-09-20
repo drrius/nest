@@ -2,26 +2,25 @@ import { useEffect, useRef, useState } from "react";
 import { AppState } from "react-native";
 import * as Haptics from "expo-haptics";
 import * as Crypto from "expo-crypto";
-import type { Chore } from "@nest/contracts/chores";
+import type { Grocery } from "@nest/contracts/groceries";
 import { controllerPool } from "../offline/controller-pool";
 import { useOfflineAccount } from "../offline/provider";
-import { choreFlow } from "./flow";
-import type { ChoreClient } from "./client";
-import { choreRuntime, initialChoreView, type ChoreView } from "./runtime";
-
-const subscribe = controllerPool<ChoreView, ReturnType<typeof choreRuntime>>();
-export function useChores(client: ChoreClient, actor: string, household: string) {
+import { groceryFlow } from "./flow";
+import type { GroceryClient } from "./client";
+import { groceryRuntime, initialGroceryView, type GroceryView } from "./runtime";
+const subscribe = controllerPool<GroceryView, ReturnType<typeof groceryRuntime>>();
+export function useGroceries(client: GroceryClient, actor: string, household: string) {
   const { state: account, retry } = useOfflineAccount();
-  const [view, setView] = useState(initialChoreView);
-  const runtime = useRef<ReturnType<typeof choreRuntime> | null>(null);
+  const [view, setView] = useState(initialGroceryView);
+  const runtime = useRef<ReturnType<typeof groceryRuntime> | null>(null);
   useEffect(() => {
     if (account.status !== "ready") return;
-    const { store, session } = account.account;
+    const { session } = account.account;
     if (session.actor !== actor || session.household !== household) return;
     const subscription = subscribe(
       account.account,
       (publish) =>
-        choreRuntime(choreFlow(store, session, client), publish, () => {
+        groceryRuntime(groceryFlow(account.account, client), publish, () => {
           void Haptics.selectionAsync().catch(() => undefined);
         }),
       setView,
@@ -37,24 +36,24 @@ export function useChores(client: ChoreClient, actor: string, household: string)
       listener.remove();
       subscription.release();
     };
-  }, [client, actor, household, account]);
+  }, [account, client, actor, household]);
   return {
     view:
       account.status === "ready"
         ? view
         : {
-            ...initialChoreView,
+            ...initialGroceryView,
             error:
               account.status === "error"
-                ? "Could not open saved chores. Try refreshing again."
+                ? "Could not open saved groceries. Try refreshing again."
                 : null,
           },
     refresh: () => {
       if (account.status === "error") retry();
       else void runtime.current?.refresh();
     },
-    complete: (chore: Chore, completedOn: string) =>
-      runtime.current?.complete(chore, Crypto.randomUUID(), completedOn),
+    check: (item: Grocery, checked: boolean) =>
+      runtime.current?.check(item, checked, Crypto.randomUUID()),
     discard: (operation: string) => runtime.current?.discard(operation),
   };
 }

@@ -46,6 +46,7 @@ export interface Operation {
   wire: string | null;
   status: "pending" | "conflict" | "acknowledged";
   result_version: string | null;
+  rebase_allowed: number;
   reason: string | null;
 }
 export const Item = Schema.Struct({

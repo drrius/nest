@@ -12,6 +12,12 @@ export const initialize = (database: Database) =>
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_session (
       singleton INTEGER PRIMARY KEY CHECK(singleton = 1), lease TEXT NOT NULL,
       actor TEXT NOT NULL, household TEXT NOT NULL)`);
+    await tx.run(`CREATE TABLE IF NOT EXISTS offline_groceries (
+      actor TEXT NOT NULL, household TEXT NOT NULL, target TEXT NOT NULL, data TEXT NOT NULL,
+      PRIMARY KEY(actor,household,target))`);
+    await tx.run(`CREATE TABLE IF NOT EXISTS offline_grocery_sync (
+      actor TEXT NOT NULL, household TEXT NOT NULL, loaded INTEGER NOT NULL,
+      PRIMARY KEY(actor,household))`);
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_chores (
       actor TEXT NOT NULL, household TEXT NOT NULL, target TEXT NOT NULL,
       title TEXT NOT NULL, due_date TEXT NOT NULL, assignee TEXT,
@@ -31,4 +37,9 @@ export const initialize = (database: Database) =>
       status TEXT NOT NULL CHECK(status IN ('pending', 'conflict', 'acknowledged')),
       result_version TEXT, reason TEXT,
       UNIQUE(actor, household, operation))`);
+    const columns = await tx.all<{ name: string }>("PRAGMA table_info(offline_operations)");
+    if (!columns.some((column) => column.name === "rebase_allowed"))
+      await tx.run(
+        "ALTER TABLE offline_operations ADD COLUMN rebase_allowed INTEGER NOT NULL DEFAULT 0",
+      );
   });

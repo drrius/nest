@@ -61,6 +61,12 @@ function HouseholdChores({
             label={everyone ? "Everyone · Show me + shared" : "Me + shared · Show everyone"}
             onPress={() => setEveryone(!everyone)}
           />
+          <Link
+            href="/checklist"
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
+          >
+            Groceries
+          </Link>
           <ChoreStatus view={view} />
           <NativeAction label="Refresh and retry saved changes" onPress={refresh} />
           <ChoreConflicts view={view} discard={discard} />
