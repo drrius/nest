@@ -21,9 +21,12 @@ const parse = <A>(schema: Schema.Codec<A>, value: unknown) =>
   Schema.decodeUnknownEffect(schema)(value, { onExcessProperty: "error" }).pipe(
     Effect.mapError(() => new ApiFailure({ code: "invalid_request" })),
   );
-function readTools(request: Request, config: IdentityConfig): AssistantTools {
-  const chores = choreTools(request, config),
-    groceries = groceryTools(request, config);
+function readTools(request: Request, config: IdentityConfig, householdId: string): AssistantTools {
+  const headers = new Headers(request.headers);
+  headers.set("x-nest-household", householdId);
+  const bound = new Request(request.url, { headers, signal: request.signal });
+  const chores = choreTools(bound, config),
+    groceries = groceryTools(bound, config);
   return {
     listChores: chores.listChores,
     listGroceries: groceries.listGroceries,
@@ -64,7 +67,7 @@ export function assistantHandler(config: IdentityConfig, model?: AssistantModel)
       };
       return yield* startResponse(request, store, input, {
         model,
-        tools: readTools(request, config),
+        tools: readTools(request, config, member.householdId),
       });
     }).pipe(
       Effect.provide(supabaseIdentity(config)),

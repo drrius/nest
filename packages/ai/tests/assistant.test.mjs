@@ -72,8 +72,11 @@ test("agent stops after five read steps and records an interrupted rather than c
   assert.equal(result.message.id, "assistant");
 });
 
-test("model failures are masked, not automatically retried, and finalize as interrupted", async () => {
+test("model failures are masked in logs and streams, not retried, and finalize as interrupted", async (t) => {
   let completed;
+  const logs = [];
+  for (const method of ["error", "warn", "log"])
+    t.mock.method(console, method, (...args) => logs.push(args));
   const model = new MockLanguageModelV4({
     doStream: async () => {
       throw new Error("fixture provider secret");
@@ -92,6 +95,7 @@ test("model failures are masked, not automatically retried, and finalize as inte
   const text = await response.text();
   assert.ok(!text.includes("fixture provider secret"));
   assert.ok(text.includes("Could not finish"));
+  assert.deepEqual(logs, [], "private provider errors must not reach server logs");
   assert.equal(completed, false);
   assert.equal(model.doStreamCalls.length, 1);
 });

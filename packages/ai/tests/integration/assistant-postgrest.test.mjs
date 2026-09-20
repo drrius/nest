@@ -12,36 +12,43 @@ const files = [
   "supabase/migrations/20260919220034_native_private_conversations.sql",
   "supabase/migrations/20260920022841_native_ai_turn_ownership.sql",
 ];
-function readModel() {
+function readModel(beforeStep = () => {}) {
   let count = 0;
   return new MockLanguageModelV4({
-    doStream: async () => ({
-      stream: simulateReadableStream({
-        initialDelayInMs: 0,
-        chunkDelayInMs: 0,
-        chunks:
-          count++ === 0
-            ? [
-                {
-                  type: "tool-call",
-                  toolCallId: "read-chores",
-                  toolName: "listChores",
-                  input: "{}",
-                },
-                { type: "finish", finishReason: { unified: "tool-calls", raw: undefined }, usage },
-              ]
-            : [
-                { type: "text-start", id: "text-1" },
-                {
-                  type: "text-delta",
-                  id: "text-1",
-                  delta: "Your current household chores are listed above.",
-                },
-                { type: "text-end", id: "text-1" },
-                { type: "finish", finishReason: { unified: "stop", raw: undefined }, usage },
-              ],
-      }),
-    }),
+    doStream: async () => {
+      beforeStep(count);
+      return {
+        stream: simulateReadableStream({
+          initialDelayInMs: 0,
+          chunkDelayInMs: 0,
+          chunks:
+            count++ === 0
+              ? [
+                  {
+                    type: "tool-call",
+                    toolCallId: "read-chores",
+                    toolName: "listChores",
+                    input: "{}",
+                  },
+                  {
+                    type: "finish",
+                    finishReason: { unified: "tool-calls", raw: undefined },
+                    usage,
+                  },
+                ]
+              : [
+                  { type: "text-start", id: "text-1" },
+                  {
+                    type: "text-delta",
+                    id: "text-1",
+                    delta: "Your current household chores are listed above.",
+                  },
+                  { type: "text-end", id: "text-1" },
+                  { type: "finish", finishReason: { unified: "stop", raw: undefined }, usage },
+                ],
+        }),
+      };
+    },
   });
 }
 
@@ -238,4 +245,46 @@ test("missing model configuration and invalid input never claim a generation", a
     assert.equal((await handler(request(body))).status, 400);
   assert.equal(model.doStreamCalls.length, 0);
   assert.equal(f.db.sql("select count(*) from public.nest_ai_turns"), "0");
+});
+
+test("a membership move mid-turn cannot read another household even without a client scope header", async (t) => {
+  const f = await postgrestFixture(t, files);
+  const model = readModel((step) => {
+    const household = step === 0 ? id(20) : id(10);
+    f.db.sql(
+      `update public.household_members set household_id='${household}' where user_id='${id(1)}'`,
+    );
+  });
+  const handler = createHandler(
+    { url: f.url, publishableKey: "sb_publishable_fixture" },
+    { model },
+  );
+  const input = {
+    conversationId: id(740),
+    operationId: id(741),
+    expectedRevision: "0",
+    text: "Read chores",
+  };
+  const headers = { authorization: `Bearer ${f.bearer}`, "content-type": "application/json" };
+  const response = await handler(
+    new Request("http://localhost/v1/assistant/turn", {
+      method: "POST",
+      headers,
+      body: JSON.stringify(input),
+    }),
+  );
+  const stream = await response.text();
+  assert.ok(stream.includes("forbidden"));
+  assert.ok(!stream.includes("Private other home"));
+  const prompt = JSON.stringify(model.doStreamCalls[1].prompt);
+  assert.ok(prompt.includes("forbidden"));
+  assert.ok(!prompt.includes("Private other home"));
+  const saved = await handler(
+    new Request(`http://localhost/v1/assistant/conversation?id=${input.conversationId}`, {
+      headers,
+    }),
+  );
+  const history = await saved.json();
+  assert.equal(history.conversation.revision, "2");
+  assert.ok(!JSON.stringify(history).includes("Private other home"));
 });
