@@ -1,3 +1,4 @@
+import { foodPreferences } from "./food/service.ts";
 import { assistantHandler } from "./assistant/handler.ts";
 import type { AssistantModel } from "@nest/ai/chat";
 import { groceryCommands } from "./groceries/service.ts";
@@ -16,6 +17,20 @@ function route(request: Request, config: IdentityConfig) {
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
+    if (path === "/v1/food-preferences")
+      return {
+        version: 1,
+        actorId: member.userId,
+        householdId: member.householdId,
+        profile: yield* foodPreferences(config, { member, token }).read(),
+      };
+    if (path === "/v1/food-preferences/save")
+      return {
+        version: 1,
+        receipt: yield* foodPreferences(config, { member, token }).save(
+          yield* commandBody(request, 65536),
+        ),
+      };
     if (path.startsWith("/v1/groceries"))
       return yield* groceryRoute(request, config, { member, token });
     const commands = choreCommands(config, { member, token });
@@ -44,6 +59,8 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/food-preferences": "GET",
+      "/v1/food-preferences/save": "POST",
       "/v1/chores": "GET",
       "/v1/chores/complete": "POST",
       "/v1/groceries": "GET",

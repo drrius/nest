@@ -5,7 +5,7 @@ const isJson = (request: Request) =>
   request.headers.get("content-type")?.split(";")[0]?.trim().toLowerCase() === "application/json";
 
 // Bound actual bytes rather than trusting Content-Length from callers.
-export const commandBody = (request: Request) =>
+export const commandBody = (request: Request, maxBytes = 8192) =>
   Effect.tryPromise({
     try: async (signal) => {
       if (!isJson(request)) {
@@ -25,7 +25,7 @@ export const commandBody = (request: Request) =>
           const { value, done } = await reader.read();
           if (done) break;
           length += value.byteLength;
-          if (length > 8192) throw new Error("Body too large");
+          if (length > maxBytes) throw new Error("Body too large");
           chunks.push(value);
         }
         const bytes = new Uint8Array(length);
