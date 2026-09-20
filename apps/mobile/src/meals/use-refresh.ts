@@ -2,8 +2,7 @@ import { useCallback } from "react";
 import { AppState } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { onNetwork } from "../offline/network";
-import type { MealWeekRuntime } from "./runtime";
-export function useMealWeekRefresh(runtime: MealWeekRuntime) {
+export function useMealWeekRefresh(runtime: { load: () => Promise<void>; cancel: () => void }) {
   useFocusEffect(
     useCallback(() => {
       void runtime.load();

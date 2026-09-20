@@ -12,6 +12,16 @@ import { sessionCredentials } from "./credentials";
 export function sessionMeals(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = mealClient(apiUrl, account, sessionCredentials(auth));
   return {
+    library: {
+      read: (afterId: string | null = null, revision: string | null = null) =>
+        client.library
+          .read(afterId, revision)
+          .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+      recipe: (definitionId: string, revision: string) =>
+        client.library
+          .recipe(definitionId, revision)
+          .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    },
     replace: (input: ReplaceMeal) =>
       client.replace(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     move: (input: MoveMeal) =>

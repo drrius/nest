@@ -105,6 +105,9 @@ function WeekContent({
     );
   return (
     <Page>
+      <Link href="/meal-library" style={{ color: colors.accent, fontSize: 17 }}>
+        Saved meals and recipes
+      </Link>
       <WeekNavigation
         weekStart={view.weekStart}
         select={(week) => {
