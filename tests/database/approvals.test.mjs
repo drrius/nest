@@ -6,6 +6,7 @@ const db = startFixturePostgres();
 after(() => db.stop());
 db.file("tests/database/approval-fixture.sql");
 db.file("supabase/migrations/20260919213407_native_action_approvals.sql");
+db.file("supabase/migrations/20260920054303_native_private_memory.sql");
 db.file("tests/database/approval-write-fixture.sql");
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const actor = id(1),
