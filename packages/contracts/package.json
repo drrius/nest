@@ -22,7 +22,8 @@
     "./meal-placement": "./src/meal-placement.ts",
     "./meal-removal": "./src/meal-removal.ts",
     "./meal-move": "./src/meal-move.ts",
-    "./meal-replacement": "./src/meal-replacement.ts"
+    "./meal-replacement": "./src/meal-replacement.ts",
+    "./meal-library": "./src/meal-library.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

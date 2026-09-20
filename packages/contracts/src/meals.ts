@@ -19,7 +19,7 @@ export type MealWeekBaseline = typeof MealWeekBaseline.Type;
 
 // Read stored Unicode code points without shortening legacy notes or links.
 // Links are data; the native opener must separately allow only HTTP(S).
-const StoredText = (maximum: number) =>
+export const StoredMealText = (maximum: number) =>
   Schema.String.check(
     Schema.isMaxLength(maximum * 2),
     Schema.makeFilter(
@@ -29,7 +29,7 @@ const StoredText = (maximum: number) =>
         !/[\uD800-\uDFFF]/u.test(value),
     ),
   );
-const StoredTitle = Schema.String.check(
+export const StoredMealTitle = Schema.String.check(
   Schema.makeFilter(
     (value: string) =>
       value.replace(/^ +| +$/g, "").length > 0 &&
@@ -42,9 +42,9 @@ export const PlannedMeal = Schema.Struct({
   entryId: Uuid,
   date: CalendarDate,
   slot: MealSlot,
-  title: StoredTitle,
-  recipeUrl: Schema.NullOr(StoredText(2000)),
-  notes: Schema.NullOr(StoredText(4000)),
+  title: StoredMealTitle,
+  recipeUrl: Schema.NullOr(StoredMealText(2000)),
+  notes: Schema.NullOr(StoredMealText(4000)),
   definitionId: Schema.NullOr(Uuid),
   leftoverSourceId: Schema.NullOr(Uuid),
 }).check(Schema.makeFilter((entry) => entry.leftoverSourceId !== entry.entryId));

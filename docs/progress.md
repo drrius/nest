@@ -6,7 +6,13 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**Current branch: `codex/ai-meal-replacement`, M5.** PR #78 merged as `76d3288` after both exact-head CI checks, zero conversations and clean GPT-5.6 Sol medium rereview of `f514e42a123fa2c8e2158846a509e3f66d58a7d5`. Greptile explicitly reported its credit cap. [Merge evidence](https://github.com/drrius/nest/pull/78#issuecomment-5751264990). No automation was recreated.
+AI replacement commit `f9ec83e86521624fbf6db6ec3b9fa152cd2e3211` passed CI `35542200430` and clean GPT-5.6 Sol medium exact-head signoff (135 independent checks plus API/mobile/AI types). It was fast-forwarded and pushed to main under the authorized branch-delivery workflow. No PR or automation was created.
+
+Saved-recipe library storage is implemented locally, with its [source audit](native-rewrite/meal-library-audit.md): legacy definitions and ordered ingredients retain their identities, quantities, units, notes and optional links; unknown legacy servings/instructions remain null. The gated migration adds nullable metadata and a household revision covering definition and ingredient writes, including legacy writes. Authorized stable reads return bounded pages and complete recipe details at an exact revision. Changed libraries reject stale continuation/detail requests; oversized recipes fail explicitly without truncation. No recipe save, plan selection or grocery side effect is introduced here.
+
+Local verification passes 19 focused checks (eight new PostgreSQL library cases, nine existing meal-week database regressions and two new contract cases). Coverage includes actual tenant RLS/composite references, revocation, legacy Unicode limits, rollback/overflow, archive/history behavior, concurrent ingredient/definition updates and a blocked-read MVCC handshake. Contract types, scoped lint/format/diff checks and disposable security advisors pass. CI and independent review remain pending. API/native/AI reads, editing commands, planned recipe snapshots and separate ingredient approval remain outstanding; this storage slice is not device-verified or a complete M5 milestone.
+
+**Current branch: `codex/meal-library-storage`, M5.** PR #78 merged as `76d3288` after both exact-head CI checks, zero conversations and clean GPT-5.6 Sol medium rereview of `f514e42a123fa2c8e2158846a509e3f66d58a7d5`. Greptile explicitly reported its credit cap. [Merge evidence](https://github.com/drrius/nest/pull/78#issuecomment-5751264990). No automation was recreated.
 
 PR #79 merged as `3520fce` after both exact-head CI checks, zero conversations and clean GPT-5.6 Sol medium signoff on `243f7033660f082d5b9668458a49d439173847e8`; Greptile reported its credit cap. Independent review passed all 22 placement/read database cases. [Merge evidence](https://github.com/drrius/nest/pull/79#issuecomment-5751313313).
 
