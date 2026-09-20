@@ -6,7 +6,8 @@
   "exports": {
     "./money": "./src/money/index.ts",
     "./calendar": "./src/calendar.ts",
-    "./availability": "./src/availability.ts"
+    "./availability": "./src/availability.ts",
+    "./routines": "./src/routines/index.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
