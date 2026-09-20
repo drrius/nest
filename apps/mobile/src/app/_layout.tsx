@@ -46,6 +46,8 @@ function Navigation() {
         <Stack.Screen name="checklist" options={{ title: "Groceries" }} />
         <Stack.Screen name="grocery-edit" options={{ title: "Grocery" }} />
         <Stack.Screen name="food-preferences" options={{ title: "Food preferences" }} />
+        <Stack.Screen name="cooking-preferences" options={{ title: "Household cooking" }} />
+        <Stack.Screen name="settings" options={{ title: "Profile and settings" }} />
       </Stack.Protected>
       <Stack.Protected guard={__DEV__}>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />

@@ -1,5 +1,7 @@
 import { sessionAssistant } from "./assistant-client";
 import { sessionFood } from "./food-client";
+import { sessionCooking } from "./cooking-client";
+import type { CookingClient } from "../cooking/client";
 import type { FoodClient } from "../food/client";
 import type { AssistantClient } from "../assistant/client";
 import { sessionGroceries } from "./grocery-client";
@@ -22,7 +24,7 @@ import type { ChoreClient } from "../chores/client";
 import { nativeAuth, offlineIdentity, beginLocalLogout, beginLocalSignIn } from "./native-client";
 import { signInWithApple } from "./apple";
 import { sessionConfig } from "./config";
-import { SessionFailure, type SessionState } from "./contracts";
+import { SessionFailure, type SessionState, type Member } from "./contracts";
 import { subscribeSession } from "./subscription";
 import { signOutSession } from "./sign-out";
 import { verifySession } from "./verification";
@@ -46,6 +48,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  cooking: CookingClient | null;
   food: FoodClient | null;
   assistant: AssistantClient | null;
   chores: ChoreClient | null;
@@ -95,6 +98,20 @@ function useRuntime(publish: (state: SessionState) => void) {
   return runtime;
 }
 
+function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof useRuntime>) {
+  const actor = member?.userId,
+    household = member?.householdId;
+  return useMemo(() => {
+    if (!actor || !household || !runtime.current || !configuration)
+      return { food: null, cooking: null };
+    const { auth } = runtime.current;
+    return {
+      food: sessionFood(auth, { actor, household }, configuration.apiUrl),
+      cooking: sessionCooking(auth, { actor, household }, configuration.apiUrl),
+    };
+  }, [actor, household, runtime]);
+}
+
 export function SessionProvider({ children }: PropsWithChildren) {
   const [state, setState] = useState<SessionState>({ status: "loading" });
   const [working, setWorking] = useState(false);
@@ -102,13 +119,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const busy = useRef(false);
   const runtime = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
-  const actor = member?.userId,
-    household = member?.householdId;
-  const food = useMemo(() => {
-    if (!actor || !household || !runtime.current || !configuration) return null;
-    const { auth } = runtime.current;
-    return sessionFood(auth, { actor, household }, configuration.apiUrl);
-  }, [actor, household, runtime]);
+  const { food, cooking } = usePreferenceClients(member, runtime);
   const { chores, groceries, assistant } = useMemo(() => {
     if (!member || !runtime.current || !configuration)
       return { chores: null, groceries: null, assistant: null };
@@ -156,6 +167,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <SessionContext
       value={{
+        cooking,
         food,
         chores,
         groceries,

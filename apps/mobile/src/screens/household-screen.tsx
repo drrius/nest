@@ -75,10 +75,10 @@ function HouseholdChores({
           </Link>
           <ChoreStatus view={view} />
           <Link
-            href="/food-preferences"
+            href="/settings"
             style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
           >
-            Your food preferences
+            Profile and settings
           </Link>
           <NativeAction label="Refresh and retry saved changes" onPress={refresh} />
           <ChoreConflicts view={view} discard={discard} />

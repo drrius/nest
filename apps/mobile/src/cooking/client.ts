@@ -1,13 +1,16 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
-import { FoodProfileEnvelope, FoodSaveEnvelope, SaveFoodPreferences } from "@nest/contracts/food";
+import {
+  CookingProfileEnvelope,
+  CookingSaveEnvelope,
+  SaveCookingPreferences,
+} from "@nest/contracts/cooking";
 import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
 import type { ChoreFailure } from "../chores/client.ts";
-import { preferenceRequests, PreferenceFailure as FoodFailure } from "../preferences/client.ts";
-export { PreferenceFailure as FoodFailure } from "../preferences/client.ts";
-const unavailable = () => new FoodFailure({ code: "unavailable" });
-export function foodClient(
+import { preferenceRequests, PreferenceFailure } from "../preferences/client.ts";
+const unavailable = () => new PreferenceFailure({ code: "unavailable" });
+export function cookingClient(
   apiUrl: string,
   account: Account,
   credentials: Effect.Effect<Credentials, ChoreFailure>,
@@ -15,19 +18,19 @@ export function foodClient(
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
     read: () =>
-      request("v1/food-preferences", FoodProfileEnvelope).pipe(
+      request("v1/cooking-preferences", CookingProfileEnvelope).pipe(
         Effect.flatMap((value) =>
-          value.actorId === account.actor &&
-          value.householdId === account.household &&
-          value.profile?.revision !== "0"
+          value.householdId === account.household && value.profile?.revision !== "0"
             ? Effect.succeed(value.profile)
             : Effect.fail(unavailable()),
         ),
       ),
-    save: (input: SaveFoodPreferences) =>
-      Schema.decodeUnknownEffect(SaveFoodPreferences, { onExcessProperty: "error" })(input).pipe(
-        Effect.mapError(() => new FoodFailure({ code: "invalid" })),
-        Effect.flatMap((command) => request("v1/food-preferences/save", FoodSaveEnvelope, command)),
+    save: (input: SaveCookingPreferences) =>
+      Schema.decodeUnknownEffect(SaveCookingPreferences, { onExcessProperty: "error" })(input).pipe(
+        Effect.mapError(() => new PreferenceFailure({ code: "invalid" })),
+        Effect.flatMap((command) =>
+          request("v1/cooking-preferences/save", CookingSaveEnvelope, command),
+        ),
         Effect.flatMap(({ receipt }) =>
           receipt.actorId === account.actor &&
           receipt.householdId === account.household &&
@@ -39,4 +42,4 @@ export function foodClient(
       ),
   };
 }
-export type FoodClient = ReturnType<typeof foodClient>;
+export type CookingClient = ReturnType<typeof cookingClient>;

@@ -1,16 +1,16 @@
 import { useState, useSyncExternalStore } from "react";
 import * as Crypto from "expo-crypto";
 import { useSession } from "../session/provider";
-import { foodOwner } from "../food/owner";
-import type { FoodClient } from "../food/client";
-import type { FoodRuntime } from "../food/runtime";
-import { FoodFields } from "../components/food-fields";
+import { cookingOwner } from "../cooking/owner";
+import type { CookingClient } from "../cooking/client";
+import type { CookingRuntime } from "../cooking/runtime";
+import { CookingFields } from "../components/cooking-fields";
 import { Page, Note } from "../components/page";
 import { PreferencePanel } from "../components/preference-panel";
 import { SignInCard } from "../components/sign-in-card";
-export default function FoodPreferencesScreen() {
+export default function CookingPreferencesScreen() {
   const session = useSession();
-  if (session.state.status !== "ready" || !session.food)
+  if (session.state.status !== "ready" || !session.cooking)
     return (
       <Page>
         <SignInCard />
@@ -19,27 +19,27 @@ export default function FoodPreferencesScreen() {
   return (
     <Preferences
       key={`${session.state.member.userId}:${session.state.member.householdId}`}
-      client={session.food}
+      client={session.cooking}
       verify={session.retry}
     />
   );
 }
-function Preferences({ client, verify }: { client: FoodClient; verify: () => void }) {
-  const [owner] = useState(() => foodOwner(client, Crypto.randomUUID));
+function Preferences({ client, verify }: { client: CookingClient; verify: () => void }) {
+  const [owner] = useState(() => cookingOwner(client, Crypto.randomUUID));
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   return runtime ? (
     <PreferencesContent runtime={runtime} verify={verify} />
   ) : (
     <Page>
-      <Note>Loading food preferences…</Note>
+      <Note>Loading cooking preferences…</Note>
     </Page>
   );
 }
-function PreferencesContent({ runtime, verify }: { runtime: FoodRuntime; verify: () => void }) {
+function PreferencesContent({ runtime, verify }: { runtime: CookingRuntime; verify: () => void }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   return (
     <PreferencePanel view={view} actions={{ load: runtime.load, retry: runtime.retry, verify }}>
-      <FoodFields key={view.generation} runtime={runtime} view={view} />
+      <CookingFields key={view.generation} runtime={runtime} view={view} />
     </PreferencePanel>
   );
 }
