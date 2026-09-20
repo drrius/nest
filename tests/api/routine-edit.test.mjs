@@ -88,3 +88,22 @@ test("invalid edits cannot reach the database transport", async () => {
     assert.equal(calls, 0);
   }
 });
+
+test("database conflicts are distinguished from uncertain backend failures without leaking details", async () => {
+  for (const [code, expected] of [
+    ["40001", "conflict"],
+    ["55P03", "conflict"],
+    ["55000", "conflict"],
+    ["22023", "invalid_request"],
+    ["XX000", "unavailable"],
+  ]) {
+    await assert.rejects(
+      run(command, () =>
+        Promise.resolve(
+          Response.json({ code, message: "private database detail" }, { status: 500 }),
+        ),
+      ),
+      (error) => error.code === expected && !String(error).includes("private database detail"),
+    );
+  }
+});
