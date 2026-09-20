@@ -1,4 +1,4 @@
-# Native meal-week reads
+# Native meal week
 
 `/meal-week` is a protected real-data screen linked from Today. The existing four-tab design preview remains explicitly fictional and development-only. This read slice is not a completed M5 meal-planning workflow.
 
@@ -12,4 +12,6 @@ The controller cancels or ignores superseded week requests and disposed-screen r
 
 Local evidence includes real SQLite restart/retention/isolation/rollback, exact revision safety, invalid credentials/scope, auth recovery and delayed-response cancellation. The actual HTTP/PostgREST journey reads existing meals, restarts offline, refreshes a partner edit and hides revoked access. The iOS export is packaging evidence only; physical navigation, Dynamic Type, VoiceOver and native rendering are still unverified.
 
-Manual placement/move/replace/remove, saved recipe detail/library, generated proposals, exact-revision approval and separate ingredient review remain unfinished. No disabled or placeholder mutation controls are presented as implemented actions.
+Fresh empty slots open an online one-off placement form. It loads an exact week revision before submitting the shared authorized placement command, freezes uncertain attempts for identical retries, and requires an explicit reload after a conflict. Confirmed receipts are retained independently of later partner changes. Navigation warns before discarding a draft or unresolved retry; these details are volatile and are never placed in the offline queue. The private assistant uses the same placement command. Native controls and dismissal still require device verification.
+
+Move/replace/remove, saved recipe detail/library, generated proposals, exact-revision approval and separate ingredient review remain unfinished.

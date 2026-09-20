@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { Text, View } from "react-native";
 import type { MealWeekSnapshot } from "@nest/contracts/meals";
 import { mealWeek, adjacentMealWeek } from "@nest/domain/meal-week";
@@ -51,11 +52,14 @@ export function WeekNavigation({
 export function MealWeekBoard({
   snapshot,
   visibleSlots,
+  canAdd,
 }: {
+  canAdd: boolean;
   snapshot: MealWeekSnapshot;
   visibleSlots: readonly (typeof slots)[number][];
 }) {
-  const colors = useQuiet();
+  const colors = useQuiet(),
+    router = useRouter();
   return (
     <>
       {mealWeek(snapshot.weekStart).map((date) => (
@@ -74,6 +78,18 @@ export function MealWeekBoard({
                   {meal?.title ?? "No meal planned"}
                 </Text>
                 {meal?.notes ? <Note>{meal.notes}</Note> : null}
+                {!meal ? (
+                  <NativeAction
+                    label={`Add ${names[slot].toLowerCase()}`}
+                    disabled={!canAdd}
+                    onPress={() =>
+                      router.push({
+                        pathname: "/meal-add",
+                        params: { weekStart: snapshot.weekStart, date, slot },
+                      })
+                    }
+                  />
+                ) : null}
               </Card>
             );
           })}
