@@ -1,6 +1,14 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function writeTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    requestChoreTransfer: write(
+      "requestChoreTransfer",
+      "Ask the partner to take only the assigned chore occurrence the requesting member explicitly wants to hand over. Read readChoreTransfers first for actor, current owner, occurrence/date and recipient IDs. Only the current responsible member can request. This creates a pending request, not acceptance or changed responsibility; never imply it is done. Shared work does not need a transfer. A replayed receipt describes the original request, so read fresh to report its current status. Future turns and money are unchanged. Never replace an uncertain request with a new invocation; reload and reconcile.",
+    ),
+    respondChoreTransfer: write(
+      "respondChoreTransfer",
+      "Accept or decline only a pending handover the named recipient explicitly asks to answer. Read readChoreTransfers fresh and use its exact request ID. A partner asking for help is not the recipient's consent: never auto-accept or act on another person's behalf. Acceptance changes responsibility for this occurrence only; decline leaves it unchanged. Future turns and money are unchanged. Never replace an uncertain response with a new invocation; reload and reconcile.",
+    ),
     skipChore: write(
       "skipChore",
       "Skip only the current chore occurrence the member explicitly requested. Read its exact occurrence ID and due date with listChores first. Skip advances the schedule without marking completed; it does not pause the routine, transfer responsibility or change money. Never overwrite a conflict or replace an uncertain request with a new call; reload and reconcile.",

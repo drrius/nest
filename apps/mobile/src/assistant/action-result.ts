@@ -9,6 +9,8 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  requestChoreTransfer: "Handover requested",
+  respondChoreTransfer: "Handover response saved",
   skipChore: "Chore skipped",
   rescheduleChore: "Chore rescheduled",
   setRoutineState: "Routine state updated",
@@ -26,6 +28,8 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  requestChoreTransfer: "/chore-transfers",
+  respondChoreTransfer: "/chore-transfers",
   skipChore: "/household",
   rescheduleChore: "/household",
   setRoutineState: "/routines",
@@ -67,6 +71,8 @@ function failureLabel(code: string | undefined, fallback: string) {
   return code === "forbidden" ? "This action was not permitted." : fallback;
 }
 function successLabel(action: AssistantAction, receipt: object) {
+  if (action === "respondChoreTransfer" && "action" in receipt)
+    return receipt.action === "accept" ? "Handover accepted" : "Handover declined";
   if (action === "setRoutineState") return routineStateLabel(receipt);
   if ("outcome" in receipt && receipt.outcome === "already_completed")
     return "Chore was already completed";

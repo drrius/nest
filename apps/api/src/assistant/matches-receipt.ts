@@ -1,3 +1,4 @@
+import { matchesTransfer } from "./matches-transfer.ts";
 import { ChoreChangeReceipt } from "@nest/contracts/chore-changes";
 import { RoutineReceipt } from "@nest/contracts/routines";
 import * as Schema from "effect/Schema";
@@ -10,19 +11,14 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
+  if (["requestChoreTransfer", "respondChoreTransfer"].includes(action))
+    return matchesTransfer(input, receipt, member);
   if (["skipChore", "rescheduleChore"].includes(action))
     return matchesChoreChange(action, input, receipt, member);
   if (["setRoutineState", "editRoutine", "createRoutine"].includes(action))
     return matchesRoutineCommand(action, input, receipt, member);
   if (action === "proposeMemory") return matchesProposal(input, receipt, member);
-  if (action === "removeMemory")
-    return (
-      Schema.is(MemoryReceipt)(receipt) &&
-      matchesPreferences(input, receipt, member) &&
-      "memoryId" in input &&
-      matchesTarget(input.memoryId, receipt.memoryId) &&
-      receipt.removed
-    );
+  if (action === "removeMemory") return matchesRemoval(input, receipt, member);
   if (
     ["saveFoodPreferences", "saveCookingPreferences", "saveNotificationPreferences"].includes(
       action,
@@ -118,4 +114,14 @@ function matchesChoreChange(
 
 function matchesMember(receipt: { actorId: string; householdId: string }, member: Member) {
   return receipt.actorId === member.userId && receipt.householdId === member.householdId;
+}
+
+function matchesRemoval(input: object, receipt: object, member: Member) {
+  return (
+    Schema.is(MemoryReceipt)(receipt) &&
+    matchesPreferences(input, receipt, member) &&
+    "memoryId" in input &&
+    matchesTarget(input.memoryId, receipt.memoryId) &&
+    receipt.removed
+  );
 }
