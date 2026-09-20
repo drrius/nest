@@ -66,6 +66,12 @@ export function GroceryList({
       ListHeaderComponent={
         <>
           <Section title="For the next shop" />
+          <Link
+            href="/grocery-edit"
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: 12 }}
+          >
+            Add grocery or resume save
+          </Link>
           <GroceryStatus view={view} />
           <NativeAction label="Refresh and retry saved checks" onPress={refresh} />
           <GroceryConflicts view={view} discard={discard} />
@@ -101,6 +107,14 @@ export function GroceryList({
             />
           </Host>
           {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
+          {!item.pending ? (
+            <Link
+              href={{ pathname: "/grocery-edit", params: { itemId: item.itemId } }}
+              style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
+            >
+              Edit {item.name}
+            </Link>
+          ) : null}
         </Card>
       )}
     />
