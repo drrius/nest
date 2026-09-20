@@ -39,11 +39,19 @@ export function routineEditPatch(
   const previousSchedule = scheduleValue(scheduleDraft(original.schedule, ""));
   if (JSON.stringify(nextSchedule) !== JSON.stringify(previousSchedule))
     patch.schedule = nextSchedule;
-  if (JSON.stringify(assignment) !== JSON.stringify(original.assignment))
+  if (assignmentKey(assignment) !== assignmentKey(original.assignment))
     patch.assignment = assignment;
   if (Object.keys(patch).length === 0) return { status: "unchanged" } as const;
   const result = Schema.decodeUnknownExit(RoutinePatch)(patch, { onExcessProperty: "error" });
   return result._tag === "Failure"
     ? ({ status: "invalid" } as const)
     : ({ status: "changed", patch: result.value } as const);
+}
+
+function assignmentKey(assignment: RoutineAssignment) {
+  return assignment.policy === "shared"
+    ? "shared"
+    : assignment.policy === "assigned"
+      ? `assigned:${assignment.memberId}`
+      : `alternating:${assignment.anchorMemberId}`;
 }

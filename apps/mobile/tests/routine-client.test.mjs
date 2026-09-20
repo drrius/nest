@@ -122,3 +122,47 @@ test("routine errors distinguish denial, conflicts and unknown network outcomes"
       { code },
     );
 });
+
+test("native edit preserves the exact baseline and verifies routine-specific receipts", async () => {
+  const input = {
+    operationId: id(100),
+    routineId: id(50),
+    expectedVersion: receipt.version,
+    patch: { schedule: { kind: "monthly", dayOfMonth: 31 } },
+  };
+  const saved = { ...receipt, action: "edit" };
+  assert.deepEqual(
+    await run(client.edit(input), async (url, init) => {
+      assert.equal(new URL(url).pathname, "/v1/routines/edit");
+      assert.deepEqual(JSON.parse(init.body), input);
+      return Response.json({ version: 1, receipt: saved });
+    }),
+    saved,
+  );
+  for (const change of [
+    { actorId: id(2) },
+    { householdId: id(20) },
+    { operationId: id(101) },
+    { routineId: id(51) },
+    { action: "create" },
+  ])
+    await assert.rejects(
+      run(client.edit(input), async () =>
+        Response.json({ version: 1, receipt: { ...saved, ...change } }),
+      ),
+      { code: "unavailable" },
+    );
+  await assert.rejects(
+    run(client.edit({ ...input, patch: {} }), () => assert.fail("invalid dispatch")),
+    { code: "invalid" },
+  );
+  const wrong = routineClient(
+    "https://fixture.invalid/",
+    account,
+    Effect.succeed({ user: { id: id(2) }, access_token: "wrong" }),
+  );
+  await assert.rejects(
+    run(wrong.edit(input), () => assert.fail("wrong account dispatch")),
+    { code: "session" },
+  );
+});
