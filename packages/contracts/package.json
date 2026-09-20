@@ -13,7 +13,8 @@
     "./memory": "./src/memory.ts",
     "./calendar": "./src/calendar.ts",
     "./notifications": "./src/notifications.ts",
-    "./setup": "./src/setup.ts"
+    "./setup": "./src/setup.ts",
+    "./routines": "./src/routines.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
