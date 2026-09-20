@@ -1,3 +1,5 @@
+import { assistantHandler } from "./assistant/handler.ts";
+import type { AssistantModel } from "@nest/ai/chat";
 import { groceryCommands } from "./groceries/service.ts";
 import { groceryReads } from "./groceries/read.ts";
 import * as Effect from "effect/Effect";
@@ -27,11 +29,18 @@ function route(request: Request, config: IdentityConfig) {
   });
 }
 
-export function createHandler(config: IdentityConfig) {
+export function createHandler(config: IdentityConfig, options: { model?: AssistantModel } = {}) {
   const validated = validateConfig(config);
   const identity = supabaseIdentity(validated);
+  const assistant = assistantHandler(validated, options.model);
   return (request: Request): Promise<Response> => {
     const path = new URL(request.url).pathname;
+    if (
+      path === "/v1/assistant/turn" ||
+      path === "/v1/assistant/conversation" ||
+      path === "/v1/assistant/interrupt"
+    )
+      return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
       "/v1/chores": "GET",

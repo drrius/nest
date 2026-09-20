@@ -16,6 +16,7 @@
   },
   "exports": {
     "./schema": "./src/schema.ts",
-    "./tool": "./src/tool.ts"
+    "./tool": "./src/tool.ts",
+    "./chat": "./src/chat.ts"
   }
 }
