@@ -20,7 +20,8 @@
     "./chore-transfers": "./src/chore-transfers.ts",
     "./meals": "./src/meals.ts",
     "./meal-placement": "./src/meal-placement.ts",
-    "./meal-removal": "./src/meal-removal.ts"
+    "./meal-removal": "./src/meal-removal.ts",
+    "./meal-move": "./src/meal-move.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
