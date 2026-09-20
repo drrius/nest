@@ -13,8 +13,13 @@ function route(request: Request, config: IdentityConfig) {
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
     const commands = choreCommands(config, { member, token });
-    if (path === "/v1/chores") return { version: 1, chores: yield* commands.list() };
-    return { version: 1, receipt: yield* commands.complete(yield* commandBody(request)) };
+    if (path === "/v1/chores")
+      return { version: 1, householdId: member.householdId, chores: yield* commands.list() };
+    return {
+      version: 1,
+      householdId: member.householdId,
+      receipt: yield* commands.complete(yield* commandBody(request)),
+    };
   });
 }
 

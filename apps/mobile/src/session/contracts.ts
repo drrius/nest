@@ -12,7 +12,7 @@ export type SessionState =
   | {
       readonly status: "loading" | "signed_out" | "logout_pending" | "not_a_member" | "unavailable";
     }
-  | { readonly status: "ready"; readonly member: Member };
+  | { readonly status: "ready"; readonly member: Member; readonly offline?: true };
 export class SessionFailure extends Schema.TaggedError<SessionFailure>()("SessionFailure", {
   code: Schema.Literals(["signed_out", "not_a_member", "unavailable", "cancelled"]),
 }) {}

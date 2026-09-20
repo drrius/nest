@@ -103,6 +103,7 @@ test("chore reads bind verified household, use caller credentials and return onl
   assert.equal(response.headers.get("cache-control"), "no-store");
   assert.deepEqual(await response.json(), {
     version: 1,
+    householdId: home,
     chores: [
       { occurrenceId: occurrence, title: "Water plants", dueDate: "2026-09-19", assigneeId: null },
     ],
@@ -142,7 +143,7 @@ test("completion forwards exact stable operation and expected date without choos
   const before = calls.length;
   const response = await complete();
   assert.equal(response.status, 200);
-  assert.deepEqual(await response.json(), { version: 1, receipt });
+  assert.deepEqual(await response.json(), { version: 1, householdId: home, receipt });
   assert.equal(calls.length - before, 3);
   assert.deepEqual(calls.at(-1).body, {
     p_occurrence_id: occurrence,
@@ -236,4 +237,34 @@ test("AI command execution rejects forged actor fields even if tool schema valid
     { ok: false, code: "forbidden" },
   );
   assert.equal(calls.filter((call) => call.url.includes("/rpc/")).length, before);
+});
+
+test("stale household expectations fail before reads, writes or AI execution", async () => {
+  revoked = false;
+  rpcMode = "success";
+  const headers = { authorization: "Bearer member", "x-nest-household": other };
+  const before = calls.length;
+  const request = new Request("http://localhost/v1/chores", { headers });
+  assert.equal((await handler(request)).status, 403);
+  assert.equal(
+    (
+      await complete(command, "member", {
+        headers: { ...headers, "content-type": "application/json" },
+      })
+    ).status,
+    403,
+  );
+  const tool = choreTools(request, { url: origin, publishableKey: "sb_publishable_fixture" });
+  assert.deepEqual(await tool.listChores.execute({}, { toolCallId: "scope", messages: [] }), {
+    ok: false,
+    code: "forbidden",
+  });
+  assert.ok(
+    calls
+      .slice(before)
+      .every(
+        (call) =>
+          call.url.startsWith("/auth/") || call.url.startsWith("/rest/v1/household_members"),
+      ),
+  );
 });

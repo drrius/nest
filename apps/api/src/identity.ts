@@ -32,5 +32,9 @@ export const currentMember = (request: Request) =>
   Effect.gen(function* () {
     const token = yield* bearerToken(request);
     const identity = yield* Identity;
-    return yield* identity.verify(token);
+    const member = yield* identity.verify(token);
+    const expected = request.headers.get("x-nest-household");
+    if (expected !== null && expected.toLowerCase() !== member.householdId.toLowerCase())
+      return yield* new ApiFailure({ code: "forbidden" });
+    return member;
   });
