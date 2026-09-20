@@ -13,6 +13,10 @@ export function useGroceryDraft(
   save: (change: GroceryChange) => void,
 ) {
   const initial = draftValues(item);
+  const [identity] = useState(() => ({
+    operationId: Crypto.randomUUID(),
+    itemId: item?.itemId ?? Crypto.randomUUID(),
+  }));
   const name = useNativeState(initial.name),
     quantity = useNativeState(initial.quantity),
     unit = useNativeState(initial.unit);
@@ -32,10 +36,6 @@ export function useGroceryDraft(
       unit: unit.value.trim() || null,
       categoryId: category || null,
     };
-    const identity = {
-      operationId: Crypto.randomUUID(),
-      itemId: item?.itemId ?? Crypto.randomUUID(),
-    };
     const change = item
       ? { action: "edit", command: { ...identity, ...fields, expectedVersion: item.version } }
       : { action: "add", command: { ...identity, ...fields } };
@@ -49,7 +49,7 @@ export function useGroceryDraft(
   };
   return { name, quantity, unit, category, setCategory, error, submit };
 }
-function useLeaveGrocery(dirty: () => boolean) {
+export function useLeaveGrocery(dirty: () => boolean) {
   const navigation = useNavigation();
   usePreventRemove(true, ({ data }) => {
     if (!dirty()) return navigation.dispatch(data.action);

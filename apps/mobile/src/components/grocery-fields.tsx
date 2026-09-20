@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useGroceryDraft } from "../groceries/use-draft";
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import type { Grocery, GroceryCategory } from "@nest/contracts/groceries";
@@ -81,6 +82,7 @@ function RemoveGrocery({
   working: boolean;
   save: (change: GroceryChange) => void;
 }) {
+  const [operationId] = useState(Crypto.randomUUID);
   if (item.legacyClaimed)
     return (
       <Note>
@@ -103,7 +105,7 @@ function RemoveGrocery({
                 action: "remove",
                 label: item.name,
                 command: {
-                  operationId: Crypto.randomUUID(),
+                  operationId,
                   itemId: item.itemId,
                   expectedVersion: item.version,
                 },

@@ -43,6 +43,10 @@ export function useGroceries(client: GroceryClient, actor: string, household: st
       void runtime.current?.refresh();
     }, []),
   );
+  const refresh = useCallback(() => {
+    if (account.status === "error") retry();
+    else void runtime.current?.refresh();
+  }, [account.status, retry]);
   return {
     view:
       account.status === "ready"
@@ -54,10 +58,7 @@ export function useGroceries(client: GroceryClient, actor: string, household: st
                 ? "Could not open saved groceries. Try refreshing again."
                 : null,
           },
-    refresh: () => {
-      if (account.status === "error") retry();
-      else void runtime.current?.refresh();
-    },
+    refresh,
     check: (item: Grocery, checked: boolean) =>
       runtime.current?.check(item, checked, Crypto.randomUUID()),
     discard: (operation: string) => runtime.current?.discard(operation),

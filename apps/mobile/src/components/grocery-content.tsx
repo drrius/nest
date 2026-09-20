@@ -1,4 +1,7 @@
+import type { GroceryData } from "../groceries/flow";
 import { Checkbox, Host } from "@expo/ui";
+import { useState, type ReactNode } from "react";
+import { checklistItems } from "../groceries/checklist-view";
 import { ActivityIndicator, Alert, FlatList, useColorScheme } from "react-native";
 import { Link } from "expo-router";
 import type { Grocery } from "@nest/contracts/groceries";
@@ -47,40 +50,48 @@ export function GroceryList({
   refresh,
   check,
   discard,
+  add,
 }: {
+  add: ReactNode;
   view: GroceryView;
   refresh: () => void;
   check: (item: Grocery, checked: boolean) => void;
   discard: (operation: string) => void;
 }) {
+  const [showChecked, setShowChecked] = useState(false);
+  const items = view.data?.groceries ?? [];
+  const hidden = items.filter((item) => item.checked && !item.pending && !item.conflict).length;
   const colors = useQuiet();
-  const dark = useColorScheme() === "dark";
   return (
     <FlatList
-      data={view.data?.groceries ?? []}
+      data={checklistItems(items, showChecked)}
       keyExtractor={(item) => item.itemId}
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
+      automaticallyAdjustKeyboardInsets
       style={{ flex: 1, backgroundColor: colors.background }}
       contentContainerStyle={{ padding: space.large, gap: space.medium, paddingBottom: 48 }}
       ListHeaderComponent={
         <>
           <Section title="For the next shop" />
-          <Link
-            href="/grocery-edit"
-            style={{ color: colors.accent, fontSize: 17, paddingVertical: 12 }}
-          >
-            Add grocery or resume save
-          </Link>
+          {add}
           <GroceryStatus view={view} />
           <NativeAction label="Refresh and retry saved checks" onPress={refresh} />
           <GroceryConflicts view={view} discard={discard} />
+          {hidden > 0 ? (
+            <NativeAction
+              label={showChecked ? "Hide checked" : `Show checked (${hidden})`}
+              onPress={() => setShowChecked((value) => !value)}
+            />
+          ) : null}
         </>
       }
       ListEmptyComponent={
         <Note>
           {view.data?.loaded
-            ? "Your grocery checklist is empty."
+            ? items.length
+              ? "Everything on your list is checked."
+              : "Your grocery checklist is empty."
             : "Your groceries have not loaded yet."}
         </Note>
       }
@@ -96,27 +107,7 @@ export function GroceryList({
           </Link>
         </>
       }
-      renderItem={({ item }) => (
-        <Card>
-          <Host matchContents colorScheme={dark ? "dark" : "light"} seedColor={colors.accent}>
-            <Checkbox
-              value={item.checked}
-              label={[item.name, item.quantity, item.unit].filter(Boolean).join(" · ")}
-              disabled={item.conflict}
-              onValueChange={(checked) => check(item, checked)}
-            />
-          </Host>
-          {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
-          {!item.pending ? (
-            <Link
-              href={{ pathname: "/grocery-edit", params: { itemId: item.itemId } }}
-              style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
-            >
-              Edit {item.name}
-            </Link>
-          ) : null}
-        </Card>
-      )}
+      renderItem={({ item }) => <GroceryRow item={item} check={check} />}
     />
   );
 }
@@ -131,5 +122,37 @@ function GroceryStatus({ view }: { view: GroceryView }) {
       ) : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
     </>
+  );
+}
+
+function GroceryRow({
+  item,
+  check,
+}: {
+  item: GroceryData["groceries"][number];
+  check: (item: Grocery, checked: boolean) => void;
+}) {
+  const colors = useQuiet();
+  const dark = useColorScheme() === "dark";
+  return (
+    <Card>
+      <Host matchContents colorScheme={dark ? "dark" : "light"} seedColor={colors.accent}>
+        <Checkbox
+          value={item.checked}
+          label={[item.name, item.quantity, item.unit].filter(Boolean).join(" · ")}
+          disabled={item.conflict}
+          onValueChange={(checked) => check(item, checked)}
+        />
+      </Host>
+      {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
+      {!item.pending ? (
+        <Link
+          href={{ pathname: "/grocery-edit", params: { itemId: item.itemId } }}
+          style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
+        >
+          Edit {item.name}
+        </Link>
+      ) : null}
+    </Card>
   );
 }
