@@ -75,7 +75,14 @@ async function stop(child) {
   }
 }
 
-export async function postgrestFixture(t) {
+export async function postgrestFixture(
+  t,
+  files = [
+    "tests/database/legacy-chore-fixture.sql",
+    "tests/integration/chore-postgrest.sql",
+    "supabase/migrations/20260919205503_native_chore_receipts.sql",
+  ],
+) {
   if (!process.env.NEST_TEST_POSTGREST_BIN)
     throw new Error("Set NEST_TEST_POSTGREST_BIN to a verified PostgREST binary");
   const db = startFixturePostgres();
@@ -96,9 +103,7 @@ export async function postgrestFixture(t) {
       db.stop();
     }
   });
-  db.file("tests/database/legacy-chore-fixture.sql");
-  db.file("tests/integration/chore-postgrest.sql");
-  db.file("supabase/migrations/20260919205503_native_chore_receipts.sql");
+  for (const file of files) db.file(file);
   const socketDirectory = db.sql("show unix_socket_directories");
   const socket = join(socketDirectory, "postgrest.sock");
   const secret = randomBytes(32).toString("hex");

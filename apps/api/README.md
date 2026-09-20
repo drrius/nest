@@ -23,3 +23,11 @@ HTTP fixture tests exercise the actual Effect network adapter, credential forwar
 Copy `.env.example` to `.env` in this directory and configure an isolated development backend whose audited legacy prerequisites and gated Nest migrations have been deliberately prepared. Run `pnpm --filter @nest/api dev` with Node 24+. The Node HTTP adapter binds **127.0.0.1 only** on port 8787; it propagates disconnect cancellation, request streaming and no-store responses. No service-role key, migration or deployment is part of startup.
 
 For an iOS simulator on the same host, the mobile API origin can use localhost in a development build. A physical iPhone requires a deliberately configured HTTPS development endpoint; this script does not expose a public tunnel or deploy a server. Live Auth/provider identity setup remains a separate verification gate.
+
+## Grocery checklist
+
+`GET /v1/groceries` and `GET /v1/groceries/categories` bind verified household membership and request exact PostgREST counts. Reads reject truncation and mixed-household/malformed data; the current full-snapshot bounds are 500 groceries and 100 categories. Pagination for larger lists remains a release gap. Versions are selected using PostgREST's `::text` projection and validated as positive PostgreSQL bigint strings, without JavaScript number conversion.
+
+`POST /v1/groceries/add`, `/edit`, `/remove` and `/check` share schemas with `groceryTools(request, config)`. All tools reverify membership per invocation. Add uses stable item/operation UUIDs; edit/remove/check require a string `expectedVersion`. Add/edit fields are `name`, nullable `quantity`, nullable `unit`, nullable `categoryId`. Check has `checked`; remove has no descriptive fields. Preserve exact operation IDs/payloads after uncertain responses. The server masks database details, returns 410 for unavailable targets and 409 for changed versions or legacy-claim reconciliation. Checking never creates money or finishes a shopping session.
+
+The transport/SQL journey is verified locally; native grocery screens, queued replay and a live chat/provider remain required. Existing legacy claims remain metadata; removal is blocked until explicitly reconciled at production cutover.
