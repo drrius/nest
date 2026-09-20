@@ -1,3 +1,4 @@
+import { OfflineProvider } from "../offline/provider";
 import { ThemeProvider, DarkTheme, DefaultTheme } from "expo-router/react-navigation";
 import { Stack } from "expo-router/stack";
 import { StatusBar } from "expo-status-bar";
@@ -11,10 +12,12 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
       <SessionProvider>
-        <PreviewProvider>
-          <StatusBar style="auto" />
-          <Navigation />
-        </PreviewProvider>
+        <OfflineProvider>
+          <PreviewProvider>
+            <StatusBar style="auto" />
+            <Navigation />
+          </PreviewProvider>
+        </OfflineProvider>
       </SessionProvider>
     </ThemeProvider>
   );
