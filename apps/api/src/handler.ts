@@ -38,6 +38,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
     if (
       path === "/v1/assistant/turn" ||
       path === "/v1/assistant/conversation" ||
+      path === "/v1/assistant/conversations" ||
       path === "/v1/assistant/interrupt"
     )
       return assistant(request);

@@ -1,5 +1,9 @@
 import * as Schema from "effect/Schema";
 const Uuid = Schema.String.check(Schema.isUUID());
+export const ConversationTimestamp = Schema.String.check(
+  Schema.isPattern(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,6})?(Z|[+-]\d{2}:\d{2})$/),
+  Schema.makeFilter((value: string) => Number.isFinite(Date.parse(value))),
+);
 export const ConversationRevision = Schema.String.check(
   Schema.isPattern(/^(0|[1-9][0-9]{0,18})$/),
   Schema.makeFilter((value: string) => BigInt(value) <= 9223372036854775807n),
@@ -35,3 +39,16 @@ export const TurnReceipt = Schema.Struct({
   }),
 );
 export type StartTurn = typeof StartTurn.Type;
+export const ConversationSummary = Schema.Struct({
+  conversationId: Uuid,
+  revision: ConversationRevision,
+  createdAt: ConversationTimestamp,
+  updatedAt: ConversationTimestamp,
+});
+export const ConversationPage = Schema.Struct({
+  version: Schema.Literal(1),
+  actorId: Uuid,
+  householdId: Uuid,
+  conversations: Schema.Array(ConversationSummary).check(Schema.isMaxLength(20)),
+  nextCursor: Schema.NullOr(Uuid),
+});
