@@ -8,7 +8,8 @@
     "./groceries": "./src/groceries.ts",
     "./conversations": "./src/conversations.ts",
     "./assistant-actions": "./src/assistant-actions.ts",
-    "./food": "./src/food.ts"
+    "./food": "./src/food.ts",
+    "./cooking": "./src/cooking.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
