@@ -1,0 +1,11 @@
+import { mealPlacementFiles } from "./meal-placement-files.mjs";
+// Actual audited meal/tenancy storage plus the private journal. Other tool branches
+// are regression-tested in their existing fixtures, which include this dispatcher upgrade.
+export const aiMealPlacementFiles = [
+  ...mealPlacementFiles,
+  "supabase/migrations/20260919220034_native_private_conversations.sql",
+  "supabase/migrations/20260920022841_native_ai_turn_ownership.sql",
+  "supabase/migrations/20260920033321_native_ai_command_journal.sql",
+  "supabase/migrations/20260920153415_native_ai_chore_transfers.sql",
+  "supabase/migrations/20260920171440_native_ai_meal_placement.sql",
+];
