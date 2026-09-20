@@ -12,7 +12,8 @@
     "./cooking": "./src/cooking.ts",
     "./memory": "./src/memory.ts",
     "./calendar": "./src/calendar.ts",
-    "./notifications": "./src/notifications.ts"
+    "./notifications": "./src/notifications.ts",
+    "./setup": "./src/setup.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

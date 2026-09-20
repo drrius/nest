@@ -14,6 +14,7 @@ export default function SettingsScreen() {
     );
   return (
     <Page>
+      <NativeAction label="Continue your setup" onPress={() => router.push("/setup")} />
       <Card>
         <Section title="Personal" />
         <Note>Your dietary preferences, optional calorie goal and portions.</Note>

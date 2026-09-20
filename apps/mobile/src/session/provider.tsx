@@ -1,3 +1,5 @@
+import { sessionSetup } from "./setup-client";
+import type { SetupClient } from "../setup/client";
 import { sessionNotification } from "./notification-client";
 import type { NotificationClient } from "../notifications/client";
 import { sessionCalendar } from "./calendar-client";
@@ -54,6 +56,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  setup: SetupClient | null;
   notification: NotificationClient | null;
   calendar: CalendarClient | null;
   memory: MemoryClient | null;
@@ -112,9 +115,17 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
     household = member?.householdId;
   return useMemo(() => {
     if (!actor || !household || !runtime.current || !configuration)
-      return { food: null, cooking: null, memory: null, calendar: null, notification: null };
+      return {
+        food: null,
+        cooking: null,
+        memory: null,
+        calendar: null,
+        notification: null,
+        setup: null,
+      };
     const { auth } = runtime.current;
     return {
+      setup: sessionSetup(auth, { actor, household }, configuration.apiUrl),
       notification: sessionNotification(auth, { actor, household }, configuration.apiUrl),
       calendar: sessionCalendar(auth, { actor, household }, configuration.apiUrl),
       memory: sessionMemory(auth, { actor, household }, configuration.apiUrl),
@@ -131,7 +142,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const busy = useRef(false);
   const runtime = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
-  const { food, cooking, memory, calendar, notification } = usePreferenceClients(member, runtime);
+  const preferenceClients = usePreferenceClients(member, runtime);
   const { chores, groceries, assistant } = useMemo(() => {
     if (!member || !runtime.current || !configuration)
       return { chores: null, groceries: null, assistant: null };
@@ -179,11 +190,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <SessionContext
       value={{
-        notification,
-        memory,
-        calendar,
-        cooking,
-        food,
+        ...preferenceClients,
         chores,
         groceries,
         assistant,

@@ -1,0 +1,35 @@
+import * as Effect from "effect/Effect";
+import * as Schema from "effect/Schema";
+import { effectTool, CommandFailure } from "@nest/ai/tool";
+import { bearerToken, currentMember } from "../identity.ts";
+import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
+import type { ApiFailure } from "../errors.ts";
+import { setupStatus } from "./service.ts";
+const failure = (error: ApiFailure) =>
+  new CommandFailure({ code: error.code === "unavailable" ? "unavailable" : "forbidden" });
+export function setupTools(request: Request, config: IdentityConfig) {
+  return {
+    readSetupStatus: effectTool({
+      description:
+        "Read whether your own food and notification choices and shared household cooking preferences have been saved. These are configuration facts, not overall setup completion or evidence of iPhone permissions, push delivery or meal readiness. A failed read is unknown. Do not infer consent from missing setup. Every person may skip optional setup and return later.",
+      input: Schema.Struct({}),
+      execute: () =>
+        Effect.gen(function* () {
+          const member = yield* currentMember(request),
+            token = yield* bearerToken(request);
+          return yield* setupStatus(config, { member, token });
+        }).pipe(Effect.provide(supabaseIdentity(config)), Effect.mapError(failure)),
+    }),
+    openSetup: effectTool({
+      description:
+        "Open native setup when asked to set up everything or continue optional setup. Navigation only: does not save preferences, complete setup or grant any permission. The member may also start quickly from there without changing choices.",
+      input: Schema.Struct({}),
+      execute: () =>
+        currentMember(request).pipe(
+          Effect.as({ kind: "device_handoff" as const, screen: "setup" as const }),
+          Effect.provide(supabaseIdentity(config)),
+          Effect.mapError(failure),
+        ),
+    }),
+  };
+}

@@ -160,3 +160,23 @@ test("notification save receipt opens real private settings without claiming per
     { label: "Your notification preferences saved", href: "/notification-preferences" },
   );
 });
+
+test("setup handoff is navigation only and rejects an arbitrary destination", () => {
+  const part = {
+    type: "tool-openSetup",
+    state: "output-available",
+    output: { ok: true, value: { kind: "device_handoff", screen: "setup" } },
+  };
+  assert.deepEqual(actionResult(part), {
+    label: "Continue your setup on your iPhone",
+    href: "/setup",
+  });
+  assert.equal(
+    actionResult({
+      ...part,
+      output: { ok: true, value: { kind: "device_handoff", screen: "https://evil.invalid" } },
+    }),
+    null,
+  );
+  assert.equal(actionResult({ ...part, state: "input-available" }), null);
+});

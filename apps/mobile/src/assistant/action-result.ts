@@ -1,3 +1,4 @@
+import { SetupHandoff } from "@nest/contracts/setup";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope } from "@nest/contracts/memory";
@@ -33,6 +34,7 @@ const destinations = {
 } as const;
 export function actionResult(part: { type: string; state?: unknown; output?: unknown }) {
   if (part.type === "tool-openCalendarSettings") return calendarHandoff(part);
+  if (part.type === "tool-openSetup") return setupHandoff(part);
   const name = part.type.slice(5);
   if (!part.type.startsWith("tool-") || !Object.hasOwn(AssistantReceipts, name)) return null;
   const action = name as AssistantAction;
@@ -80,4 +82,15 @@ function calendarHandoff(part: { state?: unknown; output?: unknown }) {
     label: "Choose calendar access and sharing on your iPhone",
     href: "/calendar-sharing" as const,
   };
+}
+
+function setupHandoff(part: { state?: unknown; output?: unknown }) {
+  if (
+    part.state !== "output-available" ||
+    !Schema.is(Output)(part.output) ||
+    !part.output.ok ||
+    !Schema.is(SetupHandoff)(part.output.value)
+  )
+    return null;
+  return { label: "Continue your setup on your iPhone", href: "/setup" as const };
 }

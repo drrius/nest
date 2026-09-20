@@ -1,3 +1,4 @@
+import { setupStatus } from "./setup/service.ts";
 import { notificationRoute } from "./notifications/route.ts";
 import { calendarRoute } from "./calendar/route.ts";
 import { memoryRoute } from "./memory/route.ts";
@@ -21,6 +22,7 @@ function route(request: Request, config: IdentityConfig) {
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
+    if (path === "/v1/setup/status") return yield* setupStatus(config, { member, token });
     if (path.startsWith("/v1/notification-preferences"))
       return yield* notificationRoute(request, config, { member, token });
     if (path.startsWith("/v1/calendar/"))
@@ -57,6 +59,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/setup/status": "GET",
       "/v1/notification-preferences": "GET",
       "/v1/notification-preferences/save": "POST",
       "/v1/calendar/consent": "GET",
