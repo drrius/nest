@@ -17,4 +17,5 @@ export const aiCommandFiles = [
   "supabase/migrations/20260920072531_native_notification_preferences.sql",
   "supabase/migrations/20260920074502_native_ai_notification_preferences.sql",
   "supabase/migrations/20260920091316_native_ai_routine_creation.sql",
+  "supabase/migrations/20260920100014_native_ai_routine_editing.sql",
 ];

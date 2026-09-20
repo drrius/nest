@@ -16,6 +16,8 @@ PR #57 merged as `985ee66` after clean Sol medium signoff on `fac3318a0488088b3b
 
 Native editor review found surrounding whitespace on an otherwise unchanged title could emit an unnecessary edit and partner notice. The draft now omits a normalized title equal to the stored value while retaining untouched historical titles verbatim. A focused no-op/title-plus-schedule regression passes. Updated-head CI and Sol medium rereview are required.
 
+PR #58 merged as `89c65f7` after the whitespace finding was fixed, Sol medium signed off on `19e50aa55ae0b0ab815865ba913e851785d4cad2`, both exact-head CI checks passed and no conversations remained. Independent verification passed 19 native unit cases plus both real HTTP/database journeys. Greptile reported its trial cap. Current `codex/ai-routine-edit` work adds a gated AI journal candidate delegating to the same native edit command. Eight routine creation/edit database cases pass, including concurrent edit replay, later partner work, private-turn isolation, durable stale/archived conflicts and invalid patch/baseline rejection. AI tool/contracts/native-result wiring, additional rollback/recovery tests, advisors, CI and review remain unfinished.
+
 ## Milestone checklist
 
 - [ ] **M0 — Decisions and execution route.** Tooling, delivery ADR, action inventory, exact dependency pins and linked EAS app identity implemented. CI enforces formatting, lint, typechecking and focused tests. Native smoke procedure exists but has not run. Exit still needs an executable iPhone development build and recorded native evidence.
