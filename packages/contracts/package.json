@@ -15,7 +15,8 @@
     "./notifications": "./src/notifications.ts",
     "./setup": "./src/setup.ts",
     "./routines": "./src/routines.ts",
-    "./chore-changes": "./src/chore-changes.ts"
+    "./chore-changes": "./src/chore-changes.ts",
+    "./chore-transfers": "./src/chore-transfers.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
