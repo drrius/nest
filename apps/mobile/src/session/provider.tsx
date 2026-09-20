@@ -15,7 +15,7 @@ import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { fetch } from "expo/fetch";
 import { sessionChores } from "./chore-client";
 import type { ChoreClient } from "../chores/client";
-import { nativeAuth } from "./native-client";
+import { nativeAuth, offlineIdentity, beginLocalLogout, beginLocalSignIn } from "./native-client";
 import { signInWithApple } from "./apple";
 import { sessionConfig } from "./config";
 import { SessionFailure, type SessionState } from "./contracts";
@@ -69,6 +69,7 @@ function useRuntime(publish: (state: SessionState) => void) {
           Effect.provideService(FetchHttpClient.Fetch, fetch),
         ),
       publish,
+      offlineIdentity,
     );
     runtime.current = { auth, subscription };
     const activate = (active: boolean) => {
@@ -127,15 +128,21 @@ export function SessionProvider({ children }: PropsWithChildren) {
     const current = runtime.current;
     if (current)
       run(
-        signInWithApple(current.auth).pipe(
-          Effect.map((credentials) => current.subscription.signIn(credentials)),
+        Effect.tryPromise({
+          try: beginLocalSignIn,
+          catch: () => new SessionFailure({ code: "unavailable" }),
+        }).pipe(
+          Effect.flatMap(() => signInWithApple(current.auth)),
+          Effect.flatMap((credentials) =>
+            Effect.promise(() => current.subscription.signIn(credentials)),
+          ),
         ),
       );
   };
   const signOut = () => {
     const current = runtime.current;
     if (!current || busy.current) return;
-    run(signOutSession(current.auth, current.subscription));
+    run(signOutSession(current.auth, current.subscription, beginLocalLogout));
   };
   return (
     <SessionContext

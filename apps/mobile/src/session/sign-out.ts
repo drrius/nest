@@ -6,11 +6,14 @@ import type { subscribeSession } from "./subscription.ts";
 export const signOutSession = (
   auth: SupabaseClient["auth"],
   subscription: ReturnType<typeof subscribeSession>,
+  beginLocalLogout: () => Promise<void> = async () => {},
 ) =>
   Effect.gen(function* () {
     subscription.hide();
     yield* Effect.tryPromise({
       try: async () => {
+        await beginLocalLogout();
+        await auth.stopAutoRefresh();
         // Remote revocation can fail after the SDK has removed local credentials.
         // Read persistence back before reporting local logout complete.
         await auth.signOut({ scope: "local" });

@@ -168,13 +168,12 @@ test("refresh events cannot reopen a hidden session until an explicit sign-in su
   subscription.hide();
   notify("TOKEN_REFRESHED", credentials);
   notify("SIGNED_OUT", null);
-  subscription.unavailable();
+  await subscription.unavailable();
   await subscription.refresh();
   assert.deepEqual(states.at(-1), { status: "logout_pending" });
   subscription.finishSignOut();
   assert.deepEqual(states.at(-1), { status: "signed_out" });
-  subscription.signIn(credentials);
-  await Promise.resolve();
+  await subscription.signIn(credentials);
   assert.deepEqual(states.at(-1), { status: "ready", member });
   subscription.dispose();
 });
@@ -190,7 +189,7 @@ test("warm revalidation keeps same-account cached access offline but definitive 
   const verified = states.length;
   failure = "unavailable";
   await Effect.runPromise(verifier.update(credentials));
-  verifier.unavailable();
+  await Effect.runPromise(verifier.unavailable());
   assert.ok(states.slice(verified).every((state) => state.status === "ready" && state.offline));
   assert.equal(states.at(-1).member, member);
   failure = "not_a_member";
@@ -202,7 +201,7 @@ test("warm revalidation keeps same-account cached access offline but definitive 
   failure = null;
   await Effect.runPromise(verifier.update(credentials));
   verifier.invalidate();
-  verifier.unavailable();
+  await Effect.runPromise(verifier.unavailable());
   assert.equal(states.at(-1).status, "unavailable");
 });
 
@@ -218,7 +217,7 @@ test("warm offline fallback never carries a previous actor into a new SDK accoun
   await Effect.runPromise(verifier.update(credentials));
   await Effect.runPromise(verifier.update({ ...credentials, user: { id: partner } }));
   assert.equal(states.at(-1).status, "unavailable");
-  verifier.unavailable();
+  await Effect.runPromise(verifier.unavailable());
   assert.equal(states.at(-1).status, "unavailable");
 });
 
@@ -249,7 +248,7 @@ test("foreground subscription refresh preserves the loaded screen through networ
   await subscription.refresh();
   assert.ok(states.slice(loaded).every((state) => state.status === "ready" && state.offline));
   subscription.hide();
-  subscription.unavailable();
+  await subscription.unavailable();
   assert.equal(states.at(-1).status, "logout_pending");
   subscription.dispose();
 });

@@ -1,7 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
-export function sdkFixture() {
-  const expires = Math.floor(Date.now() / 1000) + 3600;
+export function sdkFixture({
+  expiresIn = 3600,
+  wrapStorage = (storage) => ({ storage }),
+  fetcher,
+} = {}) {
+  const expires = Math.floor(Date.now() / 1000) + expiresIn;
   const encode = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
   const access = `${encode({ alg: "HS256" })}.${encode({ exp: expires })}.fixture`;
   const user = {
@@ -26,10 +30,24 @@ export function sdkFixture() {
   ]);
   const calls = [];
   let failure = null;
+  const persistence = wrapStorage({
+    getItem: async (key) => {
+      if (failure === "read") throw new Error("Fixture Keychain read failure");
+      return storage.get(key) ?? null;
+    },
+    setItem: async (key, value) => {
+      storage.set(key, value);
+    },
+    removeItem: async (key) => {
+      if (failure === "delete") throw new Error("Fixture Keychain deletion failure");
+      storage.delete(key);
+    },
+  });
   const client = createClient("https://fixture.example", "sb_publishable_fixture", {
     global: {
       fetch: async (url) => {
         calls.push(url);
+        if (fetcher) return fetcher(url);
         return Response.json({ message: "Unavailable" }, { status: 503 });
       },
     },
@@ -38,23 +56,14 @@ export function sdkFixture() {
       autoRefreshToken: false,
       persistSession: true,
       detectSessionInUrl: false,
-      storage: {
-        getItem: async (key) => {
-          if (failure === "read") throw new Error("Fixture Keychain read failure");
-          return storage.get(key) ?? null;
-        },
-        setItem: async (key, value) => {
-          storage.set(key, value);
-        },
-        removeItem: async (key) => {
-          if (failure === "delete") throw new Error("Fixture Keychain deletion failure");
-          storage.delete(key);
-        },
-      },
+      storage: persistence.storage,
     },
   });
   return {
     client,
+    identity: persistence.identity,
+    beginLogout: persistence.beginLogout,
+    beginSignIn: persistence.beginSignIn,
     storage,
     calls,
     user,
