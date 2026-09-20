@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useFocusEffect } from "expo-router";
+import { useCallback, useEffect, useRef, useState } from "react";
 import * as Haptics from "expo-haptics";
 import * as Crypto from "expo-crypto";
 import type { Chore } from "@nest/contracts/chores";
@@ -26,6 +27,11 @@ export function useChores(client: ChoreClient, actor: string, household: string)
       subscription.release();
     };
   }, [client, actor, household, account]);
+  useFocusEffect(
+    useCallback(() => {
+      void runtime.current?.refresh();
+    }, []),
+  );
   return {
     view:
       account.status === "ready"
