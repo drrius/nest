@@ -46,3 +46,26 @@ test("model command schemas reuse native fields without exposing generated retry
     }),
   );
 });
+
+test("food preference receipts link to private settings and require a valid save result", () => {
+  const part = {
+    type: "tool-saveFoodPreferences",
+    state: "output-available",
+    output: { ok: true, value: { actorId: id, householdId: id, operationId: id, revision: "1" } },
+  };
+  assert.deepEqual(actionResult(part), {
+    label: "Your food preferences saved",
+    href: "/food-preferences",
+  });
+  assert.match(actionResult({ ...part, output: { ok: true, value: {} } }).label, /verify/);
+  const decode = Schema.decodeUnknownSync(AssistantInputs.saveFoodPreferences, {
+    onExcessProperty: "error",
+  });
+  const input = {
+    expectedRevision: "0",
+    preferences: { restrictions: [], dislikes: [], calorieGoal: null, portions: 1 },
+  };
+  assert.deepEqual(decode(input), input);
+  assert.throws(() => decode({ ...input, actorId: id }));
+  assert.throws(() => decode({ ...input, operationId: id }));
+});

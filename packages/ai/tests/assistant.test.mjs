@@ -132,22 +132,24 @@ test("bounded context keeps the latest prompt without dropping durable history",
 });
 
 test("unreconciled write calls cannot be silently discarded from model history", async () => {
-  const writes = { addGrocery: tools.listChores };
-  const part = { type: "tool-addGrocery", toolCallId: "write", input: {} };
-  for (const state of ["input-available", "output-error", "output-denied"]) {
-    const message = {
+  for (const name of ["addGrocery", "saveFoodPreferences"]) {
+    const writes = { [name]: tools.listChores };
+    const part = { type: `tool-${name}`, toolCallId: "write", input: {} };
+    for (const state of ["input-available", "output-error", "output-denied"]) {
+      const message = {
+        id: "assistant",
+        role: "assistant",
+        parts: [{ ...part, state, errorText: "Unknown" }],
+      };
+      await assert.rejects(validateHistory([user, message], writes));
+    }
+    const recovered = {
       id: "assistant",
       role: "assistant",
-      parts: [{ ...part, state, errorText: "Unknown" }],
+      parts: [
+        { ...part, state: "output-available", output: { ok: true, value: "committed fixture" } },
+      ],
     };
-    await assert.rejects(validateHistory([user, message], writes));
+    assert.deepEqual(await validateHistory([user, recovered], writes), [user, recovered]);
   }
-  const recovered = {
-    id: "assistant",
-    role: "assistant",
-    parts: [
-      { ...part, state: "output-available", output: { ok: true, value: "committed fixture" } },
-    ],
-  };
-  assert.deepEqual(await validateHistory([user, recovered], writes), [user, recovered]);
 });
