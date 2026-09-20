@@ -8,6 +8,7 @@ export interface EditorView {
   pending: GroceryChange | null;
   working: boolean;
   saved: boolean;
+  savedOperation: string | null;
   error: string | null;
   categories: readonly (typeof GroceryCategory.Type)[];
   categoryError: string | null;
@@ -17,6 +18,7 @@ export const initialEditorView: EditorView = {
   pending: null,
   working: false,
   saved: false,
+  savedOperation: null,
   error: null,
   categories: [],
   categoryError: null,
@@ -49,7 +51,7 @@ export function groceryEditor(
     Effect.runPromise(effect, { signal: abort.signal });
   const work = async (action: () => Promise<void>) => {
     if (disposed || view.working) return;
-    emit({ working: true, error: null, saved: false });
+    emit({ working: true, error: null, saved: false, savedOperation: null });
     try {
       await action();
     } catch (error) {
@@ -65,7 +67,7 @@ export function groceryEditor(
       emit({ pending });
       await run(client.change(pending));
       await run(store.clearGroceryChange(session, pending.command.operationId));
-      emit({ pending: null, saved: true });
+      emit({ pending: null, saved: true, savedOperation: pending.command.operationId });
     });
   return {
     load: () =>

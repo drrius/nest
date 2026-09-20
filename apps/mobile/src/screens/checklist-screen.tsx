@@ -1,4 +1,5 @@
 import { GroceryList } from "../components/grocery-content";
+import { GroceryQuickAdd } from "../components/grocery-quick-add";
 import { NativeAction } from "../components/native-action";
 import { Page, Note } from "../components/page";
 import { SignInCard } from "../components/sign-in-card";
@@ -40,5 +41,13 @@ function Checklist({
         <NativeAction label="Verify account" onPress={verify} />
       </Page>
     );
-  return <GroceryList view={view} refresh={refresh} check={check} discard={discard} />;
+  return (
+    <GroceryList
+      add={<GroceryQuickAdd client={client} refresh={refresh} />}
+      view={view}
+      refresh={refresh}
+      check={check}
+      discard={discard}
+    />
+  );
 }

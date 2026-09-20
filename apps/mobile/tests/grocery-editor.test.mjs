@@ -38,6 +38,7 @@ test("an uncertain online save survives restart and retries only on explicit act
   await first.load();
   await first.save(change);
   assert.equal(view.saved, false);
+  assert.equal(view.savedOperation, null);
   assert.deepEqual(view.pending, change);
   assert.equal(
     (await run(db.store.read(db.session))).pending.length,
@@ -63,6 +64,7 @@ test("an uncertain online save survives restart and retries only on explicit act
   await second.retry();
   assert.deepEqual(calls, [change, change]);
   assert.equal(view.saved, true);
+  assert.equal(view.savedOperation, operation);
   assert.equal(await run(reopened.store.readGroceryChange(session)), null);
 });
 
