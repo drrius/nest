@@ -7,6 +7,7 @@ import {
   RoutineCreateEnvelope,
 } from "@nest/contracts/routines";
 import { preferenceRequests, PreferenceFailure } from "../preferences/client.ts";
+import { routineStateClient } from "./state-client.ts";
 import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
 import type { ChoreFailure } from "../chores/client.ts";
@@ -18,6 +19,7 @@ export function routineClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    setState: routineStateClient(request, account),
     read: () =>
       request("v1/routines", RoutineList).pipe(
         Effect.flatMap((snapshot) => {

@@ -3,6 +3,7 @@ import * as Schema from "effect/Schema";
 import {
   CreateRoutine,
   EditRoutine,
+  RoutineStateCommand,
   type Routine,
   type RoutinePatch,
   type RoutineDefinition,
@@ -12,6 +13,7 @@ import type { RoutineClient, RoutineSnapshot } from "./client.ts";
 export type RoutineView = {
   snapshot: RoutineSnapshot | null;
   busy: boolean;
+  pendingWrite: boolean;
   stage: "ready" | "uncertain" | "reload" | "verify";
   notice: string | null;
   created: string | null;
@@ -20,6 +22,7 @@ export type RoutineView = {
 const initial: RoutineView = {
   snapshot: null,
   busy: false,
+  pendingWrite: false,
   stage: "ready",
   notice: null,
   created: null,
@@ -27,7 +30,7 @@ const initial: RoutineView = {
 };
 export class RoutineRuntime {
   private view = initial;
-  private attempt: CreateRoutine | EditRoutine | null = null;
+  private attempt: CreateRoutine | EditRoutine | typeof RoutineStateCommand.Type | null = null;
   private acknowledged: string | null = null;
   private disposed = false;
   private readonly lifetime = new AbortController();
@@ -61,6 +64,7 @@ export class RoutineRuntime {
       this.acknowledged = null;
       this.publish({
         snapshot: null,
+        pendingWrite: false,
         stage: "verify",
         created: null,
         notice: "Verify your account to open routines.",
@@ -77,6 +81,7 @@ export class RoutineRuntime {
       this.attempt = null;
       this.publish({
         stage: "reload",
+        pendingWrite: false,
         notice:
           "The routine could not be saved. Reload and check its current details before trying again.",
       });
@@ -176,15 +181,39 @@ export class RoutineRuntime {
     };
     await this.send();
   };
+  setState = async (routine: Routine, action: typeof RoutineStateCommand.Type.action) => {
+    if (this.disposed || this.view.busy || !this.view.snapshot || this.view.stage !== "ready")
+      return;
+    const decoded = Schema.decodeUnknownExit(RoutineStateCommand)(
+      {
+        operationId: this.uuid(),
+        routineId: routine.routineId,
+        expectedVersion: routine.version,
+        action,
+      },
+      { onExcessProperty: "error" },
+    );
+    if (decoded._tag === "Failure") {
+      this.publish({ notice: "Reload the routine before changing its state." });
+      return;
+    }
+    this.attempt = decoded.value;
+    await this.send();
+  };
   private async send() {
     if (this.disposed || !this.attempt) return;
-    this.publish({ busy: true, notice: null });
+    this.publish({ busy: true, pendingWrite: true, notice: null });
     try {
       const receipt = await this.run(
-        "patch" in this.attempt ? this.client.edit(this.attempt) : this.client.create(this.attempt),
+        "action" in this.attempt
+          ? this.client.setState(this.attempt)
+          : "patch" in this.attempt
+            ? this.client.edit(this.attempt)
+            : this.client.create(this.attempt),
       );
       if (this.disposed) return;
       this.acknowledged = receipt.routineId;
+      this.publish({ pendingWrite: false });
       await this.read();
     } catch (error) {
       this.failed(error);

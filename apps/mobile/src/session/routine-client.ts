@@ -5,10 +5,12 @@ import { fetch } from "expo/fetch";
 import { routineClient } from "../routines/client";
 import type { Account } from "../offline/contracts";
 import { sessionCredentials } from "./credentials";
-import type { CreateRoutine, EditRoutine } from "@nest/contracts/routines";
+import type { CreateRoutine, EditRoutine, RoutineStateCommand } from "@nest/contracts/routines";
 export function sessionRoutines(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = routineClient(apiUrl, account, sessionCredentials(auth));
   return {
+    setState: (input: typeof RoutineStateCommand.Type) =>
+      client.setState(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     read: () => client.read().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     edit: (input: EditRoutine) =>
       client.edit(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
