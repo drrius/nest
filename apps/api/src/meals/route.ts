@@ -1,3 +1,4 @@
+import { replaceMeal } from "./replacement.ts";
 import * as Effect from "effect/Effect";
 import type { AuthorizedCaller } from "../chores/service.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
@@ -12,7 +13,13 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
   return Effect.gen(function* () {
     const path = new URL(request.url).pathname;
     const command =
-      path === "/v1/meals/move" ? moveMeal : path === "/v1/meals/remove" ? removeMeal : placeMeal;
+      path === "/v1/meals/replace"
+        ? replaceMeal
+        : path === "/v1/meals/move"
+          ? moveMeal
+          : path === "/v1/meals/remove"
+            ? removeMeal
+            : placeMeal;
     const receipt = yield* command(config, caller, yield* commandBody(request));
     return { version: 1, receipt };
   });

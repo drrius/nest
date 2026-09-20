@@ -63,6 +63,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       "/v1/meals/place": "POST",
       "/v1/meals/remove": "POST",
       "/v1/meals/move": "POST",
+      "/v1/meals/replace": "POST",
       "/v1/routines": "GET",
       "/v1/routines/create": "POST",
       "/v1/routines/edit": "POST",
