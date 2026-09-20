@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { after, beforeEach, test } from "node:test";
+import { createRequire } from "node:module";
+import { FoodPreferences } from "../../packages/contracts/src/food.ts";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
+const require = createRequire(new URL("../../packages/contracts/package.json", import.meta.url));
+const Schema = await import(require.resolve("effect/Schema"));
 const db = startFixturePostgres();
 after(() => db.stop());
 for (const file of [
@@ -232,4 +236,51 @@ test("revoked membership blocks private food journal replay and new writes", () 
       `insert into public.household_members(household_id,user_id) values('${id(10)}','${id(1)}')`,
     );
   }
+});
+
+test("native and journal writes use shared UTF-16 bounds and reject ECMAScript-only blank text", () => {
+  const r = start();
+  for (const text of ["🥜".repeat(61), "\u00a0", "\ufeff", "\u2000\u2028\u2029\u3000"]) {
+    assert.throws(
+      () => execute(r, { ...input, preferences: { ...preferences, restrictions: [text] } }),
+      /Invalid food preferences/,
+    );
+    assert.throws(
+      () =>
+        db.sql(
+          as(
+            `select public.nest_save_food_profile('${id(10)}','${id(400)}',0,array['${text}'],array[]::text[],null,1)`,
+          ),
+        ),
+      /Invalid food preferences/,
+    );
+  }
+  assert.equal(count("nest_food_profiles"), "0");
+  assert.equal(count("nest_food_profile_receipts"), "0");
+  const saved = execute(r, {
+    ...input,
+    preferences: { ...preferences, restrictions: ["🥜".repeat(60)] },
+  });
+  assert.equal(saved.ok, true);
+  assert.equal(saved.value.revision, "1");
+});
+
+test("SQL and shared preference codecs agree across generated Unicode length and whitespace boundaries", () => {
+  const samples = [
+    [],
+    [null],
+    ...["a", "食", "🥜", "a🥜", "\u00a0", "\ufeff", "\u0085", "\u2028", "\u3000"].flatMap(
+      (character) => [1, 59, 60, 61, 119, 120, 121].map((length) => [character.repeat(length)]),
+    ),
+  ];
+  const rows = samples.map((sample, index) => `(${index},${json(sample)})`).join(",");
+  const actual = JSON.parse(
+    db.sql(
+      `select jsonb_agg(private.nest_valid_food_texts(array(select jsonb_array_elements_text(value))) order by position) from (values ${rows}) cases(position,value)`,
+    ),
+  );
+  const expected = samples.map((restrictions) =>
+    Schema.is(FoodPreferences)({ ...preferences, restrictions }),
+  );
+  assert.deepEqual(actual, expected);
 });

@@ -1,5 +1,18 @@
 -- GATED additive candidate. No hosted application is authorized.
 -- Own food preferences use the existing atomic turn journal and native profile command.
+-- Match the shared JavaScript codec: UTF-16 code units and ECMAScript trim.
+-- PostgreSQL length(text) counts a non-BMP character once, JavaScript counts two.
+create or replace function private.nest_valid_food_texts(p_values text[])
+returns boolean language sql immutable security invoker set search_path='' as $$
+  select p_values is not null and coalesce(array_ndims(p_values),1)=1
+    and cardinality(p_values)<=32 and not exists(
+      select 1 from unnest(p_values) item where item is null or length(item)>120
+        or length(item)+(select count(*) from regexp_split_to_table(item,'') character
+          where ascii(character)>65535)>120
+        or btrim(item,U&'\0009\000A\000B\000C\000D\0020\00A0\1680\2000\2001\2002\2003\2004\2005\2006\2007\2008\2009\200A\2028\2029\202F\205F\3000\FEFF')=''
+    );
+$$;
+
 alter table public.nest_ai_commands drop constraint nest_ai_commands_tool_name_check;
 alter table public.nest_ai_commands add constraint nest_ai_commands_tool_name_check
   check(tool_name in ('completeChore','addGrocery','editGrocery','removeGrocery','checkGrocery','saveFoodPreferences'));

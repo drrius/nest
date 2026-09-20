@@ -3,6 +3,8 @@ import { test } from "node:test";
 import { DefaultChatTransport, simulateReadableStream } from "ai";
 import { MockLanguageModelV4 } from "ai/test";
 import { createHandler } from "../../../../apps/api/src/handler.ts";
+import { householdTools } from "../../../../apps/api/src/assistant/tools.ts";
+import { validateHistory } from "../../src/chat.ts";
 import { postgrestFixture } from "../../../../tests/integration/postgrest-fixture.mjs";
 import { lostResponseProxy } from "../../../../tests/integration/lost-response-proxy.mjs";
 import { usage } from "../fixtures.mjs";
@@ -161,4 +163,37 @@ test("stale preference revision is a canonical conflict that prevents another mo
   );
   assert.equal(model.doStreamCalls.length, 1);
   assert.equal(f.db.sql("select restrictions[1] from public.nest_food_profiles"), "Existing");
+});
+
+test("Unicode RPC boundaries cannot persist an unreadable profile or unrecoverable SDK history", async (t) => {
+  const f = await postgrestFixture(t, files);
+  const rejected = await fetch(`${f.url}/rest/v1/rpc/nest_save_food_profile`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${f.bearer}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      p_household: id(10),
+      p_operation: id(800),
+      p_expected: "0",
+      p_restrictions: ["🥜".repeat(61)],
+      p_dislikes: [],
+      p_calorie_goal: null,
+      p_portions: 1,
+    }),
+  });
+  assert.equal(rejected.status, 400);
+  assert.equal(f.db.sql("select count(*) from public.nest_food_profiles"), "0");
+  const valid = { ...input, preferences: { ...preferences, restrictions: ["🥜".repeat(60)] } };
+  const { history } = await run(f, modelFor([[call("saveFoodPreferences", valid)]]));
+  const config = { url: f.url, publishableKey: "sb_publishable_fixture" };
+  const request = new Request("http://localhost/v1/food-preferences", {
+    headers: { authorization: `Bearer ${f.bearer}`, "x-nest-household": id(10) },
+  });
+  const { tools } = householdTools(request, config, {
+    householdId: id(10),
+    turn: { conversationId: id(700), operationId: id(701), expectedRevision: "0", text: "Save" },
+  });
+  await validateHistory(history, tools);
+  const read = await createHandler(config)(request);
+  assert.equal(read.status, 200);
+  assert.deepEqual((await read.json()).profile.preferences, valid.preferences);
 });
