@@ -1,3 +1,4 @@
+import { readChoreTransfersTool } from "../chores/transfer-tool.ts";
 import { readRoutinesTool } from "../routines/tools.ts";
 import { setupTools } from "../setup/tools.ts";
 import { readNotificationPreferencesTool } from "../notifications/tools.ts";
@@ -54,6 +55,7 @@ export function householdTools(
   const tools = {
     ...calendarTools(bound, config),
     ...setupTools(bound, config),
+    readChoreTransfers: readChoreTransfersTool(bound, config),
     readRoutines: readRoutinesTool(bound, config),
     readNotificationPreferences: readNotificationPreferencesTool(bound, config),
     readMemories: readMemoriesTool(bound, config),

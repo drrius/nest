@@ -1,3 +1,8 @@
+import {
+  RequestChoreTransfer,
+  RespondChoreTransfer,
+  ChoreTransferReceipt,
+} from "./chore-transfers.ts";
 import { SkipChoreReceipt, RescheduleChoreReceipt } from "./chore-changes.ts";
 import {
   SkipChore,
@@ -32,6 +37,8 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  requestChoreTransfer: Schema.Struct(Struct.omit(RequestChoreTransfer.fields, ["operationId"])),
+  respondChoreTransfer: Schema.Struct(Struct.omit(RespondChoreTransfer.fields, ["operationId"])),
   skipChore: Schema.Struct(Struct.omit(SkipChore.fields, ["operationId"])),
   rescheduleChore: Schema.Struct(Struct.omit(RescheduleChore.fields, ["operationId"])).check(
     Schema.makeFilter(changedChoreDate),
@@ -56,6 +63,12 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  requestChoreTransfer: ChoreTransferReceipt.check(
+    Schema.makeFilter((value) => value.action === "request"),
+  ),
+  respondChoreTransfer: ChoreTransferReceipt.check(
+    Schema.makeFilter((value) => value.action !== "request"),
+  ),
   skipChore: SkipChoreReceipt,
   rescheduleChore: RescheduleChoreReceipt,
   setRoutineState: Schema.Struct({
