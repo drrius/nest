@@ -1,40 +1,28 @@
 import { useEffect, useRef, useState } from "react";
-import { AppState } from "react-native";
 import * as Haptics from "expo-haptics";
 import * as Crypto from "expo-crypto";
 import type { Chore } from "@nest/contracts/chores";
-import { controllerPool } from "../offline/controller-pool";
 import { useOfflineAccount } from "../offline/provider";
-import { choreFlow } from "./flow";
+import { choreController } from "./controller";
 import type { ChoreClient } from "./client";
-import { choreRuntime, initialChoreView, type ChoreView } from "./runtime";
+import { choreRuntime, initialChoreView } from "./runtime";
 
-const subscribe = controllerPool<ChoreView, ReturnType<typeof choreRuntime>>();
 export function useChores(client: ChoreClient, actor: string, household: string) {
   const { state: account, retry } = useOfflineAccount();
   const [view, setView] = useState(initialChoreView);
   const runtime = useRef<ReturnType<typeof choreRuntime> | null>(null);
   useEffect(() => {
     if (account.status !== "ready") return;
-    const { store, session } = account.account;
+    const { session } = account.account;
     if (session.actor !== actor || session.household !== household) return;
-    const subscription = subscribe(
-      account.account,
-      (publish) =>
-        choreRuntime(choreFlow(store, session, client), publish, () => {
-          void Haptics.selectionAsync().catch(() => undefined);
-        }),
-      setView,
-    );
+    const subscription = choreController(account.account, client, setView, () => {
+      void Haptics.selectionAsync().catch(() => undefined);
+    });
     const current = subscription.controller;
     runtime.current = current;
     void current.refresh();
-    const listener = AppState.addEventListener("change", (state) => {
-      if (state === "active") void current.refresh();
-    });
     return () => {
       runtime.current = null;
-      listener.remove();
       subscription.release();
     };
   }, [client, actor, household, account]);

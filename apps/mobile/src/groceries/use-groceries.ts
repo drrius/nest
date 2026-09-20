@@ -1,15 +1,12 @@
 import { useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AppState } from "react-native";
 import * as Haptics from "expo-haptics";
 import * as Crypto from "expo-crypto";
 import type { Grocery } from "@nest/contracts/groceries";
-import { controllerPool } from "../offline/controller-pool";
 import { useOfflineAccount } from "../offline/provider";
-import { groceryFlow } from "./flow";
+import { groceryController } from "./controller";
 import type { GroceryClient } from "./client";
-import { groceryRuntime, initialGroceryView, type GroceryView } from "./runtime";
-const subscribe = controllerPool<GroceryView, ReturnType<typeof groceryRuntime>>();
+import { groceryRuntime, initialGroceryView } from "./runtime";
 export function useGroceries(client: GroceryClient, actor: string, household: string) {
   const { state: account, retry } = useOfflineAccount();
   const [view, setView] = useState(initialGroceryView);
@@ -18,23 +15,14 @@ export function useGroceries(client: GroceryClient, actor: string, household: st
     if (account.status !== "ready") return;
     const { session } = account.account;
     if (session.actor !== actor || session.household !== household) return;
-    const subscription = subscribe(
-      account.account,
-      (publish) =>
-        groceryRuntime(groceryFlow(account.account, client), publish, () => {
-          void Haptics.selectionAsync().catch(() => undefined);
-        }),
-      setView,
-    );
+    const subscription = groceryController(account.account, client, setView, () => {
+      void Haptics.selectionAsync().catch(() => undefined);
+    });
     const current = subscription.controller;
     runtime.current = current;
     void current.refresh();
-    const listener = AppState.addEventListener("change", (state) => {
-      if (state === "active") void current.refresh();
-    });
     return () => {
       runtime.current = null;
-      listener.remove();
       subscription.release();
     };
   }, [account, client, actor, household]);
