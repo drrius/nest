@@ -1,3 +1,4 @@
+import { MealPlacementReceipt } from "@nest/contracts/meal-placement";
 import { SetupHandoff } from "@nest/contracts/setup";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
 import * as Schema from "effect/Schema";
@@ -9,6 +10,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  placeMeal: "Meal added to the week",
   requestChoreTransfer: "Handover requested",
   respondChoreTransfer: "Handover response saved",
   skipChore: "Chore skipped",
@@ -28,6 +30,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  placeMeal: "/meal-week",
   requestChoreTransfer: "/chore-transfers",
   respondChoreTransfer: "/chore-transfers",
   skipChore: "/household",
@@ -82,6 +85,8 @@ function successLabel(action: AssistantAction, receipt: object) {
 }
 
 function successHref(action: AssistantAction, value: object) {
+  if (action === "placeMeal" && Schema.is(MealPlacementReceipt)(value))
+    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
     return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
   return destinations[action];

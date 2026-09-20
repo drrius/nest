@@ -2,9 +2,9 @@ import type { MealWeekSnapshot } from "@nest/contracts/meals";
 import type { CookingClient } from "../cooking/client";
 import { allMealSlots, useVisibleMealSlots } from "../meals/use-visible-slots";
 import { useState, useSyncExternalStore } from "react";
-import { Link } from "expo-router";
+import { Link, useLocalSearchParams } from "expo-router";
 import { householdDate } from "@nest/domain/calendar";
-import { mealWeek } from "@nest/domain/meal-week";
+import { requestedMealWeek } from "../meals/route-week";
 import { useSession } from "../session/provider";
 import { useOfflineAccount } from "../offline/provider";
 import type { OfflineAccount } from "../offline/owner";
@@ -18,6 +18,8 @@ import { NativeAction } from "../components/native-action";
 import { SignInCard } from "../components/sign-in-card";
 import { useQuiet } from "../theme";
 export default function MealWeekScreen() {
+  const params = useLocalSearchParams();
+  const weekStart = requestedMealWeek(params.weekStart, householdDate(new Date()));
   const session = useSession(),
     offline = useOfflineAccount();
   if (session.state.status !== "ready" || !session.meals || !session.cooking)
@@ -41,7 +43,8 @@ export default function MealWeekScreen() {
     );
   return (
     <Meals
-      key={offline.state.account.session.lease}
+      key={`${offline.state.account.session.lease}:${weekStart}`}
+      weekStart={weekStart}
       account={offline.state.account}
       client={session.meals}
       cooking={session.cooking}
@@ -54,15 +57,15 @@ function Meals({
   account,
   verify,
   cooking,
+  weekStart,
 }: {
+  weekStart: string;
   client: MealClient;
   cooking: CookingClient;
   account: OfflineAccount;
   verify: () => void;
 }) {
-  const [owner] = useState(() =>
-    mealWeekOwner(client, account, mealWeek(householdDate(new Date()))[0]!),
-  );
+  const [owner] = useState(() => mealWeekOwner(client, account, weekStart));
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   return runtime ? (
     <WeekContent runtime={runtime} verify={verify} cooking={cooking} />

@@ -1,3 +1,4 @@
+import { mealWriteTools } from "../meals/write-tools.ts";
 import { readMealWeekTool } from "../meals/tools.ts";
 import { readChoreTransfersTool } from "../chores/transfer-tool.ts";
 import { readRoutinesTool } from "../routines/tools.ts";
@@ -67,6 +68,7 @@ export function householdTools(
     listGroceries: groceries.listGroceries,
     listGroceryCategories: groceries.listGroceryCategories,
     ...writeTools(write),
+    ...mealWriteTools(write),
   };
   return {
     tools,

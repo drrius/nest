@@ -21,4 +21,5 @@ export const aiCommandFiles = [
   "supabase/migrations/20260920103624_native_ai_routine_lifecycle.sql",
   "supabase/migrations/20260920141458_native_ai_chore_changes.sql",
   "supabase/migrations/20260920153415_native_ai_chore_transfers.sql",
+  "supabase/migrations/20260920171440_native_ai_meal_placement.sql",
 ];
