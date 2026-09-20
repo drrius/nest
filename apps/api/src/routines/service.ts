@@ -1,3 +1,4 @@
+import { editRoutine } from "./edit.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { CreateRoutine, RoutineReceipt, Routine } from "@nest/contracts/routines";
@@ -18,6 +19,7 @@ const decode = <A>(
 export function routineCommands(config: IdentityConfig, caller: AuthorizedCaller) {
   return {
     list: () => listRoutines(config, caller),
+    edit: (input: unknown) => editRoutine(config, caller, input),
     create: (input: unknown) =>
       Effect.gen(function* () {
         const command = yield* decode(CreateRoutine, input, "invalid_request");

@@ -8,6 +8,10 @@ export function routineRoute(request: Request, config: IdentityConfig, caller: A
     const commands = routineCommands(config, caller);
     if (new URL(request.url).pathname === "/v1/routines")
       return { version: 1, householdId: caller.member.householdId, ...(yield* commands.list()) };
-    return { version: 1, receipt: yield* commands.create(yield* commandBody(request, 8192)) };
+    const input = yield* commandBody(request, 8192);
+    const receipt = yield* new URL(request.url).pathname === "/v1/routines/edit"
+      ? commands.edit(input)
+      : commands.create(input);
+    return { version: 1, receipt };
   });
 }
