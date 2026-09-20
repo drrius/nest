@@ -1,3 +1,4 @@
+import { notificationRoute } from "./notifications/route.ts";
 import { calendarRoute } from "./calendar/route.ts";
 import { memoryRoute } from "./memory/route.ts";
 import { foodPreferences } from "./food/service.ts";
@@ -20,37 +21,14 @@ function route(request: Request, config: IdentityConfig) {
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
+    if (path.startsWith("/v1/notification-preferences"))
+      return yield* notificationRoute(request, config, { member, token });
     if (path.startsWith("/v1/calendar/"))
       return yield* calendarRoute(request, config, { member, token });
     if (path.startsWith("/v1/memories"))
       return yield* memoryRoute(request, config, { member, token });
-    if (path === "/v1/cooking-preferences")
-      return {
-        version: 1,
-        householdId: member.householdId,
-        profile: yield* cookingPreferences(config, { member, token }).read(),
-      };
-    if (path === "/v1/cooking-preferences/save")
-      return {
-        version: 1,
-        receipt: yield* cookingPreferences(config, { member, token }).save(
-          yield* commandBody(request, 16384),
-        ),
-      };
-    if (path === "/v1/food-preferences")
-      return {
-        version: 1,
-        actorId: member.userId,
-        householdId: member.householdId,
-        profile: yield* foodPreferences(config, { member, token }).read(),
-      };
-    if (path === "/v1/food-preferences/save")
-      return {
-        version: 1,
-        receipt: yield* foodPreferences(config, { member, token }).save(
-          yield* commandBody(request, 65536),
-        ),
-      };
+    if (path.startsWith("/v1/cooking-preferences") || path.startsWith("/v1/food-preferences"))
+      return yield* preferenceRoute(request, config, { member, token });
     if (path.startsWith("/v1/groceries"))
       return yield* groceryRoute(request, config, { member, token });
     const commands = choreCommands(config, { member, token });
@@ -79,6 +57,8 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/notification-preferences": "GET",
+      "/v1/notification-preferences/save": "POST",
       "/v1/calendar/consent": "GET",
       "/v1/calendar/busy": "GET",
       "/v1/calendar/consent/set": "POST",
@@ -137,5 +117,43 @@ function groceryRoute(
       "/v1/groceries/check": commands.check,
     };
     return { ...envelope, receipt: yield* actions[path]!(yield* commandBody(request)) };
+  });
+}
+
+function preferenceRoute(
+  request: Request,
+  config: IdentityConfig,
+  caller: Parameters<typeof foodPreferences>[1],
+) {
+  return Effect.gen(function* () {
+    const path = new URL(request.url).pathname;
+    const { member, token } = caller;
+    if (path === "/v1/cooking-preferences")
+      return {
+        version: 1,
+        householdId: member.householdId,
+        profile: yield* cookingPreferences(config, { member, token }).read(),
+      };
+    if (path === "/v1/cooking-preferences/save")
+      return {
+        version: 1,
+        receipt: yield* cookingPreferences(config, { member, token }).save(
+          yield* commandBody(request, 16384),
+        ),
+      };
+    if (path === "/v1/food-preferences")
+      return {
+        version: 1,
+        actorId: member.userId,
+        householdId: member.householdId,
+        profile: yield* foodPreferences(config, { member, token }).read(),
+      };
+    if (path === "/v1/food-preferences/save")
+      return {
+        version: 1,
+        receipt: yield* foodPreferences(config, { member, token }).save(
+          yield* commandBody(request, 65536),
+        ),
+      };
   });
 }
