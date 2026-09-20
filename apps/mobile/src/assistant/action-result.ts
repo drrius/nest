@@ -9,6 +9,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  createRoutine: "Routine created",
   saveNotificationPreferences: "Your notification preferences saved",
   proposeMemory: "Review memory proposal",
   removeMemory: "Saved memory deleted",
@@ -21,6 +22,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  createRoutine: "/routines",
   saveNotificationPreferences: "/notification-preferences",
   proposeMemory: "/memory",
   removeMemory: "/memory",

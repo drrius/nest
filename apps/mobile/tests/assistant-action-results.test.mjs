@@ -180,3 +180,32 @@ test("setup handoff is navigation only and rejects an arbitrary destination", ()
   );
   assert.equal(actionResult({ ...part, state: "input-available" }), null);
 });
+
+test("routine creation results require a create receipt and link to the real household list", () => {
+  const value = {
+    actorId: id,
+    householdId: id,
+    operationId: id,
+    routineId: id,
+    version: "2026-09-20T08:00:00.000001Z",
+    action: "create",
+  };
+  const part = {
+    type: "tool-createRoutine",
+    state: "output-available",
+    output: { ok: true, value },
+  };
+  assert.deepEqual(actionResult(part), { label: "Routine created", href: "/routines" });
+  assert.match(
+    actionResult({ ...part, output: { ok: true, value: { ...value, action: "edit" } } }).label,
+    /verify/,
+  );
+  const decode = Schema.decodeUnknownSync(AssistantInputs.createRoutine, {
+    onExcessProperty: "error",
+  });
+  const input = {
+    definition: { title: "Clean", schedule: { kind: "daily" }, assignment: { policy: "shared" } },
+  };
+  assert.deepEqual(decode(input), input);
+  assert.throws(() => decode({ ...input, operationId: id }));
+});
