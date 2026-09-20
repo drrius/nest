@@ -74,6 +74,9 @@ test("concurrent duplicate lifecycle writes commit one activity and receipt", as
 test("failed lifecycle receipt rolls back archival and revoked membership blocks replay", () => {
   const r = create(),
     op = id(sequence++);
+  db.sql(`insert into public.routine_reminder_preferences(routine_id,household_id,member_id,enabled)
+    values('${r.routineId}','${id(10)}','${id(2)}',true);
+    select private.create_reminder_candidates_for_occurrence(id) from public.routine_occurrences where routine_id='${r.routineId}'`);
   const tables = [
     "public.routines",
     "public.routine_occurrences",
@@ -104,5 +107,94 @@ test("failed lifecycle receipt rolls back archival and revoked membership blocks
       db.sql(`begin; delete from public.activity_events;
     delete from public.household_members where user_id='${id(1)}'; ${as(command(r, op, "archive"))}; commit`),
     /Not authorized/,
+  );
+});
+
+test("concurrent lifecycle and edits on one baseline have one winner without deadlocks", async () => {
+  for (let attempt = 0; attempt < 20; attempt++) {
+    const r = create(),
+      action = attempt % 2 ? "archive" : "pause";
+    const results = await Promise.allSettled([
+      db.concurrent(as(command(r, id(sequence++), action))),
+      db.concurrent(
+        as(
+          `select public.nest_edit_routine('${id(10)}','${id(sequence++)}','${r.routineId}','${r.version}','{"title":"Concurrent edit"}')`,
+          id(2),
+        ),
+      ),
+    ]);
+    assert.equal(results.filter((result) => result.status === "fulfilled").length, 1);
+    const rejected = results.find((result) => result.status === "rejected");
+    assert.match(String(rejected.reason), /changed|could not obtain lock/);
+    assert.doesNotMatch(String(rejected.reason), /deadlock/);
+    assert.equal(
+      db.sql(
+        `select count(*) from public.activity_events where entity_id='${r.routineId}' and kind<>'routine_created'`,
+      ),
+      "1",
+    );
+    const archived =
+      db.sql(`select archived_at is not null from public.routines where id='${r.routineId}'`) ===
+      "t";
+    assert.equal(
+      db.sql(`select count(*) from public.routine_occurrences where routine_id='${r.routineId}'`),
+      archived ? "1" : "2",
+    );
+  }
+});
+
+test("lifecycle rejects invalid actions, noncanonical baselines and unprivileged callers", () => {
+  const r = create();
+  for (const action of ["delete", "PAUSE", "pause\n", ""])
+    assert.throws(() => change(r, id(sequence++), action), /Invalid routine state/);
+  for (const version of [
+    r.version + "\n",
+    r.version.replace("Z", "+00:00"),
+    "2026-02-30T00:00:00.000000Z",
+  ])
+    assert.throws(
+      () => change({ ...r, version }, id(sequence++), "pause"),
+      /Invalid routine version/,
+    );
+  assert.throws(
+    () => change({ ...r, routineId: id(99999) }, id(sequence++), "pause"),
+    /Not authorized/,
+  );
+  assert.throws(
+    () => db.sql(`set role anon; ${command(r, id(sequence++), "pause")}`),
+    /permission denied/,
+  );
+  assert.equal(
+    db.sql(
+      `select paused_at is null and archived_at is null from public.routines where id='${r.routineId}'`,
+    ),
+    "t",
+  );
+  const unchanged = change(r, id(sequence++), "resume");
+  assert.equal(unchanged.version, r.version);
+  assert.equal(
+    db.sql(
+      `select count(*) from public.activity_events where entity_id='${r.routineId}' and kind='routine_unpaused'`,
+    ),
+    "0",
+  );
+});
+
+test("resuming a dormant legacy schedule with overflowing dates leaves it paused", () => {
+  const r = create();
+  db.sql(`update public.routines set paused_at=now(),schedule_kind='after_completion',
+    schedule_rule='{"kind":"after_completion","every":2147483647,"unit":"weeks"}' where id='${r.routineId}';
+    delete from public.routine_occurrences where routine_id='${r.routineId}'`);
+  r.version = db.sql(
+    `select to_char(updated_at at time zone 'UTC','YYYY-MM-DD"T"HH24:MI:SS.US"Z"') from public.routines where id='${r.routineId}'`,
+  );
+  assert.throws(() => change(r, id(sequence++), "resume"), /supported range/);
+  assert.equal(
+    db.sql(`select paused_at is not null from public.routines where id='${r.routineId}'`),
+    "t",
+  );
+  assert.equal(
+    db.sql(`select count(*) from public.routine_occurrences where routine_id='${r.routineId}'`),
+    "0",
   );
 });

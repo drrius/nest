@@ -59,6 +59,8 @@ begin
   insert into public.nest_routine_state_receipts(actor_id,household_id,operation_id,request_hash,result)
     values(v_actor,p_household,p_operation,v_hash,v_result);
   return v_result;
+exception when datetime_field_overflow or numeric_value_out_of_range then
+  raise exception 'Routine dates exceed supported range' using errcode='22023';
 end;
 $$;
 revoke all on function private.nest_set_routine_state(uuid,uuid,uuid,text,text) from public,anon,authenticated;
