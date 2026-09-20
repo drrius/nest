@@ -13,7 +13,7 @@ import * as Effect from "effect/Effect";
 import { ApiFailure, failureResponse } from "./errors.ts";
 import { bearerToken, currentMember } from "./identity.ts";
 import { supabaseIdentity, type IdentityConfig } from "./supabase-identity.ts";
-import { choreCommands } from "./chores/service.ts";
+import { choreRoute } from "./chores/route.ts";
 import { commandBody } from "./request-body.ts";
 import { validateConfig } from "./config.ts";
 
@@ -38,14 +38,7 @@ function route(request: Request, config: IdentityConfig) {
       return yield* groceryRoute(request, config, { member, token });
     if (path.startsWith("/v1/routines"))
       return yield* routineRoute(request, config, { member, token });
-    const commands = choreCommands(config, { member, token });
-    if (path === "/v1/chores")
-      return { version: 1, householdId: member.householdId, chores: yield* commands.list() };
-    return {
-      version: 1,
-      householdId: member.householdId,
-      receipt: yield* commands.complete(yield* commandBody(request)),
-    };
+    return yield* choreRoute(request, config, { member, token });
   });
 }
 
@@ -87,6 +80,8 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       "/v1/food-preferences/save": "POST",
       "/v1/chores": "GET",
       "/v1/chores/complete": "POST",
+      "/v1/chores/skip": "POST",
+      "/v1/chores/reschedule": "POST",
       "/v1/groceries": "GET",
       "/v1/groceries/categories": "GET",
       "/v1/groceries/add": "POST",
