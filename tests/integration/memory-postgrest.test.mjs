@@ -142,3 +142,29 @@ test("memory body/schema bounds and identity binding reject injected consent, ma
   assert.equal((await owner(`/approval?id=${approval.id}`)).status, 403);
   assert.equal((await owner("/decide", decision(approval))).status, 403);
 });
+
+test("full memory capacity is a recoverable conflict and does not commit the approval decision", async (t) => {
+  const f = await postgrestFixture(t, files),
+    owner = client(f);
+  f.db.sql(`insert into public.nest_memories(actor_id,household_id,id,revision,content)
+    select '${id(1)}','${id(10)}',gen_random_uuid(),1,'Fixture' from generate_series(1,64)`);
+  const approval = await proposal(owner);
+  assert.equal((await owner("/decide", decision(approval))).status, 409);
+  assert.equal(
+    (await (await owner(`/approval?id=${approval.id}`)).json()).approval.status,
+    "pending",
+  );
+  const memory = (await (await owner()).json()).memories[0];
+  assert.equal(
+    (
+      await owner("/remove", {
+        operationId: id(105),
+        memoryId: memory.id,
+        expectedRevision: memory.revision,
+      })
+    ).status,
+    200,
+  );
+  assert.equal((await owner("/decide", decision(approval))).status, 200);
+  assert.equal((await (await owner()).json()).memories.length, 64);
+});

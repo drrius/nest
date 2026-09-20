@@ -31,6 +31,8 @@ begin
   return jsonb_build_object('status','consumed','receipt',v_receipt);
 exception when sqlstate '55000' then
   raise exception 'Memory approval changed or expired' using errcode='40001';
+when sqlstate '54000' then
+  raise exception 'Memory limit reached' using errcode='40001';
 end;
 $$;
 revoke all on function private.nest_decide_memory(uuid,uuid,uuid,bigint,text,uuid,boolean) from public,anon,authenticated;
