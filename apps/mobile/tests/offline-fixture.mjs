@@ -45,7 +45,7 @@ export function connect(path) {
       return result;
     },
   };
-  return { connection, store: makeOfflineStore(database) };
+  return { connection, database, idle: () => tail, store: makeOfflineStore(database) };
 }
 export async function fixture(t) {
   const dir = await mkdtemp(join(tmpdir(), "nest-offline-"));
