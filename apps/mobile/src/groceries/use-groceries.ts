@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import { useFocusEffect } from "expo-router";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AppState } from "react-native";
 import * as Haptics from "expo-haptics";
 import * as Crypto from "expo-crypto";
@@ -37,6 +38,11 @@ export function useGroceries(client: GroceryClient, actor: string, household: st
       subscription.release();
     };
   }, [account, client, actor, household]);
+  useFocusEffect(
+    useCallback(() => {
+      void runtime.current?.refresh();
+    }, []),
+  );
   return {
     view:
       account.status === "ready"

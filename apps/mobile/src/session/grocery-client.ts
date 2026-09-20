@@ -12,6 +12,9 @@ export function sessionGroceries(auth: SupabaseClient["auth"], member: Member, a
     sessionCredentials(auth),
   );
   return {
+    categories: () => client.categories().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    change: (command: Parameters<typeof client.change>[0]) =>
+      client.change(command).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     list: () => client.list().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     check: (command: Parameters<typeof client.check>[0]) =>
       client.check(command).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
