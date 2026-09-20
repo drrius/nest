@@ -68,7 +68,10 @@ begin
   insert into public.nest_chore_receipts(household_id, actor_id, operation_id, request, result)
     values (occurrence.household_id, actor, p_operation_id, payload, outcome);
   return outcome;
-exception when datetime_field_overflow or numeric_value_out_of_range then
+exception
+  when lock_not_available then
+    raise exception 'occurrence_conflict' using errcode='40001';
+  when datetime_field_overflow or numeric_value_out_of_range then
   raise exception 'unsupported_occurrence_date' using errcode='22023';
 end;
 $$;
