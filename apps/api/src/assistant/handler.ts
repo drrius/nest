@@ -15,6 +15,7 @@ import { choreTools } from "../chores/tools.ts";
 import { groceryTools } from "../groceries/tools.ts";
 import { recoverTurn } from "./recovery.ts";
 import { conversationStore } from "./store.ts";
+import { discoverConversations } from "./discovery.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
 const noStore = { "Cache-Control": "no-store" };
 const parse = <A>(schema: Schema.Codec<A>, value: unknown) =>
@@ -39,7 +40,7 @@ export function assistantHandler(config: IdentityConfig, model?: AssistantModel)
     const allowed =
       path === "/v1/assistant/turn"
         ? ["GET", "POST"]
-        : [path === "/v1/assistant/conversation" ? "GET" : "POST"];
+        : [path === "/v1/assistant/interrupt" ? "POST" : "GET"];
     if (!allowed.includes(request.method))
       return Promise.resolve(
         new Response(null, { status: 405, headers: { Allow: allowed.join(", ") } }),
@@ -48,6 +49,10 @@ export function assistantHandler(config: IdentityConfig, model?: AssistantModel)
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);
       const store = conversationStore(config, { member, token });
+      if (path === "/v1/assistant/conversations")
+        return Response.json(yield* discoverConversations(request, config, { member, token }), {
+          headers: noStore,
+        });
       if (
         path === "/v1/assistant/interrupt" ||
         (path === "/v1/assistant/turn" && request.method === "GET")
