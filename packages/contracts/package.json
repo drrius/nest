@@ -17,7 +17,8 @@
     "./routines": "./src/routines.ts",
     "./chore-changes": "./src/chore-changes.ts",
     "./chore-snapshot": "./src/chore-snapshot.ts",
-    "./chore-transfers": "./src/chore-transfers.ts"
+    "./chore-transfers": "./src/chore-transfers.ts",
+    "./meals": "./src/meals.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
