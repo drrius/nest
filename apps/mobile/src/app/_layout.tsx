@@ -53,6 +53,7 @@ function Navigation() {
         <Stack.Screen name="cooking-preferences" options={{ title: "Household cooking" }} />
         <Stack.Screen name="calendar-sharing" options={{ title: "Calendar sharing" }} />
         <Stack.Screen name="memory" options={{ title: "Private memory" }} />
+        <Stack.Screen name="setup" options={{ title: "Your setup" }} />
         <Stack.Screen name="settings" options={{ title: "Profile and settings" }} />
       </Stack.Protected>
       <Stack.Protected guard={__DEV__}>

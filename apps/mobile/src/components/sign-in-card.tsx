@@ -96,7 +96,10 @@ function ReadySession() {
           : "Your household identity is verified."}
       </Note>
       <Link href="/household" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Open Today
+        Start quickly
+      </Link>
+      <Link href="/setup" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+        Set up everything
       </Link>
       <NativeAction label="Sign out" onPress={session.signOut} />
     </>
