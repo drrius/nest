@@ -8,6 +8,7 @@ export class ApiFailure extends Schema.TaggedError<ApiFailure>()("ApiFailure", {
     "invalid_request",
     "forbidden",
     "conflict",
+    "removed",
   ]),
 }) {}
 
@@ -19,6 +20,7 @@ export function failureResponse(error: ApiFailure): Response {
     invalid_request: 400,
     forbidden: 403,
     conflict: 409,
+    removed: 410,
   };
   return Response.json(
     { error: { code: error.code } },

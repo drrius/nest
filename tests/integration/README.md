@@ -19,3 +19,7 @@ Adversarial regressions also verify that paused routines remain absent despite r
 ## Native transport and SQLite restart
 
 With the same two binary environment variables, run `node --test apps/mobile/tests/integration/chore-roundtrip.test.mjs`. This exercises the native Effect client through the actual Node HTTP server, API, PostgREST and PostgreSQL. It drops a successful response, reopens file-backed SQLite, replays the original operation without a second closure, marks a deleted target as a recoverable conflict and preserves an unacknowledged attempt when membership is revoked. Native SQLite and Supabase Auth remain fixture boundaries; this does not claim an iPhone process restart or Apple authentication.
+
+## Grocery commands and bigint transport
+
+With the same binary variables, run `node --test tests/integration/grocery-postgrest.test.mjs`. Actual PostgREST/PostgreSQL exercise empty and populated count-verified reads, category tenancy, add/retry/check, stale-version edits, AI-tool removal, deleted-target errors and revoked membership. A fixture-seeded version above JavaScript's safe integer range proves projection/command/receipt values remain exact strings. The fixture contains audited grocery constraints and synthetic Auth; it is not a full legacy-schema rehearsal or native UI test.
