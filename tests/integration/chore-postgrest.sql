@@ -27,3 +27,5 @@ insert into public.routine_occurrences values
   '2026-09-19','open','current','10000000-0000-4000-8000-000000000003',null),
  ('aabc0000-0000-4000-8000-000000000400','00000000-0000-4000-8000-000000000010',
   '2026-09-19','open','current','10000000-0000-4000-8000-000000000001',null);
+
+alter table public.routine_occurrences add column nest_accepted_assignee_id uuid;

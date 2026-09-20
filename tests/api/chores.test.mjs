@@ -27,6 +27,7 @@ const row = {
   id: occurrence,
   household_id: home,
   due_date: "2026-09-19",
+  nest_accepted_assignee_id: null,
   planned_assignee_id: null,
   routines: { title: "Water plants" },
 };

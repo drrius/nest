@@ -5,7 +5,7 @@ import { nodeServer } from "../../../api/node-server.mjs";
 import { createHandler } from "../../../api/src/handler.ts";
 import { postgrestFixture } from "../../../../tests/integration/postgrest-fixture.mjs";
 import { lostResponseProxy } from "../../../../tests/integration/lost-response-proxy.mjs";
-import { choreChangeFiles } from "../../../../tests/database/chore-change-files.mjs";
+import { choreTransferFiles } from "../../../../tests/database/chore-transfer-files.mjs";
 import { choreClient } from "../../src/chores/client.ts";
 import { choreFlow } from "../../src/chores/flow.ts";
 import { choreRuntime } from "../../src/chores/runtime.ts";
@@ -14,7 +14,7 @@ import { fixture, run } from "../offline-fixture.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 async function backend(t) {
   const remote = await postgrestFixture(t, [
-    ...choreChangeFiles,
+    ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
   ]);
   const proxy = await lostResponseProxy(t, remote.url, "/rest/v1/rpc/nest_change_chore");

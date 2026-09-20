@@ -7,6 +7,7 @@ export const ChoreRows = Schema.Array(
     id: Uuid,
     household_id: Uuid,
     due_date: CalendarDate,
+    nest_accepted_assignee_id: Schema.NullOr(Uuid),
     planned_assignee_id: Schema.NullOr(Uuid),
     routines: Schema.Struct({ title: Schema.NonEmptyString }),
   }),
