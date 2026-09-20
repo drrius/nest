@@ -12,6 +12,13 @@ export const initialize = (database: Database) =>
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_session (
       singleton INTEGER PRIMARY KEY CHECK(singleton = 1), lease TEXT NOT NULL,
       actor TEXT NOT NULL, household TEXT NOT NULL)`);
+    await tx.run(`CREATE TABLE IF NOT EXISTS offline_chores (
+      actor TEXT NOT NULL, household TEXT NOT NULL, target TEXT NOT NULL,
+      title TEXT NOT NULL, due_date TEXT NOT NULL, assignee TEXT,
+      PRIMARY KEY(actor, household, target))`);
+    await tx.run(`CREATE TABLE IF NOT EXISTS offline_chore_sync (
+      actor TEXT NOT NULL, household TEXT NOT NULL, loaded INTEGER NOT NULL,
+      PRIMARY KEY(actor, household))`);
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_items (
       actor TEXT NOT NULL, household TEXT NOT NULL, kind TEXT NOT NULL,
       target TEXT NOT NULL, version TEXT NOT NULL, value INTEGER NOT NULL,

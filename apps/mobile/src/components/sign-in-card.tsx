@@ -1,3 +1,4 @@
+import { Link } from "expo-router";
 import * as Apple from "expo-apple-authentication";
 import { ActivityIndicator, Text, useColorScheme } from "react-native";
 import { Card, Note } from "./page";
@@ -30,10 +31,13 @@ export function SignInCard() {
           <Text style={{ color: colors.text, fontSize: 20 }}>
             Welcome, {session.state.member.displayName}.
           </Text>
-          <Note>
-            Your household identity is verified. Daily services are being connected in this
-            development build.
-          </Note>
+          <Note>Your household identity is verified.</Note>
+          <Link
+            href="/household"
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
+          >
+            Open Today
+          </Link>
           <NativeAction label="Sign out" onPress={session.signOut} />
         </>
       ) : session.state.status === "signed_out" ? (

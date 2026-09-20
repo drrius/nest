@@ -15,3 +15,7 @@ Locally verified with PostgreSQL 18.6 and the official PostgREST 16.3 static Lin
 The journey covers authorized reads, other-household denial, completion, lost-ack replay without duplicate closure, stale-date conflict and revoked membership. It caught PostgREST mapping SQLSTATE `40001` to HTTP 500; the API now uses the database error code to expose the intended HTTP 409. Unknown failures remain unavailable.
 
 Adversarial regressions also verify that paused routines remain absent despite retained open/current occurrences, and mixed-case operation/occurrence UUIDs complete and retry successfully after PostgreSQL canonicalization. No duplicate closure is created.
+
+## Native transport and SQLite restart
+
+With the same two binary environment variables, run `node --test apps/mobile/tests/integration/chore-roundtrip.test.mjs`. This exercises the native Effect client through the actual Node HTTP server, API, PostgREST and PostgreSQL. It drops a successful response, reopens file-backed SQLite, replays the original operation without a second closure, marks a deleted target as a recoverable conflict and preserves an unacknowledged attempt when membership is revoked. Native SQLite and Supabase Auth remain fixture boundaries; this does not claim an iPhone process restart or Apple authentication.

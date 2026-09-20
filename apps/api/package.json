@@ -5,11 +5,13 @@
   "type": "module",
   "scripts": {
     "typecheck": "tsc --noEmit",
-    "test": "node --test ../../tests/api/*.test.mjs"
+    "test": "node --test ../../tests/api/*.test.mjs",
+    "dev": "node --env-file-if-exists=.env dev.mjs"
   },
   "dependencies": {
     "@nest/ai": "workspace:*",
-    "effect": "4.0.0-rc.115"
+    "effect": "4.0.0-rc.115",
+    "@nest/contracts": "workspace:*"
   },
   "devDependencies": {
     "typescript": "7.0.2"

@@ -1,13 +1,13 @@
 import * as Schema from "effect/Schema";
-import { decodeIntent, fail, type Operation, type Session } from "./contracts.ts";
+import { decodeIntent, fail, type Kind, type Operation, type Session } from "./contracts.ts";
 import type { Database } from "./database.ts";
 import { operations, scope } from "./journal.ts";
 import { scoped } from "./session.ts";
 
-export function prepare(database: Database, session: Session) {
+export function prepare(database: Database, session: Session, kind?: Kind) {
   return scoped(database, session, async (tx) => {
     const rows = await operations(tx, session);
-    const next = rows.find((row) => ready(row, rows));
+    const next = rows.find((row) => (!kind || row.kind === kind) && ready(row, rows));
     if (!next) return null;
     if (next.wire) return decodeIntent(JSON.parse(next.wire));
     const predecessor = rows.find((row) => row.operation === next.predecessor);

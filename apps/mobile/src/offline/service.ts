@@ -2,8 +2,10 @@ import * as Schema from "effect/Schema";
 import * as Context from "effect/Context";
 import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
-import { OfflineFailure, type Account, type Item, type Session } from "./contracts.ts";
+import { OfflineFailure, type Account, type Item, type Kind, type Session } from "./contracts.ts";
 import { initialize, type Database } from "./database.ts";
+import type { Chore } from "@nest/contracts/chores";
+import * as Chores from "./chores.ts";
 import * as Journal from "./journal.ts";
 import * as Replay from "./replay.ts";
 import * as SessionStore from "./session.ts";
@@ -26,7 +28,12 @@ export function makeOfflineStore(database: Database) {
     read: (session: Session) => run(() => Journal.read(database, session)),
     saveSnapshot: (session: Session, items: readonly Item[]) =>
       run(() => Journal.saveSnapshot(database, session, items)),
-    prepare: (session: Session) => run(() => Replay.prepare(database, session)),
+    saveChores: (session: Session, chores: readonly Chore[]) =>
+      run(() => Chores.saveChores(database, session, chores)),
+    readChores: (session: Session) => run(() => Chores.readChores(database, session)),
+    discardConflict: (session: Session, operation: string) =>
+      run(() => Chores.discardConflict(database, session, operation)),
+    prepare: (session: Session, kind?: Kind) => run(() => Replay.prepare(database, session, kind)),
     acknowledge: (session: Session, receipt: Replay.Receipt) =>
       run(() => Replay.acknowledge(database, session, receipt)),
     conflict: (

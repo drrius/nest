@@ -1,0 +1,18 @@
+import { createHandler } from "./src/handler.ts";
+import { nodeServer } from "./node-server.mjs";
+
+const url = process.env.NEST_SUPABASE_URL;
+const publishableKey = process.env.NEST_SUPABASE_PUBLISHABLE_KEY;
+if (!url || !publishableKey)
+  throw new Error("Configure an isolated backend in apps/api/.env; see README.md");
+const port = Number(process.env.NEST_API_PORT ?? "8787");
+if (!Number.isInteger(port) || port < 1 || port > 65535) throw new Error("Invalid NEST_API_PORT");
+const server = nodeServer(createHandler({ url, publishableKey }));
+server.listen(port, "127.0.0.1", () =>
+  process.stdout.write(`Nest development API: http://127.0.0.1:${port}\n`),
+);
+for (const signal of ["SIGINT", "SIGTERM"])
+  process.once(signal, () => {
+    server.close();
+    server.closeAllConnections();
+  });

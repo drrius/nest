@@ -1,6 +1,7 @@
 import {
   createContext,
   useContext,
+  useMemo,
   useEffect,
   useRef,
   useState,
@@ -10,6 +11,8 @@ import { AppState } from "react-native";
 import * as Effect from "effect/Effect";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { fetch } from "expo/fetch";
+import { sessionChores } from "./chore-client";
+import type { ChoreClient } from "../chores/client";
 import { nativeAuth } from "./native-client";
 import { signInWithApple } from "./apple";
 import { sessionConfig } from "./config";
@@ -37,6 +40,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  chores: ChoreClient | null;
   configured: boolean;
   state: SessionState;
   working: boolean;
@@ -87,6 +91,14 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const [error, setError] = useState<string | null>(null);
   const busy = useRef(false);
   const runtime = useRuntime(setState);
+  const member = state.status === "ready" ? state.member : null;
+  const chores = useMemo(
+    () =>
+      member && runtime.current && configuration
+        ? sessionChores(runtime.current.auth, member, configuration.apiUrl)
+        : null,
+    [member, runtime],
+  );
   const run = (action: Effect.Effect<void, SessionFailure>) => {
     if (busy.current) return;
     busy.current = true;
@@ -118,6 +130,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <SessionContext
       value={{
+        chores,
         configured: configuration !== null,
         state,
         working,
