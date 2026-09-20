@@ -23,6 +23,14 @@ export default function SettingsScreen() {
         />
       </Card>
       <Card>
+        <Section title="Notifications" />
+        <Note>Choose your daily summary and whether to receive item reminders.</Note>
+        <NativeAction
+          label="Your notification preferences"
+          onPress={() => router.push("/notification-preferences")}
+        />
+      </Card>
+      <Card>
         <Section title="Calendar" />
         <Note>Choose calendars on this iPhone and opt in to share busy times.</Note>
         <NativeAction
