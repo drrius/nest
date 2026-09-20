@@ -56,6 +56,8 @@ export function choreClient(
   const changes = choreChanges(preferenceRequests(apiUrl, account, credentials), account);
   const transfers = choreTransfers(preferenceRequests(apiUrl, account, credentials), account);
   return {
+    snapshot: () =>
+      transfers.snapshot().pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
     listTransfers: () =>
       transfers.list().pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
     requestTransfer: (command: Parameters<typeof transfers.request>[0]) =>

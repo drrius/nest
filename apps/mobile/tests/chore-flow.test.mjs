@@ -1,3 +1,4 @@
+import { fixtureChoreSnapshot } from "./chore-snapshot-fixture.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -21,6 +22,7 @@ const chore = {
 };
 const operation2 = "50000000-0000-4000-8000-000000000002";
 const client = (rows = [chore]) => ({
+  snapshot: fixtureChoreSnapshot,
   listTransfers: () => Effect.succeed(emptyTransfers),
   list: () => Effect.succeed(rows),
   complete: (command) =>
@@ -87,6 +89,7 @@ test("conflicts remain visible until explicitly discarded, then a new completion
   let conflict = true;
   const calls = [];
   const remote = {
+    snapshot: fixtureChoreSnapshot,
     listTransfers: () => Effect.succeed(emptyTransfers),
     list: () => Effect.succeed([{ ...chore, dueDate: "2026-09-21" }]),
     complete: (command) => {
@@ -142,8 +145,9 @@ test("failed refresh preserves loaded data and same-frame double taps enqueue on
   await run(store.saveChores(session, [chore]));
   const fail = () => Effect.fail(new ChoreFailure({ code: "unavailable" }));
   const views = [];
-  const runtime = choreRuntime(choreFlow(store, session, { list: fail, complete: fail }), (view) =>
-    views.push(view),
+  const runtime = choreRuntime(
+    choreFlow(store, session, { snapshot: fail, list: fail, complete: fail }),
+    (view) => views.push(view),
   );
   t.after(() => runtime.dispose());
   await runtime.refresh();
@@ -190,6 +194,7 @@ test("disposing the native controller cancels an in-flight read without publishi
   });
   const remote = {
     ...client(),
+    snapshot: fixtureChoreSnapshot,
     listTransfers: () => Effect.succeed(emptyTransfers),
     list: () =>
       Effect.promise(

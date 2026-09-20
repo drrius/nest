@@ -1,3 +1,4 @@
+import { fixtureChoreSnapshot } from "./chore-snapshot-fixture.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -58,6 +59,7 @@ async function setup(t, remote = {}) {
     views = [];
   const flow = choreFlow(local.store, local.session, {
     list: () => Effect.succeed([chore]),
+    snapshot: fixtureChoreSnapshot,
     listTransfers: () => Effect.succeed(snapshot),
     complete: () => assert.fail("completion dispatched"),
     skip: () => assert.fail("skip dispatched"),
@@ -163,6 +165,7 @@ test("only current incoming requests can be answered; conflict requires reload a
   const calls = [];
   const f = await setup(t, {
     list: () => Effect.succeed([{ ...chore, assigneeId: partner }]),
+    snapshot: fixtureChoreSnapshot,
     listTransfers: () => Effect.succeed({ ...snapshot, transfers: [incoming] }),
     respondTransfer: (input) => {
       calls.push(input);
@@ -194,6 +197,7 @@ test("outgoing responses, shared/other ownership, stale reads and queued complet
     assert.equal(f.view().changeStage, "reload");
   }
   const f = await setup(t, {
+    snapshot: fixtureChoreSnapshot,
     listTransfers: () => Effect.succeed({ ...snapshot, transfers: [pending] }),
   });
   await f.runtime.respondTransfer(pending, "accept", operation);
@@ -220,4 +224,34 @@ test("handover cache survives SQLite restart, isolates accounts and rolls back i
   assert.deepEqual((await run(restarted.store.readChores(session))).transfers, saved);
   const other = await run(restarted.store.activate({ ...account, actor: partner }, requestId));
   assert.equal((await run(restarted.store.readChores(other))).transfers, null);
+});
+
+test("native refresh uses one coherent snapshot request and rejects mixed or wrong-account snapshots", async (t) => {
+  const local = await fixture(t);
+  const wire = { ...snapshot, chores: [chore], transfers: [pending] };
+  const calls = [];
+  const flow = choreFlow(local.store, local.session, client);
+  await fetchRun(flow.sync, async (url) => {
+    calls.push(new URL(url).pathname);
+    return Response.json(wire);
+  });
+  assert.deepEqual(calls, ["/v1/chores/snapshot"]);
+  const saved = await run(flow.read);
+  assert.equal(saved.chores[0].assigneeId, pending.fromMemberId);
+  assert.deepEqual(saved.transfers.transfers, [pending]);
+  for (const patch of [
+    { householdId: requestId },
+    { members: [{ actorId: partner, displayName: "B" }] },
+    { chores: [{ ...chore, assigneeId: partner }] },
+    { chores: [] },
+    { chores: [chore, chore] },
+    { transfers: [pending, pending] },
+    { transfers: [{ ...pending, dueDate: "2026-09-21" }] },
+    { hidden: true },
+  ])
+    await assert.rejects(
+      fetchRun(flow.sync, async () => Response.json({ ...wire, ...patch })),
+      { code: "unavailable" },
+    );
+  assert.deepEqual(await run(flow.read), saved);
 });

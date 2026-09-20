@@ -1,3 +1,4 @@
+import { fixtureChoreSnapshot } from "./chore-snapshot-fixture.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -82,6 +83,7 @@ async function setup(t, remote) {
   const views = [];
   const runtime = choreRuntime(
     choreFlow(store, session, {
+      snapshot: fixtureChoreSnapshot,
       listTransfers: () => Effect.succeed(emptyTransfers),
       list: () => Effect.succeed([chore]),
       complete: () => assert.fail("completion dispatch"),

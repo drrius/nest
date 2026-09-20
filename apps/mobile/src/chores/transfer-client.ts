@@ -1,3 +1,4 @@
+import { ChoreSnapshot } from "@nest/contracts/chore-snapshot";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -31,6 +32,15 @@ export function choreTransfers(request: ReturnType<typeof preferenceRequests>, a
       return receipt;
     });
   return {
+    snapshot: () =>
+      request("v1/chores/snapshot", ChoreSnapshot).pipe(
+        Effect.flatMap((result) =>
+          result.householdId === account.household &&
+          result.members.some((member) => member.actorId === account.actor)
+            ? Effect.succeed(result)
+            : Effect.fail(new PreferenceFailure({ code: "unavailable" })),
+        ),
+      ),
     list: () =>
       request("v1/chores/transfers", ChoreTransferList).pipe(
         Effect.flatMap((result) => {

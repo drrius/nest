@@ -1,3 +1,4 @@
+import { fixtureChoreSnapshot } from "./chore-snapshot-fixture.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -161,6 +162,7 @@ test("account-owned controllers replay both allowed kinds after screens close, n
   const chores = choreController(
     account,
     {
+      snapshot: fixtureChoreSnapshot,
       listTransfers: () => Effect.succeed(emptyTransfers),
       list: () =>
         live ? Effect.succeed([]) : Effect.fail(new ChoreFailure({ code: "unavailable" })),
@@ -287,6 +289,7 @@ test("reconnect before an old request fails drains both SQLite queues", async (t
   const chores = choreController(
     account,
     {
+      snapshot: fixtureChoreSnapshot,
       listTransfers: () => Effect.succeed(emptyTransfers),
       list: () => Effect.succeed([]),
       complete: () =>

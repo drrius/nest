@@ -13,6 +13,7 @@ export function sessionChores(auth: SupabaseClient["auth"], member: Member, apiU
     sessionCredentials(auth),
   );
   return {
+    snapshot: () => client.snapshot().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     listTransfers: () =>
       client.listTransfers().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     requestTransfer: (command: Parameters<typeof client.requestTransfer>[0]) =>
