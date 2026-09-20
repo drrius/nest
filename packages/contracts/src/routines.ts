@@ -66,11 +66,19 @@ export const RoutineVersion = Schema.String.check(
     );
   }),
 );
+// Omitted fields remain unchanged, including longer legacy titles. A supplied
+// title must meet the new input limit; edits never normalize untouched history.
+export const RoutinePatch = Schema.Struct({
+  title: Schema.optionalKey(Title),
+  schedule: Schema.optionalKey(RoutineSchedule),
+  assignment: Schema.optionalKey(RoutineAssignment),
+}).check(Schema.makeFilter((patch) => Object.keys(patch).length > 0));
+export type RoutinePatch = typeof RoutinePatch.Type;
 export const EditRoutine = Schema.Struct({
   operationId: Uuid,
   routineId: Uuid,
   expectedVersion: RoutineVersion,
-  definition: RoutineDefinition,
+  patch: RoutinePatch,
 });
 export type EditRoutine = typeof EditRoutine.Type;
 export const RoutineStateCommand = Schema.Struct({
