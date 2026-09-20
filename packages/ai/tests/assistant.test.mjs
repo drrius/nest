@@ -134,6 +134,7 @@ test("bounded context keeps the latest prompt without dropping durable history",
 test("unreconciled write calls cannot be silently discarded from model history", async () => {
   for (const name of [
     "placeMeal",
+    "removeMeal",
     "addGrocery",
     "saveFoodPreferences",
     "skipChore",

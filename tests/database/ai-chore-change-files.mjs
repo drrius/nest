@@ -10,4 +10,5 @@ export const aiChoreChangeFiles = [
   "supabase/migrations/20260920141458_native_ai_chore_changes.sql",
   "supabase/migrations/20260920153415_native_ai_chore_transfers.sql",
   "supabase/migrations/20260920171440_native_ai_meal_placement.sql",
+  "supabase/migrations/20260920213543_native_ai_meal_removal.sql",
 ];

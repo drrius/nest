@@ -1,3 +1,4 @@
+import { MealRemovalReceipt } from "@nest/contracts/meal-removal";
 import { MealPlacementReceipt } from "@nest/contracts/meal-placement";
 import { SetupHandoff } from "@nest/contracts/setup";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
@@ -11,6 +12,7 @@ const Output = Schema.Struct({
 });
 const labels = {
   placeMeal: "Meal added to the week",
+  removeMeal: "Meal removed from the week",
   requestChoreTransfer: "Handover requested",
   respondChoreTransfer: "Handover response saved",
   skipChore: "Chore skipped",
@@ -31,6 +33,7 @@ const labels = {
 };
 const destinations = {
   placeMeal: "/meal-week",
+  removeMeal: "/meal-week",
   requestChoreTransfer: "/chore-transfers",
   respondChoreTransfer: "/chore-transfers",
   skipChore: "/household",
@@ -85,6 +88,8 @@ function successLabel(action: AssistantAction, receipt: object) {
 }
 
 function successHref(action: AssistantAction, value: object) {
+  if (action === "removeMeal" && Schema.is(MealRemovalReceipt)(value))
+    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
   if (action === "placeMeal" && Schema.is(MealPlacementReceipt)(value))
     return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))

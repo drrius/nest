@@ -1,3 +1,4 @@
+import { RemoveMealInput, MealRemovalReceipt } from "./meal-removal.ts";
 import { PlaceMealInput, MealPlacementReceipt } from "./meal-placement.ts";
 import {
   RequestChoreTransfer,
@@ -39,6 +40,7 @@ const MemoryProposalInput = Schema.Struct({
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
   placeMeal: PlaceMealInput,
+  removeMeal: RemoveMealInput,
   requestChoreTransfer: Schema.Struct(Struct.omit(RequestChoreTransfer.fields, ["operationId"])),
   respondChoreTransfer: Schema.Struct(Struct.omit(RespondChoreTransfer.fields, ["operationId"])),
   skipChore: Schema.Struct(Struct.omit(SkipChore.fields, ["operationId"])),
@@ -66,6 +68,7 @@ export const AssistantInputs = {
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
   placeMeal: MealPlacementReceipt,
+  removeMeal: MealRemovalReceipt,
   requestChoreTransfer: ChoreTransferReceipt.check(
     Schema.makeFilter((value) => value.action === "request"),
   ),
