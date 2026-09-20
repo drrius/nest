@@ -1,0 +1,9 @@
+# Routine lifecycle audit
+
+Reference commit: `4a528c96caf41515a70291ccecbba9d7b35e3349` in Household OS. The three public primitives remain in `20260809210000_routine_engine.sql`: `pause_routine`, `unpause_routine`, and `archive_routine`. Test-only excerpts are copied verbatim to `tests/database/legacy-routine-edits/lifecycle.sql`.
+
+Pause keeps existing occurrences and cancels pending reminder candidates. Resume reuses the latest audited window helper, retains occurrence identities when a current window exists, and recreates candidates only for explicitly enabled legacy reminder preferences. Neither action creates reminder consent. Archive retains the current occurrence and closed history, cancels pending candidates and removes only the open preview. Repeated state changes are semantic no-ops; archived routines reject pause/resume. Native archive should not be presented as deleting history or financial obligations.
+
+The legacy commands have membership checks but no exact-version or actor-bound retry receipt. They lock the routine first; a native wrapper must acquire occurrence/routine locks in the same order as native editing and completion before invoking them, and avoid waiting in an inverted order. It must revalidate membership before replay, bind actor/household/action/version to immutable receipts, and roll back state/reminders/activity if receipt insertion fails. Direct SQL tests alone do not prove concurrency with the full closure engine.
+
+Two initial disposable database probes pass for occurrence identity, opted-in reminder candidates, repeated-state activity deduplication, outsider rejection and archival semantics. Closed history in the archive probe is explicitly seeded fixture data; actual closure remains separate work. The fixtures are not production migrations. Native storage/API/UI/AI lifecycle commands and actual device verification remain unfinished.
