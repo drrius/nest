@@ -1,9 +1,14 @@
+import { ChoreChangeRuntime } from "./change-runtime.ts";
 import * as Effect from "effect/Effect";
 import type { Chore } from "@nest/contracts/chores";
 import { syncOfflineFlow } from "../offline/sync.ts";
 import type { ChoreData, ChoreFlow } from "./flow.ts";
 
 export interface ChoreView {
+  changeStage: "ready" | "saving" | "uncertain" | "reload";
+  pendingWrite: boolean;
+  changeNotice: string | null;
+  changed: number;
   data: ChoreData | null;
   syncing: boolean;
   stale: boolean;
@@ -12,6 +17,10 @@ export interface ChoreView {
   access: "allowed" | "verify";
 }
 export const initialChoreView: ChoreView = {
+  changeStage: "ready",
+  pendingWrite: false,
+  changeNotice: null,
+  changed: 0,
   data: null,
   syncing: false,
   stale: true,
@@ -40,6 +49,14 @@ export function choreRuntime(
     emit({ data: await run(flow.read) });
   };
   const refresh = syncOfflineFlow(flow, { run, read, emit, disposed: () => disposed });
+  const online = new ChoreChangeRuntime({
+    flow,
+    run,
+    view: () => view,
+    emit,
+    refresh,
+    blocked: () => disposed || enqueueing.size > 0,
+  });
   const change = async <E>(action: Effect.Effect<void, E>) => {
     try {
       await run(action);
@@ -52,12 +69,17 @@ export function choreRuntime(
     }
   };
   return {
-    refresh,
+    refresh: online.refresh,
+    skip: (chore: Chore, operation: string) => online.begin(chore, operation),
+    reschedule: (chore: Chore, operation: string, date: string) =>
+      online.begin(chore, operation, date),
+    retryChange: online.retry,
     complete(chore: Chore, operation: string, completedOn: string) {
       const item = view.data?.chores.find((row) => row.occurrenceId === chore.occurrenceId);
       if (
         disposed ||
         view.access !== "allowed" ||
+        view.changeStage !== "ready" ||
         enqueueing.has(chore.occurrenceId) ||
         item?.done ||
         item?.pending
@@ -71,10 +93,11 @@ export function choreRuntime(
         .finally(() => enqueueing.delete(chore.occurrenceId));
     },
     discard: (operation: string) => {
-      if (!disposed) void change(flow.discard(operation));
+      if (!disposed && view.changeStage === "ready") void change(flow.discard(operation));
     },
     dispose() {
       disposed = true;
+      online.dispose();
       abort.abort();
     },
   };

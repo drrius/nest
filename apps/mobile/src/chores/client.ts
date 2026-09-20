@@ -4,6 +4,8 @@ import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as HttpBody from "effect/unstable/http/HttpBody";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { ChoreList, ChoreResult, type CompleteChore } from "@nest/contracts/chores";
+import { choreChanges } from "./change-client.ts";
+import { preferenceRequests } from "../preferences/client.ts";
 import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
 
@@ -50,7 +52,16 @@ export function choreClient(
       Effect.provide(FetchHttpClient.layer),
       Effect.provideService(FetchHttpClient.RequestInit, { redirect: "error" }),
     );
+  const changes = choreChanges(preferenceRequests(apiUrl, account, credentials), account);
   return {
+    skip: (command: Parameters<typeof changes.skip>[0]) =>
+      changes
+        .skip(command)
+        .pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
+    reschedule: (command: Parameters<typeof changes.reschedule>[0]) =>
+      changes
+        .reschedule(command)
+        .pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
     list: () =>
       request("v1/chores").pipe(
         Effect.flatMap(Schema.decodeUnknownEffect(ChoreList)),

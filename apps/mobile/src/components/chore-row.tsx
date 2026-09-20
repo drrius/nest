@@ -7,25 +7,32 @@ export function ChoreRow({
   chore,
   actor,
   onComplete,
+  disabled = false,
 }: {
   chore: ChoreData["chores"][number];
   actor: string;
   onComplete: () => void;
+  disabled?: boolean;
 }) {
   const colors = useQuiet();
   const owner =
     chore.assigneeId === null ? "Shared" : chore.assigneeId === actor ? "You" : "Partner";
+  const inactive = disabled || chore.done || chore.pending;
   const detail = `${chore.dueDate} · ${owner}${chore.pending ? " · Awaiting sync" : ""}`;
   return (
     <Pressable
       accessibilityRole="checkbox"
       accessibilityLabel={`${chore.title}, ${detail}`}
-      accessibilityState={{ checked: chore.done, disabled: chore.done || chore.pending }}
+      accessibilityState={{
+        checked: chore.done,
+        disabled: inactive,
+      }}
       accessibilityHint="Mark this chore complete"
-      disabled={chore.done || chore.pending}
+      disabled={inactive}
       onPress={onComplete}
       style={{
         minHeight: 64,
+        flex: 1,
         flexDirection: "row",
         alignItems: "center",
         gap: space.medium,

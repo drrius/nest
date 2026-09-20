@@ -1,3 +1,4 @@
+import { useChoreEditor } from "../chores/use-editor";
 import { householdDate } from "@nest/domain/calendar";
 import { useState } from "react";
 import { Link } from "expo-router";
@@ -38,7 +39,9 @@ function HouseholdChores({
   member: Member;
   verify: () => void;
 }) {
-  const { view, refresh, complete, discard } = useChores(client, member.userId, member.householdId);
+  const controller = useChores(client, member.userId, member.householdId);
+  const { view, refresh, complete, discard, retryChange } = controller;
+  const editor = useChoreEditor(controller);
   const [everyone, setEveryone] = useState(false);
   const colors = useQuiet();
   if (view.access === "verify")
@@ -51,6 +54,7 @@ function HouseholdChores({
   return (
     <DueChores
       view={view}
+      {...editor}
       actor={member.userId}
       everyone={everyone}
       today={todayDate()}
@@ -80,6 +84,14 @@ function HouseholdChores({
             Manage routines
           </Link>
           <ChoreStatus view={view} />
+          {view.changeStage === "uncertain" ? (
+            <NativeAction
+              label="Retry exact chore change"
+              onPress={() => {
+                void retryChange();
+              }}
+            />
+          ) : null}
           <Link
             href="/settings"
             style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}

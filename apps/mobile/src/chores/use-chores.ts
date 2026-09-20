@@ -49,6 +49,10 @@ export function useChores(client: ChoreClient, actor: string, household: string)
     },
     complete: (chore: Chore, completedOn: string) =>
       runtime.current?.complete(chore, Crypto.randomUUID(), completedOn),
+    skip: (chore: Chore) => runtime.current?.skip(chore, Crypto.randomUUID()),
+    reschedule: (chore: Chore, date: string) =>
+      runtime.current?.reschedule(chore, Crypto.randomUUID(), date),
+    retryChange: () => runtime.current?.retryChange(),
     discard: (operation: string) => runtime.current?.discard(operation),
   };
 }

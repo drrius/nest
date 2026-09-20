@@ -39,6 +39,8 @@ export function choreFlow(store: ChoreStore, session: Session, client: ChoreClie
   });
   return {
     read: store.readChores(session),
+    skip: client.skip,
+    reschedule: client.reschedule,
     sync: Effect.gen(function* () {
       const notice = yield* replay;
       const rows = yield* client.list();
