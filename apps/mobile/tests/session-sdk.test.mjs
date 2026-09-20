@@ -37,7 +37,7 @@ for (const failure of ["read", "delete"]) {
       assert.equal(storage.has("nest.auth.v1"), true);
       assert.deepEqual(states.at(-1), { status: "logout_pending" });
       await subscription.refresh();
-      subscription.unavailable();
+      await subscription.unavailable();
       assert.deepEqual(states.at(-1), { status: "logout_pending" });
       fixture.fail(null);
       await Effect.runPromise(signOutSession(client.auth, subscription));
