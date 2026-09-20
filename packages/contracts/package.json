@@ -11,7 +11,8 @@
     "./food": "./src/food.ts",
     "./cooking": "./src/cooking.ts",
     "./memory": "./src/memory.ts",
-    "./calendar": "./src/calendar.ts"
+    "./calendar": "./src/calendar.ts",
+    "./notifications": "./src/notifications.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
