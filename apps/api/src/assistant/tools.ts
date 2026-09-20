@@ -1,3 +1,4 @@
+import { calendarTools } from "../calendar/tools.ts";
 import { writeTools } from "./write-tools.ts";
 import { readMemoriesTool } from "../memory/tools.ts";
 import * as Effect from "effect/Effect";
@@ -48,6 +49,7 @@ export function householdTools(
     });
   };
   const tools = {
+    ...calendarTools(bound, config),
     readMemories: readMemoriesTool(bound, config),
     readCookingPreferences: readCookingPreferencesTool(bound, config),
     readFoodPreferences: readFoodPreferencesTool(bound, config),

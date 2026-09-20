@@ -67,8 +67,9 @@ function ConversationContent({ runtime }: { runtime: ConversationRuntime }) {
           <Note>
             Private to you. Nest can complete requested chores, update groceries and edit your food
             preferences or shared cooking settings. Memory additions and edits need your
-            confirmation in the review screen. Saved action receipts appear below. Money actions are
-            not available here yet.
+            confirmation in the review screen. Calendar availability uses fresh opted-in busy times;
+            permission and sharing changes open native settings. Money actions are not available
+            here yet.
           </Note>
           {view.notice ? <Note>{view.notice}</Note> : null}
           {!view.loaded && view.busy ? <Note>Loading saved conversation…</Note> : null}
