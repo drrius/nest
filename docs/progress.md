@@ -36,6 +36,8 @@ Removal API work in progress: authenticated POST `/v1/meals/remove` strictly dec
 
 The owner now authorizes branch delivery without PRs: passing exact-commit CI plus clean GPT-5.6 Sol medium adversarial review, then local merge and push main. No production/release/purchase permission changes. See the updated delivery contract.
 
+Sol review of removal API head `f75bc2e` found uppercase entry UUIDs were sent verbatim to SQL but compared against lowercase receipts: valid commands could commit then report unavailable on every retry. The adapter now canonicalizes the entry before RPC. All six focused service/real HTTP checks pass, including uppercase commit/replay against actual PostgreSQL. Updated-commit CI and clean rereview remain required.
+
 ### Offline retention evidence
 
 **Merged offline retention slice.** PR #72 merged as `ba54a91` after clean GPT-5.6 Sol medium exact-head review of `14df71db161c6eab432c27aa692b5c43b61679e9`, both CI checks and zero conversations. Independent review passed 46 focused checks, including prior validator regression and four SDK/PostgREST journeys. [Merge evidence](https://github.com/drrius/nest/pull/72#issuecomment-5750835392).

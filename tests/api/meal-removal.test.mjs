@@ -44,7 +44,7 @@ test("removal binds actor, household, exact bigint revision and canonical retry 
       assert.deepEqual(JSON.parse(init.body), {
         p_household: id(10),
         p_operation: operationId.toLowerCase(),
-        p_input: payload,
+        p_input: { ...payload, entryId: payload.entryId.toLowerCase() },
       });
       return Response.json(receipt);
     }),

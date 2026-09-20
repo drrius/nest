@@ -15,7 +15,7 @@ export function removeMeal(config: IdentityConfig, caller: AuthorizedCaller, inp
     const raw = yield* requestJson(config, caller.token, "rest/v1/rpc/nest_remove_meal", {
       p_household: caller.member.householdId,
       p_operation: operationId.toLowerCase(),
-      p_input: payload,
+      p_input: { ...payload, entryId: payload.entryId.toLowerCase() },
     });
     const receipt = yield* Schema.decodeUnknownEffect(MealRemovalReceipt)(raw, {
       onExcessProperty: "error",

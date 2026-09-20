@@ -122,3 +122,20 @@ test("removal HTTP closes actual linked preparation once and partner reads retai
     "Pasta",
   );
 });
+
+test("uppercase entry identity succeeds and replays through real HTTP and PostgreSQL", async (t) => {
+  const { remote, connect } = await backend(t);
+  const entry = "ABCDEF00-0000-4000-8000-000000000900";
+  remote.db.sql(
+    `insert into public.meal_plan_entries(id,household_id,date,slot,title_snapshot) values ('${entry}','${id(10)}','2026-09-23','lunch','Soup')`,
+  );
+  const input = { ...command, entryId: entry, expectedRevision: "2" };
+  const first = await connect().remove(input);
+  assert.equal(first.status, 200);
+  const result = await first.json();
+  assert.equal(result.receipt.entryId, entry.toLowerCase());
+  const retry = await connect().remove(input);
+  assert.equal(retry.status, 200);
+  assert.deepEqual(await retry.json(), result);
+  assert.equal(remote.db.sql("select count(*) from public.nest_meal_removal_receipts"), "1");
+});
