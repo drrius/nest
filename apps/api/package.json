@@ -11,7 +11,8 @@
   "dependencies": {
     "@nest/ai": "workspace:*",
     "effect": "4.0.0-rc.115",
-    "@nest/contracts": "workspace:*"
+    "@nest/contracts": "workspace:*",
+    "@nest/domain": "workspace:*"
   },
   "devDependencies": {
     "typescript": "7.0.2"

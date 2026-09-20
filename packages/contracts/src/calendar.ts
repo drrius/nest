@@ -103,3 +103,11 @@ export type SetCalendarConsent = typeof SetCalendarConsent.Type;
 export type BusyCapture = typeof BusyCapture.Type;
 export type PublishBusy = typeof PublishBusy.Type;
 export type BusySnapshot = typeof BusySnapshot.Type;
+
+export const AvailabilityQuery = Schema.Struct(Interval.fields).check(
+  Schema.makeFilter((covered) => validCoverage({ covered, intervals: [] })),
+);
+export const CalendarSettingsHandoff = Schema.Struct({
+  kind: Schema.Literal("device_handoff"),
+  screen: Schema.Literal("calendar-sharing"),
+});

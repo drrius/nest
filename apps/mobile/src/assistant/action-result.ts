@@ -1,3 +1,4 @@
+import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope } from "@nest/contracts/memory";
 import { AssistantReceipts, type AssistantAction } from "@nest/contracts/assistant-actions";
@@ -29,6 +30,7 @@ const destinations = {
   checkGrocery: "/checklist",
 } as const;
 export function actionResult(part: { type: string; state?: unknown; output?: unknown }) {
+  if (part.type === "tool-openCalendarSettings") return calendarHandoff(part);
   const name = part.type.slice(5);
   if (!part.type.startsWith("tool-") || !Object.hasOwn(AssistantReceipts, name)) return null;
   const action = name as AssistantAction;
@@ -62,4 +64,18 @@ function successHref(action: AssistantAction, value: object) {
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
     return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
   return destinations[action];
+}
+
+function calendarHandoff(part: { state?: unknown; output?: unknown }) {
+  if (
+    part.state !== "output-available" ||
+    !Schema.is(Output)(part.output) ||
+    !part.output.ok ||
+    !Schema.is(CalendarSettingsHandoff)(part.output.value)
+  )
+    return null;
+  return {
+    label: "Choose calendar access and sharing on your iPhone",
+    href: "/calendar-sharing" as const,
+  };
 }

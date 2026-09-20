@@ -131,3 +131,18 @@ test("memory proposals hand off to exact native approval without claiming the me
   ])
     assert.throws(() => decode({ ...input, ...patch }));
 });
+
+test("calendar tool handoff opens native settings without claiming consent or refresh succeeded", () => {
+  const part = {
+    type: "tool-openCalendarSettings",
+    state: "output-available",
+    output: { ok: true, value: { kind: "device_handoff", screen: "calendar-sharing" } },
+  };
+  assert.deepEqual(actionResult(part), {
+    label: "Choose calendar access and sharing on your iPhone",
+    href: "/calendar-sharing",
+  });
+  assert.equal(actionResult({ ...part, state: "input-available" }), null);
+  assert.equal(actionResult({ ...part, output: { ok: true, value: { enabled: true } } }), null);
+  assert.equal(actionResult({ ...part, output: { ok: false, code: "forbidden" } }), null);
+});
