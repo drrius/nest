@@ -1,4 +1,6 @@
 import { sessionAssistant } from "./assistant-client";
+import { sessionFood } from "./food-client";
+import type { FoodClient } from "../food/client";
 import type { AssistantClient } from "../assistant/client";
 import { sessionGroceries } from "./grocery-client";
 import type { GroceryClient } from "../groceries/client";
@@ -44,6 +46,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  food: FoodClient | null;
   assistant: AssistantClient | null;
   chores: ChoreClient | null;
   groceries: GroceryClient | null;
@@ -99,6 +102,13 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const busy = useRef(false);
   const runtime = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
+  const actor = member?.userId,
+    household = member?.householdId;
+  const food = useMemo(() => {
+    if (!actor || !household || !runtime.current || !configuration) return null;
+    const { auth } = runtime.current;
+    return sessionFood(auth, { actor, household }, configuration.apiUrl);
+  }, [actor, household, runtime]);
   const { chores, groceries, assistant } = useMemo(() => {
     if (!member || !runtime.current || !configuration)
       return { chores: null, groceries: null, assistant: null };
@@ -146,6 +156,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   return (
     <SessionContext
       value={{
+        food,
         chores,
         groceries,
         assistant,
