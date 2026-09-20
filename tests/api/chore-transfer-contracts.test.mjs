@@ -63,7 +63,15 @@ test("receipts bind the correct consenting actor and action state, including UUI
 });
 test("pending snapshots retain exact target identity and reject malformed or oversized lists", () => {
   const item = { ...identity, title: "Clean kitchen" };
-  const envelope = { version: 1, householdId: id(3), transfers: [item] };
+  const envelope = {
+    version: 1,
+    householdId: id(3),
+    members: [
+      { actorId: id(1), displayName: "A" },
+      { actorId: id(2), displayName: "B" },
+    ],
+    transfers: [item],
+  };
   assert.deepEqual(decode(ChoreTransferList, envelope), envelope);
   for (const patch of [{ title: "" }, { toMemberId: id(1).toUpperCase() }, { state: "accepted" }])
     assert.throws(() =>

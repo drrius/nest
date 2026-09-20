@@ -13,7 +13,8 @@ export function choreCommands(config: IdentityConfig, caller: AuthorizedCaller) 
     list: () =>
       Effect.gen(function* () {
         const query = new URLSearchParams({
-          select: "id,household_id,due_date,planned_assignee_id,routines!inner(title)",
+          select:
+            "id,household_id,due_date,planned_assignee_id,nest_accepted_assignee_id,routines!inner(title)",
           household_id: `eq.${caller.member.householdId}`,
           status: "eq.open",
           role: "eq.current",
@@ -40,7 +41,7 @@ export function choreCommands(config: IdentityConfig, caller: AuthorizedCaller) 
           occurrenceId: row.id,
           title: row.routines.title,
           dueDate: row.due_date,
-          assigneeId: row.planned_assignee_id,
+          assigneeId: row.nest_accepted_assignee_id ?? row.planned_assignee_id,
         }));
       }),
     complete: (input: unknown) =>

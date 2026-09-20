@@ -1,4 +1,5 @@
 import * as Schema from "effect/Schema";
+import { RoutineList } from "./routines.ts";
 import { CalendarDate } from "./chores.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
 export const RequestChoreTransfer = Schema.Struct({
@@ -49,5 +50,6 @@ export const ChoreTransferEnvelope = Schema.Struct({
 export const ChoreTransferList = Schema.Struct({
   version: Schema.Literal(1),
   householdId: Uuid,
+  members: RoutineList.fields.members,
   transfers: Schema.Array(PendingChoreTransfer).check(Schema.isMaxLength(200)),
 });

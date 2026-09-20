@@ -3,11 +3,11 @@ import { test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-import { choreChangeFiles } from "../database/chore-change-files.mjs";
+import { choreTransferFiles } from "../database/chore-transfer-files.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 async function backend(t, drop = false) {
   const remote = await postgrestFixture(t, [
-    ...choreChangeFiles,
+    ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
   ]);
   const proxy = drop

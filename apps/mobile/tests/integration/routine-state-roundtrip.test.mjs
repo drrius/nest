@@ -11,6 +11,7 @@ const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 async function backend(t, loseResponse = false) {
   const remote = await postgrestFixture(t, [
     "tests/database/routine-edit-fixture.sql",
+    "supabase/migrations/20260920143047_native_chore_transfer_storage.sql",
     "tests/database/legacy-routine-edits/lifecycle.sql",
     "tests/integration/food-postgrest.sql",
     "supabase/migrations/20260920082522_native_routine_creation.sql",

@@ -14,6 +14,7 @@ const command = { operationId: id(100), definition };
 async function backend(t, loseResponse = false) {
   const remote = await postgrestFixture(t, [
     "tests/database/routine-edit-fixture.sql",
+    "supabase/migrations/20260920143047_native_chore_transfer_storage.sql",
     "tests/database/legacy-routine-edits/lifecycle.sql",
     "tests/integration/food-postgrest.sql",
     "supabase/migrations/20260920082522_native_routine_creation.sql",
