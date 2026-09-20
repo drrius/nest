@@ -193,3 +193,39 @@ test("owner releases private data and recreates a runtime after Strict Mode resu
   assert.notEqual(owner.getSnapshot(), first);
   again();
 });
+
+test("unknown edit freezes its original version and patch while blocking unrelated writes", async () => {
+  const calls = [];
+  const routine = {
+    routineId: id(50),
+    version: "2026-09-20T08:00:00.123456Z",
+    definition: definition(),
+    state: "active",
+  };
+  const runtime = new RoutineRuntime(
+    {
+      read: () => Effect.succeed(snapshot),
+      create: () => assert.fail("create during pending edit"),
+      edit: (command) => {
+        calls.push(command);
+        return calls.length === 1 ? failure("unavailable") : Effect.succeed({ routineId: id(50) });
+      },
+    },
+    () => id(100),
+  );
+  await runtime.load();
+  const patch = { schedule: { kind: "weekdays", days: [2, 4] } };
+  await runtime.edit(routine, patch);
+  patch.schedule.days[0] = 7;
+  routine.version = "2026-09-20T08:00:00.999999Z";
+  await runtime.create(definition());
+  await runtime.edit(routine, { title: "Another edit" });
+  await runtime.load();
+  assert.equal(calls.length, 1);
+  assert.equal(runtime.getSnapshot().stage, "uncertain");
+  await runtime.retry();
+  assert.deepEqual(calls[0], calls[1]);
+  assert.equal(calls[1].expectedVersion, "2026-09-20T08:00:00.123456Z");
+  assert.deepEqual(calls[1].patch.schedule.days, [2, 4]);
+  assert.equal(runtime.getSnapshot().saved, 1);
+});

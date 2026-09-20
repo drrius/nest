@@ -1,3 +1,4 @@
+import type { Routine } from "@nest/contracts/routines";
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import DateTimePicker from "@expo/ui/community/datetime-picker";
 import { useColorScheme } from "react-native";
@@ -61,18 +62,54 @@ function Interval({ draft, enabled }: { draft: Draft; enabled: boolean }) {
     </Column>
   );
 }
-export function RoutineForm({ runtime, view }: { runtime: RoutineRuntime; view: RoutineView }) {
-  const draft = useRoutineDraft(runtime, view),
-    colors = useQuiet(),
-    scheme = useColorScheme();
-  const enabled = !view.busy && view.stage === "ready" && view.snapshot?.members.length === 2;
+export function RoutineForm({
+  runtime,
+  view,
+  routine,
+}: {
+  runtime: RoutineRuntime;
+  view: RoutineView;
+  routine?: Routine;
+}) {
+  const draft = useRoutineDraft(runtime, view, routine);
+  const enabled =
+    !view.busy &&
+    view.stage === "ready" &&
+    (routine !== undefined || view.snapshot?.members.length === 2);
   return (
     <Card>
-      <Section title="Create routine" />
+      <Section title={routine ? "Edit routine" : "Create routine"} />
       <Note>
-        Shared by default. Creating a routine needs a connection. Your draft and retry details stay
-        here while this form is open.
+        {routine
+          ? "Only changed fields are saved. Saving needs a connection. Reloading discards this draft and shows the current routines."
+          : "Shared by default. Creating a routine needs a connection. Your draft and retry details stay here while this form is open."}
       </Note>
+      <RoutineFields draft={draft} view={view} enabled={enabled} editing={!!routine} />
+      {draft.error ? <Note>{draft.error}</Note> : null}
+      <NativeAction
+        label={view.busy ? "Working…" : routine ? "Save changes online" : "Create online"}
+        disabled={!enabled}
+        onPress={draft.submit}
+      />
+    </Card>
+  );
+}
+
+function RoutineFields({
+  draft,
+  view,
+  enabled,
+  editing,
+}: {
+  draft: Draft;
+  view: RoutineView;
+  enabled: boolean;
+  editing: boolean;
+}) {
+  const colors = useQuiet(),
+    scheme = useColorScheme();
+  return (
+    <>
       <Host
         matchContents
         colorScheme={scheme === "dark" ? "dark" : "light"}
@@ -83,7 +120,7 @@ export function RoutineForm({ runtime, view }: { runtime: RoutineRuntime; view: 
           <TextInput
             value={draft.title}
             placeholder="What needs doing?"
-            maxLength={120}
+            maxLength={editing ? 240 : 120}
             editable={enabled}
           />
           <ScheduleFields value={draft.schedule} change={draft.setSchedule} enabled={enabled} />
@@ -108,12 +145,6 @@ export function RoutineForm({ runtime, view }: { runtime: RoutineRuntime; view: 
         </>
       ) : null}
       {draft.schedule.kind === "monthly" ? <Note>Shorter months use their last day.</Note> : null}
-      {draft.error ? <Note>{draft.error}</Note> : null}
-      <NativeAction
-        label={view.busy ? "Working…" : "Create online"}
-        disabled={!enabled}
-        onPress={draft.submit}
-      />
-    </Card>
+    </>
   );
 }

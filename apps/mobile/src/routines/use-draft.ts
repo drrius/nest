@@ -1,3 +1,5 @@
+import type { Routine } from "@nest/contracts/routines";
+import { routineEditPatch, scheduleDraft } from "./edit-draft";
 import { useNativeState } from "@expo/ui";
 import { useState } from "react";
 import { Alert } from "react-native";
@@ -6,18 +8,24 @@ import { usePreventRemove } from "expo-router/react-navigation";
 import { householdDate } from "@nest/domain/calendar";
 import type { RoutineRuntime, RoutineView } from "./runtime";
 import { initialSchedule, parseRoutineDraft } from "./draft";
-export function useRoutineDraft(runtime: RoutineRuntime, view: RoutineView) {
-  const title = useNativeState("");
-  const every = useNativeState("1");
-  const [schedule, setSchedule] = useState(() => initialSchedule(householdDate(new Date())));
-  const [policy, setPolicy] = useState<"shared" | "assigned" | "alternating">("shared");
-  const [member, setMember] = useState(view.snapshot?.members[0]?.actorId ?? "");
+export function useRoutineDraft(runtime: RoutineRuntime, view: RoutineView, routine?: Routine) {
+  const title = useNativeState(routine?.definition.title ?? "");
+  const [schedule, setSchedule] = useState(() =>
+    routine
+      ? scheduleDraft(routine.definition.schedule, householdDate(new Date()))
+      : initialSchedule(householdDate(new Date())),
+  );
+  const every = useNativeState(schedule.every);
+  const [policy, setPolicy] = useState<"shared" | "assigned" | "alternating">(
+    routine?.definition.assignment.policy ?? "shared",
+  );
+  const [member, setMember] = useState(() => initialMember(view, routine));
   const [error, setError] = useState<string | null>(null);
   const navigation = useNavigation();
   usePreventRemove(true, ({ data }) => {
     Alert.alert(
-      "Leave routine creation?",
-      "Your draft and retry details will be lost. A create already sent may still finish. Check the routine list before creating it again.",
+      "Leave routine changes?",
+      "Your draft and retry details will be lost. A change already sent may still finish. Check the routine list before sending it again.",
       [
         { text: "Stay", style: "cancel" },
         { text: "Leave", onPress: () => navigation.dispatch(data.action) },
@@ -25,6 +33,29 @@ export function useRoutineDraft(runtime: RoutineRuntime, view: RoutineView) {
     );
   });
   const submit = () => {
+    if (routine) {
+      const assignment =
+        policy === "shared"
+          ? { policy }
+          : policy === "assigned"
+            ? { policy, memberId: member }
+            : { policy, anchorMemberId: member };
+      const edited = routineEditPatch(
+        routine.definition,
+        title.value,
+        { ...schedule, every: every.value },
+        assignment,
+      );
+      if (edited.status !== "changed")
+        return setError(
+          edited.status === "unchanged"
+            ? "No changes to save."
+            : "Check the title, schedule and responsibility.",
+        );
+      setError(null);
+      void runtime.edit(routine, edited.patch);
+      return;
+    }
     const result = parseRoutineDraft(
       title.value,
       { ...schedule, every: every.value },
@@ -50,4 +81,13 @@ export function useRoutineDraft(runtime: RoutineRuntime, view: RoutineView) {
     error,
     submit,
   };
+}
+
+function initialMember(view: RoutineView, routine?: Routine) {
+  const assignment = routine?.definition.assignment;
+  return assignment?.policy === "assigned"
+    ? assignment.memberId
+    : assignment?.policy === "alternating"
+      ? assignment.anchorMemberId
+      : (view.snapshot?.members[0]?.actorId ?? "");
 }

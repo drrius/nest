@@ -1,6 +1,12 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
-import { CreateRoutine, type RoutineDefinition } from "@nest/contracts/routines";
+import {
+  CreateRoutine,
+  EditRoutine,
+  type Routine,
+  type RoutinePatch,
+  type RoutineDefinition,
+} from "@nest/contracts/routines";
 import { PreferenceFailure } from "../preferences/client.ts";
 import type { RoutineClient, RoutineSnapshot } from "./client.ts";
 export type RoutineView = {
@@ -9,6 +15,7 @@ export type RoutineView = {
   stage: "ready" | "uncertain" | "reload" | "verify";
   notice: string | null;
   created: string | null;
+  saved: number;
 };
 const initial: RoutineView = {
   snapshot: null,
@@ -16,10 +23,11 @@ const initial: RoutineView = {
   stage: "ready",
   notice: null,
   created: null,
+  saved: 0,
 };
 export class RoutineRuntime {
   private view = initial;
-  private attempt: CreateRoutine | null = null;
+  private attempt: CreateRoutine | EditRoutine | null = null;
   private acknowledged: string | null = null;
   private disposed = false;
   private readonly lifetime = new AbortController();
@@ -62,14 +70,15 @@ export class RoutineRuntime {
     } else if (this.acknowledged) {
       this.publish({
         stage: "reload",
-        notice: "Creation was confirmed. Reload the current routines before creating another.",
+        notice:
+          "Your change was confirmed. Reload the current routines before making another change.",
       });
     } else if (code === "invalid" || code === "conflict") {
       this.attempt = null;
       this.publish({
         stage: "reload",
         notice:
-          "The routine could not be created. Reload and check its details before trying again.",
+          "The routine could not be saved. Reload and check its current details before trying again.",
       });
     } else {
       this.unavailable();
@@ -79,7 +88,7 @@ export class RoutineRuntime {
     this.publish({
       stage: this.attempt ? "uncertain" : this.view.stage,
       notice: this.attempt
-        ? "Creation could not be confirmed. Retry this exact request before creating another routine."
+        ? "Your change could not be confirmed. Retry this exact request before making another change."
         : "Could not load routines. Try again online.",
     });
   }
@@ -93,7 +102,8 @@ export class RoutineRuntime {
       snapshot,
       stage: "ready",
       created: created ?? this.view.created,
-      notice: created ? "Routine created. This list shows the current household routines." : null,
+      saved: this.view.saved + (created ? 1 : 0),
+      notice: created ? "Saved. This list shows the current household routines." : null,
     });
   }
   load = async () => {
@@ -132,11 +142,47 @@ export class RoutineRuntime {
     };
     await this.send();
   };
+  edit = async (routine: Routine, patch: RoutinePatch) => {
+    if (this.disposed || this.view.busy || !this.view.snapshot || this.view.stage !== "ready")
+      return;
+    const decoded = Schema.decodeUnknownExit(EditRoutine)(
+      {
+        operationId: this.uuid(),
+        routineId: routine.routineId,
+        expectedVersion: routine.version,
+        patch,
+      },
+      { onExcessProperty: "error" },
+    );
+    if (decoded._tag === "Failure") {
+      this.publish({ notice: "Check the requested changes before saving." });
+      return;
+    }
+    const value = decoded.value.patch;
+    this.attempt = {
+      ...decoded.value,
+      patch: {
+        ...value,
+        ...(value.assignment ? { assignment: { ...value.assignment } } : {}),
+        ...(value.schedule
+          ? {
+              schedule:
+                value.schedule.kind === "weekdays"
+                  ? { ...value.schedule, days: [...value.schedule.days] }
+                  : { ...value.schedule },
+            }
+          : {}),
+      },
+    };
+    await this.send();
+  };
   private async send() {
     if (this.disposed || !this.attempt) return;
     this.publish({ busy: true, notice: null });
     try {
-      const receipt = await this.run(this.client.create(this.attempt));
+      const receipt = await this.run(
+        "patch" in this.attempt ? this.client.edit(this.attempt) : this.client.create(this.attempt),
+      );
       if (this.disposed) return;
       this.acknowledged = receipt.routineId;
       await this.read();

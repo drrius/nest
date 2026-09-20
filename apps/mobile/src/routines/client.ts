@@ -1,6 +1,11 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
-import { CreateRoutine, RoutineList, RoutineCreateEnvelope } from "@nest/contracts/routines";
+import {
+  CreateRoutine,
+  EditRoutine,
+  RoutineList,
+  RoutineCreateEnvelope,
+} from "@nest/contracts/routines";
 import { preferenceRequests, PreferenceFailure } from "../preferences/client.ts";
 import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
@@ -28,6 +33,22 @@ export function routineClient(
           return Effect.succeed(snapshot);
         }),
       ),
+    edit: (input: EditRoutine) =>
+      Effect.gen(function* () {
+        const command = yield* Schema.decodeUnknownEffect(EditRoutine)(input, {
+          onExcessProperty: "error",
+        }).pipe(Effect.mapError(() => new PreferenceFailure({ code: "invalid" })));
+        const { receipt } = yield* request("v1/routines/edit", RoutineCreateEnvelope, command);
+        if (
+          receipt.actorId !== account.actor ||
+          receipt.householdId !== account.household ||
+          receipt.operationId !== command.operationId.toLowerCase() ||
+          receipt.routineId !== command.routineId.toLowerCase() ||
+          receipt.action !== "edit"
+        )
+          return yield* new PreferenceFailure({ code: "unavailable" });
+        return receipt;
+      }),
     create: (input: CreateRoutine) =>
       Effect.gen(function* () {
         const command = yield* Schema.decodeUnknownEffect(CreateRoutine)(input, {

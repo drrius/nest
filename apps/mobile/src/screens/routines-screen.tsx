@@ -1,5 +1,5 @@
-import { useState, useSyncExternalStore } from "react";
-import { FlatList, View } from "react-native";
+import { useRef, useState, useSyncExternalStore } from "react";
+import { Alert, FlatList, View } from "react-native";
 import * as Crypto from "expo-crypto";
 import type { Routine } from "@nest/contracts/routines";
 import { useSession } from "../session/provider";
@@ -42,9 +42,13 @@ function Routines({ client, verify }: { client: RoutineClient; verify: () => voi
 function RoutineRow({
   routine,
   members,
+  edit,
+  disabled,
 }: {
   routine: Routine;
   members: RoutineSnapshot["members"];
+  edit: () => void;
+  disabled: boolean;
 }) {
   const assignment = routine.definition.assignment;
   const memberId =
@@ -69,6 +73,7 @@ function RoutineRow({
         {responsibility}
         {routine.state === "paused" ? " · Paused" : ""}
       </Note>
+      <NativeAction label="Edit routine" disabled={disabled} onPress={edit} />
     </Card>
   );
 }
@@ -76,15 +81,17 @@ function Recovery({
   runtime,
   view,
   verify,
+  reload,
 }: {
   runtime: RoutineRuntime;
   view: RoutineView;
   verify: () => void;
+  reload: () => void;
 }) {
   if (view.stage === "uncertain")
     return (
       <NativeAction
-        label="Retry exact create"
+        label="Retry exact change"
         disabled={view.busy}
         onPress={() => void runtime.retry()}
       />
@@ -104,15 +111,49 @@ function Recovery({
     <NativeAction
       label={view.busy ? "Loading…" : "Reload routines"}
       disabled={view.busy}
-      onPress={() => void runtime.load()}
+      onPress={reload}
     />
   );
 }
 function RoutineContent({ runtime, verify }: { runtime: RoutineRuntime; verify: () => void }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
+  return (
+    <RoutineWorkspace
+      key={`${view.saved}:${view.stage === "verify"}`}
+      runtime={runtime}
+      view={view}
+      verify={verify}
+    />
+  );
+}
+type Mode = Routine | "create" | null;
+function RoutineWorkspace({
+  runtime,
+  view,
+  verify,
+}: {
+  runtime: RoutineRuntime;
+  view: RoutineView;
+  verify: () => void;
+}) {
+  const [mode, setMode] = useState<Mode>(null);
+  const list = useRef<FlatList<Routine>>(null);
   const colors = useQuiet();
+  const discard = (action: () => void) => {
+    if (!mode) return action();
+    Alert.alert("Discard routine draft?", "Your unsaved changes will be lost.", [
+      { text: "Keep editing", style: "cancel" },
+      { text: "Discard", style: "destructive", onPress: action },
+    ]);
+  };
+  const reload = () =>
+    discard(() => {
+      setMode(null);
+      void runtime.load();
+    });
   return (
     <FlatList
+      ref={list}
       contentInsetAdjustmentBehavior="automatic"
       automaticallyAdjustKeyboardInsets
       keyboardShouldPersistTaps="handled"
@@ -121,14 +162,25 @@ function RoutineContent({ runtime, verify }: { runtime: RoutineRuntime; verify: 
       data={view.snapshot?.routines ?? []}
       keyExtractor={(routine) => routine.routineId}
       renderItem={({ item }) => (
-        <RoutineRow routine={item} members={view.snapshot?.members ?? []} />
+        <RoutineRow
+          routine={item}
+          members={view.snapshot?.members ?? []}
+          disabled={mode !== null || view.busy || view.stage !== "ready"}
+          edit={() => {
+            setMode(item);
+            list.current?.scrollToOffset({ offset: 0, animated: false });
+          }}
+        />
       )}
       ListHeaderComponent={
         <RoutineHeader
-          key={view.created ?? "initial"}
           runtime={runtime}
           view={view}
           verify={verify}
+          mode={mode}
+          create={() => setMode("create")}
+          reload={reload}
+          close={() => discard(() => setMode(null))}
         />
       }
       ListEmptyComponent={view.snapshot ? <Note>No active or paused routines yet.</Note> : null}
@@ -140,29 +192,67 @@ function RoutineHeader({
   runtime,
   view,
   verify,
+  mode,
+  create,
+  close,
+  reload,
 }: {
   runtime: RoutineRuntime;
   view: RoutineView;
   verify: () => void;
+  mode: Mode;
+  create: () => void;
+  close: () => void;
+  reload: () => void;
 }) {
-  const [creating, setCreating] = useState(false);
   return (
     <View style={{ gap: space.medium }}>
       {view.notice ? <Note>{view.notice}</Note> : null}
       {view.busy ? <Note>Working…</Note> : null}
-      <Recovery runtime={runtime} view={view} verify={verify} />
+      <Recovery runtime={runtime} view={view} verify={verify} reload={reload} />
       {view.snapshot?.members.length === 1 ? (
         <Note>Both household members must be available before creating routines.</Note>
       ) : null}
-      {creating && view.snapshot ? (
-        <RoutineForm runtime={runtime} view={view} />
+      <RoutineEditor runtime={runtime} view={view} mode={mode} create={create} close={close} />
+    </View>
+  );
+}
+
+function RoutineEditor({
+  runtime,
+  view,
+  mode,
+  create,
+  close,
+}: {
+  runtime: RoutineRuntime;
+  view: RoutineView;
+  mode: Mode;
+  create: () => void;
+  close: () => void;
+}) {
+  return (
+    <>
+      {mode && view.snapshot ? (
+        <>
+          <RoutineForm
+            runtime={runtime}
+            view={view}
+            routine={mode === "create" ? undefined : mode}
+          />
+          <NativeAction
+            label="Cancel draft"
+            disabled={view.busy || view.stage === "uncertain"}
+            onPress={close}
+          />
+        </>
       ) : (
         <NativeAction
           label="Create routine"
           disabled={view.busy || view.stage !== "ready" || view.snapshot?.members.length !== 2}
-          onPress={() => setCreating(true)}
+          onPress={create}
         />
       )}
-    </View>
+    </>
   );
 }
