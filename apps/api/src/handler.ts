@@ -1,4 +1,4 @@
-import { mealWeekRoute } from "./meals/read.ts";
+import { mealRoute } from "./meals/route.ts";
 import { routineRoute } from "./routines/route.ts";
 import { setupStatus } from "./setup/service.ts";
 import { notificationRoute } from "./notifications/route.ts";
@@ -37,7 +37,7 @@ function route(request: Request, config: IdentityConfig) {
       return yield* preferenceRoute(request, config, { member, token });
     if (path.startsWith("/v1/groceries"))
       return yield* groceryRoute(request, config, { member, token });
-    if (path === "/v1/meals/week") return yield* mealWeekRoute(request, config, { member, token });
+    if (path.startsWith("/v1/meals/")) return yield* mealRoute(request, config, { member, token });
     if (path.startsWith("/v1/routines"))
       return yield* routineRoute(request, config, { member, token });
     return yield* choreRoute(request, config, { member, token });
@@ -60,6 +60,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
     const methods: Record<string, string> = {
       "/v1/session": "GET",
       "/v1/meals/week": "GET",
+      "/v1/meals/place": "POST",
       "/v1/routines": "GET",
       "/v1/routines/create": "POST",
       "/v1/routines/edit": "POST",
