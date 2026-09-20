@@ -2,7 +2,7 @@
 alter table public.nest_ai_commands drop constraint nest_ai_commands_tool_name_check;
 alter table public.nest_ai_commands add constraint nest_ai_commands_tool_name_check
   check(tool_name in ('completeChore','addGrocery','editGrocery','removeGrocery','checkGrocery',
-    'saveFoodPreferences','saveCookingPreferences','proposeMemory','removeMemory','saveNotificationPreferences','createRoutine','editRoutine')); 
+    'saveFoodPreferences','saveCookingPreferences','proposeMemory','removeMemory','saveNotificationPreferences','createRoutine','editRoutine'));
 
 create or replace function private.nest_validate_ai_command(p_tool text,p_input jsonb)
 returns void language plpgsql security invoker set search_path='' as $$
