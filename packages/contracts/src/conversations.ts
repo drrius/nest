@@ -1,13 +1,11 @@
 import * as Schema from "effect/Schema";
+import { Revision } from "./revision.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
 export const ConversationTimestamp = Schema.String.check(
   Schema.isPattern(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d{1,6})?(Z|[+-]\d{2}:\d{2})$/),
   Schema.makeFilter((value: string) => Number.isFinite(Date.parse(value))),
 );
-export const ConversationRevision = Schema.String.check(
-  Schema.isPattern(/^(0|[1-9][0-9]{0,18})$/),
-  Schema.makeFilter((value: string) => BigInt(value) <= 9223372036854775807n),
-);
+export const ConversationRevision = Revision;
 export const TurnIdentity = Schema.Struct({ conversationId: Uuid, operationId: Uuid });
 export const StartTurn = Schema.Struct({
   ...TurnIdentity.fields,

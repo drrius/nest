@@ -7,7 +7,8 @@
     "./chores": "./src/chores.ts",
     "./groceries": "./src/groceries.ts",
     "./conversations": "./src/conversations.ts",
-    "./assistant-actions": "./src/assistant-actions.ts"
+    "./assistant-actions": "./src/assistant-actions.ts",
+    "./food": "./src/food.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
