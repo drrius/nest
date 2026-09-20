@@ -88,10 +88,25 @@ export const RescheduleChore = Schema.Struct({
   ...SkipChore.fields,
   newDueDate: CalendarDate,
 }).check(Schema.makeFilter((command) => command.expectedDueDate !== command.newDueDate));
+// Legacy SQL permits 120 Unicode code points, including titles longer than the
+// new form's 120 UTF-16-unit input limit. Reads preserve those existing titles.
+export const StoredRoutineDefinition = Schema.Struct({
+  ...RoutineDefinition.fields,
+  title: Schema.String.check(
+    Schema.isMinLength(1),
+    Schema.isMaxLength(240),
+    Schema.makeFilter(
+      (value: string) =>
+        Array.from(value).length <= 120 &&
+        !value.includes("\u0000") &&
+        !/[\uD800-\uDFFF]/u.test(value),
+    ),
+  ),
+});
 export const Routine = Schema.Struct({
   routineId: Uuid,
   version: RoutineVersion,
-  definition: RoutineDefinition,
+  definition: StoredRoutineDefinition,
   state: Schema.Literals(["active", "paused", "archived"]),
 });
 export type Routine = typeof Routine.Type;
@@ -99,6 +114,10 @@ export const RoutineList = Schema.Struct({
   version: Schema.Literal(1),
   householdId: Uuid,
   routines: Schema.Array(Routine),
+  members: Schema.Array(Schema.Struct({ actorId: Uuid, displayName: Schema.String })).check(
+    Schema.isMinLength(1),
+    Schema.isMaxLength(2),
+  ),
 });
 export const RoutineReceipt = Schema.Struct({
   actorId: Uuid,
@@ -107,4 +126,9 @@ export const RoutineReceipt = Schema.Struct({
   routineId: Uuid,
   version: RoutineVersion,
   action: Schema.Literals(["create", "edit", "pause", "resume", "archive"]),
+});
+
+export const RoutineCreateEnvelope = Schema.Struct({
+  version: Schema.Literal(1),
+  receipt: RoutineReceipt,
 });

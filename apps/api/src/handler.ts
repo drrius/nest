@@ -1,3 +1,4 @@
+import { routineRoute } from "./routines/route.ts";
 import { setupStatus } from "./setup/service.ts";
 import { notificationRoute } from "./notifications/route.ts";
 import { calendarRoute } from "./calendar/route.ts";
@@ -29,10 +30,14 @@ function route(request: Request, config: IdentityConfig) {
       return yield* calendarRoute(request, config, { member, token });
     if (path.startsWith("/v1/memories"))
       return yield* memoryRoute(request, config, { member, token });
-    if (path.startsWith("/v1/cooking-preferences") || path.startsWith("/v1/food-preferences"))
+    if (
+      ["/v1/cooking-preferences", "/v1/food-preferences"].some((prefix) => path.startsWith(prefix))
+    )
       return yield* preferenceRoute(request, config, { member, token });
     if (path.startsWith("/v1/groceries"))
       return yield* groceryRoute(request, config, { member, token });
+    if (path.startsWith("/v1/routines"))
+      return yield* routineRoute(request, config, { member, token });
     const commands = choreCommands(config, { member, token });
     if (path === "/v1/chores")
       return { version: 1, householdId: member.householdId, chores: yield* commands.list() };
@@ -59,6 +64,8 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/routines": "GET",
+      "/v1/routines/create": "POST",
       "/v1/setup/status": "GET",
       "/v1/notification-preferences": "GET",
       "/v1/notification-preferences/save": "POST",
