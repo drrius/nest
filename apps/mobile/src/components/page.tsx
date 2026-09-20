@@ -7,6 +7,7 @@ export function Page({ children }: PropsWithChildren) {
   return (
     <ScrollView
       contentInsetAdjustmentBehavior="automatic"
+      automaticallyAdjustKeyboardInsets
       keyboardShouldPersistTaps="handled"
       style={{ flex: 1, backgroundColor: colors.background }}
       contentContainerStyle={{ padding: space.large, gap: space.large, paddingBottom: 48 }}

@@ -1,3 +1,5 @@
+import type { GroceryCategory } from "@nest/contracts/groceries";
+import { groceryChangeSummary } from "../groceries/change-summary";
 import { Alert } from "react-native";
 import type { GroceryChange } from "../groceries/edit-contract";
 import { Card, Note, Section } from "./page";
@@ -7,23 +9,22 @@ export function GroceryRetry({
   retry,
   discard,
   working,
+  categories,
 }: {
   change: GroceryChange;
   retry: () => void;
   discard: () => void;
   working: boolean;
+  categories: readonly (typeof GroceryCategory.Type)[];
 }) {
+  const summary = groceryChangeSummary(change, categories);
   return (
     <Card>
       <Section title="Finish your previous save" />
-      <Note>
-        {change.action === "remove"
-          ? "Remove grocery"
-          : `${change.action === "add" ? "Add" : "Edit"}: ${change.command.name}`}
-      </Note>
-      {change.action !== "remove" ? (
-        <Note>{[change.command.quantity, change.command.unit].filter(Boolean).join(" ")}</Note>
-      ) : null}
+      <Note>{summary.title}</Note>
+      {summary.details.map((detail) => (
+        <Note key={detail}>{detail}</Note>
+      ))}
       <Note>
         The server may already have saved this attempt. Retrying sends the same details once. It
         will not run automatically.

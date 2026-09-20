@@ -223,3 +223,27 @@ async function until(condition) {
   }
   assert.fail("save did not reach deferred transport");
 }
+
+test("retained removal labels survive restart without changing the server command", async (t) => {
+  const db = await fixture(t);
+  const removal = {
+    action: "remove",
+    label: "Oat milk",
+    command: { operationId: operation, itemId: target, expectedVersion: "3" },
+  };
+  await run(db.store.stageGroceryChange(db.session, removal));
+  const reopened = db.reopen();
+  assert.deepEqual(await run(reopened.store.readGroceryChange(db.session)), removal);
+  const { groceryChangeSummary } = await import("../src/groceries/change-summary.ts");
+  assert.equal(groceryChangeSummary(removal, []).title, "Remove: Oat milk");
+  assert.equal(
+    groceryChangeSummary({ action: "remove", command: removal.command }, []).title,
+    `Remove: ${target}`,
+  );
+  const categorized = { ...change, command: { ...change.command, categoryId: target } };
+  assert.deepEqual(
+    groceryChangeSummary(categorized, [{ categoryId: target, name: "Dairy" }]).details,
+    ["2 litres", "Dairy"],
+  );
+  assert.match(groceryChangeSummary(categorized, []).details[1], new RegExp(target));
+});

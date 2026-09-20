@@ -27,6 +27,7 @@ test("online add/edit/remove carry exact command identity and verify the matchin
     { action: "edit", command: { ...command, expectedVersion: "9007199254740993" } },
     {
       action: "remove",
+      label: "Milk",
       command: { operationId: operation, itemId: target, expectedVersion: "9007199254740993" },
     },
   ]) {

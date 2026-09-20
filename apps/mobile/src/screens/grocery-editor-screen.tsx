@@ -92,7 +92,13 @@ function EditorBody({
     return <NativeAction label="Load saved attempt" onPress={reload} disabled={view.working} />;
   if (view.pending)
     return (
-      <GroceryRetry change={view.pending} retry={retry} discard={discard} working={view.working} />
+      <GroceryRetry
+        change={view.pending}
+        categories={view.categories}
+        retry={retry}
+        discard={discard}
+        working={view.working}
+      />
     );
   if (view.saved)
     return <Note>Saved online. Return to the checklist to see the latest shared items.</Note>;

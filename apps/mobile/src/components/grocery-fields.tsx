@@ -101,6 +101,7 @@ function RemoveGrocery({
             onPress: () =>
               save({
                 action: "remove",
+                label: item.name,
                 command: {
                   operationId: Crypto.randomUUID(),
                   itemId: item.itemId,
