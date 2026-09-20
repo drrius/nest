@@ -34,10 +34,20 @@ Nine disposable PostgreSQL cases verify tenant/revocation/privilege boundaries, 
 
 ## Next transaction work — still unimplemented
 
-- Wire the authorized snapshot through API, native cache/board and assistant reads. The database revision/snapshot foundation is implemented above; production migration remains gated.
+- Authorized snapshot reads are now wired through API, the account-leased native cache/board and the private assistant tool. Device verification and production migration remain gated.
 - Native manual writes bind a stable actor/household/operation identity, exact payload and expected week revision. Check explicit occupied-slot identity before replacement. Cross-week moves lock and validate both weeks; stale forms must conflict rather than silently overwrite.
 - Preserve entry IDs, history, recipe snapshots and grocery provenance. Do not clear materialization markers or post groceries/money as a side effect. Define and test dependent-leftover behavior before enabling moves/removal.
 - Add shared authorized services, native seven-day board/forms, corresponding private AI tools and lost-response/concurrent-partner integration tests. Manual actions remain online-only; loaded snapshots may be viewed offline.
 - Saved recipe detail, generated proposals with exact visible revision approval, and separate idempotent ingredient review remain subsequent M5 slices. The read contract does not implement any of these actions.
 
 All additive database changes remain gated from production deployment. This document does not authorize migration or cutover.
+
+## One-off placement storage candidate
+
+`20260920170119_native_meal_placement.sql` adds only explicitly named one-off meals into empty slots. It does not call the legacy placement/materialization command. The strict shared command includes the requested date/slot/title, complete week, expected decimal revision and operation UUID. SQL validates all types/keys, civil-date bounds and the new UTF-16 title limit; stored historical titles remain untouched.
+
+Current membership is locked before the actor-private receipt lookup. Identical retries return the original receipt after later edits/removal; changed payloads are rejected. A zero counter row now represents and locks an untouched week without altering its logical revision. Writers lock that row and compare the expected revision before checking the slot and inserting the entry. The existing trigger advances the revision in the same transaction. Raw legacy writers participate through that trigger; their earlier commit invalidates a native baseline, and later commits advance the same counter. Slot collisions, deadlocks and lock timeouts become explicit conflicts. Receipt failure rolls back the entire placement.
+
+The private definer is required because clients have no direct meal/counter/receipt write privileges. It authorizes every call, pins an empty search path and revokes public/anonymous/service-role execution. Only the authenticated public invoker wrapper and private command entry are callable. Receipt SELECT is actor-private and requires current household membership. No entry foreign key is attached to the historical receipt, so later administrative deletion cannot erase retry identity.
+
+Twenty-two focused database cases pass, including the nine existing read regressions and thirteen placement/authorization/fault/concurrency cases. No production database was accessed. API, native form and journaled AI placement remain subsequent work; no end-to-end placement or device execution is claimed.
