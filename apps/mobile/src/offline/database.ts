@@ -24,6 +24,9 @@ export const initialize = (database: Database) =>
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_grocery_edit (
       actor TEXT NOT NULL, household TEXT NOT NULL, command TEXT NOT NULL,
       PRIMARY KEY(actor,household))`);
+    await tx.run(`CREATE TABLE IF NOT EXISTS offline_chore_transfers (
+      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL,
+      PRIMARY KEY(actor,household))`);
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_chores (
       actor TEXT NOT NULL, household TEXT NOT NULL, target TEXT NOT NULL,
       title TEXT NOT NULL, due_date TEXT NOT NULL, assignee TEXT,

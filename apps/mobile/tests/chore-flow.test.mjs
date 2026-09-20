@@ -4,7 +4,15 @@ import * as Effect from "effect/Effect";
 import { choreFlow } from "../src/chores/flow.ts";
 import { ChoreFailure } from "../src/chores/client.ts";
 import { choreRuntime } from "../src/chores/runtime.ts";
-import { fixture, run, account, operation, target, lease } from "./offline-fixture.mjs";
+import {
+  fixture,
+  run,
+  account,
+  operation,
+  target,
+  lease,
+  emptyTransfers,
+} from "./offline-fixture.mjs";
 const chore = {
   occurrenceId: target,
   dueDate: "2026-09-20",
@@ -13,6 +21,7 @@ const chore = {
 };
 const operation2 = "50000000-0000-4000-8000-000000000002";
 const client = (rows = [chore]) => ({
+  listTransfers: () => Effect.succeed(emptyTransfers),
   list: () => Effect.succeed(rows),
   complete: (command) =>
     Effect.succeed({ ...command, version: 1, completedBy: account.actor, outcome: "completed" }),
@@ -26,7 +35,12 @@ test("chore snapshots are atomic, preserve groceries and distinguish never-loade
   await assert.rejects(run(store.saveChores(session, [chore, chore])), { reason: "storage" });
   assert.equal((await run(store.readChores(session))).chores.length, 1);
   await run(store.saveChores(session, []));
-  assert.deepEqual(await run(store.readChores(session)), { loaded: true, chores: [], pending: [] });
+  assert.deepEqual(await run(store.readChores(session)), {
+    loaded: true,
+    chores: [],
+    pending: [],
+    transfers: null,
+  });
   assert.equal((await run(store.read(session))).items.length, 1);
 });
 
@@ -73,6 +87,7 @@ test("conflicts remain visible until explicitly discarded, then a new completion
   let conflict = true;
   const calls = [];
   const remote = {
+    listTransfers: () => Effect.succeed(emptyTransfers),
     list: () => Effect.succeed([{ ...chore, dueDate: "2026-09-21" }]),
     complete: (command) => {
       calls.push(command);
@@ -151,7 +166,7 @@ test("known membership denial blocks further completion while keeping uncertain 
   let code = "forbidden";
   const denied = () => (code ? Effect.fail(new ChoreFailure({ code })) : Effect.succeed([chore]));
   const runtime = choreRuntime(
-    choreFlow(store, session, { list: denied, complete: denied }),
+    choreFlow(store, session, { ...client(), list: denied, complete: denied }),
     (view) => views.push(view),
   );
   t.after(() => runtime.dispose());
@@ -175,6 +190,7 @@ test("disposing the native controller cancels an in-flight read without publishi
   });
   const remote = {
     ...client(),
+    listTransfers: () => Effect.succeed(emptyTransfers),
     list: () =>
       Effect.promise(
         (signal) =>

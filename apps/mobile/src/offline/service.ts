@@ -1,3 +1,4 @@
+import type { TransferSnapshot } from "./chore-transfers.ts";
 import * as CalendarSelections from "./calendar-selection.ts";
 import type { CalendarSelection } from "../calendar/selection.ts";
 import type { Grocery } from "@nest/contracts/groceries";
@@ -47,8 +48,11 @@ export function makeOfflineStore(database: Database) {
       run(() => GroceryEdit.stageGroceryChange(database, session, change)),
     clearGroceryChange: (session: Session, operation: string) =>
       run(() => GroceryEdit.clearGroceryChange(database, session, operation)),
-    saveChores: (session: Session, chores: readonly Chore[]) =>
-      run(() => Chores.saveChores(database, session, chores)),
+    saveChores: (
+      session: Session,
+      chores: readonly Chore[],
+      transfers: TransferSnapshot | null = null,
+    ) => run(() => Chores.saveChores(database, session, chores, transfers)),
     readChores: (session: Session) => run(() => Chores.readChores(database, session)),
     discardConflict: (session: Session, operation: string) =>
       run(() => Chores.discardConflict(database, session, operation)),

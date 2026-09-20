@@ -33,6 +33,13 @@ export function ChoreMenu(props: ChoreMenuProps) {
           systemImage="forward.end"
           onPress={() => props.choose({ chore: props.chore, action: "skip" })}
         />
+        {props.canTransfer ? (
+          <Button
+            label="Ask partner to take this turn"
+            systemImage="person.2"
+            onPress={() => props.choose({ chore: props.chore, action: "transfer" })}
+          />
+        ) : null}
       </Menu>
     </Host>
   );

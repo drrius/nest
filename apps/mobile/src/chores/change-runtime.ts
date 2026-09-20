@@ -1,3 +1,10 @@
+import { transferRecipient, responseChore } from "./transfer-state.ts";
+import {
+  RequestChoreTransfer,
+  RespondChoreTransfer,
+  type PendingChoreTransfer,
+} from "@nest/contracts/chore-transfers";
+import { executeAttempt, changeMessages, type ChoreAttempt } from "./online-attempt.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import type { Chore } from "@nest/contracts/chores";
@@ -5,7 +12,6 @@ import { SkipChore, RescheduleChore } from "@nest/contracts/routines";
 import type { ChoreFlow } from "./flow.ts";
 import type { ChoreView } from "./runtime.ts";
 
-type Attempt = typeof SkipChore.Type | typeof RescheduleChore.Type;
 type Ports = {
   flow: ChoreFlow;
   run: <A, E>(effect: Effect.Effect<A, E>) => Promise<A>;
@@ -17,7 +23,7 @@ type Ports = {
 
 // Online attempts live only for this controller's lifetime. They never enter the outbox.
 export class ChoreChangeRuntime {
-  private attempt: Attempt | null = null;
+  private attempt: ChoreAttempt | null = null;
   private readonly ports: Ports;
   constructor(ports: Ports) {
     this.ports = ports;
@@ -28,6 +34,11 @@ export class ChoreChangeRuntime {
     const view = this.ports.view();
     if (!view.stale && view.access === "allowed") this.ports.emit({ changeStage: "ready" });
   };
+  private blocked() {
+    return (
+      this.ports.blocked() || this.attempt !== null || this.ports.view().changeStage !== "ready"
+    );
+  }
   private eligible(chore: Chore) {
     const view = this.ports.view();
     if (view.syncing || view.stale || view.access !== "allowed" || view.changeStage !== "ready")
@@ -36,7 +47,7 @@ export class ChoreChangeRuntime {
     return row !== undefined && !row.done && !row.pending && row.dueDate === chore.dueDate;
   }
   begin = async (chore: Chore, operation: string, newDueDate?: string) => {
-    if (this.ports.blocked() || this.attempt || this.ports.view().changeStage !== "ready") return;
+    if (this.blocked()) return;
     if (!this.eligible(chore)) {
       this.ports.emit({
         changed: this.ports.view().changed + 1,
@@ -58,6 +69,55 @@ export class ChoreChangeRuntime {
       this.ports.emit({ changeNotice: "Choose a different valid due date before saving." });
       return;
     }
+    this.attempt = { ...decoded.value };
+    await this.send();
+  };
+  requestTransfer = async (chore: Chore, operationId: string) => {
+    if (this.blocked()) return;
+    const view = this.ports.view(),
+      actor = this.ports.flow.actor;
+    const partner = transferRecipient(view, actor, chore);
+    if (!this.eligible(chore) || !partner) {
+      this.ports.emit({
+        changeNotice: "Reload before requesting a handover of your assigned turn.",
+        changeStage: "reload",
+        changed: view.changed + 1,
+      });
+      return;
+    }
+    const input = {
+      operationId,
+      occurrenceId: chore.occurrenceId,
+      expectedDueDate: chore.dueDate,
+      recipientId: partner.actorId,
+    };
+    const decoded = Schema.decodeUnknownExit(RequestChoreTransfer)(input, {
+      onExcessProperty: "error",
+    });
+    if (decoded._tag === "Failure") return;
+    this.attempt = { ...decoded.value };
+    await this.send();
+  };
+  respondTransfer = async (
+    request: typeof PendingChoreTransfer.Type,
+    action: "accept" | "decline",
+    operationId: string,
+  ) => {
+    if (this.blocked()) return;
+    const view = this.ports.view();
+    const chore = responseChore(view, this.ports.flow.actor, request);
+    if (!chore || !this.eligible(chore)) {
+      this.ports.emit({
+        changeNotice: "Reload this request before responding.",
+        changeStage: "reload",
+      });
+      return;
+    }
+    const decoded = Schema.decodeUnknownExit(RespondChoreTransfer)(
+      { operationId, requestId: request.requestId, action },
+      { onExcessProperty: "error" },
+    );
+    if (decoded._tag === "Failure") return;
     this.attempt = { ...decoded.value };
     await this.send();
   };
@@ -95,17 +155,13 @@ export class ChoreChangeRuntime {
     if (!attempt || this.ports.blocked()) return;
     this.ports.emit({ changeStage: "saving", pendingWrite: true, changeNotice: null });
     try {
-      const receipt = await this.ports.run(
-        "newDueDate" in attempt
-          ? this.ports.flow.reschedule(attempt)
-          : this.ports.flow.skip(attempt),
-      );
+      const receipt = await this.ports.run(executeAttempt(this.ports.flow, attempt));
       this.attempt = null;
       this.ports.emit({
         pendingWrite: false,
         changeStage: "reload",
         changed: this.ports.view().changed + 1,
-        changeNotice: receipt.action === "skip" ? "Chore skipped." : "Chore rescheduled.",
+        changeNotice: changeMessages[receipt.action],
       });
       await this.refresh();
     } catch (error) {

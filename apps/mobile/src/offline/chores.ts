@@ -1,3 +1,4 @@
+import { saveTransfers, readTransfers, type TransferSnapshot } from "./chore-transfers.ts";
 import * as Schema from "effect/Schema";
 import { Chore } from "@nest/contracts/chores";
 import { fail, type Session } from "./contracts.ts";
@@ -5,7 +6,12 @@ import type { Database } from "./database.ts";
 import { scoped } from "./session.ts";
 import { operations, scope } from "./journal.ts";
 
-export function saveChores(database: Database, session: Session, chores: readonly Chore[]) {
+export function saveChores(
+  database: Database,
+  session: Session,
+  chores: readonly Chore[],
+  transfers: TransferSnapshot | null = null,
+) {
   if (!Schema.is(Schema.Array(Chore))(chores) || chores.length > 200) fail("invalid_input");
   return scoped(database, session, async (tx) => {
     await tx.run("DELETE FROM offline_chores WHERE actor = ? AND household = ?", scope(session));
@@ -13,6 +19,7 @@ export function saveChores(database: Database, session: Session, chores: readonl
       "DELETE FROM offline_items WHERE actor = ? AND household = ? AND kind = 'chore.complete'",
       scope(session),
     );
+    await saveTransfers(tx, session, transfers);
     for (const chore of chores) {
       await tx.run("INSERT INTO offline_chores VALUES (?, ?, ?, ?, ?, ?)", [
         ...scope(session),
@@ -52,7 +59,9 @@ export function readChores(database: Database, session: Session) {
       "SELECT target FROM offline_items WHERE actor = ? AND household = ? AND kind = 'chore.complete' AND value = 1",
       scope(session),
     );
+    const transfers = await readTransfers(tx, session);
     return {
+      transfers,
       loaded: loaded.length === 1,
       chores: chores.map((chore) => ({
         ...chore,

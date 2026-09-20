@@ -38,13 +38,17 @@ export function choreFlow(store: ChoreStore, session: Session, client: ChoreClie
     return notice;
   });
   return {
+    actor: session.actor,
     read: store.readChores(session),
+    requestTransfer: client.requestTransfer,
+    respondTransfer: client.respondTransfer,
     skip: client.skip,
     reschedule: client.reschedule,
     sync: Effect.gen(function* () {
       const notice = yield* replay;
       const rows = yield* client.list();
-      yield* store.saveChores(session, rows);
+      const transfers = yield* client.listTransfers();
+      yield* store.saveChores(session, rows, transfers);
       return notice;
     }),
     complete: (chore: Chore, operation: string, completedOn: string) =>

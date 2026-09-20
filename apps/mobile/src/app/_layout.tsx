@@ -46,6 +46,7 @@ function Navigation() {
         <Stack.Screen name="assistant" options={{ title: "Private assistant" }} />
         <Stack.Screen name="conversation" options={{ title: "Private conversation" }} />
         <Stack.Screen name="household" options={{ title: "Today" }} />
+        <Stack.Screen name="chore-transfers" options={{ title: "Chore handovers" }} />
         <Stack.Screen name="routines" options={{ title: "Routines" }} />
         <Stack.Screen name="checklist" options={{ title: "Groceries" }} />
         <Stack.Screen name="grocery-edit" options={{ title: "Grocery" }} />

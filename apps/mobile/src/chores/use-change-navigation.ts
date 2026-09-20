@@ -7,7 +7,7 @@ export function useChoreChangeNavigation(editing: boolean, pending: boolean) {
     Alert.alert(
       pending ? "Leave before confirmation?" : "Discard this chore change?",
       pending
-        ? "The change may still finish. Leaving loses its retry details. Check the current chore before changing it again."
+        ? "The change may still finish. Its retry details are not saved across app restarts or sign-out. You can return here to retry while this account remains open."
         : "Your unsaved choice will be lost.",
       [
         { text: "Stay", style: "cancel" },

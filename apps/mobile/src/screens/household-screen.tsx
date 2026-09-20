@@ -65,24 +65,7 @@ function HouseholdChores({
             label={everyone ? "Everyone · Show me + shared" : "Me + shared · Show everyone"}
             onPress={() => setEveryone(!everyone)}
           />
-          <Link
-            href="/checklist"
-            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-          >
-            Groceries
-          </Link>
-          <Link
-            href="/assistant"
-            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-          >
-            Private assistant
-          </Link>
-          <Link
-            href="/routines"
-            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-          >
-            Manage routines
-          </Link>
+          <HouseholdLinks count={view.data?.transfers?.transfers.length ?? 0} />
           <ChoreStatus view={view} />
           {view.changeStage === "uncertain" ? (
             <NativeAction
@@ -108,5 +91,29 @@ function HouseholdChores({
         </Link>
       }
     />
+  );
+}
+
+function HouseholdLinks({ count }: { count: number }) {
+  const colors = useQuiet();
+  return (
+    <>
+      <Link href="/checklist" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+        Groceries
+      </Link>
+      <Link href="/assistant" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+        Private assistant
+      </Link>
+      <Link href="/routines" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+        Manage routines
+      </Link>
+      <Link
+        href="/chore-transfers"
+        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
+      >
+        Chore handovers
+        {count ? ` · ${count}` : ""}
+      </Link>
+    </>
   );
 }

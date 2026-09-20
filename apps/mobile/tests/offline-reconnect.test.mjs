@@ -6,7 +6,7 @@ import { groceryController } from "../src/groceries/controller.ts";
 import { choreController } from "../src/chores/controller.ts";
 import { GroceryFailure } from "../src/groceries/client.ts";
 import { ChoreFailure } from "../src/chores/client.ts";
-import { fixture, operation, target, run } from "./offline-fixture.mjs";
+import { emptyTransfers, fixture, operation, target, run } from "./offline-fixture.mjs";
 const connected = { isConnected: true, isInternetReachable: true };
 const offline = { isConnected: false, isInternetReachable: false };
 function events(refresh, network = () => Promise.resolve(offline)) {
@@ -161,6 +161,7 @@ test("account-owned controllers replay both allowed kinds after screens close, n
   const chores = choreController(
     account,
     {
+      listTransfers: () => Effect.succeed(emptyTransfers),
       list: () =>
         live ? Effect.succeed([]) : Effect.fail(new ChoreFailure({ code: "unavailable" })),
       complete: (command) => {
@@ -286,6 +287,7 @@ test("reconnect before an old request fails drains both SQLite queues", async (t
   const chores = choreController(
     account,
     {
+      listTransfers: () => Effect.succeed(emptyTransfers),
       list: () => Effect.succeed([]),
       complete: () =>
         ++completions === 1
