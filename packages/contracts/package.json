@@ -5,7 +5,8 @@
   "type": "module",
   "exports": {
     "./chores": "./src/chores.ts",
-    "./groceries": "./src/groceries.ts"
+    "./groceries": "./src/groceries.ts",
+    "./conversations": "./src/conversations.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
