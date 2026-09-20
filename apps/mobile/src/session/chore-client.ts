@@ -13,6 +13,10 @@ export function sessionChores(auth: SupabaseClient["auth"], member: Member, apiU
     sessionCredentials(auth),
   );
   return {
+    skip: (command: Parameters<typeof client.skip>[0]) =>
+      client.skip(command).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    reschedule: (command: Parameters<typeof client.reschedule>[0]) =>
+      client.reschedule(command).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     list: () => client.list().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     complete: (command: Parameters<typeof client.complete>[0]) =>
       client.complete(command).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),

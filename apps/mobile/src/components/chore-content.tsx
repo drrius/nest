@@ -1,6 +1,9 @@
-import type { ReactNode } from "react";
+import { ChoreMenu } from "../chores/menu";
+import type { ChoreChoice } from "../chores/menu-types";
+import { useRef, type ReactNode } from "react";
+import type { ChoreData } from "../chores/flow";
 import { space, useQuiet } from "../theme";
-import { ActivityIndicator, Alert, FlatList } from "react-native";
+import { ActivityIndicator, Alert, FlatList, View } from "react-native";
 import type { Chore } from "@nest/contracts/chores";
 import type { ChoreView } from "../chores/runtime";
 import { Card, Note, Section } from "./page";
@@ -16,6 +19,7 @@ export function ChoreStatus({ view }: { view: ChoreView }) {
         <Note>Showing saved chores. Changes will sync when you reconnect and retry.</Note>
       ) : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
+      {view.changeNotice ? <Note>{view.changeNotice}</Note> : null}
     </>
   );
 }
@@ -60,8 +64,14 @@ export function DueChores({
   complete,
   header,
   footer,
+  choose,
+  editor,
+  editing,
 }: {
   view: ChoreView;
+  choose: (choice: ChoreChoice) => void;
+  editor: ReactNode;
+  editing: string | null;
   header: ReactNode;
   footer: ReactNode;
   actor: string;
@@ -70,6 +80,11 @@ export function DueChores({
   complete: (chore: Chore) => void;
 }) {
   const colors = useQuiet();
+  const list = useRef<FlatList<ChoreData["chores"][number]>>(null);
+  const select = (choice: ChoreChoice) => {
+    choose(choice);
+    list.current?.scrollToOffset({ offset: 0, animated: false });
+  };
   const chores =
     view.data?.chores.filter(
       (chore) =>
@@ -78,6 +93,7 @@ export function DueChores({
     ) ?? [];
   return (
     <FlatList
+      ref={list}
       data={chores}
       keyExtractor={(chore) => chore.occurrenceId}
       contentInsetAdjustmentBehavior="automatic"
@@ -87,6 +103,7 @@ export function DueChores({
       ListHeaderComponent={
         <>
           {header}
+          {editor}
           <Section title="Due and overdue" />
         </>
       }
@@ -97,10 +114,45 @@ export function DueChores({
         </Note>
       }
       renderItem={({ item }) => (
-        <Card>
-          <ChoreRow chore={item} actor={actor} onComplete={() => complete(item)} />
-        </Card>
+        <ChoreItem
+          item={item}
+          actor={actor}
+          view={view}
+          editing={editing !== null}
+          choose={select}
+          complete={complete}
+        />
       )}
     />
+  );
+}
+
+function ChoreItem({
+  item,
+  actor,
+  view,
+  editing,
+  choose,
+  complete,
+}: {
+  item: ChoreData["chores"][number];
+  actor: string;
+  view: ChoreView;
+  editing: boolean;
+  choose: (choice: ChoreChoice) => void;
+  complete: (chore: Chore) => void;
+}) {
+  const blocked = view.changeStage !== "ready" || editing;
+  return (
+    <Card>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: space.small }}>
+        <ChoreRow chore={item} actor={actor} onComplete={() => complete(item)} disabled={blocked} />
+        <ChoreMenu
+          chore={item}
+          choose={choose}
+          disabled={blocked || item.done || item.pending || view.stale || view.syncing}
+        />
+      </View>
+    </Card>
   );
 }
