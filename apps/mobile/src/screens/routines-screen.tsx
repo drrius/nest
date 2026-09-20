@@ -148,7 +148,7 @@ function RoutineWorkspace({
 }) {
   const [mode, setMode] = useState<Mode>(null);
   const list = useRef<FlatList<Routine>>(null);
-  usePendingRoutineNavigation(!mode && (view.busy || view.stage === "uncertain"));
+  usePendingRoutineNavigation(!mode && view.pendingWrite);
   const changeState = (routine: Routine, action: "pause" | "resume" | "archive") => {
     const send = () => {
       list.current?.scrollToOffset({ offset: 0, animated: false });

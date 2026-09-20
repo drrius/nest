@@ -101,6 +101,7 @@ test("lost lifecycle acknowledgment freezes version and action and blocks replac
   await runtime.load();
   assert.equal(reads, 1);
   assert.equal(runtime.getSnapshot().stage, "uncertain");
+  assert.equal(runtime.getSnapshot().pendingWrite, true);
   await runtime.retry();
   assert.deepEqual(calls, [input, input]);
   assert.equal(runtime.getSnapshot().saved, 1);
@@ -136,4 +137,45 @@ test("confirmed archive reloads without another mutation; denial wipes the scope
   await denied.setState(routine, "pause");
   assert.equal(denied.getSnapshot().snapshot, null);
   assert.equal(denied.getSnapshot().stage, "verify");
+  assert.equal(denied.getSnapshot().pendingWrite, false);
+});
+
+test("navigation warning tracks only unresolved writes, never read-only or acknowledged refresh work", async () => {
+  let releaseRead, releaseWrite;
+  const runtime = new RoutineRuntime(
+    {
+      read: () =>
+        Effect.promise(
+          () =>
+            new Promise((resolve) => {
+              releaseRead = resolve;
+            }),
+        ),
+      setState: () =>
+        Effect.promise(
+          () =>
+            new Promise((resolve) => {
+              releaseWrite = resolve;
+            }),
+        ),
+    },
+    () => id(100),
+  );
+  const tick = () => new Promise((resolve) => setImmediate(resolve));
+  const loading = runtime.load();
+  while (!releaseRead) await tick();
+  assert.equal(runtime.getSnapshot().busy, true);
+  assert.equal(runtime.getSnapshot().pendingWrite, false);
+  releaseRead({ routines: [] });
+  await loading;
+  releaseRead = null;
+  const saving = runtime.setState(routine, "pause");
+  while (!releaseWrite) await tick();
+  assert.equal(runtime.getSnapshot().pendingWrite, true);
+  releaseWrite(receipt);
+  while (!releaseRead) await tick();
+  assert.equal(runtime.getSnapshot().busy, true);
+  assert.equal(runtime.getSnapshot().pendingWrite, false);
+  releaseRead({ routines: [] });
+  await saving;
 });

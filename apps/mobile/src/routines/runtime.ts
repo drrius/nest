@@ -13,6 +13,7 @@ import type { RoutineClient, RoutineSnapshot } from "./client.ts";
 export type RoutineView = {
   snapshot: RoutineSnapshot | null;
   busy: boolean;
+  pendingWrite: boolean;
   stage: "ready" | "uncertain" | "reload" | "verify";
   notice: string | null;
   created: string | null;
@@ -21,6 +22,7 @@ export type RoutineView = {
 const initial: RoutineView = {
   snapshot: null,
   busy: false,
+  pendingWrite: false,
   stage: "ready",
   notice: null,
   created: null,
@@ -62,6 +64,7 @@ export class RoutineRuntime {
       this.acknowledged = null;
       this.publish({
         snapshot: null,
+        pendingWrite: false,
         stage: "verify",
         created: null,
         notice: "Verify your account to open routines.",
@@ -78,6 +81,7 @@ export class RoutineRuntime {
       this.attempt = null;
       this.publish({
         stage: "reload",
+        pendingWrite: false,
         notice:
           "The routine could not be saved. Reload and check its current details before trying again.",
       });
@@ -198,7 +202,7 @@ export class RoutineRuntime {
   };
   private async send() {
     if (this.disposed || !this.attempt) return;
-    this.publish({ busy: true, notice: null });
+    this.publish({ busy: true, pendingWrite: true, notice: null });
     try {
       const receipt = await this.run(
         "action" in this.attempt
@@ -209,6 +213,7 @@ export class RoutineRuntime {
       );
       if (this.disposed) return;
       this.acknowledged = receipt.routineId;
+      this.publish({ pendingWrite: false });
       await this.read();
     } catch (error) {
       this.failed(error);
