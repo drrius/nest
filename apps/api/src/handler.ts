@@ -1,4 +1,5 @@
 import { foodPreferences } from "./food/service.ts";
+import { cookingPreferences } from "./cooking/service.ts";
 import { assistantHandler } from "./assistant/handler.ts";
 import type { AssistantModel } from "@nest/ai/chat";
 import { groceryCommands } from "./groceries/service.ts";
@@ -17,6 +18,19 @@ function route(request: Request, config: IdentityConfig) {
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
+    if (path === "/v1/cooking-preferences")
+      return {
+        version: 1,
+        householdId: member.householdId,
+        profile: yield* cookingPreferences(config, { member, token }).read(),
+      };
+    if (path === "/v1/cooking-preferences/save")
+      return {
+        version: 1,
+        receipt: yield* cookingPreferences(config, { member, token }).save(
+          yield* commandBody(request, 16384),
+        ),
+      };
     if (path === "/v1/food-preferences")
       return {
         version: 1,
@@ -59,6 +73,8 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       return assistant(request);
     const methods: Record<string, string> = {
       "/v1/session": "GET",
+      "/v1/cooking-preferences": "GET",
+      "/v1/cooking-preferences/save": "POST",
       "/v1/food-preferences": "GET",
       "/v1/food-preferences/save": "POST",
       "/v1/chores": "GET",
