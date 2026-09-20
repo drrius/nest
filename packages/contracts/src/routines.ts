@@ -92,10 +92,12 @@ export const SkipChore = Schema.Struct({
   occurrenceId: Uuid,
   expectedDueDate: CalendarDate,
 });
+export const changedChoreDate = (command: { expectedDueDate: string; newDueDate: string }) =>
+  command.expectedDueDate !== command.newDueDate;
 export const RescheduleChore = Schema.Struct({
   ...SkipChore.fields,
   newDueDate: CalendarDate,
-}).check(Schema.makeFilter((command) => command.expectedDueDate !== command.newDueDate));
+}).check(Schema.makeFilter(changedChoreDate));
 // Legacy SQL permits 120 Unicode code points, including titles longer than the
 // new form's 120 UTF-16-unit input limit. Reads preserve those existing titles.
 export const StoredRoutineDefinition = Schema.Struct({

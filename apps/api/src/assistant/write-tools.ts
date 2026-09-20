@@ -1,6 +1,14 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function writeTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    skipChore: write(
+      "skipChore",
+      "Skip only the current chore occurrence the member explicitly requested. Read its exact occurrence ID and due date with listChores first. Skip advances the schedule without marking completed; it does not pause the routine, transfer responsibility or change money. Never overwrite a conflict or replace an uncertain request with a new call; reload and reconcile.",
+    ),
+    rescheduleChore: write(
+      "rescheduleChore",
+      "Move only an explicitly requested current chore occurrence to a clear, different Europe/Zurich date. Read its exact ID and due date with listChores first. Read fresh readAvailability for the requested Zurich day; warn about busy time or unknown coverage and allow the member to override. Chores have no precise time, so daily busy time is not proof they cannot fit. Never invent a date, infer personal event details, overwrite a conflict or replace an uncertain request with a new invocation. This preserves the routine schedule and creates no financial obligation.",
+    ),
     setRoutineState: write(
       "setRoutineState",
       "Pause, resume or archive only a routine the member explicitly requested. Read its current ID and exact version with readRoutines first. Archive removes it from active routines and preserves history; clarify an ambiguous delete request rather than implying erasure. Do not overwrite conflicts: read current state and ask before reapplying. These actions create no financial obligation or reminder consent. The server retains the original retry identity.",

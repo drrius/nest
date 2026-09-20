@@ -9,6 +9,8 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  skipChore: "Chore skipped",
+  rescheduleChore: "Chore rescheduled",
   setRoutineState: "Routine state updated",
   createRoutine: "Routine created",
   editRoutine: "Routine updated",
@@ -24,6 +26,8 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  skipChore: "/household",
+  rescheduleChore: "/household",
   setRoutineState: "/routines",
   createRoutine: "/routines",
   editRoutine: "/routines",
