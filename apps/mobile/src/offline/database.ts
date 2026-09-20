@@ -46,6 +46,8 @@ export const initialize = (database: Database) =>
       status TEXT NOT NULL CHECK(status IN ('pending', 'conflict', 'acknowledged')),
       result_version TEXT, reason TEXT,
       UNIQUE(actor, household, operation))`);
+    await tx.run(`CREATE INDEX IF NOT EXISTS offline_unresolved_predecessors
+      ON offline_operations(actor,household,predecessor) WHERE status<>'acknowledged'`);
     const columns = await tx.all<{ name: string }>("PRAGMA table_info(offline_operations)");
     if (!columns.some((column) => column.name === "rebase_allowed"))
       await tx.run(

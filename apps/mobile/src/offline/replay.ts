@@ -1,3 +1,4 @@
+import { pruneAcknowledged } from "./retention.ts";
 import * as Schema from "effect/Schema";
 import { decodeIntent, fail, type Kind, type Operation, type Session } from "./contracts.ts";
 import type { Database } from "./database.ts";
@@ -60,6 +61,7 @@ export function acknowledge(database: Database, session: Session, receipt: Recei
       ON CONFLICT(actor, household, kind, target) DO UPDATE SET version = excluded.version, value = excluded.value`,
       [...scope(session), row.kind, row.target, receipt.version, receipt.value ? 1 : 0],
     );
+    await pruneAcknowledged(tx, session);
   });
 }
 export function conflict(

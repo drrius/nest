@@ -1,3 +1,4 @@
+import { changeFailure } from "../offline/change-failure.ts";
 import { ChoreChangeRuntime } from "./change-runtime.ts";
 import * as Effect from "effect/Effect";
 import type { Chore } from "@nest/contracts/chores";
@@ -63,8 +64,8 @@ export function choreRuntime(
       await read();
       void refresh();
       return true;
-    } catch {
-      emit({ error: "Could not save that change on this phone. Please try again." });
+    } catch (error) {
+      emit({ error: changeFailure(error) });
       return false;
     }
   };

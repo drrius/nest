@@ -1,3 +1,4 @@
+import { pruneAcknowledged } from "./retention.ts";
 import * as Schema from "effect/Schema";
 import { Account, fail, type Session } from "./contracts.ts";
 import type { Database, Transaction } from "./database.ts";
@@ -16,7 +17,9 @@ export async function activate(
       account.actor,
       account.household,
     ]);
-    return { ...account, lease };
+    const session = { ...account, lease };
+    await pruneAcknowledged(tx, session);
+    return session;
   });
 }
 export async function authorize(tx: Transaction, session: Session) {

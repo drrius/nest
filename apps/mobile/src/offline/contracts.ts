@@ -65,6 +65,7 @@ export class OfflineFailure extends Schema.TaggedError<OfflineFailure>()("Offlin
     "storage",
     "invalid_receipt",
     "pending_edit",
+    "queue_full",
   ]),
 }) {}
 export function fail(reason: OfflineFailure["reason"]): never {
