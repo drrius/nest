@@ -70,6 +70,8 @@ export function choreRuntime(
   };
   return {
     refresh: online.refresh,
+    requestTransfer: online.requestTransfer,
+    respondTransfer: online.respondTransfer,
     skip: (chore: Chore, operation: string) => online.begin(chore, operation),
     reschedule: (chore: Chore, operation: string, date: string) =>
       online.begin(chore, operation, date),

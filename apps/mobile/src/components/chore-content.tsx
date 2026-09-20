@@ -149,6 +149,13 @@ function ChoreItem({
         <ChoreRow chore={item} actor={actor} onComplete={() => complete(item)} disabled={blocked} />
         <ChoreMenu
           chore={item}
+          canTransfer={
+            item.assigneeId === actor &&
+            view.data?.transfers?.members.length === 2 &&
+            !view.data.transfers.transfers.some(
+              (request) => request.occurrenceId === item.occurrenceId,
+            )
+          }
           choose={choose}
           disabled={blocked || item.done || item.pending || view.stale || view.syncing}
         />

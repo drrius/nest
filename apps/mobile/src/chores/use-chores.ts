@@ -1,3 +1,4 @@
+import type { PendingChoreTransfer } from "@nest/contracts/chore-transfers";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import * as Haptics from "expo-haptics";
@@ -52,6 +53,9 @@ export function useChores(client: ChoreClient, actor: string, household: string)
     skip: (chore: Chore) => runtime.current?.skip(chore, Crypto.randomUUID()),
     reschedule: (chore: Chore, date: string) =>
       runtime.current?.reschedule(chore, Crypto.randomUUID(), date),
+    requestTransfer: (chore: Chore) => runtime.current?.requestTransfer(chore, Crypto.randomUUID()),
+    respondTransfer: (request: typeof PendingChoreTransfer.Type, action: "accept" | "decline") =>
+      runtime.current?.respondTransfer(request, action, Crypto.randomUUID()),
     retryChange: () => runtime.current?.retryChange(),
     discard: (operation: string) => runtime.current?.discard(operation),
   };

@@ -79,6 +79,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
       "/v1/food-preferences": "GET",
       "/v1/food-preferences/save": "POST",
       "/v1/chores": "GET",
+      "/v1/chores/snapshot": "GET",
       "/v1/chores/transfers": "GET",
       "/v1/chores/transfers/request": "POST",
       "/v1/chores/transfers/respond": "POST",

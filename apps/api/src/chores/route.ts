@@ -1,3 +1,4 @@
+import { choreSnapshot } from "./snapshot.ts";
 import { choreTransfers } from "./transfers.ts";
 import * as Effect from "effect/Effect";
 import { commandBody } from "../request-body.ts";
@@ -8,6 +9,7 @@ import type { IdentityConfig } from "../supabase-identity.ts";
 export function choreRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   return Effect.gen(function* () {
     const path = new URL(request.url).pathname;
+    if (path === "/v1/chores/snapshot") return yield* choreSnapshot(config, caller);
     const commands = choreCommands(config, caller);
     if (path === "/v1/chores")
       return { version: 1, householdId: caller.member.householdId, chores: yield* commands.list() };

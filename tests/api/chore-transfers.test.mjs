@@ -143,3 +143,46 @@ test("pending lists are bounded, unique, strict and tied to the verified two-mem
   ])
     await assert.rejects(run(api.list(), fetch(rows)), { code: "unavailable" });
 });
+
+test("snapshot API makes a single scoped RPC and rejects malformed or internally inconsistent data", async () => {
+  const { choreSnapshot } = await import("../../apps/api/src/chores/snapshot.ts");
+  const chore = {
+    occurrenceId: item.occurrenceId,
+    dueDate: item.dueDate,
+    title: item.title,
+    assigneeId: id(1),
+  };
+  const snapshot = {
+    version: 1,
+    householdId: id(10),
+    chores: [chore],
+    transfers: [item],
+    members: [
+      { actorId: id(1), displayName: "A" },
+      { actorId: id(2), displayName: "B" },
+    ],
+  };
+  let calls = 0;
+  assert.deepEqual(
+    await run(choreSnapshot(config, caller), async (url, init) => {
+      calls++;
+      assert.equal(new URL(url).pathname, "/rest/v1/rpc/nest_chore_snapshot");
+      assert.deepEqual(JSON.parse(init.body), { p_household: id(10) });
+      return Response.json(snapshot);
+    }),
+    snapshot,
+  );
+  assert.equal(calls, 1);
+  for (const patch of [
+    { householdId: id(11) },
+    { chores: [{ ...chore, assigneeId: id(2) }] },
+    { chores: [] },
+    { members: [snapshot.members[1]] },
+    { chores: Array(201).fill(chore) },
+    { hidden: true },
+  ])
+    await assert.rejects(
+      run(choreSnapshot(config, caller), async () => Response.json({ ...snapshot, ...patch })),
+      { code: "unavailable" },
+    );
+});

@@ -9,6 +9,12 @@ export const account = {
   actor: "10000000-0000-4000-8000-000000000001",
   household: "20000000-0000-4000-8000-000000000001",
 };
+export const emptyTransfers = {
+  version: 1,
+  householdId: account.household,
+  members: [{ actorId: account.actor, displayName: "A" }],
+  transfers: [],
+};
 export const lease = "30000000-0000-4000-8000-000000000001";
 export const target = "40000000-0000-4000-8000-000000000001";
 export const operation = "50000000-0000-4000-8000-000000000001";

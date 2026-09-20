@@ -16,6 +16,7 @@
     "./setup": "./src/setup.ts",
     "./routines": "./src/routines.ts",
     "./chore-changes": "./src/chore-changes.ts",
+    "./chore-snapshot": "./src/chore-snapshot.ts",
     "./chore-transfers": "./src/chore-transfers.ts"
   },
   "scripts": {

@@ -12,7 +12,12 @@ const actor = "00000000-0000-4000-8000-000000000001";
 const household = "00000000-0000-4000-8000-000000000010";
 
 test("native client and restarted SQLite replay a lost real PostgreSQL receipt without a second completion", async (t) => {
-  const remote = await postgrestFixture(t);
+  const remote = await postgrestFixture(t, [
+    "tests/database/legacy-chore-fixture.sql",
+    "tests/integration/chore-postgrest.sql",
+    "tests/integration/chore-transfer-adapter.sql",
+    "supabase/migrations/20260919205503_native_chore_receipts.sql",
+  ]);
   const local = await sqliteFixture(t);
   const session = await Effect.runPromise(local.store.activate({ actor, household }, lease));
   const handler = createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" });

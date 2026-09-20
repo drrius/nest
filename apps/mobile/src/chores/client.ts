@@ -4,6 +4,7 @@ import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as HttpBody from "effect/unstable/http/HttpBody";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { ChoreList, ChoreResult, type CompleteChore } from "@nest/contracts/chores";
+import { choreTransfers } from "./transfer-client.ts";
 import { choreChanges } from "./change-client.ts";
 import { preferenceRequests } from "../preferences/client.ts";
 import type { Account } from "../offline/contracts.ts";
@@ -53,7 +54,20 @@ export function choreClient(
       Effect.provideService(FetchHttpClient.RequestInit, { redirect: "error" }),
     );
   const changes = choreChanges(preferenceRequests(apiUrl, account, credentials), account);
+  const transfers = choreTransfers(preferenceRequests(apiUrl, account, credentials), account);
   return {
+    snapshot: () =>
+      transfers.snapshot().pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
+    listTransfers: () =>
+      transfers.list().pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
+    requestTransfer: (command: Parameters<typeof transfers.request>[0]) =>
+      transfers
+        .request(command)
+        .pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
+    respondTransfer: (command: Parameters<typeof transfers.respond>[0]) =>
+      transfers
+        .respond(command)
+        .pipe(Effect.mapError((error) => new ChoreFailure({ code: error.code }))),
     skip: (command: Parameters<typeof changes.skip>[0]) =>
       changes
         .skip(command)

@@ -1,3 +1,4 @@
+import { fixtureChoreSnapshot } from "./chore-snapshot-fixture.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -5,7 +6,7 @@ import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { choreClient, ChoreFailure } from "../src/chores/client.ts";
 import { choreRuntime } from "../src/chores/runtime.ts";
 import { choreFlow } from "../src/chores/flow.ts";
-import { fixture, run, account, target, operation } from "./offline-fixture.mjs";
+import { emptyTransfers, fixture, run, account, target, operation } from "./offline-fixture.mjs";
 const chore = { occurrenceId: target, dueDate: "2026-09-20", title: "Plants", assigneeId: null };
 const command = { operationId: operation, occurrenceId: target, expectedDueDate: chore.dueDate };
 const receipt = {
@@ -82,6 +83,8 @@ async function setup(t, remote) {
   const views = [];
   const runtime = choreRuntime(
     choreFlow(store, session, {
+      snapshot: fixtureChoreSnapshot,
+      listTransfers: () => Effect.succeed(emptyTransfers),
       list: () => Effect.succeed([chore]),
       complete: () => assert.fail("completion dispatch"),
       ...remote,
