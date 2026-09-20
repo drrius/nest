@@ -6,6 +6,12 @@ Updated 20 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
+**Current branch: `codex/chore-transfer-storage`, M4.** PR #68 merged as `6ab31c2` after both exact-head CI checks, zero review conversations and clean GPT-5.6 Sol medium review of `16ee227c90da8d6812c0c7338c9bae53c345b8a4`. [Merge evidence](https://github.com/drrius/nest/pull/68#issuecomment-5750412821). Greptile explicitly remains credit-capped; the removed automation remains removed.
+
+Accepted-handover storage/contracts now require the responsible member to request and the recipient to accept before responsibility changes. A separate occurrence override preserves alternating recurrence; stale consent cannot follow a rebuilt target or survive assignment/date changes away and back. Exact actor-bound receipts preserve committed outcomes and roll back atomically with assignment changes. See [handover audit](native-rewrite/chore-transfer-audit.md). API mapping, native inbox/controls and corresponding AI actions remain outstanding, so this is not yet a completed flow. Local verification passed all 13 focused contract/database cases, including 12 actual-engine acceptance races, plus workspace typechecking and scoped lint. Isolated security advisors found no issues; CI and exact-head review are pending. No production/device/live-model execution is claimed.
+
+### Previous slice evidence
+
 **Current branch: `codex/ai-chore-changes`, M4.** PR #67 merged as `ad80ffc` after clean GPT-5.6 Sol medium exact-head review of `5f931306bb17c724eeef52053e8de6c75caecd38`, both CI checks passed and zero review conversations. [Merge evidence](https://github.com/drrius/nest/pull/67#issuecomment-5750340123). Greptile remains credit-capped; no automation was recreated.
 
 The current AI slice adds `skipChore` and `rescheduleChore` through the same authorized native SQL command, atomically inside the actor-private command journal. Shared schemas enforce exact original occurrence/date and a different reschedule date; model-supplied scope/retry identities are rejected. Result cards distinguish skipped/rescheduled and link to Today. Canonical history replaces invented results; unresolved write history cannot silently disappear. Tool guidance requires an explicit request, current occurrence, fresh availability warning with override, and reconciliation rather than a replacement write after an uncertain response.
