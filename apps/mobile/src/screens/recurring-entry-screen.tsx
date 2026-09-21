@@ -65,6 +65,11 @@ function ActiveEntry(props: Props & { runtime: RecurringSaveRuntime }) {
   return (
     <Page>
       <EntryNotice view={view} />
+      <RefreshFailure
+        active={view.active}
+        contextFailed={context.failed}
+        optionsFailed={options.failed}
+      />
       {context.initial ? (
         <Form {...props} initial={context.initial} current={context.value} options={options} />
       ) : recovery && view.active ? (
@@ -199,5 +204,23 @@ function EntryActions({
         onPress={() => void runtime.refresh()}
       />
     </>
+  );
+}
+
+function RefreshFailure({
+  active,
+  contextFailed,
+  optionsFailed,
+}: {
+  active: boolean;
+  contextFailed: boolean;
+  optionsFailed: boolean;
+}) {
+  if (!active || (!contextFailed && !optionsFailed)) return null;
+  return (
+    <Note>
+      Could not refresh current recurring setup, members or categories. Your input is retained. Use
+      Reload current setup before reviewing or saving.
+    </Note>
   );
 }
