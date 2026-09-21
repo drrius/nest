@@ -32,29 +32,7 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
-    clearProposalDiscard: (
-      session: Session,
-      target: Parameters<typeof MealProposals.clearProposalDiscard>[2],
-    ) => run(() => MealProposals.clearProposalDiscard(database, session, target)),
-    readMealProposalAttempt: (session: Session, week: string) =>
-      run(() => MealProposals.readMealProposalAttempt(database, session, week)),
-    stageMealProposal: (
-      session: Session,
-      command: Parameters<typeof MealProposals.stageMealProposal>[2],
-    ) => run(() => MealProposals.stageMealProposal(database, session, command)),
-    recordMealProposal: (
-      session: Session,
-      receipt: Parameters<typeof MealProposals.recordMealProposal>[2],
-    ) => run(() => MealProposals.recordMealProposal(database, session, receipt)),
-    stageProposalDiscard: (
-      session: Session,
-      target: Parameters<typeof MealProposals.stageProposalDiscard>[2],
-    ) => run(() => MealProposals.stageProposalDiscard(database, session, target)),
-    clearMealProposalAttempt: (
-      session: Session,
-      target: Parameters<typeof MealProposals.clearMealProposalAttempt>[2],
-    ) => run(() => MealProposals.clearMealProposalAttempt(database, session, target)),
-
+    ...proposalStore(database),
     readPlannedRecipe: (session: Session, target: ReadPlannedRecipe) =>
       run(() => PlannedRecipes.readPlannedRecipe(database, session, target)),
     savePlannedRecipe: (
@@ -111,3 +89,38 @@ export class OfflineStore extends Context.Service<
 >()("nest/OfflineStore") {}
 export const offlineLayer = (database: Database) =>
   Layer.succeed(OfflineStore, makeOfflineStore(database));
+
+function proposalStore(database: Database) {
+  return {
+    stageProposalApproval: (
+      session: Session,
+      target: Parameters<typeof MealProposals.stageProposalApproval>[2],
+    ) => run(() => MealProposals.stageProposalApproval(database, session, target)),
+    clearProposalApproval: (
+      session: Session,
+      target: Parameters<typeof MealProposals.clearProposalApproval>[2],
+    ) => run(() => MealProposals.clearProposalApproval(database, session, target)),
+    clearProposalDiscard: (
+      session: Session,
+      target: Parameters<typeof MealProposals.clearProposalDiscard>[2],
+    ) => run(() => MealProposals.clearProposalDiscard(database, session, target)),
+    readMealProposalAttempt: (session: Session, week: string) =>
+      run(() => MealProposals.readMealProposalAttempt(database, session, week)),
+    stageMealProposal: (
+      session: Session,
+      command: Parameters<typeof MealProposals.stageMealProposal>[2],
+    ) => run(() => MealProposals.stageMealProposal(database, session, command)),
+    recordMealProposal: (
+      session: Session,
+      receipt: Parameters<typeof MealProposals.recordMealProposal>[2],
+    ) => run(() => MealProposals.recordMealProposal(database, session, receipt)),
+    stageProposalDiscard: (
+      session: Session,
+      target: Parameters<typeof MealProposals.stageProposalDiscard>[2],
+    ) => run(() => MealProposals.stageProposalDiscard(database, session, target)),
+    clearMealProposalAttempt: (
+      session: Session,
+      target: Parameters<typeof MealProposals.clearMealProposalAttempt>[2],
+    ) => run(() => MealProposals.clearMealProposalAttempt(database, session, target)),
+  };
+}

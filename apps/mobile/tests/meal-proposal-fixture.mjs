@@ -65,7 +65,7 @@ export const ready = {
 };
 export async function fixture(t) {
   const db = await database(t),
-    calls = { reserve: 0, generate: 0, discard: 0, recover: 0 };
+    calls = { reserve: 0, generate: 0, discard: 0, recover: 0, approve: 0 };
   let current = structuredClone(pending),
     next = 800;
   /** @type {Pick<import("../src/meals/client.ts").MealClient, "read" | "proposals">} */
@@ -79,6 +79,12 @@ export async function fixture(t) {
         entries: [],
       }),
     proposals: {
+      approve: (input) =>
+        Effect.sync(() => {
+          calls.approve++;
+          current = approvedPreview();
+          return approvalReceipt(input);
+        }),
       reserve: (input) =>
         Effect.sync(() => {
           calls.reserve++;
@@ -136,4 +142,27 @@ export async function fixture(t) {
       current = structuredClone(value);
     },
   };
+}
+
+function approvalReceipt(input) {
+  return {
+    version: 1,
+    actorId: account.actor,
+    householdId: account.household,
+    operationId: input.operationId,
+    proposalId: input.proposalId,
+    approvedRevision: input.expectedRevision,
+    revision: "3",
+    weekStart,
+    previousWeekRevision: "0",
+    weekRevision: "1",
+    entries: [{ proposalEntryId: id(950), entryId: id(960), date: weekStart, slot: "dinner" }],
+  };
+}
+
+function approvedPreview() {
+  const result = structuredClone(ready);
+  result.proposal.status = "approved";
+  result.proposal.revision = "3";
+  return result;
 }

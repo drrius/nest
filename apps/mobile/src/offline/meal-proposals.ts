@@ -4,6 +4,7 @@ import {
   GenerateMealProposal,
   MealProposalGenerationReceipt,
   DiscardMealProposal,
+  ApproveMealProposal,
 } from "@nest/contracts/meal-proposals";
 import { MealProposalAttempt } from "../meals/proposal-attempt.ts";
 import { scoped } from "./session.ts";
@@ -85,6 +86,7 @@ export function stageProposalDiscard(
   return scoped(db, session, async (tx) => {
     const pending = await read(tx, session, target.weekStart);
     if (!pending || pending.proposalId !== command.proposalId) fail("invalid_input");
+    if (pending.approval) fail("pending_edit");
     if (pending.discard && !Schema.toEquivalence(DiscardMealProposal)(pending.discard, command))
       fail("pending_edit");
     return save(tx, session, { ...pending, discard: command });
@@ -116,5 +118,39 @@ export function clearProposalDiscard(
     if (!pending?.discard) return pending;
     if (pending.discard.operationId !== target.operationId) fail("operation_reused");
     return save(tx, session, { ...pending, discard: null });
+  });
+}
+
+export function stageProposalApproval(
+  db: Database,
+  session: Session,
+  target: { weekStart: string; command: typeof ApproveMealProposal.Type },
+) {
+  const command = Schema.decodeUnknownSync(ApproveMealProposal)(target.command, {
+    onExcessProperty: "error",
+  });
+  return scoped(db, session, async (tx) => {
+    const pending = await read(tx, session, target.weekStart);
+    if (!pending || pending.proposalId !== command.proposalId) fail("invalid_input");
+    if (
+      pending.discard ||
+      (pending.approval && !Schema.toEquivalence(ApproveMealProposal)(pending.approval, command))
+    )
+      fail("pending_edit");
+    return save(tx, session, { ...pending, approval: command });
+  });
+}
+
+export function clearProposalApproval(
+  db: Database,
+  session: Session,
+  target: { weekStart: string; operationId: string },
+) {
+  return scoped(db, session, async (tx) => {
+    const pending = await read(tx, session, target.weekStart);
+    if (!pending?.approval) return pending;
+    if (pending.approval.operationId !== target.operationId) fail("operation_reused");
+    const { approval: _approval, ...rest } = pending;
+    return save(tx, session, rest);
   });
 }

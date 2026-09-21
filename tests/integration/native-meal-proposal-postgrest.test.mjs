@@ -48,8 +48,55 @@ async function backend(t, lose) {
     t.after(() => runtime.dispose());
     return runtime;
   };
-  return { remote, sqlite, provider, session, proxy, create };
+  return { remote, sqlite, provider, session, proxy, create, client };
 }
+
+test("native approval survives a committed response loss and SQLite restart without re-posting meals", async (t) => {
+  const f = await backend(t, "approve"),
+    runtime = f.create();
+  await runtime.load();
+  await runtime.start(false);
+  const preview = runtime.getSnapshot().proposal;
+  await runtime.approve(preview.revision, preview.proposalId);
+  assert.equal(f.proxy.dropped(), 1);
+  assert.equal(runtime.getSnapshot().fresh, false);
+  assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "7");
+  const operation = runtime.getSnapshot().attempt.approval.operationId;
+  runtime.dispose();
+  const recovered = f.create(f.sqlite.reopen().store);
+  await recovered.load();
+  assert.equal(recovered.getSnapshot().proposal.status, "approved");
+  assert.equal(recovered.getSnapshot().attempt.approval.operationId, operation);
+  await recovered.continue();
+  assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "7");
+  const savedWeek = await run(f.client.read(week));
+  assert.equal(savedWeek.entries.length, 7);
+  assert.deepEqual(
+    savedWeek.entries.map((e) => e.title).sort(),
+    preview.entries.map((e) => e.source.recipe.title).sort(),
+  );
+  assert.equal(f.provider.calls.length, 2);
+  assert.equal(f.remote.db.sql("select count(*) from public.grocery_items"), "0");
+});
+
+test("a changed real week refuses native approval and requires a refreshed explicit decision", async (t) => {
+  const f = await backend(t, "unused"),
+    runtime = f.create();
+  await runtime.load();
+  await runtime.start(false);
+  f.remote.db.sql(
+    `insert into public.meal_plan_entries(household_id,date,slot,title_snapshot) values('${id(10)}','${week}','lunch','Partner meal')`,
+  );
+  await runtime.approve("2", runtime.getSnapshot().proposal.proposalId);
+  assert.equal(runtime.getSnapshot().fresh, false);
+  assert.equal(runtime.getSnapshot().attempt.approval, undefined);
+  assert.match(runtime.getSnapshot().notice, /changed/);
+  assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "1");
+  await runtime.load();
+  await runtime.discard("2", runtime.getSnapshot().proposal.proposalId);
+  assert.equal(runtime.getSnapshot().proposal.status, "discarded");
+  assert.equal(f.provider.calls.length, 2);
+});
 
 test("native SQLite restart recovers a committed generation after its HTTP response is lost", async (t) => {
   const f = await backend(t, "generate"),
@@ -97,7 +144,7 @@ test("lost native discard response recovers terminal state and revocation hides 
     runtime = f.create();
   await runtime.load();
   await runtime.start(false);
-  await runtime.discard("2");
+  await runtime.discard("2", runtime.getSnapshot().proposal.proposalId);
   assert.equal(f.proxy.dropped(), 1);
   assert.equal(runtime.getSnapshot().fresh, false);
   await runtime.continue();

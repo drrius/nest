@@ -71,6 +71,8 @@ export function sessionMeals(auth: SupabaseClient["auth"], account: Account, api
 
 function nativeProposals(client: MealProposalClient) {
   return {
+    approve: (input: Parameters<MealProposalClient["approve"]>[0]) =>
+      client.approve(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     reserve: (input: Parameters<MealProposalClient["reserve"]>[0]) =>
       client.reserve(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     generate: (input: Parameters<MealProposalClient["generate"]>[0]) =>

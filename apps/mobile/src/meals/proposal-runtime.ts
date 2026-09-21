@@ -7,6 +7,7 @@ import { OfflineFailure } from "../offline/contracts.ts";
 import type { OfflineAccount } from "../offline/owner.ts";
 import type { MealClient } from "./client.ts";
 import type { MealProposalAttempt } from "./proposal-attempt.ts";
+import { matchesApprovedPreview } from "./proposal-approval.ts";
 export type ProposalView = {
   week: MealWeekSnapshot | null;
   attempt: MealProposalAttempt | null;
@@ -127,7 +128,8 @@ export class MealProposalRuntime {
   continue = () =>
     this.perform(async () => {
       if (this.view.access !== "ready" || !this.view.attempt) return;
-      if (this.view.attempt.discard) await this.retryDiscard();
+      if (this.view.attempt.approval) await this.retryApproval();
+      else if (this.view.attempt.discard) await this.retryDiscard();
       else await this.generate();
     });
   private async reserve() {
@@ -168,15 +170,19 @@ export class MealProposalRuntime {
     const result = await this.run(this.client.proposals.generate(attempt.generation));
     this.adopt(result.envelope);
   }
-  discard = (expectedRevision: string) =>
+  private displayedProposal(revision: string, id: string) {
+    const proposal = this.view.proposal;
+    return proposal?.proposalId === id && proposal.revision === revision ? proposal : null;
+  }
+  discard = (expectedRevision: string, proposalId: string) =>
     this.perform(async () => {
-      const proposal = this.view.proposal;
+      const proposal = this.displayedProposal(expectedRevision, proposalId);
       if (
         !proposal ||
-        proposal.revision !== expectedRevision ||
         !this.view.fresh ||
         !this.view.attempt ||
         this.view.attempt.discard ||
+        this.view.attempt.approval ||
         (terminal(proposal) && proposal.status !== "failed")
       )
         return;
@@ -198,6 +204,66 @@ export class MealProposalRuntime {
     await this.recover();
     if (this.view.proposal && ["discarded", "approved"].includes(this.view.proposal.status)) return;
     await this.sendDiscard();
+  }
+  approve = (expectedRevision: string, proposalId: string) =>
+    this.perform(async () => {
+      const proposal = this.displayedProposal(expectedRevision, proposalId);
+      if (
+        !proposal ||
+        proposal.status !== "ready" ||
+        !this.view.fresh ||
+        !this.view.attempt ||
+        this.view.attempt.discard ||
+        this.view.attempt.approval ||
+        this.view.access !== "ready"
+      )
+        return;
+      const { store, session } = this.account;
+      const attempt = await this.run(
+        store.stageProposalApproval(session, {
+          weekStart: this.weekStart,
+          command: { operationId: this.uuid(), proposalId: proposal.proposalId, expectedRevision },
+        }),
+      );
+      this.publish({ attempt });
+      await this.sendApproval();
+    });
+  private async retryApproval() {
+    await this.recover();
+    if (terminal(this.view.proposal)) return;
+    await this.sendApproval();
+  }
+  private async sendApproval() {
+    const command = this.view.attempt?.approval,
+      proposal = this.view.proposal;
+    if (!command || !proposal) return;
+    const { store, session } = this.account;
+    try {
+      const receipt = await this.run(this.client.proposals.approve(command));
+      if (!matchesApprovedPreview(proposal, receipt))
+        throw new PreferenceFailure({ code: "unavailable" });
+      this.publish({
+        proposal: { ...proposal, status: "approved", revision: receipt.revision },
+        fresh: true,
+      });
+    } catch (error) {
+      if (Schema.is(PreferenceFailure)(error) && error.code === "conflict") {
+        const attempt = await this.run(
+          store.clearProposalApproval(session, {
+            weekStart: this.weekStart,
+            operationId: command.operationId,
+          }),
+        );
+        this.publish({
+          attempt,
+          fresh: false,
+          notice:
+            "The proposal, food preferences or meal week changed. Refresh and review before approving again.",
+        });
+        return;
+      }
+      throw error;
+    }
   }
   private async sendDiscard() {
     const command = this.view.attempt?.discard;

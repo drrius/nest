@@ -81,10 +81,11 @@ test("discard confirmation binds the displayed revision and lost acknowledgment 
     discard = f.client.proposals.discard;
   await runtime.load();
   await runtime.start(false);
-  await runtime.discard("1");
+  await runtime.discard("2", id(999));
+  await runtime.discard("1", ready.proposal.proposalId);
   assert.equal(f.calls.discard, 0);
   f.client.proposals.discard = (input) => discard(input).pipe(Effect.flatMap(unavailable));
-  await runtime.discard("2");
+  await runtime.discard("2", ready.proposal.proposalId);
   assert.equal(f.calls.discard, 1);
   await runtime.continue();
   assert.equal(runtime.getSnapshot().proposal.status, "discarded");

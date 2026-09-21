@@ -32,6 +32,11 @@ export function ProposalControls({
       {!view.attempt ? <GenerateControl runtime={runtime} view={view} /> : null}
       <ProposalStatus view={view} />
       <ProposalActions runtime={runtime} view={view} />
+      {view.proposal?.status === "approved" ? (
+        <Link href={{ pathname: "/meals", params: { weekStart: runtime.weekStart } }}>
+          Open saved meal week
+        </Link>
+      ) : null}
       <Link href="/food-preferences">Your food preferences</Link>
       <Link href="/cooking-preferences">Household cooking preferences</Link>
     </Section>
@@ -118,20 +123,57 @@ function ProposalActions({ runtime, view }: { runtime: MealProposalRuntime; view
 }
 function PendingActions({ runtime, view }: { runtime: MealProposalRuntime; view: ProposalView }) {
   if (!view.attempt) return null;
-  const continuing = view.attempt.discard !== null || view.proposal?.status !== "ready";
+  const continuing =
+    !!view.attempt.approval || view.attempt.discard !== null || view.proposal?.status !== "ready";
   return (
     <>
       {continuing ? (
         <NativeAction
-          label={view.attempt.discard ? "Recover discard request" : "Continue saved request"}
+          label={
+            view.attempt.approval
+              ? "Recover approval request"
+              : view.attempt.discard
+                ? "Recover discard request"
+                : "Continue saved request"
+          }
           disabled={view.busy}
           onPress={() => {
             void runtime.continue();
           }}
         />
       ) : null}
-      {!view.attempt.discard ? <DiscardAction runtime={runtime} view={view} /> : null}
+      {!view.attempt.discard && !view.attempt.approval ? (
+        <>
+          <ApproveAction runtime={runtime} view={view} />
+          <DiscardAction runtime={runtime} view={view} />
+        </>
+      ) : null}
     </>
+  );
+}
+function ApproveAction({ runtime, view }: { runtime: MealProposalRuntime; view: ProposalView }) {
+  const proposal = view.proposal;
+  if (proposal?.status !== "ready") return null;
+  return (
+    <NativeAction
+      label="Approve this plan"
+      disabled={view.busy || !view.fresh}
+      onPress={() => {
+        Alert.alert(
+          "Save this meal plan?",
+          "Save the displayed meals to your shared week. Existing meals stay in place. Groceries require a separate review.",
+          [
+            { text: "Cancel", style: "cancel" },
+            {
+              text: "Save plan",
+              onPress: () => {
+                void runtime.approve(proposal.revision, proposal.proposalId);
+              },
+            },
+          ],
+        );
+      }}
+    />
   );
 }
 function DiscardAction({ runtime, view }: { runtime: MealProposalRuntime; view: ProposalView }) {
@@ -151,7 +193,7 @@ function DiscardAction({ runtime, view }: { runtime: MealProposalRuntime; view: 
               text: "Discard",
               style: "destructive",
               onPress: () => {
-                void runtime.discard(proposal.revision);
+                void runtime.discard(proposal.revision, proposal.proposalId);
               },
             },
           ],

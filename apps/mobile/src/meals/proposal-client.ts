@@ -1,3 +1,4 @@
+import { approveMealProposal } from "./proposal-approval-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -8,6 +9,7 @@ import {
   ReadMealProposal,
   DiscardMealProposal,
   MealProposalDiscardReceipt,
+  ApproveMealProposal,
 } from "@nest/contracts/meal-proposals";
 import { PreferenceFailure, preferenceRequests } from "../preferences/client.ts";
 import type { Account } from "../offline/contracts.ts";
@@ -45,6 +47,8 @@ export function mealProposalClient(
       return result;
     });
   return {
+    approve: (input: typeof ApproveMealProposal.Type) =>
+      approveMealProposal(request, account, input),
     reserve: (input: GenerateMealProposal) =>
       start(input, false).pipe(Effect.map((result) => result.receipt)),
     generate: (input: GenerateMealProposal) =>
