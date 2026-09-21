@@ -1,3 +1,5 @@
+import type { CreateMealPreparation } from "@nest/contracts/meal-preparation";
+import type { ReadMealPreparation } from "@nest/contracts/meal-preparation-read";
 import type { PlaceLeftovers } from "@nest/contracts/meal-leftovers";
 import type {
   PlaceRecipe,
@@ -31,6 +33,10 @@ export function sessionMeals(auth: SupabaseClient["auth"], account: Account, api
           .recipe(definitionId, revision)
           .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     },
+    createPreparation: (input: CreateMealPreparation) =>
+      client.createPreparation(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    readPreparation: (input: ReadMealPreparation) =>
+      client.readPreparation(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     placeRecipe: (input: PlaceRecipe) =>
       client.placeRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     replaceWithRecipe: (input: ReplaceWithRecipe) =>

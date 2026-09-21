@@ -1,3 +1,5 @@
+import { mealPreparationCreateClient } from "./preparation-create-client.ts";
+import { mealPreparationReadClient } from "./preparation-read-client.ts";
 import { mealLeftoversClient } from "./leftovers-client.ts";
 import { recipePlacementClient } from "./recipe-placement-client.ts";
 import { recipeReplacementClient } from "./recipe-replacement-client.ts";
@@ -25,6 +27,8 @@ export function mealClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    createPreparation: mealPreparationCreateClient(request, account),
+    readPreparation: mealPreparationReadClient(request, account),
     library: mealLibraryClient(request, account),
     placeRecipe: recipePlacementClient(request, account),
     replaceWithRecipe: recipeReplacementClient(request, account),

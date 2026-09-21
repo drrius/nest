@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/meal-preparation-api`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/native-meal-preparation`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
 
@@ -37,6 +37,12 @@ Preparation storage `327f370` is merged after successful CI `35555304112` and cl
 The preparation API slice adds authenticated POST `/v1/meals/preparation/create` and GET `/v1/meals/preparation` at an exact meal-week baseline. Strict creation validates canonical actor/household/operation/entry, unchanged week revision and explicit due date. The read uses a stable invoker RPC under existing RLS, distinguishes no task from an absent meal, retains completed task details and preserves nullable/longer legacy instructions and exact routine microseconds. Duplicate/unknown query parameters are rejected. The static HTTP method table moved out of `createHandler` to keep the function within its configured length limit; no route behavior changed.
 
 Verification: all 189 selected API and real meal HTTP/PostgREST cases pass, including five new API validation cases and two preparation HTTP journeys. These cover 4,000-character multibyte creation, receipt loss/replay after a later title/instruction edit, full legacy astral-text reads, partner/foreign/revoked access, stale baselines, completion and removed-meal absence. API types, scoped lint/format/diff and isolated security advisors pass. Exact-head CI and Sol review remain pending. Native preparation controls and corresponding AI actions are next; preparation edit/instructions support and device acceptance remain unfinished. No deployment, production data or live provider was used.
+
+Preparation API/read `5a16324` is merged after successful exact-head CI `35555770319` and clean Sol medium signoff. Sol independently passed twenty-two focused API/method/HTTP checks and confirmed stable invoker/RLS reads and unchanged existing routes. Main was fast-forwarded and pushed.
+
+Native preparation clients and runtime are now implemented on the feature branch. The clients bind full create/read identities, exact revisions and due dates; the runtime reads the current week, exact preparation and authorized routine roster before enabling creation. It freezes a deep copy of uncertain instructions/assignment, blocks duplicate existing-task creation, latches acknowledgments privately through account verification and rejects post-acknowledgment stale/missing task details. This increment adds no offline writes.
+
+Six focused native transport/runtime cases pass, including wrong-scope absent reads, switched credentials, mutable draft retry, authorization recovery, older routine versions and canceled publication. Mobile types and scoped lint/format pass. The runtime uses the existing bounded routine-list read for the household roster. Native form/detail controls, owner/navigation lifecycle and real native-to-HTTP journeys are still unfinished; this increment is not a completed native slice and has no device evidence. Full-branch Sol review and CI verification remain outstanding before merge.
 
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 
