@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — optional receipt attachment audit; branch `codex/receipt-storage-audit`.** Private AI correction proposals are merged after exact-commit CI and clean Sol medium review. The native correction approval card and durable decisions have clean Sol signoff and await CI. Receipt attachments, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
+**M7 — optional expense receipt binding; branch `codex/expense-receipt-binding`.** Native correction flows are merged after exact-commit CI and clean Sol medium review. Receipt storage audit has clean Sol signoff and awaits CI; exact receipt-to-expense binding passes local checks. Native receipt selection/upload/viewing, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -1059,3 +1059,11 @@ Private AI correction proposals `59dfe20fee97c6c2f58b592237036e548948eb20` passe
 The selected legacy attachment registry/claim/cleanup/policy statements are pinned with provenance and tested against the actual financial engine. Five focused PostgreSQL checks pass, including twelve claim/cleanup races, private reads, uploader binding, immutable objects, foreign/unuploaded reference rollback, retained receipts through reversal/replacement and cleanup tombstones. Formatting and lint pass. Audit evidence explicitly distinguishes the synthetic Storage metadata interface from real Storage HTTP/object bytes. Exact-commit review and CI remain required.
 
 See `docs/native-rewrite/money-receipt-audit.md` for native requirements and identified reuse limits: legacy upload recovery binds a path rather than file content, canonical lowercase paths are required, and byte inspection must be audited separately. This audit creates no native upload, file-selection or receipt-viewing functionality and changes no production schema, files or service configuration.
+
+### Exact expense receipt binding — candidate
+
+Native correction approval `32781ca36cf514daaca2610f7f08603b7ff7ac9a` passed CI `35628380502` and clean Sol medium review and was fast-forwarded to local/remote main. Receipt audit `be2700f26b979ce794c5b839504e235c8b62f7e9` has clean Sol signoff with five independently passing checks and awaits CI.
+
+The optional receipt reference is now part of the shared exact expense payload, operation identity and AI approval binding. A gated additive migration validates canonical receipt-only paths and existing same-household uploaded objects before posting; the audited financial trigger claims the file atomically. Corrections retain the original reference and reject a new receipt-path shortcut. Old expense payloads remain valid. This is the financial attachment boundary; native file selection/upload/viewing remain unfinished.
+
+Thirteen focused checks pass: five real database cases (six concurrent exact Saves, twelve Save/cleanup races, proposal-only behavior, claim/approval rollback, invalid or foreign paths and correction preservation); two new receipt contract/matcher checks; five existing financial contract cases; and one actual SDK → native approval runtime → API/PostgREST → PostgreSQL journey retaining the exact file reference. The underlying object in that last test is synthetic metadata, not a real uploaded blob. Workspace types, lint, full formatting and isolated security advisors pass. Exact-commit Sol review and CI remain required. No production schema/file changes, hosted Storage integration or native device execution occurred.

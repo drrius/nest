@@ -9,7 +9,10 @@ export const OpeningReplacement = Schema.Struct({
   note: ExpenseInput.fields.note,
 });
 export const CorrectionReplacement = Schema.Union([
-  Schema.Struct({ kind: Schema.Literal("expense"), expense: ExpenseInput }),
+  Schema.Struct({
+    kind: Schema.Literal("expense"),
+    expense: ExpenseInput.check(Schema.makeFilter((value) => value.receiptPath === undefined)),
+  }),
   Schema.Struct({ kind: Schema.Literal("opening_balance"), opening: OpeningReplacement }),
 ]);
 export const CorrectionInput = Schema.Struct({

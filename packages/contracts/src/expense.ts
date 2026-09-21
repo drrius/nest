@@ -7,6 +7,11 @@ const Text = Schema.String.check(
 );
 const Nonnegative = SignedCentimes.check(Schema.makeFilter((value) => BigInt(value) >= 0n));
 const Share = Schema.Struct({ memberId: Uuid, centimes: Nonnegative });
+export const ReceiptPath = Schema.String.check(
+  Schema.isPattern(
+    /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\/receipts\/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\.(jpg|png|webp|pdf)$/,
+  ),
+);
 const fields = {
   description: Text.check(
     Schema.isMinLength(1),
@@ -14,6 +19,7 @@ const fields = {
     Schema.makeFilter((value) => value.trim().length > 0),
   ),
   amountCentimes: Nonnegative,
+  receiptPath: Schema.optionalKey(ReceiptPath),
   receiptTotalCentimes: Schema.optionalKey(Nonnegative),
   payerId: Uuid,
   allocations: Schema.Tuple([Share, Share]),
