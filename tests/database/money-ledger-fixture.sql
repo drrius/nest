@@ -9,6 +9,8 @@ create table public.expense_drafts (
   id uuid primary key, household_id uuid not null references public.households(id),
   unique(household_id,id)
 );
+alter table public.shopping_sessions enable row level security;
+alter table public.expense_drafts enable row level security;
 \ir legacy-money/tables.sql
 \ir legacy-money/history-guards.sql
 \ir legacy-money/read-access.sql

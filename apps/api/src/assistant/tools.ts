@@ -1,3 +1,4 @@
+import { moneyTools } from "../money/tools.ts";
 import { proposalReadTools, proposalWriteTools } from "../meal-planning/assistant-tools.ts";
 import { planningCommands } from "../meal-planning/assistant-execution.ts";
 import type { MealPlanningOptions } from "../meal-planning/route.ts";
@@ -70,6 +71,7 @@ export function householdTools(
     ...proposalReadTools(bound, config),
     ...proposalWriteTools(write),
     ...calendarTools(bound, config),
+    ...moneyTools(bound, config),
     ...setupTools(bound, config),
     readChoreTransfers: readChoreTransfersTool(bound, config),
     readMealWeek: readMealWeekTool(bound, config),

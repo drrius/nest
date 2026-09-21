@@ -1,3 +1,4 @@
+import { readMoneyBalance } from "./money/read.ts";
 import { mealProposalRoute, type MealPlanningOptions } from "./meal-planning/route.ts";
 import { mealRoute } from "./meals/route.ts";
 import { routineRoute } from "./routines/route.ts";
@@ -28,25 +29,32 @@ function route(
     const path = new URL(request.url).pathname;
     if (path === "/v1/session") return { version: 1, member };
     const token = yield* bearerToken(request);
-    if (path === "/v1/setup/status") return yield* setupStatus(config, { member, token });
-    if (path.startsWith("/v1/notification-preferences"))
-      return yield* notificationRoute(request, config, { member, token });
-    if (path.startsWith("/v1/calendar/"))
-      return yield* calendarRoute(request, config, { member, token });
-    if (path.startsWith("/v1/memories"))
-      return yield* memoryRoute(request, config, { member, token });
-    if (
-      ["/v1/cooking-preferences", "/v1/food-preferences"].some((prefix) => path.startsWith(prefix))
-    )
-      return yield* preferenceRoute(request, config, { member, token });
-    if (path.startsWith("/v1/groceries"))
-      return yield* groceryRoute(request, config, { member, token });
-    if (path.startsWith("/v1/meals/"))
-      return yield* mealRoute(request, config, { member, token }, proposals);
-    if (path.startsWith("/v1/routines"))
-      return yield* routineRoute(request, config, { member, token });
-    return yield* choreRoute(request, config, { member, token });
+    const caller = { member, token };
+    const handlers: Record<string, () => Effect.Effect<unknown, ApiFailure>> = {
+      setup: () => setupStatus(config, caller),
+      "notification-preferences": () => notificationRoute(request, config, caller),
+      calendar: () => calendarRoute(request, config, caller),
+      memories: () => memoryRoute(request, config, caller),
+      "cooking-preferences": () => preferenceRoute(request, config, caller),
+      "food-preferences": () => preferenceRoute(request, config, caller),
+      groceries: () => groceryRoute(request, config, caller),
+      meals: () => mealRoute(request, config, caller, proposals),
+      routines: () => routineRoute(request, config, caller),
+      money: () => moneyRoute(request, config, caller),
+    };
+    const selected = handlers[path.split("/")[2]!];
+    return yield* selected ? selected() : choreRoute(request, config, caller);
   });
+}
+
+function moneyRoute(
+  request: Request,
+  config: IdentityConfig,
+  caller: Parameters<typeof readMoneyBalance>[1],
+) {
+  return new URL(request.url).searchParams.size
+    ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+    : readMoneyBalance(config, caller);
 }
 
 export function createHandler(config: IdentityConfig, options: MealPlanningOptions = {}) {
@@ -141,6 +149,7 @@ function preferenceRoute(
 
 const methods: Record<string, string> = {
   "/v1/session": "GET",
+  "/v1/money/balance": "GET",
   "/v1/meals/week": "GET",
   "/v1/meals/ingredients/read": "POST",
   "/v1/meals/ingredients/add": "POST",
