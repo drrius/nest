@@ -62,3 +62,30 @@ export const RecurringReceipt = Schema.Struct({
 });
 export type RecurringInput = typeof RecurringInput.Type;
 export type RecurringReceipt = typeof RecurringReceipt.Type;
+
+export function canonicalRecurring(input: RecurringInput): RecurringInput {
+  const config = input.configuration;
+  const commonConfig = {
+    ...config,
+    payerId: config.payerId.toLowerCase(),
+    categoryId: config.categoryId?.toLowerCase() ?? null,
+  };
+  const configuration =
+    config.mode === "variable"
+      ? { ...commonConfig, mode: "variable" as const, amountCentimes: null, allocations: null }
+      : {
+          ...commonConfig,
+          mode: "fixed" as const,
+          amountCentimes: config.amountCentimes,
+          allocations: [
+            { ...config.allocations[0], memberId: config.allocations[0].memberId.toLowerCase() },
+            { ...config.allocations[1], memberId: config.allocations[1].memberId.toLowerCase() },
+          ] as const,
+        };
+  return {
+    ...input,
+    ruleId: input.ruleId.toLowerCase(),
+    expectedRevision: input.expectedRevision?.toLowerCase() ?? null,
+    configuration,
+  };
+}

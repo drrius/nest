@@ -1,3 +1,4 @@
+import { recurringRoute } from "./recurring-route.ts";
 import { receiptRoute } from "./receipt-route.ts";
 import { correctionRoute } from "./correction-route.ts";
 import { refundRoute } from "./refund-route.ts";
@@ -20,6 +21,8 @@ import { readMoneyHistory } from "./history.ts";
 export function moneyRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url),
     params = url.searchParams;
+  if (url.pathname.startsWith("/v1/money/recurring/"))
+    return recurringRoute(request, config, caller);
   if (url.pathname.startsWith("/v1/money/correction/"))
     return correctionRoute(request, config, caller);
   if (url.pathname.startsWith("/v1/money/refund/")) return refundRoute(request, config, caller);

@@ -2,7 +2,7 @@ import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { id } from "../database/native-expense-helpers.mjs";
-export async function expenseApiFixture(t) {
+export async function expenseApiFixture(t, extraFiles = []) {
   const f = await postgrestFixture(t, [
     "tests/database/money-expense-fixture.sql",
     "tests/integration/food-postgrest.sql",
@@ -11,6 +11,7 @@ export async function expenseApiFixture(t) {
     "supabase/migrations/20260921120149_native_expense_approval.sql",
     "supabase/migrations/20260921130419_native_expense_save_cancel.sql",
     "supabase/migrations/20260921103207_native_money_balance_read.sql",
+    ...extraFiles,
   ]);
   const server = nodeServer(
     createHandler({ url: f.url, publishableKey: "sb_publishable_fixture" }),

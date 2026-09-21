@@ -1,3 +1,4 @@
+import type { RecurringSave } from "../money/recurring-client";
 import type { ReceiptUploadInput } from "@nest/contracts/receipt-upload";
 import type { ReceiptStorage } from "../money/receipt-upload-client";
 import type { ReceiptTarget } from "@nest/contracts/receipt";
@@ -12,7 +13,7 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import * as Effect from "effect/Effect";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { fetch } from "expo/fetch";
-import { moneyClient } from "../money/client";
+import { moneyClient, type MoneyClient } from "../money/client";
 import type { Account } from "../offline/contracts";
 import { sessionCredentials } from "./credentials";
 import type { ExpenseDecision } from "../money/approval-client";
@@ -24,6 +25,7 @@ export function sessionMoney(
 ) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth), storage);
   return {
+    ...sessionRecurring(client),
     receiptUploads: (after: string | null = null) =>
       client.receiptUploads(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     cleanupReceipt: (input: ReceiptUploadInput) =>
@@ -93,5 +95,16 @@ export function sessionMoney(
       client.history(before).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     detail: (eventId: string) =>
       client.detail(eventId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+  };
+}
+
+function sessionRecurring(client: MoneyClient) {
+  return {
+    recurringRules: (after: string | null = null) =>
+      client.recurringRules(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recurringRule: (ruleId: string) =>
+      client.recurringRule(ruleId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    saveRecurring: (input: RecurringSave) =>
+      client.saveRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }

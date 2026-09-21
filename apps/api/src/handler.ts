@@ -139,6 +139,10 @@ function preferenceRoute(
 
 const methods: Record<string, string> = {
   "/v1/session": "GET",
+  "/v1/money/recurring/rules": "GET",
+  "/v1/money/recurring/rule": "GET",
+  "/v1/money/recurring/save": "POST",
+  "/v1/money/recurring/execute": "POST",
   "/v1/money/approval": "GET",
   "/v1/money/approval/decide": "POST",
   "/v1/money/expense/save": "POST",

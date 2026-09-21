@@ -1,3 +1,4 @@
+import { recurringClient } from "./recurring-client.ts";
 import { receiptCleanupClient } from "./receipt-cleanup-client.ts";
 import { receiptUploadClient, type ReceiptStorage } from "./receipt-upload-client.ts";
 import { receiptClient } from "./receipt-client.ts";
@@ -37,6 +38,7 @@ export function moneyClient(
       ),
     );
   return {
+    ...recurringClient(apiUrl, account, credentials),
     ...receiptCleanupClient(apiUrl, account, credentials),
     ...receiptClient(apiUrl, account, credentials, storage?.origin),
     ...receiptUploadClient(storage, account, credentials),
