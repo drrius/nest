@@ -31,6 +31,7 @@ export class ExpenseSaveRuntime {
   private readonly listeners = new Set<() => void>();
   private request: AbortController | null = null;
   private disposed = false;
+  private completed: ExpenseSaveResult | null = null;
   constructor(operations: ExpenseSaveOperations) {
     this.operations = operations;
   }
@@ -87,7 +88,7 @@ export class ExpenseSaveRuntime {
       if (!this.current(request)) return;
       this.publish({ attempt });
       if (!attempt) {
-        this.publish({ fresh: true });
+        this.publish({ fresh: true, result: this.completed });
         return;
       }
       if (!this.view.online) {
@@ -148,6 +149,7 @@ export class ExpenseSaveRuntime {
     result: ExpenseSaveResult,
     request: AbortController,
   ) {
+    if (result.status !== "unresolved") this.completed = result;
     this.publish({
       result,
       fresh: true,
@@ -162,12 +164,14 @@ export class ExpenseSaveRuntime {
   }
   acknowledge = () => {
     if (!this.available() || !this.view.fresh || this.view.attempt || !this.terminal()) return;
+    this.completed = null;
     this.publish({ result: null, notice: null });
   };
   private failed(error: unknown) {
     const storage = Schema.is(OfflineFailure)(error) ? error.reason : null;
     const code = Schema.is(PreferenceFailure)(error) ? error.code : null;
     if (storage === "session_changed" || code === "session" || code === "forbidden") {
+      this.completed = null;
       this.publish({
         attempt: null,
         result: null,
@@ -196,6 +200,7 @@ export class ExpenseSaveRuntime {
       result: null,
       notice: null,
     });
+    this.completed = null;
     this.disposed = true;
     this.listeners.clear();
   };

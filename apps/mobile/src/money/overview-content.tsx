@@ -20,6 +20,7 @@ export function MoneyHeader({
   refreshBalance: () => void;
   refreshHistory: () => void;
 }) {
+  const router = useRouter();
   const summary = balance.entry?.kind === "balance" ? balance.entry.value : null;
   const own = summary?.members.find((member) => member.actorId === actor);
   return (
@@ -34,6 +35,7 @@ export function MoneyHeader({
         ) : null}
         <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} />
       </Section>
+      <NativeAction label="Record an expense" onPress={() => router.push("/expense-entry")} />
       <Section title="History">
         <Note>
           Original and corrective entries stay visible. This page does not determine your balance.

@@ -48,6 +48,7 @@ function Navigation() {
         <Stack.Screen name="household" options={{ title: "Today" }} />
         <Stack.Screen name="agenda" options={{ title: "Calendar" }} />
         <Stack.Screen name="finances" options={{ title: "Money" }} />
+        <Stack.Screen name="expense-entry" options={{ title: "Record expense" }} />
         <Stack.Screen name="expense-approval" options={{ title: "Review expense" }} />
         <Stack.Screen name="money-event" options={{ title: "Financial entry" }} />
         <Stack.Screen name="chore-transfers" options={{ title: "Chore handovers" }} />

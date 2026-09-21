@@ -153,3 +153,19 @@ test("subscription owner recreates recovery after cleanup without stale lifecycl
   assert.equal(second.getSnapshot().fresh, true);
   secondRelease();
 });
+test("returning from receipt navigation retains the known terminal result until explicit acknowledgment", async (t) => {
+  const f = await fixture(t),
+    runtime = await f.open(f.runtime());
+  await runtime.save(command);
+  assert.equal(runtime.getSnapshot().result.status, "recorded");
+  await runtime.setActive(false);
+  assert.equal(runtime.getSnapshot().result, null);
+  await runtime.setActive(true);
+  assert.equal(runtime.getSnapshot().result.status, "recorded");
+  await runtime.save({ ...command, operationId: id(200) });
+  assert.deepEqual(f.calls(), ["save"]);
+  runtime.acknowledge();
+  await runtime.setActive(false);
+  await runtime.setActive(true);
+  assert.equal(runtime.getSnapshot().result, null);
+});
