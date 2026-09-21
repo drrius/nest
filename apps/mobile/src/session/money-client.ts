@@ -1,3 +1,4 @@
+import type { RefundDecision } from "../money/refund-approval-client";
 import type { RefundSave } from "../money/refund-client";
 import type { SettlementDecision } from "../money/settlement-approval-client";
 import type { SettlementSave } from "../money/settlement-client";
@@ -13,6 +14,10 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    refundApproval: (approvalId: string) =>
+      client.refundApproval(approvalId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideRefund: (input: RefundDecision) =>
+      client.decideRefund(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverRefund: (input: RefundSave) =>
       client.recoverRefund(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     cancelRefund: (input: RefundSave) =>

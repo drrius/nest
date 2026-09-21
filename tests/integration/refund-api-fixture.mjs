@@ -24,6 +24,7 @@ export async function refundApiFixture(t, seed = true) {
     "supabase/migrations/20260921105214_native_money_detail_read.sql",
     "supabase/migrations/20260921151001_native_refund_command.sql",
     "supabase/migrations/20260921152631_native_refund_save_cancel.sql",
+    "supabase/migrations/20260921154140_native_refund_approval.sql",
   ])
     f.db.file(file);
   f.db.sql("notify pgrst,'reload schema'");
