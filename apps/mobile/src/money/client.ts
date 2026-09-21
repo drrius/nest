@@ -7,6 +7,7 @@ import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
 import type { ChoreFailure } from "../chores/client.ts";
 import { preferenceRequests, PreferenceFailure } from "../preferences/client.ts";
+import { expenseApprovalClient } from "./approval-client.ts";
 const invalid = () => new PreferenceFailure({ code: "invalid" });
 const unavailable = () => new PreferenceFailure({ code: "unavailable" });
 export function moneyClient(
@@ -24,6 +25,7 @@ export function moneyClient(
       ),
     );
   return {
+    ...expenseApprovalClient(apiUrl, account, credentials),
     balance: () =>
       scoped("v1/money/balance", MoneyBalance).pipe(
         Effect.flatMap((value) =>

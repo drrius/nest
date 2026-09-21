@@ -5,9 +5,14 @@ import { fetch } from "expo/fetch";
 import { moneyClient } from "../money/client";
 import type { Account } from "../offline/contracts";
 import { sessionCredentials } from "./credentials";
+import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    approval: (approvalId: string) =>
+      client.approval(approvalId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideExpense: (input: ExpenseDecision) =>
+      client.decideExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     balance: () => client.balance().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     history: (before: string | null = null) =>
       client.history(before).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
