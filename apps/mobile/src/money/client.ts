@@ -1,3 +1,4 @@
+import { expenseClient } from "./expense-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { MoneyBalance } from "@nest/contracts/money";
@@ -27,6 +28,7 @@ export function moneyClient(
     );
   return {
     ...expenseApprovalClient(apiUrl, account, credentials),
+    ...expenseClient(apiUrl, account, credentials),
     category: (categoryId: string) =>
       Effect.gen(function* () {
         const query = yield* Schema.decodeUnknownEffect(MoneyCategoryQuery)({ categoryId }).pipe(

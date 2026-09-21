@@ -1,3 +1,4 @@
+import { canonicalExpense } from "./expense-input.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { ExpenseInput } from "@nest/contracts/expense";
@@ -47,7 +48,7 @@ export function expenseApprovalClient(
     decideExpense: (input: ExpenseDecision) =>
       Effect.gen(function* () {
         const command = yield* validate(DecideExpense, input);
-        const expense = canonical(command.expense);
+        const expense = canonicalExpense(command.expense);
         const approvalId = command.approvalId.toLowerCase();
         const operationId = command.operationId.toLowerCase();
         const result = yield* scoped("v1/money/approval/decide", approvalId, {
@@ -63,17 +64,5 @@ export function expenseApprovalClient(
             result.status === (command.approved ? "consumed" : "denied"),
         );
       }),
-  };
-}
-function canonical(input: ExpenseInput): ExpenseInput {
-  const share = (value: ExpenseInput["allocations"][number]) => ({
-    ...value,
-    memberId: value.memberId.toLowerCase(),
-  });
-  return {
-    ...input,
-    payerId: input.payerId.toLowerCase(),
-    categoryId: input.categoryId?.toLowerCase() ?? null,
-    allocations: [share(input.allocations[0]), share(input.allocations[1])],
   };
 }

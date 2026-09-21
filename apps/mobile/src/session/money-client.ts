@@ -1,3 +1,4 @@
+import type { ExpenseSave } from "../money/expense-client";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import * as Effect from "effect/Effect";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
@@ -9,6 +10,8 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    saveExpense: (input: ExpenseSave) =>
+      client.saveExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     category: (categoryId: string) =>
       client.category(categoryId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     approval: (approvalId: string) =>
