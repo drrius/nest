@@ -1,3 +1,4 @@
+import { EditMealPreparationInput, MealPreparationEditReceipt } from "./meal-preparation-edit.ts";
 import { CreateMealPreparationInput, MealPreparationReceipt } from "./meal-preparation.ts";
 import { PlaceLeftoversInput, LeftoverPlacementReceipt } from "./meal-leftovers.ts";
 import {
@@ -52,6 +53,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  editMealPreparation: EditMealPreparationInput,
   createMealPreparation: CreateMealPreparationInput,
   placeLeftovers: PlaceLeftoversInput,
   placeRecipe: PlaceRecipeInput,
@@ -89,6 +91,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  editMealPreparation: MealPreparationEditReceipt,
   createMealPreparation: MealPreparationReceipt,
   placeLeftovers: LeftoverPlacementReceipt,
   placeRecipe: RecipePlacementReceipt,

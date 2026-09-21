@@ -19,4 +19,5 @@ export const aiChoreChangeFiles = [
   "supabase/migrations/20260921015713_native_ai_recipe_selection.sql",
   "supabase/migrations/20260921022759_native_ai_meal_leftovers.sql",
   "supabase/migrations/20260921031147_native_ai_meal_preparation.sql",
+  "supabase/migrations/20260921034355_native_ai_preparation_editing.sql",
 ];

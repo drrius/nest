@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    editMealPreparation: write(
+      "editMealPreparation",
+      "Edit only an existing linked preparation task and fields the member explicitly requests. Read a fresh meal week and readMealPreparation first; use its exact entry, Monday, week revision, routine ID and microsecond routine version. Preserve unspecified legacy title/instructions/date/responsibility: send only changed fields. Omitted instructions preserve them; explicit null clears them. Finished preparation permits title/instruction corrections only and keeps its date and responsibility. Archived tasks cannot be edited. Dates stay one-off; this is no recurring task, calendar event, accepted takeover, financial obligation or reminder opt-in. Use readHouseholdRoster for requested assignment changes; never invent IDs. Do not invent times or claim a date is free. On conflict reread and ask before reapplying; on uncertainty reconcile the original invocation, never issue another edit. Reread preparation before describing current state after a receipt.",
+    ),
     createMealPreparation: write(
       "createMealPreparation",
       "Create one preparation task only for an existing meal the member explicitly requests. Read the current meal week and readMealPreparation first; use that exact entry, Monday and revision. Ask for an unclear task title or due date. Preserve supplied instructions; null means no instructions. Responsibility defaults to shared unless explicitly assigned or alternating; use readHouseholdRoster for real member IDs. Never recreate an existing or completed preparation. This creates one date-only household task, not a recurring routine, calendar event, financial obligation or reminder consent. Do not invent a time or claim the date is free. A receipt confirms original creation; readMealPreparation again for current status after later household changes. Reconcile the original invocation after uncertainty instead of creating again.",

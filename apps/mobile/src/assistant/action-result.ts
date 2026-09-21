@@ -15,6 +15,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  editMealPreparation: "Meal preparation edit confirmed",
   createMealPreparation: "Meal preparation created",
   placeLeftovers: "Leftovers added to the week",
   placeRecipe: "Recipe added to the week",
@@ -45,6 +46,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  editMealPreparation: "/meal-week",
   createMealPreparation: "/meal-week",
   placeLeftovers: "/meal-week",
   placeRecipe: "/meal-week",
@@ -192,7 +194,10 @@ function isSelectionResult(
 }
 
 function mealHref(action: AssistantAction, value: object) {
-  if (action === "createMealPreparation" && Schema.is(MealPreparationReceipt)(value))
+  if (
+    ["createMealPreparation", "editMealPreparation"].includes(action) &&
+    Schema.is(MealPreparationReceipt)(value)
+  )
     return {
       pathname: "/meal-preparation" as const,
       params: { entryId: value.entryId, weekStart: value.weekStart },

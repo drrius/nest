@@ -1,4 +1,4 @@
-import { matchesPreparation } from "./matches-preparation.ts";
+import { matchesPreparation, matchesPreparationEdit } from "./matches-preparation.ts";
 import { matchesLeftovers } from "./matches-leftovers.ts";
 import { matchesRecipeSelection } from "./matches-selection.ts";
 import { EditRecipeInput, RecipeEditReceipt } from "@nest/contracts/recipe-edit";
@@ -95,6 +95,7 @@ export function matchesMealAction(
   if (action === "placeRecipe" || action === "replaceWithRecipe")
     return matchesRecipeSelection(action, input, receipt, member);
   const matches = {
+    editMealPreparation: matchesPreparationEdit,
     createMealPreparation: matchesPreparation,
     placeLeftovers: matchesLeftovers,
     editRecipe: matchesRecipeEdit,
