@@ -25,7 +25,7 @@ export const EditMealPreparation = Schema.Struct({
 export const MealPreparationEditReceipt = Schema.Struct({
   ...MealPreparationReceipt.fields,
   previousRoutineVersion: RoutineVersion,
-}).check(Schema.makeFilter((receipt) => receipt.routineVersion >= receipt.previousRoutineVersion));
+}).check(Schema.makeFilter((receipt) => receipt.routineVersion > receipt.previousRoutineVersion));
 export type EditMealPreparationInput = typeof EditMealPreparationInput.Type;
 export type EditMealPreparation = typeof EditMealPreparation.Type;
 export type MealPreparationPatch = typeof MealPreparationPatch.Type;

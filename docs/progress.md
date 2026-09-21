@@ -64,6 +64,8 @@ The preparation editing branch adds strict partial-update contracts and authenti
 
 Verification: all 42 selected preparation/routine-edit/API/HTTP checks pass, including eight new database cases, sixteen edit-versus-completion/removal races, 1,200 generated exact-version receipt checks and a real multibyte edit/lost-response/partner-completion HTTP journey. Injected receipt failure rolls back the task, occurrence, legacy receipt, notices and activity. Foreign targets, private receipts, anonymous/direct writes, unsupported isolation and revocation are covered. The HTTP revocation fixture initially hit a legacy inbox foreign key; fixture-only notice cleanup corrected that test setup. API types, scoped lint and isolated Supabase security advisors pass; new SQL functions have at most 52 code lines. Exact-head CI and Sol review remain pending. Native editing controls, corresponding assistant edits, meaningful availability guidance and device verification are still unfinished.
 
+Sol's edit review found that the receipt codec accepted an unchanged routine timestamp, although the audited update trigger always advances every edit by at least one microsecond. The invariant now requires a strictly newer version, and generated contract/API tests explicitly reject equality as well as backwards values. Updated exact-head CI and clean rereview remain required.
+
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 
 - `ecd3520` — atomic recipe creation storage; CI `35544477532`, 18 independent database checks.

@@ -55,6 +55,9 @@ test("generated preparation edit receipts preserve exact microsecond versions an
     };
     assert.deepEqual(decode(MealPreparationEditReceipt, value), value);
     assert.throws(() =>
+      decode(MealPreparationEditReceipt, { ...value, routineVersion: previousRoutineVersion }),
+    );
+    assert.throws(() =>
       decode(MealPreparationEditReceipt, {
         ...value,
         previousRoutineVersion: routineVersion,

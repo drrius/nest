@@ -100,6 +100,7 @@ test("misbound or malformed receipts cannot report success; conflicts and auth e
     { householdId: id(20) },
     { previousRoutineVersion: "2030-01-07T12:00:00.123454Z" },
     { routineId: id(299) },
+    { routineVersion: input.expectedRoutineVersion },
     { operationId: id(6) },
     { entryId: id(101) },
     { weekStart: "2030-01-14" },
