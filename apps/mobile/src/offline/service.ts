@@ -1,3 +1,5 @@
+import * as PlannedRecipes from "./planned-recipes.ts";
+import type { ReadPlannedRecipe } from "@nest/contracts/recipe-selection";
 import * as MealWeeks from "./meal-weeks.ts";
 import type { MealWeekSnapshot } from "@nest/contracts/meals";
 import type { TransferSnapshot } from "./chore-transfers.ts";
@@ -29,6 +31,13 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    readPlannedRecipe: (session: Session, target: ReadPlannedRecipe) =>
+      run(() => PlannedRecipes.readPlannedRecipe(database, session, target)),
+    savePlannedRecipe: (
+      session: Session,
+      write: PlannedRecipes.PlannedRecipeCacheWrite,
+      current?: () => boolean,
+    ) => run(() => PlannedRecipes.savePlannedRecipe(database, session, write, current)),
     readMealWeek: (session: Session, weekStart: string) =>
       run(() => MealWeeks.readMealWeek(database, session, weekStart)),
     saveMealWeek: (session: Session, snapshot: MealWeekSnapshot, current?: () => boolean) =>

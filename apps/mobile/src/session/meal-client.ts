@@ -1,3 +1,8 @@
+import type {
+  PlaceRecipe,
+  ReplaceWithRecipe,
+  ReadPlannedRecipe,
+} from "@nest/contracts/recipe-selection";
 import type { EditRecipe } from "@nest/contracts/recipe-edit";
 import type { ArchiveRecipe } from "@nest/contracts/recipe-archive";
 import type { CreateRecipe } from "@nest/contracts/recipe-creation";
@@ -25,6 +30,12 @@ export function sessionMeals(auth: SupabaseClient["auth"], account: Account, api
           .recipe(definitionId, revision)
           .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     },
+    placeRecipe: (input: PlaceRecipe) =>
+      client.placeRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    replaceWithRecipe: (input: ReplaceWithRecipe) =>
+      client.replaceWithRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    plannedRecipe: (input: ReadPlannedRecipe) =>
+      client.plannedRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     editRecipe: (input: EditRecipe) =>
       client.editRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     archiveRecipe: (input: ArchiveRecipe) =>

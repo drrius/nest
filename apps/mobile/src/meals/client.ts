@@ -1,3 +1,6 @@
+import { recipePlacementClient } from "./recipe-placement-client.ts";
+import { recipeReplacementClient } from "./recipe-replacement-client.ts";
+import { plannedRecipeClient } from "./planned-recipe-client.ts";
 import { recipeEditClient } from "./recipe-edit-client.ts";
 import { recipeArchiveClient } from "./recipe-archive-client.ts";
 import { recipeCreationClient } from "./recipe-creation-client.ts";
@@ -22,6 +25,9 @@ export function mealClient(
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
     library: mealLibraryClient(request, account),
+    placeRecipe: recipePlacementClient(request, account),
+    replaceWithRecipe: recipeReplacementClient(request, account),
+    plannedRecipe: plannedRecipeClient(request, account),
     createRecipe: recipeCreationClient(request, account),
     editRecipe: recipeEditClient(request, account),
     archiveRecipe: recipeArchiveClient(request, account),
