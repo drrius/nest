@@ -14,9 +14,10 @@ import type {
 interface Props {
   runtime: RecurringStateApprovalRuntime;
   view: RecurringStateApprovalView;
+  actor: string;
 }
 export function RecurringStateApprovalContent(props: Props) {
-  const { view, runtime } = props;
+  const { view, runtime, actor } = props;
   return (
     <Page>
       <Note>
@@ -31,7 +32,7 @@ export function RecurringStateApprovalContent(props: Props) {
             <Note>Previously loaded proposal. Reload online before deciding.</Note>
           ) : null}
           <Section title="Proposed recurring state change">
-            <Note>{recurringStateApprovalText(view.approval, view.context)}</Note>
+            <Note>{recurringStateApprovalText(view.approval, view.context, actor)}</Note>
           </Section>
           <DecisionControls {...props} />
         </>
@@ -64,7 +65,7 @@ function Recorded({ view }: Pick<Props, "view">) {
     </Section>
   );
 }
-function DecisionControls({ runtime, view }: Props) {
+function DecisionControls({ runtime, view, actor }: Props) {
   const approval = view.approval!;
   const actions = recurringStateApprovalActions(view, useApprovalClock(approval.expiresAt));
   if (approval.status === "consumed") return <Recorded view={view} />;
@@ -88,7 +89,7 @@ function DecisionControls({ runtime, view }: Props) {
     if (!actions.confirm) return;
     Alert.alert(
       "Apply this recurring state change?",
-      recurringStateApprovalText(approval, view.context),
+      recurringStateApprovalText(approval, view.context, actor),
       [
         { text: "Cancel", style: "cancel" },
         { text: "Confirm change", onPress: () => void runtime.decide(approval, true) },

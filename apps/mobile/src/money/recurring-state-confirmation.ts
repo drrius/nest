@@ -1,3 +1,4 @@
+import { recurringStateSummary } from "./recurring-state-summary.ts";
 import type { RecurringRule } from "@nest/contracts/recurring-read";
 import type { RecurringStateInput } from "@nest/contracts/recurring-state";
 import type { RecurringReadView } from "./recurring-read-runtime.ts";
@@ -35,9 +36,13 @@ export function stateConfirmationCurrent(
 ) {
   return currentStateRule(read, save) === expected.rule;
 }
-export function stateConfirmationText(rule: RecurringRule, action: RecurringStateInput["action"]) {
+export function stateConfirmationText(
+  rule: RecurringRule,
+  action: RecurringStateInput["action"],
+  actor: string,
+) {
   return [
-    rule.configuration.description,
+    recurringStateSummary(rule, actor),
     action === "pause"
       ? "Pause future recurring expense recording. Resuming later requires a separate decision."
       : "Permanently cancel this recurring rule. It cannot be resumed or edited after cancellation.",

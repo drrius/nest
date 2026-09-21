@@ -57,6 +57,7 @@ function ActiveState({
   read,
   save,
   verify,
+  account,
 }: MoneyScreenAccount & { read: RecurringReadRuntime; save: RecurringStateSaveRuntime }) {
   const current = useSyncExternalStore(read.subscribe, read.getSnapshot);
   const view = useSyncExternalStore(save.subscribe, save.getSnapshot);
@@ -83,7 +84,7 @@ function ActiveState({
           }}
         />
       ) : (
-        <RecurringStateControls read={read} save={save} />
+        <RecurringStateControls read={read} save={save} actor={account.session.actor} />
       )}
       <NativeAction
         label="Check current rule and request status"

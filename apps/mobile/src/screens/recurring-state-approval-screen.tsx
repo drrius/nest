@@ -45,9 +45,12 @@ function Approval(props: MoneyScreenAccount & { approvalId: string }) {
 function ActiveApproval({
   runtime,
   verify,
+  account,
 }: MoneyScreenAccount & { runtime: RecurringStateApprovalRuntime }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
   if (view.verify) return <VerifyMoney verify={verify} />;
-  return <RecurringStateApprovalContent runtime={runtime} view={view} />;
+  return (
+    <RecurringStateApprovalContent runtime={runtime} view={view} actor={account.session.actor} />
+  );
 }

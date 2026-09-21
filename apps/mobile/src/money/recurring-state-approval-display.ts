@@ -1,3 +1,4 @@
+import { recurringStateSummary } from "./recurring-state-summary.ts";
 import type { RecurringRule } from "@nest/contracts/recurring-read";
 import type { RecurringStateApproval } from "./recurring-state-approval-client.ts";
 import type { RecurringStateApprovalView } from "./recurring-state-approval-runtime.ts";
@@ -26,9 +27,10 @@ export function matchesRecurringStateContext(
 export function recurringStateApprovalText(
   approval: RecurringStateApproval,
   current: RecurringRule | null,
+  actor: string,
 ) {
   return [
-    current?.configuration.description ?? "Recurring expense",
+    current ? recurringStateSummary(current, actor) : "Recurring expense",
     `Requested action: ${approval.change.action}. Reviewed status: ${approval.change.expectedStatus}.`,
     approval.change.action === "pause"
       ? "Pause future recording. Resuming requires a separate decision."

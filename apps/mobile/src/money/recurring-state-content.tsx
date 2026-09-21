@@ -20,9 +20,11 @@ import {
 export function RecurringStateControls({
   read,
   save,
+  actor,
 }: {
   read: RecurringReadRuntime;
   save: RecurringStateSaveRuntime;
+  actor: string;
 }) {
   const rule = currentStateRule(read.getSnapshot(), save.getSnapshot());
   if (!rule)
@@ -34,7 +36,7 @@ export function RecurringStateControls({
     if (!expected) return;
     Alert.alert(
       action === "pause" ? "Pause recurring expense?" : "Cancel recurring rule?",
-      stateConfirmationText(rule, action),
+      stateConfirmationText(rule, action, actor),
       [
         { text: "Keep current rule", style: "cancel" },
         {
