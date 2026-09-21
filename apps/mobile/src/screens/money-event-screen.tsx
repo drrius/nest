@@ -160,6 +160,14 @@ function EntryActions({ detail }: { detail: typeof MoneyDetail.Type }) {
           }
         />
       ) : null}
+      {["expense", "replacement"].includes(event.kind) && detail.reversedById === null ? (
+        <NativeAction
+          label="Link to a recurring cycle"
+          onPress={() =>
+            router.push({ pathname: "/recurring-manual", params: { eventId: event.eventId } })
+          }
+        />
+      ) : null}
       {event.kind !== "reversal" ? (
         <NativeAction
           label="Correct this entry"
