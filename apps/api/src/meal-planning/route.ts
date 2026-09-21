@@ -1,3 +1,4 @@
+import { openProposal } from "./open-proposal.ts";
 import * as Effect from "effect/Effect";
 import type * as Redacted from "effect/Redacted";
 import type { AssistantModel } from "@nest/ai/chat";
@@ -28,13 +29,10 @@ export function mealProposalRoute(config: IdentityConfig, options: MealPlanningO
     Effect.gen(function* () {
       const { pathname, searchParams } = new URL(request.url),
         state = proposalState(config, caller);
-      if (pathname === "/v1/meals/proposal") {
-        if (!validReadQuery(searchParams))
-          return yield* new ApiFailure({ code: "invalid_request" });
-        return yield* state.read({ proposalId: searchParams.get("proposalId") });
-      }
+      if (pathname === "/v1/meals/proposal") return yield* proposalQuery(searchParams, state);
       if (searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
       const input = yield* commandBody(request);
+      if (pathname === "/v1/meals/proposal/open") return yield* openProposal(config, caller, input);
       if (pathname.startsWith("/v1/meals/proposal/edit"))
         return yield* edit(pathname, caller, input);
       if (pathname === "/v1/meals/proposal/approve")
@@ -50,4 +48,8 @@ export function mealProposalRoute(config: IdentityConfig, options: MealPlanningO
     });
 }
 
-const validReadQuery = (params: URLSearchParams) => params.size === 1 && params.has("proposalId");
+function proposalQuery(params: URLSearchParams, state: ReturnType<typeof proposalState>) {
+  if (params.size !== 1 || !params.has("proposalId"))
+    return Effect.fail(new ApiFailure({ code: "invalid_request" }));
+  return state.read({ proposalId: params.get("proposalId") });
+}

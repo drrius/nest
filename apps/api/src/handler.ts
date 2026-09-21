@@ -148,6 +148,7 @@ const methods: Record<string, string> = {
   "/v1/meals/proposal/edit/reserve": "POST",
   "/v1/meals/proposal/edit/recover": "POST",
   "/v1/meals/proposal/reserve": "POST",
+  "/v1/meals/proposal/open": "POST",
   "/v1/meals/proposal/approve": "POST",
   "/v1/meals/proposal/recover": "POST",
   "/v1/meals/proposal/discard": "POST",
