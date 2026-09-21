@@ -1,4 +1,6 @@
 import * as MoneyReads from "./money-reads.ts";
+import * as ExpenseApprovals from "./expense-approvals.ts";
+import type { ExpenseApprovalAttempt } from "../money/approval-attempt.ts";
 import type { MoneyCacheEntry, MoneyCacheTarget } from "./money-contract.ts";
 import * as AgendaSelections from "./agenda-selection.ts";
 import type { AgendaSelection } from "../calendar/agenda-selection.ts";
@@ -37,6 +39,15 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    readExpenseApproval: (session: Session, approvalId: string) =>
+      run(() => ExpenseApprovals.readExpenseApproval(database, session, approvalId)),
+    stageExpenseApproval: (
+      session: Session,
+      attempt: ExpenseApprovalAttempt,
+      current: () => boolean,
+    ) => run(() => ExpenseApprovals.stageExpenseApproval(database, session, attempt, current)),
+    clearExpenseApproval: (session: Session, attempt: ExpenseApprovalAttempt) =>
+      run(() => ExpenseApprovals.clearExpenseApproval(database, session, attempt)),
     readMoney: (session: Session, target: MoneyCacheTarget) =>
       run(() => MoneyReads.readMoney(database, session, target)),
     saveMoney: (session: Session, entry: MoneyCacheEntry, current: () => boolean) =>
