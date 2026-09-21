@@ -64,12 +64,21 @@ function RuleRow({ rule }: { rule: RecurringRule }) {
   );
 }
 function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
+  const router = useRouter();
   const config = rule.configuration,
     schedule = config.schedule;
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   return (
     <>
       <RuleSummary rule={rule} />
+      {rule.status !== "cancelled" ? (
+        <NativeAction
+          label="Edit recurring configuration"
+          onPress={() =>
+            router.push({ pathname: "/recurring-entry", params: { ruleId: rule.ruleId } })
+          }
+        />
+      ) : null}
       <Section title="Configuration">
         <Note>Payer: {config.payerId === actor ? "You" : "Other household member"}</Note>
         <Note>

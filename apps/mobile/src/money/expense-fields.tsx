@@ -15,6 +15,9 @@ interface Props {
   first: () => void;
   title?: string;
   reviewLabel?: string;
+  variable?: boolean;
+  dateLabel?: string;
+  payerLabel?: string;
 }
 export function ExpenseFields(props: Props) {
   const { draft, options, disabled } = props,
@@ -34,26 +37,20 @@ export function ExpenseFields(props: Props) {
             placeholder="What was it for?"
             editable={!disabled}
           />
-          <ExpenseAmountFields draft={draft} disabled={disabled} />
-          <Text>Paid by</Text>
+          {!props.variable ? <ExpenseAmountFields draft={draft} disabled={disabled} /> : null}
+          <Text>{props.payerLabel ?? "Paid by"}</Text>
           <Picker selectedValue={draft.payerId} onValueChange={draft.setPayer} enabled={!disabled}>
             {options.members.map((member) => (
               <Picker.Item key={member.actorId} label={member.displayName} value={member.actorId} />
             ))}
           </Picker>
-          <Text>Split</Text>
-          <Picker selectedValue={draft.split} onValueChange={draft.setSplit} enabled={!disabled}>
-            <Picker.Item label="Equal" value="equal" />
-            <Picker.Item label="Exact amounts" value="exact" />
-            <Picker.Item label="Percentage" value="percentage" />
-          </Picker>
-          <SplitFields {...props} />
+          {!props.variable ? <AllocationFields {...props} /> : null}
           <Text>Note (optional)</Text>
           <TextInput value={draft.note} multiline editable={!disabled} />
           <CategoryFields {...props} />
         </Column>
       </Host>
-      <Section title="Date">
+      <Section title={props.dateLabel ?? "Date"}>
         <DateTimePicker
           value={draft.date}
           mode="date"
@@ -140,6 +137,21 @@ function CategoryFields({ draft, options, disabled }: Props) {
           />
         ))}
       </Picker>
+    </>
+  );
+}
+
+function AllocationFields(props: Props) {
+  const { draft, disabled } = props;
+  return (
+    <>
+      <Text>Split</Text>
+      <Picker selectedValue={draft.split} onValueChange={draft.setSplit} enabled={!disabled}>
+        <Picker.Item label="Equal" value="equal" />
+        <Picker.Item label="Exact amounts" value="exact" />
+        <Picker.Item label="Percentage" value="percentage" />
+      </Picker>
+      <SplitFields {...props} />
     </>
   );
 }

@@ -39,6 +39,10 @@ export function MoneyHeader({
         label="Review receipt uploads"
         onPress={() => router.push("/receipt-uploads")}
       />
+      <NativeAction
+        label="Set up recurring expense"
+        onPress={() => router.push("/recurring-entry")}
+      />
       <NativeAction label="Recurring expenses" onPress={() => router.push("/recurring-rules")} />
       <NativeAction label="Record an expense" onPress={() => router.push("/expense-entry")} />
       <NativeAction label="Record a settlement" onPress={() => router.push("/settlement-entry")} />
