@@ -76,6 +76,8 @@ async function initializeMoney(tx: Transaction) {
       actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
   await tx.run(`CREATE TABLE IF NOT EXISTS correction_approval_attempts (
       actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household,approval_id))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS recurring_approval_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household,approval_id))`);
   await tx.run(`CREATE TABLE IF NOT EXISTS correction_save_attempts (
       actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
   await tx.run(`CREATE TABLE IF NOT EXISTS refund_save_attempts (
