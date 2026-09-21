@@ -85,6 +85,14 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
           router.push({ pathname: "/recurring-state", params: { ruleId: rule.ruleId } })
         }
       />
+      {config.mode === "variable" && rule.status === "active" ? (
+        <NativeAction
+          label="Record due variable bill"
+          onPress={() =>
+            router.push({ pathname: "/recurring-variable", params: { ruleId: rule.ruleId } })
+          }
+        />
+      ) : null}
       <Section title="Configuration">
         <Note>Payer: {config.payerId === actor ? "You" : "Other household member"}</Note>
         <Note>
