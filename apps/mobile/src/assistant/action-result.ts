@@ -1,3 +1,4 @@
+import { SettlementApprovalEnvelope } from "@nest/contracts/settlement-approval";
 import { ExpenseApprovalEnvelope } from "@nest/contracts/expense-approval";
 import { agendaHandoff } from "./agenda-handoff.ts";
 import { ingredientHandoff } from "./ingredient-handoff.ts";
@@ -164,8 +165,8 @@ function successHref(action: AssistantAction, value: object) {
     };
   const meal = mealHref(action, value);
   if (meal) return meal;
-  if (action === "proposeExpense" && Schema.is(ExpenseApprovalEnvelope)(value))
-    return { pathname: "/expense-approval" as const, params: { approvalId: value.approval.id } };
+  const financial = financialHref(action, value);
+  if (financial) return financial;
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
     return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
   return destinations[action];
@@ -270,4 +271,12 @@ function proposalHandoff(part: { state?: unknown; output?: unknown }) {
       params: { proposalId: proposal.proposalId, weekStart: proposal.weekStart },
     },
   };
+}
+
+function financialHref(action: AssistantAction, value: object) {
+  if (action === "proposeSettlement" && Schema.is(SettlementApprovalEnvelope)(value))
+    return { pathname: "/settlement-approval" as const, params: { approvalId: value.approval.id } };
+  if (action === "proposeExpense" && Schema.is(ExpenseApprovalEnvelope)(value))
+    return { pathname: "/expense-approval" as const, params: { approvalId: value.approval.id } };
+  return null;
 }

@@ -23,7 +23,10 @@ test("settlement tool result describes its historical action without asserting c
     output: { ok: true, value },
   });
   assert.equal(card.label, "Settlement proposal created · this action posted no money");
-  assert.equal(card.href, "/finances");
+  assert.deepEqual(card.href, {
+    pathname: "/settlement-approval",
+    params: { approvalId: value.approval.id },
+  });
   assert.match(
     actionResult({ type: "tool-proposeSettlement", state: "input-available" }).label,
     /verify/,

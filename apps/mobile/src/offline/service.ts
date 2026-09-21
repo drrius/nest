@@ -1,3 +1,5 @@
+import * as SettlementApprovals from "./settlement-approvals.ts";
+import type { SettlementApprovalAttempt } from "../money/settlement-approval-attempt.ts";
 import * as ExpenseSaves from "./expense-saves.ts";
 import type { ExpenseSaveAttempt } from "../money/save-attempt.ts";
 import * as MoneyReads from "./money-reads.ts";
@@ -41,6 +43,7 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    ...settlementApprovalStore(database),
     readExpenseSave: (session: Session) =>
       run(() => ExpenseSaves.readExpenseSave(database, session)),
     stageExpenseSave: (session: Session, attempt: ExpenseSaveAttempt, current: () => boolean) =>
@@ -199,5 +202,20 @@ function calendarStore(database: Database) {
       run(() => AgendaSelections.readAgendaSelection(database, session)),
     saveAgendaSelection: (session: Session, selection: AgendaSelection | null) =>
       run(() => AgendaSelections.saveAgendaSelection(database, session, selection)),
+  };
+}
+
+function settlementApprovalStore(database: Database) {
+  return {
+    readSettlementApproval: (session: Session, approvalId: string) =>
+      run(() => SettlementApprovals.readSettlementApproval(database, session, approvalId)),
+    stageSettlementApproval: (
+      session: Session,
+      attempt: SettlementApprovalAttempt,
+      current: () => boolean,
+    ) =>
+      run(() => SettlementApprovals.stageSettlementApproval(database, session, attempt, current)),
+    clearSettlementApproval: (session: Session, attempt: SettlementApprovalAttempt) =>
+      run(() => SettlementApprovals.clearSettlementApproval(database, session, attempt)),
   };
 }
