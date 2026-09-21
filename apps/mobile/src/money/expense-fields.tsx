@@ -13,13 +13,15 @@ interface Props {
   disabled: boolean;
   next: () => void;
   first: () => void;
+  title?: string;
+  reviewLabel?: string;
 }
 export function ExpenseFields(props: Props) {
   const { draft, options, disabled } = props,
     colors = useQuiet(),
     scheme = useColorScheme();
   return (
-    <Section title="Expense">
+    <Section title={props.title ?? "Expense"}>
       <Host
         matchContents
         seedColor={colors.accent}
@@ -63,7 +65,11 @@ export function ExpenseFields(props: Props) {
       </Section>
       <CategoryPages {...props} />
       {draft.error ? <Note>{draft.error}</Note> : null}
-      <NativeAction label="Review and record expense" disabled={disabled} onPress={draft.submit} />
+      <NativeAction
+        label={props.reviewLabel ?? "Review and record expense"}
+        disabled={disabled}
+        onPress={draft.submit}
+      />
     </Section>
   );
 }

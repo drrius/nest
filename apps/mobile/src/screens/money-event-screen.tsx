@@ -134,6 +134,21 @@ function EntryExtras({ detail }: { detail: typeof MoneyDetail.Type }) {
           <NativeAction label="View reversal" onPress={() => open(detail.reversedById!)} />
         </Section>
       ) : null}
+      <EntryActions detail={detail} />
+      {event.kind === "settlement" ? (
+        <Note>
+          This records an entered payment; Nest does not transfer money or verify bank transactions.
+        </Note>
+      ) : null}
+    </>
+  );
+}
+
+function EntryActions({ detail }: { detail: typeof MoneyDetail.Type }) {
+  const router = useRouter(),
+    { event } = detail;
+  return (
+    <>
       {["expense", "replacement"].includes(event.kind) && detail.reversedById === null ? (
         <NativeAction
           label="Record a refund"
@@ -142,10 +157,13 @@ function EntryExtras({ detail }: { detail: typeof MoneyDetail.Type }) {
           }
         />
       ) : null}
-      {event.kind === "settlement" ? (
-        <Note>
-          This records an entered payment; Nest does not transfer money or verify bank transactions.
-        </Note>
+      {event.kind !== "reversal" ? (
+        <NativeAction
+          label="Correct this entry"
+          onPress={() =>
+            router.push({ pathname: "/correction-entry", params: { sourceEventId: event.eventId } })
+          }
+        />
       ) : null}
     </>
   );
