@@ -1,3 +1,5 @@
+import { RefundInput } from "./refund.ts";
+import { RefundApprovalEnvelope } from "./refund-approval.ts";
 import { SettlementInput } from "./settlement.ts";
 import { SettlementApprovalEnvelope } from "./settlement-approval.ts";
 import { ExpenseInput } from "./expense.ts";
@@ -66,6 +68,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeRefund: RefundInput,
   proposeSettlement: SettlementInput,
   proposeExpense: ExpenseInput,
   generateMealProposal: GenerateMealProposalInput,
@@ -110,6 +113,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeRefund: RefundApprovalEnvelope,
   proposeSettlement: SettlementApprovalEnvelope,
   proposeExpense: ExpenseApprovalEnvelope,
   generateMealProposal: MealProposalGenerationReceipt,

@@ -1,3 +1,4 @@
+import { matchesRefundProposal } from "../money/refund-proposal.ts";
 import { matchesSettlementProposal } from "../money/settlement-proposal.ts";
 import { matchesExpenseProposal } from "../money/expense-proposal.ts";
 import { matchesProposalAction } from "../meal-planning/matches-assistant.ts";
@@ -10,6 +11,7 @@ import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 const financialProposals = {
   proposeExpense: matchesExpenseProposal,
+  proposeRefund: matchesRefundProposal,
   proposeSettlement: matchesSettlementProposal,
 };
 type Member = { userId: string; householdId: string };
