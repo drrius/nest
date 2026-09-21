@@ -1,3 +1,4 @@
+import { readSettlementSave, cancelSettlementSave } from "./settlement-save-read.ts";
 import { settlementApprovals } from "./settlement-approval.ts";
 import { settlementCommands } from "./settlement.ts";
 import { readMoneyCategories } from "./categories.ts";
@@ -81,13 +82,18 @@ function categoryRoute(url: URL, config: IdentityConfig, caller: AuthorizedCalle
 }
 
 function settlementRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
-  if (new URL(request.url).pathname.includes("/approval"))
-    return settlementApprovalRoute(request, config, caller);
+  const url = new URL(request.url);
+  if (url.pathname === "/v1/money/settlement/receipt")
+    return !singleParam(url.searchParams, "operationId")
+      ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+      : readSettlementSave(config, caller, { operationId: url.searchParams.get("operationId") });
+  if (url.pathname.includes("/approval")) return settlementApprovalRoute(request, config, caller);
   return Effect.gen(function* () {
     const url = new URL(request.url);
     if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
     const input = yield* commandBody(request, 65536),
       commands = settlementCommands(config, caller);
+    if (url.pathname.endsWith("/cancel")) return yield* cancelSettlementSave(config, caller, input);
     return yield* url.pathname.endsWith("/execute")
       ? commands.execute(input)
       : commands.save(input);

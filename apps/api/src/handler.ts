@@ -144,6 +144,8 @@ const methods: Record<string, string> = {
   "/v1/money/expense/save": "POST",
   "/v1/money/settlement/approval": "GET",
   "/v1/money/settlement/approval/decide": "POST",
+  "/v1/money/settlement/receipt": "GET",
+  "/v1/money/settlement/cancel": "POST",
   "/v1/money/settlement/save": "POST",
   "/v1/money/settlement/execute": "POST",
   "/v1/money/expense/receipt": "GET",

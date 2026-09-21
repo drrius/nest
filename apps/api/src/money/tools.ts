@@ -1,3 +1,4 @@
+import { settlementSaveTool } from "./settlement-save-tool.ts";
 import { expenseSaveTool } from "./expense-save-tool.ts";
 import { moneyCategoryTool, moneyCategoriesTool } from "./category-tool.ts";
 import { MoneyDetailQuery } from "@nest/contracts/money-detail";
@@ -12,6 +13,7 @@ import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { readMoneyBalance } from "./read.ts";
 export function moneyTools(request: Request, config: IdentityConfig) {
   return {
+    readSettlementSave: settlementSaveTool(request, config),
     readExpenseSave: expenseSaveTool(request, config),
     listMoneyCategories: moneyCategoriesTool(request, config),
     readMoneyCategory: moneyCategoryTool(request, config),

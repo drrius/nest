@@ -18,6 +18,10 @@ export function sessionMoney(auth: SupabaseClient["auth"], account: Account, api
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideSettlement: (input: SettlementDecision) =>
       client.decideSettlement(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recoverSettlement: (input: SettlementSave) =>
+      client.recoverSettlement(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelSettlement: (input: SettlementSave) =>
+      client.cancelSettlement(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveSettlement: (input: SettlementSave) =>
       client.saveSettlement(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     cancelExpense: (input: ExpenseSave) =>
