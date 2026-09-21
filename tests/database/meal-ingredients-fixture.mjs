@@ -55,9 +55,7 @@ export function fixture(t) {
 
 export function installIngredientStorage(db) {
   // Only the audited legacy grocery columns needed by the new writer; no production data.
-  db.sql(
-    `alter table public.grocery_items add column quantity text check(length(quantity)<=80), add column unit text check(length(unit)<=80), add column category_id uuid, add column note text check(length(note)<=1000), add column originating_meal_plan_entry_id uuid, add column sort_order integer not null default 0; alter table public.grocery_items add constraint fixture_name check(length(trim(name)) between 1 and 120)`,
-  );
+  db.file("tests/database/meal-ingredient-groceries-fixture.sql");
   db.file(migration);
   db.file("supabase/migrations/20260921081725_native_meal_ingredient_review.sql");
 }

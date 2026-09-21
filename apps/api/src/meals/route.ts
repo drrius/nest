@@ -1,3 +1,4 @@
+import { mealIngredientsRoute } from "./ingredients.ts";
 import type { mealProposalRoute } from "../meal-planning/route.ts";
 import { editMealPreparation } from "./preparation-edit.ts";
 import { createMealPreparation } from "./preparation-create.ts";
@@ -26,6 +27,8 @@ export function mealRoute(
   caller: AuthorizedCaller,
   proposals: ReturnType<typeof mealProposalRoute>,
 ) {
+  if (new URL(request.url).pathname.startsWith("/v1/meals/ingredients/"))
+    return mealIngredientsRoute(request, config, caller);
   if (new URL(request.url).pathname.startsWith("/v1/meals/proposal"))
     return proposals(request, caller);
   if (new URL(request.url).pathname === "/v1/meals/preparation")
