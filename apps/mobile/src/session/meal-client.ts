@@ -25,6 +25,12 @@ import { sessionCredentials } from "./credentials";
 export function sessionMeals(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = mealClient(apiUrl, account, sessionCredentials(auth));
   return {
+    ingredients: {
+      read: (input: Parameters<typeof client.ingredients.read>[0]) =>
+        client.ingredients.read(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+      add: (input: Parameters<typeof client.ingredients.add>[0]) =>
+        client.ingredients.add(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    },
     proposals: nativeProposals(client.proposals),
     editPreparation: (input: EditMealPreparation) =>
       client.editPreparation(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),

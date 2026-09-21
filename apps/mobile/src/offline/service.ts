@@ -1,4 +1,5 @@
 import * as MealProposals from "./meal-proposals.ts";
+import * as MealIngredients from "./meal-ingredients.ts";
 import * as PlannedRecipes from "./planned-recipes.ts";
 import type { ReadPlannedRecipe } from "@nest/contracts/recipe-selection";
 import * as MealWeeks from "./meal-weeks.ts";
@@ -33,6 +34,7 @@ export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
     ...proposalStore(database),
+    ...ingredientStore(database),
     readPlannedRecipe: (session: Session, target: ReadPlannedRecipe) =>
       run(() => PlannedRecipes.readPlannedRecipe(database, session, target)),
     savePlannedRecipe: (
@@ -89,6 +91,29 @@ export class OfflineStore extends Context.Service<
 >()("nest/OfflineStore") {}
 export const offlineLayer = (database: Database) =>
   Layer.succeed(OfflineStore, makeOfflineStore(database));
+
+function ingredientStore(database: Database) {
+  return {
+    readIngredientAttempt: (session: Session, week: string) =>
+      run(() => MealIngredients.readIngredientAttempt(database, session, week)),
+    saveIngredientDraft: (
+      session: Session,
+      input: Parameters<typeof MealIngredients.saveIngredientDraft>[2],
+    ) => run(() => MealIngredients.saveIngredientDraft(database, session, input)),
+    stageIngredientAddition: (
+      session: Session,
+      input: Parameters<typeof MealIngredients.stageIngredientAddition>[2],
+    ) => run(() => MealIngredients.stageIngredientAddition(database, session, input)),
+    recordIngredientAddition: (
+      session: Session,
+      receipt: Parameters<typeof MealIngredients.recordIngredientAddition>[2],
+    ) => run(() => MealIngredients.recordIngredientAddition(database, session, receipt)),
+    clearIngredientAddition: (
+      session: Session,
+      target: Parameters<typeof MealIngredients.clearIngredientAddition>[2],
+    ) => run(() => MealIngredients.clearIngredientAddition(database, session, target)),
+  };
+}
 
 function proposalStore(database: Database) {
   return {
