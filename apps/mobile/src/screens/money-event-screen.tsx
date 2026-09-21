@@ -134,6 +134,14 @@ function EntryExtras({ detail }: { detail: typeof MoneyDetail.Type }) {
           <NativeAction label="View reversal" onPress={() => open(detail.reversedById!)} />
         </Section>
       ) : null}
+      {["expense", "replacement"].includes(event.kind) && detail.reversedById === null ? (
+        <NativeAction
+          label="Record a refund"
+          onPress={() =>
+            router.push({ pathname: "/refund-entry", params: { sourceEventId: event.eventId } })
+          }
+        />
+      ) : null}
       {event.kind === "settlement" ? (
         <Note>
           This records an entered payment; Nest does not transfer money or verify bank transactions.

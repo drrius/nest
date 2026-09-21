@@ -50,6 +50,7 @@ function Navigation() {
         <Stack.Screen name="finances" options={{ title: "Money" }} />
         <Stack.Screen name="grocery-expense" options={{ title: "Record grocery expense" }} />
         <Stack.Screen name="expense-entry" options={{ title: "Record expense" }} />
+        <Stack.Screen name="refund-entry" options={{ title: "Record refund" }} />
         <Stack.Screen name="settlement-entry" options={{ title: "Record settlement" }} />
         <Stack.Screen name="settlement-approval" options={{ title: "Review settlement" }} />
         <Stack.Screen name="expense-approval" options={{ title: "Review expense" }} />
