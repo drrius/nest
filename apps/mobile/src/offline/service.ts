@@ -1,3 +1,5 @@
+import * as MoneyReads from "./money-reads.ts";
+import type { MoneyCacheEntry, MoneyCacheTarget } from "./money-contract.ts";
 import * as AgendaSelections from "./agenda-selection.ts";
 import type { AgendaSelection } from "../calendar/agenda-selection.ts";
 import * as MealProposals from "./meal-proposals.ts";
@@ -35,6 +37,11 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    readMoney: (session: Session, target: MoneyCacheTarget) =>
+      run(() => MoneyReads.readMoney(database, session, target)),
+    saveMoney: (session: Session, entry: MoneyCacheEntry, current: () => boolean) =>
+      run(() => MoneyReads.saveMoney(database, session, entry, current)),
+    clearMoney: (session: Session) => run(() => MoneyReads.clearMoney(database, session)),
     ...proposalStore(database),
     ...ingredientStore(database),
     readPlannedRecipe: (session: Session, target: ReadPlannedRecipe) =>

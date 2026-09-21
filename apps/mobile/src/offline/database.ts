@@ -9,6 +9,9 @@ export interface Database {
 
 export const initialize = (database: Database) =>
   database.transaction(async (tx) => {
+    await tx.run(`CREATE TABLE IF NOT EXISTS offline_money_reads (
+      actor TEXT NOT NULL,household TEXT NOT NULL,kind TEXT NOT NULL,target TEXT NOT NULL,data TEXT NOT NULL,
+      PRIMARY KEY(actor,household,kind,target))`);
     await tx.run(
       `CREATE TABLE IF NOT EXISTS agenda_selection (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
     );
