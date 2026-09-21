@@ -1,3 +1,4 @@
+import { RefundApprovalEnvelope } from "@nest/contracts/refund-approval";
 import { SettlementApprovalEnvelope } from "@nest/contracts/settlement-approval";
 import { ExpenseApprovalEnvelope } from "@nest/contracts/expense-approval";
 import { agendaHandoff } from "./agenda-handoff.ts";
@@ -276,6 +277,8 @@ function proposalHandoff(part: { state?: unknown; output?: unknown }) {
 }
 
 function financialHref(action: AssistantAction, value: object) {
+  if (action === "proposeRefund" && Schema.is(RefundApprovalEnvelope)(value))
+    return { pathname: "/refund-approval" as const, params: { approvalId: value.approval.id } };
   if (action === "proposeSettlement" && Schema.is(SettlementApprovalEnvelope)(value))
     return { pathname: "/settlement-approval" as const, params: { approvalId: value.approval.id } };
   if (action === "proposeExpense" && Schema.is(ExpenseApprovalEnvelope)(value))

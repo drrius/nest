@@ -1,3 +1,5 @@
+import * as RefundApprovals from "./refund-approvals.ts";
+import type { RefundApprovalAttempt } from "../money/refund-approval-attempt.ts";
 import * as RefundSaves from "./refund-saves.ts";
 import type { RefundSaveAttempt } from "../money/refund-save-attempt.ts";
 import * as SettlementSaves from "./settlement-saves.ts";
@@ -48,6 +50,7 @@ export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
     ...settlementApprovalStore(database),
+    ...refundApprovalStore(database),
     ...settlementSaveStore(database),
     ...refundSaveStore(database),
     readExpenseSave: (session: Session) =>
@@ -247,5 +250,19 @@ function refundSaveStore(database: Database) {
       run(() => RefundSaves.stageRefundSave(database, session, attempt, current)),
     clearRefundSave: (session: Session, attempt: RefundSaveAttempt) =>
       run(() => RefundSaves.clearRefundSave(database, session, attempt)),
+  };
+}
+
+function refundApprovalStore(database: Database) {
+  return {
+    readRefundApproval: (session: Session, approvalId: string) =>
+      run(() => RefundApprovals.readRefundApproval(database, session, approvalId)),
+    stageRefundApproval: (
+      session: Session,
+      attempt: RefundApprovalAttempt,
+      current: () => boolean,
+    ) => run(() => RefundApprovals.stageRefundApproval(database, session, attempt, current)),
+    clearRefundApproval: (session: Session, attempt: RefundApprovalAttempt) =>
+      run(() => RefundApprovals.clearRefundApproval(database, session, attempt)),
   };
 }
