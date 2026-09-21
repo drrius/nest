@@ -3,7 +3,7 @@ import { AppState } from "react-native";
 import { useFocusEffect } from "expo-router";
 import { onNetwork, networkState } from "../offline/network";
 import type { ExpenseSaveRuntime } from "./save-runtime";
-export function useSaveActivity(runtime: ExpenseSaveRuntime) {
+export function useSaveActivity(runtime: Pick<ExpenseSaveRuntime, "setActive" | "setOnline">) {
   useFocusEffect(
     useCallback(() => {
       let live = true,

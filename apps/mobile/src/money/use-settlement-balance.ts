@@ -1,0 +1,55 @@
+import { useEffect, useMemo, useState } from "react";
+import * as Effect from "effect/Effect";
+import * as Schema from "effect/Schema";
+import type { MoneyBalance } from "@nest/contracts/money";
+import { OfflineFailure } from "../offline/contracts";
+import { PreferenceFailure } from "../preferences/client";
+import { settlementEntryOptions } from "./settlement-entry-options";
+import type { MoneyScreenAccount } from "./screen-gate";
+interface Loaded {
+  token: object;
+  value: typeof MoneyBalance.Type | null;
+  verify: boolean;
+  failed: boolean;
+}
+export function useSettlementBalance(props: MoneyScreenAccount, active: boolean, online: boolean) {
+  const [revision, setRevision] = useState(0);
+  const [loaded, setLoaded] = useState<Loaded | null>(null);
+  const token = useMemo(
+    () => ({ account: props.account, client: props.client, active, online, revision }),
+    [props.account, props.client, active, online, revision],
+  );
+  useEffect(() => {
+    if (!active || !online) return;
+    const controller = new AbortController();
+    void Effect.runPromise(settlementEntryOptions(props.account, props.client), {
+      signal: controller.signal,
+    }).then(
+      (value) => {
+        if (!controller.signal.aborted) setLoaded({ token, value, verify: false, failed: false });
+      },
+      (error) => {
+        if (!controller.signal.aborted)
+          setLoaded({ token, value: null, verify: denied(error), failed: true });
+      },
+    );
+    return () => controller.abort();
+  }, [props.account, props.client, active, online, token]);
+  return {
+    ...balanceView(loaded, token, active && online),
+    reload: () => setRevision((value) => value + 1),
+  };
+}
+function balanceView(loaded: Loaded | null, token: object, available: boolean) {
+  const current = available && loaded?.token === token ? loaded : null;
+  return {
+    value: current?.value ?? null,
+    failed: current?.failed ?? false,
+    verify: loaded?.verify ?? false,
+  };
+}
+
+function denied(error: unknown) {
+  if (Schema.is(OfflineFailure)(error)) return error.reason === "session_changed";
+  return Schema.is(PreferenceFailure)(error) && ["session", "forbidden"].includes(error.code);
+}

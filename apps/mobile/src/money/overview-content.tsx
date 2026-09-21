@@ -36,6 +36,7 @@ export function MoneyHeader({
         <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} />
       </Section>
       <NativeAction label="Record an expense" onPress={() => router.push("/expense-entry")} />
+      <NativeAction label="Record a settlement" onPress={() => router.push("/settlement-entry")} />
       <Section title="History">
         <Note>
           Original and corrective entries stay visible. This page does not determine your balance.
