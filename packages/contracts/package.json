@@ -41,7 +41,8 @@
     "./money-category": "./src/money-category.ts",
     "./expense-save-read": "./src/expense-save-read.ts",
     "./expense": "./src/expense.ts",
-    "./expense-approval": "./src/expense-approval.ts"
+    "./expense-approval": "./src/expense-approval.ts",
+    "./settlement": "./src/settlement.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
