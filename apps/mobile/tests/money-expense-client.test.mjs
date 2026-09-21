@@ -55,6 +55,7 @@ test("native Save recovery retains the exact intended expense when receipt reads
     actorId: id(1),
     householdId: id(10),
     operationId: command.operationId,
+    status: "recorded",
     receipt,
   };
   const recover = (value, input = command) =>
@@ -63,8 +64,11 @@ test("native Save recovery retains the exact intended expense when receipt reads
         .recoverExpense(input)
         .pipe(Effect.provideService(Fetch.Fetch, async () => Response.json(value))),
     );
-  assert.deepEqual(await recover(result), receipt);
-  assert.equal(await recover({ ...result, receipt: null }), null);
+  assert.deepEqual(await recover(result), result);
+  assert.equal(
+    (await recover({ ...result, status: "unresolved", receipt: null })).status,
+    "unresolved",
+  );
   for (const patch of [{ actorId: id(2) }, { householdId: id(20) }, { operationId: id(103) }])
     await assert.rejects(recover({ ...result, ...patch, receipt: null }), { code: "unavailable" });
   await assert.rejects(
@@ -75,4 +79,34 @@ test("native Save recovery retains the exact intended expense when receipt reads
     code: "unavailable",
   });
   await assert.rejects(recover(result, { ...command, actorId: id(2) }), { code: "invalid" });
+});
+
+test("native cancellation sends only the operation and validates the exact terminal expense", async () => {
+  const value = {
+    version: 1,
+    actorId: id(1),
+    householdId: id(10),
+    operationId: command.operationId,
+    status: "cancelled",
+    receipt: null,
+  };
+  const cancel = (response) =>
+    Effect.runPromise(
+      client.cancelExpense(command).pipe(
+        Effect.provideService(Fetch.Fetch, async (url, init) => {
+          assert.equal(String(url), "http://localhost/v1/money/expense/cancel");
+          assert.equal(init.method, "POST");
+          assert.deepEqual(JSON.parse(init.body), { operationId: command.operationId });
+          return Response.json(response);
+        }),
+      ),
+    );
+  assert.deepEqual(await cancel(value), value);
+  assert.deepEqual((await cancel({ ...value, status: "recorded", receipt })).receipt, receipt);
+  for (const patch of [
+    { status: "unresolved" },
+    { actorId: id(2) },
+    { status: "recorded", receipt: { ...receipt, expense: payload({ note: "Other" }) } },
+  ])
+    await assert.rejects(cancel({ ...value, ...patch }), { code: "unavailable" });
 });

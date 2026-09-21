@@ -15,24 +15,32 @@ export function expenseClient(
   credentials: Effect.Effect<Credentials, ChoreFailure>,
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
+  const status = (input: ExpenseSave, cancel: boolean) =>
+    Effect.gen(function* () {
+      const command = yield* prepare(input);
+      const value = yield* cancel
+        ? request("v1/money/expense/cancel", ExpenseSaveResult, {
+            operationId: command.operationId,
+          })
+        : request(
+            `v1/money/expense/receipt?${new URLSearchParams({ operationId: command.operationId })}`,
+            ExpenseSaveResult,
+          );
+      if (
+        value.actorId !== account.actor ||
+        value.householdId !== account.household ||
+        value.operationId !== command.operationId
+      )
+        return yield* new PreferenceFailure({ code: "unavailable" });
+      if (value.receipt !== null && !equivalent(value.receipt.expense, command.expense))
+        return yield* new PreferenceFailure({ code: "unavailable" });
+      if (cancel && value.status === "unresolved")
+        return yield* new PreferenceFailure({ code: "unavailable" });
+      return value;
+    });
   return {
-    recoverExpense: (input: ExpenseSave) =>
-      Effect.gen(function* () {
-        const command = yield* prepare(input);
-        const value = yield* request(
-          `v1/money/expense/receipt?${new URLSearchParams({ operationId: command.operationId })}`,
-          ExpenseSaveResult,
-        );
-        if (
-          value.actorId !== account.actor ||
-          value.householdId !== account.household ||
-          value.operationId !== command.operationId
-        )
-          return yield* new PreferenceFailure({ code: "unavailable" });
-        if (value.receipt !== null && !equivalent(value.receipt.expense, command.expense))
-          return yield* new PreferenceFailure({ code: "unavailable" });
-        return value.receipt;
-      }),
+    recoverExpense: (input: ExpenseSave) => status(input, false),
+    cancelExpense: (input: ExpenseSave) => status(input, true),
     saveExpense: (input: ExpenseSave) =>
       Effect.gen(function* () {
         const { operationId, expense } = yield* prepare(input);

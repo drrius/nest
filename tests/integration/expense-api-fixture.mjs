@@ -9,6 +9,7 @@ export async function expenseApiFixture(t) {
     "supabase/migrations/20260919213407_native_action_approvals.sql",
     "supabase/migrations/20260921114330_native_expense_command.sql",
     "supabase/migrations/20260921120149_native_expense_approval.sql",
+    "supabase/migrations/20260921130419_native_expense_save_cancel.sql",
     "supabase/migrations/20260921103207_native_money_balance_read.sql",
   ]);
   const server = nodeServer(

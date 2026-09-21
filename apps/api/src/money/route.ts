@@ -1,4 +1,4 @@
-import { readExpenseSave } from "./expense-save-read.ts";
+import { readExpenseSave, cancelExpenseSave } from "./expense-save-read.ts";
 import { readMoneyCategory } from "./category.ts";
 import { expenseApprovals } from "./expense-approval.ts";
 import { expenseCommands } from "./expense.ts";
@@ -23,6 +23,7 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
       if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
       const commands = expenseCommands(config, caller);
       const input = yield* commandBody(request, 65536);
+      if (url.pathname.endsWith("/cancel")) return yield* cancelExpenseSave(config, caller, input);
       return yield* url.pathname.endsWith("/execute")
         ? commands.execute(input)
         : commands.save(input);

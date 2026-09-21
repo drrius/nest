@@ -10,6 +10,8 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    cancelExpense: (input: ExpenseSave) =>
+      client.cancelExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverExpense: (input: ExpenseSave) =>
       client.recoverExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveExpense: (input: ExpenseSave) =>

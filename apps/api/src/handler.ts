@@ -143,6 +143,7 @@ const methods: Record<string, string> = {
   "/v1/money/approval/decide": "POST",
   "/v1/money/expense/save": "POST",
   "/v1/money/expense/receipt": "GET",
+  "/v1/money/expense/cancel": "POST",
   "/v1/money/expense/execute": "POST",
   "/v1/money/balance": "GET",
   "/v1/money/history": "GET",
