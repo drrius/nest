@@ -1,3 +1,4 @@
+import { expenseApprovals } from "./expense-approval.ts";
 import { expenseCommands } from "./expense.ts";
 import { commandBody } from "../request-body.ts";
 import { readMoneyDetail } from "./detail.ts";
@@ -10,7 +11,8 @@ import { readMoneyHistory } from "./history.ts";
 export function moneyRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url),
     params = url.searchParams;
-  if (url.pathname === "/v1/money/expense/save" || url.pathname === "/v1/money/expense/execute")
+  if (url.pathname.startsWith("/v1/money/approval")) return approvalRoute(request, config, caller);
+  if (url.pathname.startsWith("/v1/money/expense/"))
     return Effect.gen(function* () {
       if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
       const commands = expenseCommands(config, caller);
@@ -30,4 +32,18 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
   if (params.size > 1 || [...params.keys()].some((key) => key !== "before"))
     return Effect.fail(new ApiFailure({ code: "invalid_request" }));
   return readMoneyHistory(config, caller, { before: params.get("before") });
+}
+
+function approvalRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
+  return Effect.gen(function* () {
+    const url = new URL(request.url),
+      commands = expenseApprovals(config, caller);
+    if (url.pathname === "/v1/money/approval") {
+      if (url.searchParams.size !== 1 || !url.searchParams.has("approvalId"))
+        return yield* new ApiFailure({ code: "invalid_request" });
+      return yield* commands.read({ approvalId: url.searchParams.get("approvalId") });
+    }
+    if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
+    return yield* commands.decide(yield* commandBody(request, 65536));
+  });
 }
