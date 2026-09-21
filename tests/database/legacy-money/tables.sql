@@ -110,4 +110,3 @@ create table public.ledger_entries (
 
 create index ledger_entries_household_member_idx
   on public.ledger_entries (household_id, member_id);
-

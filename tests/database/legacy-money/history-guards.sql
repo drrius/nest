@@ -58,4 +58,3 @@ after insert on public.ledger_entries
 referencing new table as inserted_ledger_entries
 for each statement
 execute function private.enforce_ledger_entries_zero_sum();
-
