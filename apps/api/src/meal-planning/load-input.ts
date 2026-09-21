@@ -35,12 +35,31 @@ export function loadGenerationInput(
   rpc: ReturnType<typeof planningServerRpc>,
   proposal: MealProposal,
 ) {
+  return loadPlanningInput(config, caller, rpc, { proposal, selection: null });
+}
+type Selection = { definitionId: string; expectedRevision: string };
+function selectedLibrary(config: IdentityConfig, caller: AuthorizedCaller, selection: Selection) {
+  return readSavedMeal(config, caller, selection).pipe(
+    Effect.map((value) => ({
+      householdId: value.householdId,
+      revision: value.revision,
+      recipes: value.recipe ? [value.recipe] : [],
+    })),
+  );
+}
+export function loadPlanningInput(
+  config: IdentityConfig,
+  caller: AuthorizedCaller,
+  rpc: ReturnType<typeof planningServerRpc>,
+  input: { proposal: MealProposal; selection: Selection | null },
+) {
+  const { proposal, selection } = input;
   return Effect.gen(function* () {
     const reads = yield* Effect.all(
       {
         context: readPlanningContext(rpc, caller.member),
         week: readMealWeek(config, caller, { weekStart: proposal.weekStart }),
-        library: shortlist(config, caller),
+        library: selection ? selectedLibrary(config, caller, selection) : shortlist(config, caller),
         busy: readBusySnapshots(config, caller),
       },
       { concurrency: 4 },

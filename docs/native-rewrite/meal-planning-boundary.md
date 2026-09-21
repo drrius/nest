@@ -92,4 +92,10 @@ An owner reserves a replace or saved-choice operation against the exact ready pr
 
 The server completion transaction rechecks current membership, food/cooking/roster fingerprint and the whole meal-week revision, validates the exact target identity/date/slot and canonical selected source, then changes only that entry and advances the proposal revision once. Other reviewed saved recipes keep their original bodies even if the library later changes. Deadline is checked again after blocking validation locks. Approval or discard can win on another device; the edit then fails without overwriting that decision. Immutable completion receipts remain historical after later edits or approval. All functions use the existing proposal operation namespace; clients cannot claim workers, supply recipe content or access private tables.
 
-This gated storage candidate is tested only against synthetic PostgreSQL fixtures. Edit HTTP/native/assistant integration and hosted provider/device acceptance remain outstanding.
+The storage increment merged after exact-commit CI and Sol medium review. It is tested only against synthetic PostgreSQL fixtures. Native/assistant integration and hosted provider/device acceptance remain outstanding.
+
+## Edit API execution
+
+`POST /v1/meals/proposal/edit/reserve` persists the canonical native replace/choose command without invoking a model. `/edit/recover` reads its owner-only state by operation ID and expires abandoned work. `/edit` accepts the same original command, recovers terminal results immediately, loads current authorized planning input and obtains a server-only one-time claim. It compares the loaded context fingerprint and week with the claim before provider dispatch. A saved choice reads that exact authorized definition and library revision directly instead of depending on the bounded discovery shortlist; the captured source and fresh read must agree before the suitability check. Responses contain the strict public edit state and receipt, never worker identifiers, fingerprints or private planning input.
+
+This API candidate has local SDK/HTTP/PostgREST fault-injection evidence with simulated providers. It is not evidence of live dietary suitability, provider compatibility or iPhone interaction. Native controls and matching assistant actions still need implementation.

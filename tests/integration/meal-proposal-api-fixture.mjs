@@ -2,6 +2,7 @@ import { createRequire } from "node:module";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { recipeSelectionFiles } from "../database/recipe-selection-fixture.mjs";
 import { workerFiles, id } from "../database/meal-proposal-worker-fixture.mjs";
+import { editFiles } from "../database/meal-proposal-edit-fixture.mjs";
 import { approvalFiles } from "../database/meal-proposal-approval-fixture.mjs";
 import { migration, input } from "../database/meal-proposal-reservation-fixture.mjs";
 import { seed } from "../database/meal-planning-context-fixture.mjs";
@@ -18,6 +19,7 @@ const files = [
   migration,
   ...workerFiles,
   ...approvalFiles,
+  ...editFiles,
   "supabase/migrations/20260919214955_native_busy_snapshots.sql",
 ];
 export const command = (operation = 800) => ({ operationId: id(operation), ...input() });

@@ -8,6 +8,7 @@ import type { IdentityConfig } from "../supabase-identity.ts";
 import { planningServerRpc } from "./server-rpc.ts";
 import { proposalState } from "./proposal-state.ts";
 import { generateProposal } from "./generate-proposal.ts";
+import { proposalEditRoute } from "./edit-route.ts";
 import { approveProposal } from "./approve.ts";
 export type MealPlanningOptions = {
   model?: AssistantModel;
@@ -17,6 +18,7 @@ export function mealProposalRoute(config: IdentityConfig, options: MealPlanningO
   const rpc = options.planningSecret
     ? planningServerRpc(config, options.planningSecret)
     : undefined;
+  const edit = proposalEditRoute(config, options, rpc);
   const generate = (caller: AuthorizedCaller, input: unknown) =>
     Effect.gen(function* () {
       if (!options.model || !rpc) return yield* new ApiFailure({ code: "unavailable" });
@@ -33,6 +35,8 @@ export function mealProposalRoute(config: IdentityConfig, options: MealPlanningO
       }
       if (searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
       const input = yield* commandBody(request);
+      if (pathname.startsWith("/v1/meals/proposal/edit"))
+        return yield* edit(pathname, caller, input);
       if (pathname === "/v1/meals/proposal/approve")
         return { version: 1, receipt: yield* approveProposal(config, caller, input) };
       if (pathname === "/v1/meals/proposal/reserve")

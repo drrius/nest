@@ -12,6 +12,8 @@ const methods = {
   context: "nest_meal_planning_context",
   claim: "nest_claim_meal_proposal",
   finish: "nest_finish_meal_proposal",
+  editClaim: "nest_claim_proposal_edit",
+  editFinish: "nest_finish_proposal_edit",
 };
 // Server-only capability. Callers must derive actor/household from verified identity.
 export function planningServerRpc(config: IdentityConfig, secret: Redacted.Redacted<string>) {
