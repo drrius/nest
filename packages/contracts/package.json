@@ -63,6 +63,7 @@
     "./recurring-proposal": "./src/recurring-proposal.ts",
     "./recurring-variable-read": "./src/recurring-variable-read.ts",
     "./recurring-variable-approval": "./src/recurring-variable-approval.ts",
+    "./recurring-manual": "./src/recurring-manual.ts",
     "./recurring-variable": "./src/recurring-variable.ts",
     "./recurring-cycle": "./src/recurring-cycle.ts",
     "./recurring-state": "./src/recurring-state.ts",
