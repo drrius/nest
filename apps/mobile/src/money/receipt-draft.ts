@@ -5,7 +5,10 @@ import type {
 export function receiptDraft(view: ReceiptAttachmentView) {
   return {
     receiptPath: view.path,
-    receiptPending: view.busy !== null || !["empty", "uploaded"].includes(view.status),
+    receiptPending:
+      view.busy !== null ||
+      (view.status !== "empty" && view.path === null) ||
+      !["empty", "uploaded"].includes(view.status),
   };
 }
 export function receiptReady(view: ReceiptAttachmentView) {

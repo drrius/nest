@@ -68,6 +68,8 @@ test("confirmation recheck rejects changed receipt, backgrounding and disposal",
   assert.equal(receiptStillMatches(r, path), true);
   assert.equal(receiptStillMatches(r, null), false);
   r.setActive(false);
+  assert.equal(receiptDraft(r.getSnapshot()).receiptPending, true);
+  assert.equal(receiptDraft(r.getSnapshot()).receiptPath, null);
   assert.equal(receiptStillMatches(r, path), false);
   r.setActive(true);
   r.dispose();
