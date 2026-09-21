@@ -1,3 +1,4 @@
+import { archiveRecipe } from "./recipe-archive.ts";
 import { createRecipe } from "./recipe-creation.ts";
 import { mealLibraryRoute } from "./library-read.ts";
 import { replaceMeal } from "./replacement.ts";
@@ -20,6 +21,11 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
       return {
         version: 1,
         receipt: yield* createRecipe(config, caller, yield* commandBody(request, 2097152)),
+      };
+    if (path === "/v1/meals/recipe/archive")
+      return {
+        version: 1,
+        receipt: yield* archiveRecipe(config, caller, yield* commandBody(request)),
       };
     const command =
       path === "/v1/meals/replace"
