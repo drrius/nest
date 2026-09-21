@@ -4,6 +4,13 @@ import { CalendarDate } from "./chores.ts";
 import { MealSlot } from "./cooking.ts";
 import { Revision } from "./revision.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
+export const MealIngredientReviewHandoff = Schema.Struct({
+  kind: Schema.Literal("device_handoff"),
+  screen: Schema.Literal("meal-ingredients"),
+  householdId: Uuid,
+  weekStart: MealWeekStart,
+  revision: Revision,
+});
 const Source = { entryId: Uuid, ingredientId: Uuid };
 export const MealIngredientCursor = Schema.Struct(Source);
 export const IngredientQuantity = Schema.NullOr(StoredMealText(80));

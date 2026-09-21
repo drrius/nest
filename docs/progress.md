@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/native-ingredient-review`.** Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
+**M5 — Meals and week planning; branch `codex/ingredient-ai-handoff`.** Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -114,6 +114,16 @@ Eight focused checks pass: three native client cases, four actual SQLite cases a
 A protected week-specific screen is reachable from Meals and an approved proposal. It loads all revision-bound pages before enabling changes, shows retained meal provenance and missing/leftover source explanations, and virtualizes the ingredient rows. Native switches select only needed ingredients; a separate native quantity/unit editor preserves unknown values and exact text, warns before discarding unsaved edits and remains open on failed saves. Confirmation captures the saved draft sequence, stages the exact selected request in SQLite, then calls the real API. Refresh preserves exclusions and text edits; new/already-added sources remain unselected. Uncertain additions freeze edits and recover only through an explicit same-operation retry.
 
 Seventeen focused native client, controller, actual SQLite and native → HTTP/API/PostgREST/PostgreSQL checks pass. Eight controller cases include incomplete-page refusal, stale alerts/quantity editors, refresh reconciliation, storage-before-dispatch failure, cancellation, definite conflicts and revoked access; the actual controller restart journey preserves a partner correction and never duplicates groceries. Mobile types, scoped lint, full formatting and diff checks pass. iOS export succeeded at `/tmp/nest-native-ingredient-export`, bundle `19df9ee804aa0da1ab0b1e28d8674592`; this is packaging evidence only. CI and exact-commit Sol review remain required. Physical iPhone controls, alerts, back gestures, keyboard reachability and VoiceOver remain unverified. Checklist provenance and the corresponding assistant handoff are still next; M5 is not complete.
+
+### Ingredient assistant handoff — candidate
+
+The private assistant can read revision-bound retained ingredient pages and open a chosen week’s native review using the same current-membership and caller-token reads. Its tool guidance and chat instructions explicitly require native selections, pantry exclusions, quantity edits and separate confirmation; ordinary grocery additions must not bypass that review. The strictly decoded result card opens only the fixed native route and says nothing was added. No ingredient mutation tool or approval bypass is exposed.
+
+Forty-two focused assistant-card, real SDK, cancellation/history and actual SDK-tool → native controller → HTTP/PostgREST checks pass. Three new cases prove correct week handoff, zero grocery writes before explicit native confirmation, current/foreign/revoked authorization, stale revision denial, injected authority rejection and malformed card refusal. API/mobile/AI types and scoped lint pass. CI and exact-commit Sol review are pending. Provider outputs are not live-model verification; physical iPhone navigation remains unverified.
+
+The native UI commit `a1cf8fa` received clean Sol signoff (17 independent checks), but CI `35580521688` stopped at a formatting error in the final progress-log edit. Updated commit `babfc69` removes that blank line and has clean exact-commit Sol rereview; CI `35580755267` is pending. No merge gate was bypassed.
+
+Integration issue identified during checklist audit: `apps/api/src/groceries/read.ts` currently refuses more than 500 active/claimed items, whereas a fully selected ingredient week can create up to 4,200. Large successful additions could therefore make the existing checklist unavailable. Resolve and test this capacity mismatch alongside checklist provenance before considering the ingredient vertical slice complete.
 
 Standing workflow: use feature branches, exact-commit successful CI and clean **GPT-5.6 Sol medium** adversarial review, then fast-forward local main and push. PRs are optional under the owner's explicit authorization. Deployment, production migration, purchases and release remain separately gated. The continuation automation was removed; do not recreate it without a new need. Historical delivery notes below retain the verification state at the time of each increment; later merge records supersede their pending-CI wording.
 

@@ -1,3 +1,4 @@
+import { ingredientHandoff } from "./ingredient-handoff.ts";
 import {
   MealProposalGenerationReceipt,
   MealProposalGenerationResult,
@@ -88,10 +89,14 @@ const destinations = {
   removeGrocery: "/checklist",
   checkGrocery: "/checklist",
 } as const;
+const handoffs = {
+  "tool-openMealIngredientReview": ingredientHandoff,
+  "tool-readMealProposal": proposalHandoff,
+  "tool-openCalendarSettings": calendarHandoff,
+  "tool-openSetup": setupHandoff,
+};
 export function actionResult(part: { type: string; state?: unknown; output?: unknown }) {
-  if (part.type === "tool-readMealProposal") return proposalHandoff(part);
-  if (part.type === "tool-openCalendarSettings") return calendarHandoff(part);
-  if (part.type === "tool-openSetup") return setupHandoff(part);
+  if (Object.hasOwn(handoffs, part.type)) return handoffs[part.type as keyof typeof handoffs](part);
   const name = part.type.slice(5);
   if (!part.type.startsWith("tool-") || !Object.hasOwn(AssistantReceipts, name)) return null;
   const action = name as AssistantAction;

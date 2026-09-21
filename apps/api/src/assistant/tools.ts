@@ -3,6 +3,7 @@ import { planningCommands } from "../meal-planning/assistant-execution.ts";
 import type { MealPlanningOptions } from "../meal-planning/route.ts";
 import { readHouseholdRosterTool } from "../routines/roster-tool.ts";
 import { mealLibraryTools } from "../meals/library-tools.ts";
+import { mealIngredientTools } from "../meals/ingredient-tools.ts";
 import { mealWriteTools } from "../meals/write-tools.ts";
 import { readMealWeekTool } from "../meals/tools.ts";
 import { readChoreTransfersTool } from "../chores/transfer-tool.ts";
@@ -73,6 +74,7 @@ export function householdTools(
     readChoreTransfers: readChoreTransfersTool(bound, config),
     readMealWeek: readMealWeekTool(bound, config),
     ...mealLibraryTools(bound, config),
+    ...mealIngredientTools(bound, config),
     readRoutines: readRoutinesTool(bound, config),
     readHouseholdRoster: readHouseholdRosterTool(bound, config),
     readNotificationPreferences: readNotificationPreferencesTool(bound, config),
