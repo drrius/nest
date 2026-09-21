@@ -1,3 +1,5 @@
+import { CalendarChoreQuery } from "@nest/contracts/calendar-chores";
+import { readCalendarChores } from "./chores.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { AvailabilityQuery } from "@nest/contracts/calendar";
@@ -20,6 +22,17 @@ export function calendarTools(request: Request, config: IdentityConfig) {
           Effect.provide(supabaseIdentity(config)),
           Effect.mapError(failure),
         ),
+    }),
+    readCalendarChores: effectTool({
+      description:
+        "Read stored household chores due on an explicit civil date YYYY-MM-DD. Current occurrences are actionable; previews are tentative next occurrences and cannot be completed. This is not an exhaustive future recurrence forecast. Dates have no time-of-day and do not imply a busy interval. Reads no personal calendar events and makes no changes. Use existing chore tools to act on current occurrences only.",
+      input: CalendarChoreQuery,
+      execute: (input) =>
+        Effect.gen(function* () {
+          const member = yield* currentMember(request),
+            token = yield* bearerToken(request);
+          return yield* readCalendarChores(config, { member, token }, input);
+        }).pipe(Effect.provide(supabaseIdentity(config)), Effect.mapError(failure)),
     }),
     readAvailability: effectTool({
       description:

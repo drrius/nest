@@ -1,3 +1,4 @@
+import { calendarChoreQuery, readCalendarChores } from "./chores.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
 import { commandBody } from "../request-body.ts";
@@ -9,6 +10,8 @@ export function calendarRoute(request: Request, config: IdentityConfig, caller: 
   return Effect.gen(function* () {
     const path = new URL(request.url).pathname,
       commands = calendarCommands(config, caller);
+    if (path === "/v1/calendar/chores")
+      return yield* readCalendarChores(config, caller, yield* calendarChoreQuery(request));
     if (path === "/v1/calendar/consent") return yield* commands.consent();
     if (path === "/v1/calendar/busy") return yield* readBusySnapshots(config, caller);
     const actions: Record<string, (input: unknown) => Effect.Effect<unknown, ApiFailure>> = {

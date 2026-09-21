@@ -12,6 +12,7 @@
     "./cooking": "./src/cooking.ts",
     "./memory": "./src/memory.ts",
     "./calendar": "./src/calendar.ts",
+    "./calendar-chores": "./src/calendar-chores.ts",
     "./notifications": "./src/notifications.ts",
     "./setup": "./src/setup.ts",
     "./routines": "./src/routines.ts",

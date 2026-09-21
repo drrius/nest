@@ -180,6 +180,7 @@ const methods: Record<string, string> = {
   "/v1/notification-preferences/save": "POST",
   "/v1/calendar/consent": "GET",
   "/v1/calendar/busy": "GET",
+  "/v1/calendar/chores": "GET",
   "/v1/calendar/consent/set": "POST",
   "/v1/calendar/capture": "POST",
   "/v1/calendar/publish": "POST",
