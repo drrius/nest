@@ -1,4 +1,4 @@
-import { readMoneyBalance } from "./money/read.ts";
+import { moneyRoute } from "./money/route.ts";
 import { mealProposalRoute, type MealPlanningOptions } from "./meal-planning/route.ts";
 import { mealRoute } from "./meals/route.ts";
 import { routineRoute } from "./routines/route.ts";
@@ -45,16 +45,6 @@ function route(
     const selected = handlers[path.split("/")[2]!];
     return yield* selected ? selected() : choreRoute(request, config, caller);
   });
-}
-
-function moneyRoute(
-  request: Request,
-  config: IdentityConfig,
-  caller: Parameters<typeof readMoneyBalance>[1],
-) {
-  return new URL(request.url).searchParams.size
-    ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
-    : readMoneyBalance(config, caller);
 }
 
 export function createHandler(config: IdentityConfig, options: MealPlanningOptions = {}) {
@@ -150,6 +140,7 @@ function preferenceRoute(
 const methods: Record<string, string> = {
   "/v1/session": "GET",
   "/v1/money/balance": "GET",
+  "/v1/money/history": "GET",
   "/v1/meals/week": "GET",
   "/v1/meals/ingredients/read": "POST",
   "/v1/meals/ingredients/add": "POST",
