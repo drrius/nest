@@ -127,4 +127,3 @@ revoke all on function public.nest_save_manual_cycle(uuid,uuid,jsonb) from publi
 revoke all on function public.nest_execute_manual_cycle(uuid,uuid,jsonb,uuid) from public,anon,authenticated;
 grant execute on function public.nest_save_manual_cycle(uuid,uuid,jsonb) to authenticated;
 grant execute on function public.nest_execute_manual_cycle(uuid,uuid,jsonb,uuid) to authenticated;
-
