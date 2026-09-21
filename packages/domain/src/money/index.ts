@@ -8,6 +8,11 @@ export {
 } from "./allocations.ts";
 export { deriveBalances, type LedgerEntry } from "./balances.ts";
 export {
+  recurringCycle,
+  firstUncoveredRecurringCycle,
+  type RecurringCycle,
+} from "./recurring-cycle.ts";
+export {
   firstRecurringDate,
   nextRecurringDate,
   dueRecurringDates,
