@@ -17,12 +17,13 @@ export const refund = (sourceEventId, patch = {}) => ({
   note: null,
   ...patch,
 });
-export async function refundApiFixture(t) {
+export async function refundApiFixture(t, seed = true) {
   const f = await expenseApiFixture(t);
   for (const file of [
     "tests/database/legacy-money/refund-command.sql",
     "supabase/migrations/20260921105214_native_money_detail_read.sql",
     "supabase/migrations/20260921151001_native_refund_command.sql",
+    "supabase/migrations/20260921152631_native_refund_save_cancel.sql",
   ])
     f.db.file(file);
   f.db.sql("notify pgrst,'reload schema'");
@@ -37,6 +38,7 @@ export async function refundApiFixture(t) {
     if (attempt === 99) throw Error("Refund RPC schema did not reload");
     await new Promise((resolve) => setTimeout(resolve, 10));
   }
+  if (!seed) return { ...f, source: id(999) };
   const receipt = await f.rpc("nest_save_expense", {
     p_household: id(10),
     p_operation: id(900),

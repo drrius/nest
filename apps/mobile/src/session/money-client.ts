@@ -13,6 +13,10 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    recoverRefund: (input: RefundSave) =>
+      client.recoverRefund(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelRefund: (input: RefundSave) =>
+      client.cancelRefund(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     refundContext: (sourceEventId: string) =>
       client.refundContext(sourceEventId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveRefund: (input: RefundSave) =>

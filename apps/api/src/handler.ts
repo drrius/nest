@@ -143,6 +143,8 @@ const methods: Record<string, string> = {
   "/v1/money/approval/decide": "POST",
   "/v1/money/expense/save": "POST",
   "/v1/money/refund/context": "GET",
+  "/v1/money/refund/receipt": "GET",
+  "/v1/money/refund/cancel": "POST",
   "/v1/money/refund/save": "POST",
   "/v1/money/refund/execute": "POST",
   "/v1/money/settlement/approval": "GET",

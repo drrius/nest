@@ -1,3 +1,4 @@
+import { readRefundSave, cancelRefundSave } from "./refund-save-read.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
 import type { AuthorizedCaller } from "../chores/service.ts";
@@ -9,6 +10,11 @@ export function refundRoute(request: Request, config: IdentityConfig, caller: Au
   return Effect.gen(function* () {
     const url = new URL(request.url),
       params = url.searchParams;
+    if (url.pathname === "/v1/money/refund/receipt") {
+      if (params.size !== 1 || !params.has("operationId"))
+        return yield* new ApiFailure({ code: "invalid_request" });
+      return yield* readRefundSave(config, caller, { operationId: params.get("operationId") });
+    }
     if (url.pathname === "/v1/money/refund/context") {
       if (params.size !== 1 || !params.has("sourceEventId"))
         return yield* new ApiFailure({ code: "invalid_request" });
@@ -19,6 +25,7 @@ export function refundRoute(request: Request, config: IdentityConfig, caller: Au
     if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
     const commands = refundCommands(config, caller),
       input = yield* commandBody(request, 65536);
+    if (url.pathname.endsWith("/cancel")) return yield* cancelRefundSave(config, caller, input);
     return yield* url.pathname.endsWith("/execute")
       ? commands.execute(input)
       : commands.save(input);
