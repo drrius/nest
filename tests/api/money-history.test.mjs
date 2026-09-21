@@ -56,3 +56,15 @@ test("history boundary rejects malformed authority, response identity/order and 
   const full = Array.from({ length: 50 }, (_, n) => row(100 - n));
   assert.deepEqual((await run({ ...good, events: full, next: id(51) })).events, full);
 });
+
+test("opening successors retain parent links while unrelated and self-linked events remain invalid", async () => {
+  const successor = { ...row(100), kind: "opening_balance", relatedEventId: id(90) };
+  assert.deepEqual((await run({ ...good, events: [successor] })).events, [successor]);
+  for (const event of [
+    { ...successor, relatedEventId: id(100) },
+    { ...successor, kind: "expense" },
+    { ...successor, kind: "settlement" },
+    { ...successor, kind: "refund", relatedEventId: null },
+  ])
+    await assert.rejects(run({ ...good, events: [event] }), { code: "unavailable" });
+});

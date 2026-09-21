@@ -66,6 +66,24 @@
       "source": "supabase/migrations/20260812201042_atomic_settlement.sql",
       "sha256": "3dad72cba69285028163752a66c821154d5c804701e72e41608165caabf31dfc",
       "selection": "Complete final atomic settlement migration; see money-settlement-audit.md"
+    },
+    {
+      "file": "opening-correction-lineage.sql",
+      "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
+      "sha256": "10fadd90d0c87757c48c5093176b6b7f3cb31cd73fe1ccbc006456dd261d431a",
+      "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
+    },
+    {
+      "file": "refund-command.sql",
+      "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
+      "sha256": "e5cd7946c8b94b20f213e8b7d18e9da1020e7ef588f5f4deba3ae631c9357495",
+      "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
+    },
+    {
+      "file": "correction-command.sql",
+      "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
+      "sha256": "ce8537b52caccbb6a45a01c1c24a4459a1f362f50a952b9d609bd586d2cddcb6",
+      "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
     }
   ]
 }

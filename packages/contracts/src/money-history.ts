@@ -27,9 +27,11 @@ export const MoneyEventSummary = Schema.Struct({
   Schema.makeFilter(
     (row) =>
       (row.kind === "reversal" ? row.payerId === null : row.payerId !== null) &&
-      (["refund", "reversal", "replacement"].includes(row.kind)
-        ? row.relatedEventId !== null
-        : row.relatedEventId === null),
+      row.relatedEventId !== row.eventId &&
+      (row.kind === "opening_balance" ||
+        (["refund", "reversal", "replacement"].includes(row.kind)
+          ? row.relatedEventId !== null
+          : row.relatedEventId === null)),
   ),
 );
 export const MoneyHistory = Schema.Struct({
