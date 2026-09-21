@@ -38,6 +38,7 @@
     "./meal-preparation-read": "./src/meal-preparation-read.ts",
     "./meal-proposals": "./src/meal-proposals.ts",
     "./meal-ingredients": "./src/meal-ingredients.ts",
+    "./money-category": "./src/money-category.ts",
     "./expense": "./src/expense.ts",
     "./expense-approval": "./src/expense-approval.ts"
   },

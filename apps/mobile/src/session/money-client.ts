@@ -9,6 +9,8 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    category: (categoryId: string) =>
+      client.category(categoryId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     approval: (approvalId: string) =>
       client.approval(approvalId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideExpense: (input: ExpenseDecision) =>

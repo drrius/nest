@@ -1,3 +1,4 @@
+import { moneyCategoryTool } from "./category-tool.ts";
 import { MoneyDetailQuery } from "@nest/contracts/money-detail";
 import { readMoneyDetail } from "./detail.ts";
 import { MoneyHistoryQuery } from "@nest/contracts/money-history";
@@ -10,6 +11,7 @@ import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { readMoneyBalance } from "./read.ts";
 export function moneyTools(request: Request, config: IdentityConfig) {
   return {
+    readMoneyCategory: moneyCategoryTool(request, config),
     readMoneyDetail: effectTool({
       description:
         "Read one retained financial event by ID, including payer, exact allocations and signed balance deltas, note, current category name, related original ID and reversal ID. A reversal cancels the original's balance effect; both remain in history. Positive delta means owed to that member, negative means they owe. A settlement records an entered payment, never proves a bank transfer. Receipt presence does not grant receipt content access. This performs no mutation.",

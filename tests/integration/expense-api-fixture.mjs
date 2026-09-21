@@ -42,5 +42,5 @@ export async function expenseApiFixture(t) {
     if (!response.ok) throw Error(await response.text());
     return response.json();
   };
-  return { ...f, url, send, rpc };
+  return { ...f, supabaseUrl: f.url, url, send, rpc };
 }

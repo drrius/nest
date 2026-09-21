@@ -1,3 +1,4 @@
+import { readMoneyCategory } from "./category.ts";
 import { expenseApprovals } from "./expense-approval.ts";
 import { expenseCommands } from "./expense.ts";
 import { commandBody } from "../request-body.ts";
@@ -21,12 +22,20 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
         ? commands.execute(input)
         : commands.save(input);
     });
+  return readRoute(url, config, caller);
+}
+function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
+  const params = url.searchParams;
+  if (url.pathname === "/v1/money/category")
+    return !singleParam(params, "categoryId")
+      ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+      : readMoneyCategory(config, caller, { categoryId: params.get("categoryId") });
   if (url.pathname === "/v1/money/balance")
     return params.size
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
       : readMoneyBalance(config, caller);
   if (url.pathname === "/v1/money/detail")
-    return params.size !== 1 || !params.has("eventId")
+    return !singleParam(params, "eventId")
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
       : readMoneyDetail(config, caller, { eventId: params.get("eventId") });
   if (params.size > 1 || [...params.keys()].some((key) => key !== "before"))
@@ -46,4 +55,8 @@ function approvalRoute(request: Request, config: IdentityConfig, caller: Authori
     if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
     return yield* commands.decide(yield* commandBody(request, 65536));
   });
+}
+
+function singleParam(params: URLSearchParams, name: string) {
+  return params.size === 1 && params.has(name);
 }

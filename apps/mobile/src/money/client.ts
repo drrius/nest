@@ -8,6 +8,7 @@ import type { Credentials } from "../session/verification.ts";
 import type { ChoreFailure } from "../chores/client.ts";
 import { preferenceRequests, PreferenceFailure } from "../preferences/client.ts";
 import { expenseApprovalClient } from "./approval-client.ts";
+import { MoneyCategoryQuery, MoneyCategoryEnvelope } from "@nest/contracts/money-category";
 const invalid = () => new PreferenceFailure({ code: "invalid" });
 const unavailable = () => new PreferenceFailure({ code: "unavailable" });
 export function moneyClient(
@@ -26,6 +27,19 @@ export function moneyClient(
     );
   return {
     ...expenseApprovalClient(apiUrl, account, credentials),
+    category: (categoryId: string) =>
+      Effect.gen(function* () {
+        const query = yield* Schema.decodeUnknownEffect(MoneyCategoryQuery)({ categoryId }).pipe(
+          Effect.mapError(invalid),
+        );
+        const target = query.categoryId.toLowerCase();
+        const result = yield* scoped(
+          `v1/money/category?${new URLSearchParams({ categoryId: target })}`,
+          MoneyCategoryEnvelope,
+        );
+        if (result.categoryId !== target) return yield* unavailable();
+        return result.category;
+      }),
     balance: () =>
       scoped("v1/money/balance", MoneyBalance).pipe(
         Effect.flatMap((value) =>

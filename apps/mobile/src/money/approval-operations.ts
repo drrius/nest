@@ -12,6 +12,7 @@ export function expenseApprovalOperations(account: OfflineAccount, client: Money
       return result;
     });
   return {
+    category: (categoryId: string) => checked(client.category(categoryId)),
     saved: (approvalId: string) => account.store.readExpenseApproval(account.session, approvalId),
     stage: (attempt: ExpenseApprovalAttempt, current: () => boolean) =>
       account.store.stageExpenseApproval(account.session, attempt, current),

@@ -5,8 +5,10 @@ import { PreferenceFailure } from "../preferences/client.ts";
 import type { ExpenseApproval } from "./approval-client.ts";
 import type { ExpenseApprovalAttempt } from "./approval-attempt.ts";
 import type { ExpenseApprovalOperations } from "./approval-operations.ts";
+import type { MoneyCategory } from "@nest/contracts/money-category";
 export interface ExpenseApprovalView {
   approval: ExpenseApproval | null;
+  category: MoneyCategory | null;
   attempt: ExpenseApprovalAttempt | null;
   active: boolean;
   busy: boolean;
@@ -18,6 +20,7 @@ const terminal = (approval: ExpenseApproval) => ["consumed", "denied"].includes(
 export class ExpenseApprovalRuntime {
   private view: ExpenseApprovalView = {
     approval: null,
+    category: null,
     attempt: null,
     active: false,
     busy: false,
@@ -63,6 +66,7 @@ export class ExpenseApprovalRuntime {
       busy: false,
       fresh: false,
       approval: null,
+      category: null,
       attempt: null,
       notice: null,
     });
@@ -98,8 +102,17 @@ export class ExpenseApprovalRuntime {
       if (!this.current(request)) return;
       if (attempt && attempt.operationId !== approval.operationId)
         throw new PreferenceFailure({ code: "unavailable" });
+      this.publish({ approval, category: null });
+      const category =
+        approval.expense.categoryId === null
+          ? null
+          : await Effect.runPromise(this.operations.category(approval.expense.categoryId), {
+              signal: request.signal,
+            });
+      if (!this.current(request)) return;
       this.publish({
         approval,
+        category,
         fresh: true,
         notice:
           attempt && !terminal(approval)
@@ -118,6 +131,12 @@ export class ExpenseApprovalRuntime {
       terminal(expected)
     )
       return;
+    if (approved && this.categoryUnavailable(expected)) {
+      this.publish({
+        notice: "This category is unavailable. Ask for a new proposal with an available category.",
+      });
+      return;
+    }
     if (Date.parse(expected.expiresAt) <= this.now()) {
       this.publish({
         fresh: false,
@@ -136,6 +155,11 @@ export class ExpenseApprovalRuntime {
       await this.send(expected, attempt, request);
     });
   };
+  private categoryUnavailable(approval: ExpenseApproval) {
+    return (
+      approval.expense.categoryId !== null && (!this.view.category || this.view.category.archived)
+    );
+  }
   retry = async () => {
     const { attempt, approval } = this.view;
     if (!this.available() || !this.view.fresh || !attempt || !approval || terminal(approval))
@@ -173,6 +197,7 @@ export class ExpenseApprovalRuntime {
     if (storage === "session_changed" || code === "session" || code === "forbidden") {
       this.publish({
         approval: null,
+        category: null,
         attempt: null,
         fresh: false,
         verify: true,
@@ -192,7 +217,14 @@ export class ExpenseApprovalRuntime {
     if (this.disposed) return;
     this.request?.abort();
     this.request = null;
-    this.publish({ approval: null, attempt: null, active: false, busy: false, fresh: false });
+    this.publish({
+      approval: null,
+      category: null,
+      attempt: null,
+      active: false,
+      busy: false,
+      fresh: false,
+    });
     this.disposed = true;
     this.listeners.clear();
   };

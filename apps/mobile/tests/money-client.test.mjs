@@ -95,3 +95,27 @@ test("native Money rejects invalid input locally and maps authentication/read fa
     code: "unavailable",
   });
 });
+test("native category read binds household and target even for missing results", async () => {
+  const value = {
+    version: 1,
+    householdId: id(10),
+    categoryId: id(200),
+    category: { categoryId: id(200), name: "Home", archived: false },
+  };
+  assert.deepEqual(await run(client.category(id(200)), value), value.category);
+  assert.equal(await run(client.category(id(200)), { ...value, category: null }), null);
+  await assert.rejects(run(client.category(id(201)), { ...value, category: null }), {
+    code: "unavailable",
+  });
+  await assert.rejects(
+    run(client.category(id(200)), {
+      ...value,
+      category: { ...value.category, categoryId: id(201) },
+    }),
+    { code: "unavailable" },
+  );
+  await assert.rejects(run(client.category(id(200)), { ...value, householdId: id(20) }), {
+    code: "forbidden",
+  });
+  await assert.rejects(run(client.category("bad"), value), { code: "invalid" });
+});

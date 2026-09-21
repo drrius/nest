@@ -1,3 +1,4 @@
+import { ExpenseApprovalEnvelope } from "@nest/contracts/expense-approval";
 import { agendaHandoff } from "./agenda-handoff.ts";
 import { ingredientHandoff } from "./ingredient-handoff.ts";
 import {
@@ -161,6 +162,8 @@ function successHref(action: AssistantAction, value: object) {
     };
   const meal = mealHref(action, value);
   if (meal) return meal;
+  if (action === "proposeExpense" && Schema.is(ExpenseApprovalEnvelope)(value))
+    return { pathname: "/expense-approval" as const, params: { approvalId: value.approval.id } };
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
     return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
   return destinations[action];
