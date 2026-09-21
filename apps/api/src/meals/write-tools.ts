@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    placeLeftovers: write(
+      "placeLeftovers",
+      "Plan leftovers only from an original meal the member explicitly requests, for an unambiguous empty slot on a strictly later day. Read both source and destination weeks fresh and use their exact Monday/revision pairs; a same-week request uses one matching revision. Ask when source or destination is unclear. Preserve the source's retained recipe; unknown historical ingredients stay unknown. This creates no groceries or preparation and does not change the source meal. Never create leftover chains, remove other meals to bypass conflicts, or use this action to approve generated plans. Reconcile an uncertain original invocation instead of issuing another command. Reread both weeks before describing current contents.",
+    ),
     placeRecipe: write(
       "placeRecipe",
       "Place only a saved recipe explicitly selected by the member into an unambiguous empty date and breakfast/lunch/dinner slot. Read the current week, library and exact recipe detail first and use both exact revisions. Preserve recipe identity and ingredients as planned. Do not invent missing metadata, add groceries, create leftovers or save generated suggestions through this action; generated plans need a separate visible proposal and approval. On uncertainty reconcile the original invocation, never issue another placement. Reread before describing the current week.",

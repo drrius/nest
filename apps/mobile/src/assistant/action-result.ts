@@ -1,3 +1,4 @@
+import { LeftoverPlacementReceipt } from "@nest/contracts/meal-leftovers";
 import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
 import { RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
@@ -13,6 +14,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  placeLeftovers: "Leftovers added to the week",
   placeRecipe: "Recipe added to the week",
   replaceWithRecipe: "Recipe replacement confirmed",
   editRecipe: "Recipe edit confirmed",
@@ -41,6 +43,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  placeLeftovers: "/meal-week",
   placeRecipe: "/meal-week",
   replaceWithRecipe: "/meal-week",
   editRecipe: "/meal-library",
@@ -124,14 +127,8 @@ function successHref(action: AssistantAction, value: object) {
       pathname: "/saved-meal" as const,
       params: { definitionId: value.definitionId, expectedRevision: value.revision },
     };
-  if (
-    ["replaceMeal", "removeMeal", "placeMeal"].includes(action) &&
-    "weekStart" in value &&
-    typeof value.weekStart === "string"
-  )
-    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
-  if (action === "moveMeal" && Schema.is(MealMoveReceipt)(value))
-    return { pathname: "/meal-week" as const, params: { weekStart: value.targetWeekStart } };
+  const meal = mealHref(action, value);
+  if (meal) return meal;
   if (action === "proposeMemory" && Schema.is(MemoryApprovalEnvelope)(value))
     return { pathname: "/memory" as const, params: { approvalId: value.approval.id } };
   return destinations[action];
@@ -189,4 +186,25 @@ function isSelectionResult(
     ["placeRecipe", "replaceWithRecipe"].includes(action) &&
     Schema.is(RecipePlacementReceipt)(value)
   );
+}
+
+function mealHref(action: AssistantAction, value: object) {
+  if (
+    ["replaceMeal", "removeMeal", "placeMeal"].includes(action) &&
+    "weekStart" in value &&
+    typeof value.weekStart === "string"
+  )
+    return { pathname: "/meal-week" as const, params: { weekStart: value.weekStart } };
+  if (action === "placeLeftovers" && Schema.is(LeftoverPlacementReceipt)(value))
+    return {
+      pathname: "/planned-recipe" as const,
+      params: {
+        entryId: value.entryId,
+        weekStart: value.targetWeekStart,
+        revision: value.targetRevision,
+      },
+    };
+  if (action === "moveMeal" && Schema.is(MealMoveReceipt)(value))
+    return { pathname: "/meal-week" as const, params: { weekStart: value.targetWeekStart } };
+  return null;
 }

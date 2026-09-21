@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/native-meal-leftovers`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/ai-meal-leftovers`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
 
@@ -15,6 +15,12 @@ The native leftover branch adds an account-scoped client, source/destination wee
 Local verification: thirteen focused client/runtime cases and two real HTTP/PostgREST/PostgreSQL journeys pass, including a native cross-week lost-acknowledgment retry after library archive, retained quantities, unchanged source revision, no new groceries and revoked access. The new integration fixture initially used a root Effect import unavailable in this workspace; it now resolves the mobile package dependency and both journeys pass. Mobile types, scoped lint/format and diff checks pass. iOS export compiled 1,967 modules (bundle `bd7e5d0906e62ef751995856a62659f6`); this is packaging evidence only. Exact-head CI and Sol review are pending. Physical iPhone interaction/accessibility and the corresponding private AI leftovers tool remain incomplete; M5 is not complete.
 
 Sol independently passed all thirteen native cases and both real HTTP journeys, and found misleading confirmation copy for legacy/one-off meals without a retained recipe. The copy now explicitly says recipe details are retained only when available and missing ingredients remain unknown. Updated-head CI and rereview are required.
+
+Native leftovers are merged as `aad90b1` after successful exact-head CI `35554362943` and clean Sol medium rereview of the corrected confirmation copy. Main was fast-forwarded and pushed. No iPhone execution is claimed.
+
+Private AI leftovers now use the shared strict native input/receipt contracts and the same atomic storage command through the private journal. Tool guidance requires an explicit original source meal, a later empty slot and fresh exact source/destination baselines; it forbids generated-plan approval bypasses and invented historical ingredients. Receipt matching binds actor, household, source, destination and exact same-week/cross-week bigint revisions. Valid native result cards open the new leftover's retained details; uncertain results return to the week for reconciliation. The additive migration extends the finite dispatcher and canonical transcript handling without changing prior actions.
+
+Local verification: all 153 selected AI journal/API/schema/native-card/SDK-PostgREST checks pass, including four new database cases and actual SDK committed-response loss, exact replay after archive, private actor recovery, partner reads, terminal stale conflict and revocation. API/mobile/SDK types, scoped lint/format and diff checks pass. Security advisors report no issues on the disposable full leftovers/journal fixture. SQL functions remain within the 80-code-line limit. Exact-commit CI and Sol review are pending; no live model, device, production migration or deployment was used. M5 proposal approval, preparation and separate ingredient review remain incomplete.
 
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 

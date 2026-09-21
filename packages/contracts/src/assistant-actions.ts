@@ -1,3 +1,4 @@
+import { PlaceLeftoversInput, LeftoverPlacementReceipt } from "./meal-leftovers.ts";
 import {
   PlaceRecipeInput,
   ReplaceWithRecipeInput,
@@ -50,6 +51,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  placeLeftovers: PlaceLeftoversInput,
   placeRecipe: PlaceRecipeInput,
   replaceWithRecipe: ReplaceWithRecipeInput,
   editRecipe: EditRecipeInput,
@@ -85,6 +87,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  placeLeftovers: LeftoverPlacementReceipt,
   placeRecipe: RecipePlacementReceipt,
   replaceWithRecipe: RecipeReplacementReceipt,
   editRecipe: RecipeEditReceipt,

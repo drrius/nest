@@ -1,3 +1,4 @@
+import { matchesLeftovers } from "./matches-leftovers.ts";
 import { matchesRecipeSelection } from "./matches-selection.ts";
 import { EditRecipeInput, RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { ArchiveRecipeInput, RecipeArchiveReceipt } from "@nest/contracts/recipe-archive";
@@ -92,14 +93,19 @@ export function matchesMealAction(
 ) {
   if (action === "placeRecipe" || action === "replaceWithRecipe")
     return matchesRecipeSelection(action, input, receipt, member);
-  if (action === "editRecipe") return matchesRecipeEdit(input, receipt, member);
-  if (action === "archiveRecipe") return matchesRecipeArchive(input, receipt, member);
-  if (action === "createRecipe") return matchesRecipeCreation(input, receipt, member);
-  if (action === "replaceMeal") return matchesMealReplacement(input, receipt, member);
-  if (action === "moveMeal") return matchesMealMove(input, receipt, member);
-  if (action === "removeMeal") return matchesMealRemoval(input, receipt, member);
-  if (action === "placeMeal") return matchesMealPlacement(input, receipt, member);
-  return null;
+  const matches = {
+    placeLeftovers: matchesLeftovers,
+    editRecipe: matchesRecipeEdit,
+    archiveRecipe: matchesRecipeArchive,
+    createRecipe: matchesRecipeCreation,
+    replaceMeal: matchesMealReplacement,
+    moveMeal: matchesMealMove,
+    removeMeal: matchesMealRemoval,
+    placeMeal: matchesMealPlacement,
+  };
+  return Object.hasOwn(matches, action)
+    ? matches[action as keyof typeof matches](input, receipt, member)
+    : null;
 }
 
 function matchesRecipeCreation(
