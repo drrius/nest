@@ -1,3 +1,4 @@
+import { mealLeftoversClient } from "./leftovers-client.ts";
 import { recipePlacementClient } from "./recipe-placement-client.ts";
 import { recipeReplacementClient } from "./recipe-replacement-client.ts";
 import { plannedRecipeClient } from "./planned-recipe-client.ts";
@@ -34,6 +35,7 @@ export function mealClient(
     place: mealPlacementClient(request, account),
     replace: mealReplacementClient(request, account),
     move: mealMoveClient(request, account),
+    placeLeftovers: mealLeftoversClient(request, account),
     remove: mealRemovalClient(request, account),
     read: (weekStart: string) =>
       Effect.gen(function* () {

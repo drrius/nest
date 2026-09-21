@@ -1,3 +1,4 @@
+import type { PlaceLeftovers } from "@nest/contracts/meal-leftovers";
 import type {
   PlaceRecipe,
   ReplaceWithRecipe,
@@ -44,6 +45,8 @@ export function sessionMeals(auth: SupabaseClient["auth"], account: Account, api
       client.createRecipe(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     replace: (input: ReplaceMeal) =>
       client.replace(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    placeLeftovers: (input: PlaceLeftovers) =>
+      client.placeLeftovers(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     move: (input: MoveMeal) =>
       client.move(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     remove: (input: RemoveMeal) =>

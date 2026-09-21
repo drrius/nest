@@ -6,7 +6,13 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/meal-leftovers-api`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/native-meal-leftovers`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+
+Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
+
+The native leftover branch adds an account-scoped client, source/destination week runtime, protected screen, later-day empty-slot confirmation and a board action for original meals. Exact uncertain requests remain frozen; confirmed writes stay latched through authorization loss and cannot resend after recovery. Conflicts require reloading both weeks. Navigation warns about unresolved writes; no offline queue is added. Existing planned details display the copied historical recipe.
+
+Local verification: thirteen focused client/runtime cases and two real HTTP/PostgREST/PostgreSQL journeys pass, including a native cross-week lost-acknowledgment retry after library archive, retained quantities, unchanged source revision, no new groceries and revoked access. The new integration fixture initially used a root Effect import unavailable in this workspace; it now resolves the mobile package dependency and both journeys pass. Mobile types, scoped lint/format and diff checks pass. iOS export compiled 1,967 modules (bundle `bd7e5d0906e62ef751995856a62659f6`); this is packaging evidence only. Exact-head CI and Sol review are pending. Physical iPhone interaction/accessibility and the corresponding private AI leftovers tool remain incomplete; M5 is not complete.
 
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 

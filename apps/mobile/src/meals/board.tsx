@@ -150,6 +150,18 @@ function MealActions({
           })
         }
       />
+      {!meal.leftoverSourceId ? (
+        <NativeAction
+          label="Plan leftovers"
+          disabled={!enabled}
+          onPress={() =>
+            router.push({
+              pathname: "/meal-leftovers",
+              params: { sourceWeekStart: weekStart, entryId: meal.entryId },
+            })
+          }
+        />
+      ) : null}
       <NativeAction
         label="Remove meal"
         disabled={!enabled}
