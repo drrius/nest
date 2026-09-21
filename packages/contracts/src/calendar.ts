@@ -111,3 +111,8 @@ export const CalendarSettingsHandoff = Schema.Struct({
   kind: Schema.Literal("device_handoff"),
   screen: Schema.Literal("calendar-sharing"),
 });
+
+export const CalendarAgendaHandoff = Schema.Struct({
+  kind: Schema.Literal("device_handoff"),
+  screen: Schema.Literal("calendar"),
+});

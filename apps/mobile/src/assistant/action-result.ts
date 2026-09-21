@@ -1,3 +1,4 @@
+import { agendaHandoff } from "./agenda-handoff.ts";
 import { ingredientHandoff } from "./ingredient-handoff.ts";
 import {
   MealProposalGenerationReceipt,
@@ -90,6 +91,7 @@ const destinations = {
   checkGrocery: "/checklist",
 } as const;
 const handoffs = {
+  "tool-openCalendarAgenda": agendaHandoff,
   "tool-openMealIngredientReview": ingredientHandoff,
   "tool-readMealProposal": proposalHandoff,
   "tool-openCalendarSettings": calendarHandoff,

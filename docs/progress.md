@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M6 — local Calendar agenda boundary; branch `codex/agenda-display-selection`.** M5 ingredient/checklist integration is merged after clean review and successful CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
+**M6 — local Calendar agenda boundary; branch `codex/native-personal-agenda`.** M5 ingredient/checklist integration is merged after clean review and successful CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -141,13 +141,21 @@ Twenty focused new/existing calendar cases pass, including 1,000 generated windo
 
 Agenda review identified an avoidable permission race during the final asynchronous calendar enumeration. A failing controlled regression reproduced private rows returned after revocation; the reader now checks permission after enumeration as well. Updated exact-commit CI and Sol rereview remain required.
 
-The corrected agenda reader `592249d` has clean exact-commit Sol medium signoff, with 23 independently passing calendar cases. CI `35583602716` remains pending; it has not been merged.
+The corrected agenda reader `592249d` merged after successful exact-commit CI `35583602716` and clean Sol medium signoff (23 independently passing checks). Display selection `52760e6` merged after successful CI `35583924093` and clean Sol medium signoff (49 independently passing SQLite/calendar checks). Both are pushed to main without PRs.
 
 ### Local agenda display selection — persistence candidate
 
 A separate account/household/lease-scoped SQLite selection stores only the calendar IDs chosen for personal display. It neither grants sharing consent nor changes existing busy-sharing selections. Empty selection and first-use absence are distinct, and private event/calendar text is rejected rather than persisted. Stale leases cannot read or overwrite another account's selection; malformed stored data fails explicitly. The native settings/runtime still need to use this store.
 
 Eleven focused SQLite/sharing cases pass, including three new cases for real restart, independent sharing choices, account/household switches, stale/suspended lease refusal, strict input/metadata rejection, corrupted storage and a failed update retaining the previous selection. Mobile types, scoped lint, formatting and diff checks pass. CI and Sol review remain pending; no Calendar UI or physical-device verification is claimed.
+
+### Native personal agenda — UI/controller/device-handoff candidate
+
+The Calendar tab now reads the selected iPhone calendars instead of showing fictional events. It offers native date selection, previous/next/today navigation, a virtualized local-calendar picker with saved switches, permission/retry guidance and virtualized event rows with title, location, notes and exact bounds. Shared iCloud events remain in selected device calendars; Nest creates no event database. Viewing calendars does not opt them into busy sharing. Calendar names and events stay on-device. Background/tab blur and disposal clear personal rows and picker metadata; canceled late reads cannot restore them. Foreground/focus and a foreground minute refresh recheck permission and current account lease.
+
+The private assistant offers an authorized `openCalendarAgenda` handoff with a strict fixed-route result card; it cannot read private event details, grant permissions or change sharing. Existing settings and availability tools retain current-membership checks. No EventKit writes are exposed.
+
+Twenty-one focused native/SQLite/projection/handoff/day-window cases pass, plus four real SDK/PostgREST availability/handoff cases. Tests include restart, first-use versus empty choice, storage failure/retry, stale account leases, disposal/background/foreground races and 5,000 generated civil-day windows across five timezones, including DST, midnight transitions and a skipped civil date. Mobile/API/contracts types, scoped lint and full formatting pass. iOS export succeeded at `/tmp/nest-native-agenda-export`, bundle `842e5811f444d4650fa5b2d8a45176f9`; packaging only. CI and exact-commit Sol review remain required. Real EventKit, native picker/VoiceOver, focus/AppState behavior and two-device privacy inspection remain unverified. Partner busy presentation and optional chore/renewal layers remain unfinished; M6 is not complete.
 
 Standing workflow: use feature branches, exact-commit successful CI and clean **GPT-5.6 Sol medium** adversarial review, then fast-forward local main and push. PRs are optional under the owner's explicit authorization. Deployment, production migration, purchases and release remain separately gated. The continuation automation was removed; do not recreate it without a new need. Historical delivery notes below retain the verification state at the time of each increment; later merge records supersede their pending-CI wording.
 

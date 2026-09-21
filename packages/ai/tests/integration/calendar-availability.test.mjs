@@ -142,12 +142,21 @@ test("SDK never calls expired, revoked or out-of-coverage availability free; an 
   });
   assert.equal(part(expired.history, "readAvailability").output.value.members[0].status, "unknown");
 });
-test("native calendar handoff has no consent mutation and both tools recheck membership", async (t) => {
+test("native calendar handoff has no consent mutation and all tools recheck membership", async (t) => {
   const f = await postgrestFixture(t, files);
-  const { history } = await run(f, modelFor([[call("openCalendarSettings", {}, "settings")]]));
+  const { history } = await run(
+    f,
+    modelFor([
+      [call("openCalendarSettings", {}, "settings"), call("openCalendarAgenda", {}, "agenda")],
+    ]),
+  );
   assert.deepEqual(part(history, "openCalendarSettings").output, {
     ok: true,
     value: { kind: "device_handoff", screen: "calendar-sharing" },
+  });
+  assert.deepEqual(part(history, "openCalendarAgenda").output, {
+    ok: true,
+    value: { kind: "device_handoff", screen: "calendar" },
   });
   assert.equal(f.db.sql("select count(*) from public.nest_calendar_consent"), "0");
   const { tools } = householdTools(
@@ -165,6 +174,7 @@ test("native calendar handoff has no consent mutation and both tools recheck mem
   for (const [name, input] of [
     ["readAvailability", query],
     ["openCalendarSettings", {}],
+    ["openCalendarAgenda", {}],
   ])
     assert.deepEqual(await tools[name].execute(input, { toolCallId: "revoked", messages: [] }), {
       ok: false,

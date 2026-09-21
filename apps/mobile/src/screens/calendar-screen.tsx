@@ -1,37 +1,90 @@
-import { useState } from "react";
-import { Card, Note, Page, Section } from "../components/page";
+import { useCallback, useState, useSyncExternalStore } from "react";
+import { AppState } from "react-native";
+import { useFocusEffect } from "expo-router";
+import { expoCalendarPort } from "../calendar/expo-calendar";
+import { expoAgendaPort } from "../calendar/expo-agenda";
+import { agendaOperations } from "../calendar/agenda-operations";
+import { agendaOwner } from "../calendar/agenda-owner";
+import { localDate } from "../calendar/agenda-day";
+import { AgendaContent } from "../calendar/agenda-content";
+import type { AgendaRuntime } from "../calendar/agenda-runtime";
+import { useSession } from "../session/provider";
+import { useOfflineAccount } from "../offline/provider";
+import type { OfflineAccount } from "../offline/owner";
+import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
-
+import { SignInCard } from "../components/sign-in-card";
 export default function CalendarScreen() {
-  const [showChores, setShowChores] = useState(true);
-  return (
-    <Page>
-      <Note>Design preview · These are fictional events, not device calendar data.</Note>
-      <Section title="Monday, 21 September">
-        <Card>
-          <Note>09:00–10:00 · Your calendar</Note>
-          <Note>Team catch-up</Note>
-          <Note>Personal event details stay on your iPhone.</Note>
-        </Card>
-        <Card>
-          <Note>14:00–15:30 · Partner busy</Note>
-          <Note>Only this time block is shared.</Note>
-        </Card>
-        {showChores ? (
-          <Card>
-            <Note>18:00 · Household chore</Note>
-            <Note>Water the plants</Note>
-          </Card>
+  const session = useSession(),
+    offline = useOfflineAccount();
+  if (session.state.status !== "ready")
+    return (
+      <Page>
+        <SignInCard />
+      </Page>
+    );
+  if (process.env.EXPO_OS !== "ios")
+    return (
+      <Page>
+        <Note>Device calendars require an iPhone development build.</Note>
+      </Page>
+    );
+  if (offline.state.status !== "ready")
+    return (
+      <Page>
+        <Note>
+          {offline.state.status === "error"
+            ? "Could not open your saved calendar choices."
+            : "Opening your calendar choices…"}
+        </Note>
+        {offline.state.status === "error" ? (
+          <NativeAction label="Retry" onPress={offline.retry} />
         ) : null}
-      </Section>
-      <NativeAction
-        label={showChores ? "Hide chore layer" : "Show chore layer"}
-        onPress={() => setShowChores(!showChores)}
-      />
-      <Note>
-        Outside a shared snapshot’s covered range, availability is unknown. Calendar access and
-        sharing will be optional.
-      </Note>
+      </Page>
+    );
+  return (
+    <CalendarAccount
+      key={offline.state.account.session.lease}
+      account={offline.state.account}
+      verify={session.retry}
+    />
+  );
+}
+function CalendarAccount({ account, verify }: { account: OfflineAccount; verify: () => void }) {
+  const [owner] = useState(() =>
+    agendaOwner(
+      agendaOperations(account, {
+        ...expoAgendaPort,
+        requestPermission: () => expoCalendarPort.requestPermission(),
+      }),
+      localDate(new Date()),
+    ),
+  );
+  const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
+  useAgendaActivity(runtime);
+  return runtime ? (
+    <AgendaContent runtime={runtime} verify={verify} />
+  ) : (
+    <Page>
+      <Note>Opening your agenda…</Note>
     </Page>
+  );
+}
+function useAgendaActivity(runtime: AgendaRuntime | null) {
+  useFocusEffect(
+    useCallback(() => {
+      if (!runtime) return;
+      const activity = () => runtime.setActive(AppState.currentState === "active");
+      activity();
+      const subscription = AppState.addEventListener("change", activity);
+      const timer = setInterval(() => {
+        void runtime.refresh();
+      }, 60000);
+      return () => {
+        clearInterval(timer);
+        subscription.remove();
+        runtime.setActive(false);
+      };
+    }, [runtime]),
   );
 }
