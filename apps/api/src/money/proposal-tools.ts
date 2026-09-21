@@ -3,6 +3,10 @@ export function financialProposalTools<T>(
   write: (name: AssistantAction, description: string) => T,
 ) {
   return {
+    proposeCorrection: write(
+      "proposeCorrection",
+      "Propose only a correction the member explicitly requested. First read the known entry with readCorrectionContext; never invent its source ID, member IDs or reviewed reversal ID. Set expectedReversalId to the current source reversal ID, including null. A null replacement means reverse without replacement; request explicit intent. Expense/replacement corrections can provide kind expense with exact description, amount, payer, allocations, date, category and note. Preserve and review grocery receipt total separately from shared amount. Opening repairs use kind opening_balance with an explicit creditor and no expense allocations. Active refunds must be reversed before their source is corrected; a reversed opening leaf may be repaired, but ancestors cannot fork. Ask for missing values; never infer consent. This only creates a private pending proposal, posts no money and requires separate native confirmation. Original history and receipt references are retained. Never call Save, execute or decision endpoints yourself. Changed source state needs a fresh proposal and review.",
+    ),
     proposeRefund: write(
       "proposeRefund",
       "Propose only a refund the member explicitly asked to record as already received outside Nest. Read the original expense/replacement using readRefundContext first. Bind its known source ID, original payer and exact current remaining shares; never invent identities or refund unavailable/reversed sources. Ask for missing date, amount and per-person refund allocations; each allocation must fit that member's remaining share and both sum to the positive CHF centime amount. Full refund means all remaining shares, only when explicitly requested. This creates a private pending proposal and posts no money. A separate native confirmation is required. Never infer consent or call Save, execute or decision endpoints yourself. A changed source or remaining share requires a fresh proposal and review.",

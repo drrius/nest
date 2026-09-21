@@ -1,3 +1,4 @@
+import { matchesCorrectionProposal } from "../money/correction-proposal.ts";
 import { matchesRefundProposal } from "../money/refund-proposal.ts";
 import { matchesSettlementProposal } from "../money/settlement-proposal.ts";
 import { matchesExpenseProposal } from "../money/expense-proposal.ts";
@@ -11,6 +12,7 @@ import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 const financialProposals = {
   proposeExpense: matchesExpenseProposal,
+  proposeCorrection: matchesCorrectionProposal,
   proposeRefund: matchesRefundProposal,
   proposeSettlement: matchesSettlementProposal,
 };
