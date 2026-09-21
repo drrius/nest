@@ -1,3 +1,4 @@
+import { editRecipe } from "./recipe-edit.ts";
 import { archiveRecipe } from "./recipe-archive.ts";
 import { createRecipe } from "./recipe-creation.ts";
 import { mealLibraryRoute } from "./library-read.ts";
@@ -17,6 +18,11 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
     return mealLibraryRoute(request, config, caller);
   return Effect.gen(function* () {
     const path = new URL(request.url).pathname;
+    if (path === "/v1/meals/recipe/edit")
+      return {
+        version: 1,
+        receipt: yield* editRecipe(config, caller, yield* commandBody(request, 2097152)),
+      };
     if (path === "/v1/meals/recipe/create")
       return {
         version: 1,

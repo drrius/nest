@@ -25,7 +25,8 @@
     "./meal-replacement": "./src/meal-replacement.ts",
     "./meal-library": "./src/meal-library.ts",
     "./recipe-creation": "./src/recipe-creation.ts",
-    "./recipe-archive": "./src/recipe-archive.ts"
+    "./recipe-archive": "./src/recipe-archive.ts",
+    "./recipe-edit": "./src/recipe-edit.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
