@@ -1,3 +1,4 @@
+import { settlementApprovalClient } from "./settlement-approval-client.ts";
 import { settlementClient } from "./settlement-client.ts";
 import { expenseCategoryClient } from "./category-client.ts";
 import { expenseClient } from "./expense-client.ts";
@@ -30,6 +31,7 @@ export function moneyClient(
   return {
     ...expenseApprovalClient(apiUrl, account, credentials),
     ...expenseClient(apiUrl, account, credentials),
+    ...settlementApprovalClient(apiUrl, account, credentials),
     ...settlementClient(apiUrl, account, credentials),
     ...expenseCategoryClient(apiUrl, account, credentials),
     balance: () =>
