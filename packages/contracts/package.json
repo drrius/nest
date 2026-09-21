@@ -42,7 +42,8 @@
     "./expense-save-read": "./src/expense-save-read.ts",
     "./expense": "./src/expense.ts",
     "./expense-approval": "./src/expense-approval.ts",
-    "./settlement": "./src/settlement.ts"
+    "./settlement": "./src/settlement.ts",
+    "./settlement-approval": "./src/settlement-approval.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

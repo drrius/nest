@@ -1,3 +1,4 @@
+import { settlementApprovals } from "./settlement-approval.ts";
 import { settlementCommands } from "./settlement.ts";
 import { readMoneyCategories } from "./categories.ts";
 import { readExpenseSave, cancelExpenseSave } from "./expense-save-read.ts";
@@ -80,6 +81,8 @@ function categoryRoute(url: URL, config: IdentityConfig, caller: AuthorizedCalle
 }
 
 function settlementRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
+  if (new URL(request.url).pathname.includes("/approval"))
+    return settlementApprovalRoute(request, config, caller);
   return Effect.gen(function* () {
     const url = new URL(request.url);
     if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
@@ -88,5 +91,23 @@ function settlementRoute(request: Request, config: IdentityConfig, caller: Autho
     return yield* url.pathname.endsWith("/execute")
       ? commands.execute(input)
       : commands.save(input);
+  });
+}
+
+function settlementApprovalRoute(
+  request: Request,
+  config: IdentityConfig,
+  caller: AuthorizedCaller,
+) {
+  return Effect.gen(function* () {
+    const url = new URL(request.url),
+      commands = settlementApprovals(config, caller);
+    if (url.pathname === "/v1/money/settlement/approval") {
+      if (!singleParam(url.searchParams, "approvalId"))
+        return yield* new ApiFailure({ code: "invalid_request" });
+      return yield* commands.read({ approvalId: url.searchParams.get("approvalId") });
+    }
+    if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
+    return yield* commands.decide(yield* commandBody(request, 65536));
   });
 }

@@ -15,6 +15,7 @@ export async function settlementApiFixture(t, partner = id(2)) {
   const f = await expenseApiFixture(t);
   f.db.file("tests/database/legacy-money/settlement-command.sql");
   f.db.file("supabase/migrations/20260921134717_native_settlement_command.sql");
+  f.db.file("supabase/migrations/20260921140302_native_settlement_approval.sql");
   f.db.sql("notify pgrst,'reload schema'");
   // Wait for the actual new RPC to appear before testing its authenticated behavior.
   for (let attempt = 0; attempt < 100; attempt++) {
