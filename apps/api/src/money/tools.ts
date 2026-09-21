@@ -27,7 +27,7 @@ export function moneyTools(request: Request, config: IdentityConfig) {
     readMoneyCategory: moneyCategoryTool(request, config),
     readMoneyDetail: effectTool({
       description:
-        "Read one retained financial event by ID, including payer, exact allocations and signed balance deltas, note, current category name, related original ID and reversal ID. A reversal cancels the original's balance effect; both remain in history. Positive delta means owed to that member, negative means they owe. A settlement records an entered payment, never proves a bank transfer. Receipt presence does not grant receipt content access. This performs no mutation.",
+        "Read one retained financial event by ID, including payer, exact allocations and signed balance deltas, note, current category name, related original ID and reversal ID. A reversal cancels the original's balance effect; both remain in history. Positive delta means owed to that member, negative means they owe. A settlement records an entered payment, never proves a bank transfer. Receipt presence does not grant receipt content access. To view an attached receipt, ask the user to open this event in Money and tap View receipt; Nest checks storage access on the device. Do not claim to have opened or read its bytes. This performs no mutation.",
       input: MoneyDetailQuery,
       execute: (input) =>
         Effect.gen(function* () {

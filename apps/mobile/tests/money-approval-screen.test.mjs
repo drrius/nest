@@ -84,3 +84,14 @@ test("archived or missing expense category blocks confirmation but allows declin
     runtime.dispose();
   }
 });
+
+test("expense confirmation discloses an attached receipt without exposing its storage path", () => {
+  const receiptPath = `${id(9)}/receipts/${id(10)}.jpg`;
+  const text = expenseConfirmation(
+    { ...pending, expense: { ...pending.expense, receiptPath } },
+    id(1),
+  );
+  assert.match(text, /Receipt attached/);
+  assert.equal(text.includes(receiptPath), false);
+  assert.doesNotMatch(expenseConfirmation(pending, id(1)), /Receipt attached/);
+});

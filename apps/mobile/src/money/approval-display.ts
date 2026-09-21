@@ -9,7 +9,7 @@ export function expenseConfirmation(approval: ExpenseApproval, actor: string) {
   const shares = expense.allocations
     .map((share) => `${memberLabel(share.memberId, actor)}: ${formatChf(share.centimes)}`)
     .join("\n");
-  return `${expense.description}\n${groceryExpenseSummary(expense)}${formatChf(expense.amountCentimes)} · ${expense.date}\nPaid by ${expense.payerId === actor ? "you" : "your partner"}\n${shares}\n\nConfirming records this expense in your shared financial history. It does not transfer money.`;
+  return `${expense.description}\n${groceryExpenseSummary(expense)}${formatChf(expense.amountCentimes)} · ${expense.date}\nPaid by ${expense.payerId === actor ? "you" : "your partner"}\n${shares}\n${expense.receiptPath ? "Receipt attached.\n" : ""}\nConfirming records this expense in your shared financial history. It does not transfer money.`;
 }
 const isPending = (approval: ExpenseApproval | null) =>
   approval?.status === "pending" || approval?.status === "approved";

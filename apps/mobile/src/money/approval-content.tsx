@@ -38,6 +38,7 @@ export function ExpenseApprovalContent(props: Props) {
 }
 function ExpenseSummary({ view, actor }: Pick<Props, "view" | "actor">) {
   const expense = view.approval!.expense;
+  const router = useRouter();
   return (
     <>
       <Section title={expense.description}>
@@ -45,6 +46,14 @@ function ExpenseSummary({ view, actor }: Pick<Props, "view" | "actor">) {
           {formatChf(expense.amountCentimes)} · {expense.date}
         </Note>
         <GroceryExpenseSummary expense={expense} />
+        {expense.receiptPath ? (
+          <NativeAction
+            label="Preview attached receipt"
+            onPress={() =>
+              router.push({ pathname: "/receipt", params: { receiptPath: expense.receiptPath! } })
+            }
+          />
+        ) : null}
         <Note>Paid by {expense.payerId === actor ? "you" : "your partner"}</Note>
       </Section>
       <Section title="Each person’s share">

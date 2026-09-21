@@ -23,7 +23,9 @@
           "calendarPermission": "Nest reads your calendars to show your agenda. Only calendars you choose share busy times, without event details.",
           "remindersPermission": false
         }
-      ]
+      ],
+      "expo-image",
+      "expo-web-browser"
     ],
     "extra": {
       "router": {},

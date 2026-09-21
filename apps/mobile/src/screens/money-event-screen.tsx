@@ -120,7 +120,10 @@ function EntryExtras({ detail }: { detail: typeof MoneyDetail.Type }) {
         </Section>
       ) : null}
       {event.hasReceipt ? (
-        <Note>A receipt is recorded. Viewing its attachment is not available here yet.</Note>
+        <NativeAction
+          label="View receipt"
+          onPress={() => router.push({ pathname: "/receipt", params: { eventId: event.eventId } })}
+        />
       ) : null}
       {event.relatedEventId ? (
         <NativeAction

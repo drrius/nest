@@ -53,6 +53,7 @@ function Navigation() {
         <Stack.Screen name="correction-entry" options={{ title: "Correct entry" }} />
         <Stack.Screen name="refund-entry" options={{ title: "Record refund" }} />
         <Stack.Screen name="settlement-entry" options={{ title: "Record settlement" }} />
+        <Stack.Screen name="receipt" options={{ title: "Receipt" }} />
         <Stack.Screen name="correction-approval" options={{ title: "Review correction" }} />
         <Stack.Screen name="refund-approval" options={{ title: "Review refund" }} />
         <Stack.Screen name="settlement-approval" options={{ title: "Review settlement" }} />
