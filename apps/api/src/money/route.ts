@@ -1,3 +1,4 @@
+import { refundRoute } from "./refund-route.ts";
 import { readSettlementSave, cancelSettlementSave } from "./settlement-save-read.ts";
 import { settlementApprovals } from "./settlement-approval.ts";
 import { settlementCommands } from "./settlement.ts";
@@ -17,6 +18,7 @@ import { readMoneyHistory } from "./history.ts";
 export function moneyRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url),
     params = url.searchParams;
+  if (url.pathname.startsWith("/v1/money/refund/")) return refundRoute(request, config, caller);
   if (url.pathname.startsWith("/v1/money/settlement/"))
     return settlementRoute(request, config, caller);
   if (url.pathname.startsWith("/v1/money/approval")) return approvalRoute(request, config, caller);
