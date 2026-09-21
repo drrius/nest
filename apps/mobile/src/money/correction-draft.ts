@@ -35,7 +35,7 @@ export function parseCorrectionDraft(
   context: CorrectionContext,
   actor: string,
 ): CorrectionDraftResult {
-  if (!validContext(context, actor))
+  if (!validContext(context, actor, draft))
     return { ok: false, message: "Load the current entry before reviewing a correction." };
   const base = {
     sourceEventId: context.source.event.eventId,
@@ -83,8 +83,9 @@ function openingCorrection(
   return { ok: true, correction: { ...base, replacement: { kind: "opening_balance", opening } } };
 }
 
-function validContext(context: CorrectionContext, actor: string) {
+function validContext(context: CorrectionContext, actor: string, draft: CorrectionDraft) {
   return (
+    draft.receiptPath == null &&
     Schema.is(CorrectionContext)(context) &&
     context.source.shares.some((share) => share.memberId === actor)
   );

@@ -20,7 +20,7 @@ export function useLeaveExpense(
       return navigation.dispatch(data.action);
     Alert.alert(
       "Leave this expense?",
-      "Unsaved input will be lost. Any Save already sent is retained for recovery.",
+      "Unsaved input and the selected receipt will be lost. An upload may remain unattached. Any expense Save already sent is retained for recovery.",
       [
         { text: "Stay", style: "cancel" },
         { text: "Leave", onPress: () => navigation.dispatch(data.action) },

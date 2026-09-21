@@ -2,7 +2,12 @@ import { useState, useSyncExternalStore } from "react";
 import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { MoneyScreenGate, VerifyMoney, type MoneyScreenAccount } from "../money/screen-gate";
-import { expenseSaveOwner } from "../money/save-owner";
+import { expenseEntryOwner } from "../money/expense-entry-owner";
+import { receiptAttachmentOperations } from "../money/receipt-attachment-operations";
+import { selectNativeReceipt } from "../money/receipt-selection-native";
+import type { ReceiptAttachmentRuntime } from "../money/receipt-attachment-runtime";
+import { ReceiptAttachmentControls } from "../money/receipt-attachment-controls";
+import { receiptReady } from "../money/receipt-draft";
 import { expenseSaveOperations } from "../money/save-operations";
 import type { ExpenseSaveRuntime } from "../money/save-runtime";
 import { useSaveActivity } from "../money/use-save-activity";
@@ -22,11 +27,14 @@ export default function ExpenseEntryScreen({ grocery = false }: { grocery?: bool
 }
 function Entry(props: MoneyScreenAccount & { grocery: boolean }) {
   const [owner] = useState(() =>
-    expenseSaveOwner(expenseSaveOperations(props.account, props.client)),
+    expenseEntryOwner(
+      expenseSaveOperations(props.account, props.client),
+      receiptAttachmentOperations(props.account, props.client, selectNativeReceipt),
+    ),
   );
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   return runtime ? (
-    <ActiveEntry {...props} runtime={runtime} />
+    <ActiveEntry {...props} runtime={runtime.save} attachment={runtime.attachment} />
   ) : (
     <Page>
       <Note>Opening expense entry…</Note>
@@ -34,19 +42,29 @@ function Entry(props: MoneyScreenAccount & { grocery: boolean }) {
   );
 }
 function ActiveEntry(
-  props: MoneyScreenAccount & { runtime: ExpenseSaveRuntime; grocery: boolean },
+  props: MoneyScreenAccount & {
+    runtime: ExpenseSaveRuntime;
+    attachment: ReceiptAttachmentRuntime;
+    grocery: boolean;
+  },
 ) {
   const { runtime } = props,
     view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
+  useSaveActivity(props.attachment);
+  const attachmentView = useSyncExternalStore(
+    props.attachment.subscribe,
+    props.attachment.getSnapshot,
+  );
   const options = useEntryOptions(props, view.active && !view.verify, view.online);
   const draft = useExpenseDraft(
     props.account.session.actor,
     options.value?.members ?? null,
     runtime,
-    props.grocery,
+    { grocery: props.grocery, attachment: props.attachment },
   );
-  if (view.verify || options.verify) return <VerifyMoney verify={props.verify} />;
+  if (view.verify || options.verify || attachmentView.verify)
+    return <VerifyMoney verify={props.verify} />;
   if (!view.active)
     return (
       <Page>
@@ -56,6 +74,8 @@ function ActiveEntry(
   return (
     <EntryPage
       runtime={runtime}
+      attachment={props.attachment}
+      attachmentView={attachmentView}
       view={view}
       options={options}
       draft={draft}
@@ -65,19 +85,23 @@ function ActiveEntry(
 }
 function EntryPage({
   runtime,
+  attachment,
+  attachmentView,
   view,
   options,
   draft,
   actor,
 }: {
   runtime: ExpenseSaveRuntime;
+  attachment: ReceiptAttachmentRuntime;
+  attachmentView: ReturnType<ReceiptAttachmentRuntime["getSnapshot"]>;
   view: ReturnType<ExpenseSaveRuntime["getSnapshot"]>;
   options: ReturnType<typeof useEntryOptions>;
   draft: ReturnType<typeof useExpenseDraft>;
   actor: string;
 }) {
   const recovery = view.attempt !== null || view.result !== null;
-  const disabled = !expenseSaveEnabled(view) || !options.fresh;
+  const disabled = !expenseEntryEnabled(view, options.fresh);
   const readingDisabled = !view.online || view.busy;
   return (
     <Page>
@@ -100,7 +124,7 @@ function EntryPage({
             <ExpenseFields
               draft={draft}
               options={options.value}
-              disabled={disabled}
+              disabled={!receiptFormEnabled(disabled, attachmentView)}
               first={options.first}
               next={options.next}
             />
@@ -111,6 +135,11 @@ function EntryPage({
                 : "Loading current household members and categories…"}
             </Note>
           )}
+          <ReceiptAttachmentControls
+            runtime={attachment}
+            view={attachmentView}
+            disabled={disabled}
+          />
           <NativeAction
             label="Reload expense choices"
             disabled={readingDisabled}
@@ -125,4 +154,14 @@ function EntryPage({
       />
     </Page>
   );
+}
+
+function expenseEntryEnabled(view: ReturnType<ExpenseSaveRuntime["getSnapshot"]>, fresh: boolean) {
+  return expenseSaveEnabled(view) && fresh;
+}
+function receiptFormEnabled(
+  disabled: boolean,
+  view: ReturnType<ReceiptAttachmentRuntime["getSnapshot"]>,
+) {
+  return !disabled && receiptReady(view);
 }

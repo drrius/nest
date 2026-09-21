@@ -8,6 +8,8 @@ import {
   type Allocations,
 } from "@nest/domain/money";
 export interface ExpenseDraft {
+  receiptPath?: string | null;
+  receiptPending?: boolean;
   description: string;
   amount: string;
   receiptTotal: string | null;
@@ -26,6 +28,8 @@ export type ExpenseDraftResult =
 const invalid = (message: string): ExpenseDraftResult => ({ ok: false, message });
 export function initialExpenseDraft(actor: string, date: string, grocery = false): ExpenseDraft {
   return {
+    receiptPath: null,
+    receiptPending: false,
     description: grocery ? "Groceries" : "",
     receiptTotal: grocery ? "" : null,
     amount: "",
@@ -86,6 +90,8 @@ export function parseExpenseDraft(
   draft: ExpenseDraft,
   memberIds: readonly [string, string],
 ): ExpenseDraftResult {
+  if (draft.receiptPending)
+    return invalid("Upload or remove the selected receipt before reviewing this expense.");
   if (!validMembers(memberIds, draft.payerId))
     return invalid("Choose a payer from your two household members.");
   const amount = parseChf(draft.amount);
@@ -116,6 +122,7 @@ function buildExpense(
   if (draft.receiptTotal !== null && (receiptTotal === null || receiptTotal < amount))
     return invalid("Enter the receipt total in CHF. The shared amount cannot exceed it.");
   const expense = {
+    ...receiptReference(draft),
     ...(receiptTotal === null ? {} : { receiptTotalCentimes: String(receiptTotal) }),
     description: draft.description.trim(),
     amountCentimes: String(amount),
@@ -130,4 +137,8 @@ function buildExpense(
     : invalid(
         "Check the description (up to 200 characters), date, category and note (up to 4,000 characters).",
       );
+}
+
+function receiptReference(draft: ExpenseDraft) {
+  return draft.receiptPath == null ? {} : { receiptPath: draft.receiptPath };
 }

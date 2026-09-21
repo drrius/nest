@@ -8,5 +8,5 @@ export function expenseReview(expense: ExpenseInput, members: ExpenseEntryOption
   const shares = expense.allocations
     .map((share) => `${name(share.memberId)}: ${formatChf(share.centimes)}`)
     .join("\n");
-  return `${expense.description}\n${groceryExpenseSummary(expense)}${formatChf(expense.amountCentimes)} · ${expense.date}\nPaid by ${name(expense.payerId)}\n${shares}\n\nThis updates shared Money. Nest does not transfer money.`;
+  return `${expense.description}\n${groceryExpenseSummary(expense)}${formatChf(expense.amountCentimes)} · ${expense.date}\nPaid by ${name(expense.payerId)}\n${shares}${expense.receiptPath ? "\nReceipt attached" : ""}\n\nThis updates shared Money. Nest does not transfer money.`;
 }

@@ -1,12 +1,13 @@
 import { useNativeState } from "@expo/ui";
 import { useState } from "react";
-import { Alert } from "react-native";
+import { confirmExpense } from "./expense-confirmation";
+import { receiptDraft } from "./receipt-draft";
+import type { ReceiptAttachmentRuntime } from "./receipt-attachment-runtime";
 import { useLeaveExpense } from "./use-leave-expense";
 import * as Crypto from "expo-crypto";
 import type { ExpenseEntryOptions } from "./entry-options";
 import type { ExpenseSaveRuntime } from "./save-runtime";
-import { initialExpenseDraft, parseExpenseDraft, type ExpenseDraft } from "./expense-draft";
-import { expenseReview } from "./expense-review";
+import { initialExpenseDraft, type ExpenseDraft } from "./expense-draft";
 export function expenseDate(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
@@ -14,8 +15,9 @@ export function useExpenseDraft(
   actor: string,
   members: ExpenseEntryOptions["members"] | null,
   runtime: ExpenseSaveRuntime,
-  grocery = false,
+  options: { grocery: boolean; attachment: ReceiptAttachmentRuntime },
 ) {
+  const { grocery, attachment } = options;
   const [initial] = useState(() => initialExpenseDraft(actor, expenseDate(new Date()), grocery));
   const [operationId, setOperationId] = useState(Crypto.randomUUID);
   const description = useNativeState(initial.description),
@@ -31,6 +33,7 @@ export function useExpenseDraft(
     [category, setCategory] = useState<{ categoryId: string; name: string } | null>(null);
   const [error, setError] = useState<string | null>(null);
   const read = (): ExpenseDraft => ({
+    ...receiptDraft(attachment.getSnapshot()),
     description: description.value,
     amount: amount.value,
     receiptTotal: grocery ? receiptTotal.value : null,
@@ -44,17 +47,8 @@ export function useExpenseDraft(
     categoryId: category?.categoryId ?? null,
   });
   useLeaveExpense(initial, read, runtime);
-  const submit = () => {
-    if (!members) return setError("Load the current household members before saving.");
-    const parsed = parseExpenseDraft(read(), [members[0].actorId, members[1].actorId]);
-    if (!parsed.ok) return setError(parsed.message);
-    setError(null);
-    const expense = parsed.expense;
-    Alert.alert("Record this expense?", expenseReview(expense, members), [
-      { text: "Cancel", style: "cancel" },
-      { text: "Record expense", onPress: () => void runtime.save({ operationId, expense }) },
-    ]);
-  };
+  const submit = () =>
+    confirmExpense(read(), { members, runtime, attachment, operationId, error: setError });
   const nextExpense = () => {
     setOperationId(Crypto.randomUUID());
     setError(null);
