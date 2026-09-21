@@ -1,6 +1,6 @@
 import { recurringApiFixture, id, run } from "./recurring-api-fixture.mjs";
 export { id, run };
-export async function fixture(t) {
+export async function fixture(t, extraFiles = []) {
   const f = await recurringApiFixture(
     t,
     [
@@ -10,7 +10,9 @@ export async function fixture(t) {
       "20260921215304_native_recurring_resume_command",
       "20260921223609_native_recurring_variable_cycle",
       "20260921224449_native_recurring_cycle_save_recovery",
-    ].map((name) => `supabase/migrations/${name}.sql`),
+    ]
+      .map((name) => `supabase/migrations/${name}.sql`)
+      .concat(extraFiles),
   );
   const today = f.db.sql(
     "select to_char((clock_timestamp() at time zone 'Europe/Zurich')::date,'YYYY-MM-DD')",

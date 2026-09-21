@@ -1,3 +1,4 @@
+import type { VariableCycleDecision } from "../money/recurring-variable-approval-client";
 import type { VariableCycleSave } from "../money/recurring-variable-client";
 import type { RecurringResumeDecision } from "../money/recurring-resume-approval-client";
 import type { RecurringResumeSave } from "../money/recurring-resume-client";
@@ -128,6 +129,12 @@ function sessionRecurring(client: MoneyClient) {
       client
         .recurringResumeApproval(approvalId)
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    variableCycleApproval: (approvalId: string) =>
+      client
+        .variableCycleApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideVariableCycle: (input: VariableCycleDecision) =>
+      client.decideVariableCycle(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideRecurringResume: (input: RecurringResumeDecision) =>
       client.decideRecurringResume(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringStateApproval: (approvalId: string) =>
