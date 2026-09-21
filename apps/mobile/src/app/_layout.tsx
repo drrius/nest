@@ -56,6 +56,10 @@ function Navigation() {
         <Stack.Screen name="recurring-rules" options={{ title: "Recurring expenses" }} />
         <Stack.Screen name="recurring-entry" options={{ title: "Recurring setup" }} />
         <Stack.Screen name="recurring-approval" options={{ title: "Review recurring expense" }} />
+        <Stack.Screen
+          name="recurring-state-approval"
+          options={{ title: "Review recurring change" }}
+        />
         <Stack.Screen name="recurring-state" options={{ title: "Recurring controls" }} />
         <Stack.Screen name="recurring-rule" options={{ title: "Recurring expense" }} />
         <Stack.Screen name="receipt-uploads" options={{ title: "Receipt uploads" }} />
