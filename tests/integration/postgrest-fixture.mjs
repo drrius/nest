@@ -5,10 +5,10 @@ import { join } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
 import { startFixturePostgres } from "../database/fixture-postgres.mjs";
 
-function token(secret, user) {
+function token(secret, user, role = "authenticated") {
   const encode = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
   const data = `${encode({ alg: "HS256", typ: "JWT" })}.${encode({
-    role: "authenticated",
+    role,
     sub: user,
     exp: Math.floor(Date.now() / 1000) + 300,
   })}`;
@@ -37,7 +37,7 @@ async function ready(child, socket) {
   throw new Error("PostgREST did not become ready");
 }
 
-function bridge(socket, users) {
+function bridge(socket, users, serverCredential) {
   return createServer((request, response) => {
     if (request.url === "/auth/v1/user") {
       const user = users.get(request.headers.authorization?.slice(7));
@@ -50,7 +50,10 @@ function bridge(socket, users) {
         socketPath: socket,
         path: request.url.replace(/^\/rest\/v1/, ""),
         method: request.method,
-        headers: request.headers,
+        headers:
+          request.headers.apikey === serverCredential.key
+            ? { ...request.headers, authorization: `Bearer ${serverCredential.token}` }
+            : request.headers,
       },
       (result) => {
         response.writeHead(result.statusCode, result.headers);
@@ -73,6 +76,13 @@ async function stop(child) {
   } finally {
     clearTimeout(timer);
   }
+}
+
+function listen(server) {
+  return new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", resolve);
+  });
 }
 
 export async function postgrestFixture(
@@ -133,6 +143,7 @@ export async function postgrestFixture(
   const otherBearer = token(secret, outsider);
   const partner = "00000000-0000-4000-8000-000000000002";
   const partnerBearer = token(secret, partner);
+  const serverKey = `sb_secret_${randomBytes(32).toString("hex")}`;
   server = bridge(
     socket,
     new Map([
@@ -140,16 +151,15 @@ export async function postgrestFixture(
       [otherBearer, outsider],
       [partnerBearer, partner],
     ]),
+    { key: serverKey, token: token(secret, undefined, "service_role") },
   );
-  await new Promise((resolve, reject) => {
-    server.once("error", reject);
-    server.listen(0, "127.0.0.1", resolve);
-  });
+  await listen(server);
   return {
     db,
     bearer,
     otherBearer,
     partnerBearer,
+    serverKey,
     url: `http://127.0.0.1:${server.address().port}`,
   };
 }
