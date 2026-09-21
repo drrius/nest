@@ -79,6 +79,12 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
           }
         />
       ) : null}
+      <NativeAction
+        label="Manage recurring state"
+        onPress={() =>
+          router.push({ pathname: "/recurring-state", params: { ruleId: rule.ruleId } })
+        }
+      />
       <Section title="Configuration">
         <Note>Payer: {config.payerId === actor ? "You" : "Other household member"}</Note>
         <Note>
