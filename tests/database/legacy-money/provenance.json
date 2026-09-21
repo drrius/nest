@@ -1,0 +1,23 @@
+{
+  "commit": "4a528c96caf41515a70291ccecbba9d7b35e3349",
+  "files": [
+    {
+      "file": "tables.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "f3992bd84191927a813333f9745650bf20554ff7c56a4e7a4ac878e9306dd8e1",
+      "selection": "Complete audited statements; see money-ledger-audit.md"
+    },
+    {
+      "file": "history-guards.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "317cb68eabffd87e270cc72afe68f1d5b71be78300ec4c30407e270aac4b606b",
+      "selection": "Complete audited statements; see money-ledger-audit.md"
+    },
+    {
+      "file": "read-access.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "112b602fc88f773fd9d49559ec7764b55b2cbf262f657b1a5e0d672ed2f93878",
+      "selection": "Complete audited statements; see money-ledger-audit.md"
+    }
+  ]
+}
