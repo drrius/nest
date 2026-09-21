@@ -1,3 +1,6 @@
+import { PartnerRuntime } from "../../src/calendar/partner-runtime.ts";
+import { partnerOperations } from "../../src/calendar/partner-operations.ts";
+import { partnerAgenda } from "../../src/calendar/partner-agenda.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -143,4 +146,46 @@ test("a publication acknowledgment lost after commit can refresh safely but cann
   assert.deepEqual(first.runtime.getSnapshot().calendars, []);
   assert.equal(first.runtime.getSnapshot().selection, null);
   assert.equal(remote.db.sql("select count(*) from public.nest_busy_snapshots"), "0");
+});
+
+test("native partner agenda recovers a lost read, shows only fresh partial coverage and removes opt-out/revoked evidence", async (t) => {
+  const { remote, url, connect } = await backend(t);
+  const publisher = await native(t, connect());
+  await publisher.runtime.load();
+  await publisher.runtime.change(["device-only"], true);
+  await publisher.runtime.refresh();
+  const proxy = await lostResponseProxy(t, url, "/v1/calendar/busy");
+  const local = await fixture(t);
+  const session = await run(local.store.activate({ actor: id(2), household: id(10) }, id(800)));
+  const reader = new PartnerRuntime(
+    partnerOperations(
+      { store: local.store, session },
+      connect(proxy.url, id(2), remote.partnerBearer),
+    ),
+    Date.now,
+  );
+  t.after(() => reader.dispose());
+  await reader.setActive(true);
+  assert.equal(proxy.dropped(), 1);
+  assert.equal(reader.getSnapshot().snapshots, null);
+  assert.equal(reader.getSnapshot().access, true);
+  await reader.refresh();
+  const snapshots = reader.getSnapshot().snapshots;
+  assert.equal(snapshots.length, 1);
+  const source = snapshots[0];
+  const window = { start: source.covered.start - 1, end: source.covered.start + 60000 };
+  const result = partnerAgenda(snapshots, id(2), window, reader.getSnapshot().asOf);
+  assert.equal(result.status, "known");
+  assert.equal(result.complete, false);
+  assert.equal(result.intervals.length, 1);
+  assert.doesNotMatch(JSON.stringify(result), /Private|device-only|actorId|calendarId/);
+  await publisher.runtime.change([], false);
+  await reader.refresh();
+  assert.deepEqual(partnerAgenda(reader.getSnapshot().snapshots, id(2), window, Date.now()), {
+    status: "unknown",
+  });
+  remote.db.sql(`delete from public.household_members where user_id='${id(2)}'`);
+  await reader.refresh();
+  assert.equal(reader.getSnapshot().access, false);
+  assert.equal(reader.getSnapshot().snapshots, null);
 });

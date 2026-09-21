@@ -185,13 +185,13 @@ test("date navigation cannot turn a failed initial calendar load or denied permi
   await f.runtime.changeDate("2026-09-22");
   assert.equal(f.runtime.getSnapshot().result, null);
   assert.equal(f.runtime.getSnapshot().notice, notice);
-  assert.equal(f.runtime.getSnapshot().date, "2026-09-21");
+  assert.equal(f.runtime.getSnapshot().date, "2026-09-22");
   f.port.calendars = original;
   f.state.permission = false;
   await f.runtime.refresh();
   await f.runtime.changeDate("2026-09-22");
   assert.equal(f.runtime.getSnapshot().result, null);
-  assert.equal(f.runtime.getSnapshot().date, "2026-09-21");
+  assert.equal(f.runtime.getSnapshot().date, "2026-09-22");
   f.state.permission = true;
   await f.runtime.refresh();
   await f.runtime.changeDate("2026-09-22");

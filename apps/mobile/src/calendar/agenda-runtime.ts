@@ -138,7 +138,13 @@ export class AgendaRuntime {
     if (active) void this.refresh();
   };
   changeDate = (date: string) => {
-    if (!this.view.loaded || !this.view.permission) return Promise.resolve();
+    if (this.disposed || !this.view.active || !this.view.access || this.view.busy)
+      return Promise.resolve();
+    if (!agendaDay(date)) return Promise.resolve();
+    if (!this.view.loaded || !this.view.permission) {
+      this.publish({ date, result: null });
+      return Promise.resolve();
+    }
     return this.task(async (signal) => {
       if (!agendaDay(date)) return;
       this.publish({ date, result: null });

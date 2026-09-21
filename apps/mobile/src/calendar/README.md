@@ -31,3 +31,11 @@ The Calendar tab uses the account-leased agenda selection, local EventKit reader
 Day windows follow the device's civil timezone. Tests cover 5,000 days across Zurich, New York, Santiago, Kathmandu and Apia, including DST, midnight transitions and a skipped day. EventKit remains responsible for expanded occurrences. Native date controls and event readability need device verification.
 
 Assistant `openCalendarAgenda` returns only a fixed `/calendar` handoff after current membership authorization. Strict native card decoding rejects injected destinations/private fields. The assistant never receives agenda event content. Partner availability UI, optional household layers and real native smoke/privacy tests remain subsequent M6 work.
+
+## Partner busy presentation
+
+The same virtualized agenda distinguishes personal on-device details from partner busy time ranges. `assessAgendaAvailability` intersects the selected day with fresh shared coverage and preserves the uncovered remainder as unknown. No source calendar/event identity or text is inferred. An empty fresh intersection means no shared busy blocks in that coverage, never guaranteed free time. No overlap, missing snapshot, expired/future capture, or ambiguous partner identity produces unknown.
+
+`PartnerRuntime` reads the existing authenticated API through the account lease and clears evidence on remote failure, access loss, blur/background and expiry. Its expiry timer invalidates a previously displayed snapshot without another fetch. Foreground/minute/reconnect and explicit refresh request current server evidence, so opt-out is observed on the next read; no guarantee of instantaneous remote opt-out notification is made. Shared snapshots remain in memory only. Device calendar permission is independent: partner blocks and date navigation work when personal reads are unavailable, without turning the personal failure into empty success.
+
+Verified locally: generated clipping/coverage properties, controlled expiry, network failure/retry, canceled reads, server/local account loss, denied personal permission, and actual native HTTP/PostgREST opt-out and response-loss journeys. Real phones, APNs/realtime opt-out, AppState/network events and on-device visual/accessibility checks are not verified. Calendar layers remain subsequent work.

@@ -1,13 +1,14 @@
-import { useCallback, useState, useSyncExternalStore } from "react";
-import { AppState } from "react-native";
-import { useFocusEffect } from "expo-router";
+import { useState, useSyncExternalStore } from "react";
 import { expoCalendarPort } from "../calendar/expo-calendar";
 import { expoAgendaPort } from "../calendar/expo-agenda";
 import { agendaOperations } from "../calendar/agenda-operations";
 import { agendaOwner } from "../calendar/agenda-owner";
 import { localDate } from "../calendar/agenda-day";
 import { AgendaContent } from "../calendar/agenda-content";
-import type { AgendaRuntime } from "../calendar/agenda-runtime";
+import { partnerOwner } from "../calendar/partner-owner";
+import { partnerOperations } from "../calendar/partner-operations";
+import type { CalendarClient } from "../calendar/client";
+import { useAgendaActivity } from "../calendar/use-agenda-activity";
 import { useSession } from "../session/provider";
 import { useOfflineAccount } from "../offline/provider";
 import type { OfflineAccount } from "../offline/owner";
@@ -17,7 +18,7 @@ import { SignInCard } from "../components/sign-in-card";
 export default function CalendarScreen() {
   const session = useSession(),
     offline = useOfflineAccount();
-  if (session.state.status !== "ready")
+  if (session.state.status !== "ready" || !session.calendar)
     return (
       <Page>
         <SignInCard />
@@ -46,11 +47,20 @@ export default function CalendarScreen() {
     <CalendarAccount
       key={offline.state.account.session.lease}
       account={offline.state.account}
+      client={session.calendar}
       verify={session.retry}
     />
   );
 }
-function CalendarAccount({ account, verify }: { account: OfflineAccount; verify: () => void }) {
+function CalendarAccount({
+  account,
+  client,
+  verify,
+}: {
+  account: OfflineAccount;
+  client: CalendarClient;
+  verify: () => void;
+}) {
   const [owner] = useState(() =>
     agendaOwner(
       agendaOperations(account, {
@@ -61,30 +71,14 @@ function CalendarAccount({ account, verify }: { account: OfflineAccount; verify:
     ),
   );
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
-  useAgendaActivity(runtime);
-  return runtime ? (
-    <AgendaContent runtime={runtime} verify={verify} />
+  const [sharedOwner] = useState(() => partnerOwner(partnerOperations(account, client), Date.now));
+  const partner = useSyncExternalStore(sharedOwner.subscribe, sharedOwner.getSnapshot);
+  useAgendaActivity(runtime, partner);
+  return runtime && partner ? (
+    <AgendaContent runtime={runtime} partner={partner} verify={verify} />
   ) : (
     <Page>
       <Note>Opening your agenda…</Note>
     </Page>
-  );
-}
-function useAgendaActivity(runtime: AgendaRuntime | null) {
-  useFocusEffect(
-    useCallback(() => {
-      if (!runtime) return;
-      const activity = () => runtime.setActive(AppState.currentState === "active");
-      activity();
-      const subscription = AppState.addEventListener("change", activity);
-      const timer = setInterval(() => {
-        void runtime.refresh();
-      }, 60000);
-      return () => {
-        clearInterval(timer);
-        subscription.remove();
-        runtime.setActive(false);
-      };
-    }, [runtime]),
   );
 }

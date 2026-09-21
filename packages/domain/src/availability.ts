@@ -51,3 +51,27 @@ function validEvidence(value: BusyEvidence, now: number) {
     )
   );
 }
+
+// A day agenda may have only partial coverage, especially on the day of capture.
+// Never interpret the uncovered part of that day as free time.
+export function assessAgendaAvailability(
+  evidence: BusyEvidence | null,
+  query: TimeRange,
+  now: number,
+) {
+  if (!evidence || !validRange(query)) return { status: "unknown" as const };
+  const covered = {
+    start: Math.max(query.start, evidence.covered.start),
+    end: Math.min(query.end, evidence.covered.end),
+  };
+  const assessed = assessAvailability(evidence, covered, now);
+  if (assessed.status === "unknown") return assessed;
+  return {
+    status: "known" as const,
+    covered,
+    complete: covered.start === query.start && covered.end === query.end,
+    intervals: assessed.intervals,
+    capturedAt: assessed.capturedAt,
+    expiresAt: assessed.expiresAt,
+  };
+}

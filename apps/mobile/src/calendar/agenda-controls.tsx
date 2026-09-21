@@ -14,7 +14,7 @@ export function AgendaControls({
   choose: () => void;
 }) {
   const window = agendaDay(view.date);
-  const dateDisabled = view.busy || !view.loaded || !view.permission;
+  const dateDisabled = view.busy;
   return (
     <Section title="Your agenda">
       <Note>Personal event details stay on this iPhone. Viewing a calendar does not share it.</Note>
