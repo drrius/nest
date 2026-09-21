@@ -84,6 +84,12 @@
       "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
       "sha256": "f43ca34801f7620c2608e57bffa012f7e84850831cdb101c5f30e8be689d6b8d",
       "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
+    },
+    {
+      "file": "receipt-attachments.sql",
+      "source": "supabase/migrations/20260904224746_household_attachments.sql",
+      "sha256": "11f7e4f77a4ee314624605ad003910fdf3b21329ab539cec1e400292034e9321",
+      "selection": "Complete attachment registry, storage policies and financial claim statements; omits only unrelated shopping/completion triggers. See money-receipt-audit.md."
     }
   ]
 }

@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — native correction approval; branch `codex/native-correction-approval`.** Core financial flows and correction form/transaction/transport/recovery are merged after exact-commit CI and clean Sol medium review. Private AI correction proposals have clean Sol signoff and await CI. The native correction approval card and durable decisions pass local checks. Receipt attachments, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
+**M7 — optional receipt attachment audit; branch `codex/receipt-storage-audit`.** Private AI correction proposals are merged after exact-commit CI and clean Sol medium review. The native correction approval card and durable decisions have clean Sol signoff and await CI. Receipt attachments, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -1051,3 +1051,11 @@ Private AI correction proposals `59dfe20fee97c6c2f58b592237036e548948eb20` have 
 The private assistant result opens the exact protected correction proposal. The card loads authorized original context, shows original balance effects plus the exact reversal/replacement, and links retained history. Changed originals disable confirmation while still allowing explicit denial. Native alerts capture the current approval; stale alerts, expiry and account replacement cannot authorize another command. Private SQLite stores only decision identity before dispatch. Reconnect/restart check outcomes without sending; retry is explicit and preserves the decision. Confirmed results survive local cleanup failure, and recorded reversal/replacement links remain available.
 
 Twenty focused checks pass: twelve runtime cases, two display/ownership cases, two real SQLite cases, two actual SDK → native → HTTP/PostgREST confirmation journeys (reversal and replacement), and two lost-confirmation/denial restart journeys. Coverage includes current-source enforcement, account replacement during context loading, private isolation, expiry, stale alerts, storage corruption and no automatic financial writes. All eight existing offline test files pass. Mobile types, scoped lint and full formatting pass. iOS export `/tmp/nest-correction-approval-export`, bundle `c3a0a15f657d13d399a2145f603462ae`, is packaging evidence only. Exact-commit Sol review and CI remain required. Native controls, alerts/navigation/accessibility, hosted provider behavior and physical-device execution remain unverified; no production migration or deployment occurred.
+
+### Optional receipt storage audit — candidate
+
+Private AI correction proposals `59dfe20fee97c6c2f58b592237036e548948eb20` passed CI `35627836868` and exact-commit clean Sol medium review and were fast-forwarded to local/remote main. Native correction approval `32781ca36cf514daaca2610f7f08603b7ff7ac9a` has clean Sol signoff with all twenty focused cases independently passing; CI `35628380502` remains pending.
+
+The selected legacy attachment registry/claim/cleanup/policy statements are pinned with provenance and tested against the actual financial engine. Five focused PostgreSQL checks pass, including twelve claim/cleanup races, private reads, uploader binding, immutable objects, foreign/unuploaded reference rollback, retained receipts through reversal/replacement and cleanup tombstones. Formatting and lint pass. Audit evidence explicitly distinguishes the synthetic Storage metadata interface from real Storage HTTP/object bytes. Exact-commit review and CI remain required.
+
+See `docs/native-rewrite/money-receipt-audit.md` for native requirements and identified reuse limits: legacy upload recovery binds a path rather than file content, canonical lowercase paths are required, and byte inspection must be audited separately. This audit creates no native upload, file-selection or receipt-viewing functionality and changes no production schema, files or service configuration.
