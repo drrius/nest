@@ -38,7 +38,8 @@ function validDetail(detail: {
     return false;
   if (
     detail.receiptTotalCentimes != null &&
-    (event.kind !== "expense" || BigInt(detail.receiptTotalCentimes) < BigInt(event.amountCentimes))
+    (!["expense", "replacement"].includes(event.kind) ||
+      BigInt(detail.receiptTotalCentimes) < BigInt(event.amountCentimes))
   )
     return false;
   return validEntries(event, shares, reversedById);

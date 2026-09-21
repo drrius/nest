@@ -47,6 +47,7 @@
     "./settlement-approval": "./src/settlement-approval.ts",
     "./refund-save-read": "./src/refund-save-read.ts",
     "./refund-approval": "./src/refund-approval.ts",
+    "./correction": "./src/correction.ts",
     "./refund": "./src/refund.ts"
   },
   "scripts": {
