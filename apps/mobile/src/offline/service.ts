@@ -1,3 +1,5 @@
+import * as ExpenseSaves from "./expense-saves.ts";
+import type { ExpenseSaveAttempt } from "../money/save-attempt.ts";
 import * as MoneyReads from "./money-reads.ts";
 import * as ExpenseApprovals from "./expense-approvals.ts";
 import type { ExpenseApprovalAttempt } from "../money/approval-attempt.ts";
@@ -39,6 +41,12 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    readExpenseSave: (session: Session) =>
+      run(() => ExpenseSaves.readExpenseSave(database, session)),
+    stageExpenseSave: (session: Session, attempt: ExpenseSaveAttempt, current: () => boolean) =>
+      run(() => ExpenseSaves.stageExpenseSave(database, session, attempt, current)),
+    clearExpenseSave: (session: Session, attempt: ExpenseSaveAttempt) =>
+      run(() => ExpenseSaves.clearExpenseSave(database, session, attempt)),
     readExpenseApproval: (session: Session, approvalId: string) =>
       run(() => ExpenseApprovals.readExpenseApproval(database, session, approvalId)),
     stageExpenseApproval: (
