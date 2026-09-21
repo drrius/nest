@@ -1,3 +1,4 @@
+import { mealProposalClient } from "./proposal-client.ts";
 import { mealPreparationEditClient } from "./preparation-edit-client.ts";
 import { mealPreparationCreateClient } from "./preparation-create-client.ts";
 import { mealPreparationReadClient } from "./preparation-read-client.ts";
@@ -28,6 +29,11 @@ export function mealClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    proposals: mealProposalClient(
+      request,
+      preferenceRequests(apiUrl, account, credentials, "180 seconds"),
+      account,
+    ),
     editPreparation: mealPreparationEditClient(request, account),
     createPreparation: mealPreparationCreateClient(request, account),
     readPreparation: mealPreparationReadClient(request, account),

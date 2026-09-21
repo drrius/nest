@@ -1,3 +1,4 @@
+import type { MealProposalClient } from "../meals/proposal-client";
 import type { EditMealPreparation } from "@nest/contracts/meal-preparation-edit";
 import type { CreateMealPreparation } from "@nest/contracts/meal-preparation";
 import type { ReadMealPreparation } from "@nest/contracts/meal-preparation-read";
@@ -24,6 +25,7 @@ import { sessionCredentials } from "./credentials";
 export function sessionMeals(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = mealClient(apiUrl, account, sessionCredentials(auth));
   return {
+    proposals: nativeProposals(client.proposals),
     editPreparation: (input: EditMealPreparation) =>
       client.editPreparation(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     library: {
@@ -64,5 +66,18 @@ export function sessionMeals(auth: SupabaseClient["auth"], account: Account, api
       client.place(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     read: (weekStart: string) =>
       client.read(weekStart).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+  };
+}
+
+function nativeProposals(client: MealProposalClient) {
+  return {
+    reserve: (input: Parameters<MealProposalClient["reserve"]>[0]) =>
+      client.reserve(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    generate: (input: Parameters<MealProposalClient["generate"]>[0]) =>
+      client.generate(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recover: (proposal: string) =>
+      client.recover(proposal).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    discard: (input: Parameters<MealProposalClient["discard"]>[0]) =>
+      client.discard(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }

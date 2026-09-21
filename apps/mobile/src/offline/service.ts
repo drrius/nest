@@ -1,3 +1,4 @@
+import * as MealProposals from "./meal-proposals.ts";
 import * as PlannedRecipes from "./planned-recipes.ts";
 import type { ReadPlannedRecipe } from "@nest/contracts/recipe-selection";
 import * as MealWeeks from "./meal-weeks.ts";
@@ -31,6 +32,29 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    clearProposalDiscard: (
+      session: Session,
+      target: Parameters<typeof MealProposals.clearProposalDiscard>[2],
+    ) => run(() => MealProposals.clearProposalDiscard(database, session, target)),
+    readMealProposalAttempt: (session: Session, week: string) =>
+      run(() => MealProposals.readMealProposalAttempt(database, session, week)),
+    stageMealProposal: (
+      session: Session,
+      command: Parameters<typeof MealProposals.stageMealProposal>[2],
+    ) => run(() => MealProposals.stageMealProposal(database, session, command)),
+    recordMealProposal: (
+      session: Session,
+      receipt: Parameters<typeof MealProposals.recordMealProposal>[2],
+    ) => run(() => MealProposals.recordMealProposal(database, session, receipt)),
+    stageProposalDiscard: (
+      session: Session,
+      target: Parameters<typeof MealProposals.stageProposalDiscard>[2],
+    ) => run(() => MealProposals.stageProposalDiscard(database, session, target)),
+    clearMealProposalAttempt: (
+      session: Session,
+      target: Parameters<typeof MealProposals.clearMealProposalAttempt>[2],
+    ) => run(() => MealProposals.clearMealProposalAttempt(database, session, target)),
+
     readPlannedRecipe: (session: Session, target: ReadPlannedRecipe) =>
       run(() => PlannedRecipes.readPlannedRecipe(database, session, target)),
     savePlannedRecipe: (

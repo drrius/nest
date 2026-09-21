@@ -21,12 +21,14 @@ export function mealProposalRoute(config: IdentityConfig, options: MealPlanningO
       const { pathname, searchParams } = new URL(request.url),
         state = proposalState(config, caller);
       if (pathname === "/v1/meals/proposal") {
-        if (searchParams.size !== 1 || !searchParams.has("proposalId"))
+        if (!validReadQuery(searchParams))
           return yield* new ApiFailure({ code: "invalid_request" });
         return yield* state.read({ proposalId: searchParams.get("proposalId") });
       }
       if (searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
       const input = yield* commandBody(request);
+      if (pathname === "/v1/meals/proposal/reserve")
+        return { version: 1, receipt: yield* state.begin(input) };
       if (pathname === "/v1/meals/proposal/recover") return yield* state.read(input, true);
       if (pathname === "/v1/meals/proposal/discard")
         return { version: 1, receipt: yield* state.discard(input) };
@@ -36,3 +38,5 @@ export function mealProposalRoute(config: IdentityConfig, options: MealPlanningO
       return yield* generateProposal(config, caller, input, { model: options.model, rpc });
     });
 }
+
+const validReadQuery = (params: URLSearchParams) => params.size === 1 && params.has("proposalId");

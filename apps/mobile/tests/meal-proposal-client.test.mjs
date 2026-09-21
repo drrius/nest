@@ -1,0 +1,68 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import * as Effect from "effect/Effect";
+import * as Fiber from "effect/Fiber";
+import * as Exit from "effect/Exit";
+import * as TestClock from "effect/testing/TestClock";
+import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
+import { mealClient } from "../src/meals/client.ts";
+import { account, command, receipt, ready, id } from "./meal-proposal-fixture.mjs";
+const credentials = Effect.succeed({
+  access_token: "user",
+  refresh_token: "fixture",
+  user: { id: account.actor },
+});
+const client = mealClient("https://fixture.invalid/", account, credentials);
+const result = { version: 1, receipt, envelope: ready };
+const run = (effect, fetch) =>
+  Effect.runPromise(effect.pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)));
+
+test("native proposal client binds actor, operation and current content to the submitted week", async () => {
+  assert.deepEqual(
+    await run(client.proposals.generate(command), async () => Response.json(result)),
+    result,
+  );
+  for (const patch of [
+    { actorId: id(2) },
+    { operationId: id(801) },
+    { expectedWeekRevision: "1" },
+    { familiarOnly: true },
+  ])
+    await assert.rejects(
+      run(client.proposals.reserve(command), async () =>
+        Response.json({ version: 1, receipt: { ...receipt, ...patch } }),
+      ),
+      { code: "unavailable" },
+    );
+  await assert.rejects(
+    run(client.proposals.recover(id(999)), async () => Response.json(ready)),
+    { code: "unavailable" },
+  );
+  const other = mealClient("https://fixture.invalid/", { ...account, actor: id(2) }, credentials);
+  await assert.rejects(
+    run(other.proposals.generate(command), async () => assert.fail("wrong account sent a request")),
+    { code: "session" },
+  );
+});
+
+test("only generation has the longer bounded timeout; ordinary requests still expire after fifteen seconds", async () => {
+  let finish;
+  const fetch = (url, init) =>
+    new Promise((resolve, reject) => {
+      if (String(url).includes("/generate")) finish = resolve;
+      init.signal.addEventListener("abort", () => reject(new Error("aborted")), { once: true });
+    });
+  const program = Effect.gen(function* () {
+    const generation = yield* client.proposals.generate(command).pipe(Effect.forkChild);
+    const ordinary = yield* client.read(command.weekStart).pipe(Effect.forkChild);
+    yield* TestClock.adjust("16 seconds");
+    assert.ok(Exit.isFailure(yield* Fiber.await(ordinary)));
+    assert.equal(generation.pollUnsafe(), undefined);
+    finish(Response.json(result));
+    assert.deepEqual(yield* Fiber.join(generation), result);
+    const bounded = yield* client.proposals.generate(command).pipe(Effect.forkChild);
+    yield* TestClock.adjust("180 seconds");
+    assert.ok(Exit.isFailure(yield* Fiber.await(bounded)));
+  }).pipe(Effect.provide(TestClock.layer()));
+  await run(program, fetch);
+});

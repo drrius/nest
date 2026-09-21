@@ -16,7 +16,7 @@ import { MealWeekBoard, WeekNavigation } from "../meals/board";
 import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { SignInCard } from "../components/sign-in-card";
-import { useQuiet } from "../theme";
+import { space, useQuiet } from "../theme";
 export default function MealWeekScreen() {
   const params = useLocalSearchParams();
   const weekStart = requestedMealWeek(params.weekStart, householdDate(new Date()));
@@ -107,6 +107,12 @@ function WeekContent({
     <Page>
       <Link href="/meal-library" style={{ color: colors.accent, fontSize: 17 }}>
         Saved meals and recipes
+      </Link>
+      <Link
+        href={{ pathname: "/meal-proposal", params: { weekStart: view.weekStart } }}
+        style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
+      >
+        Plan with AI or resume a preview
       </Link>
       <WeekNavigation
         weekStart={view.weekStart}

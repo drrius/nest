@@ -9,7 +9,7 @@ export function RecipeHeader({
   recipe,
   label = "Current saved recipe",
 }: {
-  recipe: Pick<SavedMeal, "title" | "servings" | "ingredients">;
+  recipe: Pick<SavedMeal, "title" | "servings"> & { ingredients: readonly { name: string }[] };
   label?: string;
 }) {
   return (
@@ -24,7 +24,11 @@ export function RecipeHeader({
     </View>
   );
 }
-export function IngredientRow({ ingredient }: { ingredient: SavedMeal["ingredients"][number] }) {
+export function IngredientRow({
+  ingredient,
+}: {
+  ingredient: Pick<SavedMeal["ingredients"][number], "name" | "quantity" | "unit" | "note">;
+}) {
   return (
     <Card>
       <Note>{ingredient.name}</Note>

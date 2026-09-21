@@ -1,4 +1,5 @@
 import * as Effect from "effect/Effect";
+import type * as Duration from "effect/Duration";
 import * as Schema from "effect/Schema";
 import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as HttpBody from "effect/unstable/http/HttpBody";
@@ -31,6 +32,7 @@ export function preferenceRequests(
   apiUrl: string,
   account: Account,
   credentials: Effect.Effect<Credentials, ChoreFailure>,
+  timeout: Duration.Input = "15 seconds",
 ) {
   return <A>(path: string, schema: Schema.Codec<A>, body?: object) =>
     Effect.gen(function* () {
@@ -52,7 +54,7 @@ export function preferenceRequests(
         Effect.flatMap(Schema.decodeUnknownEffect(schema, { onExcessProperty: "error" })),
       );
     }).pipe(
-      Effect.timeout("15 seconds"),
+      Effect.timeout(timeout),
       Effect.mapError(normalize),
       Effect.provide(FetchHttpClient.layer),
       Effect.provideService(FetchHttpClient.RequestInit, {
