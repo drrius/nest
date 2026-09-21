@@ -1,3 +1,4 @@
+import { readHouseholdRosterTool } from "../routines/roster-tool.ts";
 import { mealLibraryTools } from "../meals/library-tools.ts";
 import { mealWriteTools } from "../meals/write-tools.ts";
 import { readMealWeekTool } from "../meals/tools.ts";
@@ -62,6 +63,7 @@ export function householdTools(
     readMealWeek: readMealWeekTool(bound, config),
     ...mealLibraryTools(bound, config),
     readRoutines: readRoutinesTool(bound, config),
+    readHouseholdRoster: readHouseholdRosterTool(bound, config),
     readNotificationPreferences: readNotificationPreferencesTool(bound, config),
     readMemories: readMemoriesTool(bound, config),
     readCookingPreferences: readCookingPreferencesTool(bound, config),

@@ -88,3 +88,42 @@ test("SDK preparation reconciles committed response loss and reads completed sta
   });
   assert.equal(f.remote.db.sql("select count(*) from public.nest_meal_preparation_receipts"), "1");
 });
+
+test("SDK assigned preparation uses the bounded roster beyond 200 routines", async (t) => {
+  const f = await setup(t);
+  f.remote.db
+    .sql(`set role authenticated; set request.jwt.claims='${JSON.stringify({ sub: id(1) })}';
+    select public.nest_create_routine('${id(10)}',gen_random_uuid(),jsonb_build_object('title','Task '||n,'schedule',jsonb_build_object('kind','one_off','date','2030-01-07'),'assignment',jsonb_build_object('policy','shared'))) from generate_series(1,201) n`);
+  const tools = f.connect();
+  assert.deepEqual(await tools.readRoutines.execute({}, options("routines")), {
+    ok: false,
+    code: "unavailable",
+  });
+  const roster = await tools.readHouseholdRoster.execute({}, options("roster"));
+  assert.equal(roster.ok, true);
+  assert.equal(roster.value.householdId, id(10));
+  const partner = roster.value.members.find((member) => member.actorId === id(2));
+  assert.ok(partner);
+  const value = input();
+  value.preparation.assignment = { policy: "assigned", memberId: partner.actorId };
+  const saved = await tools.createMealPreparation.execute(value, options("assigned"));
+  assert.equal(saved.ok, true);
+  const detail = await tools.readMealPreparation.execute(
+    { entryId: value.entryId, weekStart: week, revision: "1" },
+    options("detail"),
+  );
+  assert.equal(detail.value.preparation.plannedAssigneeId, partner.actorId);
+  assert.deepEqual(
+    await f
+      .connect(false, f.remote.otherBearer)
+      .readHouseholdRoster.execute({}, options("foreign")),
+    { ok: false, code: "forbidden" },
+  );
+  f.remote.db.sql(
+    `delete from public.activity_events; delete from public.household_members where user_id='${id(1)}'`,
+  );
+  assert.deepEqual(await tools.readHouseholdRoster.execute({}, options("revoked")), {
+    ok: false,
+    code: "forbidden",
+  });
+});
