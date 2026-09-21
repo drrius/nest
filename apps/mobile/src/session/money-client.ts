@@ -100,6 +100,10 @@ export function sessionMoney(
 
 function sessionRecurring(client: MoneyClient) {
   return {
+    recoverRecurring: (input: RecurringSave) =>
+      client.recoverRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelRecurringSave: (input: RecurringSave) =>
+      client.cancelRecurringSave(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRules: (after: string | null = null) =>
       client.recurringRules(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRule: (ruleId: string) =>

@@ -1,4 +1,5 @@
 import * as Effect from "effect/Effect";
+import { recurringRecoveryClient } from "./recurring-recovery-client.ts";
 import * as Schema from "effect/Schema";
 import {
   SaveRecurring,
@@ -27,6 +28,7 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...recurringRecoveryClient(apiUrl, account, credentials),
     recurringRules: (after: string | null = null) =>
       Effect.gen(function* () {
         const query = yield* Schema.decodeUnknownEffect(RecurringListQuery)({ after }).pipe(
