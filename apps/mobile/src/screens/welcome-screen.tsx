@@ -14,8 +14,8 @@ export default function WelcomeScreen() {
       {__DEV__ ? (
         <Section title="Quiet design preview">
           <Note>
-            Screens labeled as fictional are local design examples. Calendar uses your signed-in
-            account and actual device calendars.
+            Screens labeled as fictional are local design examples. Calendar and Money use your
+            signed-in account; Calendar also reads actual device calendars.
           </Note>
           <Link
             href="/today"

@@ -56,6 +56,8 @@ export function makeOfflineStore(database: Database) {
     saveMealWeek: (session: Session, snapshot: MealWeekSnapshot, current?: () => boolean) =>
       run(() => MealWeeks.saveMealWeek(database, session, snapshot, current)),
     ...calendarStore(database),
+    checkSession: (session: Session) =>
+      run(() => SessionStore.scoped(database, session, () => Promise.resolve())),
     activate: (account: Account, lease: string) =>
       run(() => SessionStore.activate(database, account, lease)),
     suspend: (session: Session) => run(() => SessionStore.suspend(database, session)),
