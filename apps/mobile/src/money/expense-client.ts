@@ -1,3 +1,4 @@
+import { ExpenseSaveResult } from "@nest/contracts/expense-save-read";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { SaveExpense, ExpenseInput, ExpenseReceipt } from "@nest/contracts/expense";
@@ -15,13 +16,26 @@ export function expenseClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    recoverExpense: (input: ExpenseSave) =>
+      Effect.gen(function* () {
+        const command = yield* prepare(input);
+        const value = yield* request(
+          `v1/money/expense/receipt?${new URLSearchParams({ operationId: command.operationId })}`,
+          ExpenseSaveResult,
+        );
+        if (
+          value.actorId !== account.actor ||
+          value.householdId !== account.household ||
+          value.operationId !== command.operationId
+        )
+          return yield* new PreferenceFailure({ code: "unavailable" });
+        if (value.receipt !== null && !equivalent(value.receipt.expense, command.expense))
+          return yield* new PreferenceFailure({ code: "unavailable" });
+        return value.receipt;
+      }),
     saveExpense: (input: ExpenseSave) =>
       Effect.gen(function* () {
-        const command = yield* Schema.decodeUnknownEffect(SaveExpense)(input, {
-          onExcessProperty: "error",
-        }).pipe(Effect.mapError(() => new PreferenceFailure({ code: "invalid" })));
-        const operationId = command.operationId.toLowerCase(),
-          expense = canonicalExpense(command.expense);
+        const { operationId, expense } = yield* prepare(input);
         const receipt = yield* request("v1/money/expense/save", ExpenseReceipt, {
           operationId,
           expense,
@@ -37,4 +51,14 @@ export function expenseClient(
         return receipt;
       }),
   };
+}
+
+function prepare(input: ExpenseSave) {
+  return Schema.decodeUnknownEffect(SaveExpense)(input, { onExcessProperty: "error" }).pipe(
+    Effect.mapError(() => new PreferenceFailure({ code: "invalid" })),
+    Effect.map((command) => ({
+      operationId: command.operationId.toLowerCase(),
+      expense: canonicalExpense(command.expense),
+    })),
+  );
 }

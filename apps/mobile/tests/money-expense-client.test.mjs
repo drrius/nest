@@ -49,3 +49,30 @@ test("native Save only accepts its direct actor-bound exact expense receipt", as
   );
   assert.equal(calls, 0);
 });
+test("native Save recovery retains the exact intended expense when receipt reads are missing or forged", async () => {
+  const result = {
+    version: 1,
+    actorId: id(1),
+    householdId: id(10),
+    operationId: command.operationId,
+    receipt,
+  };
+  const recover = (value, input = command) =>
+    Effect.runPromise(
+      client
+        .recoverExpense(input)
+        .pipe(Effect.provideService(Fetch.Fetch, async () => Response.json(value))),
+    );
+  assert.deepEqual(await recover(result), receipt);
+  assert.equal(await recover({ ...result, receipt: null }), null);
+  for (const patch of [{ actorId: id(2) }, { householdId: id(20) }, { operationId: id(103) }])
+    await assert.rejects(recover({ ...result, ...patch, receipt: null }), { code: "unavailable" });
+  await assert.rejects(
+    recover(result, { ...command, expense: payload({ description: "Different" }) }),
+    { code: "unavailable" },
+  );
+  await assert.rejects(recover({ ...result, receipt: { ...receipt, approvalId: id(104) } }), {
+    code: "unavailable",
+  });
+  await assert.rejects(recover(result, { ...command, actorId: id(2) }), { code: "invalid" });
+});

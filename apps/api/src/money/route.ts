@@ -1,3 +1,4 @@
+import { readExpenseSave } from "./expense-save-read.ts";
 import { readMoneyCategory } from "./category.ts";
 import { expenseApprovals } from "./expense-approval.ts";
 import { expenseCommands } from "./expense.ts";
@@ -13,6 +14,10 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
   const url = new URL(request.url),
     params = url.searchParams;
   if (url.pathname.startsWith("/v1/money/approval")) return approvalRoute(request, config, caller);
+  if (url.pathname === "/v1/money/expense/receipt")
+    return !singleParam(params, "operationId")
+      ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+      : readExpenseSave(config, caller, { operationId: params.get("operationId") });
   if (url.pathname.startsWith("/v1/money/expense/"))
     return Effect.gen(function* () {
       if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
