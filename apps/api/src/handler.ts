@@ -142,6 +142,8 @@ const methods: Record<string, string> = {
   "/v1/money/recurring/approval": "GET",
   "/v1/money/recurring/state/approval": "GET",
   "/v1/money/recurring/state/approval/decide": "POST",
+  "/v1/money/recurring/resume/approval": "GET",
+  "/v1/money/recurring/resume/approval/decide": "POST",
   "/v1/money/recurring/resume/save": "POST",
   "/v1/money/recurring/resume/execute": "POST",
   "/v1/money/recurring/resume/receipt": "GET",

@@ -1,3 +1,4 @@
+import type { RecurringResumeDecision } from "../money/recurring-resume-approval-client";
 import type { RecurringResumeSave } from "../money/recurring-resume-client";
 import type { RecurringStateDecision } from "../money/recurring-state-approval-client";
 import type { RecurringDecision } from "../money/recurring-approval-client";
@@ -114,6 +115,12 @@ function sessionRecurring(client: MoneyClient) {
       client
         .cancelRecurringResumeSave(input)
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recurringResumeApproval: (approvalId: string) =>
+      client
+        .recurringResumeApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideRecurringResume: (input: RecurringResumeDecision) =>
+      client.decideRecurringResume(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringStateApproval: (approvalId: string) =>
       client
         .recurringStateApproval(approvalId)

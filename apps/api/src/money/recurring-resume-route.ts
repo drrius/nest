@@ -1,3 +1,4 @@
+import { recurringResumeApprovalRoute } from "./recurring-resume-approval-route.ts";
 import * as Effect from "effect/Effect";
 import { recurringResumeCommands } from "./recurring-resume.ts";
 import { recurringResumeRecovery } from "./recurring-resume-read.ts";
@@ -12,6 +13,8 @@ export function recurringResumeRoute(
 ) {
   return Effect.gen(function* () {
     const url = new URL(request.url);
+    if (url.pathname.includes("/approval"))
+      return yield* recurringResumeApprovalRoute(request, config, caller);
     if (request.method === "GET") {
       if (url.searchParams.size !== 1 || !url.searchParams.has("operationId"))
         return yield* new ApiFailure({ code: "invalid_request" });
