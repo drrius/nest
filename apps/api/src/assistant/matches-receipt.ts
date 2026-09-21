@@ -1,3 +1,4 @@
+import { matchesVariableCycleProposal } from "../money/recurring-variable-proposal.ts";
 import { matchesRecurringResumeProposal } from "../money/recurring-resume-proposal.ts";
 import { matchesRecurringStateProposal } from "../money/recurring-state-proposal.ts";
 import { matchesRecurringProposal } from "../money/recurring-proposal.ts";
@@ -14,6 +15,7 @@ import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 const financialProposals = {
+  proposeVariableCycle: matchesVariableCycleProposal,
   proposeRecurringResume: matchesRecurringResumeProposal,
   proposeRecurringState: matchesRecurringStateProposal,
   proposeRecurring: matchesRecurringProposal,

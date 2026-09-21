@@ -1,3 +1,5 @@
+import { VariableCycleInput } from "./recurring-variable.ts";
+import { VariableCycleApprovalEnvelope } from "./recurring-variable-approval.ts";
 import { RecurringResumeInput } from "./recurring-resume.ts";
 import { RecurringResumeApprovalEnvelope } from "./recurring-resume-approval.ts";
 import { RecurringStateInput } from "./recurring-state.ts";
@@ -76,6 +78,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeVariableCycle: VariableCycleInput,
   proposeRecurringResume: RecurringResumeInput,
   proposeRecurringState: RecurringStateInput,
   proposeRecurring: RecurringProposalInput,
@@ -125,6 +128,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeVariableCycle: VariableCycleApprovalEnvelope,
   proposeRecurringResume: RecurringResumeApprovalEnvelope,
   proposeRecurringState: RecurringStateApprovalEnvelope,
   proposeRecurring: RecurringApprovalEnvelope,

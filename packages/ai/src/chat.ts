@@ -15,6 +15,7 @@ export type AssistantTools = ToolSet;
 export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssistantAgent>>;
 export const gatewayModel = (apiKey: string, model: string) => createGateway({ apiKey })(model);
 const writeNames = new Set([
+  "proposeVariableCycle",
   "proposeRecurringResume",
   "proposeRecurringState",
   "proposeRecurring",
