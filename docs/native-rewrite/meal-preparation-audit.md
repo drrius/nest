@@ -22,3 +22,9 @@ Use existing audited Nest routine insertion and date/assignment rules deliberate
 - Actual API/native/SDK journeys, uncertainty and authorization recovery, explicit read-only stale state, and native accessibility/navigation checks when a phone is available.
 
 This audit does not claim an implemented or verified preparation command. All planned SQL testing is against disposable synthetic fixtures; production remains separately gated.
+
+## Preparation editing boundary
+
+The edit command deliberately reuses the already audited `public.edit_routine_definition` CAS engine and `private.nest_routine_edit_patch` mapping. It first authorizes current membership and checks an actor-owned immutable retry receipt, then locks the exact week, meal and linked occurrence. Both the meal revision and routine microsecond version are required. New edits reject removed/moved targets; old acknowledged operations still replay after removal. Date edits remain one-off and update the matching active-date bounds. Finished tasks permit text corrections while the audited engine rejects changed date or responsibility. Omitted legacy metadata remains untouched; explicit null instructions use the existing clear-intent mechanism. No caller-supplied legacy idempotency key is accepted.
+
+Storage/API verification uses synthetic fixtures with the actual audited edit/closure engines. Native editing and matching assistant editing remain separate unfinished integrations; successful SQL/API tests do not establish device acceptance.

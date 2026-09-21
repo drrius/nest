@@ -1,3 +1,4 @@
+import { editMealPreparation } from "./preparation-edit.ts";
 import { createMealPreparation } from "./preparation-create.ts";
 import { mealPreparationRoute } from "./preparation-read.ts";
 import { placeLeftovers } from "./leftovers.ts";
@@ -49,13 +50,14 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
     const receipt = yield* command(
       config,
       caller,
-      yield* commandBody(request, path === "/v1/meals/preparation/create" ? 32768 : 8192),
+      yield* commandBody(request, path.startsWith("/v1/meals/preparation/") ? 32768 : 8192),
     );
     return { version: 1, receipt };
   });
 }
 
 const commands = {
+  "/v1/meals/preparation/edit": editMealPreparation,
   "/v1/meals/preparation/create": createMealPreparation,
   "/v1/meals/recipe/place": placeRecipe,
   "/v1/meals/recipe/replace": replaceWithRecipe,
