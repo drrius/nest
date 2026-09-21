@@ -12,7 +12,8 @@ begin
     'category',case when c.id is null then null else jsonb_build_object(
       'categoryId',c.id,'householdId',c.household_id,'name',c.name,'archivedAt',c.archived_at) end,
     'mealSource',case when e.id is null then null else jsonb_build_object(
-      'entryId',e.id,'householdId',e.household_id,'title',e.title_snapshot,'date',e.date::text,'slot',e.slot) end
+      'entryId',e.id,'householdId',e.household_id,'title',e.title_snapshot,
+      'date',case when e.date between date '0001-01-01' and date '9999-12-31' then e.date::text else null end,'slot',e.slot) end
     ) order by g.sort_order,g.created_at,g.id),'[]'::jsonb) into v_items
   from public.grocery_items g
   left join public.grocery_categories c on c.household_id=g.household_id and c.id=g.category_id

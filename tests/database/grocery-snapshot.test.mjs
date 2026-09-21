@@ -74,3 +74,24 @@ test("atomic grocery snapshot excludes removed/purchased history, retains claime
   assert.equal(f.read().items[1].mealSource.date, null);
   assert.equal(f.read().items[1].mealSource.title, "Retained soup");
 });
+
+test("unsupported legacy source dates do not invalidate an otherwise readable grocery snapshot", (t) => {
+  const f = fixture(t);
+  for (const date of ["infinity", "-infinity", "10000-01-01", "0001-01-01 BC"]) {
+    f.db.sql(`update public.meal_plan_entries set date='${date}' where id='${id(100)}'`);
+    const snapshot = f.read();
+    assert.equal(snapshot.total, 1);
+    assert.equal(snapshot.items[0].name, "Tomatoes");
+    assert.deepEqual(snapshot.items[0].mealSource, {
+      entryId: id(100),
+      householdId: id(10),
+      title: "Retained soup",
+      date: null,
+      slot: "dinner",
+    });
+  }
+  for (const date of ["0001-01-01", "9999-12-31"]) {
+    f.db.sql(`update public.meal_plan_entries set date='${date}' where id='${id(100)}'`);
+    assert.equal(f.read().items[0].mealSource.date, date);
+  }
+});
