@@ -22,7 +22,7 @@ export function prepareRecurringResume(rule: RecurringRule, today: string, opera
   return { rule, change, command: stateSaveAttempt({ operationId, change }).command };
 }
 export function resumeConfirmationText(
-  expected: NonNullable<ReturnType<typeof prepareRecurringResume>>,
+  expected: Pick<NonNullable<ReturnType<typeof prepareRecurringResume>>, "rule" | "change">,
   actor: string,
 ) {
   return [

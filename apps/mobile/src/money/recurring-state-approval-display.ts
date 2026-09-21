@@ -1,6 +1,13 @@
 import { recurringStateSummary } from "./recurring-state-summary.ts";
 import type { RecurringRule } from "@nest/contracts/recurring-read";
-import type { RecurringStateApproval } from "./recurring-state-approval-client.ts";
+import {
+  lifecycleDatePassed,
+  type RecurringLifecycleApproval as RecurringStateApproval,
+} from "./recurring-lifecycle-approval.ts";
+import {
+  recurringResumeApprovalText,
+  resumeMatchesRule,
+} from "./recurring-resume-approval-display.ts";
 import type { RecurringStateApprovalView } from "./recurring-state-approval-runtime.ts";
 export function recurringStateRevisionSuperseded(
   approval: RecurringStateApproval,
@@ -21,7 +28,9 @@ export function matchesRecurringStateContext(
     current !== null &&
     current.ruleId === change.ruleId &&
     current.revision === change.expectedRevision &&
-    current.status === change.expectedStatus
+    current.status === change.expectedStatus &&
+    !lifecycleDatePassed(approval) &&
+    resumeMatchesRule(approval, current)
   );
 }
 export function recurringStateApprovalText(
@@ -29,6 +38,7 @@ export function recurringStateApprovalText(
   current: RecurringRule | null,
   actor: string,
 ) {
+  if ("reviewedOn" in approval) return recurringResumeApprovalText(approval, current, actor);
   return [
     current ? recurringStateSummary(current, actor) : "Recurring expense",
     `Requested action: ${approval.change.action}. Reviewed status: ${approval.change.expectedStatus}.`,

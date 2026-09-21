@@ -1,3 +1,4 @@
+import type { RecurringApprovalKind } from "../money/recurring-lifecycle-approval";
 import { useState, useSyncExternalStore } from "react";
 import { useLocalSearchParams } from "expo-router";
 import * as Schema from "effect/Schema";
@@ -9,7 +10,11 @@ import { recurringStateApprovalOperations } from "../money/recurring-state-appro
 import { useSaveActivity } from "../money/use-save-activity";
 import type { RecurringStateApprovalRuntime } from "../money/recurring-state-approval-runtime";
 import { RecurringStateApprovalContent } from "../money/recurring-state-approval-content";
-export default function RecurringStateApprovalScreen() {
+export default function RecurringStateApprovalScreen({
+  kind = "state",
+}: {
+  kind?: RecurringApprovalKind;
+}) {
   const { approvalId } = useLocalSearchParams();
   if (typeof approvalId !== "string" || !Schema.is(RecurringStateApprovalQuery)({ approvalId }))
     return (
@@ -21,15 +26,20 @@ export default function RecurringStateApprovalScreen() {
   return (
     <MoneyScreenGate>
       {(props) => (
-        <Approval key={`${props.account.session.lease}:${target}`} {...props} approvalId={target} />
+        <Approval
+          key={`${props.account.session.lease}:${kind}:${target}`}
+          {...props}
+          approvalId={target}
+          kind={kind}
+        />
       )}
     </MoneyScreenGate>
   );
 }
-function Approval(props: MoneyScreenAccount & { approvalId: string }) {
+function Approval(props: MoneyScreenAccount & { approvalId: string; kind: RecurringApprovalKind }) {
   const [owner] = useState(() =>
     recurringStateApprovalOwner(
-      recurringStateApprovalOperations(props.account, props.client),
+      recurringStateApprovalOperations(props.account, props.client, props.kind),
       props.approvalId,
     ),
   );

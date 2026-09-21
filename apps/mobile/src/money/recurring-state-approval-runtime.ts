@@ -6,7 +6,11 @@ import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { OfflineFailure } from "../offline/contracts.ts";
 import { PreferenceFailure } from "../preferences/client.ts";
-import type { RecurringStateApproval } from "./recurring-state-approval-client.ts";
+import {
+  lifecycleDatePassed,
+  lifecycleDecision,
+  type RecurringLifecycleApproval as RecurringStateApproval,
+} from "./recurring-lifecycle-approval.ts";
 import type { RecurringStateApprovalAttempt } from "./recurring-state-approval-attempt.ts";
 import type {
   RecurringStateApprovalOperations,
@@ -146,7 +150,8 @@ export class RecurringStateApprovalRuntime {
     let { approval } = loaded;
     const { context, attempt } = loaded;
     const superseded = Boolean(
-      attempt?.approved && recurringStateRevisionSuperseded(approval, context),
+      attempt?.approved &&
+      (recurringStateRevisionSuperseded(approval, context) || lifecycleDatePassed(approval)),
     );
     if (superseded && attempt) {
       // Recheck after observing a committed revision. An older in-flight CAS can
@@ -208,7 +213,7 @@ export class RecurringStateApprovalRuntime {
     request: AbortController,
   ) {
     const result = await Effect.runPromise(
-      this.operations.decide({ ...attempt, change: approval.change }),
+      this.operations.decide(lifecycleDecision(approval, attempt)),
       { signal: request.signal },
     );
     if (!this.current(request)) return;
@@ -266,7 +271,7 @@ function recoveryNotice(
 ) {
   if (terminal(approval)) return null;
   if (superseded)
-    return "The rule changed. This proposal can no longer be approved. You can decline it and request a new proposal.";
+    return `${lifecycleDatePassed(approval) ? "The resume date has passed." : "The rule changed."} This proposal can no longer be approved. You can decline it and request a new proposal.`;
   return attempt
     ? "An earlier decision is unresolved. Check again or retry that exact decision."
     : null;

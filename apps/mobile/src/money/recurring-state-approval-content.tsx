@@ -50,8 +50,8 @@ function Recorded({ view }: Pick<Props, "view">) {
   return (
     <Section title="State change recorded">
       <Note>
-        The server recorded this pause or cancellation. No expense was posted by this approval. The
-        current rule may have changed since.
+        The server recorded this state change. No expense was posted by this approval. The current
+        rule may have changed since.
       </Note>
       <NativeAction
         label="View current recurring expense"
@@ -97,28 +97,25 @@ function DecisionControls({ runtime, view, actor }: Props) {
     );
   };
   const decline = () =>
-    Alert.alert(
-      "Decline this proposal?",
-      "This proposal will not pause or cancel a recurring rule.",
-      [
-        { text: "Cancel", style: "cancel" },
-        {
-          text: "Decline proposal",
-          style: "destructive",
-          onPress: () => void runtime.decide(approval, false),
-        },
-      ],
-    );
+    Alert.alert("Decline this proposal?", "This proposal will not change a recurring rule.", [
+      { text: "Cancel", style: "cancel" },
+      {
+        text: "Decline proposal",
+        style: "destructive",
+        onPress: () => void runtime.decide(approval, false),
+      },
+    ]);
   return (
     <Section title="Your decision">
       <Note>
         {actions.expired
           ? "This proposal has expired. Request a new proposal if you still want this state change."
-          : "Confirm only after reviewing the affected rule and pause or cancellation above."}
+          : "Confirm only after reviewing the exact rule and proposed authorization above."}
       </Note>
       {!actions.confirm && actions.deny ? (
         <Note>
-          The current rule revision or status no longer matches. Decline and request a new review.
+          The current rule or eligible resume date no longer matches. Decline and request a new
+          review.
         </Note>
       ) : null}
       <NativeAction label="Confirm state change" disabled={!actions.confirm} onPress={confirm} />
