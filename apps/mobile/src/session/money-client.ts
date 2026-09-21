@@ -15,6 +15,10 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    recoverCorrection: (input: CorrectionSave) =>
+      client.recoverCorrection(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelCorrection: (input: CorrectionSave) =>
+      client.cancelCorrection(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     correctionContext: (sourceEventId: string) =>
       client
         .correctionContext(sourceEventId)

@@ -7,14 +7,15 @@ export const correction = (sourceEventId, patch = {}) => ({
   replacement: null,
   ...patch,
 });
-export async function correctionApiFixture(t) {
-  const f = await refundApiFixture(t);
+export async function correctionApiFixture(t, seed = true) {
+  const f = await refundApiFixture(t, seed);
   for (const file of [
     "tests/database/legacy-money/opening-correction-lineage.sql",
     "tests/database/legacy-money/correction-command.sql",
     "supabase/migrations/20260921144718_native_grocery_expense.sql",
     "supabase/migrations/20260921160415_native_correction_command.sql",
     "supabase/migrations/20260921161115_native_correction_context.sql",
+    "supabase/migrations/20260921161648_native_correction_save_cancel.sql",
   ])
     f.db.file(file);
   f.db.sql("notify pgrst,'reload schema'");

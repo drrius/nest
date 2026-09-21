@@ -1,3 +1,4 @@
+import { readCorrectionSave, cancelCorrectionSave } from "./correction-save-read.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
 import type { AuthorizedCaller } from "../chores/service.ts";
@@ -13,6 +14,11 @@ export function correctionRoute(
   return Effect.gen(function* () {
     const url = new URL(request.url),
       params = url.searchParams;
+    if (url.pathname === "/v1/money/correction/receipt") {
+      if (params.size !== 1 || !params.has("operationId"))
+        return yield* new ApiFailure({ code: "invalid_request" });
+      return yield* readCorrectionSave(config, caller, { operationId: params.get("operationId") });
+    }
     if (url.pathname === "/v1/money/correction/context") {
       if (params.size !== 1 || !params.has("sourceEventId"))
         return yield* new ApiFailure({ code: "invalid_request" });
@@ -23,6 +29,7 @@ export function correctionRoute(
     if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
     const commands = correctionCommands(config, caller),
       input = yield* commandBody(request, 65536);
+    if (url.pathname.endsWith("/cancel")) return yield* cancelCorrectionSave(config, caller, input);
     return yield* url.pathname.endsWith("/execute")
       ? commands.execute(input)
       : commands.save(input);
