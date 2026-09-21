@@ -1,0 +1,9 @@
+# Grocery expense reuse decision
+
+Reference: Household OS commit `4a528c96caf41515a70291ccecbba9d7b35e3349`, `supabase/migrations/20260812090000_notifications_realtime.sql`, function `public.finish_shopping_session` (starts at line 980). This was read as reference only; no production connection or data was used.
+
+That legacy function requires a shopping session and claimed items. It optionally creates a draft with a shared amount, marks claimed groceries purchased, finishes the shopping session and stores receipt total/path on that session. Its independent nonnegative total/shared checks do not require the shared amount to fit within the receipt total. Copying this workflow would introduce shopping sessions and couple checklist state to finance, contrary to the approved Nest scope. None of this function is reused.
+
+Nest instead extends the already audited native expense command with an optional explicit `receiptTotalCentimes`. For a grocery expense, existing `amountCentimes` remains the shared amount; allocations and ledger posting use only that amount. Total and shared amount must be exact nonnegative safe CHF centimes, and shared cannot exceed total. The full payload, including total, is bound to operation replay and private AI approval. Ordinary expenses omit the field and retain their existing identities and behavior.
+
+An append-only member-readable metadata row stores the total beside the immutable financial event in the same transaction as ledger, notice and native receipt. Metadata failure rolls back the entire post and approval consumption. Neither checking items nor recording an expense creates a shopping session or changes the checklist. This metadata is not a receipt attachment: `hasReceipt` remains tied to actual retained receipt references. Optional attachment upload/access remains unfinished.

@@ -1,3 +1,4 @@
+import { ExpenseAmountFields } from "./expense-amount-fields";
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import DateTimePicker from "@expo/ui/community/datetime-picker";
 import { useColorScheme } from "react-native";
@@ -31,13 +32,7 @@ export function ExpenseFields(props: Props) {
             placeholder="What was it for?"
             editable={!disabled}
           />
-          <Text>Amount in CHF</Text>
-          <TextInput
-            value={draft.amount}
-            keyboardType="decimal-pad"
-            placeholder="0.00"
-            editable={!disabled}
-          />
+          <ExpenseAmountFields draft={draft} disabled={disabled} />
           <Text>Paid by</Text>
           <Picker selectedValue={draft.payerId} onValueChange={draft.setPayer} enabled={!disabled}>
             {options.members.map((member) => (

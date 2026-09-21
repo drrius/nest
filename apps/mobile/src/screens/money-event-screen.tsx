@@ -101,6 +101,14 @@ function EntryExtras({ detail }: { detail: typeof MoneyDetail.Type }) {
   const open = (eventId: string) => router.push({ pathname: "/money-event", params: { eventId } });
   return (
     <>
+      {detail.receiptTotalCentimes != null ? (
+        <Section title="Grocery purchase">
+          <Note>Receipt total: {formatChf(detail.receiptTotalCentimes)}</Note>
+          <Note>
+            Shared amount: {formatChf(event.amountCentimes)}. Only this amount affects your balance.
+          </Note>
+        </Section>
+      ) : null}
       {detail.category ? (
         <Section title="Category">
           <Note>{detail.category.name}</Note>

@@ -6,7 +6,7 @@ import * as Crypto from "expo-crypto";
 import type { ExpenseEntryOptions } from "./entry-options";
 import type { ExpenseSaveRuntime } from "./save-runtime";
 import { initialExpenseDraft, parseExpenseDraft, type ExpenseDraft } from "./expense-draft";
-import { formatChf } from "./format";
+import { expenseReview } from "./expense-review";
 export function expenseDate(date: Date) {
   return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
 }
@@ -14,12 +14,14 @@ export function useExpenseDraft(
   actor: string,
   members: ExpenseEntryOptions["members"] | null,
   runtime: ExpenseSaveRuntime,
+  grocery = false,
 ) {
-  const [initial] = useState(() => initialExpenseDraft(actor, expenseDate(new Date())));
+  const [initial] = useState(() => initialExpenseDraft(actor, expenseDate(new Date()), grocery));
   const [operationId, setOperationId] = useState(Crypto.randomUUID);
   const description = useNativeState(initial.description),
     amount = useNativeState(initial.amount),
     note = useNativeState(initial.note);
+  const receiptTotal = useNativeState(initial.receiptTotal ?? "");
   const firstExact = useNativeState(""),
     secondExact = useNativeState(""),
     firstPercent = useNativeState("50");
@@ -31,6 +33,7 @@ export function useExpenseDraft(
   const read = (): ExpenseDraft => ({
     description: description.value,
     amount: amount.value,
+    receiptTotal: grocery ? receiptTotal.value : null,
     note: note.value,
     firstExact: firstExact.value,
     secondExact: secondExact.value,
@@ -47,19 +50,10 @@ export function useExpenseDraft(
     if (!parsed.ok) return setError(parsed.message);
     setError(null);
     const expense = parsed.expense;
-    const name = (id: string) =>
-      members.find((member) => member.actorId === id)?.displayName ?? "Household member";
-    const shares = expense.allocations
-      .map((share) => `${name(share.memberId)}: ${formatChf(share.centimes)}`)
-      .join("\n");
-    Alert.alert(
-      "Record this expense?",
-      `${expense.description}\n${formatChf(expense.amountCentimes)} · ${expense.date}\nPaid by ${name(expense.payerId)}\n${shares}\n\nThis updates shared Money. Nest does not transfer money.`,
-      [
-        { text: "Cancel", style: "cancel" },
-        { text: "Record expense", onPress: () => void runtime.save({ operationId, expense }) },
-      ],
-    );
+    Alert.alert("Record this expense?", expenseReview(expense, members), [
+      { text: "Cancel", style: "cancel" },
+      { text: "Record expense", onPress: () => void runtime.save({ operationId, expense }) },
+    ]);
   };
   const nextExpense = () => {
     setOperationId(Crypto.randomUUID());
@@ -68,6 +62,8 @@ export function useExpenseDraft(
   };
   return {
     nextExpense,
+    grocery,
+    receiptTotal,
     description,
     amount,
     note,

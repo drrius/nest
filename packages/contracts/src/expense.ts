@@ -14,6 +14,7 @@ const fields = {
     Schema.makeFilter((value) => value.trim().length > 0),
   ),
   amountCentimes: Nonnegative,
+  receiptTotalCentimes: Schema.optionalKey(Nonnegative),
   payerId: Uuid,
   allocations: Schema.Tuple([Share, Share]),
   date: CalendarDate,
@@ -23,10 +24,13 @@ const fields = {
 function balanced(input: {
   payerId: string;
   amountCentimes: string;
+  receiptTotalCentimes?: string;
   allocations: readonly [typeof Share.Type, typeof Share.Type];
 }) {
   const [first, second] = input.allocations;
   return (
+    (input.receiptTotalCentimes === undefined ||
+      BigInt(input.receiptTotalCentimes) >= BigInt(input.amountCentimes)) &&
     first.memberId.toLowerCase() !== second.memberId.toLowerCase() &&
     input.allocations.some(
       (share) => share.memberId.toLowerCase() === input.payerId.toLowerCase(),

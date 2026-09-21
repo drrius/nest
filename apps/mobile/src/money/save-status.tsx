@@ -1,3 +1,4 @@
+import { GroceryExpenseSummary } from "./grocery-expense-summary";
 import { Alert } from "react-native";
 import { useRouter } from "expo-router";
 import { Section, Note } from "../components/page";
@@ -39,6 +40,7 @@ function Recorded({ view }: { view: ExpenseSaveView }) {
       <Note>
         {receipt.expense.description} · {formatChf(receipt.expense.amountCentimes)}
       </Note>
+      <GroceryExpenseSummary expense={receipt.expense} />
       <Note>The server confirmed this expense. Its financial history is retained.</Note>
       <NativeAction
         label="View recorded expense"
@@ -58,6 +60,7 @@ function Unresolved({ runtime, view, actor }: Props) {
       <Note>
         {expense.description} · {formatChf(expense.amountCentimes)} · {expense.date}
       </Note>
+      <GroceryExpenseSummary expense={expense} />
       <Note>Paid by {expense.payerId === actor ? "you" : "your partner"}</Note>
       {expense.allocations.map((share) => (
         <Note key={share.memberId}>

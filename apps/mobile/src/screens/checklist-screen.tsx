@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { GroceryList } from "../components/grocery-content";
 import { GroceryQuickAdd } from "../components/grocery-quick-add";
 import { NativeAction } from "../components/native-action";
@@ -33,6 +34,7 @@ function Checklist({
   member: Member;
   verify: () => void;
 }) {
+  const router = useRouter();
   const { view, refresh, check, discard } = useGroceries(client, member.userId, member.householdId);
   if (view.access === "verify")
     return (
@@ -43,7 +45,16 @@ function Checklist({
     );
   return (
     <GroceryList
-      add={<GroceryQuickAdd client={client} refresh={refresh} />}
+      add={
+        <>
+          <GroceryQuickAdd client={client} refresh={refresh} />
+          <NativeAction
+            label="Record grocery expense"
+            onPress={() => router.push("/grocery-expense")}
+          />
+          <Note>Checking items never records money.</Note>
+        </>
+      }
       view={view}
       refresh={refresh}
       check={check}

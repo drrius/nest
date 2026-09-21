@@ -10,14 +10,17 @@ import { useEntryOptions } from "../money/use-entry-options";
 import { useExpenseDraft } from "../money/use-expense-draft";
 import { ExpenseFields } from "../money/expense-fields";
 import { ExpenseSaveStatus, expenseSaveEnabled } from "../money/save-status";
-export default function ExpenseEntryScreen() {
+export function GroceryExpenseScreen() {
+  return <ExpenseEntryScreen grocery />;
+}
+export default function ExpenseEntryScreen({ grocery = false }: { grocery?: boolean }) {
   return (
     <MoneyScreenGate>
-      {(props) => <Entry key={props.account.session.lease} {...props} />}
+      {(props) => <Entry key={props.account.session.lease} {...props} grocery={grocery} />}
     </MoneyScreenGate>
   );
 }
-function Entry(props: MoneyScreenAccount) {
+function Entry(props: MoneyScreenAccount & { grocery: boolean }) {
   const [owner] = useState(() =>
     expenseSaveOwner(expenseSaveOperations(props.account, props.client)),
   );
@@ -30,7 +33,9 @@ function Entry(props: MoneyScreenAccount) {
     </Page>
   );
 }
-function ActiveEntry(props: MoneyScreenAccount & { runtime: ExpenseSaveRuntime }) {
+function ActiveEntry(
+  props: MoneyScreenAccount & { runtime: ExpenseSaveRuntime; grocery: boolean },
+) {
   const { runtime } = props,
     view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
@@ -39,6 +44,7 @@ function ActiveEntry(props: MoneyScreenAccount & { runtime: ExpenseSaveRuntime }
     props.account.session.actor,
     options.value?.members ?? null,
     runtime,
+    props.grocery,
   );
   if (view.verify || options.verify) return <VerifyMoney verify={props.verify} />;
   if (!view.active)

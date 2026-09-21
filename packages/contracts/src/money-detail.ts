@@ -13,6 +13,7 @@ export const MoneyDetail = Schema.Struct({
   version: Schema.Literal(1),
   householdId: Uuid,
   event: MoneyEventSummary,
+  receiptTotalCentimes: Schema.optionalKey(Schema.NullOr(Nonnegative)),
   note: Schema.NullOr(Schema.String.check(Schema.isMaxLength(8000))),
   category: Schema.NullOr(
     Schema.Struct({ id: Uuid, name: Schema.NonEmptyString.check(Schema.isMaxLength(160)) }),
@@ -22,6 +23,7 @@ export const MoneyDetail = Schema.Struct({
 }).check(Schema.makeFilter(validDetail));
 function validDetail(detail: {
   event: typeof MoneyEventSummary.Type;
+  receiptTotalCentimes?: string | null;
   reversedById: string | null;
   shares: readonly [typeof Share.Type, typeof Share.Type];
 }) {
@@ -32,6 +34,11 @@ function validDetail(detail: {
     BigInt(shares[0].deltaCentimes) + BigInt(shares[1].deltaCentimes) !== 0n ||
     event.relatedEventId === event.eventId ||
     reversedById === event.eventId
+  )
+    return false;
+  if (
+    detail.receiptTotalCentimes != null &&
+    (event.kind !== "expense" || BigInt(detail.receiptTotalCentimes) < BigInt(event.amountCentimes))
   )
     return false;
   return validEntries(event, shares, reversedById);

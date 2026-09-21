@@ -10,6 +10,7 @@ import {
 export interface ExpenseDraft {
   description: string;
   amount: string;
+  receiptTotal: string | null;
   payerId: string;
   split: "equal" | "exact" | "percentage";
   firstExact: string;
@@ -23,9 +24,10 @@ export type ExpenseDraftResult =
   | { ok: true; expense: ExpenseInput }
   | { ok: false; message: string };
 const invalid = (message: string): ExpenseDraftResult => ({ ok: false, message });
-export function initialExpenseDraft(actor: string, date: string): ExpenseDraft {
+export function initialExpenseDraft(actor: string, date: string, grocery = false): ExpenseDraft {
   return {
-    description: "",
+    description: grocery ? "Groceries" : "",
+    receiptTotal: grocery ? "" : null,
     amount: "",
     payerId: actor.toLowerCase(),
     split: "equal",
@@ -99,11 +101,22 @@ export function parseExpenseDraft(
         ? "Enter a percentage from 0 to 100 with at most two decimal places."
         : "Enter both exact shares in CHF. They must add up to the expense amount.",
     );
+  return buildExpense(draft, amount, shares);
+}
+function buildExpense(
+  draft: ExpenseDraft,
+  amount: number,
+  shares: Allocations,
+): ExpenseDraftResult {
   const share = (value: Allocations[number]) => ({
     memberId: value.memberId,
     centimes: String(value.centimes),
   });
+  const receiptTotal = draft.receiptTotal === null ? null : parseChf(draft.receiptTotal);
+  if (draft.receiptTotal !== null && (receiptTotal === null || receiptTotal < amount))
+    return invalid("Enter the receipt total in CHF. The shared amount cannot exceed it.");
   const expense = {
+    ...(receiptTotal === null ? {} : { receiptTotalCentimes: String(receiptTotal) }),
     description: draft.description.trim(),
     amountCentimes: String(amount),
     payerId: draft.payerId.toLowerCase(),

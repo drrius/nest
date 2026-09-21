@@ -1,3 +1,4 @@
+import { GroceryExpenseSummary } from "./grocery-expense-summary";
 import { useApprovalClock } from "./use-approval-clock";
 import { Alert } from "react-native";
 import { useRouter } from "expo-router";
@@ -43,6 +44,7 @@ function ExpenseSummary({ view, actor }: Pick<Props, "view" | "actor">) {
         <Note>
           {formatChf(expense.amountCentimes)} · {expense.date}
         </Note>
+        <GroceryExpenseSummary expense={expense} />
         <Note>Paid by {expense.payerId === actor ? "you" : "your partner"}</Note>
       </Section>
       <Section title="Each person’s share">
