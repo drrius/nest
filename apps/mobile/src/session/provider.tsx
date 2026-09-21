@@ -1,3 +1,5 @@
+import { sessionMoney } from "./money-client";
+import type { MoneyClient } from "../money/client";
 import { sessionMeals } from "./meal-client";
 import type { MealClient } from "../meals/client";
 import { sessionRoutines } from "./routine-client";
@@ -60,6 +62,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  money: MoneyClient | null;
   meals: MealClient | null;
   routines: RoutineClient | null;
   setup: SetupClient | null;
@@ -130,11 +133,13 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         setup: null,
         routines: null,
         meals: null,
+        money: null,
       };
     const { auth } = runtime.current;
     return {
       routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),
       meals: sessionMeals(auth, { actor, household }, configuration.apiUrl),
+      money: sessionMoney(auth, { actor, household }, configuration.apiUrl),
       setup: sessionSetup(auth, { actor, household }, configuration.apiUrl),
       notification: sessionNotification(auth, { actor, household }, configuration.apiUrl),
       calendar: sessionCalendar(auth, { actor, household }, configuration.apiUrl),

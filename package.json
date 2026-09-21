@@ -35,6 +35,7 @@
     "test:notifications": "node --test apps/mobile/tests/notification-*.test.mjs",
     "test:setup": "node --test apps/mobile/tests/setup-*.test.mjs",
     "test:routines": "node --test apps/mobile/tests/routine-*.test.mjs",
+    "test:money": "node --test apps/mobile/tests/money-*.test.mjs",
     "test:meals": "node --test apps/mobile/tests/meal-*.test.mjs"
   },
   "devDependencies": {
