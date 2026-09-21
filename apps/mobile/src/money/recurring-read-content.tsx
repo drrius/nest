@@ -32,12 +32,15 @@ function RuleSummary({ rule }: { rule: RecurringRule }) {
     <Section title={config.description}>
       <Note>
         {rule.status} ·{" "}
-        {config.mode === "fixed" ? "Fixed automatic mandate" : "Variable confirmation"}
+        {config.mode === "fixed" ? "Fixed amount configured" : "Variable confirmation"}
       </Note>
       <Note>
         {config.mode === "fixed"
           ? formatChf(config.amountCentimes)
           : "Amount and split confirmed each cycle"}
+      </Note>
+      <Note>
+        Scheduled posting is not active yet. These rules do not currently create expenses.
       </Note>
       <Note>Next planned date: {rule.nextDueOn ?? "None"}</Note>
     </Section>
