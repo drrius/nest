@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M6 — local Calendar agenda boundary; branch `codex/local-agenda-reader`.** M5 ingredient/checklist integration has clean review and awaits final CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
+**M6 — local Calendar agenda boundary; branch `codex/local-agenda-reader`.** M5 ingredient/checklist integration is merged after clean review and successful CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -131,11 +131,15 @@ All 46 focused API, PostgreSQL, native checklist and actual HTTP/SQLite cases pa
 
 Sol found that an out-of-range legacy meal date could invalidate the whole checklist. The snapshot now projects unsupported provenance dates as null while retaining the source title, ID and slot; actual PostgreSQL regressions cover both infinities, BC/year-10000 dates and the supported year boundaries. Updated exact-commit CI and clean rereview are required.
 
+Grocery snapshot/provenance merged as `1a9db7a` after successful exact-commit CI `35582888645` and clean Sol medium rereview (19 independently passing focused checks). Main was fast-forwarded and pushed without a PR. No production migration or device verification occurred.
+
 ### Local Calendar agenda — read boundary candidate
 
 The separate local agenda adapter reads existing EventKit occurrences and explicitly projects personal title/location/notes for on-device display. It has no API, persistence, sharing, attendee lookup or write calls. The existing sanitized busy adapter is unchanged. Effect reads check permission and selected-calendar availability before and after event retrieval, sanitize failures, snapshot caller inputs and honor cancellation. Cancelled/unselected events are excluded, free events remain visible, recurrence instances remain distinct, and duplicate conflicting instances fail rather than silently choose one. Absolute all-day/multi-day bounds and zero-duration events are preserved. The installed SDK 57 Swift getters can return null title/notes despite TypeScript declarations; those display values normalize to empty text.
 
-Nineteen focused new/existing calendar cases pass, including 1,000 generated window, exact-bound and duplicate/order properties. Mobile typechecking and scoped lint pass. This is an internal read boundary only: real Calendar UI, account-owned selection/runtime, date navigation, partner presentation and device handoff remain next. The existing tab is still a labeled preview. Real EventKit data, permission prompts, two-device privacy and native behavior remain unverified. CI and Sol review of this increment remain required.
+Twenty focused new/existing calendar cases pass, including 1,000 generated window, exact-bound and duplicate/order properties. Mobile typechecking and scoped lint pass. This is an internal read boundary only: real Calendar UI, account-owned selection/runtime, date navigation, partner presentation and device handoff remain next. The existing tab is still a labeled preview. Real EventKit data, permission prompts, two-device privacy and native behavior remain unverified. CI and Sol review of this increment remain required.
+
+Agenda review identified an avoidable permission race during the final asynchronous calendar enumeration. A failing controlled regression reproduced private rows returned after revocation; the reader now checks permission after enumeration as well. Updated exact-commit CI and Sol rereview remain required.
 
 Standing workflow: use feature branches, exact-commit successful CI and clean **GPT-5.6 Sol medium** adversarial review, then fast-forward local main and push. PRs are optional under the owner's explicit authorization. Deployment, production migration, purchases and release remain separately gated. The continuation automation was removed; do not recreate it without a new need. Historical delivery notes below retain the verification state at the time of each increment; later merge records supersede their pending-CI wording.
 

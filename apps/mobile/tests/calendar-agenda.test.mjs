@@ -223,3 +223,21 @@ test("1000 generated agenda windows preserve exact occurrence bounds and are sta
     assert.deepEqual(project([event(), item]), project([item, event()]));
   }
 });
+
+test("permission revoked during the final calendar enumeration discards already fetched private rows", async () => {
+  let granted = true,
+    enumerations = 0;
+  const reader = makeAgendaReader(
+    port({
+      permission: async () => granted,
+      calendars: async () => {
+        if (++enumerations === 2) granted = false;
+        return [{ id: "personal", title: "Personal" }];
+      },
+    }),
+  );
+  assert.deepEqual(await Effect.runPromise(reader.read(["personal"], window)), {
+    status: "unavailable",
+    reason: "permission",
+  });
+});

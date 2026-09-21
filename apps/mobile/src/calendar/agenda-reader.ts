@@ -17,6 +17,7 @@ function available(port: AgendaPort, selected: readonly string[]) {
   return Effect.gen(function* () {
     if (!(yield* call(() => port.permission()))) return "permission" as const;
     const calendars = yield* call(() => port.calendars());
+    if (!(yield* call(() => port.permission()))) return "permission" as const;
     return selected.every((id) => calendars.some((calendar) => calendar.id === id))
       ? null
       : ("missing_calendar" as const);
