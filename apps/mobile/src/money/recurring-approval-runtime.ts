@@ -1,4 +1,3 @@
-import type { RecurringEntryContext } from "./recurring-entry-context.ts";
 import {
   matchesRecurringContext,
   recurringRevisionSuperseded,
@@ -9,10 +8,13 @@ import { OfflineFailure } from "../offline/contracts.ts";
 import { PreferenceFailure } from "../preferences/client.ts";
 import type { RecurringApproval } from "./recurring-approval-client.ts";
 import type { RecurringApprovalAttempt } from "./recurring-approval-attempt.ts";
-import type { RecurringApprovalOperations } from "./recurring-approval-operations.ts";
+import type {
+  RecurringApprovalOperations,
+  RecurringApprovalContext,
+} from "./recurring-approval-operations.ts";
 export interface RecurringApprovalView {
   approval: RecurringApproval | null;
-  context: RecurringEntryContext | null;
+  context: RecurringApprovalContext | null;
   attempt: RecurringApprovalAttempt | null;
   active: boolean;
   online: boolean;

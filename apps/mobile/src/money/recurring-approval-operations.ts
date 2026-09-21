@@ -20,9 +20,22 @@ export function recurringApprovalOperations(account: OfflineAccount, client: Mon
     clear: (attempt: RecurringApprovalAttempt) =>
       account.store.clearRecurringApproval(account.session, attempt),
     context: (rule: RecurringInput) =>
-      rule.expectedRevision === null
-        ? checked(creationContext(client, rule.ruleId))
-        : recurringEntryContext(account, client, { ruleId: rule.ruleId, editing: true }),
+      checked(
+        Effect.gen(function* () {
+          const loaded =
+            rule.expectedRevision === null
+              ? yield* creationContext(client, rule.ruleId)
+              : yield* recurringEntryContext(account, client, {
+                  ruleId: rule.ruleId,
+                  editing: true,
+                });
+          const category =
+            rule.configuration.categoryId === null
+              ? null
+              : yield* client.category(rule.configuration.categoryId);
+          return { ...loaded, category };
+        }),
+      ),
     read: (approvalId: string) => checked(client.recurringApproval(approvalId)),
     decide: (input: RecurringDecision) => checked(client.decideRecurring(input)),
   };
@@ -48,3 +61,6 @@ function creationContext(client: MoneyClient, ruleId: string) {
   });
 }
 export type RecurringApprovalOperations = ReturnType<typeof recurringApprovalOperations>;
+export type RecurringApprovalContext = Effect.Success<
+  ReturnType<RecurringApprovalOperations["context"]>
+>;
