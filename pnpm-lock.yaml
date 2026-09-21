@@ -188,6 +188,9 @@ importers:
 
   packages/contracts:
     dependencies:
+      '@nest/domain':
+        specifier: workspace:*
+        version: link:../domain
       effect:
         specifier: 4.0.0-rc.115
         version: 4.0.0-rc.115

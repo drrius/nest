@@ -59,12 +59,14 @@
     "./recurring": "./src/recurring.ts",
     "./recurring-read": "./src/recurring-read.ts",
     "./recurring-save-read": "./src/recurring-save-read.ts",
-    "./recurring-proposal": "./src/recurring-proposal.ts"
+    "./recurring-proposal": "./src/recurring-proposal.ts",
+    "./recurring-cycle": "./src/recurring-cycle.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@nest/domain": "workspace:*",
     "effect": "4.0.0-rc.115"
   },
   "devDependencies": {
