@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/grocery-snapshot-provenance`.** Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
+**M6 — local Calendar agenda boundary; branch `codex/local-agenda-reader`.** M5 ingredient/checklist integration has clean review and awaits final CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -130,6 +130,12 @@ A valid full ingredient week can add 4,200 items; the previous API/native/cache 
 All 46 focused API, PostgreSQL, native checklist and actual HTTP/SQLite cases pass. The capacity journey adds 4,200 retained ingredients through the real native client/API, reads and caches all rows, reopens SQLite, and checks an item through the existing synchronization flow while preserving source provenance. Other cases cover current membership, tenant isolation, corrupt foreign source links, deterministic order, strict response fields, bigint versions, lost acknowledgments and existing grocery edits. Disposable security advisors report no issues. API/mobile typechecks pass. The iOS export passes at `/tmp/nest-grocery-source-export` (bundle `1c03b44667a9a295595e9da8f7a9abbd`), packaging evidence only. Exact-commit CI and Sol review remain pending; native label readability and interaction remain device-unverified. No production migration or deployment occurred.
 
 Sol found that an out-of-range legacy meal date could invalidate the whole checklist. The snapshot now projects unsupported provenance dates as null while retaining the source title, ID and slot; actual PostgreSQL regressions cover both infinities, BC/year-10000 dates and the supported year boundaries. Updated exact-commit CI and clean rereview are required.
+
+### Local Calendar agenda — read boundary candidate
+
+The separate local agenda adapter reads existing EventKit occurrences and explicitly projects personal title/location/notes for on-device display. It has no API, persistence, sharing, attendee lookup or write calls. The existing sanitized busy adapter is unchanged. Effect reads check permission and selected-calendar availability before and after event retrieval, sanitize failures, snapshot caller inputs and honor cancellation. Cancelled/unselected events are excluded, free events remain visible, recurrence instances remain distinct, and duplicate conflicting instances fail rather than silently choose one. Absolute all-day/multi-day bounds and zero-duration events are preserved. The installed SDK 57 Swift getters can return null title/notes despite TypeScript declarations; those display values normalize to empty text.
+
+Nineteen focused new/existing calendar cases pass, including 1,000 generated window, exact-bound and duplicate/order properties. Mobile typechecking and scoped lint pass. This is an internal read boundary only: real Calendar UI, account-owned selection/runtime, date navigation, partner presentation and device handoff remain next. The existing tab is still a labeled preview. Real EventKit data, permission prompts, two-device privacy and native behavior remain unverified. CI and Sol review of this increment remain required.
 
 Standing workflow: use feature branches, exact-commit successful CI and clean **GPT-5.6 Sol medium** adversarial review, then fast-forward local main and push. PRs are optional under the owner's explicit authorization. Deployment, production migration, purchases and release remain separately gated. The continuation automation was removed; do not recreate it without a new need. Historical delivery notes below retain the verification state at the time of each increment; later merge records supersede their pending-CI wording.
 
