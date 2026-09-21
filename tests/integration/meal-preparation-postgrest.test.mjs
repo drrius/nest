@@ -1,3 +1,7 @@
+import { createRequire } from "node:module";
+import { mealClient } from "../../apps/mobile/src/meals/client.ts";
+import { routineClient } from "../../apps/mobile/src/routines/client.ts";
+import { MealPreparationRuntime } from "../../apps/mobile/src/meals/preparation-runtime.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { nodeServer } from "../../apps/api/node-server.mjs";
@@ -125,4 +129,81 @@ test("completed preparation remains readable and removed meal is explicitly abse
   assert.equal(absent.entry, null);
   assert.equal(absent.preparation, null);
   assert.deepEqual((await (await owner.create()).json()).receipt, receipt);
+});
+
+const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const Effect = require("effect/Effect");
+function nativeRuntime(f, actor = 1) {
+  const account = { actor: id(actor), household: id(10) };
+  const credentials = Effect.succeed({
+    access_token: actor === 1 ? f.remote.bearer : f.remote.partnerBearer,
+    refresh_token: "fixture",
+    user: { id: id(actor) },
+  });
+  return new MealPreparationRuntime(
+    {
+      meals: mealClient(f.url, account, credentials),
+      routines: routineClient(f.url, account, credentials),
+    },
+    { weekStart: command.weekStart, entryId: command.entryId },
+    () => id(220 + actor),
+  );
+}
+test("native preparation survives committed response loss and later partner completion without a second task", async (t) => {
+  const f = await backend(t, true),
+    runtime = nativeRuntime(f);
+  t.after(() => runtime.dispose());
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().stage, "ready");
+  assert.equal(runtime.getSnapshot().members.length, 2);
+  await runtime.save(command.preparation);
+  assert.equal(runtime.getSnapshot().stage, "uncertain");
+  assert.equal(f.proxy.dropped(), 1);
+  const receipt = JSON.parse(
+    f.remote.db.sql("select result from public.nest_meal_preparation_receipts"),
+  );
+  f.remote.db.sql(
+    `set role authenticated; set request.jwt.claims='${JSON.stringify({ sub: id(2) })}'; select public.complete_occurrence('${receipt.occurrenceId}','native-prep-done','2026-09-21')`,
+  );
+  await runtime.retry();
+  assert.equal(runtime.getSnapshot().stage, "saved");
+  assert.equal(runtime.getSnapshot().pendingWrite, false);
+  assert.deepEqual(runtime.getSnapshot().receipt, receipt);
+  assert.equal(runtime.getSnapshot().snapshot.preparation.status, "completed");
+  await runtime.save({ ...command.preparation, title: "Duplicate" });
+  const partner = nativeRuntime(f, 2);
+  t.after(() => partner.dispose());
+  await partner.load();
+  assert.equal(partner.getSnapshot().snapshot.preparation.status, "completed");
+  await partner.save(command.preparation);
+  assert.equal(f.remote.db.sql("select count(*) from public.nest_meal_preparation_receipts"), "1");
+  f.remote.db.sql(
+    `delete from public.activity_events; delete from public.household_members where user_id='${id(1)}'`,
+  );
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().stage, "verify");
+  assert.equal(runtime.getSnapshot().snapshot, null);
+  assert.equal(runtime.getSnapshot().receipt, null);
+});
+test("native preparation requires explicit reload after a stale meal and blocks removed targets", async (t) => {
+  const f = await backend(t),
+    runtime = nativeRuntime(f);
+  t.after(() => runtime.dispose());
+  await runtime.load();
+  f.remote.db.sql(
+    `update public.meal_plan_entries set title_snapshot='Partner meal' where id='${command.entryId}'`,
+  );
+  await runtime.save(command.preparation);
+  assert.equal(runtime.getSnapshot().stage, "reload");
+  await runtime.retry();
+  assert.equal(f.remote.db.sql("select count(*) from public.nest_meal_preparation_receipts"), "0");
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().snapshot.entry.title, "Partner meal");
+  f.remote.db.sql(
+    `update public.meal_plan_entries set removed_at=now() where id='${command.entryId}'`,
+  );
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().snapshot.entry, null);
+  await runtime.save(command.preparation);
+  assert.equal(f.remote.db.sql("select count(*) from public.nest_meal_preparation_receipts"), "0");
 });

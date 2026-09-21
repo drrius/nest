@@ -44,6 +44,10 @@ Native preparation clients and runtime are now implemented on the feature branch
 
 Six focused native transport/runtime cases pass, including wrong-scope absent reads, switched credentials, mutable draft retry, authorization recovery, older routine versions and canceled publication. Mobile types and scoped lint/format pass. The runtime uses the existing bounded routine-list read for the household roster. Native form/detail controls, owner/navigation lifecycle and real native-to-HTTP journeys are still unfinished; this increment is not a completed native slice and has no device evidence. Full-branch Sol review and CI verification remain outstanding before merge.
 
+Native preparation now has a protected board-linked screen, authorized task detail and native title/instruction/date/responsibility form. Drafts survive ordinary reloads, uncertain requests are read-only until exact retry, and leaving unsaved or unresolved work warns before discarding retry details. Account denial clears scoped details. Existing and completed preparation cannot be recreated. The owner lifecycle freezes its target, cancels on last unsubscribe and recreates safely on resubscription. Date-only tasks do not invent a timed calendar overlap verdict.
+
+Local verification: nine native transport/runtime/owner/draft cases and all four actual preparation HTTP/PostgREST/PostgreSQL journeys pass. Two new native-runtime journeys cover committed response loss followed by partner completion, immutable replay, no duplicate task, revocation, stale meal edits, explicit reload and removal. Mobile types and scoped lint pass with advisory Effect suggestions. Native form gestures, keyboard, navigation alert, VoiceOver and physical-device acceptance remain unverified. Creation/read AI tools and preparation editing remain next. Exact-head CI and Sol medium review are still required before this branch merges.
+
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 
 - `ecd3520` — atomic recipe creation storage; CI `35544477532`, 18 independent database checks.

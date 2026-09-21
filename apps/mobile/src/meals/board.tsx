@@ -131,6 +131,15 @@ function MealActions({
         }
       />
       <NativeAction
+        label="Preparation"
+        onPress={() =>
+          router.push({
+            pathname: "/meal-preparation",
+            params: { weekStart, entryId: meal.entryId },
+          })
+        }
+      />
+      <NativeAction
         label="Replace meal"
         disabled={!enabled}
         onPress={() =>
