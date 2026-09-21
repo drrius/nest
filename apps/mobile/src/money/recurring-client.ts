@@ -1,3 +1,4 @@
+import { manualCycleClient } from "./recurring-manual-client.ts";
 import { variableCycleApprovalClient } from "./recurring-variable-approval-client.ts";
 import { variableCycleClient } from "./recurring-variable-client.ts";
 import { recurringResumeApprovalClient } from "./recurring-resume-approval-client.ts";
@@ -38,6 +39,7 @@ export function recurringClient(
     ...recurringStateApprovalClient(apiUrl, account, credentials),
     ...recurringResumeClient(apiUrl, account, credentials),
     ...variableCycleApprovalClient(apiUrl, account, credentials),
+    ...manualCycleClient(apiUrl, account, credentials),
     ...variableCycleClient(apiUrl, account, credentials),
     ...recurringResumeApprovalClient(apiUrl, account, credentials),
     ...recurringStateClient(apiUrl, account, credentials),
