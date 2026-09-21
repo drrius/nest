@@ -1,3 +1,4 @@
+import { readMoneyCategories } from "./categories.ts";
 import { readExpenseSave, cancelExpenseSave } from "./expense-save-read.ts";
 import { readMoneyCategory } from "./category.ts";
 import { expenseApprovals } from "./expense-approval.ts";
@@ -32,10 +33,7 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
 }
 function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
-  if (url.pathname === "/v1/money/category")
-    return !singleParam(params, "categoryId")
-      ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
-      : readMoneyCategory(config, caller, { categoryId: params.get("categoryId") });
+  if (url.pathname.startsWith("/v1/money/categor")) return categoryRoute(url, config, caller);
   if (url.pathname === "/v1/money/balance")
     return params.size
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
@@ -65,4 +63,15 @@ function approvalRoute(request: Request, config: IdentityConfig, caller: Authori
 
 function singleParam(params: URLSearchParams, name: string) {
   return params.size === 1 && params.has(name);
+}
+
+function categoryRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
+  const params = url.searchParams;
+  if (url.pathname === "/v1/money/categories")
+    return params.size && !singleParam(params, "after")
+      ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+      : readMoneyCategories(config, caller, { after: params.get("after") });
+  return !singleParam(params, "categoryId")
+    ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+    : readMoneyCategory(config, caller, { categoryId: params.get("categoryId") });
 }

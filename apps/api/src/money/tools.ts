@@ -1,5 +1,5 @@
 import { expenseSaveTool } from "./expense-save-tool.ts";
-import { moneyCategoryTool } from "./category-tool.ts";
+import { moneyCategoryTool, moneyCategoriesTool } from "./category-tool.ts";
 import { MoneyDetailQuery } from "@nest/contracts/money-detail";
 import { readMoneyDetail } from "./detail.ts";
 import { MoneyHistoryQuery } from "@nest/contracts/money-history";
@@ -13,6 +13,7 @@ import { readMoneyBalance } from "./read.ts";
 export function moneyTools(request: Request, config: IdentityConfig) {
   return {
     readExpenseSave: expenseSaveTool(request, config),
+    listMoneyCategories: moneyCategoriesTool(request, config),
     readMoneyCategory: moneyCategoryTool(request, config),
     readMoneyDetail: effectTool({
       description:

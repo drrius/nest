@@ -16,6 +16,8 @@ export function sessionMoney(auth: SupabaseClient["auth"], account: Account, api
       client.recoverExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveExpense: (input: ExpenseSave) =>
       client.saveExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    categories: (after: string | null = null) =>
+      client.categories(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     category: (categoryId: string) =>
       client.category(categoryId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     approval: (approvalId: string) =>

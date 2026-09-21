@@ -17,3 +17,20 @@ export const MoneyCategoryEnvelope = Schema.Struct({
   ),
 );
 export type MoneyCategory = typeof MoneyCategory.Type;
+export const MoneyCategoriesQuery = Schema.Struct({ after: Schema.NullOr(Uuid) });
+export const MoneyCategories = Schema.Struct({
+  version: Schema.Literal(1),
+  householdId: Uuid,
+  after: Schema.NullOr(Uuid),
+  categories: Schema.Array(MoneyCategory).check(Schema.isMaxLength(50)),
+  next: Schema.NullOr(Uuid),
+}).check(
+  Schema.makeFilter((value) => {
+    let previous = value.after ?? "";
+    for (const category of value.categories) {
+      if (category.archived || category.categoryId <= previous) return false;
+      previous = category.categoryId;
+    }
+    return value.next === null || (value.categories.length === 50 && value.next === previous);
+  }),
+);
