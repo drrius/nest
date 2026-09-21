@@ -64,6 +64,7 @@
     "./recurring-cycle": "./src/recurring-cycle.ts",
     "./recurring-state": "./src/recurring-state.ts",
     "./recurring-resume": "./src/recurring-resume.ts",
+    "./recurring-resume-read": "./src/recurring-resume-read.ts",
     "./recurring-state-read": "./src/recurring-state-read.ts"
   },
   "scripts": {

@@ -1,3 +1,4 @@
+import { recurringResumeRoute } from "./recurring-resume-route.ts";
 import { recurringApprovalRoute } from "./recurring-approval-route.ts";
 import { recurringStateRoute } from "./recurring-state-route.ts";
 import * as Effect from "effect/Effect";
@@ -10,6 +11,7 @@ import type { AuthorizedCaller } from "../chores/service.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 export function recurringRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url);
+  if (url.pathname.includes("/resume/")) return recurringResumeRoute(request, config, caller);
   if (url.pathname.includes("/state/")) return recurringStateRoute(request, config, caller);
   if (url.pathname.includes("/approval")) return recurringApprovalRoute(request, config, caller);
   if (request.method === "GET") return recurringReadRoute(url, config, caller);
