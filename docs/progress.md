@@ -6,6 +6,8 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
+Sol found that the generation shortlist lacked its household binding even though week/calendar inputs were bound. The private library aggregate now requires a matching household ID; foreign-library regression coverage proves rejection before provider dispatch. Updated exact-head review and CI are required.
+
 One-off recipe retention `d086b29` is merged and pushed to main after successful CI `35561569589` and clean exact-head Sol medium review; Sol independently passed seventeen focused checks. No approval writer is enabled by that migration.
 
 The current structured-generation slice uses the installed Vercel AI SDK through the canonical Effect schema adapter. It privately projects both known food profiles, current cooking choices and sanitized day-by-day availability; missing setup fails before a model call. Only configured empty slots are proposed. Saved choices resolve to the supplied authorized canonical recipe, not model-written saved content. A separate bounded structured review must explicitly mark every exact recipe safe; unknown, unsafe, omitted or duplicate checks fail closed. Familiar-only, complete recipes, optional calorie estimates, explicit null invented links/categories, cancellation and sanitized provider failures are enforced. Neither stage has tools or write access; no content is automatically approved or saved.

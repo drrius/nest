@@ -14,6 +14,7 @@ export const PlanningGenerationInput = Schema.Struct({
   week: MealWeekSnapshot,
   familiarOnly: Schema.Boolean,
   library: Schema.Struct({
+    householdId: Uuid,
     revision: MealWeekSnapshot.fields.revision,
     recipes: Schema.Array(SavedMeal).check(Schema.isMaxLength(50)),
   }),
@@ -24,6 +25,7 @@ export const PlanningGenerationInput = Schema.Struct({
     const members = new Set(value.context.members.map((member) => member.actorId.toLowerCase()));
     return (
       value.week.householdId === value.context.householdId &&
+      value.library.householdId === value.context.householdId &&
       value.busy.householdId === value.context.householdId &&
       new Set(ids).size === ids.length &&
       new Set(value.busy.snapshots.map((snapshot) => snapshot.actorId.toLowerCase())).size ===

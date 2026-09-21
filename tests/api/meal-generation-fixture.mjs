@@ -60,7 +60,11 @@ export function input() {
       entries: [],
     },
     familiarOnly: false,
-    library: { revision: "9007199254740994", recipes: [structuredClone(recipe)] },
+    library: {
+      householdId: id(10),
+      revision: "9007199254740994",
+      recipes: [structuredClone(recipe)],
+    },
     busy: { version: 1, householdId: id(10), snapshots: [] },
   };
 }

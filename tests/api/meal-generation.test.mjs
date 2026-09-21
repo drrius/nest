@@ -54,6 +54,8 @@ test("missing setup, foreign evidence, malformed inputs and a full week fail bef
   cooking.context.cooking = null;
   const foreign = input();
   foreign.week.householdId = id(20);
+  const foreignLibrary = input();
+  foreignLibrary.library.householdId = id(20);
   const duplicate = input();
   duplicate.library.recipes.push(recipe);
   const familiar = input();
@@ -74,6 +76,7 @@ test("missing setup, foreign evidence, malformed inputs and a full week fail bef
     [missing, "incomplete_preferences"],
     [cooking, "incomplete_preferences"],
     [foreign, "unavailable"],
+    [foreignLibrary, "unavailable"],
     [duplicate, "unavailable"],
     [familiar, "no_suitable_meals"],
     [full, "week_full"],
