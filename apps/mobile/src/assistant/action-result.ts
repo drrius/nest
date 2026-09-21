@@ -1,3 +1,4 @@
+import { RecurringResumeApprovalEnvelope } from "@nest/contracts/recurring-resume-approval";
 import { RecurringStateApprovalEnvelope } from "@nest/contracts/recurring-state-approval";
 import { RecurringApprovalEnvelope } from "@nest/contracts/recurring-approval";
 import { CorrectionApprovalEnvelope } from "@nest/contracts/correction-approval";
@@ -27,6 +28,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeRecurringResume: "Resumption proposal created · this action changed no rule or expense",
   proposeRecurringState:
     "Recurring state proposal created · this action changed no rule or expense",
   proposeRecurring: "Recurring proposal created · this action saved no rule or expense",
@@ -69,6 +71,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeRecurringResume: "/finances",
   proposeRecurringState: "/finances",
   proposeRecurring: "/finances",
   proposeCorrection: "/finances",
@@ -301,6 +304,13 @@ function financialHref(action: AssistantAction, value: object) {
 }
 
 function recurringHref(action: AssistantAction, value: object) {
+  if (action === "proposeRecurringResume")
+    return Schema.is(RecurringResumeApprovalEnvelope)(value)
+      ? {
+          pathname: "/recurring-resume-approval" as const,
+          params: { approvalId: value.approval.id },
+        }
+      : null;
   if (action === "proposeRecurringState")
     return Schema.is(RecurringStateApprovalEnvelope)(value)
       ? {

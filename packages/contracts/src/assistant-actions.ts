@@ -1,3 +1,5 @@
+import { RecurringResumeInput } from "./recurring-resume.ts";
+import { RecurringResumeApprovalEnvelope } from "./recurring-resume-approval.ts";
 import { RecurringStateInput } from "./recurring-state.ts";
 import { RecurringStateApprovalEnvelope } from "./recurring-state-approval.ts";
 import { RecurringProposalInput } from "./recurring-proposal.ts";
@@ -74,6 +76,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeRecurringResume: RecurringResumeInput,
   proposeRecurringState: RecurringStateInput,
   proposeRecurring: RecurringProposalInput,
   proposeCorrection: CorrectionInput,
@@ -122,6 +125,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeRecurringResume: RecurringResumeApprovalEnvelope,
   proposeRecurringState: RecurringStateApprovalEnvelope,
   proposeRecurring: RecurringApprovalEnvelope,
   proposeCorrection: CorrectionApprovalEnvelope,
