@@ -107,3 +107,50 @@ test("planned detail route rejects duplicate, unknown or incomplete query parame
     });
   assert.equal(calls, 0);
 });
+
+test("one-off retained details require complete recipes with null library provenance and exact entry binding", async () => {
+  const recipe = {
+    ...result.snapshot.recipe,
+    definitionId: null,
+    servings: 2,
+    instructions: "Roast until tender.",
+    ingredients: [
+      {
+        ingredientId: id(950),
+        name: "Carrots",
+        quantity: "1/2",
+        unit: "kg",
+        categoryId: null,
+        note: null,
+        order: 0,
+      },
+    ],
+  };
+  const value = {
+    ...result,
+    entry: { ...entry, definitionId: null },
+    snapshot: { libraryRevision: null, recipe },
+  };
+  assert.deepEqual(
+    await run(readPlannedRecipe(config, caller, query), async () => Response.json(value)),
+    value,
+  );
+  for (const snapshot of [
+    { ...value.snapshot, libraryRevision: "0" },
+    { ...value.snapshot, recipe: { ...recipe, definitionId: id(200) } },
+    { ...value.snapshot, recipe: { ...recipe, ingredients: [] } },
+    { ...value.snapshot, recipe: { ...recipe, instructions: null } },
+    { ...value.snapshot, recipe: { ...recipe, servings: null } },
+    {
+      ...value.snapshot,
+      recipe: { ...recipe, ingredients: [...recipe.ingredients, ...recipe.ingredients] },
+    },
+    { ...value.snapshot, recipe: { ...recipe, title: "Different" } },
+  ])
+    await assert.rejects(
+      run(readPlannedRecipe(config, caller, query), async () =>
+        Response.json({ ...value, snapshot }),
+      ),
+      { code: "unavailable" },
+    );
+});

@@ -162,7 +162,11 @@ function DetailHeader({ view }: { view: PlannedRecipeView }) {
       {recipe ? (
         <RecipeHeader
           recipe={recipe}
-          label="Recipe as planned · later library edits do not change these ingredients"
+          label={
+            recipe.definitionId === null
+              ? "Recipe as planned · not added to the saved-meal library"
+              : "Recipe as planned · later library edits do not change these ingredients"
+          }
         />
       ) : (
         <HistoricalDetail view={view} />

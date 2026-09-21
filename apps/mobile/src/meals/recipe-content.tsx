@@ -9,7 +9,7 @@ export function RecipeHeader({
   recipe,
   label = "Current saved recipe",
 }: {
-  recipe: SavedMeal;
+  recipe: Pick<SavedMeal, "title" | "servings" | "ingredients">;
   label?: string;
 }) {
   return (
@@ -39,7 +39,11 @@ export function IngredientRow({ ingredient }: { ingredient: SavedMeal["ingredien
     </Card>
   );
 }
-export function RecipeFooter({ recipe }: { recipe: SavedMeal }) {
+export function RecipeFooter({
+  recipe,
+}: {
+  recipe: Pick<SavedMeal, "instructions" | "notes" | "recipeUrl">;
+}) {
   return (
     <View style={{ gap: space.medium }}>
       <Section title="Instructions">

@@ -34,20 +34,7 @@ export const SavedMeal = Schema.Struct({
   notes: Schema.NullOr(StoredMealText(4000)),
   instructions: Schema.NullOr(StoredMealText(4000)),
   ingredients: Schema.Array(SavedIngredient).check(Schema.isMaxLength(200)),
-}).check(
-  Schema.makeFilter((recipe) => {
-    const ids = recipe.ingredients.map((item) => item.ingredientId.toLowerCase());
-    return (
-      new Set(ids).size === ids.length &&
-      recipe.ingredients.every(
-        (item, index, items) =>
-          index === 0 ||
-          item.order > items[index - 1]!.order ||
-          (item.order === items[index - 1]!.order && ids[index]! > ids[index - 1]!),
-      )
-    );
-  }),
-);
+}).check(Schema.makeFilter(orderedRecipeIngredients));
 const LibraryEnvelope = {
   version: Schema.Literal(1),
   householdId: Uuid,
@@ -74,3 +61,18 @@ export const SavedMealEnvelope = Schema.Struct({
 export type MealLibraryPage = typeof MealLibraryPage.Type;
 export type SavedMealEnvelope = typeof SavedMealEnvelope.Type;
 export type SavedMeal = typeof SavedMeal.Type;
+
+export function orderedRecipeIngredients(recipe: {
+  ingredients: readonly (typeof SavedIngredient.Type)[];
+}) {
+  const ids = recipe.ingredients.map((item) => item.ingredientId.toLowerCase());
+  return (
+    new Set(ids).size === ids.length &&
+    recipe.ingredients.every(
+      (item, index, items) =>
+        index === 0 ||
+        item.order > items[index - 1]!.order ||
+        (item.order === items[index - 1]!.order && ids[index]! > ids[index - 1]!),
+    )
+  );
+}

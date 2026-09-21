@@ -1,7 +1,8 @@
 import * as Schema from "effect/Schema";
 import * as Struct from "effect/Struct";
 import { PlaceMealInput, MealPlacementReceipt } from "./meal-placement.ts";
-import { SavedMeal } from "./meal-library.ts";
+import { SavedMeal, SavedIngredient, orderedRecipeIngredients } from "./meal-library.ts";
+import { RecipeDraft } from "./recipe-creation.ts";
 import { PlannedMeal, MealWeekBaseline } from "./meals.ts";
 import { Revision } from "./revision.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
@@ -50,10 +51,16 @@ export const RecipeReplacementReceipt = Schema.Struct({
   ),
 );
 export const ReadPlannedRecipe = Schema.Struct({ ...MealWeekBaseline.fields, entryId: Uuid });
-export const PlannedRecipeSnapshot = Schema.Struct({
-  libraryRevision: Revision,
-  recipe: SavedMeal,
-});
+// Generated meals retain a complete recipe without inventing a saved-library definition.
+export const OneOffPlannedRecipe = Schema.Struct({
+  ...RecipeDraft.fields,
+  definitionId: Schema.Null,
+  ingredients: Schema.Array(SavedIngredient).check(Schema.isLengthBetween(1, 200)),
+}).check(Schema.makeFilter(orderedRecipeIngredients));
+export const PlannedRecipeSnapshot = Schema.Union([
+  Schema.Struct({ libraryRevision: Revision, recipe: SavedMeal }),
+  Schema.Struct({ libraryRevision: Schema.Null, recipe: OneOffPlannedRecipe }),
+]);
 export const PlannedRecipeEnvelope = Schema.Struct({
   version: Schema.Literal(1),
   householdId: Uuid,
