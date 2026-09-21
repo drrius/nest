@@ -1,5 +1,5 @@
-import * as VariableCycleSaves from "./variable-cycle-saves.ts";
-import type { VariableCycleSaveAttempt } from "../money/recurring-variable-save-attempt.ts";
+import { run } from "./run.ts";
+import { cycleSaveStore } from "./cycle-save-service.ts";
 import * as RecurringStateApprovals from "./recurring-state-approvals.ts";
 import type { RecurringStateApprovalAttempt } from "../money/recurring-state-approval-attempt.ts";
 import * as RecurringStateSaves from "./recurring-state-saves.ts";
@@ -41,11 +41,9 @@ import type { Grocery } from "@nest/contracts/groceries";
 import * as Groceries from "./groceries.ts";
 import * as GroceryEdit from "./grocery-edit.ts";
 import type { GroceryChange } from "../groceries/edit-contract.ts";
-import * as Schema from "effect/Schema";
 import * as Context from "effect/Context";
-import * as Effect from "effect/Effect";
 import * as Layer from "effect/Layer";
-import { OfflineFailure, type Account, type Item, type Kind, type Session } from "./contracts.ts";
+import { type Account, type Item, type Kind, type Session } from "./contracts.ts";
 import { initialize, type Database } from "./database.ts";
 import type { Chore } from "@nest/contracts/chores";
 import * as Chores from "./chores.ts";
@@ -53,18 +51,11 @@ import * as Journal from "./journal.ts";
 import * as Replay from "./replay.ts";
 import * as SessionStore from "./session.ts";
 
-function run<A>(body: () => Promise<A>) {
-  return Effect.tryPromise({
-    try: body,
-    catch: (cause) =>
-      Schema.is(OfflineFailure)(cause) ? cause : new OfflineFailure({ reason: "storage" }),
-  });
-}
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
     ...recurringSaveStore(database),
-    ...variableCycleSaveStore(database),
+    ...cycleSaveStore(database),
     ...recurringStateSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
@@ -377,19 +368,5 @@ function recurringStateApprovalStore(database: Database) {
       ),
     clearRecurringStateApproval: (session: Session, attempt: RecurringStateApprovalAttempt) =>
       run(() => RecurringStateApprovals.clearRecurringStateApproval(database, session, attempt)),
-  };
-}
-
-function variableCycleSaveStore(database: Database) {
-  return {
-    readVariableCycleSave: (session: Session) =>
-      run(() => VariableCycleSaves.readVariableCycleSave(database, session)),
-    stageVariableCycleSave: (
-      session: Session,
-      attempt: VariableCycleSaveAttempt,
-      current: () => boolean,
-    ) => run(() => VariableCycleSaves.stageVariableCycleSave(database, session, attempt, current)),
-    clearVariableCycleSave: (session: Session, attempt: VariableCycleSaveAttempt) =>
-      run(() => VariableCycleSaves.clearVariableCycleSave(database, session, attempt)),
   };
 }
