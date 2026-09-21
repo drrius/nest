@@ -9,23 +9,7 @@ export interface Database {
 
 export const initialize = (database: Database) =>
   database.transaction(async (tx) => {
-    await tx.run(`CREATE TABLE IF NOT EXISTS refund_save_attempts (
-      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
-    await tx.run(`CREATE TABLE IF NOT EXISTS settlement_save_attempts (
-      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
-    await tx.run(`CREATE TABLE IF NOT EXISTS expense_save_attempts (
-      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
-    await tx.run(`CREATE TABLE IF NOT EXISTS refund_approval_attempts (
-      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household,approval_id))`);
-    await tx.run(`CREATE TABLE IF NOT EXISTS settlement_approval_attempts (
-      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL,
-      PRIMARY KEY(actor,household,approval_id))`);
-    await tx.run(`CREATE TABLE IF NOT EXISTS expense_approval_attempts (
-      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL,
-      PRIMARY KEY(actor,household,approval_id))`);
-    await tx.run(`CREATE TABLE IF NOT EXISTS offline_money_reads (
-      actor TEXT NOT NULL,household TEXT NOT NULL,kind TEXT NOT NULL,target TEXT NOT NULL,data TEXT NOT NULL,
-      PRIMARY KEY(actor,household,kind,target))`);
+    await initializeMoney(tx);
     await tx.run(
       `CREATE TABLE IF NOT EXISTS agenda_selection (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
     );
@@ -86,3 +70,25 @@ export const initialize = (database: Database) =>
         "ALTER TABLE offline_operations ADD COLUMN rebase_allowed INTEGER NOT NULL DEFAULT 0",
       );
   });
+
+async function initializeMoney(tx: Transaction) {
+  await tx.run(`CREATE TABLE IF NOT EXISTS correction_save_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS refund_save_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS settlement_save_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS expense_save_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS refund_approval_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household,approval_id))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS settlement_approval_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL,
+      PRIMARY KEY(actor,household,approval_id))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS expense_approval_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, approval_id TEXT NOT NULL, data TEXT NOT NULL,
+      PRIMARY KEY(actor,household,approval_id))`);
+  await tx.run(`CREATE TABLE IF NOT EXISTS offline_money_reads (
+      actor TEXT NOT NULL,household TEXT NOT NULL,kind TEXT NOT NULL,target TEXT NOT NULL,data TEXT NOT NULL,
+      PRIMARY KEY(actor,household,kind,target))`);
+}

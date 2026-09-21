@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — correction Save recovery/cancellation; branch `codex/correction-save-recovery`.** Refund entry/AI approval and the correction transaction are merged after exact-commit CI and clean Sol medium review. Correction transport has clean Sol signoff and awaits CI. Exact correction recovery/cancellation passes local checks. Durable native recovery, correction form/AI proposal, receipt attachments, recurring financial automation, M8/M9 and device acceptance remain unfinished.
+**M7 — durable native correction intent; branch `codex/native-correction-runtime`.** Refund entry/AI approval and the correction transaction are merged after exact-commit CI and clean Sol medium review. Correction transport/recovery have clean Sol signoff and await CI. Durable correction storage/runtime passes local and real restart checks. Correction form/AI proposal, receipt attachments, recurring financial automation, M8/M9 and device acceptance remain unfinished.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -1011,3 +1011,11 @@ Correction transaction `4f903bc710940c3bfb57558fcf2b3fad2bf5715a` passed CI `356
 Owner-bound correction recovery distinguishes unresolved, recorded and permanently cancelled direct Saves. Cancellation uses the same actor/home/operation lock as posting; a committed correction wins and its history is never reversed by cancellation. AI approval execution remains separate. Recovery and cancellation transport bind the exact intended correction and terminal result, while the corresponding AI read tool cannot resend or cancel. The audited posting function changes only to check a direct cancellation after historical receipt replay.
 
 Seventeen focused checks pass: three PostgreSQL cases with 20 Save/cancel races, concurrent cancellation, private access, append-only markers, failure rollback and AI separation; five real recovery HTTP/PostgREST journeys; two API and three native boundary cases; and four existing correction transport regressions. Coverage includes a blocked Save returning unresolved before commit, lost Save/cancel acknowledgments, revoked membership and forged or mismatched receipts. Workspace types, scoped lint, full formatting and disposable security advisors pass. Exact-commit Sol review and CI remain required. Native durable storage and the correction screen are still unfinished; no device, production migration or hosted provider execution occurred.
+
+### Durable native correction Save intent — candidate
+
+Correction recovery `0c2681c7f32d47cfc80fe969d8fa5935eac4fab1` has clean Sol medium signoff with all 17 focused checks independently passing; CI `35624888929` remains pending. Sol confirmed the posting function differs only by the direct cancellation check after historical replay. Correction transport CI `35624516400` also remains pending.
+
+The native correction runtime retains one exact account/household command before dispatch. Save-to-cancel intent is monotonic. Reconnect/restart only read the outcome; sending or retrying requires an explicit action and the same command. Session leases guard storage/network calls, background/account replacement hides financial state, and confirmed outcomes survive failed local cleanup until acknowledgment. Nothing enters the chore/checklist offline queue.
+
+Thirteen focused runtime/SQLite/real HTTP–PostgREST restart checks pass, covering staging, busy suppression, exact retry/cancel, response loss, process reopening, revoked leases, lifecycle interruption, corrupted storage and terminal recovery. All eight existing offline test files pass. Adding the table crossed the initializer's 80-code-line limit; extracting its existing money-table statements into a helper restored the limit, and all 13 focused checks passed again. Mobile types, scoped lint and full formatting pass. Exact-commit review and CI remain required. The correction form and AI approval flow remain unfinished; no physical-device or production verification is claimed.
