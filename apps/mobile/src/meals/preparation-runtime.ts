@@ -11,7 +11,7 @@ import { PreferenceFailure } from "../preferences/client.ts";
 export type PreparationTarget = Readonly<{ entryId: string; weekStart: string }>;
 type Dependencies = {
   meals: Pick<MealClient, "read" | "readPreparation" | "createPreparation">;
-  routines: Pick<RoutineClient, "read">;
+  routines: Pick<RoutineClient, "roster">;
 };
 export type PreparationView = {
   snapshot: MealPreparationEnvelope | null;
@@ -65,7 +65,7 @@ export class MealPreparationRuntime {
     const snapshot = await this.run(
       this.client.meals.readPreparation({ ...this.target, revision: week.revision }),
     );
-    const { members } = await this.run(this.client.routines.read());
+    const { members } = await this.run(this.client.routines.roster());
     if (this.disposed) return;
     if (!this.containsConfirmation(snapshot)) throw new PreferenceFailure({ code: "unavailable" });
     this.attempt = null;

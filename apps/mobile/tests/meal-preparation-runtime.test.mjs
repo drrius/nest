@@ -63,7 +63,7 @@ function harness() {
       },
     },
     routines: {
-      read: () =>
+      roster: () =>
         Effect.succeed({
           members: [
             { actorId: id(1), displayName: "A" },

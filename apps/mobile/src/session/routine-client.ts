@@ -11,6 +11,7 @@ export function sessionRoutines(auth: SupabaseClient["auth"], account: Account, 
   return {
     setState: (input: typeof RoutineStateCommand.Type) =>
       client.setState(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    roster: () => client.roster().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     read: () => client.read().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     edit: (input: EditRoutine) =>
       client.edit(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),

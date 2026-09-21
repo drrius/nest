@@ -152,6 +152,7 @@ const methods: Record<string, string> = {
   "/v1/meals/leftovers": "POST",
   "/v1/meals/replace": "POST",
   "/v1/routines": "GET",
+  "/v1/routines/roster": "GET",
   "/v1/routines/create": "POST",
   "/v1/routines/edit": "POST",
   "/v1/routines/state": "POST",

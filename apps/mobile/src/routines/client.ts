@@ -4,6 +4,7 @@ import {
   CreateRoutine,
   EditRoutine,
   RoutineList,
+  RoutineRoster,
   RoutineCreateEnvelope,
 } from "@nest/contracts/routines";
 import { preferenceRequests, PreferenceFailure } from "../preferences/client.ts";
@@ -20,6 +21,17 @@ export function routineClient(
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
     setState: routineStateClient(request, account),
+    roster: () =>
+      request("v1/routines/roster", RoutineRoster).pipe(
+        Effect.flatMap((snapshot) => {
+          const ids = snapshot.members.map((member) => member.actorId);
+          return snapshot.householdId === account.household &&
+            ids.includes(account.actor) &&
+            new Set(ids).size === ids.length
+            ? Effect.succeed(snapshot)
+            : Effect.fail(new PreferenceFailure({ code: "forbidden" }));
+        }),
+      ),
     read: () =>
       request("v1/routines", RoutineList).pipe(
         Effect.flatMap((snapshot) => {

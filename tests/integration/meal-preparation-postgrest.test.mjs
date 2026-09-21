@@ -207,3 +207,36 @@ test("native preparation requires explicit reload after a stale meal and blocks 
   await runtime.save(command.preparation);
   assert.equal(f.remote.db.sql("select count(*) from public.nest_meal_preparation_receipts"), "0");
 });
+
+test("preparation roster and creation remain usable beyond the full routine list limit", async (t) => {
+  const f = await backend(t),
+    runtime = nativeRuntime(f);
+  t.after(() => runtime.dispose());
+  f.remote.db
+    .sql(`set role authenticated; set request.jwt.claims='${JSON.stringify({ sub: id(1) })}';
+    select public.nest_create_routine('${id(10)}', gen_random_uuid(), jsonb_build_object('title','Existing task '||n,'schedule',jsonb_build_object('kind','one_off','date','2026-09-21'),'assignment',jsonb_build_object('policy','shared'))) from generate_series(1,201) n`);
+  const headers = { authorization: `Bearer ${f.remote.bearer}`, "x-nest-household": id(10) };
+  assert.equal((await fetch(f.url + "/v1/routines", { headers })).status, 503);
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().stage, "ready");
+  assert.equal(runtime.getSnapshot().members.length, 2);
+  await runtime.save(command.preparation);
+  assert.equal(runtime.getSnapshot().stage, "saved");
+  assert.equal(runtime.getSnapshot().snapshot.preparation.title, command.preparation.title);
+  const partner = nativeRuntime(f, 2);
+  t.after(() => partner.dispose());
+  await partner.load();
+  assert.equal(partner.getSnapshot().snapshot.preparation.title, command.preparation.title);
+  assert.equal(
+    (
+      await fetch(f.url + "/v1/routines/roster", {
+        headers: { authorization: `Bearer ${f.remote.otherBearer}`, "x-nest-household": id(10) },
+      })
+    ).status,
+    403,
+  );
+  assert.equal(
+    (await fetch(f.url + "/v1/routines/roster", { method: "POST", headers })).status,
+    405,
+  );
+});

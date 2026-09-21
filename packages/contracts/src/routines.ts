@@ -138,6 +138,11 @@ export const RoutineReceipt = Schema.Struct({
   action: Schema.Literals(["create", "edit", "pause", "resume", "archive"]),
 });
 
+export const RoutineRoster = Schema.Struct({
+  version: RoutineList.fields.version,
+  householdId: RoutineList.fields.householdId,
+  members: RoutineList.fields.members,
+});
 export const RoutineCreateEnvelope = Schema.Struct({
   version: Schema.Literal(1),
   receipt: RoutineReceipt,
