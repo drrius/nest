@@ -1,3 +1,4 @@
+import { settlementClient } from "./settlement-client.ts";
 import { expenseCategoryClient } from "./category-client.ts";
 import { expenseClient } from "./expense-client.ts";
 import * as Effect from "effect/Effect";
@@ -29,6 +30,7 @@ export function moneyClient(
   return {
     ...expenseApprovalClient(apiUrl, account, credentials),
     ...expenseClient(apiUrl, account, credentials),
+    ...settlementClient(apiUrl, account, credentials),
     ...expenseCategoryClient(apiUrl, account, credentials),
     balance: () =>
       scoped("v1/money/balance", MoneyBalance).pipe(

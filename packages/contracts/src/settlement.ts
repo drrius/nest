@@ -37,3 +37,10 @@ export const SettlementReceipt = Schema.Struct({
   ),
 );
 export type SettlementReceipt = typeof SettlementReceipt.Type;
+export function canonicalSettlement(input: SettlementInput): SettlementInput {
+  return {
+    ...input,
+    payerId: input.payerId.toLowerCase(),
+    recipientId: input.recipientId.toLowerCase(),
+  };
+}

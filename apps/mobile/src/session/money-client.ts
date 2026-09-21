@@ -1,3 +1,4 @@
+import type { SettlementSave } from "../money/settlement-client";
 import type { ExpenseSave } from "../money/expense-client";
 import type { SupabaseClient } from "@supabase/supabase-js";
 import * as Effect from "effect/Effect";
@@ -10,6 +11,8 @@ import type { ExpenseDecision } from "../money/approval-client";
 export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth));
   return {
+    saveSettlement: (input: SettlementSave) =>
+      client.saveSettlement(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     cancelExpense: (input: ExpenseSave) =>
       client.cancelExpense(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverExpense: (input: ExpenseSave) =>

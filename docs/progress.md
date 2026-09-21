@@ -815,3 +815,13 @@ Strict Effect settlement contracts now bind full/partial mode, exact positive CH
 Two contract cases and six real PostgreSQL cases pass, including 1,000 full/partial contract vectors, 32 generated native settlement sequences through the safe endpoint, eight concurrent identical retries, distinct-operation races, stale full approval protection, wrong payer/foreign/anonymous/malformed payload rejection, retained history and actual notification-failure rollback. Disposable security advisors report no issues. Workspace types, scoped lint and full formatting pass. An inferred test helper type was made explicit rather than suppressing its lint rule. No production migration was applied.
 
 This is the authorized transaction boundary, not yet a native settlement workflow. API/AI proposal and atomic decision/read adapters, full/partial native form, durable response-loss/cancellation recovery and physical-device verification remain unfinished. Exact-head CI and Sol review are still required for this candidate.
+
+### Settlement API and native Save transport — candidate
+
+The exact settlement transaction `f2c9d49da76235ed31cc0f41713cb071103c9b5d` has clean Sol medium signoff (eight independently passing checks). CI `35608484575` is pending, so this adapter is a dependent branch.
+
+Authenticated POST `/v1/money/settlement/save` and `/execute` now call the reviewed transaction through strict Effect services. The server canonicalizes UUIDs, supplies the verified household, rejects injected identity/origin/approval fields, and validates the complete actor/household/operation/approval/payload receipt. The native expo/fetch-bound Save adapter applies the same canonical settlement input and accepts only its exact direct-Save receipt. No financial offline queue or model-origin bypass is exposed.
+
+Six focused service/native/real-HTTP checks pass, including three actual HTTP/PostgREST/PostgreSQL journeys. They cover lost direct and approved responses, partial then full settlement, stale outstanding balance, exact replay, missing/pending/wrong-owner approvals, hidden fields, outsider denial and uppercase alphabetic UUID canonicalization. Workspace types, scoped lint and full formatting pass. The fixture waits for the real PostgREST RPC schema before invoking the new command; only synthetic local data is used.
+
+Settlement proposal/decision/read/cancellation recovery and native full/partial entry are still unfinished, as are device verification and the later Money workflows. This transport does not by itself constitute a completed settlement flow. Exact-head CI and Sol review remain required.
