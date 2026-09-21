@@ -17,4 +17,3 @@ create table public.meal_grocery_templates (
   foreign key (household_id, grocery_category_id)
     references public.grocery_categories(household_id, id)
 );
-
