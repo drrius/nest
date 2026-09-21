@@ -163,6 +163,13 @@ function GroceryRow({
         />
       </Host>
       {showCategory && item.categoryName ? <Note>{item.categoryName}</Note> : null}
+      {item.mealSource ? (
+        <Note>
+          From {item.mealSource.title}
+          {item.mealSource.date ? ` · ${item.mealSource.date}` : ""}
+          {item.mealSource.slot ? ` · ${item.mealSource.slot}` : ""}
+        </Note>
+      ) : null}
       {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
       {!item.pending ? (
         <Link

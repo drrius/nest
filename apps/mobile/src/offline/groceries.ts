@@ -6,7 +6,11 @@ import { scoped } from "./session.ts";
 import { operations, scope } from "./journal.ts";
 
 export function saveGroceries(database: Database, session: Session, groceries: readonly Grocery[]) {
-  if (!Schema.is(Schema.Array(Grocery))(groceries) || groceries.length > 500) fail("invalid_input");
+  if (
+    !Schema.is(Schema.Array(Grocery))(groceries) ||
+    new Set(groceries.map((row) => row.itemId)).size !== groceries.length
+  )
+    fail("invalid_input");
   return scoped(database, session, async (tx) => {
     await tx.run("DELETE FROM offline_groceries WHERE actor=? AND household=?", scope(session));
     await tx.run(
@@ -49,9 +53,10 @@ export function readGroceries(database: Database, session: Session) {
     const pending = (await operations(tx, session)).filter(
       (row) => row.kind === "groceries.setChecked" && row.status !== "acknowledged",
     );
+    const canonicalItems = new Map(items.map((row) => [row.target, row]));
     const groceries = metadata.map(({ data }) => {
       const item = Schema.decodeUnknownSync(Grocery)(JSON.parse(data));
-      const canonical = items.find((row) => row.target === item.itemId);
+      const canonical = canonicalItems.get(item.itemId);
       const waiting = pending.filter((row) => row.target === item.itemId);
       const conflict = waiting.some((row) => row.status === "conflict");
       const latest = waiting.at(-1);

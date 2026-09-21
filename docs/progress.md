@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/ingredient-ai-handoff`.** Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
+**M5 — Meals and week planning; branch `codex/grocery-snapshot-provenance`.** Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -43,7 +43,7 @@ The single-meal model candidate extracts the existing canonical choice binding a
 
 Twenty-two focused simulated-provider/real-SDK/API/PostgREST checks pass, including eight new single-meal cases. They verify unchanged input/other entries, exact favorite retention, private projection, missing/stale/foreign evidence before spending, extra/wrong slots, unsafe/unknown checks, familiar-only behavior, cancellation and oversized review failure. API types and scoped lint/format pass. Merged as `175594e` after exact-commit CI `35569753701` and clean Sol medium review (22 independently passing checks). Single-edit operation persistence, current-constraint commit checks, HTTP/native selection and corresponding assistant actions remain unfinished; no hosted provider, semantic dietary-safety proof or device execution is claimed.
 
-Remaining M5: implement separate ingredient review/addition, plus live-provider and device acceptance of generation/approval. Semantic dietary adequacy and live model/schema/budget compatibility require an approved provider configuration; simulated-provider tests do not establish those properties. M6–M9 and earlier device/acceptance gates remain incomplete.
+Remaining M5: finish checklist capacity/provenance integration and audit acceptance, plus live-provider and device acceptance of generation/approval. Semantic dietary adequacy and live model/schema/budget compatibility require an approved provider configuration; simulated-provider tests do not establish those properties. M6–M9 and earlier device/acceptance gates remain incomplete.
 
 ### Durable single-suggestion edits — storage candidate
 
@@ -121,9 +121,13 @@ The private assistant can read revision-bound retained ingredient pages and open
 
 Forty-two focused assistant-card, real SDK, cancellation/history and actual SDK-tool → native controller → HTTP/PostgREST checks pass. Three new cases prove correct week handoff, zero grocery writes before explicit native confirmation, current/foreign/revoked authorization, stale revision denial, injected authority rejection and malformed card refusal. API/mobile/AI types and scoped lint pass. CI and exact-commit Sol review are pending. Provider outputs are not live-model verification; physical iPhone navigation remains unverified.
 
-The native UI commit `a1cf8fa` received clean Sol signoff (17 independent checks), but CI `35580521688` stopped at a formatting error in the final progress-log edit. Updated commit `babfc69` removes that blank line and has clean exact-commit Sol rereview; CI `35580755267` is pending. No merge gate was bypassed.
+Native ingredient review merged as `babfc69` after successful CI `35580755267` and clean exact-commit Sol medium rereview. The initial CI formatting failure was corrected before merge. Assistant ingredient handoff merged as `64841e4` after successful CI `35581148173` and clean Sol medium review (42 independently passing checks). Both commits are pushed to main; no PR or automation was created.
 
-Integration issue identified during checklist audit: `apps/api/src/groceries/read.ts` currently refuses more than 500 active/claimed items, whereas a fully selected ingredient week can create up to 4,200. Large successful additions could therefore make the existing checklist unavailable. Resolve and test this capacity mismatch alongside checklist provenance before considering the ingredient vertical slice complete.
+### Complete grocery snapshot and meal provenance — candidate
+
+A valid full ingredient week can add 4,200 items; the previous API/native/cache limit of 500 would then make the checklist unavailable. The candidate replaces the table read with one authorized atomic JSON snapshot, avoiding PostgREST row truncation without introducing an arbitrary larger row limit. Household-bound category and originating-meal joins expose only retained display provenance. Native validation and atomic SQLite replacement accept the complete snapshot; the virtualized checklist labels source meals. Older cached rows remain compatible. Checked/claimed rows remain visible, removed/purchased history stays excluded, and the offline retry policy is unchanged.
+
+All 46 focused API, PostgreSQL, native checklist and actual HTTP/SQLite cases pass. The capacity journey adds 4,200 retained ingredients through the real native client/API, reads and caches all rows, reopens SQLite, and checks an item through the existing synchronization flow while preserving source provenance. Other cases cover current membership, tenant isolation, corrupt foreign source links, deterministic order, strict response fields, bigint versions, lost acknowledgments and existing grocery edits. Disposable security advisors report no issues. API/mobile typechecks pass. The iOS export passes at `/tmp/nest-grocery-source-export` (bundle `1c03b44667a9a295595e9da8f7a9abbd`), packaging evidence only. Exact-commit CI and Sol review remain pending; native label readability and interaction remain device-unverified. No production migration or deployment occurred.
 
 Standing workflow: use feature branches, exact-commit successful CI and clean **GPT-5.6 Sol medium** adversarial review, then fast-forward local main and push. PRs are optional under the owner's explicit authorization. Deployment, production migration, purchases and release remain separately gated. The continuation automation was removed; do not recreate it without a new need. Historical delivery notes below retain the verification state at the time of each increment; later merge records supersede their pending-CI wording.
 

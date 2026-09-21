@@ -1,4 +1,6 @@
-import { StoredMealText } from "./meals.ts";
+import { StoredMealText, StoredMealTitle } from "./meals.ts";
+import { CalendarDate } from "./chores.ts";
+import { MealSlot } from "./cooking.ts";
 import * as Schema from "effect/Schema";
 
 export const Uuid = Schema.String.check(Schema.isUUID());
@@ -29,7 +31,14 @@ export const CheckGrocery = Schema.Struct({
   expectedVersion: GroceryVersion,
   checked: Schema.Boolean,
 });
+export const GroceryMealSource = Schema.Struct({
+  entryId: Uuid,
+  title: StoredMealTitle,
+  date: Schema.NullOr(CalendarDate),
+  slot: Schema.NullOr(MealSlot),
+});
 export const Grocery = Schema.Struct({
+  mealSource: Schema.optionalKey(Schema.NullOr(GroceryMealSource)),
   categoryName: Schema.optionalKey(Schema.NullOr(Schema.NonEmptyString)),
   itemId: Uuid,
   name: Schema.NonEmptyString,

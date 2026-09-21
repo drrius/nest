@@ -16,6 +16,8 @@ const files = [
   "supabase/migrations/20260919214311_native_grocery_check_receipts.sql",
   "supabase/migrations/20260920002735_native_grocery_commands.sql",
   "tests/integration/grocery-postgrest.sql",
+  "tests/database/grocery-meal-source-fixture.sql",
+  "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
 ];
 async function start(t, handler) {
   const server = nodeServer(handler);

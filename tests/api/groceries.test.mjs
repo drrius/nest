@@ -21,11 +21,12 @@ const item = {
   checked: false,
   legacyState: "active",
   category: null,
+  mealSource: null,
 };
 const calls = [];
 let mode = "ok",
   rows = [item],
-  range = "0-0/1",
+  total = 1,
   revoked = false,
   config,
   handler;
@@ -69,9 +70,8 @@ const server = createServer(async (request, response) => {
         revoked ? [] : [{ user_id: actor, household_id: home, display_name: "Member" }],
       ),
     );
-  if (request.url.startsWith("/rest/v1/grocery_items")) {
-    if (range) response.setHeader("content-range", range);
-    return response.end(JSON.stringify(rows));
+  if (request.url === "/rest/v1/rpc/nest_grocery_snapshot") {
+    return response.end(JSON.stringify({ version: 1, householdId: home, total, items: rows }));
   }
   if (request.url.startsWith("/rest/v1/grocery_categories")) {
     response.setHeader("content-range", "0-0/1");
@@ -116,26 +116,24 @@ test("grocery snapshots bind verified household and retain bigint strings and le
       checked: false,
       legacyClaimed: true,
       categoryName: null,
+      mealSource: null,
     },
   ]);
-  const query = new URL(calls.at(-1).url, config.url).searchParams;
-  assert.equal(query.get("household_id"), `eq.${home}`);
-  assert.equal(query.get("state"), "in.(active,claimed)");
-  assert.ok(query.get("select").includes("native_version::text"));
-  assert.equal(calls.at(-1).headers.prefer, "count=exact");
+  assert.equal(calls.at(-1).url, "/rest/v1/rpc/nest_grocery_snapshot");
+  assert.deepEqual(calls.at(-1).body, { p_household: home });
   assert.equal((await call("/categories")).status, 200);
   rows = [item];
 });
 
-test("missing counts, server truncation, duplicate and cross-household rows never become complete snapshots", async () => {
-  for (const candidate of [undefined, "0-0/*", "0-0/2", "1-1/1"]) {
-    range = candidate;
+test("mismatched snapshot totals, duplicate and cross-household rows never become complete snapshots", async () => {
+  for (const candidate of [undefined, "1", 2, -1]) {
+    total = candidate;
     assert.equal((await call()).status, 503);
   }
-  range = "0-1/2";
+  total = 2;
   rows = [item, item];
   assert.equal((await call()).status, 503);
-  range = "0-0/1";
+  total = 1;
   for (const candidate of [
     { ...item, householdId: id(20) },
     { ...item, version: Number(item.version) },
@@ -146,10 +144,10 @@ test("missing counts, server truncation, duplicate and cross-household rows neve
     assert.equal((await call()).status, 503);
   }
   rows = [];
-  range = "*/0";
+  total = 0;
   assert.deepEqual((await (await call()).json()).groceries, []);
   rows = [item];
-  range = "0-0/1";
+  total = 1;
 });
 
 test("commands preserve exact retry identity and versions and cannot choose actor or household", async () => {
@@ -281,11 +279,7 @@ test("grocery categories are joined into the same authorized snapshot and cannot
   let response = await call();
   assert.equal(response.status, 200);
   assert.equal((await response.json()).groceries[0].categoryName, "Produce");
-  assert.ok(
-    new URL(calls.at(-1).url, config.url).searchParams
-      .get("select")
-      .includes("category:grocery_categories"),
-  );
+  assert.equal(calls.at(-1).url, "/rest/v1/rpc/nest_grocery_snapshot");
   for (const patch of [{ householdId: id(20) }, { categoryId: id(31) }, { name: "" }]) {
     rows = [{ ...item, categoryId: id(30), category: { ...category, ...patch } }];
     assert.equal((await call()).status, 503);
@@ -297,6 +291,35 @@ test("grocery categories are joined into the same authorized snapshot and cannot
     const result = (await response.json()).groceries[0];
     assert.equal(result.categoryId, id(30));
     assert.equal(result.categoryName, null);
+  }
+  rows = [item];
+});
+
+test("grocery meal provenance is household bound and exposes only the retained display fields", async () => {
+  const mealSource = {
+    entryId: id(700),
+    householdId: home,
+    title: "Soup",
+    date: "2030-01-07",
+    slot: "dinner",
+  };
+  rows = [{ ...item, mealSource }];
+  const response = await call();
+  assert.equal(response.status, 200);
+  assert.deepEqual((await response.json()).groceries[0].mealSource, {
+    entryId: id(700),
+    title: "Soup",
+    date: "2030-01-07",
+    slot: "dinner",
+  });
+  for (const patch of [
+    { householdId: id(20) },
+    { date: "2030-02-31" },
+    { entryId: "bad" },
+    { privateNotes: "Hidden" },
+  ]) {
+    rows = [{ ...item, mealSource: { ...mealSource, ...patch } }];
+    assert.equal((await call()).status, 503);
   }
   rows = [item];
 });

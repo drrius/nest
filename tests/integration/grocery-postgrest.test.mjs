@@ -6,12 +6,7 @@ import { postgrestFixture } from "./postgrest-fixture.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 
 test("actual PostgREST grocery API/tools preserve bigint versions, retries and tenant boundaries", async (t) => {
-  const fixture = await postgrestFixture(t, [
-    "tests/database/grocery-edit-fixture.sql",
-    "supabase/migrations/20260919214311_native_grocery_check_receipts.sql",
-    "supabase/migrations/20260920002735_native_grocery_commands.sql",
-    "tests/integration/grocery-postgrest.sql",
-  ]);
+  const fixture = await groceryFixture(t);
   const config = { url: fixture.url, publishableKey: "sb_publishable_fixture" },
     handler = createHandler(config);
   const headers = {
@@ -86,3 +81,14 @@ test("actual PostgREST grocery API/tools preserve bigint versions, retries and t
     code: "forbidden",
   });
 });
+
+function groceryFixture(t) {
+  return postgrestFixture(t, [
+    "tests/database/grocery-edit-fixture.sql",
+    "supabase/migrations/20260919214311_native_grocery_check_receipts.sql",
+    "supabase/migrations/20260920002735_native_grocery_commands.sql",
+    "tests/integration/grocery-postgrest.sql",
+    "tests/database/grocery-meal-source-fixture.sql",
+    "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
+  ]);
+}

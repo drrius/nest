@@ -31,7 +31,6 @@ export function groceryClient(
         Effect.flatMap(Schema.decodeUnknownEffect(GroceryList)),
         Effect.flatMap((result) =>
           result.householdId === account.household &&
-          result.groceries.length <= 500 &&
           new Set(result.groceries.map((row) => row.itemId)).size === result.groceries.length
             ? Effect.succeed(result.groceries)
             : Effect.fail(new GroceryFailure({ code: "unavailable" })),
