@@ -57,3 +57,41 @@ test("archive results confirm a historical action and open the library without o
   }
   assert.match(actionResult({ ...part, output: { ok: false, code: "conflict" } }).label, /changed/);
 });
+
+test("selection results open retained planned details only after validated success", () => {
+  const receipt = {
+    version: 1,
+    actorId: id(1),
+    householdId: id(10),
+    operationId: id(20),
+    definitionId: id(30),
+    entryId: id(40),
+    weekStart: "2030-01-07",
+    date: "2030-01-07",
+    slot: "dinner",
+    libraryRevision: "9",
+    revision: "9007199254740995",
+  };
+  for (const action of ["placeRecipe", "replaceWithRecipe"]) {
+    const part = { type: `tool-${action}`, state: "output-available" };
+    const value =
+      action === "replaceWithRecipe"
+        ? { ...receipt, previousEntryId: id(41), skippedPreparationId: null }
+        : receipt;
+    assert.deepEqual(actionResult({ ...part, output: { ok: true, value } }).href, {
+      pathname: "/planned-recipe",
+      params: { entryId: id(40), weekStart: receipt.weekStart, revision: receipt.revision },
+    });
+    for (const output of [
+      { ok: false, code: "unavailable" },
+      { ok: true, value: { ...value, revision: "0" } },
+    ]) {
+      assert.equal(actionResult({ ...part, output }).href, "/meal-week");
+      assert.match(actionResult({ ...part, output }).label, /verify/);
+    }
+    assert.match(
+      actionResult({ ...part, output: { ok: false, code: "conflict" } }).label,
+      /changed/,
+    );
+  }
+});
