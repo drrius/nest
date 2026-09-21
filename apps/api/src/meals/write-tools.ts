@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    createMealPreparation: write(
+      "createMealPreparation",
+      "Create one preparation task only for an existing meal the member explicitly requests. Read the current meal week and readMealPreparation first; use that exact entry, Monday and revision. Ask for an unclear task title or due date. Preserve supplied instructions; null means no instructions. Responsibility defaults to shared unless explicitly assigned or alternating; use readRoutines for real member IDs. Never recreate an existing or completed preparation. This creates one date-only household task, not a recurring routine, calendar event, financial obligation or reminder consent. Do not invent a time or claim the date is free. A receipt confirms original creation; readMealPreparation again for current status after later household changes. Reconcile the original invocation after uncertainty instead of creating again.",
+    ),
     placeLeftovers: write(
       "placeLeftovers",
       "Plan leftovers only from an original meal the member explicitly requests, for an unambiguous empty slot on a strictly later day. Read both source and destination weeks fresh and use their exact Monday/revision pairs; a same-week request uses one matching revision. Ask when source or destination is unclear. Preserve the source's retained recipe; unknown historical ingredients stay unknown. This creates no groceries or preparation and does not change the source meal. Never create leftover chains, remove other meals to bypass conflicts, or use this action to approve generated plans. Reconcile an uncertain original invocation instead of issuing another command. Reread both weeks before describing current contents.",

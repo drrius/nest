@@ -1,3 +1,4 @@
+import { MealPreparationReceipt } from "@nest/contracts/meal-preparation";
 import { LeftoverPlacementReceipt } from "@nest/contracts/meal-leftovers";
 import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
 import { RecipeEditReceipt } from "@nest/contracts/recipe-edit";
@@ -14,6 +15,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  createMealPreparation: "Meal preparation created",
   placeLeftovers: "Leftovers added to the week",
   placeRecipe: "Recipe added to the week",
   replaceWithRecipe: "Recipe replacement confirmed",
@@ -43,6 +45,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  createMealPreparation: "/meal-week",
   placeLeftovers: "/meal-week",
   placeRecipe: "/meal-week",
   replaceWithRecipe: "/meal-week",
@@ -189,6 +192,11 @@ function isSelectionResult(
 }
 
 function mealHref(action: AssistantAction, value: object) {
+  if (action === "createMealPreparation" && Schema.is(MealPreparationReceipt)(value))
+    return {
+      pathname: "/meal-preparation" as const,
+      params: { entryId: value.entryId, weekStart: value.weekStart },
+    };
   if (
     ["replaceMeal", "removeMeal", "placeMeal"].includes(action) &&
     "weekStart" in value &&

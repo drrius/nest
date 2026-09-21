@@ -9,6 +9,7 @@ export const files = [
   ...aiRecipeSelectionFiles,
   "supabase/migrations/20260921020754_native_meal_leftovers.sql",
   "supabase/migrations/20260921022759_native_ai_meal_leftovers.sql",
+  "supabase/migrations/20260921031147_native_ai_meal_preparation.sql",
 ];
 export function fixture(t) {
   const f = recipeJournalFixture(t, files);

@@ -1,4 +1,5 @@
 \ir grocery-edit-fixture.sql
+create role service_role nologin bypassrls;
 -- Combined synthetic command adapters, not a full legacy recurrence-engine proof.
 create function private.is_household_member(target uuid) returns boolean
 language sql security definer stable set search_path='' as $$
