@@ -54,7 +54,8 @@
     "./refund": "./src/refund.ts",
     "./receipt": "./src/receipt.ts",
     "./receipt-upload": "./src/receipt-upload.ts",
-    "./receipt-recovery": "./src/receipt-recovery.ts"
+    "./receipt-recovery": "./src/receipt-recovery.ts",
+    "./recurring": "./src/recurring.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
