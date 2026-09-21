@@ -61,7 +61,8 @@
     "./recurring-save-read": "./src/recurring-save-read.ts",
     "./recurring-proposal": "./src/recurring-proposal.ts",
     "./recurring-cycle": "./src/recurring-cycle.ts",
-    "./recurring-state": "./src/recurring-state.ts"
+    "./recurring-state": "./src/recurring-state.ts",
+    "./recurring-state-read": "./src/recurring-state-read.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

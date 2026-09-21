@@ -1,4 +1,5 @@
 import type { RecurringDecision } from "../money/recurring-approval-client";
+import type { RecurringStateSave } from "../money/recurring-state-client";
 import type { RecurringSave } from "../money/recurring-client";
 import type { ReceiptUploadInput } from "@nest/contracts/receipt-upload";
 import type { ReceiptStorage } from "../money/receipt-upload-client";
@@ -101,6 +102,14 @@ export function sessionMoney(
 
 function sessionRecurring(client: MoneyClient) {
   return {
+    saveRecurringState: (input: RecurringStateSave) =>
+      client.saveRecurringState(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recoverRecurringState: (input: RecurringStateSave) =>
+      client.recoverRecurringState(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelRecurringStateSave: (input: RecurringStateSave) =>
+      client
+        .cancelRecurringStateSave(input)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverRecurring: (input: RecurringSave) =>
       client.recoverRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     cancelRecurringSave: (input: RecurringSave) =>
