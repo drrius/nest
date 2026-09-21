@@ -1,3 +1,5 @@
+import type { ReceiptUploadInput } from "@nest/contracts/receipt-upload";
+import type { ReceiptStorage } from "../money/receipt-upload-client";
 import type { ReceiptTarget } from "@nest/contracts/receipt";
 import type { CorrectionDecision } from "../money/correction-approval-client";
 import type { CorrectionSave } from "../money/correction-client";
@@ -18,10 +20,12 @@ export function sessionMoney(
   auth: SupabaseClient["auth"],
   account: Account,
   apiUrl: string,
-  storageOrigin: string,
+  storage: ReceiptStorage,
 ) {
-  const client = moneyClient(apiUrl, account, sessionCredentials(auth), storageOrigin);
+  const client = moneyClient(apiUrl, account, sessionCredentials(auth), storage);
   return {
+    uploadReceipt: (input: ReceiptUploadInput, bytes: Uint8Array) =>
+      client.uploadReceipt(input, bytes).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     receipt: (target: ReceiptTarget) =>
       client.receipt(target).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     receiptLink: (target: ReceiptTarget) =>

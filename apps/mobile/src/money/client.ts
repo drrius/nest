@@ -1,3 +1,4 @@
+import { receiptUploadClient, type ReceiptStorage } from "./receipt-upload-client.ts";
 import { receiptClient } from "./receipt-client.ts";
 import { correctionApprovalClient } from "./correction-approval-client.ts";
 import { correctionClient } from "./correction-client.ts";
@@ -23,7 +24,7 @@ export function moneyClient(
   apiUrl: string,
   account: Account,
   credentials: Effect.Effect<Credentials, ChoreFailure>,
-  storageOrigin?: string,
+  storage?: ReceiptStorage,
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   const scoped = <A extends { householdId: string }>(path: string, schema: Schema.Codec<A>) =>
@@ -35,7 +36,8 @@ export function moneyClient(
       ),
     );
   return {
-    ...receiptClient(apiUrl, account, credentials, storageOrigin),
+    ...receiptClient(apiUrl, account, credentials, storage?.origin),
+    ...receiptUploadClient(storage, account, credentials),
     ...correctionApprovalClient(apiUrl, account, credentials),
     ...correctionClient(apiUrl, account, credentials),
     ...expenseApprovalClient(apiUrl, account, credentials),

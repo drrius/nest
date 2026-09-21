@@ -1,3 +1,5 @@
+import { createHash } from "node:crypto";
+import { receiptUploadClient } from "../../apps/mobile/src/money/receipt-upload-client.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
@@ -9,6 +11,8 @@ const require = createRequire(
   new URL("../../packages/receipt-upload/package.json", import.meta.url),
 );
 const Redacted = require("effect/Redacted");
+const Effect = require("effect/Effect");
+const Fetch = require("effect/unstable/http/FetchHttpClient");
 test("real upload HTTP authorizes and reserves exact content but never claims unavailable Storage succeeded", async (t) => {
   const f = await postgrestFixture(t, [
     ...files,
@@ -38,6 +42,25 @@ test("real upload HTTP authorizes and reserves exact content but never claims un
       headers: { authorization: `Bearer ${token}`, "x-nest-household": id(10) },
       body,
     });
+  const bytes = new TextEncoder().encode("%PDF-1.7\nfixture");
+  const digest = (body) => Effect.succeed(createHash("sha256").update(body).digest("hex"));
+  const native = receiptUploadClient(
+    { origin: new URL(url).origin, upload: { publishableKey: "sb_publishable_fixture", digest } },
+    { actor: id(1), household: id(10) },
+    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+  );
+  const input = {
+    uploadId: id(100),
+    sha256: createHash("sha256").update(bytes).digest("hex"),
+    bytes: bytes.length,
+    contentType: "application/pdf",
+  };
+  await assert.rejects(
+    Effect.runPromise(
+      native.uploadReceipt(input, bytes).pipe(Effect.provideService(Fetch.Fetch, fetch)),
+    ),
+    { code: "unavailable" },
+  );
   const first = await send(f.bearer);
   assert.equal(first.status, 503);
   assert.deepEqual(await first.json(), { error: { code: "unavailable" } });

@@ -41,7 +41,7 @@ test("native receipt metadata passes actual API and RLS before and after financi
       url,
       { actor, household: id(10) },
       Effect.succeed({ user: { id: actor }, access_token: token }),
-      f.url,
+      { origin: f.url },
     );
   const first = connect(id(1), f.bearer),
     second = connect(id(2), f.partnerBearer);

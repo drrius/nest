@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — inspected receipt upload service; branch `codex/receipt-upload-service`.** Viewer, byte validation and immutable identity are merged after exact-commit CI and Sol review. The upload service and Edge entry point pass local checks; hosted Storage and native selection/upload remain unfinished. Recurring financial automation, M8/M9 and physical-device acceptance remain outstanding.
+**M7 — native receipt upload transport; branch `codex/native-receipt-upload-transport`.** Viewer, byte validation and immutable identity are merged. Corrected upload service has clean Sol rereview and awaits fresh CI. Native transport passes local checks; the file picker, expense attachment controls, hosted Storage and device verification remain unfinished. Recurring financial automation and M8/M9 remain outstanding.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -1111,3 +1111,11 @@ Eight focused checks pass: six handler/real-decoder tests with simulated Storage
 ### Receipt uploader household fence — correction
 
 During native transport integration, an additional same-user household-change case was identified before merging the upload service. The Edge handler now requires `X-Nest-Household` to match current membership before reading file bytes. A stale form cannot upload its prior household's file into a newly joined household. Missing expected-household headers fail closed. Service tests include changed membership; the real HTTP/PostgREST journey also checks moving the same user between households. Original service `dacd9e10446b6d90e75fd3d35b424577e1725ae5` has clean Sol review, but this updated commit must receive fresh review and CI before integration.
+
+### Native receipt upload transport — candidate
+
+The upload-service household fence `50a4d1a01fe86a67791b675d6d8ed4c6dd059b1d` has clean updated Sol medium signoff with eight independently passing service/HTTP checks. Fresh CI `35635485958` remains pending; the earlier service commit was not merged while this correction was outstanding.
+
+Native session wiring now exposes an explicit upload command using Expo fetch and SHA-256. The client copies bounded selected bytes before asynchronous hashing, checks the immutable file identity, rechecks account identity before dispatch and after response, and sends the expected household plus caller/public credentials to the configured Edge origin. It rejects an unconfirmed upload, substituted digest/type/size/path/account, extra fields, unsafe origin or missing configuration. Errors are finite; no automatic retry or offline queue is introduced.
+
+Seven focused checks pass: five native boundary tests and two actual local HTTP/PostgREST journeys for upload failure and retained receipt reads. Tests include account replacement during hashing/upload, original-buffer mutation, forged acknowledgments and one dispatch per failed attempt. Actual hosted Storage remains unavailable and is asserted as a failure. Workspace types, full lint/formatting and iOS export `/tmp/nest-upload-transport-export` (bundle `e95eb3710791c0dfab7bac2a36db93b3`) pass; the export proves packaging only, not native hashing/network behavior. Exact-commit Sol review and CI remain required. Native file selection, attachment controls, lifecycle/retry integration, cleanup and device acceptance are next. No hosted deployment, production migration or file operation occurred.

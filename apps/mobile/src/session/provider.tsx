@@ -1,3 +1,4 @@
+import { nativeReceiptStorage } from "../money/receipt-upload-native";
 import { sessionMoney } from "./money-client";
 import type { MoneyClient } from "../money/client";
 import { sessionMeals } from "./meal-client";
@@ -143,7 +144,7 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         auth,
         { actor, household },
         configuration.apiUrl,
-        configuration.supabaseUrl,
+        nativeReceiptStorage(configuration),
       ),
       setup: sessionSetup(auth, { actor, household }, configuration.apiUrl),
       notification: sessionNotification(auth, { actor, household }, configuration.apiUrl),
