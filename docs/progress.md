@@ -6,6 +6,12 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
+Structured generation `e56281e` is merged and pushed to main after successful exact-head CI `35562298604` and clean Sol medium rereview of the fixed library household binding. Both generation and retained-recipe support remain internal groundwork until the proposal/approval flow is wired.
+
+The current gated reservation migration stores actor-private proposal state and immutable start/discard receipts in the private schema. Native database commands recheck membership, reject stale week baselines/missing food setup/full configured weeks, serialize operation retries and bind exact discard revisions. Pending proposals expose no pretend content. Raw context fingerprints never appear in the read envelope; neither clients nor the service role have direct table access. Concurrent retries and receipt failures do not duplicate reservations or leave partial state. No meals, groceries, preparation or money are created. A 24-hour deadline is recorded for the future worker/approval checks; this slice does not claim those expiry checks are implemented.
+
+Seven focused disposable PostgreSQL cases cover current authorization, owner-only reads, denied direct access, concurrent begin/discard replay, changed-operation rejection, strict input, complete rollback, stale/full-week prevention, supported isolation and retained content after discard. Security advisors report no issues. Exact-head CI and Sol review are pending. Worker claim/completion/recovery, authenticated HTTP routes, native proposal UI, assistant actions, exact atomic approval and separate ingredients remain unfinished. No production migration or device execution occurred.
+
 Sol found that the generation shortlist lacked its household binding even though week/calendar inputs were bound. The private library aggregate now requires a matching household ID; foreign-library regression coverage proves rejection before provider dispatch. Updated exact-head review and CI are required.
 
 One-off recipe retention `d086b29` is merged and pushed to main after successful CI `35561569589` and clean exact-head Sol medium review; Sol independently passed seventeen focused checks. No approval writer is enabled by that migration.
@@ -24,7 +30,7 @@ Verification: 52 focused PostgreSQL, API, native client/cache and real HTTP/Post
 
 Sol found that single-slot change receipts did not identify the chosen saved recipe or distinguish selection from regeneration. The contract now discriminates the action and retains the definition ID and exact library baseline for selection, with focused strict-decoding regression coverage. Updated exact-head review and CI are required before merge.
 
-**M5 — Meals and week planning; branch `codex/structured-meal-generation`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/meal-proposal-storage`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
 
