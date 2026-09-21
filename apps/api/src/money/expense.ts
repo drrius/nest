@@ -17,6 +17,7 @@ export function expenseCommands(config: IdentityConfig, caller: AuthorizedCaller
         ? command.approvalId.toLowerCase()
         : null;
       const operationId = command.operationId.toLowerCase();
+      const expense = canonicalExpense(command.expense);
       const raw = yield* requestJson(
         config,
         caller.token,
@@ -24,7 +25,7 @@ export function expenseCommands(config: IdentityConfig, caller: AuthorizedCaller
         {
           p_household: caller.member.householdId,
           p_operation: operationId,
-          p_payload: command.expense,
+          p_payload: expense,
           ...(approved ? { p_approval: approvalId } : {}),
         },
       );
@@ -36,7 +37,7 @@ export function expenseCommands(config: IdentityConfig, caller: AuthorizedCaller
         receipt.householdId !== caller.member.householdId ||
         receipt.operationId !== operationId ||
         receipt.approvalId !== approvalId ||
-        !equivalent(receipt.expense, command.expense)
+        !equivalent(receipt.expense, expense)
       )
         return yield* new ApiFailure({ code: "unavailable" });
       return receipt;
@@ -44,5 +45,18 @@ export function expenseCommands(config: IdentityConfig, caller: AuthorizedCaller
   return {
     save: (input: unknown) => run(input, false),
     execute: (input: unknown) => run(input, true),
+  };
+}
+
+function canonicalExpense(input: ExpenseInput): ExpenseInput {
+  const share = (value: (typeof input.allocations)[0]) => ({
+    ...value,
+    memberId: value.memberId.toLowerCase(),
+  });
+  return {
+    ...input,
+    payerId: input.payerId.toLowerCase(),
+    categoryId: input.categoryId?.toLowerCase() ?? null,
+    allocations: [share(input.allocations[0]), share(input.allocations[1])],
   };
 }

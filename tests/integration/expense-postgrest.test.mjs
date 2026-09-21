@@ -68,3 +68,38 @@ test("actual approved HTTP execution consumes once and rejects pending, missing 
     "consumed",
   );
 });
+
+test("expense HTTP canonicalizes alphabetic payer, allocation and category UUIDs before posting", async (t) => {
+  const f = await expenseApiFixture(t);
+  const partner = "abcdefab-abcd-4abc-8abc-abcdefabcdef";
+  const category = "cdefabcd-abcd-4abc-8abc-abcdefabcdef";
+  f.db.sql(`insert into auth.users(id) values('${partner}');
+    delete from public.household_members where user_id='${id(2)}';
+    insert into public.household_members(household_id,user_id,display_name) values('${id(10)}','${partner}','Alphabetic partner');
+    insert into public.expense_categories(id,household_id,name,sort_order) values('${category}','${id(10)}','Alphabetic category',0)`);
+  const expense = payload({
+    payerId: partner,
+    categoryId: category,
+    allocations: [
+      { memberId: partner, centimes: "51" },
+      { memberId: id(1), centimes: "50" },
+    ],
+  });
+  const input = {
+    ...expense,
+    payerId: partner.toUpperCase(),
+    categoryId: category.toUpperCase(),
+    allocations: expense.allocations.map((share) => ({
+      ...share,
+      memberId: share.memberId.toUpperCase(),
+    })),
+  };
+  const response = await f.send("/v1/money/expense/save", { operationId: id(300), expense: input });
+  assert.equal(response.status, 200);
+  const receipt = await response.json();
+  assert.deepEqual(receipt.expense, expense);
+  const replay = await f.send("/v1/money/expense/save", { operationId: id(300), expense });
+  assert.equal(replay.status, 200);
+  assert.deepEqual(await replay.json(), receipt);
+  assert.equal(f.db.sql("select count(*) from public.financial_events"), "1");
+});
