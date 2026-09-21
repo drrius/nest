@@ -1,6 +1,19 @@
 import { firstUncoveredRecurringCycle } from "@nest/domain/money";
 import type { RecurringEntryContext } from "./recurring-entry-context.ts";
 import type { RecurringApproval } from "./recurring-approval-client.ts";
+export function recurringRevisionSuperseded(
+  approval: RecurringApproval,
+  loaded: RecurringEntryContext | null,
+) {
+  const { rule } = approval,
+    current = loaded?.context.current;
+  return (
+    current !== null &&
+    current !== undefined &&
+    current.ruleId === rule.ruleId &&
+    current.revision !== rule.expectedRevision
+  );
+}
 export function matchesRecurringContext(
   approval: RecurringApproval,
   loaded: RecurringEntryContext | null,

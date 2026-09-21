@@ -1,5 +1,8 @@
 import type { RecurringEntryContext } from "./recurring-entry-context.ts";
-import { matchesRecurringContext } from "./recurring-approval-display.ts";
+import {
+  matchesRecurringContext,
+  recurringRevisionSuperseded,
+} from "./recurring-approval-display.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { OfflineFailure } from "../offline/contracts.ts";
@@ -108,7 +111,7 @@ export class RecurringApprovalRuntime {
       });
       if (!this.current(request)) return;
       this.publish({ attempt });
-      const approval = await Effect.runPromise(this.operations.read(this.approvalId), {
+      let approval = await Effect.runPromise(this.operations.read(this.approvalId), {
         signal: request.signal,
       });
       if (!this.current(request)) return;
@@ -120,18 +123,39 @@ export class RecurringApprovalRuntime {
             signal: request.signal,
           });
       if (!this.current(request)) return;
+      const recovered = await this.recover({ approval, context, attempt }, request);
+      if (!this.current(request)) return;
+      approval = recovered.approval;
       this.publish({
         approval,
-        context,
+        context: terminal(approval) ? null : context,
         fresh: true,
-        notice:
-          attempt && !terminal(approval)
-            ? "An earlier decision is unresolved. Check again or retry that exact decision."
-            : null,
+        notice: recoveryNotice(approval, attempt, recovered.superseded),
       });
-      if (terminal(approval)) await this.clear(attempt, request);
     });
   };
+  private async recover(
+    loaded: Pick<RecurringApprovalView, "approval" | "context" | "attempt"> & {
+      approval: RecurringApproval;
+    },
+    request: AbortController,
+  ) {
+    let { approval } = loaded;
+    const { context, attempt } = loaded;
+    const superseded = Boolean(attempt?.approved && recurringRevisionSuperseded(approval, context));
+    if (superseded && attempt) {
+      // Recheck after observing a committed revision. An older in-flight CAS can
+      // no longer succeed, but it may have committed before that revision changed.
+      approval = await Effect.runPromise(this.operations.read(this.approvalId), {
+        signal: request.signal,
+      });
+      if (!this.current(request)) return { approval, superseded };
+      if (approval.operationId !== attempt.operationId)
+        throw new PreferenceFailure({ code: "unavailable" });
+    }
+    if (superseded || terminal(approval)) await this.clear(attempt, request);
+    return { approval, superseded };
+  }
   decide = async (expected: RecurringApproval, approved: boolean) => {
     if (
       !this.available() ||
@@ -228,4 +252,17 @@ export class RecurringApprovalRuntime {
     this.disposed = true;
     this.listeners.clear();
   };
+}
+
+function recoveryNotice(
+  approval: RecurringApproval,
+  attempt: RecurringApprovalAttempt | null,
+  superseded: boolean,
+) {
+  if (terminal(approval)) return null;
+  if (superseded)
+    return "The rule changed. This proposal can no longer be approved. You can decline it and request a new proposal.";
+  return attempt
+    ? "An earlier decision is unresolved. Check again or retry that exact decision."
+    : null;
 }

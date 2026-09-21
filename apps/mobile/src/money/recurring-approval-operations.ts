@@ -20,12 +20,31 @@ export function recurringApprovalOperations(account: OfflineAccount, client: Mon
     clear: (attempt: RecurringApprovalAttempt) =>
       account.store.clearRecurringApproval(account.session, attempt),
     context: (rule: RecurringInput) =>
-      recurringEntryContext(account, client, {
-        ruleId: rule.ruleId,
-        editing: rule.expectedRevision !== null,
-      }),
+      rule.expectedRevision === null
+        ? checked(creationContext(client, rule.ruleId))
+        : recurringEntryContext(account, client, { ruleId: rule.ruleId, editing: true }),
     read: (approvalId: string) => checked(client.recurringApproval(approvalId)),
     decide: (input: RecurringDecision) => checked(client.decideRecurring(input)),
   };
+}
+function creationContext(client: MoneyClient, ruleId: string) {
+  return Effect.gen(function* () {
+    // A proposed create can collide with an existing rule. Search ordered pages
+    // rather than interpreting a failed detail request as proof of absence.
+    let snapshot = yield* client.recurringRules(null);
+    let current = snapshot.rules.find((rule) => rule.ruleId === ruleId) ?? null;
+    while (!current && snapshot.next !== null && snapshot.next < ruleId) {
+      snapshot = yield* client.recurringRules(snapshot.next);
+      current = snapshot.rules.find((rule) => rule.ruleId === ruleId) ?? null;
+    }
+    const balance = yield* client.balance();
+    const context = {
+      ruleId,
+      today: snapshot.today,
+      current,
+      members: [balance.members[0].actorId, balance.members[1].actorId] as const,
+    };
+    return { context, members: balance.members };
+  });
 }
 export type RecurringApprovalOperations = ReturnType<typeof recurringApprovalOperations>;
