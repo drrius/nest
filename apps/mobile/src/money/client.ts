@@ -1,3 +1,4 @@
+import { correctionClient } from "./correction-client.ts";
 import { refundApprovalClient } from "./refund-approval-client.ts";
 import { refundClient } from "./refund-client.ts";
 import { settlementApprovalClient } from "./settlement-approval-client.ts";
@@ -31,6 +32,7 @@ export function moneyClient(
       ),
     );
   return {
+    ...correctionClient(apiUrl, account, credentials),
     ...expenseApprovalClient(apiUrl, account, credentials),
     ...expenseClient(apiUrl, account, credentials),
     ...refundClient(apiUrl, account, credentials),

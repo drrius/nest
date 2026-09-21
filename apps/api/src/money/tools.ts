@@ -1,3 +1,4 @@
+import { correctionContextTool } from "./correction-tool.ts";
 import { refundSaveTool } from "./refund-save-tool.ts";
 import { refundContextTool } from "./refund-tool.ts";
 import { settlementSaveTool } from "./settlement-save-tool.ts";
@@ -15,6 +16,7 @@ import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { readMoneyBalance } from "./read.ts";
 export function moneyTools(request: Request, config: IdentityConfig) {
   return {
+    readCorrectionContext: correctionContextTool(request, config),
     readRefundSave: refundSaveTool(request, config),
     readRefundContext: refundContextTool(request, config),
     readSettlementSave: settlementSaveTool(request, config),
