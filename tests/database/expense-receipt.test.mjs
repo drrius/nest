@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { fixture, as, id } from "./expense-receipt-fixture.mjs";
+import { fixture, as } from "./expense-receipt-fixture.mjs";
 import { payload, save } from "./native-expense-helpers.mjs";
 import { replacement, command as correct } from "./native-correction-fixture.mjs";
 test("concurrent native Saves claim one exact receipt and preserve financial and grocery values", async (t) => {
