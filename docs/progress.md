@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/meal-preparation-contracts`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/meal-preparation-storage`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
 
@@ -22,9 +22,15 @@ Private AI leftovers now use the shared strict native input/receipt contracts an
 
 Local verification: all 153 selected AI journal/API/schema/native-card/SDK-PostgREST checks pass, including four new database cases and actual SDK committed-response loss, exact replay after archive, private actor recovery, partner reads, terminal stale conflict and revocation. API/mobile/SDK types, scoped lint/format and diff checks pass. Security advisors report no issues on the disposable full leftovers/journal fixture. SQL functions remain within the 80-code-line limit. Exact-commit CI and Sol review are pending; no live model, device, production migration or deployment was used. M5 proposal approval, preparation and separate ingredient review remain incomplete.
 
-AI leftovers `7d72db3` received clean exact-head Sol medium signoff with 21 independent focused checks. CI run `35554715535` remains the outstanding merge gate; no signoff is inferred from a pending job.
+AI leftovers `7d72db3` are merged and pushed to main after successful CI `35554715535` and clean exact-head Sol medium signoff with 21 independent focused checks.
 
 The next preparation slice has a deliberate [legacy audit](native-rewrite/meal-preparation-audit.md) and strict shared create/receipt contracts. It preserves one linked one-off task per meal, instructions and household assignment, exact meal-week baselines and microsecond routine versions. Three focused contract tests pass, including 1,200 generated civil-date/receipt-version round trips and identity, Unicode, date and assignment rejection. Contracts typecheck and scoped lint/format pass. This is a contract increment only: atomic storage, authorization/RLS, API/native/AI preparation actions and real journeys are not yet implemented or verified. No milestone exit criterion is claimed.
+
+Preparation contracts `bc49ad8` are merged after successful CI `35554945406` and clean Sol medium review. The reviewer independently checked the pinned legacy semantics and all three contract cases.
+
+The next gated storage candidate creates one linked preparation task with a real one-off routine/occurrence, instructions, meal priority and assignment. Current membership is locked before receipt replay; new writes require exact meal-week baselines, current source identity and absence of any prior linked preparation. It reuses audited routine insertion, adds no notification consent or groceries, and keeps meal content/revision unchanged. Receipt failure rolls back routine, occurrence, activity and link. Completed preparation and old replay receipts survive meal removal.
+
+Local storage evidence: nine new PostgreSQL cases pass, including concurrent identical/different requests, ten create/remove races, actual completion/removal replay, exact rollback, private receipt RLS, stale/foreign/removed inputs, assignment denial, Unicode boundaries, anonymous/direct-write denial and unsupported snapshot rejection. Eight existing removal regressions also passed. Two initial test expectations were corrected: synthetic legacy activity FKs must be cleared to simulate membership revocation, and a removal that wins the race correctly creates no task. Scoped lint/format/diff checks pass; disposable Supabase security advisors report no issues. SQL functions are at most 53 code lines. Exact-head review and CI are pending. Preparation API/native/AI/read/edit flows remain unfinished; no device or production execution occurred.
 
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 
