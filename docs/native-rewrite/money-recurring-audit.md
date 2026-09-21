@@ -1,0 +1,20 @@
+# Recurring Money audit
+
+The approved native brief requires fixed automatic obligations after explicit mandate approval, variable bills awaiting entry/confirmation, immutable financial history, server scheduling and exactly-once cycles. Existing rules remain draft-only until individually opted in. An obligation is not proof of a bank transfer.
+
+Selected Household OS sources are pinned by commit and SHA-256 in `money-recurring-provenance.json`. The source files were read without changing the legacy repository. The legacy pure recurrence module and its four meaningful examples establish weekly ISO weekdays, monthly day-of-month clamping, strict next-date semantics and inclusive windows. Nest reuses those semantics and examples, using the already audited UTC date helpers from its domain package instead of copying another date implementation. No legacy screen, scheduler or automatic posting behavior was copied.
+
+The original date validator uses `Date.UTC` and rejects years 0001–0099 because JavaScript maps those years to 1901–1999. The original due-date loop is unbounded and computes a successor even after reaching the upper supported date boundary. Nest's pure planner supports validated years 0001–9999, returns null at exhaustion, bounds each catch-up page to at most 100 dates and returns the first unreturned due date as its continuation. The caller must preserve the exact schedule and window when continuing. This is planning only; it provides no permission to post or backfill history.
+
+The legacy database generator locks active rules, inserts `expense_drafts`, deduplicates on `(recurring_expense_rule_id, occurred_on)` and advances `next_occurrence_on`. It does not post an approved automatic expense. The later version trigger updates `updated_at` on every mutation, including generation and pause/resume. Reusing that timestamp as an automatic mandate approval version would mix execution cursor changes with authorization changes. Native rule configuration revisions and execution state must be separate.
+
+## Native implementation constraints
+
+- Keep financial posting transactional with the ledger and a durable cycle receipt. Rule locks serialize posting, changes and pause/cancel. Replays return the original result rather than generating new obligations.
+- Bind approval to the exact configuration revision, amount, payer, allocation, cadence and activation date. Cursor advancement must not change that configuration revision. Store authorizer separately from job executor.
+- Activation begins prospectively unless backfill is explicitly approved. Catch-up covers missed approved periods only. Pausing preserves history and prevents future execution; resuming must disclose its first eligible cycle.
+- A cycle must survive amount/payer/split edits and cannot be recreated by moving the due weekday/day. Use the civil weekly period (Monday through Sunday) or monthly period as its stable period identity, plus rule identity; retain period coverage when cadence changes so the first new period cannot overlap an already posted old period. Cadence changes must disclose the resulting first eligible due date. The forthcoming transactional schema must prove this across edits and retries rather than relying on a due-date-only unique constraint.
+- Variable confirmation and fixed automatic execution share the same cycle claim. Explicit manual-entry linkage consumes that cycle; descriptions must never be used to infer a match. Corrections/refunds do not silently reopen a consumed cycle.
+- Legacy rules and pending drafts remain separate from native automatic cycle authority. Migration cannot manufacture approval or automatically backfill them.
+
+Current evidence covers pure date planning only. Database mandates/cycle claims, controlled jobs, native configuration/confirmation, AI proposals and legacy migration reconciliation remain unfinished. The broader legacy scheduler/command statements have been inspected for these constraints, not certified or copied as working native infrastructure.

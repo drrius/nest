@@ -1,0 +1,26 @@
+{
+  "repository": "drrius/household-os",
+  "commit": "4a528c96caf41515a70291ccecbba9d7b35e3349",
+  "files": [
+    {
+      "path": "src/domain/money/recurrence.ts",
+      "sha256": "7da3e1c8e17037d797b25e17a2fa5628156fbb11ee924688b4666405f0f3254d"
+    },
+    {
+      "path": "src/domain/money/recurrence.test.ts",
+      "sha256": "429f1bd694fd6b9a92c95b230adfdb36f9a9de332ba3c73007a5569102aa614d"
+    },
+    {
+      "path": "src/domain/money/values.ts",
+      "sha256": "2fe90fd30e2d97338030889e5d79867ae54470a9d7c1e63829c7d3421ab04ddf"
+    },
+    {
+      "path": "supabase/migrations/20260812090000_notifications_realtime.sql",
+      "sha256": "1fdf6a18945d47ad36b8e32956135e7d970f607c84cbd69e6610a3fb5bffd982"
+    },
+    {
+      "path": "supabase/migrations/20260905002500_recurring_expense_edit_versions.sql",
+      "sha256": "eea2ee13e9f7d477e3905184b8323d93a529be7831cb6dd67a76f5675d4dcf0d"
+    }
+  ]
+}

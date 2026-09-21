@@ -7,3 +7,9 @@ export {
   type Allocations,
 } from "./allocations.ts";
 export { deriveBalances, type LedgerEntry } from "./balances.ts";
+export {
+  firstRecurringDate,
+  nextRecurringDate,
+  dueRecurringDates,
+  type RecurringSchedule,
+} from "./recurrence.ts";
