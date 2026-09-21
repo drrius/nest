@@ -1,3 +1,4 @@
+import { receiptCleanupClient } from "./receipt-cleanup-client.ts";
 import { receiptUploadClient, type ReceiptStorage } from "./receipt-upload-client.ts";
 import { receiptClient } from "./receipt-client.ts";
 import { correctionApprovalClient } from "./correction-approval-client.ts";
@@ -36,6 +37,7 @@ export function moneyClient(
       ),
     );
   return {
+    ...receiptCleanupClient(apiUrl, account, credentials),
     ...receiptClient(apiUrl, account, credentials, storage?.origin),
     ...receiptUploadClient(storage, account, credentials),
     ...correctionApprovalClient(apiUrl, account, credentials),

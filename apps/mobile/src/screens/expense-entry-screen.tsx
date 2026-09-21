@@ -136,6 +136,7 @@ function EntryPage({
             </Note>
           )}
           <ReceiptAttachmentControls
+            expense={runtime}
             runtime={attachment}
             view={attachmentView}
             disabled={disabled}

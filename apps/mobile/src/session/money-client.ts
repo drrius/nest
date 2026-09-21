@@ -24,6 +24,8 @@ export function sessionMoney(
 ) {
   const client = moneyClient(apiUrl, account, sessionCredentials(auth), storage);
   return {
+    cleanupReceipt: (input: ReceiptUploadInput) =>
+      client.cleanupReceipt(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     uploadReceipt: (input: ReceiptUploadInput, bytes: Uint8Array) =>
       client.uploadReceipt(input, bytes).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     receipt: (target: ReceiptTarget) =>

@@ -1,9 +1,14 @@
+import { createRequire } from "node:module";
+import { moneyClient } from "../../apps/mobile/src/money/client.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { files, id } from "../database/expense-receipt-fixture.mjs";
+const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const Effect = require("effect/Effect"),
+  Fetch = require("effect/unstable/http/FetchHttpClient");
 test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never fakes unavailable Storage deletion", async (t) => {
   const f = await postgrestFixture(t, [
     ...files,
@@ -40,6 +45,13 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
       },
       body: JSON.stringify(input(n)),
     });
+  const client = moneyClient(
+    origin,
+    { actor: id(1), household: id(10) },
+    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+  );
+  const run = (effect) => Effect.runPromise(effect.pipe(Effect.provideService(Fetch.Fetch, fetch)));
+  assert.equal((await run(client.cleanupReceipt(input(100)))).status, "deleted");
   const deleted = await request(100);
   assert.equal(deleted.status, 200);
   assert.equal((await deleted.json()).status, "deleted");
@@ -53,6 +65,7 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
     `insert into storage.objects(bucket_id,name,metadata) values('household-files','${path}','{"mimetype":"image/jpeg","size":128}')`,
   );
   // This fixture has no working Storage endpoint; the real API must keep the object unresolved.
+  await assert.rejects(run(client.cleanupReceipt(input(101))), { code: "conflict" });
   const unresolved = await request(101);
   assert.equal(unresolved.status, 409);
   assert.equal(

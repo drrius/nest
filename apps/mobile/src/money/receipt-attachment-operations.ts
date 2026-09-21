@@ -1,3 +1,4 @@
+import type { ReceiptUploadInput } from "@nest/contracts/receipt-upload";
 import * as Effect from "effect/Effect";
 import type { OfflineAccount } from "../offline/owner.ts";
 import type { MoneyClient } from "./client.ts";
@@ -15,6 +16,7 @@ export function receiptAttachmentOperations(
       return result;
     });
   return {
+    cleanup: (input: ReceiptUploadInput) => checked(client.cleanupReceipt(input)),
     select: (kind: ReceiptKind) => checked(select(kind)),
     upload: (file: SelectedReceipt) => checked(client.uploadReceipt(file.input, file.bytes)),
   };

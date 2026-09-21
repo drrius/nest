@@ -1,3 +1,4 @@
+import type { ReceiptUploadInput } from "@nest/contracts/receipt-upload";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { OfflineFailure } from "../offline/contracts.ts";
@@ -11,8 +12,8 @@ import type { ReceiptAttachmentOperations } from "./receipt-attachment-operation
 export interface ReceiptAttachmentView {
   active: boolean;
   online: boolean;
-  busy: "selecting" | "uploading" | null;
-  status: "empty" | "selected" | "uncertain" | "uploaded";
+  busy: "selecting" | "uploading" | "removing" | null;
+  status: "empty" | "selected" | "uncertain" | "uploaded" | "removal_uncertain";
   contentType: string | null;
   path: string | null;
   verify: boolean;
@@ -61,13 +62,16 @@ export class ReceiptAttachmentRuntime {
     return !this.disposed && this.request === request && !request.signal.aborted;
   }
   private stopUpload() {
-    if (this.view.busy !== "uploading") return;
+    if (!["uploading", "removing"].includes(this.view.busy ?? "")) return;
+    const removing = this.view.busy === "removing";
     this.request?.abort();
     this.request = null;
     this.publish({
       busy: null,
-      status: "uncertain",
-      notice: "Upload interrupted. Retry the same receipt online to check its outcome.",
+      status: removing ? "removal_uncertain" : "uncertain",
+      notice: removing
+        ? "Removal interrupted. Retry removal online to check its outcome."
+        : "Upload interrupted. Retry the same receipt online to check its outcome.",
     });
   }
   setActive = (active: boolean) => {
@@ -81,7 +85,7 @@ export class ReceiptAttachmentRuntime {
     this.publish({ online });
   };
   private async perform(
-    kind: "selecting" | "uploading",
+    kind: "selecting" | "uploading" | "removing",
     body: (request: AbortController) => Promise<void>,
   ) {
     const request = new AbortController();
@@ -111,7 +115,7 @@ export class ReceiptAttachmentRuntime {
   };
   upload = async () => {
     const file = this.file;
-    if (!this.available() || !file || this.view.status === "uploaded") return;
+    if (!this.available() || !file || !["selected", "uncertain"].includes(this.view.status)) return;
     this.publish({ status: "uncertain" });
     await this.perform("uploading", async (request) => {
       const result = await Effect.runPromise(this.operations.upload(file), {
@@ -123,6 +127,34 @@ export class ReceiptAttachmentRuntime {
         status: "uploaded",
         notice: "Receipt uploaded. It will be attached only when you save the expense.",
       });
+    });
+  };
+  removalTarget = () =>
+    this.available() && ["uploaded", "uncertain", "removal_uncertain"].includes(this.view.status)
+      ? (this.file?.input ?? null)
+      : null;
+  remove = async (expected: ReceiptUploadInput) => {
+    if (this.removalTarget() !== expected) return;
+    this.path = null;
+    this.publish({ status: "removal_uncertain" });
+    await this.perform("removing", async (request) => {
+      const result = await Effect.runPromise(this.operations.cleanup(expected), {
+        signal: request.signal,
+      });
+      if (!this.current(request)) return;
+      if (result.status === "claimed") {
+        this.path = result.path;
+        this.publish({
+          status: "uploaded",
+          notice: "This receipt belongs to recorded financial history and cannot be removed.",
+        });
+      } else {
+        this.file = null;
+        this.publish({
+          status: "empty",
+          notice: "Receipt removed. No expense was recorded by this action.",
+        });
+      }
     });
   };
   clearSelection = () => {
@@ -140,6 +172,8 @@ export class ReceiptAttachmentRuntime {
     }
     let notice = "Could not upload the receipt. Retry online using the same selection.";
     if (this.view.busy === "selecting") notice = selectionNotice(error);
+    if (this.view.busy === "removing")
+      notice = "Could not confirm receipt removal. Retry removal online.";
     this.publish({
       verify: denied,
       notice: denied ? "Verify your account before attaching a receipt." : notice,
