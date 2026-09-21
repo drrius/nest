@@ -1,3 +1,5 @@
+import * as AgendaSelections from "./agenda-selection.ts";
+import type { AgendaSelection } from "../calendar/agenda-selection.ts";
 import * as MealProposals from "./meal-proposals.ts";
 import * as MealIngredients from "./meal-ingredients.ts";
 import * as PlannedRecipes from "./planned-recipes.ts";
@@ -46,10 +48,7 @@ export function makeOfflineStore(database: Database) {
       run(() => MealWeeks.readMealWeek(database, session, weekStart)),
     saveMealWeek: (session: Session, snapshot: MealWeekSnapshot, current?: () => boolean) =>
       run(() => MealWeeks.saveMealWeek(database, session, snapshot, current)),
-    readCalendarSelection: (session: Session) =>
-      run(() => CalendarSelections.readCalendarSelection(database, session)),
-    saveCalendarSelection: (session: Session, selection: CalendarSelection | null) =>
-      run(() => CalendarSelections.saveCalendarSelection(database, session, selection)),
+    ...calendarStore(database),
     activate: (account: Account, lease: string) =>
       run(() => SessionStore.activate(database, account, lease)),
     suspend: (session: Session) => run(() => SessionStore.suspend(database, session)),
@@ -159,5 +158,18 @@ function proposalStore(database: Database) {
       session: Session,
       target: Parameters<typeof MealProposals.clearMealProposalAttempt>[2],
     ) => run(() => MealProposals.clearMealProposalAttempt(database, session, target)),
+  };
+}
+
+function calendarStore(database: Database) {
+  return {
+    readCalendarSelection: (session: Session) =>
+      run(() => CalendarSelections.readCalendarSelection(database, session)),
+    saveCalendarSelection: (session: Session, selection: CalendarSelection | null) =>
+      run(() => CalendarSelections.saveCalendarSelection(database, session, selection)),
+    readAgendaSelection: (session: Session) =>
+      run(() => AgendaSelections.readAgendaSelection(database, session)),
+    saveAgendaSelection: (session: Session, selection: AgendaSelection | null) =>
+      run(() => AgendaSelections.saveAgendaSelection(database, session, selection)),
   };
 }
