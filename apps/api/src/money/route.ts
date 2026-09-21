@@ -1,3 +1,4 @@
+import { readMoneyDetail } from "./detail.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
 import type { AuthorizedCaller } from "../chores/service.ts";
@@ -11,6 +12,10 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
     return params.size
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
       : readMoneyBalance(config, caller);
+  if (url.pathname === "/v1/money/detail")
+    return params.size !== 1 || !params.has("eventId")
+      ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
+      : readMoneyDetail(config, caller, { eventId: params.get("eventId") });
   if (params.size > 1 || [...params.keys()].some((key) => key !== "before"))
     return Effect.fail(new ApiFailure({ code: "invalid_request" }));
   return readMoneyHistory(config, caller, { before: params.get("before") });

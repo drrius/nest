@@ -6,6 +6,7 @@
   "exports": {
     "./chores": "./src/chores.ts",
     "./money": "./src/money.ts",
+    "./money-detail": "./src/money-detail.ts",
     "./money-history": "./src/money-history.ts",
     "./groceries": "./src/groceries.ts",
     "./conversations": "./src/conversations.ts",
