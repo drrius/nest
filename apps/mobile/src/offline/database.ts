@@ -72,6 +72,8 @@ export const initialize = (database: Database) =>
   });
 
 async function initializeMoney(tx: Transaction) {
+  await tx.run(`CREATE TABLE IF NOT EXISTS recurring_state_save_attempts (
+      actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
   await tx.run(`CREATE TABLE IF NOT EXISTS recurring_save_attempts (
       actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`);
   await tx.run(`CREATE TABLE IF NOT EXISTS correction_approval_attempts (

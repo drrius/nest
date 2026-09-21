@@ -1,3 +1,5 @@
+import * as RecurringStateSaves from "./recurring-state-saves.ts";
+import type { RecurringStateSaveAttempt } from "../money/recurring-state-save-attempt.ts";
 import * as RecurringApprovals from "./recurring-approvals.ts";
 import type { RecurringApprovalAttempt } from "../money/recurring-approval-attempt.ts";
 import * as RecurringSaves from "./recurring-saves.ts";
@@ -58,6 +60,7 @@ export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
     ...recurringSaveStore(database),
+    ...recurringStateSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
     ...correctionApprovalStore(database),
@@ -336,5 +339,20 @@ function recurringApprovalStore(database: Database) {
     ) => run(() => RecurringApprovals.stageRecurringApproval(database, session, attempt, current)),
     clearRecurringApproval: (session: Session, attempt: RecurringApprovalAttempt) =>
       run(() => RecurringApprovals.clearRecurringApproval(database, session, attempt)),
+  };
+}
+
+function recurringStateSaveStore(database: Database) {
+  return {
+    readRecurringStateSave: (session: Session) =>
+      run(() => RecurringStateSaves.readRecurringStateSave(database, session)),
+    stageRecurringStateSave: (
+      session: Session,
+      attempt: RecurringStateSaveAttempt,
+      current: () => boolean,
+    ) =>
+      run(() => RecurringStateSaves.stageRecurringStateSave(database, session, attempt, current)),
+    clearRecurringStateSave: (session: Session, attempt: RecurringStateSaveAttempt) =>
+      run(() => RecurringStateSaves.clearRecurringStateSave(database, session, attempt)),
   };
 }
