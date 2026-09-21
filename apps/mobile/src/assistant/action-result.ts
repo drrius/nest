@@ -1,3 +1,4 @@
+import { RecurringStateApprovalEnvelope } from "@nest/contracts/recurring-state-approval";
 import { RecurringApprovalEnvelope } from "@nest/contracts/recurring-approval";
 import { CorrectionApprovalEnvelope } from "@nest/contracts/correction-approval";
 import { RefundApprovalEnvelope } from "@nest/contracts/refund-approval";
@@ -26,6 +27,8 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeRecurringState:
+    "Recurring state proposal created · this action changed no rule or expense",
   proposeRecurring: "Recurring proposal created · this action saved no rule or expense",
   proposeCorrection: "Correction proposal created · this action posted no money",
   proposeRefund: "Refund proposal created · this action posted no money",
@@ -66,6 +69,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeRecurringState: "/finances",
   proposeRecurring: "/finances",
   proposeCorrection: "/finances",
   proposeRefund: "/finances",
@@ -283,7 +287,8 @@ function proposalHandoff(part: { state?: unknown; output?: unknown }) {
 }
 
 function financialHref(action: AssistantAction, value: object) {
-  if (action === "proposeRecurring") return recurringHref(value);
+  const recurring = recurringHref(action, value);
+  if (recurring) return recurring;
   if (action === "proposeCorrection" && Schema.is(CorrectionApprovalEnvelope)(value))
     return { pathname: "/correction-approval" as const, params: { approvalId: value.approval.id } };
   if (action === "proposeRefund" && Schema.is(RefundApprovalEnvelope)(value))
@@ -295,7 +300,15 @@ function financialHref(action: AssistantAction, value: object) {
   return null;
 }
 
-function recurringHref(value: object) {
+function recurringHref(action: AssistantAction, value: object) {
+  if (action === "proposeRecurringState")
+    return Schema.is(RecurringStateApprovalEnvelope)(value)
+      ? {
+          pathname: "/recurring-state-approval" as const,
+          params: { approvalId: value.approval.id },
+        }
+      : null;
+  if (action !== "proposeRecurring") return null;
   return Schema.is(RecurringApprovalEnvelope)(value)
     ? { pathname: "/recurring-approval" as const, params: { approvalId: value.approval.id } }
     : null;
