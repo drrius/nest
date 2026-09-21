@@ -66,17 +66,15 @@ async function substitutedResponses(client, approvalId, pending) {
     const response = { ...envelope, ...change };
     await assert.rejects(
       Effect.runPromise(
-        client
-          .recurringApproval(approvalId)
-          .pipe(
-            Effect.provideService(
-              Fetch.Fetch,
-              async () =>
-                new Response(JSON.stringify(response), {
-                  headers: { "content-type": "application/json" },
-                }),
-            ),
+        client.recurringApproval(approvalId).pipe(
+          Effect.provideService(
+            Fetch.Fetch,
+            async () =>
+              new Response(JSON.stringify(response), {
+                headers: { "content-type": "application/json" },
+              }),
           ),
+        ),
       ),
     );
   }
