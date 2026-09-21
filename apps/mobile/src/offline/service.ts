@@ -1,3 +1,5 @@
+import * as VariableCycleSaves from "./variable-cycle-saves.ts";
+import type { VariableCycleSaveAttempt } from "../money/recurring-variable-save-attempt.ts";
 import * as RecurringStateApprovals from "./recurring-state-approvals.ts";
 import type { RecurringStateApprovalAttempt } from "../money/recurring-state-approval-attempt.ts";
 import * as RecurringStateSaves from "./recurring-state-saves.ts";
@@ -62,6 +64,7 @@ export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
     ...recurringSaveStore(database),
+    ...variableCycleSaveStore(database),
     ...recurringStateSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
@@ -374,5 +377,19 @@ function recurringStateApprovalStore(database: Database) {
       ),
     clearRecurringStateApproval: (session: Session, attempt: RecurringStateApprovalAttempt) =>
       run(() => RecurringStateApprovals.clearRecurringStateApproval(database, session, attempt)),
+  };
+}
+
+function variableCycleSaveStore(database: Database) {
+  return {
+    readVariableCycleSave: (session: Session) =>
+      run(() => VariableCycleSaves.readVariableCycleSave(database, session)),
+    stageVariableCycleSave: (
+      session: Session,
+      attempt: VariableCycleSaveAttempt,
+      current: () => boolean,
+    ) => run(() => VariableCycleSaves.stageVariableCycleSave(database, session, attempt, current)),
+    clearVariableCycleSave: (session: Session, attempt: VariableCycleSaveAttempt) =>
+      run(() => VariableCycleSaves.clearVariableCycleSave(database, session, attempt)),
   };
 }
