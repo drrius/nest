@@ -16,6 +16,11 @@ jobs:
       - run: pnpm format:check
       - run: pnpm lint
       - run: pnpm typecheck
+      - uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.9.6
+      - name: Check pinned receipt Edge entry point
+        run: deno check --frozen-lockfile --config supabase/functions/nest-receipt-upload/deno.json supabase/functions/nest-receipt-upload/index.ts
       - run: pnpm test:tooling
       - run: pnpm test:calendar
       - run: pnpm test:assistant

@@ -1,0 +1,21 @@
+{
+  "version": "5",
+  "specifiers": {
+    "npm:effect@4.0.0-rc.115": "4.0.0-rc.115",
+    "npm:jpeg-js@0.4.4": "0.4.4"
+  },
+  "npm": {
+    "effect@4.0.0-rc.115": {
+      "integrity": "sha512-ogYulZ5ffeOzrJqQrG0XOkDO5lKn2s9KNHhoxJy/6wKUkF0i12dlVXWA9TgsgQ+zV/JzizyG0+XMPepZEQX6vw=="
+    },
+    "jpeg-js@0.4.4": {
+      "integrity": "sha512-WZzeDOEtTOBK4Mdsar0IqEU5sMr3vSV2RqkAIzUEV2BHnUfKGyswWFPFwK5EeDo93K3FohSHbLAjj0s1Wzd+dg=="
+    }
+  },
+  "workspace": {
+    "dependencies": [
+      "npm:effect@4.0.0-rc.115",
+      "npm:jpeg-js@0.4.4"
+    ]
+  }
+}

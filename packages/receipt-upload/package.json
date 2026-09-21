@@ -9,12 +9,14 @@
   },
   "dependencies": {
     "effect": "4.0.0-rc.115",
-    "jpeg-js": "0.4.4"
+    "jpeg-js": "0.4.4",
+    "@nest/contracts": "workspace:*"
   },
   "devDependencies": {
     "typescript": "7.0.2"
   },
   "exports": {
-    "./inspect": "./src/inspect.ts"
+    "./inspect": "./src/inspect.ts",
+    "./handler": "./src/handler.ts"
   }
 }

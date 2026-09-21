@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "jpeg-js": "npm:jpeg-js@0.4.4",
+    "@nest/contracts/receipt-upload": "../../../packages/contracts/src/receipt-upload.ts",
+    "effect/Effect": "npm:effect@4.0.0-rc.115/Effect",
+    "effect/Schema": "npm:effect@4.0.0-rc.115/Schema",
+    "effect/Redacted": "npm:effect@4.0.0-rc.115/Redacted"
+  }
+}

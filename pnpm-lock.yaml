@@ -195,6 +195,9 @@ importers:
 
   packages/receipt-upload:
     dependencies:
+      '@nest/contracts':
+        specifier: workspace:*
+        version: link:../contracts
       effect:
         specifier: 4.0.0-rc.115
         version: 4.0.0-rc.115
