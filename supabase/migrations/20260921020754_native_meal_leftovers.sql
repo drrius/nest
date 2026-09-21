@@ -49,9 +49,9 @@ begin
   if not found or v_entry.removed_at is not null or v_entry.date not between v_source and v_source+6 then
     raise exception 'Meal week changed' using errcode='40001';
   end if;
-  if v_entry.leftover_of_entry_id is not null or v_entry.slot is null
+  if v_entry.leftover_of_entry_id is not null
     or v_entry.date >= (p_input->>'date')::date then
-    raise exception 'Leftover source must be an earlier planned meal' using errcode='40001';
+    raise exception 'Leftover source must be an earlier meal' using errcode='40001';
   end if;
   insert into public.meal_plan_entries(household_id,date,slot,meal_definition_id,title_snapshot,recipe_url_snapshot,notes,leftover_of_entry_id)
     values(p_household,(p_input->>'date')::date,p_input->>'slot',v_entry.meal_definition_id,

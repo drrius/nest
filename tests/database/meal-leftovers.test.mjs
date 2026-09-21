@@ -204,3 +204,18 @@ test("racing source removal and leftover placement never leave an active orphan"
     "0",
   );
 });
+
+test("retained legacy Monday ideas remain valid earlier-day leftover sources", (t) => {
+  const f = fixture(t);
+  f.db.sql(
+    `insert into public.meal_plan_entries(id,household_id,date,slot,title_snapshot) values('${id(777)}','${id(10)}','${week}',null,'Legacy idea')`,
+  );
+  const saved = f.place(
+    id(778),
+    f.input({ entryId: id(777), expectedSourceRevision: "2", expectedTargetRevision: "2" }),
+  );
+  const detail = f.read(saved.entryId, "3");
+  assert.equal(detail.entry.leftoverSourceId, id(777));
+  assert.equal(detail.entry.title, "Legacy idea");
+  assert.equal(detail.snapshot, null);
+});

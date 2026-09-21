@@ -65,6 +65,8 @@ Leftover storage is implemented on `codex/meal-leftovers-storage`. Deliberate au
 
 Fourteen focused database checks pass (eight new leftover cases and six snapshot-selection regressions): concurrent replay, later library archive, cross-week counters, source type/date/tenant/revocation, full receipt-failure rollback, legacy unknown detail, generated eighteen later-day slots and source-removal/placement races. An initial removal assertion attempted a forbidden direct client table update; it now exercises the actual authorized removal command and passes. Contract types, scoped lint/format and disposable security advisors pass. Leftover storage awaits exact-commit CI and Sol review; corresponding API/native/AI flows are not implemented yet. No production or device execution occurred.
 
+Sol's leftover-storage review reproduced an extra source restriction: the initial command rejected retained Monday idea entries with no slot, although the audited legacy command permits them as earlier-day sources. The restriction is removed without adding an ideas UI, and an explicit legacy-source regression is added. Storage rereview and updated-commit CI are required before merge. API work continues independently on its own branch.
+
 The owner-authorized delivery route uses reviewed `codex/` branches without requiring PRs: clean exact-head Sol medium signoff and successful CI precede local fast-forward and push main. Greptile exhausted its trial/credit cap. No merge implies deployment or migration permission. The unwanted continuation automation remains removed; no duplicate has been created.
 
 ## Milestone checklist
