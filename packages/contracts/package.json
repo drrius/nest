@@ -37,7 +37,8 @@
     "./meal-preparation-edit": "./src/meal-preparation-edit.ts",
     "./meal-preparation-read": "./src/meal-preparation-read.ts",
     "./meal-proposals": "./src/meal-proposals.ts",
-    "./meal-ingredients": "./src/meal-ingredients.ts"
+    "./meal-ingredients": "./src/meal-ingredients.ts",
+    "./expense": "./src/expense.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
