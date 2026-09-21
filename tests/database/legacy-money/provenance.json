@@ -18,6 +18,48 @@
       "source": "supabase/migrations/20260811200000_chf_ledger.sql",
       "sha256": "112b602fc88f773fd9d49559ec7764b55b2cbf262f657b1a5e0d672ed2f93878",
       "selection": "Complete audited statements; see money-ledger-audit.md"
+    },
+    {
+      "file": "expense-validation.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "2974fa5f4a9a41c1ea2cb8f8b330ba1203c5444eda8911a7a4d53c9dcaac7d1e",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "expense-retry.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "479ad04e2fbf3374af548b0a6427c70ff358a49734bff780d6ae837746b02d33",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "expense-command.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "8b60d91c2b0c1b6599b772702b70037db16d0e02fd21695d98c88643ccad7764",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "expense-post.sql",
+      "source": "supabase/migrations/20260812202316_share_ledger_lock.sql",
+      "sha256": "39358074862dbb99b20ffb879465f9cf29f7fed1ca243a2f4025f6d664543b50",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "expense-receipts.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "e10494ab5e65b9bc05522e2821c072f2879f7f7d0bb5bcf30795ce647d8257cc",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "expense-activity.sql",
+      "source": "supabase/migrations/20260809210000_routine_engine.sql",
+      "sha256": "27452918d27961cdae691965d519143e36eecdf88748b76838adbeea318e4641",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "expense-activity-kinds.sql",
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sha256": "9e217f8eb07461e06725b0965b361bdcdefd0af1840d9cc7e41993fa6ccc0f55",
+      "selection": "Complete audited expense statements; see money-expense-audit.md"
     }
   ]
 }
