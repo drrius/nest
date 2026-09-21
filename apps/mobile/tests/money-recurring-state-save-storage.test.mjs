@@ -63,3 +63,53 @@ test("invalid, stale and corrupt Save recovery never authorizes a substitute com
   const otherHome = await run(f.store.activate({ ...account, household: id(11) }, lease));
   assert.equal(await run(f.store.readRecurringStateSave(otherHome)), null);
 });
+test("resume and stop share one pending intent; restart preserves exact dates and monotonic abandonment", async (t) => {
+  const f = await fixture(t),
+    session = f.session;
+  const resume = {
+    action: "save",
+    command: {
+      operationId: id(700),
+      change: {
+        ruleId: id(100),
+        expectedRevision: id(400),
+        expectedStatus: "paused",
+        action: "resume",
+        resumeFrom: "2099-01-01",
+        firstDueOn: "2099-01-31",
+      },
+    },
+  };
+  await run(f.store.stageRecurringStateSave(session, resume, () => true));
+  const reopened = f.reopen();
+  assert.deepEqual(await run(reopened.store.readRecurringStateSave(session)), resume);
+  for (const incompatible of [
+    attempt,
+    {
+      ...resume,
+      command: {
+        ...resume.command,
+        change: {
+          ...resume.command.change,
+          resumeFrom: "2099-01-02",
+        },
+      },
+    },
+  ]) {
+    await assert.rejects(
+      run(reopened.store.stageRecurringStateSave(session, incompatible, () => true)),
+      { reason: "pending_edit" },
+    );
+  }
+  const cancelled = { ...resume, action: "cancel" };
+  await run(reopened.store.stageRecurringStateSave(session, cancelled, () => true));
+  await assert.rejects(run(reopened.store.stageRecurringStateSave(session, resume, () => true)), {
+    reason: "pending_edit",
+  });
+  await assert.rejects(run(reopened.store.clearRecurringStateSave(session, resume)), {
+    reason: "operation_reused",
+  });
+  await run(reopened.store.clearRecurringStateSave(session, cancelled));
+  await run(reopened.store.stageRecurringStateSave(session, attempt, () => true));
+  assert.deepEqual(await run(reopened.store.readRecurringStateSave(session)), attempt);
+});

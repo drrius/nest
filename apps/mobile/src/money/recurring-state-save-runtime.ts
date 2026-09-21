@@ -1,10 +1,10 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
-import type { RecurringStateSaveResult } from "@nest/contracts/recurring-state-read";
-import type { RecurringStateSave } from "./recurring-state-client.ts";
 import {
   stateSaveAttempt,
   type RecurringStateSaveAttempt,
+  type StateSaveCommand,
+  type StateSaveResult,
 } from "./recurring-state-save-attempt.ts";
 import type { RecurringStateSaveOperations } from "./recurring-state-save-operations.ts";
 import { OfflineFailure } from "../offline/contracts.ts";
@@ -16,7 +16,7 @@ export interface RecurringStateSaveView {
   fresh: boolean;
   verify: boolean;
   attempt: RecurringStateSaveAttempt | null;
-  result: RecurringStateSaveResult | null;
+  result: StateSaveResult | null;
   notice: string | null;
 }
 export class RecurringStateSaveRuntime {
@@ -34,7 +34,7 @@ export class RecurringStateSaveRuntime {
   private readonly listeners = new Set<() => void>();
   private request: AbortController | null = null;
   private disposed = false;
-  private completed: RecurringStateSaveResult | null = null;
+  private completed: StateSaveResult | null = null;
   constructor(operations: RecurringStateSaveOperations) {
     this.operations = operations;
   }
@@ -106,7 +106,7 @@ export class RecurringStateSaveRuntime {
       if (this.current(request)) await this.accept(attempt, result, request);
     });
   };
-  save = async (input: RecurringStateSave) => {
+  save = async (input: StateSaveCommand) => {
     if (!this.canWrite() || this.view.attempt || this.view.result) return;
     await this.perform(async (request) => {
       const attempt = stateSaveAttempt(input);
@@ -151,7 +151,7 @@ export class RecurringStateSaveRuntime {
   }
   private async accept(
     attempt: RecurringStateSaveAttempt,
-    result: RecurringStateSaveResult,
+    result: StateSaveResult,
     request: AbortController,
   ) {
     if (result.status !== "unresolved") this.completed = result;
@@ -160,7 +160,7 @@ export class RecurringStateSaveRuntime {
       fresh: true,
       notice:
         result.status === "unresolved"
-          ? "This recurring-rule state request is unresolved. Check again, retry the exact attempt, or abandon this request. Abandoning never reverses a recorded pause or cancellation."
+          ? "This recurring-rule state request is unresolved. Check again, retry the exact attempt, or abandon this request. Abandoning never reverses a recorded state change."
           : null,
     });
     if (result.status === "unresolved") return;

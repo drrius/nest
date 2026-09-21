@@ -30,7 +30,7 @@ export function prepareStateConfirmation(
   return { rule, command };
 }
 export function stateConfirmationCurrent(
-  expected: NonNullable<ReturnType<typeof prepareStateConfirmation>>,
+  expected: { rule: RecurringRule },
   read: RecurringReadView,
   save: RecurringStateSaveView,
 ) {

@@ -1,11 +1,13 @@
 import * as Schema from "effect/Schema";
-import { SaveRecurringState } from "@nest/contracts/recurring-state";
-import { RecurringStateSaveAttempt } from "../money/recurring-state-save-attempt.ts";
+import {
+  RecurringStateSaveAttempt,
+  StateSaveCommand,
+} from "../money/recurring-state-save-attempt.ts";
 import { scoped } from "./session.ts";
 import { fail, type Session } from "./contracts.ts";
 import type { Database, Transaction } from "./database.ts";
 const codec = Schema.fromJsonString(RecurringStateSaveAttempt);
-const sameCommand = Schema.toEquivalence(SaveRecurringState);
+const sameCommand = Schema.toEquivalence(StateSaveCommand);
 const sameAttempt = Schema.toEquivalence(RecurringStateSaveAttempt);
 const keys = (session: Session) => [session.actor, session.household];
 async function read(tx: Transaction, session: Session) {

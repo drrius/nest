@@ -1,3 +1,4 @@
+import { RecurringResumeControl } from "./recurring-resume-control";
 import { Alert } from "react-native";
 import * as Crypto from "expo-crypto";
 import { useRouter } from "expo-router";
@@ -57,6 +58,7 @@ export function RecurringStateControls({
       {rule.status === "active" ? (
         <NativeAction label="Pause recurring rule" onPress={() => confirm("pause")} />
       ) : null}
+      <RecurringResumeControl read={read} save={save} actor={actor} />
       <NativeAction label="Cancel recurring rule" onPress={() => confirm("cancel")} />
     </Section>
   );
@@ -73,7 +75,9 @@ export function RecurringStateRecovery({
   const result = view.result;
   if (result?.status === "recorded")
     return (
-      <Section title={result.receipt!.status === "paused" ? "Rule paused" : "Rule cancelled"}>
+      <Section
+        title={`Rule ${{ active: "resumed", paused: "paused", cancelled: "cancelled" }[result.receipt!.status]}`}
+      >
         <Note>
           The server recorded this change. Existing financial history remains. Later changes may
           differ from this receipt.
@@ -85,7 +89,7 @@ export function RecurringStateRecovery({
     return (
       <Section title="Request abandoned">
         <Note>
-          This request cannot pause or cancel a rule. No previously recorded change was reversed.
+          This request cannot change the rule. No previously recorded change was reversed.
         </Note>
         <NativeAction
           label="Reload current rule"
@@ -111,6 +115,12 @@ function Unresolved({
         Requested action: {attempt.command.change.action}. Resolve this exact request before making
         another decision.
       </Note>
+      {attempt.command.change.action === "resume" ? (
+        <Note>
+          Resume from {attempt.command.change.resumeFrom}. First eligible date:{" "}
+          {attempt.command.change.firstDueOn}. No paused backlog will be backfilled.
+        </Note>
+      ) : null}
       <RuleLink ruleId={attempt.command.change.ruleId} />
       <Note>Checking status never sends the request again.</Note>
       <NativeAction
@@ -125,7 +135,7 @@ function Unresolved({
           onPress={() =>
             Alert.alert(
               "Abandon this request?",
-              "If the pause or cancellation is already recorded, it stays recorded. Otherwise this request will no longer be able to change the rule.",
+              "If the state change is already recorded, it stays recorded. Otherwise this request will no longer be able to change the rule.",
               [
                 { text: "Keep checking", style: "cancel" },
                 {
