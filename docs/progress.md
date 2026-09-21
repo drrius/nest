@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/meal-leftovers-storage`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/meal-leftovers-api`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 
@@ -66,6 +66,12 @@ Leftover storage is implemented on `codex/meal-leftovers-storage`. Deliberate au
 Fourteen focused database checks pass (eight new leftover cases and six snapshot-selection regressions): concurrent replay, later library archive, cross-week counters, source type/date/tenant/revocation, full receipt-failure rollback, legacy unknown detail, generated eighteen later-day slots and source-removal/placement races. An initial removal assertion attempted a forbidden direct client table update; it now exercises the actual authorized removal command and passes. Contract types, scoped lint/format and disposable security advisors pass. Leftover storage awaits exact-commit CI and Sol review; corresponding API/native/AI flows are not implemented yet. No production or device execution occurred.
 
 Sol's leftover-storage review reproduced an extra source restriction: the initial command rejected retained Monday idea entries with no slot, although the audited legacy command permits them as earlier-day sources. The restriction is removed without adding an ideas UI, and an explicit legacy-source regression is added. Storage rereview and updated-commit CI are required before merge. API work continues independently on its own branch.
+
+The legacy-source review fix is committed as `cbcaeca` on the storage branch, with all nine leftover storage tests passing. Exact-head rereview and CI are pending; the dependent API branch includes that correction.
+
+Authenticated POST `/v1/meals/leftovers` is implemented. It accepts the shared strict source/destination contract, normalizes source/operation identities and binds the receipt to the current actor/household, source ID, both weeks, target date/slot and exact bigint counters. Cross-week placement preserves the source counter; same-week placement increments the common counter once. Small meal commands now use an explicit route map, with unknown paths rejected rather than falling through to placement.
+
+API verification: four new input/receipt/error cases and three move regressions pass; five actual HTTP/PostgREST journeys pass (one new leftovers case plus four recipe-selection regressions). After the storage correction, all five new API/HTTP cases were rerun successfully. The new HTTP case proves committed-response loss/replay, original source ingredients after library archive, no new groceries, injected-content rejection, stale/foreign denial and revoked receipt recovery. API types and scoped lint/format pass. No native leftover UI/client or private AI leftover action yet; API delivery awaits review/CI, and storage has not been merged while its updated gates remain pending.
 
 The owner-authorized delivery route uses reviewed `codex/` branches without requiring PRs: clean exact-head Sol medium signoff and successful CI precede local fast-forward and push main. Greptile exhausted its trial/credit cap. No merge implies deployment or migration permission. The unwanted continuation automation remains removed; no duplicate has been created.
 

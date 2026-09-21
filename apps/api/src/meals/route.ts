@@ -1,3 +1,5 @@
+import { placeLeftovers } from "./leftovers.ts";
+import { ApiFailure } from "../errors.ts";
 import { plannedRecipeRoute } from "./planned-recipe.ts";
 import { placeRecipe } from "./recipe-placement.ts";
 import { replaceWithRecipe } from "./recipe-replacement.ts";
@@ -38,19 +40,19 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
         version: 1,
         receipt: yield* archiveRecipe(config, caller, yield* commandBody(request)),
       };
-    const command =
-      path === "/v1/meals/recipe/place"
-        ? placeRecipe
-        : path === "/v1/meals/recipe/replace"
-          ? replaceWithRecipe
-          : path === "/v1/meals/replace"
-            ? replaceMeal
-            : path === "/v1/meals/move"
-              ? moveMeal
-              : path === "/v1/meals/remove"
-                ? removeMeal
-                : placeMeal;
+    const command = commands[path as keyof typeof commands];
+    if (!command) return yield* new ApiFailure({ code: "invalid_request" });
     const receipt = yield* command(config, caller, yield* commandBody(request));
     return { version: 1, receipt };
   });
 }
+
+const commands = {
+  "/v1/meals/recipe/place": placeRecipe,
+  "/v1/meals/recipe/replace": replaceWithRecipe,
+  "/v1/meals/replace": replaceMeal,
+  "/v1/meals/move": moveMeal,
+  "/v1/meals/remove": removeMeal,
+  "/v1/meals/place": placeMeal,
+  "/v1/meals/leftovers": placeLeftovers,
+};
