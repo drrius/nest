@@ -1,0 +1,155 @@
+import assert from "node:assert/strict";
+import { test } from "node:test";
+import { createRequire } from "node:module";
+import { correctionApprovalClient } from "../src/money/correction-approval-client.ts";
+import { id } from "../../../tests/database/native-expense-helpers.mjs";
+import { correction as payload } from "../../../tests/integration/correction-api-fixture.mjs";
+const require = createRequire(new URL("../package.json", import.meta.url));
+const Effect = await import(require.resolve("effect/Effect"));
+const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
+const account = { actor: id(1), household: id(10) };
+const credentials = Effect.succeed({ user: { id: id(1) }, access_token: "fixture" });
+const client = correctionApprovalClient("http://localhost/", account, credentials);
+const command = {
+  operationId: id(100),
+  approvalId: id(101),
+  correction: payload(id(400)),
+  approved: true,
+};
+const pending = {
+  version: 1,
+  actorId: account.actor,
+  householdId: account.household,
+  approval: {
+    id: command.approvalId,
+    operationId: command.operationId,
+    correction: command.correction,
+    expiresAt: "2026-09-21T12:00:00.000000Z",
+    status: "pending",
+    receipt: null,
+  },
+};
+const consumed = {
+  ...pending,
+  approval: {
+    ...pending.approval,
+    status: "consumed",
+    receipt: {
+      version: 1,
+      actorId: account.actor,
+      householdId: account.household,
+      operationId: command.operationId,
+      approvalId: command.approvalId,
+      reversalEventId: id(102),
+      replacementEventId: null,
+      correction: command.correction,
+    },
+  },
+};
+const run = (effect, value, status = 200) =>
+  Effect.runPromise(
+    effect.pipe(Effect.provideService(Fetch.Fetch, async () => Response.json(value, { status }))),
+  );
+test("native correction approval binds private reads and exact decision receipts", async () => {
+  assert.deepEqual(
+    await run(client.correctionApproval(command.approvalId), pending),
+    pending.approval,
+  );
+  assert.deepEqual(await run(client.decideCorrection(command), consumed), consumed.approval);
+  const denied = { ...pending, approval: { ...pending.approval, status: "denied" } };
+  assert.deepEqual(
+    await run(client.decideCorrection({ ...command, approved: false }), denied),
+    denied.approval,
+  );
+  for (const value of [
+    { ...pending, actorId: id(2) },
+    { ...pending, householdId: id(20) },
+    { ...pending, approval: { ...pending.approval, id: id(103) } },
+    { ...pending, privateField: "unexpected" },
+  ])
+    await assert.rejects(run(client.correctionApproval(command.approvalId), value), {
+      code: "unavailable",
+    });
+  for (const value of [
+    pending,
+    denied,
+    {
+      ...consumed,
+      approval: { ...consumed.approval, receipt: { ...consumed.approval.receipt, actorId: id(2) } },
+    },
+  ])
+    await assert.rejects(run(client.decideCorrection(command), value), { code: "unavailable" });
+  await assert.rejects(
+    run(
+      client.decideCorrection({
+        ...command,
+        correction: { ...command.correction, sourceEventId: id(401) },
+      }),
+      consumed,
+    ),
+    { code: "unavailable" },
+  );
+  await assert.rejects(
+    run(client.decideCorrection({ ...command, operationId: id(104) }), consumed),
+    {
+      code: "unavailable",
+    },
+  );
+});
+test("native correction approval rejects authority injection before dispatch and maps failures", async () => {
+  let calls = 0;
+  for (const effect of [
+    client.correctionApproval("bad"),
+    client.decideCorrection({ ...command, actorId: id(2) }),
+  ])
+    await assert.rejects(
+      Effect.runPromise(
+        effect.pipe(
+          Effect.provideService(Fetch.Fetch, async () => {
+            calls++;
+            return Response.json(consumed);
+          }),
+        ),
+      ),
+      { code: "invalid" },
+    );
+  assert.equal(calls, 0);
+  for (const [status, code] of [
+    [401, "session"],
+    [403, "forbidden"],
+    [409, "conflict"],
+    [503, "unavailable"],
+  ])
+    await assert.rejects(run(client.decideCorrection(command), {}, status), { code });
+});
+test("native decisions canonicalize UUID spelling without changing correction amounts or text", async () => {
+  const alpha = "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa";
+  const correction = { ...command.correction, sourceEventId: alpha };
+  const input = {
+    ...command,
+    operationId: alpha.toUpperCase(),
+    approvalId: alpha.toUpperCase(),
+    correction: { ...correction, sourceEventId: alpha.toUpperCase() },
+  };
+  const result = {
+    ...consumed,
+    approval: {
+      ...consumed.approval,
+      id: alpha,
+      operationId: alpha,
+      correction,
+      receipt: { ...consumed.approval.receipt, operationId: alpha, approvalId: alpha, correction },
+    },
+  };
+  let captured;
+  const value = await Effect.runPromise(
+    client.decideCorrection(input).pipe(
+      Effect.provideService(Fetch.Fetch, async (_url, options) => {
+        captured = JSON.parse(options.body);
+        return Response.json(result);
+      }),
+    ),
+  );
+  assert.deepEqual(value, result.approval);
+  assert.deepEqual(captured, { ...command, operationId: alpha, approvalId: alpha, correction });
+});

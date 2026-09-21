@@ -1,3 +1,4 @@
+import { correctionApprovals } from "./correction-approval.ts";
 import { readCorrectionSave, cancelCorrectionSave } from "./correction-save-read.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
@@ -11,6 +12,8 @@ export function correctionRoute(
   config: IdentityConfig,
   caller: AuthorizedCaller,
 ) {
+  if (new URL(request.url).pathname.includes("/approval"))
+    return correctionApprovalRoute(request, config, caller);
   return Effect.gen(function* () {
     const url = new URL(request.url),
       params = url.searchParams;
@@ -33,5 +36,24 @@ export function correctionRoute(
     return yield* url.pathname.endsWith("/execute")
       ? commands.execute(input)
       : commands.save(input);
+  });
+}
+
+function correctionApprovalRoute(
+  request: Request,
+  config: IdentityConfig,
+  caller: AuthorizedCaller,
+) {
+  return Effect.gen(function* () {
+    const url = new URL(request.url),
+      params = url.searchParams;
+    const commands = correctionApprovals(config, caller);
+    if (url.pathname === "/v1/money/correction/approval") {
+      if (params.size !== 1 || !params.has("approvalId"))
+        return yield* new ApiFailure({ code: "invalid_request" });
+      return yield* commands.read({ approvalId: params.get("approvalId") });
+    }
+    if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
+    return yield* commands.decide(yield* commandBody(request, 65536));
   });
 }
