@@ -1,3 +1,4 @@
+import { matchesExpenseProposal } from "../money/expense-proposal.ts";
 import { matchesProposalAction } from "../meal-planning/matches-assistant.ts";
 import { matchesMealAction } from "../meals/matches-receipt.ts";
 import { matchesTransfer } from "./matches-transfer.ts";
@@ -13,6 +14,7 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
+  if (action === "proposeExpense") return matchesExpenseProposal(input, receipt, member);
   const proposal = matchesProposalAction(action, input, receipt, member);
   if (proposal !== null) return proposal;
   const meal = matchesMealAction(action, input, receipt, member);

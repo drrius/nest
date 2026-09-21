@@ -72,6 +72,10 @@ export function householdTools(
     ...proposalWriteTools(write),
     ...calendarTools(bound, config),
     ...moneyTools(bound, config),
+    proposeExpense: write(
+      "proposeExpense",
+      "Propose only an expense the member explicitly asked to record. Read household member IDs first; never invent them. Ask for missing amount, payer, date or split. Use exact CHF centime strings and exactly two member allocations summing to the amount; equal splits assign an odd centime to the payer. Category is null unless a current category ID is known; note is null when absent. This creates a private pending proposal and posts no money. Tell the member to open the expense approval and confirm its exact amount, payer and allocations. Never claim it is posted, infer consent from conversation, or try to approve or execute it yourself. Checking groceries never implies an expense. Receipt selection requires a native handoff and is not included in this proposal.",
+    ),
     ...setupTools(bound, config),
     readChoreTransfers: readChoreTransfersTool(bound, config),
     readMealWeek: readMealWeekTool(bound, config),

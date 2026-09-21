@@ -21,6 +21,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeExpense: "Expense proposal pending · no money posted",
   generateMealProposal: "Preview requested · open its current state",
   replaceProposalMeal: "Suggestion replacement requested · read the preview for its result",
   chooseProposalRecipe: "Saved recipe choice requested · read the preview for its result",
@@ -56,6 +57,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeExpense: "/finances",
   generateMealProposal: "/meals",
   replaceProposalMeal: "/meals",
   chooseProposalRecipe: "/meals",

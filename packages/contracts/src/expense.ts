@@ -27,8 +27,10 @@ function balanced(input: {
 }) {
   const [first, second] = input.allocations;
   return (
-    first.memberId !== second.memberId &&
-    input.allocations.some((share) => share.memberId === input.payerId) &&
+    first.memberId.toLowerCase() !== second.memberId.toLowerCase() &&
+    input.allocations.some(
+      (share) => share.memberId.toLowerCase() === input.payerId.toLowerCase(),
+    ) &&
     BigInt(first.centimes) + BigInt(second.centimes) === BigInt(input.amountCentimes)
   );
 }

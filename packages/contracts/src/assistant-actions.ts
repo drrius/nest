@@ -1,3 +1,5 @@
+import { ExpenseInput } from "./expense.ts";
+import { ExpenseApprovalEnvelope } from "./expense-approval.ts";
 import {
   GenerateMealProposalInput,
   MealProposalGenerationReceipt,
@@ -62,6 +64,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeExpense: ExpenseInput,
   generateMealProposal: GenerateMealProposalInput,
   replaceProposalMeal: ReplaceProposalMealInput,
   chooseProposalRecipe: ChooseProposalRecipeInput,
@@ -104,6 +107,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeExpense: ExpenseApprovalEnvelope,
   generateMealProposal: MealProposalGenerationReceipt,
   replaceProposalMeal: MealProposalEdit.check(
     Schema.makeFilter((value) => value.status === "pending" && value.command.action === "replace"),
