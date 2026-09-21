@@ -1,3 +1,12 @@
+import {
+  GenerateMealProposalInput,
+  MealProposalGenerationReceipt,
+  ReplaceProposalMealInput,
+  ChooseProposalRecipeInput,
+  MealProposalEdit,
+  DiscardMealProposalInput,
+  MealProposalDiscardReceipt,
+} from "./meal-proposals.ts";
 import { EditMealPreparationInput, MealPreparationEditReceipt } from "./meal-preparation-edit.ts";
 import { CreateMealPreparationInput, MealPreparationReceipt } from "./meal-preparation.ts";
 import { PlaceLeftoversInput, LeftoverPlacementReceipt } from "./meal-leftovers.ts";
@@ -53,6 +62,10 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  generateMealProposal: GenerateMealProposalInput,
+  replaceProposalMeal: ReplaceProposalMealInput,
+  chooseProposalRecipe: ChooseProposalRecipeInput,
+  discardMealProposal: DiscardMealProposalInput,
   editMealPreparation: EditMealPreparationInput,
   createMealPreparation: CreateMealPreparationInput,
   placeLeftovers: PlaceLeftoversInput,
@@ -91,6 +104,14 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  generateMealProposal: MealProposalGenerationReceipt,
+  replaceProposalMeal: MealProposalEdit.check(
+    Schema.makeFilter((value) => value.status === "pending" && value.command.action === "replace"),
+  ),
+  chooseProposalRecipe: MealProposalEdit.check(
+    Schema.makeFilter((value) => value.status === "pending" && value.command.action === "choose"),
+  ),
+  discardMealProposal: MealProposalDiscardReceipt,
   editMealPreparation: MealPreparationEditReceipt,
   createMealPreparation: MealPreparationReceipt,
   placeLeftovers: LeftoverPlacementReceipt,

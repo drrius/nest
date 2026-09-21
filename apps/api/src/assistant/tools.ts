@@ -1,3 +1,6 @@
+import { proposalReadTools, proposalWriteTools } from "../meal-planning/assistant-tools.ts";
+import { planningCommands } from "../meal-planning/assistant-execution.ts";
+import type { MealPlanningOptions } from "../meal-planning/route.ts";
 import { readHouseholdRosterTool } from "../routines/roster-tool.ts";
 import { mealLibraryTools } from "../meals/library-tools.ts";
 import { mealWriteTools } from "../meals/write-tools.ts";
@@ -26,13 +29,19 @@ export function householdTools(
   request: Request,
   config: IdentityConfig,
   scope: { householdId: string; turn: StartTurn },
+  planning: MealPlanningOptions = {},
 ) {
   const headers = new Headers(request.headers);
   headers.set("x-nest-household", scope.householdId);
   const bound = new Request(request.url, { headers, signal: request.signal });
   const chores = choreTools(bound, config),
     groceries = groceryTools(bound, config);
-  const execute = assistantCommands(bound, config, scope.turn);
+  const execute = planningCommands(
+    bound,
+    config,
+    assistantCommands(bound, config, scope.turn),
+    planning,
+  );
   const semaphore = Semaphore.makeUnsafe(1);
   let halted = false;
   const write = (name: AssistantAction, description: string) => {
@@ -57,6 +66,8 @@ export function householdTools(
     });
   };
   const tools = {
+    ...proposalReadTools(bound, config),
+    ...proposalWriteTools(write),
     ...calendarTools(bound, config),
     ...setupTools(bound, config),
     readChoreTransfers: readChoreTransfersTool(bound, config),

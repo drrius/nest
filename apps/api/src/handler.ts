@@ -53,7 +53,7 @@ export function createHandler(config: IdentityConfig, options: MealPlanningOptio
   const validated = validateConfig(config);
   const identity = supabaseIdentity(validated);
   const proposals = mealProposalRoute(validated, options);
-  const assistant = assistantHandler(validated, options.model);
+  const assistant = assistantHandler(validated, options.model, options);
   return (request: Request): Promise<Response> => {
     const path = new URL(request.url).pathname;
     if (

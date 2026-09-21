@@ -1,3 +1,4 @@
+import type { MealPlanningOptions } from "../meal-planning/route.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -21,7 +22,11 @@ const parse = <A>(schema: Schema.Codec<A>, value: unknown) =>
   Schema.decodeUnknownEffect(schema)(value, { onExcessProperty: "error" }).pipe(
     Effect.mapError(() => new ApiFailure({ code: "invalid_request" })),
   );
-export function assistantHandler(config: IdentityConfig, model?: AssistantModel) {
+export function assistantHandler(
+  config: IdentityConfig,
+  model?: AssistantModel,
+  planning: MealPlanningOptions = {},
+) {
   return (request: Request) => {
     const path = new URL(request.url).pathname;
     const allowed =
@@ -59,7 +64,12 @@ export function assistantHandler(config: IdentityConfig, model?: AssistantModel)
       };
       return yield* startResponse(request, store, input, {
         model,
-        ...householdTools(request, config, { householdId: member.householdId, turn: input }),
+        ...householdTools(
+          request,
+          config,
+          { householdId: member.householdId, turn: input },
+          planning,
+        ),
       });
     }).pipe(
       Effect.provide(supabaseIdentity(config)),
