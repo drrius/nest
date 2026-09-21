@@ -167,4 +167,3 @@ begin
   return result;
 end;
 $$;
-

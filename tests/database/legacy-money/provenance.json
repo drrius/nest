@@ -70,19 +70,19 @@
     {
       "file": "opening-correction-lineage.sql",
       "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
-      "sha256": "10fadd90d0c87757c48c5093176b6b7f3cb31cd73fe1ccbc006456dd261d431a",
+      "sha256": "0d2e3daa04334d52c02edb88793fab59a36f7ca60de56da0960271b48b6ad1b8",
       "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
     },
     {
       "file": "refund-command.sql",
       "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
-      "sha256": "e5cd7946c8b94b20f213e8b7d18e9da1020e7ef588f5f4deba3ae631c9357495",
+      "sha256": "84b72f0c3964033de3ddc0f368c0ef9344a864b8f9221d2d40e25ee7f8540313",
       "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
     },
     {
       "file": "correction-command.sql",
       "source": "supabase/migrations/20260904230229_money_refund_limits_and_recurring_edit.sql",
-      "sha256": "ce8537b52caccbb6a45a01c1c24a4459a1f362f50a952b9d609bd586d2cddcb6",
+      "sha256": "f43ca34801f7620c2608e57bffa012f7e84850831cdb101c5f30e8be689d6b8d",
       "selection": "Complete final correction/refund statements; see money-correction-refund-audit.md"
     }
   ]

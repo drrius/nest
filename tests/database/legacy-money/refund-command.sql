@@ -95,4 +95,3 @@ begin
   return result;
 end;
 $$;
-

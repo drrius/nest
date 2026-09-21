@@ -38,4 +38,3 @@ revoke all on function private.validate_opening_balance_lineage() from public, a
 create trigger financial_events_opening_lineage
 before insert on public.financial_events
 for each row execute function private.validate_opening_balance_lineage();
-
