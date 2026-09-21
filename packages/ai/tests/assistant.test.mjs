@@ -1,3 +1,4 @@
+import { AssistantInputs } from "../../contracts/src/assistant-actions.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { simulateReadableStream, tool, jsonSchema } from "ai";
@@ -132,18 +133,7 @@ test("bounded context keeps the latest prompt without dropping durable history",
 });
 
 test("unreconciled write calls cannot be silently discarded from model history", async () => {
-  for (const name of [
-    "placeMeal",
-    "removeMeal",
-    "moveMeal",
-    "replaceMeal",
-    "addGrocery",
-    "saveFoodPreferences",
-    "skipChore",
-    "rescheduleChore",
-    "requestChoreTransfer",
-    "respondChoreTransfer",
-  ]) {
+  for (const name of Object.keys(AssistantInputs)) {
     const writes = { [name]: tools.listChores };
     const part = { type: `tool-${name}`, toolCallId: "write", input: {} };
     for (const state of ["input-available", "output-error", "output-denied"]) {
