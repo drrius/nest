@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — native refund entry; branch `codex/native-refund-entry`.** Expenses, full/partial settlements, grocery total/shared-amount entry, private AI expense/settlement approval, Money reads and durable refund commands/recovery are merged after exact-commit CI and clean Sol medium review. The refund form is implemented and locally verified; its AI proposal/approval flow remains unfinished. Corrections, receipt attachments, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
+**M7 — atomic refund approval; branch `codex/native-refund-approval`.** Expenses, full/partial settlements, grocery total/shared-amount entry, private AI expense/settlement approval, Money reads and durable refund commands/recovery are merged after exact-commit CI and clean Sol medium review. The refund form is implemented and locally verified; its AI proposal/approval flow remains unfinished. Corrections, receipt attachments, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -955,3 +955,11 @@ Refund recovery/cancellation `d91084d2f4287385e1e6ab62c875be4a16c86e4d` passed C
 Retained expense/replacement detail now opens a protected refund form. It reads current refundable shares, supports all remaining shares or exact partial shares for each member, and preserves the original payer/source. A native confirmation captures the amount, each allocation, source, date and note before Save. Exhausted/reversed sources have an explicit empty state. Account/foreground/connectivity changes invalidate the context read. Durable uncertain-Save status, exact retry, permanent cancellation, original/recorded-entry navigation and leave warnings are wired into the form; none queues money offline.
 
 Seven focused draft/leave/real HTTP–PostgREST–SQLite entry checks pass, including 1,000 generated safe-centime vectors, both member perspectives, partial then full refunds preserving the original, stale-share rejection followed by cancellation/new review, and account-lease replacement during loading. Mobile typechecking, scoped lint and full formatting pass. The iOS export at `/tmp/nest-refund-entry-final-export` is packaging evidence only. Native controls, alerts, back gestures, keyboard, accessibility and physical-device execution remain unverified. Exact-head Sol review and CI remain required; the corresponding assistant proposal/approval flow, corrections and remaining M7–M9 work are incomplete.
+
+### Atomic refund approval — candidate
+
+Native refund entry `09493554e30fe5d43bf41e1ff8dfb942848f4026` has clean Sol medium signoff with all seven focused checks independently passing; exact-head CI `35620581401` remains its integration gate. Final iOS export bundle `7007cd2cd0dc4ac19dfdde312b699c5d` is packaging evidence only.
+
+The gated refund approval read/decision now binds owner, household, operation, source and exact payload. Explicit confirmation and refund posting occur in one transaction; a stale reviewed allocation or failed receipt rolls approval back to pending. Denial is durable. Historical consumed receipts remain recoverable after expiry and later reversals. The decision acquires the source row before the household ledger and approval row, preserving compatibility with refund/correction writers. No decision is registered as an AI tool.
+
+Six real PostgreSQL cases pass, including concurrent confirmations, exact envelope decoding, owner/anonymous isolation, payload substitution, denial replay, receipt-failure rollback, stale shares, competing correction and confirm/deny, and expiry while waiting for a locked source. Contract typechecking, scoped lint, full formatting and disposable security advisors pass. Exact-head review and CI remain required. The approval HTTP/native transport, private AI proposal and visible native approval card are still unfinished; no production migration, provider or device execution occurred.
