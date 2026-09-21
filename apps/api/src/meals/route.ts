@@ -1,3 +1,6 @@
+import { plannedRecipeRoute } from "./planned-recipe.ts";
+import { placeRecipe } from "./recipe-placement.ts";
+import { replaceWithRecipe } from "./recipe-replacement.ts";
 import { editRecipe } from "./recipe-edit.ts";
 import { archiveRecipe } from "./recipe-archive.ts";
 import { createRecipe } from "./recipe-creation.ts";
@@ -12,6 +15,8 @@ import { placeMeal } from "./placement.ts";
 import { moveMeal } from "./move.ts";
 import { removeMeal } from "./removal.ts";
 export function mealRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
+  if (new URL(request.url).pathname === "/v1/meals/planned-recipe")
+    return plannedRecipeRoute(request, config, caller);
   if (new URL(request.url).pathname === "/v1/meals/week")
     return mealWeekRoute(request, config, caller);
   if (["/v1/meals/library", "/v1/meals/recipe"].includes(new URL(request.url).pathname))
@@ -34,13 +39,17 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
         receipt: yield* archiveRecipe(config, caller, yield* commandBody(request)),
       };
     const command =
-      path === "/v1/meals/replace"
-        ? replaceMeal
-        : path === "/v1/meals/move"
-          ? moveMeal
-          : path === "/v1/meals/remove"
-            ? removeMeal
-            : placeMeal;
+      path === "/v1/meals/recipe/place"
+        ? placeRecipe
+        : path === "/v1/meals/recipe/replace"
+          ? replaceWithRecipe
+          : path === "/v1/meals/replace"
+            ? replaceMeal
+            : path === "/v1/meals/move"
+              ? moveMeal
+              : path === "/v1/meals/remove"
+                ? removeMeal
+                : placeMeal;
     const receipt = yield* command(config, caller, yield* commandBody(request));
     return { version: 1, receipt };
   });

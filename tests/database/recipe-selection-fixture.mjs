@@ -1,3 +1,4 @@
+import { mealRemovalFiles } from "./meal-removal-files.mjs";
 import { fixture as removalFixture, id, as, week } from "./meal-removal-fixture.mjs";
 import { createRequire } from "node:module";
 import {
@@ -33,22 +34,23 @@ export const command = (
   );
 const decode = (schema, text) =>
   Schema.decodeUnknownSync(schema)(JSON.parse(text), { onExcessProperty: "error" });
+export const recipeSelectionFiles = [
+  ...mealRemovalFiles,
+  "supabase/migrations/20260920214557_native_meal_move_command.sql",
+  "supabase/migrations/20260920221646_native_meal_replacement_command.sql",
+  "tests/database/recipe-selection-library-fixture.sql",
+  "tests/database/meal-library-fixture.sql",
+  "supabase/migrations/20260920224313_native_meal_library_reads.sql",
+  "supabase/migrations/20260920231423_native_recipe_creation.sql",
+  "supabase/migrations/20260921002813_native_recipe_edit.sql",
+  "tests/database/meal-move-grocery-fixture.sql",
+  migration,
+];
 export function fixture(t) {
   const f = removalFixture();
   t?.after(() => f.db.stop());
   const { db } = f;
-  for (const file of [
-    "supabase/migrations/20260920214557_native_meal_move_command.sql",
-    "supabase/migrations/20260920221646_native_meal_replacement_command.sql",
-    "tests/database/recipe-selection-library-fixture.sql",
-    "tests/database/meal-library-fixture.sql",
-    "supabase/migrations/20260920224313_native_meal_library_reads.sql",
-    "supabase/migrations/20260920231423_native_recipe_creation.sql",
-    "supabase/migrations/20260921002813_native_recipe_edit.sql",
-    "tests/database/meal-move-grocery-fixture.sql",
-    migration,
-  ])
-    db.file(file);
+  for (const file of recipeSelectionFiles.slice(mealRemovalFiles.length)) db.file(file);
   db.sql(
     `insert into public.grocery_items(id,household_id,name) values('${id(500)}','${id(10)}','Existing groceries')`,
   );
