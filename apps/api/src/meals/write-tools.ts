@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    archiveRecipe: write(
+      "archiveRecipe",
+      "Archive only a saved recipe the member explicitly asks to hide from the household library. Read the current library and exact recipe revision first; ask when the target is ambiguous. Explain that ingredients, existing planned meals, history and groceries are retained. This does not remove a planned meal, delete history or approve a generated plan. Reconcile an uncertain original invocation instead of issuing a new archive. A receipt confirms the original archive; reread before describing the current library because later household changes may have restored the recipe.",
+    ),
     createRecipe: write(
       "createRecipe",
       "Save only a complete recipe the member explicitly asks to keep in the household library. Read the current library revision first. Require a title, known servings, ingredients and cooking instructions; ask for missing information instead of inventing it. Preserve separate quantities, units and ingredient order. This does not place meals or add groceries and cannot approve generated meal plans. Large recipes must use the native recipe form when native_required is returned; nothing was saved in that case. On uncertainty reconcile the original invocation; never create a second recipe. Reread before describing current recipe contents.",

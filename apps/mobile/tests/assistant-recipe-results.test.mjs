@@ -32,3 +32,28 @@ test("recipe results distinguish native handoff, uncertain writes and confirmed 
     /verify/,
   );
 });
+
+test("archive results confirm a historical action and open the library without offering another write", () => {
+  const part = { type: "tool-archiveRecipe", state: "output-available" };
+  const receipt = {
+    version: 1,
+    actorId: id(1),
+    householdId: id(10),
+    operationId: id(20),
+    definitionId: id(30),
+    revision: "9007199254740994",
+  };
+  assert.deepEqual(actionResult({ ...part, output: { ok: true, value: receipt } }), {
+    label: "Recipe archive confirmed",
+    href: "/meal-library",
+  });
+  for (const output of [
+    { ok: false, code: "unavailable" },
+    { ok: true, value: { ...receipt, revision: "0" } },
+  ]) {
+    const result = actionResult({ ...part, output });
+    assert.match(result.label, /verify/);
+    assert.equal(result.href, "/meal-library");
+  }
+  assert.match(actionResult({ ...part, output: { ok: false, code: "conflict" } }).label, /changed/);
+});

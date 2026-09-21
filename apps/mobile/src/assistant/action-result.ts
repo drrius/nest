@@ -11,6 +11,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  archiveRecipe: "Recipe archive confirmed",
   createRecipe: "Recipe saved",
   moveMeal: "Meal moved",
   replaceMeal: "Meal replaced",
@@ -35,6 +36,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  archiveRecipe: "/meal-library",
   createRecipe: "/meal-library",
   moveMeal: "/meal-week",
   replaceMeal: "/meal-week",
