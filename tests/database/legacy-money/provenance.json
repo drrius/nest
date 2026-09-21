@@ -60,6 +60,12 @@
       "source": "supabase/migrations/20260811200000_chf_ledger.sql",
       "sha256": "9e217f8eb07461e06725b0965b361bdcdefd0af1840d9cc7e41993fa6ccc0f55",
       "selection": "Complete audited expense statements; see money-expense-audit.md"
+    },
+    {
+      "file": "settlement-command.sql",
+      "source": "supabase/migrations/20260812201042_atomic_settlement.sql",
+      "sha256": "3dad72cba69285028163752a66c821154d5c804701e72e41608165caabf31dfc",
+      "selection": "Complete final atomic settlement migration; see money-settlement-audit.md"
     }
   ]
 }

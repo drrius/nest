@@ -795,3 +795,13 @@ Fourteen native/property/SQLite/lifecycle/lease checks pass, including 1,000 spl
 iOS export passes at `/tmp/nest-expense-entry-export`, bundle `22e7be4bc2659da844693521ac2d0cbc`, which proves packaging only. Actual alerts, keyboard, date/category pickers, dismissal, background interaction, large text and VoiceOver remain unverified on iPhone. Optional receipt attachments, grocery-specific totals, settlements/corrections/refunds and recurring financial rules remain incomplete. Exact-head CI and Sol review are required; no production migration or deployment occurred.
 
 After the navigation fix, all six real entry/restart journeys pass, including direct Save/cancel and existing approval confirm/deny recovery through SQLite reopen. No automatic financial resend occurs.
+
+### Settlement engine audit — candidate
+
+The native expense-entry commit `0a1d6220cf53c3ec19f9d818de2c838c1060313a` has clean Sol medium signoff (14 native/property/SQLite cases and six actual integration journeys independently passed). CI `35606990109` and predecessor category CI `35605691473` remain pending; neither gate has been bypassed.
+
+The final legacy settlement transaction is now deliberately pinned and audited with the actual expense/ledger/activity/notification engine. Five disposable PostgreSQL cases pass, covering partial/full amounts, authorization, zero-sum history, identical and distinct concurrent retries, notice-failure rollback and 64 generated settlement sequences through the safe centime endpoint. Original expenses are checked against retained receipts. A test-only mistaken column name was corrected before the successful rerun.
+
+The audit exposes two required native protections: legacy keys are household-wide, and full settlement silently derives the live amount instead of binding the reviewed amount. The Nest wrapper must use actor-bound receipts and reject a changed full-settlement amount under the shared ledger lock before posting or consuming approval. See `docs/native-rewrite/money-settlement-audit.md`. This is audit/fixture evidence, not an implemented settlement UI/API; native/AI full and partial settlement remain next. No production was touched. Exact-head CI and Sol review remain required for this increment.
+
+Native expense entry and its reviewed category dependency merged by fast-forward to `0a1d6220cf53c3ec19f9d818de2c838c1060313a` after successful exact-head CI `35606990109` and clean Sol signoff. That complete descendant CI run verifies the combined source state; the older category-only run `35605691473` was still running when checked. Local and remote main were updated without a PR or deployment.
