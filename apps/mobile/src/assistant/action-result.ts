@@ -22,6 +22,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeSettlement: "Settlement proposal created · this action posted no money",
   proposeExpense: "Expense proposal created · this action posted no money",
   generateMealProposal: "Preview requested · open its current state",
   replaceProposalMeal: "Suggestion replacement requested · read the preview for its result",
@@ -58,6 +59,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeSettlement: "/finances",
   proposeExpense: "/finances",
   generateMealProposal: "/meals",
   replaceProposalMeal: "/meals",

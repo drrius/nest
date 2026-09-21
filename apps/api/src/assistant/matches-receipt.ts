@@ -1,3 +1,4 @@
+import { matchesSettlementProposal } from "../money/settlement-proposal.ts";
 import { matchesExpenseProposal } from "../money/expense-proposal.ts";
 import { matchesProposalAction } from "../meal-planning/matches-assistant.ts";
 import { matchesMealAction } from "../meals/matches-receipt.ts";
@@ -7,6 +8,10 @@ import { RoutineReceipt } from "@nest/contracts/routines";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
+const financialProposals = {
+  proposeExpense: matchesExpenseProposal,
+  proposeSettlement: matchesSettlementProposal,
+};
 type Member = { userId: string; householdId: string };
 export function matchesAssistantReceipt(
   action: AssistantAction,
@@ -14,7 +19,8 @@ export function matchesAssistantReceipt(
   receipt: object,
   member: Member,
 ) {
-  if (action === "proposeExpense") return matchesExpenseProposal(input, receipt, member);
+  if (Object.hasOwn(financialProposals, action))
+    return financialProposals[action as keyof typeof financialProposals](input, receipt, member);
   const proposal = matchesProposalAction(action, input, receipt, member);
   if (proposal !== null) return proposal;
   const meal = matchesMealAction(action, input, receipt, member);
