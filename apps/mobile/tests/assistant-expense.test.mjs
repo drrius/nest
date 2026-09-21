@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { actionResult } from "../src/assistant/action-result.ts";
 import { id, payload } from "../../../tests/database/native-expense-helpers.mjs";
-test("expense tool result labels a pending proposal without claiming a ledger write", () => {
+test("expense tool result describes its historical action without asserting current approval status", () => {
   const value = {
     version: 1,
     actorId: id(1),
@@ -21,7 +21,7 @@ test("expense tool result labels a pending proposal without claiming a ledger wr
     state: "output-available",
     output: { ok: true, value },
   });
-  assert.equal(card.label, "Expense proposal pending · no money posted");
+  assert.equal(card.label, "Expense proposal created · this action posted no money");
   assert.equal(card.href, "/finances");
   assert.match(
     actionResult({ type: "tool-proposeExpense", state: "input-available" }).label,
