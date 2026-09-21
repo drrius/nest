@@ -1,3 +1,4 @@
+import { RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { MealMoveReceipt } from "@nest/contracts/meal-move";
 import { SetupHandoff } from "@nest/contracts/setup";
@@ -11,6 +12,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  editRecipe: "Recipe edit confirmed",
   archiveRecipe: "Recipe archive confirmed",
   createRecipe: "Recipe saved",
   moveMeal: "Meal moved",
@@ -36,6 +38,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  editRecipe: "/meal-library",
   archiveRecipe: "/meal-library",
   createRecipe: "/meal-library",
   moveMeal: "/meal-week",
@@ -72,7 +75,7 @@ export function actionResult(part: { type: string; state?: unknown; output?: unk
   const output = part.output;
   if (!output.ok)
     return {
-      label: failureLabel(output.code, uncertain.label),
+      label: failureLabel(action, output.code, uncertain.label),
       href: failureHref(action, output.code),
     };
   const schema: Schema.Codec<object> = AssistantReceipts[action];
@@ -84,7 +87,9 @@ function failureHref(action: AssistantAction, code: string | undefined) {
     ? ("/recipe-create" as const)
     : destinations[action];
 }
-function failureLabel(code: string | undefined, fallback: string) {
+function failureLabel(action: AssistantAction, code: string | undefined, fallback: string) {
+  if (code === "native_required" && action === "editRecipe")
+    return "This recipe edit is too large for chat. Open the saved recipe library to edit it; nothing was saved.";
   if (code === "native_required")
     return "This recipe is too large for chat. Open the native recipe form; nothing was saved.";
   if (code === "conflict")
@@ -104,7 +109,7 @@ function successLabel(action: AssistantAction, receipt: object) {
 
 function successHref(action: AssistantAction, value: object) {
   // actionResult already validates the complete action-specific receipt.
-  if (action === "createRecipe" && Schema.is(RecipeCreationReceipt)(value))
+  if (isRecipeResult(action, value))
     return {
       pathname: "/saved-meal" as const,
       params: { definitionId: value.definitionId, expectedRevision: value.revision },
@@ -154,4 +159,14 @@ function routineStateLabel(receipt: object) {
     if (receipt.action === "archive") return "Routine archived";
   }
   return labels.setRoutineState;
+}
+
+function isRecipeResult(
+  action: AssistantAction,
+  value: object,
+): value is RecipeCreationReceipt | RecipeEditReceipt {
+  return (
+    (action === "createRecipe" && Schema.is(RecipeCreationReceipt)(value)) ||
+    (action === "editRecipe" && Schema.is(RecipeEditReceipt)(value))
+  );
 }

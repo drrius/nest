@@ -1,3 +1,4 @@
+import { EditRecipeInput, RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { ArchiveRecipeInput, RecipeArchiveReceipt } from "@nest/contracts/recipe-archive";
 import { CreateRecipeInput, RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { ReplaceMealInput, MealReplacementReceipt } from "@nest/contracts/meal-replacement";
@@ -88,6 +89,7 @@ export function matchesMealAction(
   receipt: object,
   member: { userId: string; householdId: string },
 ) {
+  if (action === "editRecipe") return matchesRecipeEdit(input, receipt, member);
   if (action === "archiveRecipe") return matchesRecipeArchive(input, receipt, member);
   if (action === "createRecipe") return matchesRecipeCreation(input, receipt, member);
   if (action === "replaceMeal") return matchesMealReplacement(input, receipt, member);
@@ -124,5 +126,19 @@ function matchesRecipeArchive(
     receipt.householdId === member.householdId &&
     receipt.definitionId === input.definitionId.toLowerCase() &&
     BigInt(receipt.revision) === BigInt(input.expectedRevision) + 1n
+  );
+}
+
+function matchesRecipeEdit(
+  input: object,
+  receipt: object,
+  member: { userId: string; householdId: string },
+) {
+  if (!Schema.is(EditRecipeInput)(input) || !Schema.is(RecipeEditReceipt)(receipt)) return false;
+  return (
+    receipt.actorId === member.userId &&
+    receipt.householdId === member.householdId &&
+    receipt.definitionId === input.definitionId.toLowerCase() &&
+    receipt.previousRevision === input.expectedRevision
   );
 }

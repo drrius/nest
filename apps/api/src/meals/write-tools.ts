@@ -1,6 +1,10 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    editRecipe: write(
+      "editRecipe",
+      "Edit only a saved recipe the member explicitly requests. Read the current library and exact recipe detail first; ask when the target or changes are ambiguous. Preserve unspecified metadata, unknown servings/instructions and existing ingredient identities, quantities, units and categories. Omit untouched patch fields; ingredients:null preserves the list, while a supplied list is the complete desired ordered selection and archives omitted ingredients. Use existing IDs with minimal patches for retained ingredients and new entries only for requested additions. Never infer missing recipe information. This changes only the library, not existing planned meals or groceries, and cannot approve a generated plan. On native_required open the library's native editor; nothing was saved. Reconcile an uncertain original invocation instead of issuing a new edit. A receipt confirms the original edit; reread before describing current contents.",
+    ),
     archiveRecipe: write(
       "archiveRecipe",
       "Archive only a saved recipe the member explicitly asks to hide from the household library. Read the current library and exact recipe revision first; ask when the target is ambiguous. Explain that ingredients, existing planned meals, history and groceries are retained. This does not remove a planned meal, delete history or approve a generated plan. Reconcile an uncertain original invocation instead of issuing a new archive. A receipt confirms the original archive; reread before describing the current library because later household changes may have restored the recipe.",

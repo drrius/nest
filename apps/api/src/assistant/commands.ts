@@ -27,7 +27,7 @@ export function assistantCommands(request: Request, config: IdentityConfig, turn
       // Leave headroom for JSONB spacing within the fixed 64 KiB journal input.
       // No write has been dispatched when this returns a native handoff.
       if (
-        action === "createRecipe" &&
+        (action === "createRecipe" || action === "editRecipe") &&
         new TextEncoder().encode(JSON.stringify(command)).length > 49152
       )
         return yield* new CommandFailure({ code: "native_required" });
