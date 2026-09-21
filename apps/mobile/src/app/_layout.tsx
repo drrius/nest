@@ -53,6 +53,8 @@ function Navigation() {
         <Stack.Screen name="correction-entry" options={{ title: "Correct entry" }} />
         <Stack.Screen name="refund-entry" options={{ title: "Record refund" }} />
         <Stack.Screen name="settlement-entry" options={{ title: "Record settlement" }} />
+        <Stack.Screen name="recurring-rules" options={{ title: "Recurring expenses" }} />
+        <Stack.Screen name="recurring-rule" options={{ title: "Recurring expense" }} />
         <Stack.Screen name="receipt-uploads" options={{ title: "Receipt uploads" }} />
         <Stack.Screen name="receipt" options={{ title: "Receipt" }} />
         <Stack.Screen name="correction-approval" options={{ title: "Review correction" }} />
