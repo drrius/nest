@@ -1,4 +1,5 @@
 import { useNativeState } from "@expo/ui";
+import { useCalendarDateCheck } from "../calendar/use-date-check";
 import { useState } from "react";
 import { Alert } from "react-native";
 import { useNavigation } from "expo-router";
@@ -6,6 +7,7 @@ import { usePreventRemove } from "expo-router/react-navigation";
 import type { MealPreparationRuntime, PreparationView } from "./preparation-runtime";
 import { parsePreparationDraft, preparationDraftDirty } from "./preparation-draft";
 export function usePreparationDraft(runtime: MealPreparationRuntime, view: PreparationView) {
+  const calendar = useCalendarDateCheck("preparation");
   const title = useNativeState("");
   const instructions = useNativeState("");
   const [initialDate] = useState(view.snapshot!.entry!.date);
@@ -42,9 +44,12 @@ export function usePreparationDraft(runtime: MealPreparationRuntime, view: Prepa
       return;
     }
     setError(null);
-    void runtime.save(parsed.value);
+    void calendar.check(parsed.value.dueOn, () => {
+      void runtime.save(parsed.value);
+    });
   };
   return {
+    checking: calendar.checking,
     title,
     instructions,
     dueOn,

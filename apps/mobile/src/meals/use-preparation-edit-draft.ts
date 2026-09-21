@@ -1,4 +1,5 @@
 import { useNativeState } from "@expo/ui";
+import { useCalendarDateCheck } from "../calendar/use-date-check";
 import { useState } from "react";
 import { Alert } from "react-native";
 import { useNavigation } from "expo-router";
@@ -18,6 +19,7 @@ export function usePreparationEditDraft(
   runtime: MealPreparationEditRuntime,
   view: PreparationEditView,
 ) {
+  const calendar = useCalendarDateCheck("preparation");
   const [task] = useState(view.snapshot!.preparation!);
   const [initial] = useState(() => preparationEditValues(task));
   const title = useNativeState(initial.title),
@@ -49,25 +51,8 @@ export function usePreparationEditDraft(
     );
   });
   const reload = () => {
-    if (view.busy || view.pendingWrite) return;
-    if (!preparationEditDirty(task, value())) {
-      void runtime.load();
-      return;
-    }
-    Alert.alert(
-      "Discard this draft?",
-      "Reloading replaces your draft with the current preparation.",
-      [
-        { text: "Keep draft", style: "cancel" },
-        {
-          text: "Reload",
-          style: "destructive",
-          onPress: () => {
-            void runtime.load();
-          },
-        },
-      ],
-    );
+    if (view.busy || view.pendingWrite || calendar.checking) return;
+    confirmReload(runtime, preparationEditDirty(task, value()));
   };
   const submit = () => {
     const result = preparationEditPatch(task, value());
@@ -76,9 +61,14 @@ export function usePreparationEditDraft(
       return;
     }
     setError(null);
-    void runtime.save(result.patch);
+    const save = () => {
+      void runtime.save(result.patch);
+    };
+    if (result.patch.dueOn) void calendar.check(result.patch.dueOn, save);
+    else save();
   };
   return {
+    checking: calendar.checking,
     title,
     instructions,
     dueOn,
@@ -91,4 +81,25 @@ export function usePreparationEditDraft(
     submit,
     reload,
   };
+}
+
+function confirmReload(runtime: MealPreparationEditRuntime, dirty: boolean) {
+  if (!dirty) {
+    void runtime.load();
+    return;
+  }
+  Alert.alert(
+    "Discard this draft?",
+    "Reloading replaces your draft with the current preparation.",
+    [
+      { text: "Keep draft", style: "cancel" },
+      {
+        text: "Reload",
+        style: "destructive",
+        onPress: () => {
+          void runtime.load();
+        },
+      },
+    ],
+  );
 }

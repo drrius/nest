@@ -14,7 +14,8 @@ export function PreparationEditForm({
 }) {
   const draft = usePreparationEditDraft(runtime, view);
   const task = view.snapshot!.preparation!;
-  const enabled = !view.busy && view.stage === "ready" && task.state !== "archived";
+  const locked = draft.checking || view.busy;
+  const enabled = !locked && view.stage === "ready" && task.state !== "archived";
   const scheduling = enabled && task.status === "open";
   return (
     <Card>
@@ -38,7 +39,10 @@ export function PreparationEditForm({
         titleLimit={240}
         instructionsLimit={8000}
       />
-      <Note>Due date · Europe/Zurich</Note>
+      <Note>
+        Due date · Europe/Zurich. Your selected calendars are checked when saving a new date. Busy
+        or unknown availability never prevents saving.
+      </Note>
       <DateTimePicker
         mode="date"
         value={new Date(`${draft.dueOn}T12:00:00Z`)}
@@ -50,13 +54,13 @@ export function PreparationEditForm({
       />
       {draft.error ? <Note>{draft.error}</Note> : null}
       <NativeAction
-        label="Save preparation changes online"
+        label={draft.checking ? "Checking calendar…" : "Save preparation changes online"}
         disabled={!enabled}
         onPress={draft.submit}
       />
       <NativeAction
         label="Reload current preparation"
-        disabled={view.busy || view.pendingWrite}
+        disabled={locked || view.pendingWrite}
         onPress={draft.reload}
       />
     </Card>

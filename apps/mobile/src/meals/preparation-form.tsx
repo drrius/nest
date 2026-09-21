@@ -15,7 +15,8 @@ export function PreparationForm({
   view: PreparationView;
 }) {
   const draft = usePreparationDraft(runtime, view);
-  const enabled = !view.busy && view.stage === "ready" && view.members.length === 2;
+  const enabled =
+    !draft.checking && !view.busy && view.stage === "ready" && view.members.length === 2;
   return (
     <Card>
       <Section title="Add preparation" />
@@ -24,7 +25,10 @@ export function PreparationForm({
         here during retries and reloads.
       </Note>
       <PreparationFields draft={draft} view={view} enabled={enabled} />
-      <Note>Due date · Europe/Zurich</Note>
+      <Note>
+        Due date · Europe/Zurich. Your selected calendars are checked when saving a new date. Busy
+        or unknown availability never prevents saving.
+      </Note>
       <DateTimePicker
         mode="date"
         value={new Date(`${draft.dueOn}T12:00:00Z`)}
@@ -35,7 +39,11 @@ export function PreparationForm({
         }}
       />
       {draft.error ? <Note>{draft.error}</Note> : null}
-      <NativeAction label="Create preparation online" disabled={!enabled} onPress={draft.submit} />
+      <NativeAction
+        label={draft.checking ? "Checking calendar…" : "Create preparation online"}
+        disabled={!enabled}
+        onPress={draft.submit}
+      />
     </Card>
   );
 }
