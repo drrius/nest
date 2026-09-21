@@ -55,6 +55,7 @@
     "./receipt": "./src/receipt.ts",
     "./receipt-upload": "./src/receipt-upload.ts",
     "./receipt-recovery": "./src/receipt-recovery.ts",
+    "./recurring-approval": "./src/recurring-approval.ts",
     "./recurring": "./src/recurring.ts",
     "./recurring-read": "./src/recurring-read.ts",
     "./recurring-save-read": "./src/recurring-save-read.ts"

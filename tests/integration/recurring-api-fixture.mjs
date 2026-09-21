@@ -15,8 +15,8 @@ const files = [
   "20260921192022_native_recurring_reads",
   "20260921192950_native_recurring_save_recovery",
 ].map((name) => `supabase/migrations/${name}.sql`);
-export async function recurringApiFixture(t) {
-  const f = await expenseApiFixture(t, files);
+export async function recurringApiFixture(t, extraFiles = []) {
+  const f = await expenseApiFixture(t, [...files, ...extraFiles]);
   const start = f.db.sql(
     "select to_char((clock_timestamp() at time zone 'Europe/Zurich')::date+30,'YYYY-MM-DD')",
   );

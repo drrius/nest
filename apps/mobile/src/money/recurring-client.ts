@@ -1,3 +1,4 @@
+import { recurringApprovalClient } from "./recurring-approval-client.ts";
 import * as Effect from "effect/Effect";
 import { recurringRecoveryClient } from "./recurring-recovery-client.ts";
 import * as Schema from "effect/Schema";
@@ -28,6 +29,7 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...recurringApprovalClient(apiUrl, account, credentials),
     ...recurringRecoveryClient(apiUrl, account, credentials),
     recurringRules: (after: string | null = null) =>
       Effect.gen(function* () {

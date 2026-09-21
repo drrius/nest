@@ -1,3 +1,4 @@
+import { recurringApprovalRoute } from "./recurring-approval-route.ts";
 import * as Effect from "effect/Effect";
 import { recurringSaveRecovery } from "./recurring-save-read.ts";
 import { recurringReads } from "./recurring-read.ts";
@@ -8,6 +9,7 @@ import type { AuthorizedCaller } from "../chores/service.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 export function recurringRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url);
+  if (url.pathname.includes("/approval")) return recurringApprovalRoute(request, config, caller);
   if (request.method === "GET") return recurringReadRoute(url, config, caller);
   return Effect.gen(function* () {
     if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
