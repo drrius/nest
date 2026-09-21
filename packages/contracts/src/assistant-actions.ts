@@ -1,3 +1,5 @@
+import { RecurringProposalInput } from "./recurring-proposal.ts";
+import { RecurringApprovalEnvelope } from "./recurring-approval.ts";
 import { CorrectionInput } from "./correction.ts";
 import { CorrectionApprovalEnvelope } from "./correction-approval.ts";
 import { RefundInput } from "./refund.ts";
@@ -70,6 +72,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeRecurring: RecurringProposalInput,
   proposeCorrection: CorrectionInput,
   proposeRefund: RefundInput,
   proposeSettlement: SettlementInput,
@@ -116,6 +119,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeRecurring: RecurringApprovalEnvelope,
   proposeCorrection: CorrectionApprovalEnvelope,
   proposeRefund: RefundApprovalEnvelope,
   proposeSettlement: SettlementApprovalEnvelope,

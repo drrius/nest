@@ -1,3 +1,4 @@
+import { matchesRecurringProposal } from "../money/recurring-proposal.ts";
 import { matchesCorrectionProposal } from "../money/correction-proposal.ts";
 import { matchesRefundProposal } from "../money/refund-proposal.ts";
 import { matchesSettlementProposal } from "../money/settlement-proposal.ts";
@@ -11,6 +12,7 @@ import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 const financialProposals = {
+  proposeRecurring: matchesRecurringProposal,
   proposeExpense: matchesExpenseProposal,
   proposeCorrection: matchesCorrectionProposal,
   proposeRefund: matchesRefundProposal,

@@ -1,3 +1,4 @@
+import { RecurringApprovalEnvelope } from "@nest/contracts/recurring-approval";
 import { CorrectionApprovalEnvelope } from "@nest/contracts/correction-approval";
 import { RefundApprovalEnvelope } from "@nest/contracts/refund-approval";
 import { SettlementApprovalEnvelope } from "@nest/contracts/settlement-approval";
@@ -25,6 +26,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeRecurring: "Recurring proposal created · this action saved no rule or expense",
   proposeCorrection: "Correction proposal created · this action posted no money",
   proposeRefund: "Refund proposal created · this action posted no money",
   proposeSettlement: "Settlement proposal created · this action posted no money",
@@ -64,6 +66,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeRecurring: "/finances",
   proposeCorrection: "/finances",
   proposeRefund: "/finances",
   proposeSettlement: "/finances",
@@ -280,6 +283,7 @@ function proposalHandoff(part: { state?: unknown; output?: unknown }) {
 }
 
 function financialHref(action: AssistantAction, value: object) {
+  if (action === "proposeRecurring") return recurringHref(value);
   if (action === "proposeCorrection" && Schema.is(CorrectionApprovalEnvelope)(value))
     return { pathname: "/correction-approval" as const, params: { approvalId: value.approval.id } };
   if (action === "proposeRefund" && Schema.is(RefundApprovalEnvelope)(value))
@@ -289,4 +293,10 @@ function financialHref(action: AssistantAction, value: object) {
   if (action === "proposeExpense" && Schema.is(ExpenseApprovalEnvelope)(value))
     return { pathname: "/expense-approval" as const, params: { approvalId: value.approval.id } };
   return null;
+}
+
+function recurringHref(value: object) {
+  return Schema.is(RecurringApprovalEnvelope)(value)
+    ? { pathname: "/recurring-approval" as const, params: { approvalId: value.approval.id } }
+    : null;
 }
