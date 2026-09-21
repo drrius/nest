@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M5 — Meals and week planning; branch `codex/meal-preparation-storage`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/meal-preparation-api`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
 
@@ -31,6 +31,12 @@ Preparation contracts `bc49ad8` are merged after successful CI `35554945406` and
 The next gated storage candidate creates one linked preparation task with a real one-off routine/occurrence, instructions, meal priority and assignment. Current membership is locked before receipt replay; new writes require exact meal-week baselines, current source identity and absence of any prior linked preparation. It reuses audited routine insertion, adds no notification consent or groceries, and keeps meal content/revision unchanged. Receipt failure rolls back routine, occurrence, activity and link. Completed preparation and old replay receipts survive meal removal.
 
 Local storage evidence: nine new PostgreSQL cases pass, including concurrent identical/different requests, ten create/remove races, actual completion/removal replay, exact rollback, private receipt RLS, stale/foreign/removed inputs, assignment denial, Unicode boundaries, anonymous/direct-write denial and unsupported snapshot rejection. Eight existing removal regressions also passed. Two initial test expectations were corrected: synthetic legacy activity FKs must be cleared to simulate membership revocation, and a removal that wins the race correctly creates no task. Scoped lint/format/diff checks pass; disposable Supabase security advisors report no issues. SQL functions are at most 53 code lines. Exact-head review and CI are pending. Preparation API/native/AI/read/edit flows remain unfinished; no device or production execution occurred.
+
+Preparation storage `327f370` is merged after successful CI `35555304112` and clean Sol medium signoff. Sol independently passed all seventeen preparation/removal database cases.
+
+The preparation API slice adds authenticated POST `/v1/meals/preparation/create` and GET `/v1/meals/preparation` at an exact meal-week baseline. Strict creation validates canonical actor/household/operation/entry, unchanged week revision and explicit due date. The read uses a stable invoker RPC under existing RLS, distinguishes no task from an absent meal, retains completed task details and preserves nullable/longer legacy instructions and exact routine microseconds. Duplicate/unknown query parameters are rejected. The static HTTP method table moved out of `createHandler` to keep the function within its configured length limit; no route behavior changed.
+
+Verification: all 189 selected API and real meal HTTP/PostgREST cases pass, including five new API validation cases and two preparation HTTP journeys. These cover 4,000-character multibyte creation, receipt loss/replay after a later title/instruction edit, full legacy astral-text reads, partner/foreign/revoked access, stale baselines, completion and removed-meal absence. API types, scoped lint/format/diff and isolated security advisors pass. Exact-head CI and Sol review remain pending. Native preparation controls and corresponding AI actions are next; preparation edit/instructions support and device acceptance remain unfinished. No deployment, production data or live provider was used.
 
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 

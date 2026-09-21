@@ -1,3 +1,5 @@
+import { createMealPreparation } from "./preparation-create.ts";
+import { mealPreparationRoute } from "./preparation-read.ts";
 import { placeLeftovers } from "./leftovers.ts";
 import { ApiFailure } from "../errors.ts";
 import { plannedRecipeRoute } from "./planned-recipe.ts";
@@ -17,6 +19,8 @@ import { placeMeal } from "./placement.ts";
 import { moveMeal } from "./move.ts";
 import { removeMeal } from "./removal.ts";
 export function mealRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
+  if (new URL(request.url).pathname === "/v1/meals/preparation")
+    return mealPreparationRoute(request, config, caller);
   if (new URL(request.url).pathname === "/v1/meals/planned-recipe")
     return plannedRecipeRoute(request, config, caller);
   if (new URL(request.url).pathname === "/v1/meals/week")
@@ -42,12 +46,17 @@ export function mealRoute(request: Request, config: IdentityConfig, caller: Auth
       };
     const command = commands[path as keyof typeof commands];
     if (!command) return yield* new ApiFailure({ code: "invalid_request" });
-    const receipt = yield* command(config, caller, yield* commandBody(request));
+    const receipt = yield* command(
+      config,
+      caller,
+      yield* commandBody(request, path === "/v1/meals/preparation/create" ? 32768 : 8192),
+    );
     return { version: 1, receipt };
   });
 }
 
 const commands = {
+  "/v1/meals/preparation/create": createMealPreparation,
   "/v1/meals/recipe/place": placeRecipe,
   "/v1/meals/recipe/replace": replaceWithRecipe,
   "/v1/meals/replace": replaceMeal,

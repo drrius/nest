@@ -29,7 +29,8 @@
     "./recipe-edit": "./src/recipe-edit.ts",
     "./recipe-selection": "./src/recipe-selection.ts",
     "./meal-leftovers": "./src/meal-leftovers.ts",
-    "./meal-preparation": "./src/meal-preparation.ts"
+    "./meal-preparation": "./src/meal-preparation.ts",
+    "./meal-preparation-read": "./src/meal-preparation-read.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
