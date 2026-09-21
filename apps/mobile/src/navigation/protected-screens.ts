@@ -14,6 +14,7 @@ export const protectedScreens = [
   { name: "recurring-approval", title: "Review recurring expense" },
   { name: "recurring-resume-approval", title: "Review resumption" },
   { name: "recurring-state-approval", title: "Review recurring change" },
+  { name: "recurring-variable-approval", title: "Review variable bill" },
   { name: "recurring-variable", title: "Variable bill" },
   { name: "recurring-state", title: "Recurring controls" },
   { name: "recurring-rule", title: "Recurring expense" },
