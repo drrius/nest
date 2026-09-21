@@ -40,8 +40,9 @@ export function MealLeftoversForm({
         ) : (
           <>
             <Note>
-              Choose an empty slot on a later day. Leftovers keep the source meal’s saved recipe. No
-              groceries or preparation tasks are added.
+              Choose an empty slot on a later day. Leftovers copy the source meal details and retain
+              saved recipe details when available. Missing ingredients remain unknown. No groceries
+              or preparation tasks are added.
             </Note>
             {!meal && view.source ? (
               <Note>This meal is no longer in its original week.</Note>

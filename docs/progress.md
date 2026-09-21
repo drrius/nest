@@ -14,6 +14,8 @@ The native leftover branch adds an account-scoped client, source/destination wee
 
 Local verification: thirteen focused client/runtime cases and two real HTTP/PostgREST/PostgreSQL journeys pass, including a native cross-week lost-acknowledgment retry after library archive, retained quantities, unchanged source revision, no new groceries and revoked access. The new integration fixture initially used a root Effect import unavailable in this workspace; it now resolves the mobile package dependency and both journeys pass. Mobile types, scoped lint/format and diff checks pass. iOS export compiled 1,967 modules (bundle `bd7e5d0906e62ef751995856a62659f6`); this is packaging evidence only. Exact-head CI and Sol review are pending. Physical iPhone interaction/accessibility and the corresponding private AI leftovers tool remain incomplete; M5 is not complete.
 
+Sol independently passed all thirteen native cases and both real HTTP journeys, and found misleading confirmation copy for legacy/one-off meals without a retained recipe. The copy now explicitly says recipe details are retained only when available and missing ingredients remain unknown. Updated-head CI and rereview are required.
+
 Latest reviewed deliveries, all fast-forwarded and pushed to main after exact-head CI and clean GPT-5.6 Sol medium review:
 
 - `ecd3520` — atomic recipe creation storage; CI `35544477532`, 18 independent database checks.
