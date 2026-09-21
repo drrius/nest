@@ -14,8 +14,8 @@ export default function WelcomeScreen() {
       {__DEV__ ? (
         <Section title="Quiet design preview">
           <Note>
-            Explore fictional examples. Changes last only for this app session and are never sent to
-            a server.
+            Screens labeled as fictional are local design examples. Calendar uses your signed-in
+            account and actual device calendars.
           </Note>
           <Link
             href="/today"

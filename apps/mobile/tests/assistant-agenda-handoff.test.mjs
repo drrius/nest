@@ -9,7 +9,7 @@ test("personal agenda handoff opens only the fixed local route and rejects injec
   };
   assert.deepEqual(actionResult(part), {
     label: "Open your private agenda on your iPhone",
-    href: "/calendar",
+    href: "/agenda",
   });
   for (const output of [
     { ok: false },
