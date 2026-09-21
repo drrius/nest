@@ -6,6 +6,14 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
+One-off recipe retention `d086b29` is merged and pushed to main after successful CI `35561569589` and clean exact-head Sol medium review; Sol independently passed seventeen focused checks. No approval writer is enabled by that migration.
+
+The current structured-generation slice uses the installed Vercel AI SDK through the canonical Effect schema adapter. It privately projects both known food profiles, current cooking choices and sanitized day-by-day availability; missing setup fails before a model call. Only configured empty slots are proposed. Saved choices resolve to the supplied authorized canonical recipe, not model-written saved content. A separate bounded structured review must explicitly mark every exact recipe safe; unknown, unsafe, omitted or duplicate checks fail closed. Familiar-only, complete recipes, optional calorie estimates, explicit null invented links/categories, cancellation and sanitized provider failures are enforced. Neither stage has tools or write access; no content is automatically approved or saved.
+
+Local verification: twenty focused checks pass, including 100 generated occupied/configured week combinations and 1,000 existing civil-day boundary properties. SDK/API/mobile typechecking and scoped lint/format pass. Exact-head CI and Sol medium review remain pending.
+
+Generation remains internal and is not a usable native/AI action yet. Private proposal reservation/recovery, current-constraint checks at approval, atomic persistence, replacement/selection UI and separate ingredient review remain unfinished. Tests use simulated provider responses through the real SDK and verify orchestration, not the model's ability to detect every dietary conflict. Live model/schema compatibility, dietary adequacy, prompt-injection resistance and hosted time/budget limits still need real validation with an approved provider configuration. No credentials, purchases or live provider calls were used.
+
 Meal proposal contracts `c2c0314` are merged and pushed to main after successful exact-head CI `35561147879` and clean Sol medium rereview. The saved-selection receipt finding was fixed before merge; generation, persistence and approval are still unfinished.
 
 The current retention slice supports complete one-off recipe snapshots with explicit null library provenance. Saved-library snapshots retain their existing representation and validation. Existing authenticated detail reads, SQLite cache, native recipe detail and leftover commands now accept the one-off shape without creating a hidden library definition. The gated additive migration preserves member-only reads and denies direct writes; it adds no approval endpoint or production writer. New generated snapshots will be written only by the future explicit proposal approval transaction.
@@ -14,7 +22,7 @@ Verification: 52 focused PostgreSQL, API, native client/cache and real HTTP/Post
 
 Sol found that single-slot change receipts did not identify the chosen saved recipe or distinguish selection from regeneration. The contract now discriminates the action and retains the definition ID and exact library baseline for selection, with focused strict-decoding regression coverage. Updated exact-head review and CI are required before merge.
 
-**M5 — Meals and week planning; branch `codex/one-off-recipe-retention`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
+**M5 — Meals and week planning; branch `codex/structured-meal-generation`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.
 

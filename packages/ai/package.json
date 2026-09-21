@@ -17,6 +17,7 @@
   "exports": {
     "./schema": "./src/schema.ts",
     "./tool": "./src/tool.ts",
-    "./chat": "./src/chat.ts"
+    "./chat": "./src/chat.ts",
+    "./structured": "./src/structured.ts"
   }
 }
