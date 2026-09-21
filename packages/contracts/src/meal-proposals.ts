@@ -188,3 +188,46 @@ export const MealProposalGenerationResult = Schema.Struct({
       receipt.familiarOnly === envelope.proposal.familiarOnly,
   ),
 );
+
+export const MealProposalEditCommand = Schema.Union([
+  Schema.Struct({ action: Schema.Literal("replace"), ...ReplaceProposalMeal.fields }),
+  Schema.Struct({ action: Schema.Literal("choose"), ...ChooseProposalRecipe.fields }),
+]);
+export const ReadMealProposalEdit = Schema.Struct({ operationId: Uuid });
+export const MealProposalEdit = Schema.Struct({
+  ...Owner,
+  command: MealProposalEditCommand,
+  expiresAt: Instant,
+  status: Schema.Literals(["pending", "applied", "failed"]),
+  failure: Schema.NullOr(
+    Schema.Literals(["unavailable", "constraints_changed", "no_suitable_meals"]),
+  ),
+  receipt: Schema.NullOr(MealProposalChangeReceipt),
+}).check(
+  Schema.makeFilter((value) => (value.status === "applied") === (value.receipt !== null)),
+  Schema.makeFilter((value) => (value.status === "failed") === (value.failure !== null)),
+  Schema.makeFilter((value) => {
+    const { receipt, command } = value;
+    if (!receipt) return true;
+    return (
+      receipt.actorId === value.actorId &&
+      receipt.householdId === value.householdId &&
+      receipt.operationId === command.operationId.toLowerCase() &&
+      receipt.proposalId === command.proposalId.toLowerCase() &&
+      receipt.entryId === command.entryId.toLowerCase() &&
+      receipt.previousRevision === command.expectedRevision &&
+      receipt.action === command.action
+    );
+  }),
+  Schema.makeFilter(({ receipt, command }) => {
+    if (!receipt) return true;
+    return (
+      command.action !== "choose" ||
+      (receipt.action === "choose" &&
+        receipt.definitionId === command.definitionId.toLowerCase() &&
+        receipt.expectedLibraryRevision === command.expectedLibraryRevision)
+    );
+  }),
+);
+export type MealProposalEditCommand = typeof MealProposalEditCommand.Type;
+export type MealProposalEdit = typeof MealProposalEdit.Type;
