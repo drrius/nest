@@ -107,7 +107,7 @@ function ProposalActions({ runtime, view }: { runtime: MealProposalRuntime; view
           void runtime.load();
         }}
       />
-      {done ? (
+      {done && !view.attempt?.edit ? (
         <NativeAction
           label="Plan again"
           disabled={view.busy || !view.fresh}
@@ -124,25 +124,22 @@ function ProposalActions({ runtime, view }: { runtime: MealProposalRuntime; view
 function PendingActions({ runtime, view }: { runtime: MealProposalRuntime; view: ProposalView }) {
   if (!view.attempt) return null;
   const continuing =
-    !!view.attempt.approval || view.attempt.discard !== null || view.proposal?.status !== "ready";
+    !!view.attempt.edit ||
+    !!view.attempt.approval ||
+    view.attempt.discard !== null ||
+    view.proposal?.status !== "ready";
   return (
     <>
       {continuing ? (
         <NativeAction
-          label={
-            view.attempt.approval
-              ? "Recover approval request"
-              : view.attempt.discard
-                ? "Recover discard request"
-                : "Continue saved request"
-          }
+          label={continueLabel(view)}
           disabled={view.busy}
           onPress={() => {
             void runtime.continue();
           }}
         />
       ) : null}
-      {!view.attempt.discard && !view.attempt.approval ? (
+      {!view.attempt.edit && !view.attempt.discard && !view.attempt.approval ? (
         <>
           <ApproveAction runtime={runtime} view={view} />
           <DiscardAction runtime={runtime} view={view} />
@@ -201,4 +198,11 @@ function DiscardAction({ runtime, view }: { runtime: MealProposalRuntime; view: 
       }}
     />
   );
+}
+
+function continueLabel(view: ProposalView) {
+  if (view.attempt?.edit) return "Continue saved meal edit";
+  if (view.attempt?.approval) return "Recover approval request";
+  if (view.attempt?.discard) return "Recover discard request";
+  return "Continue saved request";
 }

@@ -1,3 +1,4 @@
+import { ProposalEditRuntime, type ProposalEditTarget } from "./proposal-edit-runtime.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import type { MealProposal, MealProposalEnvelope } from "@nest/contracts/meal-proposals";
@@ -31,6 +32,7 @@ export class MealProposalRuntime {
     notice: null,
   };
   private client: Client;
+  private edits: ProposalEditRuntime;
   private account: OfflineAccount;
   private uuid: () => string;
   private disposed = false;
@@ -42,6 +44,16 @@ export class MealProposalRuntime {
     this.account = account;
     this.weekStart = weekStart;
     this.uuid = uuid;
+    this.edits = new ProposalEditRuntime({
+      account,
+      client: client.proposals.edits,
+      weekStart,
+      uuid,
+      view: this.getSnapshot,
+      publish: (patch) => this.publish(patch),
+      refresh: () => this.recover(),
+      run: (effect) => this.run(effect),
+    });
   }
   getSnapshot = () => this.view;
   subscribe = (listener: () => void) => {
@@ -76,8 +88,10 @@ export class MealProposalRuntime {
       const attempt = await this.run(store.readMealProposalAttempt(session, this.weekStart));
       const changed = attempt?.generation.operationId !== this.view.attempt?.generation.operationId;
       this.publish({ attempt, ...(changed ? { proposal: null, week: null } : {}) });
-      if (attempt?.proposalId) await this.recover();
-      else if (attempt)
+      if (attempt?.proposalId) {
+        await this.recover();
+        if (attempt.edit) await this.edits.recover();
+      } else if (attempt)
         this.publish({
           access: "ready",
           notice:
@@ -128,10 +142,12 @@ export class MealProposalRuntime {
   continue = () =>
     this.perform(async () => {
       if (this.view.access !== "ready" || !this.view.attempt) return;
-      if (this.view.attempt.approval) await this.retryApproval();
+      if (this.view.attempt.edit) await this.edits.send();
+      else if (this.view.attempt.approval) await this.retryApproval();
       else if (this.view.attempt.discard) await this.retryDiscard();
       else await this.generate();
     });
+  edit = (target: ProposalEditTarget) => this.perform(() => this.edits.start(target));
   private async reserve() {
     const attempt = this.view.attempt;
     if (!attempt || attempt.proposalId) return;
@@ -181,6 +197,7 @@ export class MealProposalRuntime {
         !proposal ||
         !this.view.fresh ||
         !this.view.attempt ||
+        this.view.attempt.edit ||
         this.view.attempt.discard ||
         this.view.attempt.approval ||
         (terminal(proposal) && proposal.status !== "failed")
@@ -213,6 +230,7 @@ export class MealProposalRuntime {
         proposal.status !== "ready" ||
         !this.view.fresh ||
         !this.view.attempt ||
+        this.view.attempt.edit ||
         this.view.attempt.discard ||
         this.view.attempt.approval ||
         this.view.access !== "ready"
@@ -296,7 +314,13 @@ export class MealProposalRuntime {
   }
   reset = () =>
     this.perform(async () => {
-      if (!this.view.fresh || !terminal(this.view.proposal) || !this.view.attempt) return;
+      if (
+        !this.view.fresh ||
+        !terminal(this.view.proposal) ||
+        !this.view.attempt ||
+        this.view.attempt.edit
+      )
+        return;
       const { store, session } = this.account;
       await this.run(
         store.clearMealProposalAttempt(session, {

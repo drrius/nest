@@ -5,6 +5,7 @@ import {
   MealProposalGenerationReceipt,
   DiscardMealProposal,
   ApproveMealProposal,
+  MealProposalEditCommand,
 } from "@nest/contracts/meal-proposals";
 import { MealProposalAttempt } from "../meals/proposal-attempt.ts";
 import { scoped } from "./session.ts";
@@ -86,7 +87,7 @@ export function stageProposalDiscard(
   return scoped(db, session, async (tx) => {
     const pending = await read(tx, session, target.weekStart);
     if (!pending || pending.proposalId !== command.proposalId) fail("invalid_input");
-    if (pending.approval) fail("pending_edit");
+    if (pending.approval || pending.edit) fail("pending_edit");
     if (pending.discard && !Schema.toEquivalence(DiscardMealProposal)(pending.discard, command))
       fail("pending_edit");
     return save(tx, session, { ...pending, discard: command });
@@ -134,6 +135,7 @@ export function stageProposalApproval(
     if (!pending || pending.proposalId !== command.proposalId) fail("invalid_input");
     if (
       pending.discard ||
+      pending.edit ||
       (pending.approval && !Schema.toEquivalence(ApproveMealProposal)(pending.approval, command))
     )
       fail("pending_edit");
@@ -151,6 +153,40 @@ export function clearProposalApproval(
     if (!pending?.approval) return pending;
     if (pending.approval.operationId !== target.operationId) fail("operation_reused");
     const { approval: _approval, ...rest } = pending;
+    return save(tx, session, rest);
+  });
+}
+
+export function stageProposalEdit(
+  db: Database,
+  session: Session,
+  target: { weekStart: string; command: MealProposalEditCommand },
+) {
+  const command = Schema.decodeUnknownSync(MealProposalEditCommand)(target.command, {
+    onExcessProperty: "error",
+  });
+  return scoped(db, session, async (tx) => {
+    const pending = await read(tx, session, target.weekStart);
+    if (!pending || pending.proposalId !== command.proposalId) fail("invalid_input");
+    if (
+      pending.discard ||
+      pending.approval ||
+      (pending.edit && !Schema.toEquivalence(MealProposalEditCommand)(pending.edit, command))
+    )
+      fail("pending_edit");
+    return save(tx, session, { ...pending, edit: command });
+  });
+}
+export function clearProposalEdit(
+  db: Database,
+  session: Session,
+  target: { weekStart: string; operationId: string },
+) {
+  return scoped(db, session, async (tx) => {
+    const pending = await read(tx, session, target.weekStart);
+    if (!pending?.edit) return pending;
+    if (pending.edit.operationId !== target.operationId) fail("operation_reused");
+    const { edit: _edit, ...rest } = pending;
     return save(tx, session, rest);
   });
 }

@@ -92,6 +92,14 @@ export const offlineLayer = (database: Database) =>
 
 function proposalStore(database: Database) {
   return {
+    stageProposalEdit: (
+      session: Session,
+      target: Parameters<typeof MealProposals.stageProposalEdit>[2],
+    ) => run(() => MealProposals.stageProposalEdit(database, session, target)),
+    clearProposalEdit: (
+      session: Session,
+      target: Parameters<typeof MealProposals.clearProposalEdit>[2],
+    ) => run(() => MealProposals.clearProposalEdit(database, session, target)),
     stageProposalApproval: (
       session: Session,
       target: Parameters<typeof MealProposals.stageProposalApproval>[2],

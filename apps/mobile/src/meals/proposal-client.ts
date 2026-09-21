@@ -1,3 +1,4 @@
+import { proposalEditClient } from "./proposal-edit-client.ts";
 import { approveMealProposal } from "./proposal-approval-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -47,6 +48,7 @@ export function mealProposalClient(
       return result;
     });
   return {
+    edits: proposalEditClient(request, generation, account),
     approve: (input: typeof ApproveMealProposal.Type) =>
       approveMealProposal(request, account, input),
     reserve: (input: GenerateMealProposal) =>

@@ -60,7 +60,7 @@ function Proposal({
   const [owner] = useState(() => mealProposalOwner(meals, account, weekStart, Crypto.randomUUID));
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   return runtime ? (
-    <ProposalPreview runtime={runtime} verify={verify} />
+    <ProposalPreview runtime={runtime} verify={verify} library={meals.library} />
   ) : (
     <Page>
       <Note>Opening your private proposal…</Note>

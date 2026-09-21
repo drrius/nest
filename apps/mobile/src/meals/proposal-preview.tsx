@@ -1,24 +1,30 @@
+import { ProposalEntryCard } from "./proposal-entry-card";
+import { ProposalSavedPicker } from "./proposal-saved-picker";
+import type { MealLibraryClient } from "./library-client";
+import type { ProposalEditTarget } from "./proposal-edit-runtime";
 import { useState, useSyncExternalStore } from "react";
 import { FlatList, View } from "react-native";
 import { Link } from "expo-router";
 import type { ProposedMeal } from "@nest/contracts/meal-proposals";
 import type { SavedMeal } from "@nest/contracts/meal-library";
-import { Page, Card, Note, Section } from "../components/page";
+import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { RecipeHeader, IngredientRow, RecipeFooter } from "./recipe-content";
 import { ProposalControls } from "./proposal-controls";
 import type { MealProposalRuntime } from "./proposal-runtime";
 import { space, useQuiet } from "../theme";
-const slotNames = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner" };
 export function ProposalPreview({
   runtime,
   verify,
+  library,
 }: {
   runtime: MealProposalRuntime;
   verify: () => void;
+  library: MealLibraryClient;
 }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot),
     colors = useQuiet();
+  const [picking, setPicking] = useState<ProposalEditTarget | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const chosen = view.proposal?.entries?.find((entry) => entry.entryId === selected);
   if (view.access === "verify")
@@ -34,6 +40,23 @@ export function ProposalPreview({
         />
       </Page>
     );
+  if (picking)
+    return (
+      <ProposalSavedPicker
+        client={library}
+        verify={verify}
+        close={() => setPicking(null)}
+        choose={(definitionId, expectedLibraryRevision) => {
+          setPicking(null);
+          void runtime.edit({
+            ...picking,
+            action: "choose",
+            definitionId,
+            expectedLibraryRevision,
+          });
+        }}
+      />
+    );
   if (chosen) return <ProposalRecipe entry={chosen} close={() => setSelected(null)} />;
   return (
     <FlatList
@@ -45,17 +68,13 @@ export function ProposalPreview({
       keyExtractor={(entry) => entry.entryId}
       ListHeaderComponent={<ProposalControls runtime={runtime} view={view} />}
       renderItem={({ item }) => (
-        <Card>
-          <Note>
-            {item.date} · {slotNames[item.slot]}
-          </Note>
-          <Section title={item.source.recipe.title} />
-          <Note>{item.source.kind === "saved" ? "Saved recipe" : "New suggestion"}</Note>
-          {item.estimatedCaloriesPerServing !== null ? (
-            <Note>About {item.estimatedCaloriesPerServing} kcal per serving · estimate</Note>
-          ) : null}
-          <NativeAction label="View recipe" onPress={() => setSelected(item.entryId)} />
-        </Card>
+        <ProposalEntryCard
+          entry={item}
+          view={view}
+          runtime={runtime}
+          open={() => setSelected(item.entryId)}
+          choose={setPicking}
+        />
       )}
       ListFooterComponent={
         <Link
