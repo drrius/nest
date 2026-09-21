@@ -60,7 +60,8 @@
     "./recurring-read": "./src/recurring-read.ts",
     "./recurring-save-read": "./src/recurring-save-read.ts",
     "./recurring-proposal": "./src/recurring-proposal.ts",
-    "./recurring-cycle": "./src/recurring-cycle.ts"
+    "./recurring-cycle": "./src/recurring-cycle.ts",
+    "./recurring-state": "./src/recurring-state.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
