@@ -1,3 +1,5 @@
+import * as RecurringSaves from "./recurring-saves.ts";
+import type { RecurringSaveAttempt } from "../money/recurring-save-attempt.ts";
 import * as CorrectionApprovals from "./correction-approvals.ts";
 import type { CorrectionApprovalAttempt } from "../money/correction-approval-attempt.ts";
 import * as CorrectionSaves from "./correction-saves.ts";
@@ -53,18 +55,14 @@ function run<A>(body: () => Promise<A>) {
 export function makeOfflineStore(database: Database) {
   return {
     initialize: run(() => initialize(database)),
+    ...recurringSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
     ...correctionApprovalStore(database),
     ...settlementSaveStore(database),
     ...refundSaveStore(database),
     ...correctionSaveStore(database),
-    readExpenseSave: (session: Session) =>
-      run(() => ExpenseSaves.readExpenseSave(database, session)),
-    stageExpenseSave: (session: Session, attempt: ExpenseSaveAttempt, current: () => boolean) =>
-      run(() => ExpenseSaves.stageExpenseSave(database, session, attempt, current)),
-    clearExpenseSave: (session: Session, attempt: ExpenseSaveAttempt) =>
-      run(() => ExpenseSaves.clearExpenseSave(database, session, attempt)),
+    ...expenseSaveStore(database),
     readExpenseApproval: (session: Session, approvalId: string) =>
       run(() => ExpenseApprovals.readExpenseApproval(database, session, approvalId)),
     stageExpenseApproval: (
@@ -270,6 +268,28 @@ function refundApprovalStore(database: Database) {
     ) => run(() => RefundApprovals.stageRefundApproval(database, session, attempt, current)),
     clearRefundApproval: (session: Session, attempt: RefundApprovalAttempt) =>
       run(() => RefundApprovals.clearRefundApproval(database, session, attempt)),
+  };
+}
+
+function expenseSaveStore(database: Database) {
+  return {
+    readExpenseSave: (session: Session) =>
+      run(() => ExpenseSaves.readExpenseSave(database, session)),
+    stageExpenseSave: (session: Session, attempt: ExpenseSaveAttempt, current: () => boolean) =>
+      run(() => ExpenseSaves.stageExpenseSave(database, session, attempt, current)),
+    clearExpenseSave: (session: Session, attempt: ExpenseSaveAttempt) =>
+      run(() => ExpenseSaves.clearExpenseSave(database, session, attempt)),
+  };
+}
+
+function recurringSaveStore(database: Database) {
+  return {
+    readRecurringSave: (session: Session) =>
+      run(() => RecurringSaves.readRecurringSave(database, session)),
+    stageRecurringSave: (session: Session, attempt: RecurringSaveAttempt, current: () => boolean) =>
+      run(() => RecurringSaves.stageRecurringSave(database, session, attempt, current)),
+    clearRecurringSave: (session: Session, attempt: RecurringSaveAttempt) =>
+      run(() => RecurringSaves.clearRecurringSave(database, session, attempt)),
   };
 }
 
