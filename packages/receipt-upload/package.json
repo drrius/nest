@@ -1,0 +1,20 @@
+{
+  "name": "@nest/receipt-upload",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "dependencies": {
+    "effect": "4.0.0-rc.115",
+    "jpeg-js": "0.4.4"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
+  },
+  "exports": {
+    "./inspect": "./src/inspect.ts"
+  }
+}

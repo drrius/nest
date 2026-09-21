@@ -1,0 +1,23 @@
+{
+  "repository": "drrius/household-os",
+  "commit": "4a528c96caf41515a70291ccecbba9d7b35e3349",
+  "audit": "JPEG parsing refactored to Nest complexity limits; tests adapted to Node; fixture bytes unchanged. Handler not reused. PDF signature validation is not PDF parsing or malware scanning.",
+  "files": [
+    {
+      "source": "supabase/functions/household-attachment-upload/inspect.ts",
+      "sha256": "1327ea7f94c375888d3f09a84f962cffc21142c8f471f631d5f319bb4c9fea61"
+    },
+    {
+      "source": "src/lib/attachments/jpeg-inspection.test.ts",
+      "sha256": "188a527195b5cab6d74860d5a893219f916b217b74ce218fc8f17d355bfc6396"
+    },
+    {
+      "source": "tests/fixtures/attachments/progressive.jpg",
+      "sha256": "95df7e041e557d8e8d288609341145999e7cad27fe52564348f3d97ba2bdad8f"
+    },
+    {
+      "source": "tests/fixtures/attachments/restarts.jpg",
+      "sha256": "409309ce12ba25cdcf7cde061ffbe31fae08f56359dc6d4e80bb95db0c2843a3"
+    }
+  ]
+}

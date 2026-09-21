@@ -18,3 +18,9 @@ Five focused PostgreSQL cases pass, including twelve concurrent claim/cleanup ra
 - Use the Storage API for real uploads/downloads/deletions; do not mutate Storage metadata directly. Claimed financial attachments must remain retained. Uncertain upload/cleanup outcomes need explicit reconciliation before retry or abandonment.
 
 Current [Storage access-control documentation](https://supabase.com/docs/guides/storage/security/access-control) confirms the distinct insert/select/update permissions and service-key bypass. The [Storage schema documentation](https://supabase.com/docs/guides/storage/schema/design) requires API operations for actual objects. The official changelog was checked on 21 September 2026. Native transport, file selection/preview, complete upload/download integration and physical-device verification remain work to implement; this audit does not mark optional receipts complete.
+
+## Byte inspector adaptation
+
+`packages/receipt-upload` adapts only the audited legacy inspector and meaningful malformed-JPEG cases, with source and fixture hashes in `tests/fixtures/provenance.json`. JPEG parsing is factored to enforce Nest limits without accepting truncated entropy or trailing bytes; the actual pinned decoder is used in tests. A bounded Effect body reader retains at most a fixed 4 MiB input buffer plus its returned copy, avoiding an unbounded list of tiny chunks. PDF acceptance remains signature-only. No privileged writer, legacy upload handler, remote deployment defaults or production data was copied.
+
+The forthcoming upload writer must verify exact stored content before returning recovery success. Legacy path-only reservation is insufficient for changed-byte retries. A successful upload alone must not claim an expense was saved; native Save and AI financial approval retain their existing gates.
