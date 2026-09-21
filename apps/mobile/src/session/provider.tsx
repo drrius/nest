@@ -139,7 +139,12 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
     return {
       routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),
       meals: sessionMeals(auth, { actor, household }, configuration.apiUrl),
-      money: sessionMoney(auth, { actor, household }, configuration.apiUrl),
+      money: sessionMoney(
+        auth,
+        { actor, household },
+        configuration.apiUrl,
+        configuration.supabaseUrl,
+      ),
       setup: sessionSetup(auth, { actor, household }, configuration.apiUrl),
       notification: sessionNotification(auth, { actor, household }, configuration.apiUrl),
       calendar: sessionCalendar(auth, { actor, household }, configuration.apiUrl),

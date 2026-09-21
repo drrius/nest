@@ -1,3 +1,4 @@
+import { receiptClient } from "./receipt-client.ts";
 import { correctionApprovalClient } from "./correction-approval-client.ts";
 import { correctionClient } from "./correction-client.ts";
 import { refundApprovalClient } from "./refund-approval-client.ts";
@@ -22,6 +23,7 @@ export function moneyClient(
   apiUrl: string,
   account: Account,
   credentials: Effect.Effect<Credentials, ChoreFailure>,
+  storageOrigin?: string,
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   const scoped = <A extends { householdId: string }>(path: string, schema: Schema.Codec<A>) =>
@@ -33,6 +35,7 @@ export function moneyClient(
       ),
     );
   return {
+    ...receiptClient(apiUrl, account, credentials, storageOrigin),
     ...correctionApprovalClient(apiUrl, account, credentials),
     ...correctionClient(apiUrl, account, credentials),
     ...expenseApprovalClient(apiUrl, account, credentials),

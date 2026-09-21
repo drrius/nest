@@ -1,3 +1,4 @@
+import type { ReceiptTarget } from "@nest/contracts/receipt";
 import type { CorrectionDecision } from "../money/correction-approval-client";
 import type { CorrectionSave } from "../money/correction-client";
 import type { RefundDecision } from "../money/refund-approval-client";
@@ -13,9 +14,18 @@ import { moneyClient } from "../money/client";
 import type { Account } from "../offline/contracts";
 import { sessionCredentials } from "./credentials";
 import type { ExpenseDecision } from "../money/approval-client";
-export function sessionMoney(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
-  const client = moneyClient(apiUrl, account, sessionCredentials(auth));
+export function sessionMoney(
+  auth: SupabaseClient["auth"],
+  account: Account,
+  apiUrl: string,
+  storageOrigin: string,
+) {
+  const client = moneyClient(apiUrl, account, sessionCredentials(auth), storageOrigin);
   return {
+    receipt: (target: ReceiptTarget) =>
+      client.receipt(target).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    receiptLink: (target: ReceiptTarget) =>
+      client.receiptLink(target).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     correctionApproval: (approvalId: string) =>
       client
         .correctionApproval(approvalId)

@@ -51,7 +51,8 @@
     "./correction-approval": "./src/correction-approval.ts",
     "./correction-context": "./src/correction-context.ts",
     "./correction": "./src/correction.ts",
-    "./refund": "./src/refund.ts"
+    "./refund": "./src/refund.ts",
+    "./receipt": "./src/receipt.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

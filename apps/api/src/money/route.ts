@@ -1,3 +1,4 @@
+import { receiptRoute } from "./receipt-route.ts";
 import { correctionRoute } from "./correction-route.ts";
 import { refundRoute } from "./refund-route.ts";
 import { readSettlementSave, cancelSettlementSave } from "./settlement-save-read.ts";
@@ -43,6 +44,7 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
 }
 function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
+  if (url.pathname.startsWith("/v1/money/receipt")) return receiptRoute(url, config, caller);
   if (url.pathname.startsWith("/v1/money/categor")) return categoryRoute(url, config, caller);
   if (url.pathname === "/v1/money/balance")
     return params.size
