@@ -40,11 +40,11 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
         ? commands.execute(input)
         : commands.save(input);
     });
+  if (url.pathname.startsWith("/v1/money/receipt")) return receiptRoute(request, config, caller);
   return readRoute(url, config, caller);
 }
 function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
-  if (url.pathname.startsWith("/v1/money/receipt")) return receiptRoute(url, config, caller);
   if (url.pathname.startsWith("/v1/money/categor")) return categoryRoute(url, config, caller);
   if (url.pathname === "/v1/money/balance")
     return params.size
