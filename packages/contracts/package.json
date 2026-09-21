@@ -61,6 +61,7 @@
     "./recurring-read": "./src/recurring-read.ts",
     "./recurring-save-read": "./src/recurring-save-read.ts",
     "./recurring-proposal": "./src/recurring-proposal.ts",
+    "./recurring-variable": "./src/recurring-variable.ts",
     "./recurring-cycle": "./src/recurring-cycle.ts",
     "./recurring-state": "./src/recurring-state.ts",
     "./recurring-resume": "./src/recurring-resume.ts",
