@@ -35,6 +35,10 @@ export function MoneyHeader({
         ) : null}
         <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} />
       </Section>
+      <NativeAction
+        label="Review receipt uploads"
+        onPress={() => router.push("/receipt-uploads")}
+      />
       <NativeAction label="Record an expense" onPress={() => router.push("/expense-entry")} />
       <NativeAction label="Record a settlement" onPress={() => router.push("/settlement-entry")} />
       <Section title="History">

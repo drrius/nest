@@ -1,3 +1,6 @@
+import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { ReceiptRecoveryRuntime } from "../../apps/mobile/src/money/receipt-recovery-runtime.ts";
+import { receiptRecoveryOperations } from "../../apps/mobile/src/money/receipt-recovery-operations.ts";
 import { createRequire } from "node:module";
 import { moneyClient } from "../../apps/mobile/src/money/client.ts";
 import assert from "node:assert/strict";
@@ -80,5 +83,31 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
   );
   assert.equal((await run(client.receiptUploads())).uploads[0].status, "deleting");
   assert.equal(f.db.sql("select count(*) from storage.objects"), "1");
+  await verifyRecoveryRuntime(t, client, run);
   assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
 });
+
+async function verifyRecoveryRuntime(t, client, run) {
+  const local = await sqlite(t);
+  const session = await run(local.store.activate({ actor: id(1), household: id(10) }, id(999)));
+  const scopedClient = {
+    ...client,
+    receiptUploads: (after) =>
+      client.receiptUploads(after).pipe(Effect.provideService(Fetch.Fetch, fetch)),
+    cleanupReceipt: (input) =>
+      client.cleanupReceipt(input).pipe(Effect.provideService(Fetch.Fetch, fetch)),
+  };
+  const runtime = new ReceiptRecoveryRuntime(
+    receiptRecoveryOperations({ store: local.store, session }, scopedClient),
+  );
+  await runtime.setOnline(true);
+  await runtime.setActive(true);
+  const row = runtime.getSnapshot().page.uploads[0];
+  assert.equal(row.status, "deleting");
+  await runtime.remove(row);
+  assert.equal(runtime.getSnapshot().page, null);
+  assert.match(runtime.getSnapshot().notice, /Could not confirm/);
+  await runtime.refresh();
+  assert.equal(runtime.getSnapshot().page.uploads[0].status, "deleting");
+  runtime.dispose();
+}
