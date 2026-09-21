@@ -11,6 +11,7 @@ const migrations = [
   "supabase/migrations/20260921211106_native_recurring_state_recovery.sql",
   "supabase/migrations/20260921215304_native_recurring_resume_command.sql",
   "supabase/migrations/20260921221542_native_recurring_resume_approval.sql",
+  "supabase/migrations/20260921222050_native_recurring_resume_review_fence.sql",
 ];
 for (const approved of [true, false]) {
   test(`recurring resumption ${approved ? "approval" : "denial"} recovers lost acknowledgment through fresh native client`, async (t) => {

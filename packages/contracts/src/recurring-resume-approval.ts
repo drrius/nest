@@ -1,4 +1,5 @@
 import * as Schema from "effect/Schema";
+import { CalendarDate } from "./chores.ts";
 import {
   ExecuteRecurringResume,
   RecurringResumeInput,
@@ -21,6 +22,7 @@ export const RecurringResumeApproval = Schema.Struct({
   change: RecurringResumeInput,
   status: Schema.Literals(["pending", "approved", "denied", "consumed"]),
   expiresAt: Timestamp,
+  reviewedOn: CalendarDate,
   receipt: Schema.NullOr(RecurringResumeReceipt),
 }).check(
   Schema.makeFilter((value) => {

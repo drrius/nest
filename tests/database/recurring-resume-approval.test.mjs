@@ -12,6 +12,7 @@ function setup(t) {
     "20260921211106_native_recurring_state_recovery",
     "20260921215304_native_recurring_resume_command",
     "20260921221542_native_recurring_resume_approval",
+    "20260921222050_native_recurring_resume_review_fence",
   ])
     f.db.file(`supabase/migrations/${name}.sql`);
   const input = f.input(100),
@@ -111,5 +112,52 @@ test("resumption receipt failure and stale revision roll back approval; supersed
   assert.equal(read(db, decide(202, change, approval, false)).approval.status, "denied");
   assert.equal(db.sql("select status from public.nest_recurring_rules"), "paused");
   assert.equal(db.sql("select count(*) from public.nest_recurring_revisions"), "3");
+  assert.equal(db.sql("select count(*) from public.financial_events"), "0");
+});
+test("fenced review waits for an in-flight successful decision and returns its receipt", async (t) => {
+  const { db, change } = setup(t),
+    approval = propose(db, 202, change);
+  const committing = db.concurrent(
+    as(
+      1,
+      `set application_name='resume-review-commit'; begin; ${decide(202, change, approval)}; select pg_sleep(0.8); commit`,
+    ),
+  );
+  const deadline = Date.now() + 3000;
+  while (
+    db.sql(
+      "select count(*) from pg_stat_activity where application_name='resume-review-commit' and wait_event='PgSleep'",
+    ) !== "1"
+  ) {
+    assert.ok(Date.now() < deadline, "decision must reach its uncommitted hold");
+    await new Promise((resolve) => setTimeout(resolve, 10));
+  }
+  const result = await db.concurrent(as(1, query(approval)));
+  await committing;
+  const reviewed = JSON.parse(result.stdout);
+  assert.equal(reviewed.approval.status, "consumed");
+  assert.equal(reviewed.approval.receipt.status, "active");
+  assert.equal(
+    reviewed.approval.reviewedOn,
+    db.sql("select to_char((clock_timestamp() at time zone 'Europe/Zurich')::date,'YYYY-MM-DD')"),
+  );
+  assert.equal(Schema.is(RecurringResumeApprovalEnvelope)(reviewed), true);
+});
+test("fenced review reports a past date for uncommitted intent, after which resumption cannot succeed and denial remains explicit", async (t) => {
+  const { db, change } = setup(t);
+  const yesterday = db.sql(
+    "select to_char((clock_timestamp() at time zone 'Europe/Zurich')::date-1,'YYYY-MM-DD')",
+  );
+  const stale = { ...change, resumeFrom: yesterday };
+  const approval = propose(db, 202, stale);
+  const reviewed = read(db, query(approval));
+  const { resumeDatePassed } =
+    await import("../../apps/mobile/src/money/recurring-resume-review.ts");
+  assert.equal(resumeDatePassed(reviewed.approval), true);
+  assert.equal(reviewed.approval.status, "pending");
+  assert.throws(() => read(db, decide(202, stale, approval)));
+  assert.equal(read(db, decide(202, stale, approval, false)).approval.status, "denied");
+  assert.equal(db.sql("select status from public.nest_recurring_rules"), "paused");
+  assert.equal(db.sql("select count(*) from public.nest_recurring_revisions"), "2");
   assert.equal(db.sql("select count(*) from public.financial_events"), "0");
 });
