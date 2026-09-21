@@ -1,3 +1,4 @@
+import type { RecurringStateDecision } from "../money/recurring-state-approval-client";
 import type { RecurringDecision } from "../money/recurring-approval-client";
 import type { RecurringStateSave } from "../money/recurring-state-client";
 import type { RecurringSave } from "../money/recurring-client";
@@ -102,6 +103,12 @@ export function sessionMoney(
 
 function sessionRecurring(client: MoneyClient) {
   return {
+    recurringStateApproval: (approvalId: string) =>
+      client
+        .recurringStateApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideRecurringState: (input: RecurringStateDecision) =>
+      client.decideRecurringState(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveRecurringState: (input: RecurringStateSave) =>
       client.saveRecurringState(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverRecurringState: (input: RecurringStateSave) =>

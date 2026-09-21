@@ -1,3 +1,4 @@
+import { recurringStateApprovalClient } from "./recurring-state-approval-client.ts";
 import { recurringApprovalClient } from "./recurring-approval-client.ts";
 import { recurringStateClient } from "./recurring-state-client.ts";
 import * as Effect from "effect/Effect";
@@ -30,6 +31,7 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...recurringStateApprovalClient(apiUrl, account, credentials),
     ...recurringStateClient(apiUrl, account, credentials),
     ...recurringApprovalClient(apiUrl, account, credentials),
     ...recurringRecoveryClient(apiUrl, account, credentials),
