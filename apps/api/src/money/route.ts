@@ -1,3 +1,5 @@
+import { expenseCommands } from "./expense.ts";
+import { commandBody } from "../request-body.ts";
 import { readMoneyDetail } from "./detail.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
@@ -8,6 +10,15 @@ import { readMoneyHistory } from "./history.ts";
 export function moneyRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url),
     params = url.searchParams;
+  if (url.pathname === "/v1/money/expense/save" || url.pathname === "/v1/money/expense/execute")
+    return Effect.gen(function* () {
+      if (params.size) return yield* new ApiFailure({ code: "invalid_request" });
+      const commands = expenseCommands(config, caller);
+      const input = yield* commandBody(request, 65536);
+      return yield* url.pathname.endsWith("/execute")
+        ? commands.execute(input)
+        : commands.save(input);
+    });
   if (url.pathname === "/v1/money/balance")
     return params.size
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
