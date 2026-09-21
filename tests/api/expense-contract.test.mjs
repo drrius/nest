@@ -24,6 +24,7 @@ test("expense schema preserves 1000 exact percentage allocations including the s
 });
 test("expense contract rejects malformed money, hidden origin, false approval and mismatched roster", () => {
   for (const value of [
+    payload({ note: "x".repeat(4001) }),
     payload({ origin: "ui" }),
     payload({ amountCentimes: 101 }),
     payload({ amountCentimes: "9007199254740992" }),
@@ -54,4 +55,12 @@ test("expense contract rejects malformed money, hidden origin, false approval an
       expense: payload(),
     }),
   );
+});
+
+test("expense text limits count Unicode codepoints consistently with retained PostgreSQL fields", () => {
+  const value = payload({ description: "😀".repeat(200), note: "😀".repeat(4000) });
+  assert.deepEqual(decode(ExpenseInput, value), value);
+  assert.throws(() => decode(ExpenseInput, payload({ description: "😀".repeat(201) })));
+  assert.throws(() => decode(ExpenseInput, payload({ note: "😀".repeat(4001) })));
+  assert.throws(() => decode(ExpenseInput, payload({ description: "\u00a0\u2000\ufeff" })));
 });

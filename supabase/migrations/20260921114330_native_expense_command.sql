@@ -19,17 +19,17 @@ before update or delete on public.nest_expense_receipts
 for each row execute function private.reject_financial_history_change();
 
 create function private.nest_expense_payload(p_payload jsonb,p_household uuid)
-returns jsonb language plpgsql stable set search_path='' as $$
+returns jsonb language plpgsql set search_path='' as $$
 declare v_amount bigint; v_date date; v_item jsonb; v_allocations jsonb:='[]'; v_category uuid;
 begin
   if p_payload is null or jsonb_typeof(p_payload) is distinct from 'object'
-    or octet_length(p_payload::text)>16384
+    or octet_length(p_payload::text)>32768
     or not p_payload ?& array['description','amountCentimes','payerId','allocations','date','note','categoryId']
     or p_payload-array['description','amountCentimes','payerId','allocations','date','note','categoryId']<>'{}'::jsonb then
     raise exception 'Invalid expense payload' using errcode='22023';
   end if;
   if jsonb_typeof(p_payload->'description') is distinct from 'string'
-    or length(p_payload->>'description') not between 1 and 200 or btrim(p_payload->>'description')=''
+    or length(p_payload->>'description') not between 1 and 200 or btrim(p_payload->>'description',U&'\0009\000A\000B\000C\000D\0020\00A0\1680\2000\2001\2002\2003\2004\2005\2006\2007\2008\2009\200A\2028\2029\202F\205F\3000\FEFF')=''
     or jsonb_typeof(p_payload->'amountCentimes') is distinct from 'string'
     or (p_payload->>'amountCentimes') !~ '^(0|[1-9][0-9]{0,15})$'
     or jsonb_typeof(p_payload->'payerId') is distinct from 'string'
@@ -37,7 +37,7 @@ begin
     or jsonb_typeof(p_payload->'date') is distinct from 'string'
     or (p_payload->>'date') !~ '^[0-9]{4}-[0-9]{2}-[0-9]{2}$'
     or jsonb_typeof(p_payload->'note') not in ('null','string')
-    or length(p_payload->>'note')>8000
+    or length(p_payload->>'note')>4000
     or jsonb_typeof(p_payload->'categoryId') not in ('null','string') then
     raise exception 'Invalid expense fields' using errcode='22023';
   end if;
@@ -67,8 +67,9 @@ begin
     raise exception 'Invalid expense payer' using errcode='22023';
   end if;
   v_category:=(p_payload->>'categoryId')::uuid;
-  if v_category is not null and not exists(select 1 from public.expense_categories where household_id=p_household and id=v_category and archived_at is null) then
-    raise exception 'Expense category unavailable' using errcode='40001';
+  if v_category is not null then
+    perform 1 from public.expense_categories where household_id=p_household and id=v_category and archived_at is null for share;
+    if not found then raise exception 'Expense category unavailable' using errcode='40001'; end if;
   end if;
   return v_allocations;
 exception when invalid_text_representation or datetime_field_overflow or invalid_datetime_format or numeric_value_out_of_range then
@@ -85,7 +86,7 @@ begin
   if v_actor is null then raise exception 'Not authorized' using errcode='42501'; end if;
   perform 1 from public.household_members where household_id=p_household and user_id=v_actor for key share;
   if not found then raise exception 'Not authorized' using errcode='42501'; end if;
-  if p_operation is null or p_payload is null or octet_length(p_payload::text)>16384 then
+  if p_operation is null or p_payload is null or octet_length(p_payload::text)>32768 then
     raise exception 'Invalid expense command' using errcode='22023';
   end if;
   perform pg_advisory_xact_lock(hashtextextended('nest:expense:'||v_actor::text||':'||p_household::text||':'||p_operation::text,0));
@@ -99,9 +100,10 @@ begin
   perform 1 from public.household_members where household_id=p_household order by user_id for key share;
   get diagnostics v_members=row_count;
   if v_members<>2 then raise exception 'Expense requires two members' using errcode='23514'; end if;
-  v_allocations:=private.nest_expense_payload(p_payload,p_household);
-  -- Wait before checking expiry. No delayed ledger lock can outlive approval validity.
+  -- Consistent lock order: ledger, selected category, approval. Category archive
+  -- cannot invalidate a checked selection while the expense waits or commits.
   perform private.lock_household_ledger(p_household);
+  v_allocations:=private.nest_expense_payload(p_payload,p_household);
   if p_approval is not null then
     perform private.nest_consume_action_approval(p_approval,p_household,p_operation,'expenses.record',1,p_payload);
   end if;

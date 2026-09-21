@@ -10,14 +10,14 @@ const Share = Schema.Struct({ memberId: Uuid, centimes: Nonnegative });
 const fields = {
   description: Text.check(
     Schema.isMinLength(1),
-    Schema.isMaxLength(200),
+    Schema.makeFilter((value) => Array.from(value).length <= 200),
     Schema.makeFilter((value) => value.trim().length > 0),
   ),
   amountCentimes: Nonnegative,
   payerId: Uuid,
   allocations: Schema.Tuple([Share, Share]),
   date: CalendarDate,
-  note: Schema.NullOr(Text.check(Schema.isMaxLength(8000))),
+  note: Schema.NullOr(Text.check(Schema.makeFilter((value) => Array.from(value).length <= 4000))),
   categoryId: Schema.NullOr(Uuid),
 };
 function balanced(input: {

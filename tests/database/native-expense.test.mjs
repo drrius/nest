@@ -132,6 +132,7 @@ test("strict direct RPC validation rejects malformed fields and allocation arith
   const invalid = [
     null,
     {},
+    payload({ note: "x".repeat(4001) }),
     payload({ origin: "ui" }),
     payload({ amountCentimes: 101 }),
     payload({ amountCentimes: "01" }),
@@ -229,4 +230,46 @@ test("category selection requires an active household category while a committed
   db.sql(`update public.expense_categories set archived_at=now() where id='${id(700)}'`);
   assert.deepEqual(result(save(700, value)), receipt);
   assert.throws(() => result(save(702, value)), /category unavailable/);
+});
+
+test("category archived while expense waits for ledger lock conflicts without any write", async () => {
+  db.sql(
+    `insert into public.expense_categories(id,household_id,name,sort_order) values ('${id(800)}','${id(10)}','Category race',0)`,
+  );
+  const before = count(db);
+  const holder = db.concurrent(
+    `set application_name='category-holder'; begin; select private.lock_household_ledger('${id(10)}'); select pg_sleep(1); commit;`,
+  );
+  await waiting("category-holder", "PgSleep");
+  const writer = db
+    .concurrent(
+      `set application_name='category-writer'; ${as(1, save(800, payload({ categoryId: id(800) })))}`,
+    )
+    .then(
+      () => null,
+      (error) => error,
+    );
+  await waiting("category-writer", "advisory");
+  db.sql(`update public.expense_categories set archived_at=now() where id='${id(800)}'`);
+  await holder;
+  assert.match(String(await writer), /category unavailable/);
+  assert.equal(count(db), before);
+  const boundary = result(save(801, payload({ note: "x".repeat(4000) })));
+  assert.equal(boundary.expense.note.length, 4000);
+});
+
+test("SQL text validation matches Unicode codepoint boundaries and rejects every JS blank character", () => {
+  const before = count(db);
+  for (const description of [
+    "\u00a0",
+    "\ufeff",
+    "\t\n",
+    "\u1680\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000",
+    "😀".repeat(201),
+  ])
+    assert.throws(() => result(save(900, payload({ description }))), /Invalid expense fields/);
+  assert.throws(() => result(save(900, payload({ note: "😀".repeat(4001) }))), /Invalid expense/);
+  assert.equal(count(db), before);
+  const value = payload({ description: "😀".repeat(200), note: "😀".repeat(4000) });
+  assert.deepEqual(result(save(901, value)).expense, value);
 });
