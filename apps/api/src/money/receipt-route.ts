@@ -1,3 +1,4 @@
+import { readReceiptUploads } from "./receipt-recovery.ts";
 import { cleanupReceipt } from "./receipt-cleanup.ts";
 import { commandBody } from "../request-body.ts";
 import * as Effect from "effect/Effect";
@@ -8,6 +9,11 @@ import { readReceipt, receiptLink } from "./receipt.ts";
 export function receiptRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url),
     query = url.searchParams;
+  if (url.pathname.endsWith("/uploads")) {
+    if (query.size > 1 || [...query.keys()].some((key) => key !== "after"))
+      return Effect.fail(new ApiFailure({ code: "invalid_request" }));
+    return readReceiptUploads(config, caller, { after: query.get("after") });
+  }
   if (url.pathname.endsWith("/cleanup"))
     return Effect.gen(function* () {
       if (query.size) return yield* new ApiFailure({ code: "invalid_request" });

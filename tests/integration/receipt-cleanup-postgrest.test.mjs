@@ -14,6 +14,7 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
     ...files,
     "supabase/migrations/20260921173626_native_receipt_upload_identity.sql",
     "supabase/migrations/20260921182441_native_receipt_cleanup.sql",
+    "supabase/migrations/20260921184008_native_receipt_recovery.sql",
     "tests/integration/food-postgrest.sql",
   ]);
   const server = nodeServer(
@@ -64,6 +65,11 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
   f.db.sql(
     `insert into storage.objects(bucket_id,name,metadata) values('household-files','${path}','{"mimetype":"image/jpeg","size":128}')`,
   );
+  const recovery = await run(client.receiptUploads());
+  assert.equal(recovery.uploads.length, 1);
+  assert.equal(recovery.uploads[0].uploadId, id(101));
+  assert.equal(recovery.uploads[0].status, "pending");
+  assert.equal(recovery.uploads[0].stored, true);
   // This fixture has no working Storage endpoint; the real API must keep the object unresolved.
   await assert.rejects(run(client.cleanupReceipt(input(101))), { code: "conflict" });
   const unresolved = await request(101);
@@ -72,6 +78,7 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
     f.db.sql(`select state from public.household_attachment_uploads where path='${path}'`),
     "deleting",
   );
+  assert.equal((await run(client.receiptUploads())).uploads[0].status, "deleting");
   assert.equal(f.db.sql("select count(*) from storage.objects"), "1");
   assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
 });

@@ -53,7 +53,8 @@
     "./correction": "./src/correction.ts",
     "./refund": "./src/refund.ts",
     "./receipt": "./src/receipt.ts",
-    "./receipt-upload": "./src/receipt-upload.ts"
+    "./receipt-upload": "./src/receipt-upload.ts",
+    "./receipt-recovery": "./src/receipt-recovery.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
