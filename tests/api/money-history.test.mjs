@@ -13,6 +13,8 @@ const row = (n) => ({
   kind: "expense",
   occurredOn: "2026-09-21",
   createdAt: "2026-09-21T12:00:00.000001Z",
+  occurredOrder: "9760",
+  createdOrder: "1790000000000001",
   description: "Food",
   amountCentimes: "101",
   createdBy: id(1),
@@ -37,6 +39,14 @@ test("history boundary rejects malformed authority, response identity/order and 
     { ...good, next: id(100) },
     { ...good, events: [row(100), row(100)] },
     { ...good, events: [row(100), row(101)] },
+    { ...good, events: [row(100), { ...row(99), occurredOrder: "9761" }] },
+    { ...good, events: [{ ...row(100), createdOrder: "1e20" }] },
+    ...["2026-02-29", "0000-01-01", "10000-13-01", "infinity\n", "2026-09-21\n"].map(
+      (occurredOn) => ({ ...good, events: [{ ...row(100), occurredOn }] }),
+    ),
+    ...["2026-09-21T24:00:00.000000Z", "2026-02-29T12:00:00.000000Z", "infinity\n"].map(
+      (createdAt) => ({ ...good, events: [{ ...row(100), createdAt }] }),
+    ),
     { ...good, events: [{ ...row(100), receiptPath: "private" }] },
     { ...good, events: [{ ...row(100), amountCentimes: "-1" }] },
     { ...good, events: [{ ...row(100), kind: "reversal" }] },

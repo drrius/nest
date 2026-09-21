@@ -1,7 +1,6 @@
 import * as Schema from "effect/Schema";
-import { CalendarDate } from "./chores.ts";
-import { RoutineVersion } from "./routines.ts";
 import { SignedCentimes } from "./money.ts";
+import { MoneyDate, MoneyTime, MoneyOrder, compareMoneyOrder } from "./money-time.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
 export const MoneyHistoryQuery = Schema.Struct({ before: Schema.NullOr(Uuid) });
 export const MoneyEventSummary = Schema.Struct({
@@ -14,8 +13,10 @@ export const MoneyEventSummary = Schema.Struct({
     "reversal",
     "replacement",
   ]),
-  occurredOn: CalendarDate,
-  createdAt: RoutineVersion,
+  occurredOn: MoneyDate,
+  createdAt: MoneyTime,
+  occurredOrder: MoneyOrder,
+  createdOrder: MoneyOrder,
   description: Schema.NonEmptyString.check(Schema.isMaxLength(400)),
   amountCentimes: SignedCentimes.check(Schema.makeFilter((value) => BigInt(value) >= 0n)),
   createdBy: Uuid,
@@ -50,8 +51,8 @@ export const MoneyHistory = Schema.Struct({
   ),
 );
 function historyOrder(a: typeof MoneyEventSummary.Type, b: typeof MoneyEventSummary.Type) {
-  for (const key of ["occurredOn", "createdAt", "eventId"] as const) {
-    if (a[key] !== b[key]) return a[key] > b[key] ? 1 : -1;
+  for (const key of ["occurredOrder", "createdOrder"] as const) {
+    if (a[key] !== b[key]) return compareMoneyOrder(a[key], b[key]);
   }
-  return 0;
+  return a.eventId === b.eventId ? 0 : a.eventId > b.eventId ? 1 : -1;
 }

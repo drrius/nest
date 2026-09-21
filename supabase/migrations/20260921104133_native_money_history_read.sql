@@ -13,7 +13,12 @@ begin
   end if;
   select coalesce(jsonb_agg(jsonb_build_object(
     'eventId',e.id,'kind',e.type,'occurredOn',e.occurred_on::text,
-    'createdAt',to_char(e.created_at at time zone 'UTC','YYYY-MM-DD"T"HH24:MI:SS.US"Z"'),
+    'createdAt',case when isfinite(e.created_at) then
+      to_char(e.created_at at time zone 'UTC','YYYY-MM-DD"T"HH24:MI:SS.US"Z"') ||
+        case when extract(year from e.created_at at time zone 'UTC')<0 then ' BC' else '' end
+      else e.created_at::text end,
+    'occurredOrder',case when isfinite(e.occurred_on) then (e.occurred_on-date '2000-01-01')::text else e.occurred_on::text end,
+    'createdOrder',case when isfinite(e.created_at) then (extract(epoch from e.created_at)*1000000)::numeric(30,0)::text else e.created_at::text end,
     'description',e.description,'amountCentimes',e.amount_cents::text,
     'createdBy',e.created_by_member_id,'payerId',e.payer_member_id,
     'relatedEventId',e.related_event_id,'hasReceipt',e.receipt_path is not null
