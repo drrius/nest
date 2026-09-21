@@ -74,6 +74,11 @@ function ReplacementContent({
       ) : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
       <MealReplacementForm runtime={runtime} view={view} />
+      <NativeAction
+        label="Choose a saved recipe"
+        disabled={view.busy || view.stage !== "ready" || !!view.receipt}
+        onPress={() => router.push({ pathname: "/recipe-select", params: { ...runtime.target } })}
+      />
       <ReplacementRecovery runtime={runtime} view={view} verify={verify} />
       <NativeAction
         label="View this week"
