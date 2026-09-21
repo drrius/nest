@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — receipt upload byte validation; branch `codex/receipt-byte-inspection`.** Receipt viewing is merged after exact-commit CI and clean Sol medium review. Server-only byte validation passes local decoder and streaming checks. Receipt selection/upload, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
+**M7 — immutable receipt upload identity; branch `codex/receipt-upload-identity`.** Receipt viewing is merged. Byte inspection has clean Sol review and awaits CI. Upload identity passes local PostgreSQL and contract checks. The real upload endpoint/native picker, recurring financial automation, M8/M9 and physical-device acceptance remain unfinished.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -1091,3 +1091,11 @@ Native receipt viewer `a1ce966e107df4d29a60846922404b64a68d092c` passed CI `3563
 A server-only receipt-upload package pins `jpeg-js` `0.4.4` and deliberately adapts the audited legacy JPEG inspector to Nest's function/complexity limits. It validates complete bounded baseline/progressive/restart JPEGs with a real decoder, rejects appended/truncated or malformed scans and retains the 2000px/4MP/96MB decoding caps. New PDF input is signature-checked only; no document validity or malware-scanning claim is made. Effect streaming reads enforce the actual 4 MiB byte limit with a fixed buffer, finite errors, cancellation and lock release. The package is not a native dependency and contains no service credential.
 
 Eleven focused real-decoder/streaming checks pass; 1,024 deterministic mutated-JPEG differential vectors locally agree with the pinned original inspector. Source/test/fixture provenance is recorded in the package. Workspace types, full lint and full formatting pass after factoring the old parser to satisfy configured limits. Exact-commit review and CI remain required. This increment does not expose an upload endpoint: caller authorization, immutable content identity/recovery, Storage HTTP operations, native file selection/upload and hosted/device verification remain unfinished. No production files or schema were touched.
+
+### Immutable receipt upload identity — candidate
+
+Byte inspection `595d36177173c5cbc1ee0b56275fbc1b0242a249` has clean exact-commit Sol medium review with eleven independently passing tests and matching provenance hashes. CI `35633030074` remains pending.
+
+A gated additive migration binds each household upload ID to its uploader, canonical receipt-only path, SHA-256 digest, byte count and MIME type. Strict shared Effect contracts reject identity/path/authority injection. Exact retries preserve the binding even after the receipt is financially claimed; another uploader, changed bytes/type or cleaned-up identity cannot reuse it. Existing legacy objects cannot be retroactively assigned an unverified digest. SQL reserves identity and storage metadata only, never writes object bytes or posts money. The upcoming inspected writer must compute the digest itself and verify real stored content before returning success.
+
+Eight focused checks pass: six real PostgreSQL cases and two strict contract cases. Coverage includes six simultaneous exact reservations, competing digests, eight cleanup races, private table/anonymous/foreign-member denial, legacy adoption rollback, claimed receipt recovery and no financial side effects. The cleanup-race expectation was corrected to account for the audited legacy command's SKIP LOCKED behavior; subsequent cleanup still prevents delayed privileged insertion. Workspace types, full lint/formatting and disposable Supabase security advisors pass. Exact-commit Sol review and CI remain required. Actual Storage upload/recovery, native selection and phone verification remain unfinished; no production migration or file operations occurred.
