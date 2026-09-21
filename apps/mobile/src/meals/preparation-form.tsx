@@ -39,14 +39,20 @@ export function PreparationForm({
     </Card>
   );
 }
-function PreparationFields({
+export function PreparationFields({
   draft,
   view,
   enabled,
+  assignmentEnabled = enabled,
+  titleLimit = 120,
+  instructionsLimit = 4000,
 }: {
   draft: ReturnType<typeof usePreparationDraft>;
-  view: PreparationView;
+  view: Pick<PreparationView, "members">;
   enabled: boolean;
+  assignmentEnabled?: boolean;
+  titleLimit?: number;
+  instructionsLimit?: number;
 }) {
   const colors = useQuiet(),
     scheme = useColorScheme();
@@ -61,7 +67,7 @@ function PreparationFields({
         <TextInput
           value={draft.title}
           placeholder="What needs preparing?"
-          maxLength={120}
+          maxLength={titleLimit}
           editable={enabled}
         />
         <Text>Instructions · optional</Text>
@@ -69,11 +75,15 @@ function PreparationFields({
           value={draft.instructions}
           placeholder="How to prepare it"
           multiline
-          maxLength={4000}
+          maxLength={instructionsLimit}
           editable={enabled}
         />
         <Text>Responsibility</Text>
-        <Picker selectedValue={draft.policy} onValueChange={draft.setPolicy} enabled={enabled}>
+        <Picker
+          selectedValue={draft.policy}
+          onValueChange={draft.setPolicy}
+          enabled={assignmentEnabled}
+        >
           <Picker.Item value="shared" label="Shared" />
           <Picker.Item value="assigned" label="Assigned" />
           <Picker.Item value="alternating" label="Alternating turns" />
@@ -81,7 +91,11 @@ function PreparationFields({
         {draft.policy !== "shared" ? (
           <Column spacing={8}>
             <Text>{draft.policy === "alternating" ? "First turn" : "Responsible person"}</Text>
-            <Picker selectedValue={draft.member} onValueChange={draft.setMember} enabled={enabled}>
+            <Picker
+              selectedValue={draft.member}
+              onValueChange={draft.setMember}
+              enabled={assignmentEnabled}
+            >
               {view.members.map((member) => (
                 <Picker.Item
                   key={member.actorId}

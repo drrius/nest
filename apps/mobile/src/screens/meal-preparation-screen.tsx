@@ -137,6 +137,16 @@ function PreparationDetails({ view }: { view: PreparationView }) {
           ? "Shared responsibility"
           : `Responsible person: ${person ?? "Household member"}`}
       </Note>
+      {task.state !== "archived" ? (
+        <Link
+          href={{
+            pathname: "/meal-preparation-edit",
+            params: { entryId: view.snapshot!.entryId, weekStart: view.snapshot!.weekStart },
+          }}
+        >
+          Edit preparation
+        </Link>
+      ) : null}
       <Link href="/household">Open Today to view household work</Link>
     </Card>
   );

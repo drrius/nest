@@ -1,3 +1,4 @@
+import type { EditMealPreparation } from "@nest/contracts/meal-preparation-edit";
 import type { CreateMealPreparation } from "@nest/contracts/meal-preparation";
 import type { ReadMealPreparation } from "@nest/contracts/meal-preparation-read";
 import type { PlaceLeftovers } from "@nest/contracts/meal-leftovers";
@@ -23,6 +24,8 @@ import { sessionCredentials } from "./credentials";
 export function sessionMeals(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = mealClient(apiUrl, account, sessionCredentials(auth));
   return {
+    editPreparation: (input: EditMealPreparation) =>
+      client.editPreparation(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     library: {
       read: (afterId: string | null = null, revision: string | null = null) =>
         client.library

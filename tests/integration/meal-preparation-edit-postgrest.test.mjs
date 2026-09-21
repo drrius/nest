@@ -1,3 +1,7 @@
+import { createRequire } from "node:module";
+import { mealClient } from "../../apps/mobile/src/meals/client.ts";
+import { routineClient } from "../../apps/mobile/src/routines/client.ts";
+import { MealPreparationEditRuntime } from "../../apps/mobile/src/meals/preparation-edit-runtime.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { nodeServer } from "../../apps/api/node-server.mjs";
@@ -124,4 +128,65 @@ test("preparation edit HTTP replays after lost response and partner completion w
     f.remote.db.sql("select count(*) from public.nest_meal_preparation_edit_receipts"),
     "2",
   );
+});
+
+const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const Effect = require("effect/Effect");
+function nativeEditor(f) {
+  const account = { actor: id(1), household: id(10) };
+  const credentials = Effect.succeed({
+    access_token: f.remote.bearer,
+    refresh_token: "fixture",
+    user: { id: id(1) },
+  });
+  return new MealPreparationEditRuntime(
+    {
+      meals: mealClient(f.url, account, credentials),
+      routines: routineClient(f.url, account, credentials),
+    },
+    { entryId: target.entryId, weekStart: target.weekStart },
+    () => id(250),
+  );
+}
+test("native editor reconciles lost edit acknowledgment after partner correction and clears revoked state", async (t) => {
+  const f = await backend(t),
+    runtime = nativeEditor(f);
+  t.after(() => runtime.dispose());
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().stage, "ready");
+  await runtime.save({ instructions: null });
+  assert.equal(runtime.getSnapshot().stage, "uncertain");
+  assert.equal(f.proxy.dropped(), 1);
+  const saved = JSON.parse(
+    f.remote.db.sql("select result from public.nest_meal_preparation_edit_receipts"),
+  );
+  const partner = await f.write(
+    "/v1/meals/preparation/edit",
+    {
+      ...target,
+      routineId: saved.routineId,
+      expectedRoutineVersion: saved.routineVersion,
+      operationId: id(251),
+      patch: { title: "Partner correction" },
+    },
+    f.remote.partnerBearer,
+  );
+  assert.equal(partner.status, 200);
+  await runtime.retry();
+  assert.equal(runtime.getSnapshot().stage, "saved");
+  assert.deepEqual(runtime.getSnapshot().receipt, saved);
+  assert.equal(runtime.getSnapshot().snapshot.preparation.title, "Partner correction");
+  assert.equal(runtime.getSnapshot().snapshot.preparation.instructions, null);
+  await runtime.save({ title: "Duplicate" });
+  assert.equal(
+    f.remote.db.sql("select count(*) from public.nest_meal_preparation_edit_receipts"),
+    "2",
+  );
+  f.remote.db.sql(
+    `delete from public.inbox_notifications; delete from public.activity_events; delete from public.household_members where user_id='${id(1)}'`,
+  );
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().stage, "verify");
+  assert.equal(runtime.getSnapshot().snapshot, null);
+  assert.equal(runtime.getSnapshot().receipt, null);
 });
