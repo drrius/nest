@@ -6,6 +6,8 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
+Sol found that single-slot change receipts did not identify the chosen saved recipe or distinguish selection from regeneration. The contract now discriminates the action and retains the definition ID and exact library baseline for selection, with focused strict-decoding regression coverage. Updated exact-head review and CI are required before merge.
+
 **M5 — Meals and week planning; branch `codex/meal-proposal-contracts`.** Native saved-recipe browsing and creation have storage, authenticated API, native UI and private AI implementations. One-off meal placement/removal/move/replacement also span these layers. None of these flows is physical-device verified.
 
 Leftover storage `cbcaeca` and API `7f4941d` are merged and pushed to main after successful exact-head CI `35553583407` / `35553642143` and clean GPT-5.6 Sol medium signoffs. The storage review caught an unnecessary rejection of legacy earlier-day unslotted ideas; the corrected commit restores that compatibility and adds a regression. Sol independently passed fifteen storage/selection cases and all five API leftovers/selection HTTP journeys.

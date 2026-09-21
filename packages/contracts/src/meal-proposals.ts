@@ -107,12 +107,21 @@ export const MealProposalGenerationReceipt = Schema.Struct({
   revision: Schema.Literal("1"),
   ...GenerateMealProposalInput.fields,
 });
-export const MealProposalChangeReceipt = Schema.Struct({
+const ChangeReceipt = {
   ...Receipt,
   previousRevision: PositiveRevision,
   revision: PositiveRevision,
   entryId: Uuid,
-}).check(
+};
+export const MealProposalChangeReceipt = Schema.Union([
+  Schema.Struct({ ...ChangeReceipt, action: Schema.Literal("replace") }),
+  Schema.Struct({
+    ...ChangeReceipt,
+    action: Schema.Literal("choose"),
+    definitionId: Uuid,
+    expectedLibraryRevision: Revision,
+  }),
+]).check(
   Schema.makeFilter((value) => BigInt(value.revision) === BigInt(value.previousRevision) + 1n),
 );
 export const MealProposalDiscardReceipt = Schema.Struct({

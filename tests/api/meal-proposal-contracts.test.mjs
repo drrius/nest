@@ -10,6 +10,7 @@ import {
   ChooseProposalRecipeInput,
   ApproveMealProposal,
   MealProposalGenerationReceipt,
+  MealProposalChangeReceipt,
   MealProposalApprovalReceipt,
 } from "../../packages/contracts/src/meal-proposals.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
@@ -208,4 +209,46 @@ test("generated full-week approvals bind distinct slots and exact bigint revisio
     ),
     { seed: 20260921, numRuns: 1000 },
   );
+});
+
+test("slot change receipts retain the action and exact saved recipe selection", () => {
+  const base = {
+    ...owner,
+    previousRevision: "9007199254740993",
+    revision: "9007199254740994",
+    entryId: id(1),
+  };
+  const replace = { ...base, action: "replace" };
+  const choose = {
+    ...base,
+    action: "choose",
+    definitionId: id(20),
+    expectedLibraryRevision: "9007199254740993",
+  };
+  assert.deepEqual(decode(MealProposalChangeReceipt, replace), replace);
+  assert.deepEqual(decode(MealProposalChangeReceipt, choose), choose);
+  const alternate = {
+    ...choose,
+    definitionId: id(21),
+    expectedLibraryRevision: "9007199254740994",
+  };
+  assert.notDeepEqual(
+    decode(MealProposalChangeReceipt, choose),
+    decode(MealProposalChangeReceipt, alternate),
+  );
+  const { definitionId: _id, ...missingDefinition } = choose;
+  const { expectedLibraryRevision: _revision, ...missingLibrary } = choose;
+  for (const invalid of [
+    base,
+    missingDefinition,
+    missingLibrary,
+    { ...choose, action: "replace" },
+    { ...replace, action: "choose" },
+    { ...choose, definitionId: "invalid" },
+    { ...choose, expectedLibraryRevision: -1 },
+    { ...choose, revision: base.previousRevision },
+    { ...choose, revision: "9007199254740995" },
+  ]) {
+    assert.throws(() => decode(MealProposalChangeReceipt, invalid));
+  }
 });
