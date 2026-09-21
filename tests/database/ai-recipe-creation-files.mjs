@@ -13,5 +13,6 @@ export const aiRecipeCreationFiles = [
     "supabase/migrations/20260920235917_native_recipe_archive.sql",
     "supabase/migrations/20260921001945_native_ai_recipe_archive.sql",
     "supabase/migrations/20260921005604_native_ai_recipe_edit.sql",
+    "supabase/migrations/20260921015713_native_ai_recipe_selection.sql",
   ]),
 ];

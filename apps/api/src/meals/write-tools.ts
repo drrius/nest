@@ -1,6 +1,14 @@
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 export function mealWriteTools<T>(write: (name: AssistantAction, description: string) => T) {
   return {
+    placeRecipe: write(
+      "placeRecipe",
+      "Place only a saved recipe explicitly selected by the member into an unambiguous empty date and breakfast/lunch/dinner slot. Read the current week, library and exact recipe detail first and use both exact revisions. Preserve recipe identity and ingredients as planned. Do not invent missing metadata, add groceries, create leftovers or save generated suggestions through this action; generated plans need a separate visible proposal and approval. On uncertainty reconcile the original invocation, never issue another placement. Reread before describing the current week.",
+    ),
+    replaceWithRecipe: write(
+      "replaceWithRecipe",
+      "Replace only an unambiguous existing meal with a saved recipe the member explicitly requests. Read the week, current library and exact recipe detail first; use the original entry ID and both exact revisions. Explain that old history and groceries remain, open linked preparation is skipped and the new meal starts without preparation. Active leftovers can prevent replacement; never remove dependent meals automatically. Capture recipe identity and ingredients as planned. Do not add groceries or bypass generated-plan approval. Never emulate replacement with separate remove/place calls; reconcile uncertain original invocations.",
+    ),
     editRecipe: write(
       "editRecipe",
       "Edit only a saved recipe the member explicitly requests. Read the current library and exact recipe detail first; ask when the target or changes are ambiguous. Preserve unspecified metadata, unknown servings/instructions and existing ingredient identities, quantities, units and categories. Omit untouched patch fields; ingredients:null preserves the list, while a supplied list is the complete desired ordered selection and archives omitted ingredients. Use existing IDs with minimal patches for retained ingredients and new entries only for requested additions. Never infer missing recipe information. This changes only the library, not existing planned meals or groceries, and cannot approve a generated plan. On native_required open the library's native editor; nothing was saved. Reconcile an uncertain original invocation instead of issuing a new edit. A receipt confirms the original edit; reread before describing current contents.",

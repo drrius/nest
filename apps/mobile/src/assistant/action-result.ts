@@ -1,3 +1,4 @@
+import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
 import { RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { MealMoveReceipt } from "@nest/contracts/meal-move";
@@ -12,6 +13,8 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  placeRecipe: "Recipe added to the week",
+  replaceWithRecipe: "Recipe replacement confirmed",
   editRecipe: "Recipe edit confirmed",
   archiveRecipe: "Recipe archive confirmed",
   createRecipe: "Recipe saved",
@@ -38,6 +41,8 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  placeRecipe: "/meal-week",
+  replaceWithRecipe: "/meal-week",
   editRecipe: "/meal-library",
   archiveRecipe: "/meal-library",
   createRecipe: "/meal-library",
@@ -108,6 +113,11 @@ function successLabel(action: AssistantAction, receipt: object) {
 }
 
 function successHref(action: AssistantAction, value: object) {
+  if (isSelectionResult(action, value))
+    return {
+      pathname: "/planned-recipe" as const,
+      params: { entryId: value.entryId, weekStart: value.weekStart, revision: value.revision },
+    };
   // actionResult already validates the complete action-specific receipt.
   if (isRecipeResult(action, value))
     return {
@@ -168,5 +178,15 @@ function isRecipeResult(
   return (
     (action === "createRecipe" && Schema.is(RecipeCreationReceipt)(value)) ||
     (action === "editRecipe" && Schema.is(RecipeEditReceipt)(value))
+  );
+}
+
+function isSelectionResult(
+  action: AssistantAction,
+  value: object,
+): value is RecipePlacementReceipt {
+  return (
+    ["placeRecipe", "replaceWithRecipe"].includes(action) &&
+    Schema.is(RecipePlacementReceipt)(value)
   );
 }

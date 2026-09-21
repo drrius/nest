@@ -1,3 +1,4 @@
+import { matchesRecipeSelection } from "./matches-selection.ts";
 import { EditRecipeInput, RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { ArchiveRecipeInput, RecipeArchiveReceipt } from "@nest/contracts/recipe-archive";
 import { CreateRecipeInput, RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
@@ -89,6 +90,8 @@ export function matchesMealAction(
   receipt: object,
   member: { userId: string; householdId: string },
 ) {
+  if (action === "placeRecipe" || action === "replaceWithRecipe")
+    return matchesRecipeSelection(action, input, receipt, member);
   if (action === "editRecipe") return matchesRecipeEdit(input, receipt, member);
   if (action === "archiveRecipe") return matchesRecipeArchive(input, receipt, member);
   if (action === "createRecipe") return matchesRecipeCreation(input, receipt, member);

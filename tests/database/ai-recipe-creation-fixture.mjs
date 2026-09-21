@@ -4,10 +4,10 @@ export const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}
 export const json = (value) => `'${JSON.stringify(value).replaceAll("'", "''")}'::jsonb`;
 export const as = (sql, actor = id(1)) =>
   `set role authenticated; set request.jwt.claim.sub='${actor}'; ${sql}`;
-export function recipeJournalFixture(t) {
+export function recipeJournalFixture(t, files = aiRecipeCreationFiles) {
   const db = startFixturePostgres();
   t?.after(() => db.stop());
-  for (const file of aiRecipeCreationFiles) db.file(file);
+  for (const file of files) db.file(file);
   let sequence = 1000;
   const start = (actor = id(1)) => {
     const conversation = id(sequence++),
