@@ -100,6 +100,7 @@ function RecipeStatus({
         }}
       />
       {recipe ? <RecipeHeader recipe={recipe} /> : null}
+      <RecipeEditLink view={view} />
       <RecipeArchiveLink view={view} />
       {view.snapshot?.recipe === null ? (
         <Note>This recipe is no longer in the active library.</Note>
@@ -124,6 +125,24 @@ function RecipeArchiveLink({ view }: { view: RecipeView }) {
       onPress={() =>
         router.push({
           pathname: "/recipe-archive",
+          params: { definitionId: recipe.definitionId, expectedRevision: view.snapshot!.revision },
+        })
+      }
+    />
+  );
+}
+
+function RecipeEditLink({ view }: { view: RecipeView }) {
+  const router = useRouter();
+  const recipe = view.snapshot?.recipe;
+  if (!recipe) return null;
+  return (
+    <NativeAction
+      label="Edit recipe"
+      disabled={!view.fresh || view.busy}
+      onPress={() =>
+        router.push({
+          pathname: "/recipe-edit",
           params: { definitionId: recipe.definitionId, expectedRevision: view.snapshot!.revision },
         })
       }
