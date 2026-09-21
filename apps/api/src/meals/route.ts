@@ -1,3 +1,4 @@
+import type { mealProposalRoute } from "../meal-planning/route.ts";
 import { editMealPreparation } from "./preparation-edit.ts";
 import { createMealPreparation } from "./preparation-create.ts";
 import { mealPreparationRoute } from "./preparation-read.ts";
@@ -19,7 +20,14 @@ import { mealWeekRoute } from "./read.ts";
 import { placeMeal } from "./placement.ts";
 import { moveMeal } from "./move.ts";
 import { removeMeal } from "./removal.ts";
-export function mealRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
+export function mealRoute(
+  request: Request,
+  config: IdentityConfig,
+  caller: AuthorizedCaller,
+  proposals: ReturnType<typeof mealProposalRoute>,
+) {
+  if (new URL(request.url).pathname.startsWith("/v1/meals/proposal"))
+    return proposals(request, caller);
   if (new URL(request.url).pathname === "/v1/meals/preparation")
     return mealPreparationRoute(request, config, caller);
   if (new URL(request.url).pathname === "/v1/meals/planned-recipe")

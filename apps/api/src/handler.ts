@@ -1,3 +1,4 @@
+import { mealProposalRoute, type MealPlanningOptions } from "./meal-planning/route.ts";
 import { mealRoute } from "./meals/route.ts";
 import { routineRoute } from "./routines/route.ts";
 import { setupStatus } from "./setup/service.ts";
@@ -7,7 +8,6 @@ import { memoryRoute } from "./memory/route.ts";
 import { foodPreferences } from "./food/service.ts";
 import { cookingPreferences } from "./cooking/service.ts";
 import { assistantHandler } from "./assistant/handler.ts";
-import type { AssistantModel } from "@nest/ai/chat";
 import { groceryCommands } from "./groceries/service.ts";
 import { groceryReads } from "./groceries/read.ts";
 import * as Effect from "effect/Effect";
@@ -18,7 +18,11 @@ import { choreRoute } from "./chores/route.ts";
 import { commandBody } from "./request-body.ts";
 import { validateConfig } from "./config.ts";
 
-function route(request: Request, config: IdentityConfig) {
+function route(
+  request: Request,
+  config: IdentityConfig,
+  proposals: ReturnType<typeof mealProposalRoute>,
+) {
   return Effect.gen(function* () {
     const member = yield* currentMember(request);
     const path = new URL(request.url).pathname;
@@ -37,16 +41,18 @@ function route(request: Request, config: IdentityConfig) {
       return yield* preferenceRoute(request, config, { member, token });
     if (path.startsWith("/v1/groceries"))
       return yield* groceryRoute(request, config, { member, token });
-    if (path.startsWith("/v1/meals/")) return yield* mealRoute(request, config, { member, token });
+    if (path.startsWith("/v1/meals/"))
+      return yield* mealRoute(request, config, { member, token }, proposals);
     if (path.startsWith("/v1/routines"))
       return yield* routineRoute(request, config, { member, token });
     return yield* choreRoute(request, config, { member, token });
   });
 }
 
-export function createHandler(config: IdentityConfig, options: { model?: AssistantModel } = {}) {
+export function createHandler(config: IdentityConfig, options: MealPlanningOptions = {}) {
   const validated = validateConfig(config);
   const identity = supabaseIdentity(validated);
+  const proposals = mealProposalRoute(validated, options);
   const assistant = assistantHandler(validated, options.model);
   return (request: Request): Promise<Response> => {
     const path = new URL(request.url).pathname;
@@ -61,7 +67,7 @@ export function createHandler(config: IdentityConfig, options: { model?: Assista
     if (!method) return Promise.resolve(new Response(null, { status: 404 }));
     if (request.method !== method)
       return Promise.resolve(new Response(null, { status: 405, headers: { Allow: method } }));
-    const response = route(request, validated).pipe(
+    const response = route(request, validated, proposals).pipe(
       Effect.map((body) => Response.json(body, { headers: { "Cache-Control": "no-store" } })),
       Effect.catchTag("ApiFailure", (error) => Effect.succeed(failureResponse(error))),
       Effect.provide(identity),
@@ -136,6 +142,10 @@ function preferenceRoute(
 const methods: Record<string, string> = {
   "/v1/session": "GET",
   "/v1/meals/week": "GET",
+  "/v1/meals/proposal": "GET",
+  "/v1/meals/proposal/generate": "POST",
+  "/v1/meals/proposal/recover": "POST",
+  "/v1/meals/proposal/discard": "POST",
   "/v1/meals/preparation": "GET",
   "/v1/meals/preparation/create": "POST",
   "/v1/meals/preparation/edit": "POST",

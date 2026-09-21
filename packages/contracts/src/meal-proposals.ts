@@ -172,3 +172,19 @@ export type GenerateMealProposalInput = typeof GenerateMealProposalInput.Type;
 export type GenerateMealProposal = typeof GenerateMealProposal.Type;
 export type ApproveMealProposal = typeof ApproveMealProposal.Type;
 export type MealProposalApprovalReceipt = typeof MealProposalApprovalReceipt.Type;
+
+export const MealProposalGenerationResult = Schema.Struct({
+  version: Schema.Literal(1),
+  receipt: MealProposalGenerationReceipt,
+  envelope: MealProposalEnvelope,
+}).check(
+  Schema.makeFilter(
+    ({ receipt, envelope }) =>
+      receipt.actorId === envelope.actorId &&
+      receipt.householdId === envelope.householdId &&
+      receipt.proposalId === envelope.proposal.proposalId &&
+      receipt.weekStart === envelope.proposal.weekStart &&
+      receipt.expectedWeekRevision === envelope.proposal.weekRevision &&
+      receipt.familiarOnly === envelope.proposal.familiarOnly,
+  ),
+);
