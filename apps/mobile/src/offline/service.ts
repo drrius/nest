@@ -1,3 +1,5 @@
+import * as CorrectionApprovals from "./correction-approvals.ts";
+import type { CorrectionApprovalAttempt } from "../money/correction-approval-attempt.ts";
 import * as CorrectionSaves from "./correction-saves.ts";
 import type { CorrectionSaveAttempt } from "../money/correction-save-attempt.ts";
 import * as RefundApprovals from "./refund-approvals.ts";
@@ -53,6 +55,7 @@ export function makeOfflineStore(database: Database) {
     initialize: run(() => initialize(database)),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
+    ...correctionApprovalStore(database),
     ...settlementSaveStore(database),
     ...refundSaveStore(database),
     ...correctionSaveStore(database),
@@ -281,5 +284,20 @@ function correctionSaveStore(database: Database) {
     ) => run(() => CorrectionSaves.stageCorrectionSave(database, session, attempt, current)),
     clearCorrectionSave: (session: Session, attempt: CorrectionSaveAttempt) =>
       run(() => CorrectionSaves.clearCorrectionSave(database, session, attempt)),
+  };
+}
+
+function correctionApprovalStore(database: Database) {
+  return {
+    readCorrectionApproval: (session: Session, approvalId: string) =>
+      run(() => CorrectionApprovals.readCorrectionApproval(database, session, approvalId)),
+    stageCorrectionApproval: (
+      session: Session,
+      attempt: CorrectionApprovalAttempt,
+      current: () => boolean,
+    ) =>
+      run(() => CorrectionApprovals.stageCorrectionApproval(database, session, attempt, current)),
+    clearCorrectionApproval: (session: Session, attempt: CorrectionApprovalAttempt) =>
+      run(() => CorrectionApprovals.clearCorrectionApproval(database, session, attempt)),
   };
 }
