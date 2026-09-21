@@ -105,15 +105,7 @@ function WeekContent({
     );
   return (
     <Page>
-      <Link href="/meal-library" style={{ color: colors.accent, fontSize: 17 }}>
-        Saved meals and recipes
-      </Link>
-      <Link
-        href={{ pathname: "/meal-proposal", params: { weekStart: view.weekStart } }}
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
-      >
-        Plan with AI or resume a preview
-      </Link>
+      <WeekLinks weekStart={view.weekStart} />
       <WeekNavigation
         weekStart={view.weekStart}
         select={(week) => {
@@ -176,6 +168,29 @@ function SlotControls({
       {hidden ? (
         <Note>There are saved meals in hidden slots. Show all slots to view them.</Note>
       ) : null}
+    </>
+  );
+}
+
+function WeekLinks({ weekStart }: { weekStart: string }) {
+  const colors = useQuiet();
+  return (
+    <>
+      <Link href="/meal-library" style={{ color: colors.accent, fontSize: 17 }}>
+        Saved meals and recipes
+      </Link>
+      <Link
+        href={{ pathname: "/meal-proposal", params: { weekStart: weekStart } }}
+        style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
+      >
+        Plan with AI or resume a preview
+      </Link>
+      <Link
+        href={{ pathname: "/meal-ingredients", params: { weekStart: weekStart } }}
+        style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
+      >
+        Review ingredients for groceries
+      </Link>
     </>
   );
 }

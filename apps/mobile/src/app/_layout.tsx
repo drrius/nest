@@ -57,6 +57,7 @@ function Navigation() {
         <Stack.Screen name="saved-meal" options={{ title: "Recipe" }} />
         <Stack.Screen name="meal-week" options={{ title: "Meals" }} />
         <Stack.Screen name="meal-proposal" options={{ title: "Week preview" }} />
+        <Stack.Screen name="meal-ingredients" options={{ title: "Review ingredients" }} />
         <Stack.Screen name="meal-add" options={{ title: "Add meal" }} />
         <Stack.Screen name="meal-replace" options={{ title: "Replace meal" }} />
         <Stack.Screen name="meal-preparation-edit" options={{ title: "Edit preparation" }} />

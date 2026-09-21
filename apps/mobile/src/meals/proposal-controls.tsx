@@ -33,9 +33,14 @@ export function ProposalControls({
       <ProposalStatus view={view} />
       <ProposalActions runtime={runtime} view={view} />
       {view.proposal?.status === "approved" ? (
-        <Link href={{ pathname: "/meals", params: { weekStart: runtime.weekStart } }}>
-          Open saved meal week
-        </Link>
+        <>
+          <Link href={{ pathname: "/meals", params: { weekStart: runtime.weekStart } }}>
+            Open saved meal week
+          </Link>
+          <Link href={{ pathname: "/meal-ingredients", params: { weekStart: runtime.weekStart } }}>
+            Review ingredients for groceries
+          </Link>
+        </>
       ) : null}
       <Link href="/food-preferences">Your food preferences</Link>
       <Link href="/cooking-preferences">Household cooking preferences</Link>
