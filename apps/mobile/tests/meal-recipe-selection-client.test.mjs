@@ -110,3 +110,66 @@ test("native selection clients reject injected recipe content and identities bef
   await assert.rejects(run(replaceWithRecipe, input, fetch), { code: "invalid" });
   assert.equal(calls, 0);
 });
+
+test("planned read binds the exact week, revision, entry and household without losing historical unknowns", async () => {
+  const target = {
+    entryId: "ABCDEF00-0000-4000-8000-000000000200",
+    weekStart: "2030-01-07",
+    revision: "9007199254740993",
+  };
+  const result = {
+    version: 1,
+    householdId: id(10),
+    weekStart: target.weekStart,
+    revision: target.revision,
+    entry: {
+      entryId: target.entryId.toLowerCase(),
+      definitionId: null,
+      leftoverSourceId: null,
+      date: target.weekStart,
+      slot: "dinner",
+      title: "Soup",
+      recipeUrl: null,
+      notes: null,
+    },
+    snapshot: null,
+  };
+  assert.deepEqual(
+    await run(client.plannedRecipe, target, async (url, init) => {
+      const parsed = new URL(url);
+      assert.equal(parsed.pathname, "/v1/meals/planned-recipe");
+      assert.deepEqual(Object.fromEntries(parsed.searchParams), {
+        ...target,
+        entryId: target.entryId.toLowerCase(),
+      });
+      assert.equal(new Headers(init.headers).get("authorization"), "Bearer fixture");
+      return Response.json(result);
+    }),
+    result,
+  );
+  for (const patch of [
+    { householdId: id(20) },
+    { revision: "9007199254740994" },
+    { weekStart: "2030-01-14" },
+    { entry: { ...result.entry, entryId: id(999) } },
+    { entry: { ...result.entry, date: "2030-01-14" } },
+    { hidden: true },
+  ]) {
+    await assert.rejects(
+      run(client.plannedRecipe, target, async () => Response.json({ ...result, ...patch })),
+    );
+  }
+  let dispatched = false;
+  await assert.rejects(
+    run(client.plannedRecipe, { ...target, actorId: id(1) }, async () => {
+      dispatched = true;
+      return Response.json(result);
+    }),
+    { code: "invalid" },
+  );
+  assert.equal(dispatched, false);
+  assert.deepEqual(
+    await run(client.plannedRecipe, target, async () => Response.json({ ...result, entry: null })),
+    { ...result, entry: null },
+  );
+});

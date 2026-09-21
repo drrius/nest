@@ -5,11 +5,17 @@ import { Card, Note, Section } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { space } from "../theme";
 import { recipeSourceUrl } from "./recipe-link";
-export function RecipeHeader({ recipe }: { recipe: SavedMeal }) {
+export function RecipeHeader({
+  recipe,
+  label = "Current saved recipe",
+}: {
+  recipe: SavedMeal;
+  label?: string;
+}) {
   return (
     <View style={{ gap: space.medium }}>
       <Section title={recipe.title} />
-      <Note>Current saved recipe</Note>
+      <Note>{label}</Note>
       <Note>
         {recipe.servings === null ? "Servings not recorded" : `${recipe.servings} servings`}
       </Note>
@@ -48,7 +54,7 @@ export function RecipeFooter({ recipe }: { recipe: SavedMeal }) {
     </View>
   );
 }
-function RecipeSource({ source }: { source: string }) {
+export function RecipeSource({ source }: { source: string }) {
   const url = recipeSourceUrl(source);
   const [notice, setNotice] = useState<string | null>(null);
   return (

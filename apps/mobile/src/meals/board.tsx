@@ -79,7 +79,12 @@ export function MealWeekBoard({
                 </Text>
                 {meal?.notes ? <Note>{meal.notes}</Note> : null}
                 {meal ? (
-                  <MealActions meal={meal} weekStart={snapshot.weekStart} enabled={canAdd} />
+                  <MealActions
+                    meal={meal}
+                    weekStart={snapshot.weekStart}
+                    revision={snapshot.revision}
+                    enabled={canAdd}
+                  />
                 ) : null}
                 {!meal ? (
                   <NativeAction
@@ -106,14 +111,25 @@ function MealActions({
   meal,
   weekStart,
   enabled,
+  revision,
 }: {
   meal: MealWeekSnapshot["entries"][number];
   weekStart: string;
   enabled: boolean;
+  revision: string;
 }) {
   const router = useRouter();
   return (
     <>
+      <NativeAction
+        label="Meal details"
+        onPress={() =>
+          router.push({
+            pathname: "/planned-recipe",
+            params: { weekStart, revision, entryId: meal.entryId },
+          })
+        }
+      />
       <NativeAction
         label="Replace meal"
         disabled={!enabled}
