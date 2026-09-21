@@ -31,7 +31,8 @@
     "./meal-leftovers": "./src/meal-leftovers.ts",
     "./meal-preparation": "./src/meal-preparation.ts",
     "./meal-preparation-edit": "./src/meal-preparation-edit.ts",
-    "./meal-preparation-read": "./src/meal-preparation-read.ts"
+    "./meal-preparation-read": "./src/meal-preparation-read.ts",
+    "./meal-proposals": "./src/meal-proposals.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
