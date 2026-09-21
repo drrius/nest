@@ -8,7 +8,8 @@
     "./calendar": "./src/calendar.ts",
     "./availability": "./src/availability.ts",
     "./routines": "./src/routines/index.ts",
-    "./meal-week": "./src/meal-week.ts"
+    "./meal-week": "./src/meal-week.ts",
+    "./meal-ingredients": "./src/meal-ingredients.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

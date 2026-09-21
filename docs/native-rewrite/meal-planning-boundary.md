@@ -104,7 +104,7 @@ This API candidate has local SDK/HTTP/PostgREST fault-injection evidence with si
 
 `POST /v1/meals/proposal/open` accepts only a proposal ID and returns the strict generation receipt plus current owner-only proposal envelope. It recovers expiry without claiming a worker, and does not require model credentials. The original operation identity remains unchanged after edits, discard or approval. Current membership and owner checks precede origin lookup. This is the handoff boundary for an assistant-created preview; native adoption must preserve unresolved local commands and must never manufacture a second generation operation just to open the proposal.
 
-Assistant mutations must reserve through the private atomic turn journal before provider work. The journal records an immutable reservation fact, while current proposal/edit state is read separately; historical tool output must not be rewritten to resemble a later result. Explicit native approval remains the only posting path. Native handoff adoption is merged; the assistant adapters are locally implemented and awaiting exact-commit CI and independent review.
+Assistant mutations must reserve through the private atomic turn journal before provider work. The journal records an immutable reservation fact, while current proposal/edit state is read separately; historical tool output must not be rewritten to resemble a later result. Explicit native approval remains the only posting path. Native handoff adoption is merged; the assistant adapters are merged after exact-commit CI and independent review.
 
 ## Assistant execution and current-state cards
 

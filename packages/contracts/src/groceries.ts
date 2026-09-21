@@ -1,3 +1,4 @@
+import { StoredMealText } from "./meals.ts";
 import * as Schema from "effect/Schema";
 
 export const Uuid = Schema.String.check(Schema.isUUID());
@@ -5,12 +6,10 @@ export const GroceryVersion = Schema.String.check(
   Schema.isPattern(/^[1-9][0-9]{0,18}$/),
   Schema.makeFilter((value: string) => BigInt(value) <= 9223372036854775807n),
 );
-const Name = Schema.String.check(
-  Schema.isMinLength(1),
-  Schema.isMaxLength(120),
+const Name = StoredMealText(120).check(
   Schema.makeFilter((value: string) => value.trim().length > 0),
 );
-const OptionalText = Schema.NullOr(Schema.String.check(Schema.isMaxLength(80)));
+const OptionalText = Schema.NullOr(StoredMealText(80));
 const Identity = { operationId: Uuid, itemId: Uuid };
 const Fields = {
   name: Name,
