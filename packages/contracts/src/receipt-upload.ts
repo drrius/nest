@@ -26,3 +26,17 @@ export const ReceiptUploadReservation = Schema.Struct({
   ),
 );
 export type ReceiptUploadReservation = typeof ReceiptUploadReservation.Type;
+
+export const ReceiptUploadCleanup = Schema.Struct({
+  version: Schema.Literal(1),
+  householdId: Uuid,
+  uploadId: Uuid,
+  path: Schema.String,
+  status: Schema.Literals(["claimed", "deleting", "deleted"]),
+}).check(
+  Schema.makeFilter((value) => {
+    const base = `${value.householdId.toLowerCase()}/receipts/${value.uploadId.toLowerCase()}`;
+    return value.path === `${base}.jpg` || value.path === `${base}.pdf`;
+  }),
+);
+export type ReceiptUploadCleanup = typeof ReceiptUploadCleanup.Type;
