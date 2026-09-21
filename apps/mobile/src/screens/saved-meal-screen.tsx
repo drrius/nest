@@ -1,6 +1,6 @@
 import { useState, useSyncExternalStore } from "react";
 import { FlatList, View } from "react-native";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import type { ReadSavedMeal } from "@nest/contracts/meal-library";
 import { useSession } from "../session/provider";
 import type { MealLibraryClient } from "../meals/library-client";
@@ -100,6 +100,7 @@ function RecipeStatus({
         }}
       />
       {recipe ? <RecipeHeader recipe={recipe} /> : null}
+      <RecipeArchiveLink view={view} />
       {view.snapshot?.recipe === null ? (
         <Note>This recipe is no longer in the active library.</Note>
       ) : null}
@@ -109,5 +110,23 @@ function RecipeStatus({
         </Link>
       ) : null}
     </View>
+  );
+}
+
+function RecipeArchiveLink({ view }: { view: RecipeView }) {
+  const router = useRouter();
+  const recipe = view.snapshot?.recipe;
+  if (!recipe) return null;
+  return (
+    <NativeAction
+      label="Archive recipe"
+      disabled={!view.fresh || view.busy}
+      onPress={() =>
+        router.push({
+          pathname: "/recipe-archive",
+          params: { definitionId: recipe.definitionId, expectedRevision: view.snapshot!.revision },
+        })
+      }
+    />
   );
 }

@@ -1,3 +1,4 @@
+import { recipeArchiveClient } from "./recipe-archive-client.ts";
 import { recipeCreationClient } from "./recipe-creation-client.ts";
 import { mealLibraryClient } from "./library-client.ts";
 import { mealReplacementClient } from "./replacement-client.ts";
@@ -21,6 +22,7 @@ export function mealClient(
   return {
     library: mealLibraryClient(request, account),
     createRecipe: recipeCreationClient(request, account),
+    archiveRecipe: recipeArchiveClient(request, account),
     place: mealPlacementClient(request, account),
     replace: mealReplacementClient(request, account),
     move: mealMoveClient(request, account),
