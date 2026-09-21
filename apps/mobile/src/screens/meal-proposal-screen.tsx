@@ -2,7 +2,7 @@ import { useState, useSyncExternalStore } from "react";
 import { useLocalSearchParams } from "expo-router";
 import * as Crypto from "expo-crypto";
 import { householdDate } from "@nest/domain/calendar";
-import { requestedMealWeek } from "../meals/route-week";
+import { requestedProposalScope, type ProposalScope } from "../meals/proposal-handoff";
 import { useSession } from "../session/provider";
 import { useOfflineAccount } from "../offline/provider";
 import type { OfflineAccount } from "../offline/owner";
@@ -16,7 +16,14 @@ export default function MealProposalScreen() {
   const session = useSession(),
     offline = useOfflineAccount(),
     params = useLocalSearchParams();
-  const weekStart = requestedMealWeek(params.weekStart, householdDate(new Date()));
+  const scope = requestedProposalScope(params, householdDate(new Date()));
+  if (!scope)
+    return (
+      <Page>
+        <Note>This proposal link is invalid. Open Meals and choose your week.</Note>
+      </Page>
+    );
+  const routeKey = typeof scope === "string" ? scope : `${scope.weekStart}:${scope.proposalId}`;
   if (session.state.status !== "ready" || !session.meals)
     return (
       <Page>
@@ -38,10 +45,10 @@ export default function MealProposalScreen() {
     );
   return (
     <Proposal
-      key={`${offline.state.account.session.lease}:${weekStart}`}
+      key={`${offline.state.account.session.lease}:${routeKey}`}
       account={offline.state.account}
       meals={session.meals}
-      weekStart={weekStart}
+      scope={scope}
       verify={session.retry}
     />
   );
@@ -49,15 +56,15 @@ export default function MealProposalScreen() {
 function Proposal({
   account,
   meals,
-  weekStart,
+  scope,
   verify,
 }: {
   account: OfflineAccount;
   meals: MealClient;
-  weekStart: string;
+  scope: ProposalScope;
   verify: () => void;
 }) {
-  const [owner] = useState(() => mealProposalOwner(meals, account, weekStart, Crypto.randomUUID));
+  const [owner] = useState(() => mealProposalOwner(meals, account, scope, Crypto.randomUUID));
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   return runtime ? (
     <ProposalPreview runtime={runtime} verify={verify} library={meals.library} />

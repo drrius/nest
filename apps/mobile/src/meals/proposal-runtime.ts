@@ -1,3 +1,4 @@
+import { ProposalHandoff, type ProposalScope } from "./proposal-handoff.ts";
 import { ProposalEditRuntime, type ProposalEditTarget } from "./proposal-edit-runtime.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -33,17 +34,27 @@ export class MealProposalRuntime {
   };
   private client: Client;
   private edits: ProposalEditRuntime;
+  private handoff: ProposalHandoff;
   private account: OfflineAccount;
   private uuid: () => string;
   private disposed = false;
   private lifetime = new AbortController();
   private listeners = new Set<() => void>();
   readonly weekStart: string;
-  constructor(client: Client, account: OfflineAccount, weekStart: string, uuid: () => string) {
+  constructor(client: Client, account: OfflineAccount, scope: ProposalScope, uuid: () => string) {
+    const weekStart = typeof scope === "string" ? scope : scope.weekStart;
     this.client = client;
     this.account = account;
     this.weekStart = weekStart;
     this.uuid = uuid;
+    this.handoff = new ProposalHandoff(typeof scope === "string" ? null : scope.proposalId, {
+      account,
+      client: client.proposals,
+      weekStart,
+      view: this.getSnapshot,
+      publish: (patch) => this.publish(patch),
+      run: (effect) => this.run(effect),
+    });
     this.edits = new ProposalEditRuntime({
       account,
       client: client.proposals.edits,
@@ -97,7 +108,7 @@ export class MealProposalRuntime {
           notice:
             "A request is saved on this iPhone. Continue it to recover its reservation and generate the preview.",
         });
-      else await this.readWeek();
+      if (!(await this.handoff.open()) && !attempt) await this.readWeek();
     });
   private async readWeek() {
     const week = await this.run(this.client.read(this.weekStart));
@@ -329,7 +340,7 @@ export class MealProposalRuntime {
         }),
       );
       this.publish({ attempt: null, proposal: null, fresh: false, week: null });
-      await this.readWeek();
+      if (!(await this.handoff.open())) await this.readWeek();
     });
   private failed(error: unknown) {
     if (this.disposed) return;

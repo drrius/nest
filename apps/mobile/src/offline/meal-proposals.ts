@@ -190,3 +190,42 @@ export function clearProposalEdit(
     return save(tx, session, rest);
   });
 }
+
+export function adoptMealProposal(
+  db: Database,
+  session: Session,
+  target: {
+    receipt: typeof MealProposalGenerationReceipt.Type;
+    previousOperationId: string | null;
+  },
+) {
+  const receipt = Schema.decodeUnknownSync(MealProposalGenerationReceipt)(target.receipt, {
+    onExcessProperty: "error",
+  });
+  if (receipt.actorId !== session.actor || receipt.householdId !== session.household)
+    fail("invalid_receipt");
+  return scoped(db, session, async (tx) => {
+    const pending = await read(tx, session, receipt.weekStart);
+    if (pending?.generation.operationId === receipt.operationId) {
+      if (!matchesStart(pending, receipt)) fail("invalid_receipt");
+      return save(tx, session, { ...pending, proposalId: receipt.proposalId });
+    }
+    if ((pending?.generation.operationId ?? null) !== target.previousOperationId)
+      fail("operation_reused");
+    if (pending && hasPendingRequest(pending)) fail("pending_edit");
+    return save(tx, session, {
+      generation: {
+        operationId: receipt.operationId,
+        weekStart: receipt.weekStart,
+        expectedWeekRevision: receipt.expectedWeekRevision,
+        familiarOnly: receipt.familiarOnly,
+      },
+      proposalId: receipt.proposalId,
+      discard: null,
+    });
+  });
+}
+
+function hasPendingRequest(attempt: MealProposalAttempt) {
+  return !attempt.proposalId || !!attempt.edit || !!attempt.approval || !!attempt.discard;
+}

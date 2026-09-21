@@ -2,7 +2,7 @@ import { MealProposalRuntime } from "./proposal-runtime.ts";
 export function mealProposalOwner(
   client: ConstructorParameters<typeof MealProposalRuntime>[0],
   account: ConstructorParameters<typeof MealProposalRuntime>[1],
-  weekStart: string,
+  weekStart: ConstructorParameters<typeof MealProposalRuntime>[2],
   uuid: () => string,
 ) {
   let current: MealProposalRuntime | null = null;

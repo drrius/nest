@@ -48,6 +48,7 @@ export function mealProposalClient(
       return result;
     });
   return {
+    open: (proposalId: string) => openProposal(request, account, proposalId),
     edits: proposalEditClient(request, generation, account),
     approve: (input: typeof ApproveMealProposal.Type) =>
       approveMealProposal(request, account, input),
@@ -89,3 +90,23 @@ export function mealProposalClient(
   };
 }
 export type MealProposalClient = ReturnType<typeof mealProposalClient>;
+
+function openProposal(
+  request: ReturnType<typeof preferenceRequests>,
+  account: Account,
+  proposalId: string,
+) {
+  return Effect.gen(function* () {
+    const query = yield* Schema.decodeUnknownEffect(ReadMealProposal)({ proposalId }).pipe(
+      Effect.mapError(invalid),
+    );
+    const result = yield* request("v1/meals/proposal/open", MealProposalGenerationResult, query);
+    if (
+      result.receipt.actorId !== account.actor ||
+      result.receipt.householdId !== account.household ||
+      result.receipt.proposalId !== proposalId.toLowerCase()
+    )
+      return yield* unavailable();
+    return result;
+  });
+}

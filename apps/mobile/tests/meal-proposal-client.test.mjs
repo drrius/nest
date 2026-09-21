@@ -122,3 +122,34 @@ test("only generation has the longer bounded timeout; ordinary requests still ex
   }).pipe(Effect.provide(TestClock.layer()));
   await run(program, fetch);
 });
+
+test("native handoff read binds its original receipt, requested proposal and owner", async () => {
+  assert.deepEqual(
+    await run(client.proposals.open(receipt.proposalId), async (url, init) => {
+      assert.equal(new URL(url).pathname, "/v1/meals/proposal/open");
+      assert.deepEqual(JSON.parse(init.body), { proposalId: receipt.proposalId });
+      return Response.json(result);
+    }),
+    result,
+  );
+  for (const patch of [
+    { actorId: id(2) },
+    { householdId: id(20) },
+    { expectedWeekRevision: "2" },
+    { privateContext: "hidden" },
+  ])
+    await assert.rejects(
+      run(client.proposals.open(receipt.proposalId), async () =>
+        Response.json({ ...result, receipt: { ...receipt, ...patch } }),
+      ),
+      { code: "unavailable" },
+    );
+  await assert.rejects(
+    run(client.proposals.open(id(999)), async () => Response.json(result)),
+    { code: "unavailable" },
+  );
+  await assert.rejects(
+    run(client.proposals.open("bad"), async () => assert.fail("Invalid link sent")),
+    { code: "invalid" },
+  );
+});
