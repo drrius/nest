@@ -91,6 +91,7 @@ export class AgendaRuntime {
     return Effect.runPromise(work, { signal });
   }
   private async read(signal: AbortSignal) {
+    if (!this.view.loaded || !this.view.permission) return;
     const window = agendaDay(this.view.date);
     if (!window) {
       this.publish({ result: { status: "unavailable", reason: "invalid_events" } });
@@ -136,12 +137,14 @@ export class AgendaRuntime {
     });
     if (active) void this.refresh();
   };
-  changeDate = (date: string) =>
-    this.task(async (signal) => {
+  changeDate = (date: string) => {
+    if (!this.view.loaded || !this.view.permission) return Promise.resolve();
+    return this.task(async (signal) => {
       if (!agendaDay(date)) return;
       this.publish({ date, result: null });
       await this.read(signal);
     });
+  };
   changeSelection = (ids: readonly string[]) => {
     const selection = { calendarIds: [...ids] };
     return this.task(async (signal) => {

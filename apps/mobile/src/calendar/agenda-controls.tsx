@@ -14,6 +14,7 @@ export function AgendaControls({
   choose: () => void;
 }) {
   const window = agendaDay(view.date);
+  const dateDisabled = view.busy || !view.loaded || !view.permission;
   return (
     <Section title="Your agenda">
       <Note>Personal event details stay on this iPhone. Viewing a calendar does not share it.</Note>
@@ -22,7 +23,7 @@ export function AgendaControls({
         <DateTimePicker
           value={new Date(window.start)}
           mode="date"
-          disabled={view.busy}
+          disabled={dateDisabled}
           onChange={(_event, date) => {
             if (date) void runtime.changeDate(localDate(date));
           }}
@@ -30,7 +31,7 @@ export function AgendaControls({
       ) : null}
       <NativeAction
         label="Previous day"
-        disabled={view.busy || !adjacentDay(view.date, -1)}
+        disabled={dateDisabled || !adjacentDay(view.date, -1)}
         onPress={() => {
           const date = adjacentDay(view.date, -1);
           if (date) void runtime.changeDate(date);
@@ -38,7 +39,7 @@ export function AgendaControls({
       />
       <NativeAction
         label="Next day"
-        disabled={view.busy || !adjacentDay(view.date, 1)}
+        disabled={dateDisabled || !adjacentDay(view.date, 1)}
         onPress={() => {
           const date = adjacentDay(view.date, 1);
           if (date) void runtime.changeDate(date);
@@ -46,7 +47,7 @@ export function AgendaControls({
       />
       <NativeAction
         label="Today"
-        disabled={view.busy}
+        disabled={dateDisabled}
         onPress={() => {
           void runtime.changeDate(localDate(new Date()));
         }}

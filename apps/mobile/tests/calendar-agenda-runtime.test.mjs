@@ -172,3 +172,29 @@ test("foreground refresh wins over an older canceled read and its completion can
   assert.equal(f.runtime.getSnapshot().result.rows[0].title, "Private appointment");
   assert.equal(f.runtime.getSnapshot().busy, false);
 });
+
+test("date navigation cannot turn a failed initial calendar load or denied permission into empty success", async (t) => {
+  const f = await setup(t);
+  const original = f.port.calendars;
+  f.port.calendars = async () => {
+    throw Error("Private calendar failure");
+  };
+  await f.open();
+  const notice = f.runtime.getSnapshot().notice;
+  assert.equal(f.runtime.getSnapshot().loaded, false);
+  await f.runtime.changeDate("2026-09-22");
+  assert.equal(f.runtime.getSnapshot().result, null);
+  assert.equal(f.runtime.getSnapshot().notice, notice);
+  assert.equal(f.runtime.getSnapshot().date, "2026-09-21");
+  f.port.calendars = original;
+  f.state.permission = false;
+  await f.runtime.refresh();
+  await f.runtime.changeDate("2026-09-22");
+  assert.equal(f.runtime.getSnapshot().result, null);
+  assert.equal(f.runtime.getSnapshot().date, "2026-09-21");
+  f.state.permission = true;
+  await f.runtime.refresh();
+  await f.runtime.changeDate("2026-09-22");
+  assert.equal(f.runtime.getSnapshot().result.rows.length, 1);
+  assert.equal(f.runtime.getSnapshot().date, "2026-09-22");
+});
