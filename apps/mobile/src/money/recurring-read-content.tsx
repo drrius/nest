@@ -102,6 +102,7 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
         {config.note ? <Note>{config.note}</Note> : null}
       </Section>
       <Section title="Authorization and history">
+        <Note>Rule reference: {rule.ruleId}</Note>
         <Note>Authorized {rule.authorizedAt}</Note>
         <Note>Covered through: {rule.coveredThrough ?? "No completed cycle recorded"}</Note>
         <Note>

@@ -1,3 +1,4 @@
+import { recurringStateSummary } from "../src/money/recurring-state-summary.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { input, id } from "../../../tests/api/recurring-transport-fixture.mjs";
@@ -28,6 +29,9 @@ test("same-name recurring stop confirmations disclose distinct financial configu
     nextDueOn: "2027-01-05",
   };
   const proposal = { change: { ruleId: rule.ruleId, expectedStatus: "active", action: "pause" } };
+  const identical = { ...rule, ruleId: id(103) };
+  assert.notEqual(recurringStateSummary(rule, id(1)), recurringStateSummary(identical, id(1)));
+  assert.ok(recurringStateSummary(identical, id(1)).includes(id(103)));
   const first = recurringStateApprovalText(proposal, rule, rule.configuration.payerId);
   const second = recurringStateApprovalText(
     { change: { ...proposal.change, ruleId: other.ruleId } },

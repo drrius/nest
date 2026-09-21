@@ -18,6 +18,7 @@ export function recurringStateSummary(rule: RecurringRule, actor: string) {
       : "Variable amount and split confirmed each cycle";
   return [
     config.description,
+    `Rule reference: ${rule.ruleId}`,
     amount,
     `Payer: ${config.payerId === actor ? "You" : "Other household member"}`,
     cadence,
