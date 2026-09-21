@@ -1,3 +1,4 @@
+export { planRecurringResume } from "./recurring-resume.ts";
 export { assertCentimes, parseChf, formatChfField } from "./centimes.ts";
 export {
   equalAllocation,
