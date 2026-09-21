@@ -84,3 +84,15 @@ test("failed Storage write remains uncertain and a real JPEG uses detected MIME 
   assert.equal(f.state.intent.contentType, "image/jpeg");
   assert.match(f.state.intent.path, /\.jpg$/);
 });
+
+test("an old form cannot upload into a newly joined household or omit its expected household", async (t) => {
+  const f = fixture(t);
+  f.state.membershipHome = uploadId;
+  assert.equal((await f.handler(request())).status, 403);
+  f.state.membershipHome = home;
+  const missing = request();
+  missing.headers.delete("x-nest-household");
+  assert.equal((await f.handler(missing)).status, 403);
+  assert.equal(f.state.reserves, 0);
+  assert.equal(f.state.writes, 0);
+});

@@ -33,7 +33,11 @@ test("real upload HTTP authorizes and reserves exact content but never claims un
   );
   const url = `http://127.0.0.1:${server.address().port}/?uploadId=${id(100)}`;
   const send = (token, body = "%PDF-1.7\nfixture") =>
-    fetch(url, { method: "POST", headers: { authorization: `Bearer ${token}` }, body });
+    fetch(url, {
+      method: "POST",
+      headers: { authorization: `Bearer ${token}`, "x-nest-household": id(10) },
+      body,
+    });
   const first = await send(f.bearer);
   assert.equal(first.status, 503);
   assert.deepEqual(await first.json(), { error: { code: "unavailable" } });
@@ -44,5 +48,7 @@ test("real upload HTTP authorizes and reserves exact content but never claims un
   assert.equal((await send(f.bearer, "%PDF-1.7\nchanged")).status, 409);
   assert.equal((await send(f.partnerBearer)).status, 403);
   assert.equal((await send("invalid-token")).status, 401);
+  f.db.sql(`update public.household_members set household_id='${id(20)}' where user_id='${id(1)}'`);
+  assert.equal((await send(f.bearer)).status, 403);
   assert.equal(f.db.sql("select count(*) from private.nest_receipt_upload_intents"), "1");
 });

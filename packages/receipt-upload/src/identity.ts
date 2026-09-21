@@ -44,6 +44,10 @@ export function uploadCaller(config: UploadConfig, request: Request) {
     const member = members[0];
     if (members.length !== 1 || !member || member.user_id !== user.id)
       return yield* new ReceiptUploadFailure({ code: "forbidden" });
+    if (
+      request.headers.get("x-nest-household")?.toLowerCase() !== member.household_id.toLowerCase()
+    )
+      return yield* new ReceiptUploadFailure({ code: "forbidden" });
     return { token, userId: user.id.toLowerCase(), householdId: member.household_id.toLowerCase() };
   });
 }

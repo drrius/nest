@@ -8,11 +8,16 @@ export const pdf = new TextEncoder().encode("%PDF-1.7\nfixture");
 export const request = (bytes = pdf, query = `uploadId=${uploadId}`, token = "member-token") =>
   new Request(`https://edge.example/upload?${query}`, {
     method: "POST",
-    headers: { Authorization: `Bearer ${token}`, "content-type": "image/jpeg" },
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "x-nest-household": home,
+      "content-type": "image/jpeg",
+    },
     body: bytes,
   });
 export function fixture(t) {
   const state = {
+    membershipHome: home,
     writes: 0,
     reads: 0,
     reserves: 0,
@@ -39,7 +44,7 @@ export function fixture(t) {
     if (path === "/auth/v1/user")
       return Response.json({ id: actor, is_anonymous: state.anonymous });
     if (path === "/rest/v1/household_members")
-      return Response.json([{ user_id: actor, household_id: home }]);
+      return Response.json([{ user_id: actor, household_id: state.membershipHome }]);
     if (path === "/rest/v1/rpc/nest_reserve_receipt_upload") return reserve(state, init);
     if (path.startsWith("/storage/v1/object/authenticated/household-files/")) {
       state.reads++;

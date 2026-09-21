@@ -1,6 +1,6 @@
 # Nest receipt upload
 
-This gated Edge entry point accepts `POST ?uploadId=<UUID>` with raw JPEG/PDF bytes, a user's bearer token and the project's publishable `apikey`. It verifies the user through Auth, obtains current membership through caller RLS, inspects bounded bytes, computes SHA-256 and reserves the exact identity. It never posts an expense. A successful response requires a caller-authorized download with matching digest, byte count and MIME, including after an uncertain write. No overwrite is allowed.
+This gated Edge entry point accepts `POST ?uploadId=<UUID>` with raw JPEG/PDF bytes, a user's bearer token, expected `X-Nest-Household` and the project's publishable `apikey`. It verifies the user through Auth, obtains current membership through caller RLS, rejects an old form targeting a different household, inspects bounded bytes, computes SHA-256 and reserves the exact identity. It never posts an expense. A successful response requires a caller-authorized download with matching digest, byte count and MIME, including after an uncertain write. No overwrite is allowed.
 
 The only privileged request is an immutable Storage POST to the inspected, reserved path. Reads and reservations use the user's token. The added Storage trigger rechecks membership at native insertion; existing pending/claimed/cleanup guards remain in force. Errors return finite codes without provider messages or secrets. PDFs are signature-checked, not parsed or malware-scanned.
 
