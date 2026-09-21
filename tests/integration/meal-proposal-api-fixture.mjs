@@ -2,6 +2,7 @@ import { createRequire } from "node:module";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { recipeSelectionFiles } from "../database/recipe-selection-fixture.mjs";
 import { workerFiles, id } from "../database/meal-proposal-worker-fixture.mjs";
+import { approvalFiles } from "../database/meal-proposal-approval-fixture.mjs";
 import { migration, input } from "../database/meal-proposal-reservation-fixture.mjs";
 import { seed } from "../database/meal-planning-context-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
@@ -16,6 +17,7 @@ const files = [
   "supabase/migrations/20260921040437_native_meal_planning_context.sql",
   migration,
   ...workerFiles,
+  ...approvalFiles,
   "supabase/migrations/20260919214955_native_busy_snapshots.sql",
 ];
 export const command = (operation = 800) => ({ operationId: id(operation), ...input() });
