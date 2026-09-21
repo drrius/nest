@@ -1,3 +1,4 @@
+import { useLeaveVariable } from "./use-leave-variable";
 import { useNativeState } from "@expo/ui";
 import { useState } from "react";
 import { Alert } from "react-native";
@@ -22,17 +23,19 @@ export function useVariableAmount(
     firstPercent = useNativeState("50");
   const [split, setSplit] = useState<VariableAmountDraft["split"]>("equal");
   const [error, setError] = useState<string | null>(null);
+  const readDraft = (): VariableAmountDraft => ({
+    amount: amount.value,
+    firstExact: firstExact.value,
+    secondExact: secondExact.value,
+    firstPercent: firstPercent.value,
+    split,
+  });
+  useLeaveVariable(readDraft, save);
   const submit = () => {
     if (!options) return;
     const expected = prepareVariableConfirmation(
       { read: read.getSnapshot(), save: save.getSnapshot() },
-      {
-        amount: amount.value,
-        firstExact: firstExact.value,
-        secondExact: secondExact.value,
-        firstPercent: firstPercent.value,
-        split,
-      },
+      readDraft(),
       options.members,
       Crypto.randomUUID(),
     );
