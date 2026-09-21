@@ -1,13 +1,18 @@
+import type { CalendarChore } from "@nest/contracts/calendar-chores";
 import type { AgendaRow } from "./agenda.ts";
 import type { Window } from "./availability.ts";
-export type CalendarRow =
+type TimedRow =
   | { kind: "personal"; key: string; start: number; value: AgendaRow }
   | { kind: "partner"; key: string; start: number; value: Window };
+export type CalendarRow =
+  | TimedRow
+  | { kind: "chore"; key: string; value: typeof CalendarChore.Type };
 export function agendaRows(
   personal: readonly AgendaRow[],
   partner: readonly Window[],
+  chores: readonly (typeof CalendarChore.Type)[] = [],
 ): CalendarRow[] {
-  const rows: CalendarRow[] = personal.map((value) => ({
+  const rows: TimedRow[] = personal.map((value) => ({
     kind: "personal",
     key: `personal:${value.key}`,
     start: value.start,
@@ -20,5 +25,12 @@ export function agendaRows(
       start: value.start,
       value,
     });
-  return rows.sort((a, b) => a.start - b.start || a.key.localeCompare(b.key));
+  return [
+    ...chores.map((value) => ({
+      kind: "chore" as const,
+      key: `chore:${value.occurrenceId}`,
+      value,
+    })),
+    ...rows.sort((a, b) => a.start - b.start || a.key.localeCompare(b.key)),
+  ];
 }

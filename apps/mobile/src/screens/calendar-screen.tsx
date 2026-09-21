@@ -1,3 +1,5 @@
+import { calendarChoreOwner } from "../calendar/chore-owner";
+import { calendarChoreOperations } from "../calendar/chore-operations";
 import { useState, useSyncExternalStore } from "react";
 import { expoCalendarPort } from "../calendar/expo-calendar";
 import { expoAgendaPort } from "../calendar/expo-agenda";
@@ -73,9 +75,13 @@ function CalendarAccount({
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   const [sharedOwner] = useState(() => partnerOwner(partnerOperations(account, client), Date.now));
   const partner = useSyncExternalStore(sharedOwner.subscribe, sharedOwner.getSnapshot);
-  useAgendaActivity(runtime, partner);
-  return runtime && partner ? (
-    <AgendaContent runtime={runtime} partner={partner} verify={verify} />
+  const [workOwner] = useState(() =>
+    calendarChoreOwner(calendarChoreOperations(account, client), localDate(new Date())),
+  );
+  const chores = useSyncExternalStore(workOwner.subscribe, workOwner.getSnapshot);
+  useAgendaActivity(runtime, partner, chores);
+  return runtime && partner && chores ? (
+    <AgendaContent runtime={runtime} partner={partner} chores={chores} verify={verify} />
   ) : (
     <Page>
       <Note>Opening your agenda…</Note>

@@ -6,7 +6,7 @@ Updated 21 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M6 — Calendar chore layer; branch `codex/calendar-chore-read`.** M5 ingredient/checklist integration is merged after clean review and successful CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
+**M6 — Calendar chore layer; branch `codex/calendar-chore-layer`.** M5 ingredient/checklist integration is merged after clean review and successful CI. Saved recipes, manual week edits, leftovers and linked preparation span storage, authenticated API, native UI and private AI. They remain device-unverified. Generated preview and explicit approval now span storage, API and native UI in local fixtures; hosted-model and device verification remain unavailable.
 
 Recent deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:
 
@@ -568,7 +568,13 @@ Final routine API verification passes all 81 affected API/database/real HTTP che
 
 The authorized calendar service reads stored current and next-preview occurrences for one explicit civil date, excluding closed, paused and archived work. The native endpoint and `readCalendarChores` AI tool share the same strict Effect service. Preview results remain explicitly tentative, with no invented time, future recurrence expansion or EventKit writes. Exact PostgREST count/range validation rejects truncation, and record/date/household checks reject inconsistent results rather than showing a partial empty day. Existing chore commands remain the action boundary.
 
-Two focused boundary cases and one real API/AI/PostgREST/PostgreSQL journey pass. They cover duplicate/date/tenant/schema/count rejection, accepted-assignee projection, current versus preview, partner access, revoked membership and inactive routines. API typechecking passed. CI and Sol review are pending. The optional native layer control, account-scoped loading and agenda presentation are next; this read boundary does not complete the chore layer. No production migration or device execution occurred.
+Two focused boundary cases and one real API/AI/PostgREST/PostgreSQL journey pass. They cover duplicate/date/tenant/schema/count rejection, accepted-assignee projection, current versus preview, partner access, revoked membership and inactive routines. API typechecking passed. Merged as `2a103933aa7a29f35884d267cf53f5115618dd6b` after successful exact-commit CI `35587412629` and clean Sol medium signoff (seven independently passing focused checks). Local main was fast-forwarded and pushed without a PR. The optional native layer control, account-scoped loading and agenda presentation are next; this read boundary does not complete the chore layer. No production migration or device execution occurred.
+
+### Native Calendar chore layer — candidate
+
+The agenda now has an optional native Show chores switch and virtualized, untimed current/preview rows. The display choice lasts for this mounted account session; it makes no sharing or calendar permission changes. Due-date rows are separated from timed personal/partner blocks, with explicit tentative-preview wording and a working Manage chores handoff. No event is written to iCloud. The shared calendar client binds household/date responses and uses the existing Expo authenticated transport. Account leases are verified before and after reads. Date changes, toggle-off, blur/background and disposal cancel in-flight work; access loss hides rows. Network return, foreground, manual refresh and the existing minute refresh recheck the selected day.
+
+Five new native client/controller/SQLite cases pass for opt-in, date races, cancellation, error/retry, foreign/date/duplicate responses, account lease changes and owner disposal. Two real API/AI/native HTTP/PostgREST/PostgreSQL journeys pass, including current-to-preview date navigation and revoked partner access. Mobile typechecking and scoped lint pass. The iOS export succeeds at `/tmp/nest-calendar-chore-layer-export`, bundle `8fa19b402f7c5918de1df0edf4f42803`; this is packaging only. Exact-commit CI and Sol review remain pending. Native toggle rendering, focus/AppState transitions and VoiceOver require an iPhone; the renewals layer still depends on M8. No production data or migrations were touched.
 
 ### Native routine lifecycle — implementation in review
 

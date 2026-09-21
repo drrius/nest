@@ -1,3 +1,4 @@
+import { CalendarChoreQuery, CalendarChores } from "@nest/contracts/calendar-chores";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -37,6 +38,15 @@ export function calendarClient(
       ),
     );
   return {
+    chores: (date: string) =>
+      validate(CalendarChoreQuery, { date }).pipe(
+        Effect.flatMap((query) =>
+          request(`v1/calendar/chores?${new URLSearchParams(query)}`, CalendarChores),
+        ),
+        Effect.flatMap((value) =>
+          match(value.chores, value.householdId === account.household && value.date === date),
+        ),
+      ),
     consent: () =>
       scoped("v1/calendar/consent", CalendarConsentEnvelope).pipe(
         Effect.map((value) => value.consent),

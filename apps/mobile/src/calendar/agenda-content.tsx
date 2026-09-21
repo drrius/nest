@@ -1,3 +1,5 @@
+import { CalendarChoreControls, CalendarChoreRow } from "./chore-content";
+import { visibleCalendarChores, type CalendarChoreRuntime } from "./chore-runtime";
 import { useState, useSyncExternalStore } from "react";
 import { FlatList, Text } from "react-native";
 import { Note, Page, Card } from "../components/page";
@@ -10,20 +12,23 @@ import { AgendaCalendarPicker } from "./agenda-calendar-picker";
 import type { PartnerRuntime } from "./partner-runtime";
 import { partnerAgenda } from "./partner-agenda";
 import { agendaDay } from "./agenda-day";
-import { agendaRows } from "./agenda-rows";
+import { agendaRows, type CalendarRow } from "./agenda-rows";
 import { PartnerStatus, PartnerBlock } from "./partner-content";
 export function AgendaContent({
   runtime,
   partner,
+  chores,
   verify,
 }: {
   runtime: AgendaRuntime;
   partner: PartnerRuntime;
+  chores: CalendarChoreRuntime;
   verify: () => void;
 }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot),
     colors = useQuiet();
   const shared = useSyncExternalStore(partner.subscribe, partner.getSnapshot);
+  const work = useSyncExternalStore(chores.subscribe, chores.getSnapshot);
   const [choosing, setChoosing] = useState(false);
   if (!view.active)
     return (
@@ -46,7 +51,11 @@ export function AgendaContent({
     window && shared.active
       ? partnerAgenda(shared.snapshots, partner.actor, window, shared.asOf)
       : { status: "unknown" as const };
-  const rows = agendaRows(personal, assessment.status === "known" ? assessment.intervals : []);
+  const rows = agendaRows(
+    personal,
+    assessment.status === "known" ? assessment.intervals : [],
+    visibleCalendarChores(work, view.date),
+  );
   return (
     <FlatList
       contentInsetAdjustmentBehavior="automatic"
@@ -58,22 +67,11 @@ export function AgendaContent({
         <>
           <AgendaControls runtime={runtime} view={view} choose={() => setChoosing(true)} />
           <PartnerStatus assessment={assessment} runtime={partner} view={shared} verify={verify} />
+          <CalendarChoreControls runtime={chores} view={work} verify={verify} />
           <PersonalStatus view={view} />
         </>
       }
-      renderItem={({ item }) =>
-        item.kind === "partner" ? (
-          <PartnerBlock {...item.value} />
-        ) : (
-          <PersonalEvent
-            row={item.value}
-            calendar={
-              view.calendars.find((calendar) => calendar.id === item.value.calendarId)?.title ??
-              "Your calendar"
-            }
-          />
-        )
-      }
+      renderItem={({ item }) => <AgendaItem item={item} view={view} actor={partner.actor} />}
     />
   );
 }
@@ -105,5 +103,19 @@ function PersonalStatus({ view }: { view: AgendaView }) {
         ? "No personal events in your selected calendars for this day."
         : "Choose calendars to see your personal events alongside shared busy blocks."}
     </Note>
+  );
+}
+
+function AgendaItem({ item, view, actor }: { item: CalendarRow; view: AgendaView; actor: string }) {
+  if (item.kind === "chore") return <CalendarChoreRow row={item.value} actor={actor} />;
+  if (item.kind === "partner") return <PartnerBlock {...item.value} />;
+  return (
+    <PersonalEvent
+      row={item.value}
+      calendar={
+        view.calendars.find((calendar) => calendar.id === item.value.calendarId)?.title ??
+        "Your calendar"
+      }
+    />
   );
 }

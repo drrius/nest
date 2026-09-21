@@ -15,6 +15,8 @@ export function sessionCalendar(auth: SupabaseClient["auth"], account: Account, 
       client.begin(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     publish: (input: Parameters<typeof client.publish>[0]) =>
       client.publish(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    chores: (date: string) =>
+      client.chores(date).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     snapshots: () => client.snapshots().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }
