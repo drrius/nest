@@ -1,3 +1,5 @@
+import * as RefundSaves from "./refund-saves.ts";
+import type { RefundSaveAttempt } from "../money/refund-save-attempt.ts";
 import * as SettlementSaves from "./settlement-saves.ts";
 import type { SettlementSaveAttempt } from "../money/settlement-save-attempt.ts";
 import * as SettlementApprovals from "./settlement-approvals.ts";
@@ -47,6 +49,7 @@ export function makeOfflineStore(database: Database) {
     initialize: run(() => initialize(database)),
     ...settlementApprovalStore(database),
     ...settlementSaveStore(database),
+    ...refundSaveStore(database),
     readExpenseSave: (session: Session) =>
       run(() => ExpenseSaves.readExpenseSave(database, session)),
     stageExpenseSave: (session: Session, attempt: ExpenseSaveAttempt, current: () => boolean) =>
@@ -234,5 +237,15 @@ function settlementSaveStore(database: Database) {
     ) => run(() => SettlementSaves.stageSettlementSave(database, session, attempt, current)),
     clearSettlementSave: (session: Session, attempt: SettlementSaveAttempt) =>
       run(() => SettlementSaves.clearSettlementSave(database, session, attempt)),
+  };
+}
+
+function refundSaveStore(database: Database) {
+  return {
+    readRefundSave: (session: Session) => run(() => RefundSaves.readRefundSave(database, session)),
+    stageRefundSave: (session: Session, attempt: RefundSaveAttempt, current: () => boolean) =>
+      run(() => RefundSaves.stageRefundSave(database, session, attempt, current)),
+    clearRefundSave: (session: Session, attempt: RefundSaveAttempt) =>
+      run(() => RefundSaves.clearRefundSave(database, session, attempt)),
   };
 }
