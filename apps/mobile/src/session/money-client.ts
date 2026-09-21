@@ -1,3 +1,4 @@
+import type { ManualCycleDecision } from "../money/recurring-manual-approval-client";
 import type { ManualCycleSave } from "../money/recurring-manual-client";
 import type { VariableCycleDecision } from "../money/recurring-variable-approval-client";
 import type { VariableCycleSave } from "../money/recurring-variable-client";
@@ -108,6 +109,12 @@ export function sessionMoney(
 
 function sessionRecurring(client: MoneyClient) {
   return {
+    manualCycleApproval: (approvalId: string) =>
+      client
+        .manualCycleApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideManualCycle: (input: ManualCycleDecision) =>
+      client.decideManualCycle(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveManualCycle: (input: ManualCycleSave) =>
       client.saveManualCycle(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverManualCycle: (input: ManualCycleSave) =>

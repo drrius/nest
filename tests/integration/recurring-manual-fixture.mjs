@@ -1,10 +1,11 @@
 import { fixture as variableFixture, id, run } from "./recurring-variable-fixture.mjs";
 import { payload } from "../database/native-expense-helpers.mjs";
 export { id, run };
-export async function fixture(t) {
+export async function fixture(t, extraFiles = []) {
   const f = await variableFixture(t, [
     "supabase/migrations/20260921105214_native_money_detail_read.sql",
     "supabase/migrations/20260921232720_native_recurring_manual_cycle.sql",
+    ...extraFiles,
   ]);
   const source = await f.rpc("nest_save_expense", {
     p_household: id(10),

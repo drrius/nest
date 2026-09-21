@@ -1,3 +1,4 @@
+import { manualCycleApprovalRoute } from "./recurring-manual-approval-route.ts";
 import * as Effect from "effect/Effect";
 import { manualCycleCommands } from "./recurring-manual.ts";
 import { manualCycleRecovery } from "./recurring-manual-read.ts";
@@ -12,6 +13,8 @@ export function manualCycleRoute(
 ) {
   return Effect.gen(function* () {
     const url = new URL(request.url);
+    if (url.pathname.includes("/approval"))
+      return yield* manualCycleApprovalRoute(request, config, caller);
     if (request.method === "GET") {
       if (url.searchParams.size !== 1 || !url.searchParams.has("operationId"))
         return yield* new ApiFailure({ code: "invalid_request" });
