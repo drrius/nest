@@ -1,3 +1,4 @@
+import { matchesLegacyAdoptionProposal } from "../money/legacy-adoption-proposal.ts";
 import { matchesLegacyConfirmationProposal } from "../money/legacy-confirmation-proposal.ts";
 import { matchesLegacyDismissalProposal } from "../money/legacy-dismissal-proposal.ts";
 import { matchesManualCycleProposal } from "../money/recurring-manual-proposal.ts";
@@ -18,6 +19,7 @@ import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope, MemoryReceipt } from "@nest/contracts/memory";
 import type { AssistantAction } from "@nest/contracts/assistant-actions";
 const financialProposals = {
+  proposeLegacyAdoption: matchesLegacyAdoptionProposal,
   proposeLegacyConfirmation: matchesLegacyConfirmationProposal,
   proposeLegacyDismissal: matchesLegacyDismissalProposal,
   proposeManualCycle: matchesManualCycleProposal,

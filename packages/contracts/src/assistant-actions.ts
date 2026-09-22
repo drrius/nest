@@ -1,3 +1,5 @@
+import { LegacyAdoptionProposal } from "./legacy-adoption-command.ts";
+import { LegacyAdoptionApprovalEnvelope } from "./legacy-adoption-approval.ts";
 import { LegacyConfirmationProposal } from "./legacy-draft-confirmation.ts";
 import { LegacyConfirmationApprovalEnvelope } from "./legacy-confirmation-approval.ts";
 import { LegacyDraftContextQuery } from "./legacy-draft-dismissal.ts";
@@ -84,6 +86,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeLegacyAdoption: LegacyAdoptionProposal,
   proposeLegacyConfirmation: LegacyConfirmationProposal,
   proposeLegacyDismissal: LegacyDraftContextQuery,
   proposeManualCycle: ManualCycleInput,
@@ -137,6 +140,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeLegacyAdoption: LegacyAdoptionApprovalEnvelope,
   proposeLegacyConfirmation: LegacyConfirmationApprovalEnvelope,
   proposeLegacyDismissal: LegacyDismissalApprovalEnvelope,
   proposeManualCycle: ManualCycleApprovalEnvelope,

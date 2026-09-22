@@ -62,3 +62,8 @@ export function canonicalLegacyAdoption(input: LegacyAdoptionInput): LegacyAdopt
     firstDueOn: native.firstDueOn,
   };
 }
+
+export const LegacyAdoptionProposal = Schema.Struct({
+  ruleId: LegacyAdoptionInput.fields.ruleId,
+  configuration: LegacyAdoptionInput.fields.configuration,
+});

@@ -3,6 +3,10 @@ export function financialProposalTools<T>(
   write: (name: AssistantAction, description: string) => T,
 ) {
   return {
+    proposeLegacyAdoption: write(
+      "proposeLegacyAdoption",
+      "Propose native adoption only when explicitly requested for a known retained legacy rule. Read its inventory and draft history first. Supply its ruleId and the full requested configuration: variable or fixed mode, CHF integer-centime amount and exact two-member split for fixed mode, payer, description, category, note, prospective startDate and cadence. Ask for missing terms; never infer fixed automatic authorization from old rules or chat. The server computes a fresh source fingerprint and the first cycle beyond retained historical coverage. Pending or discrepant drafts must be reconciled first. This creates only a PRIVATE PENDING proposal; it neither adopts the rule nor records an expense. The member must open the native card, compare original and proposed terms and explicitly approve. Do not call Save, execute, decision or withdrawal endpoints. Fixed adoption authorizes future automatic recording; variable adoption still requires each cycle amount and split to be confirmed. No payment is made.",
+    ),
     proposeLegacyConfirmation: write(
       "proposeLegacyConfirmation",
       "Propose confirmation only when the member explicitly selects an original retained recurring draft to record. Read listLegacyRecurringDrafts first; never invent the draft ID. Supply complete expense description, CHF integer-centime amount, payer, both exact allocations, date, category and note. Ask for missing/unsupported terms; never substitute current recurring rule terms or guess legacy values. The server binds the original draft and its fresh fingerprint. This creates a PRIVATE PENDING proposal only: no financial event, payment or future automatic mandate is created. The member must review original and proposed terms in the native card and explicitly confirm. Do not infer consent from conversation or call Save/execute/decision/withdrawal yourself. Receipts and grocery totals do not belong to this recurring-draft action.",
