@@ -1,6 +1,8 @@
+import { createHash } from "node:crypto";
+import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fixture, id } from "./renewal-fixture.mjs";
+import { fixture, id, Effect, run } from "./renewal-fixture.mjs";
 test("authenticated push HTTP saves and recovers token-free receipts with strict request handling", async (t) => {
   const f = await fixture(t, ["supabase/migrations/20260922223732_native_push_registration.sql"]);
   const command = {
@@ -19,6 +21,17 @@ test("authenticated push HTTP saves and recovers token-free receipts with strict
   const saved = await request("/v1/push-devices/save", command);
   assert.equal(saved.status, 200);
   const receipt = await saved.json();
+  const native = pushDeviceClient(
+    f.url,
+    { actor: id(1), household: id(10) },
+    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+    (input) => Effect.sync(() => createHash("sha256").update(input).digest("hex")),
+  );
+  assert.deepEqual(await run(native.save(command)), receipt);
+  assert.deepEqual((await run(native.recover(command))).receipt, receipt);
+  assert.equal((await run(native.detail(command.installationId))).enabled, true);
+  await assert.rejects(run(native.recover({ ...command, token: "substituted" })));
+
   assert.equal(JSON.stringify(receipt).includes(command.token), false);
   const recovered = await request(`/v1/push-devices/operation?operationId=${command.operationId}`);
   assert.equal(recovered.status, 200);

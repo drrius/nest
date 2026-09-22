@@ -2275,3 +2275,15 @@ The API-side Effect adapter now forwards the verified caller token to the three 
 ### Registration HTTP path — 23 September
 
 Finite authenticated routes now expose registration save, installation state and operation recovery through the Effect adapter. A real HTTP → API → PostgREST → disposable PostgreSQL journey passes for enrollment, token-free receipt recovery and enabled-state reads; injected actor fields, duplicate query parameters, changed operation intent and unauthenticated reads are rejected. API typechecking and scoped lint pass with existing advisories. Native client receipt verification, durable operation storage, permission interaction, rotation and sign-out recovery remain unfinished; this is not device enrollment acceptance. Exact-commit Sol review and CI remain required.
+
+### Scheduling merged; native registration client draft — 23 September
+
+Scheduling `b9ec3c7c00d2461309bdbf737ded7944ffe9e148` passed exact CI `35793012861` and clean Sol review and was fast-forwarded/pushed to main. No scheduler deployment is activated by that merge.
+
+The native registration client draft now uses the existing account-bound authenticated request layer and independently checks the complete command digest on save and recovery; detail responses must match the requested installation. A separate Expo Crypto SHA-256 adapter supplies native hashing. Scoped lint passes. Real native-client/HTTP integration, account-change faults, forged responses and session wiring remain outstanding; no working native enrollment is claimed.
+
+The native-client draft now passes the real HTTP/PostgREST/PostgreSQL journey for exact save replay, receipt recovery, installation read and changed-token recovery rejection. The test injects Node SHA-256 at the hashing boundary; it does not execute Expo Crypto on iOS. Mobile typechecking completed successfully. Sol separately returned clean exact-commit signoff for API/read increment `a319ff5` after eight independently passing focused checks; CI remains required before merge.
+
+### Native enrollment transport verification — 23 September
+
+Two actual native-client/HTTP/PostgREST/PostgreSQL cases pass. Lost committed acknowledgment recovers the original receipt; retries retain one journal row. Forged actor, household, operation, installation, action and digest responses are rejected on save/recovery, and changed credential identity blocks dispatch before any HTTP request. Earlier mobile typechecking passed for the client and Expo digest adapter; scoped lint passes with test-only advisories. The integration tests use injected Node SHA-256, so physical Expo Crypto, permission/token APIs and device presentation remain unverified. Durable secret storage, session wiring, sign-out and rotation remain unfinished.
