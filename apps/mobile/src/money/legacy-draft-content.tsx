@@ -64,6 +64,12 @@ function DraftRow({ row, actor }: { row: typeof LegacyRecurringDraft.Type; actor
             router.push({ pathname: "/legacy-dismissal", params: { draftId: row.draftId } })
           }
         />
+        <NativeAction
+          label="Review expense confirmation or saved request"
+          onPress={() =>
+            router.push({ pathname: "/legacy-confirmation", params: { draftId: row.draftId } })
+          }
+        />
         <Note>Draft reference: {row.draftId}</Note>
       </Section>
     </Card>

@@ -1,3 +1,5 @@
+import * as LegacyConfirmations from "./legacy-confirmation-saves.ts";
+import type { LegacyConfirmationSaveAttempt } from "../money/legacy-confirmation-save-attempt.ts";
 import * as LegacyDismissals from "./legacy-dismissal-saves.ts";
 import type { LegacyDismissalSaveAttempt } from "../money/legacy-dismissal-save-attempt.ts";
 import * as VariableCycleSaves from "./variable-cycle-saves.ts";
@@ -39,6 +41,7 @@ export function cycleSaveStore(database: Database) {
     ...variableCycleSaveStore(database),
     ...manualCycleSaveStore(database),
     ...legacyDismissalStore(database),
+    ...legacyConfirmationStore(database),
   };
 }
 
@@ -53,5 +56,22 @@ function legacyDismissalStore(database: Database) {
     ) => run(() => LegacyDismissals.stageLegacyDismissalSave(database, session, attempt, current)),
     clearLegacyDismissalSave: (session: Session, attempt: LegacyDismissalSaveAttempt) =>
       run(() => LegacyDismissals.clearLegacyDismissalSave(database, session, attempt)),
+  };
+}
+
+function legacyConfirmationStore(database: Database) {
+  return {
+    readLegacyConfirmationSave: (session: Session) =>
+      run(() => LegacyConfirmations.readLegacyConfirmationSave(database, session)),
+    stageLegacyConfirmationSave: (
+      session: Session,
+      attempt: LegacyConfirmationSaveAttempt,
+      current: () => boolean,
+    ) =>
+      run(() =>
+        LegacyConfirmations.stageLegacyConfirmationSave(database, session, attempt, current),
+      ),
+    clearLegacyConfirmationSave: (session: Session, attempt: LegacyConfirmationSaveAttempt) =>
+      run(() => LegacyConfirmations.clearLegacyConfirmationSave(database, session, attempt)),
   };
 }

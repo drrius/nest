@@ -40,6 +40,7 @@ export function ExpenseFields(props: Props) {
           {!props.variable ? <ExpenseAmountFields draft={draft} disabled={disabled} /> : null}
           <Text>{props.payerLabel ?? "Paid by"}</Text>
           <Picker selectedValue={draft.payerId} onValueChange={draft.setPayer} enabled={!disabled}>
+            {!draft.payerId ? <Picker.Item label="Choose payer" value="" /> : null}
             {options.members.map((member) => (
               <Picker.Item key={member.actorId} label={member.displayName} value={member.actorId} />
             ))}

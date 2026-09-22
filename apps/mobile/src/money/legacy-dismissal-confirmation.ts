@@ -41,7 +41,7 @@ export function dismissalConfirmationCurrent(
 ) {
   return current !== null && current === expected.context;
 }
-export function dismissalText(context: typeof LegacyDraftContext.Type, actor: string) {
+export function legacyDraftText(context: typeof LegacyDraftContext.Type, actor: string) {
   const row = context.draft;
   const name = (member: string | null) =>
     member === null ? "Not specified" : member === actor ? "You" : "Other household member";
@@ -54,6 +54,9 @@ export function dismissalText(context: typeof LegacyDraftContext.Type, actor: st
           .join("\n")
       : "Retained split needs review; no replacement is assumed.",
     `Draft reference: ${row.draftId}\nRule reference: ${row.ruleId}`,
-    "Dismiss this unposted draft? It stays in history as dismissed. No expense or payment is recorded, no balance changes, and the recurring rule is not paused or cancelled.",
   ].join("\n\n");
+}
+
+export function dismissalText(context: typeof LegacyDraftContext.Type, actor: string) {
+  return `${legacyDraftText(context, actor)}\n\nDismiss this unposted draft? It stays in history as dismissed. No expense or payment is recorded, no balance changes, and the recurring rule is not paused or cancelled.`;
 }
