@@ -7,12 +7,16 @@ export const signOutSession = (
   auth: SupabaseClient["auth"],
   subscription: ReturnType<typeof subscribeSession>,
   beginLocalLogout: () => Promise<string | null | void> = async () => {},
+  beforeCredentialRemoval: (token: string | null | void) => Promise<void> = async () => {},
 ) =>
   Effect.gen(function* () {
     subscription.hide();
     yield* Effect.tryPromise({
       try: async () => {
         const revokedToken = await beginLocalLogout();
+        // Persist logout-pending before network cleanup so restart cannot restore
+        // this identity. Only the cleanup callback receives the retained token.
+        await beforeCredentialRemoval(revokedToken);
         await auth.stopAutoRefresh();
         // Hidden credentials cannot be read by normal SDK hydration. Retain
         // only this pre-logout token for a best-effort revocation attempt.

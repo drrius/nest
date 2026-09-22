@@ -2325,3 +2325,11 @@ The operations adapter now exposes an explicit retry that first reads the protec
 ### Registration API merged; retry verification — 23 September
 
 Registration read/API `a319ff5a68bfd1a8e598e71aa22b7ad6efcdc672` passed exact CI `35794102588` and clean Sol review, then main was fast-forwarded and pushed. Native descendants remain gated individually. The explicit retry draft passes final mobile typechecking and scoped lint, in addition to the actual HTTP/database retry journey. Explicit enable/disable `bc3f893` now has clean exact-commit Sol signoff; its CI is still running at the latest check. No device enrollment, notification sending or hosted migration occurred.
+
+### Sign-out cleanup boundary — 23 September, draft
+
+Sign-out now accepts a required-cleanup callback between durable local logout-pending and credential removal. UI hides first; persisted logout-pending prevents identity restoration after restart. The callback receives only the retained pre-logout token needed for deregistration. If cleanup fails, local credential deletion and completed-sign-out reporting do not run, allowing an explicit retry. Two controlled-auth tests pass for ordering and failure/retry. The callback is not yet wired to push revocation; existing callers still use its no-op default. Actual device disable, missing/expired credential handling and restart recovery remain unfinished, so notification-safe logout is not claimed.
+
+### Sign-out hook SDK regression verification — 23 September
+
+Ten focused sign-out/cold-session/pinned-SDK tests pass. The added actual SDK/protected-storage case confirms failed required cleanup retains the durable logout-pending envelope, suppresses cached identity and ordinary SDK credentials, preserves the retained token for a retry, and finally removes credentials only after successful cleanup. Scoped lint and mobile typechecking pass. The callback is still not connected to push deregistration, and this does not prove offline notification revocation or physical Keychain behavior.

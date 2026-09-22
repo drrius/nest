@@ -97,3 +97,38 @@ test("online logout attempts revocation with the pre-logout token and deletes th
   assert.equal(f.storage.has("nest.auth.v1"), false);
   assert.equal(states.at(-1).status, "signed_out");
 });
+
+test("failed required cleanup keeps durable logout pending and hides SDK credentials", async (t) => {
+  const f = sdkFixture({ wrapStorage: protectedStorage, fetcher: () => Response.json({}) });
+  const member = { userId: f.user.id, householdId, displayName: "A" };
+  await f.identity.save(member);
+  const states = [];
+  const subscription = subscribeSession(
+    f.client.auth,
+    () => Effect.succeed(member),
+    (state) => states.push(state),
+    f.identity,
+  );
+  t.after(() => subscription.dispose());
+  await subscription.refresh();
+  const token = (await f.client.auth.getSession()).data.session.access_token;
+  await assert.rejects(
+    Effect.runPromise(
+      signOutSession(f.client.auth, subscription, f.beginLogout, async (retained) => {
+        assert.equal(retained, token);
+        throw new Error("device deregistration unavailable");
+      }),
+    ),
+  );
+  assert.equal(states.at(-1).status, "logout_pending");
+  assert.equal(JSON.parse(f.storage.get("nest.auth.v1")).logoutPending, true);
+  assert.equal(await f.identity.read(), null);
+  assert.equal((await f.client.auth.getSession()).data.session, null);
+  await Effect.runPromise(
+    signOutSession(f.client.auth, subscription, f.beginLogout, async (retained) => {
+      assert.equal(retained, token);
+    }),
+  );
+  assert.equal(f.storage.has("nest.auth.v1"), false);
+  assert.equal(states.at(-1).status, "signed_out");
+});
