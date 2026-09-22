@@ -67,3 +67,35 @@ test("stored renewal titles preserve PostgreSQL code points and ASCII trimming s
   );
   assert.throws(() => decode({ ...command, fields: { ...fields, title: "\u00a0Internet\u00a0" } }));
 });
+
+test("updates and removals must advance the reviewed revision", () => {
+  const renewal = {
+    renewalId: id(2),
+    revision: id(4),
+    fields,
+    cancellationOn: "2028-02-29",
+    removed: false,
+  };
+  const base = { version: 1, actorId: id(1), householdId: id(10), operationId: id(3), renewal };
+  const update = {
+    ...base,
+    action: "saved",
+    command: { ...command, operationId: id(3), expectedRevision: id(4) },
+  };
+  assert.equal(Schema.is(RenewalReceipt)(update), false);
+  assert.equal(
+    Schema.is(RenewalReceipt)({ ...update, renewal: { ...renewal, revision: id(5) } }),
+    true,
+  );
+  const removal = {
+    ...base,
+    action: "removed",
+    command: { operationId: id(3), renewalId: id(2), expectedRevision: id(4) },
+    renewal: { ...renewal, removed: true },
+  };
+  assert.equal(Schema.is(RenewalReceipt)(removal), false);
+  assert.equal(
+    Schema.is(RenewalReceipt)({ ...removal, renewal: { ...removal.renewal, revision: id(5) } }),
+    true,
+  );
+});

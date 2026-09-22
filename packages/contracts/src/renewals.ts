@@ -66,6 +66,7 @@ export const RenewalReceipt = Schema.Struct({
 }).check(
   Schema.makeFilter((value) => {
     if (
+      value.command.expectedRevision === value.renewal.revision ||
       value.operationId !== value.command.operationId ||
       value.renewal.renewalId !== value.command.renewalId ||
       value.renewal.removed !== (value.action === "removed")
@@ -117,3 +118,22 @@ export const RenewalRecovery = Schema.Struct({
       : value.receipt === null,
   ),
 );
+export type RenewalCommand = typeof RenewalCommand.Type;
+export function canonicalRenewalCommand(command: RenewalCommand): RenewalCommand {
+  const identity = {
+    operationId: command.operationId.toLowerCase(),
+    renewalId: command.renewalId.toLowerCase(),
+    expectedRevision: command.expectedRevision?.toLowerCase() ?? null,
+  };
+  if ("fields" in command)
+    return {
+      ...identity,
+      fields: {
+        ...command.fields,
+        responsibleId: command.fields.responsibleId?.toLowerCase() ?? null,
+        recurringRuleId: command.fields.recurringRuleId?.toLowerCase() ?? null,
+      },
+    };
+  return { ...identity, expectedRevision: command.expectedRevision.toLowerCase() };
+}
+export const sameRenewalCommand = Schema.toEquivalence(RenewalCommand);
