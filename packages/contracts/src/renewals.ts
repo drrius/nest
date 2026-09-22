@@ -67,3 +67,38 @@ export const RenewalEnvelope = Schema.Struct({
   householdId: Uuid,
   renewal: Renewal,
 });
+export const RenewalListQuery = Schema.Struct({ after: Schema.NullOr(Uuid) });
+export const RenewalList = Schema.Struct({
+  version: Schema.Literal(1),
+  householdId: Uuid,
+  after: Schema.NullOr(Uuid),
+  next: Schema.NullOr(Uuid),
+  renewals: Schema.Array(Renewal).check(Schema.isMaxLength(50)),
+}).check(
+  Schema.makeFilter((value) => {
+    let previous = value.after ?? "";
+    for (const renewal of value.renewals) {
+      if (renewal.removed || renewal.renewalId <= previous) return false;
+      previous = renewal.renewalId;
+    }
+    return value.next === null || (value.renewals.length === 50 && value.next === previous);
+  }),
+);
+export const RenewalOperationQuery = Schema.Struct({ operationId: Uuid });
+export const RenewalRecovery = Schema.Struct({
+  version: Schema.Literal(1),
+  actorId: Uuid,
+  householdId: Uuid,
+  operationId: Uuid,
+  status: Schema.Literals(["unresolved", "cancelled", "recorded"]),
+  receipt: Schema.NullOr(RenewalReceipt),
+}).check(
+  Schema.makeFilter((value) =>
+    value.status === "recorded"
+      ? value.receipt !== null &&
+        value.receipt.actorId === value.actorId &&
+        value.receipt.householdId === value.householdId &&
+        value.receipt.operationId === value.operationId
+      : value.receipt === null,
+  ),
+);
