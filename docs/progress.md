@@ -2287,3 +2287,15 @@ The native-client draft now passes the real HTTP/PostgREST/PostgreSQL journey fo
 ### Native enrollment transport verification — 23 September
 
 Two actual native-client/HTTP/PostgREST/PostgreSQL cases pass. Lost committed acknowledgment recovers the original receipt; retries retain one journal row. Forged actor, household, operation, installation, action and digest responses are rejected on save/recovery, and changed credential identity blocks dispatch before any HTTP request. Earlier mobile typechecking passed for the client and Expo digest adapter; scoped lint passes with test-only advisories. The integration tests use injected Node SHA-256, so physical Expo Crypto, permission/token APIs and device presentation remain unverified. Durable secret storage, session wiring, sign-out and rotation remain unfinished.
+
+### Protected enrollment attempt storage — 23 September, draft
+
+An account/household-scoped protected-storage adapter now retains the exact enrollment command, serializes changes through one application-owned instance, refuses replacement of unresolved intent and clears only the matching command. Corrupt state fails closed without including token input in parsing errors. Two in-memory disk-adapter tests pass for reconstruction, duplicate stage, foreign-account reads, changed-token replacement/clear refusal, write failure and corruption. Scoped lint passes with async/schema advisories. This is adapter logic evidence only: SecureStore wiring, iPhone Keychain size/lock behavior, installation identity, session leases and durable network orchestration remain unfinished. No token has been persisted on a device.
+
+### Protected storage wiring and orchestration draft — 23 September
+
+A single native SecureStore adapter now supplies device-only, when-unlocked protected attempt storage with no plaintext fallback. Mobile typechecking passes for this binding; actual iPhone Keychain behavior remains unverified. A new Effect orchestration draft stages the exact command before save, checks current-session authority around asynchronous boundaries, performs read-only recovery after interruption, and clears only a verified recorded result. Disk failures map to finite unavailable errors without including their causes. This orchestration is not yet integration-tested or connected to session/UI; it must not be counted as functional enrollment recovery.
+
+### Protected enrollment orchestration verification — 23 September
+
+Three focused cases pass: two protected-disk adapter cases and a real HTTP/PostgREST/PostgreSQL orchestration journey. The journey asserts staging precedes dispatch, loses a committed response, reconstructs the adapter and recovers the original receipt without creating another operation. Protected-write failure and inactive-session state prevent dispatch. The storage interface uses an in-memory test disk; this does not prove Keychain process persistence, locking or size limits. UI/session integration, installation identity and sign-out lifecycle remain unfinished. Scoped lint passes with advisories. Exact-commit review and CI remain required.
