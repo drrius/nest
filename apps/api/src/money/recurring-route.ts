@@ -1,4 +1,4 @@
-import { legacyAdoptionContext } from "./legacy-adoption-context.ts";
+import { legacyAdoptionRoute } from "./legacy-adoption-route.ts";
 import { legacyConfirmationRoute } from "./legacy-confirmation-route.ts";
 import { legacyDismissalRoute } from "./legacy-dismissal-route.ts";
 import { legacyDraftRoute } from "./legacy-draft-read.ts";
@@ -19,6 +19,8 @@ import type { AuthorizedCaller } from "../chores/service.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 export function recurringRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url);
+  if (url.pathname.includes("/legacy-adoption/"))
+    return legacyAdoptionRoute(request, config, caller);
   if (url.pathname.includes("/legacy-confirmation/"))
     return legacyConfirmationRoute(request, config, caller);
   if (url.pathname.includes("/legacy-dismissal/"))
@@ -61,8 +63,6 @@ function recurringReadRoute(url: URL, config: IdentityConfig, caller: Authorized
     }
     if (params.size !== 1 || !params.has("ruleId"))
       return yield* new ApiFailure({ code: "invalid_request" });
-    if (url.pathname.endsWith("/legacy-adoption/context"))
-      return yield* legacyAdoptionContext(config, caller, { ruleId: params.get("ruleId") });
     return yield* recurringReads(config, caller).detail({ ruleId: params.get("ruleId") });
   });
 }

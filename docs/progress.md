@@ -1963,3 +1963,13 @@ The command explicitly requires READ COMMITTED for new writes, matching PostgRES
 Seven command tests and three native-worker/legacy-generator transaction checks pass, covering concurrent retries, changed/pending/inconsistent/colliding source refusal, strict financial configuration, prospective coverage, exact approval identity/payload, cancellation races, and rollback at revision/map/receipt insertion. The worker check executes one zero-sum cycle and confirms the old generator creates no drafts after adoption. Initial concurrency test parsing, a fixture type annotation and the frozen-snapshot fixture read permission were corrected. Types, full lint/format and disposable security advisors pass; exact-commit review/CI remain required. Logs `/tmp/nest-adoption-command-{types,lint,advisors,final-tests}.log` and `/tmp/nest-adoption-worker-final.log` (the latter verifies the corrected race).
 
 API/native Save transport, the actual native opt-in/recovery screen and private AI proposal/approval card remain unfinished. This command alone does not complete M7. No hosted migration/deployment, production data change, purchase or release occurred.
+
+### Adoption API and native Save transport — candidate
+
+Adoption command `10ba6e1b817a9286dc5aa6d5241c133c3f27483b` has clean exact-commit Sol medium signoff with ten independently passing PostgreSQL checks; CI `35774938837` remains pending.
+
+Finite authenticated adoption Save, approval-required execution, original-operation recovery and explicit abandonment endpoints now use the shared Effect contracts. API and native/session clients bind actor, household, operation, approval, full source fingerprint and complete mandate terms. The context endpoint shares the finite adoption router. Unknown outcomes preserve the original command identity; cancellation cannot return unresolved success, and a fabricated receipt with changed terms is rejected. Request bounds support a legitimate long mandate note.
+
+Five actual PostgreSQL/PostgREST/HTTP/native-client tests pass: committed-response loss with exact receipt recovery/replay, stale-source and cancellation refusal, forged recovery binding, outsider and malformed/duplicate-query denial, missing-approval rejection followed by exact approved execution, and retained review-context transport. Types, full lint and formatting pass. Logs `/tmp/nest-adoption-transport-{tests,types,lint,format}.log`. Exact-commit Sol review and CI remain required.
+
+The native opt-in form, durable Save/recovery controls and private AI proposal/card remain unfinished; transport alone is not a complete user workflow. No hosted deployment, production schema/data change, purchase or release occurred.

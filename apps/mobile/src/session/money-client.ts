@@ -1,3 +1,4 @@
+import type { LegacyAdoptionSave } from "../money/legacy-adoption-client.ts";
 import type {
   LegacyConfirmationApproval,
   LegacyConfirmationDecision,
@@ -191,6 +192,7 @@ function sessionRecurring(client: MoneyClient) {
     decideRecurring: (input: RecurringDecision) =>
       client.decideRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     ...sessionLegacyConfirmation(client),
+    ...sessionLegacyAdoption(client),
     ...sessionLegacyDismissal(client),
     ...sessionRecurringReads(client),
     saveRecurring: (input: RecurringSave) =>
@@ -268,5 +270,16 @@ function sessionLegacyConfirmation(client: MoneyClient) {
       client
         .cancelLegacyConfirmation(input)
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+  };
+}
+
+function sessionLegacyAdoption(client: MoneyClient) {
+  return {
+    saveLegacyAdoption: (input: LegacyAdoptionSave) =>
+      client.saveLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recoverLegacyAdoption: (input: LegacyAdoptionSave) =>
+      client.recoverLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelLegacyAdoption: (input: LegacyAdoptionSave) =>
+      client.cancelLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }
