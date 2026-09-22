@@ -4,7 +4,10 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, Effect, run } from "./renewal-fixture.mjs";
 test("authenticated push HTTP saves and recovers token-free receipts with strict request handling", async (t) => {
-  const f = await fixture(t, ["supabase/migrations/20260922223732_native_push_registration.sql"]);
+  const f = await fixture(t, [
+    "supabase/migrations/20260922223732_native_push_registration.sql",
+    "supabase/migrations/20260922230403_native_push_logout.sql",
+  ]);
   const command = {
     operationId: id(980),
     installationId: id(981),

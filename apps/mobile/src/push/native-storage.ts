@@ -1,5 +1,5 @@
 import { randomUUID } from "expo-crypto";
-import { protectedPushInstallation } from "./installation";
+import { protectedPushInstallation, readPushInstallation } from "./installation";
 import * as SecureStore from "expo-secure-store";
 import { protectedPushAttempts, type PushProtectedDisk } from "./protected-attempt";
 const options = { keychainAccessible: SecureStore.WHEN_UNLOCKED_THIS_DEVICE_ONLY };
@@ -13,3 +13,5 @@ const disk: PushProtectedDisk = {
 
 export const nativePushAttempts = protectedPushAttempts(disk);
 export const nativePushInstallation = protectedPushInstallation(disk, randomUUID);
+
+export const readNativePushInstallation = () => readPushInstallation(disk);

@@ -4,7 +4,10 @@ import { createHash } from "node:crypto";
 import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
 import { fixture, id, Effect, Fetch, run } from "./renewal-fixture.mjs";
 test("native registration recovers lost acknowledgment and rejects forged receipt context", async (t) => {
-  const f = await fixture(t, ["supabase/migrations/20260922223732_native_push_registration.sql"]);
+  const f = await fixture(t, [
+    "supabase/migrations/20260922223732_native_push_registration.sql",
+    "supabase/migrations/20260922230403_native_push_logout.sql",
+  ]);
   const command = {
     operationId: id(990),
     installationId: id(991),

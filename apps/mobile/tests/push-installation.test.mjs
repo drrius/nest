@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { protectedPushInstallation } from "../src/push/installation.ts";
+import { protectedPushInstallation, readPushInstallation } from "../src/push/installation.ts";
 const id = "123e4567-e89b-4000-8000-000000000001";
 test("concurrent installation reads persist one identity and reconstruction retains it", async () => {
   let value = null,
@@ -47,4 +47,32 @@ test("failed protected write never returns a usable installation identity", asyn
   assert.equal(value, null);
   fail = false;
   assert.equal(await read(), id);
+});
+
+test("logout lookup never creates an installation or disguises unreadable state as absent", async () => {
+  let writes = 0;
+  const disk = {
+    getItem: async () => null,
+    setItem: async () => {
+      writes++;
+    },
+    removeItem: async () => {},
+  };
+  assert.equal(await readPushInstallation(disk), null);
+  assert.equal(writes, 0);
+  assert.equal(await readPushInstallation({ ...disk, getItem: async () => id.toUpperCase() }), id);
+  await assert.rejects(
+    readPushInstallation({ ...disk, getItem: async () => "corrupt" }),
+    /unavailable/,
+  );
+  await assert.rejects(
+    readPushInstallation({
+      ...disk,
+      getItem: async () => {
+        throw new Error("locked");
+      },
+    }),
+    /locked/,
+  );
+  assert.equal(writes, 0);
 });

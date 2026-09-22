@@ -1,5 +1,5 @@
 import { spawn } from "node:child_process";
-import { createHmac, randomBytes } from "node:crypto";
+import { createHmac, randomBytes, randomUUID } from "node:crypto";
 import { createServer, request as httpRequest } from "node:http";
 import { join } from "node:path";
 import { setTimeout as delay } from "node:timers/promises";
@@ -10,6 +10,7 @@ function token(secret, user, role = "authenticated") {
   const data = `${encode({ alg: "HS256", typ: "JWT" })}.${encode({
     role,
     sub: user,
+    session_id: user ? randomUUID() : undefined,
     exp: Math.floor(Date.now() / 1000) + 300,
   })}`;
   return `${data}.${createHmac("sha256", secret).update(data).digest("base64url")}`;

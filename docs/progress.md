@@ -2333,3 +2333,15 @@ Sign-out now accepts a required-cleanup callback between durable local logout-pe
 ### Sign-out hook SDK regression verification — 23 September
 
 Ten focused sign-out/cold-session/pinned-SDK tests pass. The added actual SDK/protected-storage case confirms failed required cleanup retains the durable logout-pending envelope, suppresses cached identity and ordinary SDK credentials, preserves the retained token for a retry, and finally removes credentials only after successful cleanup. Scoped lint and mobile typechecking pass. The callback is still not connected to push deregistration, and this does not prove offline notification revocation or physical Keychain behavior.
+
+### Read-only installation lookup for logout — 23 September, draft
+
+Protected installation handling now exposes a non-creating read, shared by initialization and exported through the native SecureStore adapter. Three adapter tests pass, including absent identity returning null without writes, canonical stored identity, corrupt-state refusal and propagated read failure. This lets forthcoming sign-out integration distinguish never-initialized devices without silently treating locked/corrupt protected storage as absent. It does not yet perform deregistration or change the sign-out callback wiring.
+
+### Session-fenced push logout — 23 September, candidate
+
+An additive gated migration binds new registrations to the authenticated JWT session. Logout atomically disables that session's registrations and permanently fences further enrollment by that session, including late requests for previously absent or reassociated installations. Fresh sign-ins can enroll deliberately; replaying historical receipts never transfers session ownership. Repeated old logout cannot disable another actor or a newer session. Revocation does not require continued household membership. Existing unbound registrations are disabled when this migration is eventually applied and require explicit re-enrollment; no hosted migration has been run.
+
+Four real PostgreSQL cases pass for account-switch races, logout-before-enrollment, removed membership, concurrent enrollment/logout, private ACLs, atomic rollback and historical replay ownership. The signed-JWT HTTP logout journey and all three affected enrollment/client/recovery journeys pass against PostgREST/PostgreSQL with the new migration. Three protected installation adapter cases pass. Scoped lint and disposable local security advisors pass. Native callback integration, expired/missing credential recovery, permission controls and physical delivery remain unfinished. Current Supabase session documentation confirms the JWT session claim; the changelog Markdown fetch remained unsupported.
+
+Enrollment/retry `b6c884c596d742de198cf0c43dd0594935308dfa` passed exact CI `35795259177` and clean Sol review; main was fast-forwarded and pushed. Sign-out hook `30457fc13aad3fc8b6fc8e81c0240b0475fa36e5` has clean Sol signoff (10 independent SDK/sign-out cases); CI remained in progress at the latest check. The logout migration requires its own exact-commit review and CI before merge.

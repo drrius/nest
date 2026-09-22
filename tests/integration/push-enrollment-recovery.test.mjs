@@ -7,7 +7,10 @@ import { protectedPushAttempts } from "../../apps/mobile/src/push/protected-atte
 import { pushEnrollmentOperations } from "../../apps/mobile/src/push/operations.ts";
 import { fixture, id, Effect, Fetch, run } from "./renewal-fixture.mjs";
 test("enrollment stages before HTTP and reconstruction recovers a lost commit without posting again", async (t) => {
-  const f = await fixture(t, ["supabase/migrations/20260922223732_native_push_registration.sql"]);
+  const f = await fixture(t, [
+    "supabase/migrations/20260922223732_native_push_registration.sql",
+    "supabase/migrations/20260922230403_native_push_logout.sql",
+  ]);
   const account = { actor: id(1), household: id(10) };
   const command = {
     operationId: id(995),
