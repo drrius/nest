@@ -9,6 +9,7 @@ export const protectedScreens = [
   { name: "correction-entry", title: "Correct entry" },
   { name: "refund-entry", title: "Record refund" },
   { name: "settlement-entry", title: "Record settlement" },
+  { name: "renewal-editor", title: "Manage renewal" },
   { name: "renewals", title: "Renewals" },
   { name: "renewal", title: "Renewal details" },
   { name: "recurring-rules", title: "Recurring expenses" },

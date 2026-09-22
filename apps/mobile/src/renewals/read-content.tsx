@@ -7,12 +7,18 @@ import { space, useQuiet } from "../theme";
 import type { RenewalReadRuntime, RenewalReadView } from "./read-runtime";
 type Props = { runtime: RenewalReadRuntime; view: RenewalReadView };
 function Status({ runtime, view }: Props) {
+  const router = useRouter();
   return (
     <View style={{ gap: space.small }}>
       {!view.active ? <Note>Renewals are hidden while this screen is inactive.</Note> : null}
       {view.active && !view.online ? <Note>Connect to view current renewals.</Note> : null}
       {view.busy ? <Note>Loading renewals…</Note> : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
+      <NativeAction
+        label="Add renewal"
+        disabled={!view.active || !view.online || view.busy}
+        onPress={() => router.push("/renewal-editor")}
+      />
       <NativeAction
         label="Reload renewals"
         disabled={!view.active || !view.online || view.busy}
@@ -50,6 +56,14 @@ function Detail({ renewal }: { renewal: typeof Renewal.Type }) {
   return (
     <>
       <Summary renewal={renewal} />
+      {!renewal.removed ? (
+        <NativeAction
+          label="Edit or remove renewal"
+          onPress={() =>
+            router.push({ pathname: "/renewal-editor", params: { renewalId: renewal.renewalId } })
+          }
+        />
+      ) : null}
       <Note>
         These dates are reminders. Changing a renewal does not cancel a contract or change financial
         history.
