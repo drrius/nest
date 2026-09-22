@@ -137,3 +137,12 @@ export function canonicalRenewalCommand(command: RenewalCommand): RenewalCommand
   return { ...identity, expectedRevision: command.expectedRevision.toLowerCase() };
 }
 export const sameRenewalCommand = Schema.toEquivalence(RenewalCommand);
+
+// AI invocations receive operation identities from the private command journal.
+export const CreateRenewalInput = Schema.Struct({ fields: RenewalFields });
+export const EditRenewalInput = Schema.Struct({
+  renewalId: Uuid,
+  expectedRevision: Uuid,
+  fields: RenewalFields,
+});
+export const RemoveRenewalInput = Schema.Struct({ renewalId: Uuid, expectedRevision: Uuid });

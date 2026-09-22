@@ -1,3 +1,4 @@
+import { matchesRenewalReceipt } from "../renewals/matches-receipt.ts";
 import { matchesLegacyAdoptionProposal } from "../money/legacy-adoption-proposal.ts";
 import { matchesLegacyConfirmationProposal } from "../money/legacy-confirmation-proposal.ts";
 import { matchesLegacyDismissalProposal } from "../money/legacy-dismissal-proposal.ts";
@@ -41,7 +42,7 @@ export function matchesAssistantReceipt(
 ) {
   if (Object.hasOwn(financialProposals, action))
     return financialProposals[action as keyof typeof financialProposals](input, receipt, member);
-  const proposal = matchesProposalAction(action, input, receipt, member);
+  const proposal = matchesScopedAction(action, input, receipt, member);
   if (proposal !== null) return proposal;
   const meal = matchesMealAction(action, input, receipt, member);
   if (meal !== null) return meal;
@@ -157,5 +158,17 @@ function matchesRemoval(input: object, receipt: object, member: Member) {
     "memoryId" in input &&
     matchesTarget(input.memoryId, receipt.memoryId) &&
     receipt.removed
+  );
+}
+
+function matchesScopedAction(
+  action: AssistantAction,
+  input: object,
+  receipt: object,
+  member: Member,
+) {
+  return (
+    matchesRenewalReceipt(action, input, receipt, member) ??
+    matchesProposalAction(action, input, receipt, member)
   );
 }

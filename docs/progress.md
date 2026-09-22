@@ -6,7 +6,7 @@ Updated 22 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 — renewal storage and native delivery work; branch `codex/renewal-editor`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
+**M8 — renewal storage and native delivery work; branch `codex/renewal-ai`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Production four-tab composition/Today aggregation, remaining M8 renewals/reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -39,6 +39,26 @@ The editor draft adds strict form parsing and an immutable, one-use confirmation
 The protected editor now connects create/edit/remove controls to exact revision-bound commands, durable SQLite staging and explicit recovery. Current roster/rule choices are caller-authorized; existing linked rules are fetched directly outside pagination. Native confirmations retain the reviewed command; leaving/unmounting invalidates open dialogs. Context is cleared on effect cleanup so reconnect/refocus must reload it. Removal affects only the renewal record, never a contract or financial history.
 
 Three focused form/confirmation tests and two real SQLite/native command/context → HTTP/PostgREST/PostgreSQL journeys pass. The latter cover real choices, save, exact linked-rule lookup outside a page, reviewed removal, stale revision refusal and replaced-account denial. Workspace lint/format pass. iOS export succeeded at `/tmp/nest-renewal-editor-export`, bundle `3d8da64af5e0388a916493006d5a4ea2` (before the context-cleanup adjustment); this is packaging only. Final workspace typecheck passes. Exact-commit CI and Sol review remain required. React/native interaction, native alerts/keyboard/date controls, VoiceOver and device lifecycle remain unverified. Renewal AI actions, reminder settings and push remain unfinished.
+
+### Renewal assistant reads — candidate
+
+Read screens `d59ee57` merged and pushed to main after successful exact CI `35783939934` and clean Sol signoff. The editor `1e3d205` remains under review/CI.
+
+The assistant now registers authorized list/detail renewal reads through the same strict service and caller token as native transport. Tool descriptions distinguish reminders from contract cancellation and financial obligations. One real SDK-tool/PostgREST/PostgreSQL journey passes for current data, foreign caller denial, injected household rejection and no extra renewal/financial writes. Typechecking and scoped lint pass. Mutation tools, private journaling, result cards and reminder actions remain unfinished; no live provider execution is claimed.
+
+### Renewal AI journal — storage draft
+
+The additive local migration `20260922211830_native_ai_renewals.sql` extends the private command allowlist, strict validator, dispatcher and canonical transcript reconstruction for create/edit/remove renewals. It delegates to the same atomic native renewal command. Creation derives the renewal identity from the server journal operation; edits/removals require the exact revision. No hosted migration was run.
+
+Two real disposable PostgreSQL cases pass: concurrent duplicate creation with exact historical replay after edit/removal, and full rollback when journal persistence fails plus rejection of caller-supplied operation identity. Financial-event count remains zero. Further tenant, stale-revision, transcript and SDK integration checks remain; Mutation schemas, receipt binding, private write-tool registration and native result labels are now drafted. Three database cases pass, including private-turn ownership, foreign assignments, stale revisions and forged receipt rejection. Real SDK mutation/transcript integration, final lint/typecheck and review remain outstanding; no live model or device verification is claimed.
+
+Editor review finding about hidden responsibility/link choices was fixed in `d8c585e`, which has clean Sol rereview with six passing focused tests. Updated CI remains required before merge.
+
+### Complete renewal AI command path — candidate
+
+Registered SDK create/edit/remove tools now invoke strict shared inputs and the private journal; results bind the full command, current actor and household before native success labels. Four disposable PostgreSQL cases pass for duplicate concurrency, native-command delegation, historical replay, rollback, tenant/turn ownership, stale revisions, forged receipt rejection and canonical transcript repair. One actual registered SDK/PostgREST journey passes for create/retry/edit/remove and native result labels; the earlier read-tool journey and mutation-input contract case also pass. No live provider was invoked.
+
+Final workspace typechecking, lint and formatting pass. Security advisors run only against the disposable local fixture. Exact-commit CI and Sol review are still required. Physical iPhone verification and M8 reminder/push work remain unfinished.
 
 ## Earlier delivery log
 

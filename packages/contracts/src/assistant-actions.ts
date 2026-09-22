@@ -1,3 +1,9 @@
+import {
+  CreateRenewalInput,
+  EditRenewalInput,
+  RemoveRenewalInput,
+  RenewalReceipt,
+} from "./renewals.ts";
 import { LegacyAdoptionProposal } from "./legacy-adoption-command.ts";
 import { LegacyAdoptionApprovalEnvelope } from "./legacy-adoption-approval.ts";
 import { LegacyConfirmationProposal } from "./legacy-draft-confirmation.ts";
@@ -86,6 +92,9 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  createRenewal: CreateRenewalInput,
+  editRenewal: EditRenewalInput,
+  removeRenewal: RemoveRenewalInput,
   proposeLegacyAdoption: LegacyAdoptionProposal,
   proposeLegacyConfirmation: LegacyConfirmationProposal,
   proposeLegacyDismissal: LegacyDraftContextQuery,
@@ -140,6 +149,9 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  createRenewal: RenewalReceipt,
+  editRenewal: RenewalReceipt,
+  removeRenewal: RenewalReceipt,
   proposeLegacyAdoption: LegacyAdoptionApprovalEnvelope,
   proposeLegacyConfirmation: LegacyConfirmationApprovalEnvelope,
   proposeLegacyDismissal: LegacyDismissalApprovalEnvelope,

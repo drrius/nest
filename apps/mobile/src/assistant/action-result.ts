@@ -33,6 +33,9 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  createRenewal: "Renewal saved",
+  editRenewal: "Renewal updated",
+  removeRenewal: "Renewal removed",
   proposeLegacyAdoption: "Recurring adoption proposed · approval required",
   proposeLegacyConfirmation: "Draft expense proposed · not recorded yet",
   proposeLegacyDismissal: "Draft dismissal proposed · not dismissed yet",
@@ -81,6 +84,9 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  createRenewal: "/renewals",
+  editRenewal: "/renewals",
+  removeRenewal: "/renewals",
   proposeLegacyAdoption: "/finances",
   proposeLegacyConfirmation: "/finances",
   proposeLegacyDismissal: "/finances",
