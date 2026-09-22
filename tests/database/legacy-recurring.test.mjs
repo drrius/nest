@@ -27,8 +27,8 @@ test("legacy inventory preserves draft-only mode, exact edit version and all his
   assert.equal(Schema.is(LegacyRecurringList)(page), true);
   assert.equal(page.rules.length, 2);
   assert.equal(page.rules[0].mode, "legacy_draft_only");
-  assert.equal(page.rules[0].updatedAt, "2026-01-01T10:00:00.123456Z");
-  assert.deepEqual(page.rules[0].allocations, [
+  assert.equal(page.rules[0].updatedAt.value, "2026-01-01T10:00:00.123456Z");
+  assert.deepEqual(page.rules[0].allocations.shares, [
     { memberId: id(1), centimes: "51" },
     { memberId: id(2), centimes: "50" },
   ]);
@@ -38,7 +38,8 @@ test("legacy inventory preserves draft-only mode, exact edit version and all his
     dismissed: "1",
     postedWithoutEvent: "0",
     unpostedWithEvent: "0",
-    latestDraftOn: "2026-03-31",
+    unsupportedDates: "0",
+    latestDraftOn: { kind: "date", value: "2026-03-31" },
   });
   assert.equal(page.rules[1].active, false);
   assert.deepEqual(f.read(null, 2), page);
@@ -74,4 +75,82 @@ test("legacy inventory is tenant isolated and paginated without implied opt-in",
   assert.throws(() => f.db.sql(`set role anon; ${f.query()}`), /permission denied/);
   assert.throws(() => f.db.sql(f.worker(f.query())), /permission denied/);
   assert.equal(f.db.sql("select count(*) from public.nest_recurring_rules"), "1");
+});
+
+test("permitted unsupported legacy dates remain visible for reconciliation without invalidating the page", (t) => {
+  const f = fixture(t);
+  f.rule();
+  f.rule(801);
+  for (const [date, reason] of [
+    ["infinity", "non_finite"],
+    ["-infinity", "non_finite"],
+    ["0001-01-01 BC", "out_of_range"],
+    ["10000-01-01", "out_of_range"],
+  ]) {
+    f.db.sql(
+      `update public.recurring_expense_rules set next_occurrence_on='${date}' where id='${id(800)}'`,
+    );
+    f.db.sql("delete from public.expense_drafts");
+    f.draft(900, "pending", date);
+    const page = f.read(),
+      rule = page.rules[0];
+    assert.equal(Schema.is(LegacyRecurringList)(page), true);
+    assert.equal(page.rules.length, 2);
+    assert.deepEqual(rule.nextOccurrenceOn, { kind: "unsupported", reason, value: date });
+    assert.deepEqual(rule.drafts.latestDraftOn, rule.nextOccurrenceOn);
+    assert.equal(rule.drafts.unsupportedDates, "1");
+    assert.equal(page.rules[1].nextOccurrenceOn.kind, "date");
+    f.draft(901, "pending", "2026-02-28");
+    assert.equal(f.read().rules[0].drafts.unsupportedDates, "1");
+  }
+});
+
+test("unreconciled allocation arrays and unsupported edit versions remain visible and unchanged", (t) => {
+  const f = fixture(t);
+  f.rule();
+  f.rule(801);
+  for (const split of [
+    [],
+    [null],
+    [1, 2],
+    [
+      { memberId: "not-a-uuid", allocatedCents: 1 },
+      { memberId: id(2), allocatedCents: 100 },
+    ],
+    [
+      { memberId: id(1), allocatedCents: 51 },
+      { memberId: id(2), allocatedCents: 51 },
+    ],
+  ]) {
+    const encoded = JSON.stringify(split);
+    f.db.sql(
+      `update public.recurring_expense_rules set proposed_allocations='${encoded}'::jsonb where id='${id(800)}'`,
+    );
+    const page = f.read();
+    assert.equal(Schema.is(LegacyRecurringList)(page), true);
+    assert.deepEqual(page.rules[0].allocations, { kind: "needs_review", reason: "invalid_split" });
+    assert.equal(page.rules[1].allocations.kind, "valid");
+    assert.deepEqual(
+      JSON.parse(
+        f.db.sql(
+          `select proposed_allocations from public.recurring_expense_rules where id='${id(800)}'`,
+        ),
+      ),
+      split,
+    );
+  }
+  for (const time of [
+    "infinity",
+    "-infinity",
+    "0001-01-01 00:00:00+00 BC",
+    "10000-01-01 00:00:00+00",
+  ]) {
+    f.db.sql(
+      `update public.recurring_expense_rules set updated_at='${time}' where id='${id(800)}'`,
+    );
+    const page = f.read();
+    assert.equal(Schema.is(LegacyRecurringList)(page), true);
+    assert.equal(page.rules[0].updatedAt.kind, "unsupported");
+    assert.equal(page.rules[1].updatedAt.kind, "timestamp");
+  }
 });

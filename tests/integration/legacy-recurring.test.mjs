@@ -20,8 +20,8 @@ test("native and actual SDK legacy reads preserve exact centimes and version wit
     page = await run(f.client().legacyRecurring());
   assert.equal(page.rules[0].mode, "legacy_draft_only");
   assert.equal(page.rules[0].amountCentimes, "9007199254740991");
-  assert.equal(page.rules[0].allocations[1].centimes, "4503599627370496");
-  assert.equal(page.rules[0].updatedAt, "2026-01-01T10:00:00.123456Z");
+  assert.equal(page.rules[0].allocations.shares[1].centimes, "4503599627370496");
+  assert.equal(page.rules[0].updatedAt.value, "2026-01-01T10:00:00.123456Z");
   const tools = recurringReadTools(
     new Request("http://localhost/", { headers: { authorization: `Bearer ${f.bearer}` } }),
     { url: f.supabaseUrl, publishableKey: "sb_publishable_fixture" },
@@ -46,5 +46,25 @@ test("legacy API denies foreign household and malformed pagination without mutat
     assert.equal(response.status, 400);
   }
   assert.deepEqual((await run(f.client().legacyRecurring(id(800)))).rules, []);
+  assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
+});
+
+test("native and SDK inventory keep unsupported legacy rows visible without treating them as valid terms", async (t) => {
+  const f = await fixture(t);
+  f.db.sql(
+    "update public.recurring_expense_rules set next_occurrence_on='infinity',updated_at='infinity',proposed_allocations='[]'",
+  );
+  const page = await run(f.client().legacyRecurring()),
+    row = page.rules[0];
+  assert.equal(row.allocations.kind, "needs_review");
+  assert.equal(row.nextOccurrenceOn.kind, "unsupported");
+  assert.equal(row.updatedAt.kind, "unsupported");
+  const tool = recurringReadTools(
+    new Request("http://localhost/", { headers: { authorization: `Bearer ${f.bearer}` } }),
+    { url: f.supabaseUrl, publishableKey: "sb_publishable_fixture" },
+  ).listLegacyRecurringRules;
+  const result = await tool.execute({ after: null }, { toolCallId: "reconcile", messages: [] });
+  assert.equal(result.ok, true);
+  assert.deepEqual(result.value, page);
   assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
 });
