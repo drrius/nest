@@ -2361,3 +2361,11 @@ Twenty-three focused storage/sign-out/pinned-SDK cases pass, including refresh-b
 Remaining lifecycle gap: a definitively invalid refresh token or missing/corrupt retained credentials cannot yet complete registered-device cleanup; a verified reauthentication/revocation recovery path remains to implement. This is distinct from ordinary expired-access-token refresh, which is tested. Enrollment controls and delivery are still unfinished. No hosted migration, push, purchase or release occurred.
 
 Earlier sign-out hook `30457fc13aad3fc8b6fc8e81c0240b0475fa36e5` passed CI `35795457767` and was merged to main. Logout fence `ffd22e1` and transport `ff6ee92` have separate clean Sol signoffs; fence CI `35796310502` passed, while transport CI was still running at the latest check.
+
+### Prior-session revocation recovery — 23 September, draft
+
+A gated additive RPC lets a freshly authenticated user revoke a retained older push session for that same actor. Actor identity always comes from the verified JWT; a target session belonging to someone else cannot affect their registrations. Existing current-session revocation delegates to the same private helper. One real database case passes for other-user isolation, old-session fencing, newer-session preservation, removed membership, missing session identity, null target and private helper ACLs. Scoped lint passes. Apple reauthentication, native transport and the recovery control remain to be connected and tested; this draft alone does not resolve invalid-refresh-token recovery.
+
+Transport `ff6ee92abc0e303fc5c3c27111f123916efab273` passed exact CI `35796521660` and clean Sol review and was fast-forwarded/pushed to main. Connected lifecycle `5438ce5` is pushed with review and CI pending. No deployment was performed.
+
+The prior-session recovery draft now passes all five database cases together, including the existing current-session concurrency, rollback and replay guarantees against the refactored helper. Disposable local security advisors report no issues. Native recovery wiring and exact-commit review/CI remain outstanding.

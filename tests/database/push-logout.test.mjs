@@ -6,6 +6,7 @@ function setup(t) {
   const f = fixture(t);
   f.db.file("supabase/migrations/20260922223732_native_push_registration.sql");
   f.db.file("supabase/migrations/20260922230403_native_push_logout.sql");
+  f.db.file("supabase/migrations/20260922232801_native_push_reauthentication_logout.sql");
   const request = (sql, actor = 1, session = 1100) =>
     as(actor, `set request.jwt.claims='${JSON.stringify({ session_id: id(session) })}'; ${sql}`);
   const execute = (sql, actor = 1, session = 1100) =>
