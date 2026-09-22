@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { FlatList, View } from "react-native";
 import type { LegacyRecurringRule } from "@nest/contracts/legacy-recurring";
 import { Card, Note, Section } from "../components/page";
@@ -13,6 +14,7 @@ import {
 } from "./legacy-recurring-display";
 type Props = { runtime: RecurringReadRuntime; view: RecurringReadView; actor: string };
 function LegacyRow({ row, actor }: { row: typeof LegacyRecurringRule.Type; actor: string }) {
+  const router = useRouter();
   const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   return (
     <Card>
@@ -47,6 +49,12 @@ function LegacyRow({ row, actor }: { row: typeof LegacyRecurringRule.Type; actor
         {legacyWarnings(row).map((warning) => (
           <Note key={warning}>{warning}</Note>
         ))}
+        <NativeAction
+          label="Review retained drafts"
+          onPress={() =>
+            router.push({ pathname: "/legacy-recurring-drafts", params: { ruleId: row.ruleId } })
+          }
+        />
         <Note>Rule reference: {row.ruleId}</Note>
       </Section>
     </Card>

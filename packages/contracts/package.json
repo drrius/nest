@@ -76,7 +76,8 @@
     "./recurring-resume-read": "./src/recurring-resume-read.ts",
     "./recurring-state-read": "./src/recurring-state-read.ts",
     "./recurring-history": "./src/recurring-history.ts",
-    "./legacy-recurring": "./src/legacy-recurring.ts"
+    "./legacy-recurring": "./src/legacy-recurring.ts",
+    "./legacy-recurring-drafts": "./src/legacy-recurring-drafts.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

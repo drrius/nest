@@ -168,6 +168,7 @@ const methods: Record<string, string> = {
   "/v1/money/recurring/approval/decide": "POST",
   "/v1/money/recurring/rules": "GET",
   "/v1/money/recurring/cycles": "GET",
+  "/v1/money/recurring/legacy-drafts": "GET",
   "/v1/money/recurring/legacy": "GET",
   "/v1/money/recurring/rule": "GET",
   "/v1/money/recurring/save": "POST",

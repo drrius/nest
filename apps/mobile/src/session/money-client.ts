@@ -1,3 +1,4 @@
+import type { LegacyDraftQuery } from "@nest/contracts/legacy-recurring-drafts";
 import type { RecurringHistoryQuery } from "@nest/contracts/recurring-history";
 import type { ManualCycleApproval } from "../money/recurring-manual-approval-client";
 import type { ManualCycleDecision } from "../money/recurring-manual-approval-client";
@@ -187,6 +188,8 @@ function sessionRecurring(client: MoneyClient) {
 
 function sessionRecurringReads(client: MoneyClient) {
   return {
+    legacyDrafts: (input: typeof LegacyDraftQuery.Type) =>
+      client.legacyDrafts(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     legacyRecurring: (after: string | null = null) =>
       client.legacyRecurring(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringHistory: (input: typeof RecurringHistoryQuery.Type) =>

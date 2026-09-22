@@ -1,3 +1,5 @@
+import { LegacyDraftQuery } from "@nest/contracts/legacy-recurring-drafts";
+import { readLegacyDrafts } from "./legacy-draft-read.ts";
 import { LegacyRecurringQuery } from "@nest/contracts/legacy-recurring";
 import { readLegacyRecurring } from "./legacy-recurring-read.ts";
 import { RecurringHistoryQuery } from "@nest/contracts/recurring-history";
@@ -10,6 +12,12 @@ import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { recurringReads } from "./recurring-read.ts";
 export function recurringReadTools(request: Request, config: IdentityConfig) {
   return {
+    listLegacyRecurringDrafts: effectTool({
+      description:
+        "Read retained drafts for a known legacy rule in pages of 20 by draft ID. Start after=null and follow next until null. Draft contents are their own historical values, not current rule terms. Null amount/payer, needs-review split and unsupported dates/versions must not be inferred. Status posted without eventId, or pending/dismissed with eventId, is a discrepancy requiring reconciliation. Follow a returned eventId using readMoneyDetail for actual financial history and later corrections/refunds; never assert a payment occurred. Shopping-origin records retain that source and require review, not automatic conversion. This read does not confirm, dismiss, repair, opt in or create expenses. Do not recreate these obligations as unlinked expenses or automatic rules.",
+      input: LegacyDraftQuery,
+      execute: (input) => read("legacy-drafts", input),
+    }),
     listLegacyRecurringRules: effectTool({
       description:
         "Read retained legacy recurring rules in pages of 20. Start after=null and follow next until null. Every returned rule is legacy_draft_only: active means the old draft generator was enabled, never a Nest automatic posting mandate. Preserve its exact tagged updatedAt version and draft counts. A needs_review split, unsupported date/version, or nonzero unsupportedDates count requires reconciliation; it is never an adoptable schedule or allocation. Do not infer missing values. Descriptions are raw retained legacy text and may be whitespace-only or otherwise invalid for a new expense; reading them does not validate new expense terms. Posted drafts have a linked retained financial event; pending/dismissed drafts are not posted expenses. Nonzero postedWithoutEvent or unpostedWithEvent means reconciliation is needed; do not claim migration readiness or silently repair these records. This read does not adopt, opt in, generate drafts, confirm or dismiss anything. New automatic posting requires a separate explicit reviewed opt-in; do not recreate a legacy rule as an unlinked automatic rule or infer consent from old active status.",
@@ -35,10 +43,12 @@ export function recurringReadTools(request: Request, config: IdentityConfig) {
       execute: (input) => read("detail", input),
     }),
   };
-  function read(kind: "list" | "detail" | "history" | "legacy", input: unknown) {
+  function read(kind: "list" | "detail" | "history" | "legacy" | "legacy-drafts", input: unknown) {
     return Effect.gen(function* () {
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);
+      if (kind === "legacy-drafts")
+        return yield* readLegacyDrafts(config, { member, token }, input);
       if (kind === "legacy") return yield* readLegacyRecurring(config, { member, token }, input);
       return yield* kind === "history"
         ? recurringHistory(config, { member, token }, input)

@@ -28,6 +28,20 @@ export function RecurringDetailScreen() {
     );
   return <ReadScreen target={{ kind: "detail", ruleId: String(ruleId).toLowerCase() }} />;
 }
+export function LegacyDraftScreen() {
+  const { ruleId } = useLocalSearchParams();
+  if (!Schema.is(RecurringDetailQuery)({ ruleId }))
+    return (
+      <Page>
+        <Note>Invalid legacy draft link.</Note>
+      </Page>
+    );
+  return (
+    <ReadScreen
+      target={{ kind: "legacy-drafts", ruleId: String(ruleId).toLowerCase(), after: null }}
+    />
+  );
+}
 export function RecurringHistoryScreen() {
   const { ruleId } = useLocalSearchParams();
   if (!Schema.is(RecurringDetailQuery)({ ruleId }))

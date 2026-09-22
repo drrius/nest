@@ -1,3 +1,4 @@
+import { legacyDraftRoute } from "./legacy-draft-read.ts";
 import { legacyRecurringRoute } from "./legacy-recurring-read.ts";
 import { recurringHistoryRoute } from "./recurring-history.ts";
 import { manualCycleRoute } from "./recurring-manual-route.ts";
@@ -20,6 +21,7 @@ export function recurringRoute(request: Request, config: IdentityConfig, caller:
   if (url.pathname.includes("/resume/")) return recurringResumeRoute(request, config, caller);
   if (url.pathname.includes("/state/")) return recurringStateRoute(request, config, caller);
   if (url.pathname.includes("/approval")) return recurringApprovalRoute(request, config, caller);
+  if (url.pathname.endsWith("/legacy-drafts")) return legacyDraftRoute(url, config, caller);
   if (url.pathname.endsWith("/legacy")) return legacyRecurringRoute(url, config, caller);
   if (url.pathname.endsWith("/cycles")) return recurringHistoryRoute(url, config, caller);
   if (request.method === "GET") return recurringReadRoute(url, config, caller);

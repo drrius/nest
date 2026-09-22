@@ -1,3 +1,4 @@
+import type { LegacyDraftList } from "@nest/contracts/legacy-recurring-drafts";
 import type { LegacyRecurringList } from "@nest/contracts/legacy-recurring";
 import type { RecurringHistory } from "@nest/contracts/recurring-history";
 import * as Effect from "effect/Effect";
@@ -5,11 +6,13 @@ import type { RecurringDetail, RecurringList } from "@nest/contracts/recurring-r
 import type { OfflineAccount } from "../offline/owner.ts";
 import type { MoneyClient } from "./client.ts";
 export type RecurringReadTarget =
+  | { kind: "legacy-drafts"; ruleId: string; after: string | null }
   | { kind: "legacy"; after: string | null }
   | { kind: "list"; after: string | null }
   | { kind: "detail"; ruleId: string }
   | { kind: "history"; ruleId: string; before: string | null };
 export type RecurringReadEntry =
+  | { kind: "legacy-drafts"; value: typeof LegacyDraftList.Type }
   | { kind: "legacy"; value: typeof LegacyRecurringList.Type }
   | { kind: "list"; value: RecurringList }
   | { kind: "detail"; value: RecurringDetail }
@@ -31,6 +34,10 @@ function readTarget(
   client: MoneyClient,
   target: RecurringReadTarget,
 ): Effect.Effect<RecurringReadEntry, import("../preferences/client.ts").PreferenceFailure> {
+  if (target.kind === "legacy-drafts")
+    return client
+      .legacyDrafts({ ruleId: target.ruleId, after: target.after })
+      .pipe(Effect.map((value) => ({ kind: "legacy-drafts" as const, value })));
   if (target.kind === "legacy")
     return client
       .legacyRecurring(target.after)

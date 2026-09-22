@@ -1,3 +1,4 @@
+import { LegacyDraftContent } from "./legacy-draft-content";
 import { LegacyRecurringContent } from "./legacy-recurring-content";
 import { RecurringHistoryContent } from "./recurring-history-content";
 import { FlatList, View } from "react-native";
@@ -130,6 +131,8 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
   );
 }
 export function RecurringReadContent({ runtime, view, actor }: Props) {
+  if (view.target.kind === "legacy-drafts")
+    return <LegacyDraftContent runtime={runtime} view={view} actor={actor} />;
   if (view.target.kind === "legacy")
     return <LegacyRecurringContent runtime={runtime} view={view} actor={actor} />;
   if (view.target.kind === "history")
