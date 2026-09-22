@@ -2223,3 +2223,9 @@ Both focused PostgreSQL cases pass after this change; the 1,001-record case addi
 Reminder AI `689ee5d61e2911989eeac654de85bd743b47b124` passed CI `35791010067` and already had clean exact-commit Sol review; main was fast-forwarded and pushed to it. Scheduling `c508afd` remains under review with CI `35792554371` running at the last check.
 
 The cancellation working-tree fix uses a locked singleton cursor over the pending `(due_at,id)` index. It inspects at most 500 source records before evaluating current eligibility, advances even without mutations, and wraps after a short page. Two focused PostgreSQL cases pass, including a sparse case with 1,000 current reminders ahead of one obsolete reminder: the first two calls return zero and the third cancels exactly one. Restoring the item and sweeping materialization restores exactly one pending occurrence. Final review/CI are outstanding; no worker deployment or device delivery is claimed.
+
+### Explicit scan completion receipts — 23 September
+
+Sol accepted the unmute and bounded materialization fixes but requested bounded cancellation and an explicit sweep-completion result. Cancellation paging is committed as `a7b32f9`. The subsequent working-tree change returns `{scanned, inserted, wrapped}` for materialization and `{scanned, cancelled, wrapped}` for cleanup. Exact full pages report `wrapped:false`; an additional empty page reports `wrapped:true`. Three focused PostgreSQL tests pass, including a 250-record muted page with zero writes, its empty wrap page, re-enabling, and deduplicated subsequent sweeps.
+
+The eventual runner must use stable named windows, stop a sweep only on `wrapped:true`, repeat sweeps while a window is active, and define bounded catch-up/expired-cursor retention before deployment. No runner exists or is claimed complete. Membership leave/rejoin coverage and updated exact-commit review/CI remain outstanding.

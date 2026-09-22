@@ -66,7 +66,7 @@ alter table private.nest_renewal_reminder_scans enable row level security;
 revoke all on private.nest_renewal_reminder_scans from public,anon,authenticated,service_role;
 
 create function private.nest_materialize_renewal_reminders(p_from timestamptz,p_until timestamptz)
-returns bigint language plpgsql security definer set search_path='' as $$
+returns jsonb language plpgsql security definer set search_path='' as $$
 declare v_count bigint:=0; v_added bigint; v_scanned integer:=0;
   v_cursor private.nest_renewal_reminder_scans; v_item record;
 begin
@@ -97,7 +97,7 @@ begin
   update private.nest_renewal_reminder_scans
     set after_household=v_cursor.after_household,after_renewal=v_cursor.after_renewal
     where window_start=p_from and window_end=p_until;
-  return v_count;
+  return jsonb_build_object('scanned',v_scanned,'inserted',v_count,'wrapped',v_scanned<250);
 end;
 $$;
 revoke all on function private.nest_materialize_renewal_reminders(timestamptz,timestamptz) from public,anon,authenticated,service_role;
@@ -128,7 +128,7 @@ insert into private.nest_renewal_reminder_cancel_scan(singleton) values(true);
 -- Inspect at most 500 pending rows, not 500 matches after an unbounded filter.
 -- As with materialization, zero mutations does not mean the sweep is complete.
 create function private.nest_cancel_obsolete_renewal_reminders()
-returns bigint language plpgsql security definer set search_path='' as $$
+returns jsonb language plpgsql security definer set search_path='' as $$
 declare v_count bigint:=0; v_scanned integer:=0; v_changed bigint;
   v_cursor private.nest_renewal_reminder_cancel_scan;
   v_row private.nest_renewal_reminder_outbox;
@@ -151,7 +151,7 @@ begin
   end if;
   update private.nest_renewal_reminder_cancel_scan
     set after_due=v_cursor.after_due,after_id=v_cursor.after_id where singleton;
-  return v_count;
+  return jsonb_build_object('scanned',v_scanned,'cancelled',v_count,'wrapped',v_scanned<500);
 end;
 $$;
 revoke all on function private.nest_cancel_obsolete_renewal_reminders() from public,anon,authenticated,service_role;

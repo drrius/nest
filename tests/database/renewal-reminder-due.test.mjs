@@ -22,7 +22,7 @@ test("reminder due time uses Zurich DST and invalidates changed, removed or disa
   assert.equal(candidates(), "1");
   const materialize = () =>
     f.db.sql(
-      "select private.nest_materialize_renewal_reminders('2028-03-01 00:00Z','2028-03-02 00:00Z')",
+      "select private.nest_materialize_renewal_reminders('2028-03-01 00:00Z','2028-03-02 00:00Z')->>'inserted'",
     );
   assert.equal(materialize(), "1");
   assert.equal(materialize(), "0");
@@ -35,9 +35,15 @@ test("reminder due time uses Zurich DST and invalidates changed, removed or disa
 
   f.db.sql("update public.nest_notification_preferences set item_reminders_enabled=false");
   assert.equal(candidates(), "0");
-  assert.equal(f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()"), "1");
+  assert.equal(
+    f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()->>'cancelled'"),
+    "1",
+  );
   assert.equal(f.db.sql("select state from private.nest_renewal_reminder_outbox"), "cancelled");
-  assert.equal(f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()"), "0");
+  assert.equal(
+    f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()->>'cancelled'"),
+    "0",
+  );
 
   verifyUnmute(f, candidates, materialize);
 
@@ -86,7 +92,10 @@ function verifyUnmute(f, candidates, materialize) {
   f.db.sql(
     "update public.nest_notification_preferences set item_reminders_enabled=false,revision=revision+1",
   );
-  assert.equal(f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()"), "0");
+  assert.equal(
+    f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()->>'cancelled'"),
+    "0",
+  );
   f.db.sql(
     "update public.nest_notification_preferences set item_reminders_enabled=true,revision=revision+1",
   );
