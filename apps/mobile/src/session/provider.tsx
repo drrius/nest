@@ -1,3 +1,4 @@
+import { sessionPushDevices } from "./push-client";
 import { sessionRenewalReminders } from "./renewal-reminder-client";
 import type { RenewalReminderClient } from "../renewal-reminders/client";
 import { nativeReceiptStorage } from "../money/receipt-upload-native";
@@ -67,6 +68,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  pushDevices: ReturnType<typeof sessionPushDevices> | null;
   renewals: RenewalClient | null;
   renewalReminders: RenewalReminderClient | null;
   money: MoneyClient | null;
@@ -143,9 +145,11 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         money: null,
         renewals: null,
         renewalReminders: null,
+        pushDevices: null,
       };
     const { auth } = runtime.current;
     return {
+      pushDevices: sessionPushDevices(auth, { actor, household }, configuration.apiUrl),
       renewalReminders: sessionRenewalReminders(auth, { actor, household }, configuration.apiUrl),
       renewals: sessionRenewals(auth, { actor, household }, configuration.apiUrl),
       routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),

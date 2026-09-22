@@ -2299,3 +2299,13 @@ A single native SecureStore adapter now supplies device-only, when-unlocked prot
 ### Protected enrollment orchestration verification — 23 September
 
 Three focused cases pass: two protected-disk adapter cases and a real HTTP/PostgREST/PostgreSQL orchestration journey. The journey asserts staging precedes dispatch, loses a committed response, reconstructs the adapter and recovers the original receipt without creating another operation. Protected-write failure and inactive-session state prevent dispatch. The storage interface uses an in-memory test disk; this does not prove Keychain process persistence, locking or size limits. UI/session integration, installation identity and sign-out lifecycle remain unfinished. Scoped lint passes with advisories. Exact-commit review and CI remain required.
+
+### Installation identity and storage merge — 23 September
+
+Private registration storage `d8e76c7471befe401317be3e4db116582694071d` passed exact CI `35793733161` and clean Sol review; main was fast-forwarded and pushed to it. Registration read/API/native transport descendants retain their own review/CI gates.
+
+A protected installation-identity adapter now generates one UUID under a serialized singleton, persists before returning, retains it across adapter reconstruction and fails closed on corrupt/read/write failures. It is wired to the device-only SecureStore adapter and Expo randomUUID. Two in-memory disk tests pass for concurrent generation, reconstruction, corruption and failed-write recovery; scoped lint passes with advisories. Keychain/reinstall behavior and actual native invocation remain device-unverified. UI/session lifecycle integration is still unfinished.
+
+### Session-owned push client — 23 September, draft
+
+The session provider now exposes an account-bound push client with Expo fetch, current session credentials and native SHA-256. No enrollment is invoked at mount. Extracting the shared protected disk for installation identity initially lost contextual parameter types; explicit `PushProtectedDisk` annotation fixes those errors. Final mobile typechecking and scoped lint pass. Installation tests remain the two passing adapter cases; physical Keychain/native hashing and a mounted notification flow are unverified. Protected recovery `144d8ac` has clean exact-commit Sol signoff; CI remains required.
