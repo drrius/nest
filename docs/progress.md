@@ -6,7 +6,7 @@ Updated 22 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M7 — recurring money, currently controlled recurring execution; branch `codex/recurring-worker-runner`.** Manual native/approval/AI flows and the service-only fixed-cycle boundary are merged after exact-commit CI and clean Sol medium review. The bounded server runner is under verification; durable continuation, scheduler connection and cycle history remain next.
+**M7 — recurring money, currently controlled recurring execution; branch `codex/recurring-worker-checkpoint`.** Manual native/approval/AI flows and the service-only fixed-cycle boundary are merged after exact-commit CI and clean Sol medium review. The bounded runner has clean Sol review and pending CI. Durable leased continuation is locally implemented and under review; scheduler connection and cycle history remain next.
 
 Remaining M7 work includes controlled scheduling/catch-up and cycle history, legacy draft-only opt-in and reconciliation. Production four-tab composition/Today aggregation, M8 renewals/reminders/push, M9 migration rehearsal and outstanding device/provider acceptance remain incomplete. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -1721,3 +1721,15 @@ The server-only Effect adapter validates the backend origin and redacted secret,
 Focused real PostgreSQL/PostgREST/HTTP tests cover bounded resume, deterministic exact-job replay, lost committed replies, failed candidate progress and next-sweep retry, retained cursor after scan failure, invalid budgets and substituted page/job responses. Initial fixture requests incorrectly used the application URL instead of PostgREST and counted a public table under private; both fixture errors were fixed. The runner now uses Web Crypto through Effect, avoiding unavailable Node-specific types in the API's portable runtime. Verification logs: `/tmp/nest-worker-runner-{tests,types,lint,format}.log`. Exact-commit Sol review and CI remain required.
 
 Durable run/checkpoint ownership, scheduler adapter, controlled hosted verification and cycle history remain incomplete. No native/device behavior is verified by these server checks, and no deployment, production migration/data change, job activation, purchase or release occurred.
+
+### Durable recurring worker checkpoint — candidate
+
+Runner `990f11b490a591dd5d8474f24cd3325f4a47560c` received clean exact-commit Sol medium signoff and independent 4/4 HTTP checks. CI `35672106792` remains pending.
+
+A gated service-only checkpoint now serializes one ten-minute run lease, retains the starting cursor/budget/expiry, and atomically records the bounded completion summary and next cursor. Exact claim retries recover the active lease without extending it. Exact finish retries recover the stored acknowledgment even after another run starts. Expired/superseded workers cannot move progress; a new run resumes the last committed cursor, and unacknowledged financial jobs remain duplicate-safe through existing cycle/job receipts. A finished sweep resets discovery; a failed scan preserves progress. The checkpoint carries only run counts, cursor and finite failure categories, never server credentials.
+
+The strict Effect checkpoint client binds run/budget/full summary, and server orchestration now claims, processes the bounded worker batch and durably finishes. There is still no authenticated hosted scheduling endpoint or timer registration. A stopped worker leaves its lease until expiry; scheduling recovery must tolerate that delay. An expired worker may finish an already-started job transaction, but cannot overwrite the newer checkpoint, and cycle uniqueness prevents duplicate financial posting.
+
+Four actual PostgreSQL tests cover service/member/anonymous grants, concurrent claim contention, exact request/reply recovery, expired/superseded owners, malformed counts/cursors, failed-scan continuation and injected checkpoint-write rollback of completion. Six HTTP/PostgREST tests pass including the four prior runner checks and two new durable orchestration/restart/lost-finish/forged-response checks. An initially accepted cursor with an extra revision field was fixed through exact-key validation. The concurrency fixture was corrected to capture the expected losing SQL exception. Types/lint/format and database advisor evidence are recorded in `/tmp/nest-checkpoint-{types,lint,format,tests,http,advisors}.log`. Exact-commit Sol review and CI remain required.
+
+Hosted scheduler integration and its quota/runtime verification, native cycle history, legacy draft-only reconciliation, broader milestones and device acceptance remain incomplete. No hosted/production schema/data change, timer activation, purchase, deployment or release occurred.

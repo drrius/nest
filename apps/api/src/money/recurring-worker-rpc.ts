@@ -8,7 +8,12 @@ import * as HttpBody from "effect/unstable/http/HttpBody";
 import { ApiFailure } from "../errors.ts";
 import { validateConfig } from "../config.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
-const methods = { scan: "nest_due_fixed_jobs", execute: "nest_execute_fixed_job" };
+const methods = {
+  scan: "nest_due_fixed_jobs",
+  execute: "nest_execute_fixed_job",
+  claim: "nest_claim_recurring_run",
+  finish: "nest_finish_recurring_run",
+};
 export function recurringWorkerRpc(config: IdentityConfig, secret: Redacted.Redacted<string>) {
   const validated = validateConfig(config);
   if (!/^sb_secret_[A-Za-z0-9_-]+$(?![\s\S])/.test(Redacted.value(secret)))

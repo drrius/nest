@@ -6,9 +6,10 @@ export { id, run };
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 export const Effect = require("effect/Effect"),
   Redacted = require("effect/Redacted");
-export async function fixture(t) {
+export async function fixture(t, extraFiles = []) {
   const f = await variable(t, [
     "supabase/migrations/20260922001213_native_recurring_worker_boundary.sql",
+    ...extraFiles,
   ]);
   f.db.sql("grant usage on schema public,private to service_role");
   const add = async (n) => {
