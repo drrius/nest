@@ -33,6 +33,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  saveRenewalReminder: "Reminder settings saved",
   createRenewal: "Renewal saved",
   editRenewal: "Renewal updated",
   removeRenewal: "Renewal removed",
@@ -84,6 +85,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  saveRenewalReminder: "/renewals",
   createRenewal: "/renewals",
   editRenewal: "/renewals",
   removeRenewal: "/renewals",

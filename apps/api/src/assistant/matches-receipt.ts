@@ -1,3 +1,4 @@
+import { matchesRenewalReminderReceipt } from "../renewal-reminders/matches-receipt.ts";
 import { matchesRenewalReceipt } from "../renewals/matches-receipt.ts";
 import { matchesLegacyAdoptionProposal } from "../money/legacy-adoption-proposal.ts";
 import { matchesLegacyConfirmationProposal } from "../money/legacy-confirmation-proposal.ts";
@@ -168,6 +169,7 @@ function matchesScopedAction(
   member: Member,
 ) {
   return (
+    matchesRenewalReminderReceipt(action, input, receipt, member) ??
     matchesRenewalReceipt(action, input, receipt, member) ??
     matchesProposalAction(action, input, receipt, member)
   );

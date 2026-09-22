@@ -102,3 +102,11 @@ export const RenewalReminderRecovery = Schema.Struct({
     );
   }),
 );
+
+// The private AI journal supplies operation identity, never the model.
+export const SaveRenewalReminderInput = Schema.Struct({
+  renewalId: Uuid,
+  expectedRenewalRevision: Uuid,
+  expectedRevision: Schema.NullOr(Uuid),
+  settings: RenewalReminderSettings,
+});

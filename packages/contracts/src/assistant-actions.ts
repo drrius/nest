@@ -1,3 +1,4 @@
+import { SaveRenewalReminderInput, RenewalReminderReceipt } from "./reminders.ts";
 import {
   CreateRenewalInput,
   EditRenewalInput,
@@ -92,6 +93,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  saveRenewalReminder: SaveRenewalReminderInput,
   createRenewal: CreateRenewalInput,
   editRenewal: EditRenewalInput,
   removeRenewal: RemoveRenewalInput,
@@ -149,6 +151,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  saveRenewalReminder: RenewalReminderReceipt,
   createRenewal: RenewalReceipt,
   editRenewal: RenewalReceipt,
   removeRenewal: RenewalReceipt,
