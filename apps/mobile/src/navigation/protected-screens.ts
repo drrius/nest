@@ -19,6 +19,7 @@ export const protectedScreens = [
   { name: "recurring-manual", title: "Link existing expense" },
   { name: "recurring-variable", title: "Variable bill" },
   { name: "recurring-state", title: "Recurring controls" },
+  { name: "recurring-history", title: "Cycle history" },
   { name: "recurring-rule", title: "Recurring expense" },
   { name: "receipt-uploads", title: "Receipt uploads" },
   { name: "receipt", title: "Receipt" },

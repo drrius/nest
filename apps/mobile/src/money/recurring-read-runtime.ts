@@ -108,8 +108,8 @@ export class RecurringReadRuntime {
       entry: null,
       verify,
       notice: verify
-        ? "Verify your account before viewing recurring rules."
-        : "Could not load current recurring rules. Try again online.",
+        ? "Verify your account before viewing recurring expenses."
+        : "Could not load recurring details. Try again online.",
     });
   }
   dispose = () => {

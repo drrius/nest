@@ -1,3 +1,4 @@
+import { RecurringHistoryContent } from "./recurring-history-content";
 import { FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
 import type { RecurringRule } from "@nest/contracts/recurring-read";
@@ -109,6 +110,12 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
         ))}
         {config.note ? <Note>{config.note}</Note> : null}
       </Section>
+      <NativeAction
+        label="View cycle history"
+        onPress={() =>
+          router.push({ pathname: "/recurring-history", params: { ruleId: rule.ruleId } })
+        }
+      />
       <Section title="Authorization and history">
         <Note>Rule reference: {rule.ruleId}</Note>
         <Note>Authorized {rule.authorizedAt}</Note>
@@ -122,6 +129,8 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
   );
 }
 export function RecurringReadContent({ runtime, view, actor }: Props) {
+  if (view.target.kind === "history")
+    return <RecurringHistoryContent runtime={runtime} view={view} actor={actor} />;
   if (view.target.kind === "detail")
     return (
       <Page>

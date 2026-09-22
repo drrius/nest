@@ -25,6 +25,18 @@ export function RecurringDetailScreen() {
     );
   return <ReadScreen target={{ kind: "detail", ruleId: String(ruleId).toLowerCase() }} />;
 }
+export function RecurringHistoryScreen() {
+  const { ruleId } = useLocalSearchParams();
+  if (!Schema.is(RecurringDetailQuery)({ ruleId }))
+    return (
+      <Page>
+        <Note>Invalid recurring history link.</Note>
+      </Page>
+    );
+  return (
+    <ReadScreen target={{ kind: "history", ruleId: String(ruleId).toLowerCase(), before: null }} />
+  );
+}
 function ReadScreen({ target }: { target: RecurringReadTarget }) {
   return (
     <MoneyScreenGate>
@@ -32,7 +44,7 @@ function ReadScreen({ target }: { target: RecurringReadTarget }) {
         <OwnedRead
           {...props}
           target={target}
-          key={`${props.account.session.lease}:${target.kind === "detail" ? target.ruleId : "list"}`}
+          key={`${props.account.session.lease}:${target.kind === "list" ? "list" : `${target.kind}:${target.ruleId}`}`}
         />
       )}
     </MoneyScreenGate>
