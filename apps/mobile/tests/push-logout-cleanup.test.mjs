@@ -173,6 +173,29 @@ test("required cleanup survives restart and blocks SDK deletion and replacement 
   assert.equal(f.raw(), null);
 });
 
+test("SDK rotations during cleanup stay hidden and cannot switch identity or restore a removed session", async () => {
+  const f = setup();
+  await f.storage.beginLogout(true);
+  for (const access of [token(5000, sessionId), token(5000, actor, actor), "broken"])
+    await assert.rejects(
+      f.storage.storage.setItem(
+        authKey,
+        JSON.stringify({ ...session(5000), access_token: access }),
+      ),
+    );
+  await f.storage.storage.setItem(authKey, JSON.stringify(session(5000)));
+  assert.equal(await f.storage.storage.getItem(authKey), null);
+  assert.equal(await f.storage.identity.read(), null);
+  assert.equal(JSON.parse(f.raw()).cleanupRequired, true);
+  await f.storage.logoutCredentials.complete(session(5000).access_token);
+  await f.storage.storage.removeItem(authKey);
+  await assert.rejects(
+    f.storage.storage.setItem(authKey, JSON.stringify(session(6000))),
+    /logout pending/,
+  );
+  assert.equal(f.raw(), null);
+});
+
 test("actual SDK cannot remove required pending cleanup and succeeds after verified cleanup", async () => {
   const f = sdkFixture({ wrapStorage: protectedStorage });
   await f.client.auth.getSession();

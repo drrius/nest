@@ -56,6 +56,7 @@ export function subscribeSession(
   const refresh = coalesce(load);
   if (initial === revision) void refresh();
   return {
+    canRefresh: () => !hidden && !disposed,
     refresh,
     unavailable,
     signIn(credentials: Credentials) {

@@ -1,6 +1,5 @@
-import * as Schema from "effect/Schema";
 import { StoredSession, decodeProtectedSession } from "./protected-session-record.ts";
-import { tokenIdentity } from "./token-identity.ts";
+import { verifyLogoutRotation } from "./logout-rotation.ts";
 const key = "nest.auth.v1";
 type Session = typeof StoredSession.Type;
 interface Disk {
@@ -36,22 +35,16 @@ export function pendingLogoutCredentials(
         const record = await readRecord();
         if (
           !record?.logoutPending ||
-          record.session.access_token !== expected.access_token ||
-          record.session.refresh_token !== expected.refresh_token ||
-          !Schema.is(StoredSession)(replacement)
+          (!sameTokens(record.session, expected) && !sameTokens(record.session, replacement))
         )
           throw new Error("Logout credentials changed");
-        const before = tokenIdentity(record.session.access_token),
-          after = tokenIdentity(replacement.access_token);
-        if (
-          before.actor !== after.actor ||
-          before.session !== after.session ||
-          replacement.user.id.toLowerCase() !== before.actor ||
-          record.session.user.id.toLowerCase() !== before.actor
-        )
-          throw new Error("Logout identity changed");
+        verifyLogoutRotation(expected, replacement);
+        verifyLogoutRotation(record.session, replacement);
         await disk.setItem(key, JSON.stringify({ ...record, session: replacement, member: null }));
       }),
   };
 }
 export type PendingLogoutCredentials = ReturnType<typeof pendingLogoutCredentials>;
+function sameTokens(left: Session, right: Session) {
+  return left.access_token === right.access_token && left.refresh_token === right.refresh_token;
+}

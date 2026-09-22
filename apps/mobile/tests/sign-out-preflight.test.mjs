@@ -44,8 +44,8 @@ test("required device cleanup runs after hiding UI and before credential removal
   assert.deepEqual(f.calls, [
     "hide",
     "hide persisted credentials",
-    "disable device",
     "stop refresh",
+    "disable device",
     "revoke session",
     "remove session",
     "finished",
@@ -60,7 +60,7 @@ test("failed device cleanup retains credentials and permits explicit sign-out re
       }),
     ),
   );
-  assert.deepEqual(f.calls, ["hide", "hide persisted credentials"]);
+  assert.deepEqual(f.calls, ["hide", "hide persisted credentials", "stop refresh"]);
   await Effect.runPromise(
     signOutSession(f.auth, f.subscription, f.begin, async () => {
       f.calls.push("disable device");

@@ -7,7 +7,7 @@ export function sdkFixture({
 } = {}) {
   const expires = Math.floor(Date.now() / 1000) + expiresIn;
   const encode = (value) => Buffer.from(JSON.stringify(value)).toString("base64url");
-  const access = `${encode({ alg: "HS256" })}.${encode({ exp: expires })}.fixture`;
+  const access = `${encode({ alg: "HS256" })}.${encode({ exp: expires, sub: "00000000-0000-4000-8000-000000000001", session_id: "00000000-0000-4000-8000-000000000009" })}.fixture`;
   const user = {
     id: "00000000-0000-4000-8000-000000000001",
     aud: "authenticated",

@@ -16,10 +16,10 @@ export const signOutSession = (
     yield* Effect.tryPromise({
       try: async () => {
         const revokedToken = await beginLocalLogout();
+        await auth.stopAutoRefresh();
         // Persist logout-pending before network cleanup so restart cannot restore
         // this identity. Only the cleanup callback receives the retained token.
         const cleanupToken = await beforeCredentialRemoval(revokedToken);
-        await auth.stopAutoRefresh();
         // Hidden credentials cannot be read by normal SDK hydration. Retain
         // only this pre-logout token for a best-effort revocation attempt.
         const token = cleanupToken ?? revokedToken;

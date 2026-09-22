@@ -127,7 +127,7 @@ function useRuntime(publish: (state: SessionState) => void) {
         if (pending) subscription.hide();
         runtime.current = { auth, subscription };
         const activate = (active: boolean) => {
-          if (active) {
+          if (active && subscription.canRefresh()) {
             void auth.startAutoRefresh().catch(subscription.unavailable);
             void subscription.refresh();
           } else void auth.stopAutoRefresh().catch(subscription.unavailable);
@@ -201,7 +201,7 @@ function logout(current: Runtime) {
     current.auth,
     current.subscription,
     beginLocalLogout,
-    finishNativePushLogout(configuration),
+    finishNativePushLogout(configuration, current.auth),
   );
 }
 
