@@ -125,7 +125,10 @@ export class LegacyAdoptionApprovalRuntime {
       if (!this.current(request)) return;
       // A changed raw fingerprint can return to an earlier value. Only a terminal
       // server outcome retires saved intent; a context mismatch never does.
-      if (terminal(approval)) await this.clear(attempt, request);
+      if (terminal(approval)) {
+        this.publish({ approval, context: null, fresh: true, notice: null });
+        await this.clear(attempt, request);
+      }
       if (!this.current(request)) return;
       this.publish({
         approval,

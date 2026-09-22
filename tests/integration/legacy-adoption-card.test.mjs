@@ -203,3 +203,26 @@ test("native approval resolves the actual category label and refuses archived ca
   assert.equal(runtime.getSnapshot().approval.status, "denied");
   assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
 });
+
+test("restart exposes a confirmed adoption even when SQLite cannot clear its saved attempt", async (t) => {
+  const f = await fixture(t),
+    runtime = await f.mount();
+  f.fault("after");
+  await runtime.decide(runtime.getSnapshot().approval, true);
+  runtime.dispose();
+  await f.local.idle();
+  const reopened = f.local.reopen();
+  reopened.connection.exec(
+    "CREATE TRIGGER block_restart_cleanup BEFORE DELETE ON recurring_state_approval_attempts BEGIN SELECT RAISE(ABORT,'cleanup'); END",
+  );
+  const resumed = await f.mount(reopened.store);
+  assert.equal(resumed.getSnapshot().approval.status, "consumed");
+  assert.ok(resumed.getSnapshot().attempt);
+  assert.match(resumed.getSnapshot().notice, /server confirmed/);
+  assert.equal(f.sends(), 1);
+  reopened.connection.exec("DROP TRIGGER block_restart_cleanup");
+  await resumed.refresh();
+  assert.equal(resumed.getSnapshot().approval.status, "consumed");
+  assert.equal(resumed.getSnapshot().attempt, null);
+  assert.equal(f.sends(), 1);
+});
