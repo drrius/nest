@@ -50,6 +50,7 @@ test("renewal confirmation captures its command, rejects stale dialogs and runs 
     async (value) => {
       sent.push(value);
     },
+    { responsible: "Unassigned", linked: "None" },
   );
   command.fields.title = "Changed after review";
   assert.match(dialog.message, /Internet/);
@@ -62,4 +63,21 @@ test("renewal confirmation captures its command, rejects stale dialogs and runs 
   assert.equal(await dialog.confirm(), false);
   assert.equal(sent[0].fields.title, "Internet");
   assert.equal(sent.length, 1);
+});
+test("renewal review distinguishes assignment and linked expense changes", async () => {
+  const { renewalReview } = await import("../src/renewals/confirmation.ts");
+  const fields = parseRenewalDraft({ ...renewalDraft(null, "2028-03-01"), title: "Internet" });
+  const plain = renewalReview(fields, { responsible: "Unassigned", linked: "None" });
+  const assigned = renewalReview(
+    { ...fields, responsibleId: "aaaaaaaa-aaaa-4aaa-8aaa-aaaaaaaaaaaa" },
+    { responsible: "Alex", linked: "None" },
+  );
+  const linked = renewalReview(
+    { ...fields, recurringRuleId: "bbbbbbbb-bbbb-4bbb-8bbb-bbbbbbbbbbbb" },
+    { responsible: "Unassigned", linked: "Internet subscription" },
+  );
+  assert.notEqual(plain, assigned);
+  assert.notEqual(plain, linked);
+  assert.match(assigned, /Responsible: Alex/);
+  assert.match(linked, /Linked expense: Internet subscription/);
 });

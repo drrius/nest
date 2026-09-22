@@ -38,6 +38,10 @@ test("renewal editor loads real choices, confirms a save and removes only the lo
     },
     () => true,
     runtime.save,
+    {
+      responsible: context.members.find((member) => member.actorId === id(2)).displayName,
+      linked: context.rules.rules[0].configuration.description,
+    },
   );
   assert.equal(await dialog.confirm(), true);
   assert.equal(runtime.getSnapshot().result.status, "recorded");

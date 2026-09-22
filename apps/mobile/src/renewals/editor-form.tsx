@@ -55,6 +55,7 @@ function Form(props: Props & { initial: RenewalEditorContext }) {
       { ...identity, expectedRevision: initial.renewal?.revision ?? null, fields: parsed },
       () => capturedEpoch === epoch.current && allowed(),
       runtime.save,
+      reviewLabels(parsed, members, fields.linked, initial),
     );
     setError(null);
     Alert.alert("Save this renewal?", dialog.message, [
@@ -159,4 +160,20 @@ function useEditorLeave(
     [],
   );
   return epoch;
+}
+
+function reviewLabels(
+  parsed: NonNullable<ReturnType<typeof parseRenewalDraft>>,
+  members: RenewalEditorContext["members"],
+  selected: ReturnType<typeof useRenewalFields>["linked"],
+  initial: RenewalEditorContext,
+) {
+  return {
+    responsible:
+      members.find((member) => member.actorId === parsed.responsibleId)?.displayName ??
+      "Unassigned",
+    linked: parsed.recurringRuleId
+      ? (selected?.title ?? initial.linked?.rule.configuration.description ?? "Unavailable")
+      : "None",
+  };
 }
