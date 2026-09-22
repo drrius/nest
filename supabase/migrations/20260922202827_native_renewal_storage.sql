@@ -105,7 +105,9 @@ begin
         notice_days=excluded.notice_days,responsible_id=excluded.responsible_id,recurring_rule_id=excluded.recurring_rule_id returning * into v_row;
   end if;
   v_result:=jsonb_build_object('version',1,'actorId',v_actor,'householdId',p_household,'operationId',p_operation,
-    'action',case when p_remove then 'removed' else 'saved' end,'renewal',private.nest_renewal_json(v_row));
+    'action',case when p_remove then 'removed' else 'saved' end,'renewal',private.nest_renewal_json(v_row),
+    'command',jsonb_build_object('operationId',p_operation,'renewalId',v_id,'expectedRevision',v_expected)||
+      case when p_remove then '{}'::jsonb else jsonb_build_object('fields',v_fields) end);
   insert into private.nest_renewal_operations values(v_actor,p_household,p_operation,v_hash,v_result);
   return v_result;
 end;

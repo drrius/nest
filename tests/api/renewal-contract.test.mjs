@@ -37,6 +37,7 @@ test("renewal receipts cannot misstate their deadline or removal outcome", () =>
     householdId: id(10),
     operationId: id(3),
     action: "saved",
+    command: { ...command, operationId: id(3) },
     renewal: {
       renewalId: id(2),
       revision: id(4),

@@ -19,6 +19,7 @@ test("concurrent renewal retries preserve one revision; stale edits fail and his
   const first = receipts[0];
   assert.equal(Schema.is(RenewalReceipt)(first), true);
   assert.equal(first.renewal.cancellationOn, "2028-02-29");
+  assert.deepEqual(first.command, { operationId: id(901), ...f.input });
   const update = {
     ...f.input,
     expectedRevision: first.renewal.revision,
@@ -33,6 +34,11 @@ test("concurrent renewal retries preserve one revision; stale edits fail and his
   );
   const removed = f.record(f.remove(second.renewal.revision));
   assert.equal(removed.renewal.removed, true);
+  assert.deepEqual(removed.command, {
+    operationId: id(902),
+    renewalId: id(900),
+    expectedRevision: second.renewal.revision,
+  });
   assert.deepEqual(f.record(f.remove(second.renewal.revision)), removed);
   assert.deepEqual(f.record(f.save()), first);
   assert.throws(

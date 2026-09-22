@@ -53,14 +53,29 @@ export const Renewal = Schema.Struct({
       value.cancellationOn === renewalDeadline(value.fields.renewalOn, value.fields.noticeDays),
   ),
 );
+export const RenewalCommand = Schema.Union([SaveRenewal, RemoveRenewal]);
+const sameFields = Schema.toEquivalence(StoredRenewalFields);
 export const RenewalReceipt = Schema.Struct({
   version: Schema.Literal(1),
   actorId: Uuid,
   householdId: Uuid,
   operationId: Uuid,
+  command: RenewalCommand,
   action: Schema.Literals(["saved", "removed"]),
   renewal: Renewal,
-}).check(Schema.makeFilter((value) => value.renewal.removed === (value.action === "removed")));
+}).check(
+  Schema.makeFilter((value) => {
+    if (
+      value.operationId !== value.command.operationId ||
+      value.renewal.renewalId !== value.command.renewalId ||
+      value.renewal.removed !== (value.action === "removed")
+    )
+      return false;
+    return value.action === "saved"
+      ? "fields" in value.command && sameFields(value.command.fields, value.renewal.fields)
+      : !("fields" in value.command);
+  }),
+);
 export const RenewalQuery = Schema.Struct({ renewalId: Uuid });
 export const RenewalEnvelope = Schema.Struct({
   version: Schema.Literal(1),
