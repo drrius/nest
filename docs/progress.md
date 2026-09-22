@@ -16,6 +16,12 @@ Authenticated list/detail/save/remove/recover/cancel routes now use the caller t
 
 Three actual native-client → HTTP → PostgREST → disposable PostgreSQL integration cases pass: lost committed response with historical recovery/removal, foreign and stale requests plus cancellation fencing, and forged receipt ownership/intent rejection. Workspace typechecking and Oxlint pass (existing advisory warnings remain). CI and exact-commit Sol review are still required. No physical-device, hosted backend or production verification occurred.
 
+### Renewal durable recovery — candidate
+
+Account/household/lease-scoped SQLite now retains the exact renewal save or removal command before dispatch. The shared durable runtime recovers status after restart without automatically repeating writes, freezes unresolved commands, persists explicit cancellation and hides pending state after account replacement. The store refuses command replacement and cancellation reversal. A grouped store-composition helper preserves the configured function-length limit.
+
+Four real SQLite/native runtime/HTTP/PostgREST/PostgreSQL journeys pass: committed response loss across restart, unresolved cancellation with late-send fencing, account replacement, and staging/cleanup failure. Workspace types, lint and formatting pass, including the final store composition. Renewal screens and AI actions remain unfinished. This is local integration evidence, not device verification. Transport commit `8fbaebb` has clean exact-commit Sol signoff; CI remains required. Recovery review/CI remain pending.
+
 ## Earlier delivery log
 
 Earlier deliveries merged and pushed to main after exact-commit CI and clean GPT-5.6 Sol medium review:

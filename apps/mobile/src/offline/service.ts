@@ -1,3 +1,4 @@
+import { renewalSaveStore } from "./renewal-save-service.ts";
 import { run } from "./run.ts";
 import { cycleSaveStore } from "./cycle-save-service.ts";
 import * as RecurringStateApprovals from "./recurring-state-approvals.ts";
@@ -51,11 +52,11 @@ import * as Journal from "./journal.ts";
 import * as Replay from "./replay.ts";
 import * as SessionStore from "./session.ts";
 
-export function makeOfflineStore(database: Database) {
+function durableCommandStores(database: Database) {
   return {
-    initialize: run(() => initialize(database)),
     ...recurringSaveStore(database),
     ...cycleSaveStore(database),
+    ...renewalSaveStore(database),
     ...recurringStateSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
@@ -66,6 +67,13 @@ export function makeOfflineStore(database: Database) {
     ...refundSaveStore(database),
     ...correctionSaveStore(database),
     ...expenseSaveStore(database),
+  };
+}
+
+export function makeOfflineStore(database: Database) {
+  return {
+    initialize: run(() => initialize(database)),
+    ...durableCommandStores(database),
     readExpenseApproval: (session: Session, approvalId: string) =>
       run(() => ExpenseApprovals.readExpenseApproval(database, session, approvalId)),
     stageExpenseApproval: (
