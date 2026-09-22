@@ -33,7 +33,7 @@ export async function fixture(t) {
   let fault = "none",
     sends = 0;
   const transport = async (input, init) => {
-    const save = /\/renewal-reminders\/save$/.test(String(input));
+    const save = String(input).endsWith("/renewal-reminders/save");
     if (save) {
       sends++;
       if (fault === "before") throw new TypeError("not sent");
