@@ -64,7 +64,8 @@ export function SignInCard() {
 }
 
 function LogoutCard() {
-  const { working, signOut } = useSession();
+  const { working, signOut, recoverSignOut } = useSession();
+  const dark = useColorScheme() === "dark";
   return (
     <Card>
       <Note>
@@ -75,7 +76,24 @@ function LogoutCard() {
       {working ? (
         <ActivityIndicator accessibilityLabel="Signing out" />
       ) : (
-        <NativeAction label="Retry sign-out" onPress={signOut} />
+        <>
+          <NativeAction label="Retry sign-out" onPress={signOut} />
+          <Note>
+            If retry cannot finish, verify the same Apple account to stop the old session’s
+            notifications.
+          </Note>
+          <Apple.AppleAuthenticationButton
+            buttonType={Apple.AppleAuthenticationButtonType.CONTINUE}
+            buttonStyle={
+              dark
+                ? Apple.AppleAuthenticationButtonStyle.WHITE
+                : Apple.AppleAuthenticationButtonStyle.BLACK
+            }
+            cornerRadius={10}
+            style={{ height: 48, width: "100%" }}
+            onPress={recoverSignOut}
+          />
+        </>
       )}
     </Card>
   );

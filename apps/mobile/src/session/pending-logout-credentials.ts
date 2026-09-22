@@ -17,13 +17,17 @@ export function pendingLogoutCredentials(
     return record;
   };
   return {
+    completed: () => serial(async () => (await readRecord())?.cleanupComplete === true),
     complete: (expectedToken: string | null) =>
       serial(async () => {
         const record = await readRecord();
         if (!record && expectedToken === null) return;
         if (!record?.logoutPending || record.session.access_token !== expectedToken)
           throw new Error("Logout credentials changed");
-        await disk.setItem(key, JSON.stringify({ ...record, cleanupRequired: false }));
+        await disk.setItem(
+          key,
+          JSON.stringify({ ...record, cleanupRequired: false, cleanupComplete: true }),
+        );
       }),
     read: () =>
       serial(async () => {

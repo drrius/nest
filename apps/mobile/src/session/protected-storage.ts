@@ -100,7 +100,7 @@ async function persistLogout(disk: Storage, cleanupRequired: boolean) {
         ...record,
         member: null,
         logoutPending: true,
-        cleanupRequired: record.cleanupRequired || cleanupRequired,
+        cleanupRequired: record.cleanupComplete ? false : record.cleanupRequired || cleanupRequired,
       }),
     );
   return record?.session.access_token ?? null;

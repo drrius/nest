@@ -12,6 +12,7 @@ import { revokePushSession } from "./logout-client";
 export const finishNativePushLogout =
   (config: SessionConfig, auth: SupabaseClient["auth"]) =>
   async (token: string | null | void): Promise<string | null> => {
+    if (await logoutCredentials.completed()) return token ?? null;
     const installation = await readNativePushInstallation();
     if (installation === null) {
       await logoutCredentials.complete(token ?? null);

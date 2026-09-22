@@ -1,5 +1,6 @@
 import { sessionPushDevices } from "./push-client";
 import { finishNativePushLogout } from "../push/native-logout";
+import { recoverNativePushLogout } from "../push/native-logout-recovery";
 import { sessionRenewalReminders } from "./renewal-reminder-client";
 import type { RenewalReminderClient } from "../renewal-reminders/client";
 import { nativeReceiptStorage } from "../money/receipt-upload-native";
@@ -96,6 +97,7 @@ interface SessionContextValue {
   error: string | null;
   signIn: () => void;
   signOut: () => void;
+  recoverSignOut: () => void;
   retry: () => void;
 }
 const SessionContext = createContext<SessionContextValue | null>(null);
@@ -195,13 +197,28 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
   }, [actor, household, runtime]);
 }
 
-function logout(current: Runtime) {
+function useDailyClients(member: Member | null, runtime: ReturnType<typeof useRuntime>[0]) {
+  return useMemo(() => {
+    if (!member || !runtime.current || !configuration)
+      return { chores: null, groceries: null, assistant: null };
+    const { auth } = runtime.current;
+    return {
+      chores: sessionChores(auth, member, configuration.apiUrl),
+      groceries: sessionGroceries(auth, member, configuration.apiUrl),
+      assistant: sessionAssistant(auth, member, configuration.apiUrl),
+    };
+  }, [member, runtime]);
+}
+
+function logout(current: Runtime, recover = false) {
   if (!configuration) return Effect.void;
   return signOutSession(
     current.auth,
     current.subscription,
     beginLocalLogout,
-    finishNativePushLogout(configuration, current.auth),
+    recover
+      ? recoverNativePushLogout(configuration)
+      : finishNativePushLogout(configuration, current.auth),
   );
 }
 
@@ -213,16 +230,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
   const [runtime, restartRuntime] = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
   const preferenceClients = usePreferenceClients(member, runtime);
-  const { chores, groceries, assistant } = useMemo(() => {
-    if (!member || !runtime.current || !configuration)
-      return { chores: null, groceries: null, assistant: null };
-    const { auth } = runtime.current;
-    return {
-      chores: sessionChores(auth, member, configuration.apiUrl),
-      groceries: sessionGroceries(auth, member, configuration.apiUrl),
-      assistant: sessionAssistant(auth, member, configuration.apiUrl),
-    };
-  }, [member, runtime]);
+  const { chores, groceries, assistant } = useDailyClients(member, runtime);
   const run = (action: Effect.Effect<void, SessionFailure>) => {
     if (busy.current) return;
     busy.current = true;
@@ -257,6 +265,10 @@ export function SessionProvider({ children }: PropsWithChildren) {
     if (!current || !configuration || busy.current) return;
     run(logout(current));
   };
+  const recoverSignOut = () => {
+    const current = runtime.current;
+    if (current && state.status === "logout_pending") run(logout(current, true));
+  };
   return (
     <SessionContext
       value={{
@@ -270,6 +282,7 @@ export function SessionProvider({ children }: PropsWithChildren) {
         error,
         signIn,
         signOut,
+        recoverSignOut,
         retry: () => {
           if (runtime.current) void runtime.current.subscription.refresh();
           else restartRuntime();

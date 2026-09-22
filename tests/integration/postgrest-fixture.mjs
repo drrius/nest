@@ -138,29 +138,42 @@ export async function postgrestFixture(
   });
   child.on("error", () => undefined);
   await ready(child, socket);
-  const user = "00000000-0000-4000-8000-000000000001";
-  const outsider = "00000000-0000-4000-8000-000000000003";
-  const bearer = token(secret, user);
-  const otherBearer = token(secret, outsider);
-  const partner = "00000000-0000-4000-8000-000000000002";
-  const partnerBearer = token(secret, partner);
+  const { bearer, freshBearer, otherBearer, partnerBearer, users } = fixtureUsers(secret);
   const serverKey = `sb_secret_${randomBytes(32).toString("hex")}`;
-  server = bridge(
-    socket,
-    new Map([
-      [bearer, user],
-      [otherBearer, outsider],
-      [partnerBearer, partner],
-    ]),
-    { key: serverKey, token: token(secret, undefined, "service_role") },
-  );
+  server = bridge(socket, users, {
+    key: serverKey,
+    token: token(secret, undefined, "service_role"),
+  });
   await listen(server);
   return {
     db,
     bearer,
+    freshBearer,
     otherBearer,
     partnerBearer,
     serverKey,
     url: `http://127.0.0.1:${server.address().port}`,
+  };
+}
+
+function fixtureUsers(secret) {
+  const user = "00000000-0000-4000-8000-000000000001";
+  const outsider = "00000000-0000-4000-8000-000000000003";
+  const bearer = token(secret, user);
+  const freshBearer = token(secret, user);
+  const otherBearer = token(secret, outsider);
+  const partner = "00000000-0000-4000-8000-000000000002";
+  const partnerBearer = token(secret, partner);
+  return {
+    bearer,
+    freshBearer,
+    otherBearer,
+    partnerBearer,
+    users: new Map([
+      [bearer, user],
+      [freshBearer, user],
+      [otherBearer, outsider],
+      [partnerBearer, partner],
+    ]),
   };
 }

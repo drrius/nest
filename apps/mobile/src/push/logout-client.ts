@@ -18,15 +18,30 @@ const receiptIdentity = (token: string) =>
 // Explicit idempotent cleanup with the retained logout token. Does not consult
 // SDK hydration or require membership, prompt permission, or refresh credentials.
 export function revokePushSession(config: SessionConfig, token: string) {
+  return revokeSession(config, token);
+}
+export function revokePreviousPushSession(
+  config: SessionConfig,
+  token: string,
+  previousToken: string,
+) {
+  return revokeSession(config, token, previousToken);
+}
+function revokeSession(config: SessionConfig, token: string, previousToken?: string) {
   return Effect.gen(function* () {
-    const expected = yield* receiptIdentity(token);
-    const response = yield* HttpClient.post(
-      new URL("rest/v1/rpc/nest_revoke_push_session", config.supabaseUrl),
-      {
-        headers: { Authorization: `Bearer ${token}`, apikey: config.publishableKey },
-        body: yield* HttpBody.json({}),
-      },
-    );
+    const current = yield* receiptIdentity(token);
+    const expected = previousToken === undefined ? current : yield* receiptIdentity(previousToken);
+    if (current.actor !== expected.actor) return yield* unavailable();
+    const name =
+      previousToken === undefined
+        ? "nest_revoke_push_session"
+        : "nest_revoke_previous_push_session";
+    const response = yield* HttpClient.post(new URL(`rest/v1/rpc/${name}`, config.supabaseUrl), {
+      headers: { Authorization: `Bearer ${token}`, apikey: config.publishableKey },
+      body: yield* HttpBody.json(
+        previousToken === undefined ? {} : { p_session: expected.session },
+      ),
+    });
     if (response.status !== 200) return yield* unavailable();
     const receipt = yield* response.json.pipe(
       Effect.flatMap(

@@ -15,6 +15,8 @@ export function pushLogoutCleanup(deps: Dependencies) {
   return Effect.gen(function* () {
     const current = yield* Effect.tryPromise({ try: deps.credentials.read, catch: unavailable });
     if (!current) return null;
+    if (yield* Effect.tryPromise({ try: deps.credentials.completed, catch: unavailable }))
+      return current.access_token;
     let token = current.access_token;
     if (current.expires_at <= deps.now() + 30) {
       const replacement = yield* deps.refresh(current.refresh_token);

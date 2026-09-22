@@ -13,7 +13,14 @@ const Envelope = Schema.Struct({
   member: Schema.NullOr(Member),
   logoutPending: Schema.optional(Schema.Boolean),
   cleanupRequired: Schema.optional(Schema.Boolean),
-}).check(Schema.makeFilter((record) => !record.cleanupRequired || record.logoutPending === true));
+  cleanupComplete: Schema.optional(Schema.Boolean),
+}).check(
+  Schema.makeFilter(
+    (record) =>
+      (!record.cleanupRequired || record.logoutPending === true) &&
+      (!record.cleanupComplete || (record.logoutPending === true && !record.cleanupRequired)),
+  ),
+);
 export function decodeProtectedSession(raw: string | null): typeof Envelope.Type | null {
   let value: unknown;
   try {
