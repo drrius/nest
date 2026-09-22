@@ -2317,3 +2317,11 @@ Enable/disable orchestration now first recovers existing pending work, blocks a 
 ### Explicit enrollment API verification — 23 September
 
 The actual native-client/HTTP/PostgREST/PostgreSQL recovery test now also executes enable followed by disable, verifies each uses the latest server revision, observes enabled/disabled state and confirms pending protected state is cleared. All three action/recovery cases pass. Lint caught an unknown error channel and an overlong test function; dependencies now require typed PreferenceFailure and the action journey is extracted into a focused helper. Final scoped lint and mobile typechecking pass. The earlier draft lint-pass note did not cover these newly surfaced diagnostics. Permissions remain controlled test dependencies, not actual iPhone prompts; no UI/device acceptance is claimed.
+
+### Explicit pending-enrollment retry — 23 September, draft
+
+The operations adapter now exposes an explicit retry that first reads the protected command and asks the server for its outcome. Recorded outcomes clear the matching attempt; unresolved outcomes resubmit only that original command, without reacquiring a token or creating another operation ID. The real HTTP/PostgREST/PostgreSQL orchestration test passes with a staged-but-unsent attempt, exact retry receipt, cleanup and empty subsequent retry. Passive recovery remains read-only. Sign-out currently hides/removes credentials without a push revocation step; that lifecycle remains an explicit incomplete integration requirement before enrollment UI acceptance.
+
+### Registration API merged; retry verification — 23 September
+
+Registration read/API `a319ff5a68bfd1a8e598e71aa22b7ad6efcdc672` passed exact CI `35794102588` and clean Sol review, then main was fast-forwarded and pushed. Native descendants remain gated individually. The explicit retry draft passes final mobile typechecking and scoped lint, in addition to the actual HTTP/database retry journey. Explicit enable/disable `bc3f893` now has clean exact-commit Sol signoff; its CI is still running at the latest check. No device enrollment, notification sending or hosted migration occurred.

@@ -26,7 +26,7 @@ export function pushEnrollmentOperations(deps: Dependencies) {
       yield* disk(() => deps.store.clear(deps.account, command));
       yield* check();
     });
-  return {
+  const operations = {
     save: (command: PushDeviceCommand) =>
       Effect.gen(function* () {
         yield* check();
@@ -47,6 +47,25 @@ export function pushEnrollmentOperations(deps: Dependencies) {
         yield* check();
         if (recovery.status === "recorded") yield* finish(command);
         return recovery;
+      }),
+  };
+  return {
+    ...operations,
+    retryPending: () =>
+      Effect.gen(function* () {
+        yield* check();
+        const command = yield* disk(() => deps.store.read(deps.account));
+        yield* check();
+        if (command === null) return null;
+        const recovery = yield* deps.client.recover(command);
+        yield* check();
+        if (recovery.status === "recorded") {
+          yield* finish(command);
+          return recovery.receipt;
+        }
+        // Only an explicit Retry action reaches this path; reuse the protected
+        // command, never request a new token or invent another operation identity.
+        return yield* operations.save(command);
       }),
   };
 }

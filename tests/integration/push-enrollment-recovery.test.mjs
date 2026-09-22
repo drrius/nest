@@ -75,7 +75,7 @@ test("enrollment stages before HTTP and reconstruction recovers a lost commit wi
     ),
   );
   assert.equal(posts, 1);
-  await verifyExplicitActions({ command, recovered, client, operations: make(), values });
+  await verifyExplicitActions({ command, recovered, client, operations: make(), values, disk });
   active = false;
   await assert.rejects(
     run(make().save(command).pipe(Effect.provideService(Fetch.Fetch, neverSend))),
@@ -83,7 +83,7 @@ test("enrollment stages before HTTP and reconstruction recovers a lost commit wi
   assert.equal(posts, 1);
 });
 
-async function verifyExplicitActions({ command, recovered, client, operations, values }) {
+async function verifyExplicitActions({ command, recovered, client, operations, values, disk }) {
   let operation = 998;
   const actions = pushEnrollmentActions({
     current: () => true,
@@ -100,4 +100,11 @@ async function verifyExplicitActions({ command, recovered, client, operations, v
   assert.equal(disabled.expectedRevision, enabled.revision);
   assert.equal((await run(client.detail(command.installationId))).enabled, false);
   assert.equal(values.size, 0);
+  const pending = { ...command, operationId: id(1001), expectedRevision: disabled.revision };
+  await protectedPushAttempts(disk).stage({ actor: id(1), household: id(10) }, pending);
+  const retried = await run(operations.retryPending());
+  assert.equal(retried.operationId, pending.operationId);
+  assert.equal(retried.expectedRevision, disabled.revision);
+  assert.equal(values.size, 0);
+  assert.equal(await run(operations.retryPending()), null);
 }
