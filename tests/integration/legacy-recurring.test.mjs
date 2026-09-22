@@ -52,11 +52,12 @@ test("legacy API denies foreign household and malformed pagination without mutat
 test("native and SDK inventory keep unsupported legacy rows visible without treating them as valid terms", async (t) => {
   const f = await fixture(t);
   f.db.sql(
-    "update public.recurring_expense_rules set next_occurrence_on='infinity',updated_at='infinity',proposed_allocations='[]'",
+    "update public.recurring_expense_rules set next_occurrence_on='infinity',updated_at='infinity',proposed_allocations='[]',description=U&'\\00A0'",
   );
   const page = await run(f.client().legacyRecurring()),
     row = page.rules[0];
   assert.equal(row.allocations.kind, "needs_review");
+  assert.equal(row.description, "\u00a0");
   assert.equal(row.nextOccurrenceOn.kind, "unsupported");
   assert.equal(row.updatedAt.kind, "unsupported");
   const tool = recurringReadTools(

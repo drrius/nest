@@ -23,10 +23,17 @@ export const LegacyRecurringSplit = Schema.Union([
   Schema.Struct({ kind: Schema.Literal("needs_review"), reason: Schema.Literal("invalid_split") }),
 ]);
 export const LegacyRecurringQuery = Schema.Struct({ after: Schema.NullOr(Uuid) });
+// Match PostgreSQL trim(text): ASCII spaces only. Retained labels are not new expense inputs.
+export const LegacyRecurringDescription = Schema.String.check(
+  Schema.makeFilter((value) => {
+    const length = Array.from(value.replace(/^ +| +$/g, "")).length;
+    return !value.includes("\u0000") && length >= 1 && length <= 200;
+  }),
+);
 export const LegacyRecurringRule = Schema.Struct({
   ruleId: Uuid,
   mode: Schema.Literal("legacy_draft_only"),
-  description: ExpenseInput.fields.description,
+  description: LegacyRecurringDescription,
   amountCentimes: ExpenseInput.fields.amountCentimes,
   payerId: Uuid,
   allocations: LegacyRecurringSplit,

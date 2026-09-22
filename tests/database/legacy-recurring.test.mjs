@@ -154,3 +154,30 @@ test("unreconciled allocation arrays and unsupported edit versions remain visibl
     assert.equal(page.rules[1].updatedAt.kind, "timestamp");
   }
 });
+
+test("raw descriptions obey legacy ASCII-space trimming rather than native expense rules", (t) => {
+  const f = fixture(t);
+  f.rule();
+  f.rule(801);
+  for (const value of [
+    "\u00a0",
+    "\t",
+    "\n",
+    "\u2003",
+    " ".repeat(220) + "Retained" + " ".repeat(220),
+  ]) {
+    f.db.sql(
+      `update public.recurring_expense_rules set description=$description$${value}$description$ where id='${id(800)}'`,
+    );
+    const page = f.read();
+    assert.equal(Schema.is(LegacyRecurringList)(page), true);
+    assert.equal(page.rules.length, 2);
+    assert.equal(page.rules[0].description, value);
+    assert.equal(
+      f.db.sql(
+        `select length(description) from public.recurring_expense_rules where id='${id(800)}'`,
+      ),
+      String(Array.from(value).length),
+    );
+  }
+});
