@@ -5,8 +5,7 @@ import { NativeAction } from "../components/native-action";
 import { RecurringFields } from "./recurring-fields";
 import { useLegacyAdoptionDraft, type AdoptionFormProps } from "./use-legacy-adoption-draft";
 import { adoptionContextMatches } from "./legacy-adoption-draft";
-import { adoptionBlockerText } from "./legacy-adoption-summary";
-import { legacyDescription } from "./legacy-recurring-display";
+import { adoptionBlockerText, adoptionSourceText } from "./legacy-adoption-summary";
 export function LegacyAdoptionForm(
   props: AdoptionFormProps & {
     visible: boolean;
@@ -21,7 +20,7 @@ export function LegacyAdoptionForm(
   const review = props.current?.review ?? props.initial.review;
   return (
     <>
-      <AdoptionSource review={review} />
+      <AdoptionSource original={props.initial} review={review} actor={props.actor} />
       {!matching ? (
         <Note>
           Load the current rule and household before saving. Changed source requires an explicit
@@ -49,11 +48,19 @@ export function LegacyAdoptionForm(
   );
 }
 
-function AdoptionSource({ review }: { review: AdoptionFormContext["review"] }) {
+function AdoptionSource({
+  original,
+  review,
+  actor,
+}: {
+  original: AdoptionFormContext;
+  review: AdoptionFormContext["review"];
+  actor: string;
+}) {
   const router = useRouter();
   return (
     <Section title="Retained legacy rule">
-      <Note>{legacyDescription(review.rule.description)}</Note>
+      <Note>{adoptionSourceText(original, actor)}</Note>
       <Note>Original rule reference: {review.rule.ruleId}</Note>
       <Note>
         Pending: {review.rule.drafts.pending} · Posted: {review.rule.drafts.posted} · Dismissed:{" "}

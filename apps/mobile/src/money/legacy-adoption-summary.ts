@@ -1,3 +1,6 @@
+import type { AdoptionFormContext } from "./legacy-adoption-draft.ts";
+import { formatChf } from "./format.ts";
+import { legacyDescription, legacyDateText } from "./legacy-recurring-display.ts";
 import type { LegacyAdoptionBlocker } from "@nest/contracts/legacy-adoption";
 import type { LegacyAdoptionSave } from "./legacy-adoption-client.ts";
 import { recurringConfirmationText } from "./recurring-confirmation.ts";
@@ -28,4 +31,34 @@ export function adoptionConfirmationText(
     "The old draft generator will stop. Original drafts and financial events remain in history, with the same rule identity.",
     `Note: ${command.input.configuration.note ?? "None"}`,
   ].join("\n\n");
+}
+
+export function adoptionSourceText(context: AdoptionFormContext, actor: string) {
+  const row = context.review.rule;
+  const member = (id: string) =>
+    context.options.members.find((entry) => entry.actorId === id)?.displayName ??
+    (id === actor ? "You" : "Other household member");
+  const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+  return [
+    "Original retained rule",
+    legacyDescription(row.description),
+    `Amount: ${formatChf(row.amountCentimes)}. Payer: ${member(row.payerId)}.`,
+    row.allocations.kind === "valid"
+      ? row.allocations.shares
+          .map((share) => `${member(share.memberId)}: ${formatChf(share.centimes)}`)
+          .join("\n")
+      : "Original split needs review; no replacement is assumed.",
+    row.schedule.kind === "weekly"
+      ? `Every ${weekdays[row.schedule.weekday - 1]}.`
+      : `Monthly, day ${row.schedule.dayOfMonth}.`,
+    `Category: ${row.categoryId === null ? "None" : context.category ? `${context.category.name}${context.category.archived ? " (archived)" : ""}` : "Unavailable retained category"}.`,
+    `Legacy draft generation: ${row.active ? "Active" : "Paused"}. Next draft: ${legacyDateText(row.nextOccurrenceOn)}.`,
+  ].join("\n\n");
+}
+export function adoptionReviewText(
+  command: LegacyAdoptionSave,
+  actor: string,
+  context: AdoptionFormContext,
+) {
+  return `${adoptionSourceText(context, actor)}\n\nNew configuration to authorize\n\n${adoptionConfirmationText(command, actor, context.review.coveredThrough)}`;
 }

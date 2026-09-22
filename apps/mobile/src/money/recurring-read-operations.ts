@@ -1,3 +1,4 @@
+import type { MoneyCategory } from "@nest/contracts/money-category";
 import type { LegacyAdoptionContext } from "@nest/contracts/legacy-adoption";
 import type { LegacyDraftContext } from "@nest/contracts/legacy-draft-dismissal";
 import type { LegacyDraftList } from "@nest/contracts/legacy-recurring-drafts";
@@ -16,7 +17,14 @@ export type RecurringReadTarget =
   | { kind: "detail"; ruleId: string }
   | { kind: "history"; ruleId: string; before: string | null };
 export type RecurringReadEntry =
-  | { kind: "legacy-adoption"; value: { review: typeof LegacyAdoptionContext.Type; today: string } }
+  | {
+      kind: "legacy-adoption";
+      value: {
+        review: typeof LegacyAdoptionContext.Type;
+        today: string;
+        category: MoneyCategory | null;
+      };
+    }
   | { kind: "legacy-review"; value: typeof LegacyDraftContext.Type }
   | { kind: "legacy-drafts"; value: typeof LegacyDraftList.Type }
   | { kind: "legacy"; value: typeof LegacyRecurringList.Type }
@@ -40,15 +48,7 @@ function readTarget(
   client: MoneyClient,
   target: RecurringReadTarget,
 ): Effect.Effect<RecurringReadEntry, import("../preferences/client.ts").PreferenceFailure> {
-  if (target.kind === "legacy-adoption")
-    return Effect.all([client.legacyAdoptionContext(target.ruleId), client.recurringRules(null)], {
-      concurrency: 2,
-    }).pipe(
-      Effect.map(([review, rules]) => ({
-        kind: "legacy-adoption" as const,
-        value: { review, today: rules.today },
-      })),
-    );
+  if (target.kind === "legacy-adoption") return readAdoption(client, target.ruleId);
   if (target.kind === "legacy-review")
     return client
       .legacyDraftContext(target.draftId)
@@ -72,4 +72,16 @@ function readTarget(
   return client
     .recurringRule(target.ruleId)
     .pipe(Effect.map((value) => ({ kind: "detail" as const, value })));
+}
+
+function readAdoption(client: MoneyClient, ruleId: string) {
+  return Effect.gen(function* () {
+    const [review, rules] = yield* Effect.all(
+      [client.legacyAdoptionContext(ruleId), client.recurringRules(null)],
+      { concurrency: 2 },
+    );
+    const category =
+      review.rule.categoryId === null ? null : yield* client.category(review.rule.categoryId);
+    return { kind: "legacy-adoption" as const, value: { review, today: rules.today, category } };
+  });
 }

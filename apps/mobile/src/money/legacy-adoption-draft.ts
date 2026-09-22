@@ -1,3 +1,4 @@
+import type { MoneyCategory } from "@nest/contracts/money-category";
 import type { LegacyAdoptionContext } from "@nest/contracts/legacy-adoption";
 import { firstUncoveredRecurringCycle } from "@nest/domain/money";
 import type { ExpenseEntryOptions } from "./entry-options.ts";
@@ -12,6 +13,7 @@ import type { LegacyAdoptionSave } from "./legacy-adoption-client.ts";
 export interface AdoptionFormContext {
   review: typeof LegacyAdoptionContext.Type;
   today: string;
+  category: MoneyCategory | null;
   options: ExpenseEntryOptions;
 }
 export function initialLegacyAdoption(context: AdoptionFormContext): RecurringDraft {
@@ -37,6 +39,7 @@ export function adoptionContextMatches(initial: AdoptionFormContext, current: Ad
   return (
     initial.review.reviewToken === current.review.reviewToken &&
     initial.review.rule.ruleId === current.review.rule.ruleId &&
+    JSON.stringify(initial.category) === JSON.stringify(current.category) &&
     initial.options.members.every(
       (member, i) => member.actorId === current.options.members[i]?.actorId,
     )

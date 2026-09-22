@@ -13,7 +13,11 @@ import {
   adoptionFormContext,
   adoptionPreviewCurrent,
 } from "../../apps/mobile/src/money/legacy-adoption-context.ts";
-import { adoptionConfirmationText } from "../../apps/mobile/src/money/legacy-adoption-summary.ts";
+import {
+  adoptionConfirmationText,
+  adoptionSourceText,
+  adoptionReviewText,
+} from "../../apps/mobile/src/money/legacy-adoption-summary.ts";
 async function choices(f) {
   const client = moneyClient(
     f.url,
@@ -33,6 +37,7 @@ test("native adoption defaults to variable, preserves missing splits, and comput
   const context = {
     review: await run(f.native.legacyAdoptionContext(id(800))),
     today: f.command.input.configuration.startDate,
+    category: null,
     options,
   };
   const initial = initialLegacyAdoption(context);
@@ -124,4 +129,43 @@ test("source, member order, fields and lifecycle changes invalidate native adopt
   await read.refresh();
   assert.equal(prepareLegacyAdoption(draft, current(), context, id(870)).ok, false);
   assert.equal(f.db.sql("select count(*) from private.nest_legacy_recurring_adoptions"), "0");
+});
+
+test("original adoption terms remain visible for variable proposals and resolve categories beyond the first page", async (t) => {
+  const f = await fixture(t);
+  f.db.sql(
+    `insert into public.expense_categories(id,household_id,name,sort_order) values ${Array.from({ length: 51 }, (_, n) => `('${id(500 + n)}','${id(10)}','Retained category ${n}',${n})`).join(",")}`,
+  );
+  f.db.sql(
+    `update public.recurring_expense_rules set category_id='${id(550)}' where id='${id(800)}'`,
+  );
+  const { client, options } = await choices(f);
+  assert.equal(
+    options.categories.categories.some((row) => row.categoryId === id(550)),
+    false,
+  );
+  const operations = recurringReadOperations({ store: f.local.store, session: f.session }, client);
+  const read = async () => ({
+    ...(await run(operations.read({ kind: "legacy-adoption", ruleId: id(800) }))).value,
+    options,
+  });
+  const context = await read();
+  assert.equal(context.category.name, "Retained category 50");
+  const draft = initialLegacyAdoption(context);
+  const prepared = prepareLegacyAdoption(draft, context, context, id(871));
+  assert.equal(prepared.ok, true);
+  assert.equal(prepared.command.input.configuration.mode, "variable");
+  const source = adoptionSourceText(context, id(1));
+  assert.match(source, /CHF 1\.01/);
+  assert.match(source, /Every Monday/);
+  assert.match(source, /Legacy draft generation: Active/);
+  assert.match(source, /Category: Retained category 50/);
+  assert.match(source, /Original split needs review/);
+  const confirmation = adoptionReviewText(prepared.command, id(1), context);
+  assert.ok(confirmation.startsWith(source));
+  assert.match(confirmation, /New configuration to authorize/);
+  f.db.sql(`update public.expense_categories set archived_at=now() where id='${id(550)}'`);
+  const changed = await read();
+  assert.match(adoptionSourceText(changed, id(1)), /Retained category 50 \(archived\)/);
+  assert.equal(prepareLegacyAdoption(draft, changed, context, id(871)).ok, false);
 });

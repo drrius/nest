@@ -11,7 +11,7 @@ import {
   type AdoptionFormContext,
 } from "./legacy-adoption-draft";
 import { adoptionRequestEnabled, adoptionPreviewCurrent } from "./legacy-adoption-context";
-import { adoptionConfirmationText } from "./legacy-adoption-summary";
+import { adoptionReviewText } from "./legacy-adoption-summary";
 import { useLeaveLegacyAdoption } from "./use-leave-legacy-adoption";
 export interface AdoptionFormProps {
   initial: AdoptionFormContext;
@@ -24,9 +24,7 @@ export function useLegacyAdoptionDraft(props: AdoptionFormProps) {
   const [initial] = useState(() => initialLegacyAdoption(props.initial));
   const fields = useRecurringFields(
     initial,
-    props.initial.options.categories.categories.find(
-      (entry) => entry.categoryId === initial.categoryId,
-    )?.name ?? `Retained category (${initial.categoryId ?? "none"})`,
+    props.initial.category?.name ?? "Unavailable retained category",
   );
   const [operationId] = useState(randomUUID),
     [error, setError] = useState<string | null>(null);
@@ -51,7 +49,7 @@ export function useLegacyAdoptionDraft(props: AdoptionFormProps) {
       serialized = JSON.stringify(input);
     Alert.alert(
       "Adopt this recurring rule?",
-      `${adoptionConfirmationText(preview.command, props.actor, current.review.coveredThrough)}\n\nCategory: ${fields.category?.name ?? "None"}`,
+      `${adoptionReviewText(preview.command, props.actor, current)}\n\nCategory: ${fields.category?.name ?? "None"}`,
       [
         { text: "Cancel", style: "cancel", onPress: guard.invalidate },
         {
