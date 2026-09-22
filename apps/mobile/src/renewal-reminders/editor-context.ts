@@ -19,7 +19,12 @@ export function reminderEditorContext(
       { concurrency: 3 },
     );
     yield* account.store.checkSession(account.session);
-    return { members: roster.members, renewal: detail.renewal, reminder: reminder.reminder };
+    return {
+      actorId: account.session.actor,
+      members: roster.members,
+      renewal: detail.renewal,
+      reminder: reminder.reminder,
+    };
   });
 }
 export type ReminderEditorContext = Effect.Success<ReturnType<typeof reminderEditorContext>>;

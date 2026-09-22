@@ -1,3 +1,4 @@
+import { reminderRecipientLabel } from "./recipient-label";
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import { useColorScheme } from "react-native";
 import { useQuiet } from "../theme";
@@ -54,7 +55,7 @@ export function ReminderFieldsView({
         {context.members.map((member) => (
           <NativeAction
             key={member.actorId}
-            label={`${fields.recipientIds.includes(member.actorId) ? "Selected: " : "Select: "}${member.displayName}`}
+            label={`${fields.recipientIds.includes(member.actorId) ? "Selected: " : "Select: "}${reminderRecipientLabel(member, context.actorId)}`}
             disabled={disabled}
             onPress={() => fields.toggleRecipient(member.actorId)}
           />

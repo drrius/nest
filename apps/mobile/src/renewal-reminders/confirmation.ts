@@ -1,3 +1,4 @@
+import { reminderRecipientLabel } from "./recipient-label.ts";
 import * as Schema from "effect/Schema";
 import { SaveRenewalReminder, canonicalRenewalReminder } from "@nest/contracts/reminders";
 import { renewalDeadline } from "@nest/domain/renewals";
@@ -23,7 +24,7 @@ export function reminderConfirmation(
   if (!date) return null;
   let used = false;
   return {
-    message: `${context.renewal.fields.title}\nReminder: ${delivery.enabled ? "On" : "Off"}\nRecipients: ${recipients.map((member) => member!.displayName).join(", ") || "None"}\nBased on: ${anchor === "renewal" ? "Renewal date" : "Cancellation deadline"}\nWhen: ${date} at ${delivery.localTime} (Europe/Zurich)\n\nRecipient mute settings apply. This does not cancel a contract or change financial history.`,
+    message: `${context.renewal.fields.title}\nReminder: ${delivery.enabled ? "On" : "Off"}\nRecipients: ${recipients.map((member) => reminderRecipientLabel(member!, context.actorId)).join(", ") || "None"}\nBased on: ${anchor === "renewal" ? "Renewal date" : "Cancellation deadline"}\nWhen: ${date} at ${delivery.localTime} (Europe/Zurich)\n\nRecipient mute settings apply. This does not cancel a contract or change financial history.`,
     confirm: async () => {
       if (used || !current()) return false;
       used = true;

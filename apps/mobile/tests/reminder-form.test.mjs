@@ -122,3 +122,53 @@ test("recovery gates a different renewal and presents the original settings with
     assert.ok(own.summary.includes(text));
   assert.match(reminderRecoveryReview(command, member, null).summary, /Member 00000000/);
 });
+test("same-name recipients remain distinct in controls, confirmation and recovery", async () => {
+  const { reminderRecipientLabel } = await import("../src/renewal-reminders/recipient-label.ts");
+  const { reminderConfirmation } = await import("../src/renewal-reminders/confirmation.ts");
+  const { reminderRecoveryReview } = await import("../src/renewal-reminders/recovery-review.ts");
+  const partner = "00000000-0000-4000-8000-000000000002";
+  const members = [
+    { actorId: member, displayName: "Alex" },
+    { actorId: partner, displayName: "Alex" },
+  ];
+  assert.deepEqual(
+    members.map((value) => reminderRecipientLabel(value, member)),
+    ["You (Alex)", "Partner (Alex)"],
+  );
+  const context = {
+    actorId: member,
+    members,
+    reminder: null,
+    renewal: {
+      renewalId: member,
+      revision: partner,
+      removed: false,
+      cancellationOn: "2028-02-29",
+      fields: { title: "Internet", renewalOn: "2028-03-01" },
+    },
+  };
+  const command = {
+    operationId: member,
+    renewalId: member,
+    expectedRenewalRevision: partner,
+    expectedRevision: null,
+    settings: {
+      anchor: "renewal",
+      delivery: {
+        enabled: true,
+        recipientIds: [member, partner],
+        localTime: "09:00",
+        daysBefore: 0,
+      },
+    },
+  };
+  const confirmation = reminderConfirmation(
+    command,
+    context,
+    () => true,
+    async () => {},
+  );
+  const recovery = reminderRecoveryReview(command, member, context);
+  for (const text of [confirmation.message, recovery.summary])
+    assert.match(text, /You \(Alex\), Partner \(Alex\)/);
+});
