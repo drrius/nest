@@ -1,3 +1,4 @@
+import type { LegacyConfirmationSave } from "../money/legacy-confirmation-client.ts";
 import type {
   LegacyDismissalDecision,
   LegacyDismissalApproval,
@@ -185,6 +186,7 @@ function sessionRecurring(client: MoneyClient) {
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideRecurring: (input: RecurringDecision) =>
       client.decideRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    ...sessionLegacyConfirmation(client),
     ...sessionLegacyDismissal(client),
     ...sessionRecurringReads(client),
     saveRecurring: (input: RecurringSave) =>
@@ -229,5 +231,22 @@ function sessionLegacyDismissal(client: MoneyClient) {
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     cancelLegacyDismissal: (input: LegacyDismissalSave) =>
       client.cancelLegacyDismissal(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+  };
+}
+
+function sessionLegacyConfirmation(client: MoneyClient) {
+  return {
+    saveLegacyConfirmation: (input: LegacyConfirmationSave) =>
+      client
+        .saveLegacyConfirmation(input)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recoverLegacyConfirmation: (input: LegacyConfirmationSave) =>
+      client
+        .recoverLegacyConfirmation(input)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelLegacyConfirmation: (input: LegacyConfirmationSave) =>
+      client
+        .cancelLegacyConfirmation(input)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }

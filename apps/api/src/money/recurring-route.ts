@@ -1,3 +1,4 @@
+import { legacyConfirmationRoute } from "./legacy-confirmation-route.ts";
 import { legacyDismissalRoute } from "./legacy-dismissal-route.ts";
 import { legacyDraftRoute } from "./legacy-draft-read.ts";
 import { legacyRecurringRoute } from "./legacy-recurring-read.ts";
@@ -17,6 +18,8 @@ import type { AuthorizedCaller } from "../chores/service.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 export function recurringRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url);
+  if (url.pathname.includes("/legacy-confirmation/"))
+    return legacyConfirmationRoute(request, config, caller);
   if (url.pathname.includes("/legacy-dismissal/"))
     return legacyDismissalRoute(request, config, caller);
   if (url.pathname.includes("/manual/")) return manualCycleRoute(request, config, caller);
