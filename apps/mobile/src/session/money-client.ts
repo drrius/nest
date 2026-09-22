@@ -1,3 +1,4 @@
+import type { LegacyDismissalSave } from "../money/legacy-dismissal-client.ts";
 import type { LegacyDraftQuery } from "@nest/contracts/legacy-recurring-drafts";
 import type { RecurringHistoryQuery } from "@nest/contracts/recurring-history";
 import type { ManualCycleApproval } from "../money/recurring-manual-approval-client";
@@ -180,6 +181,7 @@ function sessionRecurring(client: MoneyClient) {
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideRecurring: (input: RecurringDecision) =>
       client.decideRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    ...sessionLegacyDismissal(client),
     ...sessionRecurringReads(client),
     saveRecurring: (input: RecurringSave) =>
       client.saveRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
@@ -198,5 +200,20 @@ function sessionRecurringReads(client: MoneyClient) {
       client.recurringRules(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRule: (ruleId: string) =>
       client.recurringRule(ruleId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+  };
+}
+
+function sessionLegacyDismissal(client: MoneyClient) {
+  return {
+    legacyDraftContext: (draftId: string) =>
+      client.legacyDraftContext(draftId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    saveLegacyDismissal: (input: LegacyDismissalSave) =>
+      client.saveLegacyDismissal(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    recoverLegacyDismissal: (input: LegacyDismissalSave) =>
+      client
+        .recoverLegacyDismissal(input)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancelLegacyDismissal: (input: LegacyDismissalSave) =>
+      client.cancelLegacyDismissal(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }

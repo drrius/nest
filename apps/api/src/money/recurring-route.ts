@@ -1,3 +1,4 @@
+import { legacyDismissalRoute } from "./legacy-dismissal-route.ts";
 import { legacyDraftRoute } from "./legacy-draft-read.ts";
 import { legacyRecurringRoute } from "./legacy-recurring-read.ts";
 import { recurringHistoryRoute } from "./recurring-history.ts";
@@ -16,14 +17,13 @@ import type { AuthorizedCaller } from "../chores/service.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 export function recurringRoute(request: Request, config: IdentityConfig, caller: AuthorizedCaller) {
   const url = new URL(request.url);
+  if (url.pathname.includes("/legacy-dismissal/"))
+    return legacyDismissalRoute(request, config, caller);
   if (url.pathname.includes("/manual/")) return manualCycleRoute(request, config, caller);
   if (url.pathname.includes("/variable/")) return variableCycleRoute(request, config, caller);
   if (url.pathname.includes("/resume/")) return recurringResumeRoute(request, config, caller);
   if (url.pathname.includes("/state/")) return recurringStateRoute(request, config, caller);
   if (url.pathname.includes("/approval")) return recurringApprovalRoute(request, config, caller);
-  if (url.pathname.endsWith("/legacy-drafts")) return legacyDraftRoute(url, config, caller);
-  if (url.pathname.endsWith("/legacy")) return legacyRecurringRoute(url, config, caller);
-  if (url.pathname.endsWith("/cycles")) return recurringHistoryRoute(url, config, caller);
   if (request.method === "GET") return recurringReadRoute(url, config, caller);
   return Effect.gen(function* () {
     if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
@@ -38,6 +38,9 @@ export function recurringRoute(request: Request, config: IdentityConfig, caller:
 }
 
 function recurringReadRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
+  if (url.pathname.endsWith("/legacy-drafts")) return legacyDraftRoute(url, config, caller);
+  if (url.pathname.endsWith("/legacy")) return legacyRecurringRoute(url, config, caller);
+  if (url.pathname.endsWith("/cycles")) return recurringHistoryRoute(url, config, caller);
   return Effect.gen(function* () {
     const params = url.searchParams;
     if (url.pathname.endsWith("/receipt")) {
