@@ -3,6 +3,10 @@ export function financialProposalTools<T>(
   write: (name: AssistantAction, description: string) => T,
 ) {
   return {
+    proposeLegacyConfirmation: write(
+      "proposeLegacyConfirmation",
+      "Propose confirmation only when the member explicitly selects an original retained recurring draft to record. Read listLegacyRecurringDrafts first; never invent the draft ID. Supply complete expense description, CHF integer-centime amount, payer, both exact allocations, date, category and note. Ask for missing/unsupported terms; never substitute current recurring rule terms or guess legacy values. The server binds the original draft and its fresh fingerprint. This creates a PRIVATE PENDING proposal only: no financial event, payment or future automatic mandate is created. The member must review original and proposed terms in the native card and explicitly confirm. Do not infer consent from conversation or call Save/execute/decision/withdrawal yourself. Receipts and grocery totals do not belong to this recurring-draft action.",
+    ),
     proposeLegacyDismissal: write(
       "proposeLegacyDismissal",
       "Propose dismissal only when the member explicitly asks to dismiss a specific retained legacy draft. Read the legacy rule inventory and its original draft rows first; distinguish similar descriptions with the original date, amount, payer and draft reference. Pass only the known draftId. The server binds its current raw content and original rule; never invent a fingerprint, edit its terms or infer consent. Only an unposted pending recurring-origin draft without a financial event is eligible. Posted, linked, shopping-origin or discrepant rows need reconciliation. This creates a PRIVATE PENDING proposal only. The member must open the native card and confirm the freshly matched draft. Dismissal keeps history and changes no balance, financial event or future recurring rule. It does not pause or cancel recurring generation. Never call Save, execute, decision or withdrawal endpoints, claim dismissal is complete from a proposal, or treat conversation as approval. Changed content requires a new proposal and review.",

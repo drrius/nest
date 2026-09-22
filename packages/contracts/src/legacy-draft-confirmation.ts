@@ -82,3 +82,8 @@ export function canonicalLegacyConfirmation(input: LegacyConfirmInput): LegacyCo
 function canonicalShare(share: LegacyConfirmInput["expense"]["allocations"][number]) {
   return { ...share, memberId: share.memberId.toLowerCase() };
 }
+
+export const LegacyConfirmationProposal = Schema.Struct({
+  draftId: Uuid,
+  expense: LegacyConfirmInput.fields.expense,
+});
