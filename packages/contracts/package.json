@@ -68,6 +68,7 @@
     "./recurring-variable-approval": "./src/recurring-variable-approval.ts",
     "./recurring-manual": "./src/recurring-manual.ts",
     "./recurring-variable": "./src/recurring-variable.ts",
+    "./recurring-worker": "./src/recurring-worker.ts",
     "./recurring-cycle": "./src/recurring-cycle.ts",
     "./recurring-state": "./src/recurring-state.ts",
     "./recurring-resume": "./src/recurring-resume.ts",
