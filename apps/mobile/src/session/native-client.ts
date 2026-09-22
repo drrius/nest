@@ -10,7 +10,8 @@ const protectedSession = protectedStorage({
   setItem: (key, value) => SecureStore.setItemAsync(key, value, options),
   removeItem: (key) => SecureStore.deleteItemAsync(key, options),
 });
-export const beginLocalLogout = protectedSession.beginLogout;
+export const beginLocalLogout = () => protectedSession.beginLogout(true);
+export const logoutCredentials = protectedSession.logoutCredentials;
 export const beginLocalSignIn = protectedSession.beginSignIn;
 export const offlineIdentity = protectedSession.identity;
 export function nativeAuth(config: SessionConfig) {
@@ -23,5 +24,11 @@ export function nativeAuth(config: SessionConfig) {
       detectSessionInUrl: false,
       storage: protectedSession.storage,
     },
+  }).auth;
+}
+export function nativeCleanupAuth(config: SessionConfig) {
+  return createClient(config.supabaseUrl, config.publishableKey, {
+    global: { fetch: (input, init) => fetch(input, { ...init, redirect: "error" }) },
+    auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false },
   }).auth;
 }

@@ -1,6 +1,4 @@
 import * as Effect from "effect/Effect";
-import * as Encoding from "effect/Encoding";
-import * as Result from "effect/Result";
 import * as Schema from "effect/Schema";
 import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as HttpBody from "effect/unstable/http/HttpBody";
@@ -8,23 +6,14 @@ import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { PushSessionRevocation } from "@nest/contracts/push-registration";
 import type { SessionConfig } from "../session/config.ts";
 import { SessionFailure } from "../session/contracts.ts";
+import { tokenIdentity } from "../session/token-identity.ts";
 
-const Uuid = Schema.String.check(Schema.isUUID());
-const Claims = Schema.Struct({ sub: Uuid, session_id: Uuid });
 const unavailable = () => new SessionFailure({ code: "unavailable" });
 
 // Parsing supplies receipt expectations only. PostgREST verifies the signature;
 // decoded claims never grant authority or restore a local signed-in identity.
-function receiptIdentity(token: string) {
-  return Effect.gen(function* () {
-    const parts = token.split(".");
-    if (token.length > 65536 || parts.length !== 3) return yield* unavailable();
-    const decoded = Encoding.decodeBase64UrlString(parts[1]!);
-    if (Result.isFailure(decoded)) return yield* unavailable();
-    const value = yield* Effect.try({ try: () => JSON.parse(decoded.success), catch: unavailable });
-    return yield* Schema.decodeUnknownEffect(Claims)(value);
-  });
-}
+const receiptIdentity = (token: string) =>
+  Effect.try({ try: () => tokenIdentity(token), catch: unavailable });
 
 // Explicit idempotent cleanup with the retained logout token. Does not consult
 // SDK hydration or require membership, prompt permission, or refresh credentials.
@@ -44,10 +33,7 @@ export function revokePushSession(config: SessionConfig, token: string) {
         Schema.decodeUnknownEffect(PushSessionRevocation, { onExcessProperty: "error" }),
       ),
     );
-    if (
-      receipt.actorId !== expected.sub.toLowerCase() ||
-      receipt.sessionId !== expected.session_id.toLowerCase()
-    )
+    if (receipt.actorId !== expected.actor || receipt.sessionId !== expected.session)
       return yield* unavailable();
     return receipt;
   }).pipe(

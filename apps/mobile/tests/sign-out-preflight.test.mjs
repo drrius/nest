@@ -69,3 +69,16 @@ test("failed device cleanup retains credentials and permits explicit sign-out re
   assert.equal(f.calls.at(-1), "finished");
   assert.equal(f.calls.filter((call) => call === "remove session").length, 1);
 });
+
+test("logout revokes the refreshed cleanup token before credential removal", async () => {
+  const f = fixture();
+  let revoked;
+  f.auth.admin.signOut = async (token) => {
+    revoked = token;
+  };
+  await Effect.runPromise(
+    signOutSession(f.auth, f.subscription, f.begin, async () => "rotated token"),
+  );
+  assert.equal(revoked, "rotated token");
+  assert.equal(f.calls.at(-1), "finished");
+});

@@ -64,6 +64,7 @@ export function sdkFixture({
     identity: persistence.identity,
     beginLogout: persistence.beginLogout,
     beginSignIn: persistence.beginSignIn,
+    logoutCredentials: persistence.logoutCredentials,
     storage,
     calls,
     user,

@@ -70,7 +70,7 @@ function LogoutCard() {
       <Note>
         {working
           ? "Signing out…"
-          : "Sign-out could not finish. Your household is hidden, but saved credentials still need to be removed. Unlock your phone and try again."}
+          : "Sign-out could not finish. Your household is hidden while Nest stops this session’s notifications and removes saved credentials. Unlock your phone, check your connection and try again."}
       </Note>
       {working ? (
         <ActivityIndicator accessibilityLabel="Signing out" />

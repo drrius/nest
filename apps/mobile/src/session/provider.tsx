@@ -1,4 +1,5 @@
 import { sessionPushDevices } from "./push-client";
+import { finishNativePushLogout } from "../push/native-logout";
 import { sessionRenewalReminders } from "./renewal-reminder-client";
 import type { RenewalReminderClient } from "../renewal-reminders/client";
 import { nativeReceiptStorage } from "../money/receipt-upload-native";
@@ -41,7 +42,13 @@ import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import { fetch } from "expo/fetch";
 import { sessionChores } from "./chore-client";
 import type { ChoreClient } from "../chores/client";
-import { nativeAuth, offlineIdentity, beginLocalLogout, beginLocalSignIn } from "./native-client";
+import {
+  nativeAuth,
+  offlineIdentity,
+  beginLocalLogout,
+  beginLocalSignIn,
+  logoutCredentials,
+} from "./native-client";
 import { signInWithApple } from "./apple";
 import { sessionConfig } from "./config";
 import { SessionFailure, type SessionState, type Member } from "./contracts";
@@ -95,40 +102,58 @@ const SessionContext = createContext<SessionContextValue | null>(null);
 
 function useRuntime(publish: (state: SessionState) => void) {
   const runtime = useRef<Runtime | null>(null);
+  const [generation, restart] = useState(0);
   useEffect(() => {
     if (!configuration) {
       publish({ status: "signed_out" });
       return;
     }
-    const auth = nativeAuth(configuration);
-    const subscription = subscribeSession(
-      auth,
-      (credentials) =>
-        verifySession(configuration.apiUrl, credentials).pipe(
-          Effect.provideService(FetchHttpClient.Fetch, fetch),
-        ),
-      publish,
-      offlineIdentity,
-    );
-    runtime.current = { auth, subscription };
-    const activate = (active: boolean) => {
-      if (active) {
-        void auth.startAutoRefresh().catch(subscription.unavailable);
-        void subscription.refresh();
-      } else void auth.stopAutoRefresh().catch(subscription.unavailable);
-    };
-    activate(AppState.currentState === "active");
-    const listener = AppState.addEventListener("change", (state) => activate(state === "active"));
+    let disposed = false;
+    let disposeRuntime = () => {};
+    void logoutCredentials
+      .read()
+      .then((pending) => {
+        if (disposed) return;
+        const auth = nativeAuth(configuration);
+        const subscription = subscribeSession(
+          auth,
+          (credentials) =>
+            verifySession(configuration.apiUrl, credentials).pipe(
+              Effect.provideService(FetchHttpClient.Fetch, fetch),
+            ),
+          publish,
+          offlineIdentity,
+        );
+        if (pending) subscription.hide();
+        runtime.current = { auth, subscription };
+        const activate = (active: boolean) => {
+          if (active) {
+            void auth.startAutoRefresh().catch(subscription.unavailable);
+            void subscription.refresh();
+          } else void auth.stopAutoRefresh().catch(subscription.unavailable);
+        };
+        activate(AppState.currentState === "active");
+        const listener = AppState.addEventListener("change", (state) =>
+          activate(state === "active"),
+        );
+        disposeRuntime = () => {
+          runtime.current = null;
+          listener.remove();
+          subscription.dispose();
+        };
+      })
+      .catch(() => {
+        if (!disposed) publish({ status: "unavailable" });
+      });
     return () => {
-      runtime.current = null;
-      listener.remove();
-      subscription.dispose();
+      disposed = true;
+      disposeRuntime();
     };
-  }, [publish]);
-  return runtime;
+  }, [publish, generation]);
+  return [runtime, () => restart((value) => value + 1)] as const;
 }
 
-function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof useRuntime>) {
+function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof useRuntime>[0]) {
   const actor = member?.userId,
     household = member?.householdId;
   return useMemo(() => {
@@ -170,12 +195,22 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
   }, [actor, household, runtime]);
 }
 
+function logout(current: Runtime) {
+  if (!configuration) return Effect.void;
+  return signOutSession(
+    current.auth,
+    current.subscription,
+    beginLocalLogout,
+    finishNativePushLogout(configuration),
+  );
+}
+
 export function SessionProvider({ children }: PropsWithChildren) {
   const [state, setState] = useState<SessionState>({ status: "loading" });
   const [working, setWorking] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const busy = useRef(false);
-  const runtime = useRuntime(setState);
+  const [runtime, restartRuntime] = useRuntime(setState);
   const member = state.status === "ready" ? state.member : null;
   const preferenceClients = usePreferenceClients(member, runtime);
   const { chores, groceries, assistant } = useMemo(() => {
@@ -219,8 +254,8 @@ export function SessionProvider({ children }: PropsWithChildren) {
   };
   const signOut = () => {
     const current = runtime.current;
-    if (!current || busy.current) return;
-    run(signOutSession(current.auth, current.subscription, beginLocalLogout));
+    if (!current || !configuration || busy.current) return;
+    run(logout(current));
   };
   return (
     <SessionContext
@@ -236,7 +271,8 @@ export function SessionProvider({ children }: PropsWithChildren) {
         signIn,
         signOut,
         retry: () => {
-          void runtime.current?.subscription.refresh();
+          if (runtime.current) void runtime.current.subscription.refresh();
+          else restartRuntime();
         },
       }}
     >
