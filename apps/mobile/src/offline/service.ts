@@ -1,3 +1,4 @@
+import { renewalReminderSaveStore } from "./renewal-reminder-save-service.ts";
 import { renewalSaveStore } from "./renewal-save-service.ts";
 import { run } from "./run.ts";
 import { cycleSaveStore } from "./cycle-save-service.ts";
@@ -57,6 +58,7 @@ function durableCommandStores(database: Database) {
     ...recurringSaveStore(database),
     ...cycleSaveStore(database),
     ...renewalSaveStore(database),
+    ...renewalReminderSaveStore(database),
     ...recurringStateSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
