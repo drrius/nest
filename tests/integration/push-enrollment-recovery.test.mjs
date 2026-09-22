@@ -1,3 +1,4 @@
+import { pushEnrollmentActions } from "../../apps/mobile/src/push/enrollment-actions.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -74,9 +75,29 @@ test("enrollment stages before HTTP and reconstruction recovers a lost commit wi
     ),
   );
   assert.equal(posts, 1);
+  await verifyExplicitActions({ command, recovered, client, operations: make(), values });
   active = false;
   await assert.rejects(
     run(make().save(command).pipe(Effect.provideService(Fetch.Fetch, neverSend))),
   );
   assert.equal(posts, 1);
 });
+
+async function verifyExplicitActions({ command, recovered, client, operations, values }) {
+  let operation = 998;
+  const actions = pushEnrollmentActions({
+    current: () => true,
+    installation: Effect.succeed(command.installationId),
+    token: Effect.succeed("ExponentPushToken[ExplicitActionFixture]"),
+    operationId: () => id(operation++),
+    client,
+    operations,
+  });
+  const enabled = await run(actions.enable());
+  assert.equal(enabled.expectedRevision, recovered.receipt.revision);
+  assert.equal((await run(client.detail(command.installationId))).enabled, true);
+  const disabled = await run(actions.disable());
+  assert.equal(disabled.expectedRevision, enabled.revision);
+  assert.equal((await run(client.detail(command.installationId))).enabled, false);
+  assert.equal(values.size, 0);
+}

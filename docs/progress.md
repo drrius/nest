@@ -2309,3 +2309,11 @@ A protected installation-identity adapter now generates one UUID under a seriali
 ### Session-owned push client — 23 September, draft
 
 The session provider now exposes an account-bound push client with Expo fetch, current session credentials and native SHA-256. No enrollment is invoked at mount. Extracting the shared protected disk for installation identity initially lost contextual parameter types; explicit `PushProtectedDisk` annotation fixes those errors. Final mobile typechecking and scoped lint pass. Installation tests remain the two passing adapter cases; physical Keychain/native hashing and a mounted notification flow are unverified. Protected recovery `144d8ac` has clean exact-commit Sol signoff; CI remains required.
+
+### Explicit enrollment actions — 23 September, draft
+
+Enable/disable orchestration now first recovers existing pending work, blocks a new action if it remains unresolved, resolves the protected installation, and reads fresh registration revision. Enable obtains permission/token before that revision read; disable never requests permission. Current-session checks fence each asynchronous boundary before staging. Two controlled-dependency tests pass for ordering, no construction/mount side effects, pending-intent refusal and account change during permission. These are orchestration tests, not actual permission/UI acceptance. Scoped lint passes. Native permission binding, user controls, retry presentation and sign-out lifecycle still require implementation. Installation/session wiring `9e0f082` has clean exact-commit Sol review; CI remains required.
+
+### Explicit enrollment API verification — 23 September
+
+The actual native-client/HTTP/PostgREST/PostgreSQL recovery test now also executes enable followed by disable, verifies each uses the latest server revision, observes enabled/disabled state and confirms pending protected state is cleared. All three action/recovery cases pass. Lint caught an unknown error channel and an overlong test function; dependencies now require typed PreferenceFailure and the action journey is extracted into a focused helper. Final scoped lint and mobile typechecking pass. The earlier draft lint-pass note did not cover these newly surfaced diagnostics. Permissions remain controlled test dependencies, not actual iPhone prompts; no UI/device acceptance is claimed.
