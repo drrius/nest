@@ -1,3 +1,5 @@
+import { legacyDismissalApprovalClient } from "./legacy-dismissal-approval-client.ts";
+import { legacyDismissalContextClient } from "./legacy-dismissal-context-client.ts";
 import { legacyDraftContextClient } from "./legacy-draft-context-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -21,6 +23,8 @@ export function legacyDismissalClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...legacyDismissalApprovalClient(apiUrl, account, credentials),
+    ...legacyDismissalContextClient(apiUrl, account, credentials),
     ...legacyDraftContextClient(apiUrl, account, credentials),
     ...legacyDismissalRecoveryClient(apiUrl, account, credentials),
     saveLegacyDismissal: (input: LegacyDismissalSave) =>

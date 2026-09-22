@@ -1,3 +1,7 @@
+import type {
+  LegacyDismissalDecision,
+  LegacyDismissalApproval,
+} from "../money/legacy-dismissal-approval-client.ts";
 import type { LegacyDismissalSave } from "../money/legacy-dismissal-client.ts";
 import type { LegacyDraftQuery } from "@nest/contracts/legacy-recurring-drafts";
 import type { RecurringHistoryQuery } from "@nest/contracts/recurring-history";
@@ -205,6 +209,16 @@ function sessionRecurringReads(client: MoneyClient) {
 
 function sessionLegacyDismissal(client: MoneyClient) {
   return {
+    legacyDismissalApproval: (approvalId: string) =>
+      client
+        .legacyDismissalApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    legacyDismissalContext: (approval: LegacyDismissalApproval) =>
+      client
+        .legacyDismissalContext(approval)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideLegacyDismissal: (input: LegacyDismissalDecision) =>
+      client.decideLegacyDismissal(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     legacyDraftContext: (draftId: string) =>
       client.legacyDraftContext(draftId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveLegacyDismissal: (input: LegacyDismissalSave) =>

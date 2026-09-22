@@ -1,3 +1,4 @@
+import { legacyDismissalApprovalRoute } from "./legacy-dismissal-approval-route.ts";
 import * as Effect from "effect/Effect";
 import { legacyDismissalCommands } from "./legacy-dismissal.ts";
 import { legacyDismissalRecovery } from "./legacy-dismissal-recovery.ts";
@@ -13,6 +14,8 @@ export function legacyDismissalRoute(
 ) {
   return Effect.gen(function* () {
     const url = new URL(request.url);
+    if (url.pathname.includes("/approval"))
+      return yield* legacyDismissalApprovalRoute(request, config, caller);
     if (request.method === "GET") {
       const context = url.pathname.endsWith("/context"),
         key = context ? "draftId" : "operationId";
