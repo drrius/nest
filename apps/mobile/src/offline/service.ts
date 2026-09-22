@@ -366,6 +366,14 @@ function recurringStateApprovalStore(database: Database) {
       run(() =>
         RecurringStateApprovals.stageRecurringStateApproval(database, session, attempt, current),
       ),
+    withdrawRecurringStateApproval: (
+      session: Session,
+      attempt: RecurringStateApprovalAttempt,
+      current: () => boolean,
+    ) =>
+      run(() =>
+        RecurringStateApprovals.withdrawRecurringStateApproval(database, session, attempt, current),
+      ),
     clearRecurringStateApproval: (session: Session, attempt: RecurringStateApprovalAttempt) =>
       run(() => RecurringStateApprovals.clearRecurringStateApproval(database, session, attempt)),
   };

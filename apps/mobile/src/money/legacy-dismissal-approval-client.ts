@@ -68,7 +68,9 @@ export function legacyDismissalApprovalClient(
           result,
           result.operationId === operationId &&
             equivalent(result.input, cycle) &&
-            result.status === (command.approved ? "consumed" : "denied"),
+            (command.approved
+              ? result.status === "consumed"
+              : ["consumed", "denied"].includes(result.status)),
         );
       }),
   };

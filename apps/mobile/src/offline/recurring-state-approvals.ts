@@ -62,3 +62,27 @@ export function clearRecurringStateApproval(
     );
   });
 }
+
+// Explicit monotonic revocation only. Normal staging can never turn it back into approval.
+export function withdrawRecurringStateApproval(
+  db: Database,
+  session: Session,
+  input: RecurringStateApprovalAttempt,
+  current: () => boolean,
+) {
+  const attempt = Schema.decodeUnknownSync(RecurringStateApprovalAttempt)(input, {
+    onExcessProperty: "error",
+  });
+  return scoped(db, session, async (tx) => {
+    const pending = await read(tx, session, attempt.approvalId);
+    if (!attempt.approved || !pending || pending.operationId !== attempt.operationId)
+      fail("operation_reused");
+    if (!current()) fail("cancelled");
+    const revoked = { ...attempt, approved: false };
+    await tx.run(
+      "UPDATE recurring_state_approval_attempts SET data=? WHERE actor=? AND household=? AND approval_id=?",
+      [Schema.encodeSync(codec)(revoked), ...keys(session, attempt.approvalId)],
+    );
+    return revoked;
+  });
+}

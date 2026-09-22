@@ -69,7 +69,9 @@ export function legacyDismissalApprovals(config: IdentityConfig, caller: Authori
         if (
           result.approval.operationId !== operationId ||
           !equivalent(result.approval.input, cycle) ||
-          result.approval.status !== (command.approved ? "consumed" : "denied")
+          (command.approved
+            ? result.approval.status !== "consumed"
+            : !["consumed", "denied"].includes(result.approval.status))
         )
           return yield* new ApiFailure({ code: "unavailable" });
         return result;

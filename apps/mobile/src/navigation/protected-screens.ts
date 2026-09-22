@@ -19,6 +19,7 @@ export const protectedScreens = [
   { name: "recurring-manual", title: "Link existing expense" },
   { name: "recurring-variable", title: "Variable bill" },
   { name: "recurring-state", title: "Recurring controls" },
+  { name: "legacy-dismissal-approval", title: "Review dismissal proposal" },
   { name: "legacy-dismissal", title: "Review draft dismissal" },
   { name: "legacy-recurring-drafts", title: "Legacy drafts" },
   { name: "legacy-recurring", title: "Legacy recurring expenses" },
