@@ -6,7 +6,7 @@ Updated 22 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 — renewal storage and native delivery work; branch `codex/reminder-rules`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
+**M8 — renewal storage and native delivery work; branch `codex/renewal-reminder-contracts`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Production four-tab composition/Today aggregation, remaining M8 renewals/reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -67,6 +67,12 @@ Pure shared rules now resolve Me/Partner/Both against the current two-member ros
 These are internal rules only. No reminder settings, scheduling, outbox delivery, native token enrollment or push flow is implemented by this increment. Storage/API/AI/native controls and real iPhone acceptance remain required. Renewal AI `726b703` is pushed and under review/CI.
 
 Renewal editor `d8c585e` is merged and pushed to main after successful exact CI `35785786146` and clean Sol rereview. The hidden confirmation choices finding was fixed before merge. Reminder domain rules have local typecheck, lint, formatting and four passing tests; they still require independent review and CI.
+
+### Renewal reminder contracts — draft
+
+Strict contracts now describe explicit recipient IDs, enabled state, household-local time, advance days and renewal/cancellation anchor. Enabling requires a recipient; duplicate IDs (including case variants), invalid times and excess authority fields fail. Save commands carry the exact item and schedule baselines; receipts bind actor, renewal, reviewed item revision and all settings while requiring a new schedule revision.
+
+Four focused contract cases pass, including malformed timing/recipient inputs, substituted receipt fields and recovery actor/household/operation binding. Recovery permits unresolved or cancelled only without a receipt. Contracts typecheck and scoped lint pass. No reminder storage, API, UI or delivery behavior is claimed yet. Shared reminder rules `6f65f82` have clean Sol review; CI remains required.
 
 ## Earlier delivery log
 
