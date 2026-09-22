@@ -19,3 +19,11 @@ The minimal original read fixture omitted the old UUID default on draft IDs. The
 ## Remaining acceptance
 
 Authorized adoption commands, versioned eligibility/coverage review, native opt-in and corresponding private AI proposal/approval are still outstanding. The boundary is tested only in disposable local PostgreSQL; hosted migration, production cutover and physical-device verification remain separate gates.
+
+## Authorized source review and conservative coverage
+
+The read boundary hashes the full raw rule and an ordered digest of every retained draft and linked immutable financial event, with UTC normalization. It includes mapping/native-identity availability. No assumption is made that an old draft timestamp advances. The bounded response exposes the existing inventory summary, exact source token, covered-through date and explicit blockers; it does not return all raw history to the phone.
+
+Pending drafts, inconsistent posted/event relationships, unsupported historical dates and existing native identity collisions block future adoption. Already-adopted records expose the retained mapping instead. Both current household members may review financial context; outsiders and unauthenticated/service API roles cannot use this endpoint.
+
+Because old drafts have no immutable cadence revision, their current rule cadence cannot reliably describe every historical obligation. Coverage conservatively uses the later of week-end and month-end around the latest retained draft or linked event date, including dismissed drafts. The future opt-in UI must display this boundary and the first new cycle explicitly. A cadence transition may skip an overlapping month/week; it must not silently backfill it. Supported-date exhaustion remains an explicit blocker.

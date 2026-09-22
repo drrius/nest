@@ -1,3 +1,4 @@
+import { legacyAdoptionContext } from "./legacy-adoption-context.ts";
 import { legacyConfirmationRoute } from "./legacy-confirmation-route.ts";
 import { legacyDismissalRoute } from "./legacy-dismissal-route.ts";
 import { legacyDraftRoute } from "./legacy-draft-read.ts";
@@ -60,6 +61,8 @@ function recurringReadRoute(url: URL, config: IdentityConfig, caller: Authorized
     }
     if (params.size !== 1 || !params.has("ruleId"))
       return yield* new ApiFailure({ code: "invalid_request" });
+    if (url.pathname.endsWith("/legacy-adoption/context"))
+      return yield* legacyAdoptionContext(config, caller, { ruleId: params.get("ruleId") });
     return yield* recurringReads(config, caller).detail({ ruleId: params.get("ruleId") });
   });
 }

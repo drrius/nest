@@ -1,3 +1,4 @@
+import { legacyAdoptionContextClient } from "./legacy-adoption-context-client.ts";
 import { legacyConfirmationClient } from "./legacy-confirmation-client.ts";
 import { legacyDismissalClient } from "./legacy-dismissal-client.ts";
 import { legacyDraftClient } from "./legacy-draft-client.ts";
@@ -43,6 +44,7 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...legacyAdoptionContextClient(apiUrl, account, credentials),
     ...legacyConfirmationClient(apiUrl, account, credentials),
     ...legacyDismissalClient(apiUrl, account, credentials),
     ...legacyDraftClient(apiUrl, account, credentials),

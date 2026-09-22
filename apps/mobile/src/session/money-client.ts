@@ -237,6 +237,10 @@ function sessionLegacyDismissal(client: MoneyClient) {
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideLegacyDismissal: (input: LegacyDismissalDecision) =>
       client.decideLegacyDismissal(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    legacyAdoptionContext: (ruleId: string) =>
+      client
+        .legacyAdoptionContext(ruleId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     legacyDraftContext: (draftId: string) =>
       client.legacyDraftContext(draftId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveLegacyDismissal: (input: LegacyDismissalSave) =>

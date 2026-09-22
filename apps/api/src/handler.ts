@@ -178,6 +178,7 @@ const methods: Record<string, string> = {
   "/v1/money/recurring/legacy-dismissal/approval": "GET",
   "/v1/money/recurring/legacy-dismissal/approval/context": "GET",
   "/v1/money/recurring/legacy-dismissal/approval/decide": "POST",
+  "/v1/money/recurring/legacy-adoption/context": "GET",
   "/v1/money/recurring/legacy-dismissal/context": "GET",
   "/v1/money/recurring/legacy-dismissal/receipt": "GET",
   "/v1/money/recurring/legacy-dismissal/save": "POST",
