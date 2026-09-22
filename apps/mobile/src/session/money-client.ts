@@ -1,3 +1,7 @@
+import type {
+  LegacyConfirmationApproval,
+  LegacyConfirmationDecision,
+} from "../money/legacy-confirmation-approval-client.ts";
 import type { LegacyConfirmationSave } from "../money/legacy-confirmation-client.ts";
 import type {
   LegacyDismissalDecision,
@@ -211,6 +215,18 @@ function sessionRecurringReads(client: MoneyClient) {
 
 function sessionLegacyDismissal(client: MoneyClient) {
   return {
+    legacyConfirmationApproval: (approvalId: string) =>
+      client
+        .legacyConfirmationApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    legacyConfirmationContext: (approval: LegacyConfirmationApproval) =>
+      client
+        .legacyConfirmationContext(approval)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideLegacyConfirmation: (input: LegacyConfirmationDecision) =>
+      client
+        .decideLegacyConfirmation(input)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     legacyDismissalApproval: (approvalId: string) =>
       client
         .legacyDismissalApproval(approvalId)

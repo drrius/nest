@@ -80,6 +80,7 @@
     "./legacy-recurring-drafts": "./src/legacy-recurring-drafts.ts",
     "./legacy-draft-confirmation": "./src/legacy-draft-confirmation.ts",
     "./legacy-draft-dismissal": "./src/legacy-draft-dismissal.ts",
+    "./legacy-confirmation-approval": "./src/legacy-confirmation-approval.ts",
     "./legacy-dismissal-approval": "./src/legacy-dismissal-approval.ts"
   },
   "scripts": {

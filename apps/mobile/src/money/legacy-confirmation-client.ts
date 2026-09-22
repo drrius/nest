@@ -1,3 +1,5 @@
+import { legacyConfirmationApprovalClient } from "./legacy-confirmation-approval-client.ts";
+import { legacyConfirmationContextClient } from "./legacy-confirmation-context-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -20,6 +22,8 @@ export function legacyConfirmationClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...legacyConfirmationApprovalClient(apiUrl, account, credentials),
+    ...legacyConfirmationContextClient(apiUrl, account, credentials),
     ...legacyConfirmationRecoveryClient(apiUrl, account, credentials),
     saveLegacyConfirmation: (input: LegacyConfirmationSave) =>
       Effect.gen(function* () {

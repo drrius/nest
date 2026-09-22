@@ -1,3 +1,4 @@
+import { legacyConfirmationApprovalRoute } from "./legacy-confirmation-approval-route.ts";
 import * as Effect from "effect/Effect";
 import { legacyConfirmationCommands } from "./legacy-confirmation.ts";
 import { legacyConfirmationRecovery } from "./legacy-confirmation-recovery.ts";
@@ -10,6 +11,8 @@ export function legacyConfirmationRoute(
   config: IdentityConfig,
   caller: AuthorizedCaller,
 ) {
+  if (new URL(request.url).pathname.includes("/approval"))
+    return legacyConfirmationApprovalRoute(request, config, caller);
   return Effect.gen(function* () {
     const url = new URL(request.url);
     if (request.method === "GET") {
