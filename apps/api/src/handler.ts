@@ -1,3 +1,4 @@
+import { renewalReminderRoute } from "./renewal-reminders/route.ts";
 import { renewalRoute } from "./renewals/route.ts";
 import { moneyRoute } from "./money/route.ts";
 import { mealProposalRoute, type MealPlanningOptions } from "./meal-planning/route.ts";
@@ -42,6 +43,7 @@ function route(
       meals: () => mealRoute(request, config, caller, proposals),
       routines: () => routineRoute(request, config, caller),
       money: () => moneyRoute(request, config, caller),
+      "renewal-reminders": () => renewalReminderRoute(request, config, caller),
       renewals: () => renewalRoute(request, config, caller),
     };
     const selected = handlers[path.split("/")[2]!];
@@ -140,6 +142,10 @@ function preferenceRoute(
 }
 
 const methods: Record<string, string> = {
+  "/v1/renewal-reminders/detail": "GET",
+  "/v1/renewal-reminders/operation": "GET",
+  "/v1/renewal-reminders/save": "POST",
+  "/v1/renewal-reminders/cancel-operation": "POST",
   "/v1/renewals": "GET",
   "/v1/renewals/detail": "GET",
   "/v1/renewals/operation": "GET",

@@ -6,8 +6,11 @@ export { id, run };
 const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
-export async function fixture(t) {
-  const f = await recurring(t, ["supabase/migrations/20260922202827_native_renewal_storage.sql"]);
+export async function fixture(t, extraFiles = []) {
+  const f = await recurring(t, [
+    "supabase/migrations/20260922202827_native_renewal_storage.sql",
+    ...extraFiles,
+  ]);
   const source = readFileSync(
     "supabase/migrations/20260921120810_native_ai_expense_proposal.sql",
     "utf8",

@@ -2129,3 +2129,11 @@ Five disposable PostgreSQL cases pass for settings validation, RLS/grants, concu
 ### Reminder storage — review candidate
 
 Seven disposable PostgreSQL cases now pass, adding shared-contract receipt/envelope/recovery validation, earliest-date underflow refusal, changed-operation intent rejection and a real concurrent save/cancel race. Local security advisors found no issues. Full workspace lint and formatting pass (existing advisory warnings remain). The complete migration remains 166 lines, with save transaction below the 80-code-line limit. Exact-commit Sol review and CI remain required. API/native/AI controls and notification delivery remain unfinished; no hosted migration or device verification occurred.
+
+### Reminder transport — local candidate
+
+Authenticated detail/save/recover/cancel HTTP routes now use the caller token and shared strict reminder schemas. The native Effect client validates household/actor identity, target renewal, operation and the complete recovered command. Two real native-client → HTTP → PostgREST → disposable PostgreSQL tests pass for lost committed responses, exact replay/read, changed recovery intent rejection, foreign callers, stale settings, duplicate queries and cancellation fencing. Workspace typechecking passes. Storage commit `96ae9749aef299d58d6c6b4325a32d3e307a064e` has clean Sol medium signoff with seven independently passing database tests; its CI remains required. Transport is uncommitted and still needs final lint/review/CI and session/UI wiring. No device, delivery or hosted verification is claimed.
+
+### Reminder transport/session — verified candidate
+
+The authenticated session now exposes the reminder client through Expo fetch, or null without a ready member/configuration. Three actual native-client/HTTP/PostgREST/PostgreSQL tests pass, including coherent forged responses with substituted actor, household, operation or settings; matching forged schema fields cannot substitute the original command. Final workspace typechecking, lint and formatting pass. Storage CI `35788357819` remains in progress; storage has clean exact Sol signoff. Transport still requires exact-commit review/CI. Native controls, durable local attempt storage, AI actions and scheduling/delivery remain unfinished; no device verification is claimed.

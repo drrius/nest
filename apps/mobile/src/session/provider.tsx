@@ -1,3 +1,5 @@
+import { sessionRenewalReminders } from "./renewal-reminder-client";
+import type { RenewalReminderClient } from "../renewal-reminders/client";
 import { nativeReceiptStorage } from "../money/receipt-upload-native";
 import { sessionRenewals } from "./renewal-client";
 import type { RenewalClient } from "../renewals/client";
@@ -66,6 +68,7 @@ type Runtime = {
 };
 interface SessionContextValue {
   renewals: RenewalClient | null;
+  renewalReminders: RenewalReminderClient | null;
   money: MoneyClient | null;
   meals: MealClient | null;
   routines: RoutineClient | null;
@@ -139,9 +142,11 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         meals: null,
         money: null,
         renewals: null,
+        renewalReminders: null,
       };
     const { auth } = runtime.current;
     return {
+      renewalReminders: sessionRenewalReminders(auth, { actor, household }, configuration.apiUrl),
       renewals: sessionRenewals(auth, { actor, household }, configuration.apiUrl),
       routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),
       meals: sessionMeals(auth, { actor, household }, configuration.apiUrl),
