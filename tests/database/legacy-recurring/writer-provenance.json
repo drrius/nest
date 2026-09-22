@@ -1,0 +1,27 @@
+{
+  "repository": "drrius/household-os",
+  "commit": "4a528c96caf41515a70291ccecbba9d7b35e3349",
+  "files": [
+    {
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sourceSha256": "de54846277e51e048aa416cd798b97ad4be2ba8a35aa35989e1a083877f6fc71",
+      "function": "private.next_recurring_expense_date",
+      "fixture": "next-date.sql",
+      "fixtureSha256": "cbb1fbba2ffb37d51c74dc0c4327b30c289f62dce4e8d21e0da26b46913b8e80"
+    },
+    {
+      "source": "supabase/migrations/20260812090000_notifications_realtime.sql",
+      "sourceSha256": "1fdf6a18945d47ad36b8e32956135e7d970f607c84cbd69e6610a3fb5bffd982",
+      "function": "private.generate_due_recurring_drafts_for_household",
+      "fixture": "generate-drafts.sql",
+      "fixtureSha256": "8ddaa00e88afc295e59202a9e8326797d27d98121387bab8c0e28be103871140"
+    },
+    {
+      "source": "supabase/migrations/20260811200000_chf_ledger.sql",
+      "sourceSha256": "de54846277e51e048aa416cd798b97ad4be2ba8a35aa35989e1a083877f6fc71",
+      "function": "public.set_recurring_expense_rule_active",
+      "fixture": "set-active.sql",
+      "fixtureSha256": "a8256a8c8b1f0429c85633874dec41cebde1a37851128fb164608a68d4b98289"
+    }
+  ]
+}
