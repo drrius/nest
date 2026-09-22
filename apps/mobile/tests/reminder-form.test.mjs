@@ -92,3 +92,33 @@ test("reminder confirmation binds both revisions, recipients and timing with one
   );
   assert.equal(await stale.confirm(), false);
 });
+test("recovery gates a different renewal and presents the original settings with authorized labels", async () => {
+  const { reminderRecoveryReview } = await import("../src/renewal-reminders/recovery-review.ts");
+  const command = {
+    renewalId: member,
+    settings: {
+      anchor: "cancellation",
+      delivery: { enabled: true, recipientIds: [member], localTime: "08:30", daysBefore: 7 },
+    },
+  };
+  const context = {
+    renewal: { renewalId: member, fields: { title: "Internet" } },
+    members: [{ actorId: member, displayName: "Alex" }],
+  };
+  assert.deepEqual(reminderRecoveryReview(command, "another", context), {
+    target: member,
+    summary: null,
+  });
+  const own = reminderRecoveryReview(command, member, context);
+  assert.equal(own.target, null);
+  for (const text of [
+    "Internet",
+    "Alex",
+    "On",
+    "7 days before cancellation deadline",
+    "08:30",
+    "original pending settings",
+  ])
+    assert.ok(own.summary.includes(text));
+  assert.match(reminderRecoveryReview(command, member, null).summary, /Member 00000000/);
+});

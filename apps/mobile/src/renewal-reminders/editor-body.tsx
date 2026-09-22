@@ -33,6 +33,8 @@ export function ReminderEditorBody(
       {context.failed ? <Note>Could not load renewal choices. Reload to retry.</Note> : null}
       {view.attempt || view.result ? (
         <ReminderRecovery
+          context={context.value}
+          renewalId={props.renewalId}
           runtime={runtime}
           next={() => {
             runtime.acknowledge();
