@@ -2,7 +2,7 @@ import { useNativeState } from "@expo/ui";
 import { useState } from "react";
 import type { RecurringDraft } from "./recurring-draft";
 import { expenseDate } from "./use-expense-draft";
-export function useRecurringFields(initial: RecurringDraft) {
+export function useRecurringFields(initial: RecurringDraft, categoryName = "Current category") {
   const description = useNativeState(initial.description),
     amount = useNativeState(initial.amount),
     note = useNativeState(initial.note),
@@ -17,7 +17,7 @@ export function useRecurringFields(initial: RecurringDraft) {
     [day, setDay] = useState(initial.day);
   const [date, setDate] = useState(() => new Date(`${initial.date}T12:00:00`));
   const [category, setCategory] = useState<{ categoryId: string; name: string } | null>(
-    initial.categoryId ? { categoryId: initial.categoryId, name: "Current category" } : null,
+    initial.categoryId ? { categoryId: initial.categoryId, name: categoryName } : null,
   );
   const read = (): RecurringDraft => ({
     ...initial,

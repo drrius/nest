@@ -11,6 +11,7 @@ export function RecurringFields(props: {
   disabled: boolean;
   next: () => void;
   first: () => void;
+  reviewLabel?: string;
 }) {
   const { draft, disabled } = props,
     colors = useQuiet(),
@@ -75,7 +76,7 @@ export function RecurringFields(props: {
         dateLabel="Prospective start"
         payerLabel="Payer"
         title="Recurring configuration"
-        reviewLabel="Review and save configuration"
+        reviewLabel={props.reviewLabel ?? "Review and save configuration"}
       />
     </>
   );

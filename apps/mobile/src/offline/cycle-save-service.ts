@@ -1,3 +1,5 @@
+import * as LegacyAdoptions from "./legacy-adoption-saves.ts";
+import type { LegacyAdoptionSaveAttempt } from "../money/legacy-adoption-save-attempt.ts";
 import * as LegacyConfirmations from "./legacy-confirmation-saves.ts";
 import type { LegacyConfirmationSaveAttempt } from "../money/legacy-confirmation-save-attempt.ts";
 import * as LegacyDismissals from "./legacy-dismissal-saves.ts";
@@ -42,6 +44,7 @@ export function cycleSaveStore(database: Database) {
     ...manualCycleSaveStore(database),
     ...legacyDismissalStore(database),
     ...legacyConfirmationStore(database),
+    ...legacyAdoptionStore(database),
   };
 }
 
@@ -73,5 +76,19 @@ function legacyConfirmationStore(database: Database) {
       ),
     clearLegacyConfirmationSave: (session: Session, attempt: LegacyConfirmationSaveAttempt) =>
       run(() => LegacyConfirmations.clearLegacyConfirmationSave(database, session, attempt)),
+  };
+}
+
+function legacyAdoptionStore(database: Database) {
+  return {
+    readLegacyAdoptionSave: (session: Session) =>
+      run(() => LegacyAdoptions.readLegacyAdoptionSave(database, session)),
+    stageLegacyAdoptionSave: (
+      session: Session,
+      attempt: LegacyAdoptionSaveAttempt,
+      current: () => boolean,
+    ) => run(() => LegacyAdoptions.stageLegacyAdoptionSave(database, session, attempt, current)),
+    clearLegacyAdoptionSave: (session: Session, attempt: LegacyAdoptionSaveAttempt) =>
+      run(() => LegacyAdoptions.clearLegacyAdoptionSave(database, session, attempt)),
   };
 }

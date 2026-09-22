@@ -73,6 +73,9 @@ export const initialize = (database: Database) =>
 
 async function initializeMoney(tx: Transaction) {
   await tx.run(
+    `CREATE TABLE IF NOT EXISTS legacy_adoption_save_attempts (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
+  );
+  await tx.run(
     `CREATE TABLE IF NOT EXISTS legacy_confirmation_save_attempts (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
   );
   await tx.run(

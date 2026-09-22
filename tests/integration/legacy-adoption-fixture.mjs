@@ -1,10 +1,11 @@
 import { fixture as legacy, id, run } from "./legacy-dismissal-fixture.mjs";
 export { id, run };
-export async function fixture(t) {
+export async function fixture(t, extraFiles = []) {
   const f = await legacy(t, [
     "supabase/migrations/20260922033013_native_legacy_recurring_fences.sql",
     "supabase/migrations/20260922034111_native_legacy_adoption_context.sql",
     "supabase/migrations/20260922192907_native_legacy_adoption_command.sql",
+    ...extraFiles,
   ]);
   await run(f.native.saveLegacyDismissal(f.command));
   const context = await run(f.native.legacyAdoptionContext(id(800)));

@@ -55,6 +55,12 @@ function LegacyRow({ row, actor }: { row: typeof LegacyRecurringRule.Type; actor
             router.push({ pathname: "/legacy-recurring-drafts", params: { ruleId: row.ruleId } })
           }
         />
+        <NativeAction
+          label="Review native adoption"
+          onPress={() =>
+            router.push({ pathname: "/legacy-adoption", params: { ruleId: row.ruleId } })
+          }
+        />
         <Note>Rule reference: {row.ruleId}</Note>
       </Section>
     </Card>
