@@ -116,15 +116,41 @@ returns boolean language sql stable security definer set search_path='' as $$
   );
 $$;
 revoke all on function private.nest_renewal_reminder_current(private.nest_renewal_reminder_outbox) from public,anon,authenticated,service_role;
+create table private.nest_renewal_reminder_cancel_scan (
+  singleton boolean primary key default true check(singleton),
+  after_due timestamptz not null default '-infinity',
+  after_id uuid not null default '00000000-0000-0000-0000-000000000000'
+);
+alter table private.nest_renewal_reminder_cancel_scan enable row level security;
+revoke all on private.nest_renewal_reminder_cancel_scan from public,anon,authenticated,service_role;
+insert into private.nest_renewal_reminder_cancel_scan(singleton) values(true);
+
+-- Inspect at most 500 pending rows, not 500 matches after an unbounded filter.
+-- As with materialization, zero mutations does not mean the sweep is complete.
 create function private.nest_cancel_obsolete_renewal_reminders()
 returns bigint language plpgsql security definer set search_path='' as $$
-declare v_count bigint;
+declare v_count bigint:=0; v_scanned integer:=0; v_changed bigint;
+  v_cursor private.nest_renewal_reminder_cancel_scan;
+  v_row private.nest_renewal_reminder_outbox;
 begin
-  update private.nest_renewal_reminder_outbox o set state='cancelled'
-    where o.id in (select candidate.id from private.nest_renewal_reminder_outbox candidate
-      where candidate.state='pending' and not private.nest_renewal_reminder_current(candidate)
-      order by candidate.due_at,candidate.id limit 500 for update skip locked);
-  get diagnostics v_count=row_count;
+  select * into strict v_cursor from private.nest_renewal_reminder_cancel_scan
+    where singleton for update;
+  for v_row in select * from private.nest_renewal_reminder_outbox
+    where state='pending' and (due_at,id)>(v_cursor.after_due,v_cursor.after_id)
+    order by due_at,id limit 500 for update loop
+    v_scanned:=v_scanned+1;
+    update private.nest_renewal_reminder_outbox set state='cancelled'
+      where id=v_row.id and state='pending' and not private.nest_renewal_reminder_current(v_row);
+    get diagnostics v_changed=row_count;
+    v_count:=v_count+v_changed;
+    v_cursor.after_due:=v_row.due_at; v_cursor.after_id:=v_row.id;
+  end loop;
+  if v_scanned<500 then
+    v_cursor.after_due:='-infinity';
+    v_cursor.after_id:='00000000-0000-0000-0000-000000000000';
+  end if;
+  update private.nest_renewal_reminder_cancel_scan
+    set after_due=v_cursor.after_due,after_id=v_cursor.after_id where singleton;
   return v_count;
 end;
 $$;

@@ -29,6 +29,7 @@ test("concurrent bounded outbox runs reach every identity once and cancel obsole
   for (let i = 0; i < 3; i++) assert.ok(Number(f.db.sql(materialize)) <= 500);
   assert.equal(f.db.sql("select count(*) from private.nest_renewal_reminder_outbox"), "1001");
   assert.equal(f.db.sql(materialize), "0");
+  verifySparseCancellation(f, materialize);
   f.db.sql("update public.nest_notification_preferences set item_reminders_enabled=false");
   const cancel = "select private.nest_cancel_obsolete_renewal_reminders()";
   const cancelled = await Promise.all([f.db.concurrent(cancel), f.db.concurrent(cancel)]);
@@ -42,3 +43,25 @@ test("concurrent bounded outbox runs reach every identity once and cancel obsole
   for (const role of ["authenticated", "anon", "service_role"])
     assert.throws(() => f.db.sql(`set role ${role}; ${materialize}`), /permission denied/);
 });
+
+function verifySparseCancellation(f, materialize) {
+  const target = f.db.sql(
+    "select renewal_id from private.nest_renewal_reminder_outbox order by due_at desc,id desc limit 1",
+  );
+  f.db.sql(`update public.nest_renewals set removed=true where id='${target}'`);
+  const cancel = "select private.nest_cancel_obsolete_renewal_reminders()";
+  assert.equal(f.db.sql(cancel), "0", "first 500 current records advance without mutations");
+  assert.equal(f.db.sql(cancel), "0", "second 500 current records advance without mutations");
+  assert.equal(f.db.sql(cancel), "1", "the obsolete final record is reached on the next page");
+  assert.equal(
+    f.db.sql("select count(*) from private.nest_renewal_reminder_outbox where state='pending'"),
+    "1000",
+  );
+  f.db.sql(`update public.nest_renewals set removed=false where id='${target}'`);
+  for (let i = 0; i < 5; i++) f.db.sql(materialize);
+  assert.equal(
+    f.db.sql("select count(*) from private.nest_renewal_reminder_outbox where state='pending'"),
+    "1001",
+    "a later sweep revisits a restored item behind the cursor",
+  );
+}
