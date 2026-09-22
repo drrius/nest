@@ -1,3 +1,4 @@
+import { renewalRoute } from "./renewals/route.ts";
 import { moneyRoute } from "./money/route.ts";
 import { mealProposalRoute, type MealPlanningOptions } from "./meal-planning/route.ts";
 import { mealRoute } from "./meals/route.ts";
@@ -41,6 +42,7 @@ function route(
       meals: () => mealRoute(request, config, caller, proposals),
       routines: () => routineRoute(request, config, caller),
       money: () => moneyRoute(request, config, caller),
+      renewals: () => renewalRoute(request, config, caller),
     };
     const selected = handlers[path.split("/")[2]!];
     return yield* selected ? selected() : choreRoute(request, config, caller);
@@ -138,6 +140,12 @@ function preferenceRoute(
 }
 
 const methods: Record<string, string> = {
+  "/v1/renewals": "GET",
+  "/v1/renewals/detail": "GET",
+  "/v1/renewals/operation": "GET",
+  "/v1/renewals/save": "POST",
+  "/v1/renewals/remove": "POST",
+  "/v1/renewals/cancel-operation": "POST",
   "/v1/session": "GET",
   "/v1/money/recurring/approval": "GET",
   "/v1/money/recurring/state/approval": "GET",

@@ -1,4 +1,6 @@
 import { nativeReceiptStorage } from "../money/receipt-upload-native";
+import { sessionRenewals } from "./renewal-client";
+import type { RenewalClient } from "../renewals/client";
 import { sessionMoney } from "./money-client";
 import type { MoneyClient } from "../money/client";
 import { sessionMeals } from "./meal-client";
@@ -63,6 +65,7 @@ type Runtime = {
   subscription: ReturnType<typeof subscribeSession>;
 };
 interface SessionContextValue {
+  renewals: RenewalClient | null;
   money: MoneyClient | null;
   meals: MealClient | null;
   routines: RoutineClient | null;
@@ -135,9 +138,11 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         routines: null,
         meals: null,
         money: null,
+        renewals: null,
       };
     const { auth } = runtime.current;
     return {
+      renewals: sessionRenewals(auth, { actor, household }, configuration.apiUrl),
       routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),
       meals: sessionMeals(auth, { actor, household }, configuration.apiUrl),
       money: sessionMoney(

@@ -6,9 +6,15 @@ Updated 22 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 — renewal storage and native delivery work; branch `codex/renewal-storage`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
+**M8 — renewal storage and native delivery work; branch `codex/renewal-transport`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Production four-tab composition/Today aggregation, remaining M8 renewals/reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
+
+### Renewal transport and session client — candidate
+
+Authenticated list/detail/save/remove/recover/cancel routes now use the caller token and strict shared renewal contracts. The native client is connected to the authenticated session through Expo fetch. Receipts bind household, actor, operation and the complete original command; cancellation and recovery cannot substitute a different intent. This increment does not yet provide renewal screens or AI actions.
+
+Three actual native-client → HTTP → PostgREST → disposable PostgreSQL integration cases pass: lost committed response with historical recovery/removal, foreign and stale requests plus cancellation fencing, and forged receipt ownership/intent rejection. Workspace typechecking and Oxlint pass (existing advisory warnings remain). CI and exact-commit Sol review are still required. No physical-device, hosted backend or production verification occurred.
 
 ## Earlier delivery log
 
