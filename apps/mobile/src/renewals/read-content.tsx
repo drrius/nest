@@ -64,6 +64,14 @@ function Detail({ renewal }: { renewal: typeof Renewal.Type }) {
           }
         />
       ) : null}
+      {!renewal.removed ? (
+        <NativeAction
+          label="Reminder settings"
+          onPress={() =>
+            router.push({ pathname: "/renewal-reminder", params: { renewalId: renewal.renewalId } })
+          }
+        />
+      ) : null}
       <Note>
         These dates are reminders. Changing a renewal does not cancel a contract or change financial
         history.
