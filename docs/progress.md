@@ -6,7 +6,7 @@ Updated 22 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 — renewal storage and native delivery work; branch `codex/renewal-transport`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
+**M8 — renewal storage and native delivery work; branch `codex/renewal-screens`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Production four-tab composition/Today aggregation, remaining M8 renewals/reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -21,6 +21,12 @@ Three actual native-client → HTTP → PostgREST → disposable PostgreSQL inte
 Account/household/lease-scoped SQLite now retains the exact renewal save or removal command before dispatch. The shared durable runtime recovers status after restart without automatically repeating writes, freezes unresolved commands, persists explicit cancellation and hides pending state after account replacement. The store refuses command replacement and cancellation reversal. A grouped store-composition helper preserves the configured function-length limit.
 
 Four real SQLite/native runtime/HTTP/PostgREST/PostgreSQL journeys pass: committed response loss across restart, unresolved cancellation with late-send fencing, account replacement, and staging/cleanup failure. Workspace types, lint and formatting pass, including the final store composition. Renewal screens and AI actions remain unfinished. This is local integration evidence, not device verification. Transport commit `8fbaebb` has clean exact-commit Sol signoff; CI remains required. Recovery review/CI remain pending.
+
+### Renewal storage merged; native reader underway
+
+Renewal contracts `2a26a0b` and storage `13ae0d5` are merged and pushed to main after clean exact-commit Sol reviews and successful CI `35781069638` / `35782144990`. Transport CI `35782981602` and recovery CI `35783403032` were still running at the last check; neither is merged.
+
+The protected native renewal list/detail screens now use real authorized reads, with paginated virtualized rows, renewal/deadline summaries, retained removed details and a linked recurring-expense handoff. Manage renewals is reachable from the household screen. Two SQLite/HTTP/PostgREST/PostgreSQL journeys pass for saved details, inactive-data clearing, foreground reload, account replacement denial and delayed responses after background/disposal. Workspace typechecking, lint, formatting and iOS export pass (`/tmp/nest-renewal-read-export`, bundle `3abae371dcb1d3dffbfd9d193e3db8cb`). Export is packaging evidence only. Create/edit/remove controls, responsible-member display, AI actions and reminders remain unfinished. Physical iPhone interaction/accessibility are unverified. Exact-commit CI and Sol review remain required.
 
 ## Earlier delivery log
 
