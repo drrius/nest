@@ -1,7 +1,11 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
-import { SaveRenewal, RenewalReceipt } from "../../packages/contracts/src/renewals.ts";
+import {
+  SaveRenewal,
+  RenewalReceipt,
+  StoredRenewalFields,
+} from "../../packages/contracts/src/renewals.ts";
 const require = createRequire(new URL("../../packages/contracts/package.json", import.meta.url));
 const Schema = require("effect/Schema");
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -50,4 +54,15 @@ test("renewal receipts cannot misstate their deadline or removal outcome", () =>
     false,
   );
   assert.equal(Schema.is(RenewalReceipt)({ ...receipt, action: "removed" }), false);
+});
+
+test("stored renewal titles preserve PostgreSQL code points and ASCII trimming semantics", () => {
+  for (const title of ["😀".repeat(160), "\u00a0Internet\u00a0", " Internet "])
+    assert.equal(Schema.is(StoredRenewalFields)({ ...fields, title }), true);
+  assert.equal(Schema.is(StoredRenewalFields)({ ...fields, title: "😀".repeat(161) }), false);
+  assert.equal(
+    decode({ ...command, fields: { ...fields, title: "😀".repeat(160) } }).fields.title,
+    "😀".repeat(160),
+  );
+  assert.throws(() => decode({ ...command, fields: { ...fields, title: "\u00a0Internet\u00a0" } }));
 });

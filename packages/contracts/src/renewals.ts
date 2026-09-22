@@ -2,17 +2,33 @@ import * as Schema from "effect/Schema";
 import { renewalDeadline } from "@nest/domain/renewals";
 import { CalendarDate } from "./chores.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
-export const RenewalFields = Schema.Struct({
-  title: Schema.String.check(
-    Schema.isMinLength(1),
-    Schema.isMaxLength(160),
-    Schema.makeFilter((value) => value.trim() === value),
+// PostgreSQL length(text) counts code points, not UTF-16 units or grapheme clusters.
+const titleLength = (value: string) => Array.from(value).length;
+const StoredTitle = Schema.String.check(
+  Schema.makeFilter((value) => {
+    const length = titleLength(value.replace(/^ +| +$/g, ""));
+    return length >= 1 && length <= 160;
+  }),
+);
+const EditedTitle = Schema.String.check(
+  Schema.makeFilter(
+    (value) => value.trim() === value && titleLength(value) >= 1 && titleLength(value) <= 160,
   ),
+);
+const fields = {
   renewalOn: CalendarDate,
   noticeDays: Schema.Int.check(Schema.isBetween({ minimum: 0, maximum: 730 })),
   responsibleId: Schema.NullOr(Uuid),
   recurringRuleId: Schema.NullOr(Uuid),
-}).check(Schema.makeFilter((value) => renewalDeadline(value.renewalOn, value.noticeDays) !== null));
+};
+const validDeadline = (value: { renewalOn: string; noticeDays: number }) =>
+  renewalDeadline(value.renewalOn, value.noticeDays) !== null;
+export const RenewalFields = Schema.Struct({ title: EditedTitle, ...fields }).check(
+  Schema.makeFilter(validDeadline),
+);
+export const StoredRenewalFields = Schema.Struct({ title: StoredTitle, ...fields }).check(
+  Schema.makeFilter(validDeadline),
+);
 export type RenewalFields = typeof RenewalFields.Type;
 export const SaveRenewal = Schema.Struct({
   operationId: Uuid,
@@ -28,7 +44,7 @@ export const RemoveRenewal = Schema.Struct({
 export const Renewal = Schema.Struct({
   renewalId: Uuid,
   revision: Uuid,
-  fields: RenewalFields,
+  fields: StoredRenewalFields,
   cancellationOn: CalendarDate,
   removed: Schema.Boolean,
 }).check(
