@@ -95,13 +95,32 @@ test("finite adoption endpoints enforce household, query and explicit approval r
     400,
   );
   const approvalId = approve(f);
-  const response = await fetch(endpoint, {
-    method: "POST",
-    headers: headers(f),
-    body: JSON.stringify({ ...f.command, approvalId }),
-  });
-  assert.equal(response.status, 200);
-  assert.equal((await response.json()).approvalId, approvalId);
+  const approvedCommand = { ...f.command, approvalId };
+  const receipt = await run(f.native.executeLegacyAdoption(approvedCommand));
+  assert.equal(receipt.approvalId, approvalId);
+  for (const forged of [
+    { ...receipt, approvalId: id(999) },
+    { ...receipt, operationId: id(999) },
+    { ...receipt, actorId: id(2) },
+    { ...receipt, householdId: id(20) },
+    {
+      ...receipt,
+      input: {
+        ...receipt.input,
+        configuration: { ...receipt.input.configuration, note: "Substituted approved terms" },
+      },
+    },
+  ]) {
+    const injected = async () =>
+      new Response(JSON.stringify(forged), { headers: { "content-type": "application/json" } });
+    await assert.rejects(
+      run(
+        f.native
+          .executeLegacyAdoption(approvedCommand)
+          .pipe(Effect.provideService(Fetch.Fetch, injected)),
+      ),
+    );
+  }
   assert.equal(f.db.sql("select count(*) from private.nest_legacy_recurring_adoptions"), "1");
   await assert.rejects(run(f.native.recoverLegacyAdoption(f.command)));
 });

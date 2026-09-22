@@ -1,4 +1,4 @@
-import type { LegacyAdoptionSave } from "../money/legacy-adoption-client.ts";
+import type { LegacyAdoptionSave, LegacyAdoptionExecute } from "../money/legacy-adoption-client.ts";
 import type {
   LegacyConfirmationApproval,
   LegacyConfirmationDecision,
@@ -275,6 +275,8 @@ function sessionLegacyConfirmation(client: MoneyClient) {
 
 function sessionLegacyAdoption(client: MoneyClient) {
   return {
+    executeLegacyAdoption: (input: LegacyAdoptionExecute) =>
+      client.executeLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveLegacyAdoption: (input: LegacyAdoptionSave) =>
       client.saveLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recoverLegacyAdoption: (input: LegacyAdoptionSave) =>
