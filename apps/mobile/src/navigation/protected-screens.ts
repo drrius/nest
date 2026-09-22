@@ -20,6 +20,7 @@ export const protectedScreens = [
   { name: "recurring-variable", title: "Variable bill" },
   { name: "recurring-state", title: "Recurring controls" },
   { name: "legacy-dismissal-approval", title: "Review dismissal proposal" },
+  { name: "legacy-adoption-approval", title: "Review recurring adoption" },
   { name: "legacy-confirmation-approval", title: "Review expense proposal" },
   { name: "legacy-adoption", title: "Adopt recurring rule" },
   { name: "legacy-confirmation", title: "Confirm retained expense" },

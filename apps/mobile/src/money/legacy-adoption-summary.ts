@@ -33,7 +33,12 @@ export function adoptionConfirmationText(
   ].join("\n\n");
 }
 
-export function adoptionSourceText(context: AdoptionFormContext, actor: string) {
+export function adoptionSourceText(
+  context: Pick<AdoptionFormContext, "review" | "category"> & {
+    options: { members: readonly { actorId: string; displayName: string }[] };
+  },
+  actor: string,
+) {
   const row = context.review.rule;
   const member = (id: string) =>
     context.options.members.find((entry) => entry.actorId === id)?.displayName ??
