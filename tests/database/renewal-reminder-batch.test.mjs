@@ -87,3 +87,35 @@ test("scan receipts distinguish zero-write pages from an exact-page wrap", (t) =
   assert.deepEqual(scan(), { scanned: 0, inserted: 0, wrapped: true });
   assert.deepEqual(scan(), { scanned: 250, inserted: 0, wrapped: false });
 });
+
+test("recipient departure cancels unsent work and rejoining restores only current eligibility", (t) => {
+  const f = batchFixture(t, 1);
+  f.db
+    .sql(`update public.nest_renewal_reminders set delivery=jsonb_set(delivery,'{recipientIds}','["${id(2)}"]');
+    insert into public.nest_notification_preferences(actor_id,household_id,revision,daily_summary_enabled,daily_summary_time,item_reminders_enabled)
+    values('${id(2)}','${id(10)}',1,false,'09:00',true)`);
+  const materialize =
+    "select private.nest_materialize_renewal_reminders('2028-03-01 00:00Z','2028-03-02 00:00Z')->>'inserted'";
+  assert.equal(f.db.sql(materialize), "1");
+  f.db.sql(`delete from public.household_members where user_id='${id(2)}'`);
+  assert.equal(
+    f.db.sql(
+      "select private.nest_renewal_reminder_current(o) from private.nest_renewal_reminder_outbox o",
+    ),
+    "f",
+  );
+  assert.equal(
+    f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()->>'cancelled'"),
+    "1",
+  );
+  assert.equal(f.db.sql(materialize), "0");
+  f.db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${id(10)}','${id(2)}','Partner')`,
+  );
+  assert.equal(f.db.sql(materialize), "1");
+  assert.equal(f.db.sql(materialize), "0");
+  assert.equal(
+    f.db.sql("select count(*) from private.nest_renewal_reminder_outbox where state='pending'"),
+    "1",
+  );
+});
