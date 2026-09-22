@@ -3,6 +3,10 @@ export function financialProposalTools<T>(
   write: (name: AssistantAction, description: string) => T,
 ) {
   return {
+    proposeManualCycle: write(
+      "proposeManualCycle",
+      "Propose linking an existing expense to a recurring cycle only when the member explicitly selects that exact existing expense and rule. Read current Money detail and recurring rule first; never infer matches from descriptions or invent IDs. Bind sourceEventId, ruleId, expectedRevision and the current due date. The source must be an unreversed expense/replacement in this civil period, not already linked to another cycle. Explain any difference between the original expense's amount, payer or split and the future rule. This only creates a private pending proposal. The member must open its native card and explicitly confirm consuming this cycle. No expense, payment, balance change or mandate change is created. Never infer consent from chat or call Save, execute or decision endpoints. Changed source/rule needs a new review.",
+    ),
     proposeVariableCycle: write(
       "proposeVariableCycle",
       "Propose recording a variable recurring bill only when explicitly requested. Read the current recurring rule and household members first. Bind its exact active variable rule ID, revision and next due date, which must be due under the server Zurich date and not already covered. Ask for this cycle's CHF amount and split; use integer centime strings and exactly two known member shares summing to the amount. Equal splits assign any odd centime to the retained payer. Payer, description, category and note come from the reviewed rule and cannot be changed by this tool. Never invent amounts, IDs, dates, consent or backfill. This creates a PRIVATE PENDING proposal only: no expense, cycle consumption or mandate change occurs. The member must open the native variable-bill review and explicitly confirm the exact amount, payer and split. Never call Save, execute or decision endpoints, infer authorization from chat, or claim recording is complete. A changed rule or consumed cycle needs a fresh review. No bank payment is made.",

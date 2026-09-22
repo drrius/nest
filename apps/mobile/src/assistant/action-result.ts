@@ -1,3 +1,4 @@
+import { ManualCycleApprovalEnvelope } from "@nest/contracts/recurring-manual-approval";
 import { VariableCycleApprovalEnvelope } from "@nest/contracts/recurring-variable-approval";
 import { RecurringResumeApprovalEnvelope } from "@nest/contracts/recurring-resume-approval";
 import { RecurringStateApprovalEnvelope } from "@nest/contracts/recurring-state-approval";
@@ -29,6 +30,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeManualCycle: "Expense linkage proposed · not linked yet",
   proposeVariableCycle: "Variable bill proposal created · no expense recorded",
   proposeRecurringResume: "Resumption proposal created · this action changed no rule or expense",
   proposeRecurringState:
@@ -73,6 +75,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeManualCycle: "/finances",
   proposeVariableCycle: "/finances",
   proposeRecurringResume: "/finances",
   proposeRecurringState: "/finances",
@@ -307,13 +310,8 @@ function financialHref(action: AssistantAction, value: object) {
 }
 
 function recurringHref(action: AssistantAction, value: object) {
-  if (action === "proposeVariableCycle")
-    return Schema.is(VariableCycleApprovalEnvelope)(value)
-      ? {
-          pathname: "/recurring-variable-approval" as const,
-          params: { approvalId: value.approval.id },
-        }
-      : null;
+  const cycle = cycleHref(action, value);
+  if (cycle) return cycle;
   if (action === "proposeRecurringResume")
     return Schema.is(RecurringResumeApprovalEnvelope)(value)
       ? {
@@ -332,4 +330,22 @@ function recurringHref(action: AssistantAction, value: object) {
   return Schema.is(RecurringApprovalEnvelope)(value)
     ? { pathname: "/recurring-approval" as const, params: { approvalId: value.approval.id } }
     : null;
+}
+
+function cycleHref(action: AssistantAction, value: object) {
+  if (action === "proposeManualCycle")
+    return Schema.is(ManualCycleApprovalEnvelope)(value)
+      ? {
+          pathname: "/recurring-manual-approval" as const,
+          params: { approvalId: value.approval.id },
+        }
+      : null;
+  if (action === "proposeVariableCycle")
+    return Schema.is(VariableCycleApprovalEnvelope)(value)
+      ? {
+          pathname: "/recurring-variable-approval" as const,
+          params: { approvalId: value.approval.id },
+        }
+      : null;
+  return null;
 }
