@@ -1,3 +1,5 @@
+import { legacyAdoptionApprovalClient } from "./legacy-adoption-approval-client.ts";
+import { legacyAdoptionApprovalContextClient } from "./legacy-adoption-approval-context-client.ts";
 import { legacyAdoptionClient } from "./legacy-adoption-client.ts";
 import { legacyAdoptionContextClient } from "./legacy-adoption-context-client.ts";
 import { legacyConfirmationClient } from "./legacy-confirmation-client.ts";
@@ -45,6 +47,8 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...legacyAdoptionApprovalClient(apiUrl, account, credentials),
+    ...legacyAdoptionApprovalContextClient(apiUrl, account, credentials),
     ...legacyAdoptionClient(apiUrl, account, credentials),
     ...legacyAdoptionContextClient(apiUrl, account, credentials),
     ...legacyConfirmationClient(apiUrl, account, credentials),

@@ -1,3 +1,4 @@
+import { legacyAdoptionApprovalRoute } from "./legacy-adoption-approval-route.ts";
 import * as Effect from "effect/Effect";
 import { legacyAdoptionCommands } from "./legacy-adoption.ts";
 import { legacyAdoptionRecovery } from "./legacy-adoption-recovery.ts";
@@ -11,6 +12,8 @@ export function legacyAdoptionRoute(
   config: IdentityConfig,
   caller: AuthorizedCaller,
 ) {
+  if (new URL(request.url).pathname.includes("/approval"))
+    return legacyAdoptionApprovalRoute(request, config, caller);
   return Effect.gen(function* () {
     const url = new URL(request.url);
     if (request.method === "GET") {

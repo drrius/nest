@@ -1,3 +1,7 @@
+import type {
+  LegacyAdoptionApproval,
+  LegacyAdoptionDecision,
+} from "../money/legacy-adoption-approval-client.ts";
 import type { LegacyAdoptionSave, LegacyAdoptionExecute } from "../money/legacy-adoption-client.ts";
 import type {
   LegacyConfirmationApproval,
@@ -275,6 +279,16 @@ function sessionLegacyConfirmation(client: MoneyClient) {
 
 function sessionLegacyAdoption(client: MoneyClient) {
   return {
+    legacyAdoptionApproval: (approvalId: string) =>
+      client
+        .legacyAdoptionApproval(approvalId)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    legacyAdoptionApprovalContext: (approval: LegacyAdoptionApproval) =>
+      client
+        .legacyAdoptionApprovalContext(approval)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    decideLegacyAdoption: (input: LegacyAdoptionDecision) =>
+      client.decideLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     executeLegacyAdoption: (input: LegacyAdoptionExecute) =>
       client.executeLegacyAdoption(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     saveLegacyAdoption: (input: LegacyAdoptionSave) =>
