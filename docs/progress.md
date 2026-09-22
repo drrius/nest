@@ -6,7 +6,7 @@ Updated 22 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 — renewal storage and native delivery work; branch `codex/renewal-ai`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
+**M8 — renewal storage and native delivery work; branch `codex/reminder-rules`.** Direct legacy adoption, private approval/recovery, the native approval card and AI proposal/native handoff are implemented, locally verified and merged through `1c3fafc5d6330b06bef64b043d97781846aabafc` after exact-commit CI and clean Sol review. Money milestone acceptance still needs full reconciliation and hosted/device verification. Renewal contracts/date rules are under review/CI; authorized storage/read/recovery is a locally verified candidate. Renewal API/native/AI flows, reminders and physical push delivery remain unfinished.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Production four-tab composition/Today aggregation, remaining M8 renewals/reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -59,6 +59,14 @@ Editor review finding about hidden responsibility/link choices was fixed in `d8c
 Registered SDK create/edit/remove tools now invoke strict shared inputs and the private journal; results bind the full command, current actor and household before native success labels. Four disposable PostgreSQL cases pass for duplicate concurrency, native-command delegation, historical replay, rollback, tenant/turn ownership, stale revisions, forged receipt rejection and canonical transcript repair. One actual registered SDK/PostgREST journey passes for create/retry/edit/remove and native result labels; the earlier read-tool journey and mutation-input contract case also pass. No live provider was invoked.
 
 Final workspace typechecking, lint and formatting pass. Security advisors run only against the disposable local fixture. Exact-commit CI and Sol review are still required. Physical iPhone verification and M8 reminder/push work remain unfinished.
+
+### Common reminder rules — initial draft
+
+Pure shared rules now resolve Me/Partner/Both against the current two-member roster, let recipient mute settings override selections, restrict personal reminders to their owner, construct unambiguous delivery identities and invalidate pending work after completion, mute or item/schedule revision changes. Four domain tests pass, including malformed-roster refusal, generated recipient cases and 1,000 identity cases. Domain typecheck and scoped lint pass.
+
+These are internal rules only. No reminder settings, scheduling, outbox delivery, native token enrollment or push flow is implemented by this increment. Storage/API/AI/native controls and real iPhone acceptance remain required. Renewal AI `726b703` is pushed and under review/CI.
+
+Renewal editor `d8c585e` is merged and pushed to main after successful exact CI `35785786146` and clean Sol rereview. The hidden confirmation choices finding was fixed before merge. Reminder domain rules have local typecheck, lint, formatting and four passing tests; they still require independent review and CI.
 
 ## Earlier delivery log
 

@@ -10,7 +10,8 @@
     "./routines": "./src/routines/index.ts",
     "./meal-week": "./src/meal-week.ts",
     "./meal-ingredients": "./src/meal-ingredients.ts",
-    "./renewals": "./src/renewals.ts"
+    "./renewals": "./src/renewals.ts",
+    "./reminders": "./src/reminders.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",
