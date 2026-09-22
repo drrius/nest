@@ -86,7 +86,8 @@
     "./legacy-adoption-command": "./src/legacy-adoption-command.ts",
     "./legacy-adoption-approval": "./src/legacy-adoption-approval.ts",
     "./renewals": "./src/renewals.ts",
-    "./reminders": "./src/reminders.ts"
+    "./reminders": "./src/reminders.ts",
+    "./push-registration": "./src/push-registration.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

@@ -2233,3 +2233,15 @@ The eventual runner must use stable named windows, stop a sweep only on `wrapped
 ### Recipient membership regression — 23 September
 
 The actual household-member delete/reinsert test passes: departure makes currentness false, cancels the pending row and blocks materialization; rejoining restores exactly one unsent pending row without duplicate insertion. All three cases in the batch test file pass, including sparse cancellation and exact-page completion. The separate due/DST/mute test passed before this test-only addition. Scoped lint passes with the existing async advisory; disposable database security advisors report no issues after both private cursor tables were added. No hosted database was inspected or modified. Updated exact-commit review and CI remain required.
+
+### Push registration contracts — 23 September, draft
+
+Strict Effect schemas now distinguish register and disable commands, require installation identity and an explicit expected revision, and reject caller-supplied actor/household authority. Token strings are opaque and preserved exactly. Read state and receipts omit tokens; receipts carry a full canonical-command digest that the eventual authenticated adapter must recompute before accepting success. Two contract cases cover excess authority, malformed tokens, missing baselines, token-bearing response rejection and impossible enabled/unversioned states. Contracts typechecking passes. These schemas alone do not enroll a device, secure persistence, authorize an API, or send push; all remain implementation work.
+
+Sol confirmed clean exact-commit review of scheduling `b9ec3c7c00d2461309bdbf737ded7944ffe9e148`; CI remains required before its merge.
+
+### Push command receipt binding — 23 September
+
+Registration contracts define versioned, unambiguous UTF-8 digest input containing the canonical command plus actor and household. Tokens preserve case/content and remain absent from receipts. The receipt matcher checks operation, installation, baseline, action, actor, household and the locally recomputed digest. A third focused contract test uses real SHA-256 and proves that substituting any bound field rejects the response. All three contract cases, contracts typechecking and scoped lint pass. This is contract verification only; the server must compute the same digest from authenticated identity and use protected storage before enrollment is functional.
+
+Scheduling CI `35793012861` for clean-reviewed `b9ec3c7` was still running at the latest check; it remains unmerged.
