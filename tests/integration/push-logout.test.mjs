@@ -1,6 +1,43 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { fixture, id } from "./renewal-fixture.mjs";
+import { fixture, id, run, Effect, Fetch } from "./renewal-fixture.mjs";
+import { revokePushSession } from "../../apps/mobile/src/push/logout-client.ts";
+
+async function verifyNativeCleanup(f, receipt) {
+  const config = {
+    supabaseUrl: f.supabaseUrl,
+    apiUrl: f.url,
+    publishableKey: "sb_publishable_fixture",
+  };
+  const revoke = revokePushSession(config, f.bearer);
+  const lost = async (input, init) => {
+    const result = await fetch(input, init);
+    assert.equal(result.status, 200);
+    throw new Error("lost acknowledgment");
+  };
+  await assert.rejects(run(revoke.pipe(Effect.provideService(Fetch.Fetch, lost))));
+  assert.deepEqual(await run(revoke), receipt);
+  for (const value of [
+    { ...receipt, actorId: id(2) },
+    { ...receipt, sessionId: id(1152) },
+    { ...receipt, revoked: false },
+    { ...receipt, token: f.bearer },
+  ]) {
+    await assert.rejects(
+      run(revoke.pipe(Effect.provideService(Fetch.Fetch, async () => Response.json(value)))),
+    );
+  }
+  let requests = 0;
+  const transport = async () => {
+    requests++;
+    return Response.json(receipt);
+  };
+  for (const token of ["", "malformed", "e30.e30.signature", "e30.!.signature"])
+    await assert.rejects(
+      run(revokePushSession(config, token).pipe(Effect.provideService(Fetch.Fetch, transport))),
+    );
+  assert.equal(requests, 0);
+}
 
 test("signed session claims fence HTTP enrollment after idempotent logout", async (t) => {
   const f = await fixture(t, [
@@ -39,6 +76,7 @@ test("signed session claims fence HTTP enrollment after idempotent logout", asyn
     revoked: true,
   });
   assert.deepEqual(await (await revoke()).json(), receipt);
+  await verifyNativeCleanup(f, receipt);
   assert.equal((await save()).status, 403);
   assert.equal(
     f.db.sql("select count(*) from private.nest_push_devices where token is not null"),

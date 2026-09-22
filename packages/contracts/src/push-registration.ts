@@ -1,5 +1,11 @@
 import * as Schema from "effect/Schema";
 const Uuid = Schema.String.check(Schema.isUUID());
+export const PushSessionRevocation = Schema.Struct({
+  version: Schema.Literal(1),
+  actorId: Uuid,
+  sessionId: Uuid,
+  revoked: Schema.Literal(true),
+});
 // Opaque provider data: no trimming or case normalization of device tokens.
 export const PushToken = Schema.String.check(
   Schema.isMinLength(1),
