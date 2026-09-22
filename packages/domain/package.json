@@ -9,7 +9,8 @@
     "./availability": "./src/availability.ts",
     "./routines": "./src/routines/index.ts",
     "./meal-week": "./src/meal-week.ts",
-    "./meal-ingredients": "./src/meal-ingredients.ts"
+    "./meal-ingredients": "./src/meal-ingredients.ts",
+    "./renewals": "./src/renewals.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit",

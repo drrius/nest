@@ -84,7 +84,8 @@
     "./legacy-dismissal-approval": "./src/legacy-dismissal-approval.ts",
     "./legacy-adoption": "./src/legacy-adoption.ts",
     "./legacy-adoption-command": "./src/legacy-adoption-command.ts",
-    "./legacy-adoption-approval": "./src/legacy-adoption-approval.ts"
+    "./legacy-adoption-approval": "./src/legacy-adoption-approval.ts",
+    "./renewals": "./src/renewals.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
