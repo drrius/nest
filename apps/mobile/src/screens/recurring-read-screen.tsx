@@ -12,6 +12,9 @@ import {
 import type { RecurringReadRuntime } from "../money/recurring-read-runtime";
 import { RecurringReadContent } from "../money/recurring-read-content";
 import { useSaveActivity } from "../money/use-save-activity";
+export function LegacyRecurringScreen() {
+  return <ReadScreen target={{ kind: "legacy", after: null }} />;
+}
 export function RecurringListScreen() {
   return <ReadScreen target={{ kind: "list", after: null }} />;
 }
@@ -44,7 +47,7 @@ function ReadScreen({ target }: { target: RecurringReadTarget }) {
         <OwnedRead
           {...props}
           target={target}
-          key={`${props.account.session.lease}:${target.kind === "list" ? "list" : `${target.kind}:${target.ruleId}`}`}
+          key={`${props.account.session.lease}:${target.kind === "list" || target.kind === "legacy" ? target.kind : `${target.kind}:${target.ruleId}`}`}
         />
       )}
     </MoneyScreenGate>

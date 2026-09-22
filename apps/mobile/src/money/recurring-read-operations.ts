@@ -1,13 +1,16 @@
+import type { LegacyRecurringList } from "@nest/contracts/legacy-recurring";
 import type { RecurringHistory } from "@nest/contracts/recurring-history";
 import * as Effect from "effect/Effect";
 import type { RecurringDetail, RecurringList } from "@nest/contracts/recurring-read";
 import type { OfflineAccount } from "../offline/owner.ts";
 import type { MoneyClient } from "./client.ts";
 export type RecurringReadTarget =
+  | { kind: "legacy"; after: string | null }
   | { kind: "list"; after: string | null }
   | { kind: "detail"; ruleId: string }
   | { kind: "history"; ruleId: string; before: string | null };
 export type RecurringReadEntry =
+  | { kind: "legacy"; value: typeof LegacyRecurringList.Type }
   | { kind: "list"; value: RecurringList }
   | { kind: "detail"; value: RecurringDetail }
   | { kind: "history"; value: RecurringHistory };
@@ -28,6 +31,10 @@ function readTarget(
   client: MoneyClient,
   target: RecurringReadTarget,
 ): Effect.Effect<RecurringReadEntry, import("../preferences/client.ts").PreferenceFailure> {
+  if (target.kind === "legacy")
+    return client
+      .legacyRecurring(target.after)
+      .pipe(Effect.map((value) => ({ kind: "legacy" as const, value })));
   if (target.kind === "list")
     return client
       .recurringRules(target.after)

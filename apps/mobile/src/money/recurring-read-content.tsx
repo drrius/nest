@@ -1,3 +1,4 @@
+import { LegacyRecurringContent } from "./legacy-recurring-content";
 import { RecurringHistoryContent } from "./recurring-history-content";
 import { FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
@@ -129,6 +130,8 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
   );
 }
 export function RecurringReadContent({ runtime, view, actor }: Props) {
+  if (view.target.kind === "legacy")
+    return <LegacyRecurringContent runtime={runtime} view={view} actor={actor} />;
   if (view.target.kind === "history")
     return <RecurringHistoryContent runtime={runtime} view={view} actor={actor} />;
   if (view.target.kind === "detail")
@@ -143,6 +146,7 @@ export function RecurringReadContent({ runtime, view, actor }: Props) {
   return <RuleList runtime={runtime} view={view} />;
 }
 function RuleList({ runtime, view }: Omit<Props, "actor">) {
+  const router = useRouter();
   const colors = useQuiet();
   const page = view.entry?.kind === "list" ? view.entry.value : null;
   return (
@@ -153,7 +157,15 @@ function RuleList({ runtime, view }: Omit<Props, "actor">) {
       data={page?.rules ?? []}
       keyExtractor={(rule) => rule.ruleId}
       renderItem={({ item }) => <RuleRow rule={item} />}
-      ListHeaderComponent={<ReadStatus runtime={runtime} view={view} />}
+      ListHeaderComponent={
+        <View style={{ gap: space.small }}>
+          <ReadStatus runtime={runtime} view={view} />
+          <NativeAction
+            label="View legacy recurring expenses"
+            onPress={() => router.push("/legacy-recurring")}
+          />
+        </View>
+      }
       ListEmptyComponent={page ? <Note>No recurring expenses on this page.</Note> : null}
       ListFooterComponent={
         <PageNavigation runtime={runtime} view={view} next={page?.next ?? null} />
