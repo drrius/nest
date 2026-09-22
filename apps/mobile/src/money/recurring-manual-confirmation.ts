@@ -1,3 +1,4 @@
+import type { RecurringConfiguration } from "@nest/contracts/recurring";
 import type { MoneyDetail } from "@nest/contracts/money-detail";
 import type { RecurringRule } from "@nest/contracts/recurring-read";
 import { firstUncoveredRecurringCycle } from "@nest/domain/money";
@@ -88,7 +89,11 @@ export function manualConfirmationCurrent(
   );
 }
 export function manualConfirmationText(
-  value: NonNullable<ReturnType<typeof manualContext>>,
+  value: {
+    detail: typeof MoneyDetail.Type;
+    target: { rule: { ruleId: string; configuration: RecurringConfiguration } };
+    cycle: { dueOn: string; startsOn: string; through: string };
+  },
   actor: string,
 ) {
   const { detail, target, cycle } = value,

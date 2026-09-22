@@ -1,3 +1,4 @@
+import { manualCycleContext } from "./recurring-manual-context.ts";
 import { manualCycleApprovals } from "./recurring-manual-approval.ts";
 import * as Effect from "effect/Effect";
 import { ApiFailure } from "../errors.ts";
@@ -13,9 +14,11 @@ export function manualCycleApprovalRoute(
     const url = new URL(request.url),
       params = url.searchParams;
     const commands = manualCycleApprovals(config, caller);
-    if (url.pathname === "/v1/money/recurring/manual/approval") {
+    if (request.method === "GET") {
       if (params.size !== 1 || !params.has("approvalId"))
         return yield* new ApiFailure({ code: "invalid_request" });
+      if (url.pathname.endsWith("/context"))
+        return yield* manualCycleContext(config, caller, { approvalId: params.get("approvalId") });
       return yield* commands.read({ approvalId: params.get("approvalId") });
     }
     if (params.size) return yield* new ApiFailure({ code: "invalid_request" });

@@ -1,3 +1,4 @@
+import type { ManualCycleApproval } from "../money/recurring-manual-approval-client";
 import type { ManualCycleDecision } from "../money/recurring-manual-approval-client";
 import type { ManualCycleSave } from "../money/recurring-manual-client";
 import type { VariableCycleDecision } from "../money/recurring-variable-approval-client";
@@ -109,6 +110,8 @@ export function sessionMoney(
 
 function sessionRecurring(client: MoneyClient) {
   return {
+    manualCycleContext: (input: ManualCycleApproval) =>
+      client.manualCycleContext(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     manualCycleApproval: (approvalId: string) =>
       client
         .manualCycleApproval(approvalId)
