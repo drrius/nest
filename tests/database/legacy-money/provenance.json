@@ -90,6 +90,12 @@
       "source": "supabase/migrations/20260904224746_household_attachments.sql",
       "sha256": "11f7e4f77a4ee314624605ad003910fdf3b21329ab539cec1e400292034e9321",
       "selection": "Complete attachment registry, storage policies and financial claim statements; omits only unrelated shopping/completion triggers. See money-receipt-audit.md."
+    },
+    {
+      "file": "draft-confirmation.sql",
+      "source": "supabase/migrations/20260812090000_notifications_realtime.sql",
+      "sha256": "b0eff1e94777ef74d168d698566c9d5be9c4ef067921147824275cc9ee7d6bdd",
+      "selection": "Complete final confirm_expense_draft statement for native-versus-legacy race verification only; see money-legacy-confirmation-audit.md."
     }
   ]
 }
