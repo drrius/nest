@@ -3,6 +3,10 @@ export function financialProposalTools<T>(
   write: (name: AssistantAction, description: string) => T,
 ) {
   return {
+    proposeLegacyDismissal: write(
+      "proposeLegacyDismissal",
+      "Propose dismissal only when the member explicitly asks to dismiss a specific retained legacy draft. Read the legacy rule inventory and its original draft rows first; distinguish similar descriptions with the original date, amount, payer and draft reference. Pass only the known draftId. The server binds its current raw content and original rule; never invent a fingerprint, edit its terms or infer consent. Only an unposted pending recurring-origin draft without a financial event is eligible. Posted, linked, shopping-origin or discrepant rows need reconciliation. This creates a PRIVATE PENDING proposal only. The member must open the native card and confirm the freshly matched draft. Dismissal keeps history and changes no balance, financial event or future recurring rule. It does not pause or cancel recurring generation. Never call Save, execute, decision or withdrawal endpoints, claim dismissal is complete from a proposal, or treat conversation as approval. Changed content requires a new proposal and review.",
+    ),
     proposeManualCycle: write(
       "proposeManualCycle",
       "Propose linking an existing expense to a recurring cycle only when the member explicitly selects that exact existing expense and rule. Read current Money detail and recurring rule first; never infer matches from descriptions or invent IDs. Bind sourceEventId, ruleId, expectedRevision and the current due date. The source must be an unreversed expense/replacement in this civil period, not already linked to another cycle. Explain any difference between the original expense's amount, payer or split and the future rule. This only creates a private pending proposal. The member must open its native card and explicitly confirm consuming this cycle. No expense, payment, balance change or mandate change is created. Never infer consent from chat or call Save, execute or decision endpoints. Changed source/rule needs a new review.",

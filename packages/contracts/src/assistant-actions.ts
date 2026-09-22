@@ -1,3 +1,5 @@
+import { LegacyDraftContextQuery } from "./legacy-draft-dismissal.ts";
+import { LegacyDismissalApprovalEnvelope } from "./legacy-dismissal-approval.ts";
 import { ManualCycleInput } from "./recurring-manual.ts";
 import { ManualCycleApprovalEnvelope } from "./recurring-manual-approval.ts";
 import { VariableCycleInput } from "./recurring-variable.ts";
@@ -80,6 +82,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  proposeLegacyDismissal: LegacyDraftContextQuery,
   proposeManualCycle: ManualCycleInput,
   proposeVariableCycle: VariableCycleInput,
   proposeRecurringResume: RecurringResumeInput,
@@ -131,6 +134,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  proposeLegacyDismissal: LegacyDismissalApprovalEnvelope,
   proposeManualCycle: ManualCycleApprovalEnvelope,
   proposeVariableCycle: VariableCycleApprovalEnvelope,
   proposeRecurringResume: RecurringResumeApprovalEnvelope,

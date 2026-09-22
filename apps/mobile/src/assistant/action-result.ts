@@ -1,3 +1,4 @@
+import { LegacyDismissalApprovalEnvelope } from "@nest/contracts/legacy-dismissal-approval";
 import { ManualCycleApprovalEnvelope } from "@nest/contracts/recurring-manual-approval";
 import { VariableCycleApprovalEnvelope } from "@nest/contracts/recurring-variable-approval";
 import { RecurringResumeApprovalEnvelope } from "@nest/contracts/recurring-resume-approval";
@@ -30,6 +31,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  proposeLegacyDismissal: "Draft dismissal proposed · not dismissed yet",
   proposeManualCycle: "Expense linkage proposed · not linked yet",
   proposeVariableCycle: "Variable bill proposal created · no expense recorded",
   proposeRecurringResume: "Resumption proposal created · this action changed no rule or expense",
@@ -75,6 +77,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  proposeLegacyDismissal: "/finances",
   proposeManualCycle: "/finances",
   proposeVariableCycle: "/finances",
   proposeRecurringResume: "/finances",
@@ -333,6 +336,13 @@ function recurringHref(action: AssistantAction, value: object) {
 }
 
 function cycleHref(action: AssistantAction, value: object) {
+  if (action === "proposeLegacyDismissal")
+    return Schema.is(LegacyDismissalApprovalEnvelope)(value)
+      ? {
+          pathname: "/legacy-dismissal-approval" as const,
+          params: { approvalId: value.approval.id },
+        }
+      : null;
   if (action === "proposeManualCycle")
     return Schema.is(ManualCycleApprovalEnvelope)(value)
       ? {
