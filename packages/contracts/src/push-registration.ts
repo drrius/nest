@@ -93,3 +93,23 @@ export function matchesPushDeviceReceipt(
     receipt.commandDigest === expected.commandDigest
   );
 }
+
+export const PushDeviceRecovery = Schema.Struct({
+  version: Schema.Literal(1),
+  actorId: Uuid,
+  householdId: Uuid,
+  operationId: Uuid,
+  status: Schema.Literals(["unresolved", "recorded"]),
+  receipt: Schema.NullOr(PushDeviceReceipt),
+}).check(
+  Schema.makeFilter((value) => {
+    if (value.status === "unresolved") return value.receipt === null;
+    const receipt = value.receipt;
+    return (
+      receipt !== null &&
+      receipt.actorId === value.actorId &&
+      receipt.householdId === value.householdId &&
+      receipt.operationId === value.operationId
+    );
+  }),
+);

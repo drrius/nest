@@ -103,3 +103,35 @@ grant execute on function public.nest_save_push_device(uuid,jsonb) to authentica
 
 create trigger nest_push_device_operations_immutable before update or delete on private.nest_push_device_operations
   for each row execute function private.reject_financial_history_change();
+
+create function public.nest_read_push_device(p_household uuid,p_installation uuid)
+returns jsonb language plpgsql stable security definer set search_path='' as $$
+declare v_actor uuid:=auth.uid(); v_device private.nest_push_devices;
+begin
+  if p_installation is null then raise exception 'Invalid installation' using errcode='22023'; end if;
+  if not exists(select 1 from public.household_members where household_id=p_household and user_id=v_actor) then
+    raise exception 'Membership required' using errcode='42501'; end if;
+  select * into v_device from private.nest_push_devices where installation_id=p_installation
+    and actor_id=v_actor and household_id=p_household;
+  return jsonb_build_object('version',1,'actorId',v_actor,'householdId',p_household,
+    'installationId',p_installation,'revision',v_device.revision,'enabled',v_device.token is not null);
+end;
+$$;
+revoke all on function public.nest_read_push_device(uuid,uuid) from public,anon,authenticated,service_role;
+grant execute on function public.nest_read_push_device(uuid,uuid) to authenticated;
+
+create function public.nest_read_push_device_operation(p_household uuid,p_operation uuid)
+returns jsonb language plpgsql stable security definer set search_path='' as $$
+declare v_actor uuid:=auth.uid(); v_receipt jsonb;
+begin
+  if p_operation is null then raise exception 'Invalid operation' using errcode='22023'; end if;
+  if not exists(select 1 from public.household_members where household_id=p_household and user_id=v_actor) then
+    raise exception 'Membership required' using errcode='42501'; end if;
+  select receipt into v_receipt from private.nest_push_device_operations
+    where actor_id=v_actor and household_id=p_household and operation_id=p_operation;
+  return jsonb_build_object('version',1,'actorId',v_actor,'householdId',p_household,'operationId',p_operation,
+    'status',case when v_receipt is null then 'unresolved' else 'recorded' end,'receipt',v_receipt);
+end;
+$$;
+revoke all on function public.nest_read_push_device_operation(uuid,uuid) from public,anon,authenticated,service_role;
+grant execute on function public.nest_read_push_device_operation(uuid,uuid) to authenticated;

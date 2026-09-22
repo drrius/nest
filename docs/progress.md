@@ -2263,3 +2263,11 @@ Five focused contract/database cases pass, including private-table ACLs, registe
 ### Enrollment concurrency and rollback verification — 23 September
 
 Two enrollment storage cases now pass, including four concurrent identical requests yielding one device and one receipt; a forced receipt constraint failure rolls back both token and revision; immutable receipts reject deletion; and membership removal blocks even historical replay. SQL/client validation and contract tests passed in the preceding run; contracts typechecking and final scoped lint pass (test-only advisories remain). Security advisors on the disposable fixture report no issues for the new tables/RPC. These results do not establish device ownership proof, notification delivery, HTTP error scrubbing, or sign-out behavior. The storage increment still requires exact-commit Sol review and CI.
+
+### Registration reads and recovery — 23 September, draft
+
+Authenticated RPCs now return owner-scoped current device state and immutable operation recovery without tokens. Unknown or another member's installation returns no revision/enabled state; another member's operation remains unresolved. Membership is checked before either read. A strict Effect recovery envelope binds receipt actor, household and operation. Three focused database cases pass together: the new actual SQL/schema-decoded read/recovery journey plus both enrollment storage cases. Partner, outsider and revoked-member reads are covered. Contracts types, scoped lint and disposable security advisors pass. HTTP/native adapters and durable enrollment recovery are not implemented yet; updated exact-commit review/CI remain required.
+
+### Authenticated push service adapter — 23 September, draft
+
+The API-side Effect adapter now forwards the verified caller token to the three finite registration RPCs, strictly decodes responses and binds actor/household plus requested installation/operation. Save recomputes SHA-256 over the exact canonical command before accepting the token-free receipt. Existing request handling maps database errors to finite public categories without exposing token-bearing database details. API typechecking and scoped lint pass (existing suggestions/advisories remain). This adapter has not yet received actual HTTP/PostgREST integration tests or route wiring; it is not counted as a working transport.
