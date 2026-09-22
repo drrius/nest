@@ -2271,3 +2271,7 @@ Authenticated RPCs now return owner-scoped current device state and immutable op
 ### Authenticated push service adapter — 23 September, draft
 
 The API-side Effect adapter now forwards the verified caller token to the three finite registration RPCs, strictly decodes responses and binds actor/household plus requested installation/operation. Save recomputes SHA-256 over the exact canonical command before accepting the token-free receipt. Existing request handling maps database errors to finite public categories without exposing token-bearing database details. API typechecking and scoped lint pass (existing suggestions/advisories remain). This adapter has not yet received actual HTTP/PostgREST integration tests or route wiring; it is not counted as a working transport.
+
+### Registration HTTP path — 23 September
+
+Finite authenticated routes now expose registration save, installation state and operation recovery through the Effect adapter. A real HTTP → API → PostgREST → disposable PostgreSQL journey passes for enrollment, token-free receipt recovery and enabled-state reads; injected actor fields, duplicate query parameters, changed operation intent and unauthenticated reads are rejected. API typechecking and scoped lint pass with existing advisories. Native client receipt verification, durable operation storage, permission interaction, rotation and sign-out recovery remain unfinished; this is not device enrollment acceptance. Exact-commit Sol review and CI remain required.

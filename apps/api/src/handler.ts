@@ -1,3 +1,4 @@
+import { pushDeviceRoute } from "./push/route.ts";
 import { renewalReminderRoute } from "./renewal-reminders/route.ts";
 import { renewalRoute } from "./renewals/route.ts";
 import { moneyRoute } from "./money/route.ts";
@@ -43,6 +44,7 @@ function route(
       meals: () => mealRoute(request, config, caller, proposals),
       routines: () => routineRoute(request, config, caller),
       money: () => moneyRoute(request, config, caller),
+      "push-devices": () => pushDeviceRoute(request, config, caller),
       "renewal-reminders": () => renewalReminderRoute(request, config, caller),
       renewals: () => renewalRoute(request, config, caller),
     };
@@ -142,6 +144,9 @@ function preferenceRoute(
 }
 
 const methods: Record<string, string> = {
+  "/v1/push-devices/detail": "GET",
+  "/v1/push-devices/operation": "GET",
+  "/v1/push-devices/save": "POST",
   "/v1/renewal-reminders/detail": "GET",
   "/v1/renewal-reminders/operation": "GET",
   "/v1/renewal-reminders/save": "POST",
