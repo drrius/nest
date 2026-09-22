@@ -61,7 +61,7 @@ function ReadScreen({ target }: { target: RecurringReadTarget }) {
         <OwnedRead
           {...props}
           target={target}
-          key={`${props.account.session.lease}:${target.kind === "list" || target.kind === "legacy" ? target.kind : `${target.kind}:${target.ruleId}`}`}
+          key={`${props.account.session.lease}:${target.kind === "list" || target.kind === "legacy" ? target.kind : `${target.kind}:${"draftId" in target ? target.draftId : target.ruleId}`}`}
         />
       )}
     </MoneyScreenGate>

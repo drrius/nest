@@ -58,6 +58,12 @@ function DraftRow({ row, actor }: { row: typeof LegacyRecurringDraft.Type; actor
         ) : (
           <Note>No financial event is linked to this draft.</Note>
         )}
+        <NativeAction
+          label="Review dismissal or saved request"
+          onPress={() =>
+            router.push({ pathname: "/legacy-dismissal", params: { draftId: row.draftId } })
+          }
+        />
         <Note>Draft reference: {row.draftId}</Note>
       </Section>
     </Card>

@@ -1,3 +1,5 @@
+import * as LegacyDismissals from "./legacy-dismissal-saves.ts";
+import type { LegacyDismissalSaveAttempt } from "../money/legacy-dismissal-save-attempt.ts";
 import * as VariableCycleSaves from "./variable-cycle-saves.ts";
 import type { VariableCycleSaveAttempt } from "../money/recurring-variable-save-attempt.ts";
 import * as ManualCycleSaves from "./manual-cycle-saves.ts";
@@ -33,5 +35,23 @@ function manualCycleSaveStore(database: Database) {
 }
 
 export function cycleSaveStore(database: Database) {
-  return { ...variableCycleSaveStore(database), ...manualCycleSaveStore(database) };
+  return {
+    ...variableCycleSaveStore(database),
+    ...manualCycleSaveStore(database),
+    ...legacyDismissalStore(database),
+  };
+}
+
+function legacyDismissalStore(database: Database) {
+  return {
+    readLegacyDismissalSave: (session: Session) =>
+      run(() => LegacyDismissals.readLegacyDismissalSave(database, session)),
+    stageLegacyDismissalSave: (
+      session: Session,
+      attempt: LegacyDismissalSaveAttempt,
+      current: () => boolean,
+    ) => run(() => LegacyDismissals.stageLegacyDismissalSave(database, session, attempt, current)),
+    clearLegacyDismissalSave: (session: Session, attempt: LegacyDismissalSaveAttempt) =>
+      run(() => LegacyDismissals.clearLegacyDismissalSave(database, session, attempt)),
+  };
 }
