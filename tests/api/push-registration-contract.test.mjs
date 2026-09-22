@@ -84,7 +84,13 @@ test("registration receipt binds every command field and account without returni
     action: "register",
     commandDigest: digest(command),
   };
-  assert.ok(matchesPushDeviceReceipt(receipt, command, actor, home, digest(command)));
+  assert.ok(
+    matchesPushDeviceReceipt(receipt, command, {
+      actorId: actor,
+      householdId: home,
+      commandDigest: digest(command),
+    }),
+  );
   for (const changed of [
     { ...command, operationId: id(8) },
     { ...command, installationId: id(8) },
@@ -98,16 +104,31 @@ test("registration receipt binds every command field and account without returni
     },
   ]) {
     assert.notEqual(digest(changed), receipt.commandDigest);
-    assert.equal(matchesPushDeviceReceipt(receipt, changed, actor, home, digest(changed)), false);
+    assert.equal(
+      matchesPushDeviceReceipt(receipt, changed, {
+        actorId: actor,
+        householdId: home,
+        commandDigest: digest(changed),
+      }),
+      false,
+    );
   }
   assert.notEqual(digest(command, id(8)), receipt.commandDigest);
   assert.notEqual(digest(command, actor, id(8)), receipt.commandDigest);
   assert.equal(
-    matchesPushDeviceReceipt(receipt, command, id(8), home, digest(command, id(8))),
+    matchesPushDeviceReceipt(receipt, command, {
+      actorId: id(8),
+      householdId: home,
+      commandDigest: digest(command, id(8)),
+    }),
     false,
   );
   assert.equal(
-    matchesPushDeviceReceipt(receipt, command, actor, id(8), digest(command, actor, id(8))),
+    matchesPushDeviceReceipt(receipt, command, {
+      actorId: actor,
+      householdId: id(8),
+      commandDigest: digest(command, actor, id(8)),
+    }),
     false,
   );
   assert.equal(JSON.stringify(receipt).includes(command.token), false);

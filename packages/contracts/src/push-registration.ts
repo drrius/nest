@@ -76,18 +76,16 @@ export function pushDeviceDigestInput(
 export function matchesPushDeviceReceipt(
   receipt: typeof PushDeviceReceipt.Type,
   command: PushDeviceCommand,
-  actorId: string,
-  householdId: string,
-  commandDigest: string,
+  expected: { actorId: string; householdId: string; commandDigest: string },
 ): boolean {
   const value = canonicalPushDevice(command);
   return (
-    receipt.actorId === actorId.toLowerCase() &&
-    receipt.householdId === householdId.toLowerCase() &&
+    receipt.actorId === expected.actorId.toLowerCase() &&
+    receipt.householdId === expected.householdId.toLowerCase() &&
     receipt.operationId === value.operationId &&
     receipt.installationId === value.installationId &&
     receipt.expectedRevision === value.expectedRevision &&
     receipt.action === value.action &&
-    receipt.commandDigest === commandDigest
+    receipt.commandDigest === expected.commandDigest
   );
 }
