@@ -4,7 +4,7 @@ const Uuid = Schema.String.check(Schema.isUUID());
 export const PushToken = Schema.String.check(
   Schema.isMinLength(1),
   Schema.isMaxLength(4096),
-  Schema.isPattern(/^\S+$(?![\s\S])/),
+  Schema.isPattern(/^[\x21-\x7e]+$(?![\s\S])/),
 );
 const Identity = {
   operationId: Uuid,
@@ -42,7 +42,11 @@ export const PushDeviceReceipt = Schema.Struct({
   revision: Uuid,
   action: Schema.Literals(["register", "disable"]),
   commandDigest: Schema.String.check(Schema.isPattern(/^[0-9a-f]{64}$(?![\s\S])/)),
-}).check(Schema.makeFilter((value) => value.revision !== value.expectedRevision));
+}).check(
+  Schema.makeFilter(
+    (value) => value.revision.toLowerCase() !== value.expectedRevision?.toLowerCase(),
+  ),
+);
 export const PushDeviceQuery = Schema.Struct({ installationId: Uuid });
 export const PushDeviceOperationQuery = Schema.Struct({ operationId: Uuid });
 export const PushDeviceState = Schema.Struct({

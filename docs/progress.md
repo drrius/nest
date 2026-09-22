@@ -2247,3 +2247,19 @@ Registration contracts define versioned, unambiguous UTF-8 digest input containi
 Scheduling CI `35793012861` for clean-reviewed `b9ec3c7` was still running at the latest check; it remains unmerged.
 
 The first receipt-matcher lint run caught five parameters against the configured maximum of four; the earlier lint-pass sentence was premature. The fix groups authenticated identity and computed digest into one expected-context argument. The final scoped lint exits successfully (one test-only crypto advisory), and all three tests plus contracts typechecking pass after that fix. No limit was disabled.
+
+### Push registration server validation — 23 September, draft
+
+A new gated private SQL validator rejects excess identity/authority fields, missing or malformed baselines, invalid actions and token-bearing disable commands. Client/server token validation now accepts bounded printable ASCII while preserving exact contents. The SQL SHA-256 input matches the client for registration, rotation and disable, including quoted/backslash token fixtures. Four focused contract/database cases pass together; all API roles are denied direct validator execution. This migration currently creates only private validation helpers, not storage or an enrollment RPC. Security-advisor and final review/CI checks remain required before delivery.
+
+Supabase function security documentation was checked; the changelog Markdown fetch remained unsupported. The migration scaffold initially failed because local CLI telemetry state was outside the sandbox, then succeeded through the normal approved escalation. No hosted migration was executed.
+
+### Private enrollment storage draft — 23 September
+
+The gated push migration now includes private device/token rows, a unique active-token digest index, immutable token-free operation receipts, and an authenticated enrollment/disable transaction. It checks current membership before historical replay, serializes rare registration changes to avoid lock inversion, enforces installation revision/ownership, refuses takeover while another account remains active, and permits reassociation only after disable. Replaying an old successful registration returns its historical receipt without re-enabling the token. Duplicate-token rejection rolls back the operation.
+
+Five focused contract/database cases pass, including private-table ACLs, register/retry/disable/reassociate, stale revisions, changed intent, duplicate tokens, and SQL/client hashing parity. Sol's case-insensitive revision-advance finding is fixed with a regression rejecting lowercase/uppercase representations of the same UUID. Updated review, advisor checks, broader concurrency/rollback/revocation coverage and CI remain outstanding. Read/recovery endpoints, native enrollment, sign-out fencing and actual delivery remain unfinished. No hosted migration or push occurred.
+
+### Enrollment concurrency and rollback verification — 23 September
+
+Two enrollment storage cases now pass, including four concurrent identical requests yielding one device and one receipt; a forced receipt constraint failure rolls back both token and revision; immutable receipts reject deletion; and membership removal blocks even historical replay. SQL/client validation and contract tests passed in the preceding run; contracts typechecking and final scoped lint pass (test-only advisories remain). Security advisors on the disposable fixture report no issues for the new tables/RPC. These results do not establish device ownership proof, notification delivery, HTTP error scrubbing, or sign-out behavior. The storage increment still requires exact-commit Sol review and CI.

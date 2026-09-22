@@ -48,6 +48,14 @@ test("device read and receipt payloads reject tokens and impossible registration
     commandDigest: "a".repeat(64),
   };
   assert.deepEqual(decode(PushDeviceReceipt, receipt), receipt);
+  const sameRevision = "123e4567-e89b-4000-8000-000000000001";
+  assert.throws(() =>
+    decode(PushDeviceReceipt, {
+      ...receipt,
+      expectedRevision: sameRevision,
+      revision: sameRevision.toUpperCase(),
+    }),
+  );
   assert.throws(() => decode(PushDeviceReceipt, { ...receipt, token: command.token }));
   assert.throws(() => decode(PushDeviceReceipt, { ...receipt, expectedRevision: id(5) }));
   assert.throws(() =>
