@@ -1,3 +1,5 @@
+import { LegacyRecurringQuery } from "@nest/contracts/legacy-recurring";
+import { readLegacyRecurring } from "./legacy-recurring-read.ts";
 import { RecurringHistoryQuery } from "@nest/contracts/recurring-history";
 import { recurringHistory } from "./recurring-history.ts";
 import * as Effect from "effect/Effect";
@@ -8,6 +10,12 @@ import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { recurringReads } from "./recurring-read.ts";
 export function recurringReadTools(request: Request, config: IdentityConfig) {
   return {
+    listLegacyRecurringRules: effectTool({
+      description:
+        "Read retained legacy recurring rules in pages of 20. Start after=null and follow next until null. Every returned rule is legacy_draft_only: active means the old draft generator was enabled, never a Nest automatic posting mandate. Preserve its exact updatedAt version and draft counts. Posted drafts have a linked retained financial event; pending/dismissed drafts are not posted expenses. Nonzero postedWithoutEvent or unpostedWithEvent means reconciliation is needed; do not claim migration readiness or silently repair these records. This read does not adopt, opt in, generate drafts, confirm or dismiss anything. New automatic posting requires a separate explicit reviewed opt-in; do not recreate a legacy rule as an unlinked automatic rule or infer consent from old active status.",
+      input: LegacyRecurringQuery,
+      execute: (input) => read("legacy", input),
+    }),
     readRecurringHistory: effectTool({
       description:
         "Read up to 20 retained cycles for a known household recurring rule, newest due date first. Start before=null and follow next until null; one page is not the entire history. Source automatic means the approved fixed mandate posted the event; variable means a separately confirmed amount; manual means an existing expense was explicitly linked without creating another expense. amountCentimes and payerId describe the actual original expense, which may differ from the retained configuration for manual linkage. recordedBy is the mandate authorizer for automatic posting or the member who confirmed/link-recorded the cycle, not necessarily the expense payer. This is retained historical evidence, not current rule configuration or proof a payment occurred. Read the linked event with readMoneyDetail for later correction/refund relationships. This read changes no money, mandate, cycle or approval.",
@@ -27,10 +35,11 @@ export function recurringReadTools(request: Request, config: IdentityConfig) {
       execute: (input) => read("detail", input),
     }),
   };
-  function read(kind: "list" | "detail" | "history", input: unknown) {
+  function read(kind: "list" | "detail" | "history" | "legacy", input: unknown) {
     return Effect.gen(function* () {
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);
+      if (kind === "legacy") return yield* readLegacyRecurring(config, { member, token }, input);
       return yield* kind === "history"
         ? recurringHistory(config, { member, token }, input)
         : recurringReads(config, { member, token })[kind](input);

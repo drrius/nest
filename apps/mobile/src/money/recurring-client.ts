@@ -1,3 +1,4 @@
+import { legacyRecurringClient } from "./legacy-recurring-client.ts";
 import { recurringHistoryClient } from "./recurring-history-client.ts";
 import { manualCycleContextClient } from "./recurring-manual-context-client.ts";
 import { manualCycleApprovalClient } from "./recurring-manual-approval-client.ts";
@@ -39,6 +40,7 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...legacyRecurringClient(apiUrl, account, credentials),
     ...recurringHistoryClient(apiUrl, account, credentials),
     ...recurringStateApprovalClient(apiUrl, account, credentials),
     ...recurringResumeClient(apiUrl, account, credentials),

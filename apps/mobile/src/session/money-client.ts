@@ -179,13 +179,21 @@ function sessionRecurring(client: MoneyClient) {
         .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     decideRecurring: (input: RecurringDecision) =>
       client.decideRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    ...sessionRecurringReads(client),
+    saveRecurring: (input: RecurringSave) =>
+      client.saveRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+  };
+}
+
+function sessionRecurringReads(client: MoneyClient) {
+  return {
+    legacyRecurring: (after: string | null = null) =>
+      client.legacyRecurring(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringHistory: (input: typeof RecurringHistoryQuery.Type) =>
       client.recurringHistory(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRules: (after: string | null = null) =>
       client.recurringRules(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRule: (ruleId: string) =>
       client.recurringRule(ruleId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
-    saveRecurring: (input: RecurringSave) =>
-      client.saveRecurring(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };
 }
