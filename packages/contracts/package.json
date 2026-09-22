@@ -74,7 +74,8 @@
     "./recurring-resume": "./src/recurring-resume.ts",
     "./recurring-resume-approval": "./src/recurring-resume-approval.ts",
     "./recurring-resume-read": "./src/recurring-resume-read.ts",
-    "./recurring-state-read": "./src/recurring-state-read.ts"
+    "./recurring-state-read": "./src/recurring-state-read.ts",
+    "./recurring-history": "./src/recurring-history.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

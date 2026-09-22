@@ -1,3 +1,5 @@
+import { RecurringHistoryQuery } from "@nest/contracts/recurring-history";
+import { recurringHistory } from "./recurring-history.ts";
 import * as Effect from "effect/Effect";
 import { RecurringListQuery, RecurringDetailQuery } from "@nest/contracts/recurring-read";
 import { effectTool, CommandFailure } from "@nest/ai/tool";
@@ -6,6 +8,12 @@ import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { recurringReads } from "./recurring-read.ts";
 export function recurringReadTools(request: Request, config: IdentityConfig) {
   return {
+    readRecurringHistory: effectTool({
+      description:
+        "Read up to 20 retained cycles for a known household recurring rule, newest due date first. Start before=null and follow next until null; one page is not the entire history. Source automatic means the approved fixed mandate posted the event; variable means a separately confirmed amount; manual means an existing expense was explicitly linked without creating another expense. amountCentimes and payerId describe the actual original expense, which may differ from the retained configuration for manual linkage. recordedBy is the mandate authorizer for automatic posting or the member who confirmed/link-recorded the cycle, not necessarily the expense payer. This is retained historical evidence, not current rule configuration or proof a payment occurred. Read the linked event with readMoneyDetail for later correction/refund relationships. This read changes no money, mandate, cycle or approval.",
+      input: RecurringHistoryQuery,
+      execute: (input) => read("history", input),
+    }),
     listRecurringRules: effectTool({
       description:
         "Read up to 50 current household recurring expense configurations. Start with after=null and follow next until null; never infer all rules from one page. Includes active, paused and cancelled configurations, authorization time and planned next date. Scheduled posting is not active yet: these rules do not currently create expenses. Planned dates and active status do not prove a posted expense. Fixed amounts are exact CHF integer centime strings; variable rules have no authorized amount/split. This read grants no mandate, creates no cycle, changes no rule and posts no expense. For setup/edit or interrupted Save recovery, direct the user to Money → Set up recurring expense, or an existing rule’s Edit recurring configuration action.",
@@ -19,11 +27,13 @@ export function recurringReadTools(request: Request, config: IdentityConfig) {
       execute: (input) => read("detail", input),
     }),
   };
-  function read(kind: "list" | "detail", input: unknown) {
+  function read(kind: "list" | "detail" | "history", input: unknown) {
     return Effect.gen(function* () {
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);
-      return yield* recurringReads(config, { member, token })[kind](input);
+      return yield* kind === "history"
+        ? recurringHistory(config, { member, token }, input)
+        : recurringReads(config, { member, token })[kind](input);
     }).pipe(
       Effect.provide(supabaseIdentity(config)),
       Effect.mapError(
