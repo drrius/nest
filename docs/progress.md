@@ -2201,3 +2201,19 @@ A real concurrent batch regression now passes with 1,001 synthetic reminders: ea
 ### Scheduling/outbox candidate verification
 
 Two disposable PostgreSQL tests verify due-time/DST/recipient filtering/invalidation and concurrent 1,001-item bounded materialization/cancellation. Scoped lint and full formatting pass; security advisors on the complete disposable fixture report no issues. No client or service-role access is granted to these private worker primitives. This increment requires exact Sol review/CI; claim/send fencing, device tokens, push delivery/receipts and hosted orchestration remain unfinished.
+
+Audited legacy Web Push delivery policy/adapter and recorded the native boundary in `docs/native-rewrite/push-delivery-audit.md`. The VAPID/HTTP adapter is incompatible with Expo/APNs and was not copied. Identified required per-device revision ownership, ticket/receipt distinctions, unknown-send handling, send-time authorization and privacy-safe routing payloads. Native notification dependency, registration and delivery are still absent; the audit is preparation rather than completed push functionality.
+
+Native push preparation now pins `expo-notifications@57.0.19`, matching the installed Expo SDK bundled recommendation, and updates `pnpm-lock.yaml` plus the config plugin. An Effect adapter obtains permission/token only when explicitly invoked, validates the configured EAS project ID and maps failures without exposing token/error contents. It is not yet connected to a screen or backend registration. Mobile typechecking passes; actual native permission/token execution requires a rebuilt development binary and Apple/APNs setup/device verification. No permission prompt, token enrollment or push was performed here.
+
+### Scheduling review fixes — 23 September, in progress
+
+Sol's cancelled-occurrence finding is reproduced by a real PostgreSQL regression: mute → cancel → unmute previously returned zero materialized reminders despite an eligible candidate. The working-tree fix permits conflict updates only from cancelled to pending after current candidate eligibility checks; pending and sent identities remain deduplicated. The updated due-time and concurrent batch tests both pass, including a sent-occurrence mute/unmute regression. No delivery worker exists yet; materialization is not send authorization.
+
+The second review finding remains open: limiting inserts to 500 does not bound the global candidate scan. A bounded scan/projection design and membership leave/rejoin regression are still required, followed by exact-commit Sol rereview and CI. This draft is not merged or delivery-ready. Native push enrollment preparation remains independent uncommitted work; no notification was sent.
+
+### Bounded materialization draft — 23 September
+
+Materialization now holds a per-window cursor lock, reads at most 250 reminder keys through the composite primary key, and checks each candidate by exact household/item identity. At most two configured recipients produce 500 writes per call. Cursor and outbox changes commit together; concurrent calls advance separate pages. A short page resets the cursor so later sweeps revisit newly inserted earlier keys and changed consent. Zero inserted rows does not establish sweep completion. Future scheduler activation must keep visiting the window and define retention/catch-up policy for scan rows.
+
+Both focused PostgreSQL cases pass after this change; the 1,001-record case additionally proves that two concurrent calls advance exactly 500 source records. These tests do not yet instrument query-plan work, cover membership leave/rejoin, or establish a complete delivery lifecycle. Cancellation scanning still needs examination for the analogous sparse-obsolete-work case. Exact-commit review and CI remain required; no scheduling job is active.

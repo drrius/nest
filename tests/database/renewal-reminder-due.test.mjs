@@ -17,7 +17,7 @@ test("reminder due time uses Zurich DST and invalidates changed, removed or disa
   );
   const candidates = () =>
     f.db.sql(
-      "select count(*) from private.nest_renewal_reminder_candidates('2028-03-01 00:00Z','2028-03-02 00:00Z')",
+      `select count(*) from private.nest_renewal_reminder_candidates('2028-03-01 00:00Z','2028-03-02 00:00Z','${id(10)}','${id(900)}')`,
     );
   assert.equal(candidates(), "1");
   const materialize = () =>
@@ -39,11 +39,15 @@ test("reminder due time uses Zurich DST and invalidates changed, removed or disa
   assert.equal(f.db.sql("select state from private.nest_renewal_reminder_outbox"), "cancelled");
   assert.equal(f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()"), "0");
 
+  verifyUnmute(f, candidates, materialize);
+
   f.db.sql("delete from public.nest_notification_preferences");
   assert.equal(candidates(), "0");
   assert.throws(
     () =>
-      f.db.sql("select * from private.nest_renewal_reminder_candidates('2028-03-01','2028-03-03')"),
+      f.db.sql(
+        `select * from private.nest_renewal_reminder_candidates('2028-03-01','2028-03-03','${id(10)}','${id(900)}')`,
+      ),
     /Invalid reminder window/,
   );
   const due = () =>
@@ -65,3 +69,26 @@ test("reminder due time uses Zurich DST and invalidates changed, removed or disa
   );
   assert.equal(due(), "");
 });
+
+function verifyUnmute(f, candidates, materialize) {
+  // A temporary recipient mute must not permanently consume an unsent occurrence.
+  f.db.sql(
+    "update public.nest_notification_preferences set item_reminders_enabled=true,revision=revision+1",
+  );
+  assert.equal(candidates(), "1");
+  assert.equal(materialize(), "1", "unmuting must restore the unsent reminder");
+  assert.equal(
+    f.db.sql("select count(*) from private.nest_renewal_reminder_outbox where state='pending'"),
+    "1",
+  );
+  assert.equal(materialize(), "0", "restoration must remain idempotent");
+  f.db.sql("update private.nest_renewal_reminder_outbox set state='sent'");
+  f.db.sql(
+    "update public.nest_notification_preferences set item_reminders_enabled=false,revision=revision+1",
+  );
+  assert.equal(f.db.sql("select private.nest_cancel_obsolete_renewal_reminders()"), "0");
+  f.db.sql(
+    "update public.nest_notification_preferences set item_reminders_enabled=true,revision=revision+1",
+  );
+  assert.equal(materialize(), "0", "already sent occurrences must never be restored");
+}

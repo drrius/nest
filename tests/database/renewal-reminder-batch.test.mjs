@@ -19,6 +19,13 @@ test("concurrent bounded outbox runs reach every identity once and cancel obsole
     "select private.nest_materialize_renewal_reminders('2028-03-01 00:00Z','2028-03-02 00:00Z')";
   const first = await Promise.all([f.db.concurrent(materialize), f.db.concurrent(materialize)]);
   for (const value of first) assert.ok(Number(value.stdout) <= 500);
+  assert.equal(
+    f.db.sql(`select count(*) from public.nest_renewal_reminders s
+      cross join private.nest_renewal_reminder_scans c
+      where (s.household_id,s.renewal_id)<=(c.after_household,c.after_renewal)`),
+    "500",
+    "concurrent workers advance disjoint source pages",
+  );
   for (let i = 0; i < 3; i++) assert.ok(Number(f.db.sql(materialize)) <= 500);
   assert.equal(f.db.sql("select count(*) from private.nest_renewal_reminder_outbox"), "1001");
   assert.equal(f.db.sql(materialize), "0");
