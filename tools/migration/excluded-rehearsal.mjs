@@ -11,6 +11,8 @@ const tables = [
   "decision_options",
   "asset_maintenance",
   "asset_routines",
+  "calendar_events",
+  "household_financial_links",
 ];
 export function seedExcludedRehearsal(db) {
   db.sql(`set request.jwt.claim.sub='${id(1)}';
@@ -37,7 +39,12 @@ export function seedExcludedRehearsal(db) {
     insert into public.asset_maintenance(id,household_id,created_by,asset_id,title,performed_on,routine_id)
       values('${id(1313)}','${id(10)}','${id(1)}','${id(1303)}','Retained maintenance','2026-09-21','${id(1201)}');
     insert into public.asset_routines(id,household_id,created_by,asset_id,routine_id)
-      values('${id(1314)}','${id(10)}','${id(1)}','${id(1303)}','${id(1201)}');`);
+      values('${id(1314)}','${id(10)}','${id(1)}','${id(1303)}','${id(1201)}');
+    insert into public.calendar_events(id,household_id,created_by,title,starts_at,ends_at,project_id,location,notes)
+      values('${id(1320)}','${id(10)}','${id(1)}','Retained legacy event','2026-09-21T10:00:00Z','2026-09-21T11:00:00Z','${id(1301)}','Synthetic location','Retained event notes');
+    update public.trip_bookings set calendar_event_id='${id(1320)}' where id='${id(1304)}';
+    insert into public.household_financial_links(id,household_id,created_by,financial_event_id,project_id,booking_id)
+      values('${id(1321)}','${id(10)}','${id(1)}','${id(100)}','${id(1301)}','${id(1304)}');`);
 }
 export function captureExcludedHistory(db) {
   // One MVCC snapshot; output contains only counts and full-row fingerprints.
@@ -76,6 +83,8 @@ export function verifyExcludedRehearsal(db, before) {
     retainedOptions: 1,
     retainedMaintenance: 1,
     retainedAssetRoutineLinks: 1,
+    retainedCalendarEvents: 1,
+    retainedFinancialLinks: 1,
     storageBytesVerified: false,
   };
 }
