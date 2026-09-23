@@ -13,7 +13,9 @@ begin
   if v_date not between date '0001-01-01' and date '9999-12-31' then return null; end if;
   -- PostgreSQL shifts Zurich DST gaps forward and resolves overlaps to standard time.
   v_due:=(v_date+(p_reminder.settings->>'localTime')::time) at time zone 'Europe/Zurich';
-  if v_due<timestamptz '0001-01-01 00:00:00+00' or v_due>=timestamptz '10000-01-01 00:00:00+00' then return null; end if;
+  -- The supported range is local civil dates. PostgreSQL can retain the UTC
+  -- instant just before year 1 produced by Zurich's historical offset.
+  -- Outbox instants stay internal; delivery separately rejects expired work.
   return v_due;
 end;
 $$;

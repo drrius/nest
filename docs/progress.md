@@ -2881,3 +2881,17 @@ A gated migration draft resolves explicit localDate/localTime in Europe/Zurich, 
 ### Grocery scheduling — bounded local verification
 
 Five disposable PostgreSQL scheduler cases pass. They prove progress past 250 retained deleted source items, cancellation limited to 500 inspected pending rows, Zurich DST gap/overlap resolution, concurrent deduplication, checked/edited-item invalidation, recipient mute/removal behavior, sent-history retention and denied scheduler execution for authenticated/anonymous/service roles. Security advisors found no issues; workspace lint passes. This remains uncommitted scheduling work awaiting exact-commit review/CI; delivery claims/provider/native tap integration remain unfinished. Editor CI `35822552918` and AI CI `35823014642` were still running at the last check.
+
+### Grocery push claims — draft
+
+The gated delivery-journal extension adds grocery as a fifth exclusive source, current item/device/session checks, claim-time locks and source-aware invalid-token/rate-limit handling while retaining existing sources. One disposable database case passes for a token-bearing claim containing only the exact grocery identity (no grocery text) and refusal of a second claim. Fixture grocery dependencies were added explicitly after the first setup failure. Broader cancellation/race/retry/old-source regression coverage, security checks and review remain required; no provider send or hosted activation occurred. AI `28fcbb1` has clean Sol medium signoff with 27 independently passing cases; scheduling `1405721` is now under review.
+
+### Grocery delivery claims — local verification; scheduling finding open
+
+Fifteen disposable PostgreSQL claim cases pass: concurrent one-time token release; item/check/settings/member/mute/device/session invalidation; immutable outcomes; no resend after unknown delivery; three-attempt rate-limit cap; invalid-token registration fencing; and all four prior source dispatches after the grocery extension. Disposable security advisors report no issues and workspace lint passes. Provider/native payload/worker integration is still unfinished.
+
+Sol found P2 on scheduling `1405721`: accepted `0001-01-01` early local times can convert below the scheduler's minimum UTC instant and silently yield no candidates. This finding is valid and remains unresolved; scheduling has no clean signoff and must not merge. The next change must make accepted settings and supported scheduling instants consistent and add a lower-bound regression before rereview.
+
+### Scheduling review correction — minimum local date
+
+The P2 lower-bound finding is fixed by preserving PostgreSQL's valid converted UTC instant instead of imposing an extra UTC year-1 bound on an accepted local civil date. All instants remain private PostgreSQL scheduling state; the send gate independently excludes expired work. A regression saves midnight on 0001-01-01, proves the exact Zurich conversion falls before UTC year 1, materializes both recipient rows and confirms current eligibility without cancellation. All six scheduling/batch cases pass. Clean exact-commit rereview and CI remain required; the finding is not treated as resolved solely from this local test.
