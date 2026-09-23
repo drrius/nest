@@ -48,7 +48,7 @@ test("read lifecycle suppresses late pages, clears private data and reconnects w
   runtime.dispose();
   assert.equal(runtime.getSnapshot().entry, null);
 });
-test("failed pages never become empty success; authorization failure latches until remount", async () => {
+test("failed pages stay hidden while authorization is rechecked on foreground and retry", async () => {
   let fail = false,
     calls = 0;
   const runtime = new RecurringReadRuntime(
@@ -75,7 +75,13 @@ test("failed pages never become empty success; authorization failure latches unt
   await runtime.setActive(false);
   await runtime.setActive(true);
   await runtime.refresh();
-  assert.equal(calls, before);
+  assert.equal(calls, before + 2);
+  assert.equal(runtime.getSnapshot().verify, true);
+  assert.equal(runtime.getSnapshot().entry, null);
+  fail = false;
+  await runtime.refresh();
+  assert.equal(runtime.getSnapshot().verify, false);
+  assert.deepEqual(runtime.getSnapshot().entry, entry);
   runtime.dispose();
 });
 test("lease replacement during an in-flight authorized read prevents data publication", async (t) => {
