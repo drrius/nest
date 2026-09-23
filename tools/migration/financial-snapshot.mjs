@@ -12,8 +12,9 @@ export function captureFinancialSnapshot(sql) {
     )
     .join(",");
   // One statement gives all retained rows and balances the same MVCC snapshot.
-  return JSON.parse(
+  const snapshot = JSON.parse(
     sql(`select jsonb_build_object(
+    'completeVisibility', (select rolsuper or rolbypassrls from pg_roles where rolname=current_user),
     'version', 1, 'tables', jsonb_build_object(${tables}),
     'balances', (select coalesce(jsonb_agg(to_jsonb(t) order by household_id, member_id), '[]') from (
       select household_id, member_id, sum(receivable_delta_cents)::text as centimes
@@ -24,10 +25,15 @@ export function captureFinancialSnapshot(sql) {
       or (select sum(receivable_delta_cents) from public.ledger_entries l where l.household_id=e.household_id and l.financial_event_id=e.id) <> 0)
   )`),
   );
+  if (snapshot.completeVisibility !== true)
+    throw new Error("Reconciliation requires a role with complete RLS visibility");
+  return snapshot;
 }
 
 export function reconcileFinancialSnapshots(before, after) {
   const failures = [];
+  if (!validMetadata(before) || !validMetadata(after))
+    return { passed: false, failures: [{ invariant: "complete-versioned-snapshot" }] };
   for (const table of retainedTables) {
     const source = before.tables[table],
       target = after.tables[table];
@@ -45,4 +51,8 @@ export function reconcileFinancialSnapshots(before, after) {
   if (before.invalidEvents !== "0" || after.invalidEvents !== "0")
     failures.push({ invariant: "two-member-zero-sum-events" });
   return { passed: failures.length === 0, failures };
+}
+
+function validMetadata(snapshot) {
+  return snapshot?.version === 1 && snapshot.completeVisibility === true;
 }
