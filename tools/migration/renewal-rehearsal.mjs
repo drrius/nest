@@ -10,7 +10,9 @@ export function seedRenewalRehearsal(db) {
       ('${id(1103)}','${id(10)}','${id(1)}','Synthetic undated','active',null,0,null),
       ('${id(1104)}','${id(10)}','${id(1)}','Synthetic date limit','active','0001-01-01',30,null),
       ('${id(1105)}','${id(10)}','${id(1)}','Synthetic ancient date','active','4713-01-01 BC',730,null),
-      ('${id(1106)}','${id(10)}','${id(1)}','Synthetic infinite date','active','infinity',730,null);`);
+      ('${id(1106)}','${id(10)}','${id(1)}','Synthetic infinite date','active','infinity',730,null),
+      ('${id(1107)}','${id(10)}','${id(1)}',' Synthetic title ','active','2027-03-01',0,null),
+      ('${id(1108)}','${id(10)}','${id(1)}',chr(160)||'Synthetic title'||chr(160),'active','2027-03-01',0,null);`);
 }
 export function captureRenewalHistory(db) {
   return db.sql("select jsonb_agg(to_jsonb(c) order by id) from public.household_commitments c");
@@ -28,6 +30,8 @@ export function verifyRenewalPlan(db, before) {
       "date-review",
       "date-review",
       "date-review",
+      "title-review",
+      "title-review",
     ],
   );
   assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
@@ -38,12 +42,13 @@ export function verifyRenewalPlan(db, before) {
     inventoryVerified: true,
     unlinkedConversionVerified: true,
     linkedConversionImplemented: false,
-    retainedCommitments: 7,
+    retainedCommitments: 9,
     ready: 1,
     retainedHistory: 1,
     linkReview: 1,
     undated: 1,
     dateReview: 3,
+    titleReview: 2,
   };
 }
 
