@@ -1,5 +1,5 @@
 import DateTimePicker from "@expo/ui/community/datetime-picker";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
 import { NativeAction } from "../components/native-action";
 import { Section, Note } from "../components/page";
 import { adjacentDay, agendaDay, localDate } from "./agenda-day";
@@ -13,6 +13,7 @@ export function AgendaControls({
   view: AgendaView;
   choose: () => void;
 }) {
+  const router = useRouter();
   const window = agendaDay(view.date);
   const dateDisabled = view.busy;
   return (
@@ -25,7 +26,7 @@ export function AgendaControls({
           mode="date"
           disabled={dateDisabled}
           onChange={(_event, date) => {
-            if (date) void runtime.changeDate(localDate(date));
+            if (date) router.setParams({ date: localDate(date) });
           }}
         />
       ) : null}
@@ -34,7 +35,7 @@ export function AgendaControls({
         disabled={dateDisabled || !adjacentDay(view.date, -1)}
         onPress={() => {
           const date = adjacentDay(view.date, -1);
-          if (date) void runtime.changeDate(date);
+          if (date) router.setParams({ date });
         }}
       />
       <NativeAction
@@ -42,14 +43,14 @@ export function AgendaControls({
         disabled={dateDisabled || !adjacentDay(view.date, 1)}
         onPress={() => {
           const date = adjacentDay(view.date, 1);
-          if (date) void runtime.changeDate(date);
+          if (date) router.setParams({ date });
         }}
       />
       <NativeAction
         label="Today"
         disabled={dateDisabled}
         onPress={() => {
-          void runtime.changeDate(localDate(new Date()));
+          router.setParams({ date: localDate(new Date()) });
         }}
       />
       <AgendaStatus runtime={runtime} view={view} />

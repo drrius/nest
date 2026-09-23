@@ -2,7 +2,9 @@ import { calendarRenewalOwner } from "../calendar/renewal-owner";
 import { calendarRenewalOperations } from "../calendar/renewal-operations";
 import { calendarChoreOwner } from "../calendar/chore-owner";
 import { calendarChoreOperations } from "../calendar/chore-operations";
-import { useState, useSyncExternalStore } from "react";
+import { useLocalSearchParams } from "expo-router";
+import { requestedAgendaDate, followAgendaRouteDate } from "../calendar/route-date";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { expoCalendarPort } from "../calendar/expo-calendar";
 import { expoAgendaPort } from "../calendar/expo-agenda";
 import { agendaOperations } from "../calendar/agenda-operations";
@@ -20,6 +22,8 @@ import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { SignInCard } from "../components/sign-in-card";
 export default function CalendarScreen() {
+  const params = useLocalSearchParams();
+  const date = requestedAgendaDate(params.date, localDate(new Date()));
   const session = useSession(),
     offline = useOfflineAccount();
   if (session.state.status !== "ready" || !session.calendar)
@@ -50,6 +54,7 @@ export default function CalendarScreen() {
   return (
     <CalendarAccount
       key={offline.state.account.session.lease}
+      date={date}
       account={offline.state.account}
       client={session.calendar}
       verify={session.retry}
@@ -57,10 +62,12 @@ export default function CalendarScreen() {
   );
 }
 function CalendarAccount({
+  date,
   account,
   client,
   verify,
 }: {
+  date: string;
   account: OfflineAccount;
   client: CalendarClient;
   verify: () => void;
@@ -71,10 +78,11 @@ function CalendarAccount({
         ...expoAgendaPort,
         requestPermission: () => expoCalendarPort.requestPermission(),
       }),
-      localDate(new Date()),
+      date,
     ),
   );
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
+  useEffect(() => (runtime ? followAgendaRouteDate(runtime, date) : undefined), [runtime, date]);
   const [sharedOwner] = useState(() => partnerOwner(partnerOperations(account, client), Date.now));
   const partner = useSyncExternalStore(sharedOwner.subscribe, sharedOwner.getSnapshot);
   const [workOwner] = useState(() =>

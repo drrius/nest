@@ -2,7 +2,7 @@ import type { MealWeekSnapshot } from "@nest/contracts/meals";
 import type { CookingClient } from "../cooking/client";
 import { allMealSlots, useVisibleMealSlots } from "../meals/use-visible-slots";
 import { useState, useSyncExternalStore } from "react";
-import { Link, useLocalSearchParams } from "expo-router";
+import { Link, useLocalSearchParams, useRouter } from "expo-router";
 import { householdDate } from "@nest/domain/calendar";
 import { requestedMealWeek } from "../meals/route-week";
 import { useSession } from "../session/provider";
@@ -84,6 +84,7 @@ function WeekContent({
   verify: () => void;
   cooking: CookingClient;
 }) {
+  const router = useRouter();
   const visibility = useVisibleMealSlots(cooking);
   const [showAll, setShowAll] = useState(false);
   const slots = showAll ? allMealSlots : visibility.slots;
@@ -109,7 +110,7 @@ function WeekContent({
       <WeekNavigation
         weekStart={view.weekStart}
         select={(week) => {
-          void runtime.load(week);
+          router.setParams({ weekStart: week });
         }}
       />
       {view.busy ? <Note>Refreshing week…</Note> : null}
