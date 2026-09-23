@@ -12,6 +12,8 @@ export function sessionNotification(
 ) {
   const client = notificationClient(apiUrl, account, sessionCredentials(auth));
   return {
+    summary: (input: Parameters<typeof client.summary>[0]) =>
+      client.summary(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     read: () => client.read().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     save: (input: Parameters<typeof client.save>[0]) =>
       client.save(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),

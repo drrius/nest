@@ -1,3 +1,4 @@
+import { summaryReads } from "./summary-client.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -17,6 +18,7 @@ export function notificationClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    summary: summaryReads(request, account),
     read: () =>
       request("v1/notification-preferences", NotificationPreferencesEnvelope).pipe(
         Effect.flatMap((value) =>

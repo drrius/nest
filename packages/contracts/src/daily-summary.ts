@@ -21,3 +21,4 @@ export const DailySummarySnapshot = Schema.Struct({
   summaryId: Uuid,
   summary: DailySummary,
 });
+export const DailySummaryQuery = Schema.Struct({ summaryId: Uuid });

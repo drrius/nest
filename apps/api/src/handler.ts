@@ -1,3 +1,4 @@
+import { dailySummaryRoute } from "./notifications/summary.ts";
 import { pushDeviceRoute } from "./push/route.ts";
 import { renewalReminderRoute } from "./renewal-reminders/route.ts";
 import { renewalRoute } from "./renewals/route.ts";
@@ -34,6 +35,7 @@ function route(
     const token = yield* bearerToken(request);
     const caller = { member, token };
     const handlers: Record<string, () => Effect.Effect<unknown, ApiFailure>> = {
+      "daily-summary": () => dailySummaryRoute(request, config, caller),
       setup: () => setupStatus(config, caller),
       "notification-preferences": () => notificationRoute(request, config, caller),
       calendar: () => calendarRoute(request, config, caller),
@@ -158,6 +160,7 @@ const methods: Record<string, string> = {
   "/v1/renewals/save": "POST",
   "/v1/renewals/remove": "POST",
   "/v1/renewals/cancel-operation": "POST",
+  "/v1/daily-summary": "GET",
   "/v1/session": "GET",
   "/v1/money/recurring/approval": "GET",
   "/v1/money/recurring/state/approval": "GET",

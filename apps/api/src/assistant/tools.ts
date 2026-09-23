@@ -1,3 +1,4 @@
+import { dailySummaryTool } from "../notifications/summary-tool.ts";
 import { renewalReminderWriteTools } from "../renewal-reminders/write-tools.ts";
 import { renewalReminderReadTools } from "../renewal-reminders/tools.ts";
 import { renewalWriteTools } from "../renewals/write-tools.ts";
@@ -89,6 +90,7 @@ export function householdTools(
     ...mealIngredientTools(bound, config),
     readRoutines: readRoutinesTool(bound, config),
     readHouseholdRoster: readHouseholdRosterTool(bound, config),
+    readDailySummary: dailySummaryTool(bound, config),
     readNotificationPreferences: readNotificationPreferencesTool(bound, config),
     readMemories: readMemoriesTool(bound, config),
     readCookingPreferences: readCookingPreferencesTool(bound, config),
