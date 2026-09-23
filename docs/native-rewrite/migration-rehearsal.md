@@ -12,7 +12,7 @@ The strict run on 23 September 2026 applied 14 legacy migrations, then failed at
 
 For an explicitly partial schema diagnostic, append `--without-pg-net`. That option skips only the named migration after checking that its entire trimmed content is the expected extension declaration. Changed content fails closed. The report always identifies the skipped source/hash and simulated infrastructure. `complete` means that this diagnostic finished, not that migration or release acceptance is complete.
 
-The partial run applies **54 legacy migrations and all 188 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
+The partial run applies **54 legacy migrations and all 190 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
 
 ## Current populated coverage
 
@@ -33,7 +33,7 @@ The routine and excluded-module extensions are locally verified and have review 
 
 ## Remaining acceptance gates
 
-- Linked renewal conversion after explicit recurring adoption, persistent conversion provenance and expanded concurrency/failure checks.
+- Broader conversion integration and hosted verification. Linked conversion after explicit adoption, immutable provenance, injected-write rollback and concurrent retry now pass the synthetic diagnostic; exact merge evidence remains in the progress log.
 - Real credential decryptability and native payload/bundle inspection. Synthetic connection ciphertext and remote event metadata now have fingerprint-preservation coverage, with no native consent created; this does not establish real credential usability.
 - Representative authorized existing data, full relationship inventory, stable operation identities and actual stored-file bytes/access verification.
 - A controlled old-writer fence, pending-command reconciliation, cutover and rollback rehearsal that preserves all newly posted financial history.
