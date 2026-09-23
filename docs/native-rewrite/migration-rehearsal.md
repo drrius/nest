@@ -21,3 +21,5 @@ The populated fixture also includes all four legacy grocery states, two shopping
 Legacy recurring coverage includes active/inactive monthly rules and pending/dismissed drafts. Their exact rows survive the native sequence, both rules remain available through the authorized legacy inventory, and no native mandate, cycle or adoption is created. Posted recurring draft linkage and explicit cutover/rollback still need representative rehearsal.
 
 Posted recurring linkage is now also exercised: the legacy authenticated confirmation command posts a third draft before native migrations. Exact history reconciliation and the native authorized draft reader must retain its financial-event ID. The expanded fixture contains seven events, eight allocations and fourteen ledger entries. Cutover and rollback remain separate outstanding gates.
+
+Meal coverage now preserves a saved recipe, quantified ingredient, planned meal, linked leftovers and removed entry. Only the explicitly additive recipe fields are excluded from legacy-row comparison. The authenticated native week read must contain exactly the two active entries while retained removed history remains in storage.

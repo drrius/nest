@@ -3097,3 +3097,9 @@ Sol independently reran and signed off on grocery rehearsal `f87ad13`, including
 The fixture now posts a third legacy recurring draft through the original authenticated `confirm_expense_draft` command before native migrations. After all 188 native migrations, the draft remains posted with exactly one matching expense, and the authorized native legacy-draft reader returns that exact retained event ID. Full financial fingerprints/balances and receipt metadata remain preserved: seven events, eight allocations, fourteen ledger rows and one receipt reference. Native mandates/cycles/adoptions remain zero. The partial-infrastructure diagnostic and scoped lint/format pass; exact-commit review/CI remain required.
 
 Sol independently signed off on the preceding recurring consent rehearsal `ab7b188`. The new evidence covers posted linkage in synthetic fixtures; production migration, nonfinancial domains and actual infrastructure acceptance remain unfinished.
+
+### Legacy meal migration rehearsal
+
+The diagnostic now seeds a saved recipe with retained notes, a quantified ingredient template, a planned dinner, linked leftovers and a removed entry. Exact legacy projections survive all 188 native migrations, excluding only explicitly additive recipe servings/instructions columns. The real authorized native week read must return exactly the dinner and leftovers IDs, excluding removed history. The full partial-infrastructure run passes with earlier financial/receipt/grocery/recurring checks intact. Scoped lint/format pass; exact-commit review/CI remain required.
+
+Receipt reconciliation including MIME correction through `5e2bcd1` merged after clean Sol rereview and successful CI `35829299469`. Posted recurring rehearsal `aca62e7` has clean Sol signoff and independent full-chain evidence. Routines, renewals, excluded records, hosted infrastructure and cutover/rollback remain outstanding.
