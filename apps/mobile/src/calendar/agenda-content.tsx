@@ -1,3 +1,9 @@
+import { CalendarRenewalControls, CalendarRenewalRow } from "./renewal-content";
+import {
+  visibleCalendarRenewals,
+  type CalendarRenewalView,
+  type CalendarRenewalRuntime,
+} from "./renewal-runtime";
 import { CalendarChoreControls, CalendarChoreRow } from "./chore-content";
 import { visibleCalendarChores, type CalendarChoreRuntime } from "./chore-runtime";
 import { useState, useSyncExternalStore } from "react";
@@ -18,17 +24,20 @@ export function AgendaContent({
   runtime,
   partner,
   chores,
+  renewals,
   verify,
 }: {
   runtime: AgendaRuntime;
   partner: PartnerRuntime;
   chores: CalendarChoreRuntime;
+  renewals: CalendarRenewalRuntime;
   verify: () => void;
 }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot),
     colors = useQuiet();
   const shared = useSyncExternalStore(partner.subscribe, partner.getSnapshot);
   const work = useSyncExternalStore(chores.subscribe, chores.getSnapshot);
+  const deadlines = useSyncExternalStore(renewals.subscribe, renewals.getSnapshot);
   const [choosing, setChoosing] = useState(false);
   if (!view.active)
     return (
@@ -55,6 +64,7 @@ export function AgendaContent({
     personal,
     assessment.status === "known" ? assessment.intervals : [],
     visibleCalendarChores(work, view.date),
+    visibleCalendarRenewals(deadlines, view.date),
   );
   return (
     <FlatList
@@ -68,9 +78,11 @@ export function AgendaContent({
           <AgendaControls runtime={runtime} view={view} choose={() => setChoosing(true)} />
           <PartnerStatus assessment={assessment} runtime={partner} view={shared} verify={verify} />
           <CalendarChoreControls runtime={chores} view={work} verify={verify} />
+          <CalendarRenewalControls runtime={renewals} view={deadlines} verify={verify} />
           <PersonalStatus view={view} />
         </>
       }
+      ListFooterComponent={<RenewalPagination runtime={renewals} view={deadlines} />}
       renderItem={({ item }) => <AgendaItem item={item} view={view} actor={partner.actor} />}
     />
   );
@@ -107,6 +119,7 @@ function PersonalStatus({ view }: { view: AgendaView }) {
 }
 
 function AgendaItem({ item, view, actor }: { item: CalendarRow; view: AgendaView; actor: string }) {
+  if (item.kind === "renewal") return <CalendarRenewalRow row={item.value} date={view.date} />;
   if (item.kind === "chore") return <CalendarChoreRow row={item.value} actor={actor} />;
   if (item.kind === "partner") return <PartnerBlock {...item.value} />;
   return (
@@ -116,6 +129,25 @@ function AgendaItem({ item, view, actor }: { item: CalendarRow; view: AgendaView
         view.calendars.find((calendar) => calendar.id === item.value.calendarId)?.title ??
         "Your calendar"
       }
+    />
+  );
+}
+
+function RenewalPagination({
+  runtime,
+  view,
+}: {
+  runtime: CalendarRenewalRuntime;
+  view: CalendarRenewalView;
+}) {
+  if (!view.enabled || !view.access || !view.next) return null;
+  return (
+    <NativeAction
+      label="More renewals"
+      disabled={view.busy}
+      onPress={() => {
+        void runtime.loadMore();
+      }}
     />
   );
 }

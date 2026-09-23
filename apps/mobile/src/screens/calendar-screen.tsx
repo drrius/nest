@@ -1,3 +1,5 @@
+import { calendarRenewalOwner } from "../calendar/renewal-owner";
+import { calendarRenewalOperations } from "../calendar/renewal-operations";
 import { calendarChoreOwner } from "../calendar/chore-owner";
 import { calendarChoreOperations } from "../calendar/chore-operations";
 import { useState, useSyncExternalStore } from "react";
@@ -79,9 +81,19 @@ function CalendarAccount({
     calendarChoreOwner(calendarChoreOperations(account, client), localDate(new Date())),
   );
   const chores = useSyncExternalStore(workOwner.subscribe, workOwner.getSnapshot);
-  useAgendaActivity(runtime, partner, chores);
-  return runtime && partner && chores ? (
-    <AgendaContent runtime={runtime} partner={partner} chores={chores} verify={verify} />
+  const [renewalOwner] = useState(() =>
+    calendarRenewalOwner(calendarRenewalOperations(account, client), localDate(new Date())),
+  );
+  const renewals = useSyncExternalStore(renewalOwner.subscribe, renewalOwner.getSnapshot);
+  useAgendaActivity(runtime, partner, chores, renewals);
+  return runtime && partner && chores && renewals ? (
+    <AgendaContent
+      runtime={runtime}
+      partner={partner}
+      chores={chores}
+      renewals={renewals}
+      verify={verify}
+    />
   ) : (
     <Page>
       <Note>Opening your agenda…</Note>

@@ -1,3 +1,4 @@
+import type { Renewal } from "@nest/contracts/renewals";
 import type { CalendarChore } from "@nest/contracts/calendar-chores";
 import type { AgendaRow } from "./agenda.ts";
 import type { Window } from "./availability.ts";
@@ -5,12 +6,14 @@ type TimedRow =
   | { kind: "personal"; key: string; start: number; value: AgendaRow }
   | { kind: "partner"; key: string; start: number; value: Window };
 export type CalendarRow =
+  | { kind: "renewal"; key: string; value: typeof Renewal.Type }
   | TimedRow
   | { kind: "chore"; key: string; value: typeof CalendarChore.Type };
 export function agendaRows(
   personal: readonly AgendaRow[],
   partner: readonly Window[],
   chores: readonly (typeof CalendarChore.Type)[] = [],
+  renewals: readonly (typeof Renewal.Type)[] = [],
 ): CalendarRow[] {
   const rows: TimedRow[] = personal.map((value) => ({
     kind: "personal",
@@ -26,6 +29,11 @@ export function agendaRows(
       value,
     });
   return [
+    ...renewals.map((value) => ({
+      kind: "renewal" as const,
+      key: `renewal:${value.renewalId}`,
+      value,
+    })),
     ...chores.map((value) => ({
       kind: "chore" as const,
       key: `chore:${value.occurrenceId}`,

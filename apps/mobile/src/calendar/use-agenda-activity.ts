@@ -1,3 +1,4 @@
+import type { CalendarRenewalRuntime } from "./renewal-runtime";
 import type { CalendarChoreRuntime } from "./chore-runtime";
 import { useCallback } from "react";
 import { AppState } from "react-native";
@@ -9,12 +10,14 @@ export function useAgendaActivity(
   runtime: AgendaRuntime | null,
   partner: PartnerRuntime | null,
   chores: CalendarChoreRuntime | null,
+  renewals: CalendarRenewalRuntime | null,
 ) {
   useFocusEffect(
     useCallback(() => {
-      if (!runtime || !partner || !chores) return;
+      if (!runtime || !partner || !chores || !renewals) return;
       const dateChanged = () => {
         void chores.changeDate(runtime.getSnapshot().date);
+        void renewals.changeDate(runtime.getSnapshot().date);
       };
       dateChanged();
       const unsubscribe = runtime.subscribe(dateChanged);
@@ -23,6 +26,7 @@ export function useAgendaActivity(
         runtime.setActive(active);
         void partner.setActive(active);
         void chores.setActive(active);
+        void renewals.setActive(active);
       };
       activity();
       const subscription = AppState.addEventListener("change", activity);
@@ -32,6 +36,7 @@ export function useAgendaActivity(
           if (state.isConnected === true && state.isInternetReachable !== false) {
             void partner.refresh();
             void chores.refresh();
+            void renewals.refresh();
           }
         });
       } catch {
@@ -41,6 +46,7 @@ export function useAgendaActivity(
         void runtime.refresh();
         void partner.refresh();
         void chores.refresh();
+        void renewals.refresh();
       }, 60000);
       return () => {
         clearInterval(timer);
@@ -50,7 +56,8 @@ export function useAgendaActivity(
         runtime.setActive(false);
         void partner.setActive(false);
         void chores.setActive(false);
+        void renewals.setActive(false);
       };
-    }, [runtime, partner, chores]),
+    }, [runtime, partner, chores, renewals]),
   );
 }
