@@ -1,3 +1,4 @@
+import { verifyLinkedRenewal } from "./renewal-linked.mjs";
 import { verifyHistoricalConversion } from "./renewal-history.mjs";
 import { verifyRenewalRollback } from "./renewal-rollback.mjs";
 import { renewalConversionSql } from "./renewal-conversion.mjs";
@@ -39,11 +40,12 @@ export async function verifyRenewalPlan(db, before) {
   assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
   verifyRefusedConversions(db, plan);
   await verifyConversion(db, plan[0]);
+  verifyLinkedRenewal(db);
   assert.equal(captureRenewalHistory(db), before, "Conversion modified legacy commitment");
   return {
     inventoryVerified: true,
     unlinkedConversionVerified: true,
-    linkedConversionImplemented: false,
+    linkedConversionImplemented: true,
     provenanceVerified: true,
     provenanceFailureRollbackVerified: true,
     concurrentConversionVerified: true,
