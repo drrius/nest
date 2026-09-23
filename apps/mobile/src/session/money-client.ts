@@ -212,6 +212,8 @@ function sessionRecurringReads(client: MoneyClient) {
       client.legacyRecurring(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringHistory: (input: typeof RecurringHistoryQuery.Type) =>
       client.recurringHistory(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    dueVariableRules: (after: string | null = null) =>
+      client.dueVariableRules(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRules: (after: string | null = null) =>
       client.recurringRules(after).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recurringRule: (ruleId: string) =>

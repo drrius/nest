@@ -107,3 +107,35 @@ test("API and native snapshots reject foreign household, target/cursor substitut
     code: "invalid_request",
   });
 });
+test("due-variable reads reject forged due state and cursor/household substitution at both boundaries", async () => {
+  const dueRule = {
+    ...row,
+    nextDueOn: list.today,
+    configuration: {
+      ...row.configuration,
+      mode: "variable",
+      amountCentimes: null,
+      allocations: null,
+      startDate: list.today,
+      schedule: { kind: "weekly", weekday: 1 },
+    },
+  };
+  const page = { ...list, rules: [dueRule] };
+  for (const effect of [
+    () => reads.dueVariable({ after: null }),
+    () => client.dueVariableRules(),
+  ]) {
+    assert.deepEqual(await run(effect(), page), page);
+    for (const patch of [
+      { householdId: id(99) },
+      { after: id(99) },
+      { next: dueRule.ruleId },
+      { rules: [{ ...dueRule, status: "paused" }] },
+      { rules: [{ ...dueRule, nextDueOn: "2026-09-22" }] },
+      { rules: [{ ...dueRule, nextDueOn: null }] },
+      { rules: [{ ...dueRule, coveredThrough: list.today }] },
+      { rules: [{ ...dueRule, configuration: row.configuration }] },
+    ])
+      await assert.rejects(run(effect(), { ...page, ...patch }), { code: "unavailable" });
+  }
+});

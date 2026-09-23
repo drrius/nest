@@ -47,6 +47,8 @@ function recurringReadRoute(url: URL, config: IdentityConfig, caller: Authorized
   if (url.pathname.endsWith("/legacy-drafts")) return legacyDraftRoute(url, config, caller);
   if (url.pathname.endsWith("/legacy")) return legacyRecurringRoute(url, config, caller);
   if (url.pathname.endsWith("/cycles")) return recurringHistoryRoute(url, config, caller);
+  if (url.pathname.endsWith("/rules") || url.pathname.endsWith("/due-variable"))
+    return recurringListRoute(url, config, caller);
   return Effect.gen(function* () {
     const params = url.searchParams;
     if (url.pathname.endsWith("/receipt")) {
@@ -56,13 +58,20 @@ function recurringReadRoute(url: URL, config: IdentityConfig, caller: Authorized
         operationId: params.get("operationId"),
       });
     }
-    if (url.pathname.endsWith("/rules")) {
-      if (params.size > 1 || [...params.keys()].some((key) => key !== "after"))
-        return yield* new ApiFailure({ code: "invalid_request" });
-      return yield* recurringReads(config, caller).list({ after: params.get("after") });
-    }
     if (params.size !== 1 || !params.has("ruleId"))
       return yield* new ApiFailure({ code: "invalid_request" });
     return yield* recurringReads(config, caller).detail({ ruleId: params.get("ruleId") });
+  });
+}
+
+function recurringListRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
+  return Effect.gen(function* () {
+    const params = url.searchParams;
+    if (params.size > 1 || [...params.keys()].some((key) => key !== "after"))
+      return yield* new ApiFailure({ code: "invalid_request" });
+    const reads = recurringReads(config, caller);
+    return yield* (url.pathname.endsWith("/due-variable") ? reads.dueVariable : reads.list)({
+      after: params.get("after"),
+    });
   });
 }

@@ -13,6 +13,7 @@ export type RecurringReadTarget =
   | { kind: "legacy-review"; draftId: string }
   | { kind: "legacy-drafts"; ruleId: string; after: string | null }
   | { kind: "legacy"; after: string | null }
+  | { kind: "due-variable"; after: string | null }
   | { kind: "list"; after: string | null }
   | { kind: "detail"; ruleId: string }
   | { kind: "history"; ruleId: string; before: string | null };
@@ -28,6 +29,7 @@ export type RecurringReadEntry =
   | { kind: "legacy-review"; value: typeof LegacyDraftContext.Type }
   | { kind: "legacy-drafts"; value: typeof LegacyDraftList.Type }
   | { kind: "legacy"; value: typeof LegacyRecurringList.Type }
+  | { kind: "due-variable"; value: RecurringList }
   | { kind: "list"; value: RecurringList }
   | { kind: "detail"; value: RecurringDetail }
   | { kind: "history"; value: RecurringHistory };
@@ -61,6 +63,10 @@ function readTarget(
     return client
       .legacyRecurring(target.after)
       .pipe(Effect.map((value) => ({ kind: "legacy" as const, value })));
+  if (target.kind === "due-variable")
+    return client
+      .dueVariableRules(target.after)
+      .pipe(Effect.map((value) => ({ kind: "due-variable" as const, value })));
   if (target.kind === "list")
     return client
       .recurringRules(target.after)

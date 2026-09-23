@@ -2,6 +2,7 @@ import { useChoreEditor } from "../chores/use-editor";
 import { currentHouseholdDay, useTodayClock } from "../today/use-today-clock";
 import { householdDate } from "@nest/domain/calendar";
 import { TodayCalendar } from "../today/calendar";
+import { TodayBills } from "../today/bills";
 import { TodayMeals } from "../today/meals";
 import { useState } from "react";
 import { Link } from "expo-router";
@@ -91,6 +92,7 @@ function HouseholdChores({
       }
       footer={
         <>
+          <TodayBills date={today} />
           <TodayMeals date={today} />
           <TodayCalendar now={now} />
           <Link href="/" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>

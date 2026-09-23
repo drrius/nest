@@ -35,3 +35,16 @@ export const RecurringList = Schema.Struct({
 export type RecurringRule = typeof RecurringRule.Type;
 export type RecurringList = typeof RecurringList.Type;
 export type RecurringDetail = typeof RecurringDetail.Type;
+export const DueVariableRules = RecurringList.check(
+  Schema.makeFilter((value) =>
+    value.rules.every(
+      (rule) =>
+        rule.status === "active" &&
+        rule.configuration.mode === "variable" &&
+        rule.nextDueOn !== null &&
+        rule.nextDueOn <= value.today &&
+        rule.nextDueOn >= rule.configuration.startDate &&
+        (rule.coveredThrough === null || rule.coveredThrough < rule.nextDueOn),
+    ),
+  ),
+);

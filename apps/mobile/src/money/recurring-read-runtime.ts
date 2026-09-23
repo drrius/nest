@@ -64,7 +64,7 @@ export class RecurringReadRuntime {
     return online ? this.refresh() : Promise.resolve();
   };
   select = (target: RecurringReadTarget) => {
-    if (this.disposed || this.view.verify) return Promise.resolve();
+    if (this.disposed) return Promise.resolve();
     this.interrupt();
     this.publish({ target: { ...target } });
     return this.refresh();
@@ -73,14 +73,7 @@ export class RecurringReadRuntime {
     return !this.disposed && this.request === request && !request.signal.aborted;
   }
   refresh = async () => {
-    if (
-      this.disposed ||
-      !this.view.active ||
-      !this.view.online ||
-      this.view.busy ||
-      this.view.verify
-    )
-      return;
+    if (this.disposed || !this.view.active || !this.view.online || this.view.busy) return;
     const request = new AbortController();
     this.request = request;
     this.publish({ busy: true, entry: null, notice: null });
@@ -88,7 +81,7 @@ export class RecurringReadRuntime {
       const entry = await Effect.runPromise(this.operations.read(this.view.target), {
         signal: request.signal,
       });
-      if (this.current(request)) this.publish({ entry });
+      if (this.current(request)) this.publish({ entry, verify: false });
     } catch (error) {
       if (this.current(request)) this.failed(error);
     } finally {
@@ -101,6 +94,7 @@ export class RecurringReadRuntime {
   private failed(error: unknown) {
     const code = Schema.is(PreferenceFailure)(error) ? error.code : null;
     const verify =
+      this.view.verify ||
       code === "session" ||
       code === "forbidden" ||
       (Schema.is(OfflineFailure)(error) && error.reason === "session_changed");

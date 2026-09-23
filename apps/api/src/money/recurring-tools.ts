@@ -30,6 +30,12 @@ export function recurringReadTools(request: Request, config: IdentityConfig) {
       input: RecurringHistoryQuery,
       execute: (input) => read("history", input),
     }),
+    listDueVariableBills: effectTool({
+      description:
+        "Read active variable bills due by the server Zurich date, in pages of 50. Start after=null and follow next until null. These bills require a separately reviewed amount and split for each cycle. Open the native variable confirmation flow with the returned ruleId; it rechecks current terms before confirmation. This read authorizes no amount, posts no expense and proves no payment.",
+      input: RecurringListQuery,
+      execute: (input) => read("dueVariable", input),
+    }),
     listRecurringRules: effectTool({
       description:
         "Read up to 50 current household recurring expense configurations. Start with after=null and follow next until null; never infer all rules from one page. Includes active, paused and cancelled configurations, authorization time and planned next date. Scheduled posting is not active yet: these rules do not currently create expenses. Planned dates and active status do not prove a posted expense. Fixed amounts are exact CHF integer centime strings; variable rules have no authorized amount/split. This read grants no mandate, creates no cycle, changes no rule and posts no expense. For setup/edit or interrupted Save recovery, direct the user to Money → Set up recurring expense, or an existing rule’s Edit recurring configuration action.",
@@ -43,7 +49,10 @@ export function recurringReadTools(request: Request, config: IdentityConfig) {
       execute: (input) => read("detail", input),
     }),
   };
-  function read(kind: "list" | "detail" | "history" | "legacy" | "legacy-drafts", input: unknown) {
+  function read(
+    kind: "dueVariable" | "list" | "detail" | "history" | "legacy" | "legacy-drafts",
+    input: unknown,
+  ) {
     return Effect.gen(function* () {
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);

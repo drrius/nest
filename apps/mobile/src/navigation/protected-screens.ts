@@ -18,6 +18,7 @@ export const protectedScreens = [
   { name: "recurring-variable-approval", title: "Review variable bill" },
   { name: "recurring-manual-approval", title: "Review expense linkage" },
   { name: "recurring-manual", title: "Link existing expense" },
+  { name: "due-bills", title: "Bills to confirm" },
   { name: "recurring-variable", title: "Variable bill" },
   { name: "recurring-state", title: "Recurring controls" },
   { name: "legacy-dismissal-approval", title: "Review dismissal proposal" },

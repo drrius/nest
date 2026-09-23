@@ -1,3 +1,4 @@
+import { dueVariableClient } from "./due-variable-client.ts";
 import { legacyAdoptionApprovalClient } from "./legacy-adoption-approval-client.ts";
 import { legacyAdoptionApprovalContextClient } from "./legacy-adoption-approval-context-client.ts";
 import { legacyAdoptionClient } from "./legacy-adoption-client.ts";
@@ -47,6 +48,7 @@ export function recurringClient(
 ) {
   const request = preferenceRequests(apiUrl, account, credentials);
   return {
+    ...dueVariableClient(apiUrl, account, credentials),
     ...legacyAdoptionApprovalClient(apiUrl, account, credentials),
     ...legacyAdoptionApprovalContextClient(apiUrl, account, credentials),
     ...legacyAdoptionClient(apiUrl, account, credentials),
