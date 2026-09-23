@@ -1,3 +1,4 @@
+import { verifyCommittedFinancialRecovery } from "./committed-financial-recovery.mjs";
 import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
 import { verifyGroceryRetentionCutover } from "./grocery-retention-cutover.mjs";
 import { verifyShoppingCutover } from "./shopping-cutover.mjs";
@@ -130,6 +131,7 @@ try {
     throw new Error("Cutover rehearsal changed financial history or receipt references");
   report.legacyWriters = captureLegacyWriterInventory(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
+  report.committedFinancialRecovery = verifyCommittedFinancialRecovery(db);
   report.complete = true;
 } catch (error) {
   report.error = error.message;
