@@ -3027,3 +3027,9 @@ Eighteen focused scheduler and real PostgreSQL/PostgREST cycle tests pass, cover
 Today now exposes explicit Chore, Grocery and Expense actions using the existing authorized editors. The chore route opens the creation form directly; saved or pending routine writes retain the existing recovery path instead of opening another draft. The management link uses the brief’s “Manage chores” label. Mobile typechecking, scoped lint and formatting pass. Native touch/navigation and accessibility verification remain outstanding; no new write service or approval bypass is introduced. Exact-commit review and CI remain required.
 
 Recurring AI and scheduling through `ac721b6` are merged after clean Sol review and successful CI `35826563237`. Worker cycle `b2a96c4` is pushed for review/CI.
+
+### Today household renewals — native integration candidate
+
+Today now reads household renewals and cancellation deadlines for the current Zurich day through the existing authorized Calendar renewal service. It shows up to three exact-record links, indicates additional results and links to Manage renewals. Loading, failed reads, empty results and account verification remain distinct. Account-lease/date owners and focus/background lifecycle clear inactive data; the section does not request EventKit access, publish calendar data or opt anyone into reminders.
+
+Four existing lifecycle and real PostgreSQL/PostgREST integration checks pass for the reused read path, including pagination, date changes, background clearing and replaced accounts. Mobile types and scoped lint/format pass after splitting row presentation to retain complexity limits. Physical Today rendering/navigation remains unverified. Review/CI remain required. Today Add commit `a3e11e3` has clean Sol review with 19 independent lifecycle/draft/state checks. Recurring worker `b2a96c4` has clean Sol review with 21 independent tests; CI remains pending.

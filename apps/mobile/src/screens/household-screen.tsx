@@ -1,3 +1,4 @@
+import { TodayRenewals } from "../today/renewals";
 import { TodayAddActions } from "../today/add-actions";
 import { useChoreEditor } from "../chores/use-editor";
 import { currentHouseholdDay, useTodayClock } from "../today/use-today-clock";
@@ -95,6 +96,7 @@ function HouseholdChores({
       footer={
         <>
           <TodayBills date={today} />
+          <TodayRenewals date={today} />
           <TodayMeals date={today} />
           <TodayCalendar now={now} />
           <Link href="/" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
