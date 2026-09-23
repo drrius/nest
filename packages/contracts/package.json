@@ -90,6 +90,8 @@
     "./push-registration": "./src/push-registration.ts",
     "./daily-summary": "./src/daily-summary.ts",
     "./chore-reminders": "./src/chore-reminders.ts",
+    "./dated-reminders": "./src/dated-reminders.ts",
+    "./grocery-reminders": "./src/grocery-reminders.ts",
     "./meal-reminders": "./src/meal-reminders.ts"
   },
   "scripts": {

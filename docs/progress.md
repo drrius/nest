@@ -2801,3 +2801,15 @@ The server RPC map and cycle now include meal maintenance and an independent che
 ### Meal worker orchestration — final local checks
 
 Eleven combined real HTTP/PostgREST/PostgreSQL cycle/restart and scheduler checks pass. All four sources send once and settle receipts; source failures preserve independent delivery and shared receipt polling. A lost committed meal checkpoint resumes beyond 100 invalid sessions to the valid device without resending or changing the renewal checkpoint. Existing chore/renewal behavior and scheduler secret/aggregate-only responses remain covered. API types, lint/format and diff checks pass. The runbook describes all four sources and their independent bounds. Exact-commit review/CI remain required; hosted scheduling and device delivery remain unverified and unactivated.
+
+### Grocery reminders — timing contract draft
+
+Grocery reminder timing uses an explicitly selected local date/time, because groceries have no intrinsic deadline in the approved model. This does not add a grocery due-date feature. Draft Effect contracts bind saves to the grocery version and settings revision, use explicit recipients and retain strict receipt/recovery identity. Storage/native/AI/delivery remain unimplemented for this type.
+
+The dated-settings check passes for leap-day validity, malformed times, missing/duplicate recipients and rejected mute/relative-date authority. Contracts typechecking passes; complete receipt/context tests and database implementation remain next. Meal worker `c73fc19` has clean exact Sol review with eleven independently passing tests; CI remains required.
+
+### Grocery reminder contracts — locally verified candidate
+
+Strict Effect contracts now cover dated settings, item/settings version-bound save commands, context, immutable receipts and operation recovery. Context must match the grocery’s own version; receipts bind actor, operation, item, reviewed version and full timing/recipient intent. Version strings reject trailing whitespace. Reminder dates belong to settings rather than changing grocery semantics.
+
+Four focused contract tests pass for real calendar dates, recipient constraints, strict authority fields, stale/mismatched context, forged receipt identities and false recovery success. Contracts typechecking, full lint/format and diff checks pass. Database authorization/storage, API/native/AI and delivery remain unfinished; these contracts alone do not constitute a working grocery reminder. Exact-commit review/CI remain required.
