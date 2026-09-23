@@ -3143,3 +3143,7 @@ The disposable migration diagnostic now seeds an alternating daily routine with 
 ### Excluded-record preservation — local candidate
 
 The full disposable migration diagnostic now preserves synthetic project/trip, contact, inventory asset, booking and linked document records using exact full-row fingerprints and counts. The document is seeded through the legacy authenticated attachment reservation and claim guards, with simulated Storage metadata; real object bytes and hosted access remain unverified. All 54 legacy and 188 native migrations pass with prior reconciliation intact (`/tmp/nest-excluded-rehearsal.json`). This sample does not yet cover every excluded child table. Routine fixture commit `c84542a` has clean independent Sol review and independently passing full diagnostic; CI remains required. No production data was accessed or changed.
+
+### Retained document metadata reconciliation
+
+Extended the excluded-record snapshot to fingerprint each document's upload, Storage object and private bucket metadata. Validity requires a same-household claimed upload, existing object, private bucket and matching MIME type. A rollback-only missing-object probe proves the same snapshot detects broken linkage, then verifies restoration. The full disposable migration diagnostic passes (`/tmp/nest-document-storage.json`); scoped lint/format pass. This remains metadata evidence only, with actual Storage bytes and hosted authorization unverified. Review and CI remain pending for this increment.

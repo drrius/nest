@@ -32,11 +32,23 @@ export function captureExcludedHistory(db) {
         (table) =>
           `'${table}',(select jsonb_build_object('count',count(*),'rows',jsonb_agg(encode(sha256(convert_to(to_jsonb(r)::text,'UTF8')),'hex') order by id)) from public.${table} r)`,
       )
-      .join(",")})`,
+      .join(",")}, 'documentStorage', (select jsonb_agg(jsonb_build_object(
+      'id',d.id,'digest',encode(sha256(convert_to(jsonb_build_object(
+        'upload',to_jsonb(u),'object',to_jsonb(o),'bucket',to_jsonb(b))::text,'UTF8')),'hex'),
+      'valid',coalesce(u.household_id=d.household_id and u.state='claimed'
+        and o.id is not null and b.public=false and u.content_type=o.metadata->>'mimetype',false)
+      ) order by d.id) from public.household_documents d
+      left join public.household_attachment_uploads u on u.path=d.file_path
+      left join storage.objects o on o.bucket_id='household-files' and o.name=d.file_path
+      left join storage.buckets b on b.id=o.bucket_id))`,
   );
 }
 export function verifyExcludedRehearsal(db, before) {
-  assert.equal(captureExcludedHistory(db), before, "Excluded legacy records changed");
+  const after = captureExcludedHistory(db);
+  assert.equal(after, before, "Excluded legacy records changed");
+  assert.ok(JSON.parse(before).documentStorage.every((row) => row.valid));
+  assert.ok(JSON.parse(after).documentStorage.every((row) => row.valid));
+  verifyMissingDocumentObject(db, after);
   return {
     passed: true,
     retainedProjects: 2,
@@ -46,4 +58,17 @@ export function verifyExcludedRehearsal(db, before) {
     retainedDocumentReferences: 1,
     storageBytesVerified: false,
   };
+}
+
+function verifyMissingDocumentObject(db, baseline) {
+  const damaged = captureExcludedHistory({
+    sql: (query) =>
+      db.sql(`begin;
+    delete from storage.objects where bucket_id='household-files'
+      and name='${id(10)}/documents/${id(1306)}.pdf';
+    ${query}; rollback;`),
+  });
+  assert.notEqual(damaged, baseline);
+  assert.equal(JSON.parse(damaged).documentStorage[0].valid, false);
+  assert.equal(captureExcludedHistory(db), baseline, "Corruption probe must roll back");
 }
