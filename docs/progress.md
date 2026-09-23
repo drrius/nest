@@ -2497,3 +2497,5 @@ Sol identified two malformed-response gaps in sweep commit `7169426`: backward s
 ### Durable checkpoint recovery — candidate verification
 
 Four combined PostgreSQL and actual HTTP/PostgREST checks pass, including a lost committed checkpoint acknowledgment after scanning one hundred invalid devices, fresh-run continuation to the remaining valid device, cursor wraparound and another full sweep with exactly one provider dispatch/attempt. The provider is simulated. API types, scoped lint and disposable security advisors pass. Exact-commit review/CI remain required; materialization/retry/expiry orchestration, hosted scheduling and device acceptance remain unfinished.
+
+The final scoped lint caught checkpoint-runner complexity 11 against the limit of 10. Cursor equality was extracted into a focused helper, also comparing semantic timestamp/UUID equality. No limit was relaxed. The corrected candidate requires fresh scoped checks and exact-head review.

@@ -1,3 +1,4 @@
+import { cursorAdvances, type PushScanCursor } from "./scan-cursor.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { ApiFailure } from "../errors.ts";
@@ -9,6 +10,10 @@ const Checkpoint = Schema.Struct({
   revision: Schema.String.check(Schema.isUUID()),
   after: Schema.NullOr(PushScanCursorSchema),
 });
+function sameCursor(left: PushScanCursor | null, right: PushScanCursor | null) {
+  if (left === null || right === null) return left === right;
+  return !cursorAdvances(left, right) && !cursorAdvances(right, left);
+}
 /** Save progress only after all page attempts settle. Lost saves recover by rereading. */
 export function runCheckpointedPushPage(
   rpc: ReturnType<typeof pushWorkerRpc>,
@@ -23,12 +28,7 @@ export function runCheckpointedPushPage(
         p_after: report.after,
       }),
     );
-    if (
-      saved.revision === start.revision ||
-      saved.after?.dueAt !== report.after?.dueAt ||
-      saved.after?.outboxId !== report.after?.outboxId ||
-      saved.after?.installationId !== report.after?.installationId
-    )
+    if (saved.revision === start.revision || !sameCursor(saved.after, report.after))
       return yield* new ApiFailure({ code: "unavailable" });
     return { ...report, checkpointRevision: saved.revision };
   }).pipe(Effect.mapError(() => new ApiFailure({ code: "unavailable" })));
