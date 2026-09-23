@@ -25,7 +25,7 @@ export function reminderConfirmation(
   if (!date) return null;
   let used = false;
   return {
-    message: `${context.rule.configuration.description}\nReminder: ${settings.enabled ? "On" : "Off"}\nRecipients: ${recipients.map((member) => reminderRecipientLabel(member!, context.actorId)).join(", ") || "None"}\nNext reminder: ${date} at ${settings.localTime} (Europe/Zurich)\n\nThis changes reminder settings only, not the financial rule or ledger. Recipient mute settings apply to each reminder.`,
+    message: `${context.rule.configuration.description}\nRule reference: ${command.ruleId}\nReminder: ${settings.enabled ? "On" : "Off"}\nRecipients: ${recipients.map((member) => reminderRecipientLabel(member!, context.actorId)).join(", ") || "None"}\nNext reminder: ${date} at ${settings.localTime} (Europe/Zurich)\n\nThis changes reminder settings only, not the financial rule or ledger. Recipient mute settings apply to each reminder.`,
     confirm: async () => {
       if (used || !current()) return false;
       used = true;

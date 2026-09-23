@@ -19,6 +19,7 @@ export function ReminderFieldsView({
     scheme = useColorScheme();
   return (
     <Section title={context.rule.configuration.description}>
+      <Note>{`Rule reference: ${context.rule.ruleId}`}</Note>
       <Note>{`${context.rule.nextDueOn} · ${context.rule.status}`}</Note>
       <Host
         matchContents

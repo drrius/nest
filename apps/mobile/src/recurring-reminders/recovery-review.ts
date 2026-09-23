@@ -16,6 +16,6 @@ export function reminderRecoveryReview(
   });
   return {
     target: null,
-    summary: `${title}\nPending reminder: ${settings.enabled ? "On" : "Off"}\nRecipients: ${names.join(", ") || "None"}\n${settings.daysBefore} days before the reviewed due date, at ${settings.localTime} (Europe/Zurich).\nThese are the original pending settings. Recipient mute settings apply.`,
+    summary: `${title}\nRule reference: ${command.ruleId}\nPending reminder: ${settings.enabled ? "On" : "Off"}\nRecipients: ${names.join(", ") || "None"}\n${settings.daysBefore} days before the reviewed due date, at ${settings.localTime} (Europe/Zurich).\nThese are the original pending settings. Recipient mute settings apply.`,
   };
 }

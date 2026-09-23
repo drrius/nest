@@ -2959,3 +2959,15 @@ Two focused form/confirmation cases pass. Initial mobile typechecking passed; tw
 Eight focused form/confirmation and real SQLite/HTTP/PostgREST/PostgreSQL cases pass, including authorized roster/context, exact durable save, stale confirmation refusal, account replacement and restart/failure recovery. Final mobile typechecking, workspace lint and formatting pass. The iOS export succeeded at `/tmp/nest-recurring-editor-export` before final wording adjustments; this proves packaging only. Native controls, gestures, keyboard, VoiceOver and actual device behavior remain unverified. Exact-commit Sol review and CI remain required.
 
 Grocery worker `eb610af` has successful CI `35824456046`; recurring reminder contracts `dff13f7` have successful CI `35824631550`. Both have clean exact Sol review. No deployment, hosted migration or push activation occurred.
+
+### Recurring reminder assistant — authorized read verified, journal draft
+
+The registered assistant read tool now uses the shared authorized service to return current recurring-rule and reminder context. Its description separates reminder settings from financial mandates/posting and does not claim delivery. One actual registered SDK-tool → HTTP/PostgREST/PostgreSQL case passes for current context, foreign-member denial, injected household rejection, membership revocation and no reminder writes.
+
+A gated local AI journal migration is drafted to extend the existing allowlist, strict basic-command validator, dispatcher and canonical transcript reconstruction while preserving earlier tool branches. It delegates recurring reminder saves to the shared native command. This migration has not yet been executed in fixtures; mutation tool registration, receipt matching, result cards and journal/SDK verification remain unfinished. No live model, hosted migration or production operation occurred.
+
+### Recurring editor review correction and AI journal verification
+
+Sol reported that same-name financial rules could appear identical in reminder confirmation/recovery. The editor header, immutable confirmation and recovery summary now show the stable rule reference. A same-name regression passes for distinct rule IDs, including recovery without current context; all three form/confirmation tests and scoped lint pass. Updated-commit rereview/CI remain required; the original editor commit must not merge alone.
+
+The recurring AI journal draft now passes five disposable PostgreSQL cases: concurrent idempotent invocation, strict inputs/current authorization, native and journal rollback, canonical transcript correction, and private history plus revoked recipients. An initial test adaptation referenced the wrong table; correcting it to advance the recurring execution cursor fixed the test. Mutation registration, SDK integration and native action cards remain unfinished; no live model or hosted migration was used.

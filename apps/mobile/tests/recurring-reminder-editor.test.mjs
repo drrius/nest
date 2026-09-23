@@ -1,3 +1,4 @@
+import { reminderRecoveryReview } from "../src/recurring-reminders/recovery-review.ts";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { reminderDraft, parseReminderDraft } from "../src/recurring-reminders/form.ts";
@@ -76,4 +77,23 @@ test("confirmation captures the reviewed item/recipients and rejects stale, repe
       ),
       null,
     );
+});
+
+test("same-name recurring rules remain distinct in confirmation and recovery", () => {
+  const other = { ...command, ruleId: id(101) };
+  const otherContext = { ...context, rule: { ...context.rule, ruleId: other.ruleId } };
+  const confirm = (input, value) =>
+    reminderConfirmation(
+      input,
+      value,
+      () => true,
+      async () => {},
+    ).message;
+  assert.notEqual(confirm(command, context), confirm(other, otherContext));
+  assert.ok(confirm(command, context).includes(command.ruleId));
+  const review = reminderRecoveryReview(command, command.ruleId, context);
+  const second = reminderRecoveryReview(other, other.ruleId, otherContext);
+  assert.notEqual(review.summary, second.summary);
+  assert.ok(review.summary.includes(command.ruleId));
+  assert.ok(reminderRecoveryReview(command, command.ruleId, null).summary.includes(command.ruleId));
 });
