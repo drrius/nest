@@ -4,7 +4,7 @@ import { PushToken } from "../../../../packages/contracts/src/push-registration.
 import { ApiFailure } from "../errors.ts";
 import type { expoPushTransport } from "./expo-transport.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
-const Attempt = Schema.Struct({
+const attemptFields = {
   version: Schema.Literal(1),
   deliveryId: Uuid,
   attemptId: Uuid,
@@ -13,8 +13,13 @@ const Attempt = Schema.Struct({
   registrationRevision: Uuid,
   token: PushToken,
   householdId: Uuid,
-  renewalId: Uuid,
-});
+};
+const Attempt = Schema.Union([
+  Schema.Struct({ ...attemptFields, renewalId: Uuid }),
+  Schema.Struct({ ...attemptFields, summaryId: Uuid, recipientId: Uuid }).check(
+    Schema.makeFilter((value) => value.summaryId === value.outboxId),
+  ),
+]);
 type Provider = ReturnType<typeof expoPushTransport>;
 type SendResult = Effect.Success<ReturnType<Provider["send"]>>;
 type ReceiptResult = NonNullable<Effect.Success<ReturnType<Provider["receipt"]>>>;
@@ -75,10 +80,14 @@ export function pushDeliveryWorker(rpc: PushWorkerRpc, provider: Provider) {
         yield* Schema.decodeUnknownEffect(Uuid)(deliveryId);
         const raw = yield* rpc("begin", { p_delivery: deliveryId });
         if (raw === null) return "skipped" as const;
-        const attempt = yield* Schema.decodeUnknownEffect(Attempt)(raw);
+        const attempt = yield* Schema.decodeUnknownEffect(Attempt, { onExcessProperty: "error" })(
+          raw,
+        );
         if (attempt.deliveryId !== deliveryId)
           return yield* new ApiFailure({ code: "unavailable" });
-        const result = yield* provider.send(attempt);
+        const result = yield* "summaryId" in attempt
+          ? provider.sendSummary(attempt)
+          : provider.send(attempt);
         yield* persist(rpc, { deliveryId, attemptId: attempt.attemptId, result });
         return "recorded" as const;
       }).pipe(Effect.mapError(() => new ApiFailure({ code: "unavailable" }))),

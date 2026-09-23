@@ -74,3 +74,39 @@ test("pending receipts are not persisted; forged acknowledgments cannot report s
     "pending",
   );
 });
+
+test("summary attempts use the generic summary transport and reject mixed or substituted sources", async () => {
+  const { renewalId: _renewal, ...shared } = attempt;
+  const summary = { ...shared, summaryId: id, recipientId: id };
+  let sends = 0;
+  const provider = {
+    send: () => {
+      assert.fail("wrong source transport");
+    },
+    sendSummary: () =>
+      Effect.sync(() => {
+        sends++;
+        return { status: "unknown" };
+      }),
+    receipt: () => Effect.succeed(null),
+  };
+  const worker = pushDeliveryWorker(
+    (method, input) =>
+      Effect.succeed(
+        method === "begin"
+          ? summary
+          : { version: 1, deliveryId: id, attemptId: id, result: input.p_result },
+      ),
+    provider,
+  );
+  assert.equal(await Effect.runPromise(worker.send(id)), "recorded");
+  assert.equal(sends, 1);
+  for (const invalid of [
+    { ...summary, renewalId: id },
+    { ...summary, outboxId: "00000000-0000-4000-8000-000000000002" },
+  ]) {
+    const bad = pushDeliveryWorker(() => Effect.succeed(invalid), provider);
+    await assert.rejects(Effect.runPromise(bad.send(id)));
+  }
+  assert.equal(sends, 1);
+});
