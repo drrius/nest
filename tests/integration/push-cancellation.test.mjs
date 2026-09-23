@@ -30,11 +30,24 @@ async function setup(t) {
     Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
     (input) => Effect.sync(() => createHash("sha256").update(input).digest("hex")),
   );
+  const checkpoint = () =>
+    pushRotationCheckpoint({
+      account,
+      disk,
+      hash: (token) => Effect.sync(() => createHash("sha256").update(token).digest("hex")),
+    });
   const make = () => {
     const store = protectedPushAttempts(disk);
     return {
       store,
-      operations: pushEnrollmentOperations({ account, client, store, current: () => true }),
+      operations: pushEnrollmentOperations({
+        account,
+        client,
+        store,
+        current: () => true,
+        onCancelled: checkpoint().cancelled,
+        onRecorded: checkpoint().record,
+      }),
     };
   };
   const command = (op) => ({
@@ -83,7 +96,7 @@ test("lost cancellation response recovers on restart and rejects late enrollment
   const result = await run(restarted.operations.recover());
   assert.equal(result.status, "cancelled");
   assert.equal(result.receipt, null);
-  assert.equal(f.values.size, 0);
+  assert.equal(await f.make().store.read(f.account), null);
   await assert.rejects(run(f.client.save(command)));
   assert.equal(f.db.sql("select count(*) from private.nest_push_devices"), "0");
   assert.equal(posts, 1);
@@ -98,7 +111,7 @@ test("cancellation recovers already committed receipt and rejects substituted co
   assert.equal(result.status, "recorded");
   assert.deepEqual(result.receipt, receipt);
   assert.equal((await run(f.client.detail(command.installationId))).enabled, true);
-  assert.equal(f.values.size, 0);
+  assert.equal(await f.make().store.read(f.account), null);
   await assert.rejects(run(f.client.cancel({ ...command, token: "different" })));
   assert.equal(f.db.sql("select count(*) from private.nest_push_cancelled_operations"), "0");
 });
@@ -167,4 +180,72 @@ test("cold-start token reconciliation skips a matching checkpoint and preserves 
   assert.equal(await run(reconcile()), "inactive");
   assert.equal(tokens, 2);
   assert.equal((await run(f.client.detail(command.installationId))).enabled, false);
+});
+test("cancelled rotation remains suppressed across foreground and checkpoint reconstruction", async (t) => {
+  const f = await setup(t),
+    original = f.command(1640);
+  const receipt = await run(f.client.save(original));
+  const pending = {
+    ...original,
+    operationId: id(1641),
+    expectedRevision: receipt.revision,
+    token: "ExponentPushToken[CancelledRotation]",
+  };
+  const { store, operations } = f.make();
+  await store.stage(f.account, pending);
+  await run(operations.cancelPending());
+  const reconcile = () =>
+    rotatePushDevice({
+      current: () => true,
+      checkpoint: f.checkpoint(),
+      client: f.client,
+      operations: f.make().operations,
+      operationId: () => id(1642),
+      readInstallation: Effect.succeed(original.installationId),
+      token: Effect.succeed(pending.token),
+    });
+  assert.equal(await run(reconcile()), "unchanged");
+  assert.equal(await run(reconcile()), "unchanged");
+  assert.equal(await store.read(f.account), null);
+  assert.equal(f.db.sql("select count(*) from private.nest_push_device_operations"), "1");
+  assert.equal(f.db.sql("select token from private.nest_push_devices"), original.token);
+});
+test("cancellation after the initial token check is rechecked inside protected staging", async (t) => {
+  const f = await setup(t),
+    original = f.command(1650);
+  const receipt = await run(f.client.save(original));
+  const pending = {
+    ...original,
+    operationId: id(1651),
+    expectedRevision: receipt.revision,
+    token: "ExponentPushToken[CancelledRace]",
+  };
+  const { store, operations } = f.make(),
+    checkpoint = f.checkpoint();
+  let first = true;
+  const matches = (...args) =>
+    Effect.gen(function* () {
+      const result = yield* checkpoint.matches(...args);
+      if (first) {
+        first = false;
+        yield* Effect.promise(() => store.stage(f.account, pending));
+        yield* operations.cancelPending();
+      }
+      return result;
+    });
+  await assert.rejects(
+    run(
+      rotatePushDevice({
+        current: () => true,
+        checkpoint: { ...checkpoint, matches },
+        client: f.client,
+        operations,
+        operationId: () => id(1652),
+        readInstallation: Effect.succeed(original.installationId),
+        token: Effect.succeed(pending.token),
+      }),
+    ),
+  );
+  assert.equal(await store.read(f.account), null);
+  assert.equal(f.db.sql("select count(*) from private.nest_push_device_operations"), "1");
 });

@@ -42,5 +42,5 @@ test("checkpoint binds account, installation, revision and token without storing
     Effect.runPromise(make().record({ ...receipt, actorId: id(7) }, "secret-token")),
   );
   values.set([...values.keys()][0], "malformed");
-  assert.equal(await Effect.runPromise(make().matches(id(3), id(4), "secret-token")), false);
+  await assert.rejects(Effect.runPromise(make().matches(id(3), id(4), "secret-token")));
 });

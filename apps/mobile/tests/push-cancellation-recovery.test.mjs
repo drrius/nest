@@ -35,6 +35,8 @@ test("lost cancellation acknowledgment survives restart and retry never sends th
     return {
       store,
       operations: pushEnrollmentOperations({
+        onCancelled: () => Effect.void,
+        onRecorded: () => Effect.void,
         account,
         store,
         current: () => true,
@@ -69,4 +71,36 @@ test("lost cancellation acknowledgment survives restart and retry never sends th
   assert.equal(cancellations, 2);
   assert.equal(saves, 0);
   assert.equal(await restarted.store.read(account), null);
+});
+test("terminal cancellation cannot clear intent until its suppression checkpoint is durable", async () => {
+  const command = {
+    action: "register",
+    operationId: id(3),
+    installationId: id(4),
+    expectedRevision: id(5),
+    token: "token",
+  };
+  let retained = command,
+    fail = true;
+  const operations = pushEnrollmentOperations({
+    account: { actor: id(1), household: id(2) },
+    current: () => true,
+    store: {
+      read: async () => retained,
+      clear: async () => {
+        retained = null;
+      },
+    },
+    client: { recover: () => Effect.succeed({ status: "cancelled", receipt: null }) },
+    onRecorded: () => Effect.void,
+    onCancelled: () =>
+      Effect.suspend(() =>
+        fail ? Effect.fail(new PreferenceFailure({ code: "unavailable" })) : Effect.void,
+      ),
+  });
+  await assert.rejects(Effect.runPromise(operations.recover()));
+  assert.equal(retained, command);
+  fail = false;
+  assert.equal((await Effect.runPromise(operations.recover())).status, "cancelled");
+  assert.equal(retained, null);
 });

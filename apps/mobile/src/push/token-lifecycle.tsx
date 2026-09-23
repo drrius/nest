@@ -36,6 +36,8 @@ export function PushTokenLifecycle() {
           client: pushDevices,
           operations: pushEnrollmentOperations({
             account,
+            onCancelled: nativePushCheckpoint(account).cancelled,
+            onRecorded: nativePushCheckpoint(account).record,
             client: pushDevices,
             store: nativePushAttempts,
             current,

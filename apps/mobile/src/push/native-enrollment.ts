@@ -7,6 +7,7 @@ import { pushEnrollmentOwner } from "./enrollment-owner";
 import { nativePushPermission, nativePushToken } from "./native-permission";
 import {
   nativePushAttempts,
+  nativePushCheckpoint,
   nativePushInstallation,
   readNativePushInstallation,
 } from "./native-storage";
@@ -14,6 +15,8 @@ const unavailable = () => new PreferenceFailure({ code: "unavailable" });
 export function nativeEnrollmentOwner(account: Account, client: EnrollmentDependencies["client"]) {
   return pushEnrollmentOwner({
     account,
+    onCancelled: nativePushCheckpoint(account).cancelled,
+    onRecorded: nativePushCheckpoint(account).record,
     client,
     store: nativePushAttempts,
     installation: Effect.tryPromise({ try: nativePushInstallation, catch: unavailable }),

@@ -19,16 +19,7 @@ test("enrollment stages before HTTP and reconstruction recovers a lost commit wi
     action: "register",
     token: "ExponentPushToken[RecoveryFixture]",
   };
-  const values = new Map();
-  const disk = {
-    getItem: async (key) => values.get(key) ?? null,
-    setItem: async (key, value) => {
-      values.set(key, value);
-    },
-    removeItem: async (key) => {
-      values.delete(key);
-    },
-  };
+  const { values, disk } = protectedMemory();
   const client = pushDeviceClient(
     f.url,
     account,
@@ -39,6 +30,8 @@ test("enrollment stages before HTTP and reconstruction recovers a lost commit wi
     posts = 0;
   const make = (storage = disk) =>
     pushEnrollmentOperations({
+      onCancelled: () => Effect.void,
+      onRecorded: () => Effect.void,
       account,
       client,
       store: protectedPushAttempts(storage),
@@ -110,4 +103,18 @@ async function verifyExplicitActions({ command, recovered, client, operations, v
   assert.equal(retried.expectedRevision, disabled.revision);
   assert.equal(values.size, 0);
   assert.equal(await run(operations.retryPending()), null);
+}
+
+function protectedMemory() {
+  const values = new Map();
+  const disk = {
+    getItem: async (key) => values.get(key) ?? null,
+    setItem: async (key, value) => {
+      values.set(key, value);
+    },
+    removeItem: async (key) => {
+      values.delete(key);
+    },
+  };
+  return { values, disk };
 }

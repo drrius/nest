@@ -73,7 +73,7 @@ export function protectedPushAttempts(disk: PushProtectedDisk) {
           }),
         );
       }),
-    stage: (account: Account, input: PushDeviceCommand) =>
+    stage: (account: Account, input: PushDeviceCommand, beforeStage?: () => Promise<void>) =>
       serial(async () => {
         let command: PushDeviceCommand;
         try {
@@ -83,6 +83,7 @@ export function protectedPushAttempts(disk: PushProtectedDisk) {
         } catch {
           throw new Error("Invalid push command");
         }
+        if (beforeStage) await beforeStage();
         const previous = await read(account);
         if (previous !== null && !same(previous, command))
           throw new Error("Push operation unresolved");

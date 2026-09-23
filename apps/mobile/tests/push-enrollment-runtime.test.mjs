@@ -11,6 +11,8 @@ function fixture() {
   const writes = [];
   let pending = null;
   const deps = {
+    onCancelled: () => Effect.void,
+    onRecorded: () => Effect.void,
     account: { actor: "actor", household: "home" },
     store: {
       cancelling: async () => false,

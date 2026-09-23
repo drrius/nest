@@ -38,6 +38,8 @@ test("settings controller reads and changes real authorized registration through
   };
   const bind = (effect) => effect.pipe(Effect.provideService(Fetch.Fetch, transport));
   const deps = {
+    onCancelled: () => Effect.void,
+    onRecorded: () => Effect.void,
     account,
     store,
     client: {

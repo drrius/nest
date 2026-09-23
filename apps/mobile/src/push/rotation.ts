@@ -1,5 +1,5 @@
 import * as Effect from "effect/Effect";
-import type { PreferenceFailure } from "../preferences/client.ts";
+import { PreferenceFailure } from "../preferences/client.ts";
 import type { pushDeviceClient } from "./client.ts";
 import type { pushEnrollmentOperations } from "./operations.ts";
 import type { PushRotationCheckpoint } from "./rotation-checkpoint.ts";
@@ -26,14 +26,16 @@ export function rotatePushDevice(deps: Dependencies) {
     if (!deps.current()) return "inactive" as const;
     if (unchanged) return "unchanged" as const;
     // Keep the earlier revision. Never reread and adopt a newer explicit choice.
-    const receipt = yield* deps.operations.save({
-      action: "register",
-      operationId: deps.operationId(),
-      installationId,
-      expectedRevision: state.revision,
-      token,
-    });
-    if (deps.current()) yield* deps.checkpoint.record(receipt, token);
+    yield* deps.operations.save(
+      {
+        action: "register",
+        operationId: deps.operationId(),
+        installationId,
+        expectedRevision: state.revision,
+        token,
+      },
+      rotationGuard(deps, installationId, state.revision, token),
+    );
     return "rotated" as const;
   });
 }
@@ -50,4 +52,20 @@ function rotationTarget(deps: Dependencies) {
     if (!state.enabled || !deps.current()) return null;
     return { installationId, state };
   });
+}
+
+function rotationGuard(
+  deps: Dependencies,
+  installation: string,
+  revision: string | null,
+  token: string,
+) {
+  return () =>
+    Effect.runPromise(
+      Effect.gen(function* () {
+        if (!deps.current()) return yield* new PreferenceFailure({ code: "unavailable" });
+        if (yield* deps.checkpoint.matches(installation, revision, token))
+          return yield* new PreferenceFailure({ code: "conflict" });
+      }),
+    );
 }

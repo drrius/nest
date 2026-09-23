@@ -1,4 +1,5 @@
 import * as Effect from "effect/Effect";
+import type { PushDeviceCommand, PushDeviceReceipt } from "@nest/contracts/push-registration";
 import type { Account } from "../offline/contracts.ts";
 import type { PreferenceFailure } from "../preferences/client.ts";
 import type { pushDeviceClient } from "./client.ts";
@@ -15,6 +16,11 @@ export interface EnrollmentDependencies {
   permission: Effect.Effect<PushPermission, PreferenceFailure>;
   token: Effect.Effect<string, PreferenceFailure>;
   operationId: () => string;
+  onRecorded: (
+    receipt: typeof PushDeviceReceipt.Type,
+    token: string,
+  ) => Effect.Effect<void, PreferenceFailure>;
+  onCancelled: (command: PushDeviceCommand) => Effect.Effect<void, PreferenceFailure>;
 }
 export interface EnrollmentView {
   loaded: boolean;
