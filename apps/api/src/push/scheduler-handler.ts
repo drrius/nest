@@ -20,10 +20,13 @@ function summarize(report: Report) {
   const delivery = report.delivery.status === "recorded" ? report.delivery.report.outcomes : [];
   const summary =
     report.summaryDelivery.status === "recorded" ? report.summaryDelivery.report.outcomes : [];
+  const chore =
+    report.choreDelivery.status === "recorded" ? report.choreDelivery.report.outcomes : [];
   const receipts = report.receipts.status === "recorded" ? report.receipts.report.outcomes : [];
   const failed =
     delivery.filter((v) => v.status === "failed").length +
     summary.filter((v) => v.status === "failed").length +
+    chore.filter((v) => v.status === "failed").length +
     receipts.filter((v) => v.status === "failed").length;
   const healthy =
     Object.values(report).every((phase) => phase.status === "recorded") && failed === 0;
@@ -32,11 +35,13 @@ function summarize(report: Report) {
     delivery: report.delivery.status,
     summaryMaintenance: report.summaryMaintenance.status,
     summaryDelivery: report.summaryDelivery.status,
+    choreMaintenance: report.choreMaintenance.status,
+    choreDelivery: report.choreDelivery.status,
     receipts: report.receipts.status,
-    processed: delivery.length + summary.length,
+    processed: delivery.length + summary.length + chore.length,
     polled: receipts.length,
     failed,
-    complete: [report.delivery, report.summaryDelivery].every(
+    complete: [report.delivery, report.summaryDelivery, report.choreDelivery].every(
       (phase) => phase.status === "recorded" && phase.report.complete,
     ),
   });

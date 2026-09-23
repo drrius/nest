@@ -9,6 +9,10 @@ import { ApiFailure } from "../errors.ts";
 import { validateConfig } from "../config.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 const methods = {
+  choreMaintain: "nest_maintain_chore_reminders",
+  choreReadCheckpoint: "nest_read_chore_push_checkpoint",
+  choreSaveCheckpoint: "nest_save_chore_push_checkpoint",
+  choreScan: "nest_scan_chore_push_deliveries",
   summaryMaintain: "nest_maintain_daily_summaries",
   summaryReadCheckpoint: "nest_read_summary_push_checkpoint",
   summarySaveCheckpoint: "nest_save_summary_push_checkpoint",
