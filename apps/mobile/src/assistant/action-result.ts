@@ -1,3 +1,4 @@
+import { pendingApprovalHandoff } from "./pending-approval-handoff.ts";
 import { actionRecordLink } from "./action-record-link.ts";
 import { summaryHandoff } from "./summary-handoff.ts";
 import { LegacyAdoptionApprovalEnvelope } from "@nest/contracts/legacy-adoption-approval";
@@ -14,7 +15,7 @@ import { SettlementApprovalEnvelope } from "@nest/contracts/settlement-approval"
 import { ExpenseApprovalEnvelope } from "@nest/contracts/expense-approval";
 import { agendaHandoff } from "./agenda-handoff.ts";
 import { ingredientHandoff } from "./ingredient-handoff.ts";
-import { MealProposalGenerationResult } from "@nest/contracts/meal-proposals";
+import { proposalHandoff } from "./proposal-handoff.ts";
 import { MealPreparationReceipt } from "@nest/contracts/meal-preparation";
 import { LeftoverPlacementReceipt } from "@nest/contracts/meal-leftovers";
 import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
@@ -143,6 +144,7 @@ const destinations = {
   checkGrocery: "/checklist",
 } as const;
 const handoffs = {
+  "tool-listPendingFinancialApprovals": pendingApprovalHandoff,
   "tool-readDailySummary": summaryHandoff,
   "tool-openCalendarAgenda": agendaHandoff,
   "tool-openMealIngredientReview": ingredientHandoff,
@@ -297,24 +299,6 @@ function mealHref(action: AssistantAction, value: object) {
   if (action === "moveMeal" && Schema.is(MealMoveReceipt)(value))
     return { pathname: "/meal-week" as const, params: { weekStart: value.targetWeekStart } };
   return null;
-}
-
-function proposalHandoff(part: { state?: unknown; output?: unknown }) {
-  if (
-    part.state !== "output-available" ||
-    !Schema.is(Output)(part.output) ||
-    !part.output.ok ||
-    !Schema.is(MealProposalGenerationResult)(part.output.value)
-  )
-    return null;
-  const proposal = part.output.value.envelope.proposal;
-  return {
-    label: "Open current private preview · approval is on your iPhone",
-    href: {
-      pathname: "/meal-proposal" as const,
-      params: { proposalId: proposal.proposalId, weekStart: proposal.weekStart },
-    },
-  };
 }
 
 function financialHref(action: AssistantAction, value: object) {
