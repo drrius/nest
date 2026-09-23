@@ -88,7 +88,8 @@
     "./renewals": "./src/renewals.ts",
     "./reminders": "./src/reminders.ts",
     "./push-registration": "./src/push-registration.ts",
-    "./daily-summary": "./src/daily-summary.ts"
+    "./daily-summary": "./src/daily-summary.ts",
+    "./chore-reminders": "./src/chore-reminders.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"
