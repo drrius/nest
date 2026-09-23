@@ -1,3 +1,4 @@
+import { recurringPushRpc } from "./recurring-rpc.ts";
 import { groceryPushRpc } from "./grocery-rpc.ts";
 import { mealPushRpc } from "./meal-rpc.ts";
 import { chorePushRpc } from "./chore-rpc.ts";
@@ -80,6 +81,15 @@ export function runPushCycle(
       groceryMaintenance.status === "recorded"
         ? yield* outcome(runCheckpointedPushPage(groceryPushRpc(rpc), worker))
         : { status: "skipped" as const };
+    const recurringMaintenance = yield* outcome(
+      rpc("recurringMaintain", {}).pipe(
+        Effect.flatMap(Schema.decodeUnknownEffect(ChoreMaintenance)),
+      ),
+    );
+    const recurringDelivery =
+      recurringMaintenance.status === "recorded"
+        ? yield* outcome(runCheckpointedPushPage(recurringPushRpc(rpc), worker))
+        : { status: "skipped" as const };
     // Receipt reads remain useful even when materialization or sending failed.
     const receipts = yield* outcome(runPushReceipts(rpc, worker));
     return {
@@ -93,6 +103,8 @@ export function runPushCycle(
       mealDelivery,
       groceryMaintenance,
       groceryDelivery,
+      recurringMaintenance,
+      recurringDelivery,
       receipts,
     };
   });

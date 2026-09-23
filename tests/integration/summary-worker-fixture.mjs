@@ -36,6 +36,15 @@ export async function summaryWorkerFixture(t, databaseFixture = fixture) {
   }
   f.db.file("supabase/migrations/20260923050126_native_meal_push_scan.sql");
   loadGrocery(f.db);
+  if (f.db.sql("select to_regclass('public.nest_recurring_reminders') is null") === "t") {
+    for (const name of [
+      "20260923055905_native_recurring_reminder_storage",
+      "20260923062003_native_recurring_reminder_schedule",
+      "20260923062428_native_recurring_push_claims",
+    ])
+      f.db.file(`supabase/migrations/${name}.sql`);
+  }
+  f.db.file("supabase/migrations/20260923063134_native_recurring_push_scan.sql");
   const http = await postgrestFixture(t, [], f.db);
   const baseRpc = pushWorkerRpc(
     { url: http.url, publishableKey: "sb_publishable_fixture" },

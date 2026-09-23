@@ -25,10 +25,13 @@ function summarize(report: Report) {
   const meal = report.mealDelivery.status === "recorded" ? report.mealDelivery.report.outcomes : [];
   const grocery =
     report.groceryDelivery.status === "recorded" ? report.groceryDelivery.report.outcomes : [];
+  const recurring =
+    report.recurringDelivery.status === "recorded" ? report.recurringDelivery.report.outcomes : [];
   const receipts = report.receipts.status === "recorded" ? report.receipts.report.outcomes : [];
   const failed =
     delivery.filter((v) => v.status === "failed").length +
     summary.filter((v) => v.status === "failed").length +
+    recurring.filter((v) => v.status === "failed").length +
     grocery.filter((v) => v.status === "failed").length +
     meal.filter((v) => v.status === "failed").length +
     chore.filter((v) => v.status === "failed").length +
@@ -44,10 +47,18 @@ function summarize(report: Report) {
     mealDelivery: report.mealDelivery.status,
     groceryMaintenance: report.groceryMaintenance.status,
     groceryDelivery: report.groceryDelivery.status,
+    recurringMaintenance: report.recurringMaintenance.status,
+    recurringDelivery: report.recurringDelivery.status,
     choreMaintenance: report.choreMaintenance.status,
     choreDelivery: report.choreDelivery.status,
     receipts: report.receipts.status,
-    processed: delivery.length + summary.length + chore.length + meal.length + grocery.length,
+    processed:
+      delivery.length +
+      summary.length +
+      chore.length +
+      meal.length +
+      grocery.length +
+      recurring.length,
     polled: receipts.length,
     failed,
     complete: [
@@ -56,6 +67,7 @@ function summarize(report: Report) {
       report.choreDelivery,
       report.mealDelivery,
       report.groceryDelivery,
+      report.recurringDelivery,
     ].every((phase) => phase.status === "recorded" && phase.report.complete),
   });
 }
