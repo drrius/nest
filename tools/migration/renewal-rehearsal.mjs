@@ -20,7 +20,15 @@ export function verifyRenewalPlan(db, before) {
   const plan = planLegacyRenewals(db.sql);
   assert.deepEqual(
     plan.map((row) => row.disposition),
-    ["ready", "retain-history", "legacy-link-review", "no-renewal-date", "date-review"],
+    [
+      "ready",
+      "retain-history",
+      "legacy-link-review",
+      "no-renewal-date",
+      "date-review",
+      "date-review",
+      "date-review",
+    ],
   );
   assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
   verifyConversion(db, plan[0]);
