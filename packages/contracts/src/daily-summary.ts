@@ -22,3 +22,16 @@ export const DailySummarySnapshot = Schema.Struct({
   summary: DailySummary,
 });
 export const DailySummaryQuery = Schema.Struct({ summaryId: Uuid });
+export const LatestDailySummary = Schema.Struct({
+  version: Schema.Literal(1),
+  householdId: Uuid,
+  recipientId: Uuid,
+  latest: Schema.NullOr(DailySummarySnapshot),
+}).check(
+  Schema.makeFilter(
+    (value) =>
+      value.latest === null ||
+      (value.latest.summary.householdId === value.householdId &&
+        value.latest.summary.recipientId === value.recipientId),
+  ),
+);
