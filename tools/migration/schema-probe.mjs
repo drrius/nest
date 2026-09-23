@@ -1,3 +1,4 @@
+import { runFixtureAdvisors } from "./security-advisors.mjs";
 import {
   seedExcludedRehearsal,
   captureExcludedHistory,
@@ -114,6 +115,7 @@ try {
   report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
+  report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
   report.complete = true;
 } catch (error) {
   report.error = error.message;

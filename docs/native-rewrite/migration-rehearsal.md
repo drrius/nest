@@ -40,3 +40,5 @@ The routine and excluded-module extensions are locally verified and have review 
 - Approved isolated Supabase execution with supported extensions, actual Auth/Storage interfaces, scheduler execution and provider verification.
 
 These fixtures establish bounded synthetic preservation evidence. They do not establish complete migration acceptance, hosted scheduling, native/device behavior, production readiness or permission to perform cutover. Production execution remains separately gated.
+
+For security advisors against the same disposable cluster, set `NEST_TEST_SUPABASE_BIN` to the installed Supabase executable. The runner derives a fixture-only Unix-socket URL and uses `db advisors --type security --fail-on error`. Missing configuration is reported as not run; requested advisor failures fail the diagnostic. The 54-legacy/190-native run returned no security findings on 23 September 2026. This is separate from hosted configuration and real Storage/Auth acceptance.
