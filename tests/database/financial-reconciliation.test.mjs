@@ -96,7 +96,7 @@ test("tenant-filtered reads cannot certify a complete migration", () => {
         db.sql(`set role authenticated;
     set request.jwt.claim.sub='${id(3)}'; ${query}`),
       ),
-    /complete RLS visibility/,
+    /complete RLS visibility|permission denied/,
   );
   const before = snapshot(),
     after = structuredClone(before);
@@ -106,9 +106,23 @@ test("tenant-filtered reads cannot certify a complete migration", () => {
 
 test("unknown and missing snapshot versions fail closed", () => {
   const before = snapshot();
-  for (const version of [2, undefined]) {
+  for (const version of [1, 3, undefined]) {
     const after = { ...before, version };
     assert.equal(reconcileFinancialSnapshots(before, after).passed, false);
     assert.equal(reconcileFinancialSnapshots(after, before).passed, false);
   }
+});
+
+test("preexisting broken relationships block reconciliation even without row changes", () => {
+  const broken = captureFinancialSnapshot((query) =>
+    db.sql(`begin;
+    set local session_replication_role=replica;
+    update public.financial_allocations set member_id='${id(3)}'
+      where financial_event_id='${id(100)}' and member_id='${id(1)}';
+    ${query}; rollback;`),
+  );
+  assert.equal(broken.invalidRelationships, "1");
+  assert.deepEqual(reconcileFinancialSnapshots(broken, broken).failures, [
+    { invariant: "household-qualified-financial-references" },
+  ]);
 });

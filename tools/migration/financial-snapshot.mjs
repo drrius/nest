@@ -1,3 +1,4 @@
+import { financialRelationshipFailures } from "./financial-relationships.mjs";
 // Caller supplies a read-only SQL executor. This module never opens a connection.
 const retainedTables = ["financial_events", "financial_allocations", "ledger_entries"];
 
@@ -15,7 +16,8 @@ export function captureFinancialSnapshot(sql) {
   const snapshot = JSON.parse(
     sql(`select jsonb_build_object(
     'completeVisibility', (select rolsuper or rolbypassrls from pg_roles where rolname=current_user),
-    'version', 1, 'tables', jsonb_build_object(${tables}),
+    'invalidRelationships', ${financialRelationshipFailures},
+    'version', 2, 'tables', jsonb_build_object(${tables}),
     'balances', (select coalesce(jsonb_agg(to_jsonb(t) order by household_id, member_id), '[]') from (
       select household_id, member_id, sum(receivable_delta_cents)::text as centimes
       from public.ledger_entries group by household_id, member_id
@@ -46,13 +48,21 @@ export function reconcileFinancialSnapshots(before, after) {
     const added = target.filter((row) => !original.has(row.id)).length;
     if (missing || changed || added) failures.push({ table, missing, changed, added });
   }
-  if (JSON.stringify(before.balances) !== JSON.stringify(after.balances))
-    failures.push({ invariant: "exact-member-balances" });
-  if (before.invalidEvents !== "0" || after.invalidEvents !== "0")
-    failures.push({ invariant: "two-member-zero-sum-events" });
+  failures.push(...invariantFailures(before, after));
   return { passed: failures.length === 0, failures };
 }
 
 function validMetadata(snapshot) {
-  return snapshot?.version === 1 && snapshot.completeVisibility === true;
+  return snapshot?.version === 2 && snapshot.completeVisibility === true;
+}
+
+function invariantFailures(before, after) {
+  const failures = [];
+  if (JSON.stringify(before.balances) !== JSON.stringify(after.balances))
+    failures.push({ invariant: "exact-member-balances" });
+  if (before.invalidRelationships !== "0" || after.invalidRelationships !== "0")
+    failures.push({ invariant: "household-qualified-financial-references" });
+  if (before.invalidEvents !== "0" || after.invalidEvents !== "0")
+    failures.push({ invariant: "two-member-zero-sum-events" });
+  return failures;
 }
