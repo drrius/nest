@@ -1,3 +1,5 @@
+import { choreReminderReadTools } from "../chore-reminders/tools.ts";
+import { choreReminderWriteTools } from "../chore-reminders/write-tools.ts";
 import { dailySummaryTool } from "../notifications/summary-tool.ts";
 import { renewalReminderWriteTools } from "../renewal-reminders/write-tools.ts";
 import { renewalReminderReadTools } from "../renewal-reminders/tools.ts";
@@ -79,6 +81,8 @@ export function householdTools(
     ...calendarTools(bound, config),
     ...renewalReadTools(bound, config),
     ...renewalReminderReadTools(bound, config),
+    ...choreReminderReadTools(bound, config),
+    ...choreReminderWriteTools(write),
     ...renewalWriteTools(write),
     ...renewalReminderWriteTools(write),
     ...moneyTools(bound, config),

@@ -1,3 +1,4 @@
+import { actionRecordLink } from "./action-record-link.ts";
 import { summaryHandoff } from "./summary-handoff.ts";
 import { LegacyAdoptionApprovalEnvelope } from "@nest/contracts/legacy-adoption-approval";
 import { LegacyConfirmationApprovalEnvelope } from "@nest/contracts/legacy-confirmation-approval";
@@ -13,10 +14,7 @@ import { SettlementApprovalEnvelope } from "@nest/contracts/settlement-approval"
 import { ExpenseApprovalEnvelope } from "@nest/contracts/expense-approval";
 import { agendaHandoff } from "./agenda-handoff.ts";
 import { ingredientHandoff } from "./ingredient-handoff.ts";
-import {
-  MealProposalGenerationReceipt,
-  MealProposalGenerationResult,
-} from "@nest/contracts/meal-proposals";
+import { MealProposalGenerationResult } from "@nest/contracts/meal-proposals";
 import { MealPreparationReceipt } from "@nest/contracts/meal-preparation";
 import { LeftoverPlacementReceipt } from "@nest/contracts/meal-leftovers";
 import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
@@ -34,6 +32,7 @@ const Output = Schema.Struct({
   code: Schema.optional(Schema.String),
 });
 const labels = {
+  saveChoreReminder: "Chore reminder settings saved",
   saveRenewalReminder: "Reminder settings saved",
   createRenewal: "Renewal saved",
   editRenewal: "Renewal updated",
@@ -86,6 +85,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
+  saveChoreReminder: "/household",
   saveRenewalReminder: "/renewals",
   createRenewal: "/renewals",
   editRenewal: "/renewals",
@@ -188,11 +188,8 @@ function successLabel(action: AssistantAction, receipt: object) {
 }
 
 function successHref(action: AssistantAction, value: object) {
-  if (action === "generateMealProposal" && Schema.is(MealProposalGenerationReceipt)(value))
-    return {
-      pathname: "/meal-proposal" as const,
-      params: { proposalId: value.proposalId, weekStart: value.weekStart },
-    };
+  const record = actionRecordLink(action, value);
+  if (record) return record;
   if (isSelectionResult(action, value))
     return {
       pathname: "/planned-recipe" as const,
