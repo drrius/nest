@@ -33,6 +33,7 @@ const Output = Schema.Struct({
 });
 const labels = {
   saveGroceryReminder: "Grocery reminder settings saved",
+  saveRecurringReminder: "Recurring reminder settings saved",
   saveMealReminder: "Meal reminder settings saved",
   saveChoreReminder: "Chore reminder settings saved",
   saveRenewalReminder: "Reminder settings saved",
@@ -88,6 +89,7 @@ const labels = {
 };
 const destinations = {
   saveGroceryReminder: "/grocery-reminder",
+  saveRecurringReminder: "/recurring-reminder",
   saveMealReminder: "/meal-reminder",
   saveChoreReminder: "/household",
   saveRenewalReminder: "/renewals",
