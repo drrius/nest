@@ -2989,3 +2989,13 @@ Two disposable PostgreSQL cases pass for Zurich DST gap/overlap resolution, dupl
 Six disposable PostgreSQL cases pass: DST gap/overlap, deduplication and completed-cycle invalidation, recipient mute/revocation and stale rule revisions, automatic discovery of the next uncovered cycle while retaining sent history, disabled/date-underflow/window rejection, source cursor progress past 250 retained unavailable rules and cancellation progress past 500 obsolete rows. Security advisors on the disposable fixture report no issues. Scheduling writes no financial cycle.
 
 The scheduling migration still requires exact-commit review/CI. Delivery claims, provider payloads/taps and worker integration remain unfinished; no hosted activation occurred. AI commit `138fb77` has clean exact Sol review with 21 independently passing cases. Recovery `3e4db60` has successful exact CI `35825315797` and clean Sol review; the editor correction and AI commits remain in CI.
+
+### Recurring push claims — connected database draft
+
+The existing delivery journal now has a sixth source for recurring financial reminders. Preparation binds recipient/installation; token release locks the current rule, execution cursor, reminder settings, membership/preferences and authenticated device session before rechecking authorization and due-cycle validity. Shared dispatch preserves all five earlier sources. Unknown sends remain non-retryable; rate-limit retries and invalid-token handling reuse the existing immutable outcome journal.
+
+All 15 disposable PostgreSQL cases pass, including one claim under concurrency, cancellation after rule revision/pause and due-cycle advancement, preference/device/session revocation, preservation of all previous dispatch sources, unknown-send refusal, rate-limit retry cap and exact-registration invalid-token handling. Advisors, final lint/format and exact-commit review/CI remain outstanding. No hosted send or financial write was performed. Scheduling `ac721b6` has clean exact Sol review with six independently passing PostgreSQL cases.
+
+### Recurring push claims — review candidate
+
+All 15 claim/outcome tests pass. Workspace lint/format pass and security advisors report no issues on the disposable fixture. The claim locks the financial rule before its execution cursor, matching financial mutation ordering, and preserves all previous source dispatchers. This layer is ready for exact-commit review/CI; provider routing and bounded worker discovery remain unfinished. No external push was sent.
