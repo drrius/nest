@@ -1,4 +1,9 @@
 import {
+  seedRoutineRehearsal,
+  captureRoutineHistory,
+  verifyRoutineRehearsal,
+} from "./routine-rehearsal.mjs";
+import {
   seedRenewalRehearsal,
   captureRenewalHistory,
   verifyRenewalPlan,
@@ -84,6 +89,8 @@ try {
   seedMealRehearsal(db);
   seedPrivacyRehearsal(db);
   seedRenewalRehearsal(db);
+  seedRoutineRehearsal(db);
+  const routinesBefore = captureRoutineHistory(db);
   const renewalsBefore = captureRenewalHistory(db);
   const privacyBefore = capturePrivacyHistory(db);
   const mealsBefore = captureMealHistory(db);
@@ -91,6 +98,7 @@ try {
   const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.routines = verifyRoutineRehearsal(db, routinesBefore);
   report.renewals = verifyRenewalPlan(db, renewalsBefore);
   report.privacy = verifyPrivacyRehearsal(db, privacyBefore);
   report.meals = verifyMealRehearsal(db, mealsBefore);
