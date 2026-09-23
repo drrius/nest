@@ -2545,3 +2545,9 @@ Verification: one real SQLite/API/HTTP/PostgREST/PostgreSQL journey passes for o
 ### Calendar authorization recovery — review correction
 
 Sol found that the renewal runtime latched `access=false` permanently after a session/authorization failure, even when the same owner successfully reverified without a remount. Read attempts can now probe the authorized boundary again; denied rows stay hidden until a successful lease-fenced response explicitly restores access. Three focused runtime/row tests pass, including the new same-owner recovery regression. Main advanced through `8cba64b` after clean Sol review and successful exact-commit CI `35806226152`; newer Calendar commits remain gated on their own checks.
+
+### Daily summary day identity — locally verified scheduling primitive
+
+A gated private queue stores one identity per household/member/Zurich date. Pending entries follow the current explicit daily-summary preference and chosen wall-clock time; mute or membership removal cancels them. Re-enabling a pending/cancelled day reuses its identity, while a started day cannot be recreated or retimed by preference edits. Item-reminder consent remains independent. The indexed one-member/day scheduling helper and queue are unavailable to every API role, including service_role, until a bounded internal runner is deliberately added.
+
+Three disposable PostgreSQL tests pass: retries and preference edits preserve one identity, Zurich spring gaps/autumn overlaps resolve to one instant, absent/muted/removed recipients cannot retain a pending entry, started entries do not reopen, and invalid dates/API-role access fail. Scoped lint and disposable security advisors pass. This is a scheduling primitive only: bounded materialization, deterministic household content, authorization at dispatch, provider delivery and native opening are unfinished. Nothing is scheduled or activated on a hosted database.
