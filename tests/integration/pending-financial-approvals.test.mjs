@@ -1,3 +1,4 @@
+import { moneyTools } from "../../apps/api/src/money/tools.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { expenseApiFixture } from "./expense-api-fixture.mjs";
@@ -14,6 +15,22 @@ test("HTTP pending approvals preserve private pagination through real PostgREST"
   const first = await fetch(`${f.url}/v1/money/pending-approvals`, { headers });
   assert.equal(first.status, 200);
   const page = await first.json();
+  const tools = moneyTools(new Request("http://localhost", { headers }), {
+    url: f.supabaseUrl,
+    publishableKey: "sb_publishable_fixture",
+  });
+  const ai = await tools.listPendingFinancialApprovals.execute(
+    { after: null },
+    {
+      toolCallId: "pending-approval-list",
+      messages: [],
+    },
+  );
+  assert.deepEqual(ai, { ok: true, value: page });
+  assert.equal(
+    f.db.sql("select count(*) from public.nest_action_approvals where status<>'pending'"),
+    "0",
+  );
   assert.equal(page.approvals.length, 20);
   assert.equal(page.next, id(519));
   assert.equal(JSON.stringify(page).includes("secret"), false);

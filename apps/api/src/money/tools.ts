@@ -1,3 +1,4 @@
+import { pendingFinancialApprovalTool } from "./pending-approval-tool.ts";
 import { recurringReadTools } from "./recurring-tools.ts";
 import { correctionSaveTool } from "./correction-save-tool.ts";
 import { correctionContextTool } from "./correction-tool.ts";
@@ -19,6 +20,7 @@ import { readMoneyBalance } from "./read.ts";
 export function moneyTools(request: Request, config: IdentityConfig) {
   return {
     ...recurringReadTools(request, config),
+    listPendingFinancialApprovals: pendingFinancialApprovalTool(request, config),
     readCorrectionSave: correctionSaveTool(request, config),
     readCorrectionContext: correctionContextTool(request, config),
     readRefundSave: refundSaveTool(request, config),
