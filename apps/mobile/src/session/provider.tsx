@@ -1,3 +1,5 @@
+import { sessionMealReminders } from "./meal-reminder-client";
+import type { MealReminderClient } from "../meal-reminders/client";
 import { sessionChoreReminders } from "./chore-reminder-client";
 import type { ChoreReminderClient } from "../chore-reminders/client";
 import { sessionPushDevices } from "./push-client";
@@ -81,6 +83,7 @@ interface SessionContextValue {
   pushDevices: ReturnType<typeof sessionPushDevices> | null;
   renewals: RenewalClient | null;
   renewalReminders: RenewalReminderClient | null;
+  mealReminders: MealReminderClient | null;
   choreReminders: ChoreReminderClient | null;
   money: MoneyClient | null;
   meals: MealClient | null;
@@ -175,12 +178,14 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         money: null,
         renewals: null,
         renewalReminders: null,
+        mealReminders: null,
         choreReminders: null,
         pushDevices: null,
       };
     const { auth } = runtime.current;
     return {
       pushDevices: sessionPushDevices(auth, { actor, household }, configuration.apiUrl),
+      mealReminders: sessionMealReminders(auth, { actor, household }, configuration.apiUrl),
       choreReminders: sessionChoreReminders(auth, { actor, household }, configuration.apiUrl),
       renewalReminders: sessionRenewalReminders(auth, { actor, household }, configuration.apiUrl),
       renewals: sessionRenewals(auth, { actor, household }, configuration.apiUrl),

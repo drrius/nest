@@ -1,3 +1,4 @@
+import { mealReminderRoute } from "./meal-reminders/route.ts";
 import { choreReminderRoute } from "./chore-reminders/route.ts";
 import { dailySummaryRoute } from "./notifications/summary.ts";
 import { pushDeviceRoute } from "./push/route.ts";
@@ -48,6 +49,7 @@ function route(
       routines: () => routineRoute(request, config, caller),
       money: () => moneyRoute(request, config, caller),
       "push-devices": () => pushDeviceRoute(request, config, caller),
+      "meal-reminders": () => mealReminderRoute(request, config, caller),
       "chore-reminders": () => choreReminderRoute(request, config, caller),
       "renewal-reminders": () => renewalReminderRoute(request, config, caller),
       renewals: () => renewalRoute(request, config, caller),
@@ -152,6 +154,10 @@ const methods: Record<string, string> = {
   "/v1/push-devices/operation": "GET",
   "/v1/push-devices/save": "POST",
   "/v1/push-devices/cancel": "POST",
+  "/v1/meal-reminders/detail": "GET",
+  "/v1/meal-reminders/operation": "GET",
+  "/v1/meal-reminders/save": "POST",
+  "/v1/meal-reminders/cancel-operation": "POST",
   "/v1/chore-reminders/detail": "GET",
   "/v1/chore-reminders/operation": "GET",
   "/v1/chore-reminders/save": "POST",
