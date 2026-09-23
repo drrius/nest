@@ -99,6 +99,7 @@ test("continuations reject backward and semantically identical cursors, retainin
   const prior = { ...cursor, dueAt: "2026-09-23T10:00:00.000002+00:00" };
   const worker = { send: () => assert.fail("invalid continuation dispatch") };
   for (const dueAt of [
+    "2027-02-30T00:00:00Z",
     "2026-09-23T09:00:00Z",
     "2026-09-23T12:00:00.000002+02:00",
     "2026-09-23T10:00:00.000001Z",

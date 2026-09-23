@@ -1,9 +1,19 @@
 import * as Schema from "effect/Schema";
+function validCalendar(value: string) {
+  const date = value.slice(0, 10);
+  const parsed = Date.parse(`${date}T00:00:00Z`);
+  return (
+    !date.startsWith("0000-") &&
+    Number.isFinite(parsed) &&
+    new Date(parsed).toISOString().slice(0, 10) === date &&
+    Number.isFinite(Date.parse(value))
+  );
+}
 const Instant = Schema.String.check(
   Schema.isPattern(
-    /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{1,6})?(?:Z|[+-]\d{2}:\d{2})$(?![\s\S])/,
+    /^\d{4}-\d{2}-\d{2}T(?:[01]\d|2[0-3]):[0-5]\d:[0-5]\d(?:\.\d{1,6})?(?:Z|[+-](?:0\d|1[0-5]):[0-5]\d)$(?![\s\S])/,
   ),
-  Schema.makeFilter((value) => Number.isFinite(Date.parse(value))),
+  Schema.makeFilter(validCalendar),
 );
 const Uuid = Schema.String.check(Schema.isUUID());
 export const PushScanCursorSchema = Schema.Struct({
