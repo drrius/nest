@@ -1,3 +1,4 @@
+import { verifyShoppingCutover } from "./shopping-cutover.mjs";
 import { captureLegacyWriterInventory } from "./writer-inventory.mjs";
 import { runFixtureAdvisors } from "./security-advisors.mjs";
 import {
@@ -116,6 +117,7 @@ try {
   report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
+  report.shoppingCutover = verifyShoppingCutover(db);
   report.legacyWriters = captureLegacyWriterInventory(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
   report.complete = true;
