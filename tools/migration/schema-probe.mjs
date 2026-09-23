@@ -122,6 +122,9 @@ try {
   report.shoppingCutover = verifyShoppingCutover(db);
   report.groceryRetentionCutover = verifyGroceryRetentionCutover(db);
   report.financialEntryCutover = verifyFinancialEntryCutover(db);
+  report.legacyApiFinancialCompatibility = verifyFinancialEntryCutover(db, {
+    restrictLegacyApi: true,
+  });
   report.cutoverFinancialReconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.cutoverFinancialReconciliation.passed)
     throw new Error("Cutover rehearsal changed financial history or receipt references");

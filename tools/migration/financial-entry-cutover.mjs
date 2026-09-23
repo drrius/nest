@@ -1,3 +1,4 @@
+import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
 import assert from "node:assert/strict";
 import { financialApprovalProbe } from "./financial-approval-cutover.mjs";
 import { save } from "../../tests/database/native-expense-helpers.mjs";
@@ -13,7 +14,7 @@ const signatures = [
   "dismiss_expense_draft(uuid,text)",
 ];
 // Reversible fixture only. Native wrappers keep owner access to audited ledger internals.
-export function verifyFinancialEntryCutover(db) {
+export function verifyFinancialEntryCutover(db, { restrictLegacyApi = false } = {}) {
   const before = captureRehearsal(db),
     metadata = snapshot(db);
   const revokes = signatures
@@ -37,7 +38,7 @@ export function verifyFinancialEntryCutover(db) {
     .join("\n");
   const expression = save(1600).replace(/^select /, "");
   const result = JSON.parse(
-    db.sql(`begin; ${revokes}
+    db.sql(`begin; ${restrictLegacyApi ? legacyApiFenceSql() : ""} ${revokes}
     set local role authenticated;
     set local request.jwt.claim.sub='00000000-0000-4000-8000-000000000001';
     do $probe$ begin ${probes} end $probe$;
@@ -64,6 +65,7 @@ export function verifyFinancialEntryCutover(db) {
   return {
     ...result,
     restrictedEntryPoints: signatures.length,
+    legacyApiRestricted: restrictLegacyApi,
     rollbackVerified: true,
     completeCutover: false,
   };
@@ -71,6 +73,8 @@ export function verifyFinancialEntryCutover(db) {
 function snapshot(db) {
   return db.sql(`select jsonb_build_object(
     'acls',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',proacl) order by oid) from pg_proc where pronamespace='public'::regnamespace),
+    'tableAcls',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',relacl) order by oid) from pg_class where relnamespace='public'::regnamespace),
+    'columnAcls',(select jsonb_agg(jsonb_build_object('table',attrelid,'number',attnum,'acl',attacl) order by attrelid,attnum) from pg_attribute where attrelid in (select oid from pg_class where relnamespace='public'::regnamespace)),
     'approvals',(select jsonb_agg(to_jsonb(a) order by id) from public.nest_action_approvals a),
     'receipts',(select jsonb_agg(to_jsonb(r) order by actor_id,household_id,operation_id) from public.nest_expense_receipts r))`);
 }
