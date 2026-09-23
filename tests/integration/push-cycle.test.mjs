@@ -49,6 +49,7 @@ test("maintenance failure skips new sends but still attempts due receipt reads",
     "summaryMaintain",
     "choreMaintain",
     "mealMaintain",
+    "groceryMaintain",
     "claimReceipts",
   ]);
   assert.equal(result.delivery.status, "skipped");

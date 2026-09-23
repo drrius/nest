@@ -1,3 +1,4 @@
+import { readFileSync } from "node:fs";
 import * as Redacted from "../../apps/api/node_modules/effect/dist/Redacted.js";
 import { fixture } from "../database/summary-push-fixture.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
@@ -34,10 +35,34 @@ export async function summaryWorkerFixture(t, databaseFixture = fixture) {
       f.db.file(`supabase/migrations/${name}.sql`);
   }
   f.db.file("supabase/migrations/20260923050126_native_meal_push_scan.sql");
+  loadGrocery(f.db);
   const http = await postgrestFixture(t, [], f.db);
   const baseRpc = pushWorkerRpc(
     { url: http.url, publishableKey: "sb_publishable_fixture" },
     Redacted.make(http.serverKey),
   );
   return { ...f, baseRpc, rpc: summaryPushRpc(baseRpc) };
+}
+
+function loadGrocery(db) {
+  if (db.sql("select to_regclass('public.nest_grocery_reminders') is null") === "t") {
+    if (db.sql("select to_regclass('public.grocery_items') is null") === "t") {
+      const tables = readFileSync("tests/database/ai-grocery-reminder-tables.sql", "utf8");
+      const category = tables.indexOf("-- Audited additions");
+      const alter = tables.indexOf("alter table public.grocery_items");
+      db.sql(tables.slice(0, category));
+      if (db.sql("select to_regclass('public.grocery_categories') is null") === "t")
+        db.sql(tables.slice(category, alter));
+      db.sql(tables.slice(alter));
+      db.file("supabase/migrations/20260919214311_native_grocery_check_receipts.sql");
+    }
+    for (const name of [
+      "20260923051033_native_dated_reminder_settings",
+      "20260923051148_native_grocery_reminder_storage",
+      "20260923053557_native_grocery_reminder_schedule",
+      "20260923053844_native_grocery_push_claims",
+    ])
+      db.file(`supabase/migrations/${name}.sql`);
+  }
+  db.file("supabase/migrations/20260923054801_native_grocery_push_scan.sql");
 }

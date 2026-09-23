@@ -6,7 +6,7 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 and Today integration — current branch `codex/native-production-tabs`.** Main is merged through grocery reminder durable recovery (`3bfa83f`), after clean exact Sol reviews and successful CI. Grocery reminder native editing has clean Sol review and awaits CI. Grocery AI commands are committed as `28fcbb1` for review/CI. Grocery scheduling/delivery and remaining common reminder types are unfinished. Workers remain unactivated; physical-device acceptance and real provider delivery remain unverified.
+**M8 and Today integration — current branch `codex/native-production-tabs`.** Main is confirmed through grocery reminder native editing (`63b6275`). Grocery AI, scheduling, delivery claims, provider routing and bounded scans have clean Sol reviews; corrected scheduling commit `bda761c` has successful CI, while later delivery commits remain in CI. Grocery worker orchestration is locally verified and awaiting commit review/CI. Remaining reminder types and Today integration are unfinished. Workers remain unactivated; physical-device acceptance and real provider delivery remain unverified.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Native acceptance of the production four-tab composition, remaining Today aggregation and M8 reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -2917,3 +2917,9 @@ The grocery push iOS export subsequently completed successfully at /tmp/nest-gro
 ### Grocery scheduled discovery — local verification
 
 Gated server-only grocery scan/checkpoint/maintenance functions now inspect at most 100 outbox/device pairs per delivery page and retain an independent revision-fenced cursor. Invalid sessions advance the cursor; discovery returns prepared identities without tokens. Seven disposable PostgreSQL cases pass for invalid-session starvation prevention, cursor completeness and ACLs, expired/cancelled exclusion, preparation rollback, concurrent checkpoint writes and fixed-window maintenance. Security advisors report no issues and lint passes. Worker-cycle orchestration remains next. Transport `e00af9a` has clean Sol medium signoff with all 23 focused cases independently passing; CI remains required.
+
+### Grocery worker orchestration — local verification
+
+The bounded worker now independently maintains and scans groceries alongside renewals, daily summaries, chores and meals. Scheduler responses include grocery status in aggregate counts, failures and completion. A grocery failure leaves other sources and shared receipt polling running. The runbook describes five sources and the existing per-source bounds.
+
+Seventeen focused scheduler/HTTP/PostgREST/PostgreSQL cases pass, including all five sources sending once, independent maintenance failures, receipt settlement and lost committed grocery checkpoint acknowledgment across restart without duplicate sends or changing the renewal checkpoint. API typechecking and workspace lint pass. Exact-commit Sol review and CI remain required. Expo responses are simulated; no hosted scheduling or physical notification delivery was tested.

@@ -1,3 +1,4 @@
+import { groceryPushRpc } from "./grocery-rpc.ts";
 import { mealPushRpc } from "./meal-rpc.ts";
 import { chorePushRpc } from "./chore-rpc.ts";
 import * as Effect from "effect/Effect";
@@ -72,6 +73,13 @@ export function runPushCycle(
       mealMaintenance.status === "recorded"
         ? yield* outcome(runCheckpointedPushPage(mealPushRpc(rpc), worker))
         : { status: "skipped" as const };
+    const groceryMaintenance = yield* outcome(
+      rpc("groceryMaintain", {}).pipe(Effect.flatMap(Schema.decodeUnknownEffect(ChoreMaintenance))),
+    );
+    const groceryDelivery =
+      groceryMaintenance.status === "recorded"
+        ? yield* outcome(runCheckpointedPushPage(groceryPushRpc(rpc), worker))
+        : { status: "skipped" as const };
     // Receipt reads remain useful even when materialization or sending failed.
     const receipts = yield* outcome(runPushReceipts(rpc, worker));
     return {
@@ -83,6 +91,8 @@ export function runPushCycle(
       choreDelivery,
       mealMaintenance,
       mealDelivery,
+      groceryMaintenance,
+      groceryDelivery,
       receipts,
     };
   });
