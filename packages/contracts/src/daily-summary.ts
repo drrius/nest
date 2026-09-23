@@ -16,3 +16,8 @@ export const DailySummary = Schema.Struct({
   renewalsDue: SummaryCount,
   cancellationDeadlines: SummaryCount,
 });
+export const DailySummarySnapshot = Schema.Struct({
+  version: Schema.Literal(1),
+  summaryId: Uuid,
+  summary: DailySummary,
+});

@@ -1,7 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import * as Schema from "../../apps/api/node_modules/effect/dist/Schema.js";
-import { DailySummary } from "../../packages/contracts/src/daily-summary.ts";
+import { createRequire } from "node:module";
+const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
+const { DailySummary } = await import(require.resolve("@nest/contracts/daily-summary"));
 import { fixture, id } from "./daily-summary-content-fixture.mjs";
 test("summary uses current shared and accepted responsibilities, scheduled meals and assigned renewals", (t) => {
   const f = fixture(t);
