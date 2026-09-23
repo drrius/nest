@@ -15,6 +15,7 @@ test("server worker traverses HTTP/PostgREST, records tickets and receipts, and 
     "20260923003328_native_push_delivery_retries",
     "20260923003827_native_push_receipt_polling",
     "20260923005427_native_push_worker_rpc",
+    "20260923005723_native_push_delivery_scan",
   ])
     f.db.file(`supabase/migrations/${name}.sql`);
   const http = await postgrestFixture(t, [], f.db);
@@ -31,7 +32,10 @@ test("server worker traverses HTTP/PostgREST, records tickets and receipts, and 
       return Response.json({ data: { "http-ticket": { status: "ok" } } });
     }),
   );
-  const delivery = f.prepare();
+  const page = await Effect.runPromise(rpc("scan", {}));
+  assert.equal(page.scanned, 1);
+  assert.equal(page.complete, true);
+  const [delivery] = page.deliveries;
   assert.equal(await Effect.runPromise(worker.send(delivery)), "recorded");
   assert.equal(await Effect.runPromise(worker.send(delivery)), "skipped");
   assert.equal(sends, 1);

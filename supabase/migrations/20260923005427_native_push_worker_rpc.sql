@@ -38,4 +38,3 @@ returns boolean language sql security invoker set search_path='' as $$
 $$;
 revoke all on function public.nest_retry_push_delivery(uuid) from public,anon,authenticated,service_role;
 grant execute on function public.nest_retry_push_delivery(uuid) to service_role;
-
