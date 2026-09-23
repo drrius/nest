@@ -23,7 +23,7 @@ export type PushWorkerRpc = (
   input: Record<string, unknown>,
 ) => Effect.Effect<unknown, ApiFailure>;
 const TicketId = Schema.String.check(Schema.isPattern(/^[A-Za-z0-9_-]{1,200}$(?![\s\S])/));
-const ReceiptClaim = Schema.Struct({
+export const ReceiptClaim = Schema.Struct({
   version: Schema.Literal(1),
   deliveryId: Uuid,
   attemptId: Uuid,

@@ -5,6 +5,8 @@ import * as Redacted from "../../apps/api/node_modules/effect/dist/Redacted.js";
 import { deliveryFixture } from "../database/push-delivery-fixture.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { pushWorkerRpc } from "../../apps/api/src/push/worker-rpc.ts";
+import { runPushReceipts } from "../../apps/api/src/push/receipt-sweep.ts";
+import { runPushPage } from "../../apps/api/src/push/sweep.ts";
 import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
 import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
 
@@ -36,14 +38,17 @@ test("server worker traverses HTTP/PostgREST, records tickets and receipts, and 
   assert.equal(page.scanned, 1);
   assert.equal(page.complete, true);
   const [delivery] = page.deliveries;
-  assert.equal(await Effect.runPromise(worker.send(delivery)), "recorded");
+  const sweep = await Effect.runPromise(runPushPage(rpc, worker, null));
+  assert.deepEqual(sweep.outcomes, [{ deliveryId: delivery, status: "recorded" }]);
+  assert.equal(sweep.complete, true);
   assert.equal(await Effect.runPromise(worker.send(delivery)), "skipped");
   assert.equal(sends, 1);
   f.db.sql(
     "update private.nest_push_receipt_polls set next_at=clock_timestamp()-interval '1 second'",
   );
-  const { claims } = await Effect.runPromise(rpc("claimReceipts", {}));
-  assert.equal(await Effect.runPromise(worker.receipt(claims[0])), "recorded");
+  const receipts = await Effect.runPromise(runPushReceipts(rpc, worker));
+  assert.equal(receipts.scanned, 1);
+  assert.equal(receipts.outcomes[0].status, "recorded");
   assert.equal(f.db.sql("select state from private.nest_push_deliveries"), "accepted");
   assert.throws(() => pushWorkerRpc(config, Redacted.make(config.publishableKey)), /server-only/);
   await assert.rejects(
