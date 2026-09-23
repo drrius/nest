@@ -1,3 +1,8 @@
+import {
+  seedFinancialRehearsal,
+  captureRehearsal,
+  compareRehearsal,
+} from "./financial-rehearsal.mjs";
 // Disposable schema diagnostic. Never accepts an existing database URL.
 import { readdirSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
@@ -8,7 +13,12 @@ const root = fileURLToPath(new URL("../../", import.meta.url));
 const [legacy, mode] = process.argv.slice(2);
 if (!legacy || (mode && mode !== "--without-pg-net"))
   throw new Error("Usage: schema-probe.mjs LEGACY_MIGRATION_DIRECTORY [--without-pg-net]");
-const report = { kind: "schema-only-diagnostic", applied: [], skipped: [], complete: false };
+const report = {
+  kind: "schema-and-financial-fixture-diagnostic",
+  applied: [],
+  skipped: [],
+  complete: false,
+};
 const db = startFixturePostgres();
 function apply(directory, source) {
   for (const name of readdirSync(directory)
@@ -41,7 +51,11 @@ try {
     create publication supabase_realtime;`);
   db.file(resolve(root, "tests/database/receipt-storage-fixture.sql"));
   apply(resolve(legacy), "legacy");
+  seedFinancialRehearsal(db);
+  const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.reconciliation = compareRehearsal(before, captureRehearsal(db));
+  if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
   report.infrastructure = {
     simulated: ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
     installedExtensions: JSON.parse(
