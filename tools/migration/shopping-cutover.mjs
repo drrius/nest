@@ -1,3 +1,4 @@
+import { shoppingTableFenceSql, shoppingTableProbeSql } from "./shopping-table-fence.mjs";
 import assert from "node:assert/strict";
 const shoppingFunctions = [
   "cancel_shopping_session(uuid)",
@@ -30,20 +31,31 @@ export function verifyShoppingCutover(db) {
     })
     .join("\n");
   const result = JSON.parse(
-    db.sql(`begin; ${revokes}
+    db.sql(`begin; ${revokes} ${shoppingTableFenceSql()}
     set local role authenticated;
     set local request.jwt.claim.sub='00000000-0000-4000-8000-000000000001';
     do $probe$ begin ${probes} end $probe$;
+    ${shoppingTableProbeSql()}
+    do $native$ begin perform public.nest_set_grocery_checked(
+      '00000000-0000-4000-8000-000000000010','00000000-0000-4000-8000-000000001400',
+      '00000000-0000-4000-8000-000000000810',
+      (select native_version from public.grocery_items where id='00000000-0000-4000-8000-000000000810'),true); end $native$;
     select public.nest_grocery_snapshot('00000000-0000-4000-8000-000000000010');
     rollback;`),
   );
   assert.equal(result.items.length, 2);
+  assert.equal(
+    result.items.find((item) => item.itemId === "00000000-0000-4000-8000-000000000810")?.checked,
+    true,
+  );
   assert.equal(snapshot(db), before, "Shopping cutover rehearsal changed data or privileges");
   return {
     tested: true,
     restrictedEntryPoints: shoppingFunctions.length,
     rollbackVerified: true,
     nativeReadVerified: true,
+    nativeCheckVerified: true,
+    restrictedTables: 3,
     completeCutover: false,
   };
 }
@@ -51,6 +63,8 @@ function snapshot(db) {
   return db.sql(`select jsonb_build_object(
     'functions',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',proacl) order by oid)
       from pg_proc where pronamespace='public'::regnamespace),
+    'tableAcls',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',relacl) order by oid) from pg_class where relnamespace='public'::regnamespace),
+    'columnAcls',(select jsonb_agg(jsonb_build_object('table',attrelid,'number',attnum,'acl',attacl) order by attrelid,attnum) from pg_attribute where attrelid in (select oid from pg_class where relnamespace='public'::regnamespace)),
     'items',(select jsonb_agg(to_jsonb(i) order by id) from public.grocery_items i),
     'sessions',(select jsonb_agg(to_jsonb(s) order by id) from public.shopping_sessions s))`);
 }
