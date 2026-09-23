@@ -19,6 +19,11 @@ const report = {
   skipped: [],
   complete: false,
 };
+report.infrastructure = {
+  simulated: ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
+  schedulingVerified: false,
+  storageBytesVerified: false,
+};
 const db = startFixturePostgres();
 function apply(directory, source) {
   for (const name of readdirSync(directory)
@@ -36,6 +41,7 @@ function apply(directory, source) {
     try {
       db.file(path);
     } catch (error) {
+      report.failed = entry;
       throw new Error(`${source}/${name}: ${error.stderr?.toString() ?? error.message}`);
     }
     report.applied.push(entry);
@@ -56,14 +62,6 @@ try {
   apply(resolve(root, "supabase/migrations"), "native");
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
-  report.infrastructure = {
-    simulated: ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
-    installedExtensions: JSON.parse(
-      db.sql("select coalesce(json_agg(extname order by extname),'[]') from pg_extension"),
-    ),
-    schedulingVerified: false,
-    storageBytesVerified: false,
-  };
   report.complete = true;
 } catch (error) {
   report.error = error.message;
