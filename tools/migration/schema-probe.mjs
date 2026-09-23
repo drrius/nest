@@ -107,7 +107,7 @@ try {
   apply(resolve(root, "supabase/migrations"), "native");
   report.excluded = verifyExcludedRehearsal(db, excludedBefore);
   report.routines = verifyRoutineRehearsal(db, routinesBefore);
-  report.renewals = verifyRenewalPlan(db, renewalsBefore);
+  report.renewals = await verifyRenewalPlan(db, renewalsBefore);
   report.privacy = verifyPrivacyRehearsal(db, privacyBefore);
   report.meals = verifyMealRehearsal(db, mealsBefore);
   report.recurring = verifyRecurringRehearsal(db, recurringBefore);

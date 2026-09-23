@@ -1,3 +1,4 @@
+import { verifyRenewalRollback } from "./renewal-rollback.mjs";
 import { renewalConversionSql } from "./renewal-conversion.mjs";
 import assert from "node:assert/strict";
 import { planLegacyRenewals } from "./renewal-plan.mjs";
@@ -17,7 +18,7 @@ export function seedRenewalRehearsal(db) {
 export function captureRenewalHistory(db) {
   return db.sql("select jsonb_agg(to_jsonb(c) order by id) from public.household_commitments c");
 }
-export function verifyRenewalPlan(db, before) {
+export async function verifyRenewalPlan(db, before) {
   assert.equal(captureRenewalHistory(db), before, "Legacy commitments changed");
   const plan = planLegacyRenewals(db.sql);
   assert.deepEqual(
@@ -36,13 +37,15 @@ export function verifyRenewalPlan(db, before) {
   );
   assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
   verifyRefusedConversions(db, plan);
-  verifyConversion(db, plan[0]);
+  await verifyConversion(db, plan[0]);
   assert.equal(captureRenewalHistory(db), before, "Conversion modified legacy commitment");
   return {
     inventoryVerified: true,
     unlinkedConversionVerified: true,
     linkedConversionImplemented: false,
     provenanceVerified: true,
+    provenanceFailureRollbackVerified: true,
+    concurrentConversionVerified: true,
     retainedCommitments: 9,
     ready: 1,
     retainedHistory: 1,
@@ -53,7 +56,7 @@ export function verifyRenewalPlan(db, before) {
   };
 }
 
-function verifyConversion(db, source) {
+async function verifyConversion(db, source) {
   const input = {
     householdId: id(10),
     commitmentId: id(1100),
@@ -65,7 +68,11 @@ function verifyConversion(db, source) {
       `set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${renewalConversionSql(value)}`,
     );
   assert.throws(() => run({ ...input, sourceHash: "0".repeat(64) }), /Reviewed commitment changed/);
-  run(input);
+  verifyRenewalRollback(db, run, input);
+  const command = `set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${renewalConversionSql(input)}`;
+  const parallel = await Promise.all([db.concurrent(command), db.concurrent(command)]);
+  assert.equal(parallel[0].stdout.trim(), parallel[1].stdout.trim());
+  assert.equal(db.sql("select count(*) from private.nest_renewal_conversions"), "1");
   const provenance = JSON.parse(
     db.sql("select row_to_json(c) from private.nest_renewal_conversions c"),
   );
