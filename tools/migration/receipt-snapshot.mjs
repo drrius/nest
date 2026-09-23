@@ -12,6 +12,7 @@ export function captureReceiptSnapshot(sql) {
       )::text, 'UTF8')), 'hex'),
       'valid', coalesce(u.household_id=e.household_id and u.state='claimed'
         and o.id is not null and b.public=false
+        and u.content_type=o.metadata->>'mimetype'
         and split_part(e.receipt_path,'/',1)=e.household_id::text, false)
       ) order by e.id), '[]')
       from public.financial_events e

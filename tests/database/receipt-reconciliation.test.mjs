@@ -28,6 +28,7 @@ test("missing objects, wrong ownership, unclaimed uploads and public buckets blo
   const f = setup(t);
   for (const mutation of [
     "delete from storage.objects",
+    `update storage.objects set metadata='{"size":128,"mimetype":"application/pdf"}'`,
     "update public.household_attachment_uploads set household_id='00000000-0000-4000-8000-000000000020'",
     "update public.household_attachment_uploads set state='pending'",
     "update storage.buckets set public=true",
