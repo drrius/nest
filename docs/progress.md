@@ -3209,3 +3209,7 @@ Extended the rollback-only rehearsal to revoke table and individual-column INSER
 ### Provenance and preservation merge — 23 September 2026
 
 Fast-forwarded remote/local main through `7061f1c3111bb7211aa8ee700b73a5db2e906bc8` after successful exact CI `35833301798` and clean cumulative Sol review. This includes the retained excluded records/calendar connection checks, immutable conversion provenance, injected provenance-write rollback and concurrent retry checks. Later historical replay, linked conversion, advisor integration and shopping cutover rehearsal remain on the feature branch pending their exact gates. Updated the current-work summary to remove stale unfinished-conversion and preservation statements. No deployment or production data change occurred.
+
+### Native retry under shopping restrictions
+
+The rollback-only shopping rehearsal now repeats the same native check with its original operation and pre-write revision after the first write succeeds. It requires identical results and exactly one operation receipt, then includes all check receipts in the post-rollback preservation comparison. Full 54-legacy/190-native diagnostic passes (`/tmp/nest-shopping-retry.json`); scoped lint/format and diff checks pass. This is database retry evidence, not a physical offline/reconnect journey. The preceding direct-write restriction commit `bf6bccb` has clean independent Sol review with an independently passing exact-tree rehearsal. New review/CI remain required; full cutover is still incomplete.

@@ -36,10 +36,20 @@ export function verifyShoppingCutover(db) {
     set local request.jwt.claim.sub='00000000-0000-4000-8000-000000000001';
     do $probe$ begin ${probes} end $probe$;
     ${shoppingTableProbeSql()}
-    do $native$ begin perform public.nest_set_grocery_checked(
-      '00000000-0000-4000-8000-000000000010','00000000-0000-4000-8000-000000001400',
-      '00000000-0000-4000-8000-000000000810',
-      (select native_version from public.grocery_items where id='00000000-0000-4000-8000-000000000810'),true); end $native$;
+    do $native$ declare v_version bigint; v_first jsonb; v_retry jsonb; begin
+      select native_version into v_version from public.grocery_items
+        where id='00000000-0000-4000-8000-000000000810';
+      v_first:=public.nest_set_grocery_checked(
+        '00000000-0000-4000-8000-000000000010','00000000-0000-4000-8000-000000001400',
+        '00000000-0000-4000-8000-000000000810',v_version,true);
+      v_retry:=public.nest_set_grocery_checked(
+        '00000000-0000-4000-8000-000000000010','00000000-0000-4000-8000-000000001400',
+        '00000000-0000-4000-8000-000000000810',v_version,true);
+      if v_first is distinct from v_retry then raise exception 'Native retry changed result'; end if;
+      if (select count(*) from public.nest_grocery_check_receipts
+        where operation_id='00000000-0000-4000-8000-000000001400')<>1 then
+        raise exception 'Native retry duplicated receipt'; end if;
+    end $native$;
     select public.nest_grocery_snapshot('00000000-0000-4000-8000-000000000010');
     rollback;`),
   );
@@ -55,6 +65,7 @@ export function verifyShoppingCutover(db) {
     rollbackVerified: true,
     nativeReadVerified: true,
     nativeCheckVerified: true,
+    nativeRetryVerified: true,
     restrictedTables: 3,
     completeCutover: false,
   };
@@ -65,6 +76,7 @@ function snapshot(db) {
       from pg_proc where pronamespace='public'::regnamespace),
     'tableAcls',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',relacl) order by oid) from pg_class where relnamespace='public'::regnamespace),
     'columnAcls',(select jsonb_agg(jsonb_build_object('table',attrelid,'number',attnum,'acl',attacl) order by attrelid,attnum) from pg_attribute where attrelid in (select oid from pg_class where relnamespace='public'::regnamespace)),
+    'receipts',(select jsonb_agg(to_jsonb(r) order by actor_id,household_id,operation_id) from public.nest_grocery_check_receipts r),
     'items',(select jsonb_agg(to_jsonb(i) order by id) from public.grocery_items i),
     'sessions',(select jsonb_agg(to_jsonb(s) order by id) from public.shopping_sessions s))`);
 }
