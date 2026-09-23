@@ -3,12 +3,12 @@ import { useCallback, useState } from "react";
 import { AppState } from "react-native";
 import { useFocusEffect } from "expo-router";
 export const currentHouseholdDay = () => householdDate(new Date());
-/** Refresh the civil day on return and while this screen stays open across midnight. */
-export function useHouseholdDay() {
-  const [date, setDate] = useState(currentHouseholdDay);
+/** Refresh the current time on return and while this screen stays open across midnight. */
+export function useTodayClock() {
+  const [now, setNow] = useState(Date.now);
   useFocusEffect(
     useCallback(() => {
-      const refresh = () => setDate(currentHouseholdDay());
+      const refresh = () => setNow(Date.now());
       refresh();
       const activity = AppState.addEventListener("change", (state) => {
         if (state === "active") refresh();
@@ -22,5 +22,5 @@ export function useHouseholdDay() {
       };
     }, []),
   );
-  return date;
+  return now;
 }

@@ -1,5 +1,7 @@
 import { useChoreEditor } from "../chores/use-editor";
-import { currentHouseholdDay, useHouseholdDay } from "../today/use-household-day";
+import { currentHouseholdDay, useTodayClock } from "../today/use-today-clock";
+import { householdDate } from "@nest/domain/calendar";
+import { TodayCalendar } from "../today/calendar";
 import { TodayMeals } from "../today/meals";
 import { useState } from "react";
 import { Link } from "expo-router";
@@ -42,7 +44,8 @@ function HouseholdChores({
   const controller = useChores(client, member.userId, member.householdId);
   const { view, refresh, complete, discard, retryChange } = controller;
   const editor = useChoreEditor(controller);
-  const today = useHouseholdDay();
+  const now = useTodayClock();
+  const today = householdDate(new Date(now));
   const [everyone, setEveryone] = useState(false);
   const colors = useQuiet();
   if (view.access === "verify")
@@ -89,6 +92,7 @@ function HouseholdChores({
       footer={
         <>
           <TodayMeals date={today} />
+          <TodayCalendar now={now} />
           <Link href="/" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
             Household account
           </Link>
