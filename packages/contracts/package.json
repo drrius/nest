@@ -93,7 +93,8 @@
     "./dated-reminders": "./src/dated-reminders.ts",
     "./recurring-reminders": "./src/recurring-reminders.ts",
     "./grocery-reminders": "./src/grocery-reminders.ts",
-    "./meal-reminders": "./src/meal-reminders.ts"
+    "./meal-reminders": "./src/meal-reminders.ts",
+    "./pending-financial-approvals": "./src/pending-financial-approvals.ts"
   },
   "scripts": {
     "typecheck": "tsc --noEmit"

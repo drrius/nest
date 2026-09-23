@@ -3217,3 +3217,7 @@ The rollback-only shopping rehearsal now repeats the same native check with its 
 ### Today private financial approval reader — storage candidate
 
 Added an invoker-security, owner/household-scoped read command for pending unexpired financial approvals. It returns only approval ID, command and expiry, with a bounded 20-item keyset page; memory proposals and private financial payloads are excluded. No decision or financial write is performed. A focused disposable PostgreSQL test passes for pagination, partner separation, outsider/anonymous denial, expired/denied exclusion, memory exclusion and payload minimization. Scoped lint/format and diff checks pass. Shared Effect contract/service, native Today section and corresponding AI read integration remain unfinished; this storage reader is not a complete vertical slice. Independent review, full-schema rehearsal and exact CI remain required.
+
+### Pending approval shared contract — local candidate
+
+Added the Effect Schema contract for private financial approval references and paginated responses. Strict decoding rejects private payload additions, memory commands, duplicate/out-of-order IDs, invalid continuation markers and nonfinite expiry strings. Focused contract test, contracts typecheck and scoped lint/format pass. The preceding storage reader also passes the full 54-legacy/191-native schema rehearsal with security advisors returning no findings (`/tmp/nest-approval-schema.json`). API/native/AI wiring remains unfinished, with independent review and exact CI required before merge.
