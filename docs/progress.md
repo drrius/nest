@@ -2501,3 +2501,13 @@ Four combined PostgreSQL and actual HTTP/PostgREST checks pass, including a lost
 The final scoped lint caught checkpoint-runner complexity 11 against the limit of 10. Cursor equality was extracted into a focused helper, also comparing semantic timestamp/UUID equality. No limit was relaxed. The corrected candidate requires fresh scoped checks and exact-head review.
 
 Sol’s follow-up impossible-date finding is fixed: cursor validation now requires a real civil date, explicit bounded time/offset components and no year zero, while retaining microsecond precision. The regression uses a future February 30 so rejection cannot accidentally pass because of backward ordering. Eight focused sweep and actual HTTP/checkpoint journeys pass after this fix and the complexity refactor; scoped lint and API typechecking pass. Exact-head rereview/CI remain required.
+
+### Materialization and maintenance cycle — locally verified draft
+
+A server-only maintenance command visits stable previous/current UTC-day windows, retaining source pagination across invocations and covering the rolling delivery-authority window. It cancels obsolete reminders and expires interrupted sending attempts into uncertainty. The bounded Effect cycle runs maintenance, one checkpointed delivery page and one receipt page; receipt processing still runs when maintenance fails. Two PostgreSQL maintenance tests and two cycle checks pass, including actual HTTP/PostgREST materialization → single send → later receipt settlement. Expo remains simulated. Retry maintenance, independent review, CI and hosted/device acceptance remain unfinished.
+
+Cumulative checkpoint/date head `3f45f22` has clean exact Sol signoff with ten independently passing focused tests, API types and full formatting. CI remains required before merge. Main is merged through scan `0fb3477` after successful CI `35804458808` and clean review.
+
+### Complete bounded maintenance candidate
+
+Maintenance now includes a persistent rejected-delivery cursor, visiting at most one hundred rows per invocation. Only the existing confirmed rate-limit/backoff/attempt-cap/current-authorization predicate can requeue; permanent and uncertain outcomes cannot. Four PostgreSQL maintenance cases pass, including 105 genuinely journaled permanent rejections processed as 100 then 5 without retries. Two cycle checks, API typechecking, scoped lint and disposable security advisors pass. This connects local materialization, cancellation, interrupted-send expiry, eligible retries, delivery scanning/checkpointing and receipt polling; hosted scheduling and real provider/device acceptance remain unfinished. Exact-commit review/CI remain required.

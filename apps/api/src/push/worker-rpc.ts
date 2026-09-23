@@ -9,6 +9,7 @@ import { ApiFailure } from "../errors.ts";
 import { validateConfig } from "../config.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 const methods = {
+  maintain: "nest_maintain_push_deliveries",
   readCheckpoint: "nest_read_push_checkpoint",
   saveCheckpoint: "nest_save_push_checkpoint",
   scan: "nest_scan_push_deliveries",
