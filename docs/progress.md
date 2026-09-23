@@ -2977,3 +2977,15 @@ The recurring AI journal draft now passes five disposable PostgreSQL cases: conc
 Registered read/save tools now use shared contracts/services and the private journal. The strict receipt matcher binds current household/actor and full canonical input; the SDK write allowlist recognizes the action. Native success cards link to the exact recurring rule, with an honest recovery route when no receipt exists. Tool guidance requires explicit user intent/current terms and distinguishes reminders from financial approvals or posting.
 
 Five PostgreSQL journal cases and three registered SDK/HTTP/PostgREST cases pass, covering duplicate saves, rollback, transcript repair, privacy/revocation, native links and zero financial cycles. Existing native action-card regressions pass. API/mobile typechecking passes; security advisors on the disposable fixture report no issues. A complexity-limit finding in result-link dispatch was resolved by extracting reminder links. Final lint/format and exact-commit review/CI remain required. No live model, hosted migration, push activation or device verification occurred. Editor correction `9db0d40` has clean exact Sol rereview with three independently passing tests.
+
+### Recurring reminder scheduling — initial local verification
+
+A gated migration now derives reminder instants from the current uncovered due cycle of the exact reviewed active rule revision. It applies days-before/local Zurich time, recipient selections, current household membership and recipient mute preferences. Private deduplicated outbox rows and separate bounded source/cancellation cursors are drafted; changing rule revision or advancing/completing the due cycle invalidates old pending work. No financial rule or cycle is modified by scheduling.
+
+Two disposable PostgreSQL cases pass for Zurich DST gap/overlap resolution, duplicate suppression, cycle advancement, mute/revocation, stale rule revision, private table ACLs and zero created financial cycles. Bounded scan/restart cases, future-cycle recurrence, security advisors and review/CI remain outstanding. No worker, hosted scheduler or push delivery is activated by this draft.
+
+### Recurring reminder scheduling — bounded local verification
+
+Six disposable PostgreSQL cases pass: DST gap/overlap, deduplication and completed-cycle invalidation, recipient mute/revocation and stale rule revisions, automatic discovery of the next uncovered cycle while retaining sent history, disabled/date-underflow/window rejection, source cursor progress past 250 retained unavailable rules and cancellation progress past 500 obsolete rows. Security advisors on the disposable fixture report no issues. Scheduling writes no financial cycle.
+
+The scheduling migration still requires exact-commit review/CI. Delivery claims, provider payloads/taps and worker integration remain unfinished; no hosted activation occurred. AI commit `138fb77` has clean exact Sol review with 21 independently passing cases. Recovery `3e4db60` has successful exact CI `35825315797` and clean Sol review; the editor correction and AI commits remain in CI.
