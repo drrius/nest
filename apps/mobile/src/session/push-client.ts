@@ -14,6 +14,8 @@ export function sessionPushDevices(auth: SupabaseClient["auth"], account: Accoun
       client.detail(installationId).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     save: (input: PushDeviceCommand) =>
       client.save(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
+    cancel: (input: PushDeviceCommand) =>
+      client.cancel(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     recover: (input: PushDeviceCommand) =>
       client.recover(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
   };

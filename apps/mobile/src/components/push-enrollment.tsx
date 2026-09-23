@@ -41,13 +41,7 @@ function EnrollmentControls({ runtime }: { runtime: PushEnrollmentRuntime }) {
     <Card>
       <Section title="This iPhone" />
       <Note>{permissionText[view.permission.status]}</Note>
-      <Note>
-        {view.enabled === null
-          ? "Registration has not been checked."
-          : view.enabled
-            ? "This iPhone is registered for your notifications."
-            : "This iPhone is not registered for your notifications."}
-      </Note>
+      <Note>{registrationText(view.enabled)}</Note>
       {view.notice ? <Note>{view.notice}</Note> : null}
       <NativeAction
         label={view.busy ? "Checking…" : "Refresh status"}
@@ -58,7 +52,7 @@ function EnrollmentControls({ runtime }: { runtime: PushEnrollmentRuntime }) {
       />
       {view.pending ? (
         <NativeAction
-          label="Retry saved change"
+          label={retryLabel(view.cancelling)}
           disabled={view.busy || !view.loaded}
           onPress={() => {
             void runtime.retry();
@@ -73,6 +67,15 @@ function EnrollmentControls({ runtime }: { runtime: PushEnrollmentRuntime }) {
           }}
         />
       )}
+      {view.pending ? (
+        <NativeAction
+          label="Cancel saved change"
+          disabled={view.busy || !view.loaded}
+          onPress={() => {
+            void runtime.cancel();
+          }}
+        />
+      ) : null}
       <NativeAction label="Open iPhone Settings" onPress={openSettings} />
       {settingsError ? (
         <Note>Could not open Settings. Open the Settings app and choose Nest.</Note>
@@ -83,4 +86,15 @@ function EnrollmentControls({ runtime }: { runtime: PushEnrollmentRuntime }) {
       </Note>
     </Card>
   );
+}
+
+function registrationText(enabled: boolean | null) {
+  if (enabled === null) return "Registration has not been checked.";
+  return enabled
+    ? "This iPhone is registered for your notifications."
+    : "This iPhone is not registered for your notifications.";
+}
+
+function retryLabel(cancelling: boolean) {
+  return cancelling ? "Retry cancellation" : "Retry saved change";
 }

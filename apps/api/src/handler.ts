@@ -147,6 +147,7 @@ const methods: Record<string, string> = {
   "/v1/push-devices/detail": "GET",
   "/v1/push-devices/operation": "GET",
   "/v1/push-devices/save": "POST",
+  "/v1/push-devices/cancel": "POST",
   "/v1/renewal-reminders/detail": "GET",
   "/v1/renewal-reminders/operation": "GET",
   "/v1/renewal-reminders/save": "POST",

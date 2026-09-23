@@ -21,6 +21,7 @@ export function pushDeviceRoute(
         : service.read({ installationId: url.searchParams.get(key) });
     }
     if (url.searchParams.size) return yield* new ApiFailure({ code: "invalid_request" });
-    return yield* service.save(yield* commandBody(request, 32768));
+    const body = yield* commandBody(request, 32768);
+    return yield* url.pathname.endsWith("/cancel") ? service.cancel(body) : service.save(body);
   });
 }

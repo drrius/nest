@@ -84,6 +84,17 @@ export function pushDeviceService(config: IdentityConfig, caller: AuthorizedCall
         if (result.installationId !== id) return yield* new ApiFailure({ code: "unavailable" });
         return result;
       }),
+    cancel: (input: unknown) =>
+      Effect.gen(function* () {
+        const query = yield* decode(PushDeviceOperationQuery, input, "invalid_request");
+        const id = query.operationId.toLowerCase();
+        const result = yield* rpc(PushDeviceRecovery, "nest_cancel_push_device_operation", {
+          p_operation: id,
+        });
+        if (result.operationId !== id || result.status === "unresolved")
+          return yield* new ApiFailure({ code: "unavailable" });
+        return result;
+      }),
     recover: (input: unknown) =>
       Effect.gen(function* () {
         const query = yield* decode(PushDeviceOperationQuery, input, "invalid_request");

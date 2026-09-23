@@ -45,12 +45,24 @@ export function pushEnrollmentOperations(deps: Dependencies) {
         if (command === null) return null;
         const recovery = yield* deps.client.recover(command);
         yield* check();
-        if (recovery.status === "recorded") yield* finish(command);
+        if (recovery.status !== "unresolved") yield* finish(command);
         return recovery;
       }),
   };
   return {
     ...operations,
+    cancelPending: () =>
+      Effect.gen(function* () {
+        yield* check();
+        const command = yield* disk(() => deps.store.read(deps.account));
+        yield* check();
+        if (command === null) return null;
+        yield* disk(() => deps.store.requestCancellation(deps.account, command));
+        yield* check();
+        const result = yield* deps.client.cancel(command);
+        yield* finish(command);
+        return result;
+      }),
     retryPending: () =>
       Effect.gen(function* () {
         yield* check();
@@ -59,9 +71,16 @@ export function pushEnrollmentOperations(deps: Dependencies) {
         if (command === null) return null;
         const recovery = yield* deps.client.recover(command);
         yield* check();
-        if (recovery.status === "recorded") {
+        if (recovery.status !== "unresolved") {
           yield* finish(command);
           return recovery.receipt;
+        }
+        const cancelling = yield* disk(() => deps.store.cancelling(deps.account));
+        yield* check();
+        if (cancelling) {
+          const result = yield* deps.client.cancel(command);
+          yield* finish(command);
+          return result.receipt;
         }
         // Only an explicit Retry action reaches this path; reuse the protected
         // command, never request a new token or invent another operation identity.

@@ -41,6 +41,20 @@ export function pushDeviceClient(
           return yield* unavailableRenewal();
         return receipt;
       }),
+    cancel: (input: PushDeviceCommand) =>
+      Effect.gen(function* () {
+        const { command, expected } = yield* prepare(input);
+        const result = yield* request("v1/push-devices/cancel", PushDeviceRecovery, {
+          operationId: command.operationId,
+        });
+        if (
+          result.operationId !== command.operationId ||
+          result.status === "unresolved" ||
+          (result.receipt !== null && !matchesPushDeviceReceipt(result.receipt, command, expected))
+        )
+          return yield* unavailableRenewal();
+        return result;
+      }),
     recover: (input: PushDeviceCommand) =>
       Effect.gen(function* () {
         const { command, expected } = yield* prepare(input);

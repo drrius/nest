@@ -12,6 +12,7 @@ const Envelope = Schema.Struct({
   actor: Uuid,
   household: Uuid,
   command: PushDeviceCommand,
+  cancelRequested: Schema.optional(Schema.Literal(true)),
 });
 const same = Schema.toEquivalence(PushDeviceCommand);
 function keyFor(account: Account) {
@@ -50,6 +51,28 @@ export function protectedPushAttempts(disk: PushProtectedDisk) {
     readEnvelope(await disk.getItem(keyFor(account)), account);
   return {
     read: (account: Account) => serial(() => read(account)),
+    cancelling: (account: Account) =>
+      serial(async () => {
+        const raw = await disk.getItem(keyFor(account));
+        const command = readEnvelope(raw, account);
+        return command !== null && JSON.parse(raw!).cancelRequested === true;
+      }),
+    requestCancellation: (account: Account, command: PushDeviceCommand) =>
+      serial(async () => {
+        const previous = await read(account);
+        if (previous === null || !same(previous, canonicalPushDevice(command)))
+          throw new Error("Push operation changed");
+        await disk.setItem(
+          keyFor(account),
+          JSON.stringify({
+            version: 1,
+            actor: account.actor.toLowerCase(),
+            household: account.household.toLowerCase(),
+            command: previous,
+            cancelRequested: true,
+          }),
+        );
+      }),
     stage: (account: Account, input: PushDeviceCommand) =>
       serial(async () => {
         let command: PushDeviceCommand;
@@ -63,7 +86,12 @@ export function protectedPushAttempts(disk: PushProtectedDisk) {
         const previous = await read(account);
         if (previous !== null && !same(previous, command))
           throw new Error("Push operation unresolved");
-        if (previous !== null) return previous;
+        if (previous !== null) {
+          const raw = await disk.getItem(keyFor(account));
+          if (raw === null || JSON.parse(raw).cancelRequested === true)
+            throw new Error("Push cancellation pending");
+          return previous;
+        }
         await disk.setItem(
           keyFor(account),
           JSON.stringify({

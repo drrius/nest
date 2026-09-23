@@ -21,6 +21,7 @@ export interface EnrollmentView {
   busy: boolean;
   enabled: boolean | null;
   pending: boolean;
+  cancelling: boolean;
   permission: PushPermission;
   notice: string | null;
 }
@@ -29,6 +30,7 @@ const initial: EnrollmentView = {
   busy: false,
   enabled: null,
   pending: false,
+  cancelling: false,
   permission: { status: "unknown", canAskAgain: false },
   notice: null,
 };
@@ -68,16 +70,18 @@ export class PushEnrollmentRuntime {
     const state =
       installation === null ? null : await this.run(this.deps.client.detail(installation));
     const pending = recovery?.status === "unresolved";
+    const cancelling = pending && (await this.deps.store.cancelling(this.deps.account));
     this.publish({
       loaded: true,
       permission,
       enabled: state?.enabled ?? false,
       pending,
+      cancelling,
       notice:
         recovery?.status === "recorded"
           ? "Your previous change was confirmed."
           : pending
-            ? "A saved change needs confirmation. Retry that change before making another."
+            ? pendingNotice(cancelling)
             : failed
               ? "Could not finish. Check this iPhone’s permission and connection, then try again."
               : null,
@@ -114,10 +118,19 @@ export class PushEnrollmentRuntime {
   retry = async () => {
     if (this.view.loaded && this.view.pending) await this.perform(this.operations.retryPending());
   };
+  cancel = async () => {
+    if (this.view.loaded && this.view.pending) await this.perform(this.operations.cancelPending());
+  };
   dispose() {
     this.disposed = true;
     this.lifetime.abort();
     this.view = initial;
     this.listeners.clear();
   }
+}
+
+function pendingNotice(cancelling: boolean) {
+  return cancelling
+    ? "Cancellation is saved on this iPhone. Retry cancellation to confirm the outcome."
+    : "A saved change needs confirmation. Retry it or cancel the attempt. Cancellation cannot undo a change that already saved.";
 }

@@ -13,6 +13,7 @@ function fixture() {
   const deps = {
     account: { actor: "actor", household: "home" },
     store: {
+      cancelling: async () => false,
       read: async () => pending,
       stage: async (commandAccount, command) => {
         pending = command;
@@ -115,4 +116,16 @@ test("subscription restart replaces the disposed controller without prompting or
   assert.equal(first.getSnapshot().loaded, false);
   assert.deepEqual(f.writes, []);
   stop();
+});
+test("pending cancellation is presented as cancellation and never as a new enrollment", async () => {
+  const f = fixture();
+  f.pending({ operationId: "original" });
+  f.deps.store.cancelling = async () => true;
+  const runtime = new PushEnrollmentRuntime(f.deps);
+  await runtime.load();
+  assert.equal(runtime.getSnapshot().cancelling, true);
+  assert.match(runtime.getSnapshot().notice, /Retry cancellation/);
+  await runtime.enable();
+  assert.deepEqual(f.writes, []);
+  runtime.dispose();
 });

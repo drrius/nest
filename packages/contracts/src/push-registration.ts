@@ -105,11 +105,11 @@ export const PushDeviceRecovery = Schema.Struct({
   actorId: Uuid,
   householdId: Uuid,
   operationId: Uuid,
-  status: Schema.Literals(["unresolved", "recorded"]),
+  status: Schema.Literals(["unresolved", "recorded", "cancelled"]),
   receipt: Schema.NullOr(PushDeviceReceipt),
 }).check(
   Schema.makeFilter((value) => {
-    if (value.status === "unresolved") return value.receipt === null;
+    if (value.status !== "recorded") return value.receipt === null;
     const receipt = value.receipt;
     return (
       receipt !== null &&
