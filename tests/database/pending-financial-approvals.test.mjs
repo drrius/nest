@@ -8,6 +8,7 @@ db.file("supabase/migrations/20260919213407_native_action_approvals.sql");
 db.file("supabase/migrations/20260920054303_native_private_memory.sql");
 db.file("supabase/migrations/20260923080025_native_pending_financial_approvals.sql");
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
+/** @param {number} [actor] @param {string|null} [after] */
 const read = (actor = 1, after = null) =>
   JSON.parse(
     db.sql(`set role authenticated;
