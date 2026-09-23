@@ -31,6 +31,7 @@ export function verifyRenewalPlan(db, before) {
     ],
   );
   assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
+  verifyRefusedConversions(db, plan);
   verifyConversion(db, plan[0]);
   assert.equal(captureRenewalHistory(db), before, "Conversion modified legacy commitment");
   return {
@@ -70,4 +71,30 @@ function verifyConversion(db, source) {
       ),
     /Renewal changed/,
   );
+}
+
+function verifyRefusedConversions(db, plan) {
+  for (const source of plan.slice(1)) {
+    const command = renewalConversionSql({
+      householdId: id(10),
+      commitmentId: source.id,
+      operationId: id(1192),
+      sourceHash: source.source_hash,
+    });
+    assert.throws(
+      () => db.sql(`set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${command}`),
+      /Commitment requires separate migration review|Invalid renewal/,
+    );
+  }
+  const command = renewalConversionSql({
+    householdId: id(10),
+    commitmentId: id(1100),
+    operationId: id(1193),
+    sourceHash: plan[0].source_hash,
+  });
+  assert.throws(
+    () => db.sql(`set role authenticated; set request.jwt.claim.sub='${id(999)}'; ${command}`),
+    /Reviewed commitment changed|Not authorized/,
+  );
+  assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
 }
