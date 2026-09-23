@@ -1,3 +1,4 @@
+import { TodayPendingApprovals } from "../today/pending-approvals";
 import { TodayRenewals } from "../today/renewals";
 import { TodayAddActions } from "../today/add-actions";
 import { useChoreEditor } from "../chores/use-editor";
@@ -95,6 +96,7 @@ function HouseholdChores({
       }
       footer={
         <>
+          <TodayPendingApprovals />
           <TodayBills date={today} />
           <TodayRenewals date={today} />
           <TodayMeals date={today} />
