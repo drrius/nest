@@ -55,26 +55,17 @@ function SetupContent({ runtime, verify }: { runtime: SetupRuntime; verify: () =
       {view.error ? <Note>{view.error}</Note> : null}
       {view.busy ? <Note>Checking saved choices…</Note> : null}
       {view.verify ? (
-        <NativeAction
-          label="Verify account"
-          disabled={view.busy}
-          onPress={() => {
-            verify();
-            void runtime.load();
-          }}
-        />
+        <NativeAction label="Verify account" disabled={view.busy} onPress={verify} />
       ) : (
-        <>
-          <SetupChoices status={view.status} />
-          <NativeAction
-            label="Refresh setup status"
-            disabled={view.busy}
-            onPress={() => {
-              void runtime.load();
-            }}
-          />
-        </>
+        <SetupChoices status={view.status} />
       )}
+      <NativeAction
+        label="Refresh setup status"
+        disabled={view.busy}
+        onPress={() => {
+          void runtime.load();
+        }}
+      />
       <Card>
         <Section title="Start with today" />
         <Note>

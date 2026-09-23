@@ -68,4 +68,12 @@ test("native setup is independent per person, refreshes saved forms and clears r
   await first.load();
   assert.equal(first.getSnapshot().status, null);
   assert.equal(first.getSnapshot().verify, true);
+  remote.db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${id(10)}','${id(1)}','First')`,
+  );
+  await first.load();
+  assert.equal(first.getSnapshot().verify, false);
+  assert.equal(first.getSnapshot().error, null);
+  assert.equal(first.getSnapshot().status.actorId, id(1));
+  assert.equal(first.getSnapshot().status.foodConfigured, false);
 });
