@@ -1,9 +1,6 @@
 export const protectedScreens = [
   { name: "assistant", title: "Private assistant" },
   { name: "conversation", title: "Private conversation" },
-  { name: "household", title: "Today" },
-  { name: "agenda", title: "Calendar" },
-  { name: "finances", title: "Money" },
   { name: "grocery-expense", title: "Record grocery expense" },
   { name: "expense-entry", title: "Record expense" },
   { name: "correction-entry", title: "Correct entry" },
@@ -49,7 +46,6 @@ export const protectedScreens = [
   { name: "recipe-select", title: "Choose recipe" },
   { name: "planned-recipe", title: "Planned meal" },
   { name: "saved-meal", title: "Recipe" },
-  { name: "meal-week", title: "Meals" },
   { name: "meal-proposal", title: "Week preview" },
   { name: "meal-ingredients", title: "Review ingredients" },
   { name: "meal-add", title: "Add meal" },

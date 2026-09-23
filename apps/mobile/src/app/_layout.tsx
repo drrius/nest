@@ -48,12 +48,12 @@ function Navigation() {
           state.status === "ready" || state.status === "loading" || state.status === "unavailable"
         }
       >
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         {protectedScreens.map(({ name, title }) => (
           <Stack.Screen key={name} name={name} options={{ title }} />
         ))}
       </Stack.Protected>
       <Stack.Protected guard={__DEV__}>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="groceries" options={{ title: "Groceries" }} />
         <Stack.Screen name="preview-settings" options={{ title: "Preview settings" }} />
       </Stack.Protected>

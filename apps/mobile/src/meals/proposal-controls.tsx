@@ -34,7 +34,7 @@ export function ProposalControls({
       <ProposalActions runtime={runtime} view={view} />
       {view.proposal?.status === "approved" ? (
         <>
-          <Link href={{ pathname: "/meals", params: { weekStart: runtime.weekStart } }}>
+          <Link href={{ pathname: "/meal-week", params: { weekStart: runtime.weekStart } }}>
             Open saved meal week
           </Link>
           <Link href={{ pathname: "/meal-ingredients", params: { weekStart: runtime.weekStart } }}>

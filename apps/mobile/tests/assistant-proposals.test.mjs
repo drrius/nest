@@ -33,5 +33,5 @@ test("unconfirmed or mismatched proposal reads cannot produce an actionable prev
     output: { ok: false, code: "unavailable" },
   });
   assert.match(uncertain.label, /verify/);
-  assert.equal(uncertain.href, "/meals");
+  assert.equal(uncertain.href, "/meal-week");
 });

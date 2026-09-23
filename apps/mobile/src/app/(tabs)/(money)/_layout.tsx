@@ -1,5 +1,5 @@
 import { TabStack } from "../../../components/tab-stack";
 
 export default function Layout() {
-  return <TabStack title="Money" route="money" />;
+  return <TabStack title="Money" route="finances" />;
 }
