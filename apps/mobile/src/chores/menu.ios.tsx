@@ -1,3 +1,4 @@
+import { useRouter } from "expo-router";
 import { Host } from "@expo/ui";
 import { Button, Menu } from "@expo/ui/swift-ui";
 import { accessibilityLabel, disabled, frame } from "@expo/ui/swift-ui/modifiers";
@@ -6,6 +7,7 @@ import { useQuiet } from "../theme";
 import type { ChoreMenuProps } from "./menu-types";
 
 export function ChoreMenu(props: ChoreMenuProps) {
+  const router = useRouter();
   const colors = useQuiet();
   const scheme = useColorScheme();
   return (
@@ -23,6 +25,16 @@ export function ChoreMenu(props: ChoreMenuProps) {
           accessibilityLabel(`Actions for ${props.chore.title}`),
         ]}
       >
+        <Button
+          label="Reminder"
+          systemImage="bell"
+          onPress={() =>
+            router.push({
+              pathname: "/chore-reminder",
+              params: { occurrenceId: props.chore.occurrenceId },
+            })
+          }
+        />
         <Button
           label="Reschedule"
           systemImage="calendar"

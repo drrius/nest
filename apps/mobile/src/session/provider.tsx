@@ -1,3 +1,5 @@
+import { sessionChoreReminders } from "./chore-reminder-client";
+import type { ChoreReminderClient } from "../chore-reminders/client";
 import { sessionPushDevices } from "./push-client";
 import { finishNativePushLogout } from "../push/native-logout";
 import { recoverNativePushLogout } from "../push/native-logout-recovery";
@@ -79,6 +81,7 @@ interface SessionContextValue {
   pushDevices: ReturnType<typeof sessionPushDevices> | null;
   renewals: RenewalClient | null;
   renewalReminders: RenewalReminderClient | null;
+  choreReminders: ChoreReminderClient | null;
   money: MoneyClient | null;
   meals: MealClient | null;
   routines: RoutineClient | null;
@@ -172,11 +175,13 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         money: null,
         renewals: null,
         renewalReminders: null,
+        choreReminders: null,
         pushDevices: null,
       };
     const { auth } = runtime.current;
     return {
       pushDevices: sessionPushDevices(auth, { actor, household }, configuration.apiUrl),
+      choreReminders: sessionChoreReminders(auth, { actor, household }, configuration.apiUrl),
       renewalReminders: sessionRenewalReminders(auth, { actor, household }, configuration.apiUrl),
       renewals: sessionRenewals(auth, { actor, household }, configuration.apiUrl),
       routines: sessionRoutines(auth, { actor, household }, configuration.apiUrl),

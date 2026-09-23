@@ -118,7 +118,7 @@ begin
     return v_prior.result;
   end if;
   select * into v_occurrence from public.routine_occurrences where household_id=p_household and id=v_id for update;
-  if not found then raise exception 'Chore unavailable' using errcode='42501'; end if;
+  if not found then raise exception 'Chore changed or unavailable' using errcode='40001'; end if;
   select * into v_routine from public.routines where household_id=p_household and id=v_occurrence.routine_id for update nowait;
   if not found or v_routine.archived_at is not null or v_routine.paused_at is not null
     or v_occurrence.status<>'open' or v_occurrence.role is distinct from 'current'
