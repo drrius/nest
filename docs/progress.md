@@ -2448,23 +2448,19 @@ The gated retry migration permits at most three attempts for one occurrence/inst
 
 Ten PostgreSQL checks and local security advisors pass for bounds/backoff, permanent/unknown denial, fresh authorization, concurrent retry, historical replay, unique tickets, late outcome recovery and the explicit 100-row expiry bound. Scoped lint passes; exact-commit Sol review and CI remain required. Delivery outcome `4ac038b` has clean exact-commit Sol review with seven independently passing PostgreSQL cases; CI remains pending. Provider transport, receipt polling, worker activation and device verification remain incomplete.
 
-
 ### Bounded push receipt polling — locally verified
 
 Private polling state schedules the first receipt check after fifteen minutes, uses bounded backoff, and closes after eight polls or twenty-four hours. Each sweep inspects at most one hundred indexed due rows and returns scan progress. Missing receipts become an unknown delivery outcome, never automatic resend permission; a later valid receipt can still settle it. Ticket recording and poll creation are atomic, and terminal receipts close polling without replay reopening it.
 
 Six disposable PostgreSQL cases pass, covering timing, concurrent claims, attempt/deadline limits, late receipts, rollback, bounded sweep progress and private access. Scoped lint passes with existing Effect advisory warnings; local security advisors report no issues. Exact-commit Sol review and CI remain required. This is private database scheduling only: no Expo HTTP call, hosted migration, worker activation or physical-device verification occurred.
 
-
 ### Expo provider outcome decoding — transport preparation
 
 A server-side decoder now maps Expo tickets and exact-ticket receipts into finite internal outcomes, discarding provider messages and treating malformed send responses as unknown. Missing or malformed receipts remain pending; only the documented rate-limit error permits the existing bounded retry policy. Two focused decoder tests and API typechecking pass; scoped lint passes. HTTP transport and worker orchestration remain unfinished, so this does not establish a working Expo integration. Journaling `4ac038b` is now merged after clean Sol review and successful CI `35802517021`; receipt polling `7e9e5d4` is pushed with review/CI pending.
 
-
 ### Expo HTTP adapter — locally verified candidate
 
 The server-only Effect adapter posts generic renewal notifications to fixed Expo endpoints, sends optional redacted credentials, rejects redirects, bounds responses to 64 KiB and requests to ten seconds, and polls the exact ticket identity. Network, HTTP and malformed-response failures remain unknown/pending with no automatic resend. Five focused outcome/transport checks pass using an injected HTTP boundary; API typechecking and scoped lint pass. This is simulated-provider verification, not live Expo/APNs or device evidence. Worker orchestration remains incomplete. Receipt polling `7e9e5d4` has clean exact-commit Sol review with 23 independently passing database cases; CI remains to be checked.
-
 
 ### Push worker attempt orchestration — local integration evidence
 

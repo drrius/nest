@@ -56,12 +56,7 @@ test("Expo receipts require the exact own ticket key and keep absent or malforme
     ),
     { status: "rejected", reason: "device_not_registered" },
   );
-  for (const body of [
-    null,
-    {},
-    { data: {} },
-    { data: { other: { status: "ok" } } },
-  ]) {
+  for (const body of [null, {}, { data: {} }, { data: { other: { status: "ok" } } }]) {
     assert.equal(expoReceiptResult(body, "ticket"), null);
   }
   assert.equal(expoReceiptResult({ data: { ticket: { status: "unknown" } } }, "ticket"), null);
