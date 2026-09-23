@@ -186,3 +186,40 @@ test("grocery adapter sends only a generic message and exact grocery entry routi
   });
   assert.equal(calls.length, 1);
 });
+
+test("recurring adapter sends only a generic message and exact recurring entry routing identity", async () => {
+  const calls = [];
+  const transport = expoPushTransport(undefined, async (_url, options) => {
+    calls.push(JSON.parse(options.body));
+    return Response.json({ data: { status: "ok", id: "recurring-ticket" } });
+  });
+  const input = {
+    token: delivery.token,
+    householdId: delivery.householdId,
+    ruleId: delivery.renewalId,
+    title: "Private recurring",
+    notes: "Never send this",
+  };
+  assert.deepEqual(await Effect.runPromise(transport.sendRecurring(input)), {
+    status: "ticket",
+    ticketId: "recurring-ticket",
+  });
+  assert.deepEqual(calls, [
+    {
+      to: delivery.token,
+      title: "Nest",
+      body: "You have a reminder in Nest.",
+      sound: "default",
+      data: {
+        version: 1,
+        kind: "recurring",
+        householdId: delivery.householdId,
+        ruleId: delivery.renewalId,
+      },
+    },
+  ]);
+  assert.deepEqual(await Effect.runPromise(transport.sendRecurring({ ...input, ruleId: "bad" })), {
+    status: "unknown",
+  });
+  assert.equal(calls.length, 1);
+});

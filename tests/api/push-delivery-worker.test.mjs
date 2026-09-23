@@ -218,3 +218,41 @@ test("grocery attempts dispatch once and reject mixed identities before provider
   }
   assert.equal(sends, 1);
 });
+
+test("recurring attempts dispatch once and reject mixed identities before provider execution", async () => {
+  const { renewalId: _renewal, ...shared } = attempt;
+  const recurring = { ...shared, ruleId: id };
+  let sends = 0;
+  const provider = {
+    send: () => assert.fail("wrong renewal transport"),
+    sendSummary: () => assert.fail("wrong summary transport"),
+    sendRecurring: (value) =>
+      Effect.sync(() => {
+        assert.deepEqual(value, recurring);
+        sends++;
+        return { status: "unknown" };
+      }),
+    receipt: () => Effect.succeed(null),
+  };
+  const rpc = (method, input) =>
+    Effect.succeed(
+      method === "begin"
+        ? recurring
+        : { version: 1, deliveryId: id, attemptId: id, result: input.p_result },
+    );
+  assert.equal(await Effect.runPromise(pushDeliveryWorker(rpc, provider).send(id)), "recorded");
+  for (const raw of [
+    { ...recurring, renewalId: id },
+    { ...recurring, entryId: id },
+    { ...recurring, itemId: id },
+    { ...recurring, occurrenceId: id },
+    { ...recurring, summaryId: id, recipientId: id },
+    { ...recurring, ruleId: "bad" },
+    { ...recurring, title: "Private" },
+  ]) {
+    await assert.rejects(
+      Effect.runPromise(pushDeliveryWorker(() => Effect.succeed(raw), provider).send(id)),
+    );
+  }
+  assert.equal(sends, 1);
+});

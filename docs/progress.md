@@ -2999,3 +2999,13 @@ All 15 disposable PostgreSQL cases pass, including one claim under concurrency, 
 ### Recurring push claims — review candidate
 
 All 15 claim/outcome tests pass. Workspace lint/format pass and security advisors report no issues on the disposable fixture. The claim locks the financial rule before its execution cursor, matching financial mutation ordering, and preserves all previous source dispatchers. This layer is ready for exact-commit review/CI; provider routing and bounded worker discovery remain unfinished. No external push was sent.
+
+### Recurring provider payload and native tap routing — draft
+
+Recurring notifications now have a strict routing-only contract (`householdId`/`ruleId`), a generic Expo payload, a distinct worker claim variant and protected recurring-reminder navigation. No financial description, amount, payer or private message is included. This draft still needs provider/worker and tap-routing tests, final typechecking/lint, packaging and review/CI. Claim commit `05ceaea` is pushed for review/CI; its 15 database cases and local security advisors pass. No actual provider send or iPhone delivery is claimed.
+
+### Recurring push transport — local integration verification
+
+Twenty-six focused provider/worker/native-tap/HTTP cases pass. The actual worker RPC uses disposable PostgREST/PostgreSQL, releases one recurring claim, sends one generic routing-only payload to a simulated provider, skips duplicate sends and records the provider receipt. Strict claim decoding rejects mixed source identities; notification opening waits for authenticated foreground navigation and rejects foreign/injected destinations. No financial details enter the payload.
+
+API/mobile typechecking, workspace lint and formatting pass. iOS export passed at `/tmp/nest-recurring-push-export`; this is packaging only. Exact-commit review/CI remain pending; simulated receipt acceptance is not physical iPhone delivery. Claims `05ceaea` have clean exact Sol review with 15 independently passing cases. Corrected editor `9db0d40` has successful exact CI `35826005878` and clean rereview; no original unfixed editor commit is merged alone.

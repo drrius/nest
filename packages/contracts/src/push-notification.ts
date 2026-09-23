@@ -40,11 +40,20 @@ export const GroceryNotification = Schema.Struct({
 });
 export type GroceryNotification = typeof GroceryNotification.Type;
 
+export const RecurringNotification = Schema.Struct({
+  version: Schema.Literal(1),
+  kind: Schema.Literal("recurring"),
+  householdId: Schema.String.check(Schema.isUUID()),
+  ruleId: Schema.String.check(Schema.isUUID()),
+});
+export type RecurringNotification = typeof RecurringNotification.Type;
+
 export const NestNotification = Schema.Union([
   RenewalNotification,
   DailySummaryNotification,
   ChoreNotification,
   MealNotification,
   GroceryNotification,
+  RecurringNotification,
 ]);
 export type NestNotification = typeof NestNotification.Type;

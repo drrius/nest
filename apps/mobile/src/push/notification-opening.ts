@@ -10,6 +10,7 @@ export type NotificationOpeningContext = {
 /** Native responses are hints; the destination still performs its authorized read. */
 export function notificationOpening(options: {
   navigate: (renewalId: string) => void;
+  navigateRecurring: (ruleId: string) => void;
   navigateGrocery: (itemId: string) => void;
   navigateMeal: (entryId: string) => void;
   navigateChore: (occurrenceId: string) => void;
@@ -39,6 +40,7 @@ export function notificationOpening(options: {
   }
   function navigate(payload: NestNotification) {
     if (payload.kind === "daily_summary") options.navigateSummary(payload.summaryId.toLowerCase());
+    else if (payload.kind === "recurring") options.navigateRecurring(payload.ruleId.toLowerCase());
     else if (payload.kind === "grocery") options.navigateGrocery(payload.itemId.toLowerCase());
     else if (payload.kind === "meal") options.navigateMeal(payload.entryId.toLowerCase());
     else if (payload.kind === "chore") options.navigateChore(payload.occurrenceId.toLowerCase());
