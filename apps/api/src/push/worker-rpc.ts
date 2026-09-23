@@ -9,6 +9,10 @@ import { ApiFailure } from "../errors.ts";
 import { validateConfig } from "../config.ts";
 import type { IdentityConfig } from "../supabase-identity.ts";
 const methods = {
+  mealMaintain: "nest_maintain_meal_reminders",
+  mealReadCheckpoint: "nest_read_meal_push_checkpoint",
+  mealSaveCheckpoint: "nest_save_meal_push_checkpoint",
+  mealScan: "nest_scan_meal_push_deliveries",
   choreMaintain: "nest_maintain_chore_reminders",
   choreReadCheckpoint: "nest_read_chore_push_checkpoint",
   choreSaveCheckpoint: "nest_save_chore_push_checkpoint",

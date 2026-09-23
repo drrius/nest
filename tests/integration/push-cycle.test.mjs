@@ -44,7 +44,13 @@ test("maintenance failure skips new sends but still attempts due receipt reads",
   const result = await Effect.runPromise(
     runPushCycle(rpc, { send: () => assert.fail("unexpected send") }),
   );
-  assert.deepEqual(methods, ["maintain", "summaryMaintain", "choreMaintain", "claimReceipts"]);
+  assert.deepEqual(methods, [
+    "maintain",
+    "summaryMaintain",
+    "choreMaintain",
+    "mealMaintain",
+    "claimReceipts",
+  ]);
   assert.equal(result.delivery.status, "skipped");
   assert.equal(result.receipts.status, "recorded");
 });

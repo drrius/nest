@@ -25,6 +25,15 @@ export async function summaryWorkerFixture(t, databaseFixture = fixture) {
       f.db.file(`supabase/migrations/${name}.sql`);
   }
   f.db.file("supabase/migrations/20260923042122_native_chore_push_scan.sql");
+  if (f.db.sql("select to_regclass('public.nest_meal_reminders') is null") === "t") {
+    for (const name of [
+      "20260923042902_native_meal_reminder_storage",
+      "20260923045116_native_meal_reminder_schedule",
+      "20260923045445_native_meal_push_claims",
+    ])
+      f.db.file(`supabase/migrations/${name}.sql`);
+  }
+  f.db.file("supabase/migrations/20260923050126_native_meal_push_scan.sql");
   const http = await postgrestFixture(t, [], f.db);
   const baseRpc = pushWorkerRpc(
     { url: http.url, publishableKey: "sb_publishable_fixture" },

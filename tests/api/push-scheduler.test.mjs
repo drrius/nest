@@ -13,7 +13,9 @@ test("actual scheduler HTTP requires its separate secret and returns aggregate-o
       return {
         maintenance: { status: "recorded", report: {} },
         choreMaintenance: { status: "recorded", report: {} },
+        mealMaintenance: { status: "recorded", report: {} },
         choreDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
+        mealDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
         summaryMaintenance: { status: "recorded", report: {} },
         summaryDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
         delivery: {
@@ -50,7 +52,9 @@ test("actual scheduler HTTP requires its separate secret and returns aggregate-o
   assert.deepEqual(await response.json(), {
     maintenance: "recorded",
     choreMaintenance: "recorded",
+    mealMaintenance: "recorded",
     choreDelivery: "recorded",
+    mealDelivery: "recorded",
     summaryMaintenance: "recorded",
     summaryDelivery: "recorded",
     delivery: "recorded",
@@ -79,7 +83,9 @@ test("failed cycles and individual failures return finite unavailable responses"
     Effect.succeed({
       maintenance: { status: "recorded", report: {} },
       choreMaintenance: { status: "recorded", report: {} },
+      mealMaintenance: { status: "recorded", report: {} },
       choreDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
+      mealDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
       summaryMaintenance: { status: "recorded", report: {} },
       summaryDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
       delivery: {
