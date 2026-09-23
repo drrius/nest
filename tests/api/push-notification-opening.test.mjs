@@ -19,6 +19,7 @@ function fixture() {
     consumed,
     controller: notificationOpening({
       navigate: (id) => opened.push(id),
+      navigateMeal: (entryId) => opened.push({ entryId }),
       navigateChore: (id) => opened.push({ occurrenceId: id }),
       navigateSummary: (id) => opened.push({ summaryId: id }),
       consumed: (id) => consumed.push(id),
@@ -164,4 +165,32 @@ test("actual chore payload waits for authenticated foreground navigation and rej
   f.controller.receive("url", { ...delivered, url: "https://example.com" });
   f.controller.receive("title", { ...delivered, title: "private" });
   assert.deepEqual(f.opened, [{ occurrenceId: renewal }]);
+});
+
+test("actual meal payload waits for authenticated foreground navigation and rejects foreign or injected destinations", async () => {
+  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
+  let delivered;
+  const provider = expoPushTransport(undefined, async (_url, input) => {
+    delivered = JSON.parse(input.body).data;
+    return Response.json({ data: { status: "ok", id: "meal" } });
+  });
+  await Effect.runPromise(
+    provider.sendMeal({
+      token: "ExponentPushToken[fixture]",
+      householdId: home,
+      entryId: renewal,
+    }),
+  );
+  const f = fixture();
+  f.controller.receive("meal", delivered);
+  f.controller.update({ ...ready, foreground: false });
+  assert.deepEqual(f.opened, []);
+  f.controller.update(ready);
+  f.controller.receive("meal", delivered);
+  assert.deepEqual(f.opened, [{ entryId: renewal }]);
+  f.controller.receive("foreign", { ...delivered, householdId: renewal });
+  f.controller.receive("url", { ...delivered, url: "https://example.com" });
+  f.controller.receive("title", { ...delivered, title: "private" });
+  assert.deepEqual(f.opened, [{ entryId: renewal }]);
 });

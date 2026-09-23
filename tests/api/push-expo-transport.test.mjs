@@ -112,3 +112,40 @@ test("chore adapter sends only a generic message and exact occurrence routing id
   );
   assert.equal(calls.length, 1);
 });
+
+test("meal adapter sends only a generic message and exact meal entry routing identity", async () => {
+  const calls = [];
+  const transport = expoPushTransport(undefined, async (_url, options) => {
+    calls.push(JSON.parse(options.body));
+    return Response.json({ data: { status: "ok", id: "meal-ticket" } });
+  });
+  const input = {
+    token: delivery.token,
+    householdId: delivery.householdId,
+    entryId: delivery.renewalId,
+    title: "Private meal",
+    notes: "Never send this",
+  };
+  assert.deepEqual(await Effect.runPromise(transport.sendMeal(input)), {
+    status: "ticket",
+    ticketId: "meal-ticket",
+  });
+  assert.deepEqual(calls, [
+    {
+      to: delivery.token,
+      title: "Nest",
+      body: "You have a reminder in Nest.",
+      sound: "default",
+      data: {
+        version: 1,
+        kind: "meal",
+        householdId: delivery.householdId,
+        entryId: delivery.renewalId,
+      },
+    },
+  ]);
+  assert.deepEqual(await Effect.runPromise(transport.sendMeal({ ...input, entryId: "bad" })), {
+    status: "unknown",
+  });
+  assert.equal(calls.length, 1);
+});

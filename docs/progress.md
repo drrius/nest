@@ -2777,3 +2777,13 @@ Focused claim/outcome tests are running against disposable fixtures. Initial set
 Fifteen disposable PostgreSQL checks pass for concurrent one-use claims, unchanged renewal/summary/chore dispatch, meal/recipient/device/session invalidation, immutable provider outcomes, unknown-send refusal, capped rate-limit retries and invalid-token receipt handling. Full lint/format and disposable security advisors pass. Exact-commit review/CI remain required. Meal provider routing, native notification opening and worker discovery/orchestration remain unfinished; no hosted sends or device verification occurred.
 
 Native editor `61c904d` and durable recovery `27efcc8` now have successful exact CI (`35819618618`, `35819286687`) and clean Sol reviews. AI and scheduling commits still await CI.
+
+### Meal push provider and native handoff — connected draft
+
+A strict routing-only meal notification schema now carries household and entry IDs. The provider adapter sends generic Nest reminder text; the delivery worker rejects ambiguous source payloads before dispatch. Native opening waits for current household authorization, foreground state and navigation readiness, deduplicates taps and opens the protected meal-reminder route. Existing reminder sends were extracted into small helpers to preserve function limits.
+
+Meal and chore real HTTP/RPC delivery/receipt integration cases pass with a simulated external provider. Notification-opening checks pass, including meal readiness, foreign household and injected payload rejection. API/mobile typechecking and lint pass. Final regression checks, iOS packaging and review/CI remain outstanding; no actual APNs delivery or device navigation is claimed. Claim commit `7cf61cc` has clean exact Sol review with 15 independently passing database checks. Main was fast-forwarded through editor `61c904d` after its successful exact CI and clean review.
+
+### Meal notification handoff — final local verification
+
+Nineteen focused provider/worker/native-opening checks pass, including generic payload projection, malformed/mixed source rejection before dispatch, authenticated foreground routing and duplicate tap suppression. Two real HTTP/PostgREST/PostgreSQL worker journeys cover meal and chore outcomes with a simulated provider. API/mobile types, lint/format and diff checks pass. iOS export succeeded at `/tmp/nest-meal-push-export`, bundle `a23796441614534e5af3c4b8faf736ed`; packaging is not device acceptance. Exact-commit review/CI and meal worker discovery/checkpoint/orchestration remain required. No live push service, hosted migration or physical iPhone was used.

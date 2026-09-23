@@ -145,3 +145,39 @@ test("chore attempts dispatch once and reject mixed identities before provider e
   }
   assert.equal(sends, 1);
 });
+
+test("meal attempts dispatch once and reject mixed identities before provider execution", async () => {
+  const { renewalId: _renewal, ...shared } = attempt;
+  const meal = { ...shared, entryId: id };
+  let sends = 0;
+  const provider = {
+    send: () => assert.fail("wrong renewal transport"),
+    sendSummary: () => assert.fail("wrong summary transport"),
+    sendMeal: (value) =>
+      Effect.sync(() => {
+        assert.deepEqual(value, meal);
+        sends++;
+        return { status: "unknown" };
+      }),
+    receipt: () => Effect.succeed(null),
+  };
+  const rpc = (method, input) =>
+    Effect.succeed(
+      method === "begin"
+        ? meal
+        : { version: 1, deliveryId: id, attemptId: id, result: input.p_result },
+    );
+  assert.equal(await Effect.runPromise(pushDeliveryWorker(rpc, provider).send(id)), "recorded");
+  for (const raw of [
+    { ...meal, renewalId: id },
+    { ...meal, occurrenceId: id },
+    { ...meal, summaryId: id, recipientId: id },
+    { ...meal, entryId: "bad" },
+    { ...meal, title: "Private" },
+  ]) {
+    await assert.rejects(
+      Effect.runPromise(pushDeliveryWorker(() => Effect.succeed(raw), provider).send(id)),
+    );
+  }
+  assert.equal(sends, 1);
+});

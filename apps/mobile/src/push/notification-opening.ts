@@ -10,6 +10,7 @@ export type NotificationOpeningContext = {
 /** Native responses are hints; the destination still performs its authorized read. */
 export function notificationOpening(options: {
   navigate: (renewalId: string) => void;
+  navigateMeal: (entryId: string) => void;
   navigateChore: (occurrenceId: string) => void;
   navigateSummary: (summaryId: string) => void;
   consumed: (id: string) => void;
@@ -44,6 +45,7 @@ export function notificationOpening(options: {
     }
     if (!context.foreground || !context.navigationReady) return;
     if (payload.kind === "daily_summary") options.navigateSummary(payload.summaryId.toLowerCase());
+    else if (payload.kind === "meal") options.navigateMeal(payload.entryId.toLowerCase());
     else if (payload.kind === "chore") options.navigateChore(payload.occurrenceId.toLowerCase());
     else options.navigate(payload.renewalId.toLowerCase());
     consume(id);
