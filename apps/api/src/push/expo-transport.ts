@@ -1,3 +1,4 @@
+import type { RenewalNotification } from "../../../../packages/contracts/src/push-notification.ts";
 import * as Effect from "effect/Effect";
 import * as Redacted from "effect/Redacted";
 import * as Schema from "effect/Schema";
@@ -74,7 +75,7 @@ export function expoPushTransport(
               kind: "renewal",
               householdId: delivery.householdId,
               renewalId: delivery.renewalId,
-            },
+            } satisfies RenewalNotification,
           }),
         ),
         Effect.map(expoTicketResult),

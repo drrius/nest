@@ -1,3 +1,4 @@
+import { PushNotificationLifecycle } from "../push/notification-lifecycle";
 import { PushTokenLifecycle } from "../push/token-lifecycle";
 import { protectedScreens } from "../navigation/protected-screens";
 import { CalendarSharingProvider } from "../calendar/provider";
@@ -16,6 +17,7 @@ export default function RootLayout() {
     <ThemeProvider value={dark ? DarkTheme : DefaultTheme}>
       <SessionProvider>
         <PushTokenLifecycle />
+        <PushNotificationLifecycle />
         <OfflineProvider>
           <CalendarSharingProvider>
             <PreviewProvider>
