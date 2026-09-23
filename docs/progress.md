@@ -2765,3 +2765,15 @@ The uncommitted gated meal-scheduling migration adds Zurich civil-time resolutio
 The gated migration now computes Zurich civil-time reminders from exact reviewed meal entries, respects current recipient membership and mute preferences, and materializes deduplicated private outbox rows. Source scans inspect at most 250 settings per call; obsolete cancellation inspects at most 500 pending rows, with persistent cursors and wraparound. Unmuting can restore an eligible cancelled unsent identity, while sent identities remain sent.
 
 Six disposable PostgreSQL cases pass for DST gap/overlap behavior, concurrent materialization, changed/removed meal invalidation, mute/membership rules, bounded scan progress and sent-state preservation. Full lint/format, diff checks and disposable security advisors pass. Exact-commit review/CI and meal push claims, provider/native routing and worker orchestration remain unfinished. No hosted schedule, migration or device delivery was activated. AI review fix `cdba2e2` has clean exact Sol signoff with 12 independently passing action-result checks; CI remains required.
+
+### Meal push claim and outcomes — draft
+
+A gated migration draft adds a meal source to the existing delivery/attempt journal, preserving renewal, summary and chore dispatch. Preparation and token release recheck exact meal/settings revisions, recipient consent/membership and current device/session registration. Shared invalid-token handling and bounded rate-limit retries include meals. Provider/native routing and worker integration remain unfinished.
+
+Focused claim/outcome tests are running against disposable fixtures. Initial setup attempted to recreate meal tables already supplied by the push fixture; that fixture error was corrected. No passing claim verification or delivery completion is claimed yet. Scheduling `973c23c` has clean exact Sol medium review with six independently passing PostgreSQL cases; CI remains required.
+
+### Meal push claims — local verification
+
+Fifteen disposable PostgreSQL checks pass for concurrent one-use claims, unchanged renewal/summary/chore dispatch, meal/recipient/device/session invalidation, immutable provider outcomes, unknown-send refusal, capped rate-limit retries and invalid-token receipt handling. Full lint/format and disposable security advisors pass. Exact-commit review/CI remain required. Meal provider routing, native notification opening and worker discovery/orchestration remain unfinished; no hosted sends or device verification occurred.
+
+Native editor `61c904d` and durable recovery `27efcc8` now have successful exact CI (`35819618618`, `35819286687`) and clean Sol reviews. AI and scheduling commits still await CI.
