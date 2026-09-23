@@ -1,3 +1,4 @@
+import { recurringReminderRoute } from "./recurring-reminders/route.ts";
 import { groceryReminderRoute } from "./grocery-reminders/route.ts";
 import { mealReminderRoute } from "./meal-reminders/route.ts";
 import { choreReminderRoute } from "./chore-reminders/route.ts";
@@ -50,6 +51,7 @@ function route(
       routines: () => routineRoute(request, config, caller),
       money: () => moneyRoute(request, config, caller),
       "push-devices": () => pushDeviceRoute(request, config, caller),
+      "recurring-reminders": () => recurringReminderRoute(request, config, caller),
       "grocery-reminders": () => groceryReminderRoute(request, config, caller),
       "meal-reminders": () => mealReminderRoute(request, config, caller),
       "chore-reminders": () => choreReminderRoute(request, config, caller),
@@ -157,9 +159,13 @@ const methods: Record<string, string> = {
   "/v1/push-devices/save": "POST",
   "/v1/push-devices/cancel": "POST",
   "/v1/grocery-reminders/detail": "GET",
+  "/v1/recurring-reminders/detail": "GET",
   "/v1/grocery-reminders/operation": "GET",
+  "/v1/recurring-reminders/operation": "GET",
   "/v1/grocery-reminders/save": "POST",
+  "/v1/recurring-reminders/save": "POST",
   "/v1/grocery-reminders/cancel-operation": "POST",
+  "/v1/recurring-reminders/cancel-operation": "POST",
   "/v1/meal-reminders/detail": "GET",
   "/v1/meal-reminders/operation": "GET",
   "/v1/meal-reminders/save": "POST",
