@@ -22,3 +22,11 @@ Payloads should contain a generic Nest notification message and strictly validat
 ## Current evidence and gaps
 
 Nest currently has notification preferences and renewal reminder native/AI commands. The scheduling branch has private due-time, candidate and outbox primitives with synthetic PostgreSQL tests. The working tree now pins `expo-notifications@57.0.19` and includes a permission/token adapter connected to explicit notification-settings controls. The registration controller has local tests, but native interaction is unverified. There is no Expo transport, ticket/receipt worker or active hosted scheduler yet. No push was sent, no hosted migration applied, and no device acceptance is claimed.
+
+## Delivery authorization and uncertainty
+
+The private delivery candidate uses a single occurrence/installation row with a captured registration revision. Preparing it does not release a token. Beginning delivery rechecks reminder/item revisions, recipient preferences/membership, device ownership/revision, session existence/expiry and explicit Nest session revocation. Only one begin succeeds. Its transaction is the authorization point; a later external request cannot share the database transaction or retract a notification already accepted by a provider.
+
+A crashed or lost begin/send response must stay uncertain rather than returning to ready automatically. A known provider rejection may later permit a bounded retry under fresh authorization; an accepted ticket requires receipt tracking. Expo distinguishes ticket acceptance from provider receipt acceptance, recommends checking receipts after 15 minutes and removes receipts after 24 hours: [Expo send documentation](https://docs.expo.dev/push-notifications/sending-notifications/). Neither is evidence that the user saw a notification.
+
+Session validation checks `auth.sessions.id`, `user_id` and nullable `not_after`, alongside Nest's explicit revocation fence. Supabase documents that session-policy checks run at refresh rather than proactively destroying every session: [Supabase sessions](https://supabase.com/docs/guides/auth/sessions). Hosted Auth configuration and actual schema remain acceptance checks; local tests use a declared minimal synthetic Auth session table.
