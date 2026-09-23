@@ -42,3 +42,9 @@ The routine and excluded-module extensions are locally verified and have review 
 These fixtures establish bounded synthetic preservation evidence. They do not establish complete migration acceptance, hosted scheduling, native/device behavior, production readiness or permission to perform cutover. Production execution remains separately gated.
 
 For security advisors against the same disposable cluster, set `NEST_TEST_SUPABASE_BIN` to the installed Supabase executable. The runner derives a fixture-only Unix-socket URL and uses `db advisors --type security --fail-on error`. Missing configuration is reported as not run; requested advisor failures fail the diagnostic. The 54-legacy/190-native run returned no security findings on 23 September 2026. This is separate from hosted configuration and real Storage/Auth acceptance.
+
+### Legacy grocery retention cutover rehearsal
+
+The legacy `run_retain_purchased_groceries(text,integer)` function is an additional writer: its service-role invocation deletes purchased groceries and session-item history after 30 days. The disposable full-chain rehearsal reproduces one deletion using an aged synthetic row, then rolls the transaction back. A second rollback-only transaction revokes API-role execution and replaces the function with an explicit disabled error, proving that even an owner-run invocation cannot delete history. It verifies restoration of the exact function definition, ACLs, items and session-item rows after rollback.
+
+This has no production activation entry point. The hosted `household-os-retain-purchased-groceries` cron job still requires inspection and explicit cutover handling; local `pg_cron` execution, running-job drainage and complete cutover are not verified by this fixture. Revoking API grants alone is insufficient for owner-run jobs.
