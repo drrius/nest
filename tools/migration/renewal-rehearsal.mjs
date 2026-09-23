@@ -1,3 +1,4 @@
+import { renewalConversionSql } from "./renewal-conversion.mjs";
 import assert from "node:assert/strict";
 import { planLegacyRenewals } from "./renewal-plan.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
@@ -20,9 +21,12 @@ export function verifyRenewalPlan(db, before) {
     ["ready", "retain-history", "legacy-link-review", "no-renewal-date", "date-review"],
   );
   assert.equal(db.sql("select count(*) from public.nest_renewals"), "0");
+  verifyConversion(db, plan[0]);
+  assert.equal(captureRenewalHistory(db), before, "Conversion modified legacy commitment");
   return {
     inventoryVerified: true,
-    conversionImplemented: false,
+    unlinkedConversionVerified: true,
+    linkedConversionImplemented: false,
     retainedCommitments: 5,
     ready: 1,
     retainedHistory: 1,
@@ -30,4 +34,30 @@ export function verifyRenewalPlan(db, before) {
     undated: 1,
     dateReview: 1,
   };
+}
+
+function verifyConversion(db, source) {
+  const input = {
+    householdId: id(10),
+    commitmentId: id(1100),
+    operationId: id(1190),
+    sourceHash: source.source_hash,
+  };
+  const run = (value) =>
+    db.sql(
+      `set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${renewalConversionSql(value)}`,
+    );
+  assert.throws(() => run({ ...input, sourceHash: "0".repeat(64) }), /Reviewed commitment changed/);
+  run(input);
+  const first = db.sql("select row_to_json(r) from public.nest_renewals r");
+  run(input);
+  assert.equal(db.sql("select row_to_json(r) from public.nest_renewals r"), first);
+  assert.equal(db.sql("select count(*) from public.nest_renewals"), "1");
+  assert.throws(
+    () =>
+      db.sql(
+        `set role authenticated; set request.jwt.claim.sub='${id(2)}'; ${renewalConversionSql({ ...input, operationId: id(1191) })}`,
+      ),
+    /Renewal changed/,
+  );
 }
