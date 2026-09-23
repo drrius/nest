@@ -6,6 +6,11 @@ const tables = [
   "household_assets",
   "trip_bookings",
   "household_documents",
+  "project_tasks",
+  "household_decisions",
+  "decision_options",
+  "asset_maintenance",
+  "asset_routines",
 ];
 export function seedExcludedRehearsal(db) {
   db.sql(`set request.jwt.claim.sub='${id(1)}';
@@ -22,7 +27,17 @@ export function seedExcludedRehearsal(db) {
     insert into public.trip_bookings(id,household_id,created_by,project_id,kind,title)
     values('${id(1304)}','${id(10)}','${id(1)}','${id(1301)}','stay','Retained booking');
     insert into public.household_documents(id,household_id,created_by,title,file_path,project_id,booking_id)
-    values('${id(1305)}','${id(10)}','${id(1)}','Retained document','${id(10)}/documents/${id(1306)}.pdf','${id(1301)}','${id(1304)}');`);
+    values('${id(1305)}','${id(10)}','${id(1)}','Retained document','${id(10)}/documents/${id(1306)}.pdf','${id(1301)}','${id(1304)}');
+    insert into public.project_tasks(id,household_id,created_by,project_id,title,assigned_member_id)
+      values('${id(1310)}','${id(10)}','${id(1)}','${id(1300)}','Retained task','${id(2)}');
+    insert into public.household_decisions(id,household_id,created_by,title,project_id)
+      values('${id(1311)}','${id(10)}','${id(1)}','Retained decision','${id(1300)}');
+    insert into public.decision_options(id,household_id,created_by,decision_id,title,chosen)
+      values('${id(1312)}','${id(10)}','${id(1)}','${id(1311)}','Retained choice',true);
+    insert into public.asset_maintenance(id,household_id,created_by,asset_id,title,performed_on,routine_id)
+      values('${id(1313)}','${id(10)}','${id(1)}','${id(1303)}','Retained maintenance','2026-09-21','${id(1201)}');
+    insert into public.asset_routines(id,household_id,created_by,asset_id,routine_id)
+      values('${id(1314)}','${id(10)}','${id(1)}','${id(1303)}','${id(1201)}');`);
 }
 export function captureExcludedHistory(db) {
   // One MVCC snapshot; output contains only counts and full-row fingerprints.
@@ -56,6 +71,11 @@ export function verifyExcludedRehearsal(db, before) {
     retainedAssets: 1,
     retainedBookings: 1,
     retainedDocumentReferences: 1,
+    retainedTasks: 1,
+    retainedDecisions: 1,
+    retainedOptions: 1,
+    retainedMaintenance: 1,
+    retainedAssetRoutineLinks: 1,
     storageBytesVerified: false,
   };
 }

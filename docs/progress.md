@@ -3147,3 +3147,9 @@ The full disposable migration diagnostic now preserves synthetic project/trip, c
 ### Retained document metadata reconciliation
 
 Extended the excluded-record snapshot to fingerprint each document's upload, Storage object and private bucket metadata. Validity requires a same-household claimed upload, existing object, private bucket and matching MIME type. A rollback-only missing-object probe proves the same snapshot detects broken linkage, then verifies restoration. The full disposable migration diagnostic passes (`/tmp/nest-document-storage.json`); scoped lint/format pass. This remains metadata evidence only, with actual Storage bytes and hosted authorization unverified. Review and CI remain pending for this increment.
+
+### Excluded child records and privacy merge
+
+The synthetic preservation fixture now includes project tasks, decisions and chosen options, asset maintenance and asset-to-routine links. All ten excluded tables use full-row fingerprint/count comparisons. The complete 54-legacy/188-native diagnostic passes (`/tmp/nest-excluded-children.json`), including document metadata fault detection and prior financial reconciliation. Scoped lint/format and diff checks pass. Review and CI remain required for this increment; calendar records and financial-context links still need explicit representative fixtures.
+
+Privacy-preservation commit `f25aebc4225f959a47c37da9197836d5d51988ed` was fast-forwarded to remote/local main after clean Sol review and successful exact CI `35830790722`. Document metadata commit `df306ca` has clean independent Sol review, with its full diagnostic independently passing. Renewal CI `35831592136` is still running the isolated PostgreSQL/RLS step; formatting, lint, typechecking and preceding focused suites passed, but the merge gate remains closed until the whole required run passes. No deployment or production migration occurred.
