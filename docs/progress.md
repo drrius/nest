@@ -3225,3 +3225,9 @@ Added the Effect Schema contract for private financial approval references and p
 ### Pending financial approval API — local candidate
 
 Registered GET `/v1/money/pending-approvals` through the existing authenticated money dispatcher. The shared Effect service strictly decodes the cursor, forwards the caller token, and binds returned owner/household plus all row IDs to the requested forward page. Unexpected private payloads fail closed. A focused adapter test passes for substituted actor/household, cursor replay, payload injection and caller-supplied identity rejection. API typecheck, scoped lint/format and diff checks pass (advisory warnings only). The first route placement exceeded complexity 10 and was moved into the read dispatcher; limits remain enforced. Real HTTP/PostgREST integration, native Today UI and AI read wiring remain unfinished; no complete approval inbox is claimed.
+
+### Approval boundary review fixes and real transport
+
+Fixed both valid Sol findings: pending-approval UUIDs must now be canonical lowercase before ordering/deduplication, and expiry timestamps must survive a UTC date/time round trip rather than JavaScript's impossible-date normalization. Regressions reject case-variant duplicate IDs and February 30. Focused contract/service tests, contracts typecheck and scoped lint/format pass (advisory warnings only).
+
+An actual HTTP handler → PostgREST → disposable PostgreSQL journey passes for 21 private approvals across two pages, payload omission, forged actor query rejection and unauthenticated denial. Evidence: `tests/integration/pending-financial-approvals.test.mjs`. Existing database tests cover partner/outsider isolation. Updated exact-commit rereview and CI remain required; Today native UI and AI wiring remain unfinished.

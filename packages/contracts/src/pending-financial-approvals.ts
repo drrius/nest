@@ -1,5 +1,8 @@
 import * as Schema from "effect/Schema";
-const Uuid = Schema.String.check(Schema.isUUID());
+const Uuid = Schema.String.check(
+  Schema.isUUID(),
+  Schema.makeFilter((value) => value === value.toLowerCase()),
+);
 export const PendingFinancialApprovalQuery = Schema.Struct({ after: Schema.NullOr(Uuid) });
 export const PendingFinancialCommand = Schema.Literals([
   "expenses.record",
@@ -25,7 +28,8 @@ export const PendingFinancialApproval = Schema.Struct({
     Schema.makeFilter(
       (value) =>
         /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}Z$/.test(value) &&
-        Number.isFinite(Date.parse(value)),
+        Number.isFinite(Date.parse(value)) &&
+        new Date(value).toISOString().slice(0, 19) === value.slice(0, 19),
     ),
   ),
 });

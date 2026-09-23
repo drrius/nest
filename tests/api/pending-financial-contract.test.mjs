@@ -21,6 +21,14 @@ test("pending approval boundary rejects payloads, invalid paging and unrelated c
     { ...page, approvals: [row(100), row(100)] },
     { ...page, approvals: [row(101), row(100)] },
     { ...page, next: id(100) },
+    { ...page, approvals: [{ ...row(100), expiresAt: "2026-02-30T12:00:00.000000Z" }] },
+    {
+      ...page,
+      approvals: [
+        { ...row(100), approvalId: "AAAAAAAA-0000-4000-8000-000000000001" },
+        { ...row(100), approvalId: "aaaaaaaa-0000-4000-8000-000000000001" },
+      ],
+    },
     { ...page, approvals: [{ ...row(100), expiresAt: "infinity" }] },
   ])
     assert.throws(() => decode(value));
