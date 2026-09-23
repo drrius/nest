@@ -2464,3 +2464,8 @@ A server-side decoder now maps Expo tickets and exact-ticket receipts into finit
 ### Expo HTTP adapter — locally verified candidate
 
 The server-only Effect adapter posts generic renewal notifications to fixed Expo endpoints, sends optional redacted credentials, rejects redirects, bounds responses to 64 KiB and requests to ten seconds, and polls the exact ticket identity. Network, HTTP and malformed-response failures remain unknown/pending with no automatic resend. Five focused outcome/transport checks pass using an injected HTTP boundary; API typechecking and scoped lint pass. This is simulated-provider verification, not live Expo/APNs or device evidence. Worker orchestration remains incomplete. Receipt polling `7e9e5d4` has clean exact-commit Sol review with 23 independently passing database cases; CI remains to be checked.
+
+
+### Push worker attempt orchestration — local integration evidence
+
+The Effect worker accepts one-use database authorization, sends once through the Expo adapter, and persists the exact finite outcome with up to two database-only retries. Returned acknowledgments must bind the complete attempt/result. Receipt work leaves missing outcomes pending and persists only confirmed results. Three unit checks and three real disposable PostgreSQL/worker/adapter journeys pass: lost committed ticket acknowledgment recovers with one external dispatch, lost begin cannot reacquire authorization, and uncertain network outcomes remain non-retryable. API typechecking and scoped lint pass. Provider HTTP is simulated, and database calls in these integration tests use the private fixture adapter; server RPC exposure, worker scanning/hosting and real device acceptance remain unfinished.
