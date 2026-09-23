@@ -110,3 +110,38 @@ test("summary attempts use the generic summary transport and reject mixed or sub
   }
   assert.equal(sends, 1);
 });
+
+test("chore attempts dispatch once and reject mixed identities before provider execution", async () => {
+  const { renewalId: _renewal, ...shared } = attempt;
+  const chore = { ...shared, occurrenceId: id };
+  let sends = 0;
+  const provider = {
+    send: () => assert.fail("wrong renewal transport"),
+    sendSummary: () => assert.fail("wrong summary transport"),
+    sendChore: (value) =>
+      Effect.sync(() => {
+        assert.deepEqual(value, chore);
+        sends++;
+        return { status: "unknown" };
+      }),
+    receipt: () => Effect.succeed(null),
+  };
+  const rpc = (method, input) =>
+    Effect.succeed(
+      method === "begin"
+        ? chore
+        : { version: 1, deliveryId: id, attemptId: id, result: input.p_result },
+    );
+  assert.equal(await Effect.runPromise(pushDeliveryWorker(rpc, provider).send(id)), "recorded");
+  for (const raw of [
+    { ...chore, renewalId: id },
+    { ...chore, summaryId: id, recipientId: id },
+    { ...chore, occurrenceId: "bad" },
+    { ...chore, title: "Private" },
+  ]) {
+    await assert.rejects(
+      Effect.runPromise(pushDeliveryWorker(() => Effect.succeed(raw), provider).send(id)),
+    );
+  }
+  assert.equal(sends, 1);
+});

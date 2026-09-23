@@ -15,6 +15,8 @@ export function PushNotificationLifecycle() {
   const [opening] = useState(() =>
     notificationOpening({
       navigate: (renewalId) => router.push({ pathname: "/renewal", params: { renewalId } }),
+      navigateChore: (occurrenceId) =>
+        router.push({ pathname: "/chore-reminder", params: { occurrenceId } }),
       navigateSummary: (summaryId) =>
         router.push({ pathname: "/daily-summary", params: { summaryId } }),
       consumed,

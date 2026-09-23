@@ -15,5 +15,18 @@ export const DailySummaryNotification = Schema.Struct({
   summaryId: Schema.String.check(Schema.isUUID()),
 });
 export type DailySummaryNotification = typeof DailySummaryNotification.Type;
-export const NestNotification = Schema.Union([RenewalNotification, DailySummaryNotification]);
+
+export const ChoreNotification = Schema.Struct({
+  version: Schema.Literal(1),
+  kind: Schema.Literal("chore"),
+  householdId: Schema.String.check(Schema.isUUID()),
+  occurrenceId: Schema.String.check(Schema.isUUID()),
+});
+export type ChoreNotification = typeof ChoreNotification.Type;
+
+export const NestNotification = Schema.Union([
+  RenewalNotification,
+  DailySummaryNotification,
+  ChoreNotification,
+]);
 export type NestNotification = typeof NestNotification.Type;

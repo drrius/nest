@@ -74,3 +74,41 @@ test("invalid routing identity or ticket never makes a provider request", async 
   });
   assert.equal(await Effect.runPromise(transport.receipt("ticket\n")), null);
 });
+
+test("chore adapter sends only a generic message and exact occurrence routing identity", async () => {
+  const calls = [];
+  const transport = expoPushTransport(undefined, async (_url, options) => {
+    calls.push(JSON.parse(options.body));
+    return Response.json({ data: { status: "ok", id: "chore-ticket" } });
+  });
+  const input = {
+    token: delivery.token,
+    householdId: delivery.householdId,
+    occurrenceId: delivery.renewalId,
+    title: "Private chore",
+    notes: "Never send this",
+  };
+  assert.deepEqual(await Effect.runPromise(transport.sendChore(input)), {
+    status: "ticket",
+    ticketId: "chore-ticket",
+  });
+  assert.deepEqual(calls, [
+    {
+      to: delivery.token,
+      title: "Nest",
+      body: "You have a reminder in Nest.",
+      sound: "default",
+      data: {
+        version: 1,
+        kind: "chore",
+        householdId: delivery.householdId,
+        occurrenceId: delivery.renewalId,
+      },
+    },
+  ]);
+  assert.deepEqual(
+    await Effect.runPromise(transport.sendChore({ ...input, occurrenceId: "bad" })),
+    { status: "unknown" },
+  );
+  assert.equal(calls.length, 1);
+});
