@@ -1,5 +1,6 @@
 import { useChoreEditor } from "../chores/use-editor";
-import { householdDate } from "@nest/domain/calendar";
+import { currentHouseholdDay, useHouseholdDay } from "../today/use-household-day";
+import { TodayMeals } from "../today/meals";
 import { useState } from "react";
 import { Link } from "expo-router";
 import { ChoreStatus, ChoreConflicts, DueChores } from "../components/chore-content";
@@ -12,7 +13,6 @@ import type { ChoreClient } from "../chores/client";
 import type { Member } from "../session/contracts";
 import { useQuiet } from "../theme";
 
-const todayDate = () => householdDate(new Date());
 export default function HouseholdScreen() {
   const session = useSession();
   if (session.state.status !== "ready" || !session.chores)
@@ -42,6 +42,7 @@ function HouseholdChores({
   const controller = useChores(client, member.userId, member.householdId);
   const { view, refresh, complete, discard, retryChange } = controller;
   const editor = useChoreEditor(controller);
+  const today = useHouseholdDay();
   const [everyone, setEveryone] = useState(false);
   const colors = useQuiet();
   if (view.access === "verify")
@@ -57,8 +58,8 @@ function HouseholdChores({
       {...editor}
       actor={member.userId}
       everyone={everyone}
-      today={todayDate()}
-      complete={(chore) => complete(chore, todayDate())}
+      today={today}
+      complete={(chore) => complete(chore, currentHouseholdDay())}
       header={
         <>
           <NativeAction
@@ -86,9 +87,12 @@ function HouseholdChores({
         </>
       }
       footer={
-        <Link href="/" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-          Household account
-        </Link>
+        <>
+          <TodayMeals date={today} />
+          <Link href="/" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
+            Household account
+          </Link>
+        </>
       }
     />
   );
