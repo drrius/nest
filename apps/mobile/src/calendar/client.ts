@@ -1,3 +1,4 @@
+import { calendarRenewalReads } from "./renewal-client.ts";
 import { CalendarChoreQuery, CalendarChores } from "@nest/contracts/calendar-chores";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -38,6 +39,7 @@ export function calendarClient(
       ),
     );
   return {
+    ...calendarRenewalReads(request, account),
     chores: (date: string) =>
       validate(CalendarChoreQuery, { date }).pipe(
         Effect.flatMap((query) =>

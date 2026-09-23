@@ -2525,3 +2525,13 @@ A strict shared renewal-notification contract limits payloads to routing identit
 Sol independently signed off maintenance `45a10bd` and entry point `8a1d6d8`, with eight passing checks. Their CI remains to be checked before merge.
 
 Native opening verification now includes four controller/actual-server-payload checks. The iOS export succeeds at `/tmp/nest-notification-opening-export`, bundle `880c7821e6b3e6dc9d1dca55fa093a38`; this is packaging only. Mobile/API types and scoped lint pass. Physical foreground/background/cold-start notification behavior remains unverified. Cumulative checkpoint/sweep head `3f45f22` is merged after clean Sol signoff and successful CI `35805298990`.
+
+### Calendar renewal layer — storage/contract draft
+
+A household-authorized, paginated day projection now returns renewals whose renewal date or cancellation deadline matches the selected day. Same-day renewal/deadline entries appear once, removed entries are excluded, and the projection performs no EventKit, ledger or reminder write. Two disposable PostgreSQL checks pass for leap-day deadlines, same-day deduplication, 56-row pagination, tenant/anonymous denial and invalid date refusal. Shared response contracts enforce matching dates, ordering and cursor consistency. Contracts typechecking and scoped lint pass. API/native layer controls, corresponding AI date reads, review/CI and device verification remain unfinished.
+
+### Calendar renewal API/native client/AI read — connected draft
+
+The authenticated date endpoint, strict native client and `readRenewalsOnDate` SDK tool share the same household-authorized projection, exact date/cursor binding and pagination. A real native-client → HTTP/PostgREST/PostgreSQL journey passes for leap-day results, empty dates, matching SDK tool results, outsider denial and injected-household rejection. The session adapter supplies Expo fetch for the new method. Typechecking caught and corrected the initially missing adapter method; mobile typechecking and scoped API/native lint now pass. Calendar controls/runtime and physical-device acceptance remain unfinished; no EventKit writes or live model calls occurred.
+
+Calendar renewal data candidate verification is complete locally: two PostgreSQL cases plus one native/API/SDK/PostgREST journey pass, workspace typechecking passes after the session adapter correction, scoped lint passes and disposable security advisors report no issues. Native optional-layer presentation/runtime remain separate unfinished work; exact-commit CI and Sol review are required before merging this data slice.

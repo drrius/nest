@@ -8,6 +8,8 @@ import { sessionCredentials } from "./credentials";
 export function sessionCalendar(auth: SupabaseClient["auth"], account: Account, apiUrl: string) {
   const client = calendarClient(apiUrl, account, sessionCredentials(auth));
   return {
+    renewals: (input: Parameters<typeof client.renewals>[0]) =>
+      client.renewals(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     consent: () => client.consent().pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     setConsent: (input: Parameters<typeof client.setConsent>[0]) =>
       client.setConsent(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
