@@ -2511,3 +2511,9 @@ Cumulative checkpoint/date head `3f45f22` has clean exact Sol signoff with ten i
 ### Complete bounded maintenance candidate
 
 Maintenance now includes a persistent rejected-delivery cursor, visiting at most one hundred rows per invocation. Only the existing confirmed rate-limit/backoff/attempt-cap/current-authorization predicate can requeue; permanent and uncertain outcomes cannot. Four PostgreSQL maintenance cases pass, including 105 genuinely journaled permanent rejections processed as 100 then 5 without retries. Two cycle checks, API typechecking, scoped lint and disposable security advisors pass. This connects local materialization, cancellation, interrupted-send expiry, eligible retries, delivery scanning/checkpointing and receipt polling; hosted scheduling and real provider/device acceptance remain unfinished. Exact-commit review/CI remain required.
+
+### Explicitly activated worker entry point — draft
+
+A separate loopback worker entry point requires an explicit enable flag, server-only backend credentials and a separate scheduler secret. Its empty-body authenticated POST runs one bounded cycle and returns aggregate counts/status without business IDs, tickets or tokens. The real Node HTTP adapter test passes for unauthorized/method/body rejection and a successful empty POST. API types and scoped lint pass. Activation and acceptance steps are in `docs/native-rewrite/push-worker-runbook.md`; no process, hosted schedule, migration or provider request was activated.
+
+Worker entry verification now includes two scheduler tests (actual HTTP authentication/body/method handling and finite failure summaries). Running the entry point with `NEST_PUSH_WORKER_ENABLED=false` exits before listening with the expected disabled error. Scoped lint passes. The server remains unstarted and has made no provider requests; exact-commit review/CI remain outstanding.
