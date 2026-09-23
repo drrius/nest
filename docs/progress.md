@@ -3221,3 +3221,7 @@ Added an invoker-security, owner/household-scoped read command for pending unexp
 ### Pending approval shared contract — local candidate
 
 Added the Effect Schema contract for private financial approval references and paginated responses. Strict decoding rejects private payload additions, memory commands, duplicate/out-of-order IDs, invalid continuation markers and nonfinite expiry strings. Focused contract test, contracts typecheck and scoped lint/format pass. The preceding storage reader also passes the full 54-legacy/191-native schema rehearsal with security advisors returning no findings (`/tmp/nest-approval-schema.json`). API/native/AI wiring remains unfinished, with independent review and exact CI required before merge.
+
+### Pending financial approval API — local candidate
+
+Registered GET `/v1/money/pending-approvals` through the existing authenticated money dispatcher. The shared Effect service strictly decodes the cursor, forwards the caller token, and binds returned owner/household plus all row IDs to the requested forward page. Unexpected private payloads fail closed. A focused adapter test passes for substituted actor/household, cursor replay, payload injection and caller-supplied identity rejection. API typecheck, scoped lint/format and diff checks pass (advisory warnings only). The first route placement exceeded complexity 10 and was moved into the read dispatcher; limits remain enforced. Real HTTP/PostgREST integration, native Today UI and AI read wiring remain unfinished; no complete approval inbox is claimed.

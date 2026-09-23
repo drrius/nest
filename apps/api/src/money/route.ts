@@ -1,3 +1,4 @@
+import { pendingFinancialApprovalRoute } from "./pending-approvals.ts";
 import { recurringRoute } from "./recurring-route.ts";
 import { receiptRoute } from "./receipt-route.ts";
 import { correctionRoute } from "./correction-route.ts";
@@ -48,6 +49,8 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
 }
 function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
+  if (url.pathname === "/v1/money/pending-approvals")
+    return pendingFinancialApprovalRoute(new Request(url), config, caller);
   if (url.pathname.startsWith("/v1/money/categor")) return categoryRoute(url, config, caller);
   if (url.pathname === "/v1/money/balance")
     return params.size

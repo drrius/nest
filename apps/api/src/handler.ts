@@ -276,6 +276,7 @@ const methods: Record<string, string> = {
   "/v1/money/receipt/link": "GET",
   "/v1/money/receipt/cleanup": "POST",
   "/v1/money/receipt/uploads": "GET",
+  "/v1/money/pending-approvals": "GET",
   "/v1/money/balance": "GET",
   "/v1/money/history": "GET",
   "/v1/money/detail": "GET",
