@@ -16,6 +16,7 @@ export function runPushReceipts(
     const page = yield* Schema.decodeUnknownEffect(Claims)(yield* rpc("claimReceipts", {}));
     if (
       page.claims.length > page.scanned ||
+      new Set(page.claims.map((claim) => claim.deliveryId)).size !== page.claims.length ||
       new Set(page.claims.map((claim) => claim.attemptId)).size !== page.claims.length ||
       new Set(page.claims.map((claim) => claim.ticketId)).size !== page.claims.length
     )

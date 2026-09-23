@@ -94,3 +94,46 @@ test("the exact continuation is forwarded and an empty final page ends the sweep
   );
   assert.deepEqual(result, { scanned: 0, after: null, complete: true, outcomes: [] });
 });
+
+test("continuations reject backward and semantically identical cursors, retaining microsecond order", async () => {
+  const prior = { ...cursor, dueAt: "2026-09-23T10:00:00.000002+00:00" };
+  const worker = { send: () => assert.fail("invalid continuation dispatch") };
+  for (const dueAt of [
+    "2026-09-23T09:00:00Z",
+    "2026-09-23T12:00:00.000002+02:00",
+    "2026-09-23T10:00:00.000001Z",
+  ]) {
+    await assert.rejects(
+      Effect.runPromise(
+        runPushPage(
+          () =>
+            Effect.succeed({
+              version: 1,
+              scanned: 100,
+              deliveries: [],
+              after: { ...prior, dueAt },
+              complete: false,
+            }),
+          worker,
+          prior,
+        ),
+      ),
+    );
+  }
+  const next = { ...prior, dueAt: "2026-09-23T10:00:00.000003Z" };
+  const result = await Effect.runPromise(
+    runPushPage(
+      () =>
+        Effect.succeed({
+          version: 1,
+          scanned: 100,
+          deliveries: [],
+          after: next,
+          complete: false,
+        }),
+      worker,
+      prior,
+    ),
+  );
+  assert.deepEqual(result.after, next);
+});

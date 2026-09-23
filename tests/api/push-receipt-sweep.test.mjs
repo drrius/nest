@@ -30,6 +30,7 @@ test("duplicate or oversized receipt claims cannot dispatch reads", async () => 
   for (const page of [
     { scanned: 2, claims: [claims[0], claims[0]] },
     { scanned: 0, claims: [claims[0]] },
+    { scanned: 2, claims: [claims[0], { ...claims[1], deliveryId: claims[0].deliveryId }] },
     { scanned: 101, claims: [] },
     { scanned: 2, claims: [claims[0], { ...claims[1], ticketId: claims[0].ticketId }] },
   ])
