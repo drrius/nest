@@ -270,3 +270,13 @@ test("lifecycle cards require canonical receipts and show the actual completed a
   ])
     assert.throws(() => decode({ ...command, ...patch }));
 });
+test("unconfirmed meal reminder actions open the recovery route", () => {
+  for (const part of [
+    { type: "tool-saveMealReminder", state: "input-available", input: {} },
+    { type: "tool-saveMealReminder", state: "output-available", output: { ok: true, value: {} } },
+  ]) {
+    const result = actionResult(part);
+    assert.equal(result.href, "/meal-reminder");
+    assert.match(result.label, /verify/);
+  }
+});

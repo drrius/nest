@@ -2753,3 +2753,9 @@ Seven actual PostgreSQL/registered SDK/PostgREST checks pass for concurrent exac
 Eight database/SDK/PostgREST cases pass, including a new regression that executes the existing chore reminder command after the meal journal migration. Six assistant history checks also pass. Disposable security advisors report no issues; API/mobile typechecking, lint/format and diff checks pass. The assistant path uses shared authorized commands and native result handoffs; no live model, hosted migration, delivery or device execution was performed. Exact-commit Sol review and CI remain required.
 
 Storage `2694070` and transport `c50f64d` now have successful exact CI (`35818991987`, `35819123633`) and clean Sol reviews. Durable recovery/editor remain gated on their own CI. Native editor `61c904d` has clean exact Sol review with nine independently passing focused cases.
+
+### AI review correction and meal scheduling draft
+
+Sol found an invalid fallback route for uncertain meal-reminder assistant results in `7cd4b34`. The destination is corrected to `/meal-reminder`; the action-result suite passes with an explicit unresolved/malformed-result regression. Updated exact-commit rereview and CI are required before merge.
+
+The uncommitted gated meal-scheduling migration adds Zurich civil-time resolution, recipient-preference eligibility, a deduplicated private outbox, bounded materialization and obsolete cancellation. Three disposable PostgreSQL cases pass for DST gaps/overlaps, concurrent retries, changed/removed meals and recipient mute/membership rules. Batch-bound tests, security checks, review, delivery integration and device verification remain outstanding. No scheduler or hosted migration was activated.

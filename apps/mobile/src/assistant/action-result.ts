@@ -86,7 +86,7 @@ const labels = {
   checkGrocery: "Grocery checked",
 };
 const destinations = {
-  saveMealReminder: "Meal reminder settings saved",
+  saveMealReminder: "/meal-reminder",
   saveChoreReminder: "/household",
   saveRenewalReminder: "/renewals",
   createRenewal: "/renewals",
