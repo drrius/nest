@@ -19,7 +19,9 @@ export function verifyCommittedFinancialRecovery(db) {
       read.history.events.some((event) => event.eventId === receipt.eventId),
       true,
     );
-  db.sql(`begin; ${legacyApiFenceSql()}
+  db.sql(`begin;
+    select private.nest_set_recurring_execution_paused(true);
+    ${legacyApiFenceSql()}
     do $freeze$ declare v_function record; v_role text; begin
       for v_function in select oid,oid::regprocedure::text as signature from pg_proc
         where pronamespace='public'::regnamespace and prokind='f'
@@ -57,6 +59,7 @@ export function verifyCommittedFinancialRecovery(db) {
     newExpenseRefused: true,
     outsiderDenied: true,
     restoredOldDatabase: false,
+    nativeAutomaticPostingPaused: true,
     ownerJobsStopped: false,
     completeRecovery: false,
   };

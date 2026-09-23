@@ -58,3 +58,7 @@ Rollback restores all public function ACLs, native expense receipts, retained fi
 ## Broad API restriction experiment
 
 The disposable full-schema probe also runs the financial command/approval checks while revoking all API-role execution on non-native public functions and mutation grants on non-native public ordinary/partitioned tables. Effective inherited grants must be absent or the experiment fails. Function, table and column ACLs plus approvals and receipts are checked after rollback. This establishes expense compatibility only; it does not establish whole-app compatibility, cover views/procedures or other schemas, drain active transactions, stop owner-run jobs or authorize activation.
+
+## Native automatic posting pause
+
+The additive recovery control exposes only the owner-callable private function `nest_set_recurring_execution_paused(boolean)`. Pausing waits for shared locks held by automatic posting transactions; the pause transaction must commit before an operator treats it as acknowledged. A lock timeout is a failed pause, never a successful drain. Existing completed receipts remain readable. Resuming preserves each rule’s mandate and cursor rather than recreating financial events. This control does not stop legacy jobs, stop arbitrary owner SQL, or establish that every in-flight client command is drained. It is tested only in disposable fixtures and is not production activation authorization.
