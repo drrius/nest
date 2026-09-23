@@ -21,7 +21,10 @@ const configuredProject = Effect.suspend(() => {
     : Effect.fail(new PushEnrollmentFailure({ reason: "configuration" }));
 });
 // Called only by an explicit enrollment action; mounting a screen never prompts.
-export function nativePushToken(requestPermission: boolean) {
+export function nativePushToken(
+  requestPermission: boolean,
+  devicePushToken?: Notifications.DevicePushToken,
+) {
   return Effect.gen(function* () {
     const projectId = yield* configuredProject;
     let permission = yield* nativePushPermission();
@@ -36,7 +39,7 @@ export function nativePushToken(requestPermission: boolean) {
     }
     if (!allowsPush(permission)) return yield* new PushEnrollmentFailure({ reason: "permission" });
     const token = yield* Effect.tryPromise({
-      try: () => Notifications.getExpoPushTokenAsync({ projectId }),
+      try: () => Notifications.getExpoPushTokenAsync({ projectId, devicePushToken }),
       catch: () => new PushEnrollmentFailure({ reason: "unavailable" }),
     }).pipe(
       Effect.timeout("15 seconds"),

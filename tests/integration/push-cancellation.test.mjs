@@ -1,3 +1,4 @@
+import { rotatePushDevice } from "../../apps/mobile/src/push/rotation.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -86,4 +87,33 @@ test("cancellation recovers already committed receipt and rejects substituted co
   assert.equal(f.values.size, 0);
   await assert.rejects(run(f.client.cancel({ ...command, token: "different" })));
   assert.equal(f.db.sql("select count(*) from private.nest_push_cancelled_operations"), "0");
+});
+
+test("rotation cannot re-enable a registration disabled while acquiring its token", async (t) => {
+  const f = await setup(t),
+    command = f.command(1620);
+  const receipt = await run(f.client.save(command));
+  const { store, operations } = f.make();
+  const rotation = rotatePushDevice({
+    current: () => true,
+    readInstallation: Effect.succeed(command.installationId),
+    client: f.client,
+    operations,
+    operationId: () => id(1622),
+    token: Effect.gen(function* () {
+      yield* f.client.save({
+        action: "disable",
+        operationId: id(1621),
+        installationId: command.installationId,
+        expectedRevision: receipt.revision,
+      });
+      return "ExponentPushToken[RotatedFixture]";
+    }),
+  });
+  await assert.rejects(run(rotation));
+  assert.equal((await run(f.client.detail(command.installationId))).enabled, false);
+  assert.equal((await store.read(f.account)).expectedRevision, receipt.revision);
+  await run(operations.cancelPending());
+  assert.equal(await store.read(f.account), null);
+  assert.equal((await run(f.client.detail(command.installationId))).enabled, false);
 });
