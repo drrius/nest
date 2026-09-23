@@ -130,6 +130,7 @@ function MealActions({
           })
         }
       />
+      <MealReminderAction entryId={meal.entryId} enabled={enabled} />
       <NativeAction
         label="Preparation"
         onPress={() =>
@@ -179,5 +180,16 @@ function MealActions({
         }
       />
     </>
+  );
+}
+
+function MealReminderAction({ entryId, enabled }: { entryId: string; enabled: boolean }) {
+  const router = useRouter();
+  return (
+    <NativeAction
+      label="Meal reminder"
+      disabled={!enabled}
+      onPress={() => router.push({ pathname: "/meal-reminder", params: { entryId: entryId } })}
+    />
   );
 }

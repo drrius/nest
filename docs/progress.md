@@ -2725,3 +2725,15 @@ Three real native-client → HTTP → PostgREST → disposable PostgreSQL journe
 Account/household/lease-scoped SQLite retains the exact reminder command before sending. Restart reads status without replaying writes; unresolved commands require explicit retry or durable cancellation. Account replacement hides pending intent, and confirmed saves remain recoverable if local cleanup fails. Deleted targets cannot strand cancellation/recovery.
 
 Five real SQLite/native runtime/HTTP/PostgREST/PostgreSQL journeys pass. The initial run caught an incorrect SQLite initialization call; that was fixed and the full focused suite rerun successfully. Mobile typechecking and lint pass. Transport `c50f64d` has clean exact Sol medium review with three independently passing integration tests. Durable recovery review/CI and editor presentation remain unfinished; no device verification or hosted operation occurred.
+
+### Meal reminder editor — context and confirmation draft
+
+The editor helpers now load current authorized meal/recipient context, parse reminder timing, bind a one-use confirmation to the exact meal baseline and reminder revision, and retain original settings for recovery even when the target context is unavailable. Three focused helper checks and one real SQLite/native-client/HTTP/PostgREST/PostgreSQL editor journey pass. Mobile types pass. These helpers are not yet wired to a native screen; no rendered or device acceptance is claimed. Durable recovery `27efcc8` has clean exact Sol medium signoff with five independently passing integration journeys; CI remains required.
+
+### Meal reminder native screen — connected draft
+
+The protected meal-reminder route now connects recipient/timing controls, explicit one-use confirmation, durable recovery, account verification and navigation warnings. Saved meals link to their exact reminder editor; household settings expose recovery without requiring the meal to remain listed. Context clears on background/refocus, and stale baseline/revision checks disable saving until reviewed again. Mobile typechecking passes; lint identified a meal-action function-length violation, corrected by extracting the reminder navigation control. Final lint, focused regression verification, iOS packaging and exact-commit review/CI remain to complete. Native alerts, keyboard, accessibility and actual iPhone interaction remain unverified.
+
+### Meal reminder editor — verification evidence
+
+Nine focused checks pass across confirmation/form validation and real SQLite/native runtime/HTTP/PostgREST/PostgreSQL journeys, including stale settings, account replacement, committed-response recovery and deleted-target cancellation. Mobile typechecking, full lint/format and diff checks pass. The editor explicitly shows the meal title/date/slot. Final iOS packaging succeeded at `/tmp/nest-meal-reminder-editor-export`. This is packaging evidence only. Exact-commit Sol review/CI, AI actions and meal push scheduling/delivery remain required; no native interaction or physical-device acceptance is claimed.
