@@ -6,7 +6,7 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**M8 and Today integration — current branch `codex/native-production-tabs`.** Main is confirmed through corrected grocery scheduling (`bda761c`), after clean Sol review and successful CI `35823542342`. Grocery AI, scheduling, delivery claims, provider routing and bounded scans have clean Sol reviews; corrected scheduling commit `bda761c` has successful CI, while later delivery commits remain in CI. Grocery worker orchestration is locally verified and awaiting commit review/CI. Remaining reminder types and Today integration are unfinished. Workers remain unactivated; physical-device acceptance and real provider delivery remain unverified.
+**M8 and Today integration — current branch `codex/native-production-tabs`.** Grocery reminder worker integration and recurring financial reminder contracts have clean Sol reviews and successful CI through `dff13f7`. Recurring reminder storage, transport and durable recovery have clean Sol reviews and await CI. The recurring reminder native editor has local integration and packaging evidence and is being prepared for review. Recurring AI/scheduling/delivery and remaining Today/M9 work are unfinished. Workers remain unactivated; physical-device acceptance and real provider delivery remain unverified.
 
 **Substantial work remains; this is not a nearly complete release.** Remaining M7 work includes full financial reconciliation and hosted scheduling verification. Native acceptance of the production four-tab composition, remaining Today aggregation and M8 reminders/push, M9 migration rehearsal/integration/usability/release preparation and outstanding Apple/provider/device acceptance remain incomplete. Local worker and bundle success do not establish hosted scheduling or device behavior. Source merges use feature branches, passing exact-commit CI and Sol medium review, with no new PR requirement or automation. Production deployment, migration, purchases and releases remain separately gated.
 
@@ -2947,3 +2947,15 @@ Three real native-client → HTTP → PostgREST → disposable PostgreSQL cases 
 Account/household/lease-scoped SQLite now stages the exact reminder command before dispatch and retains durable cancellation intent. The shared save runtime recovers after restart without automatically repeating a write; pending intent cannot be replaced by another command or exposed after account replacement. Pausing a rule prevents a late reminder save while leaving explicit recovery/cancellation available.
 
 Five real SQLite/native runtime → HTTP/PostgREST/PostgreSQL journeys pass for committed-response loss/restart, unresolved explicit cancellation, account replacement, staging/cleanup failure and paused-rule recovery. The restart case verifies one send and zero financial cycles. Native screen wiring, iPhone behavior, AI and scheduling remain unfinished. Exact-commit review and CI remain required.
+
+### Recurring reminder editor — connected draft
+
+A protected native editor is now wired from recurring-expense details, with a household entry for interrupted-save recovery. It loads authorized rule context/roster, uses native timing and recipient controls, binds one-use confirmation to active rule revision/current due date/settings revision, retains drafts across refresh, and uses durable recovery with leave/background invalidation. Paused or changed rules cannot pass confirmation.
+
+Two focused form/confirmation cases pass. Initial mobile typechecking passed; two complexity-limit findings were corrected with named validation helpers and scoped lint now passes. Complete editor/context HTTP integration, final typechecking, packaging, review/CI and physical iPhone interaction are still pending. This uncommitted draft is not accepted as a working native flow. Transport `e6707a0` and recovery `3e4db60` have clean exact Sol reviews with three/five independently passing integration cases respectively.
+
+### Recurring reminder editor — candidate verification
+
+Eight focused form/confirmation and real SQLite/HTTP/PostgREST/PostgreSQL cases pass, including authorized roster/context, exact durable save, stale confirmation refusal, account replacement and restart/failure recovery. Final mobile typechecking, workspace lint and formatting pass. The iOS export succeeded at `/tmp/nest-recurring-editor-export` before final wording adjustments; this proves packaging only. Native controls, gestures, keyboard, VoiceOver and actual device behavior remain unverified. Exact-commit Sol review and CI remain required.
+
+Grocery worker `eb610af` has successful CI `35824456046`; recurring reminder contracts `dff13f7` have successful CI `35824631550`. Both have clean exact Sol review. No deployment, hosted migration or push activation occurred.

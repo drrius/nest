@@ -7,6 +7,7 @@ export const protectedScreens = [
   { name: "refund-entry", title: "Record refund" },
   { name: "settlement-entry", title: "Record settlement" },
   { name: "grocery-reminder", title: "Grocery reminder" },
+  { name: "recurring-reminder", title: "Recurring reminder" },
   { name: "meal-reminder", title: "Meal reminder" },
   { name: "chore-reminder", title: "Chore reminder" },
   { name: "renewal-reminder", title: "Renewal reminder" },

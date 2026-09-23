@@ -124,6 +124,12 @@ function HouseholdLinks({ count }: { count: number }) {
         Money
       </Link>
       <Link
+        href="/recurring-reminder"
+        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
+      >
+        Review saved recurring reminder changes
+      </Link>
+      <Link
         href="/grocery-reminder"
         style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
       >

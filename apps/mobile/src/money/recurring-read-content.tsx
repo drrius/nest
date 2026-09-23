@@ -55,6 +55,12 @@ function RuleRow({ rule }: { rule: RecurringRule }) {
     <Card>
       <RuleSummary rule={rule} />
       <NativeAction
+        label="Reminder settings"
+        onPress={() =>
+          router.push({ pathname: "/recurring-reminder", params: { ruleId: rule.ruleId } })
+        }
+      />
+      <NativeAction
         label={`View ${rule.configuration.description}`}
         onPress={() =>
           router.push({
@@ -74,6 +80,12 @@ function RuleDetails({ rule, actor }: { rule: RecurringRule; actor: string }) {
   return (
     <>
       <RuleSummary rule={rule} />
+      <NativeAction
+        label="Reminder settings"
+        onPress={() =>
+          router.push({ pathname: "/recurring-reminder", params: { ruleId: rule.ruleId } })
+        }
+      />
       {rule.status !== "cancelled" ? (
         <NativeAction
           label="Edit recurring configuration"
