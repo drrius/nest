@@ -12,6 +12,7 @@ const tables = [
   "asset_maintenance",
   "asset_routines",
   "calendar_events",
+  "calendar_connections",
   "household_financial_links",
 ];
 export function seedExcludedRehearsal(db) {
@@ -40,8 +41,11 @@ export function seedExcludedRehearsal(db) {
       values('${id(1313)}','${id(10)}','${id(1)}','${id(1303)}','Retained maintenance','2026-09-21','${id(1201)}');
     insert into public.asset_routines(id,household_id,created_by,asset_id,routine_id)
       values('${id(1314)}','${id(10)}','${id(1)}','${id(1303)}','${id(1201)}');
+    insert into public.calendar_connections(id,household_id,connected_by,encrypted_credentials,selected_calendar_url,calendar_name)
+      values('${id(1322)}','${id(10)}','${id(1)}','synthetic-ciphertext-not-a-real-credential','https://example.invalid/synthetic-calendar/','Synthetic retained calendar');
     insert into public.calendar_events(id,household_id,created_by,title,starts_at,ends_at,project_id,location,notes)
       values('${id(1320)}','${id(10)}','${id(1)}','Retained legacy event','2026-09-21T10:00:00Z','2026-09-21T11:00:00Z','${id(1301)}','Synthetic location','Retained event notes');
+    update public.calendar_events set connection_id='${id(1322)}',sync_state='synced',remote_href='https://example.invalid/synthetic-calendar/event.ics',remote_etag='synthetic-etag' where id='${id(1320)}';
     update public.trip_bookings set calendar_event_id='${id(1320)}' where id='${id(1304)}';
     insert into public.household_financial_links(id,household_id,created_by,financial_event_id,project_id,booking_id)
       values('${id(1321)}','${id(10)}','${id(1)}','${id(100)}','${id(1301)}','${id(1304)}');`);
@@ -68,6 +72,8 @@ export function captureExcludedHistory(db) {
 export function verifyExcludedRehearsal(db, before) {
   const after = captureExcludedHistory(db);
   assert.equal(after, before, "Excluded legacy records changed");
+  assert.ok(!before.includes("synthetic-ciphertext"), "Snapshot leaked credentials");
+  assert.ok(!after.includes("example.invalid"), "Snapshot leaked calendar URL");
   assert.ok(JSON.parse(before).documentStorage.every((row) => row.valid));
   assert.ok(JSON.parse(after).documentStorage.every((row) => row.valid));
   verifyMissingDocumentObject(db, after);
@@ -84,6 +90,7 @@ export function verifyExcludedRehearsal(db, before) {
     retainedMaintenance: 1,
     retainedAssetRoutineLinks: 1,
     retainedCalendarEvents: 1,
+    retainedCalendarConnections: 1,
     retainedFinancialLinks: 1,
     storageBytesVerified: false,
   };

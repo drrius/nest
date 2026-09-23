@@ -3161,3 +3161,7 @@ Added a retained legacy calendar event with location/notes and project associati
 ### Renewal conversion merge and current rehearsal runbook
 
 Fast-forwarded remote/local main to `75dd2e93840de651c6eabcee80bc80cb9212f174` after successful exact CI `35831592136` and clean independent Sol rereview. This includes reviewed unlinked conversion with historical source preservation and strict date/title refusal; linked conversion and persistent provenance remain unfinished. Consolidated the migration rehearsal runbook to remove stale claims about missing fixtures while retaining explicit hosted, device, file-byte and cutover gaps. No production migration or deployment occurred.
+
+### Legacy calendar connection retention — synthetic evidence
+
+The preservation fixture now includes a legacy calendar connection with a clearly synthetic credential ciphertext and selected URL, plus an event linked to that connection with remote metadata. Full-row hashes preserve these fields without returning credential text or calendar URLs in snapshots; explicit assertions check that omission. The complete 54-legacy/188-native diagnostic passes (`/tmp/nest-calendar-retention.json`) and still proves zero native calendar consents. This does not verify actual credential decryptability, legacy service operation or native network payloads. Scoped lint/format pass; review and CI remain pending. No real credentials were read.

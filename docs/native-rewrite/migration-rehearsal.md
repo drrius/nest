@@ -34,7 +34,7 @@ The routine and excluded-module extensions are locally verified and have review 
 ## Remaining acceptance gates
 
 - Linked renewal conversion after explicit recurring adoption, persistent conversion provenance and expanded concurrency/failure checks.
-- Preservation of private legacy calendar connection credentials without copying them into native or shared calendar data.
+- Real credential decryptability and native payload/bundle inspection. Synthetic connection ciphertext and remote event metadata now have fingerprint-preservation coverage, with no native consent created; this does not establish real credential usability.
 - Representative authorized existing data, full relationship inventory, stable operation identities and actual stored-file bytes/access verification.
 - A controlled old-writer fence, pending-command reconciliation, cutover and rollback rehearsal that preserves all newly posted financial history.
 - Approved isolated Supabase execution with supported extensions, actual Auth/Storage interfaces, scheduler execution and provider verification.
