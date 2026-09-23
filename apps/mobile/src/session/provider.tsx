@@ -1,3 +1,5 @@
+import { sessionGroceryReminders } from "./grocery-reminder-client";
+import type { GroceryReminderClient } from "../grocery-reminders/client";
 import { sessionMealReminders } from "./meal-reminder-client";
 import type { MealReminderClient } from "../meal-reminders/client";
 import { sessionChoreReminders } from "./chore-reminder-client";
@@ -83,6 +85,7 @@ interface SessionContextValue {
   pushDevices: ReturnType<typeof sessionPushDevices> | null;
   renewals: RenewalClient | null;
   renewalReminders: RenewalReminderClient | null;
+  groceryReminders: GroceryReminderClient | null;
   mealReminders: MealReminderClient | null;
   choreReminders: ChoreReminderClient | null;
   money: MoneyClient | null;
@@ -178,6 +181,7 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
         money: null,
         renewals: null,
         renewalReminders: null,
+        groceryReminders: null,
         mealReminders: null,
         choreReminders: null,
         pushDevices: null,
@@ -185,6 +189,7 @@ function usePreferenceClients(member: Member | null, runtime: ReturnType<typeof 
     const { auth } = runtime.current;
     return {
       pushDevices: sessionPushDevices(auth, { actor, household }, configuration.apiUrl),
+      groceryReminders: sessionGroceryReminders(auth, { actor, household }, configuration.apiUrl),
       mealReminders: sessionMealReminders(auth, { actor, household }, configuration.apiUrl),
       choreReminders: sessionChoreReminders(auth, { actor, household }, configuration.apiUrl),
       renewalReminders: sessionRenewalReminders(auth, { actor, household }, configuration.apiUrl),
