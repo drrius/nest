@@ -88,4 +88,10 @@ test("two native forms cannot overwrite a newer profile; revocation clears the o
   await second.retry();
   await second.save(preferences);
   assert.equal(remote.db.sql("select count(*) from public.nest_food_profile_receipts"), "2");
+  remote.db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${id(10)}','${id(1)}','First')`,
+  );
+  await second.load();
+  assert.equal(second.getSnapshot().stage, "form");
+  assert.equal(second.getSnapshot().profile.revision, "2");
 });

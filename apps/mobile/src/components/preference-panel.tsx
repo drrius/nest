@@ -27,14 +27,10 @@ export function PreferencePanel({
     <Page>
       {view.notice ? <Note>{view.notice}</Note> : null}
       {view.stage === "verify" ? (
-        <NativeAction
-          label="Verify account"
-          disabled={view.busy}
-          onPress={() => {
-            actions.verify();
-            reload();
-          }}
-        />
+        <>
+          <NativeAction label="Verify account" disabled={view.busy} onPress={actions.verify} />
+          <NativeAction label="Reload saved preferences" disabled={view.busy} onPress={reload} />
+        </>
       ) : (
         <>
           {view.loaded ? (

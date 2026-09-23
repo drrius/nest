@@ -66,10 +66,11 @@ function Meals({ runtime, date }: { runtime: MealWeekRuntime; date: string }) {
     return (
       <Section title="Meals today">
         <Note>Verify your account before viewing meals.</Note>
+        <NativeAction label="Verify account" onPress={session.retry} />
         <NativeAction
-          label="Verify account"
+          label="Refresh meals"
+          disabled={view.busy}
           onPress={() => {
-            session.retry();
             void runtime.load();
           }}
         />

@@ -78,11 +78,13 @@ function LibraryContent({ runtime, verify }: { runtime: MealLibraryRuntime; veri
           />
           {view.notice ? <Note>{view.notice}</Note> : null}
           {view.busy ? <Note>Loading saved recipes…</Note> : null}
+          {view.access === "verify" ? (
+            <NativeAction label="Verify account" disabled={view.busy} onPress={verify} />
+          ) : null}
           <NativeAction
-            label={view.access === "verify" ? "Verify account" : "Reload recipes"}
+            label="Reload recipes"
             disabled={view.busy}
             onPress={() => {
-              if (view.access === "verify") verify();
               void runtime.load();
             }}
           />

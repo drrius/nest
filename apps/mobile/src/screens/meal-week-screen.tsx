@@ -95,10 +95,11 @@ function WeekContent({
     return (
       <Page>
         <Note>{view.notice}</Note>
+        <NativeAction label="Verify account" onPress={verify} />
         <NativeAction
-          label="Verify account"
+          label="Refresh meals"
+          disabled={view.busy}
           onPress={() => {
-            verify();
             void runtime.load();
           }}
         />

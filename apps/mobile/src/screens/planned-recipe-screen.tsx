@@ -114,11 +114,13 @@ function Status({
       {view.notice ? <Note>{view.notice}</Note> : null}
       {view.busy ? <Note>Checking meal details…</Note> : null}
       {snapshot && !view.fresh ? <Note>Saved copy · may be out of date</Note> : null}
+      {view.access === "verify" ? (
+        <NativeAction label="Verify account" disabled={view.busy} onPress={verify} />
+      ) : null}
       <NativeAction
-        label={view.access === "verify" ? "Verify account" : "Refresh meal details"}
+        label="Refresh meal details"
         disabled={view.busy}
         onPress={() => {
-          if (view.access === "verify") verify();
           void runtime.load();
         }}
       />

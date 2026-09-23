@@ -91,11 +91,13 @@ function RecipeStatus({
     <View style={{ gap: space.medium }}>
       {view.notice ? <Note>{view.notice}</Note> : null}
       {view.busy ? <Note>Loading recipe…</Note> : null}
+      {view.access === "verify" ? (
+        <NativeAction label="Verify account" disabled={view.busy} onPress={verify} />
+      ) : null}
       <NativeAction
-        label={view.access === "verify" ? "Verify account" : "Reload current recipe"}
+        label="Reload current recipe"
         disabled={view.busy}
         onPress={() => {
-          if (view.access === "verify") verify();
           void runtime.load(true);
         }}
       />

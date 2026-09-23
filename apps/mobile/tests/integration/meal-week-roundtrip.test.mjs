@@ -65,6 +65,12 @@ test("native week controller reads real HTTP, restarts offline, refreshes partne
   await restarted.load();
   assert.equal(restarted.getSnapshot().snapshot, null);
   assert.equal(restarted.getSnapshot().access, "verify");
+  remote.db.sql(
+    `insert into public.household_members(household_id,user_id,display_name) values('${id(10)}','${id(1)}','First')`,
+  );
+  await restarted.load();
+  assert.equal(restarted.getSnapshot().access, "ready");
+  assert.equal(restarted.getSnapshot().snapshot.entries[0].title, "Partner dinner");
   restarted.dispose();
   const other = await run(reopened.store.activate({ actor: id(2), household: id(10) }, id(201)));
   assert.equal(await run(reopened.store.readMealWeek(other, week)), null);
