@@ -18,13 +18,21 @@ async function setup(t) {
     values ('${id(500)}','${id(1)}','${id(10)}','${id(600)}','expenses.record',1,'{}')`);
   const local = await fixture(t);
   const session = await run(local.store.activate({ actor: id(1), household: id(10) }, id(800)));
+  let bearer = f.bearer;
   const client = moneyClient(
     f.url,
     session,
-    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+    Effect.sync(() => ({ user: { id: id(1) }, access_token: bearer })),
   );
   const operations = pendingApprovalOperations({ store: local.store, session }, client);
-  return { f, local, operations };
+  return {
+    f,
+    local,
+    operations,
+    setBearer: (token) => {
+      bearer = token;
+    },
+  };
 }
 test("private approvals clear across background/offline and reject a replaced SQLite account", async (t) => {
   const { local, operations } = await setup(t);
@@ -74,4 +82,19 @@ test("late real approval reads cannot republish after background or disposal", a
     assert.equal(runtime.getSnapshot().busy, false);
     runtime.dispose();
   }
+});
+
+test("same-owner credential recovery can refresh without changing focus, network or SQLite lease", async (t) => {
+  const { f, operations, setBearer } = await setup(t);
+  const runtime = new PendingApprovalRuntime(operations);
+  t.after(() => runtime.dispose());
+  setBearer("invalid-fixture-token");
+  await runtime.setOnline(true);
+  await runtime.setActive(true);
+  assert.equal(runtime.getSnapshot().verify, true);
+  assert.equal(runtime.getSnapshot().entry, null);
+  setBearer(f.bearer);
+  await runtime.select(null);
+  assert.equal(runtime.getSnapshot().verify, false);
+  assert.equal(runtime.getSnapshot().entry.approvals[0].approvalId, id(500));
 });

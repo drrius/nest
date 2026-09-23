@@ -99,7 +99,7 @@ export class PendingApprovalRuntime {
       entry: null,
       verify,
       notice: verify
-        ? "Verify your account before viewing your approvals."
+        ? "Verify your account, then refresh approvals."
         : "Could not load your approvals. Try again online.",
     });
   }

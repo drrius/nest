@@ -58,13 +58,11 @@ function Approvals({ runtime, verify }: { runtime: PendingApprovalRuntime; verif
     <>
       <ApprovalRows view={view} />
       <NativeAction
-        label={view.verify ? "Verify account" : "Refresh approvals"}
+        label="Refresh approvals"
         disabled={view.busy || !view.active || !view.online}
-        onPress={() => {
-          if (view.verify) verify();
-          else void runtime.select(null);
-        }}
+        onPress={() => void runtime.select(null)}
       />
+      {view.verify ? <NativeAction label="Verify account" onPress={verify} /> : null}
       {view.entry?.next ? (
         <NativeAction
           label="Next approvals"
