@@ -5,7 +5,11 @@ import { randomUUID } from "expo-crypto";
 import * as Effect from "effect/Effect";
 import { useSession } from "../session/provider";
 import { PreferenceFailure } from "../preferences/client";
-import { nativePushAttempts, readNativePushInstallation } from "./native-storage";
+import {
+  nativePushAttempts,
+  nativePushCheckpoint,
+  readNativePushInstallation,
+} from "./native-storage";
 import { nativePushToken } from "./native-permission";
 import { pushEnrollmentOperations } from "./operations";
 import { rotatePushDevice } from "./rotation";
@@ -18,11 +22,12 @@ export function PushTokenLifecycle() {
   useEffect(() => {
     if (!actor || !household || !pushDevices) return;
     const account = { actor, household };
-    const queue = pushRotationQueue<Notifications.DevicePushToken>({
+    const queue = pushRotationQueue<Notifications.DevicePushToken | undefined>({
       active: () => AppState.currentState === "active",
       rotate: (token, current) =>
         rotatePushDevice({
           current,
+          checkpoint: nativePushCheckpoint(account),
           readInstallation: Effect.tryPromise({
             try: readNativePushInstallation,
             catch: unavailable,
@@ -39,8 +44,9 @@ export function PushTokenLifecycle() {
         }),
     });
     const tokens = Notifications.addPushTokenListener(queue.changed);
+    queue.changed(undefined);
     const foreground = AppState.addEventListener("change", (next) => {
-      if (next === "active") queue.foreground();
+      if (next === "active") queue.changed(undefined);
     });
     return () => {
       queue.dispose();

@@ -1,4 +1,5 @@
 import { rotatePushDevice } from "../../apps/mobile/src/push/rotation.ts";
+import { pushRotationCheckpoint } from "../../apps/mobile/src/push/rotation-checkpoint.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -43,7 +44,20 @@ async function setup(t) {
     expectedRevision: null,
     token: "ExponentPushToken[CancelFixture]",
   });
-  return { ...f, account, client, make, command, values };
+  return {
+    ...f,
+    account,
+    client,
+    make,
+    command,
+    values,
+    checkpoint: () =>
+      pushRotationCheckpoint({
+        account,
+        disk,
+        hash: (token) => Effect.sync(() => createHash("sha256").update(token).digest("hex")),
+      }),
+  };
 }
 test("lost cancellation response recovers on restart and rejects late enrollment over HTTP", async (t) => {
   const f = await setup(t),
@@ -95,6 +109,7 @@ test("rotation cannot re-enable a registration disabled while acquiring its toke
   const receipt = await run(f.client.save(command));
   const { store, operations } = f.make();
   const rotation = rotatePushDevice({
+    checkpoint: { matches: () => Effect.succeed(false), record: () => Effect.void },
     current: () => true,
     readInstallation: Effect.succeed(command.installationId),
     client: f.client,
@@ -115,5 +130,41 @@ test("rotation cannot re-enable a registration disabled while acquiring its toke
   assert.equal((await store.read(f.account)).expectedRevision, receipt.revision);
   await run(operations.cancelPending());
   assert.equal(await store.read(f.account), null);
+  assert.equal((await run(f.client.detail(command.installationId))).enabled, false);
+});
+
+test("cold-start token reconciliation skips a matching checkpoint and preserves disabled choice", async (t) => {
+  const f = await setup(t),
+    command = f.command(1630);
+  await run(f.client.save(command));
+  let operation = 1631,
+    tokens = 0;
+  const reconcile = () =>
+    rotatePushDevice({
+      current: () => true,
+      checkpoint: f.checkpoint(),
+      readInstallation: Effect.succeed(command.installationId),
+      client: f.client,
+      operations: f.make().operations,
+      operationId: () => id(operation++),
+      token: Effect.sync(() => {
+        tokens++;
+        return "ExponentPushToken[ColdStartFixture]";
+      }),
+    });
+  assert.equal(await run(reconcile()), "rotated");
+  assert.equal(await run(reconcile()), "unchanged");
+  assert.equal(f.db.sql("select count(*) from private.nest_push_device_operations"), "2");
+  const state = await run(f.client.detail(command.installationId));
+  await run(
+    f.client.save({
+      action: "disable",
+      installationId: command.installationId,
+      operationId: id(1635),
+      expectedRevision: state.revision,
+    }),
+  );
+  assert.equal(await run(reconcile()), "inactive");
+  assert.equal(tokens, 2);
   assert.equal((await run(f.client.detail(command.installationId))).enabled, false);
 });

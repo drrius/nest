@@ -1,3 +1,6 @@
+import { pushRotationCheckpoint } from "./rotation-checkpoint";
+import { nativePushDigest } from "./digest";
+import type { Account } from "../offline/contracts";
 import { randomUUID } from "expo-crypto";
 import { protectedPushInstallation, readPushInstallation } from "./installation";
 import * as SecureStore from "expo-secure-store";
@@ -15,3 +18,6 @@ export const nativePushAttempts = protectedPushAttempts(disk);
 export const nativePushInstallation = protectedPushInstallation(disk, randomUUID);
 
 export const readNativePushInstallation = () => readPushInstallation(disk);
+
+export const nativePushCheckpoint = (account: Account) =>
+  pushRotationCheckpoint({ account, disk, hash: nativePushDigest });

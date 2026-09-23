@@ -8,6 +8,7 @@ function fixture() {
   const calls = [];
   let active = true;
   const deps = {
+    checkpoint: { matches: () => Effect.succeed(false), record: () => Effect.void },
     current: () => active,
     readInstallation: Effect.succeed("installation"),
     token: Effect.sync(() => {
