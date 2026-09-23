@@ -2787,3 +2787,9 @@ Meal and chore real HTTP/RPC delivery/receipt integration cases pass with a simu
 ### Meal notification handoff — final local verification
 
 Nineteen focused provider/worker/native-opening checks pass, including generic payload projection, malformed/mixed source rejection before dispatch, authenticated foreground routing and duplicate tap suppression. Two real HTTP/PostgREST/PostgreSQL worker journeys cover meal and chore outcomes with a simulated provider. API/mobile types, lint/format and diff checks pass. iOS export succeeded at `/tmp/nest-meal-push-export`, bundle `a23796441614534e5af3c4b8faf736ed`; packaging is not device acceptance. Exact-commit review/CI and meal worker discovery/checkpoint/orchestration remain required. No live push service, hosted migration or physical iPhone was used.
+
+### Bounded meal delivery discovery — locally verified candidate
+
+Server-only meal discovery inspects at most 100 outbox/device pairs, returns only prepared delivery IDs and advances over ineligible sessions. Independent durable checkpoints use revision comparison to prevent concurrent progress overwrites and support wraparound. Fixed UTC maintenance windows materialize previous/current-day reminders and cancel obsolete entries without dispatching providers.
+
+Seven disposable PostgreSQL tests pass for token-free discovery, one hundred invalid sessions followed by valid devices, strict cursors/ACLs, transactional rollback, expired/cancelled rows, concurrent checkpoints and fixed-window maintenance. Full lint/format, diff checks and disposable security advisors pass. Exact-commit review/CI and worker orchestration remain required; no hosted scheduler or physical-device delivery was activated.
