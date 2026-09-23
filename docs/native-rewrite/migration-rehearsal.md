@@ -48,3 +48,9 @@ For security advisors against the same disposable cluster, set `NEST_TEST_SUPABA
 The legacy `run_retain_purchased_groceries(text,integer)` function is an additional writer: its service-role invocation deletes purchased groceries and session-item history after 30 days. The disposable full-chain rehearsal reproduces one deletion using an aged synthetic row, then rolls the transaction back. A second rollback-only transaction revokes API-role execution and replaces the function with an explicit disabled error, proving that even an owner-run invocation cannot delete history. It verifies restoration of the exact function definition, ACLs, items and session-item rows after rollback.
 
 This has no production activation entry point. The hosted `household-os-retain-purchased-groceries` cron job still requires inspection and explicit cutover handling; local `pg_cron` execution, running-job drainage and complete cutover are not verified by this fixture. Revoking API grants alone is insufficient for owner-run jobs.
+
+### Legacy financial entry-point rehearsal
+
+A rollback-only transaction revokes eight legacy public expense, contextual expense, refund, settlement, correction, opening-balance and draft decision RPCs from API roles. Actual authenticated invocations fail with insufficient privilege. Inside the same temporary restriction, the authorized native expense Save still reaches the audited ledger implementation through its existing private owner-executed wrapper. Exact retry returns the same receipt and creates only one financial event/receipt.
+
+Rollback restores all public function ACLs, native expense receipts, retained financial rows/balances and receipt references. This verifies native compatibility with entry-point revocation. It does not fence every nested caller, legacy scheduler, direct table writer or in-flight transaction, and it does not implement production activation or rollback after post-cutover postings.

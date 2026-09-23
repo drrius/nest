@@ -1,3 +1,4 @@
+import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
 import { verifyGroceryRetentionCutover } from "./grocery-retention-cutover.mjs";
 import { verifyShoppingCutover } from "./shopping-cutover.mjs";
 import { captureLegacyWriterInventory } from "./writer-inventory.mjs";
@@ -120,6 +121,7 @@ try {
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
   report.shoppingCutover = verifyShoppingCutover(db);
   report.groceryRetentionCutover = verifyGroceryRetentionCutover(db);
+  report.financialEntryCutover = verifyFinancialEntryCutover(db);
   report.cutoverFinancialReconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.cutoverFinancialReconciliation.passed)
     throw new Error("Cutover rehearsal changed financial history or receipt references");
