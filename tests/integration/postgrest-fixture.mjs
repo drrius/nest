@@ -93,10 +93,11 @@ export async function postgrestFixture(
     "tests/integration/chore-postgrest.sql",
     "supabase/migrations/20260919205503_native_chore_receipts.sql",
   ],
+  existingDb,
 ) {
   if (!process.env.NEST_TEST_POSTGREST_BIN)
     throw new Error("Set NEST_TEST_POSTGREST_BIN to a verified PostgREST binary");
-  const db = startFixturePostgres();
+  const db = existingDb ?? startFixturePostgres();
   let child;
   let server;
   const terminate = () => child?.kill("SIGTERM");
@@ -111,7 +112,7 @@ export async function postgrestFixture(
       process.removeListener("SIGINT", terminate);
       process.removeListener("SIGTERM", terminate);
       process.removeListener("exit", terminate);
-      db.stop();
+      if (!existingDb) db.stop();
     }
   });
   for (const file of files) db.file(file);

@@ -11,6 +11,7 @@ function setup(t, lostMethod) {
     "20260923002812_native_push_delivery_outcomes",
     "20260923003328_native_push_delivery_retries",
     "20260923003827_native_push_receipt_polling",
+    "20260923005427_native_push_worker_rpc",
   ])
     f.db.file(`supabase/migrations/${name}.sql`);
   let lost = false;
@@ -23,7 +24,7 @@ function setup(t, lostMethod) {
             : method === "finishSend"
               ? `finish_push_send('${p.p_delivery}','${p.p_attempt}',${json(p.p_result)})`
               : `finish_push_receipt('${p.p_delivery}','${p.p_attempt}','${p.p_ticket}',${json(p.p_result)})`;
-        const value = f.db.sql(`select private.nest_${suffix}`);
+        const value = f.db.sql(`set role service_role; select public.nest_${suffix}`);
         if (!lost && method === lostMethod) {
           lost = true;
           throw new Error("Lost committed response");
@@ -86,4 +87,22 @@ test("an uncertain provider response is retained without retry permission", asyn
   assert.equal(calls, 1);
   assert.equal(f.db.sql("select state from private.nest_push_deliveries"), "unknown");
   assert.equal(f.db.sql(`select private.nest_retry_push_delivery('${delivery}')`), "f");
+});
+
+test("worker RPCs deny ordinary callers and do not expose private tables", (t) => {
+  const f = setup(t);
+  for (const role of ["anon", "authenticated"]) {
+    assert.throws(
+      () => f.db.sql(`set role ${role}; select public.nest_claim_push_receipt_polls()`),
+      /permission denied/,
+    );
+    assert.throws(
+      () => f.db.sql(`set role ${role}; select public.nest_begin_push_delivery('${f.prepare()}')`),
+      /permission denied/,
+    );
+  }
+  assert.throws(
+    () => f.db.sql("set role service_role; select * from private.nest_push_deliveries"),
+    /permission denied/,
+  );
 });
