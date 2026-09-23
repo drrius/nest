@@ -2813,3 +2813,17 @@ The dated-settings check passes for leap-day validity, malformed times, missing/
 Strict Effect contracts now cover dated settings, item/settings version-bound save commands, context, immutable receipts and operation recovery. Context must match the grocery’s own version; receipts bind actor, operation, item, reviewed version and full timing/recipient intent. Version strings reject trailing whitespace. Reminder dates belong to settings rather than changing grocery semantics.
 
 Four focused contract tests pass for real calendar dates, recipient constraints, strict authority fields, stale/mismatched context, forged receipt identities and false recovery success. Contracts typechecking, full lint/format and diff checks pass. Database authorization/storage, API/native/AI and delivery remain unfinished; these contracts alone do not constitute a working grocery reminder. Exact-commit review/CI remain required.
+
+### Grocery reminder storage prerequisite — dated validator draft
+
+An internal SQL validator now canonicalizes explicit-date reminder settings using the existing audited recipient/time validator. It rejects nonexistent or out-of-range civil dates, ambiguous extra timing fields, duplicate/missing recipients and mute-override authority; no caller can execute it directly. One disposable PostgreSQL test passes across these cases and validates its canonical output with the Effect contract. It writes no reminder/item data. Grocery tables, authorized save/recovery and the remaining vertical slice still need implementation. Contract commit `63ba100` has clean exact Sol review with four independently passing checks; CI remains required.
+
+### Grocery reminder transactions — initial local evidence
+
+The gated storage draft now provides caller-authorized read/save/recovery and cancellation tombstones, exact grocery-version/settings-revision checks and immutable historical receipts. Version validation rejects malformed strings before numeric conversion; grocery operation locks use their own namespace. Two disposable PostgreSQL tests pass for receipt recovery after actual grocery checking, stale-write refusal, cancellation fencing, outsider denial, recipient membership, table isolation/direct-write denial and immutable history. The fixture reuses audited grocery shapes and the real native grocery migrations.
+
+This remains uncommitted storage work: concurrent save/revocation and rollback coverage, security advisors, lint, CI and independent review remain required. API, native editor, AI actions and scheduling/delivery are not implemented for groceries. No hosted migration or device verification occurred.
+
+### Grocery reminder storage — review candidate
+
+Five focused disposable PostgreSQL cases now pass across dated-settings validation and grocery reminder transactions. Coverage additionally proves concurrent exact retries retain one receipt, competing saves cannot replace the same reviewed revision, receipt insertion failure rolls back settings, and membership revocation denies historical replay/recovery/read. Actual read/save/recovery JSON decodes against the strict shared Effect contracts. The final four grocery cases were rerun after adding contract decoding. Security advisors found no issues on the disposable fixture; workspace lint passes. CI and exact-commit independent review remain required. Grocery API/native/AI/scheduling work remains unfinished; no device or hosted verification is claimed.
