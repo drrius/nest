@@ -19,6 +19,7 @@ function fixture() {
     consumed,
     controller: notificationOpening({
       navigate: (id) => opened.push(id),
+      navigateGrocery: (itemId) => opened.push({ itemId }),
       navigateMeal: (entryId) => opened.push({ entryId }),
       navigateChore: (id) => opened.push({ occurrenceId: id }),
       navigateSummary: (id) => opened.push({ summaryId: id }),
@@ -193,4 +194,32 @@ test("actual meal payload waits for authenticated foreground navigation and reje
   f.controller.receive("url", { ...delivered, url: "https://example.com" });
   f.controller.receive("title", { ...delivered, title: "private" });
   assert.deepEqual(f.opened, [{ entryId: renewal }]);
+});
+
+test("actual grocery payload waits for authenticated foreground navigation and rejects foreign or injected destinations", async () => {
+  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
+  let delivered;
+  const provider = expoPushTransport(undefined, async (_url, input) => {
+    delivered = JSON.parse(input.body).data;
+    return Response.json({ data: { status: "ok", id: "grocery" } });
+  });
+  await Effect.runPromise(
+    provider.sendGrocery({
+      token: "ExponentPushToken[fixture]",
+      householdId: home,
+      itemId: renewal,
+    }),
+  );
+  const f = fixture();
+  f.controller.receive("grocery", delivered);
+  f.controller.update({ ...ready, foreground: false });
+  assert.deepEqual(f.opened, []);
+  f.controller.update(ready);
+  f.controller.receive("grocery", delivered);
+  assert.deepEqual(f.opened, [{ itemId: renewal }]);
+  f.controller.receive("foreign", { ...delivered, householdId: renewal });
+  f.controller.receive("url", { ...delivered, url: "https://example.com" });
+  f.controller.receive("title", { ...delivered, title: "private" });
+  assert.deepEqual(f.opened, [{ itemId: renewal }]);
 });

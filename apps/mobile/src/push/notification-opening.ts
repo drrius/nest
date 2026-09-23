@@ -10,6 +10,7 @@ export type NotificationOpeningContext = {
 /** Native responses are hints; the destination still performs its authorized read. */
 export function notificationOpening(options: {
   navigate: (renewalId: string) => void;
+  navigateGrocery: (itemId: string) => void;
   navigateMeal: (entryId: string) => void;
   navigateChore: (occurrenceId: string) => void;
   navigateSummary: (summaryId: string) => void;
@@ -36,6 +37,13 @@ export function notificationOpening(options: {
         payload.recipientId.toLowerCase() === context.actorId?.toLowerCase())
     );
   }
+  function navigate(payload: NestNotification) {
+    if (payload.kind === "daily_summary") options.navigateSummary(payload.summaryId.toLowerCase());
+    else if (payload.kind === "grocery") options.navigateGrocery(payload.itemId.toLowerCase());
+    else if (payload.kind === "meal") options.navigateMeal(payload.entryId.toLowerCase());
+    else if (payload.kind === "chore") options.navigateChore(payload.occurrenceId.toLowerCase());
+    else options.navigate(payload.renewalId.toLowerCase());
+  }
   function flush() {
     if (!pending || context.status === "waiting") return;
     const { id, payload } = pending;
@@ -44,10 +52,7 @@ export function notificationOpening(options: {
       return;
     }
     if (!context.foreground || !context.navigationReady) return;
-    if (payload.kind === "daily_summary") options.navigateSummary(payload.summaryId.toLowerCase());
-    else if (payload.kind === "meal") options.navigateMeal(payload.entryId.toLowerCase());
-    else if (payload.kind === "chore") options.navigateChore(payload.occurrenceId.toLowerCase());
-    else options.navigate(payload.renewalId.toLowerCase());
+    navigate(payload);
     consume(id);
   }
   return {

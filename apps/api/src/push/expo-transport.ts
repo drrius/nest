@@ -3,6 +3,7 @@ import type {
   RenewalNotification,
   ChoreNotification,
   MealNotification,
+  GroceryNotification,
   DailySummaryNotification,
 } from "../../../../packages/contracts/src/push-notification.ts";
 import * as Effect from "effect/Effect";
@@ -25,6 +26,11 @@ const MealDelivery = Schema.Struct({
   token: PushToken,
   householdId: Schema.String.check(Schema.isUUID()),
   entryId: Schema.String.check(Schema.isUUID()),
+});
+const GroceryDelivery = Schema.Struct({
+  token: PushToken,
+  householdId: Schema.String.check(Schema.isUUID()),
+  itemId: Schema.String.check(Schema.isUUID()),
 });
 const SummaryDelivery = Schema.Struct({
   token: PushToken,
@@ -61,6 +67,7 @@ export function expoPushTransport(
       ),
     sendChore: choreSender(post),
     sendMeal: mealSender(post),
+    sendGrocery: grocerySender(post),
     sendSummary: (input: unknown) =>
       Schema.decodeUnknownEffect(SummaryDelivery)(input).pipe(
         Effect.flatMap((delivery) =>
@@ -127,6 +134,28 @@ function mealSender(post: ReturnType<typeof expoPushRequest>) {
             householdId: delivery.householdId,
             entryId: delivery.entryId,
           } satisfies MealNotification,
+        }),
+      ),
+      Effect.map(expoTicketResult),
+      Effect.catch(() => Effect.succeed({ status: "unknown" as const })),
+    );
+}
+
+function grocerySender(post: ReturnType<typeof expoPushRequest>) {
+  return (input: unknown) =>
+    Schema.decodeUnknownEffect(GroceryDelivery)(input).pipe(
+      Effect.flatMap((delivery) =>
+        post("send", {
+          to: delivery.token,
+          title: "Nest",
+          body: "You have a reminder in Nest.",
+          sound: "default",
+          data: {
+            version: 1,
+            kind: "grocery",
+            householdId: delivery.householdId,
+            itemId: delivery.itemId,
+          } satisfies GroceryNotification,
         }),
       ),
       Effect.map(expoTicketResult),

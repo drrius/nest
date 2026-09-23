@@ -32,10 +32,19 @@ export const MealNotification = Schema.Struct({
 });
 export type MealNotification = typeof MealNotification.Type;
 
+export const GroceryNotification = Schema.Struct({
+  version: Schema.Literal(1),
+  kind: Schema.Literal("grocery"),
+  householdId: Schema.String.check(Schema.isUUID()),
+  itemId: Schema.String.check(Schema.isUUID()),
+});
+export type GroceryNotification = typeof GroceryNotification.Type;
+
 export const NestNotification = Schema.Union([
   RenewalNotification,
   DailySummaryNotification,
   ChoreNotification,
   MealNotification,
+  GroceryNotification,
 ]);
 export type NestNotification = typeof NestNotification.Type;

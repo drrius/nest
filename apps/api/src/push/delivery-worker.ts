@@ -16,6 +16,7 @@ const attemptFields = {
 };
 const Attempt = Schema.Union([
   Schema.Struct({ ...attemptFields, entryId: Uuid }),
+  Schema.Struct({ ...attemptFields, itemId: Uuid }),
   Schema.Struct({ ...attemptFields, occurrenceId: Uuid }),
   Schema.Struct({ ...attemptFields, renewalId: Uuid }),
   Schema.Struct({ ...attemptFields, summaryId: Uuid, recipientId: Uuid }).check(
@@ -87,13 +88,15 @@ export function pushDeliveryWorker(rpc: PushWorkerRpc, provider: Provider) {
         );
         if (attempt.deliveryId !== deliveryId)
           return yield* new ApiFailure({ code: "unavailable" });
-        const result = yield* "entryId" in attempt
-          ? provider.sendMeal(attempt)
-          : "summaryId" in attempt
-            ? provider.sendSummary(attempt)
-            : "occurrenceId" in attempt
-              ? provider.sendChore(attempt)
-              : provider.send(attempt);
+        const result = yield* "itemId" in attempt
+          ? provider.sendGrocery(attempt)
+          : "entryId" in attempt
+            ? provider.sendMeal(attempt)
+            : "summaryId" in attempt
+              ? provider.sendSummary(attempt)
+              : "occurrenceId" in attempt
+                ? provider.sendChore(attempt)
+                : provider.send(attempt);
         yield* persist(rpc, { deliveryId, attemptId: attempt.attemptId, result });
         return "recorded" as const;
       }).pipe(Effect.mapError(() => new ApiFailure({ code: "unavailable" }))),

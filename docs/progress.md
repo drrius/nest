@@ -2899,3 +2899,17 @@ The P2 lower-bound finding is fixed by preserving PostgreSQL's valid converted U
 ### Grocery delivery claims — review candidate
 
 The delivery-claim increment is ready for review with 15 passing local PostgreSQL cases, clean disposable security advisors, lint and formatting. It adds a fifth exclusive delivery source while preserving renewal/summary/chore/meal dispatch and existing immutable outcomes. Grocery scheduling boundary correction `bda761c` remains under rereview and CI; claim delivery does not bypass those dependencies. Provider transport, strict notification payload, native tap routing, bounded worker scans and orchestration are still unfinished.
+
+Native grocery editor `63b6275` merged and pushed to main after successful exact CI `35822552918` and clean Sol review. Scheduling correction `bda761c` received explicit clean Sol rereview with all six cases independently passing; the prior P2 is resolved, while CI remains required. Grocery delivery claims committed as `dbfc8ae` for exact review/CI. No hosted delivery or migration was activated.
+
+### Grocery provider payload and native tap routing — draft
+
+Strict grocery notification routing now carries only version/kind/household/item identity. The Expo sender uses the generic Nest reminder message and the shared delivery worker recognizes the grocery claim variant. Native tap routing is drafted to the protected exact grocery reminder route under existing foreground/account checks. Thirteen focused provider/worker cases pass, including grocery payload privacy and mixed-source refusal; API types pass. Native tap-specific tests, mobile types/lint, actual HTTP/database worker integration and bounded orchestration remain outstanding. Provider responses are simulated; no external sends or device verification occurred.
+
+### Grocery delivery transport — local integration verification
+
+Nine native notification-opening/controller tests pass, including actual grocery provider payloads waiting for authenticated foreground navigation, duplicate suppression and foreign/injected-field rejection. One real HTTP/PostgREST/database worker journey passes for a single grocery send, duplicate skip and shared receipt settlement; external Expo responses are simulated. Together with the prior 13 provider/worker cases this covers 23 focused cases. Mobile typechecking passes. A notification flush complexity finding was fixed by separating destination dispatch; tap tests were rerun and lint is being rechecked. Native app execution, bounded scheduled scans and hosted delivery remain unfinished. Claims `dbfc8ae` has clean Sol signoff with 15 independently passing cases.
+
+Grocery provider/tap final lint and formatting pass after dispatch extraction. The focused worker test was rerun with an explicit mixed grocery+meal identity regression and passes. All 23 provider/worker/tap/HTTP cases have local passing evidence; API/mobile types pass. iOS export is running separately at /tmp/nest-grocery-push-export and is not yet counted as successful. This transport slice still requires exact-commit review/CI; scheduled scans/orchestration and physical-device delivery remain next.
+
+The grocery push iOS export subsequently completed successfully at /tmp/nest-grocery-push-export. This is packaging evidence only, not native permission/tap/delivery verification.
