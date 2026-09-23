@@ -1,3 +1,8 @@
+import {
+  seedPrivacyRehearsal,
+  capturePrivacyHistory,
+  verifyPrivacyRehearsal,
+} from "./privacy-rehearsal.mjs";
 import { seedMealRehearsal, captureMealHistory, verifyMealRehearsal } from "./meal-rehearsal.mjs";
 import {
   seedRecurringRehearsal,
@@ -72,11 +77,14 @@ try {
   seedGroceryRehearsal(db);
   seedRecurringRehearsal(db);
   seedMealRehearsal(db);
+  seedPrivacyRehearsal(db);
+  const privacyBefore = capturePrivacyHistory(db);
   const mealsBefore = captureMealHistory(db);
   const recurringBefore = captureRecurringHistory(db);
   const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.privacy = verifyPrivacyRehearsal(db, privacyBefore);
   report.meals = verifyMealRehearsal(db, mealsBefore);
   report.recurring = verifyRecurringRehearsal(db, recurringBefore);
   report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
