@@ -70,3 +70,17 @@ begin
 end;
 $$;
 revoke all on function private.nest_begin_push_delivery_once(uuid) from public,anon,authenticated,service_role;
+
+-- Invalidate plans held by database sessions that used the pre-upgrade wrapper.
+create or replace function private.nest_begin_push_delivery(p_delivery uuid)
+returns jsonb language plpgsql security definer set search_path='' as $$
+declare v_result jsonb;
+begin
+  v_result:=private.nest_begin_push_delivery_once(p_delivery);
+  if v_result is not null then
+    insert into private.nest_push_delivery_attempts
+      select attempt_id,id,registration_revision,started_at from private.nest_push_deliveries where id=p_delivery;
+  end if;
+  return v_result;
+end;
+$$;

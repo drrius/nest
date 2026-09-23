@@ -1,7 +1,7 @@
 import { deliveryFixture, id, json } from "./push-delivery-fixture.mjs";
 import { summaryContentSchema } from "./daily-summary-content-fixture.mjs";
 export { id, json };
-export function fixture(t) {
+export function fixture(t, beforeSummary) {
   const f = deliveryFixture(t);
   summaryContentSchema(f.db);
   for (const name of [
@@ -10,6 +10,10 @@ export function fixture(t) {
     "20260923003827_native_push_receipt_polling",
     "20260923014222_native_daily_summary_schedule",
     "20260923015620_native_daily_summary_snapshot",
+  ])
+    f.db.file(`supabase/migrations/${name}.sql`);
+  const beforeSummaryResult = beforeSummary?.(f);
+  for (const name of [
     "20260923021853_native_summary_push_claims",
     "20260923022955_native_summary_push_outcomes",
   ])
@@ -22,5 +26,5 @@ export function fixture(t) {
   );
   const prepare = () =>
     f.db.sql(`select private.nest_prepare_summary_push('${summaryId}','${id(1702)}')`);
-  return { ...f, renewalPrepare: f.prepare, summaryId, prepare };
+  return { ...f, renewalPrepare: f.prepare, summaryId, prepare, beforeSummaryResult };
 }
