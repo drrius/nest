@@ -2913,3 +2913,7 @@ Nine native notification-opening/controller tests pass, including actual grocery
 Grocery provider/tap final lint and formatting pass after dispatch extraction. The focused worker test was rerun with an explicit mixed grocery+meal identity regression and passes. All 23 provider/worker/tap/HTTP cases have local passing evidence; API/mobile types pass. iOS export is running separately at /tmp/nest-grocery-push-export and is not yet counted as successful. This transport slice still requires exact-commit review/CI; scheduled scans/orchestration and physical-device delivery remain next.
 
 The grocery push iOS export subsequently completed successfully at /tmp/nest-grocery-push-export. This is packaging evidence only, not native permission/tap/delivery verification.
+
+### Grocery scheduled discovery — local verification
+
+Gated server-only grocery scan/checkpoint/maintenance functions now inspect at most 100 outbox/device pairs per delivery page and retain an independent revision-fenced cursor. Invalid sessions advance the cursor; discovery returns prepared identities without tokens. Seven disposable PostgreSQL cases pass for invalid-session starvation prevention, cursor completeness and ACLs, expired/cancelled exclusion, preparation rollback, concurrent checkpoint writes and fixed-window maintenance. Security advisors report no issues and lint passes. Worker-cycle orchestration remains next. Transport `e00af9a` has clean Sol medium signoff with all 23 focused cases independently passing; CI remains required.
