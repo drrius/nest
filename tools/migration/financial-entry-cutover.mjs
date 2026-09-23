@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { financialApprovalProbe } from "./financial-approval-cutover.mjs";
 import { save } from "../../tests/database/native-expense-helpers.mjs";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
 const signatures = [
@@ -49,10 +50,15 @@ export function verifyFinancialEntryCutover(db) {
       if (select count(*) from public.nest_expense_receipts where operation_id='00000000-0000-4000-8000-000000001600')<>1 then
         raise exception 'Native receipt count mismatch'; end if;
     end $native$;
-    select jsonb_build_object('nativeSaveVerified',true,'nativeRetryVerified',true);
+    ${financialApprovalProbe()}
+    select jsonb_build_object('nativeSaveVerified',true,'nativeRetryVerified',true,'approvalBoundaryVerified',true);
     rollback;`),
   );
-  assert.deepEqual(result, { nativeSaveVerified: true, nativeRetryVerified: true });
+  assert.deepEqual(result, {
+    nativeSaveVerified: true,
+    nativeRetryVerified: true,
+    approvalBoundaryVerified: true,
+  });
   assert.equal(compareRehearsal(before, captureRehearsal(db)).passed, true);
   assert.equal(snapshot(db), metadata, "Financial cutover rollback changed grants or receipts");
   return {
@@ -65,5 +71,6 @@ export function verifyFinancialEntryCutover(db) {
 function snapshot(db) {
   return db.sql(`select jsonb_build_object(
     'acls',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',proacl) order by oid) from pg_proc where pronamespace='public'::regnamespace),
+    'approvals',(select jsonb_agg(to_jsonb(a) order by id) from public.nest_action_approvals a),
     'receipts',(select jsonb_agg(to_jsonb(r) order by actor_id,household_id,operation_id) from public.nest_expense_receipts r))`);
 }
