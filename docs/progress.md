@@ -6,7 +6,7 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**Current branch: `codex/native-acceptance-continuation`. Main: `6ac64c3`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 192 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 191-native-migration rehearsal; the additional latest-summary migration is on the feature branch.
+**Current branch: `codex/native-acceptance-continuation`. Main: `88d19cf`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 192 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 191-native-migration rehearsal; the additional latest-summary migration is on the feature branch.
 
 **Current candidate: saved daily summary discovery (`61594c1`).** The recipient-only database/API, native client, Today entry and assistant handoff are implemented and locally verified. Storage has clean review; the connected slice awaits review/CI. Native interaction and hosted scheduling/delivery remain unverified.
 
@@ -3299,3 +3299,9 @@ The 54-legacy/192-native full diagnostic passes (`/tmp/nest-financial-entry-cuto
 ### Financial approval boundary under legacy restrictions
 
 The rollback-only financial entry rehearsal now verifies missing/pending approval rejection, changed-payload rejection, exact approved execution and idempotent retry while all eight legacy financial RPC grants remain revoked. Approval rows are included in the exact rollback snapshot alongside receipts and public function ACLs. The full 54-legacy/192-native synthetic chain passed with approvalBoundaryVerified and rollbackVerified true; local security advisors returned no findings. Scoped formatting/lint pass. Exact-commit CI and Sol review remain pending. This does not prove complete writer drainage, production activation, device behavior or recovery after real cutover.
+
+### Legacy writer inventory coverage
+
+The cutover inventory now includes anonymous effective privileges, truncate-only table grants and partitioned table parents, alongside inherited and column-level mutation grants. A real disposable PostgreSQL regression verifies these cases and excludes read-only/native tables. The full 54-legacy/192-native rehearsal passes with 71 callable legacy functions and 44 writable legacy tables; none of those functions is anonymously callable in this fixture. Local security advisors return no findings. Inventory output remains discovery evidence, not proof that every callable function writes or that cutover is safe. Scoped lint/format pass; exact CI and Sol review remain pending for this increment.
+
+Saved-summary storage `88d19cf` is merged to main after clean Sol review and successful exact CI 35838154742. Financial approval rehearsal `710c6a1` has clean Sol review; CI remains pending.
