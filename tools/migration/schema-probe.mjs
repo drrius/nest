@@ -1,4 +1,9 @@
 import {
+  seedExcludedRehearsal,
+  captureExcludedHistory,
+  verifyExcludedRehearsal,
+} from "./excluded-rehearsal.mjs";
+import {
   seedRoutineRehearsal,
   captureRoutineHistory,
   verifyRoutineRehearsal,
@@ -90,6 +95,8 @@ try {
   seedPrivacyRehearsal(db);
   seedRenewalRehearsal(db);
   seedRoutineRehearsal(db);
+  seedExcludedRehearsal(db);
+  const excludedBefore = captureExcludedHistory(db);
   const routinesBefore = captureRoutineHistory(db);
   const renewalsBefore = captureRenewalHistory(db);
   const privacyBefore = capturePrivacyHistory(db);
@@ -98,6 +105,7 @@ try {
   const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.excluded = verifyExcludedRehearsal(db, excludedBefore);
   report.routines = verifyRoutineRehearsal(db, routinesBefore);
   report.renewals = verifyRenewalPlan(db, renewalsBefore);
   report.privacy = verifyPrivacyRehearsal(db, privacyBefore);
