@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { useState, useSyncExternalStore } from "react";
 import { FlatList, Text, useColorScheme } from "react-native";
 import { Host, Switch } from "@expo/ui";
@@ -29,13 +30,7 @@ export function IngredientReview({
     return (
       <Page>
         <Note>{view.notice}</Note>
-        <NativeAction
-          label="Verify account"
-          onPress={() => {
-            verify();
-            void runtime.load();
-          }}
-        />
+        <AccountRecovery verify={verify} busy={view.busy} reload={runtime.load} />
       </Page>
     );
   if (editing)

@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { useLocalSearchParams } from "expo-router";
 import { useRef, useState, useSyncExternalStore } from "react";
 import { Alert, FlatList, View } from "react-native";
@@ -118,16 +119,7 @@ function Recovery({
       />
     );
   if (view.stage === "verify")
-    return (
-      <NativeAction
-        label="Verify account"
-        disabled={view.busy}
-        onPress={() => {
-          verify();
-          void runtime.load();
-        }}
-      />
-    );
+    return <AccountRecovery verify={verify} busy={view.busy} reload={runtime.load} />;
   return (
     <NativeAction
       label={view.busy ? "Loading…" : "Reload routines"}

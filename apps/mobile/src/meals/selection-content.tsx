@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { Alert, FlatList, View } from "react-native";
 import { useNavigation, useRouter } from "expo-router";
 import { usePreventRemove } from "expo-router/react-navigation";
@@ -156,16 +157,7 @@ function Recovery({
       />
     );
   if (view.stage === "verify")
-    return (
-      <NativeAction
-        label="Verify account"
-        disabled={view.busy}
-        onPress={() => {
-          verify();
-          void runtime.load();
-        }}
-      />
-    );
+    return <AccountRecovery verify={verify} busy={view.busy} reload={runtime.load} />;
   return (
     <NativeAction
       label={

@@ -33,11 +33,13 @@ export function DueBillStatus({
       {!view.online ? <Note>Connect to view bills awaiting confirmation.</Note> : null}
       {view.busy ? <Note>Checking due bills…</Note> : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
+      {view.verify ? (
+        <NativeAction label="Verify account" disabled={view.busy} onPress={verify} />
+      ) : null}
       <NativeAction
-        label={view.verify ? "Verify account and retry" : "Refresh due bills"}
+        label="Refresh due bills"
         disabled={!view.active || !view.online || view.busy}
         onPress={() => {
-          if (view.verify) verify();
           void runtime.refresh();
         }}
       />

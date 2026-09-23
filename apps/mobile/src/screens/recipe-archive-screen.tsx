@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { useState, useSyncExternalStore } from "react";
 import { Alert } from "react-native";
 import { Link, useLocalSearchParams, useNavigation, useRouter } from "expo-router";
@@ -142,16 +143,7 @@ function ArchiveRecovery({
       />
     );
   if (view.stage === "verify")
-    return (
-      <NativeAction
-        label="Verify account"
-        disabled={view.busy}
-        onPress={() => {
-          verify();
-          void runtime.load(true);
-        }}
-      />
-    );
+    return <AccountRecovery verify={verify} busy={view.busy} reload={() => runtime.load(true)} />;
   if (view.stage === "reload")
     return (
       <NativeAction

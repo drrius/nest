@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { useState, useSyncExternalStore } from "react";
 import { Link, useLocalSearchParams } from "expo-router";
 import * as Crypto from "expo-crypto";
@@ -129,16 +130,7 @@ function EditRecovery({
       />
     );
   if (view.stage === "verify")
-    return (
-      <NativeAction
-        label="Verify account"
-        disabled={view.busy}
-        onPress={() => {
-          verify();
-          void runtime.load();
-        }}
-      />
-    );
+    return <AccountRecovery verify={verify} busy={view.busy} reload={runtime.load} />;
   if (!view.snapshot?.preparation || view.receipt)
     return (
       <NativeAction

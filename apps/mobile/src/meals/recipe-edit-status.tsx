@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { useRouter } from "expo-router";
 import { Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
@@ -62,16 +63,7 @@ function RecipeEditRecovery({
       />
     );
   if (view.stage === "verify")
-    return (
-      <NativeAction
-        label="Verify account"
-        disabled={view.busy}
-        onPress={() => {
-          verify();
-          void runtime.load(true);
-        }}
-      />
-    );
+    return <AccountRecovery verify={verify} busy={view.busy} reload={() => runtime.load(true)} />;
   if (view.stage === "reload")
     return (
       <NativeAction

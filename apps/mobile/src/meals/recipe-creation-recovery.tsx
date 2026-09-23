@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { NativeAction } from "../components/native-action";
 import type { RecipeCreationRuntime, RecipeCreationView } from "./recipe-creation-runtime";
 export function RecipeCreationRecovery({
@@ -18,16 +19,7 @@ export function RecipeCreationRecovery({
       />
     );
   if (view.stage === "verify")
-    return (
-      <NativeAction
-        label="Verify account"
-        disabled={view.busy}
-        onPress={() => {
-          verify();
-          void runtime.load();
-        }}
-      />
-    );
+    return <AccountRecovery verify={verify} busy={view.busy} reload={runtime.load} />;
   if (view.stage === "reload")
     return (
       <NativeAction

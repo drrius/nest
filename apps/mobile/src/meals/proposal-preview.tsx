@@ -1,3 +1,4 @@
+import { AccountRecovery } from "../components/account-recovery";
 import { ProposalEntryCard } from "./proposal-entry-card";
 import { ProposalSavedPicker } from "./proposal-saved-picker";
 import type { MealLibraryClient } from "./library-client";
@@ -31,13 +32,7 @@ export function ProposalPreview({
     return (
       <Page>
         <Note>{view.notice}</Note>
-        <NativeAction
-          label="Verify account"
-          onPress={() => {
-            verify();
-            void runtime.load();
-          }}
-        />
+        <AccountRecovery verify={verify} busy={view.busy} reload={runtime.load} />
       </Page>
     );
   if (picking)
