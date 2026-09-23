@@ -3079,3 +3079,9 @@ The diagnostic still explicitly excludes unavailable `pg_net` and simulates Supa
 ### Migration diagnostic failed-run provenance correction
 
 Sol identified that the default failing schema run omitted the failed migration hash and infrastructure simulation disclosure. The runner now initializes infrastructure limitations before application and retains the failed migration’s source/name/SHA-256. The strict default rerun exits nonzero at unavailable `pg_net` with both provenance and caveats in its JSON report. Cleanup remains unconditional. Scoped lint/format pass; updated rereview/CI remain required.
+
+### Legacy grocery mapping rehearsal
+
+The populated migration diagnostic now seeds active, claimed, purchased and removed groceries with quantities/units, one open and one finished shopping session, and two retained claim rows before native migration. After all 188 native migrations, exact legacy row projections remain unchanged (only the explicitly additive native checked/version columns are excluded). The real authorized native snapshot must contain exactly active/claimed IDs with unchanged quantities/units and unchecked state; purchased/removed IDs must stay out of the live checklist. The one open legacy session is counted for later cutover reconciliation, never finished automatically.
+
+The complete partial-infrastructure diagnostic passes with financial/receipt checks still green. Scoped lint/format pass; exact-commit review/CI remain required. Meals/routines/recurring/excluded-module data and actual hosted infrastructure remain outside this fixture. Changes through `d938c28` merged after clean Sol review and passing exact CI `35828695112`. Populated financial/provenance commit `22f0ea6` has clean Sol signoff with independently repeated strict and partial runs.

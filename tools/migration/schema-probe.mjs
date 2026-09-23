@@ -1,4 +1,9 @@
 import {
+  seedGroceryRehearsal,
+  captureGroceryHistory,
+  verifyGroceryRehearsal,
+} from "./grocery-rehearsal.mjs";
+import {
   seedFinancialRehearsal,
   captureRehearsal,
   compareRehearsal,
@@ -58,8 +63,11 @@ try {
   db.file(resolve(root, "tests/database/receipt-storage-fixture.sql"));
   apply(resolve(legacy), "legacy");
   seedFinancialRehearsal(db);
+  seedGroceryRehearsal(db);
+  const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
   report.complete = true;
