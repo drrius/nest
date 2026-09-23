@@ -7,3 +7,13 @@ export const RenewalNotification = Schema.Struct({
   renewalId: Schema.String.check(Schema.isUUID()),
 });
 export type RenewalNotification = typeof RenewalNotification.Type;
+export const DailySummaryNotification = Schema.Struct({
+  version: Schema.Literal(1),
+  kind: Schema.Literal("daily_summary"),
+  householdId: Schema.String.check(Schema.isUUID()),
+  recipientId: Schema.String.check(Schema.isUUID()),
+  summaryId: Schema.String.check(Schema.isUUID()),
+});
+export type DailySummaryNotification = typeof DailySummaryNotification.Type;
+export const NestNotification = Schema.Union([RenewalNotification, DailySummaryNotification]);
+export type NestNotification = typeof NestNotification.Type;

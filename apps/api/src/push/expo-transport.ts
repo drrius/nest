@@ -1,4 +1,7 @@
-import type { RenewalNotification } from "../../../../packages/contracts/src/push-notification.ts";
+import type {
+  RenewalNotification,
+  DailySummaryNotification,
+} from "../../../../packages/contracts/src/push-notification.ts";
 import * as Effect from "effect/Effect";
 import * as Redacted from "effect/Redacted";
 import * as Schema from "effect/Schema";
@@ -9,6 +12,12 @@ const Delivery = Schema.Struct({
   token: PushToken,
   householdId: Schema.String.check(Schema.isUUID()),
   renewalId: Schema.String.check(Schema.isUUID()),
+});
+const SummaryDelivery = Schema.Struct({
+  token: PushToken,
+  householdId: Schema.String.check(Schema.isUUID()),
+  recipientId: Schema.String.check(Schema.isUUID()),
+  summaryId: Schema.String.check(Schema.isUUID()),
 });
 const TicketId = Schema.String.check(Schema.isPattern(/^[A-Za-z0-9_-]{1,200}$(?![\s\S])/));
 const endpoint = "https://exp.host/--/api/v2/push/";
@@ -76,6 +85,26 @@ export function expoPushTransport(
               householdId: delivery.householdId,
               renewalId: delivery.renewalId,
             } satisfies RenewalNotification,
+          }),
+        ),
+        Effect.map(expoTicketResult),
+        Effect.catch(() => Effect.succeed({ status: "unknown" as const })),
+      ),
+    sendSummary: (input: unknown) =>
+      Schema.decodeUnknownEffect(SummaryDelivery)(input).pipe(
+        Effect.flatMap((delivery) =>
+          post("send", {
+            to: delivery.token,
+            title: "Nest",
+            body: "Your daily summary is ready.",
+            sound: "default",
+            data: {
+              version: 1,
+              kind: "daily_summary",
+              householdId: delivery.householdId,
+              recipientId: delivery.recipientId,
+              summaryId: delivery.summaryId,
+            } satisfies DailySummaryNotification,
           }),
         ),
         Effect.map(expoTicketResult),

@@ -1,47 +1,55 @@
 import * as Schema from "effect/Schema";
-import { RenewalNotification } from "../../../../packages/contracts/src/push-notification.ts";
+import { NestNotification } from "../../../../packages/contracts/src/push-notification.ts";
 export type NotificationOpeningContext = {
   status: "waiting" | "signed_out" | "ready";
   householdId: string | null;
+  actorId: string | null;
   foreground: boolean;
   navigationReady: boolean;
 };
 /** Native responses are hints; the destination still performs its authorized read. */
 export function notificationOpening(options: {
   navigate: (renewalId: string) => void;
+  navigateSummary: (summaryId: string) => void;
   consumed: (id: string) => void;
 }) {
   let context: NotificationOpeningContext = {
     status: "waiting",
     householdId: null,
+    actorId: null,
     foreground: false,
     navigationReady: false,
   };
-  let pending: { id: string; payload: RenewalNotification } | null = null;
+  let pending: { id: string; payload: NestNotification } | null = null;
   let handled: string | null = null;
   function consume(id: string) {
     pending = null;
     handled = id;
     options.consumed(id);
   }
+  function matches(payload: NestNotification) {
+    return (
+      payload.householdId.toLowerCase() === context.householdId?.toLowerCase() &&
+      (payload.kind !== "daily_summary" ||
+        payload.recipientId.toLowerCase() === context.actorId?.toLowerCase())
+    );
+  }
   function flush() {
     if (!pending || context.status === "waiting") return;
     const { id, payload } = pending;
-    if (
-      context.status === "signed_out" ||
-      payload.householdId.toLowerCase() !== context.householdId?.toLowerCase()
-    ) {
+    if (context.status === "signed_out" || !matches(payload)) {
       consume(id);
       return;
     }
     if (!context.foreground || !context.navigationReady) return;
-    options.navigate(payload.renewalId.toLowerCase());
+    if (payload.kind === "daily_summary") options.navigateSummary(payload.summaryId.toLowerCase());
+    else options.navigate(payload.renewalId.toLowerCase());
     consume(id);
   }
   return {
     receive(id: string, data: unknown) {
       if (!id || id === handled) return;
-      const decoded = Schema.decodeUnknownOption(RenewalNotification, {
+      const decoded = Schema.decodeUnknownOption(NestNotification, {
         onExcessProperty: "error",
       })(data);
       if (decoded._tag === "None") {

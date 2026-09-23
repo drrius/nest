@@ -15,6 +15,8 @@ export function PushNotificationLifecycle() {
   const [opening] = useState(() =>
     notificationOpening({
       navigate: (renewalId) => router.push({ pathname: "/renewal", params: { renewalId } }),
+      navigateSummary: (summaryId) =>
+        router.push({ pathname: "/daily-summary", params: { summaryId } }),
       consumed,
     }),
   );
@@ -25,9 +27,16 @@ export function PushNotificationLifecycle() {
         ? "signed_out"
         : "waiting";
   const householdId = state.status === "ready" ? state.member.householdId : null;
+  const actorId = state.status === "ready" ? state.member.userId : null;
   useEffect(() => {
-    opening.update({ status, householdId, foreground, navigationReady: Boolean(navigation?.key) });
-  }, [opening, status, householdId, foreground, navigation?.key]);
+    opening.update({
+      status,
+      householdId,
+      actorId,
+      foreground,
+      navigationReady: Boolean(navigation?.key),
+    });
+  }, [opening, status, householdId, actorId, foreground, navigation?.key]);
   useEffect(() => {
     const receive = (response: Notifications.NotificationResponse) => {
       if (response.actionIdentifier !== Notifications.DEFAULT_ACTION_IDENTIFIER) return;
