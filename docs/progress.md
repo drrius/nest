@@ -2737,3 +2737,19 @@ The protected meal-reminder route now connects recipient/timing controls, explic
 ### Meal reminder editor — verification evidence
 
 Nine focused checks pass across confirmation/form validation and real SQLite/native runtime/HTTP/PostgREST/PostgreSQL journeys, including stale settings, account replacement, committed-response recovery and deleted-target cancellation. Mobile typechecking, full lint/format and diff checks pass. The editor explicitly shows the meal title/date/slot. Final iOS packaging succeeded at `/tmp/nest-meal-reminder-editor-export`. This is packaging evidence only. Exact-commit Sol review/CI, AI actions and meal push scheduling/delivery remain required; no native interaction or physical-device acceptance is claimed.
+
+### Meal reminder assistant — connected draft
+
+The finite assistant registry now includes authorized read/save meal-reminder tools, strict shared input/receipt contracts, exact receipt matching and a native result link to the saved meal. The unresolved-write history guard includes the new action. An additive migration draft extends private validation/dispatch and canonical transcript reconstruction while preserving existing function identities and chore behavior. No hosted migration was applied.
+
+Six assistant history tests pass, including the registered-write guard. Database journal and actual SDK tool integration verification remain outstanding; this draft is not counted as a finished AI flow. Native editor `61c904d` remains under Sol review/CI. No live model or device execution occurred.
+
+### Meal reminder assistant — database and SDK evidence
+
+Seven actual PostgreSQL/registered SDK/PostgREST checks pass for concurrent exact invocation replay, native-command delegation, strict receipt binding, injected identity, foreign/revoked recipients, stale meal baselines, atomic journal rollback, owner-only history and canonical transcript repair. Native result cards link to the exact meal reminder. Fixture setup initially lacked legacy meal entries and their definition dependency; both audited definitions were added before the successful full rerun. No live model or hosted migration was used. Security advisors, regression checks and exact-commit review/CI remain outstanding before merge.
+
+### Meal reminder assistant — final local verification
+
+Eight database/SDK/PostgREST cases pass, including a new regression that executes the existing chore reminder command after the meal journal migration. Six assistant history checks also pass. Disposable security advisors report no issues; API/mobile typechecking, lint/format and diff checks pass. The assistant path uses shared authorized commands and native result handoffs; no live model, hosted migration, delivery or device execution was performed. Exact-commit Sol review and CI remain required.
+
+Storage `2694070` and transport `c50f64d` now have successful exact CI (`35818991987`, `35819123633`) and clean Sol reviews. Durable recovery/editor remain gated on their own CI. Native editor `61c904d` has clean exact Sol review with nine independently passing focused cases.
