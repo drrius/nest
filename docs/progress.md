@@ -2941,3 +2941,9 @@ Five disposable PostgreSQL cases pass: contract-compatible current context/recei
 Authenticated detail/save/recover/cancel API routes and the native session client now use caller credentials and strict shared contracts. Service and client both bind household/actor, requested rule, operation and full saved intent; extra query parameters and forged receipts fail. Expo fetch is supplied by the authenticated session adapter.
 
 Three real native-client → HTTP → PostgREST → disposable PostgreSQL cases pass: lost committed response and exact historical replay, foreign/stale requests plus cancellation and query injection, and forged actor/household/intent/target rejection. API/mobile typechecking passes. No native screen or phone interaction is claimed. Storage `8c117a4` has clean exact Sol review with five independently passing PostgreSQL cases; its CI remains pending. Grocery scans `4543940` now have successful CI `35824006885` and clean Sol review.
+
+### Recurring reminder durable recovery — local verification
+
+Account/household/lease-scoped SQLite now stages the exact reminder command before dispatch and retains durable cancellation intent. The shared save runtime recovers after restart without automatically repeating a write; pending intent cannot be replaced by another command or exposed after account replacement. Pausing a rule prevents a late reminder save while leaving explicit recovery/cancellation available.
+
+Five real SQLite/native runtime → HTTP/PostgREST/PostgreSQL journeys pass for committed-response loss/restart, unresolved explicit cancellation, account replacement, staging/cleanup failure and paused-rule recovery. The restart case verifies one send and zero financial cycles. Native screen wiring, iPhone behavior, AI and scheduling remain unfinished. Exact-commit review and CI remain required.

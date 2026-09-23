@@ -85,6 +85,9 @@ async function initializeMoney(tx: Transaction) {
     `CREATE TABLE IF NOT EXISTS meal_reminder_save_attempts (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
   );
   await tx.run(
+    `CREATE TABLE IF NOT EXISTS recurring_reminder_save_attempts (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
+  );
+  await tx.run(
     `CREATE TABLE IF NOT EXISTS grocery_reminder_save_attempts (actor TEXT NOT NULL, household TEXT NOT NULL, data TEXT NOT NULL, PRIMARY KEY(actor,household))`,
   );
   await tx.run(

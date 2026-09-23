@@ -1,3 +1,4 @@
+import { recurringReminderSaveStore } from "./recurring-reminder-save-service.ts";
 import { groceryReminderSaveStore } from "./grocery-reminder-save-service.ts";
 import { mealReminderSaveStore } from "./meal-reminder-save-service.ts";
 import { choreReminderSaveStore } from "./chore-reminder-save-service.ts";
@@ -65,6 +66,7 @@ function durableCommandStores(database: Database) {
     ...choreReminderSaveStore(database),
     ...mealReminderSaveStore(database),
     ...groceryReminderSaveStore(database),
+    ...recurringReminderSaveStore(database),
     ...recurringStateSaveStore(database),
     ...settlementApprovalStore(database),
     ...refundApprovalStore(database),
