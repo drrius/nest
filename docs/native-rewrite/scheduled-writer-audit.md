@@ -25,7 +25,7 @@ Reconcile financial events, ledger entries, receipt references, retained drafts 
 
 ## Remaining implementation and environment work
 
-- Verify the retained routine-window repair behavior against native routine fixtures and decide its replacement/retention path.
+- Daily shared/assigned/alternating native routine repair now passes the full-schema synthetic probe, including exact window comparison and retry/no-op behavior. Verify other schedules, missing-preview-only cases and transfer/reschedule interactions before deciding the complete replacement/retention path.
 - Rehearse legacy draft-generation and notification producer/consumer shutdown with pending work, alongside the existing grocery-retention probe.
 - Complete pending native command reconciliation and the cutover epoch decision.
 - Obtain authorized hosted job/function inventory and delivery state; the local fixture lacks real `pg_cron`, `pg_net`, Edge delivery and production data.

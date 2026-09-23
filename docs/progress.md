@@ -3347,3 +3347,9 @@ Seven focused real database/HTTP/SQLite cases pass across routines, ingredients 
 ### Legacy scheduled writer source audit
 
 The source audit records eight legacy cron registrations and the latest relevant outbox-drain replacement in [scheduled-writer-audit.md](native-rewrite/scheduled-writer-audit.md). It identifies the private push-dispatch entry outside the public API fence, retention jobs, draft generation, legacy notification production/delivery and routine-window repair. Each has a concrete retain/replace/stop decision and hosted drainage evidence still required; no live job state or shutdown is claimed. The routine repair path must be proved compatible or replaced before removal. No scheduler, production data or service was modified. Documentation formatting and links checked; no application tests needed for this source-audit increment.
+
+### Retained routine repair compatibility — candidate
+
+The full-schema rehearsal now creates native daily routines with shared, assigned and alternating responsibility, captures their expected occurrence windows, removes only these new synthetic occurrences, and invokes the actual retained run_ensure_due_occurrences job as owner. It proves identical roles/dates/original dates/planned assignments/native assignment defaults, deduplicated same-key retry and a no-op next run. Rollback preserves every retained routine/occurrence/completion and job claim.
+
+The full 54-legacy/193-native run and local security advisors pass; scoped lint/format pass with existing advisory warnings. Exact CI/Sol review remain pending. This supports retaining the repair path for further testing; it does not prove all schedule kinds, missing-preview-only repair, native transfer/reschedule interaction or hosted cron execution. No production job was modified or activated.

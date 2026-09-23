@@ -1,3 +1,4 @@
+import { verifyRoutineRepair } from "./routine-repair-rehearsal.mjs";
 import { verifyCommittedFinancialRecovery } from "./committed-financial-recovery.mjs";
 import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
 import { verifyGroceryRetentionCutover } from "./grocery-retention-cutover.mjs";
@@ -120,6 +121,7 @@ try {
   report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
+  report.routineRepair = verifyRoutineRepair(db);
   report.shoppingCutover = verifyShoppingCutover(db);
   report.groceryRetentionCutover = verifyGroceryRetentionCutover(db);
   report.financialEntryCutover = verifyFinancialEntryCutover(db);
