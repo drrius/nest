@@ -3175,3 +3175,9 @@ The full disposable diagnostic passes 54 legacy and 189 native migrations (`/tmp
 ### Conversion rollback and concurrent retry evidence
 
 The disposable renewal rehearsal now injects a failing provenance-insert trigger after the shared renewal save. It verifies all three tables (renewals, operation receipts and conversion provenance) remain empty, removes the fault in cleanup, then sends simultaneous identical requests on separate PostgreSQL connections. Both return the same result and leave exactly one provenance record; normal retry, source preservation and all earlier reconciliation still pass. Full 54-legacy/189-native diagnostic: `/tmp/nest-renewal-concurrent.json`. Scoped lint/format and diff checks pass, with Effect advisory warnings only. Linked conversion remains unfinished. Independent exact-commit review, security advisors and CI remain required; no hosted data was touched.
+
+### Historical conversion replay and routine merge
+
+A rollback-only source-edit probe now proves exact conversion replay returns its original immutable result after legacy content changes. An outsider cannot retrieve that history, and changing the reviewed source hash cannot reuse the prior operation. The full 54-legacy/189-native diagnostic passes (`/tmp/nest-renewal-history.json`); scoped lint/format pass with advisory warnings only. Linked conversion remains unfinished.
+
+Remote/local main was fast-forwarded to `c84542a3ab6e0481adadcd760b8b3dd5b7a8efc1` after successful exact CI `35832141690` and clean Sol review. Conversion rollback/concurrency commit `7061f1c` now has clean cumulative independent Sol signoff and independently passing full diagnostic; CI remains pending. No hosted migration occurred.

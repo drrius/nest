@@ -1,3 +1,4 @@
+import { verifyHistoricalConversion } from "./renewal-history.mjs";
 import { verifyRenewalRollback } from "./renewal-rollback.mjs";
 import { renewalConversionSql } from "./renewal-conversion.mjs";
 import assert from "node:assert/strict";
@@ -76,6 +77,7 @@ async function verifyConversion(db, source) {
   const provenance = JSON.parse(
     db.sql("select row_to_json(c) from private.nest_renewal_conversions c"),
   );
+  verifyHistoricalConversion(db, input, id(1), provenance.result);
   assert.equal(provenance.source_hash, input.sourceHash);
   assert.equal(provenance.actor_id, id(1));
   assert.equal(provenance.operation_id, input.operationId);
