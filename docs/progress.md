@@ -2895,3 +2895,7 @@ Sol found P2 on scheduling `1405721`: accepted `0001-01-01` early local times ca
 ### Scheduling review correction — minimum local date
 
 The P2 lower-bound finding is fixed by preserving PostgreSQL's valid converted UTC instant instead of imposing an extra UTC year-1 bound on an accepted local civil date. All instants remain private PostgreSQL scheduling state; the send gate independently excludes expired work. A regression saves midnight on 0001-01-01, proves the exact Zurich conversion falls before UTC year 1, materializes both recipient rows and confirms current eligibility without cancellation. All six scheduling/batch cases pass. Clean exact-commit rereview and CI remain required; the finding is not treated as resolved solely from this local test.
+
+### Grocery delivery claims — review candidate
+
+The delivery-claim increment is ready for review with 15 passing local PostgreSQL cases, clean disposable security advisors, lint and formatting. It adds a fifth exclusive delivery source while preserving renewal/summary/chore/meal dispatch and existing immutable outcomes. Grocery scheduling boundary correction `bda761c` remains under rereview and CI; claim delivery does not bypass those dependencies. Provider transport, strict notification payload, native tap routing, bounded worker scans and orchestration are still unfinished.
