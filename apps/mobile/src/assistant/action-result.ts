@@ -1,6 +1,6 @@
 import { pendingApprovalHandoff } from "./pending-approval-handoff.ts";
 import { actionRecordLink } from "./action-record-link.ts";
-import { summaryHandoff } from "./summary-handoff.ts";
+import { summaryHandoff, latestSummaryHandoff } from "./summary-handoff.ts";
 import { LegacyAdoptionApprovalEnvelope } from "@nest/contracts/legacy-adoption-approval";
 import { LegacyConfirmationApprovalEnvelope } from "@nest/contracts/legacy-confirmation-approval";
 import { LegacyDismissalApprovalEnvelope } from "@nest/contracts/legacy-dismissal-approval";
@@ -144,6 +144,7 @@ const destinations = {
   checkGrocery: "/checklist",
 } as const;
 const handoffs = {
+  "tool-readLatestDailySummary": latestSummaryHandoff,
   "tool-listPendingFinancialApprovals": pendingApprovalHandoff,
   "tool-readDailySummary": summaryHandoff,
   "tool-openCalendarAgenda": agendaHandoff,

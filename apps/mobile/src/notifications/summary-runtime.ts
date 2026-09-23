@@ -11,6 +11,7 @@ export interface SummaryReadView {
   active: boolean;
   online: boolean;
   busy: boolean;
+  loaded: boolean;
   verify: boolean;
   target: SummaryReadTarget;
   entry: SummaryReadEntry | null;
@@ -28,6 +29,7 @@ export class SummaryReadRuntime {
       active: false,
       online: false,
       busy: false,
+      loaded: false,
       verify: false,
       target,
       entry: null,
@@ -49,7 +51,7 @@ export class SummaryReadRuntime {
   private interrupt() {
     this.request?.abort();
     this.request = null;
-    this.publish({ busy: false, entry: null, notice: null });
+    this.publish({ busy: false, loaded: false, entry: null, notice: null });
   }
   setActive = (active: boolean) => {
     if (this.disposed || active === this.view.active) return Promise.resolve();
@@ -70,12 +72,12 @@ export class SummaryReadRuntime {
     if (this.disposed || !this.view.active || !this.view.online || this.view.busy) return;
     const request = new AbortController();
     this.request = request;
-    this.publish({ busy: true, entry: null, notice: null });
+    this.publish({ busy: true, loaded: false, entry: null, notice: null });
     try {
       const entry = await Effect.runPromise(this.operations.read(this.view.target), {
         signal: request.signal,
       });
-      if (this.current(request)) this.publish({ entry, verify: false });
+      if (this.current(request)) this.publish({ entry, verify: false, loaded: true });
     } catch (error) {
       if (this.current(request)) this.failed(error);
     } finally {

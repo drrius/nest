@@ -1,3 +1,4 @@
+import { latestDailySummaryRoute } from "./notifications/latest-summary.ts";
 import { recurringReminderRoute } from "./recurring-reminders/route.ts";
 import { groceryReminderRoute } from "./grocery-reminders/route.ts";
 import { mealReminderRoute } from "./meal-reminders/route.ts";
@@ -39,6 +40,7 @@ function route(
     const token = yield* bearerToken(request);
     const caller = { member, token };
     const handlers: Record<string, () => Effect.Effect<unknown, ApiFailure>> = {
+      "latest-daily-summary": () => latestDailySummaryRoute(request, config, caller),
       "daily-summary": () => dailySummaryRoute(request, config, caller),
       setup: () => setupStatus(config, caller),
       "notification-preferences": () => notificationRoute(request, config, caller),
@@ -185,6 +187,7 @@ const methods: Record<string, string> = {
   "/v1/renewals/remove": "POST",
   "/v1/renewals/cancel-operation": "POST",
   "/v1/daily-summary": "GET",
+  "/v1/latest-daily-summary": "GET",
   "/v1/session": "GET",
   "/v1/money/recurring/approval": "GET",
   "/v1/money/recurring/state/approval": "GET",

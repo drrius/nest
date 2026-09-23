@@ -6,7 +6,7 @@ import { mealReminderReadTools } from "../meal-reminders/tools.ts";
 import { mealReminderWriteTools } from "../meal-reminders/write-tools.ts";
 import { choreReminderReadTools } from "../chore-reminders/tools.ts";
 import { choreReminderWriteTools } from "../chore-reminders/write-tools.ts";
-import { dailySummaryTool } from "../notifications/summary-tool.ts";
+import { dailySummaryTool, latestDailySummaryTool } from "../notifications/summary-tool.ts";
 import { renewalReminderWriteTools } from "../renewal-reminders/write-tools.ts";
 import { renewalReminderReadTools } from "../renewal-reminders/tools.ts";
 import { renewalWriteTools } from "../renewals/write-tools.ts";
@@ -104,6 +104,7 @@ export function householdTools(
     ...mealIngredientTools(bound, config),
     readRoutines: readRoutinesTool(bound, config),
     readHouseholdRoster: readHouseholdRosterTool(bound, config),
+    readLatestDailySummary: latestDailySummaryTool(bound, config),
     readDailySummary: dailySummaryTool(bound, config),
     readNotificationPreferences: readNotificationPreferencesTool(bound, config),
     readMemories: readMemoriesTool(bound, config),

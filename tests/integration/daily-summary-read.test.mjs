@@ -9,7 +9,10 @@ import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { notificationClient } from "../../apps/mobile/src/notifications/client.ts";
-import { dailySummaryTool } from "../../apps/api/src/notifications/summary-tool.ts";
+import {
+  dailySummaryTool,
+  latestDailySummaryTool,
+} from "../../apps/api/src/notifications/summary-tool.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
@@ -20,6 +23,7 @@ async function fixture(t) {
     "20260923014222_native_daily_summary_schedule.sql",
     "20260923015620_native_daily_summary_snapshot.sql",
     "20260923015956_native_daily_summary_read.sql",
+    "20260923083514_native_latest_daily_summary.sql",
   ])
     f.db.file(`supabase/migrations/${file}`);
   f.db.sql("update public.nest_notification_preferences set daily_summary_time='00:00'");
@@ -97,4 +101,56 @@ test("native summary runtime fences account replacement and clears when backgrou
   await runtime.setActive(true);
   assert.equal(runtime.getSnapshot().entry, null);
   assert.equal(runtime.getSnapshot().verify, true);
+});
+
+test("latest summary discovery shares native and SDK authorization without requiring a push ID", async (t) => {
+  const f = await fixture(t);
+  const expected = { version: 1, householdId: id(10), recipientId: id(1), latest: f.expected };
+  assert.deepEqual(await run(f.client().latestSummary()), expected);
+  const tool = latestDailySummaryTool(
+    new Request("http://localhost", {
+      headers: { authorization: `Bearer ${f.bearer}` },
+    }),
+    f.config,
+  );
+  assert.deepEqual(await tool.execute({}, { toolCallId: "latest-summary", messages: [] }), {
+    ok: true,
+    value: expected,
+  });
+  assert.equal((await run(f.client(2, f.partnerBearer).latestSummary())).latest, null);
+  await assert.rejects(run(f.client(3, f.otherBearer).latestSummary()));
+  const headers = { authorization: `Bearer ${f.bearer}` };
+  assert.equal(
+    (await fetch(`${f.url}/v1/latest-daily-summary?recipientId=${id(2)}`, { headers })).status,
+    400,
+  );
+  assert.equal((await fetch(`${f.url}/v1/latest-daily-summary`)).status, 401);
+  assert.equal(f.db.sql("select count(*) from private.nest_daily_summary_snapshots"), "1");
+});
+
+test("latest-summary runtime distinguishes empty from unresolved and clears private discovery on background", async (t) => {
+  const f = await fixture(t),
+    local = await sqlite(t);
+  for (const [actor, bearer] of [
+    [1, f.bearer],
+    [2, f.partnerBearer],
+  ]) {
+    const session = await run(
+      local.store.activate({ actor: id(actor), household: id(10) }, id(9500 + actor)),
+    );
+    const runtime = new SummaryReadRuntime(
+      summaryReadOperations({ store: local.store, session }, f.client(actor, bearer)),
+      null,
+    );
+    assert.equal(runtime.getSnapshot().loaded, false);
+    await runtime.setOnline(true);
+    assert.equal(runtime.getSnapshot().loaded, false);
+    await runtime.setActive(true);
+    assert.equal(runtime.getSnapshot().loaded, true);
+    assert.deepEqual(runtime.getSnapshot().entry, actor === 1 ? f.expected : null);
+    await runtime.setActive(false);
+    assert.equal(runtime.getSnapshot().entry, null);
+    assert.equal(runtime.getSnapshot().loaded, false);
+    runtime.dispose();
+  }
 });

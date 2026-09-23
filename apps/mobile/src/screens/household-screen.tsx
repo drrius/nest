@@ -1,3 +1,4 @@
+import { TodayDailySummary } from "../today/daily-summary";
 import { TodayPendingApprovals } from "../today/pending-approvals";
 import { TodayRenewals } from "../today/renewals";
 import { TodayAddActions } from "../today/add-actions";
@@ -96,6 +97,7 @@ function HouseholdChores({
       }
       footer={
         <>
+          <TodayDailySummary />
           <TodayPendingApprovals />
           <TodayBills date={today} />
           <TodayRenewals date={today} />

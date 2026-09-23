@@ -1,3 +1,5 @@
+import * as Schema from "effect/Schema";
+import { readLatestDailySummary } from "./latest-summary.ts";
 import * as Effect from "effect/Effect";
 import { DailySummaryQuery } from "@nest/contracts/daily-summary";
 import { effectTool, CommandFailure } from "@nest/ai/tool";
@@ -14,6 +16,28 @@ export function dailySummaryTool(request: Request, config: IdentityConfig) {
         const member = yield* currentMember(request),
           token = yield* bearerToken(request);
         return yield* readDailySummary(config, { member, token }, input);
+      }).pipe(
+        Effect.provide(supabaseIdentity(config)),
+        Effect.mapError(
+          (error) =>
+            new CommandFailure({
+              code: error.code === "unavailable" ? "unavailable" : "forbidden",
+            }),
+        ),
+      ),
+  });
+}
+
+export function latestDailySummaryTool(request: Request, config: IdentityConfig) {
+  return effectTool({
+    description:
+      "Find the requesting member's latest saved daily summary. Null means none has been saved; never infer an empty day or successful delivery. Content is a historical snapshot for its stated date, which may be earlier than today. This read does not generate a summary, change notification consent or send push. Never infer personal calendar events or money activity. Open the saved summary on the iPhone to review it.",
+    input: Schema.Struct({}),
+    execute: () =>
+      Effect.gen(function* () {
+        const member = yield* currentMember(request),
+          token = yield* bearerToken(request);
+        return yield* readLatestDailySummary(config, { member, token });
       }).pipe(
         Effect.provide(supabaseIdentity(config)),
         Effect.mapError(
