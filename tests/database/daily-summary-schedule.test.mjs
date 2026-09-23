@@ -69,3 +69,14 @@ test("summary storage and scheduler are inaccessible to API roles and reject inv
   for (const date of ["infinity", "-infinity", "10000-01-01"])
     assert.throws(() => f.schedule(date), /Invalid summary identity/);
 });
+
+test("Zurich civil-time conversion cannot create an unsupported BC instant", (t) => {
+  const f = fixture(t);
+  f.enable();
+  f.db.sql("update public.nest_notification_preferences set daily_summary_time='00:00'");
+  assert.throws(() => f.schedule("0001-01-01"), /Unsupported summary instant/);
+  assert.equal(f.db.sql("select count(*) from private.nest_daily_summary_outbox"), "0");
+  f.db.sql("update public.nest_notification_preferences set daily_summary_time='01:00'");
+  assert.ok(f.schedule("0001-01-01"));
+  assert.ok(f.schedule("9999-12-31"));
+});
