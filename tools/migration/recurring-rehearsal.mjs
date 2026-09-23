@@ -10,7 +10,10 @@ export function seedRecurringRehearsal(db) {
       ('${id(901)}','${id(10)}','Synthetic inactive legacy rule',101,'${id(1)}','${shares}','monthly',31,false,'2026-01-31');
     insert into public.expense_drafts(id,household_id,source_kind,description,amount_cents,payer_member_id,proposed_allocations,occurred_on,status,recurring_expense_rule_id)
     values('${id(910)}','${id(10)}','recurring','Synthetic pending draft',101,'${id(1)}','${shares}','2026-01-31','pending','${id(900)}'),
-      ('${id(911)}','${id(10)}','recurring','Synthetic dismissed draft',101,'${id(1)}','${shares}','2025-12-31','dismissed','${id(900)}');`);
+      ('${id(911)}','${id(10)}','recurring','Synthetic dismissed draft',101,'${id(1)}','${shares}','2025-12-31','dismissed','${id(900)}'),
+      ('${id(912)}','${id(10)}','recurring','Synthetic posted draft',101,'${id(1)}','${shares}','2025-11-30','pending','${id(900)}');
+    set role authenticated; set request.jwt.claim.sub='${id(1)}';
+    select public.confirm_expense_draft('${id(912)}','fixture-legacy-post');`);
 }
 export function captureRecurringHistory(db) {
   return db.sql(`select jsonb_build_object(
@@ -38,12 +41,33 @@ export function verifyRecurringRehearsal(db, before) {
     result.rules.map((rule) => rule.ruleId),
     [id(900), id(901)],
   );
+  assert.equal(
+    db.sql(`select count(*) from public.financial_events e join public.expense_drafts d
+    on d.household_id=e.household_id and d.id=e.expense_draft_id
+    where d.id='${id(912)}' and d.status='posted' and e.type='expense' and e.amount_cents=101`),
+    "1",
+  );
+  verifyPostedDraftRead(db);
   return {
     passed: true,
     retainedRules: 2,
-    retainedDrafts: 2,
+    retainedDrafts: 3,
+    postedDrafts: 1,
     nativeMandates: 0,
     nativeCycles: 0,
     adoptions: 0,
   };
+}
+
+function verifyPostedDraftRead(db) {
+  const result = JSON.parse(
+    db.sql(`set role authenticated; set request.jwt.claim.sub='${id(1)}';
+    select public.nest_read_legacy_drafts('${id(10)}','${id(900)}',null)`),
+  );
+  const posted = result.drafts.find((draft) => draft.draftId === id(912));
+  assert.equal(posted?.status, "posted");
+  assert.equal(
+    posted.eventId,
+    db.sql(`select id from public.financial_events where expense_draft_id='${id(912)}'`),
+  );
 }

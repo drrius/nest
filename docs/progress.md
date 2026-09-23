@@ -3091,3 +3091,9 @@ The complete partial-infrastructure diagnostic passes with financial/receipt che
 The populated diagnostic now includes active/inactive legacy monthly rules and pending/dismissed retained drafts. Across all 188 native migrations it requires exact rule/draft row preservation, reads both rules through the real authorized legacy inventory and asserts zero native recurring mandates, cycles and adoption records. The full partial-infrastructure run passes together with financial, receipt and grocery reconciliation. No legacy rule is silently opted into automatic posting. Scoped lint/format pass; exact-commit review/CI remain required.
 
 Sol independently reran and signed off on grocery rehearsal `f87ad13`, including its financial/receipt regressions. Remaining rehearsal scope includes routines/meals/renewals/excluded records, posted legacy recurring draft linkage, actual hosted services and cutover/rollback. Production execution remains unapproved and untouched.
+
+### Posted legacy recurring draft linkage rehearsal
+
+The fixture now posts a third legacy recurring draft through the original authenticated `confirm_expense_draft` command before native migrations. After all 188 native migrations, the draft remains posted with exactly one matching expense, and the authorized native legacy-draft reader returns that exact retained event ID. Full financial fingerprints/balances and receipt metadata remain preserved: seven events, eight allocations, fourteen ledger rows and one receipt reference. Native mandates/cycles/adoptions remain zero. The partial-infrastructure diagnostic and scoped lint/format pass; exact-commit review/CI remain required.
+
+Sol independently signed off on the preceding recurring consent rehearsal `ab7b188`. The new evidence covers posted linkage in synthetic fixtures; production migration, nonfinancial domains and actual infrastructure acceptance remain unfinished.
