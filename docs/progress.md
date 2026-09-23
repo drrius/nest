@@ -2853,3 +2853,21 @@ Native editor components and the protected grocery-reminder route now connect au
 ### Grocery reminder editor — connected candidate
 
 Unchecked groceries without pending checks now link to their reminder editor; household settings link to saved reminder recovery. Three focused form/confirmation and real SQLite/native context → HTTP/PostgREST/PostgreSQL checks pass, covering explicit date/recipients, exact save, stale revision rejection and account replacement. Mobile types pass. The initial lint run caught GroceryRow complexity 12; reminder navigation was extracted into a small component to retain the complexity-10 limit, and lint was rerun. iOS export succeeded at /tmp/nest-grocery-editor-export before that link-component extraction; this proves packaging only. Final review, CI and physical native interaction/accessibility remain outstanding. No hosted changes occurred.
+
+Native grocery reminder editor committed as `63b6275` and submitted for exact-commit Sol medium review/CI. Earlier grocery storage, transport and recovery runs remained in progress at the last query; no gate was bypassed. The assistant's authorized grocery-reminder read tool is now drafted and registered through the shared Effect service; API types pass. Actual SDK read verification, mutation journaling/tools/receipts and delivery remain outstanding. The read tool is not yet counted as verified integration.
+
+### Grocery reminder AI boundary — read verified, journal draft
+
+One actual registered AI SDK read-tool/PostgREST/PostgreSQL case passes for the current item/version, outsider refusal, extra-authority rejection and revoked membership, with zero reminder writes. The gated migration draft adds saveGroceryReminder to the private journal allowlist, strict input validator, shared native dispatcher and canonical transcript reconstruction while retaining existing meal/chore branches and function identities. That migration is not yet tested; write contracts/tool registration/receipt cards and journal tests remain next. No live model or hosted migration was used.
+
+Editor `63b62750012c22d45c41149dc6a405d8b395ddcb` received explicit clean Sol medium signoff with eight independently passing editor/durable integration cases. Exact-commit CI remains required.
+
+### Grocery AI save journal — initial database verification
+
+Shared assistant input/receipt contracts, finite write-name registration, authorized write-tool description and full-intent receipt matching are drafted. Three disposable PostgreSQL cases now pass for concurrent duplicate invocation, injected identity/foreign recipient/stale version refusal and rollback of both reminder settings and native receipts when journal persistence fails. The AI fixture required explicitly audited grocery/category tables and native grocery migrations; those dependencies are now included. SDK mutation integration, canonical transcript/regression tests, result-card links, final type/lint/security verification and review remain outstanding. This is uncommitted work, not a completed AI slice.
+
+### Grocery reminder AI command path — integration evidence
+
+Registered SDK read/save tools now share the native authorized command and private journal; confirmed result cards link to the exact grocery reminder item, with a valid recovery-route fallback. Two real SDK/PostgREST integration cases pass for exact retry, current reads, native card labels/links and outsider/extra-authority refusal. Five database cases pass, now including canonical transcript replacement of fabricated delivery claims, owner-only history and revoked-recipient rejection after an item edit. API and mobile typechecks pass. Final regression/lint/security checks, exact-commit review and CI remain outstanding. No live model, actual notification delivery or physical-device verification is claimed.
+
+Grocery AI final checks: disposable security advisors report no issues; 19 focused assistant-history/action-card tests pass, including unresolved grocery reminder recovery links. An 81-line householdTools lint finding was corrected by extracting reminder-read composition; API types and lint pass after the change. Existing integration evidence remains five journal cases, two SDK mutation/read cases and one standalone registered read case. Exact-commit review and CI are still required; physical delivery remains unfinished.

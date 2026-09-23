@@ -1,3 +1,5 @@
+import { groceryReminderWriteTools } from "../grocery-reminders/write-tools.ts";
+import { groceryReminderReadTools } from "../grocery-reminders/tools.ts";
 import { mealReminderReadTools } from "../meal-reminders/tools.ts";
 import { mealReminderWriteTools } from "../meal-reminders/write-tools.ts";
 import { choreReminderReadTools } from "../chore-reminders/tools.ts";
@@ -82,10 +84,11 @@ export function householdTools(
     ...proposalWriteTools(write),
     ...calendarTools(bound, config),
     ...renewalReadTools(bound, config),
-    ...renewalReminderReadTools(bound, config),
-    ...mealReminderReadTools(bound, config),
+    ...reminderReads(bound, config),
+
     ...mealReminderWriteTools(write),
-    ...choreReminderReadTools(bound, config),
+    ...groceryReminderWriteTools(write),
+
     ...choreReminderWriteTools(write),
     ...renewalWriteTools(write),
     ...renewalReminderWriteTools(write),
@@ -114,5 +117,14 @@ export function householdTools(
     rejectInvalidCall: () => {
       halted = true;
     },
+  };
+}
+
+function reminderReads(request: Request, config: IdentityConfig) {
+  return {
+    ...renewalReminderReadTools(request, config),
+    ...mealReminderReadTools(request, config),
+    ...groceryReminderReadTools(request, config),
+    ...choreReminderReadTools(request, config),
   };
 }

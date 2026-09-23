@@ -280,3 +280,17 @@ test("unconfirmed meal reminder actions open the recovery route", () => {
     assert.match(result.label, /verify/);
   }
 });
+test("unconfirmed grocery reminder actions open the recovery route", () => {
+  for (const part of [
+    { type: "tool-saveGroceryReminder", state: "input-available", input: {} },
+    {
+      type: "tool-saveGroceryReminder",
+      state: "output-available",
+      output: { ok: true, value: {} },
+    },
+  ]) {
+    const result = actionResult(part);
+    assert.equal(result.href, "/grocery-reminder");
+    assert.match(result.label, /verify/);
+  }
+});

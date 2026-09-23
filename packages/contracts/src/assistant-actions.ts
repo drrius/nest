@@ -1,3 +1,4 @@
+import { GroceryReminderInput, GroceryReminderReceipt } from "./grocery-reminders.ts";
 import { MealReminderInput, MealReminderReceipt } from "./meal-reminders.ts";
 import { ChoreReminderInput, ChoreReminderReceipt } from "./chore-reminders.ts";
 import { SaveRenewalReminderInput, RenewalReminderReceipt } from "./reminders.ts";
@@ -95,6 +96,7 @@ const MemoryProposalInput = Schema.Struct({
 );
 // The same field codecs as native commands; retry identities belong to the journal.
 export const AssistantInputs = {
+  saveGroceryReminder: GroceryReminderInput,
   saveMealReminder: MealReminderInput,
   saveChoreReminder: ChoreReminderInput,
   saveRenewalReminder: SaveRenewalReminderInput,
@@ -155,6 +157,7 @@ export const AssistantInputs = {
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {
+  saveGroceryReminder: GroceryReminderReceipt,
   saveMealReminder: MealReminderReceipt,
   saveChoreReminder: ChoreReminderReceipt,
   saveRenewalReminder: RenewalReminderReceipt,
