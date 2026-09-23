@@ -6,7 +6,7 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**Current branch: `codex/native-acceptance-continuation`. Main: `56ece8c`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 192 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 192-native-migration rehearsal and saved-summary flow. The 193rd native migration adds the recovery pause and remains under CI.
+**Current branch: `codex/native-acceptance-continuation`. Main: `24dbc26`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 192 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 193-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
 
 **Saved daily summary discovery is merged.** Its recipient-only database/API, native client, Today entry and assistant handoff passed local verification, exact CI and Sol review. Native interaction and hosted scheduling/delivery remain unverified. Current candidates address migration recovery and setup account recovery.
 
@@ -3353,3 +3353,9 @@ The source audit records eight legacy cron registrations and the latest relevant
 The full-schema rehearsal now creates native daily routines with shared, assigned and alternating responsibility, captures their expected occurrence windows, removes only these new synthetic occurrences, and invokes the actual retained run_ensure_due_occurrences job as owner. It proves identical roles/dates/original dates/planned assignments/native assignment defaults, deduplicated same-key retry and a no-op next run. Rollback preserves every retained routine/occurrence/completion and job claim.
 
 The full 54-legacy/193-native run and local security advisors pass; scoped lint/format pass with existing advisory warnings. Exact CI/Sol review remain pending. This supports retaining the repair path for further testing; it does not prove all schedule kinds, missing-preview-only repair, native transfer/reschedule interaction or hosted cron execution. No production job was modified or activated.
+
+### Routine repair schedule coverage
+
+The native routine repair probe now covers 24 combinations: all three assignment policies crossed with daily, selected weekdays, weekly, biweekly, monthly, one-off and after-completion day/week variants. Each exact reconstructed occurrence window matches the native command’s original dates/assignments, retry deduplicates, and the next run is a no-op. Full 54-legacy/193-native rehearsal and local security advisors pass. This does not cover every parameter/calendar edge, historical-completion reconstruction, missing-preview-only or transferred/rescheduled repair. Exact CI and Sol review remain pending for this extension.
+
+Main advanced to `24dbc26` after clean review and successful exact CI 35841083485; owner-only automatic-posting pause and committed financial recovery evidence are now merged. No production scheduler or data was changed.
