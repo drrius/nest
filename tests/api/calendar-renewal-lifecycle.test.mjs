@@ -51,3 +51,28 @@ test("renewal day rows remain separate from booked personal and busy time", () =
   assert.equal(rows[0].value, renewal);
   assert.equal("start" in rows[0], false);
 });
+
+test("same-owner authorization recovery can probe again without exposing denied rows", async () => {
+  const { PreferenceFailure } = await import("../../apps/mobile/src/preferences/client.ts");
+  let denied = true;
+  const runtime = new CalendarRenewalRuntime(
+    {
+      read: () =>
+        denied
+          ? Effect.fail(new PreferenceFailure({ code: "forbidden" }))
+          : Effect.succeed({ renewals: [{ renewalId: "recovered" }], next: null }),
+    },
+    "2028-02-29",
+  );
+  await runtime.setActive(true);
+  await runtime.setEnabled(true);
+  assert.equal(runtime.getSnapshot().access, false);
+  assert.deepEqual(visibleCalendarRenewals(runtime.getSnapshot(), "2028-02-29"), []);
+  denied = false;
+  await runtime.refresh();
+  assert.equal(runtime.getSnapshot().access, true);
+  assert.deepEqual(visibleCalendarRenewals(runtime.getSnapshot(), "2028-02-29"), [
+    { renewalId: "recovered" },
+  ]);
+  runtime.dispose();
+});

@@ -58,7 +58,7 @@ export class CalendarRenewalRuntime {
     this.publish({
       rows: null,
       next: null,
-      access: !denied,
+      access: this.view.access && !denied,
       notice: denied
         ? "Verify your account to read renewals."
         : "Could not load renewals for this day. Try again when connected.",
@@ -70,7 +70,6 @@ export class CalendarRenewalRuntime {
       this.view.active &&
       this.view.enabled &&
       !this.view.busy &&
-      this.view.access &&
       (!more || this.view.next !== null)
     );
   }
@@ -87,6 +86,7 @@ export class CalendarRenewalRuntime {
       });
       if (!request.signal.aborted)
         this.publish({
+          access: true,
           rows: more ? [...(this.view.rows ?? []), ...page.renewals] : page.renewals,
           next: page.next,
         });
