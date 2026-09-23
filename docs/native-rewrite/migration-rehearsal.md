@@ -12,7 +12,7 @@ The strict run on 23 September 2026 applied 14 legacy migrations, then failed at
 
 For an explicitly partial schema diagnostic, append `--without-pg-net`. That option skips only the named migration after checking that its entire trimmed content is the expected extension declaration. Changed content fails closed. The report always identifies the skipped source/hash and simulated infrastructure. `complete` means that this diagnostic finished, not that migration or release acceptance is complete.
 
-The partial run applies **54 legacy migrations and all 190 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
+The partial run applies **54 legacy migrations and all 193 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
 
 ## Current populated coverage
 
@@ -62,3 +62,7 @@ The disposable full-schema probe also runs the financial command/approval checks
 ## Native automatic posting pause
 
 The additive recovery control exposes only the owner-callable private function `nest_set_recurring_execution_paused(boolean)`. Pausing waits for shared locks held by automatic posting transactions; the pause transaction must commit before an operator treats it as acknowledged. A lock timeout is a failed pause, never a successful drain. Existing completed receipts remain readable. Resuming preserves each rule’s mandate and cursor rather than recreating financial events. This control does not stop legacy jobs, stop arbitrary owner SQL, or establish that every in-flight client command is drained. It is tested only in disposable fixtures and is not production activation authorization.
+
+## Scheduled writer audit
+
+[The scheduled writer audit](scheduled-writer-audit.md) identifies eight legacy source registrations, their effects and the evidence needed to retain, replace or stop each. This includes private Edge push invocation outside the public API fence. Source inventory does not establish live scheduler state or authorize changes.

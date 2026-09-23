@@ -1,0 +1,34 @@
+# Scheduled writer cutover audit
+
+Source audit: 23 September 2026. This is a migration preparation artifact, not authorization to disable a job or retire the existing app. No hosted scheduler was inspected or changed. Source registrations do not prove which jobs currently exist or run.
+
+Seven registrations appear in legacy `20260812090000_notifications_realtime.sql` at lines 2836–2955. The eighth appears in `20260814120000_invoke_push_dispatch.sql` at lines 330–344. Paths are under `/home/drrius/Work/household-os/supabase/migrations`. Later function replacements must be included when auditing behavior; notably `20260905003000_device_push_tests.sql` replaces the outbox drain at line 217.
+
+| Registered job                            | Entry point                                 | Audited effect and required cutover decision                                                                                                                                                                                                                                                             |
+| ----------------------------------------- | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `household-os-deliver-due-reminders`      | `public.run_deliver_due_reminders`          | Claims due legacy reminders and generates legacy inbox/push work. Reconcile pending items and recipients against native reminder coverage before authorizing a stop; prevent duplicate delivery during transition.                                                                                       |
+| `household-os-retain-activity`            | `public.run_retain_activity_events`         | Deletes activity older than 90 days in bounded batches. Preserve the agreed retained history; decide retention explicitly rather than inheriting this job as a native default.                                                                                                                           |
+| `household-os-retain-purchased-groceries` | `public.run_retain_purchased_groceries`     | Deletes purchased grocery/session-item history after 30 days. Fixture proves deletion and an owner-level function fence. Hosted job disablement and in-flight drainage remain unverified.                                                                                                                |
+| `household-os-ensure-due-occurrences`     | `public.run_ensure_due_occurrences`         | Calls `private.ensure_routine_window` for active routines lacking an open current occurrence. Audit compatibility with native assignment/schedule rules and prove the replacement or retained repair path before removal. Native routine creation uses the same retained routine/occurrence tables.      |
+| `household-os-deliver-member-digests`     | `public.run_deliver_member_digests`         | Builds legacy per-member digests from stored preferences and household records. Reconcile with native opt-ins and deterministic daily summaries; native settings must not inherit consent or duplicate deliveries.                                                                                       |
+| `household-os-generate-recurring-drafts`  | `public.run_generate_recurring_drafts_cron` | Generates legacy drafts for due active rules and advances legacy processing through its helper. It does not grant a native mandate. Reconcile rule adoption, drafts and cursors before authorizing a stop.                                                                                               |
+| `household-os-drain-push-outbox`          | `public.run_drain_push_outbox`              | Latest implementation skips unsubscribed pending rows and clears expired claims, leaving subscribed work for Edge delivery. Preserve unresolved claims and outcomes; disabling the producer does not stop an already running dispatcher.                                                                 |
+| `household-os-invoke-push-dispatch`       | `private.invoke_push_dispatch`              | Uses server credentials to invoke Edge push dispatch over HTTP. Public-function revocation does not cover this private entry point or requests already sent. Inspect the actual Edge invocation and delivery backlog before a transition. Never export credentials or raw request headers into evidence. |
+
+## Required hosted evidence
+
+Under separately approved access, inventory every actual scheduled job, including unknown names and non-cron invokers. Record job identity, active state, database role, schedule and a digest of the command; inspect command contents securely without copying embedded credentials into progress logs. Compare the live function definitions with the audited migrations. An absent extension or suppressed migration exception is missing evidence, not proof that scheduling is disabled.
+
+For each selected job, record the approved retain/replace/stop decision, owner, affected tables/outboxes, replacement behavior and unresolved records. Stop future scheduling only after authorization. Then establish that running transactions, claimed work and externally dispatched requests have completed or have an explicit reconciliation outcome. A job being inactive does not prove drainage. Do not delete history or mark uncertain delivery successful to clear this gate.
+
+Reconcile financial events, ledger entries, receipt references, retained drafts and grocery/session history after the transition. Preserve newly committed events during recovery. Native `private.nest_set_recurring_execution_paused(true)` covers new native automatic expense postings after its transaction commits; it does not pause these eight jobs, stop arbitrary owner SQL, cancel HTTP requests or drain all native client commands.
+
+## Remaining implementation and environment work
+
+- Verify the retained routine-window repair behavior against native routine fixtures and decide its replacement/retention path.
+- Rehearse legacy draft-generation and notification producer/consumer shutdown with pending work, alongside the existing grocery-retention probe.
+- Complete pending native command reconciliation and the cutover epoch decision.
+- Obtain authorized hosted job/function inventory and delivery state; the local fixture lacks real `pg_cron`, `pg_net`, Edge delivery and production data.
+- Exercise the approved plan on an isolated representative backend before asking for production cutover approval.
+
+The eight names are the audited source inventory, not a complete inventory of live infrastructure. CI schedules, Edge invokers, old clients, direct SQL and other schemas still require independent accounting.
