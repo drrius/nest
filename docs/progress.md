@@ -2759,3 +2759,9 @@ Storage `2694070` and transport `c50f64d` now have successful exact CI (`3581899
 Sol found an invalid fallback route for uncertain meal-reminder assistant results in `7cd4b34`. The destination is corrected to `/meal-reminder`; the action-result suite passes with an explicit unresolved/malformed-result regression. Updated exact-commit rereview and CI are required before merge.
 
 The uncommitted gated meal-scheduling migration adds Zurich civil-time resolution, recipient-preference eligibility, a deduplicated private outbox, bounded materialization and obsolete cancellation. Three disposable PostgreSQL cases pass for DST gaps/overlaps, concurrent retries, changed/removed meals and recipient mute/membership rules. Batch-bound tests, security checks, review, delivery integration and device verification remain outstanding. No scheduler or hosted migration was activated.
+
+### Meal reminder scheduling — locally verified candidate
+
+The gated migration now computes Zurich civil-time reminders from exact reviewed meal entries, respects current recipient membership and mute preferences, and materializes deduplicated private outbox rows. Source scans inspect at most 250 settings per call; obsolete cancellation inspects at most 500 pending rows, with persistent cursors and wraparound. Unmuting can restore an eligible cancelled unsent identity, while sent identities remain sent.
+
+Six disposable PostgreSQL cases pass for DST gap/overlap behavior, concurrent materialization, changed/removed meal invalidation, mute/membership rules, bounded scan progress and sent-state preservation. Full lint/format, diff checks and disposable security advisors pass. Exact-commit review/CI and meal push claims, provider/native routing and worker orchestration remain unfinished. No hosted schedule, migration or device delivery was activated. AI review fix `cdba2e2` has clean exact Sol signoff with 12 independently passing action-result checks; CI remains required.
