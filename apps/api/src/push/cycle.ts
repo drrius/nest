@@ -1,6 +1,7 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { runCheckpointedPushPage } from "./checkpoint-runner.ts";
+import { summaryPushRpc } from "./summary-rpc.ts";
 import { runPushReceipts } from "./receipt-sweep.ts";
 import type { pushWorkerRpc } from "./worker-rpc.ts";
 import type { pushDeliveryWorker } from "./delivery-worker.ts";
@@ -17,6 +18,12 @@ const Maintenance = Schema.Struct({
   obsolete: Schema.Struct({ scanned: count(500), cancelled: count(500), wrapped: Schema.Boolean }),
   expired: count(100),
   retries: Schema.Struct({ scanned: count(100), requeued: count(100), wrapped: Schema.Boolean }),
+});
+const SummaryMaintenance = Schema.Struct({
+  version: Schema.Literal(1),
+  scanned: count(250),
+  scheduled: count(250),
+  wrapped: Schema.Boolean,
 });
 function outcome<A, E>(effect: Effect.Effect<A, E>) {
   return effect.pipe(
@@ -37,8 +44,17 @@ export function runPushCycle(
       maintenance.status === "recorded"
         ? yield* outcome(runCheckpointedPushPage(rpc, worker))
         : { status: "skipped" as const };
+    const summaryMaintenance = yield* outcome(
+      rpc("summaryMaintain", {}).pipe(
+        Effect.flatMap(Schema.decodeUnknownEffect(SummaryMaintenance)),
+      ),
+    );
+    const summaryDelivery =
+      summaryMaintenance.status === "recorded"
+        ? yield* outcome(runCheckpointedPushPage(summaryPushRpc(rpc), worker))
+        : { status: "skipped" as const };
     // Receipt reads remain useful even when materialization or sending failed.
     const receipts = yield* outcome(runPushReceipts(rpc, worker));
-    return { maintenance, delivery, receipts };
+    return { maintenance, delivery, summaryMaintenance, summaryDelivery, receipts };
   });
 }

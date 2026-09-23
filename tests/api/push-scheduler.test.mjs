@@ -12,6 +12,8 @@ test("actual scheduler HTTP requires its separate secret and returns aggregate-o
       calls++;
       return {
         maintenance: { status: "recorded", report: {} },
+        summaryMaintenance: { status: "recorded", report: {} },
+        summaryDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
         delivery: {
           status: "recorded",
           report: { complete: true, outcomes: [{ deliveryId: "private-id", status: "recorded" }] },
@@ -45,6 +47,8 @@ test("actual scheduler HTTP requires its separate secret and returns aggregate-o
   assert.equal(response.headers.get("cache-control"), "no-store");
   assert.deepEqual(await response.json(), {
     maintenance: "recorded",
+    summaryMaintenance: "recorded",
+    summaryDelivery: "recorded",
     delivery: "recorded",
     receipts: "recorded",
     processed: 1,
@@ -70,6 +74,8 @@ test("failed cycles and individual failures return finite unavailable responses"
   const partial = createPushSchedulerHandler(Redacted.make(secret), () =>
     Effect.succeed({
       maintenance: { status: "recorded", report: {} },
+      summaryMaintenance: { status: "recorded", report: {} },
+      summaryDelivery: { status: "recorded", report: { complete: true, outcomes: [] } },
       delivery: {
         status: "recorded",
         report: { complete: false, outcomes: [{ deliveryId: "private", status: "failed" }] },
