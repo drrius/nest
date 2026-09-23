@@ -8,7 +8,9 @@ export function seedRenewalRehearsal(db) {
       ('${id(1101)}','${id(10)}','${id(1)}','Synthetic ended','ended','2027-03-01',30,null),
       ('${id(1102)}','${id(10)}','${id(1)}','Synthetic linked','active','2027-03-01',30,'${id(900)}'),
       ('${id(1103)}','${id(10)}','${id(1)}','Synthetic undated','active',null,0,null),
-      ('${id(1104)}','${id(10)}','${id(1)}','Synthetic date limit','active','0001-01-01',30,null);`);
+      ('${id(1104)}','${id(10)}','${id(1)}','Synthetic date limit','active','0001-01-01',30,null),
+      ('${id(1105)}','${id(10)}','${id(1)}','Synthetic ancient date','active','4713-01-01 BC',730,null),
+      ('${id(1106)}','${id(10)}','${id(1)}','Synthetic infinite date','active','infinity',730,null);`);
 }
 export function captureRenewalHistory(db) {
   return db.sql("select jsonb_agg(to_jsonb(c) order by id) from public.household_commitments c");
@@ -27,12 +29,12 @@ export function verifyRenewalPlan(db, before) {
     inventoryVerified: true,
     unlinkedConversionVerified: true,
     linkedConversionImplemented: false,
-    retainedCommitments: 5,
+    retainedCommitments: 7,
     ready: 1,
     retainedHistory: 1,
     linkReview: 1,
     undated: 1,
-    dateReview: 1,
+    dateReview: 3,
   };
 }
 
