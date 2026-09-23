@@ -51,6 +51,7 @@ function snapshot(db) {
   return db.sql(`select jsonb_build_object(
     'function',(select pg_get_functiondef('public.run_retain_purchased_groceries(text,integer)'::regprocedure)),
     'acl',(select proacl from pg_proc where oid='public.run_retain_purchased_groceries(text,integer)'::regprocedure),
+    'jobClaims',(select jsonb_agg(to_jsonb(j) order by schedule_key) from public.job_claims j),
     'items',(select jsonb_agg(to_jsonb(i) order by id) from public.grocery_items i),
     'claims',(select jsonb_agg(to_jsonb(i) order by shopping_session_id,grocery_item_id) from public.shopping_session_items i))`);
 }

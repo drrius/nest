@@ -78,5 +78,6 @@ function snapshot(db) {
     'columnAcls',(select jsonb_agg(jsonb_build_object('table',attrelid,'number',attnum,'acl',attacl) order by attrelid,attnum) from pg_attribute where attrelid in (select oid from pg_class where relnamespace='public'::regnamespace)),
     'receipts',(select jsonb_agg(to_jsonb(r) order by actor_id,household_id,operation_id) from public.nest_grocery_check_receipts r),
     'items',(select jsonb_agg(to_jsonb(i) order by id) from public.grocery_items i),
+    'claims',(select jsonb_agg(to_jsonb(c) order by shopping_session_id,grocery_item_id) from public.shopping_session_items c),
     'sessions',(select jsonb_agg(to_jsonb(s) order by id) from public.shopping_sessions s))`);
 }

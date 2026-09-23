@@ -120,6 +120,9 @@ try {
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
   report.shoppingCutover = verifyShoppingCutover(db);
   report.groceryRetentionCutover = verifyGroceryRetentionCutover(db);
+  report.cutoverFinancialReconciliation = compareRehearsal(before, captureRehearsal(db));
+  if (!report.cutoverFinancialReconciliation.passed)
+    throw new Error("Cutover rehearsal changed financial history or receipt references");
   report.legacyWriters = captureLegacyWriterInventory(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
   report.complete = true;
