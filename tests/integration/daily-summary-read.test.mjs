@@ -1,3 +1,6 @@
+import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { SummaryReadRuntime } from "../../apps/mobile/src/notifications/summary-runtime.ts";
+import { summaryReadOperations } from "../../apps/mobile/src/notifications/summary-operations.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
@@ -72,4 +75,26 @@ test("native and SDK summary reads share real recipient-only authorization", asy
     body: JSON.stringify({ p_household: id(10), p_summary: f.summaryId }),
   });
   assert.notEqual(direct.status, 200);
+});
+
+test("native summary runtime fences account replacement and clears when backgrounded", async (t) => {
+  const f = await fixture(t),
+    local = await sqlite(t);
+  const session = await run(local.store.activate({ actor: id(1), household: id(10) }, id(9400)));
+  const operations = summaryReadOperations({ store: local.store, session }, f.client());
+  const runtime = new SummaryReadRuntime(
+    { read: (summaryId) => operations.read(summaryId).pipe(Effect.provide(Fetch.layer)) },
+    f.summaryId,
+  );
+  t.after(() => runtime.dispose());
+  await runtime.setOnline(true);
+  assert.equal(runtime.getSnapshot().entry, null);
+  await runtime.setActive(true);
+  assert.deepEqual(runtime.getSnapshot().entry, f.expected);
+  await runtime.setActive(false);
+  assert.equal(runtime.getSnapshot().entry, null);
+  await run(local.store.activate({ actor: id(2), household: id(10) }, id(9401)));
+  await runtime.setActive(true);
+  assert.equal(runtime.getSnapshot().entry, null);
+  assert.equal(runtime.getSnapshot().verify, true);
 });

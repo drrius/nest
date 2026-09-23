@@ -1,3 +1,4 @@
+import { summaryHandoff } from "./summary-handoff.ts";
 import { LegacyAdoptionApprovalEnvelope } from "@nest/contracts/legacy-adoption-approval";
 import { LegacyConfirmationApprovalEnvelope } from "@nest/contracts/legacy-confirmation-approval";
 import { LegacyDismissalApprovalEnvelope } from "@nest/contracts/legacy-dismissal-approval";
@@ -136,6 +137,7 @@ const destinations = {
   checkGrocery: "/checklist",
 } as const;
 const handoffs = {
+  "tool-readDailySummary": summaryHandoff,
   "tool-openCalendarAgenda": agendaHandoff,
   "tool-openMealIngredientReview": ingredientHandoff,
   "tool-readMealProposal": proposalHandoff,
