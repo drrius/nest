@@ -9,7 +9,6 @@ export const PendingFinancialCommand = Schema.Literals([
   "expenses.correct",
   "expenses.refund",
   "settlements.record",
-  "groceryExpenses.record",
   "recurring.create",
   "recurring.update",
   "recurring.pause",

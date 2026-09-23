@@ -11,7 +11,7 @@ begin
     where household_id=p_household and actor_id=v_actor and status='pending'
       and expires_at>statement_timestamp() and (p_after is null or id>p_after)
       and command in ('expenses.record','expenses.correct','expenses.refund','settlements.record',
-        'groceryExpenses.record','recurring.create','recurring.update','recurring.pause','recurring.cancel',
+        'recurring.create','recurring.update','recurring.pause','recurring.cancel',
         'recurring.resume','recurring.record-cycle','recurring.link-cycle','recurring.dismiss-legacy-draft',
         'recurring.confirm-legacy-draft','recurring.adopt-legacy')
     order by id limit 21

@@ -17,11 +17,12 @@ const read = (actor = 1, after = null) =>
 test("private financial approval pages omit other owners, expired/decided actions, memory and payload", () => {
   db.sql(`insert into public.nest_action_approvals(id,actor_id,household_id,invocation_id,command,command_version,payload)
     select ('00000000-0000-4000-8000-'||lpad(n::text,12,'0'))::uuid,'${id(1)}','${id(10)}',
-      ('00000000-0000-4000-8000-'||lpad((n+100)::text,12,'0'))::uuid,'expenses.record',1,'{"private":"secret"}' from generate_series(100,124) n;
+      ('00000000-0000-4000-8000-'||lpad((n+100)::text,12,'0'))::uuid,'expenses.record',1,'{"private":"secret"}' from generate_series(100,125) n;
     update public.nest_action_approvals set actor_id='${id(2)}' where id='${id(121)}';
     update public.nest_action_approvals set expires_at=now()-interval '1 second' where id='${id(122)}';
     update public.nest_action_approvals set status='denied' where id='${id(123)}';
-    update public.nest_action_approvals set command='memory.save' where id='${id(124)}';`);
+    update public.nest_action_approvals set command='memory.save' where id='${id(124)}';
+    update public.nest_action_approvals set command='groceryExpenses.record' where id='${id(125)}';`);
   const first = read();
   assert.equal(first.approvals.length, 20);
   assert.equal(first.next, id(119));

@@ -18,6 +18,7 @@ test("pending approval boundary rejects payloads, invalid paging and unrelated c
   for (const value of [
     { ...page, approvals: [{ ...row(100), payload: { amount: 100 } }] },
     { ...page, approvals: [{ ...row(100), command: "memory.save" }] },
+    { ...page, approvals: [{ ...row(100), command: "groceryExpenses.record" }] },
     { ...page, approvals: [row(100), row(100)] },
     { ...page, approvals: [row(101), row(100)] },
     { ...page, next: id(100) },
