@@ -3021,3 +3021,9 @@ Seven disposable PostgreSQL cases pass for invalid-session progress, strict curs
 The worker now runs independent recurring maintenance and checkpointed delivery alongside renewals, summaries, chores, meals and groceries. Aggregate scheduler responses include recurring status/counts and require all six pages for completion. Maintenance failure skips only the affected source; shared receipt polling continues. The runbook documents six-source behavior, bounds and financial-data-free payloads.
 
 Eighteen focused scheduler and real PostgreSQL/PostgREST cycle tests pass, covering all six sources once, receipt settlement, recurring failure isolation in both directions, lost committed checkpoint acknowledgment/restart without duplicate sends and existing-source regressions. API typechecking and scoped worker lint pass. This evidence uses simulated Expo responses; hosted execution and physical APNs delivery remain unverified. Exact-commit review and CI remain required. Prior scan/checkpoint commit `4390dc4` has clean Sol signoff with seven independent tests; CI `35827297334` is running.
+
+### Today Add choices — native integration candidate
+
+Today now exposes explicit Chore, Grocery and Expense actions using the existing authorized editors. The chore route opens the creation form directly; saved or pending routine writes retain the existing recovery path instead of opening another draft. The management link uses the brief’s “Manage chores” label. Mobile typechecking, scoped lint and formatting pass. Native touch/navigation and accessibility verification remain outstanding; no new write service or approval bypass is introduced. Exact-commit review and CI remain required.
+
+Recurring AI and scheduling through `ac721b6` are merged after clean Sol review and successful CI `35826563237`. Worker cycle `b2a96c4` is pushed for review/CI.

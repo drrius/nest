@@ -1,3 +1,4 @@
+import { useLocalSearchParams } from "expo-router";
 import { useRef, useState, useSyncExternalStore } from "react";
 import { Alert, FlatList, View } from "react-native";
 import * as Crypto from "expo-crypto";
@@ -16,6 +17,7 @@ import { SignInCard } from "../components/sign-in-card";
 import { space, useQuiet } from "../theme";
 export default function RoutinesScreen() {
   const session = useSession();
+  const { action } = useLocalSearchParams<{ action?: string }>();
   if (session.state.status !== "ready" || !session.routines)
     return (
       <Page>
@@ -25,16 +27,25 @@ export default function RoutinesScreen() {
   return (
     <Routines
       key={`${session.state.member.userId}:${session.state.member.householdId}`}
+      createInitially={action === "create"}
       client={session.routines}
       verify={session.retry}
     />
   );
 }
-function Routines({ client, verify }: { client: RoutineClient; verify: () => void }) {
+function Routines({
+  client,
+  verify,
+  createInitially,
+}: {
+  client: RoutineClient;
+  verify: () => void;
+  createInitially: boolean;
+}) {
   const [owner] = useState(() => routineOwner(client, Crypto.randomUUID));
   const runtime = useSyncExternalStore(owner.subscribe, owner.getSnapshot);
   return runtime ? (
-    <RoutineContent runtime={runtime} verify={verify} />
+    <RoutineContent runtime={runtime} verify={verify} createInitially={createInitially} />
   ) : (
     <Page>
       <Note>Loading routines…</Note>
@@ -125,10 +136,19 @@ function Recovery({
     />
   );
 }
-function RoutineContent({ runtime, verify }: { runtime: RoutineRuntime; verify: () => void }) {
+function RoutineContent({
+  runtime,
+  verify,
+  createInitially,
+}: {
+  runtime: RoutineRuntime;
+  verify: () => void;
+  createInitially: boolean;
+}) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   return (
     <RoutineWorkspace
+      createInitially={createInitially && !view.saved && !view.pendingWrite}
       key={`${view.saved}:${view.stage === "verify"}`}
       runtime={runtime}
       view={view}
@@ -138,15 +158,17 @@ function RoutineContent({ runtime, verify }: { runtime: RoutineRuntime; verify: 
 }
 type Mode = Routine | "create" | null;
 function RoutineWorkspace({
+  createInitially,
   runtime,
   view,
   verify,
 }: {
+  createInitially: boolean;
   runtime: RoutineRuntime;
   view: RoutineView;
   verify: () => void;
 }) {
-  const [mode, setMode] = useState<Mode>(null);
+  const [mode, setMode] = useState<Mode>(createInitially ? "create" : null);
   const list = useRef<FlatList<Routine>>(null);
   usePendingRoutineNavigation(!mode && view.pendingWrite);
   const changeState = (routine: Routine, action: "pause" | "resume" | "archive") => {

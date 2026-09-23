@@ -1,3 +1,4 @@
+import { TodayAddActions } from "../today/add-actions";
 import { useChoreEditor } from "../chores/use-editor";
 import { currentHouseholdDay, useTodayClock } from "../today/use-today-clock";
 import { householdDate } from "@nest/domain/calendar";
@@ -70,6 +71,7 @@ function HouseholdChores({
             label={everyone ? "Everyone · Show me + shared" : "Me + shared · Show everyone"}
             onPress={() => setEveryone(!everyone)}
           />
+          <TodayAddActions />
           <HouseholdLinks count={view.data?.transfers?.transfers.length ?? 0} />
           <ChoreStatus view={view} />
           {view.changeStage === "uncertain" ? (
@@ -151,7 +153,7 @@ function HouseholdLinks({ count }: { count: number }) {
         Manage renewals
       </Link>
       <Link href="/routines" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Manage routines
+        Manage chores
       </Link>
       <Link
         href="/chore-transfers"
