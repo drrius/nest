@@ -42,6 +42,7 @@ export function verifyRenewalPlan(db, before) {
     inventoryVerified: true,
     unlinkedConversionVerified: true,
     linkedConversionImplemented: false,
+    provenanceVerified: true,
     retainedCommitments: 9,
     ready: 1,
     retainedHistory: 1,
@@ -65,6 +66,21 @@ function verifyConversion(db, source) {
     );
   assert.throws(() => run({ ...input, sourceHash: "0".repeat(64) }), /Reviewed commitment changed/);
   run(input);
+  const provenance = JSON.parse(
+    db.sql("select row_to_json(c) from private.nest_renewal_conversions c"),
+  );
+  assert.equal(provenance.source_hash, input.sourceHash);
+  assert.equal(provenance.actor_id, id(1));
+  assert.equal(provenance.operation_id, input.operationId);
+  assert.equal(provenance.result.renewal.renewalId, input.commitmentId);
+  assert.throws(
+    () => db.sql("set role authenticated; select * from private.nest_renewal_conversions"),
+    /permission denied/,
+  );
+  assert.throws(
+    () => db.sql("delete from private.nest_renewal_conversions"),
+    /immutable|append.only/i,
+  );
   const first = db.sql("select row_to_json(r) from public.nest_renewals r");
   run(input);
   assert.equal(db.sql("select row_to_json(r) from public.nest_renewals r"), first);
@@ -88,7 +104,7 @@ function verifyRefusedConversions(db, plan) {
     });
     assert.throws(
       () => db.sql(`set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${command}`),
-      /Commitment requires separate migration review|Invalid renewal/,
+      /Commitment requires separate migration review|Invalid renewal|Unsupported renewal deadline/,
     );
   }
   const command = renewalConversionSql({
