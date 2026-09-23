@@ -171,6 +171,7 @@ function GroceryRow({
         </Note>
       ) : null}
       {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
+      <GroceryReminderLink item={item} />
       {!item.pending ? (
         <Link
           href={{ pathname: "/grocery-edit", params: { itemId: item.itemId } }}
@@ -188,4 +189,17 @@ function emptyMessage(data: GroceryData | null) {
   return data.groceries.length
     ? "Everything on your list is checked."
     : "Your grocery checklist is empty.";
+}
+
+function GroceryReminderLink({ item }: { item: GroceryData["groceries"][number] }) {
+  const colors = useQuiet();
+  if (item.pending || item.checked) return null;
+  return (
+    <Link
+      href={{ pathname: "/grocery-reminder", params: { itemId: item.itemId } }}
+      style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
+    >
+      Reminder for {item.name}
+    </Link>
+  );
 }

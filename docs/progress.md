@@ -2839,3 +2839,17 @@ Storage `06c4f01912b511e5dd3c6e56a4c6f19945785a68` has explicit clean GPT-5.6 So
 SQLite now stages exact grocery reminder save/cancellation commands under the current actor, household and account lease. The shared durable runtime reads operation status after restart without automatically replaying writes; unresolved commands require explicit retry or cancellation. Five real SQLite/native-runtime/HTTP/PostgREST/PostgreSQL journeys pass for lost committed responses, unresolved cancellation and late-send fencing, account replacement, staging/cleanup failures and deleted-target recovery. The initial fixture run caught a malformed SQLite initialization call; it was fixed before the five passing cases. Mobile typechecking and workspace lint pass. Native editor and AI/scheduling/delivery remain unfinished; no physical device execution is claimed.
 
 Transport `dd7ee3745cc69e8d8a6807a9a5fe1cf782047e81` received clean Sol medium signoff with three independently passing transport cases. CI `35822073870` and storage CI `35821929418` were still running at the last check. Contracts `63ba10099dc5dc58bca4d8704b2f963855ebb68b` passed CI `35821296865` and already had clean Sol signoff.
+
+### Grocery reminder editor — initial form and confirmation work
+
+The uncommitted editor helpers now parse an explicit civil date/time and recipient selection through shared contracts, load the authorized item/roster under the active account lease, and capture a one-use confirmation bound to the reviewed grocery version and reminder revision. Focused form/confirmation checks pass for invalid dates/times, missing recipients, stale item/settings/member context and repeated or invalidated confirmation. Mobile typechecking passes. These helpers are not yet a connected native screen; controls, navigation and editor integration verification remain unfinished.
+
+Durable recovery `3bfa83faa1d7d6d54c7498acba7e62c572eb6036` received explicit clean Sol medium signoff with five independently passing real SQLite/HTTP/database cases. Required exact-commit CI still gates merge.
+
+### Grocery reminder native editor — wiring draft
+
+Native editor components and the protected grocery-reminder route now connect authenticated context, recipient/date/time fields, reviewed confirmation, durable recovery and leave-screen invalidation. Missing target links open recovery; malformed targets are rejected. Mobile typechecking and workspace lint pass. The screen still needs grocery-list/household entry points, complete editor HTTP/controller integration checks, final UI review and packaging verification. This uncommitted wiring is not counted as a finished flow or device verification.
+
+### Grocery reminder editor — connected candidate
+
+Unchecked groceries without pending checks now link to their reminder editor; household settings link to saved reminder recovery. Three focused form/confirmation and real SQLite/native context → HTTP/PostgREST/PostgreSQL checks pass, covering explicit date/recipients, exact save, stale revision rejection and account replacement. Mobile types pass. The initial lint run caught GroceryRow complexity 12; reminder navigation was extracted into a small component to retain the complexity-10 limit, and lint was rerun. iOS export succeeded at /tmp/nest-grocery-editor-export before that link-component extraction; this proves packaging only. Final review, CI and physical native interaction/accessibility remain outstanding. No hosted changes occurred.
