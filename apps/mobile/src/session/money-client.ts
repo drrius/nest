@@ -206,6 +206,10 @@ function sessionRecurring(client: MoneyClient) {
 
 function sessionRecurringReads(client: MoneyClient) {
   return {
+    pendingFinancialApprovals: (after: string | null = null) =>
+      client
+        .pendingFinancialApprovals(after)
+        .pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     legacyDrafts: (input: typeof LegacyDraftQuery.Type) =>
       client.legacyDrafts(input).pipe(Effect.provideService(FetchHttpClient.Fetch, fetch)),
     legacyRecurring: (after: string | null = null) =>

@@ -1,7 +1,11 @@
+import { createRequire } from "node:module";
+import { moneyClient } from "../../apps/mobile/src/money/client.ts";
 import { moneyTools } from "../../apps/api/src/money/tools.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { expenseApiFixture } from "./expense-api-fixture.mjs";
+const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const Effect = await import(require.resolve("effect/Effect"));
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 test("HTTP pending approvals preserve private pagination through real PostgREST", async (t) => {
   const f = await expenseApiFixture(t, [
@@ -15,6 +19,23 @@ test("HTTP pending approvals preserve private pagination through real PostgREST"
   const first = await fetch(`${f.url}/v1/money/pending-approvals`, { headers });
   assert.equal(first.status, 200);
   const page = await first.json();
+  const client = moneyClient(
+    f.url,
+    { actor: id(1), household: id(10) },
+    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+  );
+  assert.deepEqual(await Effect.runPromise(client.pendingFinancialApprovals()), page);
+  const following = await Effect.runPromise(client.pendingFinancialApprovals(page.next));
+  assert.deepEqual(
+    following.approvals.map((row) => row.approvalId),
+    [id(520)],
+  );
+  const partner = moneyClient(
+    f.url,
+    { actor: id(2), household: id(10) },
+    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+  );
+  await assert.rejects(Effect.runPromise(partner.pendingFinancialApprovals()));
   const tools = moneyTools(new Request("http://localhost", { headers }), {
     url: f.supabaseUrl,
     publishableKey: "sb_publishable_fixture",
