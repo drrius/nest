@@ -22,7 +22,7 @@ import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
 import { RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { MealMoveReceipt } from "@nest/contracts/meal-move";
-import { SetupHandoff } from "@nest/contracts/setup";
+import { setupHandoff, notificationSetupHandoff } from "./setup-handoffs.ts";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope } from "@nest/contracts/memory";
@@ -152,6 +152,7 @@ const handoffs = {
   "tool-readMealProposal": proposalHandoff,
   "tool-openCalendarSettings": calendarHandoff,
   "tool-openSetup": setupHandoff,
+  "tool-openNotificationSetup": notificationSetupHandoff,
 };
 export function actionResult(part: { type: string; state?: unknown; output?: unknown }) {
   if (Object.hasOwn(handoffs, part.type)) return handoffs[part.type as keyof typeof handoffs](part);
@@ -231,17 +232,6 @@ function calendarHandoff(part: { state?: unknown; output?: unknown }) {
     label: "Choose calendar access and sharing on your iPhone",
     href: "/calendar-sharing" as const,
   };
-}
-
-function setupHandoff(part: { state?: unknown; output?: unknown }) {
-  if (
-    part.state !== "output-available" ||
-    !Schema.is(Output)(part.output) ||
-    !part.output.ok ||
-    !Schema.is(SetupHandoff)(part.output.value)
-  )
-    return null;
-  return { label: "Continue your setup on your iPhone", href: "/setup" as const };
 }
 
 function routineStateLabel(receipt: object) {

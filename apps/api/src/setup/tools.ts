@@ -9,6 +9,20 @@ const failure = (error: ApiFailure) =>
   new CommandFailure({ code: error.code === "unavailable" ? "unavailable" : "forbidden" });
 export function setupTools(request: Request, config: IdentityConfig) {
   return {
+    openNotificationSetup: effectTool({
+      description:
+        "Open your notification settings on this iPhone to review device permission, enable notifications or remove this device. Navigation only: does not request permission, enroll or remove a token, save preferences, or confirm delivery. The member must open the card and explicitly use the native controls. Never change a partner's settings or claim notifications are enabled from this handoff.",
+      input: Schema.Struct({}),
+      execute: () =>
+        currentMember(request).pipe(
+          Effect.as({
+            kind: "device_handoff" as const,
+            screen: "notification-preferences" as const,
+          }),
+          Effect.provide(supabaseIdentity(config)),
+          Effect.mapError(failure),
+        ),
+    }),
     readSetupStatus: effectTool({
       description:
         "Read whether your own food and notification choices and shared household cooking preferences have been saved. These are configuration facts, not overall setup completion or evidence of iPhone permissions, push delivery or meal readiness. A failed read is unknown. Do not infer consent from missing setup. Every person may skip optional setup and return later.",
