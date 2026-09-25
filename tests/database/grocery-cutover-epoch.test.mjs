@@ -1,3 +1,4 @@
+import { assertPreparedCallerFenced } from "./offline-epoch-prepared-caller.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
@@ -16,7 +17,7 @@ const request = (value, epoch) => `select public.nest_check_grocery_at_epoch(
 const old = (operation) => `select public.nest_set_grocery_checked(
   '${id(10)}','${id(operation)}','${id(100)}',1,true)`;
 
-function fixture(t) {
+function fixture(t, adapter = true) {
   const db = startFixturePostgres();
   t.after(() => db.stop());
   db.file("tests/database/grocery-fixture.sql");
@@ -25,7 +26,7 @@ function fixture(t) {
     "20260919214311_native_grocery_check_receipts.sql",
     "20260925185000_native_household_write_barrier.sql",
     "20260925202107_native_offline_cutover_epoch.sql",
-    "20260925202540_native_grocery_epoch_command.sql",
+    ...(adapter ? ["20260925202540_native_grocery_epoch_command.sql"] : []),
   ])
     db.file(`supabase/migrations/${file}`);
   db.sql(`insert into public.grocery_items(id,household_id,name)
@@ -62,4 +63,15 @@ test("grocery cutover recovers committed receipts but fences unreceived old comm
       private.nest_set_grocery_checked_before_epoch('${id(10)}','${id(203)}','${id(100)}',1,true)`),
       /permission denied/,
     );
+});
+
+test("prepared grocery caller retains its OID and cannot bypass the installed epoch adapter", async (t) => {
+  const db = fixture(t, false);
+  await assertPreparedCallerFenced(db, {
+    signature: "private.nest_set_grocery_checked(uuid,uuid,uuid,bigint,boolean)",
+    statement: `select public.nest_set_grocery_checked('${id(10)}',$1,'${id(100)}',1,true)`,
+    migration: "20260925202540_native_grocery_epoch_command.sql",
+    ids: [id(300), id(301)],
+  });
+  assert.equal(db.sql("select count(*) from public.nest_grocery_check_receipts"), "1");
 });

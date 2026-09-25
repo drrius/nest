@@ -1,3 +1,4 @@
+import { assertPreparedCallerFenced } from "./offline-epoch-prepared-caller.mjs";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
@@ -6,14 +7,14 @@ const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const as = (sql, actor = 1) =>
   `set role authenticated; set request.jwt.claim.sub='${id(actor)}'; ${sql}`;
 
-function fixture(t) {
+function fixture(t, adapter = true) {
   const db = startFixturePostgres();
   t.after(() => db.stop());
   for (const file of completionClosureFiles) db.file(file);
   for (const file of [
     "20260925185000_native_household_write_barrier.sql",
     "20260925202107_native_offline_cutover_epoch.sql",
-    "20260925202807_native_chore_epoch_command.sql",
+    ...(adapter ? ["20260925202807_native_chore_epoch_command.sql"] : []),
   ])
     db.file(`supabase/migrations/${file}`);
   const definition = JSON.stringify({
@@ -65,4 +66,16 @@ test("chore cutover returns historical completion but rejects unreceived stale c
       ),
     /permission denied/,
   );
+});
+
+test("prepared chore caller retains its OID and cannot bypass the installed epoch adapter", async (t) => {
+  const { db, current } = fixture(t, false);
+  await assertPreparedCallerFenced(db, {
+    signature: "private.nest_complete_chore(uuid,uuid,date,date)",
+    statement: `select public.nest_complete_chore('${current.id}',$1,'${current.due_date}','${current.due_date}')`,
+    migration: "20260925202807_native_chore_epoch_command.sql",
+    ids: [id(300), id(301)],
+  });
+  assert.equal(db.sql("select count(*) from public.nest_chore_receipts"), "1");
+  assert.equal(db.sql("select count(*) from public.routine_completions"), "1");
 });

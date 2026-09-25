@@ -81,6 +81,7 @@ test("native grocery clients converge across lost receipts and restarted SQLite 
     remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
     "2",
   );
+  await run(flow.check(original, false, "50000000-0000-4000-8000-000000000006"));
   rotateAfterCommit(remote.db, original.offlineEpoch);
   const reopened = local.reopen();
   const next = await run(reopened.store.activate({ actor, household }, operation));
@@ -89,7 +90,7 @@ test("native grocery clients converge across lost receipts and restarted SQLite 
   await suspendAndRestore({ remote, flow, run, client, command: requests[0] });
   await run(flow.sync);
   assert.deepEqual(requests[0], requests[1]);
-  assert.equal((await run(flow.read)).pending.length, 0);
+  await verifyDependentCutover(flow, run, requests);
   const partnerReceipt = await currentPartnerCheck(other, run);
   assert.equal(partnerReceipt.outcome, "already_applied");
   assert.equal(partnerReceipt.version, "2");
@@ -202,8 +203,8 @@ test("native category labels survive SQLite restart and archived categories fall
 async function suspendAndRestore({ remote, flow, run, client, command }) {
   const signature = "public.nest_check_grocery_at_epoch(uuid,jsonb,uuid)";
   remote.db.sql(`revoke execute on function ${signature} from authenticated`);
-  await run(flow.sync);
-  assert.equal((await run(flow.read)).pending.length, 0);
+  await assert.rejects(run(flow.sync), { code: "unavailable" });
+  assert.equal((await run(flow.read)).pending.length, 1);
   await assert.rejects(run(client.check({ ...command, operationId: lease })), {
     code: "unavailable",
   });
@@ -308,4 +309,21 @@ function currentPartnerCheck(other, run) {
       }),
     ),
   );
+}
+
+async function verifyDependentCutover(flow, run, requests) {
+  const state = await run(flow.read);
+  assert.equal(state.pending.length, 1);
+  assert.equal(state.pending[0].reason, "cutover");
+  const dependent = requests.at(-1);
+  assert.equal(dependent.operationId, "50000000-0000-4000-8000-000000000006");
+  assert.equal(dependent.expectedVersion, "2", "receipt rebases only the expected item version");
+  assert.equal(dependent.offlineEpoch, requests[0].offlineEpoch);
+  assert.notEqual(state.groceries[0].offlineEpoch, dependent.offlineEpoch);
+  assert.equal(state.groceries[0].checked, true);
+  const count = requests.length;
+  await run(flow.sync);
+  assert.equal(requests.length, count, "cutover conflict is never automatically resent");
+  await run(flow.discard(state.pending[0].operation));
+  assert.equal((await run(flow.read)).pending.length, 0);
 }
