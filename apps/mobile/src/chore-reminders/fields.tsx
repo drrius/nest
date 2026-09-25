@@ -1,8 +1,9 @@
+import { ReminderNotificationSetup } from "../components/reminder-notification-setup";
 import { reminderRecipientLabel } from "../renewal-reminders/recipient-label";
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import { useColorScheme } from "react-native";
 import { useQuiet } from "../theme";
-import { Note, Section } from "../components/page";
+import { Section } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import type { NativeReminderFields } from "./use-fields";
 import type { ReminderEditorContext } from "./editor-context";
@@ -50,7 +51,7 @@ export function ReminderFieldsView({
           />
         ))}
       </Section>
-      <Note>Choose either person or both. Each recipient’s mute settings apply.</Note>
+      <ReminderNotificationSetup disabled={disabled} />
     </Section>
   );
 }
