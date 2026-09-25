@@ -18,6 +18,7 @@ export function freezeRecoveryFixture(db) {
             'public.nest_read_meal_proposal_origin(uuid,uuid)'::regprocedure,
             'public.nest_read_proposal_edit_snapshot(uuid,uuid)'::regprocedure,
             'public.nest_read_meal_reservation(uuid,uuid,jsonb)'::regprocedure,
+            'public.nest_read_receipt_uploads(uuid,uuid)'::regprocedure,
             'public.nest_money_balance(uuid)'::regprocedure,
             'public.nest_money_history(uuid,uuid)'::regprocedure,
             'public.nest_money_detail(uuid,uuid)'::regprocedure,

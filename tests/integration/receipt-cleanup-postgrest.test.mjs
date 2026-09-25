@@ -1,3 +1,7 @@
+import {
+  installFixtureWriteBarrier,
+  setFixtureWritesFrozen,
+} from "../../tools/migration/write-barrier-fixture.mjs";
 import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
 import { ReceiptRecoveryRuntime } from "../../apps/mobile/src/money/receipt-recovery-runtime.ts";
 import { receiptRecoveryOperations } from "../../apps/mobile/src/money/receipt-recovery-operations.ts";
@@ -84,6 +88,7 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
   assert.equal((await run(client.receiptUploads())).uploads[0].status, "deleting");
   assert.equal(f.db.sql("select count(*) from storage.objects"), "1");
   await verifyRecoveryRuntime(t, client, run);
+  await verifyFrozenRecovery(t, f, client, run);
   assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
 });
 
@@ -110,4 +115,44 @@ async function verifyRecoveryRuntime(t, client, run) {
   await runtime.refresh();
   assert.equal(runtime.getSnapshot().page.uploads[0].status, "deleting");
   runtime.dispose();
+}
+
+async function verifyFrozenRecovery(t, f, client, run) {
+  const pending = {
+    uploadId: id(102),
+    sha256: "b".repeat(64),
+    bytes: 64,
+    contentType: "image/jpeg",
+  };
+  f.db.sql(`set role authenticated; set request.jwt.claims='${JSON.stringify({ sub: id(1) })}';
+    select public.nest_reserve_receipt_upload('${id(10)}','${JSON.stringify(pending)}')`);
+  const snapshot = () =>
+    f.db.sql(`select jsonb_build_object(
+    'intents',(select jsonb_agg(to_jsonb(i) order by upload_id) from private.nest_receipt_upload_intents i),
+    'uploads',(select jsonb_agg(to_jsonb(u) order by path) from public.household_attachment_uploads u),
+    'objects',(select jsonb_agg(to_jsonb(o) order by id) from storage.objects o))`);
+  const before = snapshot(),
+    expected = await run(client.receiptUploads());
+  assert.deepEqual(
+    expected.uploads.map((row) => row.status),
+    ["deleting", "pending"],
+  );
+  installFixtureWriteBarrier(f.db);
+  setFixtureWritesFrozen(f.db, true);
+  f.db.sql(`revoke all on function public.nest_cleanup_receipt_upload(uuid,jsonb,boolean)
+    from public,anon,authenticated,service_role;`);
+  assert.deepEqual(await run(client.receiptUploads()), expected);
+  const read = (actor) =>
+    f.db.sql(`set role authenticated;
+    set request.jwt.claims='${JSON.stringify({ sub: actor })}';
+    select public.nest_read_receipt_uploads('${id(10)}',null)`);
+  assert.deepEqual(JSON.parse(read(id(2))).uploads, []);
+  assert.throws(() => read(id(3)), /authorized/);
+  for (const role of ["anon", "service_role"])
+    assert.throws(
+      () => f.db.sql(`set role ${role}; select public.nest_read_receipt_uploads('${id(10)}',null)`),
+      /permission denied/,
+    );
+  await verifyRecoveryRuntime(t, client, run);
+  assert.equal(snapshot(), before);
 }
