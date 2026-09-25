@@ -6,10 +6,10 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Current delivery state
 
-- Main: `a7231ce13ed8ef0d2fa5fc9a46584aabd89d1b50`, advanced after clean exact-commit Sol review and successful CI `36178100012`. Feature branch: `codex/native-acceptance-continuation`.
+- Main: `0b3ec9464c405958171498b2e338dd61b0153782`, advanced after clean exact-commit Sol review and successful CI `36178393036`. Feature branch: `codex/native-acceptance-continuation`.
 - Main includes account/notification assistant handoffs, settlement approval and direct-save recovery, the mobile CI selection guard, and the corrected meal-context privacy assertion. The failed substring assertion could match digits in an opaque hash; its replacement checks the decoded requester goal and exact profile field allowlist.
 - Receipt device handoffs `54566d2` are merged after clean exact Sol review and successful CI `36176773233`. Migration 195's owner-only barrier, its maintenance-error fix and financial-detail recovery are also on main. No hosted migration was applied.
-- Refund/correction approval recovery `cb37b93` is merged after clean exact review and successful CI `36177812713`. Initial recurring recovery `a7231ce` is also merged after successful CI `36178100012`; broader recurring and legacy successors remain candidates awaiting CI.
+- Refund/correction approval recovery `cb37b93` is merged after clean exact review and successful CI `36177812713`. Initial recurring recovery `a7231ce` is also merged after successful CI `36178100012`; all recurring variants `0b3ec94` merged after successful CI `36178393036`; legacy successors remain candidates awaiting CI.
 - The latest GitHub PR check found no open PRs. The owner authorized reviewed feature branches and fast-forward main without PRs. Exact-commit CI and clean Sol medium review still gate merging. No deployment follows a merge.
 - The continuation automation remains removed. No purchases, production migrations, scheduler activation, deployment, app retirement or release publication have occurred.
 
@@ -39,7 +39,7 @@ Refund/correction recovery `cb37b93` has clean exact Sol review, including 13 in
 
 Nine independent synthetic proposals cover consumed, denied and pending legacy draft confirmation, dismissal and rule adoption. Their exact owner envelopes survive the committed freeze; partner/outsider/anonymous/service-role reads are refused, as are all native decision/execution attempts. Full approval rows, legacy rules/drafts/adoption records, native recurring state and final all-household financial history remain unchanged through recovery. The complete 54/195 rehearsal passes with empty advisors (`/tmp/nest-legacy-save-recovery.json`); scoped lint/format pass. Direct legacy Save/Cancel coverage follows below; native restart, review context screens and external writer drainage remain separate. Exact review/CI are pending.
 
-Recurring variant commit `0b3ec94` has clean exact Sol review, including ten independently passing resume/manual-link tests; CI `36178393036` remains pending at this update.
+Recurring variant commit `0b3ec94` has clean exact Sol review, including ten independently passing resume/manual-link tests; CI `36178393036` passed and that commit is merged.
 
 ## Direct legacy Save/Cancel recovery — locally verified candidate
 
@@ -57,9 +57,13 @@ All 21 focused approval-card cases pass, including three consumed and three deni
 
 Three real native runtime/HTTP/PostgREST/SQLite journeys now cover adoption, confirmation and dismissal decisions staged locally but never received by the server. After freeze/restart, the exact decision remains durable, context failure is unavailable rather than an account-verification error, and refresh/retry cannot send without a fresh review. Restoring context permits an explicit retry; blocked decisions still preserve the attempt and pending server approval. Restoring decision execution alone sends nothing; the next explicit retry consumes once and clears SQLite. Later refresh/retry sends nothing. All three pass (`/tmp/nest-legacy-pending-freeze.log`); scoped lint/format pass. This is controlled local suspension/resumption, not a deployed cutover epoch, offline AI execution or physical-device acceptance. Exact review/CI are pending.
 
+## Current action source map — inspected
+
+Replaced superseded action-inventory snapshots with links from the approved action families to current native entries, actual registered read/write/handoff modules and representative verification sources. Instantiated `householdTools` with synthetic configuration without executing tools or network requests. The map preserves explicit native financial/meal/memory approval and honest device handoffs, distinguishes reserved vocabulary from real tool names, and does not infer acceptance from source existence. All local links resolve; formatting passes. Earlier notes remain pinned in Git history. Live model selection, actual navigation and each milestone exit remain open.
+
 ## Next work
 
-1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.
+1. Continue end-to-end acceptance against the current [action source map](native-rewrite/action-inventory.md). The registry/routing audit now links action families to native entries, registered tools/shared boundaries and representative tests; it does not establish live execution or device acceptance.
 2. Complete migration cutover/epoch handling and pending-command reconciliation; preserve new financial history during recovery. The bounded fixture below is not complete recovery.
 3. Configure an approved isolated backend/provider and run live integration once configuration is supplied.
 4. Execute real iPhone/two-member acceptance and a release-mode build, fix findings, then prepare a concrete release/cutover approval package.
@@ -81,7 +85,7 @@ Three real native runtime/HTTP/PostgREST/SQLite journeys now cover adoption, con
 
 | Area                          | Evidence                                                                                                                                                                                                                                                          | Remaining gap                                                                                                   |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Required CI                   | Main `a7231ce`: successful run `36178100012`, clean Sol review. Existing workflow checks format, lint, types, focused tests and database suite.                                                                                                                   | Later branch commits require their own passing CI.                                                              |
+| Required CI                   | Main `0b3ec94`: successful run `36178393036`, clean Sol review. Existing workflow checks format, lint, types, focused tests and database suite.                                                                                                                   | Later branch commits require their own passing CI.                                                              |
 | Mobile unit selection         | Expanded notification/push/reminder command: 47 cases; session/sign-out: 33 cases locally passed. Guard candidate checks every root mobile unit file is selected exactly once, including a negative omission probe.                                               | Nested HTTP integration tests are separate; selection does not prove runtime behavior.                          |
 | Account/notification handoffs | 18 focused cases passed at `d6e9144`; API/mobile types and scoped lint/format pass. Missing/revoked membership denied, only identity/member GETs, fixed successful destination required. Account settings reaches explicit native sign-out via Household account. | Live model selection, native navigation and device permissions unverified.                                      |
 | Setup entry                   | Meal setup: five lifecycle cases plus real HTTP/PostgREST journey. Reminder links: destination enrollment/client tests; Sol repeated 12 relevant cases.                                                                                                           | Actual navigation, form-return preservation, keyboard and accessibility unverified.                             |
