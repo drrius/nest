@@ -1,6 +1,6 @@
 # Nest progress
 
-Updated 23 September 2026. The approved [product brief](native-rewrite/product-and-design.md), [architecture](native-rewrite/architecture-audit.md) and [implementation plan](native-rewrite/implementation-plan.md) remain authoritative. Historical implementation notes are preserved in Git history; this checklist describes current status.
+Updated 25 September 2026. The approved [product brief](native-rewrite/product-and-design.md), [architecture](native-rewrite/architecture-audit.md) and [implementation plan](native-rewrite/implementation-plan.md) remain authoritative. Historical implementation notes are preserved in Git history; this checklist describes current status.
 
 **No milestone has met all exit criteria. No complete native vertical slice or device verification is claimed.** Foundations are merged and independently tested; integration is underway. All database execution so far uses disposable synthetic fixtures. No production data, migrations, purchases, deployments or releases have been performed.
 
@@ -16,7 +16,7 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 ### Writable views in fixture cutover — locally verified
 
-The disposable API fence now includes public legacy views alongside base and partitioned tables. A PostgreSQL regression first demonstrates an authenticated update through an owner-backed view without base-table grants, then verifies fenced INSERT/UPDATE/DELETE denial, retained SELECT and restored update access after rollback. Both focused API-fence tests pass. This closes the view omission in this rehearsal helper; procedures, non-public schemas, active transactions and hosted catalog differences remain separate audit work. No production grants changed. Review and exact-commit CI remain pending.
+The disposable API fence now includes public legacy views alongside base and partitioned tables. A PostgreSQL regression first demonstrates an authenticated update through an owner-backed view without base-table grants, then verifies fenced INSERT/UPDATE/DELETE denial, retained SELECT and restored update access after rollback. Both focused API-fence tests pass. The full disposable schema rehearsal also completed at `e3cfcdb` (`/tmp/nest-view-fence-rehearsal.json`): security advisors returned no findings, and committed financial history, member reads and receipt recovery survived the combined write restrictions and eight legacy job pauses. External requests remain undrained and complete recovery is explicitly false. This closes the view omission in this rehearsal helper; procedures, non-public schemas, active transactions and hosted catalog differences remain separate audit work. No production grants changed. Review and exact-commit CI remain pending.
 
 ### Expense restart recovery during write suspension — locally verified
 
