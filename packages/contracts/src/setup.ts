@@ -17,3 +17,7 @@ export const NotificationSetupHandoff = Schema.Struct({
   kind: Schema.Literal("device_handoff"),
   screen: Schema.Literal("notification-preferences"),
 });
+export const AccountSettingsHandoff = Schema.Struct({
+  kind: Schema.Literal("device_handoff"),
+  screen: Schema.Literal("settings"),
+});

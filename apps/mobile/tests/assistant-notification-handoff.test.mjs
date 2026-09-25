@@ -22,3 +22,23 @@ test("notification handoff only opens its fixed native destination after a succe
     assert.equal(actionResult({ ...part, output }), null);
   assert.equal(actionResult({ ...part, state: "input-available" }), null);
 });
+
+test("account handoff requires successful output and cannot select another destination", () => {
+  const part = {
+    type: "tool-openAccountSettings",
+    state: "output-available",
+    output: { ok: true, value: { kind: "device_handoff", screen: "settings" } },
+  };
+  assert.deepEqual(actionResult(part), {
+    label: "Review your account or sign out on your iPhone",
+    href: "/settings",
+  });
+  for (const output of [
+    null,
+    { ok: false, code: "forbidden" },
+    { ok: true, value: { kind: "device_handoff", screen: "notification-preferences" } },
+    { ok: true, value: { kind: "signed_out", screen: "settings" } },
+  ])
+    assert.equal(actionResult({ ...part, output }), null);
+  assert.equal(actionResult({ ...part, state: "input-available" }), null);
+});

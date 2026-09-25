@@ -9,6 +9,17 @@ const failure = (error: ApiFailure) =>
   new CommandFailure({ code: error.code === "unavailable" ? "unavailable" : "forbidden" });
 export function setupTools(request: Request, config: IdentityConfig) {
   return {
+    openAccountSettings: effectTool({
+      description:
+        "Open your native profile and account settings when you ask to review your account or sign out. Navigation only: does not sign out, remove credentials, change your identity or switch accounts. Open the card and use the explicit native controls. Sign-in requires the native Apple flow and cannot be completed by this assistant.",
+      input: Schema.Struct({}),
+      execute: () =>
+        currentMember(request).pipe(
+          Effect.as({ kind: "device_handoff" as const, screen: "settings" as const }),
+          Effect.provide(supabaseIdentity(config)),
+          Effect.mapError(failure),
+        ),
+    }),
     openNotificationSetup: effectTool({
       description:
         "Open your notification settings on this iPhone to review device permission, enable notifications or remove this device. Navigation only: does not request permission, enroll or remove a token, save preferences, or confirm delivery. The member must open the card and explicitly use the native controls. Never change a partner's settings or claim notifications are enabled from this handoff.",

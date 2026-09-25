@@ -22,7 +22,11 @@ import { RecipePlacementReceipt } from "@nest/contracts/recipe-selection";
 import { RecipeEditReceipt } from "@nest/contracts/recipe-edit";
 import { RecipeCreationReceipt } from "@nest/contracts/recipe-creation";
 import { MealMoveReceipt } from "@nest/contracts/meal-move";
-import { setupHandoff, notificationSetupHandoff } from "./setup-handoffs.ts";
+import {
+  setupHandoff,
+  notificationSetupHandoff,
+  accountSettingsHandoff,
+} from "./setup-handoffs.ts";
 import { CalendarSettingsHandoff } from "@nest/contracts/calendar";
 import * as Schema from "effect/Schema";
 import { MemoryApprovalEnvelope } from "@nest/contracts/memory";
@@ -153,6 +157,7 @@ const handoffs = {
   "tool-openCalendarSettings": calendarHandoff,
   "tool-openSetup": setupHandoff,
   "tool-openNotificationSetup": notificationSetupHandoff,
+  "tool-openAccountSettings": accountSettingsHandoff,
 };
 export function actionResult(part: { type: string; state?: unknown; output?: unknown }) {
   if (Object.hasOwn(handoffs, part.type)) return handoffs[part.type as keyof typeof handoffs](part);

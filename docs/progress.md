@@ -6,7 +6,11 @@ Updated 25 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**Current branch: `codex/native-acceptance-continuation`. Main: `159a3f1`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 194 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 194-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
+### Account settings assistant handoff — locally verified
+
+The authenticated `openAccountSettings` tool returns a fixed native settings destination without signing out or changing credentials. Native result parsing rejects failed, premature and wrong-destination outputs. Both account and notification handoffs reauthorize current membership and perform only identity/membership reads. Eighteen focused API/result/coverage cases pass, together with API/mobile typechecks and scoped lint/formatting. Exact-commit Sol review and CI are pending. No live model or iPhone execution is claimed.
+
+**Current branch: `codex/native-acceptance-continuation`. Main: `f660e84`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 194 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 194-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
 
 **Saved daily summary discovery is merged.** Its recipient-only database/API, native client, Today entry and assistant handoff passed local verification, exact CI and Sol review. Native interaction and hosted scheduling/delivery remain unverified. Current candidates address migration recovery and setup account recovery.
 
