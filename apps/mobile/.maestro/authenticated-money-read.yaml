@@ -1,0 +1,25 @@
+appId: ch.drrius.nest.dev
+---
+# Precondition: signed-in member, isolated fixture backend, Today tab visible.
+# EXPECTED_ENTRY and EXPECTED_AMOUNT_REGEX must describe a known first-page fixture entry.
+- assertVisible: "Me + shared · Show everyone"
+- tapOn: "Me + shared · Show everyone"
+- assertVisible: "Everyone · Show me + shared"
+- tapOn: "Everyone · Show me + shared"
+- tapOn:
+    text: "Money"
+    index: 0
+- extendedWaitUntil:
+    visible: "Loaded online.*"
+    timeout: 15000
+- scrollUntilVisible:
+    element:
+      text: "View ${EXPECTED_ENTRY}"
+    direction: DOWN
+- tapOn: "View ${EXPECTED_ENTRY}"
+- extendedWaitUntil:
+    visible: "How this affects your balance"
+    timeout: 15000
+- assertVisible: "${EXPECTED_ENTRY}"
+- assertVisible: "${EXPECTED_AMOUNT_REGEX}"
+- assertNotVisible: "Verify account"

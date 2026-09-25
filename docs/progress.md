@@ -14,6 +14,10 @@ Updated 25 September 2026. The approved [product brief](native-rewrite/product-a
 
 **CI workflow credential blocker:** the reviewed core integration CI proposal is preserved locally on `codex/core-integration-ci` (`b7ca460`). GitHub rejected its push because the current OAuth login lacks `workflow` scope. Existing remote CI remains unchanged; real HTTP/PostgREST integration evidence is local until this proposal can be published. Independent implementation continues. Source merges still require clean exact-commit Sol review and passing required CI; production and release approval remain separate.
 
+### Authenticated Money native smoke — prepared, not run
+
+Added `apps/mobile/.maestro/authenticated-money-read.yaml` for an already authenticated isolated household: toggle the Today filter, open Money, require an online read, and inspect a known fixture entry and expected amount. It creates no financial data and does not fake authentication. YAML parsing and formatting pass; labels were checked against actual native screen source. Maestro/device execution, selector behavior and native acceptance remain unverified. The runbook records fixture parameters and required source/build/device evidence. Exact-commit review and CI remain pending.
+
 ### Native runner availability rechecked — 25 September
 
 Read-only EAS availability from `apps/mobile` still reports `available: false` (current account `drrius-dev`); local `xcrun` and `maestro` are absent. No build/session was started. The native verification record now distinguishes current unavailable execution from the original preview and historical account evidence. Only the preview Maestro flow exists; authenticated native smoke coverage remains outstanding. CI run `36162939182` was confirmed live in its isolated PostgreSQL step, not failed or restarted.
