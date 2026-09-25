@@ -37,7 +37,7 @@ test("fixture freeze drains an open write transaction, then preserves reads and 
   await waitFor(db, "application_name='nest-barrier-writer' and wait_event='PgSleep'");
   const freezing = db.concurrent(`set application_name='nest-barrier-freezer';
     set lock_timeout='8s'; set statement_timeout='9s';
-    update private.nest_fixture_write_control set frozen=true where singleton;`);
+    update private.nest_household_write_control set frozen=true where singleton;`);
   await waitFor(db, "application_name='nest-barrier-freezer' and wait_event_type='Lock'");
   await Promise.all([writing, freezing]);
   for (const table of ["public.fixture_history", "private.fixture_receipts"]) {
@@ -48,10 +48,7 @@ test("fixture freeze drains an open write transaction, then preserves reads and 
       `delete from ${table}`,
       `truncate ${table}`,
     ])
-      assert.throws(
-        () => db.sql(`set role authenticated; ${sql}`),
-        /Fixture household writes suspended/,
-      );
+      assert.throws(() => db.sql(`set role authenticated; ${sql}`), /Household writes suspended/);
   }
   setFixtureWritesFrozen(db, false);
   db.sql("set role authenticated; insert into public.fixture_history values(2)");
@@ -62,15 +59,21 @@ test("API roles cannot change the freeze and missing control fails closed", (t) 
   const db = fixture(t);
   for (const role of ["anon", "authenticated", "service_role"])
     assert.throws(
-      () => db.sql(`set role ${role}; update private.nest_fixture_write_control set frozen=false`),
+      () =>
+        db.sql(`set role ${role}; update private.nest_household_write_control set frozen=false`),
       /permission denied/,
     );
-  db.sql("delete from private.nest_fixture_write_control");
+  for (const role of ["anon", "authenticated", "service_role"])
+    assert.throws(
+      () => db.sql(`set role ${role}; select private.nest_set_household_writes_frozen(true)`),
+      /permission denied/,
+    );
+  db.sql("delete from private.nest_household_write_control");
   assert.throws(
     () => db.sql("insert into public.fixture_history values(1)"),
-    /Fixture household writes suspended/,
+    /Household writes suspended/,
   );
-  assert.throws(() => setFixtureWritesFrozen(db, false), /Fixture write control missing/);
+  assert.throws(() => setFixtureWritesFrozen(db, false), /Household write control missing/);
 });
 
 for (const isolation of ["read committed", "repeatable read"]) {
@@ -91,9 +94,7 @@ for (const isolation of ["read committed", "repeatable read"]) {
     assert.equal(result.failed, true);
     assert.match(
       result.message,
-      isolation === "read committed"
-        ? /Fixture household writes suspended/
-        : /could not serialize access/,
+      isolation === "read committed" ? /Household writes suspended/ : /could not serialize access/,
     );
     assert.equal(db.sql("select count(*) from public.fixture_history"), "0");
   });
@@ -105,9 +106,9 @@ test("fixture coverage check rejects newly added tables and disabled guards", (t
   db.sql("create table public.late_table(id integer)");
   assert.throws(() => verifyFixtureWriteBarrier(db), /late_table/);
   db.sql(
-    "drop table public.late_table; alter table public.fixture_history disable trigger nest_fixture_write_barrier",
+    "drop table public.late_table; alter table public.fixture_history disable trigger nest_household_write_barrier",
   );
   assert.throws(() => verifyFixtureWriteBarrier(db), /fixture_history/);
-  db.sql("alter table public.fixture_history enable always trigger nest_fixture_write_barrier");
+  db.sql("alter table public.fixture_history enable always trigger nest_household_write_barrier");
   verifyFixtureWriteBarrier(db);
 });

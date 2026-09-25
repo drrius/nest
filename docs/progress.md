@@ -33,6 +33,14 @@ A fixture-only barrier covers existing ordinary/partitioned public/private table
 
 CI `36173113193` failed one existing meal-planning context test (1,176/1,177 passed): a substring privacy assertion can match digits in the opaque state hash. The test now strictly decodes the projection, checks the actual requester goal and exact member profile field allowlist instead of searching opaque hashes for calorie digits. All four focused context cases pass (`/tmp/nest-planning-context-ci-fix.log`); scoped lint/format pass. No privacy contract or implementation changed. Updated review/CI remain required; the failed commit has not merged.
 
+## Gated household write control — locally verified candidate
+
+Migration `20260925185000_native_household_write_barrier.sql` promotes the tested barrier into a default-open database control. Only the database owner can assert coverage or freeze/resume; API roles cannot change it. A frozen or missing control rejects protected writes while existing reads remain available. The fixture adapters now execute this exact migration rather than maintain a separate SQL implementation. All five focused database cases pass (`/tmp/nest-gated-barrier-tests.log`). The complete 54-legacy/195-native chain passes with exact history/recovery checks and empty security-advisor findings (`/tmp/nest-gated-barrier-rehearsal.json`); scoped lint/format pass. Updated review/CI are pending.
+
+This prepares code only. No hosted database was touched and no freeze/deployment was activated. The control covers current public/private tables; catalog validation rejects missing/disabled guards. Deployment must stop concurrent DDL and use one operator. Lock/statement/deadlock failures are failed activation, not acknowledgment. Auth/Storage, external HTTP/jobs, pending client reconciliation and cutover epoch remain separate. Complete recovery remains false. The earlier fixture-only section records the preceding experiment; this gated candidate supersedes its implementation, not its verification limits.
+
+The review finding about the stale global latest-report path is corrected above.
+
 ## Next work
 
 1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.
@@ -68,7 +76,7 @@ CI `36173113193` failed one existing meal-planning context test (1,176/1,177 pas
 
 The committed recovery fixture preserves direct expense, settlement, refund, correction, recurring configuration/state/variable-cycle receipts and pending/consumed expense approval reads. Original owners recover exact results; partner/outsider behavior is checked; new financial writes remain refused. Chore/grocery receipts and full routine/financial snapshots survive the freeze. Final financial comparison runs after recovery probes.
 
-Latest full fixture report: `/tmp/nest-settlement-approval-recovery.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
+Latest full fixture report: `/tmp/nest-gated-barrier-rehearsal.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
 
 `completeRecovery`, `externalRequestsDrained` and `ownerJobsStopped` remain false. Other financial approval kinds, legacy draft/adoption recovery, meal proposals, preferences/household commands, attachments and the cutover epoch require further reconciliation. Refusing writes and retaining receipts alone does not prove complete rollback.
 

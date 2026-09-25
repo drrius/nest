@@ -1,4 +1,3 @@
-import { installFixtureWriteBarrier } from "./write-barrier-fixture.mjs";
 import {
   seedSettlementApprovalRecovery,
   verifySettlementApprovalRecovery,
@@ -23,7 +22,6 @@ import {
 // Last fixture step: commit new history, then restrict APIs without restoring old data.
 // The caller owns a disposable cluster and destroys it after the report.
 export function verifyCommittedFinancialRecovery(db) {
-  installFixtureWriteBarrier(db);
   const offlineReceipts = seedOfflineReceipts(db);
   const original = captureRehearsal(db);
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
