@@ -1,3 +1,4 @@
+import { recoverCheck } from "./receipt-recovery.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import {
@@ -51,7 +52,7 @@ export function groceryCommands(config: IdentityConfig, caller: AuthorizedCaller
         const command = yield* decode(CheckGrocery, input, "invalid_request");
         const target = command.itemId.toLowerCase(),
           operation = command.operationId.toLowerCase();
-        const raw = yield* requestJson(
+        const attempt = yield* requestJson(
           config,
           caller.token,
           "rest/v1/rpc/nest_set_grocery_checked",
@@ -62,7 +63,16 @@ export function groceryCommands(config: IdentityConfig, caller: AuthorizedCaller
             p_expected: command.expectedVersion,
             p_checked: command.checked,
           },
-        );
+        ).pipe(Effect.result);
+        if (attempt._tag === "Failure") {
+          if (attempt.failure.code !== "unavailable") return yield* attempt.failure;
+          return yield* recoverCheck(config, caller, {
+            ...command,
+            itemId: target,
+            operationId: operation,
+          });
+        }
+        const raw = attempt.success;
         const receipt = yield* decode(GroceryCheckReceipt, raw, "unavailable");
         if (
           receipt.operation !== operation ||
