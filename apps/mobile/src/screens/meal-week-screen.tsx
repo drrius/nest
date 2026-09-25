@@ -16,6 +16,7 @@ import { MealWeekBoard, WeekNavigation } from "../meals/board";
 import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { SignInCard } from "../components/sign-in-card";
+import { MealSetupPrompt } from "../setup/meal-setup-prompt";
 import { space, useQuiet } from "../theme";
 export default function MealWeekScreen() {
   const params = useLocalSearchParams();
@@ -108,6 +109,7 @@ function WeekContent({
   return (
     <Page>
       <WeekLinks weekStart={view.weekStart} />
+      <MealSetupPrompt />
       <WeekNavigation
         weekStart={view.weekStart}
         select={(week) => {
