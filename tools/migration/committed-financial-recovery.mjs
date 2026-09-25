@@ -1,9 +1,10 @@
 import { seedOfflineReceipts, verifyFrozenOfflineReceipts } from "./offline-receipt-rehearsal.mjs";
-import { pauseLegacyJobsSql, assertLegacyJobsPausedSql } from "./legacy-job-pause-rehearsal.mjs";
+import { assertLegacyJobsPausedSql } from "./legacy-job-pause-rehearsal.mjs";
 import assert from "node:assert/strict";
 import { as, id, save } from "../../tests/database/native-expense-helpers.mjs";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
-import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
+import { freezeRecoveryFixture } from "./committed-recovery-freeze.mjs";
+import { seedApprovalRecovery, verifyApprovalRecovery } from "./approval-recovery-rehearsal.mjs";
 import { seedRecurringRecovery, verifyRecurringRecovery } from "./recurring-recovery-rehearsal.mjs";
 import {
   seedRecoveryAdjustments,
@@ -23,10 +24,11 @@ export function verifyCommittedFinancialRecovery(db) {
   const settlement = seedRecoverySettlement(db);
   const adjustments = seedRecoveryAdjustments(db);
   const recurring = seedRecurringRecovery(db);
+  const approvals = seedApprovalRecovery(db);
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 8,
+    original.financial.tables.financial_events.length + 9,
   );
   const reads = readFinancialState(db);
   for (const read of reads)
@@ -34,31 +36,7 @@ export function verifyCommittedFinancialRecovery(db) {
       read.history.events.some((event) => event.eventId === receipt.eventId),
       true,
     );
-  db.sql(`begin;
-    select private.nest_set_recurring_execution_paused(true);
-    ${pauseLegacyJobsSql()}
-    ${legacyApiFenceSql()}
-    do $freeze$ declare v_function record; v_role text; begin
-      for v_function in select oid,oid::regprocedure::text as signature from pg_proc
-        where pronamespace='public'::regnamespace and prokind='f'
-          and left(proname,5)='nest_' and oid not in (
-            'public.nest_money_balance(uuid)'::regprocedure,
-            'public.nest_money_history(uuid,uuid)'::regprocedure,
-            'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,
-            'public.nest_read_refund_save(uuid,uuid)'::regprocedure,
-            'public.nest_read_correction_save(uuid,uuid)'::regprocedure,
-            'public.nest_read_recurring_save(uuid,uuid)'::regprocedure,
-            'public.nest_read_recurring_state_save(uuid,uuid)'::regprocedure,
-            'public.nest_read_recurring_cycle_save(uuid,uuid)'::regprocedure,
-            'public.nest_read_expense_save(uuid,uuid)'::regprocedure) loop
-        execute format('revoke all on function %s from public,anon,authenticated,service_role',v_function.signature);
-        foreach v_role in array array['anon','authenticated','service_role'] loop
-          if has_function_privilege(v_role,v_function.oid,'EXECUTE') then
-            raise exception 'Native API remains callable: %',v_function.signature;
-          end if;
-        end loop;
-      end loop;
-    end $freeze$; commit;`);
+  freezeRecoveryFixture(db);
   db.sql(assertLegacyJobsPausedSql());
   assert.throws(
     () => db.sql(as(1, save(1701))),
@@ -71,6 +49,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
+    approvalRecovery: verifyApprovalRecovery(db, approvals),
     recurringRecovery: verifyRecurringRecovery(db, recurring),
     adjustmentRecovery: verifyRecoveryAdjustments(db, adjustments),
     settlementRecovery: verifyRecoverySettlement(db, settlement),
