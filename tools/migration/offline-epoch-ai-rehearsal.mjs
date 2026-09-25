@@ -1,9 +1,17 @@
+import assert from "node:assert/strict";
+import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
+import { pauseLegacyJobsSql, assertLegacyJobsPausedSql } from "./legacy-job-pause-rehearsal.mjs";
 import { id } from "../../tests/database/native-expense-helpers.mjs";
 
 // Only called by the disposable full-schema rehearsal. Every effect rolls back.
 export function verifyOfflineEpochAi(db) {
+  const controls = snapshot(db);
   db.sql(`begin;
+    select private.nest_set_recurring_execution_paused(true);
+    ${pauseLegacyJobsSql()}
+    ${assertLegacyJobsPausedSql()}
     select private.nest_set_household_writes_frozen(true);
+    ${legacyApiFenceSql()}
     select private.nest_rotate_offline_epoch();
     select private.nest_set_household_writes_frozen(false);
     set local role authenticated;
@@ -46,5 +54,28 @@ export function verifyOfflineEpochAi(db) {
       end if;
     end; $verify$;
     rollback;`);
-  return { postRotationChoreAndCheck: true, exactJournalReplay: true, fixtureRolledBack: true };
+  assert.equal(snapshot(db), controls, "Rehearsal rollback must restore controls and grants");
+  return {
+    postRotationChoreAndCheck: true,
+    exactJournalReplay: true,
+    knownLegacyJobsPaused: true,
+    legacyApiFenced: true,
+    fixtureRolledBack: true,
+    externalRequestsDrained: false,
+    completeCutover: false,
+  };
+}
+
+function snapshot(db) {
+  return db.sql(`select jsonb_build_object(
+    'writeControl',(select to_jsonb(c) from private.nest_household_write_control c),
+    'recurringControl',(select to_jsonb(c) from private.nest_recurring_execution_control c),
+    'jobControls',(select jsonb_agg(to_jsonb(c) order by job_kind) from private.nest_legacy_job_control c),
+    'functions',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',proacl) order by oid)
+      from pg_proc where pronamespace='public'::regnamespace),
+    'tables',(select jsonb_agg(jsonb_build_object('oid',oid,'acl',relacl) order by oid)
+      from pg_class where relnamespace='public'::regnamespace),
+    'columns',(select jsonb_agg(jsonb_build_object('table',attrelid,'number',attnum,'acl',attacl)
+      order by attrelid,attnum) from pg_attribute where attrelid in
+      (select oid from pg_class where relnamespace='public'::regnamespace)))`);
 }
