@@ -12,7 +12,7 @@ The strict run on 23 September 2026 applied 14 legacy migrations, then failed at
 
 For an explicitly partial schema diagnostic, append `--without-pg-net`. That option skips only the named migration after checking that its entire trimmed content is the expected extension declaration. Changed content fails closed. The report always identifies the skipped source/hash and simulated infrastructure. `complete` means that this diagnostic finished, not that migration or release acceptance is complete.
 
-The partial run applies **54 legacy migrations and all 193 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
+The partial run applies **54 legacy migrations and all 194 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
 
 ## Current populated coverage
 
@@ -57,7 +57,7 @@ Rollback restores all public function ACLs, native expense receipts, retained fi
 
 ## Broad API restriction experiment
 
-The disposable full-schema probe also runs the financial command/approval checks while revoking all API-role execution on non-native public functions and mutation grants on non-native public ordinary/partitioned tables. Effective inherited grants must be absent or the experiment fails. Function, table and column ACLs plus approvals and receipts are checked after rollback. This establishes expense compatibility only; it does not establish whole-app compatibility, cover views/procedures or other schemas, drain active transactions, stop owner-run jobs or authorize activation.
+The disposable full-schema probe also runs the financial command/approval checks while revoking all API-role execution on non-native public functions/procedures and mutation grants on non-native public ordinary/partitioned tables and views. Effective inherited grants must be absent or the experiment fails. Function, table and column ACLs plus approvals and receipts are checked after rollback. This establishes expense compatibility only; it does not establish whole-app compatibility, cover other schemas, drain active transactions, stop owner-run jobs or authorize activation.
 
 ## Native automatic posting pause
 
@@ -66,3 +66,18 @@ The additive recovery control exposes only the owner-callable private function `
 ## Scheduled writer audit
 
 [The scheduled writer audit](scheduled-writer-audit.md) identifies eight legacy source registrations, their effects and the evidence needed to retain, replace or stop each. This includes private Edge push invocation outside the public API fence. Source inventory does not establish live scheduler state or authorize changes.
+
+## Committed recovery coverage — 25 September 2026
+
+Unlike the rollback-only experiments above, the final fixture commits new records and then commits an API freeze. It preserves selected read-only recovery functions, pauses native automatic posting and eight known legacy job entry points, and checks retained history without restoring an older database image. `tools/migration/committed-recovery-freeze.mjs` is a helper for this caller-owned disposable fixture, not a production activation command.
+
+| Path                                              | Current local proof                                                                                                                                                                                                          | Still outside this proof                                                                                   |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| Chore and grocery checks                          | Original actor-only receipts survive; other actors cannot read them; new writes are refused; full routine history is retained. Separate real HTTP/SQLite tests recover lost responses under revoked mutation execution.      | Physical offline/restart and two-device journeys.                                                          |
+| Direct expense, settlement, refund and correction | Real committed financial commands; exact owner receipt recovery; partner/outsider protection; revoked new writes. All-household financial comparison runs after recovery probes.                                             | Actual hosted Auth/Storage, device recovery, all cancellation/command variants.                            |
+| Direct recurring setup, variable cycle and pause  | Real rule → due cycle → pause sequence, three exact private receipts, denied new saves/cancellations, complete rules/revisions/cycles retained.                                                                              | Fixed scheduler execution in the hosted environment, resume/manual-link variants and AI approval recovery. |
+| Expense approval                                  | One explicitly confirmed proposal retains its consumed receipt; one pending proposal remains pending with no receipt. Partner/outsider reads and pending confirmation/execution are refused. Approval rows remain unchanged. | Other financial approval kinds, real model streaming and native confirmation/recovery.                     |
+
+The secondary settlement/adjustment/recurring household has independent synthetic members and valid new-command amounts. The original retained-history stress household, including its deliberately oversized balance, is preserved unchanged. No production household is read or modified. The latest combined local report is `/tmp/nest-approval-recovery-rehearsal.json`; reports in `/tmp` are local evidence, not durable release artifacts. Exact review/CI/merge state is recorded separately in `docs/progress.md`.
+
+Completion still requires recovery or explicit reconciliation of every supported pending command, including other AI financial approvals, legacy draft/adoption flows, meal proposals, preference and household mutations, and attachment operations. It also requires a chosen cutover epoch, evidence that old clients cannot write through alternate paths, external-request drainage and actual scheduler state. Owner SQL, already dispatched HTTP and hosted infrastructure are not controlled by this fixture. `externalRequestsDrained`, `ownerJobsStopped` and `completeRecovery` deliberately remain false.

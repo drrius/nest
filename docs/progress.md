@@ -3519,3 +3519,7 @@ The final fixture now includes one explicitly confirmed expense proposal and one
 The full 54-legacy/194-native disposable rehearsal passes after extracting the freeze into a dedicated helper to enforce the 80-code-line function limit. Scoped lint/format pass. Report: `/tmp/nest-approval-recovery-rehearsal.json`. completeRecovery remains false; no production migration, grant or data change occurred. Exact CI/Sol review are pending.
 
 Main advanced to `f2e0869605766a1055aae32ed551d159e0d7e177` after clean exact Sol review and CI `36169274195` success, including all five reminder notification handoffs and the prepared native setup acceptance protocol. Recurring recovery `159a3f11e07e9a2d67968049003380599416b982` has clean Sol review and awaits CI.
+
+### Recovery coverage audit (25 September)
+
+The migration runbook now reflects 194 native migrations, public view/procedure fencing, and a bounded matrix for offline receipts, direct money, direct recurring and expense approval recovery. It explicitly lists remaining command families, epoch/drainage and hosted/device gates rather than presenting the fixture’s complete flag as acceptance. Docs formatting/diff checks pass; no application tests rerun for this documentation-only change. Expense approval recovery `f660e843d42d71762251cffa01ce85b7e7daa17b` has clean Sol review and awaits exact CI.
