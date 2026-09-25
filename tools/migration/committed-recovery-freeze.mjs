@@ -6,6 +6,10 @@ export function freezeRecoveryFixture(db) {
   db.sql(`begin;
     select private.nest_set_recurring_execution_paused(true);
     ${pauseLegacyJobsSql()}
+    do $control$ begin
+      update private.nest_fixture_write_control set frozen=true where singleton;
+      if not found then raise exception 'Fixture write control missing'; end if;
+    end; $control$;
     ${legacyApiFenceSql()}
     do $freeze$ declare v_function record; v_role text; begin
       for v_function in select oid,oid::regprocedure::text as signature from pg_proc

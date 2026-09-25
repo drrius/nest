@@ -27,6 +27,12 @@ Five HTTP/PostgREST/SQLite cases now cover consumed and denied approval restart,
 
 Settlement recovery through `849038b` has clean cumulative Sol review; the earlier stale report-path finding was corrected.
 
+## Fixture write barrier — locally verified
+
+A fixture-only barrier covers existing ordinary/partitioned public/private tables. Each write statement holds a shared control-row lock until transaction end; freeze updates wait for those writers before commit. Four focused PostgreSQL cases verify actual lock waiting, retained reads, denied insert/update/delete/truncate, API-role control denial, missing-control refusal and pre-existing read-committed/repeatable-read transactions refusing later writes. The complete 54-legacy/194-native recovery rehearsal passes with this barrier installed before new records and frozen alongside API/job restrictions. Reports: `/tmp/nest-write-barrier-tests.log` and `/tmp/nest-write-barrier-rehearsal.json`. This is not a production migration or activation tool; future DDL, Auth/Storage, external requests and deliberate owner bypass remain outside it. Complete recovery remains false. Review/CI are pending.
+
+CI `36173113193` failed one existing meal-planning context test (1,176/1,177 passed): a substring privacy assertion can match digits in the opaque state hash. A structural privacy assertion correction is underway; this failed commit has not merged.
+
 ## Next work
 
 1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.
