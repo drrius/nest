@@ -4,6 +4,7 @@ import assert from "node:assert/strict";
 import { as, id, save } from "../../tests/database/native-expense-helpers.mjs";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
 import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
+import { seedRecurringRecovery, verifyRecurringRecovery } from "./recurring-recovery-rehearsal.mjs";
 import {
   seedRecoveryAdjustments,
   verifyRecoveryAdjustments,
@@ -21,10 +22,11 @@ export function verifyCommittedFinancialRecovery(db) {
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
   const settlement = seedRecoverySettlement(db);
   const adjustments = seedRecoveryAdjustments(db);
+  const recurring = seedRecurringRecovery(db);
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 7,
+    original.financial.tables.financial_events.length + 8,
   );
   const reads = readFinancialState(db);
   for (const read of reads)
@@ -45,6 +47,9 @@ export function verifyCommittedFinancialRecovery(db) {
             'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,
             'public.nest_read_refund_save(uuid,uuid)'::regprocedure,
             'public.nest_read_correction_save(uuid,uuid)'::regprocedure,
+            'public.nest_read_recurring_save(uuid,uuid)'::regprocedure,
+            'public.nest_read_recurring_state_save(uuid,uuid)'::regprocedure,
+            'public.nest_read_recurring_cycle_save(uuid,uuid)'::regprocedure,
             'public.nest_read_expense_save(uuid,uuid)'::regprocedure) loop
         execute format('revoke all on function %s from public,anon,authenticated,service_role',v_function.signature);
         foreach v_role in array array['anon','authenticated','service_role'] loop
@@ -66,6 +71,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
+    recurringRecovery: verifyRecurringRecovery(db, recurring),
     adjustmentRecovery: verifyRecoveryAdjustments(db, adjustments),
     settlementRecovery: verifyRecoverySettlement(db, settlement),
     offlineReceiptRecovery: verifyFrozenOfflineReceipts(db, offlineReceipts),

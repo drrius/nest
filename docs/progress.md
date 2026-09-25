@@ -6,7 +6,7 @@ Updated 25 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**Current branch: `codex/native-acceptance-continuation`. Main: `a182246`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 194 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 194-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
+**Current branch: `codex/native-acceptance-continuation`. Main: `1493fb5`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 194 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 194-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
 
 **Saved daily summary discovery is merged.** Its recipient-only database/API, native client, Today entry and assistant handoff passed local verification, exact CI and Sol review. Native interaction and hosted scheduling/delivery remain unverified. Current candidates address migration recovery and setup account recovery.
 
@@ -3503,3 +3503,11 @@ The committed freeze now also preserves the audited, actor-scoped refund and cor
 The full 54-legacy/194-native disposable rehearsal passes with all existing expense, settlement and offline recovery cases; local security advisors report no findings. Report: `/tmp/nest-adjustment-recovery-rehearsal.json`. Scoped lint/format pass. Exact CI/Sol review are pending. This remains fixture tooling: no production grants/data were changed, and recurring/other pending-command recovery, external drainage and device acceptance remain open. completeRecovery is still false.
 
 Main advanced to `a182246d97dc8474321c236614c46f955d785eed` after clean Sol review and successful exact CI `36167988728`. Settlement recovery candidate `eddb0c6db2416cccc84ae1d0101b2d3f8a734f76` has clean Sol review; its CI is pending.
+
+### Recurring receipt recovery — candidate (25 September)
+
+The final fixture now creates a variable recurring rule, explicitly records its due cycle and pauses it through the real direct commands. The committed freeze preserves only their three audited Save readers. Owner receipts remain exact; partners receive unresolved/null; outsiders are denied; Save and cancellation entry points remain revoked. Full recurring rules/revisions/cycles match the pre-freeze snapshot, and final all-household financial reconciliation includes the new variable-cycle expense after all recovery probes. No new automatic mandate is introduced by recovery reads.
+
+The full 54-legacy/194-native disposable rehearsal and scoped lint/format pass. Report: `/tmp/nest-recurring-recovery-rehearsal.json`. These checks cover direct setup, variable-cycle and pause receipts, not every command variant or AI-approved recovery. External job drainage, hosted execution and native acceptance remain unverified; completeRecovery stays false. Exact CI/Sol review are pending. No production data, grants or scheduler state were changed.
+
+Main is `1493fb5b2db15c8fe6ac64145297641c10d1cffc`, including progressive meal setup after clean Sol review and successful CI `36168640685`. Older run `36167776340` failed in both pause lock tests; those exact timeout limits were corrected in merged `a182246`, whose CI `36167988728` passed. Refund/correction recovery commit `5905812fddc313830f5f285897d4dfc16318a50f` has clean Sol review and awaits CI.
