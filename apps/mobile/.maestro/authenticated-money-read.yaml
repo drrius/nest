@@ -20,6 +20,10 @@ appId: ch.drrius.nest.dev
 - extendedWaitUntil:
     visible: "How this affects your balance"
     timeout: 15000
+- extendedWaitUntil:
+    visible: "Loaded online.*"
+    timeout: 15000
+- assertNotVisible: "Previously loaded.*"
 - assertVisible: "${EXPECTED_ENTRY}"
 - assertVisible: "${EXPECTED_AMOUNT_REGEX}"
 - assertNotVisible: "Verify account"
