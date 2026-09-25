@@ -2,10 +2,11 @@
 // Owner jobs, in-flight work and non-public schemas need separate auditing.
 export function legacyApiFenceSql() {
   return `do $fence$ declare v_object record; v_columns text; v_role text; begin
-    for v_object in select p.oid, p.oid::regprocedure::text as signature
+    for v_object in select p.oid, p.oid::regprocedure::text as signature,
+      case p.prokind when 'p' then 'procedure' else 'function' end as kind
       from pg_proc p where p.pronamespace='public'::regnamespace
-        and p.prokind='f' and left(p.proname,5)<>'nest_' loop
-      execute format('revoke all on function %s from public,anon,authenticated,service_role',v_object.signature);
+        and p.prokind in ('f','p') and left(p.proname,5)<>'nest_' loop
+      execute format('revoke all on %s %s from public,anon,authenticated,service_role',v_object.kind,v_object.signature);
       foreach v_role in array array['anon','authenticated','service_role'] loop
         if has_function_privilege(v_role,v_object.oid,'EXECUTE') then
           raise exception 'Legacy function still executable: % by %',v_object.signature,v_role;

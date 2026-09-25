@@ -14,6 +14,10 @@ Updated 25 September 2026. The approved [product brief](native-rewrite/product-a
 
 **CI workflow credential blocker:** the reviewed core integration CI proposal is preserved locally on `codex/core-integration-ci` (`b7ca460`). GitHub rejected its push because the current OAuth login lacks `workflow` scope. Existing remote CI remains unchanged; real HTTP/PostgREST integration evidence is local until this proposal can be published. Independent implementation continues. Source merges still require clean exact-commit Sol review and passing required CI; production and release approval remain separate.
 
+### Procedure cutover coverage — locally verified
+
+The disposable legacy API fence now revokes public legacy procedure execution as well as function execution, using the correct SQL object kind. A real PostgreSQL test demonstrates an owner-privileged procedure posting a row, refusal to proceed while inherited execution survives, denied CALL after direct grants are fenced, unchanged rows during restriction and restored execution after rollback. Three fence tests pass. This is local fixture coverage, not evidence of hosted procedures or in-flight transaction drainage. Exact-commit CI and Sol review remain pending.
+
 ### Writer inventory view coverage — locally verified
 
 The read-only catalog report now includes public legacy views in its existing `legacyWritableTables` collection. A real PostgreSQL test proves an inherited column-only grant permits a view update without base-table access, reports that view, excludes a SELECT-only view, and removes it after grant revocation. Four focused inventory/fence tests pass. The report remains a conservative privilege inventory, not proof that every granted operation can execute or that cutover is complete. Review and exact-commit CI remain pending.

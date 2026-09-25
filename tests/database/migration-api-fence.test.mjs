@@ -76,3 +76,36 @@ test("API fence blocks owner-backed writable views while preserving reads and ro
   db.sql("set role authenticated; update public.legacy_edit set id=5;");
   assert.equal(db.sql("select id from public.legacy_source"), "5");
 });
+
+test("API fence blocks legacy procedure calls and refuses surviving inherited execution", (t) => {
+  const db = startFixturePostgres();
+  t.after(() => db.stop());
+  db.sql(`create role anon; create role authenticated; create role service_role;
+    create role procedure_caller; grant procedure_caller to authenticated;
+    create table public.procedure_result(id int);
+    create procedure public.legacy_post() language sql security definer
+      set search_path='' as $$insert into public.procedure_result values(1)$$;
+    revoke all on procedure public.legacy_post() from public;
+    grant execute on procedure public.legacy_post() to procedure_caller;
+    set role authenticated; call public.legacy_post(); reset role;`);
+  assert.equal(db.sql("select count(*) from public.procedure_result"), "1");
+  assert.throws(
+    () => db.sql(`begin; ${legacyApiFenceSql()} rollback;`),
+    /Legacy function still executable/,
+  );
+  db.sql(`revoke execute on procedure public.legacy_post() from procedure_caller;
+    grant execute on procedure public.legacy_post() to authenticated;`);
+  assert.equal(
+    db.sql(`begin; ${legacyApiFenceSql()}
+    set local role authenticated;
+    do $probe$ begin
+      begin call public.legacy_post(); raise exception 'Procedure fence bypassed';
+      exception when insufficient_privilege then null; end;
+    end $probe$;
+    reset role;
+    select count(*) from public.procedure_result; rollback;`),
+    "1",
+  );
+  db.sql("set role authenticated; call public.legacy_post();");
+  assert.equal(db.sql("select count(*) from public.procedure_result"), "2");
+});
