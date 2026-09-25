@@ -75,11 +75,20 @@ const server = createServer(async (request, response) => {
   return response.end(JSON.stringify(receipt));
 });
 before(async () => {
-  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  await new Promise((resolve, reject) => {
+    server.once("error", reject);
+    server.listen(0, "127.0.0.1", resolve);
+  });
   origin = `http://127.0.0.1:${server.address().port}`;
   handler = createHandler({ url: origin, publishableKey: "sb_publishable_fixture" });
 });
-after(() => new Promise((resolve) => server.close(resolve)));
+after(
+  () =>
+    new Promise((resolve) => {
+      server.closeAllConnections();
+      server.close(resolve);
+    }),
+);
 function read(token = "member") {
   return handler(
     new Request("http://localhost/v1/chores?householdId=" + other, {
