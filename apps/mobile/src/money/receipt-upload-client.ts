@@ -45,7 +45,7 @@ export function receiptUploadClient(
   credentials: Effect.Effect<Credentials, ChoreFailure>,
 ) {
   const session = credentials.pipe(
-    Effect.mapError((error) => failure(error.code)),
+    Effect.mapError((error) => failure(error.code === "cutover" ? "unavailable" : error.code)),
     Effect.flatMap((value) =>
       value.user.id === account.actor ? Effect.succeed(value) : Effect.fail(failure("session")),
     ),

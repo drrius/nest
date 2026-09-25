@@ -17,6 +17,7 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
     "tests/integration/chore-postgrest.sql",
     "tests/integration/chore-transfer-adapter.sql",
     "supabase/migrations/20260919205503_native_chore_receipts.sql",
+    "tests/integration/chore-epoch-adapter.sql",
   ]);
   const local = await sqliteFixture(t);
   const session = await Effect.runPromise(local.store.activate({ actor, household }, lease));
@@ -64,6 +65,7 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
   await assert.rejects(run(flow.sync), { code: "unavailable" });
   assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
   assert.equal((await run(flow.read)).pending.length, 1);
+  rotateAfterCommit(remote.db, commands[0].offlineEpoch);
   const restarted = local.reopen();
   const next = await run(restarted.store.activate({ actor, household }, operation));
   flow = choreFlow(restarted.store, next, client);
@@ -88,7 +90,7 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
 });
 
 async function suspendAndRestore({ remote, flow, run, client, command }) {
-  const signature = "public.nest_complete_chore(uuid,uuid,date,date)";
+  const signature = "public.nest_complete_chore_at_epoch(jsonb,uuid)";
   remote.db.sql(`revoke execute on function ${signature} from authenticated`);
   await run(flow.sync);
   assert.equal((await run(flow.read)).pending.length, 0);
@@ -103,8 +105,6 @@ async function suspendAndRestore({ remote, flow, run, client, command }) {
 }
 
 async function assertFrozenChore(db, flow, run) {
-  db.sql("create role service_role nologin bypassrls");
-  db.file("supabase/migrations/20260925185000_native_household_write_barrier.sql");
   db.sql("select private.nest_set_household_writes_frozen(true)");
   await assert.rejects(run(flow.sync), { code: "unavailable" });
   const pending = (await run(flow.read)).pending;
@@ -115,3 +115,76 @@ async function assertFrozenChore(db, flow, run) {
   assert.equal(db.sql("select count(*) from private.fixture_closure_calls"), "0");
   db.sql("select private.nest_set_household_writes_frozen(false)");
 }
+
+function rotateAfterCommit(db, prior) {
+  db.sql(`begin; select private.nest_set_household_writes_frozen(true);
+    select private.nest_rotate_offline_epoch();
+    select private.nest_set_household_writes_frozen(false); commit;`);
+  assert.notEqual(prior, db.sql("select offline_epoch from private.nest_household_write_control"));
+}
+
+test("unreceived chore intent becomes a retained cutover conflict after rotation and restart", async (t) => {
+  const remote = await postgrestFixture(t, [
+    "tests/database/legacy-chore-fixture.sql",
+    "tests/integration/chore-postgrest.sql",
+    "tests/integration/chore-transfer-adapter.sql",
+    "supabase/migrations/20260919205503_native_chore_receipts.sql",
+    "tests/integration/chore-epoch-adapter.sql",
+  ]);
+  const local = await sqliteFixture(t);
+  const server = nodeServer(
+    createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" }),
+  );
+  await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
+  t.after(
+    () =>
+      new Promise((resolve) => {
+        server.closeAllConnections();
+        server.close(resolve);
+      }),
+  );
+  const client = choreClient(
+    `http://127.0.0.1:${server.address().port}/`,
+    { actor, household },
+    Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
+  );
+  let sends = 0;
+  const tracked = {
+    ...client,
+    complete: (command) => {
+      sends++;
+      return client.complete(command);
+    },
+  };
+  const run = Effect.runPromise;
+  const session = await run(local.store.activate({ actor, household }, lease));
+  let flow = choreFlow(local.store, session, tracked);
+  await run(flow.sync);
+  const chore = (await run(flow.read)).chores[0];
+  await run(flow.complete(chore, operation, "2026-09-19"));
+  rotateAfterCommit(remote.db, chore.offlineEpoch);
+  const reopened = local.reopen();
+  const next = await run(reopened.store.activate({ actor, household }, operation));
+  flow = choreFlow(reopened.store, next, tracked);
+  await run(flow.sync);
+  const pending = (await run(flow.read)).pending[0];
+  assert.equal(pending.operation, operation);
+  assert.equal(pending.status, "conflict");
+  assert.equal(pending.reason, "cutover");
+  assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "0");
+  assert.equal(remote.db.sql("select count(*) from public.nest_chore_receipts"), "0");
+  await run(flow.sync);
+  assert.equal(sends, 1);
+  await run(flow.discard(operation));
+  const fresh = (await run(flow.read)).chores.find(
+    (row) => row.occurrenceId === chore.occurrenceId,
+  );
+  assert.notEqual(fresh.offlineEpoch, chore.offlineEpoch);
+  await run(flow.complete(fresh, lease, "2026-09-19"));
+  await run(flow.sync);
+  await run(flow.sync);
+  assert.equal(sends, 2);
+  assert.equal((await run(flow.read)).pending.length, 0);
+  assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
+  assert.equal(remote.db.sql("select count(*) from public.nest_chore_receipts"), "1");
+});

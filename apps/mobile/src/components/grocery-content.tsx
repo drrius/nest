@@ -25,7 +25,9 @@ export function GroceryConflicts({
           <Note>
             {view.data?.groceries.find((item) => item.itemId === operation.target)?.name ??
               "A saved grocery"}{" "}
-            changed before your check could be saved. Review the current item before retrying.
+            {operation.reason === "cutover"
+              ? "was saved on this phone before a service update. Review the current item before checking it again."
+              : "changed before your check could be saved. Review the current item before retrying."}
           </Note>
           <NativeAction
             label="Keep current item"

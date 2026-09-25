@@ -3,6 +3,7 @@ import { after, test } from "node:test";
 import { setTimeout } from "node:timers/promises";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
 import { choreTransferFiles } from "./chore-transfer-files.mjs";
+import { assertEpochSnapshotRace } from "./offline-epoch-snapshot-race.mjs";
 const db = startFixturePostgres();
 after(() => db.stop());
 for (const file of choreTransferFiles) db.file(file);
@@ -83,3 +84,18 @@ async function waitFor(application, event) {
   }
   assert.fail(`Missing barrier ${application}/${event}`);
 }
+
+test("chore data and epoch share the original snapshot across committed rotation", async () => {
+  for (const file of [
+    "20260925185000_native_household_write_barrier.sql",
+    "20260925202107_native_offline_cutover_epoch.sql",
+    "20260925204211_native_chore_epoch_snapshot.sql",
+  ])
+    db.file(`supabase/migrations/${file}`);
+  const { after } = await assertEpochSnapshotRace(
+    db,
+    as(`select public.nest_chore_epoch_snapshot('${id(10)}')`),
+    `update public.routines set title='After epoch rotation' where id='${created.routineId}'`,
+  );
+  assert.equal(after.chores[0].title, "After epoch rotation");
+});

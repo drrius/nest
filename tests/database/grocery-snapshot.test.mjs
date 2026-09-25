@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
+import { assertEpochSnapshotRace } from "./offline-epoch-snapshot-race.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const files = [
   "tests/database/grocery-edit-fixture.sql",
@@ -94,4 +95,20 @@ test("unsupported legacy source dates do not invalidate an otherwise readable gr
     f.db.sql(`update public.meal_plan_entries set date='${date}' where id='${id(100)}'`);
     assert.equal(f.read().items[0].mealSource.date, date);
   }
+});
+
+test("grocery data and epoch share the original snapshot across committed rotation", async (t) => {
+  const { db } = fixture(t);
+  for (const file of [
+    "20260925185000_native_household_write_barrier.sql",
+    "20260925202107_native_offline_cutover_epoch.sql",
+    "20260925203217_native_offline_epoch_snapshots.sql",
+  ])
+    db.file(`supabase/migrations/${file}`);
+  const { after } = await assertEpochSnapshotRace(
+    db,
+    `set role authenticated; set request.jwt.claim.sub='${id(1)}';select public.nest_grocery_epoch_snapshot('${id(10)}')`,
+    `update public.grocery_items set name='After epoch rotation' where id='${id(200)}'`,
+  );
+  assert.equal(after.items[0].name, "After epoch rotation");
 });

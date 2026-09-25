@@ -47,6 +47,9 @@ export const initialize = (database: Database) =>
       actor TEXT NOT NULL, household TEXT NOT NULL, target TEXT NOT NULL,
       title TEXT NOT NULL, due_date TEXT NOT NULL, assignee TEXT,
       PRIMARY KEY(actor, household, target))`);
+    const choreColumns = await tx.all<{ name: string }>("PRAGMA table_info(offline_chores)");
+    if (!choreColumns.some((column) => column.name === "offline_epoch"))
+      await tx.run("ALTER TABLE offline_chores ADD COLUMN offline_epoch TEXT");
     await tx.run(`CREATE TABLE IF NOT EXISTS offline_chore_sync (
       actor TEXT NOT NULL, household TEXT NOT NULL, loaded INTEGER NOT NULL,
       PRIMARY KEY(actor, household))`);

@@ -21,12 +21,13 @@ export function saveChores(
     );
     await saveTransfers(tx, session, transfers);
     for (const chore of chores) {
-      await tx.run("INSERT INTO offline_chores VALUES (?, ?, ?, ?, ?, ?)", [
+      await tx.run("INSERT INTO offline_chores VALUES (?, ?, ?, ?, ?, ?, ?)", [
         ...scope(session),
         chore.occurrenceId,
         chore.title,
         chore.dueDate,
         chore.assigneeId,
+        chore.offlineEpoch ?? null,
       ]);
       await tx.run("INSERT INTO offline_items VALUES (?, ?, 'chore.complete', ?, ?, 0)", [
         ...scope(session),
@@ -42,8 +43,8 @@ export function saveChores(
 }
 export function readChores(database: Database, session: Session) {
   return scoped(database, session, async (tx) => {
-    const chores = await tx.all<Chore>(
-      `SELECT target AS occurrenceId, title, due_date AS dueDate, assignee AS assigneeId
+    const chores = await tx.all<Omit<Chore, "offlineEpoch"> & { offlineEpoch: string | null }>(
+      `SELECT target AS occurrenceId, title, due_date AS dueDate, assignee AS assigneeId, offline_epoch AS offlineEpoch
       FROM offline_chores WHERE actor = ? AND household = ? ORDER BY due_date, target`,
       scope(session),
     );
@@ -63,8 +64,9 @@ export function readChores(database: Database, session: Session) {
     return {
       transfers,
       loaded: loaded.length === 1,
-      chores: chores.map((chore) => ({
+      chores: chores.map(({ offlineEpoch, ...chore }) => ({
         ...chore,
+        ...(offlineEpoch ? { offlineEpoch } : {}),
         done:
           completed.some((row) => row.target === chore.occurrenceId) ||
           pending.some((row) => row.target === chore.occurrenceId && row.status === "pending"),

@@ -1,3 +1,4 @@
+import { groceryEpochFiles } from "./offline-epoch-files.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
@@ -90,5 +91,6 @@ function groceryFixture(t) {
     "tests/integration/grocery-postgrest.sql",
     "tests/database/grocery-meal-source-fixture.sql",
     "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
+    ...groceryEpochFiles,
   ]);
 }

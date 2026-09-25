@@ -69,53 +69,58 @@ test("a lost acknowledgment survives restart and replays the original command on
   };
   let flow = choreFlow(f.store, f.session, remote);
   await run(flow.sync);
-  await run(flow.complete(chore, operation, "2026-09-20"));
+  const captured = { ...chore, offlineEpoch: operation2 };
+  await run(f.store.saveChores(f.session, [captured]));
+  await run(flow.complete(captured, operation, "2026-09-20"));
   await assert.rejects(run(flow.sync), { code: "unavailable" });
   const wire = (await run(f.store.read(f.session))).pending[0].wire;
   assert.ok(wire);
   const restarted = f.reopen();
   const session = await run(restarted.store.activate(account, operation2));
+  await run(restarted.store.saveChores(session, [{ ...chore, offlineEpoch: operation }]));
   lose = false;
   flow = choreFlow(restarted.store, session, remote);
   assert.equal((await run(flow.read)).chores[0].pending, true);
   await run(flow.sync);
   assert.deepEqual(calls[0], calls[1]);
+  assert.equal(calls[1].offlineEpoch, operation2);
   assert.equal(receipts.size, 1);
   assert.equal((await run(flow.read)).pending.length, 0);
 });
 
-test("conflicts remain visible until explicitly discarded, then a new completion uses the new date", async (t) => {
-  const { store, session } = await fixture(t);
-  let conflict = true;
-  const calls = [];
-  const remote = {
-    snapshot: fixtureChoreSnapshot,
-    listTransfers: () => Effect.succeed(emptyTransfers),
-    list: () => Effect.succeed([{ ...chore, dueDate: "2026-09-21" }]),
-    complete: (command) => {
-      calls.push(command);
-      return conflict
-        ? Effect.fail(new ChoreFailure({ code: "conflict" }))
-        : client().complete(command);
-    },
-  };
-  await run(store.saveChores(session, [chore]));
-  const flow = choreFlow(store, session, remote);
-  await run(flow.complete(chore, operation, "2026-09-20"));
-  await run(flow.sync);
-  let data = await run(flow.read);
-  assert.equal(data.pending[0].status, "conflict");
-  assert.equal(data.chores[0].done, false);
-  await run(flow.sync);
-  assert.equal(calls.length, 1);
-  await run(flow.discard(operation));
-  conflict = false;
-  data = await run(flow.read);
-  await run(flow.complete(data.chores[0], operation2, "2026-09-21"));
-  await run(flow.sync);
-  assert.equal(calls[1].expectedDueDate, "2026-09-21");
-  assert.notEqual(calls[0].operationId, calls[1].operationId);
-});
+for (const code of ["conflict", "cutover"]) {
+  test(`conflicts remain visible until explicitly discarded, then a new completion uses the new date (${code})`, async (t) => {
+    const { store, session } = await fixture(t);
+    let conflict = true;
+    const calls = [];
+    const remote = {
+      snapshot: fixtureChoreSnapshot,
+      listTransfers: () => Effect.succeed(emptyTransfers),
+      list: () => Effect.succeed([{ ...chore, dueDate: "2026-09-21" }]),
+      complete: (command) => {
+        calls.push(command);
+        return conflict ? Effect.fail(new ChoreFailure({ code })) : client().complete(command);
+      },
+    };
+    await run(store.saveChores(session, [chore]));
+    const flow = choreFlow(store, session, remote);
+    await run(flow.complete(chore, operation, "2026-09-20"));
+    await run(flow.sync);
+    let data = await run(flow.read);
+    assert.equal(data.pending[0].status, "conflict");
+    assert.equal(data.pending[0].reason, code === "cutover" ? "cutover" : "changed");
+    assert.equal(data.chores[0].done, false);
+    await run(flow.sync);
+    assert.equal(calls.length, 1);
+    await run(flow.discard(operation));
+    conflict = false;
+    data = await run(flow.read);
+    await run(flow.complete(data.chores[0], operation2, "2026-09-21"));
+    await run(flow.sync);
+    assert.equal(calls[1].expectedDueDate, "2026-09-21");
+    assert.notEqual(calls[0].operationId, calls[1].operationId);
+  });
+}
 
 test("an uncertain pending mutation cannot be discarded as a rejected conflict", async (t) => {
   const { store, session } = await fixture(t);
@@ -214,4 +219,25 @@ test("disposing the native controller cancels an in-flight read without publishi
   await pending;
   assert.equal(views.length, count);
   assert.equal((await run(store.readChores(session))).loaded, false);
+});
+
+test("upgrading an epochless chore cache preserves pending intent without assigning a new epoch", async (t) => {
+  const f = await fixture(t);
+  await run(f.store.saveChores(f.session, [chore]));
+  const flow = choreFlow(f.store, f.session, client());
+  await run(flow.complete(chore, operation, "2026-09-20"));
+  await run(f.store.prepare(f.session, "chore.complete"));
+  const before = (await run(flow.read)).pending;
+  f.connection.exec("ALTER TABLE offline_chores DROP COLUMN offline_epoch");
+  const restarted = f.reopen();
+  await run(restarted.store.initialize);
+  await run(restarted.store.initialize);
+  const session = await run(restarted.store.activate(account, operation2));
+  const saved = await run(restarted.store.readChores(session));
+  assert.deepEqual(saved.pending, before);
+  assert.equal("offlineEpoch" in saved.chores[0], false);
+  assert.equal(
+    restarted.connection.prepare("SELECT offline_epoch FROM offline_chores").get().offline_epoch,
+    null,
+  );
 });

@@ -145,7 +145,7 @@ export function makeOfflineStore(database: Database) {
     conflict: (
       session: Session,
       operation: string,
-      reason: "changed" | "removed" | "access_revoked",
+      reason: "changed" | "removed" | "access_revoked" | "cutover",
     ) => run(() => Replay.conflict(database, session, operation, reason)),
   };
 }

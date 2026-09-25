@@ -28,7 +28,8 @@ const receipt = (command, version) => ({
 
 test("offline checks survive restart, replay original identities and preserve chore snapshots", async (t) => {
   const db = await fixture(t);
-  await run(db.store.saveGroceries(db.session, [item]));
+  const captured = { ...item, offlineEpoch: second };
+  await run(db.store.saveGroceries(db.session, [captured]));
   await run(
     db.store.saveChores(db.session, [
       { occurrenceId: target, title: "Plants", dueDate: "2026-09-20", assigneeId: null },
@@ -36,11 +37,12 @@ test("offline checks survive restart, replay original identities and preserve ch
   );
   const offline = { list: () => fail("unavailable"), check: () => fail("unavailable") };
   const flow = groceryFlow(context(db), offline);
-  await run(flow.check(item, true, operation));
+  await run(flow.check(captured, true, operation));
   await assert.rejects(run(flow.sync));
   assert.equal((await run(flow.read)).groceries[0].checked, true);
   const reopened = db.reopen();
   const session = await run(reopened.store.activate(account, lease));
+  await run(reopened.store.saveGroceries(session, [{ ...item, offlineEpoch: operation }]));
   const calls = [];
   const live = {
     list: () => Effect.succeed([{ ...item, version: "2", checked: true }]),
@@ -54,6 +56,7 @@ test("offline checks survive restart, replay original identities and preserve ch
   assert.equal(calls.length, 1);
   assert.equal(calls[0].operationId, operation);
   assert.equal(calls[0].expectedVersion, "1");
+  assert.equal(calls[0].offlineEpoch, second);
   assert.equal((await run(resumed.read)).pending.length, 0);
   assert.equal((await run(reopened.store.readChores(session))).chores.length, 1);
 });
@@ -126,25 +129,28 @@ test("three rapid checks retain original intent ancestry after two acknowledgmen
   }
 });
 
-test("conflicts show canonical state and explicit discard removes dependent checks only", async (t) => {
-  const db = await fixture(t);
-  await run(db.store.saveGroceries(db.session, [{ ...item, checked: true }]));
-  const flow = groceryFlow(context(db), {
-    list: () => Effect.succeed([{ ...item, checked: true, version: "3" }]),
-    check: () => fail("conflict"),
+for (const code of ["conflict", "cutover"]) {
+  test(`conflicts show canonical state and explicit discard removes dependent checks only (${code})`, async (t) => {
+    const db = await fixture(t);
+    await run(db.store.saveGroceries(db.session, [{ ...item, checked: true }]));
+    const flow = groceryFlow(context(db), {
+      list: () => Effect.succeed([{ ...item, checked: true, version: "3" }]),
+      check: () => fail(code),
+    });
+    await run(flow.check(item, false, operation));
+    await run(flow.check(item, true, second));
+    await run(flow.sync);
+    const state = await run(flow.read);
+    assert.equal(state.groceries[0].conflict, true);
+    assert.equal(state.groceries[0].checked, true);
+    assert.equal(state.pending.length, 2);
+    assert.equal(state.pending[0].status, "conflict");
+    assert.equal(state.pending[0].reason, code === "cutover" ? "cutover" : "changed");
+    await run(flow.discard(operation));
+    assert.equal((await run(flow.read)).pending.length, 0);
+    assert.equal((await run(flow.read)).groceries[0].checked, true);
   });
-  await run(flow.check(item, false, operation));
-  await run(flow.check(item, true, second));
-  await run(flow.sync);
-  const state = await run(flow.read);
-  assert.equal(state.groceries[0].conflict, true);
-  assert.equal(state.groceries[0].checked, true);
-  assert.equal(state.pending.length, 2);
-  assert.equal(state.pending[0].status, "conflict");
-  await run(flow.discard(operation));
-  assert.equal((await run(flow.read)).pending.length, 0);
-  assert.equal((await run(flow.read)).groceries[0].checked, true);
-});
+}
 
 test("removed targets become recoverable conflicts without resurrection", async (t) => {
   const db = await fixture(t);

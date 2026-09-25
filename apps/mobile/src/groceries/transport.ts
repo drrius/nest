@@ -6,8 +6,17 @@ import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
 import type { ChoreFailure } from "../chores/client.ts";
+import { isCutoverFailure } from "../offline/cutover-response.ts";
 export class GroceryFailure extends Schema.TaggedError<GroceryFailure>()("GroceryFailure", {
-  code: Schema.Literals(["session", "forbidden", "conflict", "removed", "invalid", "unavailable"]),
+  code: Schema.Literals([
+    "session",
+    "forbidden",
+    "conflict",
+    "cutover",
+    "removed",
+    "invalid",
+    "unavailable",
+  ]),
 }) {}
 const statusCodes: Readonly<Record<number, GroceryFailure["code"]>> = {
   401: "session",
@@ -39,6 +48,7 @@ export function groceryRequest(
       const response = yield* body
         ? HttpClient.post(url, { headers, body: yield* HttpBody.json(body) })
         : HttpClient.get(url, { headers });
+      if (yield* isCutoverFailure(response)) return yield* new GroceryFailure({ code: "cutover" });
       if (response.status !== 200) return yield* failure(response.status);
       return yield* response.json;
     }).pipe(

@@ -55,13 +55,16 @@ export function groceryCommands(config: IdentityConfig, caller: AuthorizedCaller
         const attempt = yield* requestJson(
           config,
           caller.token,
-          "rest/v1/rpc/nest_set_grocery_checked",
+          "rest/v1/rpc/nest_check_grocery_at_epoch",
           {
             p_household: caller.member.householdId,
-            p_operation: operation,
-            p_target: target,
-            p_expected: command.expectedVersion,
-            p_checked: command.checked,
+            p_epoch: command.offlineEpoch ?? null,
+            p_command: {
+              operationId: operation,
+              itemId: target,
+              expectedVersion: command.expectedVersion,
+              checked: command.checked,
+            },
           },
         ).pipe(Effect.result);
         if (attempt._tag === "Failure") {

@@ -1,3 +1,4 @@
+import { choreEpochFiles } from "../../../../tests/integration/offline-epoch-files.mjs";
 import assert from "node:assert/strict";
 import * as Effect from "effect/Effect";
 import { nodeServer } from "../../../api/node-server.mjs";
@@ -27,6 +28,7 @@ export async function transferFixture(t, lostActor = 1) {
   const remote = await postgrestFixture(t, [
     ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
+    ...choreEpochFiles,
   ]);
   const proxy = await lostResponseProxy(t, remote.url, "/rest/v1/rpc/nest_chore_transfer");
   const direct = await serve(t, remote.url),

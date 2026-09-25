@@ -18,6 +18,10 @@ const files = [
   "tests/integration/grocery-postgrest.sql",
   "tests/database/grocery-meal-source-fixture.sql",
   "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
+  "supabase/migrations/20260925185000_native_household_write_barrier.sql",
+  "supabase/migrations/20260925202107_native_offline_cutover_epoch.sql",
+  "supabase/migrations/20260925202540_native_grocery_epoch_command.sql",
+  "supabase/migrations/20260925203217_native_offline_epoch_snapshots.sql",
 ];
 async function start(t, handler) {
   const server = nodeServer(handler);
@@ -77,6 +81,7 @@ test("native grocery clients converge across lost receipts and restarted SQLite 
     remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
     "2",
   );
+  rotateAfterCommit(remote.db, original.offlineEpoch);
   const reopened = local.reopen();
   const next = await run(reopened.store.activate({ actor, household }, operation));
   flow = groceryFlow({ store: reopened.store, session: next }, client);
@@ -85,9 +90,7 @@ test("native grocery clients converge across lost receipts and restarted SQLite 
   await run(flow.sync);
   assert.deepEqual(requests[0], requests[1]);
   assert.equal((await run(flow.read)).pending.length, 0);
-  const partnerReceipt = await run(
-    other.check({ operationId: lease, itemId: target, expectedVersion: "1", checked: true }),
-  );
+  const partnerReceipt = await currentPartnerCheck(other, run);
   assert.equal(partnerReceipt.outcome, "already_applied");
   assert.equal(partnerReceipt.version, "2");
   const checked = (await run(flow.read)).groceries[0];
@@ -197,7 +200,7 @@ test("native category labels survive SQLite restart and archived categories fall
 });
 
 async function suspendAndRestore({ remote, flow, run, client, command }) {
-  const signature = "public.nest_set_grocery_checked(uuid,uuid,uuid,bigint,boolean)";
+  const signature = "public.nest_check_grocery_at_epoch(uuid,jsonb,uuid)";
   remote.db.sql(`revoke execute on function ${signature} from authenticated`);
   await run(flow.sync);
   assert.equal((await run(flow.read)).pending.length, 0);
@@ -215,50 +218,94 @@ async function suspendAndRestore({ remote, flow, run, client, command }) {
   remote.db.sql(`grant execute on function ${signature} to authenticated`);
 }
 
-test("household freeze retains an offline grocery intent across restart until writes resume", async (t) => {
-  const remote = await postgrestFixture(t, files),
-    local = await sqliteFixture(t);
-  remote.db.file("supabase/migrations/20260925185000_native_household_write_barrier.sql");
-  remote.db.sql(
-    `insert into public.grocery_items(id,household_id,name) values('${target}','${household}','Milk')`,
+for (const rotate of [false, true]) {
+  test(`household freeze preserves grocery intent across restart (rotate=${rotate})`, async (t) => {
+    const remote = await postgrestFixture(t, files),
+      local = await sqliteFixture(t);
+    remote.db.sql(
+      `insert into public.grocery_items(id,household_id,name) values('${target}','${household}','Milk')`,
+    );
+    const base = await start(
+      t,
+      createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" }),
+    );
+    const client = groceryClient(
+      base,
+      { actor, household },
+      Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
+    );
+    let sends = 0;
+    const tracked = {
+      ...client,
+      check: (command) => {
+        sends++;
+        return client.check(command);
+      },
+    };
+    const run = Effect.runPromise;
+    const session = await run(local.store.activate({ actor, household }, lease));
+    let flow = groceryFlow({ store: local.store, session }, tracked);
+    await run(flow.sync);
+    await run(flow.check((await run(flow.read)).groceries[0], true, operation));
+    remote.db.sql("select private.nest_set_household_writes_frozen(true)");
+    await assert.rejects(run(flow.sync), { code: "unavailable" });
+    const pending = (await run(flow.read)).pending;
+    assert.equal(pending.length, 1);
+    assert.equal(pending[0].operation, operation);
+    assert.equal(pending[0].status, "pending");
+    assert.equal(pending[0].reason, null);
+    assert.equal(
+      remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
+      "1",
+    );
+    const reopened = local.reopen();
+    const next = await run(reopened.store.activate({ actor, household }, operation));
+    flow = groceryFlow({ store: reopened.store, session: next }, tracked);
+    await assert.rejects(run(flow.sync), { code: "unavailable" });
+    assert.equal((await run(flow.read)).pending[0].operation, operation);
+    if (rotate) remote.db.sql("select private.nest_rotate_offline_epoch()");
+    remote.db.sql("select private.nest_set_household_writes_frozen(false)");
+    await run(flow.sync);
+    if (rotate) {
+      const rejected = (await run(flow.read)).pending[0];
+      assert.equal(rejected.operation, operation);
+      assert.equal(rejected.status, "conflict");
+      assert.equal(rejected.reason, "cutover");
+      assert.equal(remote.db.sql("select count(*) from public.nest_grocery_check_receipts"), "0");
+      const attempts = sends;
+      await run(flow.sync);
+      assert.equal(sends, attempts);
+      await run(flow.discard(operation));
+      await run(flow.check((await run(flow.read)).groceries[0], true, lease));
+      await run(flow.sync);
+    }
+    assert.equal((await run(flow.read)).pending.length, 0);
+    assert.equal((await run(flow.read)).groceries[0].checked, true);
+    assert.equal(
+      remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
+      "2",
+    );
+    assert.equal(remote.db.sql("select count(*) from public.nest_grocery_check_receipts"), "1");
+  });
+}
+
+function rotateAfterCommit(db, prior) {
+  db.sql(`begin; select private.nest_set_household_writes_frozen(true);
+    select private.nest_rotate_offline_epoch();
+    select private.nest_set_household_writes_frozen(false); commit;`);
+  assert.notEqual(prior, db.sql("select offline_epoch from private.nest_household_write_control"));
+}
+
+function currentPartnerCheck(other, run) {
+  return run(other.list()).then(([current]) =>
+    run(
+      other.check({
+        operationId: lease,
+        itemId: target,
+        expectedVersion: "1",
+        checked: true,
+        offlineEpoch: current.offlineEpoch,
+      }),
+    ),
   );
-  const base = await start(
-    t,
-    createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" }),
-  );
-  const client = groceryClient(
-    base,
-    { actor, household },
-    Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
-  );
-  const run = Effect.runPromise;
-  const session = await run(local.store.activate({ actor, household }, lease));
-  let flow = groceryFlow({ store: local.store, session }, client);
-  await run(flow.sync);
-  await run(flow.check((await run(flow.read)).groceries[0], true, operation));
-  remote.db.sql("select private.nest_set_household_writes_frozen(true)");
-  await assert.rejects(run(flow.sync), { code: "unavailable" });
-  const pending = (await run(flow.read)).pending;
-  assert.equal(pending.length, 1);
-  assert.equal(pending[0].operation, operation);
-  assert.equal(pending[0].status, "pending");
-  assert.equal(pending[0].reason, null);
-  assert.equal(
-    remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
-    "1",
-  );
-  const reopened = local.reopen();
-  const next = await run(reopened.store.activate({ actor, household }, operation));
-  flow = groceryFlow({ store: reopened.store, session: next }, client);
-  await assert.rejects(run(flow.sync), { code: "unavailable" });
-  assert.equal((await run(flow.read)).pending[0].operation, operation);
-  remote.db.sql("select private.nest_set_household_writes_frozen(false)");
-  await run(flow.sync);
-  assert.equal((await run(flow.read)).pending.length, 0);
-  assert.equal((await run(flow.read)).groceries[0].checked, true);
-  assert.equal(
-    remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
-    "2",
-  );
-  assert.equal(remote.db.sql("select count(*) from public.nest_grocery_check_receipts"), "1");
-});
+}

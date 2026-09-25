@@ -156,18 +156,20 @@ test("completion forwards exact stable operation and expected date without choos
   assert.deepEqual(await response.json(), { version: 1, householdId: home, receipt });
   assert.equal(calls.length - before, 3);
   assert.deepEqual(calls.at(-1).body, {
-    p_occurrence_id: occurrence,
-    p_operation_id: operation,
-    p_expected_due_date: "2026-09-19",
-    p_completed_on: "2026-09-19",
+    p_epoch: null,
+    p_command: command,
   });
   assert.equal(calls.at(-1).headers.authorization, "Bearer member");
+  assert.equal((await complete({ ...command, offlineEpoch: operation })).status, 200);
+  assert.deepEqual(calls.at(-1).body, { p_epoch: operation, p_command: command });
 });
 test("invalid dates, identifiers, unknown fields and oversized commands never reach mutation RPC", async () => {
   const before = calls.filter((call) => call.url.includes("/rpc/")).length;
   for (const input of [
     { ...command, completedOn: "2026-02-30" },
     { ...command, operationId: "bad" },
+    { ...command, offlineEpoch: "bad" },
+    { ...command, offlineEpoch: null },
     { ...command, actor: other },
     { ...command, extra: "x".repeat(9000) },
   ]) {

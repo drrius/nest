@@ -3,13 +3,15 @@ import { test } from "node:test";
 import { createServer } from "node:http";
 import { createRequire } from "node:module";
 import { requestJson } from "../../apps/api/src/supabase-request.ts";
+import { failureResponse } from "../../apps/api/src/errors.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 const Effect = await import(require.resolve("effect/Effect"));
 
 test("RPC execution suspension is unavailable while domain and malformed denials stay forbidden", async (t) => {
   let body;
+  let status = 403;
   const server = createServer((_request, response) => {
-    response.writeHead(403, { "content-type": "application/json" });
+    response.writeHead(status, { "content-type": "application/json" });
     response.end(typeof body === "string" ? body : JSON.stringify(body));
   });
   await new Promise((resolve, reject) => {
@@ -44,5 +46,21 @@ test("RPC execution suspension is unavailable while domain and malformed denials
         return true;
       },
     );
+  }
+  status = 409;
+  for (const [code, expected] of [
+    ["PT409", "cutover"],
+    ["40001", "conflict"],
+  ]) {
+    body = { code, message: "Internal fixture information must not escape" };
+    const result = await Effect.runPromise(
+      requestJson(config, "fixture", "rest/v1/rpc/test").pipe(Effect.result),
+    );
+    assert.equal(result._tag, "Failure");
+    assert.equal(result.failure.code, expected);
+    const response = failureResponse(result.failure);
+    assert.equal(response.status, 409);
+    assert.equal(response.headers.get("cache-control"), "no-store");
+    assert.deepEqual(await response.json(), { error: { code: expected } });
   }
 });

@@ -28,14 +28,7 @@ export function requestDocument(
       const error = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
         value,
       );
-      const code = ["40001", "55P03", "55000"].includes(error.code)
-        ? "conflict"
-        : error.code === "P0002"
-          ? "removed"
-          : error.code === "22023"
-            ? "invalid_request"
-            : "unavailable";
-      return yield* new ApiFailure({ code });
+      return yield* new ApiFailure({ code: responseCode(response.status, error.code) });
     }
     return { value, range: response.headers["content-range"] };
   }).pipe(
@@ -61,4 +54,12 @@ function deniedCode(value: unknown): "unavailable" | "forbidden" {
     /^permission denied for function [^\r\n]+$/.test(value.message)
     ? "unavailable"
     : "forbidden";
+}
+
+function responseCode(status: number, code: string): ApiFailure["code"] {
+  if (status === 409 && code === "PT409") return "cutover";
+  if (["40001", "55P03", "55000"].includes(code)) return "conflict";
+  if (code === "P0002") return "removed";
+  if (code === "22023") return "invalid_request";
+  return "unavailable";
 }

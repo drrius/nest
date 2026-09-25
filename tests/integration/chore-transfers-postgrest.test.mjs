@@ -1,3 +1,4 @@
+import { choreEpochFiles } from "./offline-epoch-files.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
@@ -9,6 +10,7 @@ async function backend(t) {
   const remote = await postgrestFixture(t, [
     ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
+    ...choreEpochFiles,
   ]);
   const proxy = await lostResponseProxy(t, remote.url, "/rest/v1/rpc/nest_chore_transfer");
   const direct = createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" });

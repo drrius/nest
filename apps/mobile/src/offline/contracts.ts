@@ -17,6 +17,7 @@ const CalendarDate = Schema.String.check(
 );
 export const Intent = Schema.Union([
   Schema.Struct({
+    offlineEpoch: Schema.optionalKey(Schema.String.check(Schema.isUUID())),
     operation: Schema.String.check(Schema.isUUID()),
     kind: Schema.Literal("chore.complete"),
     target: Schema.String.check(Schema.isUUID()),
@@ -24,6 +25,7 @@ export const Intent = Schema.Union([
     completedOn: CalendarDate,
   }),
   Schema.Struct({
+    offlineEpoch: Schema.optionalKey(Schema.String.check(Schema.isUUID())),
     operation: Schema.String.check(Schema.isUUID()),
     kind: Schema.Literal("groceries.setChecked"),
     target: Schema.String.check(Schema.isUUID()),

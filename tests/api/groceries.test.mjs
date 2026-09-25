@@ -44,18 +44,24 @@ function rpc(response, body) {
     return response
       .writeHead(errors[mode][0])
       .end(JSON.stringify({ code: errors[mode][1], message: "private detail" }));
+  response.end(JSON.stringify(commandReceipt(body)));
+}
+function commandReceipt(body) {
   const receipt = {
-    operation: body.p_operation,
-    target: body.p_target,
+    operation: body.p_command?.operationId ?? body.p_operation,
+    target: body.p_command?.itemId ?? body.p_target,
     version: "9007199254740994",
-    checked: body.p_checked ?? false,
+    checked: body.p_command?.checked ?? false,
     ...(body.p_action ? { removed: body.p_action === "remove" } : { outcome: "applied" }),
   };
+  return malformedReceipt(receipt);
+}
+function malformedReceipt(receipt) {
   if (mode === "wrong-target") receipt.target = id(999);
   if (mode === "wrong-checked") receipt.checked = !receipt.checked;
   if (mode === "wrong-removed") receipt.removed = !receipt.removed;
   if (mode === "numeric-version") receipt.version = 1;
-  response.end(JSON.stringify(receipt));
+  return receipt;
 }
 const server = createServer(async (request, response) => {
   const chunks = [];
@@ -70,8 +76,10 @@ const server = createServer(async (request, response) => {
         revoked ? [] : [{ user_id: actor, household_id: home, display_name: "Member" }],
       ),
     );
-  if (request.url === "/rest/v1/rpc/nest_grocery_snapshot") {
-    return response.end(JSON.stringify({ version: 1, householdId: home, total, items: rows }));
+  if (request.url === "/rest/v1/rpc/nest_grocery_epoch_snapshot") {
+    return response.end(
+      JSON.stringify({ version: 1, householdId: home, offlineEpoch: id(800), total, items: rows }),
+    );
   }
   if (request.url.startsWith("/rest/v1/grocery_categories")) {
     response.setHeader("content-range", "0-0/1");
@@ -115,11 +123,12 @@ test("grocery snapshots bind verified household and retain bigint strings and le
       version: item.version,
       checked: false,
       legacyClaimed: true,
+      offlineEpoch: id(800),
       categoryName: null,
       mealSource: null,
     },
   ]);
-  assert.equal(calls.at(-1).url, "/rest/v1/rpc/nest_grocery_snapshot");
+  assert.equal(calls.at(-1).url, "/rest/v1/rpc/nest_grocery_epoch_snapshot");
   assert.deepEqual(calls.at(-1).body, { p_household: home });
   assert.equal((await call("/categories")).status, 200);
   rows = [item];
@@ -155,10 +164,8 @@ test("commands preserve exact retry identity and versions and cannot choose acto
   assert.equal(response.status, 200);
   assert.deepEqual(calls.at(-1).body, {
     p_household: home,
-    p_operation: operationId,
-    p_target: itemId,
-    p_expected: check.expectedVersion,
-    p_checked: true,
+    p_epoch: null,
+    p_command: check,
   });
   const before = rpcCount();
   for (const input of [
@@ -279,7 +286,7 @@ test("grocery categories are joined into the same authorized snapshot and cannot
   let response = await call();
   assert.equal(response.status, 200);
   assert.equal((await response.json()).groceries[0].categoryName, "Produce");
-  assert.equal(calls.at(-1).url, "/rest/v1/rpc/nest_grocery_snapshot");
+  assert.equal(calls.at(-1).url, "/rest/v1/rpc/nest_grocery_epoch_snapshot");
   for (const patch of [{ householdId: id(20) }, { categoryId: id(31) }, { name: "" }]) {
     rows = [{ ...item, categoryId: id(30), category: { ...category, ...patch } }];
     assert.equal((await call()).status, 503);

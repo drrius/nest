@@ -1,3 +1,4 @@
+import { groceryEpochFiles } from "./offline-epoch-files.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
@@ -13,6 +14,7 @@ const files = [
   "supabase/migrations/20260919214311_native_grocery_check_receipts.sql",
   "supabase/migrations/20260920002735_native_grocery_commands.sql",
   "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
+  ...groceryEpochFiles,
 ];
 function fullWeek(f) {
   const entry = f.placed.entryId;

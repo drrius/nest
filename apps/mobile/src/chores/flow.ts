@@ -13,6 +13,7 @@ export function choreFlow(store: ChoreStore, session: Session, client: ChoreClie
       if (!wire || wire.kind !== "chore.complete") break;
       const result = yield* client
         .complete({
+          ...(wire.offlineEpoch ? { offlineEpoch: wire.offlineEpoch } : {}),
           operationId: wire.operation,
           occurrenceId: wire.target,
           expectedDueDate: wire.expected,
@@ -52,6 +53,7 @@ export function choreFlow(store: ChoreStore, session: Session, client: ChoreClie
     }),
     complete: (chore: Chore, operation: string, completedOn: string) =>
       store.enqueue(session, {
+        ...(chore.offlineEpoch ? { offlineEpoch: chore.offlineEpoch } : {}),
         kind: "chore.complete",
         operation,
         target: chore.occurrenceId,
@@ -70,7 +72,9 @@ function rejectAttempt(
   failure: ChoreFailure,
 ) {
   return Effect.gen(function* () {
-    if (failure.code === "conflict" || failure.code === "invalid") {
+    if (failure.code === "cutover") {
+      yield* store.conflict(session, wire.operation, "cutover");
+    } else if (failure.code === "conflict" || failure.code === "invalid") {
       yield* store.conflict(session, wire.operation, "changed");
     } else if (failure.code === "forbidden") {
       // Distinguish a rejected item from lost membership before proceeding.

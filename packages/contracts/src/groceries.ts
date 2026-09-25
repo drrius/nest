@@ -27,6 +27,7 @@ export const EditGrocery = Schema.Struct({
 });
 export const RemoveGrocery = Schema.Struct({ ...Identity, expectedVersion: GroceryVersion });
 export const CheckGrocery = Schema.Struct({
+  offlineEpoch: Schema.optionalKey(Uuid),
   ...Identity,
   expectedVersion: GroceryVersion,
   checked: Schema.Boolean,
@@ -38,6 +39,7 @@ export const GroceryMealSource = Schema.Struct({
   slot: Schema.NullOr(MealSlot),
 });
 export const Grocery = Schema.Struct({
+  offlineEpoch: Schema.optionalKey(Uuid),
   mealSource: Schema.optionalKey(Schema.NullOr(GroceryMealSource)),
   categoryName: Schema.optionalKey(Schema.NullOr(Schema.NonEmptyString)),
   itemId: Uuid,

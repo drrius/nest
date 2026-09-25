@@ -9,9 +9,10 @@ import { choreChanges } from "./change-client.ts";
 import { preferenceRequests } from "../preferences/client.ts";
 import type { Account } from "../offline/contracts.ts";
 import type { Credentials } from "../session/verification.ts";
+import { isCutoverFailure } from "../offline/cutover-response.ts";
 
 export class ChoreFailure extends Schema.TaggedError<ChoreFailure>()("ChoreFailure", {
-  code: Schema.Literals(["session", "forbidden", "conflict", "invalid", "unavailable"]),
+  code: Schema.Literals(["session", "forbidden", "conflict", "cutover", "invalid", "unavailable"]),
 }) {}
 const statusFailure = (status: number) =>
   new ChoreFailure({
@@ -43,7 +44,7 @@ export function choreClient(
       const response = yield* body
         ? HttpClient.post(url, { headers, body: yield* HttpBody.json(body) })
         : HttpClient.get(url, { headers });
-      if (response.status !== 200) return yield* statusFailure(response.status);
+      if (response.status !== 200) return yield* responseFailure(response);
       return yield* response.json;
     }).pipe(
       Effect.timeout("15 seconds"),
@@ -107,3 +108,11 @@ export function choreClient(
   };
 }
 export type ChoreClient = ReturnType<typeof choreClient>;
+
+function responseFailure<E>(response: { status: number; json: Effect.Effect<unknown, E> }) {
+  return isCutoverFailure(response).pipe(
+    Effect.flatMap((cutover) =>
+      Effect.fail(cutover ? new ChoreFailure({ code: "cutover" }) : statusFailure(response.status)),
+    ),
+  );
+}

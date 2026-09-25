@@ -13,6 +13,7 @@ export const CalendarDate = Schema.String.check(
   }),
 );
 export const CompleteChore = Schema.Struct({
+  offlineEpoch: Schema.optionalKey(Uuid),
   operationId: Uuid,
   occurrenceId: Uuid,
   expectedDueDate: CalendarDate,
@@ -28,6 +29,7 @@ export const Completion = Schema.Struct({
   outcome: Schema.Literals(["completed", "already_completed"]),
 });
 export const Chore = Schema.Struct({
+  offlineEpoch: Schema.optionalKey(Uuid),
   occurrenceId: Uuid,
   title: Schema.NonEmptyString,
   dueDate: CalendarDate,

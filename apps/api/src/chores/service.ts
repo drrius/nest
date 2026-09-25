@@ -58,12 +58,15 @@ export function choreCommands(config: IdentityConfig, caller: AuthorizedCaller) 
         const attempt = yield* requestJson(
           config,
           caller.token,
-          "rest/v1/rpc/nest_complete_chore",
+          "rest/v1/rpc/nest_complete_chore_at_epoch",
           {
-            p_occurrence_id: command.occurrenceId,
-            p_operation_id: command.operationId,
-            p_expected_due_date: command.expectedDueDate,
-            p_completed_on: command.completedOn,
+            p_epoch: command.offlineEpoch ?? null,
+            p_command: {
+              occurrenceId: command.occurrenceId,
+              operationId: command.operationId,
+              expectedDueDate: command.expectedDueDate,
+              completedOn: command.completedOn,
+            },
           },
         ).pipe(Effect.result);
         if (attempt._tag === "Failure") {

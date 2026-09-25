@@ -21,6 +21,7 @@ const GroceryRow = Schema.Struct({
   legacyClaimed: Schema.optionalKey(Schema.Boolean),
 });
 const Snapshot = Schema.Struct({
+  offlineEpoch: Uuid,
   version: Schema.Literal(1),
   householdId: Uuid,
   total: Schema.Number.check(Schema.isInt(), Schema.isGreaterThanOrEqualTo(0)),
@@ -46,9 +47,14 @@ export function groceryReads(config: IdentityConfig, caller: AuthorizedCaller) {
   return {
     list: () =>
       Effect.gen(function* () {
-        const raw = yield* requestJson(config, caller.token, "rest/v1/rpc/nest_grocery_snapshot", {
-          p_household: caller.member.householdId,
-        });
+        const raw = yield* requestJson(
+          config,
+          caller.token,
+          "rest/v1/rpc/nest_grocery_epoch_snapshot",
+          {
+            p_household: caller.member.householdId,
+          },
+        );
         const snapshot = yield* Schema.decodeUnknownEffect(Snapshot)(raw, {
           onExcessProperty: "error",
         }).pipe(Effect.mapError(() => new ApiFailure({ code: "unavailable" })));
@@ -68,6 +74,7 @@ export function groceryReads(config: IdentityConfig, caller: AuthorizedCaller) {
         return rows.map(
           ({ householdId: _household, legacyState, category, mealSource, ...row }) => ({
             ...row,
+            offlineEpoch: snapshot.offlineEpoch,
             mealSource: mealSource
               ? {
                   entryId: mealSource.entryId,

@@ -1,4 +1,5 @@
 import { verifyLegacyJobPause } from "./legacy-job-pause-rehearsal.mjs";
+import { verifyOfflineEpochAi } from "./offline-epoch-ai-rehearsal.mjs";
 import { verifyRoutineRepair } from "./routine-repair-rehearsal.mjs";
 import { verifyCommittedFinancialRecovery } from "./committed-financial-recovery.mjs";
 import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
@@ -134,6 +135,7 @@ try {
   if (!report.cutoverFinancialReconciliation.passed)
     throw new Error("Cutover rehearsal changed financial history or receipt references");
   report.legacyWriters = captureLegacyWriterInventory(db);
+  report.offlineEpochAi = verifyOfflineEpochAi(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
   report.committedFinancialRecovery = verifyCommittedFinancialRecovery(db);
   report.complete = true;

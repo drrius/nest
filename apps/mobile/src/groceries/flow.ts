@@ -11,6 +11,7 @@ export function groceryFlow({ store, session }: OfflineAccount, client: GroceryC
       if (!wire || wire.kind !== "groceries.setChecked") break;
       const result = yield* client
         .check({
+          ...(wire.offlineEpoch ? { offlineEpoch: wire.offlineEpoch } : {}),
           operationId: wire.operation,
           itemId: wire.target,
           expectedVersion: wire.expected,
@@ -18,13 +19,9 @@ export function groceryFlow({ store, session }: OfflineAccount, client: GroceryC
         })
         .pipe(Effect.result);
       if (result._tag === "Failure") {
-        const code = result.failure.code;
-        if (code === "removed" || code === "conflict" || code === "invalid") {
-          yield* store.conflict(
-            session,
-            wire.operation,
-            code === "removed" ? "removed" : "changed",
-          );
+        const reason = conflictReasons[result.failure.code];
+        if (reason) {
+          yield* store.conflict(session, wire.operation, reason);
           continue;
         }
         return yield* result.failure;
@@ -46,6 +43,7 @@ export function groceryFlow({ store, session }: OfflineAccount, client: GroceryC
     sync,
     check: (item: Grocery, checked: boolean, operation: string) =>
       store.enqueue(session, {
+        ...(item.offlineEpoch ? { offlineEpoch: item.offlineEpoch } : {}),
         operation,
         kind: "groceries.setChecked",
         target: item.itemId,
@@ -57,3 +55,10 @@ export function groceryFlow({ store, session }: OfflineAccount, client: GroceryC
 }
 export type GroceryFlow = ReturnType<typeof groceryFlow>;
 export type GroceryData = Effect.Success<GroceryFlow["read"]>;
+
+const conflictReasons: Readonly<Record<string, "cutover" | "removed" | "changed" | undefined>> = {
+  cutover: "cutover",
+  removed: "removed",
+  conflict: "changed",
+  invalid: "changed",
+};

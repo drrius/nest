@@ -166,11 +166,11 @@ test("snapshot API makes a single scoped RPC and rejects malformed or internally
   assert.deepEqual(
     await run(choreSnapshot(config, caller), async (url, init) => {
       calls++;
-      assert.equal(new URL(url).pathname, "/rest/v1/rpc/nest_chore_snapshot");
+      assert.equal(new URL(url).pathname, "/rest/v1/rpc/nest_chore_epoch_snapshot");
       assert.deepEqual(JSON.parse(init.body), { p_household: id(10) });
-      return Response.json(snapshot);
+      return Response.json({ ...snapshot, offlineEpoch: id(800) });
     }),
-    snapshot,
+    { ...snapshot, chores: [{ ...chore, offlineEpoch: id(800) }] },
   );
   assert.equal(calls, 1);
   for (const patch of [
@@ -180,9 +180,14 @@ test("snapshot API makes a single scoped RPC and rejects malformed or internally
     { members: [snapshot.members[1]] },
     { chores: Array(201).fill(chore) },
     { hidden: true },
+    { offlineEpoch: null },
+    { offlineEpoch: undefined },
+    { offlineEpoch: "invalid" },
   ])
     await assert.rejects(
-      run(choreSnapshot(config, caller), async () => Response.json({ ...snapshot, ...patch })),
+      run(choreSnapshot(config, caller), async () =>
+        Response.json({ ...snapshot, offlineEpoch: id(800), ...patch }),
+      ),
       { code: "unavailable" },
     );
 });

@@ -68,7 +68,7 @@ export function conflict(
   database: Database,
   session: Session,
   operation: string,
-  reason: "changed" | "removed" | "access_revoked",
+  reason: "changed" | "removed" | "access_revoked" | "cutover",
 ) {
   return scoped(database, session, async (tx) => {
     const row = (await operations(tx, session)).find((item) => item.operation === operation);

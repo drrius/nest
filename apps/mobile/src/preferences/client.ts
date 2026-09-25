@@ -37,7 +37,12 @@ export function preferenceRequests(
   return <A>(path: string, schema: Schema.Codec<A>, body?: object) =>
     Effect.gen(function* () {
       const session = yield* credentials.pipe(
-        Effect.mapError((error) => new PreferenceFailure({ code: error.code })),
+        Effect.mapError(
+          (error) =>
+            new PreferenceFailure({
+              code: error.code === "cutover" ? "unavailable" : error.code,
+            }),
+        ),
       );
       if (session.user.id !== account.actor)
         return yield* new PreferenceFailure({ code: "session" });

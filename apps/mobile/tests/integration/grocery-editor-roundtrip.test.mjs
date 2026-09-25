@@ -1,3 +1,4 @@
+import { groceryEpochFiles } from "../../../../tests/integration/offline-epoch-files.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import * as Effect from "effect/Effect";
@@ -17,6 +18,7 @@ const files = [
   "tests/integration/grocery-postgrest.sql",
   "tests/database/grocery-meal-source-fixture.sql",
   "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
+  ...groceryEpochFiles,
 ];
 async function backend(t) {
   const remote = await postgrestFixture(t, files);

@@ -1,3 +1,4 @@
+import { choreEpochFiles } from "./offline-epoch-files.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import { createRequire } from "node:module";
 import { fixture, run } from "../../apps/mobile/tests/offline-fixture.mjs";
@@ -18,6 +19,7 @@ async function setup(t) {
   const f = await postgrestFixture(t, [
     ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
+    ...choreEpochFiles,
   ]);
   const config = { url: f.url, publishableKey: "sb_publishable_fixture" };
   const handler = createHandler(config);

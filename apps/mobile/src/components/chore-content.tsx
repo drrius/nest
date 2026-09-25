@@ -47,8 +47,9 @@ export function ChoreConflicts({
           <Note>
             {view.data?.chores.find((chore) => chore.occurrenceId === operation.target)?.title ??
               "A saved chore"}{" "}
-            changed before this completion could be applied. Review the current chore before trying
-            again.
+            {operation.reason === "cutover"
+              ? "was saved on this phone before a service update. Review the current chore before completing it again."
+              : "changed before this completion could be applied. Review the current chore before trying again."}
           </Note>
           <NativeAction label="Keep current chore" onPress={() => confirm(operation.operation)} />
         </Card>
