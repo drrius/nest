@@ -22,6 +22,7 @@ const files = [
   ...editFiles,
   "supabase/migrations/20260921072749_native_meal_proposal_handoff.sql",
   "supabase/migrations/20260925194847_native_meal_proposal_origin_read.sql",
+  "supabase/migrations/20260925195418_native_meal_edit_snapshot.sql",
   "supabase/migrations/20260919214955_native_busy_snapshots.sql",
 ];
 export const command = (operation = 800) => ({ operationId: id(operation), ...input() });

@@ -62,10 +62,17 @@ export function proposalEditState(config: IdentityConfig, caller: AuthorizedCall
     read: (input: unknown) =>
       Effect.gen(function* () {
         const command = yield* decodeProposal(ReadMealProposalEdit, input, "invalid_request");
+        const operation = command.operationId.toLowerCase();
+        const saved = yield* bindEdit(
+          caller,
+          operation,
+          yield* request("nest_read_proposal_edit_snapshot", operation),
+        );
+        if (saved.status !== "pending") return saved;
         return yield* bindEdit(
           caller,
-          command.operationId,
-          yield* request("nest_read_proposal_edit", command.operationId.toLowerCase()),
+          operation,
+          yield* request("nest_read_proposal_edit", operation),
         );
       }),
   };

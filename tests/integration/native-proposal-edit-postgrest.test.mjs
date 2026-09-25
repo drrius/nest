@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { backend, id, run } from "./native-proposal-edit-fixture.mjs";
+import { freezeProposals, proposalSnapshot } from "./meal-proposal-freeze-fixture.mjs";
 const target = (proposal) => ({
   action: "replace",
   proposalId: proposal.proposalId,
@@ -8,38 +9,44 @@ const target = (proposal) => ({
   entryId: proposal.entries[0].entryId,
 });
 
-test("native replacement survives lost completion and SQLite restart without repeating the model", async (t) => {
-  const f = await backend(t),
-    runtime = f.create();
-  await runtime.load();
-  await runtime.start(false);
-  const preview = runtime.getSnapshot().proposal;
-  await runtime.edit(target(preview));
-  assert.equal(f.proxy.dropped(), 1);
-  assert.equal(runtime.getSnapshot().fresh, false);
-  assert.equal(f.provider.calls.length, 4);
-  await runtime.approve("2", preview.proposalId);
-  assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "0");
-  runtime.dispose();
-  const reopened = f.sqlite.reopen(),
-    next = f.create(reopened.store);
-  await next.load();
-  const updated = next.getSnapshot().proposal;
-  assert.equal(updated.revision, "3");
-  assert.equal(next.getSnapshot().attempt.edit, undefined);
-  assert.equal(updated.entries[0].source.kind, "saved");
-  assert.deepEqual(updated.entries.slice(1), preview.entries.slice(1));
-  assert.equal(f.provider.calls.length, 4);
-  const metadata = reopened.connection
-    .prepare("select data from meal_proposal_attempts")
-    .get().data;
-  for (const privateText of ["instructions", "Vegetarian", "workerId", "stateHash"])
-    assert.equal(metadata.includes(privateText), false);
-  await next.approve("3", preview.proposalId);
-  assert.equal(next.getSnapshot().proposal.status, "approved");
-  assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "7");
-  assert.equal(f.remote.db.sql("select count(*) from public.grocery_items"), "0");
-});
+for (const frozen of [false, true]) {
+  test(`native replacement survives lost completion and SQLite restart (frozen=${frozen})`, async (t) => {
+    const f = await backend(t),
+      runtime = f.create();
+    await runtime.load();
+    await runtime.start(false);
+    const preview = runtime.getSnapshot().proposal;
+    await runtime.edit(target(preview));
+    assert.equal(f.proxy.dropped(), 1);
+    assert.equal(runtime.getSnapshot().fresh, false);
+    assert.equal(f.provider.calls.length, 4);
+    await runtime.approve("2", preview.proposalId);
+    assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "0");
+    const before = proposalSnapshot(f.remote.db);
+    if (frozen) freezeProposals(f.remote.db);
+    runtime.dispose();
+    const reopened = f.sqlite.reopen(),
+      next = f.create(reopened.store);
+    await next.load();
+    const updated = next.getSnapshot().proposal;
+    assert.equal(updated.revision, "3");
+    assert.equal(next.getSnapshot().attempt.edit, undefined);
+    assert.equal(updated.entries[0].source.kind, "saved");
+    assert.deepEqual(updated.entries.slice(1), preview.entries.slice(1));
+    assert.equal(f.provider.calls.length, 4);
+    const metadata = reopened.connection
+      .prepare("select data from meal_proposal_attempts")
+      .get().data;
+    for (const privateText of ["instructions", "Vegetarian", "workerId", "stateHash"])
+      assert.equal(metadata.includes(privateText), false);
+    assert.equal(proposalSnapshot(f.remote.db), before);
+    if (frozen) return;
+    await next.approve("3", preview.proposalId);
+    assert.equal(next.getSnapshot().proposal.status, "approved");
+    assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "7");
+    assert.equal(f.remote.db.sql("select count(*) from public.grocery_items"), "0");
+  });
+}
 
 test("native explicit favorite uses one suitability check; stale library and revoked membership fail safely", async (t) => {
   const f = await backend(t, "unused"),
