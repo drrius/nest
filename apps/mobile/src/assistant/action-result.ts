@@ -1,3 +1,4 @@
+import { receiptHandoff } from "./receipt-handoff.ts";
 import { pendingApprovalHandoff } from "./pending-approval-handoff.ts";
 import { actionRecordLink } from "./action-record-link.ts";
 import { summaryHandoff, latestSummaryHandoff } from "./summary-handoff.ts";
@@ -148,6 +149,12 @@ const destinations = {
   checkGrocery: "/checklist",
 } as const;
 const handoffs = {
+  "tool-openReceiptUploads": (part: { state?: unknown; output?: unknown }) =>
+    receiptHandoff(part, "receipt-uploads"),
+  "tool-openReceiptExpense": (part: { state?: unknown; output?: unknown }) =>
+    receiptHandoff(part, "expense-entry"),
+  "tool-openGroceryReceiptExpense": (part: { state?: unknown; output?: unknown }) =>
+    receiptHandoff(part, "grocery-expense"),
   "tool-readLatestDailySummary": latestSummaryHandoff,
   "tool-listPendingFinancialApprovals": pendingApprovalHandoff,
   "tool-readDailySummary": summaryHandoff,

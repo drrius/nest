@@ -1,11 +1,17 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
 import test from "node:test";
-import { setupTools } from "../../apps/api/src/setup/tools.ts";
+import { householdTools } from "../../apps/api/src/assistant/tools.ts";
+const receiptHandoffTools = (request, config) =>
+  householdTools(request, config, {
+    householdId: "00000000-0000-4000-8000-000000000010",
+    turn: {},
+  }).tools;
 
 for (const [name, screen] of [
-  ["openNotificationSetup", "notification-preferences"],
-  ["openAccountSettings", "settings"],
+  ["openReceiptUploads", "receipt-uploads"],
+  ["openReceiptExpense", "expense-entry"],
+  ["openGroceryReceiptExpense", "grocery-expense"],
 ])
   test(`${name} reauthorizes and makes no writes`, async (t) => {
     const user = "00000000-0000-4000-8000-000000000001";
@@ -39,7 +45,7 @@ for (const [name, screen] of [
     const request = new Request("http://nest.invalid", {
       headers: { authorization: "Bearer fixture", "x-nest-household": home },
     });
-    const tool = setupTools(request, config)[name];
+    const tool = receiptHandoffTools(request, config)[name];
     const options = { toolCallId: "handoff", messages: [] };
     assert.deepEqual(await tool.execute({}, options), {
       ok: true,
@@ -51,7 +57,10 @@ for (const [name, screen] of [
     assert.ok(calls.every(({ method }) => method === "GET"));
     const before = calls.length;
     assert.deepEqual(
-      await setupTools(new Request("http://nest.invalid"), config)[name].execute({}, options),
+      await receiptHandoffTools(new Request("http://nest.invalid"), config)[name].execute(
+        {},
+        options,
+      ),
       { ok: false, code: "forbidden" },
     );
     assert.equal(calls.length, before);

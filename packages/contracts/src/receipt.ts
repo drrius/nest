@@ -38,3 +38,8 @@ export const ReceiptLink = Schema.Struct({
 });
 export const canonicalReceiptTarget = (target: ReceiptTarget): ReceiptTarget =>
   "eventId" in target ? { eventId: target.eventId.toLowerCase() } : target;
+
+export const ReceiptDeviceHandoff = Schema.Struct({
+  kind: Schema.Literal("device_handoff"),
+  screen: Schema.Literals(["receipt-uploads", "expense-entry", "grocery-expense"]),
+});

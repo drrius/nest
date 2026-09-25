@@ -53,6 +53,12 @@ Main advanced to `849038bd2c38140ccb9028d59c8c1574ec368861` after clean exact re
 
 The committed freeze now retains the audited `nest_money_detail` reader as well as balance/history. Both household members receive identical full detail for the new expense before and after freeze; outsider reads are denied in both states. Final all-household financial snapshots still reconcile after every recovery probe. The full 54/195 rehearsal passes (`/tmp/nest-detail-recovery-rehearsal.json`) with empty security advisors; scoped lint/format pass. This preserves the event explanation read path, not receipt bytes or every other native reader. Exact review/CI are pending. Maintenance-error fix `aeeb6dd` has clean Sol review with ten independently passing cases; its CI remains pending.
 
+## Receipt device handoffs — locally verified candidate
+
+The registered assistant now provides fixed authorized handoffs to ordinary expense entry, grocery expense entry and receipt-upload review. The cards navigate to existing protected native screens; they do not choose/upload/read/remove files, fill financial fields, grant approvals or post money. Each tool revalidates membership, and its native result parser rejects failed/premature output, an arbitrary URL or a different handoff's destination.
+
+Twenty-two focused cases pass, including actual registered-tool authorization/no-write checks, three strict card paths, prior action-card regressions and CI test-selection coverage. API/mobile typechecks and scoped lint/format pass. Report: `/tmp/nest-receipt-handoff-tests.log`. The older setup test's missing-auth branch was corrected to invoke each named tool rather than always the notification tool. Live model selection, actual picker/navigation and device file handling remain unverified. Exact review/CI are pending. Financial detail recovery `e0c9385` has clean Sol review with three independently passing detail privacy/integrity tests; its CI remains pending.
+
 ## Next work
 
 1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.
