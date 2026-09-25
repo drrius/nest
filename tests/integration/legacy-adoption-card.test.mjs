@@ -1,3 +1,4 @@
+import { suspendLegacyApproval } from "./legacy-approval-freeze-fixture.mjs";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run } from "./legacy-adoption-card-fixture.mjs";
@@ -7,7 +8,7 @@ import {
   legacyAdoptionApprovalText,
 } from "../../apps/mobile/src/money/legacy-adoption-approval-display.ts";
 const actions = (runtime) => legacyAdoptionApprovalActions(runtime.getSnapshot(), Date.now());
-test("private native card stages before dispatch and recovers a committed adoption after SQLite restart without replay", async (t) => {
+test("private native card stages before dispatch and recovers a committed adoption after write suspension and SQLite restart without replay", async (t) => {
   const f = await fixture(t),
     runtime = await f.mount(),
     approval = runtime.getSnapshot().approval;
@@ -36,6 +37,7 @@ test("private native card stages before dispatch and recovers a committed adopti
   await runtime.decide(approval, true);
   assert.equal(runtime.getSnapshot().attempt.approved, true);
   assert.equal(f.sends(), 1);
+  suspendLegacyApproval(f.db, "adoption");
   runtime.dispose();
   await f.local.idle();
   const reopened = f.local.reopen(),

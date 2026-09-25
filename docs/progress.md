@@ -6,10 +6,10 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Current delivery state
 
-- Main: `54566d2651ea8a9c077f7aedccc136608d08a08f`, advanced after clean exact-commit Sol review and successful CI `36176773233`. Feature branch: `codex/native-acceptance-continuation`.
+- Main: `cb37b93c99fa872f3e4a9a07be3dbe77e542718b`, advanced after clean exact-commit Sol review and successful CI `36177812713`. Feature branch: `codex/native-acceptance-continuation`.
 - Main includes account/notification assistant handoffs, settlement approval and direct-save recovery, the mobile CI selection guard, and the corrected meal-context privacy assertion. The failed substring assertion could match digits in an opaque hash; its replacement checks the decoded requester goal and exact profile field allowlist.
 - Receipt device handoffs `54566d2` are merged after clean exact Sol review and successful CI `36176773233`. Migration 195's owner-only barrier, its maintenance-error fix and financial-detail recovery are also on main. No hosted migration was applied.
-- Refund/correction approval recovery `cb37b93` and initial recurring approval recovery `a7231ce` have clean exact Sol reviews. Their CI runs `36177812713` and `36178100012` remain pending at this update. Further recurring variants described below remain an unmerged candidate.
+- Refund/correction approval recovery `cb37b93` is merged after clean exact review and successful CI `36177812713`. Recurring and legacy recovery successors have clean exact reviews but remain candidates awaiting CI.
 - The latest GitHub PR check found no open PRs. The owner authorized reviewed feature branches and fast-forward main without PRs. Exact-commit CI and clean Sol medium review still gate merging. No deployment follows a merge.
 - The continuation automation remains removed. No purchases, production migrations, scheduler activation, deployment, app retirement or release publication have occurred.
 
@@ -33,7 +33,7 @@ The stale Required CI table row identified by Sol is corrected to the currently 
 
 Twenty-one independent proposals cover consumed, denied and pending recurring create/update/pause/cancel/resume, variable-cycle and manual-link approvals. Their audited owner-only readers survive the committed freeze; partner/outsider/anonymous reads and every decision/execution attempt are refused. Full approval rows, all recurring rules/revisions/cycles and the final all-household financial snapshot remain unchanged through recovery. The complete 54/195 rehearsal passes with empty security advisors (`/tmp/nest-legacy-save-recovery.json`); scoped lint/format pass. Native restart and hosted scheduling remain outside this proof. Legacy approval coverage is recorded below. Manual-link sources are independent retained expenses; linking does not create a second expense. Exact review and CI are pending.
 
-Refund/correction recovery `cb37b93` has clean exact Sol review, including 13 independently passing approval tests; CI `36177812713` remains pending at this update.
+Refund/correction recovery `cb37b93` has clean exact Sol review, including 13 independently passing approval tests; CI `36177812713` passed and that commit is merged.
 
 ## Legacy approval recovery — locally verified candidate
 
@@ -48,6 +48,10 @@ Nine direct native-command fixtures cover recorded, cancelled and unresolved ope
 ## Native legacy recovery with writes suspended — locally verified
 
 The three existing native runtime → HTTP → PostgREST/SQLite lost-response journeys now revoke both Save and Cancel after the original commit and before reopening SQLite. Adoption, confirmation and dismissal recover their exact server receipt, clear the local attempt and send no second write. All 13 focused legacy native cases pass (`/tmp/nest-legacy-native-freeze.log`); scoped lint/format pass with existing async fixture advisories. The initial test launch lacked `NEST_TEST_POSTGREST_BIN`; configuring `/tmp/nest-postgrest/postgrest` allowed the actual tests to run. This proves committed Save recovery under mutation suspension, not cancelled/unresolved native freeze recovery, physical iPhone execution or all context screens. Exact review/CI are pending; these HTTP tests remain local evidence under the recorded workflow-permission blocker. Direct legacy SQL recovery `488127d` has clean Sol review with 22 independently passing database cases.
+
+## Native legacy approval recovery with writes suspended — locally verified
+
+All 21 focused approval-card cases pass, including three consumed and three denied decision restarts after revoking decision/execution and context-read functions. Actual native runtime → HTTP → PostgREST/SQLite recovery clears the saved decision through its terminal owner read, sends no second decision and preserves event counts. Denied results stay receipt-free; no context query is needed for terminal recovery. Report: `/tmp/nest-legacy-card-freeze.log`; scoped lint/format pass. Unknown pending approval recovery under the same freeze, physical iPhone execution and complete cutover remain unverified. Exact review/CI are pending; these HTTP cases remain locally verified only. Preceding native Save tests `2162d1c` have clean Sol review with all 13 cases independently repeated.
 
 ## Next work
 
@@ -73,7 +77,7 @@ The three existing native runtime → HTTP → PostgREST/SQLite lost-response jo
 
 | Area                          | Evidence                                                                                                                                                                                                                                                          | Remaining gap                                                                                                   |
 | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| Required CI                   | Main `54566d2`: successful run `36176773233`, clean Sol review. Existing workflow checks format, lint, types, focused tests and database suite.                                                                                                                   | Later branch commits require their own passing CI.                                                              |
+| Required CI                   | Main `cb37b93`: successful run `36177812713`, clean Sol review. Existing workflow checks format, lint, types, focused tests and database suite.                                                                                                                   | Later branch commits require their own passing CI.                                                              |
 | Mobile unit selection         | Expanded notification/push/reminder command: 47 cases; session/sign-out: 33 cases locally passed. Guard candidate checks every root mobile unit file is selected exactly once, including a negative omission probe.                                               | Nested HTTP integration tests are separate; selection does not prove runtime behavior.                          |
 | Account/notification handoffs | 18 focused cases passed at `d6e9144`; API/mobile types and scoped lint/format pass. Missing/revoked membership denied, only identity/member GETs, fixed successful destination required. Account settings reaches explicit native sign-out via Household account. | Live model selection, native navigation and device permissions unverified.                                      |
 | Setup entry                   | Meal setup: five lifecycle cases plus real HTTP/PostgREST journey. Reminder links: destination enrollment/client tests; Sol repeated 12 relevant cases.                                                                                                           | Actual navigation, form-return preservation, keyboard and accessibility unverified.                             |
