@@ -17,6 +17,8 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 Settlement approval recovery now preserves consumed, denied and pending owner results through the committed fixture freeze. Partner/outsider reads fail; every confirm/deny call is refused; complete approval rows and the final cross-household financial snapshot remain unchanged. The full 54-legacy/194-native rehearsal passes with empty security-advisor findings (`/tmp/nest-settlement-approval-recovery.json`). Scoped lint/format pass. Exact review and CI are pending; no hosted or device evidence is claimed. Complete recovery remains false.
 
+Two real native runtime → HTTP → PostgREST/SQLite restart cases also pass with settlement confirm/deny execution revoked after a lost committed response. Reopening clears the pending local decision from an authoritative read, sends no second write and preserves exact ledger counts/balances (`/tmp/nest-settlement-approval-freeze-http.log`). This proves consumed/denied settlement decision recovery only; an unknown pending command still requires reconciliation before cutover. No device execution is inferred.
+
 The CI unit-selection guard `d0fa1ce` merged after clean Sol review and successful exact CI `36171800916`. The docs consolidation `c565761` has clean Sol review; its CI remains pending.
 
 ## Next work
@@ -54,7 +56,7 @@ The CI unit-selection guard `d0fa1ce` merged after clean Sol review and successf
 
 The committed recovery fixture preserves direct expense, settlement, refund, correction, recurring configuration/state/variable-cycle receipts and pending/consumed expense approval reads. Original owners recover exact results; partner/outsider behavior is checked; new financial writes remain refused. Chore/grocery receipts and full routine/financial snapshots survive the freeze. Final financial comparison runs after recovery probes.
 
-Latest full fixture report: `/tmp/nest-approval-recovery-rehearsal.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
+Latest full fixture report: `/tmp/nest-settlement-approval-recovery.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
 
 `completeRecovery`, `externalRequestsDrained` and `ownerJobsStopped` remain false. Other financial approval kinds, legacy draft/adoption recovery, meal proposals, preferences/household commands, attachments and the cutover epoch require further reconciliation. Refusing writes and retaining receipts alone does not prove complete rollback.
 

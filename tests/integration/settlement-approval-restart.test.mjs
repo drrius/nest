@@ -12,7 +12,7 @@ const require = createRequire(new URL("../../apps/mobile/package.json", import.m
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 for (const approved of [true, false]) {
-  test(`settlement ${approved ? "confirm" : "decline"} recovers committed response loss across SQLite reopen with no automatic write`, async (t) => {
+  test(`settlement ${approved ? "confirm" : "decline"} recovers committed response loss across SQLite reopen while decisions are suspended`, async (t) => {
     const f = await settlementApiFixture(t),
       local = await sqlite(t);
     const account = { actor: id(1), household: id(10) },
@@ -56,6 +56,7 @@ for (const approved of [true, false]) {
       approved,
     });
     runtime.dispose();
+    suspendDecisions(f.db, approvalId, operationId);
     const reopened = local.reopen();
     const recovered = new SettlementApprovalRuntime(
       settlementApprovalOperations({ store: reopened.store, session }, client),
@@ -80,4 +81,18 @@ for (const approved of [true, false]) {
     );
     recovered.dispose();
   });
+}
+
+function suspendDecisions(db, approval, operation) {
+  db.sql(`revoke all on function public.nest_decide_settlement(uuid,uuid,jsonb,uuid,boolean)
+    from public,anon,authenticated,service_role;`);
+  for (const approved of [true, false])
+    assert.throws(
+      () =>
+        db.sql(`set role authenticated; set request.jwt.claim.sub='${id(1)}';
+      select public.nest_decide_settlement('${id(10)}','${operation}',
+      '${JSON.stringify(settlement({ mode: "partial", amountCentimes: "300" }))}'::jsonb,
+      '${approval}',${approved})`),
+      /permission denied/,
+    );
 }
