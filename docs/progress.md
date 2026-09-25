@@ -3489,3 +3489,9 @@ Main advanced to `54755f84dbee07469744e179105d29e8bce22dd9` after clean exact So
 ### Setup acceptance handoff (25 September)
 
 The native verification runbook now specifies real two-member setup acceptance: missing versus saved food state, form return/refresh, optional dismissal, failed reads, account isolation, all five reminder handoffs with unsaved drafts, explicit-only notification permission, and keyboard/VoiceOver/large text. No native case has run. Sol independently signed off `83cb766ebfe9040fb14b71c2d33219cba4a08306` after 12 notification/enrollment cases; the exact branch CI is still pending. The prepared acceptance protocol does not close M3 or the device gates.
+
+### Settlement receipt recovery during committed freeze — candidate (25 September)
+
+The final committed recovery fixture now preserves the audited read-only settlement Save reader as well as the expense Save reader. It records a real one-cent partial settlement in a separate synthetic household with independent members; the original retained-history stress household exceeds new-settlement amount limits and remains unchanged. After the committed API freeze, the owner recovers the exact settlement receipt, the partner receives unresolved/null, an outsider is denied, and new settlement execution remains revoked. Full financial snapshots preserve all households’ committed rows and balances.
+
+The complete 54-legacy/194-native disposable rehearsal passes, including prior financial/offline recovery checks and empty local security-advisor findings. Report: `/tmp/nest-settlement-recovery-rehearsal.json`. Scoped lint/format pass. Initial fixture attempts exposed the existing amount limit and one-household membership constraint; the final fixture respects both, with no production changes. Exact CI/Sol review are pending. This does not cover all other pending commands or external job drainage; completeRecovery remains false.

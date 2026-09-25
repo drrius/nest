@@ -4,6 +4,10 @@ import assert from "node:assert/strict";
 import { as, id, save } from "../../tests/database/native-expense-helpers.mjs";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
 import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
+import {
+  seedRecoverySettlement,
+  verifyRecoverySettlement,
+} from "./settlement-recovery-rehearsal.mjs";
 
 // Last fixture step: commit new history, then restrict APIs without restoring old data.
 // The caller owns a disposable cluster and destroys it after the report.
@@ -11,10 +15,11 @@ export function verifyCommittedFinancialRecovery(db) {
   const offlineReceipts = seedOfflineReceipts(db);
   const original = captureRehearsal(db);
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
+  const settlement = seedRecoverySettlement(db);
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 1,
+    original.financial.tables.financial_events.length + 3,
   );
   const reads = readFinancialState(db);
   for (const read of reads)
@@ -32,6 +37,7 @@ export function verifyCommittedFinancialRecovery(db) {
           and left(proname,5)='nest_' and oid not in (
             'public.nest_money_balance(uuid)'::regprocedure,
             'public.nest_money_history(uuid,uuid)'::regprocedure,
+            'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,
             'public.nest_read_expense_save(uuid,uuid)'::regprocedure) loop
         execute format('revoke all on function %s from public,anon,authenticated,service_role',v_function.signature);
         foreach v_role in array array['anon','authenticated','service_role'] loop
@@ -58,6 +64,7 @@ export function verifyCommittedFinancialRecovery(db) {
     /Not authorized/,
   );
   return {
+    settlementRecovery: verifyRecoverySettlement(db, settlement),
     offlineReceiptRecovery: verifyFrozenOfflineReceipts(db, offlineReceipts),
     committedExpensePreserved: true,
     financialReadsPreserved: true,
