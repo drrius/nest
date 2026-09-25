@@ -13,7 +13,7 @@
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "typecheck": "pnpm -r --if-present typecheck",
-    "test:tooling": "node --test tests/tooling/lint-contract.test.mjs",
+    "test:tooling": "node --test tests/tooling/*.test.mjs",
     "start": "pnpm --filter @nest/mobile start",
     "test:busy": "node --test tests/database/busy-snapshots.test.mjs",
     "test:calendar": "node --test apps/mobile/tests/calendar*.test.mjs",

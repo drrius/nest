@@ -3531,3 +3531,9 @@ The existing workflow’s focused script globs omitted eleven push lifecycle tes
 The actual expanded commands pass locally: 47 notification/push/reminder cases and 33 session/sign-out cases, approximately 0.2 seconds of Node test time each on this host. Formatting and diff checks pass. Exact CI/Sol review remain pending. No large device E2E suite was added and no device execution is inferred.
 
 Settlement recovery is merged through `eddb0c6db2416cccc84ae1d0101b2d3f8a734f76`, following clean Sol review and successful exact CI `36169842609`. Later recovery extensions remain CI-gated.
+
+### Guard against omitted mobile unit tests — candidate (25 September)
+
+A tooling test now reads the focused commands actually invoked by the current CI workflow, expands their mobile unit globs, and requires every root-level mobile test file to be selected exactly once. Empty patterns and missing script definitions fail as well. The current workflow’s simple command syntax is explicit; a future invocation-format refactor must update this check rather than silently lose coverage. Nested integrations/native E2E remain outside this guard. `test:tooling` includes both this guard and existing lint-limit contracts.
+
+All seven tooling cases pass locally. A temporary unselected root mobile test file caused the expected omission failure and was removed automatically. Scoped lint/format and diff checks pass. Exact CI/Sol review are pending. The preceding CI selection fix `7611ad2605e36f7988c01680ccce8d6bf2b003e2` has clean Sol review; this is selection enforcement, not a claim of device or hosted integration verification.
