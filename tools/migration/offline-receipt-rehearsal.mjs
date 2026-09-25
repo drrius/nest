@@ -1,4 +1,3 @@
-import { captureRoutineHistory } from "./routine-rehearsal.mjs";
 import assert from "node:assert/strict";
 import { as, id } from "../../tests/database/native-expense-helpers.mjs";
 
@@ -22,7 +21,7 @@ export function seedOfflineReceipts(db) {
   const snapshot = {
     first: readOfflineReceipts(db, 1),
     second: readOfflineReceipts(db, 2),
-    routines: captureRoutineHistory(db),
+    routines: captureNativeRoutineHistory(db),
   };
   assert.equal(snapshot.first.chores.length, 0);
   assert.equal(snapshot.first.groceries.length, 1);
@@ -34,7 +33,7 @@ export function verifyFrozenOfflineReceipts(db, expected) {
   assert.deepEqual(readOfflineReceipts(db, 1), expected.first);
   assert.deepEqual(readOfflineReceipts(db, 2), expected.second);
   assert.deepEqual(readOfflineReceipts(db, 3), { chores: [], groceries: [] });
-  assert.equal(captureRoutineHistory(db), expected.routines);
+  assert.equal(captureNativeRoutineHistory(db), expected.routines);
   assert.equal(
     db.sql(`select native_version from public.grocery_items where id='${id(810)}'`),
     "2",
@@ -77,4 +76,12 @@ function readOfflineReceipts(db, actor) {
       ),
     ),
   );
+}
+
+function captureNativeRoutineHistory(db) {
+  return db.sql(`select jsonb_build_object(
+    'routines',(select jsonb_agg(to_jsonb(r) order by id) from public.routines r),
+    'occurrences',(select jsonb_agg(to_jsonb(o) order by id) from public.routine_occurrences o),
+    'completions',(select jsonb_agg(to_jsonb(c) order by occurrence_id) from public.routine_completions c)
+  )`);
 }
