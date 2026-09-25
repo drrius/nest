@@ -151,11 +151,11 @@ export const AssistantInputs = {
     Struct.omit(SaveCookingPreferences.fields, ["operationId"]),
   ),
   saveFoodPreferences: Schema.Struct(Struct.omit(SaveFoodPreferences.fields, ["operationId"])),
-  completeChore: Schema.Struct(Struct.omit(CompleteChore.fields, ["operationId"])),
+  completeChore: Schema.Struct(Struct.omit(CompleteChore.fields, ["operationId", "offlineEpoch"])),
   addGrocery: Schema.Struct(Struct.omit(AddGrocery.fields, ["operationId", "itemId"])),
   editGrocery: Schema.Struct(Struct.omit(EditGrocery.fields, ["operationId"])),
   removeGrocery: Schema.Struct(Struct.omit(RemoveGrocery.fields, ["operationId"])),
-  checkGrocery: Schema.Struct(Struct.omit(CheckGrocery.fields, ["operationId"])),
+  checkGrocery: Schema.Struct(Struct.omit(CheckGrocery.fields, ["operationId", "offlineEpoch"])),
 };
 export type AssistantAction = keyof typeof AssistantInputs;
 export const AssistantReceipts = {

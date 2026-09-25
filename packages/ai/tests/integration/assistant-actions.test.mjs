@@ -232,6 +232,21 @@ test("SDK edit, check and remove retain command order and validate each native r
 test("malformed or unknown SDK calls close the write guard before any queued mutation", async (t) => {
   for (const invalid of [
     call("checkGrocery", { itemId: id(100), expectedVersion: 99, checked: true }, "invalid"),
+    call(
+      "checkGrocery",
+      { itemId: id(100), expectedVersion: "1", checked: true, offlineEpoch: id(999) },
+      "epoch-check",
+    ),
+    call(
+      "completeChore",
+      {
+        occurrenceId: id(100),
+        expectedDueDate: "2026-09-25",
+        completedOn: "2026-09-25",
+        offlineEpoch: id(999),
+      },
+      "epoch-chore",
+    ),
     call("unknownHouseholdTool", {}, "unknown"),
   ]) {
     await t.test(invalid.toolName, async (t) => {
