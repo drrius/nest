@@ -1,3 +1,4 @@
+import { captureOfflineSnapshots, verifyOfflineSnapshots } from "./offline-snapshot-recovery.mjs";
 import {
   seedAssistantJournalRecovery,
   verifyAssistantJournalRecovery,
@@ -63,6 +64,7 @@ export function verifyCommittedFinancialRecovery(db) {
       read.history.events.some((event) => event.eventId === receipt.eventId),
       true,
     );
+  const offlineSnapshots = captureOfflineSnapshots(db);
   freezeRecoveryFixture(db);
   db.sql(assertLegacyJobsPausedSql());
   assert.throws(
@@ -76,6 +78,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
+    offlineSnapshotRecovery: verifyOfflineSnapshots(db, offlineSnapshots),
     assistantJournalRecovery: verifyAssistantJournalRecovery(db, assistantJournal),
     legacySaveRecovery: verifyLegacySaveRecovery(db, legacySaves),
     legacyApprovalRecovery: verifyLegacyApprovalRecovery(db, legacyApprovals),

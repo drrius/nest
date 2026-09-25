@@ -14,6 +14,8 @@ export function freezeRecoveryFixture(db) {
       for v_function in select oid,oid::regprocedure::text as signature from pg_proc
         where pronamespace='public'::regnamespace and prokind='f'
           and left(proname,5)='nest_' and oid not in (
+            'public.nest_chore_epoch_snapshot(uuid)'::regprocedure,
+            'public.nest_grocery_epoch_snapshot(uuid)'::regprocedure,
             'public.nest_read_meal_proposal(uuid,uuid)'::regprocedure,
             'public.nest_read_meal_proposal_origin(uuid,uuid)'::regprocedure,
             'public.nest_read_proposal_edit_snapshot(uuid,uuid)'::regprocedure,
