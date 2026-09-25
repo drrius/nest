@@ -1,3 +1,7 @@
+import {
+  seedAssistantJournalRecovery,
+  verifyAssistantJournalRecovery,
+} from "./assistant-journal-recovery.mjs";
 import { seedLegacySaveRecovery, verifyLegacySaveRecovery } from "./legacy-save-recovery.mjs";
 import {
   seedLegacyApprovalRecovery,
@@ -39,6 +43,7 @@ export function verifyCommittedFinancialRecovery(db) {
   const original = captureRehearsal(db);
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
   const settlement = seedRecoverySettlement(db);
+  const assistantJournal = seedAssistantJournalRecovery(db);
   const adjustments = seedRecoveryAdjustments(db);
   const legacySaves = seedLegacySaveRecovery(db);
   const legacyApprovals = seedLegacyApprovalRecovery(db);
@@ -71,6 +76,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
+    assistantJournalRecovery: verifyAssistantJournalRecovery(db, assistantJournal),
     legacySaveRecovery: verifyLegacySaveRecovery(db, legacySaves),
     legacyApprovalRecovery: verifyLegacyApprovalRecovery(db, legacyApprovals),
     recurringApprovalRecovery: verifyRecurringApprovalRecovery(db, recurringApprovals),
