@@ -6,7 +6,7 @@ Updated 25 September 2026. The approved [product brief](native-rewrite/product-a
 
 ## Current work
 
-**Current branch: `codex/native-acceptance-continuation`. Main: `f2e0869`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 194 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 194-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
+**Current branch: `codex/native-acceptance-continuation`. Main: `eddb0c6`.** Today’s private financial approval list, its AI handoff and recovery fix are merged after clean Sol medium review and exact CI success. The migration rehearsal now applies 54 legacy and 194 native migrations to disposable synthetic data (one explicit `pg_net` exclusion; simulated Auth/Storage interfaces). Preservation, renewal conversion and partial shopping/retention cutover rollback are locally verified. Main includes the 194-native-migration rehearsal, saved-summary flow and owner-only automatic-posting recovery pause after exact CI and Sol review.
 
 **Saved daily summary discovery is merged.** Its recipient-only database/API, native client, Today entry and assistant handoff passed local verification, exact CI and Sol review. Native interaction and hosted scheduling/delivery remain unverified. Current candidates address migration recovery and setup account recovery.
 
@@ -3523,3 +3523,11 @@ Main advanced to `f2e0869605766a1055aae32ed551d159e0d7e177` after clean exact So
 ### Recovery coverage audit (25 September)
 
 The migration runbook now reflects 194 native migrations, public view/procedure fencing, and a bounded matrix for offline receipts, direct money, direct recurring and expense approval recovery. It explicitly lists remaining command families, epoch/drainage and hosted/device gates rather than presenting the fixture’s complete flag as acceptance. Docs formatting/diff checks pass; no application tests rerun for this documentation-only change. Expense approval recovery `f660e843d42d71762251cffa01ce85b7e7daa17b` has clean Sol review and awaits exact CI.
+
+### Routine CI mobile unit coverage gap — candidate (25 September)
+
+The existing workflow’s focused script globs omitted eleven push lifecycle test files plus sign-out preflight, recurring reminder editor, renewal form and reminder form files. `test:notifications` now includes push and these reminder/renewal forms; `test:session` includes sign-out preflight. These extend commands already called by CI without changing workflow credentials, deployment behavior or dependencies. An inventory of the current root mobile unit directory finds all 198 test files covered by the focused commands; nested HTTP integration files remain separate and are not claimed as CI-covered. This inventory establishes selection only, not that every test passes remotely.
+
+The actual expanded commands pass locally: 47 notification/push/reminder cases and 33 session/sign-out cases, approximately 0.2 seconds of Node test time each on this host. Formatting and diff checks pass. Exact CI/Sol review remain pending. No large device E2E suite was added and no device execution is inferred.
+
+Settlement recovery is merged through `eddb0c6db2416cccc84ae1d0101b2d3f8a734f76`, following clean Sol review and successful exact CI `36169842609`. Later recovery extensions remain CI-gated.
