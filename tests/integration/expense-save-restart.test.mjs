@@ -12,7 +12,7 @@ const require = createRequire(new URL("../../apps/mobile/package.json", import.m
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 for (const action of ["save", "cancel"]) {
-  test(`direct ${action} recovers real response loss across SQLite restart with zero automatic sends`, async (t) => {
+  test(`direct ${action} recovers response loss across SQLite restart while writes are fenced`, async (t) => {
     const f = await expenseApiFixture(t),
       local = await sqlite(t);
     const account = { actor: id(1), household: id(10) },
@@ -51,6 +51,15 @@ for (const action of ["save", "cancel"]) {
     assert.equal(sends, 1);
     assert.deepEqual(await run(local.store.readExpenseSave(session)), { action, command });
     runtime.dispose();
+    f.db
+      .sql(`revoke all on function public.nest_save_expense(uuid,uuid,jsonb) from public,anon,authenticated,service_role;
+      revoke all on function public.nest_cancel_expense_save(uuid,uuid) from public,anon,authenticated,service_role;`);
+    assert.throws(
+      () =>
+        f.db.sql(`set role authenticated; set request.jwt.claim.sub='${id(1)}';
+      select public.nest_save_expense('${id(10)}','${id(101)}','{}'::jsonb)`),
+      /permission denied/,
+    );
     const reopened = local.reopen();
     const recovered = new ExpenseSaveRuntime(
       expenseSaveOperations({ store: reopened.store, session }, client),

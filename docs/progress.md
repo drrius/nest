@@ -14,6 +14,10 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 **CI workflow credential blocker:** the reviewed core integration CI proposal is preserved locally on `codex/core-integration-ci` (`b7ca460`). GitHub rejected its push because the current OAuth login lacks `workflow` scope. Existing remote CI remains unchanged; real HTTP/PostgREST integration evidence is local until this proposal can be published. Independent implementation continues. Source merges still require clean exact-commit Sol review and passing required CI; production and release approval remain separate.
 
+### Expense restart recovery during write suspension — locally verified
+
+On 25 September, two real native runtime → HTTP → PostgREST → disposable PostgreSQL tests passed after revoking Save and Cancel execution from every API role between a lost committed response and SQLite reopen. A new authenticated Save is denied, while restart recovers the existing recorded/cancelled receipt, clears the pending command and performs zero additional sends. Financial-event counts remain one for Save and zero for Cancel. This proves this bounded recovery path only; it does not establish reconciliation for all pending command types or a complete cutover epoch. Exact-commit review and CI remain pending; no device or hosted verification occurred.
+
 ### Reminder storage — initial local verification
 
 The gated migration draft adds strict canonical settings validation, household-readable reminder rows and inaccessible immutable operation receipts. Two disposable PostgreSQL tests pass for canonical recipient ordering, invalid timing/lead times/duplicate recipients, rejected mute-override authority, household isolation and denied direct writes/private receipt access. This draft does not yet expose authorized save/read/recovery commands or schedule notifications. Recipient membership validation belongs in the forthcoming save transaction. CI/review and security advisors remain outstanding for this draft; no hosted migration or push occurred.
