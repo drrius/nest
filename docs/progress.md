@@ -6,58 +6,22 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Current delivery state
 
-- Main: `849038bd2c38140ccb9028d59c8c1574ec368861`. Feature branch: `codex/native-acceptance-continuation`.
-- Main includes progressive meal setup, notification setup links from reminder editors, migration recovery through direct money/recurring and expense approval reads, and the CI selection fix for previously omitted push/session tests.
-- Latest implementation: `d6e91440c0df6316070ec06daec073afd2bd6a22`, account-settings assistant handoff. Clean exact-commit GPT-5.6 Sol medium review; 18 focused tests independently repeated. CI run `36173113193` is pending at this update.
-- Earlier branch candidates `d0fa1ce` (CI selection guard) and `1e918b3` (notification assistant handoff) have clean reviews; CI runs `36171800916` and `36172421276` were still running at the last check. No pending check counts as approval.
-- GitHub reports no open PRs. The owner authorized reviewed feature branches and fast-forward main without PRs. Exact-commit CI and clean Sol medium review still gate merging. No deployment follows a merge.
+- Main: `a8053bfe6cf3758d31e5269e56016c29cec3e11f`, advanced after clean exact-commit Sol review and successful CI `36174823571`. Feature branch: `codex/native-acceptance-continuation`.
+- Main includes account/notification assistant handoffs, settlement approval and direct-save recovery, the mobile CI selection guard, and the corrected meal-context privacy assertion. The failed substring assertion could match digits in an opaque hash; its replacement checks the decoded requester goal and exact profile field allowlist.
+- Latest implementation candidate: `54566d2651ea8a9c077f7aedccc136608d08a08f`, receipt device handoffs. GPT-5.6 Sol medium reports CLEAN for that exact commit and independently passed eight focused authorization/result-binding checks. CI `36176773233` remains in progress: formatting, lint, types and focused mobile suites passed; the PostgreSQL suite is running. Pending checks are not approval.
+- The candidate includes migration 195's owner-only household write barrier, the maintenance-error classification fix and retained financial-detail reads during recovery. These changes are not yet on main. Intermediate `ac070a7` must not merge alone: `aeeb6dd` fixes its reproduced offline conflict misclassification.
+- The latest GitHub PR check found no open PRs. The owner authorized reviewed feature branches and fast-forward main without PRs. Exact-commit CI and clean Sol medium review still gate merging. No deployment follows a merge.
 - The continuation automation remains removed. No purchases, production migrations, scheduler activation, deployment, app retirement or release publication have occurred.
 
-## Latest recovery verification
+## Latest local verification
 
-Settlement approval recovery now preserves consumed, denied and pending owner results through the committed fixture freeze. Partner/outsider reads fail; every confirm/deny call is refused; complete approval rows and the final cross-household financial snapshot remain unchanged. The full 54-legacy/194-native rehearsal passes with empty security-advisor findings (`/tmp/nest-settlement-approval-recovery.json`). Scoped lint/format pass. Exact review and CI are pending; no hosted or device evidence is claimed. Complete recovery remains false.
+- **Recovery rehearsal:** all 54 legacy and 195 native migrations apply to disposable fixtures. The latest full report is `/tmp/nest-detail-recovery-rehearsal.json`; security advisors report no findings. Both members retain identical balance/history/expense detail after the committed freeze; outsiders are refused. The final all-household financial snapshot reconciles after all recovery probes. This does not prove hosted infrastructure or complete cutover recovery.
+- **Write barrier:** the default-open migration protects current public/private tables; only the database owner can freeze/resume. Coverage validation rejects missing/disabled guards. Five database cases exercise in-flight transaction drainage, retained reads, denied writes/truncation, role restrictions and pre-existing transaction isolation. Auth/Storage, external requests, owner jobs, concurrent DDL and pending-client epoch reconciliation remain outside this proof.
+- **Offline maintenance handling:** a real HTTP/PostgREST/SQLite test reproduced that generic SQLSTATE 55000 became a grocery conflict. The unapplied migration now raises `PT503`, classified as unavailable. Grocery and chore intent remains pending through freeze/restart and resumes without duplicate effects. Ten focused cases pass across grocery, chore and barrier tests: `/tmp/nest-freeze-grocery-after.log` and `/tmp/nest-freeze-chore-after.log`.
+- **Settlement recovery:** five HTTP/PostgREST/SQLite cases cover consumed/denied approval restart, unresolved staged approval, and direct Save/Cancel restart. Terminal authoritative reads clear metadata without repeating writes; unknown intent remains durable and cannot be replaced by its opposite. Reports: `/tmp/nest-settlement-unresolved-http.log` and `/tmp/nest-settlement-save-freeze-http.log`.
+- **Receipt handoffs:** registered tools reauthorize membership and return fixed links to expense entry, grocery expense entry and upload review. They do not choose files, upload/read/remove receipts, grant approvals or post money. Twenty-two focused cases, API/mobile typechecks and scoped lint/format pass. Report: `/tmp/nest-receipt-handoff-tests.log`. Live model selection, actual picker/navigation and device file handling remain unverified.
 
-Two real native runtime → HTTP → PostgREST/SQLite restart cases also pass with settlement confirm/deny execution revoked after a lost committed response. Reopening clears the pending local decision from an authoritative read, sends no second write and preserves exact ledger counts/balances (`/tmp/nest-settlement-approval-freeze-http.log`). This proves consumed/denied settlement decision recovery only; an unknown pending command still requires reconciliation before cutover. No device execution is inferred.
-
-The CI unit-selection guard `d0fa1ce` merged after clean Sol review and successful exact CI `36171800916`. The docs consolidation `c565761` has clean Sol review; its CI remains pending.
-
-## Unresolved settlement and direct recovery — locally verified
-
-Five HTTP/PostgREST/SQLite cases now cover consumed and denied approval restart, an uncommitted staged approval, and direct Save/Cancel restart with mutation execution suspended. Unknown approval intent remains durable, cannot be replaced by its opposite, makes no automatic send and survives a refused explicit retry. Terminal direct results clear local metadata without repeating writes. Reports: `/tmp/nest-settlement-unresolved-http.log` (three cases) and `/tmp/nest-settlement-save-freeze-http.log` (two). Scoped lint/format pass; review and exact CI are pending. This is not device execution or complete cutover reconciliation.
-
-Settlement recovery through `849038b` has clean cumulative Sol review; the earlier stale report-path finding was corrected.
-
-## Fixture write barrier — locally verified
-
-A fixture-only barrier covers existing ordinary/partitioned public/private tables. Each write statement holds a shared control-row lock until transaction end; freeze updates wait for those writers before commit. Five focused PostgreSQL cases verify actual lock waiting, retained reads, denied insert/update/delete/truncate, API-role control denial, missing-control refusal and pre-existing read-committed/repeatable-read transactions refusing later writes, plus rejection of newly added tables or disabled guards before freezing. The complete 54-legacy/194-native recovery rehearsal passes with this barrier installed before new records and frozen alongside API/job restrictions. Reports: `/tmp/nest-barrier-coverage-tests.log` and `/tmp/nest-barrier-coverage-rehearsal.json`. This is not a production migration or activation tool; future DDL, Auth/Storage, external requests and deliberate owner bypass remain outside it. Complete recovery remains false. The barrier/privacy fix through `a8053bf` has clean Sol review; the coverage check requires updated review and CI. Concurrent full freezes can contend or abort; this helper is a one-shot disposable experiment, not production orchestration.
-
-CI `36173113193` failed one existing meal-planning context test (1,176/1,177 passed): a substring privacy assertion can match digits in the opaque state hash. The test now strictly decodes the projection, checks the actual requester goal and exact member profile field allowlist instead of searching opaque hashes for calorie digits. All four focused context cases pass (`/tmp/nest-planning-context-ci-fix.log`); scoped lint/format pass. No privacy contract or implementation changed. Updated review/CI remain required; the failed commit has not merged.
-
-## Gated household write control — locally verified candidate
-
-Migration `20260925185000_native_household_write_barrier.sql` promotes the tested barrier into a default-open database control. Only the database owner can assert coverage or freeze/resume; API roles cannot change it. A frozen or missing control rejects protected writes while existing reads remain available. The fixture adapters now execute this exact migration rather than maintain a separate SQL implementation. All five focused database cases pass (`/tmp/nest-gated-barrier-tests.log`). The complete 54-legacy/195-native chain passes with exact history/recovery checks and empty security-advisor findings (`/tmp/nest-gated-barrier-rehearsal.json`); scoped lint/format pass. Updated review/CI are pending.
-
-This prepares code only. No hosted database was touched and no freeze/deployment was activated. The control covers current public/private tables; catalog validation rejects missing/disabled guards. Deployment must stop concurrent DDL and use one operator. Lock/statement/deadlock failures are failed activation, not acknowledgment. Auth/Storage, external HTTP/jobs, pending client reconciliation and cutover epoch remain separate. Complete recovery remains false. The earlier fixture-only section records the preceding experiment; this gated candidate supersedes its implementation, not its verification limits.
-
-The review finding about the stale global latest-report path is corrected above.
-
-## Maintenance error classification — reproduced and fixed locally
-
-The real grocery HTTP/PostgREST/SQLite test reproduced that SQLSTATE 55000 from the new barrier became an item conflict. The unapplied migration now raises PostgREST `PT503` for protected writes, which existing native/server adapters classify as unavailable. Grocery intent remains pending (not conflicted) across freeze/restart, keeps its operation identity, and applies once after resume. Chores retain pending intent and preserve existing lost-response recovery without duplicate completion. The small chore fixture needed its missing synthetic service role before applying the real migration; no production role was changed.
-
-Ten focused cases pass: four grocery journeys, one chore journey and five barrier cases. Reports: `/tmp/nest-freeze-grocery-before.log` (expected reproduction failure), `/tmp/nest-freeze-grocery-after.log`, `/tmp/nest-freeze-chore-after.log`. The full 54/195 rehearsal passes again with empty advisors in `/tmp/nest-gated-barrier-rehearsal.json`. Scoped lint/format pass. Updated exact review and CI remain pending. Current migration totals were corrected in response to Sol's documentation finding.
-
-Main advanced to `849038bd2c38140ccb9028d59c8c1574ec368861` after clean exact review and successful CI `36173987222`, including account settings handoff and committed settlement approval recovery. Later barrier changes remain candidates; no deployment occurred.
-
-## Financial detail during recovery — locally verified
-
-The committed freeze now retains the audited `nest_money_detail` reader as well as balance/history. Both household members receive identical full detail for the new expense before and after freeze; outsider reads are denied in both states. Final all-household financial snapshots still reconcile after every recovery probe. The full 54/195 rehearsal passes (`/tmp/nest-detail-recovery-rehearsal.json`) with empty security advisors; scoped lint/format pass. This preserves the event explanation read path, not receipt bytes or every other native reader. Exact review/CI are pending. Maintenance-error fix `aeeb6dd` has clean Sol review with ten independently passing cases; its CI remains pending.
-
-## Receipt device handoffs — locally verified candidate
-
-The registered assistant now provides fixed authorized handoffs to ordinary expense entry, grocery expense entry and receipt-upload review. The cards navigate to existing protected native screens; they do not choose/upload/read/remove files, fill financial fields, grant approvals or post money. Each tool revalidates membership, and its native result parser rejects failed/premature output, an arbitrary URL or a different handoff's destination.
-
-Twenty-two focused cases pass, including actual registered-tool authorization/no-write checks, three strict card paths, prior action-card regressions and CI test-selection coverage. API/mobile typechecks and scoped lint/format pass. Report: `/tmp/nest-receipt-handoff-tests.log`. The older setup test's missing-auth branch was corrected to invoke each named tool rather than always the notification tool. Live model selection, actual picker/navigation and device file handling remain unverified. Exact review/CI are pending. Financial detail recovery `e0c9385` has clean Sol review with three independently passing detail privacy/integrity tests; its CI remains pending.
+All reports above use synthetic data. `completeRecovery`, `externalRequestsDrained` and `ownerJobsStopped` remain false. Detailed preceding candidate evidence is preserved at `54566d2651ea8a9c077f7aedccc136608d08a08f:docs/progress.md`; its pending statuses are historical.
 
 ## Next work
 
