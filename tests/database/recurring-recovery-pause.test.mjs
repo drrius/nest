@@ -52,6 +52,7 @@ test("pause acknowledgment waits for an in-flight financial transaction to commi
   );
   await waitFor(f.db, "application_name='nest-posting-drain' and wait_event='PgSleep'");
   const pausing = f.db.concurrent(`set application_name='nest-pausing-drain';
+    set lock_timeout='8s'; set statement_timeout='9s';
     select private.nest_set_recurring_execution_paused(true)`);
   await waitFor(f.db, "application_name='nest-pausing-drain' and wait_event_type='Lock'");
   await Promise.all([posting, pausing]);

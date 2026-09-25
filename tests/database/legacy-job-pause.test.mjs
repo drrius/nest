@@ -43,7 +43,9 @@ test("legacy pause waits for the transaction holding a job claim", async (t) => 
     `set application_name='nest-legacy-running'; begin; ${claim}; select pg_sleep(3); commit;`,
   );
   await waitFor(db, "application_name='nest-legacy-running' and wait_event='PgSleep'");
-  const pausing = db.concurrent(`set application_name='nest-legacy-pausing'; ${pause}`);
+  const pausing = db.concurrent(
+    `set application_name='nest-legacy-pausing'; set lock_timeout='8s'; set statement_timeout='9s'; ${pause}`,
+  );
   await waitFor(db, "application_name='nest-legacy-pausing' and wait_event_type='Lock'");
   await Promise.all([running, pausing]);
   assert.equal(db.sql("select count(*) from public.job_claims"), "1");
