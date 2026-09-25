@@ -1,4 +1,8 @@
 import {
+  seedAdjustmentApprovalRecovery,
+  verifyAdjustmentApprovalRecovery,
+} from "./adjustment-approval-recovery.mjs";
+import {
   seedSettlementApprovalRecovery,
   verifySettlementApprovalRecovery,
 } from "./settlement-approval-recovery.mjs";
@@ -30,10 +34,11 @@ export function verifyCommittedFinancialRecovery(db) {
   const recurring = seedRecurringRecovery(db);
   const approvals = seedApprovalRecovery(db);
   const settlementApprovals = seedSettlementApprovalRecovery(db);
+  const adjustmentApprovals = seedAdjustmentApprovalRecovery(db);
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 10,
+    original.financial.tables.financial_events.length + 18,
   );
   const reads = readFinancialState(db, receipt.eventId);
   for (const read of reads)
@@ -54,6 +59,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
+    adjustmentApprovalRecovery: verifyAdjustmentApprovalRecovery(db, adjustmentApprovals),
     approvalRecovery: verifyApprovalRecovery(db, approvals),
     settlementApprovalRecovery: verifySettlementApprovalRecovery(db, settlementApprovals),
     recurringRecovery: verifyRecurringRecovery(db, recurring),

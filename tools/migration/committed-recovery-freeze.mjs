@@ -19,6 +19,8 @@ export function freezeRecoveryFixture(db) {
             'public.nest_money_detail(uuid,uuid)'::regprocedure,
             'public.nest_read_expense_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_settlement_approval(uuid,uuid)'::regprocedure,
+            'public.nest_read_refund_approval(uuid,uuid)'::regprocedure,
+            'public.nest_read_correction_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,
             'public.nest_read_refund_save(uuid,uuid)'::regprocedure,
             'public.nest_read_correction_save(uuid,uuid)'::regprocedure,
