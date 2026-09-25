@@ -45,16 +45,26 @@ export function proposalState(config: IdentityConfig, caller: AuthorizedCaller) 
       Effect.gen(function* () {
         const command = yield* decodeProposal(GenerateMealProposal, input, "invalid_request");
         const { operationId, ...payload } = command;
-        const raw = yield* requestJson(
+        const request = {
+          p_household: caller.member.householdId,
+          p_operation: operationId.toLowerCase(),
+          p_input: payload,
+        };
+        const saved = yield* requestJson(
           config,
           caller.token,
-          "rest/v1/rpc/nest_begin_meal_proposal",
-          {
-            p_household: caller.member.householdId,
-            p_operation: operationId.toLowerCase(),
-            p_input: payload,
-          },
+          "rest/v1/rpc/nest_read_meal_reservation",
+          request,
         );
+        const raw =
+          saved === null
+            ? yield* requestJson(
+                config,
+                caller.token,
+                "rest/v1/rpc/nest_begin_meal_proposal",
+                request,
+              )
+            : saved;
         const receipt = yield* decodeProposal(MealProposalGenerationReceipt, raw);
         if (
           !owner(receipt, operationId) ||

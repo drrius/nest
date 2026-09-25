@@ -127,24 +127,38 @@ test("native SQLite restart recovers a committed generation after response loss 
   assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "0");
 });
 
-test("lost native reservation response never calls the model until its ID is durably recovered", async (t) => {
-  const f = await backend(t, "reserve"),
-    runtime = f.create();
-  await runtime.load();
-  await runtime.start(false);
-  assert.equal(f.proxy.dropped(), 1);
-  assert.equal(f.provider.calls.length, 0);
-  assert.equal(runtime.getSnapshot().attempt.proposalId, null);
-  runtime.dispose();
-  const recovered = f.create(f.sqlite.reopen().store);
-  await recovered.load();
-  assert.equal(f.provider.calls.length, 0);
-  await recovered.continue();
-  assert.equal(recovered.getSnapshot().proposal.status, "ready");
-  assert.equal(f.provider.calls.length, 2);
-  assert.equal(f.remote.db.sql("select count(*) from private.nest_meal_proposals"), "1");
-  assert.equal(f.remote.db.sql("select count(*) from private.nest_meal_proposal_jobs"), "1");
-});
+for (const frozen of [false, true]) {
+  test(`lost reservation recovers its ID before model execution (frozen=${frozen})`, async (t) => {
+    const f = await backend(t, "reserve"),
+      runtime = f.create();
+    await runtime.load();
+    await runtime.start(false);
+    assert.equal(f.proxy.dropped(), 1);
+    assert.equal(f.provider.calls.length, 0);
+    assert.equal(runtime.getSnapshot().attempt.proposalId, null);
+    const before = proposalSnapshot(f.remote.db);
+    if (frozen) freezeProposals(f.remote.db);
+    runtime.dispose();
+    const recovered = f.create(f.sqlite.reopen().store);
+    await recovered.load();
+    assert.equal(f.provider.calls.length, 0);
+    if (frozen) {
+      await recovered.continue();
+      assert.ok(recovered.getSnapshot().attempt.proposalId);
+      assert.equal(recovered.getSnapshot().fresh, false);
+      assert.equal(f.provider.calls.length, 0);
+      assert.equal(proposalSnapshot(f.remote.db), before);
+      f.remote.db.sql(`select private.nest_set_household_writes_frozen(false);
+      grant execute on function public.nest_recover_meal_proposal(uuid,uuid) to authenticated;`);
+      assert.equal(f.provider.calls.length, 0);
+    }
+    await recovered.continue();
+    assert.equal(recovered.getSnapshot().proposal.status, "ready");
+    assert.equal(f.provider.calls.length, 2);
+    assert.equal(f.remote.db.sql("select count(*) from private.nest_meal_proposals"), "1");
+    assert.equal(f.remote.db.sql("select count(*) from private.nest_meal_proposal_jobs"), "1");
+  });
+}
 
 test("lost native discard response recovers terminal state and revocation hides the preview", async (t) => {
   const f = await backend(t, "discard"),
