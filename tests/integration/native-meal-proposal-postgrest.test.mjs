@@ -8,6 +8,7 @@ import { nodeServer } from "../../apps/api/node-server.mjs";
 import { mealClient } from "../../apps/mobile/src/meals/client.ts";
 import { MealProposalRuntime } from "../../apps/mobile/src/meals/proposal-runtime.ts";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
+import { freezeProposals, proposalSnapshot } from "./meal-proposal-freeze-fixture.mjs";
 const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
 const Effect = require("effect/Effect"),
   run = Effect.runPromise;
@@ -51,7 +52,7 @@ async function backend(t, lose) {
   return { remote, sqlite, provider, session, proxy, create, client };
 }
 
-test("native approval survives a committed response loss and SQLite restart without re-posting meals", async (t) => {
+test("native approval survives a committed response loss, write freeze and SQLite restart without re-posting meals", async (t) => {
   const f = await backend(t, "approve"),
     runtime = f.create();
   await runtime.load();
@@ -62,6 +63,8 @@ test("native approval survives a committed response loss and SQLite restart with
   assert.equal(runtime.getSnapshot().fresh, false);
   assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "7");
   const operation = runtime.getSnapshot().attempt.approval.operationId;
+  const before = proposalSnapshot(f.remote.db);
+  freezeProposals(f.remote.db);
   runtime.dispose();
   const recovered = f.create(f.sqlite.reopen().store);
   await recovered.load();
@@ -69,6 +72,7 @@ test("native approval survives a committed response loss and SQLite restart with
   assert.equal(recovered.getSnapshot().attempt.approval.operationId, operation);
   await recovered.continue();
   assert.equal(f.remote.db.sql("select count(*) from public.meal_plan_entries"), "7");
+  assert.deepEqual(proposalSnapshot(f.remote.db), before);
   const savedWeek = await run(f.client.read(week));
   assert.equal(savedWeek.entries.length, 7);
   assert.deepEqual(
@@ -98,7 +102,7 @@ test("a changed real week refuses native approval and requires a refreshed expli
   assert.equal(f.provider.calls.length, 2);
 });
 
-test("native SQLite restart recovers a committed generation after its HTTP response is lost", async (t) => {
+test("native SQLite restart recovers a committed generation after response loss and write freeze", async (t) => {
   const f = await backend(t, "generate"),
     runtime = f.create();
   await runtime.load();
@@ -107,6 +111,8 @@ test("native SQLite restart recovers a committed generation after its HTTP respo
   assert.equal(f.proxy.dropped(), 1);
   assert.equal(f.provider.calls.length, 2);
   const operation = runtime.getSnapshot().attempt.generation.operationId;
+  const before = proposalSnapshot(f.remote.db);
+  freezeProposals(f.remote.db);
   runtime.dispose();
   const reopened = f.sqlite.reopen(),
     recovered = f.create(reopened.store);
@@ -114,6 +120,7 @@ test("native SQLite restart recovers a committed generation after its HTTP respo
   assert.equal(recovered.getSnapshot().proposal.status, "ready");
   assert.equal(recovered.getSnapshot().attempt.generation.operationId, operation);
   assert.equal(f.provider.calls.length, 2);
+  assert.deepEqual(proposalSnapshot(f.remote.db), before);
   const stored = reopened.connection.prepare("select data from meal_proposal_attempts").get().data;
   assert.equal(stored.includes("Vegetarian"), false);
   assert.equal(stored.includes("instructions"), false);

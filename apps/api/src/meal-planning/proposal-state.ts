@@ -65,21 +65,7 @@ export function proposalState(config: IdentityConfig, caller: AuthorizedCaller) 
           return yield* new ApiFailure({ code: "unavailable" });
         return receipt;
       }),
-    read: (input: unknown, recover = false) =>
-      Effect.gen(function* () {
-        const command = yield* decodeProposal(ReadMealProposal, input, "invalid_request");
-        const proposalId = command.proposalId.toLowerCase();
-        const raw = yield* requestJson(
-          config,
-          caller.token,
-          `rest/v1/rpc/${recover ? "nest_recover_meal_proposal" : "nest_read_meal_proposal"}`,
-          {
-            p_household: caller.member.householdId,
-            p_proposal: proposalId,
-          },
-        );
-        return yield* bindEnvelope(caller, proposalId, raw);
-      }),
+    read: (input: unknown, recover = false) => readProposalState(config, caller, input, recover),
     discard: (input: unknown) =>
       Effect.gen(function* () {
         const command = yield* decodeProposal(DiscardMealProposal, input, "invalid_request");
@@ -104,4 +90,30 @@ export function proposalState(config: IdentityConfig, caller: AuthorizedCaller) 
         return receipt;
       }),
   };
+}
+
+function readProposalState(
+  config: IdentityConfig,
+  caller: AuthorizedCaller,
+  input: unknown,
+  recover: boolean,
+) {
+  return Effect.gen(function* () {
+    const command = yield* decodeProposal(ReadMealProposal, input, "invalid_request");
+    const proposalId = command.proposalId.toLowerCase();
+    const raw = yield* requestJson(config, caller.token, "rest/v1/rpc/nest_read_meal_proposal", {
+      p_household: caller.member.householdId,
+      p_proposal: proposalId,
+    });
+    const saved = yield* bindEnvelope(caller, proposalId, raw);
+    // Completed state is a read. Only unfinished generation needs expiry/worker recovery.
+    if (!recover || saved.proposal.status !== "generating") return saved;
+    const recovered = yield* requestJson(
+      config,
+      caller.token,
+      "rest/v1/rpc/nest_recover_meal_proposal",
+      { p_household: caller.member.householdId, p_proposal: proposalId },
+    );
+    return yield* bindEnvelope(caller, proposalId, recovered);
+  });
 }
