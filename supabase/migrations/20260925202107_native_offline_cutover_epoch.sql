@@ -62,4 +62,3 @@ $$;
 revoke all on function private.nest_offline_epoch_snapshot(uuid)
   from public,anon,authenticated,service_role;
 grant execute on function private.nest_offline_epoch_snapshot(uuid) to authenticated;
-

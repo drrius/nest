@@ -5,4 +5,3 @@ $$;
 revoke all on function public.nest_chore_epoch_snapshot(uuid)
   from public,anon,authenticated,service_role;
 grant execute on function public.nest_chore_epoch_snapshot(uuid) to authenticated;
-

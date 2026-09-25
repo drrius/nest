@@ -42,4 +42,3 @@ begin
 end;
 $$;
 revoke all on function private.nest_dispatch_ai_basic_command(uuid,uuid,text,jsonb) from public,anon,authenticated,service_role;
-
