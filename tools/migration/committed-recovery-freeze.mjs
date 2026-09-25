@@ -24,6 +24,8 @@ export function freezeRecoveryFixture(db) {
             'public.nest_read_recurring_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_recurring_state_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_variable_cycle_approval(uuid,uuid)'::regprocedure,
+            'public.nest_read_recurring_resume_approval(uuid,uuid)'::regprocedure,
+            'public.nest_read_manual_cycle_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,
             'public.nest_read_refund_save(uuid,uuid)'::regprocedure,
             'public.nest_read_correction_save(uuid,uuid)'::regprocedure,

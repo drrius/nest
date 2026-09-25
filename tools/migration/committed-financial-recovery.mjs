@@ -43,7 +43,7 @@ export function verifyCommittedFinancialRecovery(db) {
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 19,
+    original.financial.tables.financial_events.length + 22,
   );
   const reads = readFinancialState(db, receipt.eventId);
   for (const read of reads)
