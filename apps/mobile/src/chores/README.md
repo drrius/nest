@@ -8,21 +8,18 @@ Known membership denial blocks further completion and retains pending work. A co
 
 ## Verification
 
-- `pnpm test:chores`: 15 meaningful transport/file-backed SQLite/controller cases, including lost response + restart, conflict recovery, atomic snapshots, same-frame double taps, cancellation, actor mismatch and membership denial.
-- `pnpm test:offline`: 13 existing journal regression cases.
-- `pnpm --filter @nest/api test`: 25 HTTP/API/tool/Node adapter cases.
-- `pnpm test:domain`: seven tests, including Zurich midnight/DST examples and 1,000 seeded date properties.
-- See `tests/integration/README.md` at repository root for the targeted real Node HTTP → API → PostgREST → PostgreSQL + restarted SQLite proof.
-- iOS Metro export succeeds. It is packaging evidence, not native execution.
+Focused tests cover the shared runtime through file-backed Node SQLite, actual API/PostgREST/PostgreSQL requests, lost acknowledgments, restart, account isolation, conflicts, prepared legacy callers and cutover epochs. See the current [progress checklist](../../../../docs/progress.md) for exact commit/CI evidence and [integration guide](../../../../tests/integration/README.md) for reproduction. Test counts in earlier slice notes are historical; packaging and typechecking do not establish native execution.
 
-## Outstanding native and offline gates
+## Implemented behavior and remaining native gates
 
-No iPhone has executed this flow. An isolated HTTPS API/backend, preserved Apple identity configuration and an installed development build are needed. After a cold restart, membership verification currently requires connectivity; fully offline cold-start access remains unimplemented. Once a session is verified, loaded chores can be queued through a connection loss, with foreground/manual retry. There is no background-sync or automatic-connectivity-recovery promise. Long-term queue/receipt retention limits remain to be implemented.
+Protected same-member identity recovery supports previously verified cold starts during an outage. Definitive sign-out, membership denial and account changes invalidate the fallback. Account-level foreground/reconnect handling attempts replay through the current authorized clients; no continuous background-sync behavior is promised. Queue capacity and receipt retention are implemented without deleting unresolved intent; see the [offline journal contract](../offline/README.md).
 
-The Today screen covers chores only; meals, renewals, finance confirmations and real other tabs are not implemented by this slice. Routine editing/transfer/recurrence and grocery integration remain separate work. AI tools share the command, but live chat/provider streaming is still absent.
+Today also composes meals, renewals, calendar, variable bills and financial confirmations. Routine editing, recurrence, handovers and groceries have separate native/API/shared-command implementations. Private chat streaming and journaled AI tools are implemented. Source availability is not live provider or device acceptance.
+
+No iPhone journey has executed here. An approved isolated HTTPS API/backend, preserved Apple identity configuration and signed development build are still needed. Actual Keychain/Expo SQLite behavior, reconnect after process death, haptics, accessibility and both-member use remain unverified.
 
 ## Prepared device smoke — not executed
 
 Use synthetic fixture data only. Sign in to the isolated household, open Today and verify Me + shared versus Everyone. Complete a known fixture chore; confirm its pending indicator, single subtle haptic and eventual removal after receipt. Disable connectivity, complete another loaded chore, kill/reopen the app, restore connectivity and sign in if needed; verify one server completion and no lost intent. Have the partner reschedule another queued chore; confirm the conflict requires review and that keeping the current chore sends no completion. Check logout/account isolation, large text, VoiceOver, light/dark and background/foreground. Record commit/build/device and backend fixture; a successful bundle cannot substitute for this evidence.
 
-Review corrections bind requests to the expected household as well as actor; the API checks this expectation against verified membership, and response envelopes repeat the verified household. A known denial stays blocked through later network errors. Foreground revalidation retains only a previously verified same-actor session in memory during an outage; logout, actor changes and definitive denials clear that fallback. Fourteen session tests include warm resume and SDK/network failures. Cold-start offline authorization remains unimplemented.
+Requests bind to both expected household and actor, with current server membership checks. A known denial remains blocked through subsequent network errors. Offline intent carries its originally observed epoch; exact recorded receipts remain recoverable after cutover, while unreceived stale intent requires explicit conflict review.
