@@ -1,3 +1,4 @@
+import { seedLegacySaveRecovery, verifyLegacySaveRecovery } from "./legacy-save-recovery.mjs";
 import {
   seedLegacyApprovalRecovery,
   verifyLegacyApprovalRecovery,
@@ -39,6 +40,7 @@ export function verifyCommittedFinancialRecovery(db) {
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
   const settlement = seedRecoverySettlement(db);
   const adjustments = seedRecoveryAdjustments(db);
+  const legacySaves = seedLegacySaveRecovery(db);
   const legacyApprovals = seedLegacyApprovalRecovery(db);
   const recurringApprovals = seedRecurringApprovalRecovery(db);
   const recurring = seedRecurringRecovery(db);
@@ -48,7 +50,7 @@ export function verifyCommittedFinancialRecovery(db) {
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 23,
+    original.financial.tables.financial_events.length + 24,
   );
   const reads = readFinancialState(db, receipt.eventId);
   for (const read of reads)
@@ -69,6 +71,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
+    legacySaveRecovery: verifyLegacySaveRecovery(db, legacySaves),
     legacyApprovalRecovery: verifyLegacyApprovalRecovery(db, legacyApprovals),
     recurringApprovalRecovery: verifyRecurringApprovalRecovery(db, recurringApprovals),
     adjustmentApprovalRecovery: verifyAdjustmentApprovalRecovery(db, adjustmentApprovals),
