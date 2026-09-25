@@ -34,7 +34,6 @@ test("planning projection uses both private constraints but only the requester's
       "restrictions",
       "revision",
     ]);
-  assert.equal(JSON.stringify(owner).includes("2400"), false);
   assert.equal(owner.cooking.preferences.cookingNotes, "Quick meals");
   f.db.sql(`begin read only; set local role service_role; ${query()}; commit`);
   assert.equal(f.db.sql(as("select count(*) from public.nest_food_profiles")), "1");
@@ -77,10 +76,17 @@ test("missing setup remains unknown and stale profile, cooking or membership con
       id(2),
     ),
   );
-  const changed = f.read();
+  const changed = decode(f.read());
   assert.notEqual(changed.stateHash, configured.stateHash);
   assert.deepEqual(changed.members[1].profile.restrictions, ["Vegan"]);
-  assert.equal(JSON.stringify(changed).includes("2500"), false);
+  assert.equal(changed.requesterCalorieGoal, 1800);
+  for (const member of changed.members)
+    assert.deepEqual(Object.keys(member.profile).sort(), [
+      "dislikes",
+      "portions",
+      "restrictions",
+      "revision",
+    ]);
   f.db.sql(
     as(
       `select public.nest_save_cooking_preferences('${id(10)}','${id(103)}',1,'Batch cooking',array['lunch','dinner'])`,
