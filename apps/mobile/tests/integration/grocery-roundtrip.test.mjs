@@ -81,8 +81,10 @@ test("native grocery clients converge across lost receipts and restarted SQLite 
   const next = await run(reopened.store.activate({ actor, household }, operation));
   flow = groceryFlow({ store: reopened.store, session: next }, client);
   lose = false;
+  await suspendAndRestore(remote, flow, run);
   await run(flow.sync);
   assert.deepEqual(requests[0], requests[1]);
+  assert.deepEqual(requests[0], requests[2]);
   assert.equal((await run(flow.read)).pending.length, 0);
   const partnerReceipt = await run(
     other.check({ operationId: lease, itemId: target, expectedVersion: "1", checked: true }),
@@ -194,3 +196,15 @@ test("native category labels survive SQLite restart and archived categories fall
   const other = await run(restarted.store.activate({ actor: partner, household }, lease));
   assert.equal((await run(restarted.store.readGroceries(other))).loaded, false);
 });
+
+async function suspendAndRestore(remote, flow, run) {
+  const signature = "public.nest_set_grocery_checked(uuid,uuid,uuid,bigint,boolean)";
+  remote.db.sql(`revoke execute on function ${signature} from authenticated`);
+  await assert.rejects(run(flow.sync), { code: "forbidden" });
+  assert.equal((await run(flow.read)).pending.length, 1);
+  assert.equal(
+    remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
+    "2",
+  );
+  remote.db.sql(`grant execute on function ${signature} to authenticated`);
+}
