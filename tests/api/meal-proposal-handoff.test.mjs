@@ -45,7 +45,7 @@ const run = (input, fetch) =>
 test("handoff adapter binds the requested owner/proposal and the original receipt to current content", async () => {
   assert.deepEqual(
     await run({ proposalId: id(801) }, async (url, init) => {
-      assert.equal(new URL(url).pathname, "/rest/v1/rpc/nest_open_meal_proposal");
+      assert.equal(new URL(url).pathname, "/rest/v1/rpc/nest_read_meal_proposal_origin");
       assert.equal(new Headers(init.headers).get("authorization"), "Bearer user");
       assert.deepEqual(JSON.parse(init.body), { p_household: id(10), p_proposal: id(801) });
       return Response.json(result);
@@ -86,4 +86,36 @@ test("handoff adapter binds the requested owner/proposal and the original receip
       run(input, () => assert.fail("Invalid input sent")),
       { code: "invalid_request" },
     );
+});
+
+test("unfinished handoff uses expiry only after a bound read and validates the recovered envelope", async () => {
+  const generating = structuredClone(result);
+  Object.assign(generating.envelope.proposal, {
+    status: "generating",
+    entries: null,
+    revision: "1",
+  });
+  const paths = [];
+  assert.deepEqual(
+    await run({ proposalId: id(801) }, async (url) => {
+      paths.push(new URL(url).pathname);
+      return Response.json(paths.length === 1 ? generating : result);
+    }),
+    result,
+  );
+  assert.deepEqual(paths, [
+    "/rest/v1/rpc/nest_read_meal_proposal_origin",
+    "/rest/v1/rpc/nest_open_meal_proposal",
+  ]);
+  const wrongOwner = structuredClone(result);
+  wrongOwner.receipt.actorId = id(2);
+  wrongOwner.envelope.actorId = id(2);
+  let calls = 0;
+  await assert.rejects(
+    run({ proposalId: id(801) }, async () =>
+      Response.json(++calls === 1 ? generating : wrongOwner),
+    ),
+    { code: "unavailable" },
+  );
+  assert.equal(calls, 2);
 });

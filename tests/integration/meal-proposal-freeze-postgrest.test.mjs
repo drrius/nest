@@ -29,6 +29,9 @@ for (const status of ["ready", "approved", "discarded", "failed"]) {
     assert.equal(result.status, 200, await result.clone().text());
     assert.deepEqual(await result.json(), expected);
     assert.equal(result.headers.get("cache-control"), "no-store");
+    const handoff = await reader("/open", { proposalId });
+    assert.equal(handoff.status, 200, await handoff.clone().text());
+    assert.deepEqual((await handoff.json()).envelope, expected);
     for (const [bearer, expectedStatus] of [
       [f.partnerBearer, 409],
       [f.otherBearer, 403],
@@ -57,6 +60,7 @@ test("expired unfinished generation stays unavailable while frozen and expires a
   const before = proposalSnapshot(f.db);
   freezeProposals(f.db);
   assert.equal((await reader("/recover", { proposalId })).status, 503);
+  assert.equal((await reader("/open", { proposalId })).status, 503);
   assert.equal(proposalSnapshot(f.db), before);
   f.db.sql(`select private.nest_set_household_writes_frozen(false);
     grant execute on function public.nest_recover_meal_proposal(uuid,uuid) to authenticated;`);
