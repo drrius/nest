@@ -67,10 +67,9 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
   const next = await run(restarted.store.activate({ actor, household }, operation));
   flow = choreFlow(restarted.store, next, client);
   lose = false;
-  await suspendAndRestore(remote, flow, run);
+  await suspendAndRestore({ remote, flow, run, client, command: commands[0] });
   await run(flow.sync);
   assert.deepEqual(commands[0], commands[1]);
-  assert.deepEqual(commands[0], commands[2]);
   assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
   assert.equal((await run(flow.read)).pending.length, 0);
   assert.equal((await run(flow.read)).chores.length, 11);
@@ -87,11 +86,17 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
   assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
 });
 
-async function suspendAndRestore(remote, flow, run) {
+async function suspendAndRestore({ remote, flow, run, client, command }) {
   const signature = "public.nest_complete_chore(uuid,uuid,date,date)";
   remote.db.sql(`revoke execute on function ${signature} from authenticated`);
-  await assert.rejects(run(flow.sync), { code: "unavailable" });
-  assert.equal((await run(flow.read)).pending.length, 1);
+  await run(flow.sync);
+  assert.equal((await run(flow.read)).pending.length, 0);
+  await assert.rejects(run(client.complete({ ...command, operationId: lease })), {
+    code: "unavailable",
+  });
+  await assert.rejects(run(client.complete({ ...command, completedOn: "2026-09-18" })), {
+    code: "unavailable",
+  });
   assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
   remote.db.sql(`grant execute on function ${signature} to authenticated`);
 }

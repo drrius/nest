@@ -1,0 +1,62 @@
+import * as Effect from "effect/Effect";
+import * as Schema from "effect/Schema";
+import { CompleteChore, Completion, CalendarDate } from "./contracts.ts";
+import { ApiFailure } from "../errors.ts";
+import { requestJson } from "../supabase-request.ts";
+import type { IdentityConfig } from "../supabase-identity.ts";
+import type { AuthorizedCaller } from "./service.ts";
+const Uuid = Schema.String.check(Schema.isUUID());
+const Rows = Schema.Array(
+  Schema.Struct({
+    actor_id: Uuid,
+    household_id: Uuid,
+    operation_id: Uuid,
+    request: Schema.Struct({
+      occurrenceId: Uuid,
+      expectedDueDate: CalendarDate,
+      completedOn: CalendarDate,
+    }),
+    result: Completion,
+  }),
+);
+
+export function recoverCompletion(
+  config: IdentityConfig,
+  caller: AuthorizedCaller,
+  command: typeof CompleteChore.Type,
+) {
+  return Effect.gen(function* () {
+    const query = new URLSearchParams({
+      select: "actor_id,household_id,operation_id,request,result",
+      actor_id: `eq.${caller.member.userId}`,
+      household_id: `eq.${caller.member.householdId}`,
+      operation_id: `eq.${command.operationId}`,
+      limit: "2",
+    });
+    const raw = yield* requestJson(config, caller.token, `rest/v1/nest_chore_receipts?${query}`);
+    const rows = yield* Schema.decodeUnknownEffect(Rows)(raw, { onExcessProperty: "error" }).pipe(
+      Effect.mapError(() => new ApiFailure({ code: "unavailable" })),
+    );
+    const row = rows[0];
+    if (rows.length !== 1 || !row || !matches(row, caller, command))
+      return yield* new ApiFailure({ code: "unavailable" });
+    return row.result;
+  });
+}
+
+function matches(
+  row: (typeof Rows.Type)[number],
+  caller: AuthorizedCaller,
+  command: typeof CompleteChore.Type,
+) {
+  return (
+    row.actor_id === caller.member.userId &&
+    row.household_id === caller.member.householdId &&
+    row.operation_id === command.operationId &&
+    row.request.occurrenceId === command.occurrenceId &&
+    row.request.expectedDueDate === command.expectedDueDate &&
+    row.request.completedOn === command.completedOn &&
+    row.result.operationId === command.operationId &&
+    row.result.occurrenceId === command.occurrenceId
+  );
+}

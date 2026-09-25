@@ -1,3 +1,4 @@
+import { recoverCompletion } from "./receipt-recovery.ts";
 import { requestJson } from "../supabase-request.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -54,12 +55,22 @@ export function choreCommands(config: IdentityConfig, caller: AuthorizedCaller) 
           operationId: decoded.operationId.toLowerCase(),
           occurrenceId: decoded.occurrenceId.toLowerCase(),
         };
-        const raw = yield* requestJson(config, caller.token, "rest/v1/rpc/nest_complete_chore", {
-          p_occurrence_id: command.occurrenceId,
-          p_operation_id: command.operationId,
-          p_expected_due_date: command.expectedDueDate,
-          p_completed_on: command.completedOn,
-        });
+        const attempt = yield* requestJson(
+          config,
+          caller.token,
+          "rest/v1/rpc/nest_complete_chore",
+          {
+            p_occurrence_id: command.occurrenceId,
+            p_operation_id: command.operationId,
+            p_expected_due_date: command.expectedDueDate,
+            p_completed_on: command.completedOn,
+          },
+        ).pipe(Effect.result);
+        if (attempt._tag === "Failure") {
+          if (attempt.failure.code !== "unavailable") return yield* attempt.failure;
+          return yield* recoverCompletion(config, caller, command);
+        }
+        const raw = attempt.success;
         const receipt = yield* Schema.decodeUnknownEffect(Completion)(raw).pipe(
           Effect.mapError(() => new ApiFailure({ code: "unavailable" })),
         );
