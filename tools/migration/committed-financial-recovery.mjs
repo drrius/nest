@@ -5,6 +5,10 @@ import { as, id, save } from "../../tests/database/native-expense-helpers.mjs";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
 import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
 import {
+  seedRecoveryAdjustments,
+  verifyRecoveryAdjustments,
+} from "./adjustment-recovery-rehearsal.mjs";
+import {
   seedRecoverySettlement,
   verifyRecoverySettlement,
 } from "./settlement-recovery-rehearsal.mjs";
@@ -16,10 +20,11 @@ export function verifyCommittedFinancialRecovery(db) {
   const original = captureRehearsal(db);
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
   const settlement = seedRecoverySettlement(db);
+  const adjustments = seedRecoveryAdjustments(db);
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 3,
+    original.financial.tables.financial_events.length + 7,
   );
   const reads = readFinancialState(db);
   for (const read of reads)
@@ -38,6 +43,8 @@ export function verifyCommittedFinancialRecovery(db) {
             'public.nest_money_balance(uuid)'::regprocedure,
             'public.nest_money_history(uuid,uuid)'::regprocedure,
             'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,
+            'public.nest_read_refund_save(uuid,uuid)'::regprocedure,
+            'public.nest_read_correction_save(uuid,uuid)'::regprocedure,
             'public.nest_read_expense_save(uuid,uuid)'::regprocedure) loop
         execute format('revoke all on function %s from public,anon,authenticated,service_role',v_function.signature);
         foreach v_role in array array['anon','authenticated','service_role'] loop
@@ -58,14 +65,18 @@ export function verifyCommittedFinancialRecovery(db) {
   );
   assert.equal(recovered.status, "recorded");
   assert.deepEqual(recovered.receipt, receipt);
+  const recovery = {
+    adjustmentRecovery: verifyRecoveryAdjustments(db, adjustments),
+    settlementRecovery: verifyRecoverySettlement(db, settlement),
+    offlineReceiptRecovery: verifyFrozenOfflineReceipts(db, offlineReceipts),
+  };
   assert.equal(compareRehearsal(committed, captureRehearsal(db)).passed, true);
   assert.throws(
     () => db.sql(as(3, `select public.nest_money_history('${id(10)}')`)),
     /Not authorized/,
   );
   return {
-    settlementRecovery: verifyRecoverySettlement(db, settlement),
-    offlineReceiptRecovery: verifyFrozenOfflineReceipts(db, offlineReceipts),
+    ...recovery,
     committedExpensePreserved: true,
     financialReadsPreserved: true,
     receiptRecoveryPreserved: true,
