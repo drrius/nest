@@ -45,6 +45,10 @@ Recurring variant commit `0b3ec94` has clean exact Sol review, including ten ind
 
 Nine direct native-command fixtures cover recorded, cancelled and unresolved operations for adoption, draft confirmation and dismissal. Exact owner recovery survives the freeze; a partner sees no receipt, outsiders and unauthenticated/service roles are refused, and both Save and Cancel remain blocked. Complete scoped operation rows remain unchanged, including absence for unresolved intent. Legacy and native recurring snapshots and final financial reconciliation include these cases. The full 54/195 rehearsal passes with empty advisors (`/tmp/nest-legacy-save-recovery.json`); scoped lint/format pass. No native restart or context-screen acceptance is inferred. Exact review/CI are pending. Legacy approval commit `37faf50` has clean Sol review with 13 independently passing cases.
 
+## Native legacy recovery with writes suspended — locally verified
+
+The three existing native runtime → HTTP → PostgREST/SQLite lost-response journeys now revoke both Save and Cancel after the original commit and before reopening SQLite. Adoption, confirmation and dismissal recover their exact server receipt, clear the local attempt and send no second write. All 13 focused legacy native cases pass (`/tmp/nest-legacy-native-freeze.log`); scoped lint/format pass with existing async fixture advisories. The initial test launch lacked `NEST_TEST_POSTGREST_BIN`; configuring `/tmp/nest-postgrest/postgrest` allowed the actual tests to run. This proves committed Save recovery under mutation suspension, not cancelled/unresolved native freeze recovery, physical iPhone execution or all context screens. Exact review/CI are pending; these HTTP tests remain local evidence under the recorded workflow-permission blocker. Direct legacy SQL recovery `488127d` has clean Sol review with 22 independently passing database cases.
+
 ## Next work
 
 1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.

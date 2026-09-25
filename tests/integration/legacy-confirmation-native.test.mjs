@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run } from "./legacy-confirmation-native-fixture.mjs";
-test("native confirmation stages before dispatch and recovers a lost committed response after SQLite restart without resending", async (t) => {
+test("native confirmation stages before dispatch and recovers a lost committed response after write suspension and SQLite restart without resending", async (t) => {
   const f = await fixture(t),
     runtime = await f.mount();
   f.fault("after");
@@ -12,6 +12,8 @@ test("native confirmation stages before dispatch and recovers a lost committed r
     f.context.reviewToken,
   );
   assert.equal(f.sends(), 1);
+  f.db.sql(`revoke execute on function public.nest_save_legacy_confirmation(uuid,uuid,jsonb),
+    public.nest_cancel_legacy_confirmation(uuid,uuid) from public,anon,authenticated,service_role`);
   runtime.dispose();
   await f.local.idle();
   const reopened = f.local.reopen(),
