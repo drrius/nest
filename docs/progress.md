@@ -3485,3 +3485,7 @@ Chore, grocery, meal, recurring-cycle and renewal reminder editors now link to t
 Ten notification client and enrollment lifecycle tests pass, including owner binding, uncertain-save recovery and opening enrollment without permission prompts or writes. Mobile typechecking and scoped lint/format pass. These tests cover the destination behavior, not native link tapping or keyboard/return navigation; those require iPhone acceptance. Exact CI and Sol review are pending.
 
 Main advanced to `54755f84dbee07469744e179105d29e8bce22dd9` after clean exact Sol review and successful CI `36166823015`, including grocery receipt recovery and its response-binding tests. Meal setup commit `1493fb5b2db15c8fe6ac64145297641c10d1cffc` has clean Sol medium review with six independently passing setup cases; its CI remains pending. No deployment or device execution occurred.
+
+### Setup acceptance handoff (25 September)
+
+The native verification runbook now specifies real two-member setup acceptance: missing versus saved food state, form return/refresh, optional dismissal, failed reads, account isolation, all five reminder handoffs with unsaved drafts, explicit-only notification permission, and keyboard/VoiceOver/large text. No native case has run. Sol independently signed off `83cb766ebfe9040fb14b71c2d33219cba4a08306` after 12 notification/enrollment cases; the exact branch CI is still pending. The prepared acceptance protocol does not close M3 or the device gates.
