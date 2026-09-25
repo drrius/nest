@@ -21,6 +21,12 @@ Two real native runtime → HTTP → PostgREST/SQLite restart cases also pass wi
 
 The CI unit-selection guard `d0fa1ce` merged after clean Sol review and successful exact CI `36171800916`. The docs consolidation `c565761` has clean Sol review; its CI remains pending.
 
+## Unresolved settlement and direct recovery — locally verified
+
+Five HTTP/PostgREST/SQLite cases now cover consumed and denied approval restart, an uncommitted staged approval, and direct Save/Cancel restart with mutation execution suspended. Unknown approval intent remains durable, cannot be replaced by its opposite, makes no automatic send and survives a refused explicit retry. Terminal direct results clear local metadata without repeating writes. Reports: `/tmp/nest-settlement-unresolved-http.log` (three cases) and `/tmp/nest-settlement-save-freeze-http.log` (two). Scoped lint/format pass; review and exact CI are pending. This is not device execution or complete cutover reconciliation.
+
+Settlement recovery through `849038b` has clean cumulative Sol review; the earlier stale report-path finding was corrected.
+
 ## Next work
 
 1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.

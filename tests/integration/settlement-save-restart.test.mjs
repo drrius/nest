@@ -13,7 +13,7 @@ const require = createRequire(new URL("../../apps/mobile/package.json", import.m
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 for (const action of ["save", "cancel"]) {
-  test(`direct ${action} recovers real response loss across SQLite restart with zero automatic sends`, async (t) => {
+  test(`direct ${action} recovers real response loss across SQLite restart with Save and Cancel suspended`, async (t) => {
     const f = await settlementApiFixture(t),
       local = await sqlite(t);
     const account = { actor: id(1), household: id(10) },
@@ -52,6 +52,7 @@ for (const action of ["save", "cancel"]) {
     assert.equal(sends, 1);
     assert.deepEqual(await run(local.store.readSettlementSave(session)), { action, command });
     runtime.dispose();
+    suspendWrites(f.db);
     const reopened = local.reopen();
     const recovered = new SettlementSaveRuntime(
       settlementSaveOperations({ store: reopened.store, session }, client),
@@ -75,4 +76,17 @@ for (const action of ["save", "cancel"]) {
     );
     recovered.dispose();
   });
+}
+
+function suspendWrites(db) {
+  db.sql(`revoke all on function public.nest_save_settlement(uuid,uuid,jsonb) from public,anon,authenticated,service_role;
+    revoke all on function public.nest_cancel_settlement_save(uuid,uuid) from public,anon,authenticated,service_role;`);
+  for (const call of [
+    `public.nest_save_settlement('${id(10)}','${id(101)}','${JSON.stringify(payload())}'::jsonb)`,
+    `public.nest_cancel_settlement_save('${id(10)}','${id(101)}')`,
+  ])
+    assert.throws(
+      () => db.sql(`set role authenticated; set request.jwt.claim.sub='${id(1)}'; select ${call}`),
+      /permission denied/,
+    );
 }

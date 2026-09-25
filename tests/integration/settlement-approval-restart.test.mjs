@@ -96,3 +96,65 @@ function suspendDecisions(db, approval, operation) {
       /permission denied/,
     );
 }
+
+test("a staged but uncommitted decision remains unresolved across restart and suspended retry", async (t) => {
+  const f = await settlementApiFixture(t),
+    local = await sqlite(t);
+  const account = { actor: id(1), household: id(10) },
+    operationId = id(110);
+  const approvalId = await f.rpc("nest_propose_action", {
+    p_household: id(10),
+    p_invocation: operationId,
+    p_command: "settlements.record",
+    p_version: 1,
+    p_payload: settlement({ mode: "partial", amountCentimes: "300" }),
+  });
+  const session = await run(local.store.activate(account, id(910)));
+  const attempt = { approvalId, operationId, approved: true };
+  await run(local.store.stageSettlementApproval(session, attempt, () => true));
+  suspendDecisions(f.db, approvalId, operationId);
+  const raw = moneyClient(
+    f.url,
+    account,
+    Effect.succeed({ user: { id: id(1) }, access_token: f.bearer }),
+  );
+  let sends = 0;
+  const client = {
+    settlementApproval: (target) =>
+      raw.settlementApproval(target).pipe(Effect.provideService(Fetch.Fetch, fetch)),
+    decideSettlement: (input) => {
+      sends++;
+      return raw.decideSettlement(input).pipe(Effect.provideService(Fetch.Fetch, fetch));
+    },
+  };
+  const reopened = local.reopen();
+  const runtime = new SettlementApprovalRuntime(
+    settlementApprovalOperations({ store: reopened.store, session }, client),
+    approvalId,
+  );
+  await runtime.setOnline(true);
+  await runtime.setActive(true);
+  assert.equal(runtime.getSnapshot().approval.status, "pending");
+  assert.deepEqual(runtime.getSnapshot().attempt, attempt);
+  assert.match(runtime.getSnapshot().notice, /unresolved/);
+  assert.equal(sends, 0);
+  await runtime.decide(runtime.getSnapshot().approval, false);
+  assert.equal(sends, 0, "An unresolved decision cannot be replaced with its opposite");
+  await runtime.retry();
+  assert.equal(sends, 1, "Only explicit retry attempts a write");
+  assert.equal(runtime.getSnapshot().fresh, false);
+  assert.equal(runtime.getSnapshot().verify, false, "A maintenance fence is not lost membership");
+  assert.deepEqual(await run(reopened.store.readSettlementApproval(session, approvalId)), attempt);
+  await runtime.refresh();
+  assert.equal(runtime.getSnapshot().approval.status, "pending");
+  assert.deepEqual(runtime.getSnapshot().attempt, attempt);
+  assert.equal(sends, 1);
+  assert.equal(f.db.sql("select count(*) from public.financial_events"), "1");
+  assert.equal(
+    f.db.sql(
+      `select sum(receivable_delta_cents) from public.ledger_entries where member_id='${id(1)}'`,
+    ),
+    "1000",
+  );
+  runtime.dispose();
+});
