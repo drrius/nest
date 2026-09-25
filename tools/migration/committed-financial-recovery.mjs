@@ -1,3 +1,7 @@
+import {
+  seedSettlementApprovalRecovery,
+  verifySettlementApprovalRecovery,
+} from "./settlement-approval-recovery.mjs";
 import { seedOfflineReceipts, verifyFrozenOfflineReceipts } from "./offline-receipt-rehearsal.mjs";
 import { assertLegacyJobsPausedSql } from "./legacy-job-pause-rehearsal.mjs";
 import assert from "node:assert/strict";
@@ -25,10 +29,11 @@ export function verifyCommittedFinancialRecovery(db) {
   const adjustments = seedRecoveryAdjustments(db);
   const recurring = seedRecurringRecovery(db);
   const approvals = seedApprovalRecovery(db);
+  const settlementApprovals = seedSettlementApprovalRecovery(db);
   const committed = captureRehearsal(db);
   assert.equal(
     committed.financial.tables.financial_events.length,
-    original.financial.tables.financial_events.length + 9,
+    original.financial.tables.financial_events.length + 10,
   );
   const reads = readFinancialState(db);
   for (const read of reads)
@@ -50,6 +55,7 @@ export function verifyCommittedFinancialRecovery(db) {
   assert.deepEqual(recovered.receipt, receipt);
   const recovery = {
     approvalRecovery: verifyApprovalRecovery(db, approvals),
+    settlementApprovalRecovery: verifySettlementApprovalRecovery(db, settlementApprovals),
     recurringRecovery: verifyRecurringRecovery(db, recurring),
     adjustmentRecovery: verifyRecoveryAdjustments(db, adjustments),
     settlementRecovery: verifyRecoverySettlement(db, settlement),

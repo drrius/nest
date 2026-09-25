@@ -6,12 +6,18 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Current delivery state
 
-- Main: `7611ad2605e36f7988c01680ccce8d6bf2b003e2`. Feature branch: `codex/native-acceptance-continuation`.
+- Main: `d0fa1cebcd9218f16c4fd07dbd5dbf45a868a223`. Feature branch: `codex/native-acceptance-continuation`.
 - Main includes progressive meal setup, notification setup links from reminder editors, migration recovery through direct money/recurring and expense approval reads, and the CI selection fix for previously omitted push/session tests.
 - Latest implementation: `d6e91440c0df6316070ec06daec073afd2bd6a22`, account-settings assistant handoff. Clean exact-commit GPT-5.6 Sol medium review; 18 focused tests independently repeated. CI run `36173113193` is pending at this update.
 - Earlier branch candidates `d0fa1ce` (CI selection guard) and `1e918b3` (notification assistant handoff) have clean reviews; CI runs `36171800916` and `36172421276` were still running at the last check. No pending check counts as approval.
 - GitHub reports no open PRs. The owner authorized reviewed feature branches and fast-forward main without PRs. Exact-commit CI and clean Sol medium review still gate merging. No deployment follows a merge.
 - The continuation automation remains removed. No purchases, production migrations, scheduler activation, deployment, app retirement or release publication have occurred.
+
+## Latest recovery verification
+
+Settlement approval recovery now preserves consumed, denied and pending owner results through the committed fixture freeze. Partner/outsider reads fail; every confirm/deny call is refused; complete approval rows and the final cross-household financial snapshot remain unchanged. The full 54-legacy/194-native rehearsal passes with empty security-advisor findings (`/tmp/nest-settlement-approval-recovery.json`). Scoped lint/format pass. Exact review and CI are pending; no hosted or device evidence is claimed. Complete recovery remains false.
+
+The CI unit-selection guard `d0fa1ce` merged after clean Sol review and successful exact CI `36171800916`. The docs consolidation `c565761` has clean Sol review; its CI remains pending.
 
 ## Next work
 
