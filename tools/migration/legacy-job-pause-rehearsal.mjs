@@ -15,19 +15,9 @@ const jobs = [
 ];
 export function verifyLegacyJobPause(db) {
   const before = snapshot(db);
-  const probes = jobs
-    .map(
-      ([kind, name, args]) => `
-    perform private.nest_set_legacy_job_paused('${kind}',true);
-    begin perform ${name}(${args === null ? "" : `'${kind}:nest-paused-fixture'${args}`});
-      raise exception 'Paused legacy job executed: ${kind}';
-    exception when sqlstate '55000' then
-      if sqlerrm<>'Legacy job paused or control unavailable' then raise; end if;
-    end;`,
-    )
-    .join("\n");
   db.sql(`begin;
-    do $pause$ begin ${probes} end $pause$;
+    ${pauseLegacyJobsSql()}
+    ${assertLegacyJobsPausedSql()}
     do $roles$ declare v_role text; begin
       foreach v_role in array array['anon','authenticated','service_role'] loop
         execute format('set local role %I',v_role);
@@ -51,4 +41,24 @@ function snapshot(db) {
   return db.sql(`select jsonb_build_object(
     'controls',(select jsonb_agg(to_jsonb(c) order by job_kind) from private.nest_legacy_job_control c),
     'claims',(select jsonb_agg(to_jsonb(j) order by schedule_key) from public.job_claims j))`);
+}
+
+export function pauseLegacyJobsSql() {
+  return jobs
+    .map(([kind]) => `select private.nest_set_legacy_job_paused('${kind}',true);`)
+    .join("\n");
+}
+
+export function assertLegacyJobsPausedSql() {
+  const probes = jobs
+    .map(
+      ([kind, name, args]) => `
+    begin perform ${name}(${args === null ? "" : `'${kind}:nest-paused-fixture'${args}`});
+      raise exception 'Paused legacy job executed: ${kind}';
+    exception when sqlstate '55000' then
+      if sqlerrm<>'Legacy job paused or control unavailable' then raise; end if;
+    end;`,
+    )
+    .join("\n");
+  return `do $pause$ begin ${probes} end $pause$;`;
 }

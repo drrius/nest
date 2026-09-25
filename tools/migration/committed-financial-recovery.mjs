@@ -1,3 +1,4 @@
+import { pauseLegacyJobsSql, assertLegacyJobsPausedSql } from "./legacy-job-pause-rehearsal.mjs";
 import assert from "node:assert/strict";
 import { as, id, save } from "../../tests/database/native-expense-helpers.mjs";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
@@ -21,6 +22,7 @@ export function verifyCommittedFinancialRecovery(db) {
     );
   db.sql(`begin;
     select private.nest_set_recurring_execution_paused(true);
+    ${pauseLegacyJobsSql()}
     ${legacyApiFenceSql()}
     do $freeze$ declare v_function record; v_role text; begin
       for v_function in select oid,oid::regprocedure::text as signature from pg_proc
@@ -37,6 +39,7 @@ export function verifyCommittedFinancialRecovery(db) {
         end loop;
       end loop;
     end $freeze$; commit;`);
+  db.sql(assertLegacyJobsPausedSql());
   assert.throws(
     () => db.sql(as(1, save(1701))),
     /permission denied for function nest_save_expense/,
@@ -60,6 +63,8 @@ export function verifyCommittedFinancialRecovery(db) {
     outsiderDenied: true,
     restoredOldDatabase: false,
     nativeAutomaticPostingPaused: true,
+    knownLegacyEntryPointsPaused: 8,
+    externalRequestsDrained: false,
     ownerJobsStopped: false,
     completeRecovery: false,
   };
