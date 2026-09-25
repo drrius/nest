@@ -32,3 +32,9 @@ Reconcile financial events, ledger entries, receipt references, retained drafts 
 - Exercise the approved plan on an isolated representative backend before asking for production cutover approval.
 
 The eight names are the audited source inventory, not a complete inventory of live infrastructure. CI schedules, Edge invokers, old clients, direct SQL and other schemas still require independent accounting.
+
+## Prepared per-job pause control
+
+Gated migration `20260923092657_native_legacy_job_pause.sql` adds private owner-only `nest_set_legacy_job_paused(job_kind, paused)`. The seven claim kinds and `invoke_push_dispatch` have independent controls; all default to the previous running behavior. Shared gate locks last through each database invocation’s transaction, so pausing waits for that transaction and takes effect on commit. A timeout is not successful drainage. Missing controls refuse execution. No API role can change the controls.
+
+The full synthetic fixture verifies all eight paused entry points and unchanged claims after rollback. Focused PostgreSQL tests observe the setter waiting for an open claim transaction. This is prepared recovery capability, not a live pause or complete drain: sent HTTP requests and external workers must still be reconciled. Cron registrations are not altered, and retained routine repair can be left enabled independently. Production use still needs the separate cutover approval.
