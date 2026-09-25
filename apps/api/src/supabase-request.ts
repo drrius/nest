@@ -19,7 +19,10 @@ export function requestDocument(
       ? HttpClient.get(url, { headers: { ...headers, Prefer: "count=exact" } })
       : HttpClient.post(url, { headers, body: yield* HttpBody.json(body) });
     if (response.status === 401) return yield* new ApiFailure({ code: "unauthenticated" });
-    if (response.status === 403) return yield* new ApiFailure({ code: "forbidden" });
+    if (response.status === 403) {
+      const denied = yield* response.json.pipe(Effect.orElseSucceed(() => null));
+      return yield* new ApiFailure({ code: deniedCode(denied) });
+    }
     const value = yield* response.json;
     if (response.status < 200 || response.status >= 300) {
       const error = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
@@ -47,4 +50,15 @@ export function requestDocument(
 
 export function requestJson(config: IdentityConfig, token: string, path: string, body?: unknown) {
   return requestDocument(config, token, path, body).pipe(Effect.map((document) => document.value));
+}
+
+function deniedCode(value: unknown): "unavailable" | "forbidden" {
+  const error = Schema.Struct({ code: Schema.String, message: Schema.String });
+  // An RPC execute grant failure is service availability, not item-level authorization.
+  // Keep domain/RLS denials forbidden and never expose backend error text to clients.
+  return Schema.is(error)(value) &&
+    value.code === "42501" &&
+    /^permission denied for function [^\r\n]+$/.test(value.message)
+    ? "unavailable"
+    : "forbidden";
 }

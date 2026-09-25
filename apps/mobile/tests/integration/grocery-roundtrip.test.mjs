@@ -200,7 +200,7 @@ test("native category labels survive SQLite restart and archived categories fall
 async function suspendAndRestore(remote, flow, run) {
   const signature = "public.nest_set_grocery_checked(uuid,uuid,uuid,bigint,boolean)";
   remote.db.sql(`revoke execute on function ${signature} from authenticated`);
-  await assert.rejects(run(flow.sync), { code: "forbidden" });
+  await assert.rejects(run(flow.sync), { code: "unavailable" });
   assert.equal((await run(flow.read)).pending.length, 1);
   assert.equal(
     remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
