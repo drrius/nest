@@ -1,3 +1,4 @@
+// The legacyWritableTables report key also includes views for backward compatibility.
 // Read-only catalog evidence. Executability is not proof that a function is a writer.
 export function captureLegacyWriterInventory(db) {
   return JSON.parse(
@@ -16,7 +17,7 @@ export function captureLegacyWriterInventory(db) {
       'authenticated',has_any_column_privilege('authenticated',c.oid,'INSERT,UPDATE') or has_table_privilege('authenticated',c.oid,'DELETE,TRUNCATE'),
       'serviceRole',has_any_column_privilege('service_role',c.oid,'INSERT,UPDATE') or has_table_privilege('service_role',c.oid,'DELETE,TRUNCATE')) order by c.relname),'[]')
       from pg_class c join pg_namespace n on n.oid=c.relnamespace
-      where n.nspname='public' and c.relkind in ('r','p') and c.relname not like 'nest\\_%' escape '\\'
+      where n.nspname='public' and c.relkind in ('r','p','v') and c.relname not like 'nest\\_%' escape '\\'
         and (has_any_column_privilege('anon',c.oid,'INSERT,UPDATE') or has_table_privilege('anon',c.oid,'DELETE,TRUNCATE')
           or has_any_column_privilege('authenticated',c.oid,'INSERT,UPDATE') or has_table_privilege('authenticated',c.oid,'DELETE,TRUNCATE')
           or has_any_column_privilege('service_role',c.oid,'INSERT,UPDATE') or has_table_privilege('service_role',c.oid,'DELETE,TRUNCATE'))),

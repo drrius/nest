@@ -66,3 +66,33 @@ test("cutover inventory includes anonymous, inherited, column-only and truncate-
   ]);
   assert.equal(result.cutoverVerified, false);
 });
+
+test("writer inventory includes inherited view column grants without base-table access", (t) => {
+  const db = startFixturePostgres();
+  t.after(() => db.stop());
+  db.sql(`create role anon; create role authenticated; create role service_role;
+    create role view_writer; grant view_writer to authenticated;
+    create table public.source(id int);
+    insert into public.source values(1);
+    create view public.legacy_view as select id from public.source;
+    grant update(id) on public.legacy_view to view_writer;
+    create view public.readonly_view as select id from public.source;
+    grant select on public.readonly_view to authenticated;
+    set role authenticated;
+    update public.legacy_view set id=2;
+    reset role;`);
+  assert.equal(db.sql("select id from public.source"), "2");
+  const before = captureLegacyWriterInventory(db);
+  assert.deepEqual(before.legacyWritableTables, [
+    {
+      table: "legacy_view",
+      rls: false,
+      anonymous: false,
+      authenticated: true,
+      serviceRole: false,
+    },
+  ]);
+  db.sql("revoke update(id) on public.legacy_view from view_writer");
+  assert.deepEqual(captureLegacyWriterInventory(db).legacyWritableTables, []);
+  assert.equal(before.cutoverVerified, false);
+});
