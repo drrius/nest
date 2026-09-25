@@ -3,12 +3,14 @@ import { as, id } from "../../tests/database/native-expense-helpers.mjs";
 
 // Uses existing synthetic rows only, immediately before the final committed freeze.
 export function seedOfflineReceipts(db) {
+  const epoch = db.sql("select offline_epoch from private.nest_household_write_control");
   const count = Number(db.sql("select count(*) from public.routine_completions"));
   const completed = JSON.parse(
     db.sql(
       as(
         2,
-        `select public.nest_complete_chore('${id(1212)}','${id(1800)}','2026-09-24','2026-09-24')`,
+        `select public.nest_complete_chore_at_epoch(
+          '${JSON.stringify({ occurrenceId: id(1212), operationId: id(1800), expectedDueDate: "2026-09-24", completedOn: "2026-09-24" })}', '${epoch}')`,
       ),
     ),
   );
@@ -16,7 +18,11 @@ export function seedOfflineReceipts(db) {
   assert.equal(completed.completedBy, id(2));
   assert.equal(Number(db.sql("select count(*) from public.routine_completions")), count + 1);
   db.sql(
-    as(1, `select public.nest_set_grocery_checked('${id(10)}','${id(1801)}','${id(810)}',1,true)`),
+    as(
+      1,
+      `select public.nest_check_grocery_at_epoch('${id(10)}',
+      '${JSON.stringify({ operationId: id(1801), itemId: id(810), expectedVersion: "1", checked: true })}', '${epoch}')`,
+    ),
   );
   const snapshot = {
     first: readOfflineReceipts(db, 1),

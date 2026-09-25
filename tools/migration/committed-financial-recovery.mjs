@@ -1,3 +1,4 @@
+import { activateCutoverFixture } from "./committed-cutover-activation.mjs";
 import { captureOfflineSnapshots, verifyOfflineSnapshots } from "./offline-snapshot-recovery.mjs";
 import {
   seedAssistantJournalRecovery,
@@ -40,6 +41,7 @@ import {
 // Last fixture step: commit new history, then restrict APIs without restoring old data.
 // The caller owns a disposable cluster and destroys it after the report.
 export function verifyCommittedFinancialRecovery(db) {
+  const cutoverEpoch = activateCutoverFixture(db);
   const offlineReceipts = seedOfflineReceipts(db);
   const original = captureRehearsal(db);
   const receipt = JSON.parse(db.sql(as(1, save(1700))));
@@ -98,6 +100,7 @@ export function verifyCommittedFinancialRecovery(db) {
   );
   return {
     ...recovery,
+    committedCutoverEpoch: cutoverEpoch,
     committedExpensePreserved: true,
     financialReadsPreserved: true,
     receiptRecoveryPreserved: true,
