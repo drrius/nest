@@ -46,3 +46,33 @@ test("API fence refuses inherited grants and reversibly restricts legacy access"
   );
   assert.deepEqual(captureLegacyWriterInventory(db), original);
 });
+
+test("API fence blocks owner-backed writable views while preserving reads and rollback", (t) => {
+  const db = startFixturePostgres();
+  t.after(() => db.stop());
+  db.sql(`create role anon; create role authenticated; create role service_role;
+    create table public.legacy_source(id int);
+    insert into public.legacy_source values (1);
+    create view public.legacy_edit as select id from public.legacy_source;
+    grant select,insert,update,delete on public.legacy_edit to authenticated;
+    set role authenticated;
+    update public.legacy_edit set id=2;
+    reset role;`);
+  assert.equal(db.sql("select id from public.legacy_source"), "2");
+  assert.equal(
+    db.sql(`begin; ${legacyApiFenceSql()}
+    set local role authenticated;
+    do $probe$ begin
+      begin update public.legacy_edit set id=3; raise exception 'View fence bypassed';
+      exception when insufficient_privilege then null; end;
+      begin insert into public.legacy_edit values(4); raise exception 'View insert bypassed';
+      exception when insufficient_privilege then null; end;
+      begin delete from public.legacy_edit; raise exception 'View delete bypassed';
+      exception when insufficient_privilege then null; end;
+    end $probe$;
+    select id from public.legacy_edit; rollback;`),
+    "2",
+  );
+  db.sql("set role authenticated; update public.legacy_edit set id=5;");
+  assert.equal(db.sql("select id from public.legacy_source"), "5");
+});

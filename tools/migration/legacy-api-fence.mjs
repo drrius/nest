@@ -1,5 +1,5 @@
 // Catalog-wide experiment inside the disposable rehearsal transaction only.
-// Owner jobs, in-flight work, views and non-public schemas need separate auditing.
+// Owner jobs, in-flight work and non-public schemas need separate auditing.
 export function legacyApiFenceSql() {
   return `do $fence$ declare v_object record; v_columns text; v_role text; begin
     for v_object in select p.oid, p.oid::regprocedure::text as signature
@@ -13,7 +13,7 @@ export function legacyApiFenceSql() {
       end loop;
     end loop;
     for v_object in select oid,relname from pg_class where relnamespace='public'::regnamespace
-      and relkind in ('r','p') and left(relname,5)<>'nest_' loop
+      and relkind in ('r','p','v') and left(relname,5)<>'nest_' loop
       execute format('revoke insert,update,delete,truncate on public.%I from public,anon,authenticated,service_role',v_object.relname);
       select string_agg(quote_ident(attname),',') into v_columns from pg_attribute
         where attrelid=v_object.oid and attnum>0 and not attisdropped;

@@ -14,6 +14,10 @@ Updated 23 September 2026. The approved [product brief](native-rewrite/product-a
 
 **CI workflow credential blocker:** the reviewed core integration CI proposal is preserved locally on `codex/core-integration-ci` (`b7ca460`). GitHub rejected its push because the current OAuth login lacks `workflow` scope. Existing remote CI remains unchanged; real HTTP/PostgREST integration evidence is local until this proposal can be published. Independent implementation continues. Source merges still require clean exact-commit Sol review and passing required CI; production and release approval remain separate.
 
+### Writable views in fixture cutover — locally verified
+
+The disposable API fence now includes public legacy views alongside base and partitioned tables. A PostgreSQL regression first demonstrates an authenticated update through an owner-backed view without base-table grants, then verifies fenced INSERT/UPDATE/DELETE denial, retained SELECT and restored update access after rollback. Both focused API-fence tests pass. This closes the view omission in this rehearsal helper; procedures, non-public schemas, active transactions and hosted catalog differences remain separate audit work. No production grants changed. Review and exact-commit CI remain pending.
+
 ### Expense restart recovery during write suspension — locally verified
 
 On 25 September, two real native runtime → HTTP → PostgREST → disposable PostgreSQL tests passed after revoking Save and Cancel execution from every API role between a lost committed response and SQLite reopen. A new authenticated Save is denied, while restart recovers the existing recorded/cancelled receipt, clears the pending command and performs zero additional sends. Financial-event counts remain one for Save and zero for Cancel. This proves this bounded recovery path only; it does not establish reconciliation for all pending command types or a complete cutover epoch. Exact-commit review and CI remain pending; no device or hosted verification occurred.
