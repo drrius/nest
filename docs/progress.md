@@ -6,7 +6,7 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Current delivery state
 
-- Main: `d0fa1cebcd9218f16c4fd07dbd5dbf45a868a223`. Feature branch: `codex/native-acceptance-continuation`.
+- Main: `849038bd2c38140ccb9028d59c8c1574ec368861`. Feature branch: `codex/native-acceptance-continuation`.
 - Main includes progressive meal setup, notification setup links from reminder editors, migration recovery through direct money/recurring and expense approval reads, and the CI selection fix for previously omitted push/session tests.
 - Latest implementation: `d6e91440c0df6316070ec06daec073afd2bd6a22`, account-settings assistant handoff. Clean exact-commit GPT-5.6 Sol medium review; 18 focused tests independently repeated. CI run `36173113193` is pending at this update.
 - Earlier branch candidates `d0fa1ce` (CI selection guard) and `1e918b3` (notification assistant handoff) have clean reviews; CI runs `36171800916` and `36172421276` were still running at the last check. No pending check counts as approval.
@@ -49,6 +49,10 @@ Ten focused cases pass: four grocery journeys, one chore journey and five barrie
 
 Main advanced to `849038bd2c38140ccb9028d59c8c1574ec368861` after clean exact review and successful CI `36173987222`, including account settings handoff and committed settlement approval recovery. Later barrier changes remain candidates; no deployment occurred.
 
+## Financial detail during recovery — locally verified
+
+The committed freeze now retains the audited `nest_money_detail` reader as well as balance/history. Both household members receive identical full detail for the new expense before and after freeze; outsider reads are denied in both states. Final all-household financial snapshots still reconcile after every recovery probe. The full 54/195 rehearsal passes (`/tmp/nest-detail-recovery-rehearsal.json`) with empty security advisors; scoped lint/format pass. This preserves the event explanation read path, not receipt bytes or every other native reader. Exact review/CI are pending. Maintenance-error fix `aeeb6dd` has clean Sol review with ten independently passing cases; its CI remains pending.
+
 ## Next work
 
 1. Complete the requirement/action audit against actual native screens, authorized commands, registered AI tools and meaningful tests. Historical inventory paragraphs are not current completion evidence.
@@ -84,7 +88,7 @@ Main advanced to `849038bd2c38140ccb9028d59c8c1574ec368861` after clean exact re
 
 The committed recovery fixture preserves direct expense, settlement, refund, correction, recurring configuration/state/variable-cycle receipts and pending/consumed expense approval reads. Original owners recover exact results; partner/outsider behavior is checked; new financial writes remain refused. Chore/grocery receipts and full routine/financial snapshots survive the freeze. Final financial comparison runs after recovery probes.
 
-Latest full fixture report: `/tmp/nest-gated-barrier-rehearsal.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
+Latest full fixture report: `/tmp/nest-detail-recovery-rehearsal.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
 
 `completeRecovery`, `externalRequestsDrained` and `ownerJobsStopped` remain false. Other financial approval kinds, legacy draft/adoption recovery, meal proposals, preferences/household commands, attachments and the cutover epoch require further reconciliation. Refusing writes and retaining receipts alone does not prove complete rollback.
 

@@ -16,6 +16,7 @@ export function freezeRecoveryFixture(db) {
           and left(proname,5)='nest_' and oid not in (
             'public.nest_money_balance(uuid)'::regprocedure,
             'public.nest_money_history(uuid,uuid)'::regprocedure,
+            'public.nest_money_detail(uuid,uuid)'::regprocedure,
             'public.nest_read_expense_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_settlement_approval(uuid,uuid)'::regprocedure,
             'public.nest_read_settlement_save(uuid,uuid)'::regprocedure,

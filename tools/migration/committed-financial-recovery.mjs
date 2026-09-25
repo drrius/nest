@@ -35,7 +35,7 @@ export function verifyCommittedFinancialRecovery(db) {
     committed.financial.tables.financial_events.length,
     original.financial.tables.financial_events.length + 10,
   );
-  const reads = readFinancialState(db);
+  const reads = readFinancialState(db, receipt.eventId);
   for (const read of reads)
     assert.equal(
       read.history.events.some((event) => event.eventId === receipt.eventId),
@@ -47,7 +47,7 @@ export function verifyCommittedFinancialRecovery(db) {
     () => db.sql(as(1, save(1701))),
     /permission denied for function nest_save_expense/,
   );
-  assert.deepEqual(readFinancialState(db), reads);
+  assert.deepEqual(readFinancialState(db, receipt.eventId), reads);
   const recovered = JSON.parse(
     db.sql(as(1, `select public.nest_read_expense_save('${id(10)}','${id(1700)}')`)),
   );
@@ -71,6 +71,7 @@ export function verifyCommittedFinancialRecovery(db) {
     committedExpensePreserved: true,
     financialReadsPreserved: true,
     receiptRecoveryPreserved: true,
+    financialDetailPreserved: true,
     newExpenseRefused: true,
     outsiderDenied: true,
     restoredOldDatabase: false,
@@ -83,14 +84,19 @@ export function verifyCommittedFinancialRecovery(db) {
   };
 }
 
-function readFinancialState(db) {
+function readFinancialState(db, eventId) {
+  assert.throws(
+    () => db.sql(as(3, `select public.nest_money_detail('${id(10)}','${eventId}')`)),
+    /Not authorized/,
+  );
   return [1, 2].map((actor) =>
     JSON.parse(
       db.sql(
         as(
           actor,
           `select jsonb_build_object('balance',public.nest_money_balance('${id(10)}'),
-      'history',public.nest_money_history('${id(10)}'))`,
+      'history',public.nest_money_history('${id(10)}'),
+      'detail',public.nest_money_detail('${id(10)}','${eventId}'))`,
         ),
       ),
     ),
