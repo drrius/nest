@@ -15,7 +15,7 @@ Updated 25 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Latest local verification
 
-- **Recovery rehearsal:** all 54 legacy and 195 native migrations apply to disposable fixtures. The latest full report is `/tmp/nest-adjustment-approval-recovery.json`; security advisors report no findings. Both members retain identical balance/history/expense detail after the committed freeze; outsiders are refused. The final all-household financial snapshot reconciles after all recovery probes. This does not prove hosted infrastructure or complete cutover recovery.
+- **Recovery rehearsal:** all 54 legacy and 195 native migrations apply to disposable fixtures. The latest full report is `/tmp/nest-recurring-approval-recovery.json`; security advisors report no findings. Both members retain identical balance/history/expense detail after the committed freeze; outsiders are refused. The final all-household financial snapshot reconciles after all recovery probes. This does not prove hosted infrastructure or complete cutover recovery.
 - **Write barrier:** the default-open migration protects current public/private tables; only the database owner can freeze/resume. Coverage validation rejects missing/disabled guards. Five database cases exercise in-flight transaction drainage, retained reads, denied writes/truncation, role restrictions and pre-existing transaction isolation. Auth/Storage, external requests, owner jobs, concurrent DDL and pending-client epoch reconciliation remain outside this proof.
 - **Offline maintenance handling:** a real HTTP/PostgREST/SQLite test reproduced that generic SQLSTATE 55000 became a grocery conflict. The unapplied migration now raises `PT503`, classified as unavailable. Grocery and chore intent remains pending through freeze/restart and resumes without duplicate effects. Ten focused cases pass across grocery, chore and barrier tests: `/tmp/nest-freeze-grocery-after.log` and `/tmp/nest-freeze-chore-after.log`.
 - **Settlement recovery:** five HTTP/PostgREST/SQLite cases cover consumed/denied approval restart, unresolved staged approval, and direct Save/Cancel restart. Terminal authoritative reads clear metadata without repeating writes; unknown intent remains durable and cannot be replaced by its opposite. Reports: `/tmp/nest-settlement-unresolved-http.log` and `/tmp/nest-settlement-save-freeze-http.log`.
@@ -25,9 +25,15 @@ All reports above use synthetic data. `completeRecovery`, `externalRequestsDrain
 
 ## Refund and correction approval recovery — locally verified candidate
 
-The committed recovery freeze now retains the audited owner-only refund/correction approval readers. Six independent proposals cover consumed, denied and pending states for both commands. Exact owner envelopes and full approval rows survive; partner, outsider and anonymous reads fail; every confirm/deny and direct execution call is refused. The final all-household financial snapshot remains identical after those probes. The complete 54/195 rehearsal passes with empty security advisors (`/tmp/nest-adjustment-approval-recovery.json`); scoped lint/format pass. Exact review/CI remain pending. This is synthetic SQL evidence, not native restart, live AI or complete recovery.
+The committed recovery freeze now retains the audited owner-only refund/correction approval readers. Six independent proposals cover consumed, denied and pending states for both commands. Exact owner envelopes and full approval rows survive; partner, outsider and anonymous reads fail; every confirm/deny and direct execution call is refused. The final all-household financial snapshot remains identical after those probes. The complete 54/195 rehearsal passes with empty security advisors (`/tmp/nest-recurring-approval-recovery.json`); scoped lint/format pass. Exact review/CI remain pending. This is synthetic SQL evidence, not native restart, live AI or complete recovery.
 
 The stale Required CI table row identified by Sol is corrected to the currently merged financial-detail recovery commit and its exact successful run.
+
+## Recurring approval recovery — locally verified candidate
+
+Nine independent proposals cover consumed, denied and pending recurring creation, pause and variable-cycle approvals. Their audited owner-only readers survive the committed freeze; partner/outsider/anonymous reads and every decision/execution attempt are refused. Full approval rows, all recurring rules/revisions/cycles and the final all-household financial snapshot remain unchanged through recovery. The complete 54/195 rehearsal passes with empty security advisors (`/tmp/nest-recurring-approval-recovery.json`); scoped lint/format pass. This does not cover recurring update/cancel/resume/manual-link or legacy adoption approval variants, native restart or hosted scheduling. Exact review and CI are pending.
+
+Refund/correction recovery `cb37b93` has clean exact Sol review, including 13 independently passing approval tests; CI `36177812713` remains pending at this update.
 
 ## Next work
 
@@ -64,7 +70,7 @@ The stale Required CI table row identified by Sol is corrected to the currently 
 
 The committed recovery fixture preserves direct expense, settlement, refund, correction, recurring configuration/state/variable-cycle receipts and pending/consumed expense approval reads. Original owners recover exact results; partner/outsider behavior is checked; new financial writes remain refused. Chore/grocery receipts and full routine/financial snapshots survive the freeze. Final financial comparison runs after recovery probes.
 
-Latest full fixture report: `/tmp/nest-adjustment-approval-recovery.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
+Latest full fixture report: `/tmp/nest-recurring-approval-recovery.json`; account tests: `/tmp/nest-account-handoff-tests.log`; typechecks: `/tmp/nest-account-api-types.log` and `/tmp/nest-account-mobile-types.log`. Temporary reports are local evidence, not durable release artifacts. Reproduction and bounded coverage are documented in [migration rehearsal](native-rewrite/migration-rehearsal.md).
 
 `completeRecovery`, `externalRequestsDrained` and `ownerJobsStopped` remain false. Other financial approval kinds, legacy draft/adoption recovery, meal proposals, preferences/household commands, attachments and the cutover epoch require further reconciliation. Refusing writes and retaining receipts alone does not prove complete rollback.
 
