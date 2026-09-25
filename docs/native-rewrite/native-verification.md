@@ -1,6 +1,12 @@
 # Native verification record
 
-## Current scope
+## Current verification status — 25 September 2026
+
+Native execution remains unavailable here: neither `xcrun` nor `maestro` is on PATH. Running `eas simulator:availability --json` from `apps/mobile` returns `available: false` for `drrius-dev`. No simulator session or build was started. The earlier account result below is historical; it must not be used as current account or quota evidence.
+
+The application has progressed beyond the original preview, but implemented services and local SQLite/HTTP/PostgreSQL tests do not establish native interaction. The only checked-in Maestro flow remains `quiet-preview.yaml`; it cannot verify authenticated production flows. Real sign-in, offline restart, financial approval, Calendar permissions and push still require a development build with an isolated backend and an available iPhone runner. The existing development and development-simulator profiles remain separate from release submission.
+
+## Original preview scope (historical)
 
 The first native shell is an explicitly labeled M1 interaction preview. No auth, backend, AI, financial posting or offline persistence is implemented by this preview. Production JS denies navigation to the preview routes with `Stack.Protected` and does not show its entry link. This is not a release candidate.
 
