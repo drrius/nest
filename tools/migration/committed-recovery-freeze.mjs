@@ -1,8 +1,10 @@
+import { verifyFixtureWriteBarrier } from "./write-barrier-fixture.mjs";
 import { pauseLegacyJobsSql } from "./legacy-job-pause-rehearsal.mjs";
 import { legacyApiFenceSql } from "./legacy-api-fence.mjs";
 
 // Only for the caller-owned disposable final recovery fixture.
 export function freezeRecoveryFixture(db) {
+  verifyFixtureWriteBarrier(db);
   db.sql(`begin;
     select private.nest_set_recurring_execution_paused(true);
     ${pauseLegacyJobsSql()}

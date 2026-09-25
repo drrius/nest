@@ -4,6 +4,7 @@ import { startFixturePostgres } from "./fixture-postgres.mjs";
 import {
   installFixtureWriteBarrier,
   setFixtureWritesFrozen,
+  verifyFixtureWriteBarrier,
 } from "../../tools/migration/write-barrier-fixture.mjs";
 
 function fixture(t) {
@@ -97,3 +98,16 @@ for (const isolation of ["read committed", "repeatable read"]) {
     assert.equal(db.sql("select count(*) from public.fixture_history"), "0");
   });
 }
+
+test("fixture coverage check rejects newly added tables and disabled guards", (t) => {
+  const db = fixture(t);
+  verifyFixtureWriteBarrier(db);
+  db.sql("create table public.late_table(id integer)");
+  assert.throws(() => verifyFixtureWriteBarrier(db), /late_table/);
+  db.sql(
+    "drop table public.late_table; alter table public.fixture_history disable trigger nest_fixture_write_barrier",
+  );
+  assert.throws(() => verifyFixtureWriteBarrier(db), /fixture_history/);
+  db.sql("alter table public.fixture_history enable always trigger nest_fixture_write_barrier");
+  verifyFixtureWriteBarrier(db);
+});

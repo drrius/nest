@@ -35,3 +35,18 @@ export function setFixtureWritesFrozen(db, frozen) {
     if not found then raise exception 'Fixture write control missing'; end if;
     end; $freeze$;`);
 }
+
+export function verifyFixtureWriteBarrier(db) {
+  const missing = JSON.parse(
+    db.sql(`select coalesce(jsonb_agg(c.oid::regclass::text order by c.oid),'[]')
+    from pg_class c join pg_namespace n on n.oid=c.relnamespace
+    where n.nspname in ('public','private') and c.relkind in ('r','p')
+      and c.oid<>'private.nest_fixture_write_control'::regclass
+      and not exists(select 1 from pg_trigger t where t.tgrelid=c.oid
+        and t.tgname='nest_fixture_write_barrier' and not t.tgisinternal
+        and t.tgenabled='A' and t.tgtype=62
+        and t.tgfoid='private.nest_fixture_write_barrier()'::regprocedure)`),
+  );
+  if (missing.length)
+    throw new Error(`Fixture write barrier missing or changed: ${missing.join(", ")}`);
+}
