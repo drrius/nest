@@ -14,7 +14,8 @@ declare v_frozen boolean;
 begin
   select frozen into v_frozen from private.nest_household_write_control where singleton for share;
   if v_frozen is distinct from false then
-    raise exception 'Household writes suspended' using errcode='55000';
+    -- Explicit PostgREST 503: maintenance must not become an offline item conflict.
+    raise exception 'Household writes suspended' using errcode='PT503';
   end if;
   return null;
 end;

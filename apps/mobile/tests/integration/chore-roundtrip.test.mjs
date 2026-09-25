@@ -60,6 +60,7 @@ test("native client and restarted SQLite replay a lost real PostgreSQL receipt w
   assert.equal(initial.chores.length, 12);
   const chore = initial.chores.find((item) => item.occurrenceId.endsWith("000100"));
   await run(flow.complete(chore, operation, "2026-09-19"));
+  await assertFrozenChore(remote.db, flow, run);
   await assert.rejects(run(flow.sync), { code: "unavailable" });
   assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
   assert.equal((await run(flow.read)).pending.length, 1);
@@ -99,4 +100,18 @@ async function suspendAndRestore({ remote, flow, run, client, command }) {
   });
   assert.equal(remote.db.sql("select count(*) from private.fixture_closure_calls"), "1");
   remote.db.sql(`grant execute on function ${signature} to authenticated`);
+}
+
+async function assertFrozenChore(db, flow, run) {
+  db.sql("create role service_role nologin bypassrls");
+  db.file("supabase/migrations/20260925185000_native_household_write_barrier.sql");
+  db.sql("select private.nest_set_household_writes_frozen(true)");
+  await assert.rejects(run(flow.sync), { code: "unavailable" });
+  const pending = (await run(flow.read)).pending;
+  assert.equal(pending.length, 1);
+  assert.equal(pending[0].operation, operation);
+  assert.equal(pending[0].status, "pending");
+  assert.equal(pending[0].reason, null);
+  assert.equal(db.sql("select count(*) from private.fixture_closure_calls"), "0");
+  db.sql("select private.nest_set_household_writes_frozen(false)");
 }

@@ -214,3 +214,51 @@ async function suspendAndRestore({ remote, flow, run, client, command }) {
   );
   remote.db.sql(`grant execute on function ${signature} to authenticated`);
 }
+
+test("household freeze retains an offline grocery intent across restart until writes resume", async (t) => {
+  const remote = await postgrestFixture(t, files),
+    local = await sqliteFixture(t);
+  remote.db.file("supabase/migrations/20260925185000_native_household_write_barrier.sql");
+  remote.db.sql(
+    `insert into public.grocery_items(id,household_id,name) values('${target}','${household}','Milk')`,
+  );
+  const base = await start(
+    t,
+    createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" }),
+  );
+  const client = groceryClient(
+    base,
+    { actor, household },
+    Effect.succeed({ access_token: remote.bearer, user: { id: actor } }),
+  );
+  const run = Effect.runPromise;
+  const session = await run(local.store.activate({ actor, household }, lease));
+  let flow = groceryFlow({ store: local.store, session }, client);
+  await run(flow.sync);
+  await run(flow.check((await run(flow.read)).groceries[0], true, operation));
+  remote.db.sql("select private.nest_set_household_writes_frozen(true)");
+  await assert.rejects(run(flow.sync), { code: "unavailable" });
+  const pending = (await run(flow.read)).pending;
+  assert.equal(pending.length, 1);
+  assert.equal(pending[0].operation, operation);
+  assert.equal(pending[0].status, "pending");
+  assert.equal(pending[0].reason, null);
+  assert.equal(
+    remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
+    "1",
+  );
+  const reopened = local.reopen();
+  const next = await run(reopened.store.activate({ actor, household }, operation));
+  flow = groceryFlow({ store: reopened.store, session: next }, client);
+  await assert.rejects(run(flow.sync), { code: "unavailable" });
+  assert.equal((await run(flow.read)).pending[0].operation, operation);
+  remote.db.sql("select private.nest_set_household_writes_frozen(false)");
+  await run(flow.sync);
+  assert.equal((await run(flow.read)).pending.length, 0);
+  assert.equal((await run(flow.read)).groceries[0].checked, true);
+  assert.equal(
+    remote.db.sql(`select native_version from public.grocery_items where id='${target}'`),
+    "2",
+  );
+  assert.equal(remote.db.sql("select count(*) from public.nest_grocery_check_receipts"), "1");
+});
