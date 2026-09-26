@@ -8,8 +8,12 @@ export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t, extraFiles = []) {
   const f = await recurring(t, [
-    "supabase/migrations/20260922202827_native_renewal_storage.sql",
-    ...extraFiles,
+    ...new Set([
+      "supabase/migrations/20260922202827_native_renewal_storage.sql",
+      "supabase/migrations/20260922213246_native_renewal_reminder_storage.sql",
+      ...extraFiles,
+      "supabase/migrations/20260926100146_native_renewal_nonretryable_conflicts.sql",
+    ]),
   ]);
   const source = readFileSync(
     "supabase/migrations/20260921120810_native_ai_expense_proposal.sql",
