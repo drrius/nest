@@ -30,6 +30,7 @@ export function uploadObject(
         headers: {
           apikey: credential,
           "content-type": reservation.contentType,
+          "cache-control": "no-store",
           "x-upsert": "false",
         },
         body: new Uint8Array(bytes),

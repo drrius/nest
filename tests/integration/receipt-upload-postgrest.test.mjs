@@ -18,6 +18,8 @@ test("real upload HTTP authorizes and reserves exact content but never claims un
     ...files,
     "supabase/migrations/20260921173626_native_receipt_upload_identity.sql",
     "supabase/migrations/20260921174450_native_receipt_writer_membership.sql",
+    "supabase/migrations/20260921182441_native_receipt_cleanup.sql",
+    "supabase/migrations/20260926102946_native_receipt_nonretryable_conflicts.sql",
     "tests/integration/food-postgrest.sql",
   ]);
   const server = nodeServer(

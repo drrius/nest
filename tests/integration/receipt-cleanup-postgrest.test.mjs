@@ -22,6 +22,7 @@ test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never 
     "supabase/migrations/20260921173626_native_receipt_upload_identity.sql",
     "supabase/migrations/20260921182441_native_receipt_cleanup.sql",
     "supabase/migrations/20260921184008_native_receipt_recovery.sql",
+    "supabase/migrations/20260926102946_native_receipt_nonretryable_conflicts.sql",
     "tests/integration/food-postgrest.sql",
   ]);
   const server = nodeServer(

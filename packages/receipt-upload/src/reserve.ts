@@ -50,7 +50,7 @@ function reservationFailure(response: Response) {
     const value = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
       raw,
     ).pipe(Effect.mapError(decodeFailure));
-    const code = ["40001", "55P03", "55000", "P0002"].includes(value.code)
+    const code = ["PT412", "40001", "55P03", "55000", "P0002"].includes(value.code)
       ? "conflict"
       : value.code === "22023"
         ? "invalid"
