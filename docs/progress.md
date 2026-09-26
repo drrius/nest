@@ -33,6 +33,8 @@ Updated 26 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Latest local verification
 
+- **Combined conflict verification:** the full disposable rehearsal applies 54 legacy and 211 native migrations (pg_net explicitly excluded), preserves financial fingerprints and committed recovery receipts, and returns empty local security advisors. Report: `/tmp/nest-conflict-rehearsal-advisors.json`. This is synthetic infrastructure, not hosted/device acceptance. CI `36233299007` failed because the expanded AI test reached 403 lines; fixture setup is now extracted, all 16 AI command cases pass, and full lint/format checks pass. No assertions were removed; fresh exact-commit CI is required.
+
 - **Expense conflict follow-up:** all three unavailable-receipt/category and cancelled-Save branches return PT412 without posting in a real local PostgREST regression. Hosted unavailable-category Save returned 409 conflict in 0.333 seconds; financial-event count remains zero. Eighteen focused AI/receipt/expense cases pass after correcting shared-fixture leakage of grocery-only migrations. That fixture regression was introduced by the earlier grocery test updates and is fixed on the branch.
 
 - **Hosted settlement conflict:** a stale expected balance returns 409 conflict in 0.336 seconds; hosted financial-event count remains zero. The additive correction covers stale balance and cancelled Save only, preserving authorization, locks, approvals and receipts. Eleven local HTTP/native-runtime cases pass, including no-post conflict checks and lost-response Save/Cancel recovery. Production and device acceptance remain gated.

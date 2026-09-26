@@ -1,12 +1,7 @@
-import { aiCommandFiles } from "./ai-command-files.mjs";
+import { aiCommandDatabase } from "./ai-command-database.mjs";
 import assert from "node:assert/strict";
-import { after, test } from "node:test";
-import { startFixturePostgres } from "./fixture-postgres.mjs";
-const db = startFixturePostgres();
-after(() => db.stop());
-for (const file of aiCommandFiles) db.file(file);
-db.file("supabase/migrations/20260926092224_native_grocery_nonretryable_conflicts.sql");
-db.file("supabase/migrations/20260926092623_native_grocery_check_nonretryable_conflict.sql");
+import { test } from "node:test";
+const db = aiCommandDatabase();
 
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const actor = id(1),
