@@ -20,6 +20,24 @@ function reserve(f, n) {
     values('household-files','${reserved.path}','{"mimetype":"image/jpeg","size":128}')`);
   return { input, path: reserved.path };
 }
+function rejectPartnerClaim(f, path) {
+  const before = f.db.sql(`select jsonb_build_object(
+    'events', (select jsonb_agg(e) from public.financial_events e),
+    'uploads', (select jsonb_agg(u order by path) from public.household_attachment_uploads u),
+    'ledger', (select jsonb_agg(l) from public.ledger_entries l))`);
+  assert.throws(
+    () => f.db.sql(as(2, save(201, payload({ receiptPath: path })))),
+    /Only the uploader can attach a pending receipt/,
+  );
+  assert.equal(
+    f.db.sql(`select jsonb_build_object(
+    'events', (select jsonb_agg(e) from public.financial_events e),
+    'uploads', (select jsonb_agg(u order by path) from public.household_attachment_uploads u),
+    'ledger', (select jsonb_agg(l) from public.ledger_entries l))`),
+    before,
+  );
+  assert.equal(visible(f, 2, path), "0");
+}
 test("Storage RLS keeps unposted native receipt bytes private and shares only financial attachments", async (t) => {
   const f = await postgrestFixture(t, [
     ...files,
@@ -35,22 +53,7 @@ test("Storage RLS keeps unposted native receipt bytes private and shares only fi
     ["1", "0", "0"],
   );
   assert.equal(f.db.sql(`set role anon; select count(*) from storage.objects`), "0");
-  const before = f.db.sql(`select jsonb_build_object(
-    'events', (select jsonb_agg(e) from public.financial_events e),
-    'uploads', (select jsonb_agg(u order by path) from public.household_attachment_uploads u),
-    'ledger', (select jsonb_agg(l) from public.ledger_entries l))`);
-  assert.throws(
-    () => f.db.sql(as(2, save(201, payload({ receiptPath: first.path })))),
-    /Only the uploader can attach a pending receipt/,
-  );
-  assert.equal(
-    f.db.sql(`select jsonb_build_object(
-    'events', (select jsonb_agg(e) from public.financial_events e),
-    'uploads', (select jsonb_agg(u order by path) from public.household_attachment_uploads u),
-    'ledger', (select jsonb_agg(l) from public.ledger_entries l))`),
-    before,
-  );
-  assert.equal(visible(f, 2, first.path), "0");
+  rejectPartnerClaim(f, first.path);
   f.db.sql(as(1, save(200, payload({ receiptPath: first.path }))));
   assert.deepEqual(
     [1, 2, 3].map((actor) => visible(f, actor, first.path)),
