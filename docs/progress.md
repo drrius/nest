@@ -33,7 +33,7 @@ Updated 26 September 2026. Authority: [product brief](native-rewrite/product-and
 
 ## Latest local verification
 
-- **Refund/correction conflicts:** four cancellation/stale-review guards now use PT412. Thirteen local HTTP/native-runtime cases pass, covering event-history preservation, approvals, replay and SQLite restart recovery. Installed on nest-test; catalog confirms guards and financial events remain zero. Hosted execution/device checks and separate AI proposal-creation conflicts remain outstanding.
+- **Refund/correction conflicts:** four cancellation/stale-review guards now use PT412. Thirteen local HTTP/native-runtime cases pass, covering event-history preservation, approvals, replay and SQLite restart recovery. Installed on nest-test; catalog confirms guards and financial events remain zero. Hosted execution/device checks remain outstanding.
 
 - **AI turn conflicts:** seven terminal ownership/revision/deadline guards now use PT412. Two new local HTTP cases and the existing maintenance recovery case pass, covering no-write conflict rejection and exact interruption recovery. Installed on nest-test; catalog checks and a rolled-back hosted SQL probe pass. Hosted HTTP/live AI/device verification remains pending.
 
@@ -117,3 +117,7 @@ Latest full fixture report: `/tmp/nest-committed-cutover-recovery.json`; account
 ## Historical evidence
 
 Detailed incremental verification/PR history previously in this file is retained at Git commit `d6e91440c0df6316070ec06daec073afd2bd6a22:docs/progress.md`. It includes time-specific candidate and pending states and must not be read as current status. This checklist replaces that chronological log so superseded blockers do not obscure the remaining work.
+
+AI refund/correction conflict audit: the public command journal catches their stale-review exceptions and commits `{ok:false,code:"conflict"}`. A real PostgREST HTTP regression verifies both return HTTP 200 structured conflicts, exact replay produces only two journal rows, no approval is created and event history is byte-for-byte unchanged. Ten existing proposal database cases also pass. No additional SQL replacement is needed for these private proposal helpers.
+
+Latest full synthetic rehearsal (`/tmp/nest-financial-conflict-rehearsal.json`): 54 legacy/216 native migrations, seven events/eight allocations/14 ledger entries and retained receipt reference reconciled, committed recovery passed, local advisors returned no findings. One pg_net exclusion and simulated Auth/Storage remain; external drainage and complete recovery remain unproven.
