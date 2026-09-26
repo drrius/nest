@@ -10,8 +10,10 @@ test("real PostgREST embedding, RLS and receipt RPC connect to the authorized ch
     "supabase/migrations/20260919205503_native_chore_receipts.sql",
     "tests/integration/chore-completion-epoch.sql",
     "supabase/migrations/20260926092840_native_chore_nonretryable_conflicts.sql",
+    "supabase/migrations/20260926093101_native_chore_unavailable_conflict.sql",
   ]);
   await assertChoreConflict(fixture);
+  await assertChoreConflict(fixture, "00000000-0000-4000-8000-000000000300", "2026-09-19");
   const handler = createHandler({ url: fixture.url, publishableKey: "sb_publishable_fixture" });
   const read = (bearer = fixture.bearer) =>
     handler(
@@ -75,7 +77,11 @@ test("real PostgREST embedding, RLS and receipt RPC connect to the authorized ch
   assert.equal((await read()).status, 403);
 });
 
-async function assertChoreConflict(fixture) {
+async function assertChoreConflict(
+  fixture,
+  occurrenceId = "00000000-0000-4000-8000-000000000101",
+  expectedDueDate = "2026-09-18",
+) {
   const response = await fetch(`${fixture.url}/rest/v1/rpc/nest_complete_chore_at_epoch`, {
     method: "POST",
     headers: { authorization: `Bearer ${fixture.bearer}`, "content-type": "application/json" },
@@ -83,8 +89,8 @@ async function assertChoreConflict(fixture) {
       p_epoch: null,
       p_command: {
         operationId: "30000000-0000-4000-8000-000000000003",
-        occurrenceId: "00000000-0000-4000-8000-000000000101",
-        expectedDueDate: "2026-09-18",
+        occurrenceId,
+        expectedDueDate,
         completedOn: "2026-09-19",
       },
     }),
