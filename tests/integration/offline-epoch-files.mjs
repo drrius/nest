@@ -13,4 +13,5 @@ export const groceryEpochFiles = [
   ...control,
   "supabase/migrations/20260925202540_native_grocery_epoch_command.sql",
   "supabase/migrations/20260925203217_native_offline_epoch_snapshots.sql",
+  "supabase/migrations/20260926092623_native_grocery_check_nonretryable_conflict.sql",
 ];

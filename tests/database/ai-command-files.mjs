@@ -34,4 +34,5 @@ export const aiCommandFiles = [
   "supabase/migrations/20260921034355_native_ai_preparation_editing.sql",
   "supabase/migrations/20260926092224_native_grocery_nonretryable_conflicts.sql",
   "supabase/migrations/20260926092453_native_ai_nonretryable_conflicts.sql",
+  "supabase/migrations/20260926092623_native_grocery_check_nonretryable_conflict.sql",
 ];

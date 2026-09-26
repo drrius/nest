@@ -115,4 +115,17 @@ async function assertNonretryableConflict(fixture, target) {
   });
   assert.equal(response.status, 412);
   assert.equal((await response.json()).code, "PT412");
+  const check = await fetch(`${fixture.url}/rest/v1/rpc/nest_set_grocery_checked`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${fixture.bearer}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      p_household: id(10),
+      p_operation: id(110),
+      p_target: target,
+      p_expected: "1",
+      p_checked: false,
+    }),
+  });
+  assert.equal(check.status, 412);
+  assert.equal((await check.json()).code, "PT412");
 }
