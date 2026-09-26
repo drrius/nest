@@ -11,6 +11,7 @@ async function backend(t, drop = false) {
     ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
     ...choreEpochFiles,
+    "supabase/migrations/20260926095847_native_chore_edit_nonretryable_conflicts.sql",
   ]);
   const proxy = drop
     ? await lostResponseProxy(t, remote.url, "/rest/v1/rpc/nest_change_chore")
@@ -103,4 +104,32 @@ test("lost reschedule acknowledgment replays after partner rebuild and rejects f
   remote.db.sql(`delete from public.push_outbox; delete from public.inbox_notifications;
     delete from public.activity_events; delete from public.household_members where user_id='${id(1)}'`);
   assert.equal((await request("chores/reschedule", command)).status, 403);
+});
+
+test("a stale chore date returns raw PT412 without altering the occurrence or receipt", async (t) => {
+  const { remote, current } = await backend(t);
+  const before = remote.db.sql(
+    `select to_jsonb(o) from public.routine_occurrences o where id='${current.occurrenceId}'`,
+  );
+  const response = await fetch(`${remote.url}/rest/v1/rpc/nest_change_chore`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${remote.bearer}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      p_household: id(10),
+      p_operation: id(900),
+      p_occurrence: current.occurrenceId,
+      p_expected_due_date: "2000-01-01",
+      p_action: "skip",
+      p_new_due_date: null,
+    }),
+  });
+  assert.equal(response.status, 412);
+  assert.equal((await response.json()).code, "PT412");
+  assert.equal(
+    remote.db.sql(
+      `select to_jsonb(o) from public.routine_occurrences o where id='${current.occurrenceId}'`,
+    ),
+    before,
+  );
+  assert.equal(remote.db.sql("select count(*) from public.nest_chore_change_receipts"), "0");
 });

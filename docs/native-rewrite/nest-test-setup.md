@@ -6,7 +6,7 @@ Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This projec
 
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. Thirteen subsequent conflict-handling migrations are installed, individually recorded in the manifest (272 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. Fourteen subsequent conflict-handling migrations are installed, individually recorded in the manifest (273 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -76,3 +76,5 @@ AI refund/correction conflict audit: the public command journal catches their st
 Latest full synthetic rehearsal (`/tmp/nest-financial-conflict-rehearsal.json`): 54 legacy/216 native migrations, seven events/eight allocations/14 ledger entries and retained receipt reference reconciled, committed recovery passed, local advisors returned no findings. One pg_net exclusion and simulated Auth/Storage remain; external drainage and complete recovery remain unproven.
 
 Private memory conflicts: migration `20260926095607` changes three terminal stale-state/expired-consent/capacity raises to PT412. Six local HTTP cases pass, including raw expired-consent rejection with no memory/receipt writes and approval still pending, privacy, exact replay, stale revision and capacity recovery. Installed on nest-test and catalog counts confirmed; hosted execution and native-device behavior remain unverified.
+
+Chore edit/handover conflicts: migration `20260926095847` changes nine terminal guards across five retained functions, preserving both chore edit/transfer lock-contention handlers as retryable. Six local HTTP cases pass: stale date/request/version raw PT412 with unchanged occurrence/assignment/pause state, acceptance, exact replay after rebuild, tenant and revoked-access denial. Hosted catalog confirms nine terminal guards and the two preserved contention guards; hosted behavioral/device checks remain outstanding. Both fixture files are included in routine conflict CI (26 cases total).

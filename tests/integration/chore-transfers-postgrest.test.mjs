@@ -11,6 +11,7 @@ async function backend(t) {
     ...choreTransferFiles,
     "tests/integration/food-postgrest.sql",
     ...choreEpochFiles,
+    "supabase/migrations/20260926095847_native_chore_edit_nonretryable_conflicts.sql",
   ]);
   const proxy = await lostResponseProxy(t, remote.url, "/rest/v1/rpc/nest_chore_transfer");
   const direct = createHandler({ url: remote.url, publishableKey: "sb_publishable_fixture" });
@@ -153,5 +154,53 @@ test("lost acceptance replays after a partner rebuild, while invalid, foreign an
   assert.equal(
     (await request("chores/transfers/respond", response, remote.partnerBearer)).status,
     403,
+  );
+});
+
+test("stale handover requests and routine versions return terminal conflicts without assignment changes", async (t) => {
+  const { remote, current, routine } = await backend(t);
+  const cases = [
+    {
+      name: "nest_chore_transfer",
+      fields: {
+        p_action: "request",
+        p_input: {
+          occurrenceId: current.occurrenceId,
+          expectedDueDate: "2000-01-01",
+          recipientId: id(2),
+        },
+      },
+    },
+    {
+      name: "nest_set_routine_state",
+      fields: {
+        p_routine: routine.routineId,
+        p_expected: "2000-01-01T00:00:00.000000Z",
+        p_action: "pause",
+      },
+    },
+  ];
+  const before = remote.db.sql(
+    `select to_jsonb(o) from public.routine_occurrences o where id='${current.occurrenceId}'`,
+  );
+  for (const { name, fields } of cases) {
+    const response = await fetch(`${remote.url}/rest/v1/rpc/${name}`, {
+      method: "POST",
+      headers: { authorization: `Bearer ${remote.bearer}`, "content-type": "application/json" },
+      body: JSON.stringify({ p_household: id(10), p_operation: id(900), ...fields }),
+    });
+    assert.equal(response.status, 412, name);
+    assert.equal((await response.json()).code, "PT412");
+  }
+  assert.equal(remote.db.sql("select count(*) from public.nest_chore_transfers"), "0");
+  assert.equal(
+    remote.db.sql(
+      `select to_jsonb(o) from public.routine_occurrences o where id='${current.occurrenceId}'`,
+    ),
+    before,
+  );
+  assert.equal(
+    remote.db.sql(`select paused_at is null from public.routines where id='${routine.routineId}'`),
+    "t",
   );
 });
