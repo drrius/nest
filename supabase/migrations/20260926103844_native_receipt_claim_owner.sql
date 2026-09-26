@@ -18,4 +18,3 @@ begin
   end if;
   update public.household_attachment_uploads set state = 'claimed' where path = p_path;
 end $$;
-
