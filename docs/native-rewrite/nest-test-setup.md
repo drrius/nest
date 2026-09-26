@@ -6,7 +6,7 @@ Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This projec
 
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. An additional native grocery conflict migration is now installed (260 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. An additional native grocery conflict migration is now installed and its AI journal compatibility fix (261 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -48,3 +48,5 @@ Apple provider configuration, the partners' actual test identities, signed iPhon
 The real hosted journey exposed repeated database `40001` errors for a stale grocery edit until the API timed out. SQL itself correctly rejected the stale version; hosted logs showed repeated attempts. Migration `20260926092224_native_grocery_nonretryable_conflicts.sql` changes explicit grocery edit business conflicts to `PT412`; genuine serialization failures retain their original code. The API maps HTTP 412/PT412 to its existing HTTP 409 conflict response. Existing private function identity and grants are preserved.
 
 After applying only to nest-test, the complete real-user HTTP sequence passed: add and exact replay, partner read/check and exact replay, outsider denial, stale edit conflict, and unchanged final checked state. Retained fictional item: `644af67d-399c-4683-8e83-c434bba4e516`, version 2. A first diagnostic item also remains. Local PostgREST regression asserts the raw 412/PT412 response; the API mapping test and typecheck pass. This is not device/offline acceptance. Other explicit `40001` business-conflict sites still need a hosted retry audit.
+
+The AI journal also catches PT412 in `20260926092453_native_ai_nonretryable_conflicts.sql`. Sixteen focused PostgreSQL cases pass, including a stale AI grocery edit returning a stored conflict, exact replay after another mutation, and one immutable journal entry. This fixes a review finding in the initial grocery correction; live model execution remains unverified. The follow-up migration is installed only on nest-test.

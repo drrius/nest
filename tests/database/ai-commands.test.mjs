@@ -157,10 +157,23 @@ test("grocery edit, check and removal reuse shared command versions and failed c
     "edit",
   );
   assert.equal(edited.value.version, "2");
+  const staleEdit = { ...add, itemId, expectedVersion: "1", name: "Stale pear" };
+  assert.deepEqual(execute(r, "editGrocery", staleEdit, "stale-edit"), {
+    ok: false,
+    code: "conflict",
+  });
   const stale = { itemId, expectedVersion: "1", checked: true };
   assert.deepEqual(execute(r, "checkGrocery", stale, "stale"), { ok: false, code: "conflict" });
   const checked = execute(r, "checkGrocery", { ...stale, expectedVersion: "2" }, "check");
   assert.equal(checked.value.version, "3");
+  assert.deepEqual(execute(r, "editGrocery", staleEdit, "stale-edit"), {
+    ok: false,
+    code: "conflict",
+  });
+  assert.equal(
+    db.sql(`select count(*) from public.nest_ai_commands where tool_call_id='stale-edit'`),
+    "1",
+  );
   assert.deepEqual(execute(r, "checkGrocery", stale, "stale"), { ok: false, code: "conflict" });
   const removed = execute(r, "removeGrocery", { itemId, expectedVersion: "3" }, "remove");
   assert.equal(removed.value.removed, true);
