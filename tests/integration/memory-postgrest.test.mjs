@@ -10,6 +10,7 @@ const files = [
   "supabase/migrations/20260919213407_native_action_approvals.sql",
   "supabase/migrations/20260920054303_native_private_memory.sql",
   "supabase/migrations/20260920055247_native_memory_confirmation.sql",
+  "supabase/migrations/20260926095607_native_memory_nonretryable_conflicts.sql",
 ];
 const command = {
   operationId: id(100),
@@ -167,4 +168,32 @@ test("full memory capacity is a recoverable conflict and does not commit the app
   );
   assert.equal((await owner("/decide", decision(approval))).status, 200);
   assert.equal((await (await owner()).json()).memories.length, 64);
+});
+
+test("expired memory consent returns raw non-retryable conflict with no consent or memory writes", async (t) => {
+  const f = await postgrestFixture(t, files);
+  const approval = await proposal(client(f));
+  f.db.sql(`update public.nest_action_approvals set expires_at=now()-interval '1 second'
+    where id='${approval.id}'`);
+  const response = await fetch(`${f.url}/rest/v1/rpc/nest_decide_memory`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${f.bearer}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      p_household: id(10),
+      p_operation: command.operationId,
+      p_memory: command.memoryId,
+      p_expected: 0,
+      p_content: command.content,
+      p_approval: approval.id,
+      p_approved: true,
+    }),
+  });
+  assert.equal(response.status, 412);
+  assert.equal((await response.json()).code, "PT412");
+  assert.equal(f.db.sql("select count(*) from public.nest_memories"), "0");
+  assert.equal(f.db.sql("select count(*) from public.nest_memory_receipts"), "0");
+  assert.equal(
+    f.db.sql(`select status from public.nest_action_approvals where id='${approval.id}'`),
+    "pending",
+  );
 });
