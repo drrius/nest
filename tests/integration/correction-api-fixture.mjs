@@ -17,6 +17,7 @@ export async function correctionApiFixture(t, seed = true) {
     "supabase/migrations/20260921161115_native_correction_context.sql",
     "supabase/migrations/20260921161648_native_correction_save_cancel.sql",
     "supabase/migrations/20260921163322_native_correction_approval.sql",
+    "supabase/migrations/20260926095104_native_correction_nonretryable_conflicts.sql",
   ])
     f.db.file(file);
   f.db.sql("notify pgrst,'reload schema'");

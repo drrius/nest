@@ -6,7 +6,7 @@ Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This projec
 
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. Ten subsequent conflict-handling migrations are installed, individually recorded in the manifest (269 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. Twelve subsequent conflict-handling migrations are installed, individually recorded in the manifest (271 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -68,3 +68,5 @@ Preference migration `20260926094056_native_preference_nonretryable_conflicts.sq
 Calendar migration `20260926094310_native_calendar_nonretryable_conflicts.sql` changes five explicit stale/expired consent/capture raises across three retained functions to PT412. Six local HTTP cases pass, including delayed raw calls after opt-out that leave sharing disabled and no snapshots, personal-metadata rejection, expiry, membership incarnation changes and lost-response replay. Three hosted stale-identity RPCs returned PT412 in 0.119/0.054/0.052 seconds (capture/publication/consent); hosted snapshots and enabled consents both remain zero. Actual EventKit and two-phone permission behavior remain unverified.
 
 AI turn migration `20260926094530_native_ai_turn_nonretryable_conflicts.sql` changes seven explicit ownership/revision/deadline conflicts across five retained definitions to PT412. Two new local HTTP cases verify competing turns, active-transcript protection, expiry refusal without command journals, stale revisions and exact interruption recovery; the existing maintenance recovery case also passes. Hosted catalog verification confirms all seven guards. A rolled-back hosted SQL probe verifies active-transcript refusal, expired completion refusal and successful interruption; this is not hosted HTTP, live model or device evidence.
+
+Refund/correction migrations `20260926095056` and `20260926095104` change four terminal cancellation/stale-review guards in the retained record functions. Thirteen local HTTP/native-runtime cases pass, including raw PT412 rejection with exact event-history preservation, approval enforcement, lost responses and SQLite restart recovery. Installed on nest-test; catalog guard counts confirmed and hosted financial history remains empty. Actual hosted refund/correction execution is not yet verified. Separate AI proposal-creation guards still require audit.
