@@ -6,15 +6,17 @@
   "scripts": {
     "typecheck": "tsc --noEmit",
     "test": "node --test ../../tests/api/*.test.mjs",
-    "dev": "node --env-file-if-exists=.env dev.mjs"
+    "dev": "node --env-file-if-exists=.env dev.mjs",
+    "build": "node build.mjs"
   },
   "dependencies": {
     "@nest/ai": "workspace:*",
-    "effect": "4.0.0-rc.115",
     "@nest/contracts": "workspace:*",
-    "@nest/domain": "workspace:*"
+    "@nest/domain": "workspace:*",
+    "effect": "4.0.0-rc.115"
   },
   "devDependencies": {
+    "esbuild": "0.28.2",
     "typescript": "7.0.2"
   }
 }

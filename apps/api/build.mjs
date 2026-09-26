@@ -1,0 +1,13 @@
+import { build } from "esbuild";
+
+await build({
+  entryPoints: ["runtime.mjs"],
+  bundle: true,
+  banner: {
+    js: 'import { createRequire } from "node:module"; const require = createRequire(import.meta.url);',
+  },
+  platform: "node",
+  format: "esm",
+  target: "node24",
+  outfile: process.argv[2] ?? "dist/runtime.mjs",
+});
