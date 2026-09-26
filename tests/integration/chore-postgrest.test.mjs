@@ -4,7 +4,12 @@ import { createHandler } from "../../apps/api/src/handler.ts";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 
 test("real PostgREST embedding, RLS and receipt RPC connect to the authorized chore API", async (t) => {
-  const fixture = await postgrestFixture(t);
+  const fixture = await postgrestFixture(t, [
+    "tests/database/legacy-chore-fixture.sql",
+    "tests/integration/chore-postgrest.sql",
+    "supabase/migrations/20260919205503_native_chore_receipts.sql",
+    "tests/integration/chore-completion-epoch.sql",
+  ]);
   const handler = createHandler({ url: fixture.url, publishableKey: "sb_publishable_fixture" });
   const read = (bearer = fixture.bearer) =>
     handler(

@@ -36,6 +36,18 @@ jobs:
       - run: pnpm test:checklist
       - run: pnpm test:chores
       - run: pnpm test:offline
+      - name: Install pinned PostgREST integration fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          fixture_dir="$RUNNER_TEMP/nest-postgrest"
+          mkdir -p "$fixture_dir"
+          curl --fail --location --retry 3 --output "$fixture_dir/postgrest.tar.xz" https://github.com/PostgREST/postgrest/releases/download/v16.3/postgrest-v16.3-linux-static-x86-64.tar.xz
+          echo "4eb414eb948c8800863cc8c9896a17b611b2dccf9ff581f4d57f42ec9ccee40d  $fixture_dir/postgrest.tar.xz" | sha256sum --check --strict
+          tar --extract --xz --file "$fixture_dir/postgrest.tar.xz" --directory "$fixture_dir" postgrest
+          "$fixture_dir/postgrest" --version
+      - name: Test core native HTTP and database journeys
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:core
       - name: Test isolated PostgreSQL transactions and RLS
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" pnpm test:database
       - run: pnpm test

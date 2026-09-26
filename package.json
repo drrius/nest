@@ -36,7 +36,8 @@
     "test:setup": "node --test apps/mobile/tests/setup-*.test.mjs",
     "test:routines": "node --test apps/mobile/tests/routine-*.test.mjs",
     "test:money": "node --test apps/mobile/tests/money-*.test.mjs",
-    "test:meals": "node --test apps/mobile/tests/meal-*.test.mjs"
+    "test:meals": "node --test apps/mobile/tests/meal-*.test.mjs",
+    "test:integration:core": "node --test --test-concurrency=2 tests/integration/chore-postgrest.test.mjs tests/integration/grocery-postgrest.test.mjs tests/integration/expense-native-approval.test.mjs tests/integration/expense-save-restart.test.mjs tests/integration/pending-financial-approvals.test.mjs tests/integration/pending-approval-runtime.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",
