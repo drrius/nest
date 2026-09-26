@@ -6,7 +6,7 @@ Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This projec
 
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. Five additional migrations cover grocery edit conflicts, AI journal compatibility, grocery check conflicts, chore completion conflicts, and paused/archived routine conflicts (264 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. Six additional migrations cover grocery edit conflicts, AI journal compatibility, grocery check conflicts, chore completion conflicts, paused/archived routine conflicts, and settlement conflicts (265 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -56,3 +56,5 @@ The same correction now covers stale grocery check/uncheck intent in `2026092609
 Chore completion now returns PT412 for its three explicit stale-state conflicts through `20260926092840_native_chore_nonretryable_conflicts.sql`. The migration asserts exactly three known clauses before replacing them in the retained function, preserving its identity, ACL, receipt replay and epoch adapters. Real hosted checks passed: fictional daily routine creation/replay, stale completion conflict in 0.102 seconds, successful completion/exact replay, and outsider rejection. The focused local PostgREST test asserts raw 412/PT412 and zero receipts for rejected stale intent. No real household data or device was involved.
 
 Review found another terminal routine guard with differently spaced SQL. `20260926093101_native_chore_unavailable_conflict.sql` precisely replaces that one guard while preserving the real NOWAIT lock-retry branch. The HTTP fixture now includes the current closure-guard implementation and verifies paused-routine rejection with raw PT412 and zero receipts. This follow-up is installed on nest-test; the paused-routine HTTP case is locally verified, not separately hosted/device-verified.
+
+Settlement migration `20260926093243_native_settlement_nonretryable_conflicts.sql` changes only explicit stale-balance and cancelled-Save conflicts in two retained functions. Eleven local HTTP/native-runtime cases pass: raw PT412 with unchanged financial-event count, authorization/approval enforcement, exact posting, and lost-response Save/Cancel recovery across SQLite restart. A real hosted stale-balance Save returned 409 conflict in 0.336 seconds; the hosted financial-event count remained zero. No actual financial transaction or device acceptance is claimed.

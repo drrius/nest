@@ -102,3 +102,38 @@ test("native and API canonicalize alphabetic settlement member and operation ide
     receipt,
   );
 });
+
+test("stale balance and cancelled Save return non-retryable conflicts without posting", async (t) => {
+  const f = await settlementApiFixture(t);
+  const headers = { authorization: `Bearer ${f.bearer}`, "content-type": "application/json" };
+  const rpc = (name, body) =>
+    fetch(`${f.supabaseUrl}/rest/v1/rpc/${name}`, {
+      method: "POST",
+      headers,
+      body: JSON.stringify(body),
+    });
+  const before = f.db.sql("select count(*) from public.financial_events");
+  const cancelled = id(411);
+  assert.equal(
+    (
+      await rpc("nest_cancel_settlement_save", {
+        p_household: id(10),
+        p_operation: cancelled,
+      })
+    ).status,
+    200,
+  );
+  for (const [operation, value] of [
+    [id(410), settlement({ amountCentimes: "900", expectedOutstandingCentimes: "900" })],
+    [cancelled, settlement()],
+  ]) {
+    const response = await rpc("nest_save_settlement", {
+      p_household: id(10),
+      p_operation: operation,
+      p_payload: value,
+    });
+    assert.equal(response.status, 412);
+    assert.equal((await response.json()).code, "PT412");
+    assert.equal(f.db.sql("select count(*) from public.financial_events"), before);
+  }
+});
