@@ -1,14 +1,11 @@
+import { files } from "./preference-files.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
-const files = [
-  "tests/database/conversation-fixture.sql",
-  "tests/integration/food-postgrest.sql",
-  "supabase/migrations/20260920072531_native_notification_preferences.sql",
-];
+
 const preferences = {
   dailySummaryEnabled: true,
   dailySummaryTime: "08:00",

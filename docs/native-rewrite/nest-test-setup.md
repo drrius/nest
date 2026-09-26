@@ -6,7 +6,7 @@ Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This projec
 
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. Seven subsequent conflict-handling migrations are installed, individually recorded in the manifest (266 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. Eight subsequent conflict-handling migrations are installed, individually recorded in the manifest (267 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -62,3 +62,5 @@ Settlement migration `20260926093243_native_settlement_nonretryable_conflicts.sq
 Expense migration `20260926093435_native_expense_nonretryable_conflicts.sql` changes only unavailable-receipt/category and cancelled-Save conflicts in three existing functions. A local raw PostgREST regression checks PT412 and unchanged financial-event counts for all three. The hosted unavailable-category Save returned 409 conflict in 0.333 seconds; financial-event count remained zero. The broader 18-case run includes AI command journaling and receipt approval. A fixture regression introduced by the grocery changes was corrected: grocery-only migrations now load in the grocery AI test, rather than leaking into derived money/recipe fixtures without grocery tables.
 
 The combined local rehearsal with 54 legacy/211 native migrations passes financial reconciliation and committed receipt recovery; local advisors return no findings (`/tmp/nest-conflict-rehearsal-advisors.json`). pg_net, real Auth/Storage and external worker drainage remain outside this local proof. CI found a 403-line AI test file; its fixture setup was extracted and all 16 AI command cases plus full lint/format checks pass. Hosted advisors remain a separate unresolved review.
+
+Preference migration `20260926094056_native_preference_nonretryable_conflicts.sql` changes explicit version conflicts for private food/notification settings and shared cooking settings. Ten local HTTP cases pass: raw PT412/no writes, normal saves, privacy, tenant boundaries, revocation and lost-response replay. Hosted stale calls returned PT412 in 0.283/0.081/0.077 seconds respectively for food/cooking/notifications. No real preferences or notification opt-ins were changed. Calendar consent and other command families still need audit.
