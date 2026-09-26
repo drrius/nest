@@ -12,6 +12,13 @@ export async function pushWorkerFixture(t) {
     "20260923005723_native_push_delivery_scan",
     "20260923010425_native_push_scan_checkpoint",
     "20260923011300_native_push_maintenance",
+    "20260922235848_native_push_cancellation",
+    "20260923024143_native_summary_push_checkpoint",
+    "20260923042122_native_chore_push_scan",
+    "20260923050126_native_meal_push_scan",
+    "20260923054801_native_grocery_push_scan",
+    "20260923063134_native_recurring_push_scan",
+    "20260926103643_native_push_nonretryable_conflicts",
   ])
     f.db.file(`supabase/migrations/${name}.sql`);
   const http = await postgrestFixture(t, [], f.db);

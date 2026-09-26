@@ -26,6 +26,7 @@ test("Storage RLS keeps unposted native receipt bytes private and shares only fi
     "supabase/migrations/20260921173626_native_receipt_upload_identity.sql",
     "supabase/migrations/20260921182441_native_receipt_cleanup.sql",
     "supabase/migrations/20260926103200_native_receipt_storage_privacy.sql",
+    "supabase/migrations/20260926103844_native_receipt_claim_owner.sql",
     "tests/integration/food-postgrest.sql",
   ]);
   const first = reserve(f, 100);
@@ -34,6 +35,22 @@ test("Storage RLS keeps unposted native receipt bytes private and shares only fi
     ["1", "0", "0"],
   );
   assert.equal(f.db.sql(`set role anon; select count(*) from storage.objects`), "0");
+  const before = f.db.sql(`select jsonb_build_object(
+    'events', (select jsonb_agg(e) from public.financial_events e),
+    'uploads', (select jsonb_agg(u order by path) from public.household_attachment_uploads u),
+    'ledger', (select jsonb_agg(l) from public.ledger_entries l))`);
+  assert.throws(
+    () => f.db.sql(as(2, save(201, payload({ receiptPath: first.path })))),
+    /Only the uploader can attach a pending receipt/,
+  );
+  assert.equal(
+    f.db.sql(`select jsonb_build_object(
+    'events', (select jsonb_agg(e) from public.financial_events e),
+    'uploads', (select jsonb_agg(u order by path) from public.household_attachment_uploads u),
+    'ledger', (select jsonb_agg(l) from public.ledger_entries l))`),
+    before,
+  );
+  assert.equal(visible(f, 2, first.path), "0");
   f.db.sql(as(1, save(200, payload({ receiptPath: first.path }))));
   assert.deepEqual(
     [1, 2, 3].map((actor) => visible(f, actor, first.path)),

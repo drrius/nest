@@ -56,7 +56,9 @@ export function pushWorkerRpc(config: IdentityConfig, secret: Redacted.Redacted<
           yield* response.json,
         );
         return yield* new ApiFailure({
-          code: ["40001", "55P03", "55000"].includes(error.code) ? "conflict" : "unavailable",
+          code: ["PT412", "40001", "55P03", "55000"].includes(error.code)
+            ? "conflict"
+            : "unavailable",
         });
       }
       return yield* response.json;
