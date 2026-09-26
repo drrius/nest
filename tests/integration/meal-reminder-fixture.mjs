@@ -17,6 +17,7 @@ export async function fixture(t) {
     for (const fn of cleanup.reverse()) await fn();
   });
   const f = database(scoped);
+  f.db.file("supabase/migrations/20260926102724_native_meal_reminder_nonretryable_conflicts.sql");
   const remote = await postgrestFixture(scoped, ["tests/integration/food-postgrest.sql"], f.db);
   const config = { url: remote.url, publishableKey: "sb_publishable_fixture" };
   const server = nodeServer(createHandler(config));
