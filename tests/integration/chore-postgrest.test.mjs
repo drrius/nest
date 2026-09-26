@@ -9,7 +9,9 @@ test("real PostgREST embedding, RLS and receipt RPC connect to the authorized ch
     "tests/integration/chore-postgrest.sql",
     "supabase/migrations/20260919205503_native_chore_receipts.sql",
     "tests/integration/chore-completion-epoch.sql",
+    "supabase/migrations/20260926092840_native_chore_nonretryable_conflicts.sql",
   ]);
+  await assertChoreConflict(fixture);
   const handler = createHandler({ url: fixture.url, publishableKey: "sb_publishable_fixture" });
   const read = (bearer = fixture.bearer) =>
     handler(
@@ -72,3 +74,22 @@ test("real PostgREST embedding, RLS and receipt RPC connect to the authorized ch
   assert.equal((await complete()).status, 403);
   assert.equal((await read()).status, 403);
 });
+
+async function assertChoreConflict(fixture) {
+  const response = await fetch(`${fixture.url}/rest/v1/rpc/nest_complete_chore_at_epoch`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${fixture.bearer}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      p_epoch: null,
+      p_command: {
+        operationId: "30000000-0000-4000-8000-000000000003",
+        occurrenceId: "00000000-0000-4000-8000-000000000101",
+        expectedDueDate: "2026-09-18",
+        completedOn: "2026-09-19",
+      },
+    }),
+  });
+  assert.equal(response.status, 412);
+  assert.equal((await response.json()).code, "PT412");
+  assert.equal(fixture.db.sql("select count(*) from public.nest_chore_receipts"), "0");
+}
