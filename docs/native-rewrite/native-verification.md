@@ -12,12 +12,13 @@ The first native shell is an explicitly labeled M1 interaction preview. No auth,
 
 Routes are under `apps/mobile/src/app`. Four native tabs own separate stacks; Today and Meals open the same grocery screen. Preview chore/grocery state is shared across navigation and discarded on process restart. Example meals/calendar/financial history are fictional. There are no simulated successful network calls or enabled financial write controls.
 
-## Environment evidence — 19 September 2026
+## Current development identity — 26 September 2026
 
-- EAS project: `@drrius/nest`, ID `b733c351-a149-4b49-b9df-e8c2a14514e2`; Free account. Read-only usage reports 0/15 iOS builds used this billing month. No build or paid session started.
-- Development bundle: `ch.drrius.nest.dev`, deliberately separate from legacy `ch.household.os`; iPhone only. No production or submit profile; CI cannot deploy or submit.
-- `eas simulator:availability --json` returns `available: false` for `drrius`. Linux has no `xcrun`. Native execution is blocked, not passed.
-- The existing overnight automation was removed at the owner's request. The active implementation task continues; do not recreate that automation merely because earlier planning text mentions it.
+- The committed `apps/mobile/app.json` identifies `@drrius-dev/nest`, EAS project `aca37c4f-1bcd-4e9a-a695-37e794f97933`, and iPhone bundle `ch.drrius.nest`. Use this bundle identifier for Apple capability and Supabase audience configuration. Earlier `ch.drrius.nest.dev` / `@drrius/nest` notes are superseded.
+- `apps/mobile/eas.json` contains only internal device development and development-simulator profiles. No production or submit profile is configured. Check current free build quota before any cloud build; the earlier account's quota observation does not establish this project's remaining quota.
+- Linux has no `xcrun`; the last cloud simulator availability check for `drrius-dev` returned unavailable. Neither a signed build nor actual iPhone execution is verified.
+- The isolated backend is `nest-test` (`tkjixmujjoustdiedfmw`). Apple provider configuration and existing-member identity linkage remain pending. Do not use production as a device test fixture.
+- The existing overnight automation was removed at the owner's request; do not recreate it based on older planning text.
 
 ## Repeatable development route
 
