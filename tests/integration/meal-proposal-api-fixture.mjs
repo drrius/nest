@@ -25,6 +25,7 @@ const files = [
   "supabase/migrations/20260925195418_native_meal_edit_snapshot.sql",
   "supabase/migrations/20260925195906_native_meal_reservation_recovery.sql",
   "supabase/migrations/20260919214955_native_busy_snapshots.sql",
+  "supabase/migrations/20260926102440_native_proposal_nonretryable_conflicts.sql",
 ];
 export const command = (operation = 800) => ({ operationId: id(operation), ...input() });
 export function client(remote, model, options = {}) {
