@@ -48,10 +48,12 @@ test("RPC execution suspension is unavailable while domain and malformed denials
     );
   }
   status = 409;
-  for (const [code, expected] of [
-    ["PT409", "cutover"],
-    ["40001", "conflict"],
+  for (const [httpStatus, code, expected] of [
+    [409, "PT409", "cutover"],
+    [409, "40001", "conflict"],
+    [412, "PT412", "conflict"],
   ]) {
+    status = httpStatus;
     body = { code, message: "Internal fixture information must not escape" };
     const result = await Effect.runPromise(
       requestJson(config, "fixture", "rest/v1/rpc/test").pipe(Effect.result),

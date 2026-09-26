@@ -6,7 +6,7 @@ Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This projec
 
 ## Installed schema
 
-All 55 legacy and 204 native source migrations are installed. [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. An additional native grocery conflict migration is now installed (260 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -42,3 +42,9 @@ Local `apps/api/.env` and `apps/mobile/.env` contain this project's URL and publ
 Every public ordinary table has RLS. Hosted security advisors reported 58 informational policy-absence notices and 80 callable SECURITY DEFINER warnings. A follow-up catalog check found no anonymous callable public SECURITY DEFINER functions, no unsafe search paths on public Nest SECURITY DEFINER functions, and no anonymous/authenticated write grants on policy-free RLS tables. These checks do not dismiss all warnings; the remaining callable functions still need review. [Supabase function security guidance](https://supabase.com/docs/guides/database/functions#security-definer-vs-invoker).
 
 Apple provider configuration, the partners' actual test identities, signed iPhone builds, hosted API access, live AI credentials, receipt Storage and push delivery remain unverified. No financial fixture or real household data has been imported. The schema installation and password-session checks do not satisfy M0–M9 acceptance.
+
+## Hosted grocery conflict correction
+
+The real hosted journey exposed repeated database `40001` errors for a stale grocery edit until the API timed out. SQL itself correctly rejected the stale version; hosted logs showed repeated attempts. Migration `20260926092224_native_grocery_nonretryable_conflicts.sql` changes explicit grocery edit business conflicts to `PT412`; genuine serialization failures retain their original code. The API maps HTTP 412/PT412 to its existing HTTP 409 conflict response. Existing private function identity and grants are preserved.
+
+After applying only to nest-test, the complete real-user HTTP sequence passed: add and exact replay, partner read/check and exact replay, outsider denial, stale edit conflict, and unchanged final checked state. Retained fictional item: `644af67d-399c-4683-8e83-c434bba4e516`, version 2. A first diagnostic item also remains. Local PostgREST regression asserts the raw 412/PT412 response; the API mapping test and typecheck pass. This is not device/offline acceptance. Other explicit `40001` business-conflict sites still need a hosted retry audit.

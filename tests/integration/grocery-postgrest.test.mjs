@@ -53,6 +53,7 @@ test("actual PostgREST grocery API/tools preserve bigint versions, retries and t
       .status,
     200,
   );
+  await assertNonretryableConflict(fixture, add.itemId);
   // Set a high initial version in the fixture without the production version trigger.
   fixture.db.sql(`alter table public.grocery_items disable trigger nest_grocery_version;
     update public.grocery_items set native_version=9007199254740993 where id='${add.itemId}';
@@ -92,5 +93,26 @@ function groceryFixture(t) {
     "tests/database/grocery-meal-source-fixture.sql",
     "supabase/migrations/20260921090604_native_grocery_snapshot.sql",
     ...groceryEpochFiles,
+    "supabase/migrations/20260926092224_native_grocery_nonretryable_conflicts.sql",
   ]);
+}
+
+async function assertNonretryableConflict(fixture, target) {
+  const response = await fetch(`${fixture.url}/rest/v1/rpc/nest_edit_grocery`, {
+    method: "POST",
+    headers: { authorization: `Bearer ${fixture.bearer}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      p_household: id(10),
+      p_operation: id(109),
+      p_action: "edit",
+      p_target: target,
+      p_expected: "1",
+      p_name: "Stale edit",
+      p_quantity: null,
+      p_unit: null,
+      p_category: null,
+    }),
+  });
+  assert.equal(response.status, 412);
+  assert.equal((await response.json()).code, "PT412");
 }

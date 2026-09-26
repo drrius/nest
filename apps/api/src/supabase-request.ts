@@ -58,6 +58,7 @@ function deniedCode(value: unknown): "unavailable" | "forbidden" {
 
 function responseCode(status: number, code: string): ApiFailure["code"] {
   if (status === 409 && code === "PT409") return "cutover";
+  if (status === 412 && code === "PT412") return "conflict";
   if (["40001", "55P03", "55000"].includes(code)) return "conflict";
   if (code === "P0002") return "removed";
   if (code === "22023") return "invalid_request";
