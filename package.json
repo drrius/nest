@@ -37,7 +37,8 @@
     "test:routines": "node --test apps/mobile/tests/routine-*.test.mjs",
     "test:money": "node --test apps/mobile/tests/money-*.test.mjs",
     "test:meals": "node --test apps/mobile/tests/meal-*.test.mjs",
-    "test:integration:core": "node --test --test-concurrency=2 tests/integration/chore-postgrest.test.mjs tests/integration/grocery-postgrest.test.mjs tests/integration/expense-native-approval.test.mjs tests/integration/expense-save-restart.test.mjs tests/integration/pending-financial-approvals.test.mjs tests/integration/pending-approval-runtime.test.mjs"
+    "test:integration:core": "node --test --test-concurrency=2 tests/integration/chore-postgrest.test.mjs tests/integration/grocery-postgrest.test.mjs tests/integration/expense-native-approval.test.mjs tests/integration/expense-save-restart.test.mjs tests/integration/pending-financial-approvals.test.mjs tests/integration/pending-approval-runtime.test.mjs",
+    "test:integration:conflicts": "node --test --test-concurrency=2 tests/integration/ai-financial-proposal-conflicts.test.mjs tests/integration/financial-history-conflicts.test.mjs tests/integration/ai-turn-conflicts.test.mjs tests/integration/ai-turn-freeze-recovery.test.mjs tests/integration/preference-conflicts.test.mjs tests/integration/expense-nonretryable-conflicts.test.mjs tests/integration/calendar-postgrest.test.mjs tests/integration/memory-postgrest.test.mjs"
   },
   "devDependencies": {
     "@effect/tsgo": "0.45.0",

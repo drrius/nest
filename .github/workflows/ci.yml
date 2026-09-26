@@ -48,6 +48,8 @@ jobs:
           "$fixture_dir/postgrest" --version
       - name: Test core native HTTP and database journeys
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:core
+      - name: Test terminal conflicts and approval recovery
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:conflicts
       - name: Test isolated PostgreSQL transactions and RLS
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" pnpm test:database
       - run: pnpm test
