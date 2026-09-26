@@ -15,7 +15,7 @@ Routes are under `apps/mobile/src/app`. Four native tabs own separate stacks; To
 ## Current development identity — 26 September 2026
 
 - The committed `apps/mobile/app.json` identifies `@drrius-dev/nest`, EAS project `aca37c4f-1bcd-4e9a-a695-37e794f97933`, and iPhone bundle `ch.drrius.nest`. Use this bundle identifier for Apple capability and Supabase audience configuration. Earlier `ch.drrius.nest.dev` / `@drrius/nest` notes are superseded.
-- `apps/mobile/eas.json` contains only internal device development and development-simulator profiles. No production or submit profile is configured. Check current free build quota before any cloud build; the earlier account's quota observation does not establish this project's remaining quota.
+- `apps/mobile/eas.json` contains only internal device development and development-simulator profiles. No production or submit profile is configured. Check the current account plan and no-cost build availability before any cloud build; the earlier account's quota observation does not establish current availability. Paid builds require owner approval.
 - Linux has no `xcrun`; the last cloud simulator availability check for `drrius-dev` returned unavailable. Neither a signed build nor actual iPhone execution is verified.
 - The isolated backend is `nest-test` (`tkjixmujjoustdiedfmw`). Apple provider configuration and existing-member identity linkage remain pending. Do not use production as a device test fixture.
 - The existing overnight automation was removed at the owner's request; do not recreate it based on older planning text.
@@ -24,7 +24,7 @@ Routes are under `apps/mobile/src/app`. Four native tabs own separate stacks; To
 
 On a Mac with Xcode and an iOS simulator, from `apps/mobile`, run `pnpm exec expo run:ios`. This creates a local development build; it is not a TestFlight submission. Start Metro with `pnpm exec expo start --dev-client` when reopening the build. Use the generated URL to connect the development client before running smoke commands.
 
-For a physical iPhone, register the device and use the `development` internal-distribution profile after verifying signing access and free quota. No automatic submission is configured. Record source SHA, build ID, profile, OS, device and backend fixture before treating results as evidence. Cloud build success alone does not prove execution. A Mac or an enabled cloud simulator is required for automated iOS interaction from this environment.
+For a physical iPhone, register the device and use the `development` internal-distribution profile after verifying signing access and current no-cost build availability. No automatic submission is configured. Record source SHA, build ID, profile, OS, device and backend fixture before treating results as evidence. Cloud build success alone does not prove execution. A Mac or an enabled cloud simulator is required for automated iOS interaction from this environment.
 
 ## Smoke procedure (prepared; not executed)
 
