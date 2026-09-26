@@ -8,6 +8,7 @@ const files = [
   "tests/database/busy-fixture.sql",
   "tests/integration/food-postgrest.sql",
   "supabase/migrations/20260919214955_native_busy_snapshots.sql",
+  "supabase/migrations/20260926094310_native_calendar_nonretryable_conflicts.sql",
 ];
 function client(f, bearer = f.bearer) {
   const handler = createHandler({ url: f.url, publishableKey: "sb_publishable_fixture" });
@@ -190,4 +191,61 @@ test("calendar publication accepts the complete 512-interval boundary and reject
   assert.equal((await c("publish", next)).status, 400);
   const shared = (await (await client(f, f.partnerBearer)("busy")).json()).snapshots;
   assert.deepEqual(shared[0].intervals, input.intervals);
+});
+
+test("withdrawn consent rejects delayed raw capture and publication without restoring sharing", async (t) => {
+  const f = await postgrestFixture(t, files),
+    c = client(f);
+  const consent = await enable(c),
+    claim = await capture(c, consent);
+  assert.equal(
+    (
+      await c("consent/set", {
+        incarnation: consent.incarnation,
+        operationId: id(301),
+        expectedRevision: consent.version,
+        enabled: false,
+      })
+    ).status,
+    200,
+  );
+  const common = {
+    p_household: id(10),
+    p_incarnation: claim.incarnation,
+    p_consent: claim.consent,
+  };
+  const calls = [
+    { name: "nest_begin_busy_capture", body: common },
+    {
+      name: "nest_publish_busy",
+      body: {
+        ...common,
+        p_generation: claim.generation,
+        p_start: 1800000000000,
+        p_end: 1800086400000,
+        p_intervals: [],
+      },
+    },
+    {
+      name: "nest_set_calendar_consent",
+      body: {
+        p_household: id(10),
+        p_incarnation: consent.incarnation,
+        p_operation: id(302),
+        p_expected: consent.version,
+        p_enabled: true,
+      },
+    },
+  ];
+  for (const { name, body } of calls) {
+    const response = await fetch(`${f.url}/rest/v1/rpc/${name}`, {
+      method: "POST",
+      headers: { authorization: `Bearer ${f.bearer}`, "content-type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    assert.equal(response.status, 412, name);
+    assert.equal((await response.json()).code, "PT412");
+    assert.equal(f.db.sql("select count(*) from public.nest_busy_snapshots"), "0");
+    assert.equal((await (await c("consent")).json()).consent.enabled, false);
+  }
 });
