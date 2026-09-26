@@ -17,7 +17,7 @@ Routes are under `apps/mobile/src/app`. Four native tabs own separate stacks; To
 - The committed `apps/mobile/app.json` identifies `@drrius-dev/nest`, EAS project `aca37c4f-1bcd-4e9a-a695-37e794f97933`, and iPhone bundle `ch.drrius.nest`. Use this bundle identifier for Apple capability and Supabase audience configuration. Earlier `ch.drrius.nest.dev` / `@drrius/nest` notes are superseded.
 - `apps/mobile/eas.json` contains only internal device development and development-simulator profiles. No production or submit profile is configured. Check the current account plan and no-cost build availability before any cloud build; the earlier account's quota observation does not establish current availability. Paid builds require owner approval.
 - Linux has no `xcrun`; the last cloud simulator availability check for `drrius-dev` returned unavailable. Neither a signed build nor actual iPhone execution is verified.
-- The isolated backend is `nest-test` (`tkjixmujjoustdiedfmw`). Apple provider configuration and existing-member identity linkage remain pending. Do not use production as a device test fixture.
+- The isolated backend is `nest-test` (`tkjixmujjoustdiedfmw`). Apple provider is enabled for native client ID `ch.drrius.nest`; existing-member identity linkage and real iPhone sign-in remain pending. Apple Developer confirms the existing App ID has Sign In with Apple enabled, but no Nest provisioning profile or EAS iOS build was present at the September 26 inspection. Do not use production as a device test fixture.
 - The existing overnight automation was removed at the owner's request; do not recreate it based on older planning text.
 
 ## Repeatable development route
