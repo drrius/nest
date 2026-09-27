@@ -25,11 +25,11 @@ jobs:
       - name: Verify Swift source limits
         run: python3 scripts/check-swift-limits.py
       - name: Verify Swift formatting
-        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests
+        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests apps/ios/AppTests
       - name: Test Foundation domain and offline rules
         run: swift test --package-path apps/ios
-      - name: Compile iPhone Simulator app
+      - name: Test iPhone session and account boundaries
         run: >-
           xcodebuild -project apps/ios/Nest.xcodeproj -scheme Nest
-          -configuration Debug -destination 'generic/platform=iOS Simulator'
-          CODE_SIGNING_ALLOWED=NO build
+          -configuration Debug -destination 'platform=iOS Simulator,name=iPhone 17 Pro,OS=latest'
+          -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test

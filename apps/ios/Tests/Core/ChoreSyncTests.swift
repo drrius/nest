@@ -117,7 +117,7 @@ final class ChoreSyncTests: XCTestCase {
             transfers: [], chores: [chore])
         let snapshotBody = try JSONEncoder().encode(snapshot)
         let sessionBody = Data(
-            "{\"version\":1,\"member\":{\"userId\":\"\(member.userId.uuidString)\",\"householdId\":\"\(member.householdId.uuidString)\",\"displayName\":\"Alex\"}}"
+            "{\"version\":1,\"member\":{\"userId\":\"\(member.userId.uuidString)\",\"householdId\":\"\(member.householdId.uuidString)\",\"displayName\":\"Alex renamed\"}}"
                 .utf8
         )
         let http = try NestHTTP(baseURL: baseURL) { request in

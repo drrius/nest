@@ -19,11 +19,11 @@ final class SessionModel: ObservableObject {
     @Published private(set) var status: Status = .loading
     @Published private(set) var today: TodayStatus = .idle
     @Published private(set) var todayNotice: String?
-    private let auth: NestAuth?
+    private let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     private let offline: ChoreOfflineStore?
     private var lease: OfflineLease?
-    private var syncing = false
+    private var syncingGeneration: Int?
     private var generation = 0
 
     init() {
@@ -47,6 +47,12 @@ final class SessionModel: ObservableObject {
         }
     }
 
+    init(auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore) {
+        self.auth = auth
+        self.chores = chores
+        self.offline = offline
+    }
+
     func restore() async {
         guard let auth else { return }
         let attempt = generation
@@ -66,7 +72,7 @@ final class SessionModel: ObservableObject {
         status = .signedOut
     }
 
-    private func failedRestore(_ error: Error, auth: NestAuth, attempt: Int) async {
+    private func failedRestore(_ error: Error, auth: any NestAuthentication, attempt: Int) async {
         guard generation == attempt else { return }
         if canShowCached(error), (try? await showCached(auth: auth, attempt: attempt)) == true {
             return
@@ -107,12 +113,12 @@ final class SessionModel: ObservableObject {
     }
 
     func refreshToday() async {
-        guard !syncing, let auth, let chores, let offline, let lease,
+        guard syncingGeneration != generation, let auth, let chores, let offline, let lease,
             case .ready(let member) = status
         else { return }
-        syncing = true
-        defer { syncing = false }
         let attempt = generation
+        syncingGeneration = attempt
+        defer { if syncingGeneration == attempt { syncingGeneration = nil } }
         do {
             try await showSaved(offline: offline, lease: lease)
         } catch {
@@ -133,9 +139,9 @@ final class SessionModel: ObservableObject {
         (error as? NestAPIFailure) == .unavailable || error is URLError
     }
 
-    private func showCached(auth: NestAuth, attempt: Int) async throws -> Bool {
-        guard let offline, let session = auth.cachedSession(),
-            let member = try await offline.cachedMember(actor: session.user.id)
+    private func showCached(auth: any NestAuthentication, attempt: Int) async throws -> Bool {
+        guard let offline, let session = await auth.cachedSession(),
+            let member = try await offline.cachedMember(actor: session.userId)
         else { return false }
         guard generation == attempt else { return false }
         await clearPresentation()
@@ -157,7 +163,7 @@ final class SessionModel: ObservableObject {
         lease = nil
         today = .idle
         todayNotice = nil
-        syncing = false
+        syncingGeneration = nil
         if let previous, let offline { try? await offline.deactivate(previous) }
     }
 
@@ -166,11 +172,11 @@ final class SessionModel: ObservableObject {
     }
 
     private func syncToday(
-        auth: NestAuth, chores: ChoreAPI, offline: ChoreOfflineStore,
+        auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         lease: OfflineLease, member: VerifiedMember, attempt: Int
     ) async throws {
         let session = try await auth.session()
-        guard session.user.id == member.userId else { throw NestAPIFailure.signedOut }
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
         let (snapshot, conflicted) = try await ChoreSync(api: chores, store: offline)
             .replayAndRead(token: session.accessToken, member: member, lease: lease)
         guard generation == attempt, status == .ready(member) else { return }
@@ -238,9 +244,9 @@ final class SessionModel: ObservableObject {
         }
     }
 
-    private func verify(_ session: Session, attempt: Int) async throws {
+    private func verify(_ session: AuthenticatedSession, attempt: Int) async throws {
         guard let chores, let offline else { throw NestAPIFailure.configuration }
-        let member = try await chores.verify(token: session.accessToken, expectedActor: session.user.id)
+        let member = try await chores.verify(token: session.accessToken, expectedActor: session.userId)
         guard generation == attempt else { return }
         await clearPresentation()
         guard generation == attempt else { return }
