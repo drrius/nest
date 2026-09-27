@@ -22,6 +22,12 @@ final class SessionModel: ObservableObject {
         case failed
     }
 
+    enum GroceryCategoryStatus: Equatable {
+        case idle, loading
+        case loaded([GroceryCategory])
+        case failed
+    }
+
     @Published var status: Status = .loading
     @Published private(set) var today: TodayStatus = .idle
     @Published private(set) var todayNotice: String?
@@ -29,6 +35,7 @@ final class SessionModel: ObservableObject {
     @Published var groceryNotice: String?
     @Published var groceryAdd: SavedGroceryAdd?
     @Published var groceryAddSaving = false
+    @Published var groceryCategoryStatus: GroceryCategoryStatus = .idle
     let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -40,6 +47,7 @@ final class SessionModel: ObservableObject {
     var grocerySyncingGeneration: Int?
     var groceryNeedsRefresh = false
     var groceryAddSavingGeneration: Int?
+    var groceryCategoryLoadingGeneration: Int?
     var generation = 0
     private var credentialTail: Task<Void, Never>?
     private(set) var credentialSequence = 0
@@ -215,10 +223,12 @@ final class SessionModel: ObservableObject {
         groceryNotice = nil
         groceryAdd = nil
         groceryAddSaving = false
+        groceryCategoryStatus = .idle
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
         groceryAddSavingGeneration = nil
+        groceryCategoryLoadingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 

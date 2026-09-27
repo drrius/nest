@@ -26,6 +26,7 @@ actor FakeGroceryServer {
     func setOffline(_ value: Bool) { offline = value }
     func loseNextAdd() { loseNextAddResponse = true }
     func addOperations() -> [UUID] { addAttempts }
+    func addedCategory() -> UUID? { added?.categoryId }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -51,7 +52,10 @@ actor FakeGroceryServer {
             aStarted = nil
             await withCheckedContinuation { aResume = $0 }
         }
-        return answer(request, data: Data(list(for: actor).utf8))
+        let body =
+            request.url?.path == "/v1/groceries/categories"
+            ? categories(for: actor) : list(for: actor)
+        return answer(request, data: Data(body.utf8))
     }
 
     private func add(_ request: URLRequest) throws -> (Data, URLResponse) {
@@ -89,6 +93,13 @@ actor FakeGroceryServer {
             } ?? ""
         return """
             {"version":1,"householdId":"\(household)","groceries":[{"itemId":"\(actor)","name":"\(name)","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"\(version)","checked":\(checked),"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}\(addedRow)]}
+            """
+    }
+
+    private func categories(for actor: UUID) -> String {
+        let name = actor == actorA ? "Alex produce" : "Sam pantry"
+        return """
+            {"version":1,"householdId":"\(household)","categories":[{"categoryId":"\(actor)","name":"\(name)"}]}
             """
     }
 

@@ -96,6 +96,23 @@ final class GroceryAPITests: XCTestCase {
         } catch { XCTAssertTrue(error is GroceryContractError) }
     }
 
+    func testCategoriesReadBindsHouseholdAndRejectsForeignResponse() async throws {
+        let body = """
+            {"version":1,"householdId":"\(UUID())","categories":[]}
+            """
+        let expectedHousehold = household.uuidString.lowercased()
+        let api = GroceryAPI(
+            http: try http(json: body) { request in
+                XCTAssertEqual(request.url?.path, "/v1/groceries/categories")
+                XCTAssertEqual(request.httpMethod, "GET")
+                XCTAssertEqual(request.value(forHTTPHeaderField: "X-Nest-Household"), expectedHousehold)
+            })
+        do {
+            _ = try await api.categories(token: "member-token", member: member)
+            XCTFail("Another household's categories were accepted")
+        } catch { XCTAssertTrue(error is GroceryContractError) }
+    }
+
     private func sampleItem() throws -> GroceryItem {
         let body = """
             {"itemId":"\(item)","name":"Oat milk","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"42","checked":false,"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}

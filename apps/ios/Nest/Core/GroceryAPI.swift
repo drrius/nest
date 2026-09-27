@@ -17,6 +17,14 @@ public struct GroceryAPI: Sendable {
         return try response.validated(household: member.householdId)
     }
 
+    public func categories(token: String, member: VerifiedMember) async throws -> GroceryCategories {
+        let response = try await http.read(
+            "v1/groceries/categories", token: token, household: member.householdId,
+            as: GroceryCategories.self
+        )
+        return try response.validated(household: member.householdId)
+    }
+
     public func check(
         token: String, member: VerifiedMember, command: CheckGrocery
     ) async throws -> GroceryCheckReceipt {

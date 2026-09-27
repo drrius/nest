@@ -1,14 +1,22 @@
 import Foundation
 
 extension SessionModel {
-    func addGrocery(name: String, quantity: String?, unit: String?) async {
+    func addGrocery(name: String, quantity: String?, unit: String?, categoryId: UUID? = nil) async {
         guard let offline, let lease, case .ready(let member) = status else { return }
+        if let categoryId {
+            guard case .loaded(let categories) = groceryCategoryStatus,
+                categories.contains(where: { $0.id == categoryId })
+            else {
+                groceryNotice = "This category is no longer available. Refresh categories and try again."
+                return
+            }
+        }
         let attempt = generation
         let command: AddGrocery
         do {
             command = try AddGrocery(
                 operationId: UUID(), itemId: UUID(), name: name,
-                quantity: quantity, unit: unit, categoryId: nil)
+                quantity: quantity, unit: unit, categoryId: categoryId)
             try await offline.enqueueGroceryAdd(command, lease: lease)
             let saved = try await offline.readGroceryAdd(lease)
             guard generation == attempt, status == .ready(member) else { return }

@@ -21,9 +21,17 @@ final class HostedGroceryIntegrationTests: XCTestCase {
         let member = try await api.verify(token: memberToken, expectedActor: actor)
         let list = try await api.list(token: memberToken, member: member)
         XCTAssertEqual(list.householdId, member.householdId)
+        let categories = try await api.categories(token: memberToken, member: member)
+        XCTAssertEqual(categories.householdId, member.householdId)
         do {
             _ = try await api.list(token: outsiderToken, member: member)
             XCTFail("Outsider read the household grocery list")
+        } catch {
+            XCTAssertTrue((error as? NestAPIFailure) == .notMember || (error as? NestAPIFailure) == .forbidden)
+        }
+        do {
+            _ = try await api.categories(token: outsiderToken, member: member)
+            XCTFail("Outsider read the household grocery categories")
         } catch {
             XCTAssertTrue((error as? NestAPIFailure) == .notMember || (error as? NestAPIFailure) == .forbidden)
         }

@@ -80,4 +80,45 @@ final class GrocerySessionModelTests: XCTestCase {
         guard case .loaded(let saved) = model.groceries else { return XCTFail("List did not refresh") }
         XCTAssertEqual(saved.items.filter { $0.item.name == "Oat milk" }.count, 1)
     }
+
+    func testInFlightCategoriesCannotReplaceAnotherAccount() async throws {
+        let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await server.pauseActorA()
+        let old = Task { await model.refreshGroceryCategories() }
+        await server.waitForActorA()
+        await model.signIn(idToken: "B", nonce: "test")
+        await model.refreshGroceryCategories()
+        guard case .loaded(let before) = model.groceryCategoryStatus else {
+            return XCTFail("B categories did not load")
+        }
+        XCTAssertEqual(before.first?.name, "Sam pantry")
+        await server.releaseActorA()
+        await old.value
+        guard case .loaded(let after) = model.groceryCategoryStatus else {
+            return XCTFail("A categories replaced B")
+        }
+        XCTAssertEqual(after.first?.name, "Sam pantry")
+    }
+
+    func testOldAccountCategoryCannotBeSubmittedAfterSwitch() async throws {
+        let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshGroceryCategories()
+        await model.signIn(idToken: "B", nonce: "test")
+        await model.addGrocery(
+            name: "Oat milk", quantity: nil, unit: nil, categoryId: actorA)
+        XCTAssertNil(model.groceryAdd)
+        let deniedAttempts = await server.addOperations()
+        XCTAssertTrue(deniedAttempts.isEmpty)
+        await model.refreshGroceryCategories()
+        await model.addGrocery(
+            name: "Oat milk", quantity: nil, unit: nil, categoryId: actorB)
+        let acceptedAttempts = await server.addOperations()
+        XCTAssertEqual(acceptedAttempts.count, 1)
+        let submittedCategory = await server.addedCategory()
+        XCTAssertEqual(submittedCategory, actorB)
+    }
 }
