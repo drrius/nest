@@ -26,6 +26,26 @@ public struct MealAPI: Sendable {
         return try result.validated(household: member.householdId)
     }
 
+    public func cookingProfile(token: String, member: VerifiedMember) async throws -> CookingSlotsEnvelope {
+        let result = try await http.read(
+            "v1/cooking-preferences", token: token,
+            household: member.householdId, as: CookingSlotsEnvelope.self)
+        _ = try result.validated(household: member.householdId)
+        return result
+    }
+
+    public func saveCookingProfile(
+        token: String, member: VerifiedMember,
+        command: SaveCookingProfile
+    ) async throws -> CookingSaveReceipt {
+        _ = try command.validated()
+        let response = try await http.write(
+            "v1/cooking-preferences/save", token: token,
+            household: member.householdId, body: command, as: CookingSaveEnvelope.self)
+        guard response.version == 1 else { throw MealContractError.invalidReceipt }
+        return try response.receipt.validated(member: member, command: command)
+    }
+
     public func library(
         token: String, member: VerifiedMember, after: UUID? = nil,
         revision: String? = nil
