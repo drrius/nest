@@ -33,6 +33,7 @@ extension ChoreOfflineStore {
                 "INSERT INTO meal_weeks(actor,household,week_start,body) VALUES(?,?,?,?) ON CONFLICT(actor,household,week_start) DO UPDATE SET body=excluded.body",
                 lease.scope + [week.weekStart.date.value, body])
             try clearConfirmedMealPlacement(week, lease: lease)
+            try clearConfirmedMealRemoval(week, lease: lease)
         }
     }
 
@@ -60,6 +61,7 @@ extension ChoreOfflineStore {
         try authorize(lease)
         _ = try command.validated(against: week)
         guard try readMealPlacement(week.weekStart, lease: lease) == nil,
+            try readMealRemoval(week.weekStart, lease: lease) == nil,
             try readMealWeek(week.weekStart, lease: lease) == week
         else { throw OfflineFailure.missingSnapshot }
         let captured = String(decoding: try JSONEncoder().encode(week), as: UTF8.self)

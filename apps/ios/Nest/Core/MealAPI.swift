@@ -35,4 +35,15 @@ public struct MealAPI: Sendable {
             body: command, as: MealPlacementEnvelope.self)
         return try result.validated(member: member, command: command)
     }
+
+    public func remove(
+        token: String, member: VerifiedMember, week: MealWeekSnapshot,
+        meal: PlannedMeal, command: RemoveMeal
+    ) async throws -> MealRemovalReceipt {
+        _ = try command.validated(against: week, meal: meal)
+        let result = try await http.write(
+            "v1/meals/remove", token: token, household: member.householdId,
+            body: command, as: MealRemovalEnvelope.self)
+        return try result.validated(member: member, command: command)
+    }
 }

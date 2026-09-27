@@ -3,6 +3,8 @@ import SwiftUI
 struct MealWeekScreen: View {
     @ObservedObject var model: SessionModel
     @State private var addTarget: MealSlotTarget?
+    @State private var removalCandidate: PlannedMeal?
+    @State private var showingRemovalConfirmation = false
 
     var body: some View {
         ScrollView {
@@ -18,6 +20,9 @@ struct MealWeekScreen: View {
                 }
                 if let saved = model.mealPlacement {
                     MealPlacementStatus(model: model, saved: saved)
+                }
+                if let saved = model.mealRemoval {
+                    MealRemovalStatus(model: model, saved: saved)
                 }
                 content
                 NavigationLink {
@@ -36,6 +41,16 @@ struct MealWeekScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $addTarget) { target in
             MealAddSheet(model: model, target: target)
+        }
+        .confirmationDialog(
+            "Remove meal?", isPresented: $showingRemovalConfirmation,
+            presenting: removalCandidate
+        ) { meal in
+            Button("Remove \(meal.title)", role: .destructive) {
+                Task { await model.removeMeal(meal) }
+            }
+        } message: { meal in
+            Text("\(meal.title) will leave the shared week. Any linked preparation will be skipped.")
         }
         .refreshable {
             await model.refreshMealWeek()
@@ -89,9 +104,12 @@ struct MealWeekScreen: View {
                 MealDayView(
                     date: date, meals: week.entries.filter { $0.date == date },
                     slots: model.mealVisibleSlots,
-                    canAdd: model.mealPlacement == nil
+                    canChange: model.mealPlacement == nil && model.mealRemoval == nil
                 ) { slot in
                     addTarget = MealSlotTarget(date: date, slot: slot)
+                } remove: { meal in
+                    removalCandidate = meal
+                    showingRemovalConfirmation = true
                 }
             }
         }

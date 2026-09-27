@@ -47,6 +47,8 @@ final class SessionModel: ObservableObject {
     @Published var mealPlacementSaving = false
     @Published var mealVisibleSlots = MealSlot.allCases
     @Published var mealSlotNotice: String?
+    @Published var mealRemoval: SavedMealRemoval?
+    @Published var mealRemovalSaving = false
     let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -64,9 +66,10 @@ final class SessionModel: ObservableObject {
     var groceryRemoveSavingGeneration: Int?
     var mealLoadingRequest: UUID?
     var mealPlacementSavingGeneration: Int?
+    var mealRemovalSavingGeneration: Int?
     var generation = 0
-    private var credentialTail: Task<Void, Never>?
-    private(set) var credentialSequence = 0
+    var credentialTail: Task<Void, Never>?
+    var credentialSequence = 0
 
     init() {
         savedReader = { store, lease in try await store.read(lease) }
@@ -255,6 +258,8 @@ final class SessionModel: ObservableObject {
         mealPlacementSaving = false
         mealVisibleSlots = MealSlot.allCases
         mealSlotNotice = nil
+        mealRemoval = nil
+        mealRemovalSaving = false
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
@@ -264,6 +269,7 @@ final class SessionModel: ObservableObject {
         groceryRemoveSavingGeneration = nil
         mealLoadingRequest = nil
         mealPlacementSavingGeneration = nil
+        mealRemovalSavingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 
@@ -376,24 +382,4 @@ final class SessionModel: ObservableObject {
         return .unavailable
     }
 
-    private func serializeCredentials<Value: Sendable>(
-        _ action: @escaping @Sendable () async throws -> Value
-    ) async throws -> Value {
-        credentialSequence += 1
-        let sequence = credentialSequence
-        let previous = credentialTail
-        let mutation = Task {
-            await previous?.value
-            return try await action()
-        }
-        credentialTail = Task { _ = try? await mutation.value }
-        do {
-            let result = try await mutation.value
-            if credentialSequence == sequence { credentialTail = nil }
-            return result
-        } catch {
-            if credentialSequence == sequence { credentialTail = nil }
-            throw error
-        }
-    }
 }

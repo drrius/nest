@@ -94,6 +94,58 @@ final class MealWeekTests: XCTestCase {
         } catch { XCTAssertTrue(error is MealContractError) }
     }
 
+    func testRemovalCapturesExactEntryAndRejectsForeignOrStaleReceipt() throws {
+        let week = try snapshot(rows: row(entry))
+        let meal = try XCTUnwrap(week.entries.first)
+        let command = try RemoveMeal(week: week, meal: meal, operationId: UUID())
+        XCTAssertEqual(command.entryId, entry)
+        XCTAssertEqual(command.expectedRevision, "0")
+        XCTAssertThrowsError(
+            try RemoveMeal(
+                week: week, meal: try XCTUnwrap(snapshot(rows: row(UUID())).entries.first), operationId: UUID()))
+        let body = """
+            {"version":1,"actorId":"\(actor)","householdId":"\(household)","operationId":"\(command.operationId)","entryId":"\(entry)","weekStart":"2026-09-28","revision":"1","removed":true,"skippedPreparationId":null}
+            """
+        let receipt = try JSONDecoder().decode(MealRemovalReceipt.self, from: Data(body.utf8))
+        XCTAssertNoThrow(try receipt.validated(member: member, command: command))
+        for changed in [
+            body.replacingOccurrences(of: actor.uuidString, with: UUID().uuidString),
+            body.replacingOccurrences(of: command.operationId.uuidString, with: UUID().uuidString),
+            body.replacingOccurrences(of: "\"revision\":\"1\"", with: "\"revision\":\"2\""),
+            body.replacingOccurrences(of: "\"removed\":true", with: "\"removed\":false"),
+        ] {
+            let invalid = try JSONDecoder().decode(MealRemovalReceipt.self, from: Data(changed.utf8))
+            XCTAssertThrowsError(try invalid.validated(member: member, command: command))
+        }
+    }
+
+    func testRemovePostsExactCommandAndRejectsForeignReceipt() async throws {
+        let week = try snapshot(rows: row(entry))
+        let meal = try XCTUnwrap(week.entries.first)
+        let command = try RemoveMeal(week: week, meal: meal, operationId: UUID())
+        let body = """
+            {"version":1,"receipt":{"version":1,"actorId":"\(UUID())","householdId":"\(household)","operationId":"\(command.operationId)","entryId":"\(entry)","weekStart":"2026-09-28","revision":"1","removed":true,"skippedPreparationId":null}}
+            """
+        let householdHeader = household.uuidString.lowercased()
+        let entryId = entry.uuidString
+        let http = try NestHTTP(baseURL: URL(string: "https://nest.example/")!) { request in
+            XCTAssertEqual(request.url?.path, "/v1/meals/remove")
+            XCTAssertEqual(request.httpMethod, "POST")
+            XCTAssertEqual(request.value(forHTTPHeaderField: "X-Nest-Household"), householdHeader)
+            let payload = try? JSONSerialization.jsonObject(with: request.httpBody ?? Data()) as? [String: Any]
+            XCTAssertEqual(payload?["operationId"] as? String, command.operationId.uuidString)
+            XCTAssertEqual(payload?["entryId"] as? String, entryId)
+            XCTAssertEqual(payload?["expectedRevision"] as? String, "0")
+            let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            return (Data(body.utf8), response)
+        }
+        do {
+            _ = try await MealAPI(http: http).remove(
+                token: "member-token", member: member, week: week, meal: meal, command: command)
+            XCTFail("Foreign actor receipt was accepted")
+        } catch { XCTAssertTrue(error is MealContractError) }
+    }
+
     func testCookingSlotsBindHouseholdAndRejectDuplicateSelection() throws {
         let body = """
             {"version":1,"householdId":"\(household)","profile":{"revision":"1","preferences":{"cookingNotes":"","mealSlots":["dinner","lunch"]}}}

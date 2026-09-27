@@ -9,6 +9,10 @@ actor FakeMealServer {
     private let entry = UUID(uuidString: "55555555-5555-4555-8555-555555555555")!
     private var placed: PlaceMeal?
     private var placeAttempts: [UUID] = []
+    private var removed: RemoveMeal?
+    private var removeAttempts: [UUID] = []
+    private var loseNextRemoveResponse = false
+    private var rejectNextRemove = false
     private var loseNextPlaceResponse = false
     private var rejectNextPlace = false
     private var pauseA = false
@@ -25,6 +29,9 @@ actor FakeMealServer {
     func loseNextPlace() { loseNextPlaceResponse = true }
     func rejectPlace() { rejectNextPlace = true }
     func operations() -> [UUID] { placeAttempts }
+    func loseNextRemove() { loseNextRemoveResponse = true }
+    func rejectRemove() { rejectNextRemove = true }
+    func removalOperations() -> [UUID] { removeAttempts }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -42,6 +49,7 @@ actor FakeMealServer {
         let token = request.value(forHTTPHeaderField: "Authorization") ?? ""
         let actor = token == "Bearer token-A" ? actorA : actorB
         if request.url?.path == "/v1/meals/place" { return try place(request, actor: actor) }
+        if request.url?.path == "/v1/meals/remove" { return try remove(request, actor: actor) }
         if request.url?.path == "/v1/cooking-preferences" {
             return answer(request, body: cooking(for: actor))
         }
@@ -73,9 +81,31 @@ actor FakeMealServer {
         return answer(request, body: body)
     }
 
+    private func remove(_ request: URLRequest, actor: UUID) throws -> (Data, URLResponse) {
+        let command = try JSONDecoder().decode(RemoveMeal.self, from: request.httpBody ?? Data())
+        removeAttempts.append(command.operationId)
+        if rejectNextRemove {
+            rejectNextRemove = false
+            return answer(request, body: "{\"error\":{\"code\":\"conflict\"}}", status: 409)
+        }
+        guard command.entryId == entry, command.expectedRevision == "1", placed != nil else {
+            throw NestAPIFailure.invalid
+        }
+        if let removed, removed != command { throw NestAPIFailure.invalid }
+        removed = command
+        if loseNextRemoveResponse {
+            loseNextRemoveResponse = false
+            throw URLError(.networkConnectionLost)
+        }
+        let body = """
+            {"version":1,"receipt":{"version":1,"actorId":"\(actor)","householdId":"\(household)","operationId":"\(command.operationId)","entryId":"\(entry)","weekStart":"\(command.weekStart.date.value)","revision":"2","removed":true,"skippedPreparationId":null}}
+            """
+        return answer(request, body: body)
+    }
+
     private func week(for actor: UUID) -> String {
         let isA = actor == actorA
-        let meal = isA ? placed : nil
+        let meal = isA && removed == nil ? placed : nil
         let row: String
         if let meal {
             row = entryRow(date: meal.date.value, slot: meal.slot.rawValue, title: meal.title)
@@ -84,7 +114,7 @@ actor FakeMealServer {
         } else {
             row = ""
         }
-        let revision = isA && meal == nil ? "0" : "1"
+        let revision = isA ? (removed == nil ? (placed == nil ? "0" : "1") : "2") : "1"
         return """
             {"version":1,"householdId":"\(household)","weekStart":"2026-09-28","revision":"\(revision)","entries":[\(row)]}
             """

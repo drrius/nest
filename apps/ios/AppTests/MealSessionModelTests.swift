@@ -61,6 +61,54 @@ final class MealSessionModelTests: XCTestCase {
         XCTAssertNil(model.mealPlacement)
     }
 
+    func testLostRemovalResponseRetriesExactOperationAndShowsAbsence() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        _ = await model.placeMeal(
+            date: try CivilDate("2026-09-29"), slot: .dinner, title: "Pasta")
+        guard case .loaded(let before) = model.mealStatus,
+            let meal = before.entries.first
+        else { return XCTFail("Placed meal did not load") }
+        await server.loseNextRemove()
+        await model.removeMeal(meal)
+        XCTAssertEqual(model.mealRemoval?.state, .pending)
+        await model.removeMeal(meal)
+        let first = await server.removalOperations()
+        XCTAssertEqual(first.count, 1)
+        await model.retryMealRemoval()
+        let attempts = await server.removalOperations()
+        XCTAssertEqual(attempts, [first[0], first[0]])
+        XCTAssertNil(model.mealRemoval)
+        guard case .loaded(let after) = model.mealStatus
+        else { return XCTFail("Removed week did not refresh") }
+        XCTAssertTrue(after.entries.isEmpty)
+        XCTAssertEqual(after.revision, "2")
+    }
+
+    func testRejectedRemovalNeedsExplicitDiscard() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        _ = await model.placeMeal(
+            date: try CivilDate("2026-09-29"), slot: .dinner, title: "Pasta")
+        guard case .loaded(let week) = model.mealStatus,
+            let meal = week.entries.first
+        else { return XCTFail("Placed meal did not load") }
+        await server.rejectRemove()
+        await model.removeMeal(meal)
+        XCTAssertEqual(model.mealRemoval?.state, .conflict)
+        await model.refreshMealWeek()
+        XCTAssertEqual(model.mealRemoval?.state, .conflict)
+        await model.discardConflictedMealRemoval()
+        XCTAssertNil(model.mealRemoval)
+        guard case .loaded(let after) = model.mealStatus
+        else { return XCTFail("Week did not refresh") }
+        XCTAssertEqual(after.entries.count, 1)
+    }
+
     func testOldAccountWeekReadCannotReplaceNewAccount() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)

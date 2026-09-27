@@ -13,6 +13,7 @@ extension SessionModel {
         mealStatus = .loading
         mealNotice = nil
         mealPlacement = nil
+        mealRemoval = nil
         await refreshMealWeek()
     }
 
@@ -26,10 +27,12 @@ extension SessionModel {
         do {
             let cached = try await offline.readMealWeek(start, lease: lease)
             let pending = try await offline.readMealPlacement(start, lease: lease)
+            let pendingRemoval = try await offline.readMealRemoval(start, lease: lease)
             guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
             else { return }
             mealStatus = cached.map(MealStatus.loaded) ?? .loading
             mealPlacement = pending
+            mealRemoval = pendingRemoval
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
             let fresh = try await api.week(token: session.accessToken, member: member, start: start)
@@ -38,16 +41,26 @@ extension SessionModel {
             try await offline.saveMealWeek(fresh, lease: lease)
             let visible = try await offline.readMealWeek(start, lease: lease)
             let saved = try await offline.readMealPlacement(start, lease: lease)
+            let savedRemoval = try await offline.readMealRemoval(start, lease: lease)
             guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
             else { return }
             mealStatus = visible.map(MealStatus.loaded) ?? .loaded(fresh)
             mealPlacement = saved
-            mealNotice = saved?.state == .acknowledged ? "Meal saved. Refreshing the shared week…" : nil
+            mealRemoval = savedRemoval
+            mealNotice = refreshNotice(placement: saved, removal: savedRemoval)
         } catch {
             await handleMealReadFailure(
                 error, api: api, auth: auth, member: member, attempt: attempt,
                 request: request, start: start)
         }
+    }
+
+    private func refreshNotice(
+        placement: SavedMealPlacement?, removal: SavedMealRemoval?
+    ) -> String? {
+        if removal?.state == .acknowledged { return "Meal removed. Refreshing the shared week…" }
+        if placement?.state == .acknowledged { return "Meal saved. Refreshing the shared week…" }
+        return nil
     }
 
     private func isCurrentMealRequest(

@@ -4,8 +4,9 @@ struct MealDayView: View {
     let date: CivilDate
     let meals: [PlannedMeal]
     let slots: [MealSlot]
-    let canAdd: Bool
+    let canChange: Bool
     let add: (MealSlot) -> Void
+    let remove: (PlannedMeal) -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -15,14 +16,7 @@ struct MealDayView: View {
             VStack(spacing: 0) {
                 ForEach(displaySlots, id: \.self) { slot in
                     if let meal = meals.first(where: { $0.slot == slot }) {
-                        HStack(alignment: .firstTextBaseline, spacing: 16) {
-                            Text(slot.label)
-                                .frame(width: 84, alignment: .leading)
-                                .foregroundStyle(QuietPalette.muted)
-                            Text(meal.title).foregroundStyle(QuietPalette.ink)
-                            Spacer(minLength: 0)
-                        }
-                        .frame(minHeight: 60, alignment: .leading)
+                        plannedRow(meal, slot: slot)
                     } else {
                         Button {
                             add(slot)
@@ -34,7 +28,7 @@ struct MealDayView: View {
                             }
                             .frame(minHeight: 60, alignment: .leading)
                         }
-                        .disabled(!canAdd)
+                        .disabled(!canChange)
                         .accessibilityLabel("\(date.value), \(slot.label): Add meal")
                     }
                     if slot != displaySlots.last {
@@ -62,5 +56,25 @@ struct MealDayView: View {
 
     private var displaySlots: [MealSlot] {
         slots + meals.map(\.slot).filter { !slots.contains($0) }
+    }
+
+    private func plannedRow(_ meal: PlannedMeal, slot: MealSlot) -> some View {
+        HStack(spacing: 12) {
+            Text(slot.label)
+                .frame(width: 84, alignment: .leading)
+                .foregroundStyle(QuietPalette.muted)
+            Text(meal.title).foregroundStyle(QuietPalette.ink)
+            Spacer(minLength: 0)
+            Menu {
+                Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
+            } label: {
+                Image(systemName: "ellipsis")
+                    .foregroundStyle(QuietPalette.accent)
+                    .frame(width: 44, height: 44)
+            }
+            .disabled(!canChange)
+            .accessibilityLabel("More options for \(meal.title)")
+        }
+        .frame(minHeight: 60, alignment: .leading)
     }
 }

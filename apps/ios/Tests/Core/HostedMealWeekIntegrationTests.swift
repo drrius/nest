@@ -3,25 +3,6 @@ import XCTest
 
 @testable import NestCore
 
-private struct RemoveFixtureMeal: Encodable {
-    let operationId: UUID
-    let entryId: UUID
-    let weekStart: MealWeekStart
-    let expectedRevision: String
-}
-
-private struct RemoveFixtureEnvelope: Decodable {
-    struct Receipt: Decodable {
-        let actorId: UUID
-        let householdId: UUID
-        let operationId: UUID
-        let entryId: UUID
-        let removed: Bool
-    }
-    let version: Int
-    let receipt: Receipt
-}
-
 final class HostedMealWeekIntegrationTests: XCTestCase {
     func testIsolatedHostedMealReadPlaceReplayOutsiderDenialAndCleanup() async throws {
         let environment = ProcessInfo.processInfo.environment
@@ -74,11 +55,11 @@ final class HostedMealWeekIntegrationTests: XCTestCase {
             XCTAssertEqual(fresh.entries.filter { $0.id == placed.entryId }.count, 1)
             XCTAssertEqual(fresh.entries.first { $0.id == placed.entryId }?.title, title)
             try await removeFixture(
-                title: title, api: api, http: http, token: memberToken, member: member,
+                title: title, api: api, token: memberToken, member: member,
                 outsiderToken: outsiderToken, start: start)
         } catch {
             try? await removeFixture(
-                title: title, api: api, http: http, token: memberToken, member: member,
+                title: title, api: api, token: memberToken, member: member,
                 outsiderToken: outsiderToken, start: start)
             XCTFail("Hosted meal or cleanup failed for fictional title \(title): \(error)")
             throw error
@@ -86,29 +67,24 @@ final class HostedMealWeekIntegrationTests: XCTestCase {
     }
 
     private func removeFixture(
-        title: String, api: MealAPI, http: NestHTTP, token: String,
+        title: String, api: MealAPI, token: String,
         member: VerifiedMember, outsiderToken: String, start: MealWeekStart
     ) async throws {
         let week = try await api.week(token: token, member: member, start: start)
         guard let entry = week.entries.first(where: { $0.title == title }) else { return }
-        let command = RemoveFixtureMeal(
-            operationId: UUID(), entryId: entry.id,
-            weekStart: start, expectedRevision: week.revision)
+        let command = try RemoveMeal(week: week, meal: entry, operationId: UUID())
         do {
-            _ = try await http.write(
-                "v1/meals/remove", token: outsiderToken, household: member.householdId,
-                body: command, as: RemoveFixtureEnvelope.self)
+            _ = try await api.remove(
+                token: outsiderToken, member: member, week: week,
+                meal: entry, command: command)
             XCTFail("Outsider removed another household's meal")
         } catch { assertDenied(error) }
-        let response = try await http.write(
-            "v1/meals/remove", token: token, household: member.householdId,
-            body: command, as: RemoveFixtureEnvelope.self)
-        XCTAssertEqual(response.version, 1)
-        XCTAssertEqual(response.receipt.actorId, member.userId)
-        XCTAssertEqual(response.receipt.householdId, member.householdId)
-        XCTAssertEqual(response.receipt.operationId, command.operationId)
-        XCTAssertEqual(response.receipt.entryId, entry.id)
-        XCTAssertTrue(response.receipt.removed)
+        let response = try await api.remove(
+            token: token, member: member, week: week, meal: entry, command: command)
+        let replay = try await api.remove(
+            token: token, member: member, week: week, meal: entry, command: command)
+        XCTAssertEqual(response, replay)
+        XCTAssertEqual(response.entryId, entry.id)
         let after = try await api.week(token: token, member: member, start: start)
         XCTAssertFalse(after.entries.contains { $0.id == entry.id })
     }
