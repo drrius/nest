@@ -26,6 +26,14 @@ struct MealWeekScreen: View {
                 }
                 content
                 NavigationLink {
+                    MealLibraryScreen(model: model)
+                } label: {
+                    Label("Saved meals", systemImage: "book.closed")
+                        .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(QuietPalette.accent)
+                NavigationLink {
                     GroceriesScreen(model: model)
                 } label: {
                     Label("Groceries", systemImage: "basket")

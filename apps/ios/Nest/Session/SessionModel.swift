@@ -49,6 +49,9 @@ final class SessionModel: ObservableObject {
     @Published var mealSlotNotice: String?
     @Published var mealRemoval: SavedMealRemoval?
     @Published var mealRemovalSaving = false
+    @Published var mealLibrary: MealLibraryStatus = .idle
+    @Published var mealLibraryNotice: String?
+    @Published var savedRecipe: SavedRecipeStatus = .idle
     let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -67,6 +70,8 @@ final class SessionModel: ObservableObject {
     var mealLoadingRequest: UUID?
     var mealPlacementSavingGeneration: Int?
     var mealRemovalSavingGeneration: Int?
+    var mealLibraryRequest: UUID?
+    var savedRecipeRequest: UUID?
     var generation = 0
     var credentialTail: Task<Void, Never>?
     var credentialSequence = 0
@@ -260,6 +265,9 @@ final class SessionModel: ObservableObject {
         mealSlotNotice = nil
         mealRemoval = nil
         mealRemovalSaving = false
+        mealLibrary = .idle
+        mealLibraryNotice = nil
+        savedRecipe = .idle
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
@@ -270,6 +278,8 @@ final class SessionModel: ObservableObject {
         mealLoadingRequest = nil
         mealPlacementSavingGeneration = nil
         mealRemovalSavingGeneration = nil
+        mealLibraryRequest = nil
+        savedRecipeRequest = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 

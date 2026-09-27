@@ -4,6 +4,38 @@ import XCTest
 @testable import NestCore
 
 final class HostedMealWeekIntegrationTests: XCTestCase {
+    func testIsolatedHostedSavedLibraryDetailAndOutsiderDenial() async throws {
+        let environment = ProcessInfo.processInfo.environment
+        guard let apiString = environment["NEST_TEST_API_URL"],
+            let apiURL = URL(string: apiString),
+            let actorString = environment["NEST_TEST_ACTOR_ID"],
+            let actor = UUID(uuidString: actorString),
+            let memberPath = environment["NEST_TEST_MEMBER_TOKEN_FILE"],
+            let outsiderPath = environment["NEST_TEST_OUTSIDER_TOKEN_FILE"]
+        else { throw XCTSkip("Isolated hosted test credentials are not configured") }
+        let memberToken = try token(at: memberPath)
+        let outsiderToken = try token(at: outsiderPath)
+        let api = MealAPI(http: try NestHTTP(baseURL: apiURL))
+        let member = try await api.verify(token: memberToken, expectedActor: actor)
+        do {
+            _ = try await api.library(token: outsiderToken, member: member)
+            XCTFail("Outsider read another household's saved meals")
+        } catch { assertDenied(error) }
+        let page = try await api.library(token: memberToken, member: member)
+        let summary = try XCTUnwrap(page.meals.first, "Synthetic test recipe is missing")
+        do {
+            _ = try await api.recipe(
+                token: outsiderToken, member: member,
+                id: summary.id, revision: page.revision)
+            XCTFail("Outsider read another household's recipe detail")
+        } catch { assertDenied(error) }
+        let recipe = try await api.recipe(
+            token: memberToken, member: member,
+            id: summary.id, revision: page.revision)
+        XCTAssertEqual(recipe?.id, summary.id)
+        XCTAssertEqual(recipe?.title, summary.title)
+    }
+
     func testIsolatedHostedMealReadPlaceReplayOutsiderDenialAndCleanup() async throws {
         let environment = ProcessInfo.processInfo.environment
         guard let apiString = environment["NEST_TEST_API_URL"],

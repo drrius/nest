@@ -7,6 +7,7 @@ actor FakeMealServer {
     private let actorB: UUID
     private let household: UUID
     private let entry = UUID(uuidString: "55555555-5555-4555-8555-555555555555")!
+    private let recipeId = UUID(uuidString: "66666666-6666-4666-8666-666666666666")!
     private var placed: PlaceMeal?
     private var placeAttempts: [UUID] = []
     private var removed: RemoveMeal?
@@ -15,6 +16,8 @@ actor FakeMealServer {
     private var rejectNextRemove = false
     private var loseNextPlaceResponse = false
     private var rejectNextPlace = false
+    private var pagedLibrary = false
+    private var libraryQueries: [String] = []
     private var pauseA = false
     private var aWaiting = false
     private var aStarted: CheckedContinuation<Void, Never>?
@@ -32,6 +35,9 @@ actor FakeMealServer {
     func loseNextRemove() { loseNextRemoveResponse = true }
     func rejectRemove() { rejectNextRemove = true }
     func removalOperations() -> [UUID] { removeAttempts }
+    func savedRecipeId() -> UUID { recipeId }
+    func usePagedLibrary() { pagedLibrary = true }
+    func queriedLibraryPages() -> [String] { libraryQueries }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -58,6 +64,12 @@ actor FakeMealServer {
             aStarted?.resume()
             aStarted = nil
             await withCheckedContinuation { aResume = $0 }
+        }
+        if request.url?.path == "/v1/meals/library" {
+            return answer(request, body: try library(for: actor, request: request))
+        }
+        if request.url?.path == "/v1/meals/recipe" {
+            return answer(request, body: recipe(for: actor))
         }
         return answer(request, body: week(for: actor))
     }
@@ -130,6 +142,38 @@ actor FakeMealServer {
         let slots = actor == actorA ? "[\"lunch\",\"dinner\"]" : "[\"dinner\"]"
         return """
             {"version":1,"householdId":"\(household)","profile":{"revision":"1","preferences":{"cookingNotes":"","mealSlots":\(slots)}}}
+            """
+    }
+
+    private func library(for actor: UUID, request: URLRequest) throws -> String {
+        libraryQueries.append(request.url?.query ?? "")
+        if pagedLibrary && actor == actorA { return try page(request) }
+        let title = actor == actorA ? "Alex pasta" : "Sam soup"
+        return """
+            {"version":1,"householdId":"\(household)","revision":"4","meals":[{"definitionId":"\(recipeId)","title":"\(title)","servings":2}],"nextAfterId":null}
+            """
+    }
+
+    private func page(_ request: URLRequest) throws -> String {
+        let cursor = String(format: "00000000-0000-4000-8000-%012d", 50).lowercased()
+        let query = request.url?.query ?? ""
+        guard query.isEmpty || query == "afterId=\(cursor)&expectedRevision=4"
+        else { throw NestAPIFailure.invalid }
+        let indexes = query.isEmpty ? Array(1...50) : [51]
+        let rows = indexes.map { index in
+            let id = String(format: "00000000-0000-4000-8000-%012d", index)
+            return "{\"definitionId\":\"\(id)\",\"title\":\"Recipe \(index)\",\"servings\":2}"
+        }.joined(separator: ",")
+        let next = query.isEmpty ? "\"\(cursor)\"" : "null"
+        return """
+            {"version":1,"householdId":"\(household)","revision":"4","meals":[\(rows)],"nextAfterId":\(next)}
+            """
+    }
+
+    private func recipe(for actor: UUID) -> String {
+        let title = actor == actorA ? "Alex pasta" : "Sam soup"
+        return """
+            {"version":1,"householdId":"\(household)","revision":"4","recipe":{"definitionId":"\(recipeId)","title":"\(title)","servings":2,"recipeUrl":null,"notes":null,"instructions":"Cook and serve.","ingredients":[]}}
             """
     }
 

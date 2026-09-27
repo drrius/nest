@@ -26,6 +26,36 @@ public struct MealAPI: Sendable {
         return try result.validated(household: member.householdId)
     }
 
+    public func library(
+        token: String, member: VerifiedMember, after: UUID? = nil,
+        revision: String? = nil
+    ) async throws -> MealLibraryPage {
+        guard after == nil || revision != nil else { throw MealLibraryError.invalidResponse }
+        var parts: [String] = []
+        if let after { parts.append("afterId=\(after.uuidString.lowercased())") }
+        if let revision {
+            guard MealRevision.valid(revision) else { throw MealLibraryError.invalidResponse }
+            parts.append("expectedRevision=\(revision)")
+        }
+        let query = parts.isEmpty ? "" : "?\(parts.joined(separator: "&"))"
+        let page = try await http.read(
+            "v1/meals/library\(query)", token: token,
+            household: member.householdId, as: MealLibraryPage.self)
+        return try page.validated(household: member.householdId, after: after, revision: revision)
+    }
+
+    public func recipe(
+        token: String, member: VerifiedMember, id: UUID, revision: String
+    ) async throws -> SavedRecipe? {
+        guard MealRevision.valid(revision) else { throw MealLibraryError.invalidResponse }
+        let path = "v1/meals/recipe?definitionId=\(id.uuidString.lowercased())&expectedRevision=\(revision)"
+        let response = try await http.read(
+            path, token: token, household: member.householdId,
+            as: SavedRecipeEnvelope.self)
+        return try response.validated(
+            household: member.householdId, definition: id, revision: revision)
+    }
+
     public func place(
         token: String, member: VerifiedMember, week: MealWeekSnapshot, command: PlaceMeal
     ) async throws -> MealPlacementReceipt {
