@@ -9,7 +9,10 @@
       "bundleIdentifier": "ch.drrius.nest",
       "supportsTablet": false,
       "usesAppleSignIn": true,
-      "buildNumber": "2"
+      "buildNumber": "2",
+      "config": {
+        "usesNonExemptEncryption": false
+      }
     },
     "platforms": ["ios"],
     "userInterfaceStyle": "automatic",
