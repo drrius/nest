@@ -12,6 +12,7 @@ import type { MoneyReadRuntime } from "../money/read-runtime";
 import { MoneyReadStatus } from "../money/read-status";
 import { useMoneyActivity } from "../money/use-activity";
 import { eventNames, formatChf, payerLabel } from "../money/format";
+import { formatMoneyDay, formatMoneyMoment } from "../money/format-date";
 export default function MoneyEventScreen() {
   const { eventId } = useLocalSearchParams();
   if (typeof eventId !== "string" || !Schema.is(MoneyDetailQuery)({ eventId }))
@@ -68,10 +69,11 @@ function Entry({ detail, actor }: { detail: typeof MoneyDetail.Type; actor: stri
         <Note>
           {eventNames[event.kind]} · {formatChf(event.amountCentimes)}
         </Note>
-        <Note>{event.occurredOn}</Note>
+        <Note>{formatMoneyDay(event.occurredOn)}</Note>
         {event.payerId ? <Note>{payerLabel(event.kind, event.payerId === actor)}</Note> : null}
         <Note>
-          Recorded by {event.createdBy === actor ? "you" : "your partner"} · {event.createdAt}
+          Recorded by {event.createdBy === actor ? "you" : "your partner"} ·{" "}
+          {formatMoneyMoment(event.createdAt)}
         </Note>
       </Section>
       <Section title="How this affects your balance">

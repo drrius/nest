@@ -3,6 +3,7 @@ import { Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import type { MoneyReadView } from "./read-runtime";
 import { space } from "../theme";
+import { formatMoneyMoment } from "./format-date";
 export function MoneyReadStatus({
   view,
   reload,
@@ -21,7 +22,7 @@ export function MoneyReadStatus({
       {view.entry ? (
         <Note>
           {view.source === "online" ? "Loaded online" : "Previously loaded"} ·{" "}
-          {view.entry.savedAt.slice(0, 19).replace("T", " ")} UTC
+          {formatMoneyMoment(view.entry.savedAt)}
         </Note>
       ) : null}
       {view.source !== "online" && view.entry ? (
