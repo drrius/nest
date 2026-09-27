@@ -16,7 +16,7 @@ Typed validators are pure domain checks, not an untrusted JSON decoder or author
 
 Meaningful scenarios from legacy `schedule.test.ts`, `assignment.test.ts` and `closure.test.ts` were re-expressed using node:test rather than copying Vitest infrastructure. Four seeded properties each exercise 1,000 cases: earliest eligible weekdays/biweekly phase, completion anchoring, assignment rotation and closure window counts. Boundary tests cover early years, leap centuries, month clamps, rescheduling, one-off/inactive closure and invalid targets.
 
-`tests/database/legacy-routine-schedule.sql` copies only `private.first_routine_due_date` and `private.next_routine_due_date` from `supabase/migrations/20260830210000_biweekly_schedule.sql` at that commit. A disposable, socket-only PostgreSQL cluster compares both functions to TypeScript on 2,120 valid inputs, including early years, leap days, skips and rescheduled biweekly anchors. This fixture never accepts a production URL. It is not a migration. Both test suites run in existing routine CI.
+`tests/database/legacy-routine-schedule.sql` copies only `private.first_routine_due_date` and `private.next_routine_due_date` from `supabase/migrations/20260830210000_biweekly_schedule.sql` at that commit. A disposable, socket-only PostgreSQL cluster compares both functions to TypeScript on 2,120 valid inputs, including early years, leap days, skips and rescheduled biweekly anchors. This fixture never accepts a production URL. It is not a migration. The pure TypeScript property suite runs in routine CI. The PostgreSQL comparison runs through the explicitly dispatched deep integration workflow.
 
 ## Remaining transactional audit
 
