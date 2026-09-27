@@ -53,11 +53,35 @@ final class HostedMealMoveTests: XCTestCase {
             XCTAssertEqual(movedMeal.title, title)
             XCTAssertEqual(movedMeal.date, to.0)
             XCTAssertEqual(movedMeal.slot, to.1)
+            try await verifySameWeek(api: api, token: token, member: member, week: afterTarget, meal: movedMeal)
         } catch {
             try await cleanup(title, starts: [start, next], api: api, token: token, member: member)
             throw error
         }
         try await cleanup(title, starts: [start, next], api: api, token: token, member: member)
+    }
+
+    private func verifySameWeek(
+        api: MealAPI, token: String, member: VerifiedMember,
+        week: MealWeekSnapshot, meal: PlannedMeal
+    ) async throws {
+        let destination = try emptySlot(week)
+        let command = try MoveMeal(
+            source: week, target: week, meal: meal,
+            operationId: UUID(), date: destination.0, slot: destination.1)
+        let saved = SavedMealMove(
+            source: week, target: week, meal: meal,
+            command: command, state: .pending, receipt: nil)
+        let receipt = try await api.move(token: token, member: member, saved: saved)
+        let replay = try await api.move(token: token, member: member, saved: saved)
+        XCTAssertEqual(receipt, replay)
+        XCTAssertEqual(receipt.sourceRevision, receipt.targetRevision)
+        let fresh = try await api.week(token: token, member: member, start: week.weekStart)
+        XCTAssertEqual(fresh.revision, receipt.targetRevision)
+        let updated = try XCTUnwrap(fresh.entries.first { $0.id == meal.id })
+        XCTAssertEqual(updated.date, destination.0)
+        XCTAssertEqual(updated.slot, destination.1)
+        XCTAssertEqual(fresh.entries.filter { $0.id == meal.id }.count, 1)
     }
 
     private func emptySlot(_ week: MealWeekSnapshot) throws -> (CivilDate, MealSlot) {

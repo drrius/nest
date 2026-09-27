@@ -20,6 +20,20 @@ final class MealMoveStoreTests: XCTestCase {
         XCTAssertNil(finished)
     }
 
+    func testSameWeekAcknowledgementNeedsTheMovedEntry() async throws {
+        let (store, lease, saved) = try await fixture(sameWeek: true)
+        try await store.acknowledgeMealMove(receipt(saved), lease: lease)
+        try await store.saveMealWeek(updated(saved.source, entries: [saved.meal]), lease: lease)
+        let waiting = try await store.readMealMove(lease: lease)
+        XCTAssertEqual(waiting?.state, .acknowledged)
+        let moved = PlannedMeal(
+            entryId: saved.meal.id, date: saved.command.date, slot: .lunch,
+            title: saved.meal.title, recipeUrl: nil, notes: nil, definitionId: nil, leftoverSourceId: nil)
+        try await store.saveMealWeek(updated(saved.source, entries: [moved]), lease: lease)
+        let confirmed = try await store.readMealMove(lease: lease)
+        XCTAssertNil(confirmed)
+    }
+
     func testWrongReceiptAndPendingDiscardCannotLoseOperation() async throws {
         let (store, lease, saved) = try await fixture()
         let wrong = MealMoveReceipt(
@@ -74,22 +88,25 @@ final class MealMoveStoreTests: XCTestCase {
                 operationId: UUID(), date: saved.command.date, slot: .lunch))
     }
 
-    private func fixture() async throws -> (ChoreOfflineStore, OfflineLease, SavedMealMove) {
+    private func fixture(sameWeek: Bool = false) async throws -> (ChoreOfflineStore, OfflineLease, SavedMealMove) {
         let url = FileManager.default.temporaryDirectory.appending(path: "move-\(UUID()).sqlite")
         addTeardownBlock { try? FileManager.default.removeItem(at: url) }
         let store = try ChoreOfflineStore(url: url)
         let lease = try await store.activate(member)
         let start = try MealWeekStart("2026-09-28")
-        let next = try start.adjacent(1)
+        let next = sameWeek ? start : try start.adjacent(1)
         let meal = PlannedMeal(
             entryId: UUID(), date: start.date, slot: .dinner, title: "Pasta",
             recipeUrl: nil, notes: nil, definitionId: nil, leftoverSourceId: nil)
         let source = MealWeekSnapshot(
             version: 1, householdId: member.householdId,
             weekStart: start, revision: "1", entries: [meal])
-        let target = MealWeekSnapshot(
-            version: 1, householdId: member.householdId,
-            weekStart: next, revision: "1", entries: [])
+        let target =
+            sameWeek
+            ? source
+            : MealWeekSnapshot(
+                version: 1, householdId: member.householdId,
+                weekStart: next, revision: "1", entries: [])
         let command = try MoveMeal(
             source: source, target: target, meal: meal,
             operationId: UUID(), date: next.date, slot: .lunch)
