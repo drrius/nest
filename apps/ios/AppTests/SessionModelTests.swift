@@ -120,6 +120,36 @@ private actor FakeChoreServer {
     }
 }
 
+private actor PausedSavedRead {
+    private var pause = false
+    private var waiting = false
+    private var started: CheckedContinuation<Void, Never>?
+    private var resume: CheckedContinuation<Void, Never>?
+
+    func pauseNext() { pause = true }
+
+    func waitUntilPaused() async {
+        if waiting { return }
+        await withCheckedContinuation { started = $0 }
+    }
+
+    func release() {
+        resume?.resume()
+        resume = nil
+    }
+
+    func read(_ store: ChoreOfflineStore, lease: OfflineLease) async throws -> ChoreOfflineState? {
+        let saved = try await store.read(lease)
+        guard pause else { return saved }
+        pause = false
+        waiting = true
+        started?.resume()
+        started = nil
+        await withCheckedContinuation { resume = $0 }
+        return saved
+    }
+}
+
 @MainActor
 final class SessionModelTests: XCTestCase {
     private let actorA = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!
@@ -168,6 +198,28 @@ final class SessionModelTests: XCTestCase {
         XCTAssertEqual(current.chores.first?.chore.title, "Sam chore")
         let old = try await store.cachedMember(actor: actorA)
         XCTAssertNil(old)
+    }
+
+    func testPausedAccountAReadCannotReplaceAccountBPresentation() async throws {
+        let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
+        let auth = FakeAuthentication(
+            active: AuthenticatedSession(userId: actorA, accessToken: "token-A"),
+            nextSignIn: AuthenticatedSession(userId: actorB, accessToken: "token-B"))
+        let reader = PausedSavedRead()
+        let model = SessionModel(
+            auth: auth, chores: try api(server: server), offline: try store(),
+            savedReader: { store, lease in try await reader.read(store, lease: lease) })
+        await model.restore()
+        await reader.pauseNext()
+        let oldRefresh = Task { await model.refreshToday() }
+        await reader.waitUntilPaused()
+        await model.signIn(idToken: "B", nonce: "test")
+        guard case .loaded(let before) = model.today else { return XCTFail("B did not load") }
+        XCTAssertEqual(before.chores.first?.chore.title, "Sam chore")
+        await reader.release()
+        await oldRefresh.value
+        guard case .loaded(let after) = model.today else { return XCTFail("A replaced B") }
+        XCTAssertEqual(after.chores.first?.chore.title, "Sam chore")
     }
 
     func testColdOfflineRestoreShowsOnlyVerifiedCachedAccount() async throws {

@@ -22,11 +22,13 @@ final class SessionModel: ObservableObject {
     private let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     private let offline: ChoreOfflineStore?
+    private let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private var lease: OfflineLease?
     private var syncingGeneration: Int?
     private var generation = 0
 
     init() {
+        savedReader = { store, lease in try await store.read(lease) }
         do {
             let configuration = try NestConfiguration.fromBundle()
             let http = try NestHTTP(baseURL: configuration.apiURL)
@@ -47,10 +49,16 @@ final class SessionModel: ObservableObject {
         }
     }
 
-    init(auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore) {
+    init(
+        auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
+        savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
+            store, lease in try await store.read(lease)
+        }
+    ) {
         self.auth = auth
         self.chores = chores
         self.offline = offline
+        self.savedReader = savedReader
     }
 
     func restore() async {
@@ -119,13 +127,17 @@ final class SessionModel: ObservableObject {
         let attempt = generation
         syncingGeneration = attempt
         defer { if syncingGeneration == attempt { syncingGeneration = nil } }
+        let saved: ChoreOfflineState?
         do {
-            try await showSaved(offline: offline, lease: lease)
+            saved = try await savedReader(offline, lease)
         } catch {
+            guard generation == attempt, status == .ready(member) else { return }
             today = .failed
             todayNotice = "Could not read your saved chores."
             return
         }
+        guard generation == attempt, status == .ready(member) else { return }
+        today = saved.map(TodayStatus.loaded) ?? .loading
         do {
             try await syncToday(
                 auth: auth, chores: chores, offline: offline,
@@ -165,10 +177,6 @@ final class SessionModel: ObservableObject {
         todayNotice = nil
         syncingGeneration = nil
         if let previous, let offline { try? await offline.deactivate(previous) }
-    }
-
-    private func showSaved(offline: ChoreOfflineStore, lease: OfflineLease) async throws {
-        if let saved = try await offline.read(lease) { today = .loaded(saved) } else { today = .loading }
     }
 
     private func syncToday(

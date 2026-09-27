@@ -8,6 +8,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 SOURCES = ROOT / "apps/ios/Nest"
 TESTS = ROOT / "apps/ios/Tests"
+APP_TESTS = ROOT / "apps/ios/AppTests"
 FUNCTION = re.compile(r"(?m)^\s*(?:public |private |fileprivate |internal |static |class |override |final |nonisolated |convenience |required )*(?:func\s+\w+|init\b|deinit\b)")
 BRANCH = re.compile(r"\b(?:if|guard|for|while|catch|case)\b|&&|\|\||\?\?")
 
@@ -64,7 +65,7 @@ def check(path: Path) -> list[str]:
     lines = len(content.splitlines())
     if lines > 400:
         findings.append(f"{relative}: {lines} lines exceeds 400")
-    if TESTS in path.parents:
+    if TESTS in path.parents or APP_TESTS in path.parents:
         return findings
     for match, body in function_bodies(mask(content)):
         location = content[:match.start()].count("\n") + 1
@@ -78,7 +79,7 @@ def check(path: Path) -> list[str]:
 
 
 def main() -> int:
-    findings = [item for root in (SOURCES, TESTS) for path in root.rglob("*.swift") for item in check(path)]
+    findings = [item for root in (SOURCES, TESTS, APP_TESTS) for path in root.rglob("*.swift") for item in check(path)]
     if findings:
         print("\n".join(findings))
         return 1
