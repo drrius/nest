@@ -30,7 +30,7 @@ export function GroceryFields({
     <Card>
       <Section title={item ? "Edit grocery" : "Add grocery"} />
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         colorScheme={scheme === "dark" ? "dark" : "light"}
         seedColor={colors.accent}
       >
