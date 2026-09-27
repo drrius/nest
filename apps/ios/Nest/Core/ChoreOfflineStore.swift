@@ -52,6 +52,12 @@ actor ChoreOfflineStore {
         try db.run(
             "CREATE TABLE IF NOT EXISTS grocery_removes (actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, item TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, PRIMARY KEY(actor,household))"
         )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_weeks (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household,week_start))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_placements (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, week TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_revision TEXT, entry_id TEXT, reason TEXT, PRIMARY KEY(actor,household,week_start))"
+        )
     }
 
     static func application(environment: URL) throws -> ChoreOfflineStore {

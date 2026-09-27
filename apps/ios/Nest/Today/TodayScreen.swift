@@ -70,6 +70,7 @@ struct TodayScreen: View {
                 }
                 .buttonStyle(.plain)
                 .padding(.top, 28)
+                mealsShortcut
             }
             .padding(.horizontal, 20)
             .padding(.top, 14)
@@ -81,6 +82,29 @@ struct TodayScreen: View {
         }
         .task { if model.today == .idle { await model.refreshToday() } }
         .task { if model.groceries == .idle { await model.refreshGroceries() } }
+    }
+
+    private var mealsShortcut: some View {
+        NavigationLink {
+            MealWeekScreen(model: model)
+        } label: {
+            HStack(spacing: 14) {
+                Image(systemName: "fork.knife")
+                    .font(.title3).foregroundStyle(QuietPalette.accent)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text("Meals").font(.headline).foregroundStyle(QuietPalette.ink)
+                    Text("See your household week")
+                        .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                }
+                Spacer()
+                Image(systemName: "chevron.right").foregroundStyle(QuietPalette.muted)
+            }
+            .padding(18)
+            .frame(minHeight: 76)
+            .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
+        }
+        .buttonStyle(.plain)
+        .padding(.top, 12)
     }
 
     private var grocerySummary: String {

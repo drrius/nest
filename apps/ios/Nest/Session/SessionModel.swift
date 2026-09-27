@@ -40,9 +40,17 @@ final class SessionModel: ObservableObject {
     @Published var groceryEditSaving = false
     @Published var groceryRemove: SavedGroceryRemove?
     @Published var groceryRemoveSaving = false
+    @Published var mealSelection: MealWeekStart?
+    @Published var mealStatus: MealStatus = .idle
+    @Published var mealNotice: String?
+    @Published var mealPlacement: SavedMealPlacement?
+    @Published var mealPlacementSaving = false
+    @Published var mealVisibleSlots = MealSlot.allCases
+    @Published var mealSlotNotice: String?
     let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
+    let mealAPI: MealAPI?
     let offline: ChoreOfflineStore?
     private let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
@@ -54,6 +62,8 @@ final class SessionModel: ObservableObject {
     var groceryCategoryLoadingGeneration: Int?
     var groceryEditSavingGeneration: Int?
     var groceryRemoveSavingGeneration: Int?
+    var mealLoadingRequest: UUID?
+    var mealPlacementSavingGeneration: Int?
     var generation = 0
     private var credentialTail: Task<Void, Never>?
     private(set) var credentialSequence = 0
@@ -68,17 +78,20 @@ final class SessionModel: ObservableObject {
             auth = try NestAuth(configuration: configuration)
             chores = ChoreAPI(http: http)
             groceryAPI = GroceryAPI(http: http)
+            mealAPI = MealAPI(http: http)
             offline = store
         } catch is NestConfigurationError {
             auth = nil
             chores = nil
             groceryAPI = nil
+            mealAPI = nil
             offline = nil
             status = .configuration
         } catch {
             auth = nil
             chores = nil
             groceryAPI = nil
+            mealAPI = nil
             offline = nil
             status = .unavailable
         }
@@ -86,7 +99,7 @@ final class SessionModel: ObservableObject {
 
     init(
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
-        groceryAPI: GroceryAPI? = nil,
+        groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -97,6 +110,7 @@ final class SessionModel: ObservableObject {
         self.auth = auth
         self.chores = chores
         self.groceryAPI = groceryAPI
+        self.mealAPI = mealAPI
         self.offline = offline
         self.savedReader = savedReader
         self.deactivateLease = deactivateLease
@@ -234,6 +248,13 @@ final class SessionModel: ObservableObject {
         groceryEditSaving = false
         groceryRemove = nil
         groceryRemoveSaving = false
+        mealSelection = nil
+        mealStatus = .idle
+        mealNotice = nil
+        mealPlacement = nil
+        mealPlacementSaving = false
+        mealVisibleSlots = MealSlot.allCases
+        mealSlotNotice = nil
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
@@ -241,6 +262,8 @@ final class SessionModel: ObservableObject {
         groceryCategoryLoadingGeneration = nil
         groceryEditSavingGeneration = nil
         groceryRemoveSavingGeneration = nil
+        mealLoadingRequest = nil
+        mealPlacementSavingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 
