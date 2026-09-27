@@ -17,7 +17,10 @@ public struct CheckGrocery: Codable, Equatable, Sendable {
 }
 
 public struct GroceryCheckReceipt: Decodable, Equatable, Sendable {
-    public enum Outcome: String, Decodable, Sendable { case applied, alreadyApplied = "already_applied" }
+    public enum Outcome: String, Decodable, Sendable {
+        case applied
+        case alreadyApplied = "already_applied"
+    }
     public let operation: UUID
     public let target: UUID
     public let version: String

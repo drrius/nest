@@ -23,7 +23,8 @@ public struct GroceryItem: Codable, Equatable, Identifiable, Sendable {
     public var id: UUID { itemId }
 
     public func validated() throws -> Self {
-        let validVersion = !version.isEmpty && version.first != "0"
+        let validVersion =
+            !version.isEmpty && version.first != "0"
             && version.allSatisfy(\.isNumber) && Int64(version) != nil
         guard !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty,
             name.count <= 120, (quantity?.count ?? 0) <= 80, (unit?.count ?? 0) <= 80,

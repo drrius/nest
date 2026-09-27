@@ -31,7 +31,8 @@ struct GroceryContractsTests {
         }
         let first = try decodeList(version: "42").groceries[0]
         let encoded = String(decoding: try JSONEncoder().encode(first), as: UTF8.self)
-        let other = encoded
+        let other =
+            encoded
             .replacingOccurrences(of: item.uuidString, with: UUID().uuidString)
             .replacingOccurrences(of: epoch.uuidString, with: UUID().uuidString)
         let second = try JSONDecoder().decode(GroceryItem.self, from: Data(other.utf8))
@@ -41,9 +42,10 @@ struct GroceryContractsTests {
 
     @Test func refusesReceiptForAnotherOperation() throws {
         let command = CheckGrocery(item: try decodeList(version: "42").groceries[0], operationId: UUID(), checked: true)
-        let data = Data("""
-        {"version":1,"householdId":"\(household)","receipt":{"operation":"\(UUID())","target":"\(item)","version":"43","checked":true,"outcome":"applied"}}
-        """.utf8)
+        let data = Data(
+            """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(UUID())","target":"\(item)","version":"43","checked":true,"outcome":"applied"}}
+            """.utf8)
         let envelope = try JSONDecoder().decode(GroceryCheckEnvelope.self, from: data)
         #expect(throws: GroceryContractError.self) {
             try envelope.validated(household: household, command: command)
@@ -51,9 +53,10 @@ struct GroceryContractsTests {
     }
 
     private func decodeList(version: String) throws -> GroceryList {
-        let data = Data("""
-        {"version":1,"householdId":"\(household)","groceries":[{"itemId":"\(item)","name":"Oat milk","quantity":"2","unit":"cartons","categoryId":null,"categoryName":null,"version":"\(version)","checked":false,"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}]}
-        """.utf8)
+        let data = Data(
+            """
+            {"version":1,"householdId":"\(household)","groceries":[{"itemId":"\(item)","name":"Oat milk","quantity":"2","unit":"cartons","categoryId":null,"categoryName":null,"version":"\(version)","checked":false,"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}]}
+            """.utf8)
         return try JSONDecoder().decode(GroceryList.self, from: data)
     }
 }
