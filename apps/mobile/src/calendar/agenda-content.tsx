@@ -21,6 +21,7 @@ import { partnerAgenda } from "./partner-agenda";
 import { agendaDay } from "./agenda-day";
 import { agendaRows, type CalendarRow } from "./agenda-rows";
 import { PartnerBlock } from "./partner-content";
+import { formatAgendaWhen } from "./agenda-when";
 export function AgendaContent({
   runtime,
   partner,
@@ -99,18 +100,13 @@ export function AgendaContent({
 }
 function PersonalEvent({ row, calendar }: { row: AgendaRow; calendar: string }) {
   const colors = useQuiet();
-  const format = (instant: number) =>
-    new Date(instant).toLocaleString(undefined, { dateStyle: "medium", timeStyle: "short" });
   return (
     <Card>
       <Text selectable style={{ color: colors.text, fontSize: 20, fontWeight: "600" }}>
         {row.title || "Untitled event"}
       </Text>
       <Note>{calendar} · Personal details on this iPhone</Note>
-      <Note>
-        {row.allDay ? "All day · " : ""}
-        {format(row.start)} — {format(row.end)}
-      </Note>
+      <Note>{formatAgendaWhen(row)}</Note>
       {row.location ? <Note>{row.location}</Note> : null}
       {row.notes ? <Note>{row.notes}</Note> : null}
     </Card>
