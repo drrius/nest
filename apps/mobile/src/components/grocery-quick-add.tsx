@@ -1,9 +1,16 @@
 import { useLeaveGrocery } from "../groceries/use-draft";
 import { scheduleOnRN } from "react-native-worklets";
 import { Host, TextInput, useNativeState, type TextInputRef } from "@expo/ui";
-import { useCallback, useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ComponentProps,
+  type RefObject,
+} from "react";
 import { Link } from "expo-router";
-import { useColorScheme } from "react-native";
+import { Pressable, useColorScheme } from "react-native";
 import * as Crypto from "expo-crypto";
 import type { GroceryClient } from "../groceries/client";
 import { useGroceryEditor } from "../groceries/use-editor";
@@ -44,8 +51,6 @@ function QuickAdd({
     "worklet";
     scheduleOnRN(markEdited);
   }, [markEdited]);
-  const colors = useQuiet(),
-    scheme = useColorScheme();
   useEffect(() => {
     if (!view.savedOperation) return;
     if (view.savedOperation === draft.current?.operationId) input.current?.clear();
@@ -73,21 +78,12 @@ function QuickAdd({
         <Note>Your previous grocery save needs confirmation. Open it to review or retry.</Note>
       ) : (
         <>
-          <Host
-            matchContents
-            colorScheme={scheme === "dark" ? "dark" : "light"}
-            seedColor={colors.accent}
-          >
-            <TextInput
-              ref={input}
-              onChangeText={changed}
-              value={name}
-              placeholder="Add a grocery"
-              maxLength={120}
-              editable={view.loaded && !view.working}
-              returnKeyType="done"
-            />
-          </Host>
+          <GroceryNameInput
+            input={input}
+            name={name}
+            changed={changed}
+            editable={view.loaded && !view.working}
+          />
           <NativeAction
             variant="primary"
             label={view.working ? "Working…" : "Add online"}
@@ -100,6 +96,45 @@ function QuickAdd({
       {view.error ? <Note>{view.error}</Note> : null}
       <GroceryDetailsLink pending={Boolean(view.pending)} />
     </Card>
+  );
+}
+
+function GroceryNameInput({
+  input,
+  name,
+  changed,
+  editable,
+}: {
+  input: RefObject<TextInputRef | null>;
+  name: ComponentProps<typeof TextInput>["value"];
+  changed: () => void;
+  editable: boolean;
+}) {
+  const colors = useQuiet(),
+    scheme = useColorScheme();
+  return (
+    <Pressable
+      accessible={false}
+      disabled={!editable}
+      onPress={() => input.current?.focus()}
+      style={{ minHeight: 44, justifyContent: "center" }}
+    >
+      <Host
+        matchContents={{ vertical: true }}
+        colorScheme={scheme === "dark" ? "dark" : "light"}
+        seedColor={colors.accent}
+      >
+        <TextInput
+          ref={input}
+          onChangeText={changed}
+          value={name}
+          placeholder="Add a grocery"
+          maxLength={120}
+          editable={editable}
+          returnKeyType="done"
+        />
+      </Host>
+    </Pressable>
   );
 }
 
