@@ -99,6 +99,19 @@ public struct MealAPI: Sendable {
         return try result.receipt.validated(member: member, command: saved.command)
     }
 
+    public func replace(
+        token: String, member: VerifiedMember, week: MealWeekSnapshot,
+        meal: PlannedMeal, command: ReplaceMeal
+    ) async throws -> MealReplacementReceipt {
+        _ = try week.validated(household: member.householdId, week: week.weekStart)
+        _ = try command.validated(week: week, meal: meal)
+        let result = try await http.write(
+            "v1/meals/replace", token: token, household: member.householdId,
+            body: command, as: MealReplacementEnvelope.self)
+        guard result.version == 1 else { throw MealContractError.invalidReceipt }
+        return try result.receipt.validated(member: member, command: command)
+    }
+
     public func remove(
         token: String, member: VerifiedMember, week: MealWeekSnapshot,
         meal: PlannedMeal, command: RemoveMeal
