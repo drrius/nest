@@ -1,5 +1,5 @@
 import { Host } from "@expo/ui";
-import { Button, HStack, Menu } from "@expo/ui/swift-ui";
+import { Button, HStack, Label, Menu } from "@expo/ui/swift-ui";
 import { accessibilityLabel, frame, labelStyle } from "@expo/ui/swift-ui/modifiers";
 import { useRouter } from "expo-router";
 import { useColorScheme } from "react-native";
@@ -10,7 +10,7 @@ export function TodayMenus({ transfers, refresh }: { transfers: number; refresh:
   const router = useRouter(),
     colors = useQuiet(),
     scheme = useColorScheme();
-  const target = [frame({ minWidth: 44, minHeight: 44 }), labelStyle("iconOnly")];
+  const target = [frame({ minWidth: 44, minHeight: 44 })];
   return (
     <Host
       matchContents
@@ -19,8 +19,7 @@ export function TodayMenus({ transfers, refresh }: { transfers: number; refresh:
     >
       <HStack spacing={8}>
         <Menu
-          label="Add"
-          systemImage="plus"
+          label={<Label title="Add" systemImage="plus" modifiers={[labelStyle("iconOnly")]} />}
           modifiers={[...target, accessibilityLabel("Add to your household")]}
         >
           <Button
@@ -40,8 +39,7 @@ export function TodayMenus({ transfers, refresh }: { transfers: number; refresh:
           />
         </Menu>
         <Menu
-          label="More"
-          systemImage="ellipsis"
+          label={<Label title="More" systemImage="ellipsis" modifiers={[labelStyle("iconOnly")]} />}
           modifiers={[...target, accessibilityLabel("More household actions")]}
         >
           <Button

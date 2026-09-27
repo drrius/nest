@@ -1,5 +1,5 @@
 import { Host } from "@expo/ui";
-import { Button, Menu } from "@expo/ui/swift-ui";
+import { Button, Label, Menu } from "@expo/ui/swift-ui";
 import { accessibilityLabel, disabled, frame, labelStyle } from "@expo/ui/swift-ui/modifiers";
 import { useColorScheme } from "react-native";
 import { useQuiet } from "../theme";
@@ -15,13 +15,8 @@ export function ActionMenu({ label, actions }: ActionMenuProps) {
       seedColor={colors.accent}
     >
       <Menu
-        label="More"
-        systemImage="ellipsis"
-        modifiers={[
-          frame({ minWidth: 44, minHeight: 44 }),
-          accessibilityLabel(label),
-          labelStyle("iconOnly"),
-        ]}
+        label={<Label title="More" systemImage="ellipsis" modifiers={[labelStyle("iconOnly")]} />}
+        modifiers={[frame({ minWidth: 44, minHeight: 44 }), accessibilityLabel(label)]}
       >
         {actions.map((action) => (
           <Button
