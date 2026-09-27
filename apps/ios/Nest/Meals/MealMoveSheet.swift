@@ -31,8 +31,6 @@ struct MealMoveSheet: View {
             Form {
                 Section {
                     Text(context?.meal.title ?? target.meal.title).font(.headline)
-                    Text("Choose an empty slot. Your recipe stays with the meal.")
-                        .foregroundStyle(QuietPalette.muted)
                 }
                 Section("Move to") {
                     HStack {
@@ -63,6 +61,8 @@ struct MealMoveSheet: View {
                         ForEach(MealSlot.allCases, id: \.self) { Text($0.label).tag($0) }
                     }
                 }.disabled(saving)
+                Text("Your recipe stays with the meal.")
+                    .font(.footnote).foregroundStyle(QuietPalette.muted)
                 if let context {
                     if !valid(context) {
                         Text("Choose a different, empty meal slot.").foregroundStyle(QuietPalette.muted)
