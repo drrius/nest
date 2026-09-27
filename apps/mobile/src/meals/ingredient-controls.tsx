@@ -20,7 +20,8 @@ export function IngredientControls({
       </Note>
       <IngredientStatus view={view} />
       <Note>
-        {selected} selected · {view.ingredients.length} ingredients loaded
+        {selected} selected · {view.ingredients.length}{" "}
+        {view.ingredients.length === 1 ? "ingredient" : "ingredients"} loaded
       </Note>
       <SkippedIngredients skipped={view.skipped} />
       {pending ? (
@@ -47,7 +48,7 @@ export function IngredientControls({
             }}
           />
           <NativeAction
-            label={`Add ${selected} selected ingredients`}
+            label={`Add ${selected} selected ${selected === 1 ? "ingredient" : "ingredients"}`}
             disabled={view.busy || !view.fresh || selected === 0}
             onPress={() => confirm(runtime, view, selected)}
           />
@@ -62,7 +63,7 @@ function confirm(runtime: IngredientRuntime, view: IngredientView, count: number
   if (sequence === undefined) return;
   Alert.alert(
     "Add selected ingredients?",
-    `Add these ${count} ingredient rows to your shared grocery list using the quantities shown. Unselected pantry items stay out. Previously added sources will not be duplicated.`,
+    `Add ${count} ingredient ${count === 1 ? "row" : "rows"} to your shared grocery list using the quantities shown. Unselected pantry items stay out. Previously added sources will not be duplicated.`,
     [
       { text: "Cancel", style: "cancel" },
       {
@@ -82,8 +83,8 @@ function SkippedIngredients({ skipped }: { skipped: IngredientView["skipped"] })
       {leftovers ? <Note>{leftovers} leftover meals do not add another purchase.</Note> : null}
       {missing ? (
         <Note>
-          {missing} meals have no retained ingredient list. Check their details and add anything
-          needed manually in Groceries.
+          {missing} {missing === 1 ? "meal has" : "meals have"} no retained ingredient list. Check{" "}
+          {missing === 1 ? "its" : "their"} details and add anything needed manually in Groceries.
         </Note>
       ) : null}
     </>
