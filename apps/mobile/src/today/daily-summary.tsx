@@ -16,7 +16,7 @@ export function TodayDailySummary() {
     offline = useOfflineAccount();
   if (session.state.status !== "ready" || !session.notification) return null;
   return (
-    <Section title="Your saved daily summary">
+    <>
       {offline.state.status === "ready" ? (
         <SummaryOwner
           key={offline.state.account.session.lease}
@@ -34,7 +34,7 @@ export function TodayDailySummary() {
           ) : null}
         </>
       )}
-    </Section>
+    </>
   );
 }
 function SummaryOwner({
@@ -58,8 +58,9 @@ function Summary({ runtime, verify }: { runtime: SummaryReadRuntime; verify: () 
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   const colors = useQuiet();
   useSaveActivity(runtime);
+  if (view.loaded && !view.entry && !view.notice && !view.verify) return null;
   return (
-    <>
+    <Section title="Your daily summary">
       {!view.online ? <Note>Connect to find your saved summary.</Note> : null}
       {view.busy ? <Note>Loading your summary…</Note> : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
@@ -80,12 +81,14 @@ function Summary({ runtime, verify }: { runtime: SummaryReadRuntime; verify: () 
           </Link>
         </>
       ) : null}
-      <NativeAction
-        label="Refresh summary"
-        disabled={view.busy || !view.active || !view.online}
-        onPress={() => void runtime.refresh()}
-      />
+      {view.notice ? (
+        <NativeAction
+          label="Retry summary"
+          disabled={view.busy || !view.active || !view.online}
+          onPress={() => void runtime.refresh()}
+        />
+      ) : null}
       {view.verify ? <NativeAction label="Verify account" onPress={verify} /> : null}
-    </>
+    </Section>
   );
 }

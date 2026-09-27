@@ -3,7 +3,7 @@ import type { ChoreChoice } from "../chores/menu-types";
 import { useRef, type ReactNode } from "react";
 import type { ChoreData } from "../chores/flow";
 import { space, useQuiet } from "../theme";
-import { ActivityIndicator, Alert, FlatList, View } from "react-native";
+import { ActivityIndicator, Alert, FlatList, RefreshControl, View } from "react-native";
 import type { Chore } from "@nest/contracts/chores";
 import type { ChoreView } from "../chores/runtime";
 import { Card, Note, Section } from "./page";
@@ -68,7 +68,9 @@ export function DueChores({
   choose,
   editor,
   editing,
+  refresh,
 }: {
+  refresh?: () => void;
   view: ChoreView;
   choose: (choice: ChoreChoice) => void;
   editor: ReactNode;
@@ -95,6 +97,11 @@ export function DueChores({
   return (
     <FlatList
       ref={list}
+      refreshControl={
+        refresh ? (
+          <RefreshControl refreshing={view.syncing} onRefresh={refresh} tintColor={colors.accent} />
+        ) : undefined
+      }
       data={chores}
       keyExtractor={(chore) => chore.occurrenceId}
       contentInsetAdjustmentBehavior="automatic"
@@ -105,7 +112,7 @@ export function DueChores({
         <>
           {header}
           {editor}
-          <Section title="Due and overdue" />
+          <Section title="Around the house" />
         </>
       }
       ListFooterComponent={<>{footer}</>}

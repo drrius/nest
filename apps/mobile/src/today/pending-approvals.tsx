@@ -20,8 +20,7 @@ export function TodayPendingApprovals() {
     offline = useOfflineAccount();
   if (session.state.status !== "ready" || !session.money) return null;
   return (
-    <Section title="Your financial approvals">
-      <Note>Private to you. Open a proposal to review its details before deciding.</Note>
+    <>
       {offline.state.status === "ready" ? (
         <ApprovalOwner
           key={offline.state.account.session.lease}
@@ -39,7 +38,7 @@ export function TodayPendingApprovals() {
           ) : null}
         </>
       )}
-    </Section>
+    </>
   );
 }
 function ApprovalOwner({ account, client, verify }: MoneyScreenAccount) {
@@ -54,14 +53,18 @@ function ApprovalOwner({ account, client, verify }: MoneyScreenAccount) {
 function Approvals({ runtime, verify }: { runtime: PendingApprovalRuntime; verify: () => void }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
+  if (view.entry?.approvals.length === 0 && !view.after && !view.notice && !view.verify)
+    return null;
   return (
-    <>
+    <Section title="To confirm">
       <ApprovalRows view={view} />
-      <NativeAction
-        label="Refresh approvals"
-        disabled={view.busy || !view.active || !view.online}
-        onPress={() => void runtime.select(null)}
-      />
+      {view.notice ? (
+        <NativeAction
+          label="Retry approvals"
+          disabled={view.busy || !view.active || !view.online}
+          onPress={() => void runtime.select(null)}
+        />
+      ) : null}
       {view.verify ? <NativeAction label="Verify account" onPress={verify} /> : null}
       {view.entry?.next ? (
         <NativeAction
@@ -77,7 +80,7 @@ function Approvals({ runtime, verify }: { runtime: PendingApprovalRuntime; verif
           disabled={view.busy}
         />
       ) : null}
-    </>
+    </Section>
   );
 }
 

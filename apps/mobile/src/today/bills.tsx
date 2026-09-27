@@ -36,21 +36,22 @@ export function TodayBills({ date }: { date: string }) {
 function BillOwner(props: MoneyScreenAccount) {
   const runtime = useDueBills(props);
   return (
-    <Section title="Bills to confirm">
+    <>
       {runtime ? (
         <Bills runtime={runtime} verify={props.verify} />
       ) : (
         <Note>Loading due bills…</Note>
       )}
-    </Section>
+    </>
   );
 }
 function Bills({ runtime, verify }: { runtime: RecurringReadRuntime; verify: () => void }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
   const page = view.entry?.kind === "due-variable" ? view.entry.value : null;
+  if (page && !page.rules.length && !view.notice && !view.verify) return null;
   return (
-    <>
+    <Section title="Bills to confirm">
       <DueBillStatus view={view} runtime={runtime} verify={verify} />
       {page?.rules.slice(0, 3).map((rule) => (
         <DueBillRow key={rule.ruleId} rule={rule} />
@@ -58,6 +59,6 @@ function Bills({ runtime, verify }: { runtime: RecurringReadRuntime; verify: () 
       {page && !page.rules.length ? <Note>No variable bills awaiting confirmation.</Note> : null}
       {page && (page.rules.length > 3 || page.next) ? <Note>More bills await review.</Note> : null}
       <Link href="/due-bills">View all due bills</Link>
-    </>
+    </Section>
   );
 }

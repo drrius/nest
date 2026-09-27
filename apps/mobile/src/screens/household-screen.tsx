@@ -1,7 +1,9 @@
 import { TodayDailySummary } from "../today/daily-summary";
 import { TodayPendingApprovals } from "../today/pending-approvals";
 import { TodayRenewals } from "../today/renewals";
-import { TodayAddActions } from "../today/add-actions";
+import { TodayToolbar } from "../today/toolbar";
+import { TodayGroceries } from "../today/groceries";
+import { View } from "react-native";
 import { useChoreEditor } from "../chores/use-editor";
 import { currentHouseholdDay, useTodayClock } from "../today/use-today-clock";
 import { householdDate } from "@nest/domain/calendar";
@@ -9,7 +11,6 @@ import { TodayCalendar } from "../today/calendar";
 import { TodayBills } from "../today/bills";
 import { TodayMeals } from "../today/meals";
 import { useState } from "react";
-import { Link } from "expo-router";
 import { ChoreStatus, ChoreConflicts, DueChores } from "../components/chore-content";
 import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
@@ -18,7 +19,7 @@ import { useSession } from "../session/provider";
 import { useChores } from "../chores/use-chores";
 import type { ChoreClient } from "../chores/client";
 import type { Member } from "../session/contracts";
-import { useQuiet } from "../theme";
+import { space } from "../theme";
 
 export default function HouseholdScreen() {
   const session = useSession();
@@ -52,7 +53,6 @@ function HouseholdChores({
   const now = useTodayClock();
   const today = householdDate(new Date(now));
   const [everyone, setEveryone] = useState(false);
-  const colors = useQuiet();
   if (view.access === "verify")
     return (
       <Page>
@@ -69,13 +69,13 @@ function HouseholdChores({
       today={today}
       complete={(chore) => complete(chore, currentHouseholdDay())}
       header={
-        <>
-          <NativeAction
-            label={everyone ? "Everyone · Show me + shared" : "Me + shared · Show everyone"}
-            onPress={() => setEveryone(!everyone)}
+        <View style={{ gap: space.medium, paddingBottom: space.large }}>
+          <TodayToolbar
+            everyone={everyone}
+            select={setEveryone}
+            date={today}
+            transfers={view.data?.transfers?.transfers.length ?? 0}
           />
-          <TodayAddActions />
-          <HouseholdLinks count={view.data?.transfers?.transfers.length ?? 0} />
           <ChoreStatus view={view} />
           {view.changeStage === "uncertain" ? (
             <NativeAction
@@ -85,89 +85,21 @@ function HouseholdChores({
               }}
             />
           ) : null}
-          <Link
-            href="/settings"
-            style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-          >
-            Profile and settings
-          </Link>
-          <NativeAction label="Refresh and retry saved changes" onPress={refresh} />
           <ChoreConflicts view={view} discard={discard} />
-        </>
+        </View>
       }
+      refresh={refresh}
       footer={
-        <>
-          <TodayDailySummary />
+        <View style={{ gap: space.section, paddingTop: space.large }}>
+          <TodayMeals date={today} />
+          <TodayGroceries />
+          <TodayCalendar now={now} />
+          <TodayRenewals date={today} />
           <TodayPendingApprovals />
           <TodayBills date={today} />
-          <TodayRenewals date={today} />
-          <TodayMeals date={today} />
-          <TodayCalendar now={now} />
-          <Link href="/" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-            Household account
-          </Link>
-        </>
+          <TodayDailySummary />
+        </View>
       }
     />
-  );
-}
-
-function HouseholdLinks({ count }: { count: number }) {
-  const colors = useQuiet();
-  return (
-    <>
-      <Link href="/checklist" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Groceries
-      </Link>
-      <Link href="/assistant" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Private assistant
-      </Link>
-      <Link href="/meal-week" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Meals
-      </Link>
-      <Link href="/agenda" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Calendar
-      </Link>
-      <Link href="/finances" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Money
-      </Link>
-      <Link
-        href="/recurring-reminder"
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-      >
-        Review saved recurring reminder changes
-      </Link>
-      <Link
-        href="/grocery-reminder"
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-      >
-        Review saved grocery reminder changes
-      </Link>
-      <Link
-        href="/meal-reminder"
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-      >
-        Review saved meal reminder changes
-      </Link>
-      <Link
-        href="/chore-reminder"
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-      >
-        Review saved chore reminder changes
-      </Link>
-      <Link href="/renewals" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Manage renewals
-      </Link>
-      <Link href="/routines" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Manage chores
-      </Link>
-      <Link
-        href="/chore-transfers"
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-      >
-        Chore handovers
-        {count ? ` · ${count}` : ""}
-      </Link>
-    </>
   );
 }
