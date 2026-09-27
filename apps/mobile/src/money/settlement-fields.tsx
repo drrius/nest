@@ -1,6 +1,6 @@
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import DateTimePicker from "@expo/ui/community/datetime-picker";
-import { useColorScheme } from "react-native";
+import { useColorScheme, useWindowDimensions } from "react-native";
 import type { MoneyBalance } from "@nest/contracts/money";
 import { useQuiet } from "../theme";
 import { Note, Section } from "../components/page";
@@ -19,6 +19,7 @@ export function SettlementFields({
 }) {
   const colors = useQuiet(),
     scheme = useColorScheme(),
+    { fontScale } = useWindowDimensions(),
     pair = settlementBalance(balance);
   if (!pair) return <Note>Your household balance is settled. There is nothing to record.</Note>;
   return (
@@ -27,14 +28,14 @@ export function SettlementFields({
         {pair.payer.displayName} owes {pair.recipient.displayName} {formatChf(pair.outstanding)}.
       </Note>
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         seedColor={colors.accent}
         colorScheme={scheme === "dark" ? "dark" : "light"}
       >
         <Column spacing={12}>
           <Text>Description</Text>
           <TextInput value={draft.description} editable={!disabled} />
-          <Text>Amount to record</Text>
+          <Text>Amount</Text>
           <Picker selectedValue={draft.mode} onValueChange={draft.setMode} enabled={!disabled}>
             <Picker.Item label={`Full · ${formatChf(pair.outstanding)}`} value="full" />
             <Picker.Item label="Partial amount" value="partial" />
@@ -50,8 +51,15 @@ export function SettlementFields({
               />
             </>
           ) : null}
-          <Text>Note (optional)</Text>
-          <TextInput value={draft.note} multiline editable={!disabled} />
+          <Text>Note</Text>
+          <TextInput
+            value={draft.note}
+            multiline
+            numberOfLines={3}
+            placeholder="Optional"
+            style={{ height: Math.min(180, Math.max(96, 64 * fontScale)) }}
+            editable={!disabled}
+          />
         </Column>
       </Host>
       <Section title="Payment date">

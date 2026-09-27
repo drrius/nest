@@ -71,7 +71,7 @@ function EntryPage({
   const readingDisabled = !view.online || view.busy;
   return (
     <Page>
-      <Note>
+      <Note maxFontSizeMultiplier={1.6}>
         Record a payment already made outside Nest. This updates your household balance; Nest does
         not transfer money.
       </Note>
