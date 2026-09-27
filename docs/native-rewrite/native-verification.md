@@ -52,6 +52,10 @@ On the clean iPhone 17 Pro/iOS 26.3 development simulator, set `content_size` to
 
 Restored `content_size` to `large` and checked normal-sized Today, Meals and [Money](evidence/2026-09-27/nest-normal-money-after-type.png); the original compact layout remains. This is a targeted simulator visual/action check, not a full accessibility audit. VoiceOver traversal, Reduce Motion, all secondary screens, the owner's build7 and physical-device acceptance remain open. Build7 predates this correction.
 
+At normal text size, the same isolated simulator also showed coherent [Today](evidence/2026-09-27/nest-dark-today.png), [Meals](evidence/2026-09-27/nest-dark-meals.png), [Calendar](evidence/2026-09-27/nest-dark-calendar.png) and [Money](evidence/2026-09-27/nest-dark-money-current.png) in dark appearance, including the fictional local Calendar event and synthetic CHF history. Light appearance and `large` text were restored afterward. This is visual inspection of four tab views, not a measured audit of every state or a VoiceOver check.
+
+The light-theme muted text token was subsequently adjusted from `#717B73` to `#646E65`. Relative-luminance calculations for the specified color pairs changed from 4.22:1 to 5.10:1 on the off-white page, 4.39:1 to 5.30:1 on white cards, and 3.79:1 to 4.57:1 on the soft control color. Those now clear the [WCAG 2.2 minimum 4.5:1 benchmark for normal text](https://www.w3.org/TR/WCAG22/#contrast-minimum); the dark palette is unchanged. The cold-loaded [light welcome screen](evidence/2026-09-27/nest-light-contrast-welcome.png) was inspected at normal text size. This token change is later than build8's source snapshot and requires a subsequent binary to reach TestFlight.
+
 ## Original preview scope (historical)
 
 The first native shell is an explicitly labeled M1 interaction preview. No auth, backend, AI, financial posting or offline persistence is implemented by this preview. Production JS denies navigation to the preview routes with `Stack.Protected` and does not show its entry link. This is not a release candidate.

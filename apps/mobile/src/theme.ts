@@ -5,7 +5,7 @@ export const quiet = {
   surface: "#FFFFFF",
   onAccent: "#FAFBF7",
   text: "#273A31",
-  muted: "#717B73",
+  muted: "#646E65",
   accent: "#335D49",
   soft: "#EAF0E6",
   danger: "#9F3838",
