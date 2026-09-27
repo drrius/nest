@@ -17,10 +17,7 @@ export function MoneyBalanceCard({ centimes }: { centimes: string | undefined })
   return (
     <View
       style={{
-        backgroundColor: colors.soft,
-        borderRadius: 24,
-        borderCurve: "continuous",
-        padding: space.large,
+        paddingVertical: space.medium,
         gap: space.small,
       }}
     >
@@ -29,8 +26,8 @@ export function MoneyBalanceCard({ centimes }: { centimes: string | undefined })
         selectable
         style={{
           color: colors.text,
-          fontSize: 36,
-          fontWeight: "600",
+          fontSize: 40,
+          fontWeight: "500",
           fontVariant: ["tabular-nums"],
         }}
       >

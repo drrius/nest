@@ -89,6 +89,7 @@ function QuickAdd({
             />
           </Host>
           <NativeAction
+            variant="primary"
             label={view.working ? "Working…" : "Add online"}
             disabled={!view.loaded || view.working}
             onPress={submit}
@@ -97,9 +98,16 @@ function QuickAdd({
       )}
       {error ? <Note>{error}</Note> : null}
       {view.error ? <Note>{view.error}</Note> : null}
-      <Link href="/grocery-edit" style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}>
-        {view.pending ? "Review previous save" : "Add with quantity or category"}
-      </Link>
+      <GroceryDetailsLink pending={Boolean(view.pending)} />
     </Card>
+  );
+}
+
+function GroceryDetailsLink({ pending }: { pending: boolean }) {
+  const colors = useQuiet();
+  return (
+    <Link href="/grocery-edit" style={{ color: colors.accent, fontSize: 17, paddingVertical: 12 }}>
+      {pending ? "Review previous save" : "Add with quantity or category"}
+    </Link>
   );
 }

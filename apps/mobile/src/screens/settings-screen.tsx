@@ -1,8 +1,9 @@
 import { useRouter } from "expo-router";
 import { useSession } from "../session/provider";
-import { Page, Card, Section, Note } from "../components/page";
-import { NativeAction } from "../components/native-action";
+import { Page, Section, Note } from "../components/page";
+import { NavigationRow } from "../components/navigation-row";
 import { SignInCard } from "../components/sign-in-card";
+
 export default function SettingsScreen() {
   const session = useSession(),
     router = useRouter();
@@ -14,45 +15,40 @@ export default function SettingsScreen() {
     );
   return (
     <Page>
-      <NativeAction label="Continue your setup" onPress={() => router.push("/setup")} />
-      <Card>
-        <Section title="Personal" />
-        <Note>Your dietary preferences, optional calorie goal and portions.</Note>
-        <NativeAction
-          label="Your food preferences"
+      <Note>{session.state.member.displayName} · Your personal choices</Note>
+      <Section title="For you">
+        <NavigationRow
+          title="Food preferences"
+          detail="Dietary needs, portions and optional calorie goal"
           onPress={() => router.push("/food-preferences")}
         />
-      </Card>
-      <Card>
-        <Section title="Notifications" />
-        <Note>Choose your daily summary and whether to receive item reminders.</Note>
-        <NativeAction
-          label="Your notification preferences"
+        <NavigationRow
+          title="Notifications"
+          detail="Daily summary and item reminders"
           onPress={() => router.push("/notification-preferences")}
         />
-      </Card>
-      <Card>
-        <Section title="Calendar" />
-        <Note>Choose calendars on this iPhone and opt in to share busy times.</Note>
-        <NativeAction
-          label="Calendar access and sharing"
+        <NavigationRow
+          title="Calendar access & sharing"
+          detail="Choose calendars and share busy times"
           onPress={() => router.push("/calendar-sharing")}
         />
-      </Card>
-      <Card>
-        <Section title="Private memory" />
-        <Note>Review and confirm what Nest may remember for you.</Note>
-        <NativeAction label="Manage private memory" onPress={() => router.push("/memory")} />
-      </Card>
-      <Card>
-        <Section title="Household" />
-        <Note>Cooking choices and meal slots shared with your partner.</Note>
-        <NativeAction
-          label="Cooking preferences"
+        <NavigationRow
+          title="Private memory"
+          detail="What you choose to let Nest remember"
+          onPress={() => router.push("/memory")}
+        />
+      </Section>
+      <Section title="Together">
+        <NavigationRow
+          title="Cooking preferences"
+          detail="Household choices and meal slots"
           onPress={() => router.push("/cooking-preferences")}
         />
-      </Card>
-      <NativeAction label="Household account" onPress={() => router.push("/")} />
+      </Section>
+      <Section title="Account">
+        <NavigationRow title="Continue setup" onPress={() => router.push("/setup")} />
+        <NavigationRow title="Household account" onPress={() => router.push("/")} />
+      </Section>
     </Page>
   );
 }

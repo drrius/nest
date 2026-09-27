@@ -56,6 +56,7 @@ export function ExpenseFields(props: Props) {
       <ExpenseOptionalDetails {...props} />
       {draft.error ? <Note>{draft.error}</Note> : null}
       <NativeAction
+        variant="primary"
         label={props.reviewLabel ?? "Review and record expense"}
         disabled={disabled}
         onPress={draft.submit}

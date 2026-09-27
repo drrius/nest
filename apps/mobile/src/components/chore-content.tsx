@@ -100,15 +100,15 @@ export function DueChores({
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
       style={{ flex: 1, backgroundColor: colors.background }}
-      contentContainerStyle={{ padding: space.large, gap: space.medium, paddingBottom: 48 }}
+      contentContainerStyle={{ padding: space.large, paddingBottom: 48 }}
       ListHeaderComponent={
-        <>
+        <View style={{ gap: space.large, paddingBottom: space.medium }}>
           {header}
           {editor}
           <Section title="Around the house" />
-        </>
+        </View>
       }
-      ListFooterComponent={<>{footer}</>}
+      ListFooterComponent={<View style={{ paddingTop: space.large }}>{footer}</View>}
       ListEmptyComponent={
         <Note>
           {view.data?.loaded ? "No chores due for this view." : "Your chores have not loaded yet."}
@@ -144,8 +144,9 @@ function ChoreItem({
   complete: (chore: Chore) => void;
 }) {
   const blocked = view.changeStage !== "ready" || editing;
+  const colors = useQuiet();
   return (
-    <Card>
+    <View style={{ borderBottomWidth: 1, borderBottomColor: colors.border }}>
       <View style={{ flexDirection: "row", alignItems: "center", gap: space.small }}>
         <ChoreRow chore={item} actor={actor} onComplete={() => complete(item)} disabled={blocked} />
         <ChoreMenu
@@ -161,6 +162,6 @@ function ChoreItem({
           disabled={blocked || item.done || item.pending || view.stale || view.syncing}
         />
       </View>
-    </Card>
+    </View>
   );
 }

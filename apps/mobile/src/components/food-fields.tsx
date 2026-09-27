@@ -68,6 +68,7 @@ export function FoodFields({ runtime, view }: { runtime: FoodRuntime; view: Food
       </Host>
       {draft.error ? <Note>{draft.error}</Note> : null}
       <NativeAction
+        variant="primary"
         label={view.busy ? "Working…" : "Save online"}
         disabled={!editable}
         onPress={draft.submit}

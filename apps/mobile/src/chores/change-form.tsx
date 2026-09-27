@@ -47,6 +47,7 @@ export function ChoreChangeForm({
         </>
       ) : null}
       <NativeAction
+        variant="primary"
         label={
           checking
             ? "Checking calendar…"
@@ -60,7 +61,7 @@ export function ChoreChangeForm({
           else submit();
         }}
       />
-      <NativeAction label="Cancel" disabled={locked} onPress={dismiss} />
+      <NativeAction variant="quiet" label="Cancel" disabled={locked} onPress={dismiss} />
     </Card>
   );
 }

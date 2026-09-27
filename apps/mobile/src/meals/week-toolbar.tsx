@@ -18,10 +18,13 @@ export function WeekToolbar({
     <View
       style={{ flexDirection: "row", flexWrap: "wrap", gap: space.small, alignItems: "center" }}
     >
-      <NativeAction
-        label="Plan the week with AI"
-        onPress={() => router.push({ pathname: "/meal-proposal", params: { weekStart } })}
-      />
+      <View style={{ flex: 1, minWidth: 200 }}>
+        <NativeAction
+          variant="primary"
+          label="Plan the week with AI"
+          onPress={() => router.push({ pathname: "/meal-proposal", params: { weekStart } })}
+        />
+      </View>
       <ActionMenu
         label="More meal planning actions"
         actions={[

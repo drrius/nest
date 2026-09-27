@@ -4,7 +4,7 @@ import { useSession } from "../session/provider";
 import { setupOwner } from "../setup/owner";
 import type { SetupClient } from "../setup/client";
 import type { SetupRuntime } from "../setup/runtime";
-import { Page, Note, Card, Section } from "../components/page";
+import { Page, Note, Section } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { SetupChoices } from "../components/setup-choices";
 import { SignInCard } from "../components/sign-in-card";
@@ -48,8 +48,8 @@ function SetupContent({ runtime, verify }: { runtime: SetupRuntime; verify: () =
     <Page>
       <Section title="At your own pace">
         <Note>
-          Set up everything here, or start quickly and return when you need a feature. You and your
-          partner make your own personal choices. Optional setup never blocks Today.
+          A few choices help Nest fit your household. You and your partner can set these up
+          separately, now or whenever you need them.
         </Note>
       </Section>
       {view.error ? <Note>{view.error}</Note> : null}
@@ -60,19 +60,18 @@ function SetupContent({ runtime, verify }: { runtime: SetupRuntime; verify: () =
         <SetupChoices status={view.status} />
       )}
       <NativeAction
+        variant="quiet"
         label="Refresh setup status"
         disabled={view.busy}
         onPress={() => {
           void runtime.load();
         }}
       />
-      <Card>
-        <Section title="Start with today" />
-        <Note>
-          Keep your current choices and come back through Profile and settings whenever you like.
-        </Note>
-        <NativeAction label="Start quickly" onPress={() => router.push("/household")} />
-      </Card>
+      <NativeAction
+        variant="primary"
+        label="Go to Today"
+        onPress={() => router.push("/household")}
+      />
     </Page>
   );
 }

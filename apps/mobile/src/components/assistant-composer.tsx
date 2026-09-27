@@ -68,6 +68,7 @@ export function AssistantComposer({
         />
       </Host>
       <NativeAction
+        variant="primary"
         label={view.busy ? "Working…" : "Send"}
         disabled={blocked || !dirty}
         onPress={send}

@@ -1,13 +1,30 @@
-import { Note, Page, Section } from "../components/page";
+import { ScrollView, Text, View } from "react-native";
 import { SignInCard } from "../components/sign-in-card";
+import { space, type, useQuiet } from "../theme";
 
 export default function WelcomeScreen() {
+  const colors = useQuiet();
   return (
-    <Page>
-      <Section title="A little less to remember.">
-        <Note>One place for your household’s day, meals and shared expenses.</Note>
-      </Section>
-      <SignInCard />
-    </Page>
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      style={{ flex: 1, backgroundColor: colors.background }}
+      contentContainerStyle={{
+        flexGrow: 1,
+        padding: space.large,
+        paddingTop: 48,
+        paddingBottom: 48,
+        gap: 48,
+      }}
+    >
+      <View style={{ gap: space.medium }}>
+        <Text accessibilityRole="header" style={{ ...type.display, color: colors.text }}>
+          A little less{"\n"}to remember.
+        </Text>
+        <Text style={{ ...type.body, color: colors.muted }}>
+          Your day, meals and shared expenses. A little more settled, together.
+        </Text>
+      </View>
+      <SignInCard welcome />
+    </ScrollView>
   );
 }

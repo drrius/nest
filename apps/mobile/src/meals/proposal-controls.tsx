@@ -71,6 +71,7 @@ function GenerateControl({ runtime, view }: { runtime: MealProposalRuntime; view
           : "Prefer saved recipes and include new suggestions."}
       </Note>
       <NativeAction
+        variant="primary"
         label="Generate preview"
         disabled={view.busy || !view.fresh}
         onPress={() => {
@@ -106,6 +107,7 @@ function ProposalActions({ runtime, view }: { runtime: MealProposalRuntime; view
   return (
     <>
       <NativeAction
+        variant="quiet"
         label="Refresh proposal"
         disabled={view.busy}
         onPress={() => {
@@ -171,6 +173,7 @@ function ApproveAction({ runtime, view }: { runtime: MealProposalRuntime; view: 
   if (proposal?.status !== "ready") return null;
   return (
     <NativeAction
+      variant="primary"
       label="Approve this plan"
       disabled={view.busy || !view.fresh}
       onPress={() => {
@@ -196,6 +199,7 @@ function DiscardAction({ runtime, view }: { runtime: MealProposalRuntime; view: 
   if (!proposal) return null;
   return (
     <NativeAction
+      variant="quiet"
       label="Discard proposal"
       disabled={view.busy || !view.fresh}
       onPress={() => {

@@ -39,6 +39,7 @@ function Navigation() {
       screenOptions={{
         headerStyle: { backgroundColor: colors.background },
         headerTintColor: colors.text,
+        headerShadowVisible: false,
         contentStyle: { backgroundColor: colors.background },
       }}
     >

@@ -76,12 +76,14 @@ export function GroceryList({ view, refresh, check, discard, add }: GroceryListP
           <GroceryHeader view={view} add={add} refresh={refresh} discard={discard}>
             {grouped || items.some((item) => item.categoryName) ? (
               <NativeAction
+                variant="quiet"
                 label={grouped ? "Show simple list" : "Group by category"}
                 onPress={() => setGrouped((value) => !value)}
               />
             ) : null}
             {hidden > 0 ? (
               <NativeAction
+                variant="quiet"
                 label={showChecked ? "Hide checked" : `Show checked (${hidden})`}
                 onPress={() => setShowChecked((value) => !value)}
               />
@@ -125,7 +127,7 @@ function GroceryHeader({
       <Section title="For the next shop" />
       {add}
       <GroceryStatus view={view} />
-      <NativeAction label="Refresh and retry saved checks" onPress={refresh} />
+      <NativeAction variant="quiet" label="Refresh and retry saved checks" onPress={refresh} />
       <GroceryConflicts view={view} discard={discard} />
       {children}
     </View>

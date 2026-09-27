@@ -1,31 +1,32 @@
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import * as Apple from "expo-apple-authentication";
-import { ActivityIndicator, Text, useColorScheme } from "react-native";
+import { ActivityIndicator, Text, View, useColorScheme } from "react-native";
 import { Card, Note } from "./page";
 import { NativeAction } from "./native-action";
 import { useSession } from "../session/provider";
-import { useQuiet } from "../theme";
+import { space, type, useQuiet } from "../theme";
 
-export function SignInCard() {
+export function SignInCard({ welcome = false }: { welcome?: boolean }) {
   const session = useSession();
   const colors = useQuiet();
   const dark = useColorScheme() === "dark";
+  const Container = welcome ? WelcomeContent : Card;
   if (!session.configured)
     return (
-      <Card>
+      <Container>
         <Note>This development build needs its household connection configured.</Note>
-      </Card>
+      </Container>
     );
-  if (session.state.status === "logout_pending") return <LogoutCard />;
-  if (session.working || session.state.status === "loading")
+  if (session.state.status === "logout_pending") return <LogoutCard welcome={welcome} />;
+  if (isConnecting(session.working, session.state.status))
     return (
-      <Card>
+      <Container>
         <ActivityIndicator accessibilityLabel="Connecting to your household" />
         <Note>Connecting…</Note>
-      </Card>
+      </Container>
     );
   return (
-    <Card>
+    <Container>
       {session.state.status === "ready" ? (
         <ReadySession />
       ) : session.state.status === "signed_out" ? (
@@ -45,13 +46,9 @@ export function SignInCard() {
         </>
       ) : (
         <>
-          <Note>
-            {session.state.status === "not_a_member"
-              ? "This Apple account is not linked to your household. Use your existing account, or ask for verified account recovery."
-              : "Your household could not be verified. Check your connection and try again."}
-          </Note>
+          <Note>{membershipMessage(session.state.status)}</Note>
           <NativeAction label="Try again" onPress={session.retry} />
-          <NativeAction label="Sign out" onPress={session.signOut} />
+          <NativeAction label="Sign out" variant="quiet" onPress={session.signOut} />
         </>
       )}
       {session.error ? (
@@ -59,15 +56,30 @@ export function SignInCard() {
           {session.error}
         </Text>
       ) : null}
-    </Card>
+    </Container>
   );
 }
 
-function LogoutCard() {
+function membershipMessage(status: string) {
+  return status === "not_a_member"
+    ? "This Apple account is not linked to your household. Use your existing account, or ask for verified account recovery."
+    : "Your household could not be verified. Check your connection and try again.";
+}
+
+function isConnecting(working: boolean, status: string) {
+  return working || status === "loading";
+}
+
+function WelcomeContent({ children }: { children: React.ReactNode }) {
+  return <View style={{ gap: space.large }}>{children}</View>;
+}
+
+function LogoutCard({ welcome }: { welcome: boolean }) {
   const { working, signOut, recoverSignOut } = useSession();
   const dark = useColorScheme() === "dark";
+  const Container = welcome ? WelcomeContent : Card;
   return (
-    <Card>
+    <Container>
       <Note>
         {working
           ? "Signing out…"
@@ -95,31 +107,40 @@ function LogoutCard() {
           />
         </>
       )}
-    </Card>
+    </Container>
   );
 }
 
 function ReadySession() {
   const session = useSession();
   const colors = useQuiet();
+  const router = useRouter();
   if (session.state.status !== "ready") return null;
   return (
-    <>
-      <Text style={{ color: colors.text, fontSize: 20 }}>
-        Welcome, {session.state.member.displayName}.
-      </Text>
-      <Note>
-        {session.state.offline
-          ? "Showing your last verified household. Reconnect to refresh access."
-          : "Your household identity is verified."}
-      </Note>
-      <Link href="/household" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Start quickly
-      </Link>
-      <Link href="/setup" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Set up everything
-      </Link>
-      <NativeAction label="Sign out" onPress={session.signOut} />
-    </>
+    <View style={{ gap: space.large }}>
+      <View style={{ gap: space.small }}>
+        <Text style={{ ...type.title, color: colors.text }}>
+          Welcome, {session.state.member.displayName}.
+        </Text>
+        <Note>
+          {session.state.offline
+            ? "You’re offline. You can still open your saved household."
+            : "Start with today. You can make Nest your own as you go."}
+        </Note>
+      </View>
+      <View style={{ gap: space.small }}>
+        <NativeAction
+          variant="primary"
+          label="Get started"
+          onPress={() => router.push("/household")}
+        />
+        <NativeAction
+          label="Set up everything"
+          variant="secondary"
+          onPress={() => router.push("/setup")}
+        />
+      </View>
+      <NativeAction label="Sign out" variant="quiet" onPress={session.signOut} />
+    </View>
   );
 }

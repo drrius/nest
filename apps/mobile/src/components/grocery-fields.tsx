@@ -65,6 +65,7 @@ export function GroceryFields({
       </Host>
       {error ? <Note>{error}</Note> : null}
       <NativeAction
+        variant="primary"
         label={item ? "Save online" : "Add online"}
         disabled={working}
         onPress={submit}
@@ -92,6 +93,7 @@ function RemoveGrocery({
     );
   return (
     <NativeAction
+      variant="quiet"
       label="Remove grocery"
       disabled={working}
       onPress={() =>

@@ -31,8 +31,20 @@ export function MoneyHeader({
       <MoneyBalanceCard centimes={own?.centimes} />
       <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} compact />
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: space.medium }}>
-        <NativeAction label="Add expense" onPress={() => router.push("/expense-entry")} />
-        <NativeAction label="Settle up" onPress={() => router.push("/settlement-entry")} />
+        <View style={{ flex: 1, minWidth: 120 }}>
+          <NativeAction
+            variant="primary"
+            label="Add expense"
+            onPress={() => router.push("/expense-entry")}
+          />
+        </View>
+        <View style={{ flex: 1, minWidth: 120 }}>
+          <NativeAction
+            variant="secondary"
+            label="Settle up"
+            onPress={() => router.push("/settlement-entry")}
+          />
+        </View>
         <ActionMenu
           label="More money actions"
           actions={[
