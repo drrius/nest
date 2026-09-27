@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { Host } from "@expo/ui";
-import { Button, Menu } from "@expo/ui/swift-ui";
-import { accessibilityLabel, disabled, frame } from "@expo/ui/swift-ui/modifiers";
+import { Button, Label, Menu } from "@expo/ui/swift-ui";
+import { accessibilityLabel, disabled, frame, labelStyle } from "@expo/ui/swift-ui/modifiers";
 import { useColorScheme } from "react-native";
 import { useQuiet } from "../theme";
 import type { ChoreMenuProps } from "./menu-types";
@@ -17,8 +17,7 @@ export function ChoreMenu(props: ChoreMenuProps) {
       seedColor={colors.accent}
     >
       <Menu
-        label="More"
-        systemImage="ellipsis.circle"
+        label={<Label title="More" systemImage="ellipsis" modifiers={[labelStyle("iconOnly")]} />}
         modifiers={[
           disabled(props.disabled),
           frame({ minWidth: 44, minHeight: 44 }),

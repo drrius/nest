@@ -17,8 +17,7 @@ export function AgendaControls({
   view: AgendaView;
   choose: () => void;
 }) {
-  const router = useRouter(),
-    window = agendaDay(view.date);
+  const router = useRouter();
   const move = (direction: -1 | 1) => {
     const date = adjacentDay(view.date, direction);
     if (date) router.setParams({ date });
@@ -29,18 +28,7 @@ export function AgendaControls({
       <View
         style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: space.medium }}
       >
-        {process.env.EXPO_OS === "ios" && window ? (
-          <DateTimePicker
-            value={new Date(window.start)}
-            mode="date"
-            disabled={view.busy}
-            onChange={(_event, date) => {
-              if (date) router.setParams({ date: localDate(date) });
-            }}
-          />
-        ) : (
-          <Note>{view.date}</Note>
-        )}
+        <AgendaDate view={view} />
         <ActionMenu
           label="Calendar actions"
           actions={[
@@ -86,6 +74,22 @@ export function AgendaControls({
       </View>
       <AgendaStatus runtime={runtime} view={view} />
     </View>
+  );
+}
+function AgendaDate({ view }: { view: AgendaView }) {
+  const router = useRouter();
+  const window = agendaDay(view.date);
+  if (process.env.EXPO_OS !== "ios" || !window) return <Note>{view.date}</Note>;
+  return (
+    <DateTimePicker
+      style={{ flexGrow: 1, flexBasis: 200, minHeight: 44 }}
+      value={new Date(window.start)}
+      mode="date"
+      disabled={view.busy}
+      onChange={(_event, date) => {
+        if (date) router.setParams({ date: localDate(date) });
+      }}
+    />
   );
 }
 function AgendaStatus({ runtime, view }: { runtime: AgendaRuntime; view: AgendaView }) {

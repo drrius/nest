@@ -48,11 +48,14 @@ export function TabStack({ title, route }: { title: string; route: string }) {
     <Stack
       screenOptions={{
         headerLargeTitleEnabled: true,
+        headerLargeTitleStyle: { color: colors.text },
         headerShadowVisible: false,
-        headerStyle: { backgroundColor: colors.background },
+        headerTransparent: true,
+        headerLargeStyle: { backgroundColor: "transparent" },
+        headerLargeTitleShadowVisible: false,
         headerTintColor: colors.text,
         contentStyle: { backgroundColor: colors.background },
-        headerRight: HeaderActions,
+        headerRight: () => <HeaderActions />,
       }}
     >
       <Stack.Screen name={route} options={{ title }} />
