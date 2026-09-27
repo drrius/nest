@@ -51,7 +51,7 @@ export function MealPlacementForm({
         </Note>
       )}
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         colorScheme={scheme === "dark" ? "dark" : "light"}
         seedColor={colors.accent}
       >
