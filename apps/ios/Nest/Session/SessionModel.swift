@@ -37,7 +37,7 @@ final class SessionModel: ObservableObject {
             let configuration = try NestConfiguration.fromBundle()
             let http = try NestHTTP(baseURL: configuration.apiURL)
             let store = try ChoreOfflineStore.application(environment: configuration.supabaseURL)
-            auth = NestAuth(configuration: configuration)
+            auth = try NestAuth(configuration: configuration)
             chores = ChoreAPI(http: http)
             offline = store
         } catch is NestConfigurationError {

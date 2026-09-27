@@ -1,4 +1,3 @@
-import CryptoKit
 import Foundation
 
 struct OfflineLease: Equatable, Sendable {
@@ -40,16 +39,11 @@ actor ChoreOfflineStore {
     }
 
     static func application(environment: URL) throws -> ChoreOfflineStore {
-        guard environment.scheme == "https", let host = environment.host else {
-            throw OfflineFailure.storage
-        }
+        let scope = try NestEnvironmentScope(url: environment)
         let directory = try FileManager.default.url(
             for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true
         )
-        let origin = "https://\(host.lowercased()):\(environment.port ?? 443)"
-        let fingerprint = SHA256.hash(data: Data(origin.utf8))
-            .map { String(format: "%02x", $0) }.joined()
-        let url = directory.appending(path: "nest-offline-\(fingerprint).sqlite")
+        let url = directory.appending(path: "nest-offline-\(scope.fingerprint).sqlite")
         #if os(iOS)
             try FileManager.default.setAttributes(
                 [.protectionKey: FileProtectionType.complete], ofItemAtPath: directory.path)

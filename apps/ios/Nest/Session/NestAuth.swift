@@ -6,10 +6,10 @@ struct NestAuth: NestAuthentication {
     private let storage: SecureAuthStorage
     private let storageKey: String
 
-    init(configuration: NestConfiguration) {
-        let host = configuration.supabaseURL.host ?? "invalid"
-        let key = "nest.auth.\(host)"
-        let localStorage = SecureAuthStorage(service: "ch.drrius.nest.auth.\(host)")
+    init(configuration: NestConfiguration) throws {
+        let scope = try NestEnvironmentScope(url: configuration.supabaseURL)
+        let key = "nest.auth.\(scope.fingerprint)"
+        let localStorage = SecureAuthStorage(service: "ch.drrius.nest.auth.\(scope.fingerprint)")
         storageKey = key
         storage = localStorage
         client = AuthClient(
