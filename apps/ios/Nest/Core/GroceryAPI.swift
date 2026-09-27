@@ -54,4 +54,14 @@ public struct GroceryAPI: Sendable {
         )
         return try response.validated(household: member.householdId, item: item, command: command)
     }
+
+    public func remove(
+        token: String, member: VerifiedMember, item: GroceryItem, command: RemoveGrocery
+    ) async throws -> GroceryWriteReceipt {
+        let response = try await http.write(
+            "v1/groceries/remove", token: token, household: member.householdId,
+            body: command, as: GroceryRemoveEnvelope.self
+        )
+        return try response.validated(household: member.householdId, item: item, command: command)
+    }
 }

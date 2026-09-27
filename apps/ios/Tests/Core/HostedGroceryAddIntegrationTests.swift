@@ -3,18 +3,6 @@ import XCTest
 
 @testable import NestCore
 
-private struct RemoveTestGrocery: Encodable {
-    let operationId: UUID
-    let itemId: UUID
-    let expectedVersion: String
-}
-
-private struct RemoveTestEnvelope: Decodable {
-    let version: Int
-    let householdId: UUID
-    let receipt: GroceryWriteReceipt
-}
-
 final class HostedGroceryAddIntegrationTests: XCTestCase {
     func testIsolatedHostedAddEditReplayOutsiderDenialAndCleanup() async throws {
         let environment = ProcessInfo.processInfo.environment
@@ -66,11 +54,13 @@ final class HostedGroceryAddIntegrationTests: XCTestCase {
                 updatedList.groceries.first { $0.id == command.itemId }?.name,
                 "Nest SwiftUI fictional edited test")
             try await removeFixture(
-                command.itemId, http: http, api: api, token: memberToken, member: member)
+                command.itemId, api: api, token: memberToken,
+                outsiderToken: outsiderToken, member: member)
         } catch {
             _ = try? await api.add(token: memberToken, member: member, command: command)
             try? await removeFixture(
-                command.itemId, http: http, api: api, token: memberToken, member: member)
+                command.itemId, api: api, token: memberToken,
+                outsiderToken: outsiderToken, member: member)
             XCTFail("Hosted add or cleanup failed for fictional item \(command.itemId): \(error)")
             throw error
         }
@@ -82,21 +72,22 @@ final class HostedGroceryAddIntegrationTests: XCTestCase {
     }
 
     private func removeFixture(
-        _ item: UUID, http: NestHTTP, api: GroceryAPI,
-        token: String, member: VerifiedMember
+        _ item: UUID, api: GroceryAPI, token: String,
+        outsiderToken: String, member: VerifiedMember
     ) async throws {
         let list = try await api.list(token: token, member: member)
         guard let current = list.groceries.first(where: { $0.id == item }) else { return }
-        let command = RemoveTestGrocery(
-            operationId: UUID(), itemId: item, expectedVersion: current.version)
-        let result = try await http.write(
-            "v1/groceries/remove", token: token, household: member.householdId,
-            body: command, as: RemoveTestEnvelope.self)
-        XCTAssertEqual(result.version, 1)
-        XCTAssertEqual(result.householdId, member.householdId)
-        XCTAssertEqual(result.receipt.operation, command.operationId)
-        XCTAssertEqual(result.receipt.target, item)
-        XCTAssertTrue(result.receipt.removed)
+        let command = RemoveGrocery(item: current, operationId: UUID())
+        do {
+            _ = try await api.remove(
+                token: outsiderToken, member: member, item: current, command: command)
+            XCTFail("Outsider removed another household's grocery")
+        } catch {
+            XCTAssertTrue((error as? NestAPIFailure) == .notMember || (error as? NestAPIFailure) == .forbidden)
+        }
+        let result = try await api.remove(token: token, member: member, item: current, command: command)
+        let replay = try await api.remove(token: token, member: member, item: current, command: command)
+        XCTAssertEqual(replay, result)
         let after = try await api.list(token: token, member: member)
         XCTAssertFalse(after.groceries.contains { $0.id == item })
     }

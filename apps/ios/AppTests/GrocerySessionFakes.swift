@@ -16,6 +16,10 @@ actor FakeGroceryServer {
     private var edited: EditGrocery?
     private var editAttempts: [UUID] = []
     private var rejectNextEdit = false
+    private var loseNextRemoveResponse = false
+    private var removed: RemoveGrocery?
+    private var removeAttempts: [UUID] = []
+    private var rejectNextRemove = false
     private var pauseA = false
     private var aWaiting = false
     private var aStarted: CheckedContinuation<Void, Never>?
@@ -34,6 +38,9 @@ actor FakeGroceryServer {
     func loseNextEdit() { loseNextEditResponse = true }
     func editOperations() -> [UUID] { editAttempts }
     func rejectEdit() { rejectNextEdit = true }
+    func loseNextRemove() { loseNextRemoveResponse = true }
+    func removeOperations() -> [UUID] { removeAttempts }
+    func rejectRemove() { rejectNextRemove = true }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -54,6 +61,7 @@ actor FakeGroceryServer {
         if request.url?.path == "/v1/groceries/check" { return try check(request, actor: actor) }
         if request.url?.path == "/v1/groceries/add" { return try add(request) }
         if request.url?.path == "/v1/groceries/edit" { return try edit(request) }
+        if request.url?.path == "/v1/groceries/remove" { return try remove(request) }
         if actor == actorA && pauseA {
             aWaiting = true
             aStarted?.resume()
@@ -109,6 +117,25 @@ actor FakeGroceryServer {
         return answer(request, data: Data(body.utf8))
     }
 
+    private func remove(_ request: URLRequest) throws -> (Data, URLResponse) {
+        let command = try JSONDecoder().decode(RemoveGrocery.self, from: request.httpBody ?? Data())
+        removeAttempts.append(command.operationId)
+        if rejectNextRemove {
+            rejectNextRemove = false
+            return answer(request, data: Data("{\"error\":{\"code\":\"conflict\"}}".utf8), status: 409)
+        }
+        if let removed, removed != command { throw NestAPIFailure.invalid }
+        removed = command
+        if loseNextRemoveResponse {
+            loseNextRemoveResponse = false
+            throw URLError(.networkConnectionLost)
+        }
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(command.operationId)","target":"\(command.itemId)","version":"43","checked":false,"removed":true}}
+            """
+        return answer(request, data: Data(body.utf8))
+    }
+
     private func list(for actor: UUID) -> String {
         let isA = actor == actorA
         let checked = isA && checkedA
@@ -118,8 +145,14 @@ actor FakeGroceryServer {
             added.map { command in
                 ",{\"itemId\":\"\(command.itemId)\",\"name\":\"\(command.name)\",\"quantity\":null,\"unit\":null,\"categoryId\":null,\"categoryName\":null,\"version\":\"1\",\"checked\":false,\"legacyClaimed\":false,\"offlineEpoch\":\"\(epoch)\",\"mealSource\":null}"
             } ?? ""
+        let originalRow =
+            isA && removed?.itemId == actorA
+            ? ""
+            : "{\"itemId\":\"\(actor)\",\"name\":\"\(name)\",\"quantity\":null,\"unit\":null,\"categoryId\":null,\"categoryName\":null,\"version\":\"\(version)\",\"checked\":\(checked),\"legacyClaimed\":false,\"offlineEpoch\":\"\(epoch)\",\"mealSource\":null}"
+        let addedValue = addedRow.isEmpty ? "" : String(addedRow.dropFirst())
+        let rows = [originalRow, addedValue].filter { !$0.isEmpty }.joined(separator: ",")
         return """
-            {"version":1,"householdId":"\(household)","groceries":[{"itemId":"\(actor)","name":"\(name)","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"\(version)","checked":\(checked),"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}\(addedRow)]}
+            {"version":1,"householdId":"\(household)","groceries":[\(rows)]}
             """
     }
 

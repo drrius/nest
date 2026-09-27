@@ -30,6 +30,9 @@ extension ChoreOfflineStore {
         try authorize(lease)
         _ = try command.validated(against: item)
         guard try readGroceryEdit(lease) == nil else { throw OfflineFailure.alreadyQueued }
+        guard try readGroceryRemove(lease)?.item.id != item.id else {
+            throw OfflineFailure.alreadyQueued
+        }
         guard let snapshot = try readGroceries(lease),
             snapshot.snapshot.groceries.contains(item),
             snapshot.items.first(where: { $0.id == item.id })?.state == .open

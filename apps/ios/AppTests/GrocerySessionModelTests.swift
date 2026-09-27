@@ -161,4 +161,42 @@ final class GrocerySessionModelTests: XCTestCase {
         await model.discardConflictedGroceryEdit()
         XCTAssertNil(model.groceryEdit)
     }
+
+    func testLostRemoveResponseRetriesSameOperationAndOmitsItem() async throws {
+        let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshGroceries()
+        guard case .loaded(let before) = model.groceries,
+            let item = before.items.first?.item
+        else { return XCTFail("Initial list did not load") }
+        await server.loseNextRemove()
+        await model.removeGrocery(item)
+        XCTAssertEqual(model.groceryRemove?.state, .pending)
+        let first = await server.removeOperations()
+        XCTAssertEqual(first.count, 1)
+        await model.retryGroceryRemove()
+        let attempts = await server.removeOperations()
+        XCTAssertEqual(attempts, [first[0], first[0]])
+        XCTAssertNil(model.groceryRemove)
+        guard case .loaded(let current) = model.groceries else { return XCTFail("List did not refresh") }
+        XCTAssertFalse(current.items.contains { $0.id == item.id })
+    }
+
+    func testRejectedRemoveRemainsVisibleUntilExplicitDiscard() async throws {
+        let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshGroceries()
+        guard case .loaded(let before) = model.groceries,
+            let item = before.items.first?.item
+        else { return XCTFail("Initial list did not load") }
+        await server.rejectRemove()
+        await model.removeGrocery(item)
+        XCTAssertEqual(model.groceryRemove?.state, .conflict)
+        guard case .loaded(let saved) = model.groceries else { return XCTFail("List disappeared") }
+        XCTAssertTrue(saved.items.contains { $0.id == item.id })
+        await model.discardConflictedGroceryRemove()
+        XCTAssertNil(model.groceryRemove)
+    }
 }

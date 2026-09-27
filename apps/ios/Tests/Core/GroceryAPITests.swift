@@ -136,6 +136,27 @@ final class GroceryAPITests: XCTestCase {
         } catch { XCTAssertTrue(error is GroceryContractError) }
     }
 
+    func testRemoveUsesCapturedVersionAndRejectsUnremovedReceipt() async throws {
+        let original = try sampleItem()
+        let command = RemoveGrocery(item: original, operationId: UUID())
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(command.operationId)","target":"\(item)","version":"43","checked":false,"removed":false}}
+            """
+        let api = GroceryAPI(
+            http: try http(json: body) { request in
+                XCTAssertEqual(request.url?.path, "/v1/groceries/remove")
+                XCTAssertEqual(request.httpMethod, "POST")
+                let payload = try? JSONSerialization.jsonObject(with: request.httpBody ?? Data()) as? [String: Any]
+                XCTAssertEqual(payload?["operationId"] as? String, command.operationId.uuidString)
+                XCTAssertEqual(payload?["itemId"] as? String, command.itemId.uuidString)
+                XCTAssertEqual(payload?["expectedVersion"] as? String, "42")
+            })
+        do {
+            _ = try await api.remove(token: "member-token", member: member, item: original, command: command)
+            XCTFail("Unremoved receipt was accepted")
+        } catch { XCTAssertTrue(error is GroceryContractError) }
+    }
+
     func testEditReceiptMustAdvanceVersion() throws {
         let original = try sampleItem()
         let command = try EditGrocery(

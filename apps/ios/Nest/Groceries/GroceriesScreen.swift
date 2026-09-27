@@ -5,6 +5,8 @@ struct GroceriesScreen: View {
     @State private var showChecked = false
     @State private var showingAdd = false
     @State private var editingItem: GroceryItem?
+    @State private var removalCandidate: GroceryItem?
+    @State private var showingRemoveConfirmation = false
 
     var body: some View {
         List {
@@ -18,6 +20,7 @@ struct GroceriesScreen: View {
             .listRowBackground(QuietPalette.background)
             if let pending = model.groceryAdd { addStatus(pending) }
             if let pending = model.groceryEdit { editStatus(pending) }
+            if let pending = model.groceryRemove { removeStatus(pending) }
             content
         }
         .listStyle(.plain)
@@ -38,6 +41,16 @@ struct GroceriesScreen: View {
         }
         .sheet(isPresented: $showingAdd) { GroceryAddSheet(model: model) }
         .sheet(item: $editingItem) { item in GroceryEditSheet(model: model, item: item) }
+        .confirmationDialog(
+            "Remove grocery?", isPresented: $showingRemoveConfirmation,
+            presenting: removalCandidate
+        ) { item in
+            Button("Remove \(item.name)", role: .destructive) {
+                Task { await model.removeGrocery(item) }
+            }
+        } message: { item in
+            Text("\(item.name) will leave the shared list.")
+        }
         .refreshable { await model.refreshGroceries() }
         .task { if model.groceries == .idle { await model.refreshGroceries() } }
     }
@@ -125,6 +138,36 @@ struct GroceriesScreen: View {
             .joined(separator: " · ").nilIfEmpty
     }
 
+    private func removeStatus(_ saved: SavedGroceryRemove) -> some View {
+        Section("Removal to review") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(saved.item.name).font(.headline).foregroundStyle(QuietPalette.ink)
+                Text(removeStatusText(saved.state))
+                    .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                if saved.state == .pending {
+                    Button("Retry saved removal") { Task { await model.retryGroceryRemove() } }
+                        .disabled(model.groceryRemoveSaving)
+                        .frame(minHeight: 44, alignment: .leading)
+                }
+                if saved.state == .conflict {
+                    Button("Discard rejected removal") {
+                        Task { await model.discardConflictedGroceryRemove() }
+                    }
+                    .frame(minHeight: 44, alignment: .leading)
+                }
+            }
+        }
+        .listRowBackground(QuietPalette.background)
+    }
+
+    private func removeStatusText(_ state: SavedGroceryRemove.State) -> String {
+        switch state {
+        case .pending: "Not confirmed. Retry the same saved request when online."
+        case .acknowledged: "Removed. Refreshing the shared list."
+        case .conflict: "Another change won. Review the current item before removing again."
+        }
+    }
+
     @ViewBuilder
     private var content: some View {
         switch model.groceries {
@@ -204,19 +247,26 @@ struct GroceriesScreen: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
-                .disabled(local.state != .open || model.groceryEdit?.item.id == local.id)
+                .disabled(
+                    local.state != .open || model.groceryEdit?.item.id == local.id
+                        || model.groceryRemove?.item.id == local.id
+                )
                 .accessibilityLabel(local.item.name)
                 .accessibilityValue(accessibilityValue(local))
                 if local.state == .open {
                     Menu {
                         Button("Edit", systemImage: "pencil") { editingItem = local.item }
+                        Button("Remove", systemImage: "trash", role: .destructive) {
+                            removalCandidate = local.item
+                            showingRemoveConfirmation = true
+                        }
                     } label: {
                         Image(systemName: "ellipsis")
                             .foregroundStyle(QuietPalette.accent)
                             .frame(width: 44, height: 44)
                     }
-                    .disabled(model.groceryEdit != nil)
-                    .accessibilityLabel("Edit \(local.item.name)")
+                    .disabled(model.groceryEdit != nil || model.groceryRemove != nil)
+                    .accessibilityLabel("More options for \(local.item.name)")
                 }
             }
             if local.state != .open { savedState(local) }

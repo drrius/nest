@@ -59,6 +59,7 @@ extension ChoreOfflineStore {
             try clearObservedGroceryChecks(snapshot, lease: lease)
             try clearConfirmedGroceryAdd(lease)
             try clearConfirmedGroceryEdit(snapshot, lease: lease)
+            try clearConfirmedGroceryRemove(snapshot, lease: lease)
         }
     }
 
@@ -66,6 +67,9 @@ extension ChoreOfflineStore {
         _ item: GroceryItem, checked: Bool, operation: UUID, lease: OfflineLease
     ) throws {
         try authorize(lease)
+        guard try readGroceryRemove(lease)?.item.id != item.id else {
+            throw OfflineFailure.alreadyQueued
+        }
         guard item.offlineEpoch != nil, checked != item.checked,
             let snapshot = try readGroceries(lease), snapshot.snapshot.groceries.contains(item)
         else { throw OfflineFailure.missingSnapshot }
