@@ -71,6 +71,7 @@ function HouseholdChores({
       header={
         <View style={{ gap: space.medium, paddingBottom: space.large }}>
           <TodayToolbar
+            refresh={refresh}
             everyone={everyone}
             select={setEveryone}
             date={today}
@@ -88,7 +89,6 @@ function HouseholdChores({
           <ChoreConflicts view={view} discard={discard} />
         </View>
       }
-      refresh={refresh}
       footer={
         <View style={{ gap: space.section, paddingTop: space.large }}>
           <TodayMeals date={today} />

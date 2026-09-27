@@ -2,7 +2,7 @@ import type { MealWeekSnapshot } from "@nest/contracts/meals";
 import type { CookingClient } from "../cooking/client";
 import { allMealSlots, useVisibleMealSlots } from "../meals/use-visible-slots";
 import { useState, useSyncExternalStore } from "react";
-import { Link, useLocalSearchParams, useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { householdDate } from "@nest/domain/calendar";
 import { requestedMealWeek } from "../meals/route-week";
 import { useSession } from "../session/provider";
@@ -17,7 +17,9 @@ import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { SignInCard } from "../components/sign-in-card";
 import { MealSetupPrompt } from "../setup/meal-setup-prompt";
-import { space, useQuiet } from "../theme";
+import { QuietAction } from "../components/quiet-action";
+import { WeekToolbar } from "../meals/week-toolbar";
+import { TodayGroceries } from "../today/groceries";
 export default function MealWeekScreen() {
   const params = useLocalSearchParams();
   const weekStart = requestedMealWeek(params.weekStart, householdDate(new Date()));
@@ -90,7 +92,6 @@ function WeekContent({
   const [showAll, setShowAll] = useState(false);
   const slots = showAll ? allMealSlots : visibility.slots;
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
-  const colors = useQuiet();
   useMealWeekRefresh(runtime);
   if (view.access === "verify")
     return (
@@ -108,33 +109,33 @@ function WeekContent({
     );
   return (
     <Page>
-      <WeekLinks weekStart={view.weekStart} />
-      <MealSetupPrompt />
+      <Note>Good food. One less daily decision.</Note>
       <WeekNavigation
         weekStart={view.weekStart}
         select={(week) => {
           router.setParams({ weekStart: week });
         }}
       />
-      {view.busy ? <Note>Refreshing week…</Note> : null}
-      {view.notice ? <Note>{view.notice}</Note> : null}
-      {view.snapshot && !view.fresh ? <Note>Saved on this iPhone · may be out of date</Note> : null}
-      <NativeAction
-        label="Refresh week"
-        disabled={view.busy}
-        onPress={() => {
+      <WeekToolbar
+        weekStart={view.weekStart}
+        busy={view.busy}
+        refresh={() => {
           void runtime.load();
         }}
       />
-      <Link href="/checklist" style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}>
-        Groceries
-      </Link>
-      <Link
-        href="/cooking-preferences"
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: 16 }}
-      >
-        Household cooking preferences
-      </Link>
+      <MealSetupPrompt />
+      {view.busy ? <Note>Refreshing week…</Note> : null}
+      {view.notice ? <Note>{view.notice}</Note> : null}
+      {view.snapshot && !view.fresh ? <Note>Saved on this iPhone · may be out of date</Note> : null}
+      {view.notice ? (
+        <NativeAction
+          label="Retry week"
+          disabled={view.busy}
+          onPress={() => {
+            void runtime.load();
+          }}
+        />
+      ) : null}
       <SlotControls
         snapshot={view.snapshot}
         visibility={visibility}
@@ -148,6 +149,7 @@ function WeekContent({
           canAdd={view.fresh && !view.busy}
         />
       ) : null}
+      <TodayGroceries />
     </Page>
   );
 }
@@ -168,33 +170,13 @@ function SlotControls({
   return (
     <>
       {visibility.notice ? <Note>{visibility.notice}</Note> : null}
-      <NativeAction label={showAll ? "Use configured slots" : "Show all slots"} onPress={toggle} />
+      <QuietAction
+        label={showAll ? "Use configured meal slots" : "Show all meal slots"}
+        onPress={toggle}
+      />
       {hidden ? (
         <Note>There are saved meals in hidden slots. Show all slots to view them.</Note>
       ) : null}
-    </>
-  );
-}
-
-function WeekLinks({ weekStart }: { weekStart: string }) {
-  const colors = useQuiet();
-  return (
-    <>
-      <Link href="/meal-library" style={{ color: colors.accent, fontSize: 17 }}>
-        Saved meals and recipes
-      </Link>
-      <Link
-        href={{ pathname: "/meal-proposal", params: { weekStart: weekStart } }}
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
-      >
-        Plan with AI or resume a preview
-      </Link>
-      <Link
-        href={{ pathname: "/meal-ingredients", params: { weekStart: weekStart } }}
-        style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
-      >
-        Review ingredients for groceries
-      </Link>
     </>
   );
 }

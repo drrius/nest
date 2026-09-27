@@ -7,11 +7,14 @@ export function MoneyReadStatus({
   view,
   reload,
   label,
+  compact = false,
 }: {
   view: MoneyReadView;
   reload: () => void;
   label: string;
+  compact?: boolean;
 }) {
+  if (hideReadStatus(view, compact)) return null;
   return (
     <View style={{ gap: space.small }}>
       {view.busy ? <Note>Loading {label}…</Note> : null}
@@ -32,4 +35,8 @@ export function MoneyReadStatus({
       />
     </View>
   );
+}
+
+function hideReadStatus(view: MoneyReadView, compact: boolean) {
+  return compact && view.source === "online" && !view.busy && !view.notice;
 }

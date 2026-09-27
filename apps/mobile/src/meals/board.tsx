@@ -1,18 +1,13 @@
 import { useRouter } from "expo-router";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import type { MealWeekSnapshot } from "@nest/contracts/meals";
 import { mealWeek, adjacentMealWeek } from "@nest/domain/meal-week";
-import { Card, Note, Section } from "../components/page";
-import { NativeAction } from "../components/native-action";
 import { space, useQuiet } from "../theme";
+import { MealActions } from "./meal-actions";
 const slots = ["breakfast", "lunch", "dinner"] as const;
 const names = { breakfast: "Breakfast", lunch: "Lunch", dinner: "Dinner" };
-const dayLabel = new Intl.DateTimeFormat("en", {
-  weekday: "long",
-  day: "numeric",
-  month: "short",
-  timeZone: "UTC",
-});
+const shortDay = new Intl.DateTimeFormat("en", { weekday: "short", timeZone: "UTC" });
+const dayLabel = new Intl.DateTimeFormat("en", { day: "numeric", month: "short", timeZone: "UTC" });
 export function adjacentWeek(weekStart: string, direction: -1 | 1) {
   try {
     return adjacentMealWeek(weekStart, direction)[0]!;
@@ -27,26 +22,61 @@ export function WeekNavigation({
   weekStart: string;
   select: (week: string) => void;
 }) {
-  const previous = adjacentWeek(weekStart, -1),
+  const colors = useQuiet(),
+    previous = adjacentWeek(weekStart, -1),
     next = adjacentWeek(weekStart, 1);
+  const dates = mealWeek(weekStart);
+  const range = `${dayLabel.format(new Date(`${weekStart}T12:00:00Z`))} – ${dayLabel.format(new Date(`${dates[6]}T12:00:00Z`))}`;
   return (
-    <View style={{ gap: space.small }}>
-      <Note>Week of {dayLabel.format(new Date(`${weekStart}T00:00:00Z`))}</Note>
-      <NativeAction
-        label="Previous week"
-        disabled={!previous}
-        onPress={() => {
-          if (previous) select(previous);
+    <View style={{ flexDirection: "row", alignItems: "center", gap: space.small }}>
+      <WeekArrow label="Previous week" glyph="‹" date={previous} select={select} />
+      <Text
+        accessibilityRole="header"
+        style={{
+          flex: 1,
+          textAlign: "center",
+          color: colors.text,
+          fontSize: 17,
+          fontWeight: "600",
         }}
-      />
-      <NativeAction
-        label="Next week"
-        disabled={!next}
-        onPress={() => {
-          if (next) select(next);
-        }}
-      />
+      >
+        {range}
+      </Text>
+      <WeekArrow label="Next week" glyph="›" date={next} select={select} />
     </View>
+  );
+}
+function WeekArrow({
+  label,
+  glyph,
+  date,
+  select,
+}: {
+  label: string;
+  glyph: string;
+  date: string | null;
+  select: (date: string) => void;
+}) {
+  const colors = useQuiet();
+  return (
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      accessibilityState={{ disabled: !date }}
+      disabled={!date}
+      onPress={() => {
+        if (date) select(date);
+      }}
+      style={({ pressed }) => ({
+        minWidth: 44,
+        minHeight: 44,
+        alignItems: "center",
+        justifyContent: "center",
+        opacity: !date ? 0.4 : pressed ? 0.65 : 1,
+      })}
+    >
+      <Text style={{ color: colors.accent, fontSize: 28 }}>{glyph}</Text>
+    </Pressable>
   );
 }
 export function MealWeekBoard({
@@ -58,138 +88,116 @@ export function MealWeekBoard({
   snapshot: MealWeekSnapshot;
   visibleSlots: readonly (typeof slots)[number][];
 }) {
-  const colors = useQuiet(),
-    router = useRouter();
+  const colors = useQuiet();
   return (
-    <>
+    <View style={{ gap: space.small }}>
       {mealWeek(snapshot.weekStart).map((date) => (
-        <Section key={date} title={dayLabel.format(new Date(`${date}T00:00:00Z`))}>
-          {visibleSlots.map((slot) => {
-            const meal = snapshot.entries.find(
-              (entry) => entry.date === date && entry.slot === slot,
-            );
-            return (
-              <Card key={slot}>
-                <Note>
-                  {names[slot]}
-                  {meal?.leftoverSourceId ? " · Leftovers" : ""}
-                </Note>
-                <Text selectable style={{ color: colors.text, fontSize: 19, fontWeight: "500" }}>
-                  {meal?.title ?? "No meal planned"}
-                </Text>
-                {meal?.notes ? <Note>{meal.notes}</Note> : null}
-                {meal ? (
-                  <MealActions
-                    meal={meal}
-                    weekStart={snapshot.weekStart}
-                    revision={snapshot.revision}
-                    enabled={canAdd}
-                  />
-                ) : null}
-                {!meal ? (
-                  <NativeAction
-                    label={`Add ${names[slot].toLowerCase()}`}
-                    disabled={!canAdd}
-                    onPress={() =>
-                      router.push({
-                        pathname: "/meal-add",
-                        params: { weekStart: snapshot.weekStart, date, slot },
-                      })
-                    }
-                  />
-                ) : null}
-              </Card>
-            );
-          })}
-        </Section>
+        <View
+          key={date}
+          style={{
+            flexDirection: "row",
+            gap: space.medium,
+            paddingVertical: space.medium,
+            borderBottomColor: colors.border,
+            borderBottomWidth: 1,
+          }}
+        >
+          <View style={{ minWidth: 42, alignItems: "center", gap: 4, paddingTop: space.small }}>
+            <Text style={{ color: colors.muted, fontSize: 13 }}>
+              {shortDay.format(new Date(`${date}T12:00:00Z`)).toUpperCase()}
+            </Text>
+            <Text style={{ color: colors.text, fontSize: 24, fontWeight: "600" }}>
+              {Number(date.slice(-2))}
+            </Text>
+          </View>
+          <View style={{ flex: 1, gap: space.small }}>
+            {visibleSlots.map((slot) => (
+              <MealSlot key={slot} date={date} slot={slot} snapshot={snapshot} canAdd={canAdd} />
+            ))}
+          </View>
+        </View>
       ))}
-    </>
+    </View>
   );
 }
-
-function MealActions({
-  meal,
-  weekStart,
-  enabled,
-  revision,
+function MealSlot({
+  date,
+  slot,
+  snapshot,
+  canAdd,
 }: {
-  meal: MealWeekSnapshot["entries"][number];
-  weekStart: string;
-  enabled: boolean;
-  revision: string;
+  date: string;
+  slot: (typeof slots)[number];
+  snapshot: MealWeekSnapshot;
+  canAdd: boolean;
 }) {
   const router = useRouter();
+  const meal = snapshot.entries.find((entry) => entry.date === date && entry.slot === slot);
+  const disabled = !meal && !canAdd;
+  const open = () =>
+    meal
+      ? router.push({
+          pathname: "/planned-recipe",
+          params: {
+            weekStart: snapshot.weekStart,
+            revision: snapshot.revision,
+            entryId: meal.entryId,
+          },
+        })
+      : router.push({
+          pathname: "/meal-add",
+          params: { weekStart: snapshot.weekStart, date, slot },
+        });
   return (
-    <>
-      <NativeAction
-        label="Meal details"
-        onPress={() =>
-          router.push({
-            pathname: "/planned-recipe",
-            params: { weekStart, revision, entryId: meal.entryId },
-          })
-        }
-      />
-      <MealReminderAction entryId={meal.entryId} enabled={enabled} />
-      <NativeAction
-        label="Preparation"
-        onPress={() =>
-          router.push({
-            pathname: "/meal-preparation",
-            params: { weekStart, entryId: meal.entryId },
-          })
-        }
-      />
-      <NativeAction
-        label="Replace meal"
-        disabled={!enabled}
-        onPress={() =>
-          router.push({
-            pathname: "/meal-replace",
-            params: { weekStart, entryId: meal.entryId, date: meal.date, slot: meal.slot ?? "" },
-          })
-        }
-      />
-      <NativeAction
-        label="Move meal"
-        disabled={!enabled}
-        onPress={() =>
-          router.push({
-            pathname: "/meal-move",
-            params: { sourceWeekStart: weekStart, entryId: meal.entryId },
-          })
-        }
-      />
-      {!meal.leftoverSourceId ? (
-        <NativeAction
-          label="Plan leftovers"
-          disabled={!enabled}
-          onPress={() =>
-            router.push({
-              pathname: "/meal-leftovers",
-              params: { sourceWeekStart: weekStart, entryId: meal.entryId },
-            })
-          }
-        />
-      ) : null}
-      <NativeAction
-        label="Remove meal"
-        disabled={!enabled}
-        onPress={() =>
-          router.push({ pathname: "/meal-remove", params: { weekStart, entryId: meal.entryId } })
-        }
-      />
-    </>
+    <View style={{ flexDirection: "row", alignItems: "center", gap: space.small }}>
+      <Pressable
+        accessibilityRole="button"
+        accessibilityLabel={`${date}, ${names[slot]}: ${meal?.title ?? "Add meal"}`}
+        accessibilityState={{ disabled }}
+        disabled={disabled}
+        onPress={open}
+        style={({ pressed }) => ({
+          flex: 1,
+          minHeight: 64,
+          justifyContent: "center",
+          gap: 4,
+          opacity: mealRowOpacity(disabled, pressed),
+        })}
+      >
+        <MealLabel meal={meal} slot={slot} />
+      </Pressable>
+      {meal ? <MealActions meal={meal} weekStart={snapshot.weekStart} enabled={canAdd} /> : null}
+    </View>
   );
 }
 
-function MealReminderAction({ entryId, enabled }: { entryId: string; enabled: boolean }) {
-  const router = useRouter();
+function mealRowOpacity(disabled: boolean, pressed: boolean) {
+  if (disabled) return 0.5;
+  return pressed ? 0.65 : 1;
+}
+
+function MealLabel({
+  meal,
+  slot,
+}: {
+  meal: MealWeekSnapshot["entries"][number] | undefined;
+  slot: (typeof slots)[number];
+}) {
+  const colors = useQuiet();
   return (
-    <NativeAction
-      label="Meal reminder"
-      disabled={!enabled}
-      onPress={() => router.push({ pathname: "/meal-reminder", params: { entryId: entryId } })}
-    />
+    <>
+      <Text style={{ color: colors.muted, fontSize: 14 }}>
+        {names[slot]}
+        {meal?.leftoverSourceId ? " · Leftovers" : ""}
+      </Text>
+      <Text style={{ color: meal ? colors.text : colors.accent, fontSize: 18, fontWeight: "500" }}>
+        {meal?.title ?? `Add ${names[slot].toLowerCase()}`}
+      </Text>
+      {meal?.notes ? (
+        <Text style={{ color: colors.muted, fontSize: 14 }} numberOfLines={2}>
+          {meal.notes}
+        </Text>
+      ) : null}
+    </>
   );
 }

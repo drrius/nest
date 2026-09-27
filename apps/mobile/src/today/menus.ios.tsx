@@ -6,7 +6,7 @@ import { useColorScheme } from "react-native";
 import { useQuiet } from "../theme";
 import { todayMoreActions } from "./more-actions";
 
-export function TodayMenus({ transfers }: { transfers: number }) {
+export function TodayMenus({ transfers, refresh }: { transfers: number; refresh: () => void }) {
   const router = useRouter(),
     colors = useQuiet(),
     scheme = useColorScheme();
@@ -44,6 +44,11 @@ export function TodayMenus({ transfers }: { transfers: number }) {
           systemImage="ellipsis"
           modifiers={[...target, accessibilityLabel("More household actions")]}
         >
+          <Button
+            label="Refresh and retry chores"
+            systemImage="arrow.clockwise"
+            onPress={refresh}
+          />
           {todayMoreActions.map((action) => (
             <Button
               key={action.href}

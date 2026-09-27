@@ -3,11 +3,13 @@ import SegmentedControl from "@expo/ui/community/segmented-control";
 import { space, useQuiet } from "../theme";
 import { TodayMenus } from "./menus";
 export function TodayToolbar({
+  refresh,
   everyone,
   select,
   transfers,
   date,
 }: {
+  refresh: () => void;
   everyone: boolean;
   select: (value: boolean) => void;
   transfers: number;
@@ -33,7 +35,7 @@ export function TodayToolbar({
           onChange={(event) => select(event.nativeEvent.selectedSegmentIndex === 1)}
           style={{ flexGrow: 1, minWidth: 220, minHeight: 44 }}
         />
-        <TodayMenus transfers={transfers} />
+        <TodayMenus transfers={transfers} refresh={refresh} />
       </View>
     </View>
   );

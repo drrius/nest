@@ -1,7 +1,11 @@
 import DateTimePicker from "@expo/ui/community/datetime-picker";
-import { Link, useRouter } from "expo-router";
+import { useRouter } from "expo-router";
+import { View } from "react-native";
 import { NativeAction } from "../components/native-action";
-import { Section, Note } from "../components/page";
+import { QuietAction } from "../components/quiet-action";
+import { ActionMenu } from "../components/action-menu";
+import { Note } from "../components/page";
+import { space } from "../theme";
 import { adjacentDay, agendaDay, localDate } from "./agenda-day";
 import type { AgendaRuntime, AgendaView } from "./agenda-runtime";
 export function AgendaControls({
@@ -13,62 +17,75 @@ export function AgendaControls({
   view: AgendaView;
   choose: () => void;
 }) {
-  const router = useRouter();
-  const window = agendaDay(view.date);
-  const dateDisabled = view.busy;
+  const router = useRouter(),
+    window = agendaDay(view.date);
+  const move = (direction: -1 | 1) => {
+    const date = adjacentDay(view.date, direction);
+    if (date) router.setParams({ date });
+  };
   return (
-    <Section title="Your agenda">
-      <Note>Personal event details stay on this iPhone. Viewing a calendar does not share it.</Note>
-      <Note>{view.date} · Times follow this iPhone’s time zone.</Note>
-      {process.env.EXPO_OS === "ios" && window ? (
-        <DateTimePicker
-          value={new Date(window.start)}
-          mode="date"
-          disabled={dateDisabled}
-          onChange={(_event, date) => {
-            if (date) router.setParams({ date: localDate(date) });
-          }}
+    <View style={{ gap: space.medium }}>
+      <Note>Your day, with room for everything.</Note>
+      <View
+        style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: space.medium }}
+      >
+        {process.env.EXPO_OS === "ios" && window ? (
+          <DateTimePicker
+            value={new Date(window.start)}
+            mode="date"
+            disabled={view.busy}
+            onChange={(_event, date) => {
+              if (date) router.setParams({ date: localDate(date) });
+            }}
+          />
+        ) : (
+          <Note>{view.date}</Note>
+        )}
+        <ActionMenu
+          label="Calendar actions"
+          actions={[
+            {
+              label: "Today",
+              disabled: view.busy,
+              onPress: () => router.setParams({ date: localDate(new Date()) }),
+            },
+            {
+              label: "Choose calendars to show",
+              disabled: view.busy || !view.permission,
+              onPress: choose,
+            },
+            {
+              label: "Refresh agenda",
+              disabled: view.busy,
+              onPress: () => {
+                void runtime.refresh();
+              },
+            },
+            { label: "Manage busy sharing", onPress: () => router.push("/calendar-sharing") },
+          ]}
         />
-      ) : null}
-      <NativeAction
-        label="Previous day"
-        disabled={dateDisabled || !adjacentDay(view.date, -1)}
-        onPress={() => {
-          const date = adjacentDay(view.date, -1);
-          if (date) router.setParams({ date });
+      </View>
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          flexWrap: "wrap",
+          gap: space.medium,
         }}
-      />
-      <NativeAction
-        label="Next day"
-        disabled={dateDisabled || !adjacentDay(view.date, 1)}
-        onPress={() => {
-          const date = adjacentDay(view.date, 1);
-          if (date) router.setParams({ date });
-        }}
-      />
-      <NativeAction
-        label="Today"
-        disabled={dateDisabled}
-        onPress={() => {
-          router.setParams({ date: localDate(new Date()) });
-        }}
-      />
+      >
+        <QuietAction
+          label="‹ Previous day"
+          disabled={view.busy || !adjacentDay(view.date, -1)}
+          onPress={() => move(-1)}
+        />
+        <QuietAction
+          label="Next day ›"
+          disabled={view.busy || !adjacentDay(view.date, 1)}
+          onPress={() => move(1)}
+        />
+      </View>
       <AgendaStatus runtime={runtime} view={view} />
-      <NativeAction
-        label="Choose calendars to show"
-        disabled={view.busy || !view.permission}
-        onPress={choose}
-      />
-      <NativeAction
-        label="Refresh agenda"
-        disabled={view.busy}
-        onPress={() => {
-          void runtime.refresh();
-        }}
-      />
-      <Link href="/calendar-sharing">Manage busy sharing</Link>
-      <Note>Manage general events in Apple Calendar.</Note>
-    </Section>
+    </View>
   );
 }
 function AgendaStatus({ runtime, view }: { runtime: AgendaRuntime; view: AgendaView }) {
@@ -79,8 +96,7 @@ function AgendaStatus({ runtime, view }: { runtime: AgendaRuntime; view: AgendaV
       {view.loaded && !view.permission ? (
         <>
           <Note>
-            Calendar access is off. Allow reading to show existing calendars, or enable access in
-            iPhone Settings. Other Nest features still work.
+            Allow calendar access to see your existing events. Other Nest features still work.
           </Note>
           <NativeAction
             label="Allow calendar access"
@@ -97,6 +113,15 @@ function AgendaStatus({ runtime, view }: { runtime: AgendaRuntime; view: AgendaV
             ? "A selected calendar is no longer available. Choose calendars available on this iPhone."
             : "Could not read this agenda. Refresh after checking calendar access; an empty agenda is not confirmed."}
         </Note>
+      ) : null}
+      {view.notice ? (
+        <QuietAction
+          label="Retry agenda"
+          disabled={view.busy}
+          onPress={() => {
+            void runtime.refresh();
+          }}
+        />
       ) : null}
     </>
   );

@@ -1,10 +1,10 @@
-import { CalendarRenewalControls, CalendarRenewalRow } from "./renewal-content";
+import { CalendarRenewalRow } from "./renewal-content";
 import {
   visibleCalendarRenewals,
   type CalendarRenewalView,
   type CalendarRenewalRuntime,
 } from "./renewal-runtime";
-import { CalendarChoreControls, CalendarChoreRow } from "./chore-content";
+import { CalendarChoreRow } from "./chore-content";
 import { visibleCalendarChores, type CalendarChoreRuntime } from "./chore-runtime";
 import { useState, useSyncExternalStore } from "react";
 import { FlatList, Text } from "react-native";
@@ -13,13 +13,14 @@ import { NativeAction } from "../components/native-action";
 import { space, useQuiet } from "../theme";
 import type { AgendaRow } from "./agenda";
 import type { AgendaRuntime, AgendaView } from "./agenda-runtime";
+import { AgendaLayers } from "./agenda-layers";
 import { AgendaControls } from "./agenda-controls";
 import { AgendaCalendarPicker } from "./agenda-calendar-picker";
 import type { PartnerRuntime } from "./partner-runtime";
 import { partnerAgenda } from "./partner-agenda";
 import { agendaDay } from "./agenda-day";
 import { agendaRows, type CalendarRow } from "./agenda-rows";
-import { PartnerStatus, PartnerBlock } from "./partner-content";
+import { PartnerBlock } from "./partner-content";
 export function AgendaContent({
   runtime,
   partner,
@@ -76,9 +77,18 @@ export function AgendaContent({
       ListHeaderComponent={
         <>
           <AgendaControls runtime={runtime} view={view} choose={() => setChoosing(true)} />
-          <PartnerStatus assessment={assessment} runtime={partner} view={shared} verify={verify} />
-          <CalendarChoreControls runtime={chores} view={work} verify={verify} />
-          <CalendarRenewalControls runtime={renewals} view={deadlines} verify={verify} />
+          <AgendaLayers
+            assessment={assessment}
+            partner={partner}
+            shared={shared}
+            chores={chores}
+            work={work}
+            renewals={renewals}
+            deadlines={deadlines}
+            verify={verify}
+            canChoose={view.permission && !view.busy}
+            choose={() => setChoosing(true)}
+          />
           <PersonalStatus view={view} />
         </>
       }

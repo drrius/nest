@@ -1,5 +1,5 @@
 import { useState, useSyncExternalStore } from "react";
-import { Link } from "expo-router";
+import { useRouter } from "expo-router";
 import type { MealClient } from "../meals/client";
 import type { MealWeekRuntime } from "../meals/runtime";
 import type { OfflineAccount } from "../offline/owner";
@@ -10,6 +10,7 @@ import { useSession } from "../session/provider";
 import { useOfflineAccount } from "../offline/provider";
 import { Note, Section } from "../components/page";
 import { NativeAction } from "../components/native-action";
+import { QuietAction } from "../components/quiet-action";
 import { TodayMealRows } from "./meal-rows";
 export function TodayMeals({ date }: { date: string }) {
   const session = useSession(),
@@ -60,7 +61,8 @@ function MealOwner({
 }
 function Meals({ runtime, date }: { runtime: MealWeekRuntime; date: string }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
-  const session = useSession();
+  const session = useSession(),
+    router = useRouter();
   useMealWeekRefresh(runtime);
   if (view.access === "verify")
     return (
@@ -90,9 +92,12 @@ function Meals({ runtime, date }: { runtime: MealWeekRuntime; date: string }) {
           }}
         />
       ) : null}
-      <Link href={{ pathname: "/meal-week", params: { weekStart: view.weekStart } }}>
-        Open meal week
-      </Link>
+      <QuietAction
+        label="View meal week"
+        onPress={() =>
+          router.push({ pathname: "/meal-week", params: { weekStart: view.weekStart } })
+        }
+      />
     </Section>
   );
 }

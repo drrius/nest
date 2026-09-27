@@ -1,12 +1,14 @@
-import { View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import { useRouter } from "expo-router";
 import type { MoneyEventSummary, MoneyHistory } from "@nest/contracts/money-history";
-import { Card, Note, Section } from "../components/page";
+import { Note, Section } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { MoneyReadStatus } from "./read-status";
 import type { MoneyReadView, MoneyReadRuntime } from "./read-runtime";
-import { balanceTitle, eventNames, formatChf } from "./format";
-import { space } from "../theme";
+import { eventNames, formatChf } from "./format";
+import { space, useQuiet } from "../theme";
+import { MoneyBalanceCard } from "./balance-card";
+import { ActionMenu } from "../components/action-menu";
 export function MoneyHeader({
   balance,
   history,
@@ -25,53 +27,81 @@ export function MoneyHeader({
   const own = summary?.members.find((member) => member.actorId === actor);
   return (
     <View style={{ gap: space.large }}>
-      <Section title={own ? balanceTitle(own.centimes) : "Your shared balance"}>
-        <Note>Derived from all retained entries. This is not a bank balance.</Note>
-        {summary ? (
-          <Note>
-            {summary.eventCount} retained entries
-            {summary.openingEstablished ? " · Includes the original opening balance" : ""}
-          </Note>
-        ) : null}
-        <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} />
-      </Section>
-      <NativeAction
-        label="Review receipt uploads"
-        onPress={() => router.push("/receipt-uploads")}
-      />
-      <NativeAction
-        label="Set up recurring expense"
-        onPress={() => router.push("/recurring-entry")}
-      />
-      <NativeAction label="Bills to confirm" onPress={() => router.push("/due-bills")} />
-      <NativeAction label="Recurring expenses" onPress={() => router.push("/recurring-rules")} />
-      <NativeAction label="Record an expense" onPress={() => router.push("/expense-entry")} />
-      <NativeAction label="Record a settlement" onPress={() => router.push("/settlement-entry")} />
-      <Section title="History">
-        <Note>
-          Original and corrective entries stay visible. This page does not determine your balance.
-        </Note>
-        <MoneyReadStatus view={history} label="history" reload={refreshHistory} />
+      <Note>All square, without the guesswork.</Note>
+      <MoneyBalanceCard centimes={own?.centimes} />
+      <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} compact />
+      <View style={{ flexDirection: "row", flexWrap: "wrap", gap: space.medium }}>
+        <NativeAction label="Add expense" onPress={() => router.push("/expense-entry")} />
+        <NativeAction label="Settle up" onPress={() => router.push("/settlement-entry")} />
+        <ActionMenu
+          label="More money actions"
+          actions={[
+            { label: "Receipt uploads", onPress: () => router.push("/receipt-uploads") },
+            { label: "Set up recurring expense", onPress: () => router.push("/recurring-entry") },
+            { label: "Bills to confirm", onPress: () => router.push("/due-bills") },
+            { label: "Recurring expenses", onPress: () => router.push("/recurring-rules") },
+            { label: "Refresh balance", onPress: refreshBalance, disabled: balance.busy },
+            { label: "Refresh history", onPress: refreshHistory, disabled: history.busy },
+          ]}
+        />
+      </View>
+      <Section title="Recent activity">
+        <MoneyReadStatus view={history} label="history" reload={refreshHistory} compact />
       </Section>
     </View>
   );
 }
 export function MoneyRow({ event }: { event: typeof MoneyEventSummary.Type }) {
-  const router = useRouter();
+  const router = useRouter(),
+    colors = useQuiet();
   return (
-    <Card>
-      <Section title={event.description} />
-      <Note>
-        {eventNames[event.kind]} · {formatChf(event.amountCentimes)}
-      </Note>
-      <Note>{event.occurredOn}</Note>
-      <NativeAction
-        label={`View ${event.description}`}
-        onPress={() =>
-          router.push({ pathname: "/money-event", params: { eventId: event.eventId } })
-        }
-      />
-    </Card>
+    <Pressable
+      accessibilityRole="button"
+      accessibilityLabel={`View ${event.description}, ${formatChf(event.amountCentimes)}`}
+      onPress={() => router.push({ pathname: "/money-event", params: { eventId: event.eventId } })}
+      style={({ pressed }) => ({
+        paddingVertical: space.medium,
+        minHeight: 72,
+        borderBottomWidth: 1,
+        borderBottomColor: colors.border,
+        gap: space.small,
+        opacity: pressed ? 0.65 : 1,
+      })}
+    >
+      <View
+        style={{
+          flexDirection: "row",
+          flexWrap: "wrap",
+          gap: space.small,
+          justifyContent: "space-between",
+        }}
+      >
+        <Text
+          style={{
+            color: colors.text,
+            fontSize: 17,
+            fontWeight: "500",
+            flexGrow: 1,
+            flexShrink: 1,
+          }}
+        >
+          {event.description}
+        </Text>
+        <Text
+          style={{
+            color: colors.text,
+            fontSize: 17,
+            fontWeight: "600",
+            fontVariant: ["tabular-nums"],
+          }}
+        >
+          {formatChf(event.amountCentimes)}
+        </Text>
+      </View>
+      <Text style={{ color: colors.muted, fontSize: 15 }}>
+        {eventNames[event.kind]} · {event.occurredOn}
+      </Text>
+    </Pressable>
   );
 }
 
