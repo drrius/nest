@@ -2,14 +2,14 @@ name: SwiftUI client checks
 on:
   push:
     paths:
-      - 'apps/ios/**'
-      - '.github/workflows/swiftui.yml'
-      - 'scripts/check-swift-limits.py'
+      - "apps/ios/**"
+      - ".github/workflows/swiftui.yml"
+      - "scripts/check-swift-limits.py"
   pull_request:
     paths:
-      - 'apps/ios/**'
-      - '.github/workflows/swiftui.yml'
-      - 'scripts/check-swift-limits.py'
+      - "apps/ios/**"
+      - ".github/workflows/swiftui.yml"
+      - "scripts/check-swift-limits.py"
   workflow_dispatch:
 permissions:
   contents: read
