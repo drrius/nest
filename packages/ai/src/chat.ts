@@ -13,7 +13,8 @@ import {
 export type AssistantModel = LanguageModel;
 export type AssistantTools = ToolSet;
 export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssistantAgent>>;
-export const gatewayModel = (apiKey: string, model: string) => createGateway({ apiKey })(model);
+export const gatewayModel = (apiKey: string | undefined, model: string) =>
+  createGateway({ apiKey })(model);
 const writeNames = new Set([
   "saveGroceryReminder",
   "saveRecurringReminder",
