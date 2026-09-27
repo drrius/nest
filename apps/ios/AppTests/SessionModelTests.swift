@@ -222,6 +222,30 @@ final class SessionModelTests: XCTestCase {
         XCTAssertEqual(after.chores.first?.chore.title, "Sam chore")
     }
 
+    func testPausedAccountACompletionCannotReplaceAccountBPresentation() async throws {
+        let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
+        let auth = FakeAuthentication(
+            active: AuthenticatedSession(userId: actorA, accessToken: "token-A"),
+            nextSignIn: AuthenticatedSession(userId: actorB, accessToken: "token-B"))
+        let reader = PausedSavedRead()
+        let model = SessionModel(
+            auth: auth, chores: try api(server: server), offline: try store(),
+            savedReader: { store, lease in try await reader.read(store, lease: lease) })
+        await model.restore()
+        guard case .loaded(let initial) = model.today,
+            let chore = initial.chores.first?.chore
+        else { return XCTFail("A did not load") }
+        await reader.pauseNext()
+        let oldCompletion = Task { await model.complete(chore) }
+        await reader.waitUntilPaused()
+        await model.signIn(idToken: "B", nonce: "test")
+        await reader.release()
+        await oldCompletion.value
+        guard case .loaded(let current) = model.today else { return XCTFail("B did not load") }
+        XCTAssertEqual(current.chores.first?.chore.title, "Sam chore")
+        XCTAssertNil(model.todayNotice)
+    }
+
     func testColdOfflineRestoreShowsOnlyVerifiedCachedAccount() async throws {
         let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
         let store = try store()
