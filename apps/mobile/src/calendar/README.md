@@ -1,6 +1,6 @@
 # Device calendar privacy boundary
 
-`expoCalendarPort` uses the Expo SDK 57 Calendar API (`getCalendarPermissions(false)`, `getCalendars(EVENT)`, `listEvents`). iOS requires full calendar permission to read events; this adapter exposes no event or reminder writes. The config plugin includes an explanation of reading and opt-in busy sharing and omits Reminders usage descriptions. Expo config introspection verified those generated keys locally; no native permission prompt has been tested.
+`expoCalendarPort` uses the Expo SDK 57 Calendar API (`getCalendarPermissions(false)`, `getCalendars(EVENT)`, `listEvents`). iOS requires full calendar permission to read events; this adapter exposes no event or reminder writes. The config plugin includes an explanation of reading and opt-in busy sharing and omits Reminders usage descriptions. Expo config introspection verified those generated keys locally. A simulator displayed the native full-access prompt and its denial path was tested; granting access, EventKit reads and real-calendar privacy remain unverified.
 
 `CalendarReader` is the Effect service boundary. Permission requests are explicit and separate from reads. Captures check full-read permission before and after fetching only selected calendars. An absent selected calendar, revocation or fetch failure yields unknown availability. No sharing selection means disabled, not free. Local picker metadata is separate from the projection; it must not be published to partner or AI services.
 
