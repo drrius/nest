@@ -58,6 +58,7 @@ extension ChoreOfflineStore {
                 lease.scope + [body])
             try clearObservedGroceryChecks(snapshot, lease: lease)
             try clearConfirmedGroceryAdd(lease)
+            try clearConfirmedGroceryEdit(snapshot, lease: lease)
         }
     }
 

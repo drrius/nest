@@ -1,95 +1,98 @@
 import Foundation
 
 extension SessionModel {
-    func addGrocery(name: String, quantity: String?, unit: String?, categoryId: UUID? = nil) async {
+    func editGrocery(
+        _ item: GroceryItem, name: String, quantity: String?,
+        unit: String?, categoryId: UUID?
+    ) async {
         guard let offline, let lease, case .ready(let member) = status else { return }
         guard groceryCategoryAvailable(categoryId) else {
-            groceryNotice = "This category is no longer available. Refresh categories and try again."
+            groceryNotice = "This category is no longer available. Refresh and try again."
             return
         }
         let attempt = generation
-        let command: AddGrocery
         do {
-            command = try AddGrocery(
-                operationId: UUID(), itemId: UUID(), name: name,
+            let command = try EditGrocery(
+                item: item, operationId: UUID(), name: name,
                 quantity: quantity, unit: unit, categoryId: categoryId)
-            try await offline.enqueueGroceryAdd(command, lease: lease)
-            let saved = try await offline.readGroceryAdd(lease)
+            try await offline.enqueueGroceryEdit(item, command: command, lease: lease)
+            let saved = try await offline.readGroceryEdit(lease)
             guard generation == attempt, status == .ready(member) else { return }
-            groceryAdd = saved
-            groceryNotice = "Saving your grocery…"
-            await retryGroceryAdd()
+            groceryEdit = saved
+            groceryNotice = "Saving your edit…"
+            await retryGroceryEdit()
         } catch {
             guard generation == attempt, status == .ready(member) else { return }
-            groceryNotice = "Could not save this grocery. Check its details and try again."
+            groceryNotice = "Could not save this edit. Refresh the list and try again."
         }
     }
 
-    func retryGroceryAdd() async {
-        guard groceryAddSavingGeneration != generation,
+    func retryGroceryEdit() async {
+        guard groceryEditSavingGeneration != generation,
             let auth, let api = groceryAPI, let offline, let lease,
             case .ready(let member) = status
         else { return }
         let attempt = generation
-        groceryAddSavingGeneration = attempt
-        groceryAddSaving = true
+        groceryEditSavingGeneration = attempt
+        groceryEditSaving = true
         defer {
-            if groceryAddSavingGeneration == attempt {
-                groceryAddSavingGeneration = nil
-                groceryAddSaving = false
+            if groceryEditSavingGeneration == attempt {
+                groceryEditSavingGeneration = nil
+                groceryEditSaving = false
             }
         }
         do {
-            try await sendGroceryAdd(
+            try await sendGroceryEdit(
                 auth: auth, api: api, offline: offline,
                 lease: lease, member: member, attempt: attempt)
         } catch {
-            await handleGroceryAddFailure(
+            await handleGroceryEditFailure(
                 error, api: api, auth: auth, offline: offline,
                 lease: lease, member: member, attempt: attempt)
         }
     }
 
-    private func sendGroceryAdd(
+    private func sendGroceryEdit(
         auth: any NestAuthentication, api: GroceryAPI, offline: ChoreOfflineStore,
         lease: OfflineLease, member: VerifiedMember, attempt: Int
     ) async throws {
-        guard let saved = try await offline.readGroceryAdd(lease) else { return }
+        guard let saved = try await offline.readGroceryEdit(lease) else { return }
         guard saved.state == .pending else {
             if saved.state == .acknowledged { await refreshGroceries() }
             return
         }
         let session = try await auth.session()
         guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-        let receipt = try await api.add(
-            token: session.accessToken, member: member, command: saved.command)
-        try await offline.acknowledgeGroceryAdd(receipt, lease: lease)
+        let receipt = try await api.edit(
+            token: session.accessToken, member: member,
+            item: saved.item, command: saved.command)
+        try await offline.acknowledgeGroceryEdit(receipt, lease: lease)
         guard generation == attempt, status == .ready(member) else { return }
-        let confirmed = try await offline.readGroceryAdd(lease)
+        let confirmed = try await offline.readGroceryEdit(lease)
         guard generation == attempt, status == .ready(member) else { return }
-        groceryAdd = confirmed
-        groceryNotice = "Grocery added. Refreshing the list…"
+        groceryEdit = confirmed
+        groceryNotice = "Grocery updated. Refreshing the list…"
         await refreshGroceries()
     }
 
-    func discardConflictedGroceryAdd() async {
-        guard let offline, let lease, let groceryAdd, groceryAdd.state == .conflict,
+    func discardConflictedGroceryEdit() async {
+        guard let offline, let lease, let groceryEdit, groceryEdit.state == .conflict,
             case .ready(let member) = status
         else { return }
         let attempt = generation
         do {
-            try await offline.discardConflictedGroceryAdd(groceryAdd.command.operationId, lease: lease)
+            try await offline.discardConflictedGroceryEdit(groceryEdit.command.operationId, lease: lease)
             guard generation == attempt, status == .ready(member) else { return }
-            self.groceryAdd = nil
-            groceryNotice = "Unconfirmed grocery discarded. Check the list before adding it again."
+            self.groceryEdit = nil
+            groceryNotice = "Rejected edit discarded. Check the latest item before editing again."
             await refreshGroceries()
         } catch {
             guard generation == attempt, status == .ready(member) else { return }
-            groceryNotice = "Could not discard this unconfirmed grocery. Try again."
+            groceryNotice = "Could not discard this edit. Try again."
         }
     }
 
-    private func handleGroceryAddFailure(
+    private func handleGroceryEditFailure(
         _ error: Error, api: GroceryAPI, auth: any NestAuthentication,
         offline: ChoreOfflineStore, lease: OfflineLease,
         member: VerifiedMember, attempt: Int
@@ -100,7 +103,7 @@ extension SessionModel {
             await leaveGroceryAccount(state(for: error))
             return
         case .conflict, .invalid, .removed, .cutover:
-            await rejectGroceryAdd(offline: offline, lease: lease, member: member, attempt: attempt)
+            await rejectGroceryEdit(offline: offline, lease: lease, member: member, attempt: attempt)
             return
         case .forbidden:
             if await reverifyGroceryMembership(api: api, auth: auth, member: member, attempt: attempt) {
@@ -109,26 +112,25 @@ extension SessionModel {
         default: break
         }
         guard generation == attempt, status == .ready(member) else { return }
-        groceryNotice = "Could not confirm this add. Retry the saved request when online."
+        groceryNotice = "Could not confirm this edit. Retry the saved request when online."
     }
 
-    private func rejectGroceryAdd(
+    private func rejectGroceryEdit(
         offline: ChoreOfflineStore, lease: OfflineLease,
         member: VerifiedMember, attempt: Int
     ) async {
         do {
-            if let saved = try await offline.readGroceryAdd(lease), saved.state == .pending {
-                try await offline.conflictGroceryAdd(
+            if let saved = try await offline.readGroceryEdit(lease), saved.state == .pending {
+                try await offline.conflictGroceryEdit(
                     saved.command.operationId, reason: "rejected", lease: lease)
             }
-            let rejected = try await offline.readGroceryAdd(lease)
+            let rejected = try await offline.readGroceryEdit(lease)
             guard generation == attempt, status == .ready(member) else { return }
-            groceryAdd = rejected
-            groceryNotice = "This add was rejected. Review the list before trying again."
+            groceryEdit = rejected
+            groceryNotice = "This edit was rejected. Review the latest item before trying again."
         } catch {
             guard generation == attempt, status == .ready(member) else { return }
             groceryNotice = "Could not save the rejection. Reopen Nest to review it."
         }
     }
-
 }

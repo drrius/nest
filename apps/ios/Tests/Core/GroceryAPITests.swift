@@ -113,6 +113,42 @@ final class GroceryAPITests: XCTestCase {
         } catch { XCTAssertTrue(error is GroceryContractError) }
     }
 
+    func testEditUsesCapturedVersionAndRejectsWrongCheckedReceipt() async throws {
+        let original = try sampleItem()
+        let command = try EditGrocery(
+            item: original, operationId: UUID(), name: "Oat milk unsweetened",
+            quantity: nil, unit: nil, categoryId: nil)
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(command.operationId)","target":"\(item)","version":"43","checked":true,"removed":false}}
+            """
+        let api = GroceryAPI(
+            http: try http(json: body) { request in
+                XCTAssertEqual(request.url?.path, "/v1/groceries/edit")
+                let payload = try? JSONSerialization.jsonObject(with: request.httpBody ?? Data()) as? [String: Any]
+                XCTAssertEqual(payload?["operationId"] as? String, command.operationId.uuidString)
+                XCTAssertEqual(payload?["expectedVersion"] as? String, "42")
+                XCTAssertEqual(payload?["name"] as? String, "Oat milk unsweetened")
+                XCTAssertTrue(payload?["quantity"] is NSNull)
+            })
+        do {
+            _ = try await api.edit(token: "member-token", member: member, item: original, command: command)
+            XCTFail("Mismatched checked receipt was accepted")
+        } catch { XCTAssertTrue(error is GroceryContractError) }
+    }
+
+    func testEditReceiptMustAdvanceVersion() throws {
+        let original = try sampleItem()
+        let command = try EditGrocery(
+            item: original, operationId: UUID(), name: "Almond milk",
+            quantity: nil, unit: nil, categoryId: nil)
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(command.operationId)","target":"\(item)","version":"42","checked":false,"removed":false}}
+            """
+        let envelope = try JSONDecoder().decode(GroceryEditEnvelope.self, from: Data(body.utf8))
+        XCTAssertThrowsError(
+            try envelope.validated(household: household, item: original, command: command))
+    }
+
     private func sampleItem() throws -> GroceryItem {
         let body = """
             {"itemId":"\(item)","name":"Oat milk","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"42","checked":false,"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}

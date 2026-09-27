@@ -4,6 +4,7 @@ struct GroceriesScreen: View {
     @ObservedObject var model: SessionModel
     @State private var showChecked = false
     @State private var showingAdd = false
+    @State private var editingItem: GroceryItem?
 
     var body: some View {
         List {
@@ -16,6 +17,7 @@ struct GroceriesScreen: View {
             }
             .listRowBackground(QuietPalette.background)
             if let pending = model.groceryAdd { addStatus(pending) }
+            if let pending = model.groceryEdit { editStatus(pending) }
             content
         }
         .listStyle(.plain)
@@ -35,6 +37,7 @@ struct GroceriesScreen: View {
             }
         }
         .sheet(isPresented: $showingAdd) { GroceryAddSheet(model: model) }
+        .sheet(item: $editingItem) { item in GroceryEditSheet(model: model, item: item) }
         .refreshable { await model.refreshGroceries() }
         .task { if model.groceries == .idle { await model.refreshGroceries() } }
     }
@@ -70,6 +73,56 @@ struct GroceriesScreen: View {
         case .acknowledged: "Added. Refreshing the shared list."
         case .conflict: "This add was rejected. Check the shared list before trying again."
         }
+    }
+
+    private func editStatus(_ saved: SavedGroceryEdit) -> some View {
+        Section("Edit to review") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text("\(saved.item.name) → \(saved.command.name)")
+                    .font(.headline)
+                    .foregroundStyle(QuietPalette.ink)
+                if let detail = editDetail(saved) {
+                    Text(detail).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                }
+                Text(editStatusText(saved.state))
+                    .font(.subheadline)
+                    .foregroundStyle(QuietPalette.muted)
+                if saved.state == .pending {
+                    Button("Retry saved edit") { Task { await model.retryGroceryEdit() } }
+                        .disabled(model.groceryEditSaving)
+                        .frame(minHeight: 44, alignment: .leading)
+                }
+                if saved.state == .conflict {
+                    Button("Discard rejected edit") {
+                        Task { await model.discardConflictedGroceryEdit() }
+                    }
+                    .frame(minHeight: 44, alignment: .leading)
+                }
+            }
+        }
+        .listRowBackground(QuietPalette.background)
+    }
+
+    private func editStatusText(_ state: SavedGroceryEdit.State) -> String {
+        switch state {
+        case .pending: "Not confirmed. Retry the same saved request when online."
+        case .acknowledged: "Updated. Refreshing the shared list."
+        case .conflict: "Another change won. Review the current item before editing again."
+        }
+    }
+
+    private func editDetail(_ saved: SavedGroceryEdit) -> String? {
+        let command = saved.command
+        let amount = [command.quantity, command.unit].compactMap { $0 }.joined(separator: " ")
+        let removedAmount =
+            command.quantity == nil && command.unit == nil
+            && (saved.item.quantity != nil || saved.item.unit != nil)
+        let categoryChanged = command.categoryId != saved.item.categoryId
+        let category =
+            categoryChanged
+            ? (command.categoryId == nil ? "No category" : "Category changed") : nil
+        return [removedAmount ? "No quantity" : amount.nilIfEmpty, category].compactMap { $0 }
+            .joined(separator: " · ").nilIfEmpty
     }
 
     @ViewBuilder
@@ -130,29 +183,42 @@ struct GroceriesScreen: View {
 
     private func row(_ local: LocalGrocery) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            Button {
-                Task { await model.checkGrocery(local.item, checked: !local.checked) }
-            } label: {
-                HStack(spacing: 14) {
-                    Image(systemName: local.checked ? "checkmark.circle.fill" : "circle")
-                        .font(.title3)
-                        .foregroundStyle(QuietPalette.accent)
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(local.item.name)
-                            .foregroundStyle(QuietPalette.ink)
-                        if let detail = itemDetail(local.item) {
-                            Text(detail).font(.caption).foregroundStyle(QuietPalette.muted)
+            HStack(spacing: 8) {
+                Button {
+                    Task { await model.checkGrocery(local.item, checked: !local.checked) }
+                } label: {
+                    HStack(spacing: 14) {
+                        Image(systemName: local.checked ? "checkmark.circle.fill" : "circle")
+                            .font(.title3)
+                            .foregroundStyle(QuietPalette.accent)
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text(local.item.name)
+                                .foregroundStyle(QuietPalette.ink)
+                            if let detail = itemDetail(local.item) {
+                                Text(detail).font(.caption).foregroundStyle(QuietPalette.muted)
+                            }
                         }
+                        Spacer(minLength: 8)
                     }
-                    Spacer(minLength: 8)
+                    .frame(minHeight: 56)
+                    .contentShape(Rectangle())
                 }
-                .frame(minHeight: 56)
-                .contentShape(Rectangle())
+                .buttonStyle(.plain)
+                .disabled(local.state != .open || model.groceryEdit?.item.id == local.id)
+                .accessibilityLabel(local.item.name)
+                .accessibilityValue(accessibilityValue(local))
+                if local.state == .open {
+                    Menu {
+                        Button("Edit", systemImage: "pencil") { editingItem = local.item }
+                    } label: {
+                        Image(systemName: "ellipsis")
+                            .foregroundStyle(QuietPalette.accent)
+                            .frame(width: 44, height: 44)
+                    }
+                    .disabled(model.groceryEdit != nil)
+                    .accessibilityLabel("Edit \(local.item.name)")
+                }
             }
-            .buttonStyle(.plain)
-            .disabled(local.state != .open)
-            .accessibilityLabel(local.item.name)
-            .accessibilityValue(accessibilityValue(local))
             if local.state != .open { savedState(local) }
         }
     }

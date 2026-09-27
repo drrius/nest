@@ -1,6 +1,12 @@
 import Foundation
 
 extension SessionModel {
+    func groceryCategoryAvailable(_ id: UUID?) -> Bool {
+        guard let id else { return true }
+        guard case .loaded(let categories) = groceryCategoryStatus else { return false }
+        return categories.contains { $0.id == id }
+    }
+
     func refreshGroceryCategories() async {
         guard groceryCategoryLoadingGeneration != generation,
             let auth, let api = groceryAPI, case .ready(let member) = status

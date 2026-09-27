@@ -12,6 +12,10 @@ actor FakeGroceryServer {
     private var loseNextAddResponse = false
     private var added: AddGrocery?
     private var addAttempts: [UUID] = []
+    private var loseNextEditResponse = false
+    private var edited: EditGrocery?
+    private var editAttempts: [UUID] = []
+    private var rejectNextEdit = false
     private var pauseA = false
     private var aWaiting = false
     private var aStarted: CheckedContinuation<Void, Never>?
@@ -27,6 +31,9 @@ actor FakeGroceryServer {
     func loseNextAdd() { loseNextAddResponse = true }
     func addOperations() -> [UUID] { addAttempts }
     func addedCategory() -> UUID? { added?.categoryId }
+    func loseNextEdit() { loseNextEditResponse = true }
+    func editOperations() -> [UUID] { editAttempts }
+    func rejectEdit() { rejectNextEdit = true }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -46,6 +53,7 @@ actor FakeGroceryServer {
         let actor = token == "Bearer token-A" ? actorA : actorB
         if request.url?.path == "/v1/groceries/check" { return try check(request, actor: actor) }
         if request.url?.path == "/v1/groceries/add" { return try add(request) }
+        if request.url?.path == "/v1/groceries/edit" { return try edit(request) }
         if actor == actorA && pauseA {
             aWaiting = true
             aStarted?.resume()
@@ -82,11 +90,30 @@ actor FakeGroceryServer {
         return answer(request, data: Data(body.utf8))
     }
 
+    private func edit(_ request: URLRequest) throws -> (Data, URLResponse) {
+        let command = try JSONDecoder().decode(EditGrocery.self, from: request.httpBody ?? Data())
+        editAttempts.append(command.operationId)
+        if rejectNextEdit {
+            rejectNextEdit = false
+            return answer(request, data: Data("{\"error\":{\"code\":\"conflict\"}}".utf8), status: 409)
+        }
+        if let edited, edited != command { throw NestAPIFailure.invalid }
+        edited = command
+        if loseNextEditResponse {
+            loseNextEditResponse = false
+            throw URLError(.networkConnectionLost)
+        }
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(command.operationId)","target":"\(command.itemId)","version":"43","checked":false,"removed":false}}
+            """
+        return answer(request, data: Data(body.utf8))
+    }
+
     private func list(for actor: UUID) -> String {
         let isA = actor == actorA
         let checked = isA && checkedA
-        let version = checked ? "43" : "42"
-        let name = isA ? "Alex apples" : "Sam pears"
+        let version = checked || (isA && edited != nil) ? "43" : "42"
+        let name = isA ? edited?.name ?? "Alex apples" : "Sam pears"
         let addedRow =
             added.map { command in
                 ",{\"itemId\":\"\(command.itemId)\",\"name\":\"\(command.name)\",\"quantity\":null,\"unit\":null,\"categoryId\":null,\"categoryName\":null,\"version\":\"1\",\"checked\":false,\"legacyClaimed\":false,\"offlineEpoch\":\"\(epoch)\",\"mealSource\":null}"
@@ -103,8 +130,8 @@ actor FakeGroceryServer {
             """
     }
 
-    private func answer(_ request: URLRequest, data: Data) -> (Data, URLResponse) {
-        let response = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+    private func answer(_ request: URLRequest, data: Data, status: Int = 200) -> (Data, URLResponse) {
+        let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!
         return (data, response)
     }
 }

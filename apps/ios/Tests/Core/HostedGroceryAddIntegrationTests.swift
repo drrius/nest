@@ -16,7 +16,7 @@ private struct RemoveTestEnvelope: Decodable {
 }
 
 final class HostedGroceryAddIntegrationTests: XCTestCase {
-    func testIsolatedHostedAddReplayOutsiderDenialAndCleanup() async throws {
+    func testIsolatedHostedAddEditReplayOutsiderDenialAndCleanup() async throws {
         let environment = ProcessInfo.processInfo.environment
         guard let apiString = environment["NEST_TEST_API_URL"],
             let apiURL = URL(string: apiString),
@@ -45,6 +45,26 @@ final class HostedGroceryAddIntegrationTests: XCTestCase {
             XCTAssertEqual(replay, first)
             let list = try await api.list(token: memberToken, member: member)
             XCTAssertEqual(list.groceries.filter { $0.id == command.itemId }.count, 1)
+            let original = try XCTUnwrap(list.groceries.first { $0.id == command.itemId })
+            let edit = try EditGrocery(
+                item: original, operationId: UUID(), name: "Nest SwiftUI fictional edited test",
+                quantity: original.quantity, unit: original.unit, categoryId: nil)
+            do {
+                _ = try await api.edit(
+                    token: outsiderToken, member: member, item: original, command: edit)
+                XCTFail("Outsider edited another household's grocery")
+            } catch {
+                XCTAssertTrue((error as? NestAPIFailure) == .notMember || (error as? NestAPIFailure) == .forbidden)
+            }
+            let edited = try await api.edit(
+                token: memberToken, member: member, item: original, command: edit)
+            let editReplay = try await api.edit(
+                token: memberToken, member: member, item: original, command: edit)
+            XCTAssertEqual(editReplay, edited)
+            let updatedList = try await api.list(token: memberToken, member: member)
+            XCTAssertEqual(
+                updatedList.groceries.first { $0.id == command.itemId }?.name,
+                "Nest SwiftUI fictional edited test")
             try await removeFixture(
                 command.itemId, http: http, api: api, token: memberToken, member: member)
         } catch {
