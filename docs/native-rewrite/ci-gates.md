@@ -1,0 +1,7 @@
+# Nest CI gates
+
+`Nest checks` runs on every branch push and pull request. It checks formatting, lint, TypeScript, the receipt Edge entry point, all focused mobile suites, core native HTTP/PostgREST journeys, and workspace API/domain/AI/receipt tests. Newer runs for the same push ref or pull request cancel the superseded run.
+
+`Nest deep integration` runs on explicit dispatch. It repeats the pinned PostgREST core journeys and preserves the terminal conflict/approval recovery and isolated PostgreSQL/RLS suites removed from the routine path. Run it against the exact commit before merging changes to authorization, financial commands, database migrations, offline conflict handling or related server boundaries, and before a release candidate. A UI-only change still needs its focused native interaction checks. Do not interpret a green routine run as deep database verification.
+
+From a branch containing the workflow on GitHub's default branch, dispatch with `gh workflow run deep-integration.yml --ref BRANCH`, then record the returned run's head SHA and result. GitHub only exposes a new dispatch workflow after its definition reaches the default branch; until then, run the same three pinned commands locally or rely on the existing full CI for the exact change under review. Any required deep run must pass at the latest relevant commit before merge or release. No production database is touched by these fixtures.

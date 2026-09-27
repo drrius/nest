@@ -1,12 +1,10 @@
-name: Nest checks
-on: [push, pull_request]
-concurrency:
-  group: nest-checks-${{ github.event.pull_request.number || github.ref }}
-  cancel-in-progress: true
+name: Nest deep integration
+on:
+  workflow_dispatch:
 permissions:
   contents: read
 jobs:
-  foundation:
+  database:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,29 +14,6 @@ jobs:
           node-version: 24
           cache: pnpm
       - run: pnpm install --frozen-lockfile
-      - run: pnpm format:check
-      - run: pnpm lint
-      - run: pnpm typecheck
-      - uses: denoland/setup-deno@v2
-        with:
-          deno-version: v2.9.6
-      - name: Check pinned receipt Edge entry point
-        run: deno check --frozen-lockfile --config supabase/functions/nest-receipt-upload/deno.json supabase/functions/nest-receipt-upload/index.ts
-      - run: pnpm test:tooling
-      - run: pnpm test:calendar
-      - run: pnpm test:assistant
-      - run: pnpm test:food
-      - run: pnpm test:cooking
-      - run: pnpm test:setup
-      - run: pnpm test:routines
-      - run: pnpm test:meals
-      - run: pnpm test:money
-      - run: pnpm test:notifications
-      - run: pnpm test:memory
-      - run: pnpm test:session
-      - run: pnpm test:checklist
-      - run: pnpm test:chores
-      - run: pnpm test:offline
       - name: Install pinned PostgREST integration fixture
         shell: bash
         run: |
@@ -51,4 +26,7 @@ jobs:
           "$fixture_dir/postgrest" --version
       - name: Test core native HTTP and database journeys
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:core
-      - run: pnpm test
+      - name: Test terminal conflicts and approval recovery
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:conflicts
+      - name: Test isolated PostgreSQL transactions and RLS
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" pnpm test:database
