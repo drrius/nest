@@ -27,6 +27,8 @@ final class SessionModel: ObservableObject {
     private var lease: OfflineLease?
     private var syncingGeneration: Int?
     private var generation = 0
+    private var credentialTail: Task<Void, Never>?
+    private(set) var credentialSequence = 0
 
     init() {
         savedReader = { store, lease in try await store.read(lease) }
@@ -107,7 +109,9 @@ final class SessionModel: ObservableObject {
         await clearPresentation()
         guard generation == attempt else { return }
         do {
-            let session = try await auth.signIn(appleIDToken: idToken, nonce: nonce)
+            let session = try await serializeCredentials {
+                try await auth.signIn(appleIDToken: idToken, nonce: nonce)
+            }
             try await verify(session, attempt: attempt)
         } catch {
             if generation == attempt { status = state(for: error) }
@@ -121,7 +125,7 @@ final class SessionModel: ObservableObject {
         await clearPresentation()
         guard generation == attempt else { return }
         do {
-            try await auth.signOut()
+            try await serializeCredentials { try await auth.signOut() }
             if generation == attempt { status = .signedOut }
         } catch {
             if generation == attempt { status = .unavailable }
@@ -294,5 +298,26 @@ final class SessionModel: ObservableObject {
             if failure == .notMember { return .notMember }
         }
         return .unavailable
+    }
+
+    private func serializeCredentials<Value: Sendable>(
+        _ action: @escaping @Sendable () async throws -> Value
+    ) async throws -> Value {
+        credentialSequence += 1
+        let sequence = credentialSequence
+        let previous = credentialTail
+        let mutation = Task {
+            await previous?.value
+            return try await action()
+        }
+        credentialTail = Task { _ = try? await mutation.value }
+        do {
+            let result = try await mutation.value
+            if credentialSequence == sequence { credentialTail = nil }
+            return result
+        } catch {
+            if credentialSequence == sequence { credentialTail = nil }
+            throw error
+        }
     }
 }

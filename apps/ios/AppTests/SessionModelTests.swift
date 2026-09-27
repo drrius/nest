@@ -9,11 +9,17 @@ private actor FakeAuthentication: NestAuthentication {
     private var active: AuthenticatedSession?
     private var cached: AuthenticatedSession?
     private var nextSignIn: AuthenticatedSession?
+    private let initial: AuthenticatedSession
     private var invalidRefresh = false
+    private var pauseA = false
+    private var aWaiting = false
+    private var aStarted: CheckedContinuation<Void, Never>?
+    private var aResume: CheckedContinuation<Void, Never>?
 
     init(active: AuthenticatedSession, nextSignIn: AuthenticatedSession? = nil) {
         self.active = active
         cached = active
+        initial = active
         self.nextSignIn = nextSignIn
     }
 
@@ -26,10 +32,18 @@ private actor FakeAuthentication: NestAuthentication {
     func cachedSession() async -> AuthenticatedSession? { cached }
 
     func signIn(appleIDToken: String, nonce: String) async throws -> AuthenticatedSession {
-        guard let nextSignIn else { throw FakeAuthError.invalidRefresh }
-        active = nextSignIn
-        cached = nextSignIn
-        return nextSignIn
+        if appleIDToken == "A" && pauseA {
+            aWaiting = true
+            aStarted?.resume()
+            aStarted = nil
+            await withCheckedContinuation { aResume = $0 }
+        }
+        guard let session = appleIDToken == "A" ? initial : nextSignIn else {
+            throw FakeAuthError.invalidRefresh
+        }
+        active = session
+        cached = session
+        return session
     }
 
     func signOut() async throws {
@@ -38,6 +52,18 @@ private actor FakeAuthentication: NestAuthentication {
     }
 
     func failRefresh() { invalidRefresh = true }
+    func pauseActorA() { pauseA = true }
+
+    func waitForActorA() async {
+        if aWaiting { return }
+        await withCheckedContinuation { aStarted = $0 }
+    }
+
+    func releaseActorA() {
+        pauseA = false
+        aResume?.resume()
+        aResume = nil
+    }
 }
 
 private actor FakeChoreServer {
@@ -227,6 +253,30 @@ final class SessionModelTests: XCTestCase {
         XCTAssertEqual(current.chores.first?.chore.title, "Sam chore")
         let old = try await store.cachedMember(actor: actorA)
         XCTAssertNil(old)
+    }
+
+    func testOverlappingSignInsLeaveDisplayAndCredentialsOnLatestAccount() async throws {
+        let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
+        let auth = FakeAuthentication(
+            active: AuthenticatedSession(userId: actorA, accessToken: "token-A"),
+            nextSignIn: AuthenticatedSession(userId: actorB, accessToken: "token-B"))
+        await auth.pauseActorA()
+        let model = SessionModel(auth: auth, chores: try api(server: server), offline: try store())
+        let oldSignIn = Task { await model.signIn(idToken: "A", nonce: "test") }
+        await auth.waitForActorA()
+        let newSignIn = Task { await model.signIn(idToken: "B", nonce: "test") }
+        for _ in 0..<100 where model.credentialSequence < 2 { await Task.yield() }
+        XCTAssertEqual(model.credentialSequence, 2)
+        await auth.releaseActorA()
+        await oldSignIn.value
+        await newSignIn.value
+        XCTAssertEqual(
+            model.status,
+            .ready(VerifiedMember(userId: actorB, householdId: household, displayName: "Sam")))
+        let stored = await auth.cachedSession()
+        XCTAssertEqual(stored?.userId, actorB)
+        guard case .loaded(let current) = model.today else { return XCTFail("B did not load") }
+        XCTAssertEqual(current.chores.first?.chore.title, "Sam chore")
     }
 
     func testPausedAccountAReadCannotReplaceAccountBPresentation() async throws {
