@@ -25,7 +25,7 @@ export function FoodFields({ runtime, view }: { runtime: FoodRuntime; view: Food
         It is optional and guides estimates, not tracking.
       </Note>
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         colorScheme={scheme === "dark" ? "dark" : "light"}
         seedColor={colors.accent}
       >
@@ -35,6 +35,7 @@ export function FoodFields({ runtime, view }: { runtime: FoodRuntime; view: Food
             value={draft.restrictions}
             placeholder="Restrictions · one per line"
             multiline
+            numberOfLines={3}
             maxLength={3871}
             editable={editable}
           />
@@ -43,6 +44,7 @@ export function FoodFields({ runtime, view }: { runtime: FoodRuntime; view: Food
             value={draft.dislikes}
             placeholder="Dislikes · one per line"
             multiline
+            numberOfLines={3}
             maxLength={3871}
             editable={editable}
           />

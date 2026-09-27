@@ -25,7 +25,7 @@ export function CookingFields({ runtime, view }: { runtime: CookingRuntime; view
         </Note>
       ) : null}
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         colorScheme={scheme === "dark" ? "dark" : "light"}
         seedColor={colors.accent}
       >

@@ -48,7 +48,7 @@ export function MemoryEditor({
       <Section title={memory ? "Edit memory" : "New memory"} />
       <Note>You will review the exact text before allowing Nest to remember it.</Note>
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         colorScheme={scheme === "dark" ? "dark" : "light"}
         seedColor={colors.accent}
       >
