@@ -50,13 +50,51 @@ struct TodayScreen: View {
                         .padding(.top, 8)
                 }
                 content
+                NavigationLink {
+                    GroceriesScreen(model: model)
+                } label: {
+                    HStack(spacing: 14) {
+                        Image(systemName: "basket")
+                            .font(.title3)
+                            .foregroundStyle(QuietPalette.accent)
+                        VStack(alignment: .leading, spacing: 3) {
+                            Text("Groceries").font(.headline).foregroundStyle(QuietPalette.ink)
+                            Text(grocerySummary).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right").foregroundStyle(QuietPalette.muted)
+                    }
+                    .padding(18)
+                    .frame(minHeight: 76)
+                    .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
+                }
+                .buttonStyle(.plain)
+                .padding(.top, 28)
             }
             .padding(.horizontal, 20)
             .padding(.top, 14)
         }
         .background(QuietPalette.background)
-        .refreshable { await model.refreshToday() }
+        .refreshable {
+            await model.refreshToday()
+            await model.refreshGroceries()
+        }
         .task { if model.today == .idle { await model.refreshToday() } }
+        .task { if model.groceries == .idle { await model.refreshGroceries() } }
+    }
+
+    private var grocerySummary: String {
+        switch model.groceries {
+        case .idle, .loading: return "Loading your list"
+        case .failed: return "Could not load · open to retry"
+        case .loaded(let state):
+            let conflicts = state.items.filter { $0.state == .conflict }.count
+            if conflicts > 0 { return conflicts == 1 ? "1 change needs review" : "\(conflicts) changes need review" }
+            let pending = state.items.filter { $0.state == .pending || $0.state == .acknowledged }.count
+            if pending > 0 { return pending == 1 ? "1 saved change syncing" : "\(pending) saved changes syncing" }
+            let count = state.items.filter { !$0.checked }.count
+            return count == 1 ? "1 thing to pick up" : "\(count) things to pick up"
+        }
     }
 
     @ViewBuilder

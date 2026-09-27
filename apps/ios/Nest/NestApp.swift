@@ -28,7 +28,7 @@ struct NestApp: App {
                         Button("Sign out on this device") { Task { await model.signOut() } }
                     }
                 case .ready(let member):
-                    TodayScreen(model: model, member: member)
+                    NavigationStack { TodayScreen(model: model, member: member) }
                 }
             }
             .task { await model.restore() }
