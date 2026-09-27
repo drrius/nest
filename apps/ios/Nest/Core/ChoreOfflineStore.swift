@@ -1,3 +1,4 @@
+import CryptoKit
 import Foundation
 
 struct OfflineLease: Equatable, Sendable {
@@ -38,11 +39,16 @@ actor ChoreOfflineStore {
         try db.run("CREATE INDEX IF NOT EXISTS chore_operations_scope ON chore_operations(actor, household, sequence)")
     }
 
-    static func application() throws -> ChoreOfflineStore {
+    static func application(environment: URL) throws -> ChoreOfflineStore {
+        guard environment.scheme == "https", environment.host != nil else {
+            throw OfflineFailure.storage
+        }
         let directory = try FileManager.default.url(
             for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true
         )
-        let url = directory.appending(path: "nest-offline.sqlite")
+        let fingerprint = SHA256.hash(data: Data(environment.absoluteString.utf8))
+            .map { String(format: "%02x", $0) }.joined()
+        let url = directory.appending(path: "nest-offline-\(fingerprint).sqlite")
         #if os(iOS)
             try FileManager.default.setAttributes(
                 [.protectionKey: FileProtectionType.complete], ofItemAtPath: directory.path)
@@ -64,6 +70,21 @@ actor ChoreOfflineStore {
             "INSERT INTO offline_scope(id,actor,household,lease) VALUES(1,?,?,?) ON CONFLICT(id) DO UPDATE SET actor=excluded.actor,household=excluded.household,lease=excluded.lease",
             lease.scope + [lease.value.uuidString.lowercased()])
         return lease
+    }
+
+    func cachedMember(actor: UUID) throws -> VerifiedMember? {
+        let actorID = actor.uuidString.lowercased()
+        let rows = try db.rows("SELECT household FROM offline_scope WHERE id=1 AND actor=?", [actorID])
+        guard let value = rows.first?.first, let household = UUID(uuidString: value) else { return nil }
+        let scope = [actorID, household.uuidString.lowercased()]
+        let saved = try db.rows("SELECT body FROM chore_snapshots WHERE actor=? AND household=?", scope)
+        guard let body = saved.first?.first, let data = body.data(using: .utf8) else { return nil }
+        let snapshot = try JSONDecoder().decode(ChoreSnapshot.self, from: data)
+            .validated(household: household, actor: actor)
+        guard let name = snapshot.members.first(where: { $0.actorId == actor })?.displayName else {
+            return nil
+        }
+        return VerifiedMember(userId: actor, householdId: household, displayName: name)
     }
 
     func deactivate(_ lease: OfflineLease) throws {

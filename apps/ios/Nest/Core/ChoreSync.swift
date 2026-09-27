@@ -4,6 +4,24 @@ struct ChoreSync: Sendable {
     let api: ChoreAPI
     let store: ChoreOfflineStore
 
+    func replayAndRead(token: String, member: VerifiedMember, lease: OfflineLease) async throws
+        -> (ChoreSnapshot, Bool)
+    {
+        let conflicted: Bool
+        do {
+            conflicted = try await replay(token: token, member: member, lease: lease)
+        } catch NestAPIFailure.forbidden {
+            let verified = try await api.verify(token: token, expectedActor: member.userId)
+            guard verified == member else { throw NestAPIFailure.notMember }
+            let snapshot = try await api.snapshot(token: token, member: member)
+            if let blocked = try await store.next(lease) {
+                try await store.conflict(blocked.operationId, reason: "forbidden", lease: lease)
+            }
+            return (snapshot, true)
+        }
+        return (try await api.snapshot(token: token, member: member), conflicted)
+    }
+
     func replay(token: String, member: VerifiedMember, lease: OfflineLease) async throws -> Bool {
         var conflicted = false
         for _ in 0..<200 {

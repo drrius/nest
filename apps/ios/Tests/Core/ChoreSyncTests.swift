@@ -108,4 +108,52 @@ final class ChoreSyncTests: XCTestCase {
         let pending = try await store.next(lease)
         XCTAssertEqual(pending?.operationId, operation)
     }
+
+    func testForbiddenAfterFreshMemberReadBecomesVisibleConflict() async throws {
+        let (_, member, chore, operation, store, lease) = try await setup()
+        let snapshot = ChoreSnapshot(
+            version: 1, householdId: member.householdId,
+            members: [NestMember(actorId: member.userId, displayName: member.displayName)],
+            transfers: [], chores: [chore])
+        let snapshotBody = try JSONEncoder().encode(snapshot)
+        let sessionBody = Data(
+            "{\"version\":1,\"member\":{\"userId\":\"\(member.userId.uuidString)\",\"householdId\":\"\(member.householdId.uuidString)\",\"displayName\":\"Alex\"}}"
+                .utf8
+        )
+        let http = try NestHTTP(baseURL: baseURL) { request in
+            let path = request.url!.path
+            let status = path == "/v1/chores/complete" ? 403 : 200
+            let body = path == "/v1/session" ? sessionBody : snapshotBody
+            let response = HTTPURLResponse(
+                url: request.url!, statusCode: status,
+                httpVersion: nil, headerFields: nil)!
+            return (body, response)
+        }
+        let (fresh, conflicted) = try await ChoreSync(api: ChoreAPI(http: http), store: store)
+            .replayAndRead(token: "test-token", member: member, lease: lease)
+        try await store.save(fresh, lease: lease)
+        let pending = try await store.next(lease)
+        let state = try await store.read(lease)
+        XCTAssertTrue(conflicted)
+        XCTAssertNil(pending)
+        XCTAssertEqual(state?.chores[0].state, .conflict)
+        XCTAssertEqual(state?.chores[0].operationId, operation)
+    }
+
+    func testForbiddenWithoutFreshAuthorizationRetainsPendingIntent() async throws {
+        let (_, member, _, operation, store, lease) = try await setup()
+        let http = try NestHTTP(baseURL: baseURL) { request in
+            let response = HTTPURLResponse(
+                url: request.url!, statusCode: 403,
+                httpVersion: nil, headerFields: nil)!
+            return (Data("{\"error\":{\"code\":\"forbidden\"}}".utf8), response)
+        }
+        do {
+            _ = try await ChoreSync(api: ChoreAPI(http: http), store: store)
+                .replayAndRead(token: "test-token", member: member, lease: lease)
+            XCTFail("Denied membership cleared queued intent")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+        let pending = try await store.next(lease)
+        XCTAssertEqual(pending?.operationId, operation)
+    }
 }

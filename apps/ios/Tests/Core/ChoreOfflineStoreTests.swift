@@ -81,6 +81,28 @@ final class ChoreOfflineStoreTests: XCTestCase {
         XCTAssertNil(otherState)
     }
 
+    func testCachedMemberSurvivesRestartOnlyForActiveVerifiedScope() async throws {
+        let url = try database()
+        let (member, snapshot) = fixture()
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(member)
+        try await store.save(snapshot, lease: lease)
+        let reopened = try ChoreOfflineStore(url: url)
+        let cached = try await reopened.cachedMember(actor: actor)
+        let outsider = try await reopened.cachedMember(actor: partner)
+        XCTAssertEqual(cached, member)
+        XCTAssertNil(outsider)
+        let other = VerifiedMember(userId: partner, householdId: UUID(), displayName: "Sam")
+        let otherLease = try await reopened.activate(other)
+        let previous = try await reopened.cachedMember(actor: actor)
+        let empty = try await reopened.cachedMember(actor: partner)
+        XCTAssertNil(previous)
+        XCTAssertNil(empty)
+        try await reopened.deactivate(otherLease)
+        let signedOut = try await reopened.cachedMember(actor: partner)
+        XCTAssertNil(signedOut)
+    }
+
     func testConflictRequiresExplicitDiscardBeforeRetry() async throws {
         let store = try ChoreOfflineStore(url: database())
         let (member, snapshot) = fixture()

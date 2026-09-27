@@ -23,6 +23,8 @@ struct NestAuth: Sendable {
 
     func session() async throws -> Session { try await client.session }
 
+    func cachedSession() -> Session? { client.currentSession }
+
     func signIn(appleIDToken: String, nonce: String) async throws -> Session {
         let session = try await client.signInWithIdToken(
             credentials: OpenIDConnectCredentials(provider: .apple, idToken: appleIDToken, nonce: nonce)

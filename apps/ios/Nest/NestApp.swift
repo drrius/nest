@@ -25,12 +25,14 @@ struct NestApp: App {
                     VStack(spacing: 12) {
                         Text("Could not verify your account. Try again online.")
                         Button("Try again") { Task { await model.restore() } }
+                        Button("Sign out on this device") { Task { await model.signOut() } }
                     }
                 case .ready(let member):
                     TodayScreen(model: model, member: member)
                 }
             }
             .task { await model.restore() }
+            .tint(QuietPalette.accent)
         }
     }
 

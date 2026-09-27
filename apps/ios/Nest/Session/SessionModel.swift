@@ -30,7 +30,7 @@ final class SessionModel: ObservableObject {
         do {
             let configuration = try NestConfiguration.fromBundle()
             let http = try NestHTTP(baseURL: configuration.apiURL)
-            let store = try ChoreOfflineStore.application()
+            let store = try ChoreOfflineStore.application(environment: configuration.supabaseURL)
             auth = NestAuth(configuration: configuration)
             chores = ChoreAPI(http: http)
             offline = store
@@ -54,10 +54,27 @@ final class SessionModel: ObservableObject {
             let session = try await auth.session()
             try await verify(session, attempt: attempt)
         } catch AuthError.sessionMissing {
-            if generation == attempt { status = .signedOut }
+            await missingSession(attempt: attempt)
         } catch {
-            if generation == attempt { status = state(for: error) }
+            await failedRestore(error, auth: auth, attempt: attempt)
         }
+    }
+
+    private func missingSession(attempt: Int) async {
+        guard generation == attempt else { return }
+        await clearPresentation()
+        status = .signedOut
+    }
+
+    private func failedRestore(_ error: Error, auth: NestAuth, attempt: Int) async {
+        guard generation == attempt else { return }
+        if canShowCached(error), (try? await showCached(auth: auth, attempt: attempt)) == true {
+            return
+        }
+        guard generation == attempt else { return }
+        let next = state(for: error)
+        if next == .signedOut || next == .notMember { await clearPresentation() }
+        status = next
     }
 
     func signIn(idToken: String, nonce: String) async {
@@ -65,6 +82,8 @@ final class SessionModel: ObservableObject {
         generation += 1
         let attempt = generation
         status = .loading
+        await clearPresentation()
+        guard generation == attempt else { return }
         do {
             let session = try await auth.signIn(appleIDToken: idToken, nonce: nonce)
             try await verify(session, attempt: attempt)
@@ -76,16 +95,14 @@ final class SessionModel: ObservableObject {
     func signOut() async {
         guard let auth else { return }
         generation += 1
-        let previous = lease
-        lease = nil
-        today = .idle
-        todayNotice = nil
-        if let previous, let offline { try? await offline.deactivate(previous) }
+        let attempt = generation
+        await clearPresentation()
+        guard generation == attempt else { return }
         do {
             try await auth.signOut()
-            status = .signedOut
+            if generation == attempt { status = .signedOut }
         } catch {
-            status = .unavailable
+            if generation == attempt { status = .unavailable }
         }
     }
 
@@ -108,8 +125,40 @@ final class SessionModel: ObservableObject {
                 auth: auth, chores: chores, offline: offline,
                 lease: lease, member: member, attempt: attempt)
         } catch {
-            handleTodayFailure(error, member: member, attempt: attempt)
+            await handleTodayFailure(error, member: member, attempt: attempt)
         }
+    }
+
+    private func canShowCached(_ error: Error) -> Bool {
+        (error as? NestAPIFailure) == .unavailable || error is URLError
+    }
+
+    private func showCached(auth: NestAuth, attempt: Int) async throws -> Bool {
+        guard let offline, let session = auth.cachedSession(),
+            let member = try await offline.cachedMember(actor: session.user.id)
+        else { return false }
+        guard generation == attempt else { return false }
+        await clearPresentation()
+        guard generation == attempt else { return false }
+        let cachedLease = try await offline.activate(member)
+        guard let saved = try await offline.read(cachedLease), generation == attempt else {
+            try await offline.deactivate(cachedLease)
+            return false
+        }
+        lease = cachedLease
+        today = .loaded(saved)
+        todayNotice = "Showing saved chores. Changes will sync when online."
+        status = .ready(member)
+        return true
+    }
+
+    private func clearPresentation() async {
+        let previous = lease
+        lease = nil
+        today = .idle
+        todayNotice = nil
+        syncing = false
+        if let previous, let offline { try? await offline.deactivate(previous) }
     }
 
     private func showSaved(offline: ChoreOfflineStore, lease: OfflineLease) async throws {
@@ -122,9 +171,8 @@ final class SessionModel: ObservableObject {
     ) async throws {
         let session = try await auth.session()
         guard session.user.id == member.userId else { throw NestAPIFailure.signedOut }
-        let conflicted = try await ChoreSync(api: chores, store: offline)
-            .replay(token: session.accessToken, member: member, lease: lease)
-        let snapshot = try await chores.snapshot(token: session.accessToken, member: member)
+        let (snapshot, conflicted) = try await ChoreSync(api: chores, store: offline)
+            .replayAndRead(token: session.accessToken, member: member, lease: lease)
         guard generation == attempt, status == .ready(member) else { return }
         try await offline.save(snapshot, lease: lease)
         guard let saved = try await offline.read(lease),
@@ -134,10 +182,15 @@ final class SessionModel: ObservableObject {
         todayNotice = conflicted ? "A saved change needs your review." : nil
     }
 
-    private func handleTodayFailure(_ error: Error, member: VerifiedMember, attempt: Int) {
+    private func handleTodayFailure(_ error: Error, member: VerifiedMember, attempt: Int) async {
         guard generation == attempt, status == .ready(member) else { return }
         let mapped = state(for: error)
-        if mapped == .signedOut || mapped == .notMember { status = mapped }
+        if mapped == .signedOut || mapped == .notMember {
+            generation += 1
+            await clearPresentation()
+            status = mapped
+            return
+        }
         if case .loaded = today {
             todayNotice =
                 (error as? NestAPIFailure) == .forbidden
@@ -189,8 +242,14 @@ final class SessionModel: ObservableObject {
         guard let chores, let offline else { throw NestAPIFailure.configuration }
         let member = try await chores.verify(token: session.accessToken, expectedActor: session.user.id)
         guard generation == attempt else { return }
-        lease = try await offline.activate(member)
+        await clearPresentation()
         guard generation == attempt else { return }
+        let nextLease = try await offline.activate(member)
+        guard generation == attempt else {
+            try? await offline.deactivate(nextLease)
+            return
+        }
+        lease = nextLease
         status = .ready(member)
         await refreshToday()
     }
