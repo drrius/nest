@@ -74,8 +74,6 @@ final class SessionModel: ObservableObject {
         generation += 1
         let attempt = generation
         status = .loading
-        await clearPresentation()
-        guard generation == attempt else { return }
         let pendingMutation = credentialTail
         await pendingMutation?.value
         guard generation == attempt else { return }

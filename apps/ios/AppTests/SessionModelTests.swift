@@ -188,6 +188,22 @@ final class SessionModelTests: XCTestCase {
         XCTAssertNotNil(model.todayNotice)
     }
 
+    func testReadyAccountCanReverifyFromSavedDataWhenOffline() async throws {
+        let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
+        let auth = FakeAuthentication(
+            active: AuthenticatedSession(userId: actorA, accessToken: "token-A"))
+        let model = SessionModel(auth: auth, chores: try api(server: server), offline: try store())
+        await model.restore()
+        await server.makeUnavailable()
+        await model.restore()
+        XCTAssertEqual(
+            model.status,
+            .ready(VerifiedMember(userId: actorA, householdId: household, displayName: "Alex")))
+        guard case .loaded(let saved) = model.today else { return XCTFail("Saved chores were lost") }
+        XCTAssertEqual(saved.chores.first?.chore.title, "Alex chore")
+        XCTAssertNotNil(model.todayNotice)
+    }
+
     func testInvalidRefreshCanClearLocalSession() async throws {
         let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
         let auth = FakeAuthentication(
