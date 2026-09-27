@@ -9,6 +9,9 @@ extension SessionModel {
         mealPlacementSaving = false
         mealVisibleSlots = MealSlot.allCases
         mealSlotNotice = nil
+        mealMove = nil
+        mealMoveSaving = false
+        mealMoveSavingGeneration = nil
         mealRemoval = nil
         mealRemovalSaving = false
         mealLibrary = .idle

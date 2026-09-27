@@ -27,12 +27,14 @@ extension SessionModel {
         mealLoadingRequest = request
         do {
             let cached = try await offline.readMealWeek(start, lease: lease)
+            let pendingMove = try await offline.readMealMove(lease: lease)
             let pending = try await offline.readMealPlacement(start, lease: lease)
             let pendingRemoval = try await offline.readMealRemoval(start, lease: lease)
             let pendingRecipe = try await offline.readMealRecipePlacement(start, lease: lease)
             guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
             else { return }
             mealStatus = cached.map(MealStatus.loaded) ?? .loading
+            mealMove = pendingMove
             mealPlacement = pending
             mealRemoval = pendingRemoval
             mealRecipePlacement = pendingRecipe
@@ -43,12 +45,14 @@ extension SessionModel {
             else { return }
             try await offline.saveMealWeek(fresh, lease: lease)
             let visible = try await offline.readMealWeek(start, lease: lease)
+            let savedMove = try await offline.readMealMove(lease: lease)
             let saved = try await offline.readMealPlacement(start, lease: lease)
             let savedRemoval = try await offline.readMealRemoval(start, lease: lease)
             let savedRecipePlacement = try await offline.readMealRecipePlacement(start, lease: lease)
             guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
             else { return }
             mealStatus = visible.map(MealStatus.loaded) ?? .loaded(fresh)
+            mealMove = savedMove
             mealPlacement = saved
             mealRemoval = savedRemoval
             mealRecipePlacement = savedRecipePlacement

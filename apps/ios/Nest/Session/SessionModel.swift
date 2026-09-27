@@ -47,6 +47,9 @@ final class SessionModel: ObservableObject {
     @Published var mealPlacementSaving = false
     @Published var mealVisibleSlots = MealSlot.allCases
     @Published var mealSlotNotice: String?
+    @Published var mealMove: SavedMealMove?
+    @Published var mealMoveSaving = false
+    var mealMoveSavingGeneration: Int?
     @Published var mealRemoval: SavedMealRemoval?
     @Published var mealRemovalSaving = false
     @Published var mealLibrary: MealLibraryStatus = .idle

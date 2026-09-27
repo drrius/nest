@@ -7,6 +7,7 @@ struct MealDayView<Detail: View>: View {
     let canChange: Bool
     let add: (MealSlot) -> Void
     let remove: (PlannedMeal) -> Void
+    let move: (PlannedMeal) -> Void
     let detail: (PlannedMeal) -> Detail
 
     var body: some View {
@@ -78,6 +79,7 @@ struct MealDayView<Detail: View>: View {
             .buttonStyle(.plain)
             .accessibilityLabel("\(slot.label): \(meal.title), recipe details")
             Menu {
+                Button("Move", systemImage: "arrow.right.arrow.left") { move(meal) }
                 Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
             } label: {
                 Image(systemName: "ellipsis")

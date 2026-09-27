@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MealWeekScreen: View {
     @ObservedObject var model: SessionModel
+    @State private var moveTarget: MealMoveTarget?
     @State private var addTarget: MealSlotTarget?
     @State private var removalCandidate: PlannedMeal?
     @State private var showingRemovalConfirmation = false
@@ -26,6 +27,9 @@ struct MealWeekScreen: View {
                 }
                 if let saved = model.mealRecipePlacement {
                     MealRecipePlacementStatus(model: model, saved: saved)
+                }
+                if let saved = model.mealMove {
+                    MealMoveStatus(model: model, saved: saved)
                 }
                 content
                 NavigationLink {
@@ -52,6 +56,9 @@ struct MealWeekScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $addTarget) { target in
             MealAddSheet(model: model, target: target)
+        }
+        .sheet(item: $moveTarget) { target in
+            MealMoveSheet(model: model, target: target)
         }
         .confirmationDialog(
             "Remove meal?", isPresented: $showingRemovalConfirmation,
@@ -116,12 +123,14 @@ struct MealWeekScreen: View {
                     date: date, meals: week.entries.filter { $0.date == date },
                     slots: model.mealVisibleSlots,
                     canChange: model.mealPlacement == nil && model.mealRemoval == nil
-                        && model.mealRecipePlacement == nil
+                        && model.mealRecipePlacement == nil && model.mealMove == nil
                 ) { slot in
                     addTarget = MealSlotTarget(date: date, slot: slot)
                 } remove: { meal in
                     removalCandidate = meal
                     showingRemovalConfirmation = true
+                } move: { meal in
+                    moveTarget = MealMoveTarget(source: week.weekStart, meal: meal)
                 } detail: { meal in
                     PlannedRecipeScreen(
                         model: model,
