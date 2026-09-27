@@ -28,5 +28,13 @@
         "buildConfiguration": "Release"
       }
     }
+  },
+  "submit": {
+    "testflight": {
+      "ios": {
+        "ascAppId": "6814119349",
+        "appleTeamId": "5ZKB6XKYFX"
+      }
+    }
   }
 }
