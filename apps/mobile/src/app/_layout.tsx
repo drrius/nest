@@ -40,6 +40,7 @@ function Navigation() {
         headerStyle: { backgroundColor: colors.background },
         headerTintColor: colors.text,
         headerShadowVisible: false,
+        headerBackButtonDisplayMode: "minimal",
         contentStyle: { backgroundColor: colors.background },
       }}
     >
@@ -49,7 +50,7 @@ function Navigation() {
           state.status === "ready" || state.status === "loading" || state.status === "unavailable"
         }
       >
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false, title: "Nest" }} />
         {protectedScreens.map(({ name, title }) => (
           <Stack.Screen key={name} name={name} options={{ title }} />
         ))}

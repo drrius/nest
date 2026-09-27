@@ -31,7 +31,7 @@ export function ExpenseFields(props: Props) {
   return (
     <Section title={props.title ?? "Expense"}>
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         seedColor={colors.accent}
         colorScheme={scheme === "dark" ? "dark" : "light"}
       >
@@ -94,7 +94,7 @@ function ExpenseDetails(props: Props) {
   return (
     <>
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         seedColor={colors.accent}
         colorScheme={scheme === "dark" ? "dark" : "light"}
       >
