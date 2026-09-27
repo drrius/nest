@@ -27,8 +27,9 @@ export function IngredientControls({
       {pending ? (
         <>
           <Note>
-            {pending.selected.length} selected ingredients are saved in an unresolved request. You
-            can leave and return to this week; no automatic retry will run.
+            {pending.selected.length} selected{" "}
+            {pending.selected.length === 1 ? "ingredient is" : "ingredients are"} saved in an
+            unresolved request. You can leave and return to this week; no automatic retry will run.
           </Note>
           <NativeAction
             label="Retry saved addition"
@@ -62,12 +63,12 @@ function confirm(runtime: IngredientRuntime, view: IngredientView, count: number
   const sequence = view.attempt?.sequence;
   if (sequence === undefined) return;
   Alert.alert(
-    "Add selected ingredients?",
+    count === 1 ? "Add selected ingredient?" : "Add selected ingredients?",
     `Add ${count} ingredient ${count === 1 ? "row" : "rows"} to your shared grocery list using the quantities shown. Unselected pantry items stay out. Previously added sources will not be duplicated.`,
     [
       { text: "Cancel", style: "cancel" },
       {
-        text: "Add ingredients",
+        text: count === 1 ? "Add ingredient" : "Add ingredients",
         onPress: () => {
           void runtime.confirm(sequence);
         },
@@ -80,7 +81,12 @@ function SkippedIngredients({ skipped }: { skipped: IngredientView["skipped"] })
   const missing = skipped.length - leftovers;
   return (
     <>
-      {leftovers ? <Note>{leftovers} leftover meals do not add another purchase.</Note> : null}
+      {leftovers ? (
+        <Note>
+          {leftovers} leftover {leftovers === 1 ? "meal does" : "meals do"} not add another
+          purchase.
+        </Note>
+      ) : null}
       {missing ? (
         <Note>
           {missing} {missing === 1 ? "meal has" : "meals have"} no retained ingredient list. Check{" "}
