@@ -25,7 +25,7 @@ export function RecipeTextFields({
     scheme = useColorScheme();
   return (
     <Host
-      matchContents
+      matchContents={{ vertical: true }}
       colorScheme={scheme === "dark" ? "dark" : "light"}
       seedColor={colors.accent}
     >
@@ -38,6 +38,7 @@ export function RecipeTextFields({
               editable={editable}
               maxLength={Math.max(field.limit, field.initial.length)}
               multiline={field.multiline}
+              numberOfLines={field.multiline ? 3 : undefined}
               keyboardType={field.keyboardType}
               placeholder={field.placeholder}
               autoCapitalize={field.keyboardType === "url" ? "none" : "sentences"}

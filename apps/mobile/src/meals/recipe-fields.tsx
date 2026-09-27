@@ -41,7 +41,7 @@ export function RecipeFields({
     scheme = useColorScheme();
   return (
     <Host
-      matchContents
+      matchContents={{ vertical: true }}
       colorScheme={scheme === "dark" ? "dark" : "light"}
       seedColor={colors.accent}
     >
@@ -66,10 +66,17 @@ export function RecipeFields({
           editable={editable}
           maxLength={4000}
           multiline
+          numberOfLines={3}
           placeholder="How do you make it?"
         />
         <Text>Notes · optional</Text>
-        <TextInput value={fields.notes} editable={editable} maxLength={4000} multiline />
+        <TextInput
+          value={fields.notes}
+          editable={editable}
+          maxLength={4000}
+          multiline
+          numberOfLines={3}
+        />
         <Text>Source link · optional</Text>
         <TextInput
           value={fields.recipeUrl}

@@ -41,7 +41,7 @@ export function RecipeIngredientEditor({
     <Card>
       <Section title="Ingredient" />
       <Host
-        matchContents
+        matchContents={{ vertical: true }}
         colorScheme={scheme === "dark" ? "dark" : "light"}
         seedColor={colors.accent}
       >
@@ -53,7 +53,13 @@ export function RecipeIngredientEditor({
           <Text>Unit · optional</Text>
           <TextInput value={unit} maxLength={80} placeholder="cup" />
           <Text>Note · optional</Text>
-          <TextInput value={note} maxLength={1000} multiline placeholder="Chopped" />
+          <TextInput
+            value={note}
+            maxLength={1000}
+            multiline
+            numberOfLines={3}
+            placeholder="Chopped"
+          />
         </Column>
       </Host>
       {error ? <Note>Enter an ingredient name and check the field lengths.</Note> : null}
