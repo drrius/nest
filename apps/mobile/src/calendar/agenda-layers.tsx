@@ -38,6 +38,7 @@ export function AgendaLayers({
     <View style={{ gap: space.medium, paddingVertical: space.medium }}>
       <QuietAction
         label={expanded ? "Hide calendars & layers" : "Calendars & layers"}
+        expanded={expanded}
         onPress={() => setExpanded(!expanded)}
       />
       {expanded ? (

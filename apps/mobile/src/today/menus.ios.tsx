@@ -1,6 +1,6 @@
 import { Host } from "@expo/ui";
 import { Button, HStack, Menu } from "@expo/ui/swift-ui";
-import { accessibilityLabel, frame } from "@expo/ui/swift-ui/modifiers";
+import { accessibilityLabel, frame, labelStyle } from "@expo/ui/swift-ui/modifiers";
 import { useRouter } from "expo-router";
 import { useColorScheme } from "react-native";
 import { useQuiet } from "../theme";
@@ -10,7 +10,7 @@ export function TodayMenus({ transfers, refresh }: { transfers: number; refresh:
   const router = useRouter(),
     colors = useQuiet(),
     scheme = useColorScheme();
-  const target = [frame({ minWidth: 44, minHeight: 44 })];
+  const target = [frame({ minWidth: 44, minHeight: 44 }), labelStyle("iconOnly")];
   return (
     <Host
       matchContents

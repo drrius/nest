@@ -103,6 +103,14 @@ function EntryPage({
   const recovery = view.attempt !== null || view.result !== null;
   const disabled = !expenseEntryEnabled(view, options.fresh);
   const readingDisabled = !view.online || view.busy;
+  const receipt = (
+    <ReceiptAttachmentControls
+      expense={runtime}
+      runtime={attachment}
+      view={attachmentView}
+      disabled={disabled}
+    />
+  );
   return (
     <Page>
       <Note>
@@ -127,6 +135,9 @@ function EntryPage({
               disabled={!receiptFormEnabled(disabled, attachmentView)}
               first={options.first}
               next={options.next}
+              compact
+              detailsRequired={receiptDetailsRequired(attachmentView)}
+              optionalContent={receipt}
             />
           ) : (
             <Note>
@@ -135,12 +146,7 @@ function EntryPage({
                 : "Loading current household members and categories…"}
             </Note>
           )}
-          <ReceiptAttachmentControls
-            expense={runtime}
-            runtime={attachment}
-            view={attachmentView}
-            disabled={disabled}
-          />
+          {!options.value ? receipt : null}
           <NativeAction
             label="Reload expense choices"
             disabled={readingDisabled}
@@ -165,4 +171,8 @@ function receiptFormEnabled(
   view: ReturnType<ReceiptAttachmentRuntime["getSnapshot"]>,
 ) {
   return !disabled && receiptReady(view);
+}
+
+function receiptDetailsRequired(view: ReturnType<ReceiptAttachmentRuntime["getSnapshot"]>) {
+  return view.status !== "empty" || view.busy !== null || view.notice !== null;
 }

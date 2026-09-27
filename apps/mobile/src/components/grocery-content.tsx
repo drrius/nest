@@ -2,12 +2,14 @@ import type { GroceryData } from "../groceries/flow";
 import { Checkbox, Host } from "@expo/ui";
 import { useState, type ReactNode, type PropsWithChildren } from "react";
 import { checklistRows } from "../groceries/checklist-view";
-import { ActivityIndicator, Alert, FlatList, useColorScheme } from "react-native";
-import { Link } from "expo-router";
+import { ActivityIndicator, Alert, FlatList, View, useColorScheme } from "react-native";
+import { Link, useRouter } from "expo-router";
 import type { Grocery } from "@nest/contracts/groceries";
 import type { GroceryView } from "../groceries/runtime";
 import { space, useQuiet } from "../theme";
 import { Card, Note, Section } from "./page";
+import { ActionMenu } from "./action-menu";
+import type { MenuAction } from "./action-menu-types";
 import { NativeAction } from "./native-action";
 
 export function GroceryConflicts({
@@ -119,14 +121,14 @@ function GroceryHeader({
   children,
 }: PropsWithChildren<Omit<GroceryListProps, "check">>) {
   return (
-    <>
+    <View style={{ gap: space.medium, paddingBottom: space.medium }}>
       <Section title="For the next shop" />
       {add}
       <GroceryStatus view={view} />
       <NativeAction label="Refresh and retry saved checks" onPress={refresh} />
       <GroceryConflicts view={view} discard={discard} />
       {children}
-    </>
+    </View>
   );
 }
 
@@ -156,14 +158,19 @@ function GroceryRow({
   const dark = useColorScheme() === "dark";
   return (
     <Card>
-      <Host matchContents colorScheme={dark ? "dark" : "light"} seedColor={colors.accent}>
-        <Checkbox
-          value={item.checked}
-          label={[item.name, item.quantity, item.unit].filter(Boolean).join(" · ")}
-          disabled={item.conflict}
-          onValueChange={(checked) => check(item, checked)}
-        />
-      </Host>
+      <View style={{ flexDirection: "row", alignItems: "center", gap: space.small }}>
+        <View style={{ flex: 1 }}>
+          <Host matchContents colorScheme={dark ? "dark" : "light"} seedColor={colors.accent}>
+            <Checkbox
+              value={item.checked}
+              label={[item.name, item.quantity, item.unit].filter(Boolean).join(" · ")}
+              disabled={item.conflict}
+              onValueChange={(checked) => check(item, checked)}
+            />
+          </Host>
+        </View>
+        {!item.pending ? <GroceryActions item={item} /> : null}
+      </View>
       {showCategory && item.categoryName ? <Note>{item.categoryName}</Note> : null}
       {item.mealSource ? (
         <Note>
@@ -173,15 +180,6 @@ function GroceryRow({
         </Note>
       ) : null}
       {item.pending ? <Note>{item.conflict ? "Needs review" : "Awaiting sync"}</Note> : null}
-      <GroceryReminderLink item={item} />
-      {!item.pending ? (
-        <Link
-          href={{ pathname: "/grocery-edit", params: { itemId: item.itemId } }}
-          style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
-        >
-          Edit {item.name}
-        </Link>
-      ) : null}
     </Card>
   );
 }
@@ -193,15 +191,19 @@ function emptyMessage(data: GroceryData | null) {
     : "Your grocery checklist is empty.";
 }
 
-function GroceryReminderLink({ item }: { item: GroceryData["groceries"][number] }) {
-  const colors = useQuiet();
-  if (item.pending || item.checked) return null;
-  return (
-    <Link
-      href={{ pathname: "/grocery-reminder", params: { itemId: item.itemId } }}
-      style={{ color: colors.accent, fontSize: 17, paddingVertical: 8 }}
-    >
-      Reminder for {item.name}
-    </Link>
-  );
+function GroceryActions({ item }: { item: GroceryData["groceries"][number] }) {
+  const router = useRouter();
+  const actions: MenuAction[] = [
+    {
+      label: "Edit item",
+      onPress: () => router.push({ pathname: "/grocery-edit", params: { itemId: item.itemId } }),
+    },
+  ];
+  if (!item.checked)
+    actions.push({
+      label: "Reminder",
+      onPress: () =>
+        router.push({ pathname: "/grocery-reminder", params: { itemId: item.itemId } }),
+    });
+  return <ActionMenu label={`Actions for ${item.name}`} actions={actions} />;
 }

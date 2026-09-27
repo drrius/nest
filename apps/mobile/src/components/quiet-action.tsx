@@ -5,16 +5,18 @@ export function QuietAction({
   label,
   onPress,
   disabled = false,
+  expanded,
 }: {
   label: string;
   onPress: () => void;
   disabled?: boolean;
+  expanded?: boolean;
 }) {
   const colors = useQuiet();
   return (
     <Pressable
       accessibilityRole="button"
-      accessibilityState={{ disabled }}
+      accessibilityState={{ disabled, expanded }}
       disabled={disabled}
       onPress={onPress}
       style={({ pressed }) => ({

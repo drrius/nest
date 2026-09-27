@@ -144,15 +144,28 @@ function PendingActions({ runtime, view }: { runtime: MealProposalRuntime; view:
           }}
         />
       ) : null}
-      {!view.attempt.edit && !view.attempt.discard && !view.attempt.approval ? (
-        <>
-          <ApproveAction runtime={runtime} view={view} />
-          <DiscardAction runtime={runtime} view={view} />
-        </>
-      ) : null}
     </>
   );
 }
+export function ProposalDecisions({
+  runtime,
+  view,
+}: {
+  runtime: MealProposalRuntime;
+  view: ProposalView;
+}) {
+  if (!view.attempt || view.attempt.edit || view.attempt.discard || view.attempt.approval)
+    return null;
+  if (!view.proposal || ["discarded", "failed", "approved"].includes(view.proposal.status))
+    return null;
+  return (
+    <>
+      <ApproveAction runtime={runtime} view={view} />
+      <DiscardAction runtime={runtime} view={view} />
+    </>
+  );
+}
+
 function ApproveAction({ runtime, view }: { runtime: MealProposalRuntime; view: ProposalView }) {
   const proposal = view.proposal;
   if (proposal?.status !== "ready") return null;

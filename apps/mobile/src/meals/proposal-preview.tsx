@@ -11,7 +11,7 @@ import type { SavedMeal } from "@nest/contracts/meal-library";
 import { Page, Note } from "../components/page";
 import { NativeAction } from "../components/native-action";
 import { RecipeHeader, IngredientRow, RecipeFooter } from "./recipe-content";
-import { ProposalControls } from "./proposal-controls";
+import { ProposalControls, ProposalDecisions } from "./proposal-controls";
 import type { MealProposalRuntime } from "./proposal-runtime";
 import { space, useQuiet } from "../theme";
 export function ProposalPreview({
@@ -72,12 +72,15 @@ export function ProposalPreview({
         />
       )}
       ListFooterComponent={
-        <Link
-          href={{ pathname: "/meal-week", params: { weekStart: runtime.weekStart } }}
-          style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
-        >
-          Back to Meals
-        </Link>
+        <View style={{ gap: space.medium, paddingTop: space.medium }}>
+          <ProposalDecisions runtime={runtime} view={view} />
+          <Link
+            href={{ pathname: "/meal-week", params: { weekStart: runtime.weekStart } }}
+            style={{ color: colors.accent, fontSize: 17, paddingVertical: space.medium }}
+          >
+            Back to Meals
+          </Link>
+        </View>
       }
     />
   );

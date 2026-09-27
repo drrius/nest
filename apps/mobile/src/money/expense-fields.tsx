@@ -1,3 +1,5 @@
+import { useState, type ReactNode } from "react";
+import { QuietAction } from "../components/quiet-action";
 import { ExpenseAmountFields } from "./expense-amount-fields";
 import { Host, Column, Text, TextInput, Picker } from "@expo/ui";
 import DateTimePicker from "@expo/ui/community/datetime-picker";
@@ -9,6 +11,9 @@ import type { ExpenseEntryOptions } from "./entry-options";
 import type { NativeExpenseDraft } from "./use-expense-draft";
 interface Props {
   draft: NativeExpenseDraft;
+  compact?: boolean;
+  optionalContent?: ReactNode;
+  detailsRequired?: boolean;
   options: ExpenseEntryOptions;
   disabled: boolean;
   next: () => void;
@@ -46,6 +51,53 @@ export function ExpenseFields(props: Props) {
             ))}
           </Picker>
           {!props.variable ? <AllocationFields {...props} /> : null}
+        </Column>
+      </Host>
+      <ExpenseOptionalDetails {...props} />
+      {draft.error ? <Note>{draft.error}</Note> : null}
+      <NativeAction
+        label={props.reviewLabel ?? "Review and record expense"}
+        disabled={disabled}
+        onPress={draft.submit}
+      />
+    </Section>
+  );
+}
+function ExpenseOptionalDetails(props: Props) {
+  const [expanded, setExpanded] = useState(false);
+  if (!props.compact) return <ExpenseDetails {...props} />;
+  const open = expanded || props.detailsRequired;
+  return (
+    <>
+      <QuietAction
+        label={
+          props.detailsRequired
+            ? "Optional details"
+            : open
+              ? "Hide optional details"
+              : "Date, category, note & receipt"
+        }
+        expanded={!!open}
+        disabled={props.detailsRequired}
+        onPress={() => setExpanded(!expanded)}
+      />
+      {open ? <ExpenseDetails {...props} /> : null}
+    </>
+  );
+}
+
+function ExpenseDetails(props: Props) {
+  const { draft, disabled } = props,
+    colors = useQuiet(),
+    scheme = useColorScheme();
+  return (
+    <>
+      <Host
+        matchContents
+        seedColor={colors.accent}
+        colorScheme={scheme === "dark" ? "dark" : "light"}
+      >
+        <Column spacing={12}>
           <Text>Note (optional)</Text>
           <TextInput value={draft.note} multiline editable={!disabled} />
           <CategoryFields {...props} />
@@ -62,15 +114,11 @@ export function ExpenseFields(props: Props) {
         />
       </Section>
       <CategoryPages {...props} />
-      {draft.error ? <Note>{draft.error}</Note> : null}
-      <NativeAction
-        label={props.reviewLabel ?? "Review and record expense"}
-        disabled={disabled}
-        onPress={draft.submit}
-      />
-    </Section>
+      {props.optionalContent}
+    </>
   );
 }
+
 function SplitFields({ draft, options, disabled }: Props) {
   if (draft.split === "exact")
     return (
