@@ -35,7 +35,8 @@ extension ChoreOfflineStore {
     ) throws {
         try authorize(lease)
         _ = try command.validated(against: week, meal: meal)
-        guard try readMealMove(lease: lease) == nil,
+        guard try readMealReplacement(lease: lease) == nil,
+            try readMealMove(lease: lease) == nil,
             try readMealRemoval(week.weekStart, lease: lease) == nil,
             try readMealPlacement(week.weekStart, lease: lease) == nil,
             try readMealRecipePlacement(week.weekStart, lease: lease) == nil,
