@@ -71,7 +71,14 @@ final class SessionModel: ObservableObject {
 
     func restore() async {
         guard let auth else { return }
+        generation += 1
         let attempt = generation
+        status = .loading
+        await clearPresentation()
+        guard generation == attempt else { return }
+        let pendingMutation = credentialTail
+        await pendingMutation?.value
+        guard generation == attempt else { return }
         do {
             let session = try await auth.session()
             try await verify(session, attempt: attempt)
