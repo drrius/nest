@@ -1,10 +1,14 @@
 # Native verification record
 
-## Current verification status — 25 September 2026
+## Current verification status — 27 September 2026
+
+The owner-authorized TestFlight candidate is Nest 0.1.0 build 3: EAS build `3e73941d-8c76-4625-9c6a-5511bbb1e876`, submission `7fe9b64b-eee9-4f82-aa23-9d974f52426c`, App Store Connect app `6814119349`. Both EAS jobs finished; Apple reports VALID and IN_BETA_TESTING for internal testing. Exact tester membership and installation remain unverified. This Release build uses the isolated nest-test backend and needs no Mac or Metro to open from TestFlight. It includes the SDK57 dependency corrections and encryption declaration from source base `034237a`, plus the generated build-number change.
+
+Start with installation and Apple sign-in. Actual Apple identities still need verified test-household membership; a nonmember screen must not be bypassed or treated as a sign-in failure. The configured fictional password users do not represent the owners' Apple accounts. Live AI is disabled pending Gateway free-credit activation and deployment configuration. Phone permission, offline and two-member journeys below remain pending.
 
 Native execution remains unavailable here: neither `xcrun` nor `maestro` is on PATH. Running `eas simulator:availability --json` from `apps/mobile` returns `available: false` for `drrius-dev`. No simulator session or build was started. The earlier account result below is historical; it must not be used as current account or quota evidence.
 
-The application has progressed beyond the original preview, but implemented services and local SQLite/HTTP/PostgreSQL tests do not establish native interaction. The preview flow cannot verify authenticated production flows. A separate authenticated Money read flow is now prepared below, but has not run. Real sign-in, offline restart, financial approval, Calendar permissions and push still require a development build with an isolated backend and an available iPhone runner. The existing development and development-simulator profiles remain separate from release submission.
+The application has progressed beyond the original preview, but implemented services and local SQLite/HTTP/PostgreSQL tests do not establish native interaction. The preview flow cannot verify authenticated production flows. A separate authenticated Money read flow is now prepared below, but has not run. Real sign-in, offline restart, financial approval, Calendar permissions and push still require execution of a signed build on real iPhones against the isolated backend. The existing development and development-simulator profiles remain separate from release submission.
 
 ## Original preview scope (historical)
 
@@ -12,12 +16,12 @@ The first native shell is an explicitly labeled M1 interaction preview. No auth,
 
 Routes are under `apps/mobile/src/app`. Four native tabs own separate stacks; Today and Meals open the same grocery screen. Preview chore/grocery state is shared across navigation and discarded on process restart. Example meals/calendar/financial history are fictional. There are no simulated successful network calls or enabled financial write controls.
 
-## Current development identity — 26 September 2026
+## Current build identity — 27 September 2026
 
 - The committed `apps/mobile/app.json` identifies `@drrius-dev/nest`, EAS project `aca37c4f-1bcd-4e9a-a695-37e794f97933`, and iPhone bundle `ch.drrius.nest`. Use this bundle identifier for Apple capability and Supabase audience configuration. Earlier `ch.drrius.nest.dev` / `@drrius/nest` notes are superseded.
-- `apps/mobile/eas.json` contains only internal device development and development-simulator profiles. No production or submit profile is configured. Check the current account plan and no-cost build availability before any cloud build; the earlier account's quota observation does not establish current availability. Paid builds require owner approval.
-- Linux has no `xcrun`; the last cloud simulator availability check for `drrius-dev` returned unavailable. Neither a signed build nor actual iPhone execution is verified.
-- The isolated backend is `nest-test` (`tkjixmujjoustdiedfmw`). Apple provider is enabled for native client ID `ch.drrius.nest`; existing-member identity linkage and real iPhone sign-in remain pending. Apple Developer confirms the existing App ID has Sign In with Apple enabled, but no Nest provisioning profile or EAS iOS build was present at the September 26 inspection. Do not use production as a device test fixture.
+- `apps/mobile/eas.json` contains internal development profiles and a store-distribution Release `testflight` profile using the preview environment, with an explicit TestFlight submission profile. Check the current account plan and no-cost build availability before any cloud build; the earlier account's quota observation does not establish current availability. Paid builds require owner approval.
+- Linux has no `xcrun`; the last cloud simulator availability check for `drrius-dev` returned unavailable. The signed TestFlight build above is verified; actual iPhone execution is not.
+- The isolated backend is `nest-test` (`tkjixmujjoustdiedfmw`). Apple provider is enabled for native client ID `ch.drrius.nest`; existing-member identity linkage and real iPhone sign-in remain pending. Apple Developer confirms Sign In with Apple and Push Notifications capabilities; the owner subsequently configured active Nest provisioning profile `4ACJPGMVPB`. EAS has the existing team push key assigned, but delivery is unverified. Do not use production as a device test fixture.
 - The existing overnight automation was removed at the owner's request; do not recreate it based on older planning text.
 
 ## Repeatable development route
