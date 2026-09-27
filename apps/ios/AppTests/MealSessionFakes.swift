@@ -18,6 +18,10 @@ actor FakeMealServer {
     private var rejectNextPlace = false
     private var pagedLibrary = false
     private var libraryQueries: [String] = []
+    private var recipePlaced: PlaceSavedRecipe?
+    private var recipeAttempts: [UUID] = []
+    private var loseNextRecipeResponse = false
+    private var rejectNextRecipe = false
     private var pauseA = false
     private var aWaiting = false
     private var aStarted: CheckedContinuation<Void, Never>?
@@ -38,6 +42,9 @@ actor FakeMealServer {
     func savedRecipeId() -> UUID { recipeId }
     func usePagedLibrary() { pagedLibrary = true }
     func queriedLibraryPages() -> [String] { libraryQueries }
+    func loseNextRecipePlace() { loseNextRecipeResponse = true }
+    func rejectRecipePlace() { rejectNextRecipe = true }
+    func recipeOperations() -> [UUID] { recipeAttempts }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -56,6 +63,9 @@ actor FakeMealServer {
         let actor = token == "Bearer token-A" ? actorA : actorB
         if request.url?.path == "/v1/meals/place" { return try place(request, actor: actor) }
         if request.url?.path == "/v1/meals/remove" { return try remove(request, actor: actor) }
+        if request.url?.path == "/v1/meals/recipe/place" {
+            return try placeRecipe(request, actor: actor)
+        }
         if request.url?.path == "/v1/cooking-preferences" {
             return answer(request, body: cooking(for: actor))
         }
@@ -115,27 +125,59 @@ actor FakeMealServer {
         return answer(request, body: body)
     }
 
+    private func placeRecipe(_ request: URLRequest, actor: UUID) throws -> (Data, URLResponse) {
+        let command = try JSONDecoder().decode(PlaceSavedRecipe.self, from: request.httpBody ?? Data())
+        recipeAttempts.append(command.operationId)
+        if rejectNextRecipe {
+            rejectNextRecipe = false
+            return answer(request, body: "{\"error\":{\"code\":\"conflict\"}}", status: 409)
+        }
+        guard command.definitionId == recipeId,
+            command.expectedRevision == "0", command.expectedLibraryRevision == "4"
+        else { throw NestAPIFailure.invalid }
+        if let recipePlaced, recipePlaced != command { throw NestAPIFailure.invalid }
+        recipePlaced = command
+        if loseNextRecipeResponse {
+            loseNextRecipeResponse = false
+            throw URLError(.networkConnectionLost)
+        }
+        let body = """
+            {"version":1,"receipt":{"version":1,"actorId":"\(actor)","householdId":"\(household)","operationId":"\(command.operationId)","entryId":"\(entry)","weekStart":"\(command.weekStart.date.value)","date":"\(command.date.value)","slot":"\(command.slot.rawValue)","revision":"1","definitionId":"\(recipeId)","libraryRevision":"4"}}
+            """
+        return answer(request, body: body)
+    }
+
     private func week(for actor: UUID) -> String {
         let isA = actor == actorA
         let meal = isA && removed == nil ? placed : nil
         let row: String
-        if let meal {
+        if isA, let recipePlaced {
+            row = entryRow(
+                date: recipePlaced.date.value, slot: recipePlaced.slot.rawValue,
+                title: "Alex pasta", definition: recipeId)
+        } else if let meal {
             row = entryRow(date: meal.date.value, slot: meal.slot.rawValue, title: meal.title)
         } else if !isA {
             row = entryRow(date: "2026-09-29", slot: "dinner", title: "Sam soup")
         } else {
             row = ""
         }
-        let revision = isA ? (removed == nil ? (placed == nil ? "0" : "1") : "2") : "1"
+        let revision =
+            isA
+            ? (recipePlaced == nil ? (removed == nil ? (placed == nil ? "0" : "1") : "2") : "1")
+            : "1"
         return """
             {"version":1,"householdId":"\(household)","weekStart":"2026-09-28","revision":"\(revision)","entries":[\(row)]}
             """
     }
 
-    private func entryRow(date: String, slot: String, title: String) -> String {
-        """
-        {"entryId":"\(entry)","date":"\(date)","slot":"\(slot)","title":"\(title)","recipeUrl":null,"notes":null,"definitionId":null,"leftoverSourceId":null}
-        """
+    private func entryRow(
+        date: String, slot: String, title: String, definition: UUID? = nil
+    ) -> String {
+        let definitionValue = definition.map { "\"\($0)\"" } ?? "null"
+        return """
+            {"entryId":"\(entry)","date":"\(date)","slot":"\(slot)","title":"\(title)","recipeUrl":null,"notes":null,"definitionId":\(definitionValue),"leftoverSourceId":null}
+            """
     }
 
     private func cooking(for actor: UUID) -> String {

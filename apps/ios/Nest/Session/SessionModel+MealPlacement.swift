@@ -5,7 +5,7 @@ extension SessionModel {
     func placeMeal(date: CivilDate, slot: MealSlot, title: String) async -> Bool {
         guard let offline, let lease, case .ready(let member) = status,
             case .loaded(let week) = mealStatus, mealSelection == week.weekStart,
-            mealRemoval == nil
+            mealRemoval == nil, mealRecipePlacement == nil
         else { return false }
         let attempt = generation
         do {

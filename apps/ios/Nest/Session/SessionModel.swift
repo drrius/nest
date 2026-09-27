@@ -52,6 +52,8 @@ final class SessionModel: ObservableObject {
     @Published var mealLibrary: MealLibraryStatus = .idle
     @Published var mealLibraryNotice: String?
     @Published var savedRecipe: SavedRecipeStatus = .idle
+    @Published var mealRecipePlacement: SavedMealRecipePlacement?
+    @Published var mealRecipePlacementSaving = false
     let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -72,6 +74,7 @@ final class SessionModel: ObservableObject {
     var mealRemovalSavingGeneration: Int?
     var mealLibraryRequest: UUID?
     var savedRecipeRequest: UUID?
+    var mealRecipePlacementSavingGeneration: Int?
     var generation = 0
     var credentialTail: Task<Void, Never>?
     var credentialSequence = 0
@@ -268,6 +271,8 @@ final class SessionModel: ObservableObject {
         mealLibrary = .idle
         mealLibraryNotice = nil
         savedRecipe = .idle
+        mealRecipePlacement = nil
+        mealRecipePlacementSaving = false
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
@@ -280,6 +285,7 @@ final class SessionModel: ObservableObject {
         mealRemovalSavingGeneration = nil
         mealLibraryRequest = nil
         savedRecipeRequest = nil
+        mealRecipePlacementSavingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 
@@ -382,14 +388,6 @@ final class SessionModel: ObservableObject {
         lease = nextLease
         status = .ready(member)
         await refreshToday()
-    }
-
-    func state(for error: Error) -> Status {
-        if let failure = error as? NestAPIFailure {
-            if failure == .signedOut { return .signedOut }
-            if failure == .notMember { return .notMember }
-        }
-        return .unavailable
     }
 
 }

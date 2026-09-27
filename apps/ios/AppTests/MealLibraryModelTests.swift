@@ -8,6 +8,7 @@ final class MealLibraryModelTests: XCTestCase {
     private let actorA = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!
     private let actorB = UUID(uuidString: "22222222-2222-4222-8222-222222222222")!
     private let household = UUID(uuidString: "33333333-3333-4333-8333-333333333333")!
+    private let start = try! MealWeekStart("2026-09-28")
 
     private func model(server: FakeMealServer) throws -> SessionModel {
         let auth = FakeAuthentication(
@@ -115,5 +116,57 @@ final class MealLibraryModelTests: XCTestCase {
         let cursor = try XCTUnwrap(first.nextAfterId).uuidString.lowercased()
         let queries = await server.queriedLibraryPages()
         XCTAssertEqual(queries, ["", "afterId=\(cursor)&expectedRevision=4"])
+    }
+
+    func testLostRecipePlacementResponseRetriesExactOperationAndShowsOneMeal() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let recipe) = model.savedRecipe else {
+            return XCTFail("Saved recipe did not load")
+        }
+        await server.loseNextRecipePlace()
+        let accepted = await model.placeSavedRecipe(
+            date: try CivilDate("2026-09-29"), slot: .dinner, recipe: recipe)
+        XCTAssertTrue(accepted)
+        XCTAssertEqual(model.mealRecipePlacement?.state, .pending)
+        _ = await model.placeSavedRecipe(
+            date: try CivilDate("2026-09-29"), slot: .dinner, recipe: recipe)
+        let first = await server.recipeOperations()
+        XCTAssertEqual(first.count, 1)
+        await model.retryMealRecipePlacement()
+        let attempts = await server.recipeOperations()
+        XCTAssertEqual(attempts, [first[0], first[0]])
+        XCTAssertNil(model.mealRecipePlacement)
+        guard case .loaded(let week) = model.mealStatus else {
+            return XCTFail("Saved week did not refresh")
+        }
+        XCTAssertEqual(week.entries.map(\.definitionId), [id])
+        XCTAssertEqual(week.entries.map(\.title), ["Alex pasta"])
+    }
+
+    func testRejectedRecipePlacementNeedsExplicitDiscard() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let recipe) = model.savedRecipe else {
+            return XCTFail("Saved recipe did not load")
+        }
+        await server.rejectRecipePlace()
+        _ = await model.placeSavedRecipe(
+            date: try CivilDate("2026-09-29"), slot: .dinner, recipe: recipe)
+        XCTAssertEqual(model.mealRecipePlacement?.state, .conflict)
+        await model.refreshMealWeek()
+        XCTAssertEqual(model.mealRecipePlacement?.state, .conflict)
+        await model.discardConflictedMealRecipePlacement()
+        XCTAssertNil(model.mealRecipePlacement)
     }
 }

@@ -24,6 +24,9 @@ struct MealWeekScreen: View {
                 if let saved = model.mealRemoval {
                     MealRemovalStatus(model: model, saved: saved)
                 }
+                if let saved = model.mealRecipePlacement {
+                    MealRecipePlacementStatus(model: model, saved: saved)
+                }
                 content
                 NavigationLink {
                     MealLibraryScreen(model: model)
@@ -113,6 +116,7 @@ struct MealWeekScreen: View {
                     date: date, meals: week.entries.filter { $0.date == date },
                     slots: model.mealVisibleSlots,
                     canChange: model.mealPlacement == nil && model.mealRemoval == nil
+                        && model.mealRecipePlacement == nil
                 ) { slot in
                     addTarget = MealSlotTarget(date: date, slot: slot)
                 } remove: { meal in

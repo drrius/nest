@@ -36,6 +36,79 @@ final class HostedMealWeekIntegrationTests: XCTestCase {
         XCTAssertEqual(recipe?.title, summary.title)
     }
 
+    func testIsolatedHostedSavedRecipePlaceReplayOutsiderDenialAndCleanup() async throws {
+        let environment = ProcessInfo.processInfo.environment
+        guard let apiString = environment["NEST_TEST_API_URL"],
+            let apiURL = URL(string: apiString),
+            let actorString = environment["NEST_TEST_ACTOR_ID"],
+            let actor = UUID(uuidString: actorString),
+            let memberPath = environment["NEST_TEST_MEMBER_TOKEN_FILE"],
+            let outsiderPath = environment["NEST_TEST_OUTSIDER_TOKEN_FILE"]
+        else { throw XCTSkip("Isolated hosted test credentials are not configured") }
+        let memberToken = try token(at: memberPath)
+        let outsiderToken = try token(at: outsiderPath)
+        let api = MealAPI(http: try NestHTTP(baseURL: apiURL))
+        let member = try await api.verify(token: memberToken, expectedActor: actor)
+        let library = try await api.library(token: memberToken, member: member)
+        let summary = try XCTUnwrap(library.meals.first, "Synthetic test recipe is missing")
+        let loadedRecipe = try await api.recipe(
+            token: memberToken, member: member, id: summary.id, revision: library.revision)
+        let recipe = try XCTUnwrap(loadedRecipe)
+        let start = try MealWeekStart("2035-04-09")
+        let week = try await api.week(token: memberToken, member: member, start: start)
+        let target = try XCTUnwrap(
+            start.days.flatMap { day in MealSlot.allCases.map { (day, $0) } }
+                .first { date, slot in
+                    !week.entries.contains { $0.date == date && $0.slot == slot }
+                })
+        let command = try PlaceSavedRecipe(
+            week: week, recipe: recipe, libraryRevision: library.revision,
+            operationId: UUID(), date: target.0, slot: target.1)
+        do {
+            _ = try await api.placeRecipe(
+                token: outsiderToken, member: member, week: week,
+                recipe: recipe, command: command)
+            XCTFail("Outsider placed another household's saved recipe")
+        } catch { assertDenied(error) }
+        do {
+            let placed = try await api.placeRecipe(
+                token: memberToken, member: member, week: week,
+                recipe: recipe, command: command)
+            let replay = try await api.placeRecipe(
+                token: memberToken, member: member, week: week,
+                recipe: recipe, command: command)
+            XCTAssertEqual(replay, placed)
+            let fresh = try await api.week(token: memberToken, member: member, start: start)
+            XCTAssertEqual(fresh.entries.filter { $0.id == placed.entryId }.count, 1)
+            XCTAssertEqual(fresh.entries.first { $0.id == placed.entryId }?.definitionId, recipe.id)
+            try await removeRecipeFixture(
+                placed.entryId, api: api, token: memberToken, member: member, start: start)
+        } catch {
+            if let recovered = try? await api.placeRecipe(
+                token: memberToken, member: member, week: week,
+                recipe: recipe, command: command)
+            {
+                try? await removeRecipeFixture(
+                    recovered.entryId, api: api, token: memberToken, member: member, start: start)
+            }
+            throw error
+        }
+    }
+
+    private func removeRecipeFixture(
+        _ entryId: UUID, api: MealAPI, token: String,
+        member: VerifiedMember, start: MealWeekStart
+    ) async throws {
+        let week = try await api.week(token: token, member: member, start: start)
+        guard let entry = week.entries.first(where: { $0.id == entryId }) else { return }
+        let command = try RemoveMeal(week: week, meal: entry, operationId: UUID())
+        _ = try await api.remove(
+            token: token, member: member, week: week,
+            meal: entry, command: command)
+        let after = try await api.week(token: token, member: member, start: start)
+        XCTAssertFalse(after.entries.contains { $0.id == entryId })
+    }
+
     func testIsolatedHostedMealReadPlaceReplayOutsiderDenialAndCleanup() async throws {
         let environment = ProcessInfo.processInfo.environment
         guard let apiString = environment["NEST_TEST_API_URL"],

@@ -5,6 +5,8 @@ struct MealAddSheet: View {
     let target: MealSlotTarget
     @Environment(\.dismiss) private var dismiss
     @State private var title = ""
+    @State private var useSaved = false
+    @State private var selectedId: UUID?
     @State private var saving = false
     @State private var errorText: String?
 
@@ -12,16 +14,27 @@ struct MealAddSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("What are you having?", text: $title)
-                        .textInputAutocapitalization(.sentences)
-                        .submitLabel(.done)
-                    if let errorText {
-                        Text(errorText).font(.caption).foregroundStyle(QuietPalette.muted)
+                    Picker("Meal source", selection: $useSaved) {
+                        Text("One-off").tag(false)
+                        Text("Saved meal").tag(true)
                     }
+                    .pickerStyle(.segmented)
                 } header: {
                     Text("\(target.slot.label) · \(target.date.value)")
-                } footer: {
-                    Text("Shared with your household · up to 120 characters.")
+                }
+                if useSaved {
+                    MealSavedChoice(model: model, selectedId: $selectedId)
+                } else {
+                    Section {
+                        TextField("What are you having?", text: $title)
+                            .textInputAutocapitalization(.sentences)
+                            .submitLabel(.done)
+                    } footer: {
+                        Text("Shared with your household · up to 120 characters.")
+                    }
+                }
+                if let errorText {
+                    Section { Text(errorText).foregroundStyle(QuietPalette.muted) }
                 }
             }
             .scrollContentBackground(.hidden)
@@ -36,8 +49,7 @@ struct MealAddSheet: View {
                     Button("Save") {
                         saving = true
                         Task {
-                            let accepted = await model.placeMeal(
-                                date: target.date, slot: target.slot, title: title)
+                            let accepted = await save()
                             if accepted {
                                 dismiss()
                             } else {
@@ -46,14 +58,37 @@ struct MealAddSheet: View {
                             }
                         }
                     }
-                    .disabled(saving || model.mealPlacement != nil || !validTitle)
+                    .disabled(
+                        saving || model.mealPlacement != nil || model.mealRemoval != nil
+                            || model.mealRecipePlacement != nil || !validInput)
+                }
+            }
+            .task(id: useSaved) {
+                if useSaved {
+                    selectedId = nil
+                    await model.refreshMealLibrary()
                 }
             }
         }
     }
 
-    private var validTitle: Bool {
+    private var validInput: Bool {
+        if useSaved {
+            guard let selectedId, case .loaded(let recipe) = model.savedRecipe else { return false }
+            return recipe.id == selectedId
+        }
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
         return !trimmed.isEmpty && trimmed.unicodeScalars.count <= 120
+    }
+
+    private func save() async -> Bool {
+        if useSaved {
+            guard let selectedId, case .loaded(let recipe) = model.savedRecipe,
+                recipe.id == selectedId
+            else { return false }
+            return await model.placeSavedRecipe(
+                date: target.date, slot: target.slot, recipe: recipe)
+        }
+        return await model.placeMeal(date: target.date, slot: target.slot, title: title)
     }
 }

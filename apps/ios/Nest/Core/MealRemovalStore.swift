@@ -37,6 +37,7 @@ extension ChoreOfflineStore {
         _ = try command.validated(against: week, meal: meal)
         guard try readMealRemoval(week.weekStart, lease: lease) == nil,
             try readMealPlacement(week.weekStart, lease: lease) == nil,
+            try readMealRecipePlacement(week.weekStart, lease: lease) == nil,
             try readMealWeek(week.weekStart, lease: lease) == week
         else { throw OfflineFailure.missingSnapshot }
         let capturedWeek = String(decoding: try JSONEncoder().encode(week), as: UTF8.self)
