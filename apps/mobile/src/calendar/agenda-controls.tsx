@@ -1,4 +1,3 @@
-import DateTimePicker from "@expo/ui/community/datetime-picker";
 import { useRouter } from "expo-router";
 import { View } from "react-native";
 import { NativeAction } from "../components/native-action";
@@ -6,7 +5,8 @@ import { QuietAction } from "../components/quiet-action";
 import { ActionMenu } from "../components/action-menu";
 import { Note } from "../components/page";
 import { space } from "../theme";
-import { adjacentDay, agendaDay, localDate } from "./agenda-day";
+import { adjacentDay, localDate } from "./agenda-day";
+import { AgendaDate } from "./agenda-date";
 import type { AgendaRuntime, AgendaView } from "./agenda-runtime";
 export function AgendaControls({
   runtime,
@@ -26,7 +26,12 @@ export function AgendaControls({
     <View style={{ gap: space.medium }}>
       <Note>Your day, with room for everything.</Note>
       <View
-        style={{ flexDirection: "row", alignItems: "center", flexWrap: "wrap", gap: space.medium }}
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: space.medium,
+        }}
       >
         <AgendaDate view={view} />
         <ActionMenu
@@ -74,22 +79,6 @@ export function AgendaControls({
       </View>
       <AgendaStatus runtime={runtime} view={view} />
     </View>
-  );
-}
-function AgendaDate({ view }: { view: AgendaView }) {
-  const router = useRouter();
-  const window = agendaDay(view.date);
-  if (process.env.EXPO_OS !== "ios" || !window) return <Note>{view.date}</Note>;
-  return (
-    <DateTimePicker
-      style={{ flexGrow: 1, flexBasis: 200, minHeight: 44 }}
-      value={new Date(window.start)}
-      mode="date"
-      disabled={view.busy}
-      onChange={(_event, date) => {
-        if (date) router.setParams({ date: localDate(date) });
-      }}
-    />
   );
 }
 function AgendaStatus({ runtime, view }: { runtime: AgendaRuntime; view: AgendaView }) {
