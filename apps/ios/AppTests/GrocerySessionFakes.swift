@@ -9,6 +9,9 @@ actor FakeGroceryServer {
     private let epoch = UUID(uuidString: "44444444-4444-4444-8444-444444444444")!
     private var offline = false
     private var checkedA = false
+    private var loseNextAddResponse = false
+    private var added: AddGrocery?
+    private var addAttempts: [UUID] = []
     private var pauseA = false
     private var aWaiting = false
     private var aStarted: CheckedContinuation<Void, Never>?
@@ -21,6 +24,8 @@ actor FakeGroceryServer {
     }
 
     func setOffline(_ value: Bool) { offline = value }
+    func loseNextAdd() { loseNextAddResponse = true }
+    func addOperations() -> [UUID] { addAttempts }
     func pauseActorA() { pauseA = true }
 
     func waitForActorA() async {
@@ -39,6 +44,7 @@ actor FakeGroceryServer {
         let token = request.value(forHTTPHeaderField: "Authorization") ?? ""
         let actor = token == "Bearer token-A" ? actorA : actorB
         if request.url?.path == "/v1/groceries/check" { return try check(request, actor: actor) }
+        if request.url?.path == "/v1/groceries/add" { return try add(request) }
         if actor == actorA && pauseA {
             aWaiting = true
             aStarted?.resume()
@@ -46,6 +52,21 @@ actor FakeGroceryServer {
             await withCheckedContinuation { aResume = $0 }
         }
         return answer(request, data: Data(list(for: actor).utf8))
+    }
+
+    private func add(_ request: URLRequest) throws -> (Data, URLResponse) {
+        let command = try JSONDecoder().decode(AddGrocery.self, from: request.httpBody ?? Data())
+        addAttempts.append(command.operationId)
+        if let added, added != command { throw NestAPIFailure.invalid }
+        added = command
+        if loseNextAddResponse {
+            loseNextAddResponse = false
+            throw URLError(.networkConnectionLost)
+        }
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(command.operationId)","target":"\(command.itemId)","version":"1","checked":false,"removed":false}}
+            """
+        return answer(request, data: Data(body.utf8))
     }
 
     private func check(_ request: URLRequest, actor: UUID) throws -> (Data, URLResponse) {
@@ -62,8 +83,12 @@ actor FakeGroceryServer {
         let checked = isA && checkedA
         let version = checked ? "43" : "42"
         let name = isA ? "Alex apples" : "Sam pears"
+        let addedRow =
+            added.map { command in
+                ",{\"itemId\":\"\(command.itemId)\",\"name\":\"\(command.name)\",\"quantity\":null,\"unit\":null,\"categoryId\":null,\"categoryName\":null,\"version\":\"1\",\"checked\":false,\"legacyClaimed\":false,\"offlineEpoch\":\"\(epoch)\",\"mealSource\":null}"
+            } ?? ""
         return """
-            {"version":1,"householdId":"\(household)","groceries":[{"itemId":"\(actor)","name":"\(name)","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"\(version)","checked":\(checked),"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}]}
+            {"version":1,"householdId":"\(household)","groceries":[{"itemId":"\(actor)","name":"\(name)","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"\(version)","checked":\(checked),"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}\(addedRow)]}
             """
     }
 

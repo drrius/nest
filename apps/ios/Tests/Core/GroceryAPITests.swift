@@ -67,6 +67,35 @@ final class GroceryAPITests: XCTestCase {
         } catch { XCTAssertTrue(error is GroceryContractError) }
     }
 
+    func testAddRequiresExactReceiptAndSendsExplicitNullableFields() async throws {
+        let command = try AddGrocery(
+            operationId: UUID(), itemId: item, name: "  Oat milk  ",
+            quantity: nil, unit: nil, categoryId: nil)
+        let body = """
+            {"version":1,"householdId":"\(household)","receipt":{"operation":"\(UUID())","target":"\(item)","version":"43","checked":false,"removed":false}}
+            """
+        let expectedHousehold = household.uuidString.lowercased()
+        let api = GroceryAPI(
+            http: try http(json: body) { request in
+                XCTAssertEqual(request.url?.path, "/v1/groceries/add")
+                XCTAssertEqual(request.httpMethod, "POST")
+                XCTAssertEqual(
+                    request.value(forHTTPHeaderField: "X-Nest-Household"),
+                    expectedHousehold)
+                let payload = try? JSONSerialization.jsonObject(with: request.httpBody ?? Data()) as? [String: Any]
+                XCTAssertEqual(payload?["operationId"] as? String, command.operationId.uuidString)
+                XCTAssertEqual(payload?["itemId"] as? String, command.itemId.uuidString)
+                XCTAssertEqual(payload?["name"] as? String, "Oat milk")
+                XCTAssertTrue(payload?["quantity"] is NSNull)
+                XCTAssertTrue(payload?["unit"] is NSNull)
+                XCTAssertTrue(payload?["categoryId"] is NSNull)
+            })
+        do {
+            _ = try await api.add(token: "member-token", member: member, command: command)
+            XCTFail("Unrelated receipt was accepted")
+        } catch { XCTAssertTrue(error is GroceryContractError) }
+    }
+
     private func sampleItem() throws -> GroceryItem {
         let body = """
             {"itemId":"\(item)","name":"Oat milk","quantity":null,"unit":null,"categoryId":null,"categoryName":null,"version":"42","checked":false,"legacyClaimed":false,"offlineEpoch":"\(epoch)","mealSource":null}

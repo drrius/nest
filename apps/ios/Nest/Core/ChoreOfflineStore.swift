@@ -43,6 +43,9 @@ actor ChoreOfflineStore {
             "CREATE TABLE IF NOT EXISTS grocery_checks (sequence INTEGER PRIMARY KEY AUTOINCREMENT, actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, item TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, UNIQUE(actor,household,target))"
         )
         try db.run("CREATE INDEX IF NOT EXISTS grocery_checks_scope ON grocery_checks(actor, household, sequence)")
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS grocery_adds (actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, PRIMARY KEY(actor,household))"
+        )
     }
 
     static func application(environment: URL) throws -> ChoreOfflineStore {

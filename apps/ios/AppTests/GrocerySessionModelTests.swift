@@ -62,4 +62,22 @@ final class GrocerySessionModelTests: XCTestCase {
         XCTAssertEqual(confirmed.items.first?.state, .open)
         XCTAssertEqual(confirmed.items.first?.checked, true)
     }
+
+    func testLostAddResponseRetriesExactOperationWithoutDuplicateItem() async throws {
+        let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshGroceries()
+        await server.loseNextAdd()
+        await model.addGrocery(name: "Oat milk", quantity: nil, unit: nil)
+        XCTAssertEqual(model.groceryAdd?.state, .pending)
+        let first = await server.addOperations()
+        XCTAssertEqual(first.count, 1)
+        await model.retryGroceryAdd()
+        let attempts = await server.addOperations()
+        XCTAssertEqual(attempts, [first[0], first[0]])
+        XCTAssertNil(model.groceryAdd)
+        guard case .loaded(let saved) = model.groceries else { return XCTFail("List did not refresh") }
+        XCTAssertEqual(saved.items.filter { $0.item.name == "Oat milk" }.count, 1)
+    }
 }

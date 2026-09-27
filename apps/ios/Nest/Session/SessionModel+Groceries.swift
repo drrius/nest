@@ -14,8 +14,10 @@ extension SessionModel {
         grocerySyncingGeneration = attempt
         defer { finishGroceryRefresh(attempt: attempt) }
         let saved: GroceryOfflineState?
+        let savedAdd: SavedGroceryAdd?
         do {
             saved = try await offline.readGroceries(lease)
+            savedAdd = try await offline.readGroceryAdd(lease)
         } catch {
             guard generation == attempt, status == .ready(member) else { return }
             groceries = .failed
@@ -24,6 +26,7 @@ extension SessionModel {
         }
         guard generation == attempt, status == .ready(member) else { return }
         groceries = saved.map(GroceryStatus.loaded) ?? .loading
+        groceryAdd = savedAdd
         do {
             try await syncGroceries(
                 auth: auth, api: groceryAPI, offline: offline,
@@ -102,6 +105,9 @@ extension SessionModel {
             generation == attempt, status == .ready(member)
         else { return }
         groceries = .loaded(saved)
+        let savedAdd = try await offline.readGroceryAdd(lease)
+        guard generation == attempt, status == .ready(member) else { return }
+        groceryAdd = savedAdd
         groceryNotice = conflicted ? "A saved grocery change needs review." : nil
     }
 

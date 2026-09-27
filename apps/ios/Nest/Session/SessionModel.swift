@@ -27,6 +27,8 @@ final class SessionModel: ObservableObject {
     @Published private(set) var todayNotice: String?
     @Published var groceries: GroceryStatus = .idle
     @Published var groceryNotice: String?
+    @Published var groceryAdd: SavedGroceryAdd?
+    @Published var groceryAddSaving = false
     let auth: (any NestAuthentication)?
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -37,6 +39,7 @@ final class SessionModel: ObservableObject {
     private var syncingGeneration: Int?
     var grocerySyncingGeneration: Int?
     var groceryNeedsRefresh = false
+    var groceryAddSavingGeneration: Int?
     var generation = 0
     private var credentialTail: Task<Void, Never>?
     private(set) var credentialSequence = 0
@@ -210,9 +213,12 @@ final class SessionModel: ObservableObject {
         todayNotice = nil
         groceries = .idle
         groceryNotice = nil
+        groceryAdd = nil
+        groceryAddSaving = false
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
+        groceryAddSavingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 

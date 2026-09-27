@@ -3,6 +3,7 @@ import SwiftUI
 struct GroceriesScreen: View {
     @ObservedObject var model: SessionModel
     @State private var showChecked = false
+    @State private var showingAdd = false
 
     var body: some View {
         List {
@@ -14,6 +15,7 @@ struct GroceriesScreen: View {
                 if let notice = model.groceryNotice { noticeRow(notice) }
             }
             .listRowBackground(QuietPalette.background)
+            if let pending = model.groceryAdd { addStatus(pending) }
             content
         }
         .listStyle(.plain)
@@ -22,8 +24,52 @@ struct GroceriesScreen: View {
         .background(QuietPalette.background)
         .navigationTitle("Groceries")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingAdd = true
+                } label: {
+                    Label("Add grocery", systemImage: "plus")
+                }
+                .disabled(model.groceryAdd != nil)
+            }
+        }
+        .sheet(isPresented: $showingAdd) { GroceryAddSheet(model: model) }
         .refreshable { await model.refreshGroceries() }
         .task { if model.groceries == .idle { await model.refreshGroceries() } }
+    }
+
+    private func addStatus(_ saved: SavedGroceryAdd) -> some View {
+        Section("Add to the list") {
+            VStack(alignment: .leading, spacing: 8) {
+                Text(saved.command.name)
+                    .font(.headline)
+                    .foregroundStyle(QuietPalette.ink)
+                Text(addStatusText(saved.state))
+                    .font(.subheadline)
+                    .foregroundStyle(QuietPalette.muted)
+                if saved.state == .pending {
+                    Button("Retry saved add") { Task { await model.retryGroceryAdd() } }
+                        .disabled(model.groceryAddSaving)
+                        .frame(minHeight: 44, alignment: .leading)
+                }
+                if saved.state == .conflict {
+                    Button("Discard unconfirmed add") {
+                        Task { await model.discardConflictedGroceryAdd() }
+                    }
+                    .frame(minHeight: 44, alignment: .leading)
+                }
+            }
+        }
+        .listRowBackground(QuietPalette.background)
+    }
+
+    private func addStatusText(_ state: SavedGroceryAdd.State) -> String {
+        switch state {
+        case .pending: "Not confirmed. Retry the same saved request when online."
+        case .acknowledged: "Added. Refreshing the shared list."
+        case .conflict: "This add was rejected. Check the shared list before trying again."
+        }
     }
 
     @ViewBuilder

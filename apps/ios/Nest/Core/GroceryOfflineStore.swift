@@ -57,6 +57,7 @@ extension ChoreOfflineStore {
                 "INSERT INTO grocery_snapshots(actor,household,body) VALUES(?,?,?) ON CONFLICT(actor,household) DO UPDATE SET body=excluded.body",
                 lease.scope + [body])
             try clearObservedGroceryChecks(snapshot, lease: lease)
+            try clearConfirmedGroceryAdd(lease)
         }
     }
 
