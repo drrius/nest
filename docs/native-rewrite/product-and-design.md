@@ -2,6 +2,8 @@
 
 Status: product requirements confirmed in conversation on 19 September 2026. Quiet was selected from the interactive HTML prototypes on 19 September 2026. Detailed native layouts remain subject to usability and accessibility verification. See [audit](architecture-audit.md) and [delivery plan](implementation-plan.md).
 
+Platform update, 27 September 2026: the owner chose a full SwiftUI iPhone client. [ADR 0002](../adr/0002-swiftui-client.md) supersedes the Expo/React Native and client-side Effect implementation entries below; the confirmed features, design and safety rules remain authoritative.
+
 ## Name and artwork
 
 The app is named **Nest**, as confirmed by the owner on 19 September 2026. Use Nest in the native app display name, onboarding, notification branding and other product-facing copy. Existing repository, bundle, EAS and database identifiers need not change for this rename.

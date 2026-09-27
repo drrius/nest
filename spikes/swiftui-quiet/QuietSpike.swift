@@ -20,13 +20,27 @@ struct QuietSpikeApp: App {
 }
 
 enum QuietPalette {
-    static let background = Color(red: 250 / 255, green: 251 / 255, blue: 247 / 255)
-    static let ink = Color(red: 39 / 255, green: 58 / 255, blue: 49 / 255)
-    static let muted = Color(red: 100 / 255, green: 110 / 255, blue: 101 / 255)
-    static let accent = Color(red: 51 / 255, green: 93 / 255, blue: 73 / 255)
-    static let soft = Color(red: 234 / 255, green: 240 / 255, blue: 230 / 255)
-    static let hero = Color(red: 233 / 255, green: 239 / 255, blue: 223 / 255)
-    static let line = Color(red: 219 / 255, green: 226 / 255, blue: 217 / 255)
+    static let background = adaptive(0xFAFBF7, 0x151E19)
+    static let surface = adaptive(0xFFFFFF, 0x202D25)
+    static let onAccent = adaptive(0xFAFBF7, 0x151E19)
+    static let ink = adaptive(0x273A31, 0xEEF2E9)
+    static let muted = adaptive(0x646E65, 0xB1BEB2)
+    static let accent = adaptive(0x335D49, 0xB4D3AF)
+    static let soft = adaptive(0xEAF0E6, 0x304235)
+    static let hero = adaptive(0xE9EFDF, 0x304235)
+    static let line = adaptive(0xDDE3D8, 0x405346)
+
+    private static func adaptive(_ light: UInt32, _ dark: UInt32) -> Color {
+        Color(uiColor: UIColor { traits in
+            let value = traits.userInterfaceStyle == .dark ? dark : light
+            return UIColor(
+                red: CGFloat((value >> 16) & 0xFF) / 255,
+                green: CGFloat((value >> 8) & 0xFF) / 255,
+                blue: CGFloat(value & 0xFF) / 255,
+                alpha: 1
+            )
+        })
+    }
 }
 
 struct SpikeHeader: View {
@@ -44,7 +58,7 @@ struct SpikeHeader: View {
                 Text("JL")
                     .font(.caption)
                     .frame(width: 36, height: 36)
-                    .background(.white, in: Circle())
+                    .background(QuietPalette.surface, in: Circle())
                     .accessibilityLabel("Prototype profile")
             }
             Text(title)

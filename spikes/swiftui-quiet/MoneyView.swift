@@ -41,7 +41,7 @@ struct QuietMoneyView: View {
     private func action(_ title: String, filled: Bool) -> some View {
         Text(title)
             .font(.subheadline.weight(.medium))
-            .foregroundStyle(filled ? .white : QuietPalette.accent)
+            .foregroundStyle(filled ? QuietPalette.onAccent : QuietPalette.accent)
             .frame(maxWidth: .infinity, minHeight: 46)
             .background(
                 filled ? QuietPalette.accent : QuietPalette.soft,

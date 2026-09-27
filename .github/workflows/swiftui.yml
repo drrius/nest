@@ -1,0 +1,35 @@
+name: SwiftUI client checks
+on:
+  push:
+    paths:
+      - 'apps/ios/**'
+      - '.github/workflows/swiftui.yml'
+      - 'scripts/check-swift-limits.py'
+  pull_request:
+    paths:
+      - 'apps/ios/**'
+      - '.github/workflows/swiftui.yml'
+      - 'scripts/check-swift-limits.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: nest-swiftui-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  swiftui:
+    runs-on: xcode-27
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify Swift source limits
+        run: python3 scripts/check-swift-limits.py
+      - name: Verify Swift formatting
+        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests
+      - name: Test Foundation domain and offline rules
+        run: swift test --package-path apps/ios
+      - name: Compile iPhone Simulator app
+        run: >-
+          xcodebuild -project apps/ios/Nest.xcodeproj -scheme Nest
+          -configuration Debug -destination 'generic/platform=iOS Simulator'
+          CODE_SIGNING_ALLOWED=NO build

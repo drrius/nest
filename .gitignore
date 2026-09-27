@@ -10,3 +10,8 @@ coverage/
 .DS_Store
 supabase/.temp/
 .vercel/
+apps/ios/.build/
+apps/ios/DerivedData/
+*.xcuserstate
+*.xcuserdata/
+*.xcresult/

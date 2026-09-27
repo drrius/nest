@@ -9,7 +9,7 @@
   },
   "scripts": {
     "prepare": "effect-tsgo patch --typescript --oxlint",
-    "lint": "oxlint .",
+    "lint": "oxlint . && python3 scripts/check-swift-limits.py",
     "format": "oxfmt --write .",
     "format:check": "oxfmt --check .",
     "typecheck": "pnpm -r --if-present typecheck",

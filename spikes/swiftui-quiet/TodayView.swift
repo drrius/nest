@@ -149,7 +149,7 @@ struct QuietTodayView: View {
         }
         .frame(minHeight: 64)
         .padding(.horizontal, 14)
-        .background(.white, in: RoundedRectangle(cornerRadius: 14))
+        .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 14))
         .padding(.top, 16)
     }
 
@@ -170,7 +170,7 @@ struct QuietTodayView: View {
             .font(.subheadline)
             .foregroundStyle(QuietPalette.accent)
             .frame(maxWidth: .infinity, minHeight: 48)
-            .background(.white, in: RoundedRectangle(cornerRadius: 14))
+            .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 14))
             .padding(.top, 18)
     }
 }

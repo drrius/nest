@@ -1,5 +1,7 @@
 # Implementation plan
 
+Platform update, 27 September 2026: the owner chose a full SwiftUI client; [ADR 0002](../adr/0002-swiftui-client.md) supersedes Expo/React Native and client-side Effect specifics in this historical plan. M0–M9 product exit criteria still apply, and client gates need fresh SwiftUI evidence. The backend, financial, privacy and release gates are unchanged.
+
 Status: proposed execution plan, 19 September 2026. Product scope is confirmed. The owner selected a separate repository at /home/drrius/Work/nest; tooling foundation is complete, application implementation remains next. Read the [brief](product-and-design.md) and [architecture audit](architecture-audit.md) first.
 
 ## Delivery contract
