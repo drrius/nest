@@ -9,7 +9,7 @@
       "bundleIdentifier": "ch.drrius.nest",
       "supportsTablet": false,
       "usesAppleSignIn": true,
-      "buildNumber": "8",
+      "buildNumber": "9",
       "config": {
         "usesNonExemptEncryption": false
       }
