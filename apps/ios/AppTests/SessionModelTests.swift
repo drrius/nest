@@ -150,6 +150,35 @@ private actor PausedSavedRead {
     }
 }
 
+private actor PausedDeactivation {
+    private var pause = false
+    private var waiting = false
+    private var started: CheckedContinuation<Void, Never>?
+    private var resume: CheckedContinuation<Void, Never>?
+
+    func pauseNext() { pause = true }
+
+    func waitUntilPaused() async {
+        if waiting { return }
+        await withCheckedContinuation { started = $0 }
+    }
+
+    func release() {
+        resume?.resume()
+        resume = nil
+    }
+
+    func deactivate(_ store: ChoreOfflineStore, lease: OfflineLease) async throws {
+        try await store.deactivate(lease)
+        guard pause else { return }
+        pause = false
+        waiting = true
+        started?.resume()
+        started = nil
+        await withCheckedContinuation { resume = $0 }
+    }
+}
+
 @MainActor
 final class SessionModelTests: XCTestCase {
     private let actorA = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!
@@ -244,6 +273,30 @@ final class SessionModelTests: XCTestCase {
         guard case .loaded(let current) = model.today else { return XCTFail("B did not load") }
         XCTAssertEqual(current.chores.first?.chore.title, "Sam chore")
         XCTAssertNil(model.todayNotice)
+    }
+
+    func testPausedAccountADeactivationCannotSignOutAccountB() async throws {
+        let server = FakeChoreServer(actorA: actorA, actorB: actorB, household: household)
+        let auth = FakeAuthentication(
+            active: AuthenticatedSession(userId: actorA, accessToken: "token-A"),
+            nextSignIn: AuthenticatedSession(userId: actorB, accessToken: "token-B"))
+        let deactivation = PausedDeactivation()
+        let model = SessionModel(
+            auth: auth, chores: try api(server: server), offline: try store(),
+            deactivateLease: { store, lease in try await deactivation.deactivate(store, lease: lease) })
+        await model.restore()
+        await deactivation.pauseNext()
+        await server.denyActorA()
+        let oldRefresh = Task { await model.refreshToday() }
+        await deactivation.waitUntilPaused()
+        await model.signIn(idToken: "B", nonce: "test")
+        await deactivation.release()
+        await oldRefresh.value
+        XCTAssertEqual(
+            model.status,
+            .ready(VerifiedMember(userId: actorB, householdId: household, displayName: "Sam")))
+        guard case .loaded(let current) = model.today else { return XCTFail("B did not load") }
+        XCTAssertEqual(current.chores.first?.chore.title, "Sam chore")
     }
 
     func testColdOfflineRestoreShowsOnlyVerifiedCachedAccount() async throws {

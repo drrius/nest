@@ -23,12 +23,14 @@ final class SessionModel: ObservableObject {
     private let chores: ChoreAPI?
     private let offline: ChoreOfflineStore?
     private let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
+    private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
     private var lease: OfflineLease?
     private var syncingGeneration: Int?
     private var generation = 0
 
     init() {
         savedReader = { store, lease in try await store.read(lease) }
+        deactivateLease = { store, lease in try await store.deactivate(lease) }
         do {
             let configuration = try NestConfiguration.fromBundle()
             let http = try NestHTTP(baseURL: configuration.apiURL)
@@ -53,12 +55,16 @@ final class SessionModel: ObservableObject {
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
+        },
+        deactivateLease: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void = {
+            store, lease in try await store.deactivate(lease)
         }
     ) {
         self.auth = auth
         self.chores = chores
         self.offline = offline
         self.savedReader = savedReader
+        self.deactivateLease = deactivateLease
     }
 
     func restore() async {
@@ -77,6 +83,7 @@ final class SessionModel: ObservableObject {
     private func missingSession(attempt: Int) async {
         guard generation == attempt else { return }
         await clearPresentation()
+        guard generation == attempt else { return }
         status = .signedOut
     }
 
@@ -88,6 +95,7 @@ final class SessionModel: ObservableObject {
         guard generation == attempt else { return }
         let next = state(for: error)
         if next == .signedOut || next == .notMember { await clearPresentation() }
+        guard generation == attempt else { return }
         status = next
     }
 
@@ -176,7 +184,7 @@ final class SessionModel: ObservableObject {
         today = .idle
         todayNotice = nil
         syncingGeneration = nil
-        if let previous, let offline { try? await offline.deactivate(previous) }
+        if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 
     private func syncToday(
@@ -201,7 +209,9 @@ final class SessionModel: ObservableObject {
         let mapped = state(for: error)
         if mapped == .signedOut || mapped == .notMember {
             generation += 1
+            let clearAttempt = generation
             await clearPresentation()
+            guard generation == clearAttempt else { return }
             status = mapped
             return
         }
