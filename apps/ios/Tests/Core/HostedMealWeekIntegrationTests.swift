@@ -81,6 +81,15 @@ final class HostedMealWeekIntegrationTests: XCTestCase {
             let fresh = try await api.week(token: memberToken, member: member, start: start)
             XCTAssertEqual(fresh.entries.filter { $0.id == placed.entryId }.count, 1)
             XCTAssertEqual(fresh.entries.first { $0.id == placed.entryId }?.definitionId, recipe.id)
+            let retained = try await api.plannedRecipe(
+                token: memberToken, member: member, week: fresh, id: placed.entryId)
+            XCTAssertEqual(retained.snapshot?.recipe.content, recipe.content)
+            XCTAssertEqual(retained.snapshot?.libraryRevision, library.revision)
+            do {
+                _ = try await api.plannedRecipe(
+                    token: outsiderToken, member: member, week: fresh, id: placed.entryId)
+                XCTFail("Outsider read another household's retained recipe")
+            } catch { assertDenied(error) }
             try await removeRecipeFixture(
                 placed.entryId, api: api, token: memberToken, member: member, start: start)
         } catch {
@@ -159,6 +168,10 @@ final class HostedMealWeekIntegrationTests: XCTestCase {
             let fresh = try await api.week(token: memberToken, member: member, start: start)
             XCTAssertEqual(fresh.entries.filter { $0.id == placed.entryId }.count, 1)
             XCTAssertEqual(fresh.entries.first { $0.id == placed.entryId }?.title, title)
+            let detail = try await api.plannedRecipe(
+                token: memberToken, member: member, week: fresh, id: placed.entryId)
+            XCTAssertEqual(detail.entry?.title, title)
+            XCTAssertNil(detail.snapshot)
             try await removeFixture(
                 title: title, api: api, token: memberToken, member: member,
                 outsiderToken: outsiderToken, start: start)

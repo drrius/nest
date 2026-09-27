@@ -56,6 +56,18 @@ public struct MealAPI: Sendable {
             household: member.householdId, definition: id, revision: revision)
     }
 
+    public func plannedRecipe(
+        token: String, member: VerifiedMember, week: MealWeekSnapshot, id: UUID
+    ) async throws -> PlannedRecipeEnvelope {
+        _ = try week.validated(household: member.householdId, week: week.weekStart)
+        let path =
+            "v1/meals/planned-recipe?entryId=\(id.uuidString.lowercased())&weekStart=\(week.weekStart.date.value)&revision=\(week.revision)"
+        let result = try await http.read(
+            path, token: token, household: member.householdId,
+            as: PlannedRecipeEnvelope.self)
+        return try result.validated(against: week, id: id)
+    }
+
     public func place(
         token: String, member: VerifiedMember, week: MealWeekSnapshot, command: PlaceMeal
     ) async throws -> MealPlacementReceipt {

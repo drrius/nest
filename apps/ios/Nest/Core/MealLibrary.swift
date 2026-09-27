@@ -46,29 +46,17 @@ public struct SavedRecipe: Codable, Equatable, Identifiable, Sendable {
 
     public var id: UUID { definitionId }
 
+    public var content: RecipeContent {
+        RecipeContent(
+            title: title, servings: servings, recipeUrl: recipeUrl,
+            notes: notes, instructions: instructions, ingredients: ingredients)
+    }
+
     func validated() throws -> Self {
-        _ = try SavedMealSummary(definitionId: definitionId, title: title, servings: servings)
-            .validated()
-        guard ingredients.count <= 200,
-            MealLibraryText.valid(recipeUrl, maximum: 2000),
-            MealLibraryText.valid(notes, maximum: 4000),
-            MealLibraryText.valid(instructions, maximum: 4000),
-            Set(ingredients.map(\.id)).count == ingredients.count
-        else { throw MealLibraryError.invalidResponse }
-        for (index, ingredient) in ingredients.enumerated() {
-            _ = try ingredient.validated()
-            if index > 0 {
-                let previous = ingredients[index - 1]
-                guard
-                    ingredient.order > previous.order
-                        || (ingredient.order == previous.order
-                            && ingredient.id.uuidString.lowercased()
-                                > previous.id.uuidString.lowercased())
-                else { throw MealLibraryError.invalidResponse }
-            }
-        }
+        _ = try content.validated()
         return self
     }
+
 }
 
 public struct MealLibraryPage: Decodable, Equatable, Sendable {

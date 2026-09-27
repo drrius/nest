@@ -1,12 +1,13 @@
 import SwiftUI
 
-struct MealDayView: View {
+struct MealDayView<Detail: View>: View {
     let date: CivilDate
     let meals: [PlannedMeal]
     let slots: [MealSlot]
     let canChange: Bool
     let add: (MealSlot) -> Void
     let remove: (PlannedMeal) -> Void
+    let detail: (PlannedMeal) -> Detail
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -60,11 +61,22 @@ struct MealDayView: View {
 
     private func plannedRow(_ meal: PlannedMeal, slot: MealSlot) -> some View {
         HStack(spacing: 12) {
-            Text(slot.label)
-                .frame(width: 84, alignment: .leading)
-                .foregroundStyle(QuietPalette.muted)
-            Text(meal.title).foregroundStyle(QuietPalette.ink)
-            Spacer(minLength: 0)
+            NavigationLink {
+                detail(meal)
+            } label: {
+                HStack(spacing: 12) {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(slot.label).font(.caption).foregroundStyle(QuietPalette.muted)
+                        Text(meal.title).font(.body).foregroundStyle(QuietPalette.ink)
+                    }
+                    Spacer(minLength: 0)
+                    Image(systemName: "chevron.right").font(.caption)
+                }
+                .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("\(slot.label): \(meal.title), recipe details")
             Menu {
                 Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
             } label: {

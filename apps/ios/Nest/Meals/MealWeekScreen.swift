@@ -122,6 +122,10 @@ struct MealWeekScreen: View {
                 } remove: { meal in
                     removalCandidate = meal
                     showingRemovalConfirmation = true
+                } detail: { meal in
+                    PlannedRecipeScreen(
+                        model: model,
+                        target: PlannedRecipeTarget(start: week.weekStart, id: meal.id))
                 }
             }
         }

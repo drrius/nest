@@ -51,6 +51,11 @@ final class SessionModel: ObservableObject {
     @Published var mealRemovalSaving = false
     @Published var mealLibrary: MealLibraryStatus = .idle
     @Published var mealLibraryNotice: String?
+    @Published var plannedRecipe: PlannedRecipeStatus = .idle
+    @Published var plannedRecipeNotice: String?
+    @Published var plannedRecipeTarget: PlannedRecipeTarget?
+    @Published var plannedRecipeFresh = false
+    var plannedRecipeRequest: UUID?
     @Published var savedRecipe: SavedRecipeStatus = .idle
     @Published var mealRecipePlacement: SavedMealRecipePlacement?
     @Published var mealRecipePlacementSaving = false
@@ -259,20 +264,7 @@ final class SessionModel: ObservableObject {
         groceryEditSaving = false
         groceryRemove = nil
         groceryRemoveSaving = false
-        mealSelection = nil
-        mealStatus = .idle
-        mealNotice = nil
-        mealPlacement = nil
-        mealPlacementSaving = false
-        mealVisibleSlots = MealSlot.allCases
-        mealSlotNotice = nil
-        mealRemoval = nil
-        mealRemovalSaving = false
-        mealLibrary = .idle
-        mealLibraryNotice = nil
-        savedRecipe = .idle
-        mealRecipePlacement = nil
-        mealRecipePlacementSaving = false
+        clearMealPresentation()
         syncingGeneration = nil
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
@@ -280,12 +272,6 @@ final class SessionModel: ObservableObject {
         groceryCategoryLoadingGeneration = nil
         groceryEditSavingGeneration = nil
         groceryRemoveSavingGeneration = nil
-        mealLoadingRequest = nil
-        mealPlacementSavingGeneration = nil
-        mealRemovalSavingGeneration = nil
-        mealLibraryRequest = nil
-        savedRecipeRequest = nil
-        mealRecipePlacementSavingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
     }
 

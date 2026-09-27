@@ -41,55 +41,11 @@ struct SavedRecipeScreen: View {
             }
         case .loaded(let recipe):
             if recipe.id == id {
-                recipeContent(recipe)
+                RecipeContentView(recipe: recipe.content)
             } else {
                 ProgressView("Loading recipe…")
             }
         }
-    }
-
-    @ViewBuilder
-    private func recipeContent(_ recipe: SavedRecipe) -> some View {
-        Text(recipe.title)
-            .font(.largeTitle.weight(.semibold))
-            .foregroundStyle(QuietPalette.ink)
-        if let servings = recipe.servings {
-            Text("Serves \(servings)")
-                .font(.subheadline).foregroundStyle(QuietPalette.muted)
-        }
-        if let notes = recipe.notes, !notes.isEmpty {
-            Text(notes).font(.body).foregroundStyle(QuietPalette.muted)
-        }
-        VStack(alignment: .leading, spacing: 12) {
-            Text("Ingredients").font(.title3.weight(.semibold))
-                .foregroundStyle(QuietPalette.ink)
-            if recipe.ingredients.isEmpty {
-                Text("No ingredients saved.").foregroundStyle(QuietPalette.muted)
-            } else {
-                ForEach(recipe.ingredients) { ingredient in
-                    Text(ingredientLine(ingredient)).foregroundStyle(QuietPalette.ink)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                }
-            }
-        }
-        if let instructions = recipe.instructions, !instructions.isEmpty {
-            VStack(alignment: .leading, spacing: 12) {
-                Text("How to make it").font(.title3.weight(.semibold))
-                    .foregroundStyle(QuietPalette.ink)
-                Text(instructions).foregroundStyle(QuietPalette.ink)
-            }
-        }
-        if let link = MealLibraryText.openableURL(recipe.recipeUrl) {
-            Link("Open recipe link", destination: link)
-                .frame(minHeight: 52, alignment: .leading)
-        }
-    }
-
-    private func ingredientLine(_ ingredient: SavedIngredient) -> String {
-        let parts = [ingredient.quantity, ingredient.unit, ingredient.name]
-            .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
-            .filter { !$0.isEmpty }
-        return parts.joined(separator: " ")
     }
 
 }
