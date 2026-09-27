@@ -53,8 +53,7 @@ function ApprovalOwner({ account, client, verify }: MoneyScreenAccount) {
 function Approvals({ runtime, verify }: { runtime: PendingApprovalRuntime; verify: () => void }) {
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
-  if (view.entry?.approvals.length === 0 && !view.after && !view.notice && !view.verify)
-    return null;
+  if (hasNoApprovals(view)) return null;
   return (
     <Section title="To confirm">
       <ApprovalRows view={view} />
@@ -109,5 +108,15 @@ function ApprovalRows({ view }: { view: PendingApprovalView }) {
         </Note>
       ) : null}
     </>
+  );
+}
+
+function hasNoApprovals(view: PendingApprovalView) {
+  return (
+    view.entry?.approvals.length === 0 &&
+    !view.entry.next &&
+    !view.after &&
+    !view.notice &&
+    !view.verify
   );
 }

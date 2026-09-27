@@ -49,7 +49,7 @@ function Bills({ runtime, verify }: { runtime: RecurringReadRuntime; verify: () 
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   useSaveActivity(runtime);
   const page = view.entry?.kind === "due-variable" ? view.entry.value : null;
-  if (page && !page.rules.length && !view.notice && !view.verify) return null;
+  if (hasNoBills(view)) return null;
   return (
     <Section title="Bills to confirm">
       <DueBillStatus view={view} runtime={runtime} verify={verify} />
@@ -61,4 +61,9 @@ function Bills({ runtime, verify }: { runtime: RecurringReadRuntime; verify: () 
       <Link href="/due-bills">View all due bills</Link>
     </Section>
   );
+}
+
+function hasNoBills(view: ReturnType<RecurringReadRuntime["getSnapshot"]>) {
+  const page = view.entry?.kind === "due-variable" ? view.entry.value : null;
+  return page && !page.rules.length && !page.next && !view.notice && !view.verify;
 }

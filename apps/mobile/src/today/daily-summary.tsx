@@ -58,15 +58,12 @@ function Summary({ runtime, verify }: { runtime: SummaryReadRuntime; verify: () 
   const view = useSyncExternalStore(runtime.subscribe, runtime.getSnapshot);
   const colors = useQuiet();
   useSaveActivity(runtime);
-  if (view.loaded && !view.entry && !view.notice && !view.verify) return null;
+  if (hasNoSummary(view)) return null;
   return (
     <Section title="Your daily summary">
       {!view.online ? <Note>Connect to find your saved summary.</Note> : null}
       {view.busy ? <Note>Loading your summary…</Note> : null}
       {view.notice ? <Note>{view.notice}</Note> : null}
-      {view.loaded && !view.entry ? (
-        <Note>No daily summary has been saved for you yet.</Note>
-      ) : null}
       {view.entry ? (
         <>
           <Note>
@@ -91,4 +88,8 @@ function Summary({ runtime, verify }: { runtime: SummaryReadRuntime; verify: () 
       {view.verify ? <NativeAction label="Verify account" onPress={verify} /> : null}
     </Section>
   );
+}
+
+function hasNoSummary(view: ReturnType<SummaryReadRuntime["getSnapshot"]>) {
+  return view.loaded && !view.entry && !view.notice && !view.verify;
 }
