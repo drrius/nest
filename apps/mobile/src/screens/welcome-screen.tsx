@@ -17,10 +17,14 @@ export default function WelcomeScreen() {
       }}
     >
       <View style={{ gap: space.medium }}>
-        <Text accessibilityRole="header" style={{ ...type.display, color: colors.text }}>
+        <Text
+          accessibilityRole="header"
+          maxFontSizeMultiplier={1.8}
+          style={{ ...type.display, color: colors.text }}
+        >
           A little less{"\n"}to remember.
         </Text>
-        <Text style={{ ...type.body, color: colors.muted }}>
+        <Text maxFontSizeMultiplier={1.8} style={{ ...type.body, color: colors.muted }}>
           Your day, meals and shared expenses. A little more settled, together.
         </Text>
       </View>

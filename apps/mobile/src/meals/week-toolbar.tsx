@@ -1,5 +1,5 @@
 import { useRouter } from "expo-router";
-import { View } from "react-native";
+import { View, useWindowDimensions } from "react-native";
 import { ActionMenu } from "../components/action-menu";
 import { NativeAction } from "../components/native-action";
 import { space } from "../theme";
@@ -14,11 +14,12 @@ export function WeekToolbar({
   refresh: () => void;
 }) {
   const router = useRouter();
+  const { fontScale } = useWindowDimensions();
   return (
     <View
       style={{ flexDirection: "row", flexWrap: "wrap", gap: space.small, alignItems: "center" }}
     >
-      <View style={{ flex: 1, minWidth: 200 }}>
+      <View style={fontScale >= 2 ? { width: "100%" } : { flex: 1, minWidth: 200 }}>
         <NativeAction
           variant="primary"
           label="Plan the week with AI"

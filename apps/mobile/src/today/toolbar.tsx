@@ -24,8 +24,12 @@ export function TodayToolbar({
   });
   return (
     <View style={{ gap: space.medium }}>
-      <Text style={{ color: colors.muted, fontSize: 15 }}>{label}</Text>
-      <Text style={{ color: colors.text, fontSize: 19 }}>A good day to keep it simple.</Text>
+      <Text maxFontSizeMultiplier={1.8} style={{ color: colors.muted, fontSize: 15 }}>
+        {label}
+      </Text>
+      <Text maxFontSizeMultiplier={1.6} style={{ color: colors.text, fontSize: 19 }}>
+        A good day to keep it simple.
+      </Text>
       <View
         style={{ flexDirection: "row", alignItems: "center", gap: space.small, flexWrap: "wrap" }}
       >

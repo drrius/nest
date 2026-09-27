@@ -1,4 +1,4 @@
-import { Pressable, Text, View } from "react-native";
+import { Pressable, Text, View, useWindowDimensions } from "react-native";
 import { useRouter } from "expo-router";
 import type { MoneyEventSummary, MoneyHistory } from "@nest/contracts/money-history";
 import { Note, Section } from "../components/page";
@@ -23,22 +23,24 @@ export function MoneyHeader({
   refreshHistory: () => void;
 }) {
   const router = useRouter();
+  const { fontScale } = useWindowDimensions();
+  const largeText = fontScale >= 2;
   const summary = balance.entry?.kind === "balance" ? balance.entry.value : null;
   const own = summary?.members.find((member) => member.actorId === actor);
   return (
     <View style={{ gap: space.large }}>
-      <Note>All square, without the guesswork.</Note>
+      <Note maxFontSizeMultiplier={1.6}>All square, without the guesswork.</Note>
       <MoneyBalanceCard centimes={own?.centimes} />
       <MoneyReadStatus view={balance} label="balance" reload={refreshBalance} compact />
       <View style={{ flexDirection: "row", flexWrap: "wrap", gap: space.medium }}>
-        <View style={{ flex: 1, minWidth: 120 }}>
+        <View style={largeText ? { width: "100%" } : { flex: 1, minWidth: 120 }}>
           <NativeAction
             variant="primary"
             label="Add expense"
             onPress={() => router.push("/expense-entry")}
           />
         </View>
-        <View style={{ flex: 1, minWidth: 120 }}>
+        <View style={largeText ? { width: "100%" } : { flex: 1, minWidth: 120 }}>
           <NativeAction
             variant="secondary"
             label="Settle up"

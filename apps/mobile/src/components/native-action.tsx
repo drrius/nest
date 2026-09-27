@@ -37,6 +37,7 @@ export function NativeAction({
       })}
     >
       <Text
+        maxFontSizeMultiplier={2}
         style={{
           ...type.action,
           textAlign: "center",

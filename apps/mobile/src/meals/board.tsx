@@ -32,6 +32,7 @@ export function WeekNavigation({
       <WeekArrow label="Previous week" glyph="‹" date={previous} select={select} />
       <Text
         accessibilityRole="header"
+        maxFontSizeMultiplier={1.6}
         style={{
           flex: 1,
           textAlign: "center",
@@ -75,7 +76,9 @@ function WeekArrow({
         opacity: !date ? 0.4 : pressed ? 0.65 : 1,
       })}
     >
-      <Text style={{ color: colors.accent, fontSize: 28 }}>{glyph}</Text>
+      <Text allowFontScaling={false} style={{ color: colors.accent, fontSize: 28 }}>
+        {glyph}
+      </Text>
     </Pressable>
   );
 }

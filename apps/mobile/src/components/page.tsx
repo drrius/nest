@@ -29,10 +29,17 @@ export function Section({ title, children }: PropsWithChildren<{ title: string }
   );
 }
 
-export function Note({ children }: PropsWithChildren) {
+export function Note({
+  children,
+  maxFontSizeMultiplier,
+}: PropsWithChildren<{ maxFontSizeMultiplier?: number }>) {
   const colors = useQuiet();
   return (
-    <Text selectable style={{ ...type.body, color: colors.muted }}>
+    <Text
+      selectable
+      maxFontSizeMultiplier={maxFontSizeMultiplier}
+      style={{ ...type.body, color: colors.muted }}
+    >
       {children}
     </Text>
   );

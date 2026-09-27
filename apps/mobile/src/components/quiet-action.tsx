@@ -6,11 +6,13 @@ export function QuietAction({
   onPress,
   disabled = false,
   expanded,
+  maxFontSizeMultiplier,
 }: {
   label: string;
   onPress: () => void;
   disabled?: boolean;
   expanded?: boolean;
+  maxFontSizeMultiplier?: number;
 }) {
   const colors = useQuiet();
   return (
@@ -25,7 +27,12 @@ export function QuietAction({
         opacity: disabled ? 0.5 : pressed ? 0.65 : 1,
       })}
     >
-      <Text style={{ color: colors.accent, fontSize: 17 }}>{label}</Text>
+      <Text
+        maxFontSizeMultiplier={maxFontSizeMultiplier}
+        style={{ color: colors.accent, fontSize: 17 }}
+      >
+        {label}
+      </Text>
     </Pressable>
   );
 }

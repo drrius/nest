@@ -24,7 +24,7 @@ export function AgendaControls({
   };
   return (
     <View style={{ gap: space.medium }}>
-      <Note>Your day, with room for everything.</Note>
+      <Note maxFontSizeMultiplier={1.6}>Your day, with room for everything.</Note>
       <View
         style={{
           flexDirection: "row",
@@ -68,11 +68,13 @@ export function AgendaControls({
       >
         <QuietAction
           label="‹ Previous day"
+          maxFontSizeMultiplier={1.8}
           disabled={view.busy || !adjacentDay(view.date, -1)}
           onPress={() => move(-1)}
         />
         <QuietAction
           label="Next day ›"
+          maxFontSizeMultiplier={1.8}
           disabled={view.busy || !adjacentDay(view.date, 1)}
           onPress={() => move(1)}
         />

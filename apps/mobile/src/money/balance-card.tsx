@@ -21,9 +21,12 @@ export function MoneyBalanceCard({ centimes }: { centimes: string | undefined })
         gap: space.small,
       }}
     >
-      <Text style={{ color: colors.text, fontSize: 17 }}>{label}</Text>
+      <Text maxFontSizeMultiplier={1.8} style={{ color: colors.text, fontSize: 17 }}>
+        {label}
+      </Text>
       <Text
         selectable
+        maxFontSizeMultiplier={1.5}
         style={{
           color: colors.text,
           fontSize: 40,
@@ -33,7 +36,9 @@ export function MoneyBalanceCard({ centimes }: { centimes: string | undefined })
       >
         {absolute === null ? "—" : formatChf(absolute)}
       </Text>
-      <Text style={{ color: colors.muted, fontSize: 15 }}>Across your shared expenses</Text>
+      <Text maxFontSizeMultiplier={1.8} style={{ color: colors.muted, fontSize: 15 }}>
+        Across your shared expenses
+      </Text>
     </View>
   );
 }

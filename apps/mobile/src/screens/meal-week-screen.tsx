@@ -109,7 +109,7 @@ function WeekContent({
     );
   return (
     <Page>
-      <Note>Good food. One less daily decision.</Note>
+      <Note maxFontSizeMultiplier={1.6}>Good food. One less daily decision.</Note>
       <WeekNavigation
         weekStart={view.weekStart}
         select={(week) => {
