@@ -6,6 +6,7 @@ extension SessionModel {
         guard let offline, let lease, case .ready(let member) = status,
             case .loaded(let week) = mealStatus, mealSelection == week.weekStart,
             case .loaded(let listing) = mealLibrary,
+            savedRecipeRevision == listing.revision,
             case .loaded(let detail) = savedRecipe, detail == recipe,
             listing.meals.contains(where: { $0.id == recipe.id && $0.title == recipe.title }),
             mealPlacement == nil, mealRemoval == nil, mealRecipePlacement == nil

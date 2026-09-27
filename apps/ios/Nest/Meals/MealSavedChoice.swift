@@ -57,7 +57,13 @@ struct MealSavedChoice: View {
     private var review: some View {
         Section("Review saved recipe") {
             switch model.savedRecipe {
-            case .idle, .loading:
+            case .idle:
+                Text("Choose a saved meal to review its current recipe.")
+                    .foregroundStyle(QuietPalette.muted)
+                Button("Reload selected recipe") {
+                    if let selectedId { Task { await model.loadSavedRecipe(selectedId) } }
+                }
+            case .loading:
                 ProgressView("Loading recipe…")
             case .missing:
                 Text("This recipe is no longer saved. Refresh the library.")

@@ -21,7 +21,10 @@ struct SavedRecipeScreen: View {
     @ViewBuilder
     private var content: some View {
         switch model.savedRecipe {
-        case .idle, .loading:
+        case .idle:
+            Button("Load recipe") { Task { await model.loadSavedRecipe(id) } }
+                .frame(minHeight: 44, alignment: .leading)
+        case .loading:
             ProgressView("Loading recipe…")
                 .frame(maxWidth: .infinity, minHeight: 120)
         case .missing:

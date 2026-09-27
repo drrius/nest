@@ -57,6 +57,7 @@ final class SessionModel: ObservableObject {
     @Published var plannedRecipeFresh = false
     var plannedRecipeRequest: UUID?
     @Published var savedRecipe: SavedRecipeStatus = .idle
+    var savedRecipeRevision: String?
     @Published var mealRecipePlacement: SavedMealRecipePlacement?
     @Published var mealRecipePlacementSaving = false
     let auth: (any NestAuthentication)?

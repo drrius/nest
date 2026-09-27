@@ -17,12 +17,17 @@ actor FakeMealServer {
     private var loseNextPlaceResponse = false
     private var rejectNextPlace = false
     private var pagedLibrary = false
+    private var libraryRevision = "4"
+    private var recipeInstructions = "Cook and serve."
+    private var forbidNextRecipeResponse = false
+    private var pauseMembershipRead = false
     private var libraryQueries: [String] = []
     private var recipePlaced: PlaceSavedRecipe?
     private var recipeAttempts: [UUID] = []
     private var loseNextRecipeResponse = false
     private var rejectNextRecipe = false
     private var pauseA = false
+    private var pausedPath: String?
     private var aWaiting = false
     private var aStarted: CheckedContinuation<Void, Never>?
     private var aResume: CheckedContinuation<Void, Never>?
@@ -45,7 +50,17 @@ actor FakeMealServer {
     func loseNextRecipePlace() { loseNextRecipeResponse = true }
     func rejectRecipePlace() { rejectNextRecipe = true }
     func recipeOperations() -> [UUID] { recipeAttempts }
+    func changeSavedRecipe() {
+        libraryRevision = "5"
+        recipeInstructions = "Updated cooking instructions."
+    }
+    func forbidNextRecipe() { forbidNextRecipeResponse = true }
+    func pauseNextMembershipRead() { pauseMembershipRead = true }
     func pauseActorA() { pauseA = true }
+    func pauseRecipeDetail() {
+        pauseA = true
+        pausedPath = "/v1/meals/recipe"
+    }
 
     func waitForActorA() async {
         if aWaiting { return }
@@ -69,19 +84,37 @@ actor FakeMealServer {
         if request.url?.path == "/v1/cooking-preferences" {
             return answer(request, body: cooking(for: actor))
         }
-        if actor == actorA && pauseA {
-            aWaiting = true
-            aStarted?.resume()
-            aStarted = nil
-            await withCheckedContinuation { aResume = $0 }
+        if request.url?.path == "/v1/meals/recipe", forbidNextRecipeResponse {
+            forbidNextRecipeResponse = false
+            return answer(request, body: "{\"error\":{\"code\":\"forbidden\"}}", status: 403)
+        }
+        if request.url?.path == "/v1/session" {
+            if actor == actorA && pauseMembershipRead {
+                pauseMembershipRead = false
+                await suspendActorA()
+            }
+            let body =
+                "{\"version\":1,\"member\":{\"userId\":\"\(actor)\",\"householdId\":\"\(household)\",\"displayName\":\"Test\"}}"
+            return answer(request, body: body)
+        }
+        let capturedRecipe = request.url?.path == "/v1/meals/recipe" ? recipe(for: actor) : nil
+        if actor == actorA && pauseA && (pausedPath == nil || request.url?.path == pausedPath) {
+            await suspendActorA()
         }
         if request.url?.path == "/v1/meals/library" {
             return answer(request, body: try library(for: actor, request: request))
         }
-        if request.url?.path == "/v1/meals/recipe" {
-            return answer(request, body: recipe(for: actor))
+        if let capturedRecipe {
+            return answer(request, body: capturedRecipe)
         }
         return answer(request, body: week(for: actor))
+    }
+
+    private func suspendActorA() async {
+        aWaiting = true
+        aStarted?.resume()
+        aStarted = nil
+        await withCheckedContinuation { aResume = $0 }
     }
 
     private func place(_ request: URLRequest, actor: UUID) throws -> (Data, URLResponse) {
@@ -133,7 +166,7 @@ actor FakeMealServer {
             return answer(request, body: "{\"error\":{\"code\":\"conflict\"}}", status: 409)
         }
         guard command.definitionId == recipeId,
-            command.expectedRevision == "0", command.expectedLibraryRevision == "4"
+            command.expectedRevision == "0", command.expectedLibraryRevision == libraryRevision
         else { throw NestAPIFailure.invalid }
         if let recipePlaced, recipePlaced != command { throw NestAPIFailure.invalid }
         recipePlaced = command
@@ -142,7 +175,7 @@ actor FakeMealServer {
             throw URLError(.networkConnectionLost)
         }
         let body = """
-            {"version":1,"receipt":{"version":1,"actorId":"\(actor)","householdId":"\(household)","operationId":"\(command.operationId)","entryId":"\(entry)","weekStart":"\(command.weekStart.date.value)","date":"\(command.date.value)","slot":"\(command.slot.rawValue)","revision":"1","definitionId":"\(recipeId)","libraryRevision":"4"}}
+            {"version":1,"receipt":{"version":1,"actorId":"\(actor)","householdId":"\(household)","operationId":"\(command.operationId)","entryId":"\(entry)","weekStart":"\(command.weekStart.date.value)","date":"\(command.date.value)","slot":"\(command.slot.rawValue)","revision":"1","definitionId":"\(recipeId)","libraryRevision":"\(libraryRevision)"}}
             """
         return answer(request, body: body)
     }
@@ -192,14 +225,14 @@ actor FakeMealServer {
         if pagedLibrary && actor == actorA { return try page(request) }
         let title = actor == actorA ? "Alex pasta" : "Sam soup"
         return """
-            {"version":1,"householdId":"\(household)","revision":"4","meals":[{"definitionId":"\(recipeId)","title":"\(title)","servings":2}],"nextAfterId":null}
+            {"version":1,"householdId":"\(household)","revision":"\(libraryRevision)","meals":[{"definitionId":"\(recipeId)","title":"\(title)","servings":2}],"nextAfterId":null}
             """
     }
 
     private func page(_ request: URLRequest) throws -> String {
         let cursor = String(format: "00000000-0000-4000-8000-%012d", 50).lowercased()
         let query = request.url?.query ?? ""
-        guard query.isEmpty || query == "afterId=\(cursor)&expectedRevision=4"
+        guard query.isEmpty || query == "afterId=\(cursor)&expectedRevision=\(libraryRevision)"
         else { throw NestAPIFailure.invalid }
         let indexes = query.isEmpty ? Array(1...50) : [51]
         let rows = indexes.map { index in
@@ -208,14 +241,14 @@ actor FakeMealServer {
         }.joined(separator: ",")
         let next = query.isEmpty ? "\"\(cursor)\"" : "null"
         return """
-            {"version":1,"householdId":"\(household)","revision":"4","meals":[\(rows)],"nextAfterId":\(next)}
+            {"version":1,"householdId":"\(household)","revision":"\(libraryRevision)","meals":[\(rows)],"nextAfterId":\(next)}
             """
     }
 
     private func recipe(for actor: UUID) -> String {
         let title = actor == actorA ? "Alex pasta" : "Sam soup"
         return """
-            {"version":1,"householdId":"\(household)","revision":"4","recipe":{"definitionId":"\(recipeId)","title":"\(title)","servings":2,"recipeUrl":null,"notes":null,"instructions":"Cook and serve.","ingredients":[]}}
+            {"version":1,"householdId":"\(household)","revision":"\(libraryRevision)","recipe":{"definitionId":"\(recipeId)","title":"\(title)","servings":2,"recipeUrl":null,"notes":null,"instructions":"\(recipeInstructions)","ingredients":[]}}
             """
     }
 

@@ -8,6 +8,9 @@ extension SessionModel {
         mealLibraryRequest = request
         mealLibrary = .loading
         mealLibraryNotice = nil
+        savedRecipeRequest = UUID()
+        savedRecipe = .idle
+        savedRecipeRevision = nil
         do {
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
@@ -46,6 +49,9 @@ extension SessionModel {
 
     func loadSavedRecipe(_ id: UUID) async {
         guard let auth, let api = mealAPI, case .ready(let member) = status else { return }
+        let request = UUID()
+        savedRecipeRequest = request
+        savedRecipeRevision = nil
         guard case .loaded(let listing) = mealLibrary else {
             savedRecipe = .failed
             return
@@ -55,8 +61,6 @@ extension SessionModel {
             return
         }
         let attempt = generation
-        let request = UUID()
-        savedRecipeRequest = request
         savedRecipe = .loading
         do {
             let session = try await auth.session()
@@ -65,14 +69,21 @@ extension SessionModel {
                 token: session.accessToken, member: member,
                 id: id, revision: listing.revision)
             guard generation == attempt, status == .ready(member),
-                savedRecipeRequest == request
+                savedRecipeRequest == request,
+                savedRecipeLibraryIsCurrent(listing.revision)
             else { return }
+            savedRecipeRevision = recipe == nil ? nil : listing.revision
             savedRecipe = recipe.map(SavedRecipeStatus.loaded) ?? .missing
         } catch {
             await handleSavedRecipeFailure(
                 error, api: api, auth: auth, member: member,
                 attempt: attempt, request: request)
         }
+    }
+
+    private func savedRecipeLibraryIsCurrent(_ revision: String) -> Bool {
+        guard case .loaded(let listing) = mealLibrary else { return false }
+        return listing.revision == revision
     }
 
     private func handleSavedRecipeFailure(
@@ -92,7 +103,8 @@ extension SessionModel {
         {
             return
         }
-        guard generation == attempt, status == .ready(member) else { return }
+        guard generation == attempt, status == .ready(member), savedRecipeRequest == request
+        else { return }
         savedRecipe = .failed
     }
 

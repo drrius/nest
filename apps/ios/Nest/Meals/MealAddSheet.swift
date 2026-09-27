@@ -74,7 +74,10 @@ struct MealAddSheet: View {
 
     private var validInput: Bool {
         if useSaved {
-            guard let selectedId, case .loaded(let recipe) = model.savedRecipe else { return false }
+            guard let selectedId, case .loaded(let recipe) = model.savedRecipe,
+                case .loaded(let listing) = model.mealLibrary,
+                model.savedRecipeRevision == listing.revision
+            else { return false }
             return recipe.id == selectedId
         }
         let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)

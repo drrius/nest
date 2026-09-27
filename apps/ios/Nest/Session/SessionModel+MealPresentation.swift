@@ -14,6 +14,7 @@ extension SessionModel {
         mealLibrary = .idle
         mealLibraryNotice = nil
         savedRecipe = .idle
+        savedRecipeRevision = nil
         mealRecipePlacement = nil
         mealRecipePlacementSaving = false
         mealLoadingRequest = nil

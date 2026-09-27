@@ -169,4 +169,90 @@ final class MealLibraryModelTests: XCTestCase {
         await model.discardConflictedMealRecipePlacement()
         XCTAssertNil(model.mealRecipePlacement)
     }
+
+    func testLibraryRefreshCannotPairAnOldPreviewWithTheNewRevision() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let original) = model.savedRecipe else { return XCTFail("Recipe did not load") }
+        XCTAssertEqual(model.savedRecipeRevision, "4")
+        await server.changeSavedRecipe()
+        await model.refreshMealLibrary()
+        XCTAssertEqual(model.savedRecipe, .idle)
+        XCTAssertNil(model.savedRecipeRevision)
+        let oldAccepted = await model.placeSavedRecipe(
+            date: try CivilDate("2026-09-29"), slot: .dinner, recipe: original)
+        XCTAssertFalse(oldAccepted)
+        let refused = await server.recipeOperations()
+        XCTAssertTrue(refused.isEmpty)
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let current) = model.savedRecipe else { return XCTFail("Updated recipe did not load") }
+        XCTAssertEqual(current.title, original.title)
+        XCTAssertNotEqual(current.instructions, original.instructions)
+        XCTAssertEqual(model.savedRecipeRevision, "5")
+        let accepted = await model.placeSavedRecipe(date: try CivilDate("2026-09-29"), slot: .dinner, recipe: current)
+        XCTAssertTrue(accepted)
+        let placed = await server.recipeOperations()
+        XCTAssertEqual(placed.count, 1)
+    }
+
+    func testLateOldRevisionPreviewCannotReplaceRefreshedLibraryState() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await server.pauseRecipeDetail()
+        let old = Task { await model.loadSavedRecipe(id) }
+        await server.waitForActorA()
+        await server.changeSavedRecipe()
+        await model.refreshMealLibrary()
+        await server.releaseActorA()
+        await old.value
+        XCTAssertEqual(model.savedRecipe, .idle)
+        XCTAssertNil(model.savedRecipeRevision)
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let current) = model.savedRecipe else { return XCTFail("Updated recipe did not load") }
+        XCTAssertEqual(current.instructions, "Updated cooking instructions.")
+        XCTAssertEqual(model.savedRecipeRevision, "5")
+    }
+
+    func testMissingSelectionInvalidatesAnAlreadyRunningRecipeRequest() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await server.pauseRecipeDetail()
+        let old = Task { await model.loadSavedRecipe(id) }
+        await server.waitForActorA()
+        await model.loadSavedRecipe(UUID())
+        XCTAssertEqual(model.savedRecipe, .missing)
+        await server.releaseActorA()
+        await old.value
+        XCTAssertEqual(model.savedRecipe, .missing)
+        XCTAssertNil(model.savedRecipeRevision)
+    }
+
+    func testLateForbiddenReverificationCannotClearANewerRecipe() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await server.forbidNextRecipe()
+        await server.pauseNextMembershipRead()
+        let old = Task { await model.loadSavedRecipe(id) }
+        await server.waitForActorA()
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let current) = model.savedRecipe else { return XCTFail("New recipe request did not load") }
+        await server.releaseActorA()
+        await old.value
+        XCTAssertEqual(model.savedRecipe, .loaded(current))
+        XCTAssertEqual(model.savedRecipeRevision, "4")
+    }
 }
