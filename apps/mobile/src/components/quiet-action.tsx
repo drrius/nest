@@ -6,7 +6,7 @@ export function QuietAction({
   onPress,
   disabled = false,
   expanded,
-  maxFontSizeMultiplier,
+  maxFontSizeMultiplier = 2,
 }: {
   label: string;
   onPress: () => void;

@@ -113,7 +113,7 @@ function EntryPage({
   );
   return (
     <Page>
-      <Note>
+      <Note maxFontSizeMultiplier={1.6}>
         Record a shared expense in CHF. Nest updates your household balance; it does not transfer
         money.
       </Note>
