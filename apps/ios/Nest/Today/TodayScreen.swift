@@ -140,8 +140,7 @@ struct TodayScreen: View {
             .padding(.top, 24)
         case .loaded(let state):
             let visible = state.chores.filter {
-                everyone || $0.state == .pending || $0.state == .conflict
-                    || $0.chore.assigneeId == nil || $0.chore.assigneeId == member.userId
+                $0.visibleToday(on: todayDate, actor: member.userId, everyone: everyone)
             }
             if visible.isEmpty {
                 Text("Nothing due in this view.")
@@ -195,6 +194,15 @@ struct TodayScreen: View {
             case .conflict: "Needs review · change was not applied"
             }
         return state
+    }
+
+    private var todayDate: CivilDate {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = .current
+        formatter.dateFormat = "yyyy-MM-dd"
+        return try! CivilDate(formatter.string(from: .now))
     }
 
     private func dueLabel(_ dueDate: CivilDate) -> String {
