@@ -67,8 +67,14 @@ struct RecipeEditForm: View {
                     ForEach($draft.ingredients) { $ingredient in
                         VStack(alignment: .leading, spacing: 12) {
                             TextField("Ingredient", text: $ingredient.name)
-                            TextField("Quantity", text: $ingredient.quantity)
-                            TextField("Unit", text: $ingredient.unit)
+                            LabeledContent("Quantity") {
+                                TextField("Optional", text: $ingredient.quantity)
+                                    .multilineTextAlignment(.trailing).accessibilityLabel("Quantity")
+                            }
+                            LabeledContent("Unit") {
+                                TextField("Optional", text: $ingredient.unit)
+                                    .multilineTextAlignment(.trailing).accessibilityLabel("Unit")
+                            }
                             TextField("Note", text: $ingredient.note, axis: .vertical)
                         }.padding(.vertical, 8)
                     }
