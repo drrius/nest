@@ -14,6 +14,7 @@ struct ExpenseScreen: View {
     @State private var working = false
     @State private var loaded = false
     @State private var confirmCancel = false
+    @State private var receiptReady = false
 
     init(session: SessionModel, member: VerifiedMember) {
         self.session = session
@@ -41,7 +42,11 @@ struct ExpenseScreen: View {
                             session: session, member: member, selection: $draft.categoryId, selectedName: $categoryName)
                     }
                 }
-                Section { Button("Review expense") { review() } }
+                if let context {
+                    ExpenseReceiptSection(
+                        session: session, context: context, path: $draft.receiptPath, ready: $receiptReady)
+                }
+                Section { Button("Review expense") { review() }.disabled(!receiptReady) }
             } else {
                 Section { Button("Load expense form") { Task { await load() } } }
             }

@@ -57,6 +57,12 @@ extension SessionModel {
     func finishExpense(_ context: ExpenseContext, operation: UUID) async throws {
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
+        if let receipt = try await offline.readReceiptUpload(lease: context.lease),
+            let saved = try await offline.readExpense(lease: context.lease), saved.result?.status == .recorded,
+            saved.command.expense.receiptPath == receipt.input.path(household: context.member.householdId)
+        {
+            try await offline.finishAttachedReceipt(lease: context.lease)
+        }
         try await offline.finishExpense(operation: operation, lease: context.lease)
         try requireMoneyAccount(context.member, generation: context.generation)
     }

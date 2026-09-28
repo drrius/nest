@@ -17,6 +17,7 @@ struct ExpenseDraft {
     var categoryId: UUID?
     var separateReceiptTotal = false
     var receiptTotal = ""
+    var receiptPath: String?
 
     func reviewed(member: VerifiedMember, members: [UUID], date: CivilDate) throws -> ExpenseInput {
         guard members.count == 2, Set(members).count == 2, members.contains(payer), members.contains(member.userId)
@@ -46,7 +47,8 @@ struct ExpenseDraft {
         let trimmedNote = note.trimmingCharacters(in: .whitespacesAndNewlines)
         return try ExpenseInput(
             description: description.trimmingCharacters(in: .whitespacesAndNewlines), amountCentimes: total,
-            receiptPath: nil, receiptTotalCentimes: separateReceiptTotal ? ExpenseSplit.parseCHF(receiptTotal) : nil,
+            receiptPath: receiptPath,
+            receiptTotalCentimes: separateReceiptTotal ? ExpenseSplit.parseCHF(receiptTotal) : nil,
             payerId: payer, allocations: allocations, date: date, note: trimmedNote.isEmpty ? nil : trimmedNote,
             categoryId: categoryId
         ).validated(member: member)

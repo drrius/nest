@@ -21,6 +21,7 @@ struct ExpenseReviewSection: View {
             if expense.categoryId != nil {
                 LabeledContent("Category", value: categoryName ?? "Previously selected category")
             }
+            if expense.receiptPath != nil { Label("Receipt attached", systemImage: "paperclip") }
             if let note = expense.note { Text(note) }
             Text("Saving records this expense in your shared financial history. It does not transfer money.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
