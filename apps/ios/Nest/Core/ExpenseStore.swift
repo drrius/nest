@@ -3,6 +3,22 @@ import Foundation
 struct SavedExpense: Codable, Sendable {
     let command: SaveExpense
     var result: ExpenseRecovery?
+    var cancellationRequested: Bool
+
+    init(command: SaveExpense, result: ExpenseRecovery?, cancellationRequested: Bool = false) {
+        self.command = command
+        self.result = result
+        self.cancellationRequested = cancellationRequested
+    }
+
+    enum CodingKeys: String, CodingKey { case command, result, cancellationRequested }
+
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        command = try values.decode(SaveExpense.self, forKey: .command)
+        result = try values.decodeIfPresent(ExpenseRecovery.self, forKey: .result)
+        cancellationRequested = try values.decodeIfPresent(Bool.self, forKey: .cancellationRequested) ?? false
+    }
 }
 
 extension ChoreOfflineStore {
@@ -35,6 +51,14 @@ extension ChoreOfflineStore {
             }
         }
         saved.result = result
+        let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
+        try db.run("UPDATE expense_commands SET body=? WHERE actor=? AND household=?", [body] + lease.scope)
+    }
+
+    func requestExpenseCancellation(lease: OfflineLease) throws {
+        guard var saved = try readExpense(lease: lease) else { throw OfflineFailure.invalidOperation }
+        guard saved.result == nil || saved.result?.status == .unresolved else { return }
+        saved.cancellationRequested = true
         let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
         try db.run("UPDATE expense_commands SET body=? WHERE actor=? AND household=?", [body] + lease.scope)
     }

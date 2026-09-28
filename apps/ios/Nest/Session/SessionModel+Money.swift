@@ -35,7 +35,7 @@ extension SessionModel {
         return result
     }
 
-    private func requireMoneyAccount(_ member: VerifiedMember, generation expected: Int) throws {
+    func requireMoneyAccount(_ member: VerifiedMember, generation expected: Int) throws {
         guard generation == expected, status == .ready(member) else { throw NestAPIFailure.signedOut }
     }
 }

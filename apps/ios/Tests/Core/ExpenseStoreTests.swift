@@ -38,6 +38,9 @@ final class ExpenseStoreTests: XCTestCase {
             XCTFail("Used old account lease")
         } catch OfflineFailure.sessionChanged {}
         let restored = try await reopened.activate(member)
+        try await reopened.requestExpenseCancellation(lease: restored)
+        let cancelledIntent = try await reopened.readExpense(lease: restored)
+        XCTAssertEqual(cancelledIntent?.cancellationRequested, true)
         let receipt = ExpenseReceipt(
             version: 1, actorId: member.userId, householdId: member.householdId,
             operationId: command.operationId, eventId: UUID(), approvalId: nil, expense: expense)
