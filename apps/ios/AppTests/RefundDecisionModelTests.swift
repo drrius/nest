@@ -6,6 +6,14 @@ import XCTest
 @MainActor
 final class RefundDecisionModelTests: XCTestCase {
     func testLostSaveReplyRecoversWithoutSubmittingAgain() async throws {
+        try await verifyRecovery(expired: false)
+    }
+
+    func testExpiredApprovalFinishesWithoutSubmittingDecision() async throws {
+        try await verifyRecovery(expired: true)
+    }
+
+    private func verifyRecovery(expired: Bool) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -28,9 +36,23 @@ final class RefundDecisionModelTests: XCTestCase {
             payerId: member.userId, allocations: shares, expectedRemaining: shares,
             date: try CivilDate("2026-09-28"), note: nil)
         let input = RefundDecision(operationId: UUID(), approvalId: UUID(), refund: refund, approved: true)
-        await server.prepare(input)
+        await server.prepare(input, expired: expired)
         try await model.stageRefundDecision(input, context: context)
         let staged = try await model.savedRefundDecision(context)
+        if expired {
+            let recovered = try await model.retryRefundDecision(context)
+            XCTAssertTrue(recovered.isTerminal)
+            XCTAssertTrue(recovered.expiry?.expiredUnused == true)
+            XCTAssertEqual(recovered.decision, input)
+            let replay = try await model.retryRefundDecision(context)
+            XCTAssertTrue(replay.expiry?.expiredUnused == true)
+            let saves = await server.saves
+            XCTAssertEqual(saves, 0)
+            try await model.finishRefundDecision(context, approvalId: input.approvalId)
+            let cleared = try await model.savedRefundDecision(context)
+            XCTAssertNil(cleared)
+            return
+        }
         do {
             _ = try await model.retryRefundDecision(context)
             XCTFail("Lost reply was reported as success")
@@ -56,8 +78,12 @@ private actor LostRefundDecisionReplyServer {
     var decision: RefundDecision?
     var receipt: RefundReceipt?
     var saves = 0
+    var expired = false
     init(member: VerifiedMember) { self.member = member }
-    func prepare(_ value: RefundDecision) { decision = value }
+    func prepare(_ value: RefundDecision, expired: Bool) {
+        decision = value
+        self.expired = expired
+    }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
         if request.url!.path.hasSuffix("/decide") {
@@ -74,7 +100,7 @@ private actor LostRefundDecisionReplyServer {
             let result = FinancialApprovalExpiry(
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 approvalId: decision.approvalId, operationId: decision.operationId, command: .refund,
-                expiredUnused: false, checkedAt: "2026-09-28T08:00:00.000000Z")
+                expiredUnused: expired, checkedAt: "2026-09-28T08:00:00.000000Z")
             return (
                 try JSONEncoder().encode(result),
                 HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -84,7 +110,8 @@ private actor LostRefundDecisionReplyServer {
             version: 1, actorId: member.userId, householdId: member.householdId,
             approval: .init(
                 id: decision.approvalId, operationId: decision.operationId, refund: decision.refund,
-                status: receipt == nil ? .pending : .consumed, expiresAt: "2099-01-01T00:00:00.000000Z",
+                status: receipt == nil ? .pending : .consumed,
+                expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
         return (
             try JSONEncoder().encode(result),

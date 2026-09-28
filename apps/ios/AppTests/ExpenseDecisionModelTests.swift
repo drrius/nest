@@ -6,6 +6,14 @@ import XCTest
 @MainActor
 final class ExpenseDecisionModelTests: XCTestCase {
     func testLostSaveReplyRecoversWithoutSubmittingAgain() async throws {
+        try await verifyRecovery(expired: false)
+    }
+
+    func testExpiredApprovalFinishesWithoutSubmittingDecision() async throws {
+        try await verifyRecovery(expired: true)
+    }
+
+    private func verifyRecovery(expired: Bool) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -28,9 +36,23 @@ final class ExpenseDecisionModelTests: XCTestCase {
             receiptPath: nil, receiptTotalCentimes: nil, payerId: member.userId, allocations: shares,
             date: try CivilDate("2026-09-28"), note: nil, categoryId: nil)
         let input = ExpenseDecision(operationId: UUID(), approvalId: UUID(), expense: expense, approved: true)
-        await server.prepare(input)
+        await server.prepare(input, expired: expired)
         try await model.stageExpenseDecision(input, context: context)
         let staged = try await model.savedExpenseDecision(context)
+        if expired {
+            let recovered = try await model.retryExpenseDecision(context)
+            XCTAssertTrue(recovered.isTerminal)
+            XCTAssertTrue(recovered.expiry?.expiredUnused == true)
+            XCTAssertEqual(recovered.decision, input)
+            let replay = try await model.retryExpenseDecision(context)
+            XCTAssertTrue(replay.expiry?.expiredUnused == true)
+            let saves = await server.saves
+            XCTAssertEqual(saves, 0)
+            try await model.finishExpenseDecision(context, approvalId: input.approvalId)
+            let cleared = try await model.savedExpenseDecision(context)
+            XCTAssertNil(cleared)
+            return
+        }
         do {
             _ = try await model.retryExpenseDecision(context)
             XCTFail("Lost reply was reported as success")
@@ -56,8 +78,12 @@ private actor LostDecisionReplyServer {
     var decision: ExpenseDecision?
     var receipt: ExpenseReceipt?
     var saves = 0
+    var expired = false
     init(member: VerifiedMember) { self.member = member }
-    func prepare(_ value: ExpenseDecision) { decision = value }
+    func prepare(_ value: ExpenseDecision, expired: Bool) {
+        decision = value
+        self.expired = expired
+    }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
         if request.url!.path.hasSuffix("/decide") {
@@ -74,7 +100,7 @@ private actor LostDecisionReplyServer {
             let result = FinancialApprovalExpiry(
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 approvalId: decision.approvalId, operationId: decision.operationId, command: .expense,
-                expiredUnused: false, checkedAt: "2026-09-28T08:00:00.000000Z")
+                expiredUnused: expired, checkedAt: "2026-09-28T08:00:00.000000Z")
             return (
                 try JSONEncoder().encode(result),
                 HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -84,7 +110,8 @@ private actor LostDecisionReplyServer {
             version: 1, actorId: member.userId, householdId: member.householdId,
             approval: .init(
                 id: decision.approvalId, operationId: decision.operationId, expense: decision.expense,
-                status: receipt == nil ? .pending : .consumed, expiresAt: "2099-01-01T00:00:00.000000Z",
+                status: receipt == nil ? .pending : .consumed,
+                expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
         return (
             try JSONEncoder().encode(result),
