@@ -8,6 +8,8 @@ export const FinancialApprovalExpiryQuery = Schema.Struct({
     "expenses.refund",
     "expenses.correct",
     "settlements.record",
+    "recurring.create",
+    "recurring.update",
   ]),
 });
 export const FinancialApprovalExpiry = Schema.Struct({
