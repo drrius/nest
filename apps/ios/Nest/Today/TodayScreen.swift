@@ -4,7 +4,7 @@ struct TodayScreen: View {
     @ObservedObject var model: SessionModel
     let member: VerifiedMember
     @State private var everyone = false
-    @State private var mealRefresh = UUID()
+    @State private var todayRefresh = UUID()
 
     var body: some View {
         ScrollView {
@@ -33,7 +33,7 @@ struct TodayScreen: View {
                     .padding(.top, 3)
                 quickAdd.padding(.top, 20)
                 TimelineView(.periodic(from: .now, by: 60)) { _ in
-                    TodayMealsSection(model: model, member: member, day: todayDate, refresh: mealRefresh)
+                    TodayMealsSection(model: model, member: member, day: todayDate, refresh: todayRefresh)
                         .id(member.userId)
                 }
                 .padding(.top, 24)
@@ -59,6 +59,9 @@ struct TodayScreen: View {
                 content
                 NavigationLink("Manage chores") { RoutinesScreen(model: model) }
                     .frame(minHeight: 44).padding(.top, 8)
+                TodayApprovalsSection(model: model, member: member, refresh: todayRefresh)
+                    .id(member.userId)
+                    .padding(.top, 24)
                 NavigationLink {
                     GroceriesScreen(model: model)
                 } label: {
@@ -85,7 +88,7 @@ struct TodayScreen: View {
         }
         .background(QuietPalette.background)
         .refreshable {
-            mealRefresh = UUID()
+            todayRefresh = UUID()
             await model.refreshToday()
             await model.refreshGroceries()
         }
