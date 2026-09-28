@@ -30,6 +30,7 @@ struct CalendarScreen: View {
             } else {
                 permission
             }
+            PartnerBusySection(session: session, day: day)
         }
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
