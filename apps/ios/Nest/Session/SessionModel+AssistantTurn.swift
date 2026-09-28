@@ -22,6 +22,10 @@ extension SessionModel {
 
     func stageAssistantTurn(_ command: StartAssistantTurn, context: AssistantTurnContext) async throws {
         _ = try command.validated()
+        let token = try await assistantToken(context.account)
+        guard let assistantAPI else { throw NestAPIFailure.configuration }
+        try await assistantAPI.requireAvailable(token: token, member: context.account.member)
+        try requireAssistantAccount(context.account)
         // An authorized network read must succeed before retaining a send attempt.
         let current = try await readConversation(context.account, id: command.conversationId)
         guard (current.conversation?.revision ?? "0") == command.expectedRevision else {

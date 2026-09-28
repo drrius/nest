@@ -46,6 +46,8 @@ final class AssistantComposerModel: ObservableObject {
                 saved?.terminal == true
                 ? "Reply saved. Open the conversation to read all action results."
                 : "Still working. Check status shortly."
+        } catch AssistantAvailabilityFailure.disabled {
+            notice = "Nest’s assistant is not available yet. Your message has not been sent."
         } catch {
             await load(session: session)
             notice =

@@ -169,3 +169,27 @@ test("identity redirects are refused without forwarding bearer credentials", asy
   assert.equal(requests.length, count + 1);
   assert.equal(requests.at(-1).url, "/auth/v1/user");
 });
+
+test("assistant availability requires membership and reports disabled configuration without a turn", async () => {
+  for (const [token, status] of [
+    [null, 401],
+    ["outsider", 403],
+    ["member", 200],
+  ]) {
+    const response = await handler(
+      new Request("http://localhost/v1/assistant/availability", {
+        headers: token ? { authorization: `Bearer ${token}` } : {},
+      }),
+    );
+    assert.equal(response.status, status);
+    if (status === 200) {
+      assert.deepEqual(await response.json(), {
+        version: 1,
+        actorId: user,
+        householdId: home,
+        available: false,
+      });
+      assert.equal(response.headers.get("cache-control"), "no-store");
+    }
+  }
+});

@@ -61,6 +61,11 @@ final class AssistantAccountTests: XCTestCase {
     }
 
     private func payload(_ route: Int, member: VerifiedMember, partner: UUID, eventId: UUID) throws -> Data {
+        if route == 2 {
+            return Data(
+                "{\"version\":1,\"actorId\":\"\(member.userId)\",\"householdId\":\"\(member.householdId)\",\"available\":true}"
+                    .utf8)
+        }
         if route == 0 {
             return try JSONEncoder().encode(
                 AssistantConversationPage(

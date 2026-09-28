@@ -40,6 +40,16 @@ export function assistantHandler(
     const effect = Effect.gen(function* () {
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);
+      if (path === "/v1/assistant/availability")
+        return Response.json(
+          {
+            version: 1,
+            actorId: member.userId,
+            householdId: member.householdId,
+            available: Boolean(model),
+          },
+          { headers: noStore },
+        );
       const store = conversationStore(config, { member, token });
       if (path === "/v1/assistant/conversations")
         return Response.json(yield* discoverConversations(request, config, { member, token }), {
