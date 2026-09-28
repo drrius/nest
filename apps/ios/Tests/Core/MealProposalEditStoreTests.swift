@@ -51,5 +51,44 @@ final class MealProposalEditStoreTests: XCTestCase {
         try await reopened.clearRejectedProposalEdit(lease: restored)
         let cleared = try await reopened.readProposalEdit(lease: restored)
         XCTAssertNil(cleared)
+        try await verifyAppliedReadback(store: reopened, lease: restored, preview: preview, command: command)
+    }
+
+    private func verifyAppliedReadback(
+        store: ChoreOfflineStore, lease: OfflineLease,
+        preview: MealProposalEnvelope, command: MealProposalEditCommand
+    ) async throws {
+        try await store.enqueueProposalEdit(preview: preview, command: command, lease: lease)
+        let receipt = MealProposalChangeReceipt(
+            version: 1, actorId: lease.actor, householdId: lease.household,
+            operationId: command.operationId, proposalId: command.proposalId, previousRevision: "2", revision: "3",
+            entryId: command.entryId, action: .replace, definitionId: nil, expectedLibraryRevision: nil)
+        let result = MealProposalEdit(
+            version: 1, actorId: lease.actor, householdId: lease.household, command: command,
+            expiresAt: 2_100_000_000_000, status: .applied, failure: nil, receipt: receipt)
+        try await store.saveProposalEditResult(result, lease: lease)
+        do {
+            try await store.clearAppliedProposalEdit(lease: lease)
+            XCTFail("Cleared before updated proposal readback")
+        } catch {}
+        let pending = MealProposalEdit(
+            version: 1, actorId: lease.actor, householdId: lease.household, command: command,
+            expiresAt: result.expiresAt, status: .pending, failure: nil, receipt: nil)
+        do {
+            try await store.saveProposalEditResult(pending, lease: lease)
+            XCTFail("Regressed applied edit to pending")
+        } catch {}
+        let old = preview.proposal
+        let fresh = MealProposal(
+            proposalId: old.id, revision: "3", weekRevision: old.weekRevision,
+            weekStart: old.weekStart, familiarOnly: old.familiarOnly, entries: old.entries, status: .ready,
+            expiresAt: old.expiresAt, failure: nil)
+        try await store.saveGeneratedProposal(
+            .init(
+                version: 1, actorId: lease.actor, householdId: lease.household,
+                proposal: fresh), lease: lease)
+        try await store.clearAppliedProposalEdit(lease: lease)
+        let finished = try await store.readProposalEdit(lease: lease)
+        XCTAssertNil(finished)
     }
 }
