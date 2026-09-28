@@ -30,6 +30,7 @@ struct TodayScreen: View {
                     .font(.subheadline)
                     .foregroundStyle(QuietPalette.muted)
                     .padding(.top, 3)
+                quickAdd.padding(.top, 20)
                 Picker("Show chores", selection: $everyone) {
                     Text("Me + shared").tag(false)
                     Text("Everyone").tag(true)
@@ -81,6 +82,29 @@ struct TodayScreen: View {
         }
         .task { if model.today == .idle { await model.refreshToday() } }
         .task { if model.groceries == .idle { await model.refreshGroceries() } }
+    }
+
+    private var quickAdd: some View {
+        Menu {
+            NavigationLink {
+                GroceriesScreen(model: model, initiallyAdding: true)
+            } label: {
+                Label("Grocery", systemImage: "basket")
+            }
+            NavigationLink {
+                ExpenseScreen(session: model, member: member)
+            } label: {
+                Label("Expense", systemImage: "creditcard")
+            }
+        } label: {
+            Label("Add", systemImage: "plus")
+                .font(.subheadline.weight(.semibold))
+                .padding(.horizontal, 18)
+                .frame(minHeight: 44)
+                .foregroundStyle(QuietPalette.surface)
+                .background(QuietPalette.accent, in: Capsule())
+        }
+        .accessibilityLabel("Add to your household")
     }
 
     private var grocerySummary: String {

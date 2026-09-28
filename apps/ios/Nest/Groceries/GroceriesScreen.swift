@@ -8,6 +8,11 @@ struct GroceriesScreen: View {
     @State private var removalCandidate: GroceryItem?
     @State private var showingRemoveConfirmation = false
 
+    init(model: SessionModel, initiallyAdding: Bool = false) {
+        self.model = model
+        _showingAdd = State(initialValue: initiallyAdding && model.groceryAdd == nil)
+    }
+
     var body: some View {
         List {
             Section {
