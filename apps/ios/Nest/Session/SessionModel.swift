@@ -65,7 +65,7 @@ final class SessionModel: ObservableObject {
     @Published var mealRecipePlacement: SavedMealRecipePlacement?
     @Published var mealRecipePlacementSaving = false
     let auth: (any NestAuthentication)?
-    private let chores: ChoreAPI?
+    let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
     let mealAPI: MealAPI?
     let calendarAPI: CalendarAPI?

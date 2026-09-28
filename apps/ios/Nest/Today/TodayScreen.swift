@@ -87,6 +87,11 @@ struct TodayScreen: View {
     private var quickAdd: some View {
         Menu {
             NavigationLink {
+                ChoreCreateScreen(model: model)
+            } label: {
+                Label("Chore", systemImage: "checkmark.circle")
+            }
+            NavigationLink {
                 GroceriesScreen(model: model, initiallyAdding: true)
             } label: {
                 Label("Grocery", systemImage: "basket")
