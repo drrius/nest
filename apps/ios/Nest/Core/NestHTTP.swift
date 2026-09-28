@@ -5,7 +5,7 @@ public enum NestAPIFailure: Error, Equatable {
 }
 
 public struct NestHTTP: Sendable {
-    private let baseURL: URL
+    let baseURL: URL
     private let transport: @Sendable (URLRequest) async throws -> (Data, URLResponse)
 
     public init(baseURL: URL) throws {
@@ -91,7 +91,7 @@ private struct NestErrorEnvelope: Decodable {
     let error: Detail
 }
 
-private final class NoRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
+final class NoRedirects: NSObject, URLSessionTaskDelegate, @unchecked Sendable {
     func urlSession(
         _ session: URLSession, task: URLSessionTask,
         willPerformHTTPRedirection response: HTTPURLResponse, newRequest request: URLRequest,
