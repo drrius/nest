@@ -6,11 +6,11 @@ import XCTest
 @MainActor
 final class AssistantAccountTests: XCTestCase {
     func testDelayedAssistantReadsCannotReturnAfterSignOut() async throws {
-        for route in 0..<2 { try await checkDelayedRead(route) }
+        for route in 0..<3 { try await checkDelayedRead(route) }
     }
 
     func testDelayedAssistantReadsCannotReturnToAnotherMember() async throws {
-        for route in 0..<2 { try await checkDelayedRead(route, switchAccount: true) }
+        for route in 0..<3 { try await checkDelayedRead(route, switchAccount: true) }
     }
 
     private func checkDelayedRead(_ route: Int, switchAccount: Bool = false) async throws {
@@ -32,11 +32,16 @@ final class AssistantAccountTests: XCTestCase {
             assistantAPI: AssistantAPI(http: http))
         await model.restore()
         let context = try model.assistantContext()
+        let turnContext = try model.assistantTurnContext()
         let request = Task {
             if route == 0 {
                 _ = try await model.readConversations(context, after: nil)
-            } else {
+            } else if route == 1 {
                 _ = try await model.readConversation(context, id: eventId)
+            } else {
+                try await model.stageAssistantTurn(
+                    .init(conversationId: eventId, operationId: UUID(), expectedRevision: "1", text: "Hello"),
+                    context: turnContext)
             }
         }
         await server.waitForRequest()
