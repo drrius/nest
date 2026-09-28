@@ -1,9 +1,9 @@
 import Foundation
 
-/// Device-local calendar choices only. These identifiers must never enter a server payload.
+/// Device-local calendar and layer choices. These identifiers never enter a server payload.
 @MainActor
 final class CalendarSelectionStore {
-    enum Purpose: String { case display, sharing }
+    enum Purpose: String { case display, sharing, layers }
 
     private let defaults: UserDefaults
     private let key: String

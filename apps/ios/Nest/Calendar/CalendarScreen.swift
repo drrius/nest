@@ -6,12 +6,16 @@ struct CalendarScreen: View {
     @StateObject private var model: CalendarModel
     @State private var day = Date()
     @State private var picking = false
-    @State private var showChores = false
+    @State private var showChores: Bool
+    private let layerStore: CalendarSelectionStore
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
 
     init(member: VerifiedMember, session: SessionModel) {
         self.session = session
+        let layers = CalendarSelectionStore(member: member, purpose: .layers)
+        layerStore = layers
+        _showChores = State(initialValue: layers.read().contains("chores"))
         _model = StateObject(wrappedValue: CalendarModel(selectionStore: CalendarSelectionStore(member: member)))
     }
 
@@ -21,9 +25,12 @@ struct CalendarScreen: View {
                 NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
             }
             if let notice = model.notice { Section { Text(notice) } }
+            Section {
+                DatePicker("Day", selection: $day, displayedComponents: .date)
+                    .datePickerStyle(.compact)
+            }
             if model.access == .allowed {
                 Section {
-                    DatePicker("Day", selection: $day, displayedComponents: .date)
                     Text("Your calendar details stay on this device. Manage events in Apple Calendar.")
                         .font(.subheadline).foregroundStyle(QuietPalette.muted)
                 }
@@ -46,6 +53,7 @@ struct CalendarScreen: View {
         .sheet(isPresented: $picking) { calendarPicker }
         .task { model.refresh(day: day) }
         .onChange(of: day) { model.refresh(day: day) }
+        .onChange(of: showChores) { layerStore.save(showChores ? ["chores"] : []) }
         .onChange(of: scenePhase) {
             if scenePhase == .active { model.refresh(day: day) } else { model.clearVisibleDetails() }
         }
