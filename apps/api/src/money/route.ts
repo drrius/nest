@@ -1,3 +1,4 @@
+import { financialApprovalExpiryRoute } from "./approval-expiry.ts";
 import { pendingFinancialApprovalRoute } from "./pending-approvals.ts";
 import { recurringRoute } from "./recurring-route.ts";
 import { receiptRoute } from "./receipt-route.ts";
@@ -49,6 +50,8 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
 }
 function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
+  if (url.pathname === "/v1/money/approval-expiry")
+    return financialApprovalExpiryRoute(url, config, caller);
   if (url.pathname === "/v1/money/pending-approvals")
     return pendingFinancialApprovalRoute(new Request(url), config, caller);
   if (url.pathname.startsWith("/v1/money/categor")) return categoryRoute(url, config, caller);
@@ -85,6 +88,8 @@ function singleParam(params: URLSearchParams, name: string) {
 
 function categoryRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
+  if (url.pathname === "/v1/money/approval-expiry")
+    return financialApprovalExpiryRoute(url, config, caller);
   if (url.pathname === "/v1/money/categories")
     return params.size && !singleParam(params, "after")
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
