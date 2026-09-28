@@ -6,29 +6,26 @@ struct SchedulingWarningSection: View {
     @ObservedObject var session: SessionModel
     let day: Date
     @Environment(\.scenePhase) private var scenePhase
-    @State private var local: BusyState = .unknown
-    @State private var snapshots: BusySnapshotsEnvelope?
+    @State private var availability = SchedulingAvailability()
     @State private var actor: UUID?
-    @State private var loading = false
-    @State private var requestId = UUID()
 
     var body: some View {
         Section("Calendar check") {
-            Text(message(local, partner: false))
+            Text(message(availability.local, partner: false))
             TimelineView(.periodic(from: .now, by: 30)) { timeline in
                 Text(message(partnerState(now: timeline.date), partner: true))
             }
             Text("This is a day-level check of selected calendars. You can still save this date.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
-            Button("Refresh availability") { Task { await refresh() } }.disabled(loading)
+            Button("Refresh availability") { Task { await refresh() } }.disabled(availability.loading)
         }
         .task(id: day) { await refresh() }
+        .onDisappear { availability.clear() }
         .onChange(of: scenePhase) {
             if scenePhase == .active {
                 Task { await refresh() }
             } else {
-                local = .unknown
-                snapshots = nil
+                availability.clear()
             }
         }
         .onReceive(NotificationCenter.default.publisher(for: .EKEventStoreChanged)) { _ in
@@ -43,7 +40,7 @@ struct SchedulingWarningSection: View {
 
     private func partnerState(now: Date) -> BusyState {
         guard let interval, let actor,
-            let partner = snapshots?.snapshots.first(where: { $0.actorId != actor })
+            let partner = availability.snapshots?.snapshots.first(where: { $0.actorId != actor })
         else { return .unknown }
         return partner.state(for: interval, now: now)
     }
@@ -63,25 +60,22 @@ struct SchedulingWarningSection: View {
     }
 
     private func refresh() async {
-        let request = UUID()
-        requestId = request
-        local = .unknown
-        snapshots = nil
-        loading = true
-        defer { if requestId == request { loading = false } }
+        let request = availability.begin()
+        defer { availability.finish(request) }
         do {
             let context = try await session.calendarConsentContext()
             try Task.checkCancellation()
-            guard requestId == request, let interval, scenePhase == .active else { return }
+            guard availability.isCurrent(request), let interval, scenePhase == .active else { return }
             actor = context.member.userId
             let selected = CalendarSelectionStore(member: context.member).read()
             let projection = EventKitCalendarReader().captureBusy(selected: selected, covered: interval)
             let now = Int64(Date().timeIntervalSince1970 * 1000)
-            local = projection.state(for: interval, capturedAt: now, now: now, maxAge: 1)
+            availability.setLocal(
+                projection.state(for: interval, capturedAt: now, now: now, maxAge: 1), request: request)
             let value = try await session.readBusySnapshots(context)
             try Task.checkCancellation()
-            guard requestId == request, scenePhase == .active else { return }
-            snapshots = value
-        } catch { if requestId == request { snapshots = nil } }
+            guard availability.isCurrent(request), scenePhase == .active else { return }
+            availability.setSnapshots(value, request: request)
+        } catch { availability.setSnapshots(nil, request: request) }
     }
 }
