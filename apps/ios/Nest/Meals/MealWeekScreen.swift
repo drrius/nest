@@ -52,6 +52,14 @@ struct MealWeekScreen: View {
                     .foregroundStyle(QuietPalette.accent)
                 }
                 NavigationLink {
+                    FoodPreferencesScreen(model: model).id(model.generation)
+                } label: {
+                    Label("Your food preferences", systemImage: "person.crop.circle")
+                        .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(QuietPalette.accent)
+                NavigationLink {
                     CookingPreferencesScreen(model: model)
                 } label: {
                     Label("Cooking preferences", systemImage: "slider.horizontal.3")
