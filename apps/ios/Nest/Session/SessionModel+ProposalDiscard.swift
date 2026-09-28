@@ -1,6 +1,14 @@
 import Foundation
 
 extension SessionModel {
+    func closeTerminalProposal(_ context: ProposalContext) async throws -> ProposalContext {
+        try requireProposalContext(context)
+        guard let offline, let lease, let saved = context.saved else { throw OfflineFailure.missingSnapshot }
+        try await offline.clearTerminalProposalGeneration(operation: saved.command.operationId, lease: lease)
+        try requireProposalContext(context)
+        return try await cachedProposalContext()
+    }
+
     func stageProposalDiscard(_ context: ProposalContext) async throws {
         try requireProposalContext(context)
         guard let offline, let lease, let preview = context.saved?.envelope else {

@@ -50,7 +50,10 @@ struct MealProposalScreen: View {
                             }
                         }
                     }
-                    actions(context, proposal: proposal)
+                    if context.discard == nil { actions(context, proposal: proposal) }
+                    ProposalDiscardControls(model: model, context: context, busy: busy) { updated in
+                        self.context = updated
+                    }
                 } else {
                     Text("Your request is saved. Continue with the same request when connected.")
                     Button("Continue planning") { Task { await perform(.generate) } }
