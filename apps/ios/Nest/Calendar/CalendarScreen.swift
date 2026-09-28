@@ -14,13 +14,13 @@ struct CalendarScreen: View {
 
     var body: some View {
         List {
-            Section {
-                DatePicker("Day", selection: $day, displayedComponents: .date)
-                Text("Your calendar details stay on this device. Manage events in Apple Calendar.")
-                    .font(.subheadline).foregroundStyle(QuietPalette.muted)
-            }
             if let notice = model.notice { Section { Text(notice) } }
             if model.access == .allowed {
+                Section {
+                    DatePicker("Day", selection: $day, displayedComponents: .date)
+                    Text("Your calendar details stay on this device. Manage events in Apple Calendar.")
+                        .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                }
                 agenda
             } else {
                 permission
