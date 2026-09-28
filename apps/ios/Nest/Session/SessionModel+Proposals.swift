@@ -5,6 +5,7 @@ struct ProposalContext {
     let generation: Int
     let saved: SavedProposalGeneration?
     let approval: SavedProposalApproval?
+    let discard: SavedProposalDiscard?
 }
 
 extension SessionModel {
@@ -13,7 +14,9 @@ extension SessionModel {
         let attempt = generation
         let saved = try await offline.readProposalGeneration(lease: lease)
         let approval = try await offline.readProposalApproval(lease: lease)
-        let context = ProposalContext(member: member, generation: attempt, saved: saved, approval: approval)
+        let discard = try await offline.readProposalDiscard(lease: lease)
+        let context = ProposalContext(
+            member: member, generation: attempt, saved: saved, approval: approval, discard: discard)
         try requireProposalContext(context)
         return context
     }
