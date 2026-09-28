@@ -40,6 +40,17 @@ struct MealWeekScreen: View {
                     MealReplacementStatus(model: model, saved: saved)
                 }
                 content
+                if let week = model.mealSelection {
+                    NavigationLink {
+                        IngredientReviewScreen(model: model, week: week)
+                            .id(model.generation)
+                    } label: {
+                        Label("Review ingredients", systemImage: "checklist")
+                            .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(QuietPalette.accent)
+                }
                 NavigationLink {
                     CookingPreferencesScreen(model: model)
                 } label: {
