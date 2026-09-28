@@ -45,3 +45,13 @@ test("expiry API rejects substituted identities and malformed responses", async 
   await assert.rejects(run(value, new URL(url + "&approvalId=" + id(100))));
   await assert.rejects(run(value, new URL(url + "&actorId=" + id(1))));
 });
+
+test("recurring expiry requests retain exact create versus update identity", async () => {
+  for (const command of ["recurring.create", "recurring.update"]) {
+    const input = new URL(url);
+    input.searchParams.set("command", command);
+    const result = { ...value, command };
+    assert.deepEqual(await run(result, input), result);
+    await assert.rejects(run({ ...result, command: "expenses.record" }, input));
+  }
+});
