@@ -42,7 +42,13 @@ struct MealProposalScreen: View {
                 if let proposal = saved.envelope?.proposal {
                     Text(statusLabel(proposal.status)).font(.headline)
                     if let entries = proposal.entries {
-                        ForEach(entries, id: \.id) { entry in ProposalMealRow(entry: entry) }
+                        ForEach(entries, id: \.id) { entry in
+                            NavigationLink {
+                                ProposalRecipeScreen(entry: entry)
+                            } label: {
+                                ProposalMealRow(entry: entry)
+                            }
+                        }
                     }
                     actions(context, proposal: proposal)
                 } else {
