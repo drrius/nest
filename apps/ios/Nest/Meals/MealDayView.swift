@@ -8,6 +8,7 @@ struct MealDayView<Detail: View>: View {
     let add: (MealSlot) -> Void
     let remove: (PlannedMeal) -> Void
     let replace: (PlannedMeal) -> Void
+    let leftovers: (PlannedMeal) -> Void
     let move: (PlannedMeal) -> Void
     let detail: (PlannedMeal) -> Detail
 
@@ -81,6 +82,9 @@ struct MealDayView<Detail: View>: View {
             .accessibilityLabel("\(slot.label): \(meal.title), recipe details")
             Menu {
                 Button("Replace", systemImage: "arrow.triangle.2.circlepath") { replace(meal) }
+                if meal.leftoverSourceId == nil {
+                    Button("Plan leftovers", systemImage: "arrow.turn.down.right") { leftovers(meal) }
+                }
                 Button("Move", systemImage: "arrow.right.arrow.left") { move(meal) }
                 Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
             } label: {

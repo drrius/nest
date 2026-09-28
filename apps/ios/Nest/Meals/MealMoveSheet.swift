@@ -9,6 +9,7 @@ struct MealMoveTarget: Identifiable {
 struct MealMoveSheet: View {
     @ObservedObject var model: SessionModel
     let target: MealMoveTarget
+    let leftovers: Bool
     @Environment(\.dismiss) private var dismiss
     @State private var week: MealWeekStart
     @State private var date: CivilDate
@@ -18,9 +19,10 @@ struct MealMoveSheet: View {
     @State private var saving = false
     @State private var request = UUID()
 
-    init(model: SessionModel, target: MealMoveTarget) {
+    init(model: SessionModel, target: MealMoveTarget, leftovers: Bool = false) {
         self.model = model
         self.target = target
+        self.leftovers = leftovers
         _week = State(initialValue: target.source)
         _date = State(initialValue: target.meal.date)
         _slot = State(initialValue: target.meal.slot)
@@ -32,7 +34,7 @@ struct MealMoveSheet: View {
                 Section {
                     Text(context?.meal.title ?? target.meal.title).font(.headline)
                 }
-                Section("Move to") {
+                Section(leftovers ? "Serve leftovers on" : "Move to") {
                     HStack {
                         Button {
                             changeWeek(-1)
@@ -61,11 +63,17 @@ struct MealMoveSheet: View {
                         ForEach(MealSlot.allCases, id: \.self) { Text($0.label).tag($0) }
                     }
                 }.disabled(saving)
-                Text("Your recipe stays with the meal.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
+                Text(
+                    leftovers
+                        ? "The original meal stays in your plan. Its recipe is copied to the leftovers."
+                        : "Your recipe stays with the meal."
+                )
+                .font(.footnote).foregroundStyle(QuietPalette.muted)
                 if let context {
                     if !valid(context) {
-                        Text("Choose a different, empty meal slot.").foregroundStyle(QuietPalette.muted)
+                        Text(
+                            leftovers ? "Choose an empty slot on a later day." : "Choose a different, empty meal slot."
+                        ).foregroundStyle(QuietPalette.muted)
                     }
                 } else if notice == nil {
                     ProgressView("Checking both weeks…")
@@ -79,15 +87,17 @@ struct MealMoveSheet: View {
             }
             .scrollContentBackground(.hidden)
             .background(QuietPalette.background)
-            .navigationTitle("Move meal")
+            .navigationTitle(leftovers ? "Plan leftovers" : "Move meal")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }.disabled(saving)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(saving ? "Saving…" : "Move") { Task { await save() } }
-                        .disabled(saving || context.map { !valid($0) } != false || model.mealMove != nil)
+                    Button(saving ? "Saving…" : (leftovers ? "Add" : "Move")) { Task { await save() } }
+                        .disabled(
+                            saving || context.map { !valid($0) } != false || model.mealMove != nil
+                                || model.mealLeftovers != nil)
                 }
             }
             .interactiveDismissDisabled(saving)
@@ -105,9 +115,16 @@ struct MealMoveSheet: View {
     }
 
     private func valid(_ context: MealMoveContext) -> Bool {
-        (try? MoveMeal(
-            source: context.source, target: context.target, meal: context.meal,
-            operationId: UUID(), date: date, slot: slot)) != nil
+        if leftovers {
+            return
+                (try? PlaceLeftovers(
+                    source: context.source, target: context.target, meal: context.meal,
+                    operationId: UUID(), date: date, slot: slot)) != nil
+        }
+        return
+            (try? MoveMeal(
+                source: context.source, target: context.target, meal: context.meal,
+                operationId: UUID(), date: date, slot: slot)) != nil
     }
 
     private func load() async {
@@ -121,7 +138,7 @@ struct MealMoveSheet: View {
             context = loaded
         } catch {
             guard request == current, !Task.isCancelled else { return }
-            notice = "Could not check both weeks. The meal may have changed. Refresh before moving it."
+            notice = "Could not check both weeks. The meal may have changed. Refresh before saving."
         }
     }
 
@@ -129,10 +146,14 @@ struct MealMoveSheet: View {
         guard !saving, let context, valid(context) else { return }
         saving = true
         defer { saving = false }
-        if await model.moveMeal(context, date: date, slot: slot) {
+        let accepted =
+            leftovers
+            ? await model.placeMealLeftovers(context, date: date, slot: slot)
+            : await model.moveMeal(context, date: date, slot: slot)
+        if accepted {
             dismiss()
         } else {
-            notice = "Could not save this move. Refresh both weeks and try again."
+            notice = "Could not save this change. Refresh both weeks and try again."
         }
     }
 }

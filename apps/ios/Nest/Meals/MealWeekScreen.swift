@@ -3,6 +3,7 @@ import SwiftUI
 struct MealWeekScreen: View {
     @ObservedObject var model: SessionModel
     @State private var replacementTarget: MealMoveTarget?
+    @State private var leftoversTarget: MealMoveTarget?
     @State private var moveTarget: MealMoveTarget?
     @State private var addTarget: MealSlotTarget?
     @State private var removalCandidate: PlannedMeal?
@@ -28,6 +29,9 @@ struct MealWeekScreen: View {
                 }
                 if let saved = model.mealRecipePlacement {
                     MealRecipePlacementStatus(model: model, saved: saved)
+                }
+                if let saved = model.mealLeftovers {
+                    MealLeftoversStatus(model: model, saved: saved)
                 }
                 if let saved = model.mealMove {
                     MealMoveStatus(model: model, saved: saved)
@@ -71,6 +75,9 @@ struct MealWeekScreen: View {
         }
         .sheet(item: $replacementTarget) { target in
             MealReplacementSheet(model: model, target: target)
+        }
+        .sheet(item: $leftoversTarget) { target in
+            MealMoveSheet(model: model, target: target, leftovers: true)
         }
         .sheet(item: $moveTarget) { target in
             MealMoveSheet(model: model, target: target)
@@ -139,6 +146,7 @@ struct MealWeekScreen: View {
                     slots: model.mealVisibleSlots,
                     canChange: model.mealPlacement == nil && model.mealRemoval == nil
                         && model.mealRecipePlacement == nil && model.mealMove == nil && model.mealReplacement == nil
+                        && model.mealLeftovers == nil
                 ) { slot in
                     addTarget = MealSlotTarget(date: date, slot: slot)
                 } remove: { meal in
@@ -146,6 +154,8 @@ struct MealWeekScreen: View {
                     showingRemovalConfirmation = true
                 } replace: { meal in
                     replacementTarget = MealMoveTarget(source: week.weekStart, meal: meal)
+                } leftovers: { meal in
+                    leftoversTarget = MealMoveTarget(source: week.weekStart, meal: meal)
                 } move: { meal in
                     moveTarget = MealMoveTarget(source: week.weekStart, meal: meal)
                 } detail: { meal in
