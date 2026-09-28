@@ -119,6 +119,20 @@ public struct MealAPI: Sendable {
         return try result.receipt.validated(member: member, command: saved.command)
     }
 
+    public func placeLeftovers(
+        token: String, member: VerifiedMember,
+        source: MealWeekSnapshot, target: MealWeekSnapshot, meal: PlannedMeal,
+        placement: PlaceLeftovers
+    ) async throws -> LeftoverPlacementReceipt {
+        _ = try source.validated(household: member.householdId, week: source.weekStart)
+        _ = try placement.validated(source: source, target: target, meal: meal)
+        let response = try await http.write(
+            "v1/meals/leftovers", token: token,
+            household: member.householdId, body: placement, as: LeftoverPlacementEnvelope.self)
+        guard response.version == 1 else { throw MealContractError.invalidReceipt }
+        return try response.receipt.validated(member: member, placement: placement)
+    }
+
     public func replace(
         token: String, member: VerifiedMember, week: MealWeekSnapshot,
         meal: PlannedMeal, command: ReplaceMeal
