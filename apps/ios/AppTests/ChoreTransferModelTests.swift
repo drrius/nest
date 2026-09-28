@@ -6,10 +6,14 @@ import XCTest
 @MainActor
 final class ChoreTransferModelTests: XCTestCase {
     func testLostReplyPreservesRecipientDecision() async throws {
-        for conflict in [false, true] { try await checkRecovery(conflict: conflict) }
+        for conflict in [false, true] {
+            for action: RespondChoreTransfer.Action in [.accept, .decline] {
+                try await checkRecovery(conflict: conflict, action: action)
+            }
+        }
     }
 
-    private func checkRecovery(conflict: Bool) async throws {
+    private func checkRecovery(conflict: Bool, action: RespondChoreTransfer.Action) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -33,7 +37,7 @@ final class ChoreTransferModelTests: XCTestCase {
             requestId: UUID(), occurrenceId: UUID(), dueDate: try CivilDate("2026-09-28"),
             fromMemberId: partner, toMemberId: member.userId, title: "Tidy")
         await server.setPending(pending)
-        let command = RespondChoreTransfer(operationId: UUID(), requestId: pending.requestId, action: .accept)
+        let command = RespondChoreTransfer(operationId: UUID(), requestId: pending.requestId, action: action)
         let savedCommand = SavedTransferCommand.respond(command, pending)
         try await store.enqueueChoreTransfer(savedCommand, title: "Tidy", lease: context.lease)
         if !conflict {
@@ -88,7 +92,7 @@ private actor ChoreTransferServer {
                     "operationId": command.operationId.uuidString, "requestId": command.requestId.uuidString,
                     "occurrenceId": pending.occurrenceId.uuidString, "dueDate": pending.dueDate.value,
                     "fromMemberId": pending.fromMemberId.uuidString, "toMemberId": member.userId.uuidString,
-                    "action": "accept", "state": "accepted",
+                    "action": command.action.rawValue, "state": command.action == .accept ? "accepted" : "declined",
                 ],
             ]
         return (

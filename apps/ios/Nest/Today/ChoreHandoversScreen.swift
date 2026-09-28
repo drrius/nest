@@ -44,10 +44,31 @@ struct ChoreHandoversScreen: View {
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .task { await load() }
         .confirmationDialog("Confirm handover action?", isPresented: $confirming) {
-            Button("Confirm") { Task { await apply(choice) } }
+            Button(confirmationAction) { Task { await apply(choice) } }
             Button("Cancel", role: .cancel) {}
         } message: {
             Text("Requests leave responsibility unchanged until the recipient accepts.")
+        }
+    }
+
+    private var confirmationAction: String {
+        switch choice {
+        case .request: "Send request"
+        case .respond(_, .accept): "Accept handover"
+        case .respond(_, .decline): "Decline handover"
+        case nil: "Confirm"
+        }
+    }
+
+    private var confirmationMessage: String {
+        switch choice {
+        case .request(let chore, _):
+            "Ask your partner to take \(chore.title), due \(chore.dueDate.value). It stays assigned to you until accepted."
+        case .respond(let transfer, .accept):
+            "Take responsibility for \(transfer.title), due \(transfer.dueDate.value)."
+        case .respond(let transfer, .decline):
+            "Decline \(transfer.title). Responsibility stays with the sender."
+        case nil: "Review this handover before confirming."
         }
     }
 
