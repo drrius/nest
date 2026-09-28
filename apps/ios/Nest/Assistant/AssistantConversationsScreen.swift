@@ -3,6 +3,7 @@ import SwiftUI
 struct AssistantConversationsScreen: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
+    @State private var newConversation = UUID()
     @State private var rows: [AssistantConversationSummary] = []
     @State private var next: UUID?
     @State private var loading = false
@@ -14,6 +15,9 @@ struct AssistantConversationsScreen: View {
             Section {
                 Text("Your conversations are private. Your partner cannot read them.")
                     .foregroundStyle(QuietPalette.muted)
+            }
+            NavigationLink("Ask Nest") {
+                AssistantComposerScreen(session: session, member: member, conversation: newConversation)
             }
             ForEach(rows) { row in
                 NavigationLink {

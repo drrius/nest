@@ -38,6 +38,11 @@ struct AssistantHistoryScreen: View {
             }.padding(20)
         }
         .background(QuietPalette.background).navigationTitle("Conversation")
+        .toolbar {
+            NavigationLink("Reply") {
+                AssistantComposerScreen(session: session, member: member, conversation: conversationId)
+            }
+        }
         .task(id: conversationId) { await load() }
         .refreshable { await load() }
         .onDisappear {
