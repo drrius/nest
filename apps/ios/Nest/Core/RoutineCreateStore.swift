@@ -3,11 +3,17 @@ import Foundation
 struct SavedRoutineCreation: Codable, Equatable, Sendable {
     let command: CreateRoutine
     var receipt: RoutineCreateReceipt?
+    var cancellationRequested: Bool?
+    var cancellation: RoutineCancellation?
 
     func validated(_ lease: OfflineLease) throws -> Self {
         _ = try command.validated()
         let member = VerifiedMember(userId: lease.actor, householdId: lease.household, displayName: "")
         _ = try receipt?.validated(member: member, command: command)
+        if let cancellation {
+            _ = try cancellation.validated(member: member, command: command)
+            guard cancellationRequested == true, cancellation.receipt == receipt else { throw OfflineFailure.storage }
+        }
         return self
     }
 }
@@ -35,6 +41,7 @@ extension ChoreOfflineStore {
 
     func acknowledgeRoutineCreation(_ receipt: RoutineCreateReceipt, lease: OfflineLease) throws {
         guard var saved = try readRoutineCreation(lease: lease) else { throw OfflineFailure.invalidOperation }
+        guard saved.cancellation?.status != .cancelled else { throw OfflineFailure.invalidOperation }
         if let previous = saved.receipt {
             guard previous == receipt else { throw OfflineFailure.invalidOperation }
             return
@@ -48,7 +55,7 @@ extension ChoreOfflineStore {
     // An uncertain request cannot be erased: replay must establish its outcome first.
     func finishRoutineCreation(operationId: UUID, lease: OfflineLease) throws {
         guard let saved = try readRoutineCreation(lease: lease), saved.command.operationId == operationId,
-            saved.receipt != nil
+            saved.receipt != nil || saved.cancellation?.status == .cancelled
         else { throw OfflineFailure.invalidOperation }
         try db.run("DELETE FROM routine_creations WHERE actor=? AND household=?", lease.scope)
     }
