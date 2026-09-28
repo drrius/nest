@@ -5,6 +5,17 @@ public struct MealAPI: Sendable {
 
     public init(http: NestHTTP) { self.http = http }
 
+    public func createRecipe(
+        token: String, member: VerifiedMember, command: CreateRecipe
+    ) async throws -> RecipeCreationReceipt {
+        _ = try command.validated()
+        let response = try await http.write(
+            "v1/meals/recipe/create", token: token, household: member.householdId,
+            body: command, as: RecipeCreationEnvelope.self)
+        guard response.version == 1 else { throw MealContractError.invalidReceipt }
+        return try response.receipt.validated(member: member, command: command)
+    }
+
     public func verify(token: String, expectedActor: UUID) async throws -> VerifiedMember {
         let response = try await http.read("v1/session", token: token, as: VerifiedSession.self)
         return try response.validated(actor: expectedActor)
