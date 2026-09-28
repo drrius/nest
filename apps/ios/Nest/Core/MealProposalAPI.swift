@@ -21,7 +21,7 @@ public struct MealProposalAPI: Sendable {
         _ = try command.validated()
         let result = try await http.write(
             "v1/meals/proposal/generate", token: token, household: member.householdId,
-            body: command, as: MealProposalGenerationResult.self)
+            body: command, timeout: 180, as: MealProposalGenerationResult.self)
         return try result.validated(member: member, command: command)
     }
 

@@ -19,6 +19,26 @@ final class NestHTTPTests: XCTestCase {
         }
     }
 
+    func testGenerationUsesWorkerBudgetWhileOrdinaryReadsStayShort() async throws {
+        let member = VerifiedMember(userId: actor, householdId: household, displayName: "Test")
+        let client = try http(status: 503, json: "{}") { request in
+            XCTAssertEqual(request.timeoutInterval, request.url?.path.hasSuffix("/generate") == true ? 180 : 15)
+        }
+        let proposal = MealProposalAPI(http: client)
+        do {
+            _ = try await proposal.generate(
+                token: "test", member: member,
+                command: .init(
+                    operationId: UUID(), weekStart: try MealWeekStart("2035-06-04"),
+                    expectedWeekRevision: "0", familiarOnly: false))
+            XCTFail("Expected unavailable")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .unavailable) }
+        do {
+            _ = try await client.read("v1/session", token: "test", as: VerifiedSession.self)
+            XCTFail("Expected unavailable")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .unavailable) }
+    }
+
     func testVerifiedSessionBindsTheSupabaseActor() async throws {
         let body = """
             {"version":1,"member":{"userId":"\(actor.uuidString)","householdId":"\(household.uuidString)","displayName":"Alex"}}

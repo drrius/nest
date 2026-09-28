@@ -33,25 +33,25 @@ public struct NestHTTP: Sendable {
     }
 
     public func write<Body: Encodable, Value: Decodable>(
-        _ path: String, token: String, household: UUID, body: Body, as type: Value.Type
+        _ path: String, token: String, household: UUID, body: Body, timeout: TimeInterval = 15, as type: Value.Type
     ) async throws -> Value {
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.sortedKeys]
         let encoded = try encoder.encode(body)
-        return try await request(path, token: token, household: household, body: encoded, as: type)
+        return try await request(path, token: token, household: household, body: encoded, timeout: timeout, as: type)
     }
 
     private func request<Value: Decodable>(
-        _ path: String, token: String, household: UUID?, body: Data?, as type: Value.Type
+        _ path: String, token: String, household: UUID?, body: Data?, timeout: TimeInterval = 15, as type: Value.Type
     ) async throws -> Value {
-        guard !token.isEmpty, !path.hasPrefix("/"), !path.contains(".."),
+        guard timeout.isFinite, timeout > 0, timeout <= 180, !token.isEmpty, !path.hasPrefix("/"), !path.contains(".."),
             let url = URL(string: path, relativeTo: baseURL)?.absoluteURL,
             url.host == baseURL.host, url.scheme == "https"
         else { throw NestAPIFailure.configuration }
         var request = URLRequest(url: url)
         request.httpMethod = body == nil ? "GET" : "POST"
         request.httpBody = body
-        request.timeoutInterval = 15
+        request.timeoutInterval = timeout
         request.cachePolicy = .reloadIgnoringLocalCacheData
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
