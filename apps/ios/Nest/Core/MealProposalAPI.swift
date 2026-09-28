@@ -39,6 +39,17 @@ public struct MealProposalAPI: Sendable {
         return try result.validated(member: member, id: id)
     }
 
+    public func discard(token: String, member: VerifiedMember, command: DiscardMealProposal)
+        async throws -> MealProposalDiscardReceipt
+    {
+        _ = try command.validated()
+        let result = try await http.write(
+            "v1/meals/proposal/discard", token: token, household: member.householdId,
+            body: command, as: ProposalDiscarded.self)
+        guard result.version == 1 else { throw MealProposalError.invalidResponse }
+        return try result.receipt.validated(member: member, command: command)
+    }
+
     public func approve(token: String, member: VerifiedMember, proposal: MealProposal, command: ApproveMealProposal)
         async throws -> MealProposalApprovalReceipt
     {
@@ -59,4 +70,9 @@ private struct ProposalReserved: Decodable {
 private struct ProposalApproved: Decodable {
     let version: Int
     let receipt: MealProposalApprovalReceipt
+}
+
+private struct ProposalDiscarded: Decodable {
+    let version: Int
+    let receipt: MealProposalDiscardReceipt
 }
