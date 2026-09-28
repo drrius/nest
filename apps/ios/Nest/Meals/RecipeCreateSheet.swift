@@ -19,7 +19,11 @@ struct RecipeCreateSheet: View {
             Form {
                 Section("Recipe") {
                     TextField("Name", text: $title)
-                    TextField("Servings", text: $servings).keyboardType(.numberPad)
+                    LabeledContent("Servings") {
+                        TextField("Servings", text: $servings)
+                            .keyboardType(.numberPad).multilineTextAlignment(.trailing)
+                            .accessibilityLabel("Servings")
+                    }
                     TextField("Cooking instructions", text: $instructions, axis: .vertical).lineLimit(3...8)
                 }
                 Section("Ingredients") {
