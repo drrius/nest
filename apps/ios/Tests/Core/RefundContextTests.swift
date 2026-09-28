@@ -1,0 +1,40 @@
+import Foundation
+import XCTest
+
+@testable import NestCore
+
+final class RefundContextTests: XCTestCase {
+    func testRefundableStateAndCapsMatchOriginalExpense() throws {
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let partner = UUID()
+        let event = UUID()
+        let summary = MoneyEventSummary(
+            eventId: event, kind: .expense, occurredOn: "2026-09-28",
+            createdAt: "2026-09-28T00:00:00.000000Z", occurredOrder: "1", createdOrder: "1",
+            description: "Fixture", amountCentimes: try Centimes("101"), createdBy: member.userId,
+            payerId: member.userId, relatedEventId: nil, hasReceipt: false)
+        let detail = MoneyDetail(
+            version: 1, householdId: member.householdId, event: summary,
+            receiptTotalCentimes: nil, note: nil, category: nil, reversedById: nil,
+            shares: [
+                .init(
+                    memberId: member.userId, allocatedCentimes: try Centimes("51"), deltaCentimes: try Centimes("50")),
+                .init(memberId: partner, allocatedCentimes: try Centimes("50"), deltaCentimes: try Centimes("-50")),
+            ])
+        func context(_ first: Int, _ second: Int, refundable: Bool) throws -> RefundContext {
+            .init(
+                version: 1, householdId: member.householdId, source: detail,
+                remaining: [
+                    .init(memberId: member.userId, centimes: try Centimes(String(first))),
+                    .init(memberId: partner, centimes: try Centimes(String(second))),
+                ], refundable: refundable)
+        }
+        _ = try context(51, 50, refundable: true).validated(member: member, sourceEventId: event)
+        _ = try context(0, 0, refundable: false).validated(member: member, sourceEventId: event)
+        for (first, second, flag) in [(52, 50, true), (51, 51, true), (-1, 50, true), (0, 0, true), (1, 0, false)] {
+            XCTAssertThrowsError(
+                try context(first, second, refundable: flag).validated(member: member, sourceEventId: event))
+        }
+        XCTAssertThrowsError(try context(51, 50, refundable: true).validated(member: member, sourceEventId: UUID()))
+    }
+}
