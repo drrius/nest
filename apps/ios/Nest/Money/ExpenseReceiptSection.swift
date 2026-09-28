@@ -11,6 +11,7 @@ struct ExpenseReceiptSection: View {
     @State private var photo: PhotosPickerItem?
     @State private var choosePDF = false
     @State private var working = false
+    @State private var receiptLoaded = false
     @State private var notice: String?
 
     var body: some View {
@@ -42,7 +43,10 @@ struct ExpenseReceiptSection: View {
             guard let photo else { return }
             await perform {
                 guard let data = try await photo.loadTransferable(type: Data.self) else { throw NestAPIFailure.invalid }
-                try await stage(ReceiptMedia.photo(data), contentType: "image/jpeg")
+                let normalized = try await Task.detached(priority: .userInitiated) { try ReceiptMedia.photo(data) }
+                    .value
+                try Task.checkCancellation()
+                try await stage(normalized, contentType: "image/jpeg")
             }
             self.photo = nil
         }
@@ -60,9 +64,13 @@ struct ExpenseReceiptSection: View {
     private func remove() async { await perform { _ = try await session.removeReceipt(context) } }
 
     private func perform(_ action: () async throws -> Void) async {
+        guard !working else { return }
         working = true
         ready = false
-        defer { working = false }
+        defer {
+            working = false
+            ready = receiptLoaded && (saved == nil || (path != nil && saved?.cleanupRequested == false))
+        }
         do {
             try await action()
             notice = nil
@@ -75,9 +83,11 @@ struct ExpenseReceiptSection: View {
     private func refresh() async {
         do {
             saved = try await session.savedReceipt(context)
+            receiptLoaded = true
             path = saved?.cleanupRequested == false ? saved?.reservation?.path : nil
-            ready = saved == nil || (path != nil && saved?.cleanupRequested == false)
+            ready = !working && (saved == nil || (path != nil && saved?.cleanupRequested == false))
         } catch {
+            receiptLoaded = false
             ready = false
             path = nil
             notice = "Could not load the saved receipt. Reopen this form to try again."
