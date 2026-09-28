@@ -43,6 +43,7 @@ struct ChoreCreateScreen: View {
         }
         .disabled(working)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
+        .scrollDismissesKeyboard(.interactively)
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
         .navigationTitle("Add chore")
