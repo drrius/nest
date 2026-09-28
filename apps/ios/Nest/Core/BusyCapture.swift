@@ -60,16 +60,10 @@ struct PublishBusy: Codable, Sendable {
     let intervals: [BusyInterval]
 
     func validated() throws -> Self {
-        guard try CalendarConsent.revision(consent) > 0, try CalendarConsent.revision(generation) > 0,
-            covered.valid, covered.end - covered.start <= 2_678_400_000, intervals.count <= 512
-        else { throw CalendarConsentError.invalid }
-        var previous = covered.start - 1
-        for interval in intervals {
-            guard interval.valid, interval.start >= covered.start, interval.end <= covered.end,
-                interval.start > previous
-            else { throw CalendarConsentError.invalid }
-            previous = interval.end
+        guard try CalendarConsent.revision(consent) > 0, try CalendarConsent.revision(generation) > 0 else {
+            throw CalendarConsentError.invalid
         }
+        _ = try BusyProjection(covered: covered, intervals: intervals).validated()
         return self
     }
 }

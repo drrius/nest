@@ -11,6 +11,20 @@ struct BusyInterval: Codable, Equatable, Sendable {
 struct BusyProjection: Codable, Equatable, Sendable {
     let covered: BusyInterval
     let intervals: [BusyInterval]
+
+    func validated() throws -> Self {
+        guard covered.valid, covered.end - covered.start <= 2_678_400_000, intervals.count <= 512 else {
+            throw CalendarConsentError.invalid
+        }
+        var previous = covered.start - 1
+        for interval in intervals {
+            guard interval.valid, interval.start >= covered.start, interval.end <= covered.end,
+                interval.start > previous
+            else { throw CalendarConsentError.invalid }
+            previous = interval.end
+        }
+        return self
+    }
 }
 
 struct BusyEvent: Sendable {
