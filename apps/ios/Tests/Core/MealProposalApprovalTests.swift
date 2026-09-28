@@ -40,6 +40,64 @@ final class MealProposalApprovalTests: XCTestCase {
         XCTAssertThrowsError(try receipt([posted]).validated(member: other, command: command, proposal: value))
     }
 
+    func testApprovalJournalRetainsExactPreviewUntilConfirmedReadback() async throws {
+        let store = try ChoreOfflineStore(
+            url: FileManager.default.temporaryDirectory.appending(path: "approval-\(UUID()).sqlite"))
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let lease = try await store.activate(member)
+        let value = try proposal()
+        let request = GenerateMealProposal(
+            operationId: UUID(), weekStart: value.weekStart,
+            expectedWeekRevision: value.weekRevision, familiarOnly: false)
+        try await store.enqueueProposalGeneration(request, lease: lease)
+        try await store.reserveProposalGeneration(
+            .init(
+                version: 1, actorId: member.userId,
+                householdId: member.householdId, operationId: request.operationId, proposalId: value.id,
+                revision: "1", weekStart: value.weekStart, expectedWeekRevision: value.weekRevision, familiarOnly: false
+            ), lease: lease)
+        let preview = MealProposalEnvelope(
+            version: 1, actorId: member.userId, householdId: member.householdId, proposal: value)
+        try await store.saveGeneratedProposal(preview, lease: lease)
+        let operation = UUID()
+        try await store.enqueueProposalApproval(
+            preview: preview, operation: operation, lease: lease,
+            now: Date(timeIntervalSince1970: 1))
+        do {
+            try await store.discardConflictedProposalApproval(lease: lease)
+            XCTFail("Discarded uncertain approval")
+        } catch {}
+        let pending = try await store.readProposalApproval(lease: lease)
+        XCTAssertEqual(pending?.preview, preview)
+        XCTAssertEqual(pending?.command.operationId, operation)
+        let entry = try XCTUnwrap(value.entries?.first)
+        let receipt = MealProposalApprovalReceipt(
+            version: 1, actorId: member.userId, householdId: member.householdId,
+            operationId: operation, proposalId: value.id, approvedRevision: "1", revision: "2",
+            weekStart: value.weekStart,
+            previousWeekRevision: "3", weekRevision: "4",
+            entries: [.init(proposalEntryId: entry.id, entryId: UUID(), date: entry.date, slot: entry.slot)])
+        try await store.acknowledgeProposalApproval(receipt, lease: lease)
+        do {
+            try await store.clearConfirmedProposalApproval(lease: lease)
+            XCTFail("Cleared before confirmed readback")
+        } catch {}
+        let approved = MealProposal(
+            proposalId: value.id, revision: "2", weekRevision: value.weekRevision,
+            weekStart: value.weekStart, familiarOnly: false, entries: value.entries, status: .approved,
+            expiresAt: value.expiresAt, failure: nil)
+        try await store.saveGeneratedProposal(
+            .init(
+                version: 1, actorId: member.userId,
+                householdId: member.householdId, proposal: approved), lease: lease)
+        do {
+            try await store.clearTerminalProposalGeneration(operation: request.operationId, lease: lease)
+            XCTFail("Cleared proposal with unresolved approval")
+        } catch {}
+        try await store.clearConfirmedProposalApproval(lease: lease)
+        try await store.clearTerminalProposalGeneration(operation: request.operationId, lease: lease)
+    }
+
     private func proposal() throws -> MealProposal {
         let week = try MealWeekStart("2035-06-04")
         let recipe = RecipeDraft(

@@ -62,7 +62,8 @@ extension ChoreOfflineStore {
     }
 
     func clearTerminalProposalGeneration(operation: UUID, lease: OfflineLease) throws {
-        guard let saved = try readProposalGeneration(lease: lease), saved.command.operationId == operation,
+        guard try readProposalApproval(lease: lease) == nil,
+            let saved = try readProposalGeneration(lease: lease), saved.command.operationId == operation,
             let status = saved.envelope?.proposal.status, status == .approved || status == .discarded
         else { throw OfflineFailure.invalidOperation }
         try db.run("DELETE FROM proposal_generations WHERE actor=? AND household=?", lease.scope)
