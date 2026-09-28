@@ -26,6 +26,11 @@ struct RecurringRuleScreen: View {
                         RecurringStateScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
                     }
                 }
+                Section {
+                    NavigationLink("Resume or recover resume") {
+                        RecurringResumeScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+                    }
+                }
                 Section("Schedule") {
                     Text(schedule(rule.configuration.schedule))
                     LabeledContent("Starts", value: rule.configuration.startDate.value)
