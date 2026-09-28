@@ -42,10 +42,14 @@ struct PartnerBusySection: View {
                     let end = Date(timeIntervalSince1970: Double(min(interval.end, query.end)) / 1000)
                     VStack(alignment: .leading, spacing: 4) {
                         Label("Busy", systemImage: "clock")
-                        Text(
-                            "\(start.formatted(date: .omitted, time: .shortened)) – \(end.formatted(date: .omitted, time: .shortened))"
-                        )
-                        .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        if interval.start <= query.start && interval.end >= query.end {
+                            Text("All day").font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        } else {
+                            Text(
+                                "\(start.formatted(date: .omitted, time: .shortened)) – \(end.formatted(date: .omitted, time: .shortened))"
+                            )
+                            .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        }
                     }.padding(.vertical, 4)
                 }
             }
