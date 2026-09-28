@@ -64,6 +64,7 @@ extension ChoreOfflineStore {
     func clearTerminalProposalGeneration(operation: UUID, lease: OfflineLease) throws {
         guard try readProposalApproval(lease: lease) == nil,
             try readProposalDiscard(lease: lease) == nil,
+            try readProposalEdit(lease: lease) == nil,
             let saved = try readProposalGeneration(lease: lease), saved.command.operationId == operation,
             let status = saved.envelope?.proposal.status, status == .approved || status == .discarded
         else { throw OfflineFailure.invalidOperation }
