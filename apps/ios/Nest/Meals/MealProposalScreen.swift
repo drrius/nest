@@ -145,11 +145,7 @@ struct MealProposalScreen: View {
         switch action {
         case .load: context = current
         case .clearGeneration: context = try await model.clearRejectedGeneration(current)
-        case .generate:
-            if current.saved == nil {
-                try await model.stageProposalGeneration(week: week, familiarOnly: familiarOnly, context: current)
-            }
-            context = try await model.retryProposalGeneration(current)
+        case .generate: try await generate(current)
         case .refresh: context = try await model.refreshProposalContext(current)
         case .approve:
             guard let reviewed = context else { throw OfflineFailure.missingSnapshot }
@@ -163,6 +159,14 @@ struct MealProposalScreen: View {
             context = try await model.discardProposalApprovalConflict(current)
             context = try await model.refreshProposalContext(current)
         }
+    }
+
+    private func generate(_ current: ProposalContext) async throws {
+        if current.saved == nil {
+            let fresh = try await model.freshProposalWeek(week.weekStart, context: current)
+            try await model.stageProposalGeneration(week: fresh, familiarOnly: familiarOnly, context: current)
+        }
+        context = try await model.retryProposalGeneration(current)
     }
 
     private func statusLabel(_ status: MealProposal.Status) -> String {

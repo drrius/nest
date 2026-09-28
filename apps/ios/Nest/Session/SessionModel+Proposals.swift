@@ -23,6 +23,17 @@ extension SessionModel {
         return context
     }
 
+    func freshProposalWeek(_ start: MealWeekStart, context: ProposalContext) async throws -> MealWeekSnapshot {
+        try requireProposalContext(context)
+        guard let auth, let api = mealAPI else { throw NestAPIFailure.signedOut }
+        let session = try await auth.session()
+        try requireProposalContext(context)
+        guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
+        let week = try await api.week(token: session.accessToken, member: context.member, start: start)
+        try requireProposalContext(context)
+        return week
+    }
+
     func stageProposalGeneration(week: MealWeekSnapshot, familiarOnly: Bool, context: ProposalContext) async throws {
         try requireProposalContext(context)
         guard let offline, let lease else { throw NestAPIFailure.signedOut }
