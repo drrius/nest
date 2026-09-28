@@ -5,29 +5,6 @@ import UIKit
 
 @MainActor
 final class SessionModel: ObservableObject {
-    enum Status: Equatable {
-        case configuration, loading, signedOut, notMember, unavailable
-        case ready(VerifiedMember)
-    }
-
-    enum TodayStatus: Equatable {
-        case idle, loading
-        case loaded(ChoreOfflineState)
-        case failed
-    }
-
-    enum GroceryStatus: Equatable {
-        case idle, loading
-        case loaded(GroceryOfflineState)
-        case failed
-    }
-
-    enum GroceryCategoryStatus: Equatable {
-        case idle, loading
-        case loaded([GroceryCategory])
-        case failed
-    }
-
     @Published var status: Status = .loading
     @Published private(set) var today: TodayStatus = .idle
     @Published private(set) var todayNotice: String?
@@ -56,6 +33,10 @@ final class SessionModel: ObservableObject {
     @Published var mealReplacement: SavedMealReplacement?
     @Published var mealReplacementSaving = false
     var mealReplacementSavingGeneration: Int?
+    @Published var recipeArchive: SavedRecipeArchive?
+    @Published var recipeArchiveSaving = false
+    @Published var recipeArchiveNotice: String?
+    var recipeArchiveSavingGeneration: Int?
     @Published var recipeCreation: SavedRecipeCreation?
     @Published var recipeCreationSaving = false
     @Published var recipeCreationNotice: String?

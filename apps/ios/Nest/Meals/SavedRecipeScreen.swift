@@ -3,6 +3,7 @@ import SwiftUI
 struct SavedRecipeScreen: View {
     @ObservedObject var model: SessionModel
     let id: UUID
+    @State private var archiving = false
 
     var body: some View {
         ScrollView {
@@ -15,6 +16,13 @@ struct SavedRecipeScreen: View {
         .background(QuietPalette.background)
         .navigationTitle("Recipe")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("Archive recipe", systemImage: "archivebox") { archiving = true }
+                    .disabled(model.recipeArchive != nil || model.recipeCreation != nil)
+            }
+        }
+        .sheet(isPresented: $archiving) { RecipeArchiveSheet(model: model, id: id) }
         .task(id: id) { await model.loadSavedRecipe(id) }
     }
 

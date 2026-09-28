@@ -17,6 +17,8 @@ struct MealLibraryScreen: View {
                     }
                     .frame(minHeight: 44, alignment: .leading)
                 }
+                if let saved = model.recipeArchive { RecipeArchiveStatus(model: model, saved: saved) }
+                if let notice = model.recipeArchiveNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
                 if let saved = model.recipeCreation { RecipeCreationStatus(model: model, saved: saved) }
                 if let notice = model.recipeCreationNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
                 content
@@ -29,7 +31,7 @@ struct MealLibraryScreen: View {
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
                 Button("New recipe", systemImage: "plus") { creatingRecipe = true }
-                    .disabled(model.recipeCreation != nil)
+                    .disabled(model.recipeCreation != nil || model.recipeArchive != nil)
             }
         }
         .sheet(isPresented: $creatingRecipe) { RecipeCreateSheet(model: model) }
