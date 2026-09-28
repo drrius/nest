@@ -21,7 +21,8 @@ final class AssistantStreamTests: XCTestCase {
 
     func testRequestRetainsIdentityAndRequiresSDKStreamResponse() throws {
         let api = AssistantAPI(http: try NestHTTP(baseURL: URL(string: "https://nest.example")!))
-        let command = StartAssistantTurn(conversationId: UUID(), operationId: UUID(), expectedRevision: "0", text: "Hello")
+        let command = StartAssistantTurn(
+            conversationId: UUID(), operationId: UUID(), expectedRevision: "0", text: "Hello")
         let household = UUID()
         let request = try api.streamRequest(command: command, token: "fixture", household: household)
         XCTAssertEqual(try JSONDecoder().decode(StartAssistantTurn.self, from: XCTUnwrap(request.httpBody)), command)
@@ -30,12 +31,19 @@ final class AssistantStreamTests: XCTestCase {
         XCTAssertEqual(request.value(forHTTPHeaderField: "Authorization"), "Bearer fixture")
         XCTAssertEqual(request.value(forHTTPHeaderField: "X-Nest-Household"), household.uuidString.lowercased())
         for status in [200, 302, 401, 403, 409, 503] {
-            let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil,
-                headerFields: ["Content-Type": "text/event-stream; charset=utf-8", "x-vercel-ai-ui-message-stream": "v1"])!
-            if status == 200 { XCTAssertNoThrow(try AssistantAPI.validateStreamResponse(response)) }
-            else { XCTAssertThrowsError(try AssistantAPI.validateStreamResponse(response)) }
+            let response = HTTPURLResponse(
+                url: request.url!, statusCode: status, httpVersion: nil,
+                headerFields: [
+                    "Content-Type": "text/event-stream; charset=utf-8", "x-vercel-ai-ui-message-stream": "v1",
+                ])!
+            if status == 200 {
+                XCTAssertNoThrow(try AssistantAPI.validateStreamResponse(response))
+            } else {
+                XCTAssertThrowsError(try AssistantAPI.validateStreamResponse(response))
+            }
         }
-        let html = HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil,
+        let html = HTTPURLResponse(
+            url: request.url!, statusCode: 200, httpVersion: nil,
             headerFields: ["Content-Type": "text/html"])!
         XCTAssertThrowsError(try AssistantAPI.validateStreamResponse(html))
     }
