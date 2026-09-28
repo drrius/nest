@@ -8,6 +8,7 @@ struct FinancialApprovalsScreen: View {
     @State private var savedRefund: SavedRefundDecision?
     @State private var savedSettlement: SavedSettlementDecision?
     @State private var savedCorrection: SavedCorrectionDecision?
+    @State private var savedRecurring: SavedRecurringDecision?
     @State private var next: UUID?
     @State private var loading = false
     @State private var loaded = false
@@ -52,39 +53,18 @@ struct FinancialApprovalsScreen: View {
                     }
                 }
             }
+            if let savedRecurring {
+                Section("Saved recurring decision") {
+                    NavigationLink("Check recurring decision") {
+                        RecurringApprovalScreen(
+                            session: session, member: member,
+                            approvalId: savedRecurring.decision.approvalId)
+                    }
+                }
+            }
             Section("Waiting for your review") {
                 ForEach(rows) { row in
-                    if row.command == .expense {
-                        NavigationLink {
-                            ExpenseApprovalScreen(session: session, member: member, approvalId: row.id)
-                        } label: {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text("Record expense")
-                                if let expiry = ApprovalTime.date(row.expiresAt) {
-                                    Text("Expires \(expiry.formatted(date: .abbreviated, time: .shortened))")
-                                        .font(.caption).foregroundStyle(QuietPalette.muted)
-                                }
-                            }
-                        }
-                    } else if row.command == .refund {
-                        NavigationLink("Review refund") {
-                            RefundApprovalScreen(session: session, member: member, approvalId: row.id)
-                        }
-                    } else if row.command == .settlement {
-                        NavigationLink("Review payment") {
-                            SettlementApprovalScreen(session: session, member: member, approvalId: row.id)
-                        }
-                    } else if row.command == .correction {
-                        NavigationLink("Review correction") {
-                            CorrectionApprovalScreen(session: session, member: member, approvalId: row.id)
-                        }
-                    } else {
-                        VStack(alignment: .leading, spacing: 4) {
-                            Text(row.command.title)
-                            Text("Review for this proposal type is not available in this build.")
-                                .font(.caption).foregroundStyle(QuietPalette.muted)
-                        }
-                    }
+                    FinancialApprovalRow(session: session, member: member, row: row)
                 }
                 if loaded && rows.isEmpty { Text("No pending financial approvals.") }
                 if let notice { Text(notice) }
@@ -112,6 +92,7 @@ struct FinancialApprovalsScreen: View {
             savedRefund = nil
             savedSettlement = nil
             savedCorrection = nil
+            savedRecurring = nil
         }
         do {
             let context = try session.expenseContext()
@@ -119,6 +100,7 @@ struct FinancialApprovalsScreen: View {
             savedRefund = try await session.savedRefundDecision(context)
             savedSettlement = try await session.savedSettlementDecision(context)
             savedCorrection = try await session.savedCorrectionDecision(context)
+            savedRecurring = try await session.savedRecurringDecision(context)
             let page = try await session.readPendingApprovals(context, after: cursor)
             try Task.checkCancellation()
             rows.append(contentsOf: page.approvals)
