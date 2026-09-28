@@ -37,3 +37,26 @@ extension MoneyAPI {
         return try result.validated(member: member, cursor: after)
     }
 }
+
+struct MoneyCategoryEnvelope: Codable, Sendable {
+    let version: Int
+    let householdId: UUID
+    let categoryId: UUID
+    let category: MoneyCategory?
+
+    func validated(member: VerifiedMember, categoryId: UUID) throws -> Self {
+        guard version == 1, householdId == member.householdId, self.categoryId == categoryId,
+            category.map({ $0.id == categoryId && !$0.name.isEmpty }) != false
+        else { throw NestAPIFailure.contract }
+        return self
+    }
+}
+
+extension MoneyAPI {
+    func category(token: String, member: VerifiedMember, categoryId: UUID) async throws -> MoneyCategoryEnvelope {
+        let result = try await http.read(
+            "v1/money/category?categoryId=\(categoryId.uuidString.lowercased())", token: token,
+            household: member.householdId, as: MoneyCategoryEnvelope.self)
+        return try result.validated(member: member, categoryId: categoryId)
+    }
+}
