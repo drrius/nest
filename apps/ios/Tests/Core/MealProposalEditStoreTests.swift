@@ -5,6 +5,14 @@ import XCTest
 
 final class MealProposalEditStoreTests: XCTestCase {
     func testEditProtectsUncertainOperationAndExcludesDiscard() async throws {
+        try await exerciseEditReadback(tamper: false)
+    }
+
+    func testUnrelatedMealChangeRetainsAppliedEditForRecovery() async throws {
+        try await exerciseEditReadback(tamper: true)
+    }
+
+    private func exerciseEditReadback(tamper: Bool) async throws {
         let url = FileManager.default.temporaryDirectory.appending(path: "edit-proposal-\(UUID()).sqlite")
         defer { try? FileManager.default.removeItem(at: url) }
         let store = try ChoreOfflineStore(url: url)
@@ -17,9 +25,13 @@ final class MealProposalEditStoreTests: XCTestCase {
         let entry = ProposedMeal(
             entryId: UUID(), date: week.date, slot: .dinner, source: .suggested(recipe),
             estimatedCaloriesPerServing: nil)
+        let unrelated = ProposedMeal(
+            entryId: UUID(), date: week.date, slot: .lunch, source: .suggested(recipe),
+            estimatedCaloriesPerServing: nil)
         let proposal = MealProposal(
             proposalId: UUID(), revision: "2", weekRevision: "0", weekStart: week,
-            familiarOnly: false, entries: [entry], status: .ready, expiresAt: 2_100_000_000_000, failure: nil)
+            familiarOnly: false, entries: [entry, unrelated], status: .ready, expiresAt: 2_100_000_000_000, failure: nil
+        )
         let preview = MealProposalEnvelope(
             version: 1, actorId: member.userId, householdId: member.householdId, proposal: proposal)
         let generation = GenerateMealProposal(
@@ -51,12 +63,13 @@ final class MealProposalEditStoreTests: XCTestCase {
         try await reopened.clearRejectedProposalEdit(lease: restored)
         let cleared = try await reopened.readProposalEdit(lease: restored)
         XCTAssertNil(cleared)
-        try await verifyAppliedReadback(store: reopened, lease: restored, preview: preview, command: command)
+        try await verifyAppliedReadback(
+            store: reopened, lease: restored, preview: preview, command: command, tamper: tamper)
     }
 
     private func verifyAppliedReadback(
         store: ChoreOfflineStore, lease: OfflineLease,
-        preview: MealProposalEnvelope, command: MealProposalEditCommand
+        preview: MealProposalEnvelope, command: MealProposalEditCommand, tamper: Bool
     ) async throws {
         try await store.enqueueProposalEdit(preview: preview, command: command, lease: lease)
         let receipt = MealProposalChangeReceipt(
@@ -79,14 +92,31 @@ final class MealProposalEditStoreTests: XCTestCase {
             XCTFail("Regressed applied edit to pending")
         } catch {}
         let old = preview.proposal
+        var entries = try XCTUnwrap(old.entries)
+        if tamper {
+            let unrelated = entries[1]
+            entries[1] = ProposedMeal(
+                entryId: unrelated.id, date: unrelated.date, slot: unrelated.slot, source: unrelated.source,
+                estimatedCaloriesPerServing: 999)
+        }
         let fresh = MealProposal(
             proposalId: old.id, revision: "3", weekRevision: old.weekRevision,
-            weekStart: old.weekStart, familiarOnly: old.familiarOnly, entries: old.entries, status: .ready,
+            weekStart: old.weekStart, familiarOnly: old.familiarOnly, entries: entries, status: .ready,
             expiresAt: old.expiresAt, failure: nil)
         try await store.saveGeneratedProposal(
             .init(
                 version: 1, actorId: lease.actor, householdId: lease.household,
                 proposal: fresh), lease: lease)
+        if tamper {
+            do {
+                try await store.clearAppliedProposalEdit(lease: lease)
+                XCTFail("Cleared edit despite unrelated meal changing")
+            } catch OfflineFailure.storage {}
+            let retained = try await store.readProposalEdit(lease: lease)
+            XCTAssertEqual(retained?.command, command)
+            XCTAssertEqual(retained?.result, result)
+            return
+        }
         try await store.clearAppliedProposalEdit(lease: lease)
         let finished = try await store.readProposalEdit(lease: lease)
         XCTAssertNil(finished)
