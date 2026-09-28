@@ -18,6 +18,10 @@ extension SessionModel {
         mealReplacement = nil
         mealReplacementSaving = false
         mealReplacementSavingGeneration = nil
+        recipeEdit = nil
+        recipeEditSaving = false
+        recipeEditSavingGeneration = nil
+        recipeEditNotice = nil
         recipeArchive = nil
         recipeArchiveSaving = false
         recipeArchiveNotice = nil

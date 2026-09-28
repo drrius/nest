@@ -3,6 +3,7 @@ import SwiftUI
 struct SavedRecipeScreen: View {
     @ObservedObject var model: SessionModel
     let id: UUID
+    @State private var editing = false
     @State private var archiving = false
 
     var body: some View {
@@ -18,10 +19,13 @@ struct SavedRecipeScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
+                Button("Edit recipe", systemImage: "pencil") { editing = true }
+                    .disabled(model.recipeEdit != nil || model.recipeArchive != nil || model.recipeCreation != nil)
                 Button("Archive recipe", systemImage: "archivebox") { archiving = true }
-                    .disabled(model.recipeArchive != nil || model.recipeCreation != nil)
+                    .disabled(model.recipeArchive != nil || model.recipeCreation != nil || model.recipeEdit != nil)
             }
         }
+        .sheet(isPresented: $editing) { RecipeEditSheet(model: model, id: id) }
         .sheet(isPresented: $archiving) { RecipeArchiveSheet(model: model, id: id) }
         .task(id: id) { await model.loadSavedRecipe(id) }
     }

@@ -12,22 +12,11 @@ extension SessionModel {
         savedRecipe = .idle
         savedRecipeRevision = nil
         do {
-            let pending: SavedRecipeCreation?
-            if let offline, let lease {
-                pending = try await offline.readRecipeCreation(lease: lease)
-            } else {
-                pending = nil
-            }
+            let pending = try await readLibraryPending()
             guard currentMealLibraryRequest(request, member: member, attempt: attempt) else { return }
-            let archive: SavedRecipeArchive?
-            if let offline, let lease {
-                archive = try await offline.readRecipeArchive(lease: lease)
-            } else {
-                archive = nil
-            }
-            guard currentMealLibraryRequest(request, member: member, attempt: attempt) else { return }
-            recipeArchive = archive
-            recipeCreation = pending
+            recipeCreation = pending.0
+            recipeArchive = pending.1
+            recipeEdit = pending.2
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
             let page = try await api.library(token: session.accessToken, member: member)
@@ -38,6 +27,14 @@ extension SessionModel {
                 error, api: api, auth: auth, member: member,
                 attempt: attempt, request: request, initial: true)
         }
+    }
+
+    private func readLibraryPending() async throws -> (SavedRecipeCreation?, SavedRecipeArchive?, SavedRecipeEdit?) {
+        guard let offline, let lease else { return (nil, nil, nil) }
+        let creation = try await offline.readRecipeCreation(lease: lease)
+        let archive = try await offline.readRecipeArchive(lease: lease)
+        let edit = try await offline.readRecipeEdit(lease: lease)
+        return (creation, archive, edit)
     }
 
     func loadNextMealLibraryPage() async {
