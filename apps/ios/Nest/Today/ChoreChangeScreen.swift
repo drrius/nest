@@ -36,6 +36,7 @@ struct ChoreChangeScreen: View {
                     Button("Move to this date") { Task { await apply(newDate: selectedDate) } }
                         .disabled(selectedDate == nil || selectedDate == chore.dueDate)
                 }
+                SchedulingWarningSection(session: model, day: date)
                 Section {
                     Button("Skip this occurrence", role: .destructive) { confirmingSkip = true }
                     Text("Only this occurrence changes. The routine and completed history are kept.").font(.footnote)

@@ -41,7 +41,8 @@ final class EventKitCalendarReader: DeviceCalendarReading {
         }.sorted { $0.start < $1.start }
     }
 
-    /// Call only with separately opted-in calendars; display selection is not sharing consent.
+    /// Computes availability locally. Display selections may support local warnings;
+    /// publishing this result requires separately opted-in sharing selections and consent.
     func captureBusy(selected: Set<String>, covered: BusyInterval) -> LocalAvailability {
         guard access == .allowed, !selected.isEmpty, covered.valid,
             covered.end - covered.start <= 2_678_400_000
