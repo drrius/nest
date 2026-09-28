@@ -45,7 +45,11 @@ struct CalendarSharingScreen: View {
         .navigationTitle("Busy sharing")
         .task { await load() }
         .onChange(of: scenePhase) {
-            if scenePhase == .active && !working { Task { await load() } }
+            if scenePhase == .active && !working {
+                Task { await load() }
+            } else if scenePhase != .active {
+                calendars = []
+            }
         }
         .confirmationDialog("Share busy times with your household and AI?", isPresented: $confirmEnable) {
             Button("Enable sharing") { Task { await changeConsent(true) } }
@@ -111,11 +115,13 @@ struct CalendarSharingScreen: View {
                 context = try await session.calendarConsentContext()
                 notice = "Calendar access is off. Busy sharing has been turned off."
             }
+            guard scenePhase == .active else { return }
             calendars = reader.calendars()
             selected = CalendarSelectionStore(member: value.member, purpose: .sharing).read()
             selected.formIntersection(calendars.map(\.id))
             CalendarSelectionStore(member: value.member, purpose: .sharing).save(selected)
         } catch {
+            calendars = []
             await reloadPending()
             consent = nil
             notice = "Could not confirm sharing status. Check any saved change and retry online."
