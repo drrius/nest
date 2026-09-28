@@ -10,6 +10,8 @@ final class AssistantComposerModel: ObservableObject {
 
     func load(session: SessionModel) async {
         do { saved = try await session.savedAssistantTurn(session.assistantTurnContext()) } catch {
+            saved = nil
+            reply = ""
             notice = "Could not check your saved request. Try again."
         }
     }
