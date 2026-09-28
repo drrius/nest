@@ -9,10 +9,16 @@ final class CalendarModel: ObservableObject {
     @Published private(set) var selected: Set<String> = []
     @Published private(set) var requesting = false
     @Published private(set) var notice: String?
+    private let selectionStore: CalendarSelectionStore?
     private let reader: any DeviceCalendarReading
 
-    init(reader: any DeviceCalendarReading = EventKitCalendarReader()) {
+    init(
+        reader: any DeviceCalendarReading = EventKitCalendarReader(),
+        selectionStore: CalendarSelectionStore? = nil
+    ) {
         self.reader = reader
+        self.selectionStore = selectionStore
+        selected = selectionStore?.read() ?? []
     }
 
     func requestAccess(day: Date) async {
@@ -44,10 +50,12 @@ final class CalendarModel: ObservableObject {
         guard access == .allowed else {
             clearVisibleDetails()
             selected = []
+            selectionStore?.save([])
             return
         }
         calendars = reader.calendars()
         selected.formIntersection(calendars.map(\.id))
+        selectionStore?.save(selected)
         guard let interval = calendar.dateInterval(of: .day, for: day) else {
             events = []
             notice = "This date could not be loaded. Choose another day."

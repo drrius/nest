@@ -2,11 +2,15 @@ import EventKit
 import SwiftUI
 
 struct CalendarScreen: View {
-    @StateObject private var model = CalendarModel()
+    @StateObject private var model: CalendarModel
     @State private var day = Date()
     @State private var picking = false
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
+
+    init(member: VerifiedMember) {
+        _model = StateObject(wrappedValue: CalendarModel(selectionStore: CalendarSelectionStore(member: member)))
+    }
 
     var body: some View {
         List {

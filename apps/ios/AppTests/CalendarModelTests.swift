@@ -5,6 +5,26 @@ import XCTest
 
 @MainActor
 final class CalendarModelTests: XCTestCase {
+    func testSavedSelectionLoadsAndRevocationErasesIt() throws {
+        let suite = "calendar-model-\(UUID())"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let storage = CalendarSelectionStore(member: member, defaults: defaults)
+        let reader = FakeCalendarReader()
+        let first = CalendarModel(reader: reader, selectionStore: storage)
+        first.refresh(day: .now)
+        first.select("personal", enabled: true, day: .now)
+        let reopened = CalendarModel(reader: reader, selectionStore: storage)
+        reopened.refresh(day: .now)
+        XCTAssertEqual(reopened.selected, ["personal"])
+        XCTAssertEqual(reopened.events.count, 1)
+        reader.access = .denied
+        reopened.refresh(day: .now)
+        XCTAssertTrue(storage.read().isEmpty)
+        XCTAssertTrue(reopened.events.isEmpty)
+    }
+
     func testSelectionIsExplicitAndRevocationClearsPrivateDetails() {
         let reader = FakeCalendarReader()
         let model = CalendarModel(reader: reader)
