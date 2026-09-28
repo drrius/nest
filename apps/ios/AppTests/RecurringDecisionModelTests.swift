@@ -6,6 +6,13 @@ import XCTest
 @MainActor
 final class RecurringDecisionModelTests: XCTestCase {
     func testLostSaveReplyRecoversWithoutSubmittingAgain() async throws {
+        try await verifyRecovery(expired: false, update: false)
+    }
+    func testExpiredCreateAndUpdateNeverSubmit() async throws {
+        try await verifyRecovery(expired: true, update: false)
+        try await verifyRecovery(expired: true, update: true)
+    }
+    private func verifyRecovery(expired: Bool, update: Bool) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -23,16 +30,30 @@ final class RecurringDecisionModelTests: XCTestCase {
         await model.restore()
         let context = try model.expenseContext()
         let rule = RecurringInput(
-            ruleId: UUID(), expectedRevision: nil,
+            ruleId: UUID(), expectedRevision: update ? UUID() : nil,
             configuration: .init(
                 description: "Bill", payerId: member.userId, categoryId: nil,
                 note: nil, startDate: try CivilDate("2026-09-01"),
                 schedule: .init(kind: .monthly, weekday: nil, dayOfMonth: 28),
                 mode: .variable, amountCentimes: nil, allocations: nil), firstDueOn: try CivilDate("2026-09-28"))
         let input = RecurringDecision(operationId: UUID(), approvalId: UUID(), rule: rule, approved: true)
-        await server.prepare(input)
+        await server.prepare(input, expired: expired)
         try await model.stageRecurringDecision(input, context: context)
         let staged = try await model.savedRecurringDecision(context)
+        if expired {
+            let result = try await model.retryRecurringDecision(context)
+            XCTAssertTrue(result.expiry?.expiredUnused == true)
+            XCTAssertEqual(result.expiry?.command, update ? .updateRule : .createRule)
+            XCTAssertEqual(result.decision, input)
+            let replay = try await model.retryRecurringDecision(context)
+            XCTAssertTrue(replay.isTerminal)
+            let saves = await server.saves
+            XCTAssertEqual(saves, 0)
+            try await model.finishRecurringDecision(context, approvalId: input.approvalId)
+            let remaining = try await model.savedRecurringDecision(context)
+            XCTAssertNil(remaining)
+            return
+        }
         do {
             _ = try await model.retryRecurringDecision(context)
             XCTFail("Lost reply was reported as success")
@@ -58,8 +79,12 @@ private actor LostRecurringDecisionReplyServer {
     var decision: RecurringDecision?
     var receipt: RecurringReceipt?
     var saves = 0
+    var expired = false
     init(member: VerifiedMember) { self.member = member }
-    func prepare(_ value: RecurringDecision) { decision = value }
+    func prepare(_ value: RecurringDecision, expired: Bool) {
+        decision = value
+        self.expired = expired
+    }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
         if request.url!.path.hasSuffix("/decide") {
@@ -78,7 +103,7 @@ private actor LostRecurringDecisionReplyServer {
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 approvalId: decision.approvalId, operationId: decision.operationId,
                 command: decision.rule.expectedRevision == nil ? .createRule : .updateRule,
-                expiredUnused: false, checkedAt: "2026-09-28T08:00:00.000000Z")
+                expiredUnused: expired, checkedAt: "2026-09-28T08:00:00.000000Z")
             return (
                 try JSONEncoder().encode(result),
                 HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
@@ -88,7 +113,8 @@ private actor LostRecurringDecisionReplyServer {
             version: 1, actorId: member.userId, householdId: member.householdId,
             approval: .init(
                 id: decision.approvalId, operationId: decision.operationId, rule: decision.rule,
-                status: receipt == nil ? .pending : .consumed, expiresAt: "2099-01-01T00:00:00.000000Z",
+                status: receipt == nil ? .pending : .consumed,
+                expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
         return (
             try JSONEncoder().encode(result),
