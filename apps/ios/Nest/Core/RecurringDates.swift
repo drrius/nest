@@ -19,6 +19,21 @@ enum RecurringDates {
         return try civil(due)
     }
 
+    static func cycle(schedule: RecurringSchedule, dueOn: CivilDate) throws -> RecurringCycle {
+        guard schedule.valid, first(schedule, from: date(dueOn)) == date(dueOn) else { throw NestAPIFailure.invalid }
+        let begins = start(schedule, due: date(dueOn))
+        let end: Date
+        if schedule.kind == .monthly {
+            let days = calendar.range(of: .day, in: .month, for: begins)!.count
+            end = calendar.date(byAdding: .day, value: days - 1, to: begins)!
+        } else {
+            end = min(calendar.date(byAdding: .day, value: 6, to: begins)!, date(try CivilDate("9999-12-31")))
+        }
+        let starts = try civil(begins)
+        return .init(
+            key: "\(schedule.kind.rawValue):\(starts.value)", dueOn: dueOn, startsOn: starts, through: try civil(end))
+    }
+
     private static var calendar: Calendar {
         var value = Calendar(identifier: .gregorian)
         value.timeZone = TimeZone(secondsFromGMT: 0)!
