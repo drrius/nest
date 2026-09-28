@@ -8,6 +8,9 @@ struct SavedExpenseDecision: Codable, Sendable {
 extension ChoreOfflineStore {
     static func createFinancialRecoveryTables(_ db: SQLiteConnection) throws {
         try db.run(
+            "CREATE TABLE IF NOT EXISTS settlement_decisions (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
             "CREATE TABLE IF NOT EXISTS refund_decisions (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
         try db.run(
