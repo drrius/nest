@@ -14,6 +14,7 @@ struct ExpenseDraft {
     var secondExact = ""
     var firstPercentage = "50"
     var note = ""
+    var categoryId: UUID?
     var separateReceiptTotal = false
     var receiptTotal = ""
 
@@ -47,7 +48,7 @@ struct ExpenseDraft {
             description: description.trimmingCharacters(in: .whitespacesAndNewlines), amountCentimes: total,
             receiptPath: nil, receiptTotalCentimes: separateReceiptTotal ? ExpenseSplit.parseCHF(receiptTotal) : nil,
             payerId: payer, allocations: allocations, date: date, note: trimmedNote.isEmpty ? nil : trimmedNote,
-            categoryId: nil
+            categoryId: categoryId
         ).validated(member: member)
     }
 }

@@ -4,6 +4,7 @@ struct ExpenseReviewSection: View {
     let expense: ExpenseInput
     let member: VerifiedMember
     let members: [MoneyBalance.Member]
+    var categoryName: String? = nil
 
     var body: some View {
         Section("Review expense") {
@@ -14,6 +15,9 @@ struct ExpenseReviewSection: View {
             LabeledContent("Date", value: expense.date.value)
             ForEach(expense.allocations, id: \.memberId) { share in
                 LabeledContent("\(name(share.memberId))’s share", value: share.centimes.absoluteCHF)
+            }
+            if expense.categoryId != nil {
+                LabeledContent("Category", value: categoryName ?? "Previously selected category")
             }
             if let note = expense.note { Text(note) }
             Text("Saving records this expense in your shared financial history. It does not transfer money.")

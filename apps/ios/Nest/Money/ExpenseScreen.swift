@@ -4,6 +4,7 @@ struct ExpenseScreen: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     @State private var draft: ExpenseDraft
+    @State private var categoryName: String?
     @State private var date = Date()
     @State private var members: [MoneyBalance.Member] = []
     @State private var context: ExpenseContext?
@@ -27,13 +28,19 @@ struct ExpenseScreen: View {
                 ExpenseReviewSection(expense: saved.command.expense, member: member, members: members)
                 recovery(saved)
             } else if let reviewed {
-                ExpenseReviewSection(expense: reviewed, member: member, members: members)
+                ExpenseReviewSection(expense: reviewed, member: member, members: members, categoryName: categoryName)
                 Section {
                     Button("Save expense") { Task { await saveReviewed() } }
                     Button("Edit") { self.reviewed = nil }
                 }
             } else if loaded {
                 ExpenseFormFields(draft: $draft, date: $date, members: members)
+                Section {
+                    NavigationLink(categoryName ?? "Choose category (optional)") {
+                        ExpenseCategoryPicker(
+                            session: session, member: member, selection: $draft.categoryId, selectedName: $categoryName)
+                    }
+                }
                 Section { Button("Review expense") { review() } }
             } else {
                 Section { Button("Load expense form") { Task { await load() } } }
@@ -145,6 +152,7 @@ struct ExpenseScreen: View {
             self.saved = nil
             reviewed = nil
             draft = ExpenseDraft(payer: member.userId)
+            categoryName = nil
             loaded = false
             await load()
         } catch { notice = "Could not finish this request. Try again." }
