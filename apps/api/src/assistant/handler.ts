@@ -1,3 +1,4 @@
+import { cancelUnstartedTurn } from "./cancel.ts";
 import type { MealPlanningOptions } from "../meal-planning/route.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -32,7 +33,7 @@ export function assistantHandler(
     const allowed =
       path === "/v1/assistant/turn"
         ? ["GET", "POST"]
-        : [path === "/v1/assistant/interrupt" ? "POST" : "GET"];
+        : [["/v1/assistant/interrupt", "/v1/assistant/cancel"].includes(path) ? "POST" : "GET"];
     if (!allowed.includes(request.method))
       return Promise.resolve(
         new Response(null, { status: 405, headers: { Allow: allowed.join(", ") } }),
@@ -50,6 +51,8 @@ export function assistantHandler(
           },
           { headers: noStore },
         );
+      if (path === "/v1/assistant/cancel")
+        return yield* cancelUnstartedTurn(request, config, { member, token });
       const store = conversationStore(config, { member, token });
       if (path === "/v1/assistant/conversations")
         return Response.json(yield* discoverConversations(request, config, { member, token }), {

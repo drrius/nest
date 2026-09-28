@@ -73,6 +73,7 @@ export function createHandler(config: IdentityConfig, options: MealPlanningOptio
   return (request: Request): Promise<Response> => {
     const path = new URL(request.url).pathname;
     if (
+      path === "/v1/assistant/cancel" ||
       path === "/v1/assistant/availability" ||
       path === "/v1/assistant/turn" ||
       path === "/v1/assistant/conversation" ||
