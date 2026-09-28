@@ -1,6 +1,15 @@
 import Foundation
 
 extension SessionModel {
+    func readCorrectionContext(_ context: ExpenseContext, sourceEventId: UUID) async throws -> CorrectionContext {
+        let token = try await expenseToken(context)
+        guard let moneyAPI else { throw NestAPIFailure.configuration }
+        let result = try await moneyAPI.correctionContext(
+            token: token, member: context.member, sourceEventId: sourceEventId)
+        try requireMoneyAccount(context.member, generation: context.generation)
+        return result
+    }
+
     func savedCorrection(_ context: ExpenseContext) async throws -> SavedCorrection? {
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
