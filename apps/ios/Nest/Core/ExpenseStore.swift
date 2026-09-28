@@ -37,6 +37,13 @@ extension ChoreOfflineStore {
         try authorize(lease)
         guard try readExpense(lease: lease) == nil else { throw OfflineFailure.invalidOperation }
         _ = try command.expense.validated(member: expenseMember(lease))
+        if let receipt = try readReceiptUpload(lease: lease),
+            command.expense.receiptPath == receipt.input.path(household: lease.household),
+            receipt.cleanupRequested || receipt.reservation == nil
+        {
+            throw OfflineFailure.invalidOperation
+        }
+
         let body = String(
             decoding: try JSONEncoder().encode(SavedExpense(command: command, result: nil)), as: UTF8.self)
         try db.run("INSERT INTO expense_commands(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
