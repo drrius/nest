@@ -68,6 +68,7 @@ final class SessionModel: ObservableObject {
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
     let mealAPI: MealAPI?
+    let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
     let offline: ChoreOfflineStore?
     private let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
@@ -102,6 +103,7 @@ final class SessionModel: ObservableObject {
             groceryAPI = GroceryAPI(http: http)
             mealAPI = MealAPI(http: http)
             foodAPI = FoodAPI(http: http)
+            proposalAPI = MealProposalAPI(http: http)
             offline = store
         } catch is NestConfigurationError {
             auth = nil
@@ -109,6 +111,7 @@ final class SessionModel: ObservableObject {
             groceryAPI = nil
             mealAPI = nil
             foodAPI = nil
+            proposalAPI = nil
             offline = nil
             status = .configuration
         } catch {
@@ -117,6 +120,7 @@ final class SessionModel: ObservableObject {
             groceryAPI = nil
             mealAPI = nil
             foodAPI = nil
+            proposalAPI = nil
             offline = nil
             status = .unavailable
         }
@@ -125,6 +129,7 @@ final class SessionModel: ObservableObject {
     init(
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil, foodAPI: FoodAPI? = nil,
+        proposalAPI: MealProposalAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -137,6 +142,7 @@ final class SessionModel: ObservableObject {
         self.groceryAPI = groceryAPI
         self.mealAPI = mealAPI
         self.foodAPI = foodAPI
+        self.proposalAPI = proposalAPI
         self.offline = offline
         self.savedReader = savedReader
         self.deactivateLease = deactivateLease
