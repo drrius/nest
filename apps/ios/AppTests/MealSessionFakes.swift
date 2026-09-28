@@ -26,6 +26,8 @@ actor FakeMealServer {
     private var recipeAttempts: [UUID] = []
     private var loseNextRecipeResponse = false
     private var rejectNextRecipe = false
+    private var weekFailure: NestAPIFailure?
+    func failWeeks(_ error: NestAPIFailure?) { weekFailure = error }
     private var pauseA = false
     private var pausedPath: String?
     private var aWaiting = false
@@ -107,6 +109,10 @@ actor FakeMealServer {
         if let capturedRecipe {
             return answer(request, body: capturedRecipe)
         }
+        if weekFailure == .forbidden {
+            return answer(request, body: "{\"error\":{\"code\":\"forbidden\"}}", status: 403)
+        }
+        if let weekFailure { throw weekFailure }
         return answer(request, body: week(for: actor))
     }
 

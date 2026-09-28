@@ -27,6 +27,45 @@ final class MealSessionModelTests: XCTestCase {
             mealAPI: MealAPI(http: mealHTTP))
     }
 
+    func testTodayReadPreservesMealNavigationAndDistinguishesOfflineFromForbidden() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let browsing = try start.adjacent(1)
+        model.mealSelection = browsing
+        model.mealStatus = .failed
+        let live = try await model.readTodayMeals(start, member: member)
+        XCTAssertFalse(live.saved)
+        XCTAssertEqual(model.mealSelection, browsing)
+        XCTAssertEqual(model.mealStatus, .failed)
+        await server.failWeeks(.unavailable)
+        let saved = try await model.readTodayMeals(start, member: member)
+        XCTAssertTrue(saved.saved)
+        XCTAssertEqual(saved.week, live.week)
+        await server.failWeeks(.forbidden)
+        do {
+            _ = try await model.readTodayMeals(start, member: member)
+            XCTFail("Forbidden read exposed cached meals")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+    }
+
+    func testLateTodayReadCannotExposePreviousAccountMeals() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        await server.pauseActorA()
+        let old = Task { try await model.readTodayMeals(start, member: member) }
+        await server.waitForActorA()
+        await model.signIn(idToken: "B", nonce: "test")
+        await server.releaseActorA()
+        do {
+            _ = try await old.value
+            XCTFail("Old account returned meals")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+    }
+
     func testLostPlacementResponseRetriesExactOperationAndShowsOneMeal() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)

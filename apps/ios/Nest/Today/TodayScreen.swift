@@ -4,6 +4,7 @@ struct TodayScreen: View {
     @ObservedObject var model: SessionModel
     let member: VerifiedMember
     @State private var everyone = false
+    @State private var mealRefresh = UUID()
 
     var body: some View {
         ScrollView {
@@ -31,6 +32,11 @@ struct TodayScreen: View {
                     .foregroundStyle(QuietPalette.muted)
                     .padding(.top, 3)
                 quickAdd.padding(.top, 20)
+                TimelineView(.periodic(from: .now, by: 60)) { _ in
+                    TodayMealsSection(model: model, member: member, day: todayDate, refresh: mealRefresh)
+                        .id(member.userId)
+                }
+                .padding(.top, 24)
                 Picker("Show chores", selection: $everyone) {
                     Text("Me + shared").tag(false)
                     Text("Everyone").tag(true)
@@ -79,6 +85,7 @@ struct TodayScreen: View {
         }
         .background(QuietPalette.background)
         .refreshable {
+            mealRefresh = UUID()
             await model.refreshToday()
             await model.refreshGroceries()
         }
