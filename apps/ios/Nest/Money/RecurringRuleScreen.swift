@@ -36,6 +36,11 @@ struct RecurringRuleScreen: View {
                         RecurringEditorScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
                     }
                 }
+                Section {
+                    NavigationLink("Confirm bill or recover entry") {
+                        VariableCycleScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+                    }
+                }
                 Section("Schedule") {
                     Text(schedule(rule.configuration.schedule))
                     LabeledContent("Starts", value: rule.configuration.startDate.value)
