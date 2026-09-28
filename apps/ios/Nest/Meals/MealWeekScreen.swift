@@ -37,6 +37,14 @@ struct MealWeekScreen: View {
                 }
                 content
                 NavigationLink {
+                    CookingPreferencesScreen(model: model)
+                } label: {
+                    Label("Cooking preferences", systemImage: "slider.horizontal.3")
+                        .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                }
+                .buttonStyle(.plain)
+                .foregroundStyle(QuietPalette.accent)
+                NavigationLink {
                     MealLibraryScreen(model: model)
                 } label: {
                     Label("Saved meals", systemImage: "book.closed")
