@@ -11,6 +11,7 @@ struct RoutinesScreen: View {
     var body: some View {
         List {
             NavigationLink("Scheduled chores") { ChoreOccurrencesScreen(model: model) }
+            NavigationLink("Chore handovers") { ChoreHandoversScreen(model: model) }
             if let notice {
                 Section {
                     Text(notice)
