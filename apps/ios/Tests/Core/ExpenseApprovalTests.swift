@@ -32,6 +32,14 @@ final class ExpenseApprovalTests: XCTestCase {
             operationId: UUID(), eventId: UUID(), approvalId: approvalId, expense: expense)
         XCTAssertThrowsError(
             try envelope(.consumed, receipt: unrelated).validated(member: member, approvalId: approvalId))
+        let accept = ExpenseDecision(operationId: operation, approvalId: approvalId, expense: expense, approved: true)
+        let deny = ExpenseDecision(operationId: operation, approvalId: approvalId, expense: expense, approved: false)
+        _ = try envelope(.consumed, receipt: receipt).matching(accept, member: member, terminal: true)
+        _ = try envelope(.denied, receipt: nil).matching(deny, member: member, terminal: true)
+        XCTAssertThrowsError(try envelope(.pending, receipt: nil).matching(accept, member: member, terminal: true))
+        XCTAssertThrowsError(try envelope(.consumed, receipt: receipt).matching(deny, member: member, terminal: true))
+        let wrong = ExpenseDecision(operationId: UUID(), approvalId: approvalId, expense: expense, approved: true)
+        XCTAssertThrowsError(try envelope(.consumed, receipt: receipt).matching(wrong, member: member, terminal: true))
         let foreign = VerifiedMember(userId: UUID(), householdId: member.householdId, displayName: "Other")
         XCTAssertThrowsError(try envelope(.pending, receipt: nil).validated(member: foreign, approvalId: approvalId))
     }
