@@ -6,6 +6,7 @@ struct TodayCalendarSection: View {
     let member: VerifiedMember
     let refresh: UUID
     @StateObject private var calendar: CalendarModel
+    @State private var visible = false
     @Environment(\.scenePhase) private var scenePhase
 
     init(session: SessionModel, member: VerifiedMember, refresh: UUID) {
@@ -29,10 +30,16 @@ struct TodayCalendarSection: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(18)
         .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
-        .task(id: refresh) { update(.now) }
+        .task(id: refresh) {
+            visible = true
+            update(.now)
+        }
         .onChange(of: scenePhase) { _, _ in update(.now) }
         .onReceive(NotificationCenter.default.publisher(for: .EKEventStoreChanged)) { _ in update(.now) }
-        .onDisappear { calendar.clearVisibleDetails() }
+        .onDisappear {
+            visible = false
+            calendar.clearVisibleDetails()
+        }
     }
 
     @ViewBuilder
@@ -65,7 +72,7 @@ struct TodayCalendarSection: View {
     }
 
     private func update(_ now: Date) {
-        guard scenePhase == .active, session.status == .ready(member) else {
+        guard visible, scenePhase == .active, session.status == .ready(member) else {
             calendar.clearVisibleDetails()
             return
         }
