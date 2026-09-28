@@ -1,7 +1,10 @@
 import Foundation
 
 struct MoneyEventSummary: Codable, Identifiable, Sendable {
-    enum Kind: String, Codable { case opening_balance, expense, refund, settlement, reversal, replacement }
+    enum Kind: String, Codable {
+        case openingBalance = "opening_balance"
+        case expense, refund, settlement, reversal, replacement
+    }
     let eventId: UUID
     let kind: Kind
     let occurredOn: String
@@ -22,7 +25,7 @@ struct MoneyEventSummary: Codable, Identifiable, Sendable {
             !description.isEmpty, description.utf16.count <= 400, amountCentimes.value >= 0,
             kind == .reversal ? payerId == nil : payerId != nil, relatedEventId != eventId
         else { return false }
-        if kind == .opening_balance { return true }
+        if kind == .openingBalance { return true }
         let requiresRelated = kind == .refund || kind == .reversal || kind == .replacement
         return requiresRelated ? relatedEventId != nil : relatedEventId == nil
     }

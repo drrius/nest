@@ -47,7 +47,7 @@ struct MoneyDetail: Codable, Sendable {
             return reversedById == nil && shares.allSatisfy { $0.allocatedCentimes == nil }
         }
         guard let payer = shares.first(where: { $0.id == event.payerId }) else { return false }
-        if event.kind == .opening_balance || event.kind == .settlement {
+        if event.kind == .openingBalance || event.kind == .settlement {
             return shares.allSatisfy { $0.allocatedCentimes == nil } && payer.deltaCentimes == event.amountCentimes
         }
         guard shares.allSatisfy({ $0.allocatedCentimes != nil }),
