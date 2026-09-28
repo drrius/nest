@@ -20,18 +20,22 @@ final class HostedApprovalExpiryTests: XCTestCase {
         guard let approval = env["NEST_TEST_EXPIRY_APPROVAL"].flatMap(UUID.init(uuidString:)),
             let operation = env["NEST_TEST_EXPIRY_OPERATION"].flatMap(UUID.init(uuidString:))
         else { throw XCTSkip("Dedicated expired fixture required") }
+        let command = PendingFinancialApproval.Command(rawValue: env["NEST_TEST_EXPIRY_COMMAND"] ?? "expenses.record")
+        guard let command, [.expense, .createRule, .updateRule].contains(command) else {
+            throw XCTSkip("Supported fictional expiry command required")
+        }
         let result = try await api.approvalExpiry(
             token: token, member: member,
-            approvalId: approval, operationId: operation, command: .expense)
+            approvalId: approval, operationId: operation, command: command)
         XCTAssertTrue(result.expiredUnused)
         let replay = try await api.approvalExpiry(
             token: token, member: member,
-            approvalId: approval, operationId: operation, command: .expense)
+            approvalId: approval, operationId: operation, command: command)
         XCTAssertTrue(replay.expiredUnused)
         do {
             _ = try await api.approvalExpiry(
                 token: outsider, member: member,
-                approvalId: approval, operationId: operation, command: .expense)
+                approvalId: approval, operationId: operation, command: command)
             XCTFail("Outsider read expiry evidence")
         } catch { XCTAssertTrue((error as? NestAPIFailure) == .forbidden || (error as? NestAPIFailure) == .notMember) }
     }
