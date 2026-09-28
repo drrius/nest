@@ -29,6 +29,14 @@ struct MoneyDetailScreen: View {
                         }
                     }
                 }
+                if detail.event.kind != .reversal {
+                    Section {
+                        NavigationLink("Correct entry") {
+                            CorrectionScreen(session: session, member: member, sourceEventId: eventId)
+                                .id(session.generation)
+                        }
+                    }
+                }
                 if detail.event.hasReceipt {
                     Section { ReceiptButton(session: session, member: member, eventId: eventId) }
                 }

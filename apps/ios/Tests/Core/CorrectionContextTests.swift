@@ -40,6 +40,17 @@ final class CorrectionContextTests: XCTestCase {
                         .validated(member: member, sourceEventId: event))
             }
         }
+        let editable = try context(reversed: false, refunds: false, reverse: true, replace: true)
+        var draft = try CorrectionDraft(source: editable.source)
+        XCTAssertNil(try draft.reviewed(context: editable, member: member).replacement)
+        draft.replace = true
+        let reviewed = try draft.reviewed(context: editable, member: member)
+        guard case .expense(let replacement) = reviewed.replacement else { return XCTFail("Missing replacement") }
+        XCTAssertEqual(replacement.amountCentimes, editable.source.event.amountCentimes)
+        XCTAssertEqual(replacement.allocations.map(\.centimes.value).sorted(), [50, 51])
+        XCTAssertNil(replacement.receiptPath)
+        draft.shares[member.userId] = "0.52"
+        XCTAssertThrowsError(try draft.reviewed(context: editable, member: member))
         XCTAssertThrowsError(
             try context(reversed: false, refunds: false, reverse: true, replace: true)
                 .validated(member: member, sourceEventId: UUID()))
