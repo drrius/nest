@@ -4,14 +4,16 @@ import test from "node:test";
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
-function lint(source) {
-  const dir = mkdtempSync("apps/mobile/src/tooling-probe-");
+function lint(source, native = false) {
+  const root = native ? "apps/mobile" : "apps/api";
+  const config = native ? "apps/mobile/.oxlintrc.json" : ".oxlintrc.json";
+  const dir = mkdtempSync(`${root}/src/tooling-probe-`);
   try {
     const path = join(dir, "probe.tsx");
     writeFileSync(path, source);
     const result = spawnSync(
       "pnpm",
-      ["exec", "oxlint", "--config", "apps/mobile/.oxlintrc.json", "--format", "json", path],
+      ["exec", "oxlint", "--config", config, "--format", "json", path],
       { encoding: "utf8" },
     );
     assert.equal(result.signal, null, result.stderr);
@@ -47,6 +49,7 @@ test("rejects complexity above 10", () => {
 test("rejects raw native text and dynamic Expo environment access", () => {
   const result = lint(
     'import { View } from "react-native";\nexport const invalid = <View>Raw text</View>;\nexport const value = process.env["EXPO_PUBLIC_API_URL"];\n',
+    true,
   );
   assert.equal(result.status, 1, result.output);
   assert.match(result.output, /no-raw-text/);
@@ -56,6 +59,7 @@ test("rejects raw native text and dynamic Expo environment access", () => {
 test("accepts a small native component with wrapped text", () => {
   const result = lint(
     'import { Text, View } from "react-native";\nexport function Greeting() { return <View><Text>Nest</Text></View>; }\n',
+    true,
   );
   assert.equal(result.status, 0, result.output);
 });
