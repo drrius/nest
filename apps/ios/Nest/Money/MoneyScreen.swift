@@ -25,6 +25,11 @@ struct MoneyScreen: View {
                 Button("Refresh balance") { Task { await load() } }.disabled(loading)
             }
             Section {
+                NavigationLink("Your financial approvals") {
+                    FinancialApprovalsScreen(session: session, member: member).id(session.generation)
+                }
+            }
+            Section {
                 NavigationLink("Add expense") { ExpenseScreen(session: session, member: member).id(session.generation) }
             }
             Section {
