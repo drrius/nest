@@ -32,6 +32,14 @@ struct MoneyScreen: View {
                     SettlementScreen(session: session, member: member).id(session.generation)
                 }
             }
+            Section {
+                NavigationLink("Bills to confirm") {
+                    RecurringRulesScreen(session: session, member: member, dueOnly: true).id(session.generation)
+                }
+                NavigationLink("Recurring expenses") {
+                    RecurringRulesScreen(session: session, member: member, dueOnly: false).id(session.generation)
+                }
+            }
             MoneyHistorySection(session: session, member: member)
         }
         .navigationTitle("Money")
