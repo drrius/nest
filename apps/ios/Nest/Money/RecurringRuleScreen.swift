@@ -31,6 +31,11 @@ struct RecurringRuleScreen: View {
                         RecurringResumeScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
                     }
                 }
+                Section {
+                    NavigationLink("Edit rule or recover save") {
+                        RecurringEditorScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+                    }
+                }
                 Section("Schedule") {
                     Text(schedule(rule.configuration.schedule))
                     LabeledContent("Starts", value: rule.configuration.startDate.value)

@@ -20,6 +20,13 @@ struct RecurringRulesScreen: View {
                 )
                 .foregroundStyle(QuietPalette.muted)
             }
+            if !dueOnly {
+                Section {
+                    NavigationLink("New recurring expense") {
+                        RecurringEditorScreen(session: session, member: member, ruleId: nil).id(session.generation)
+                    }
+                }
+            }
             ForEach(rules) { rule in
                 NavigationLink {
                     RecurringRuleScreen(session: session, member: member, ruleId: rule.id).id(session.generation)
