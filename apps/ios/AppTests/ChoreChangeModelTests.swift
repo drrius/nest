@@ -5,11 +5,13 @@ import XCTest
 
 @MainActor
 final class ChoreChangeModelTests: XCTestCase {
-    func testLostReplyAndConflictKeepExactRevision() async throws {
-        for conflict in [false, true] { try await checkRecovery(conflict: conflict) }
+    func testLostReplyAndConflictKeepExactOccurrenceDates() async throws {
+        for conflict in [false, true] {
+            for skip in [false, true] { try await checkRecovery(conflict: conflict, skip: skip) }
+        }
     }
 
-    private func checkRecovery(conflict: Bool) async throws {
+    private func checkRecovery(conflict: Bool, skip: Bool) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -18,7 +20,9 @@ final class ChoreChangeModelTests: XCTestCase {
         let base = FakeChoreServer(actorA: member.userId, actorB: partner, household: member.householdId)
         let server = ChoreChangeServer(member: member, conflict: conflict)
         let http = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { request in
-            if request.url!.path == "/v1/chores/reschedule" { return try await server.respond(request) }
+            if ["/v1/chores/reschedule", "/v1/chores/skip"].contains(request.url!.path) {
+                return try await server.respond(request)
+            }
             return try await base.respond(request)
         }
         let url = FileManager.default.temporaryDirectory.appending(path: "chore-change-model-\(UUID()).sqlite")
@@ -29,7 +33,7 @@ final class ChoreChangeModelTests: XCTestCase {
         let context = try model.routineCreateContext()
         let command = ChoreChangeCommand(
             operationId: UUID(), occurrenceId: UUID(), expectedDueDate: try CivilDate("2026-09-28"),
-            newDueDate: try CivilDate("2026-10-01"))
+            newDueDate: skip ? nil : try CivilDate("2026-10-01"))
         try await store.enqueueChoreChange(command, title: "Tidy", lease: context.lease)
         if !conflict {
             do {
@@ -78,8 +82,9 @@ private actor ChoreChangeServer {
                 "receipt": [
                     "actorId": member.userId.uuidString, "householdId": member.householdId.uuidString,
                     "operationId": command.operationId.uuidString, "occurrenceId": command.occurrenceId.uuidString,
-                    "previousDueDate": command.expectedDueDate.value, "dueDate": command.newDueDate!.value,
-                    "action": "reschedule", "status": "open",
+                    "previousDueDate": command.expectedDueDate.value,
+                    "dueDate": (command.newDueDate ?? command.expectedDueDate).value,
+                    "action": command.action, "status": command.newDueDate == nil ? "skipped" : "open",
                 ],
             ]
         return (
