@@ -7,6 +7,7 @@ struct RecurringApprovalScreen: View {
     let approvalId: UUID
     @State private var context: ExpenseContext?
     @State private var envelope: RecurringApprovalEnvelope?
+    @State private var categoryLabels: [UUID: String] = [:]
     @State private var currentRule: RecurringRule?
     @State private var saved: SavedRecurringDecision?
     @State private var working = false
@@ -76,6 +77,7 @@ struct RecurringApprovalScreen: View {
         }
         Section("Rule to save") {
             Text(rule.configuration.description).font(.headline)
+            LabeledContent("Category", value: categoryLabel(rule.configuration.categoryId))
             LabeledContent("Change", value: rule.expectedRevision == nil ? "Create rule" : "Update rule")
             LabeledContent("Payer", value: rule.configuration.payerId == member.userId ? "You" : "Your partner")
             LabeledContent("Starts", value: rule.configuration.startDate.value)
@@ -104,6 +106,7 @@ struct RecurringApprovalScreen: View {
     private func currentSummary(_ currentRule: RecurringRule, proposal rule: RecurringInput) -> some View {
         Section("Current rule") {
             Text(currentRule.configuration.description).font(.headline)
+            LabeledContent("Category", value: categoryLabel(currentRule.configuration.categoryId))
             Text(currentRule.status.rawValue.capitalized)
             Text(schedule(currentRule.configuration.schedule))
             LabeledContent("Payer", value: currentRule.configuration.payerId == member.userId ? "You" : "Your partner")
@@ -152,16 +155,36 @@ struct RecurringApprovalScreen: View {
             saved = try await session.savedRecurringDecision(current)
             envelope = nil
             currentRule = nil
+            categoryLabels = [:]
             if saved == nil {
                 let proposal = try await session.readRecurringApproval(current, approvalId: approvalId)
                 if proposal.approval.rule.expectedRevision != nil {
                     currentRule = try await session.readRecurringRule(current, ruleId: proposal.approval.rule.ruleId)
                         .rule
                 }
+                try await loadCategoryLabels(
+                    current,
+                    ids: [
+                        proposal.approval.rule.configuration.categoryId, currentRule?.configuration.categoryId,
+                    ])
                 envelope = proposal
             }
         }
     }
+    private func categoryLabel(_ id: UUID?) -> String {
+        guard let id else { return "Uncategorized" }
+        return categoryLabels[id] ?? "Category not loaded"
+    }
+
+    private func loadCategoryLabels(_ context: ExpenseContext, ids: [UUID?]) async throws {
+        for id in Set(ids.compactMap { $0 }) {
+            let result = try await session.readMoneyCategory(context, categoryId: id)
+            categoryLabels[id] =
+                result.category.map { $0.name + ($0.archived ? " (archived)" : "") }
+                ?? "Category no longer available"
+        }
+    }
+
     private func matchesCurrent(_ rule: RecurringInput) -> Bool {
         guard let revision = rule.expectedRevision else { return true }
         return currentRule?.id == rule.ruleId && currentRule?.revision == revision

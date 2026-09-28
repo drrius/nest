@@ -59,6 +59,14 @@ extension SessionModel {
         return result
     }
 
+    func readMoneyCategory(_ context: ExpenseContext, categoryId: UUID) async throws -> MoneyCategoryEnvelope {
+        let token = try await expenseToken(context)
+        guard let moneyAPI else { throw NestAPIFailure.configuration }
+        let result = try await moneyAPI.category(token: token, member: context.member, categoryId: categoryId)
+        try requireMoneyAccount(context.member, generation: context.generation)
+        return result
+    }
+
     func requireMoneyAccount(_ member: VerifiedMember, generation expected: Int) throws {
         guard generation == expected, status == .ready(member) else { throw NestAPIFailure.signedOut }
     }
