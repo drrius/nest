@@ -7,6 +7,7 @@ struct CalendarScreen: View {
     @State private var day = Date()
     @State private var picking = false
     @State private var showChores: Bool
+    @State private var showRenewals: Bool
     private let layerStore: CalendarSelectionStore
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
@@ -16,6 +17,7 @@ struct CalendarScreen: View {
         let layers = CalendarSelectionStore(member: member, purpose: .layers)
         layerStore = layers
         _showChores = State(initialValue: layers.read().contains("chores"))
+        _showRenewals = State(initialValue: layers.read().contains("renewals"))
         _model = StateObject(wrappedValue: CalendarModel(selectionStore: CalendarSelectionStore(member: member)))
     }
 
@@ -39,8 +41,12 @@ struct CalendarScreen: View {
                 permission
             }
             PartnerBusySection(session: session, day: day)
-            Section { Toggle("Show household chores", isOn: $showChores) }
+            Section {
+                Toggle("Show household chores", isOn: $showChores)
+                Toggle("Show household renewals", isOn: $showRenewals)
+            }
             if showChores { CalendarChoreSection(session: session, day: day) }
+            if showRenewals { CalendarRenewalSection(session: session, day: day) }
         }
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
@@ -53,7 +59,8 @@ struct CalendarScreen: View {
         .sheet(isPresented: $picking) { calendarPicker }
         .task { model.refresh(day: day) }
         .onChange(of: day) { model.refresh(day: day) }
-        .onChange(of: showChores) { layerStore.save(showChores ? ["chores"] : []) }
+        .onChange(of: showChores) { saveLayers() }
+        .onChange(of: showRenewals) { saveLayers() }
         .onChange(of: scenePhase) {
             if scenePhase == .active { model.refresh(day: day) } else { model.clearVisibleDetails() }
         }
@@ -61,6 +68,13 @@ struct CalendarScreen: View {
             if scenePhase == .active { model.refresh(day: day) }
         }
         .refreshable { model.refresh(day: day) }
+    }
+
+    private func saveLayers() {
+        var layers: Set<String> = []
+        if showChores { layers.insert("chores") }
+        if showRenewals { layers.insert("renewals") }
+        layerStore.save(layers)
     }
 
     private var agenda: some View {

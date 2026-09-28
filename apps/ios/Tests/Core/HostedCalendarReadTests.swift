@@ -22,14 +22,17 @@ final class HostedCalendarReadTests: XCTestCase {
         _ = try await api.snapshots(token: token, member: member)
         let day = try CivilDate("2026-09-28")
         _ = try await api.chores(token: token, member: member, day: day)
-        for route in 0..<3 {
+        _ = try await api.renewals(token: token, member: member, day: day, after: nil)
+        for route in 0..<4 {
             do {
                 if route == 0 {
                     _ = try await api.consent(token: outsider, member: member)
                 } else if route == 1 {
                     _ = try await api.snapshots(token: outsider, member: member)
-                } else {
+                } else if route == 2 {
                     _ = try await api.chores(token: outsider, member: member, day: day)
+                } else {
+                    _ = try await api.renewals(token: outsider, member: member, day: day, after: nil)
                 }
                 XCTFail("Outsider read another household's Calendar state")
             } catch {

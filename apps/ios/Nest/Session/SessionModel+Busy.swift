@@ -55,6 +55,16 @@ extension SessionModel {
         return result
     }
 
+    func readCalendarRenewals(
+        _ context: CalendarConsentContext, day: CivilDate, after: UUID?
+    ) async throws -> CalendarRenewals {
+        let token = try await busyToken(context)
+        guard let calendarAPI else { throw NestAPIFailure.configuration }
+        let result = try await calendarAPI.renewals(token: token, member: context.member, day: day, after: after)
+        try requireCalendarContext(context)
+        return result
+    }
+
     private func busyToken(_ context: CalendarConsentContext) async throws -> String {
         try requireCalendarContext(context)
         guard let auth else { throw NestAPIFailure.signedOut }
