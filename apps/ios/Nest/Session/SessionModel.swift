@@ -68,6 +68,7 @@ final class SessionModel: ObservableObject {
     private let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
     let mealAPI: MealAPI?
+    let calendarAPI: CalendarAPI?
     let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
     let offline: ChoreOfflineStore?
@@ -104,6 +105,7 @@ final class SessionModel: ObservableObject {
             mealAPI = MealAPI(http: http)
             foodAPI = FoodAPI(http: http)
             proposalAPI = MealProposalAPI(http: http)
+            calendarAPI = CalendarAPI(http: http)
             offline = store
         } catch is NestConfigurationError {
             auth = nil
@@ -112,6 +114,7 @@ final class SessionModel: ObservableObject {
             mealAPI = nil
             foodAPI = nil
             proposalAPI = nil
+            calendarAPI = nil
             offline = nil
             status = .configuration
         } catch {
@@ -121,6 +124,7 @@ final class SessionModel: ObservableObject {
             mealAPI = nil
             foodAPI = nil
             proposalAPI = nil
+            calendarAPI = nil
             offline = nil
             status = .unavailable
         }
@@ -129,7 +133,7 @@ final class SessionModel: ObservableObject {
     init(
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil, foodAPI: FoodAPI? = nil,
-        proposalAPI: MealProposalAPI? = nil,
+        proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -143,6 +147,7 @@ final class SessionModel: ObservableObject {
         self.mealAPI = mealAPI
         self.foodAPI = foodAPI
         self.proposalAPI = proposalAPI
+        self.calendarAPI = calendarAPI
         self.offline = offline
         self.savedReader = savedReader
         self.deactivateLease = deactivateLease
