@@ -5,6 +5,7 @@ struct RoutinesScreen: View {
     @State private var list: RoutineList?
     @State private var notice: String?
     @State private var working = false
+    @State private var hasSavedChange = false
 
     var body: some View {
         List {
@@ -14,6 +15,9 @@ struct RoutinesScreen: View {
                     Button("Try again") { Task { await load() } }
                 }
             }
+            if hasSavedChange {
+                NavigationLink("Review saved chore change") { RoutineStateScreen(model: model, routine: nil) }
+            }
             if let list {
                 if list.routines.isEmpty {
                     ContentUnavailableView(
@@ -21,14 +25,18 @@ struct RoutinesScreen: View {
                         description: Text("Add a chore to share what needs doing."))
                 }
                 ForEach(list.routines) { routine in
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(routine.definition.title).font(.headline).foregroundStyle(QuietPalette.ink)
-                        Text(schedule(routine.definition.schedule)).font(.subheadline)
-                        Text(assignment(routine.definition.assignment, members: list.members)).font(.subheadline)
-                        if routine.state != .active { Text(routine.state.rawValue.capitalized).font(.caption) }
+                    NavigationLink {
+                        RoutineStateScreen(model: model, routine: routine)
+                    } label: {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text(routine.definition.title).font(.headline).foregroundStyle(QuietPalette.ink)
+                            Text(schedule(routine.definition.schedule)).font(.subheadline)
+                            Text(assignment(routine.definition.assignment, members: list.members)).font(.subheadline)
+                            if routine.state != .active { Text(routine.state.rawValue.capitalized).font(.caption) }
+                        }
+                        .foregroundStyle(QuietPalette.muted)
+                        .padding(.vertical, 6)
                     }
-                    .foregroundStyle(QuietPalette.muted)
-                    .padding(.vertical, 6)
                     .listRowBackground(QuietPalette.surface)
                 }
             } else if working {
@@ -56,7 +64,9 @@ struct RoutinesScreen: View {
         working = true
         defer { working = false }
         do {
-            list = try await model.readRoutines(model.routineCreateContext())
+            let context = try model.routineCreateContext()
+            hasSavedChange = try await model.savedRoutineState(context) != nil
+            list = try await model.readRoutines(context)
             notice = nil
         } catch { notice = "Could not refresh chores. Connect and try again." }
     }

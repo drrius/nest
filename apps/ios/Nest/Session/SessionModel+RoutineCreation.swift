@@ -83,11 +83,11 @@ extension SessionModel {
         await refreshToday()
     }
 
-    private func requireRoutineAccount(_ context: RoutineCreateContext) throws {
+    func requireRoutineAccount(_ context: RoutineCreateContext) throws {
         guard generation == context.generation, status == .ready(context.member) else { throw NestAPIFailure.signedOut }
     }
 
-    private func routineToken(_ context: RoutineCreateContext) async throws -> String {
+    func routineToken(_ context: RoutineCreateContext) async throws -> String {
         try requireRoutineAccount(context)
         guard let auth else { throw NestAPIFailure.signedOut }
         let session = try await auth.session()
