@@ -21,6 +21,14 @@ struct MoneyDetailScreen: View {
                     if let note = detail.note, !note.isEmpty { Text(note) }
                     if let total = detail.receiptTotalCentimes { Text("Receipt total: \(total.absoluteCHF)") }
                 }
+                if [.expense, .replacement].contains(detail.event.kind), detail.reversedById == nil {
+                    Section {
+                        NavigationLink("Record refund") {
+                            RefundScreen(session: session, member: member, sourceEventId: eventId).id(
+                                session.generation)
+                        }
+                    }
+                }
                 if detail.event.hasReceipt {
                     Section { ReceiptButton(session: session, member: member, eventId: eventId) }
                 }
