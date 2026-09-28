@@ -27,6 +27,25 @@ final class MealLibraryModelTests: XCTestCase {
             mealAPI: MealAPI(http: mealHTTP))
     }
 
+    func testLateIngredientWeekReadRejectsOldAccountContext() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        let context = try await model.ingredientReviewContext(week: start)
+        await server.pauseActorA()
+        let read = Task { try await model.refreshIngredientReview(context) }
+        await server.waitForActorA()
+        await model.signIn(idToken: "B", nonce: "test")
+        await server.releaseActorA()
+        do {
+            _ = try await read.value
+            XCTFail("Returned an old-account ingredient review")
+        } catch { XCTAssertEqual(error as? OfflineFailure, .sessionChanged) }
+        let current = try await model.ingredientReviewContext(week: start)
+        XCTAssertEqual(current.member.userId, actorB)
+        XCTAssertNil(current.saved)
+    }
+
     func testLibraryAndRecipeResetOnAccountSwitch() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)
