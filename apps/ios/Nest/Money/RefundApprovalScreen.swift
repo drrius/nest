@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct RefundApprovalScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     let approvalId: UUID
@@ -35,7 +36,7 @@ struct RefundApprovalScreen: View {
                     if approval.status == .pending {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
-                                Text("Only approve if the amount, payer and split above are correct.")
+                                Text("Only approve if the amount, recipient and shares above are correct.")
                                 Button("Approve refund") { choice = true }
                                 Button("Decline refund", role: .destructive) { choice = false }
                             } else {
@@ -140,7 +141,7 @@ struct RefundApprovalScreen: View {
         await perform {
             try await session.finishRefundDecision(context, approvalId: saved.decision.approvalId)
             self.saved = nil
-            envelope = try await session.readRefundApproval(context, approvalId: approvalId)
+            dismiss()
         }
     }
     private func perform(_ work: () async throws -> Void) async {

@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct SettlementApprovalScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     let approvalId: UUID
@@ -34,7 +35,7 @@ struct SettlementApprovalScreen: View {
                     if approval.status == .pending {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
-                                Text("Only approve if the amount, payer and split above are correct.")
+                                Text("Only approve if the amount, payer and recipient above are correct.")
                                 Button("Approve payment") { choice = true }
                                 Button("Decline payment", role: .destructive) { choice = false }
                             } else {
@@ -85,12 +86,12 @@ struct SettlementApprovalScreen: View {
     @ViewBuilder
     private func outcome(_ approval: SettlementApproval) -> some View {
         if let receipt = approval.receipt {
-            Text("Expense recorded.")
+            Text("Payment recorded.")
             NavigationLink("View recorded settlement") {
                 MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId)
             }
         } else if approval.status == .denied {
-            Text("Expense declined. No settlement was recorded by this approval.")
+            Text("Payment declined. No payment was recorded by this approval.")
         } else {
             Text("This approval is awaiting its recorded result. Refresh to check again.")
         }
@@ -126,7 +127,7 @@ struct SettlementApprovalScreen: View {
         await perform {
             try await session.finishSettlementDecision(context, approvalId: saved.decision.approvalId)
             self.saved = nil
-            envelope = try await session.readSettlementApproval(context, approvalId: approvalId)
+            dismiss()
         }
     }
     private func perform(_ work: () async throws -> Void) async {

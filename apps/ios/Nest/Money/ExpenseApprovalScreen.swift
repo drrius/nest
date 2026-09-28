@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ExpenseApprovalScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     let approvalId: UUID
@@ -111,7 +112,7 @@ struct ExpenseApprovalScreen: View {
         await perform {
             try await session.finishExpenseDecision(context, approvalId: saved.decision.approvalId)
             self.saved = nil
-            envelope = try await session.readExpenseApproval(context, approvalId: approvalId)
+            dismiss()
         }
     }
     private func perform(_ work: () async throws -> Void) async {

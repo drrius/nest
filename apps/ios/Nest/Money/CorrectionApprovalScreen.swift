@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CorrectionApprovalScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     let approvalId: UUID
@@ -148,7 +149,7 @@ struct CorrectionApprovalScreen: View {
         await perform {
             try await session.finishCorrectionDecision(context, approvalId: saved.decision.approvalId)
             self.saved = nil
-            envelope = try await session.readCorrectionApproval(context, approvalId: approvalId)
+            dismiss()
         }
     }
     private func perform(_ work: () async throws -> Void) async {
