@@ -5,6 +5,18 @@ public struct MealAPI: Sendable {
 
     public init(http: NestHTTP) { self.http = http }
 
+    public func ingredients(
+        token: String, member: VerifiedMember, week: MealWeekStart,
+        revision: String, after: MealIngredientSource? = nil
+    ) async throws -> MealIngredientPage {
+        guard MealRevision.valid(revision) else { throw MealLibraryError.invalidResponse }
+        let page = try await http.write(
+            "v1/meals/ingredients/read", token: token, household: member.householdId,
+            body: ReadMealIngredients(weekStart: week, expectedRevision: revision, after: after),
+            as: MealIngredientPage.self)
+        return try page.validated(household: member.householdId, week: week, revision: revision, after: after)
+    }
+
     public func editRecipe(
         token: String, member: VerifiedMember, command: EditRecipe
     ) async throws -> RecipeEditReceipt {
