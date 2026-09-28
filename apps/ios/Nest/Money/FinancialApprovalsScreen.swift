@@ -7,6 +7,7 @@ struct FinancialApprovalsScreen: View {
     @State private var saved: SavedExpenseDecision?
     @State private var savedRefund: SavedRefundDecision?
     @State private var savedSettlement: SavedSettlementDecision?
+    @State private var savedCorrection: SavedCorrectionDecision?
     @State private var next: UUID?
     @State private var loading = false
     @State private var loaded = false
@@ -42,6 +43,15 @@ struct FinancialApprovalsScreen: View {
                     }
                 }
             }
+            if let savedCorrection {
+                Section("Saved correction decision") {
+                    NavigationLink("Check correction decision") {
+                        CorrectionApprovalScreen(
+                            session: session, member: member,
+                            approvalId: savedCorrection.decision.approvalId)
+                    }
+                }
+            }
             Section("Waiting for your review") {
                 ForEach(rows) { row in
                     if row.command == .expense {
@@ -63,6 +73,10 @@ struct FinancialApprovalsScreen: View {
                     } else if row.command == .settlement {
                         NavigationLink("Review payment") {
                             SettlementApprovalScreen(session: session, member: member, approvalId: row.id)
+                        }
+                    } else if row.command == .correction {
+                        NavigationLink("Review correction") {
+                            CorrectionApprovalScreen(session: session, member: member, approvalId: row.id)
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 4) {
@@ -97,12 +111,14 @@ struct FinancialApprovalsScreen: View {
             saved = nil
             savedRefund = nil
             savedSettlement = nil
+            savedCorrection = nil
         }
         do {
             let context = try session.expenseContext()
             saved = try await session.savedExpenseDecision(context)
             savedRefund = try await session.savedRefundDecision(context)
             savedSettlement = try await session.savedSettlementDecision(context)
+            savedCorrection = try await session.savedCorrectionDecision(context)
             let page = try await session.readPendingApprovals(context, after: cursor)
             try Task.checkCancellation()
             rows.append(contentsOf: page.approvals)
