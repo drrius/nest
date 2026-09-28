@@ -2,6 +2,7 @@ import SwiftUI
 
 @MainActor
 final class AssistantComposerModel: ObservableObject {
+    private var live = AssistantLiveText()
     @Published var text = ""
     @Published private(set) var reply = ""
     @Published private(set) var saved: SavedAssistantTurn?
@@ -21,6 +22,7 @@ final class AssistantComposerModel: ObservableObject {
         busy = true
         notice = nil
         reply = ""
+        live = AssistantLiveText()
         defer { busy = false }
         do {
             let context = try session.assistantTurnContext()
@@ -35,16 +37,14 @@ final class AssistantComposerModel: ObservableObject {
             saved = try await session.savedAssistantTurn(context)
             guard saved?.command.conversationId == conversation else { throw NestAPIFailure.conflict }
             try await session.sendSavedAssistantTurn(context) { [weak self] frame in
-                if case .event(let part) = frame, part["type"]?.string == "text-delta",
-                    let delta = part["delta"]?.string
-                {
-                    self?.reply += delta
-                }
+                guard let self else { throw CancellationError() }
+                try self.live.consume(frame)
+                self.reply = self.live.text
             }
             saved = try await session.savedAssistantTurn(context)
             notice =
                 saved?.terminal == true
-                ? "Reply saved. Open the conversation to read all action results."
+                ? terminalNotice
                 : "Still working. Check status shortly."
         } catch AssistantAvailabilityFailure.disabled {
             notice = "Nest’s assistant is not available yet. Your message has not been sent."
@@ -66,11 +66,17 @@ final class AssistantComposerModel: ObservableObject {
             saved = try await session.recoverAssistantTurn(session.assistantTurnContext(), interrupt: interrupt)
             notice =
                 saved?.terminal == true
-                ? "Request finished. Open the conversation to read the saved result."
+                ? terminalNotice
                 : "Still working. Check again shortly."
         } catch {
             notice = "Could not confirm this request. It remains saved; try again online."
         }
+    }
+
+    private var terminalNotice: String {
+        saved?.result?.turn.state == .completed
+            ? "Reply saved. Open the conversation to read all action results."
+            : "The reply was interrupted. Open the conversation to check any saved actions before sending again."
     }
 
     func acknowledge(session: SessionModel) async {
