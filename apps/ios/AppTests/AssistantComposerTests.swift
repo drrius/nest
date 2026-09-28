@@ -37,7 +37,19 @@ final class AssistantComposerTests: XCTestCase {
         XCTAssertEqual(composer.reply, "")
     }
 
-    private func fixture() async throws -> (SessionModel, ChoreOfflineStore) {
+    func testDisabledAssistantKeepsUnsentDraftWithoutRecoveryRecord() async throws {
+        let (session, _) = try await fixture(disabled: true)
+        let composer = AssistantComposerModel()
+        composer.text = "Hello"
+        await composer.send(session: session, conversation: UUID())
+        XCTAssertEqual(composer.text, "Hello")
+        XCTAssertNil(composer.saved)
+        XCTAssertEqual(composer.notice, "Nest’s assistant is not available yet. Your message has not been sent.")
+        let saved = try await session.savedAssistantTurn(session.assistantTurnContext())
+        XCTAssertNil(saved)
+    }
+
+    private func fixture(disabled: Bool = false) async throws -> (SessionModel, ChoreOfflineStore) {
         let actor = UUID()
         let partner = UUID()
         let household = UUID()
@@ -46,8 +58,16 @@ final class AssistantComposerTests: XCTestCase {
             nextSignIn: .init(userId: partner, accessToken: "token-B"))
         let chores = FakeChoreServer(actorA: actor, actorB: partner, household: household)
         let choreHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await chores.respond($0) }
-        let offlineHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { _ in
-            throw URLError(.notConnectedToInternet)
+        let offlineHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { request in
+            guard disabled else { throw URLError(.notConnectedToInternet) }
+            let body =
+                request.url?.path.hasSuffix("availability") == true
+                ? "{\"version\":1,\"actorId\":\"\(actor)\",\"householdId\":\"\(household)\",\"available\":false}"
+                : "{\"version\":1,\"conversation\":null}"
+            return (
+                Data(body.utf8),
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            )
         }
         let url = FileManager.default.temporaryDirectory.appending(path: "assistant-composer-\(UUID()).sqlite")
         addTeardownBlock { try? FileManager.default.removeItem(at: url) }
