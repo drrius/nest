@@ -37,7 +37,7 @@ final class HostedMealLeftoversTests: XCTestCase {
             do {
                 _ = try await api.placeLeftovers(
                     token: outsider, member: member, source: fresh, target: target, meal: meal, placement: command)
-                XCTFail("Outsider moved another household's meal")
+                XCTFail("Outsider added leftovers in another household")
             } catch {
                 XCTAssertTrue((error as? NestAPIFailure) == .forbidden || (error as? NestAPIFailure) == .notMember)
             }
@@ -56,11 +56,40 @@ final class HostedMealLeftoversTests: XCTestCase {
             XCTAssertEqual(movedMeal.title, title)
             XCTAssertEqual(movedMeal.date, to.0)
             XCTAssertEqual(movedMeal.slot, to.1)
+            try await verifySameWeek(api: api, token: token, member: member, week: afterSource, meal: meal)
         } catch {
             try await cleanup(title, starts: [next, start], api: api, token: token, member: member)
             throw error
         }
         try await cleanup(title, starts: [next, start], api: api, token: token, member: member)
+    }
+
+    private func verifySameWeek(
+        api: MealAPI, token: String, member: VerifiedMember,
+        week: MealWeekSnapshot, meal: PlannedMeal
+    ) async throws {
+        let destination = try XCTUnwrap(
+            week.weekStart.days.flatMap { day in MealSlot.allCases.map { (day, $0) } }
+                .first { day, slot in
+                    day.value > meal.date.value && !week.entries.contains { $0.date == day && $0.slot == slot }
+                })
+        let placement = try PlaceLeftovers(
+            source: week, target: week, meal: meal, operationId: UUID(),
+            date: destination.0, slot: destination.1)
+        let receipt = try await api.placeLeftovers(
+            token: token, member: member, source: week, target: week, meal: meal, placement: placement)
+        let replay = try await api.placeLeftovers(
+            token: token, member: member, source: week, target: week, meal: meal, placement: placement)
+        XCTAssertEqual(receipt, replay)
+        XCTAssertEqual(receipt.sourceRevision, receipt.targetRevision)
+        let fresh = try await api.week(token: token, member: member, start: week.weekStart)
+        XCTAssertEqual(fresh.revision, receipt.targetRevision)
+        XCTAssertTrue(fresh.entries.contains(meal))
+        let leftovers = try XCTUnwrap(fresh.entries.first { $0.id == receipt.entryId })
+        XCTAssertEqual(leftovers.leftoverSourceId, meal.id)
+        XCTAssertEqual(leftovers.date, destination.0)
+        XCTAssertEqual(leftovers.slot, destination.1)
+        XCTAssertEqual(fresh.entries.filter { $0.id == receipt.entryId }.count, 1)
     }
 
     private func emptySlot(_ week: MealWeekSnapshot) throws -> (CivilDate, MealSlot) {
@@ -75,9 +104,13 @@ final class HostedMealLeftoversTests: XCTestCase {
     ) async throws {
         for start in starts {
             let week = try await api.week(token: token, member: member, start: start)
-            if let meal = week.entries.first(where: { $0.title == title }) {
-                let command = try RemoveMeal(week: week, meal: meal, operationId: UUID())
-                _ = try await api.remove(token: token, member: member, week: week, meal: meal, command: command)
+            let fixtures = week.entries.filter { $0.title == title }
+                .sorted { $0.leftoverSourceId != nil && $1.leftoverSourceId == nil }
+            for fixture in fixtures {
+                let current = try await api.week(token: token, member: member, start: start)
+                guard let meal = current.entries.first(where: { $0.id == fixture.id }) else { continue }
+                let command = try RemoveMeal(week: current, meal: meal, operationId: UUID())
+                _ = try await api.remove(token: token, member: member, week: current, meal: meal, command: command)
             }
             let after = try await api.week(token: token, member: member, start: start)
             XCTAssertFalse(after.entries.contains { $0.title == title }, "Synthetic leftovers fixture remains")
