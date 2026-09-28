@@ -24,6 +24,7 @@ struct MoneyScreen: View {
                 if let notice { Text(notice) }
                 Button("Refresh balance") { Task { await load() } }.disabled(loading)
             }
+            MoneyHistorySection(session: session, member: member)
         }
         .navigationTitle("Money")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
