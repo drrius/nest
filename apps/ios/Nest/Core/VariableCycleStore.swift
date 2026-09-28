@@ -22,12 +22,6 @@ struct SavedVariableCycle: Codable, Sendable {
 }
 
 extension ChoreOfflineStore {
-    static func createVariableCycleTable(_ db: SQLiteConnection) throws {
-        try db.run(
-            "CREATE TABLE IF NOT EXISTS variable_cycle_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
-        )
-    }
-
     func readVariableCycle(lease: OfflineLease) throws -> SavedVariableCycle? {
         try authorize(lease)
         let rows = try db.rows("SELECT body FROM variable_cycle_commands WHERE actor=? AND household=?", lease.scope)
