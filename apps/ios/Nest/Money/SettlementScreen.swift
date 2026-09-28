@@ -117,6 +117,7 @@ struct SettlementScreen: View {
 
     private func load() async {
         await perform {
+            balance = nil
             let current = try session.expenseContext()
             context = current
             saved = try await session.savedSettlement(current)
@@ -163,6 +164,7 @@ struct SettlementScreen: View {
             self.saved = nil
             reviewed = nil
             draft = SettlementDraft()
+            balance = nil
             balance = try await session.readMoneyBalance(member: member, generation: context.generation)
         }
     }
