@@ -40,4 +40,23 @@ final class EventKitCalendarReader: DeviceCalendarReading {
                 start: $0.startDate, end: $0.endDate, allDay: $0.isAllDay, location: $0.location)
         }.sorted { $0.start < $1.start }
     }
+
+    /// Call only with separately opted-in calendars; display selection is not sharing consent.
+    func captureBusy(selected: Set<String>, covered: BusyInterval) -> LocalAvailability {
+        guard access == .allowed, !selected.isEmpty, covered.valid,
+            covered.end - covered.start <= 2_678_400_000
+        else { return .unknown }
+        let available = store.calendars(for: .event)
+        let identifiers = Set(available.map(\.calendarIdentifier))
+        guard selected.isSubset(of: identifiers) else { return .unknown }
+        let calendars = available.filter { selected.contains($0.calendarIdentifier) }
+        let start = Date(timeIntervalSince1970: Double(covered.start) / 1000)
+        let end = Date(timeIntervalSince1970: Double(covered.end) / 1000)
+        let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
+        let raw = store.events(matching: predicate)
+        let events = raw.compactMap(EventKitBusyMapping.event)
+        guard events.count == raw.count, access == .allowed else { return .unknown }
+        return .project(events: events, selected: selected, available: identifiers, permission: true, covered: covered)
+    }
+
 }
