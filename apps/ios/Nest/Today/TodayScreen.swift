@@ -51,6 +51,8 @@ struct TodayScreen: View {
                         .padding(.top, 8)
                 }
                 content
+                NavigationLink("Manage chores") { RoutinesScreen(model: model) }
+                    .frame(minHeight: 44).padding(.top, 8)
                 NavigationLink {
                     GroceriesScreen(model: model)
                 } label: {

@@ -12,6 +12,14 @@ extension SessionModel {
         return .init(member: member, generation: generation, lease: lease)
     }
 
+    func readRoutines(_ context: RoutineCreateContext) async throws -> RoutineList {
+        let token = try await routineToken(context)
+        guard let chores else { throw NestAPIFailure.configuration }
+        let list = try await chores.routines(token: token, member: context.member)
+        try requireRoutineAccount(context)
+        return list
+    }
+
     func readRoutineRoster(_ context: RoutineCreateContext) async throws -> RoutineRoster {
         let token = try await routineToken(context)
         guard let chores else { throw NestAPIFailure.configuration }
