@@ -12,6 +12,14 @@ extension SessionModel {
         savedRecipe = .idle
         savedRecipeRevision = nil
         do {
+            let pending: SavedRecipeCreation?
+            if let offline, let lease {
+                pending = try await offline.readRecipeCreation(lease: lease)
+            } else {
+                pending = nil
+            }
+            guard currentMealLibraryRequest(request, member: member, attempt: attempt) else { return }
+            recipeCreation = pending
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
             let page = try await api.library(token: session.accessToken, member: member)

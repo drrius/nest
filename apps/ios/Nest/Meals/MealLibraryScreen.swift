@@ -2,6 +2,7 @@ import SwiftUI
 
 struct MealLibraryScreen: View {
     @ObservedObject var model: SessionModel
+    @State private var creatingRecipe = false
     @State private var loadingMore = false
 
     var body: some View {
@@ -16,6 +17,8 @@ struct MealLibraryScreen: View {
                     }
                     .frame(minHeight: 44, alignment: .leading)
                 }
+                if let saved = model.recipeCreation { RecipeCreationStatus(model: model, saved: saved) }
+                if let notice = model.recipeCreationNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
                 content
             }
             .padding(20)
@@ -23,6 +26,13 @@ struct MealLibraryScreen: View {
         .background(QuietPalette.background)
         .navigationTitle("Saved meals")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .primaryAction) {
+                Button("New recipe", systemImage: "plus") { creatingRecipe = true }
+                    .disabled(model.recipeCreation != nil)
+            }
+        }
+        .sheet(isPresented: $creatingRecipe) { RecipeCreateSheet(model: model) }
         .refreshable { await model.refreshMealLibrary() }
         .task { if model.mealLibrary == .idle { await model.refreshMealLibrary() } }
     }

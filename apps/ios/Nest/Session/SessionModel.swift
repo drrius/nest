@@ -56,6 +56,10 @@ final class SessionModel: ObservableObject {
     @Published var mealReplacement: SavedMealReplacement?
     @Published var mealReplacementSaving = false
     var mealReplacementSavingGeneration: Int?
+    @Published var recipeCreation: SavedRecipeCreation?
+    @Published var recipeCreationSaving = false
+    @Published var recipeCreationNotice: String?
+    var recipeCreationSavingGeneration: Int?
     @Published var mealLeftovers: SavedMealLeftovers?
     @Published var mealLeftoversSaving = false
     var mealLeftoversSavingGeneration: Int?
