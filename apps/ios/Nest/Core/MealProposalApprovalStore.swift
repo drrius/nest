@@ -31,6 +31,7 @@ extension ChoreOfflineStore {
     ) throws {
         try authorize(lease)
         guard try readProposalApproval(lease: lease) == nil,
+            try readProposalDiscard(lease: lease) == nil,
             try readProposalGeneration(lease: lease)?.envelope == preview
         else { throw OfflineFailure.missingSnapshot }
         let command = try ApproveMealProposal(proposal: preview.proposal, operation: operation, now: now)

@@ -43,11 +43,31 @@ final class MealProposalStoreTests: XCTestCase {
                     weekStart: command.weekStart, familiarOnly: false, entries: nil, status: status, expiresAt: 1,
                     failure: nil))
         }
+        let unfinished = envelope("1", .generating)
+        try await reopened.saveGeneratedProposal(unfinished, lease: restored)
+        let discardOperation = UUID()
+        try await reopened.enqueueProposalDiscard(preview: unfinished, operation: discardOperation, lease: restored)
+        do {
+            try await reopened.discardConflictedProposalDiscard(lease: restored)
+            XCTFail("Discarded uncertain discard operation")
+        } catch {}
+        let pendingDiscard = try await reopened.readProposalDiscard(lease: restored)
+        XCTAssertEqual(pendingDiscard?.command.operationId, discardOperation)
+        let discardReceipt = MealProposalDiscardReceipt(
+            version: 1, actorId: member.userId,
+            householdId: member.householdId, operationId: discardOperation, proposalId: receipt.proposalId,
+            previousRevision: "1", revision: "2")
+        try await reopened.acknowledgeProposalDiscard(discardReceipt, lease: restored)
+        do {
+            try await reopened.clearConfirmedProposalDiscard(lease: restored)
+            XCTFail("Cleared before confirmed discard")
+        } catch {}
         let terminal = envelope("2", .discarded)
         try await reopened.saveGeneratedProposal(terminal, lease: restored)
         try await reopened.saveGeneratedProposal(envelope("1", .generating), lease: restored)
         let retained = try await reopened.readProposalGeneration(lease: restored)
         XCTAssertEqual(retained?.envelope, terminal)
+        try await reopened.clearConfirmedProposalDiscard(lease: restored)
         try await reopened.clearTerminalProposalGeneration(operation: command.operationId, lease: restored)
         let cleared = try await reopened.readProposalGeneration(lease: restored)
         XCTAssertNil(cleared)

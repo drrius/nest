@@ -98,6 +98,9 @@ actor ChoreOfflineStore {
             "CREATE TABLE IF NOT EXISTS meal_leftovers (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
         try db.run(
+            "CREATE TABLE IF NOT EXISTS proposal_discards (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
             "CREATE TABLE IF NOT EXISTS proposal_approvals (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
         try db.run(
