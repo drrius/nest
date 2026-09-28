@@ -101,6 +101,9 @@ actor ChoreOfflineStore {
             "CREATE TABLE IF NOT EXISTS receipt_uploads (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
         try db.run(
+            "CREATE TABLE IF NOT EXISTS refund_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
             "CREATE TABLE IF NOT EXISTS settlement_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
         try db.run(
