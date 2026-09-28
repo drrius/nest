@@ -27,6 +27,11 @@ struct MoneyScreen: View {
             Section {
                 NavigationLink("Add expense") { ExpenseScreen(session: session, member: member).id(session.generation) }
             }
+            Section {
+                NavigationLink("Record a payment") {
+                    SettlementScreen(session: session, member: member).id(session.generation)
+                }
+            }
             MoneyHistorySection(session: session, member: member)
         }
         .navigationTitle("Money")
