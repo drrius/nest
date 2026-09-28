@@ -23,6 +23,20 @@ final class HostedReceiptTests: XCTestCase {
             "%PDF-1.4\n% Nest fictional upload verification\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [] /Count 0 >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n"
                 .utf8)
         let input = try ReceiptTransport.input(data: bytes, contentType: "application/pdf")
+        if let outsiderPath = env["NEST_TEST_OUTSIDER_TOKEN_FILE"] {
+            let outsider = try String(contentsOfFile: outsiderPath, encoding: .utf8)
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            do {
+                _ = try await transport.upload(input: input, data: bytes, token: outsider, member: member)
+                XCTFail("Outsider uploaded into the household")
+            } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+            do {
+                _ = try await api.receiptUploads(token: outsider, member: member, after: nil)
+                XCTFail("Outsider read household receipt recovery")
+            } catch {
+                XCTAssertTrue([NestAPIFailure.forbidden, .notMember].contains(error as? NestAPIFailure ?? .contract))
+            }
+        }
         let uploaded = try await transport.upload(input: input, data: bytes, token: token, member: member)
         XCTAssertTrue(uploaded.stored)
         let replay = try await transport.upload(input: input, data: bytes, token: token, member: member)
