@@ -4,7 +4,7 @@ import XCTest
 @testable import NestCore
 
 final class HostedCalendarReadTests: XCTestCase {
-    func testConsentBusyReadsAndOutsiderDenial() async throws {
+    func testCalendarReadsAndOutsiderDenial() async throws {
         let env = ProcessInfo.processInfo.environment
         guard let url = env["NEST_TEST_API_URL"], url == "https://nest-test-api-drrius-projects.vercel.app",
             let actor = env["NEST_TEST_ACTOR_ID"].flatMap(UUID.init(uuidString:)),
@@ -20,12 +20,16 @@ final class HostedCalendarReadTests: XCTestCase {
         let api = CalendarAPI(http: http)
         _ = try await api.consent(token: token, member: member)
         _ = try await api.snapshots(token: token, member: member)
-        for readConsent in [true, false] {
+        let day = try CivilDate("2026-09-28")
+        _ = try await api.chores(token: token, member: member, day: day)
+        for route in 0..<3 {
             do {
-                if readConsent {
+                if route == 0 {
                     _ = try await api.consent(token: outsider, member: member)
-                } else {
+                } else if route == 1 {
                     _ = try await api.snapshots(token: outsider, member: member)
+                } else {
+                    _ = try await api.chores(token: outsider, member: member, day: day)
                 }
                 XCTFail("Outsider read another household's Calendar state")
             } catch {
