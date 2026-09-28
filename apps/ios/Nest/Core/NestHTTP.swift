@@ -27,9 +27,12 @@ public struct NestHTTP: Sendable {
     }
 
     public func read<Value: Decodable>(
-        _ path: String, token: String, household: UUID? = nil, as type: Value.Type
+        _ path: String, token: String, household: UUID? = nil,
+        responseLimit: Int = 1_000_000, as type: Value.Type
     ) async throws -> Value {
-        try await request(path, token: token, household: household, body: nil, as: type)
+        guard (1...3_000_000).contains(responseLimit) else { throw NestAPIFailure.configuration }
+        return try await request(
+            path, token: token, household: household, body: nil, responseLimit: responseLimit, as: type)
     }
 
     public func write<Body: Encodable, Value: Decodable>(
@@ -42,7 +45,8 @@ public struct NestHTTP: Sendable {
     }
 
     private func request<Value: Decodable>(
-        _ path: String, token: String, household: UUID?, body: Data?, timeout: TimeInterval = 15, as type: Value.Type
+        _ path: String, token: String, household: UUID?, body: Data?, timeout: TimeInterval = 15,
+        responseLimit: Int = 1_000_000, as type: Value.Type
     ) async throws -> Value {
         guard timeout.isFinite, timeout > 0, timeout <= 180, !token.isEmpty, !path.hasPrefix("/"), !path.contains(".."),
             let url = URL(string: path, relativeTo: baseURL)?.absoluteURL,
@@ -59,7 +63,7 @@ public struct NestHTTP: Sendable {
         if let household { request.setValue(household.uuidString.lowercased(), forHTTPHeaderField: "X-Nest-Household") }
         let (data, response): (Data, URLResponse)
         do { (data, response) = try await transport(request) } catch { throw NestAPIFailure.unavailable }
-        guard let http = response as? HTTPURLResponse, data.count <= 1_000_000
+        guard let http = response as? HTTPURLResponse, data.count <= responseLimit
         else { throw NestAPIFailure.unavailable }
         guard http.statusCode == 200 else { throw failure(status: http.statusCode, data: data) }
         do { return try JSONDecoder().decode(type, from: data) } catch { throw NestAPIFailure.contract }
