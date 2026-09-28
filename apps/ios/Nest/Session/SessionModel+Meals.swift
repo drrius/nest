@@ -148,36 +148,9 @@ extension SessionModel {
     }
 
     func refreshMealVisibleSlots() async {
-        guard let auth, let api = mealAPI, case .ready(let member) = status else { return }
         let attempt = generation
-        do {
-            let session = try await auth.session()
-            guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let slots = try await api.visibleSlots(token: session.accessToken, member: member)
-            guard generation == attempt, status == .ready(member) else { return }
-            mealVisibleSlots = slots
-            mealSlotNotice = nil
-        } catch {
-            await handleMealSlotFailure(error, api: api, auth: auth, member: member, attempt: attempt)
-        }
-    }
-
-    private func handleMealSlotFailure(
-        _ error: Error, api: MealAPI, auth: any NestAuthentication,
-        member: VerifiedMember, attempt: Int
-    ) async {
-        guard generation == attempt, status == .ready(member) else { return }
-        let mapped = state(for: error)
-        if mapped == .signedOut || mapped == .notMember {
-            await leaveMealAccount(mapped)
-            return
-        }
-        if (error as? NestAPIFailure) == .forbidden,
-            await reverifyMealMembership(api: api, auth: auth, member: member, attempt: attempt)
-        {
-            return
-        }
-        guard generation == attempt, status == .ready(member) else { return }
-        mealSlotNotice = "Could not refresh visible meal slots. Pull down to try again."
+        _ = await loadCookingPreferences()
+        guard generation == attempt else { return }
+        mealSlotNotice = cookingNotice
     }
 }
