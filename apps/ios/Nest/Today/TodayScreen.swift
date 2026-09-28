@@ -14,6 +14,7 @@ struct TodayScreen: View {
                         .font(.caption)
                         .foregroundStyle(QuietPalette.muted)
                     Spacer()
+                    AssistantEntry(session: model, member: member)
                     NavigationLink {
                         ProfileScreen(model: model, member: member)
                     } label: {
