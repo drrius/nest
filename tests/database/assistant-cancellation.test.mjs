@@ -29,3 +29,67 @@ test("partner, outsider and anonymous cannot cancel another private conversation
   assert.throws(() => db.sql(`set role anon; ${cancel(100, 103)}`), /permission denied/);
   assert.throws(() => as(1, "select * from private.nest_ai_cancelled_turns"), /permission denied/);
 });
+
+test("concurrent cancellation wins before delayed begin without appending a prompt", async () => {
+  const first = db.concurrent(`begin; set application_name='cancel-first'; set role authenticated;
+    set request.jwt.claim.sub='${id(1)}'; ${cancel(200, 201)}; select pg_sleep(0.4); commit;`);
+  let locked = false;
+  for (let attempt = 0; attempt < 40; attempt++) {
+    if (
+      db.sql(
+        "select count(*) from pg_stat_activity where application_name='cancel-first' and wait_event='PgSleep'",
+      ) === "1"
+    ) {
+      locked = true;
+      break;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+  assert.equal(locked, true);
+  await assert.rejects(
+    db.concurrent(
+      `set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${begin(200, 201)}`,
+    ),
+    /AI turn cancelled/,
+  );
+  await first;
+  assert.equal(
+    db.sql(
+      `select jsonb_array_length(transcript) from public.nest_ai_conversations where id='${id(200)}'`,
+    ),
+    "0",
+  );
+});
+
+test("concurrent begin wins and cancellation cannot hide its running turn", async () => {
+  const first = db.concurrent(`begin; set application_name='begin-first'; set role authenticated;
+    set request.jwt.claim.sub='${id(1)}'; ${begin(300, 301)}; select pg_sleep(0.4); commit;`);
+  let locked = false;
+  for (let attempt = 0; attempt < 40; attempt++) {
+    if (
+      db.sql(
+        "select count(*) from pg_stat_activity where application_name='begin-first' and wait_event='PgSleep'",
+      ) === "1"
+    ) {
+      locked = true;
+      break;
+    }
+    await new Promise((resolve) => setTimeout(resolve, 5));
+  }
+  assert.equal(locked, true);
+  const result = await db.concurrent(
+    `set role authenticated; set request.jwt.claim.sub='${id(1)}'; ${cancel(300, 301)}`,
+  );
+  await first;
+  assert.equal(JSON.parse(result.stdout.trim()).cancelled, false);
+  assert.equal(
+    db.sql(`select state from public.nest_ai_turns where conversation_id='${id(300)}'`),
+    "running",
+  );
+  assert.equal(
+    db.sql(
+      `select count(*) from private.nest_ai_cancelled_turns where conversation_id='${id(300)}'`,
+    ),
+    "0",
+  );
+});
