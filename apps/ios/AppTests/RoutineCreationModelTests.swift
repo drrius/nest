@@ -12,7 +12,7 @@ final class RoutineCreationModelTests: XCTestCase {
             active: .init(userId: member.userId, accessToken: "token-A"),
             nextSignIn: .init(userId: partner, accessToken: "token-B"))
         let base = FakeChoreServer(actorA: member.userId, actorB: partner, household: member.householdId)
-        let server = RoutineCreationServer(member: member)
+        let server = RoutineCreationServer(member: member, partner: partner)
         let http = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { request in
             if request.url!.path.hasPrefix("/v1/routines/") { return try await server.respond(request) }
             return try await base.respond(request)
@@ -28,6 +28,15 @@ final class RoutineCreationModelTests: XCTestCase {
             try await model.stageRoutineCreation(invalid, context: context)
             XCTFail("Unknown household member accepted")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .invalid) }
+        await server.setPartnerVisible(false)
+        let shared = try CreateRoutine(operationId: UUID(), title: "Tidy", schedule: .daily, assignment: .shared)
+        do {
+            try await model.stageRoutineCreation(shared, context: context)
+            XCTFail("Single-member creation staged")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .invalid) }
+        let unstaged = try await model.savedRoutineCreation(context)
+        XCTAssertNil(unstaged)
+        await server.setPartnerVisible(true)
         let input = try CreateRoutine(operationId: UUID(), title: "Tidy", schedule: .daily, assignment: .shared)
         try await model.stageRoutineCreation(input, context: context)
         do {
@@ -54,16 +63,21 @@ final class RoutineCreationModelTests: XCTestCase {
 private actor RoutineCreationServer {
     let member: VerifiedMember
     let routine = UUID()
+    let partner: UUID
+    var partnerVisible = true
     var requests: [CreateRoutine] = []
-    init(member: VerifiedMember) { self.member = member }
+    init(member: VerifiedMember, partner: UUID) {
+        self.member = member
+        self.partner = partner
+    }
+    func setPartnerVisible(_ visible: Bool) { partnerVisible = visible }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
         let document: [String: Any]
         if request.url!.path.hasSuffix("/roster") {
-            document = [
-                "version": 1, "householdId": member.householdId.uuidString,
-                "members": [["actorId": member.userId.uuidString, "displayName": "Test"]],
-            ]
+            var members = [["actorId": member.userId.uuidString, "displayName": "Test"]]
+            if partnerVisible { members.append(["actorId": partner.uuidString, "displayName": "Partner"]) }
+            document = ["version": 1, "householdId": member.householdId.uuidString, "members": members]
         } else {
             let command = try JSONDecoder().decode(CreateRoutine.self, from: request.httpBody!)
             requests.append(command)

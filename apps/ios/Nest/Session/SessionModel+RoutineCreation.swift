@@ -31,7 +31,9 @@ extension SessionModel {
     func stageRoutineCreation(_ command: CreateRoutine, context: RoutineCreateContext) async throws {
         // A new creation needs a live roster. This is recovery, not offline creation support.
         let roster = try await readRoutineRoster(context)
-        guard roster.contains(command.definition.assignment), let offline else { throw NestAPIFailure.invalid }
+        guard roster.members.count == 2, roster.contains(command.definition.assignment), let offline else {
+            throw NestAPIFailure.invalid
+        }
         try await offline.enqueueRoutineCreation(command, lease: context.lease)
         try requireRoutineAccount(context)
     }

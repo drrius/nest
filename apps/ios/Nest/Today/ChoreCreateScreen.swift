@@ -24,13 +24,18 @@ struct ChoreCreateScreen: View {
                         Button("Done") { Task { await finish() } }
                     }
                 }
-            } else if let roster {
+            } else if let roster, roster.members.count == 2 {
                 ChoreCreateFields(draft: $draft, members: roster.members)
                 Section {
                     Button("Add chore") { Task { await submit() } }
                         .disabled((try? draft.command()) == nil)
                 } footer: {
                     Text("Chores stay separate from your household expenses. Connect to save a new chore.")
+                }
+            } else if roster != nil {
+                Section {
+                    Text("Chores need both household members to be set up before you can add one.")
+                    Button("Check household again") { Task { await load() } }
                 }
             } else {
                 Section { Button("Load chore form") { Task { await load() } } }
