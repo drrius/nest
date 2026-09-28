@@ -6,6 +6,7 @@ struct CorrectionApprovalScreen: View {
     let approvalId: UUID
     @State private var context: ExpenseContext?
     @State private var envelope: CorrectionApprovalEnvelope?
+    @State private var original: MoneyDetail?
     @State private var saved: SavedCorrectionDecision?
     @State private var working = false
     @State private var notice: String?
@@ -69,6 +70,9 @@ struct CorrectionApprovalScreen: View {
 
     @ViewBuilder
     private func summary(_ correction: CorrectionInput) -> some View {
+        if let original, original.event.id == correction.sourceEventId {
+            ApprovalOriginalEntry(detail: original, member: member)
+        }
         Section("Proposed correction") {
             Text(correction.replacement == nil ? "Undo the original entry" : "Replace the original entry")
                 .font(.headline)
@@ -95,13 +99,13 @@ struct CorrectionApprovalScreen: View {
     @ViewBuilder
     private func outcome(_ approval: CorrectionApproval) -> some View {
         if let receipt = approval.receipt {
-            Text("Expense recorded.")
+            Text("Correction recorded.")
             NavigationLink("View recorded correction") {
                 MoneyDetailScreen(
                     session: session, member: member, eventId: receipt.replacementEventId ?? receipt.reversalEventId)
             }
         } else if approval.status == .denied {
-            Text("Expense declined. No correction was recorded by this approval.")
+            Text("Correction declined. No correction was recorded by this approval.")
         } else {
             Text("This approval is awaiting its recorded result. Refresh to check again.")
         }
@@ -112,12 +116,19 @@ struct CorrectionApprovalScreen: View {
             context = current
             saved = try await session.savedCorrectionDecision(current)
             envelope = nil
-            if saved == nil { envelope = try await session.readCorrectionApproval(current, approvalId: approvalId) }
+            original = nil
+            if saved == nil {
+                let proposal = try await session.readCorrectionApproval(current, approvalId: approvalId)
+                original = try await session.readMoneyDetail(
+                    member: member, generation: current.generation,
+                    eventId: proposal.approval.correction.sourceEventId)
+                envelope = proposal
+            }
         }
     }
     private func decide(_ approved: Bool) async {
         guard let context, let approval = envelope?.approval, approval.status == .pending,
-            ApprovalTime.isOpen(approval.expiresAt, now: .now)
+            ApprovalTime.isOpen(approval.expiresAt, now: .now), original?.event.id == approval.correction.sourceEventId
         else { return }
         await perform {
             try await session.stageCorrectionDecision(
