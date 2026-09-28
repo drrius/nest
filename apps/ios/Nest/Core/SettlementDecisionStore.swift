@@ -3,6 +3,11 @@ import Foundation
 struct SavedSettlementDecision: Codable, Sendable {
     let decision: SettlementDecision
     var result: SettlementApprovalEnvelope?
+    var expiry: FinancialApprovalExpiry?
+
+    var isTerminal: Bool {
+        expiry?.expiredUnused == true || result.map { [.consumed, .denied].contains($0.approval.status) } == true
+    }
 }
 
 extension ChoreOfflineStore {
@@ -14,6 +19,14 @@ extension ChoreOfflineStore {
         let member = decisionMember(lease)
         _ = try saved.decision.settlement.validated(member: member)
         if let result = saved.result { _ = try result.matching(saved.decision, member: member, terminal: false) }
+        if let expiry = saved.expiry {
+            _ = try expiry.validated(
+                member: member, approvalId: saved.decision.approvalId,
+                operationId: saved.decision.operationId, command: .settlement)
+            guard expiry.expiredUnused,
+                saved.result.map({ [.pending, .approved].contains($0.approval.status) }) != false
+            else { throw OfflineFailure.invalidOperation }
+        }
         return saved
     }
 
@@ -27,7 +40,9 @@ extension ChoreOfflineStore {
     }
 
     func reconcileSettlementDecision(_ result: SettlementApprovalEnvelope, lease: OfflineLease) throws {
-        guard var saved = try readSettlementDecision(lease: lease) else { throw OfflineFailure.invalidOperation }
+        guard var saved = try readSettlementDecision(lease: lease), saved.expiry == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         _ = try result.matching(saved.decision, member: decisionMember(lease), terminal: false)
         if let previous = saved.result, [.consumed, .denied].contains(previous.approval.status) {
             guard previous.approval.status == result.approval.status,
@@ -39,9 +54,22 @@ extension ChoreOfflineStore {
         try db.run("UPDATE settlement_decisions SET body=? WHERE actor=? AND household=?", [body] + lease.scope)
     }
 
+    func expireSettlementDecision(_ evidence: FinancialApprovalExpiry, lease: OfflineLease) throws {
+        guard var saved = try readSettlementDecision(lease: lease), !saved.isTerminal else {
+            throw OfflineFailure.invalidOperation
+        }
+        _ = try evidence.validated(
+            member: decisionMember(lease), approvalId: saved.decision.approvalId,
+            operationId: saved.decision.operationId, command: .settlement)
+        guard evidence.expiredUnused else { throw OfflineFailure.invalidOperation }
+        saved.expiry = evidence
+        let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
+        try db.run("UPDATE settlement_decisions SET body=? WHERE actor=? AND household=?", [body] + lease.scope)
+    }
+
     func finishSettlementDecision(approvalId: UUID, lease: OfflineLease) throws {
         guard let saved = try readSettlementDecision(lease: lease), saved.decision.approvalId == approvalId,
-            let result = saved.result, [.consumed, .denied].contains(result.approval.status)
+            saved.isTerminal
         else { throw OfflineFailure.invalidOperation }
         try db.run("DELETE FROM settlement_decisions WHERE actor=? AND household=?", lease.scope)
     }

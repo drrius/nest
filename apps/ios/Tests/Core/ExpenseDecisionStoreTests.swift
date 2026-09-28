@@ -48,4 +48,42 @@ final class ExpenseDecisionStoreTests: XCTestCase {
         let cleared = try await store.readExpenseDecision(lease: restored)
         XCTAssertNil(cleared)
     }
+    func testOnlyMatchingServerExpiryReleasesSavedDecisionAfterRestart() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "expiry-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let expense = ExpenseInput(
+            description: "Test", amountCentimes: try Centimes("101"), receiptPath: nil,
+            receiptTotalCentimes: nil, payerId: member.userId,
+            allocations: try ExpenseSplit.equal(Centimes("101"), payer: member.userId, other: UUID()),
+            date: try CivilDate("2026-09-28"), note: nil, categoryId: nil)
+        let decision = ExpenseDecision(operationId: UUID(), approvalId: UUID(), expense: expense, approved: true)
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(member)
+        try await store.enqueueExpenseDecision(decision, lease: lease)
+        func evidence(_ expired: Bool, operation: UUID) -> FinancialApprovalExpiry {
+            .init(
+                version: 1, actorId: member.userId, householdId: member.householdId,
+                approvalId: decision.approvalId, operationId: operation, command: .expense,
+                expiredUnused: expired, checkedAt: "2026-09-28T08:00:00.000000Z")
+        }
+        do {
+            try await store.expireExpenseDecision(evidence(false, operation: decision.operationId), lease: lease)
+            XCTFail("Non-expiry released decision")
+        } catch OfflineFailure.invalidOperation {}
+        do {
+            try await store.expireExpenseDecision(evidence(true, operation: UUID()), lease: lease)
+            XCTFail("Unrelated expiry accepted")
+        } catch NestAPIFailure.contract {}
+        try await store.expireExpenseDecision(evidence(true, operation: decision.operationId), lease: lease)
+        let restarted = try ChoreOfflineStore(url: url)
+        let active = try await restarted.activate(member)
+        let saved = try await restarted.readExpenseDecision(lease: active)
+        XCTAssertTrue(saved?.isTerminal == true)
+        XCTAssertEqual(saved?.decision, decision)
+        try await restarted.finishExpenseDecision(approvalId: decision.approvalId, lease: active)
+        let cleared = try await restarted.readExpenseDecision(lease: active)
+        XCTAssertNil(cleared)
+    }
+
 }
