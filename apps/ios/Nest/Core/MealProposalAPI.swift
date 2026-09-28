@@ -4,6 +4,26 @@ public struct MealProposalAPI: Sendable {
     private let http: NestHTTP
     public init(http: NestHTTP) { self.http = http }
 
+    public func edit(token: String, member: VerifiedMember, command: MealProposalEditCommand) async throws
+        -> MealProposalEdit
+    {
+        _ = try command.validated()
+        let result = try await http.write(
+            "v1/meals/proposal/edit", token: token, household: member.householdId,
+            body: command, timeout: 180, as: MealProposalEdit.self)
+        return try result.validated(member: member, expected: command)
+    }
+
+    public func recoverEdit(token: String, member: VerifiedMember, command: MealProposalEditCommand) async throws
+        -> MealProposalEdit
+    {
+        _ = try command.validated()
+        let result = try await http.write(
+            "v1/meals/proposal/edit/recover", token: token, household: member.householdId,
+            body: ProposalEditQuery(operationId: command.operationId), as: MealProposalEdit.self)
+        return try result.validated(member: member, expected: command)
+    }
+
     public func reserve(token: String, member: VerifiedMember, command: GenerateMealProposal) async throws
         -> MealProposalGenerationReceipt
     {
@@ -76,3 +96,5 @@ private struct ProposalDiscarded: Decodable {
     let version: Int
     let receipt: MealProposalDiscardReceipt
 }
+
+private struct ProposalEditQuery: Encodable { let operationId: UUID }
