@@ -8,9 +8,11 @@ final class HostedCalendarPublishTests: XCTestCase {
         let env = ProcessInfo.processInfo.environment
         guard env["NEST_TEST_API_URL"] == "https://nest-test-api-drrius-projects.vercel.app",
             let actor = env["NEST_TEST_ACTOR_ID"].flatMap(UUID.init(uuidString:)),
-            let path = env["NEST_TEST_MEMBER_TOKEN_FILE"]
+            let path = env["NEST_TEST_MEMBER_TOKEN_FILE"], let outsiderPath = env["NEST_TEST_OUTSIDER_TOKEN_FILE"]
         else { throw XCTSkip("Isolated test credentials are not configured") }
         let token = try String(contentsOfFile: path, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
+        let outsider = try String(contentsOfFile: outsiderPath, encoding: .utf8).trimmingCharacters(
+            in: .whitespacesAndNewlines)
         let http = try NestHTTP(baseURL: URL(string: "https://nest-test-api-drrius-projects.vercel.app")!)
         let member = try await MealAPI(http: http).verify(token: token, expectedActor: actor)
         guard member.displayName.hasPrefix("Test ") else { throw NestAPIFailure.forbidden }
@@ -21,7 +23,7 @@ final class HostedCalendarPublishTests: XCTestCase {
             throw XCTSkip("Fictional account must start disabled without an existing snapshot")
         }
         do {
-            try await publish(api: api, token: token, member: member, baseline: baseline)
+            try await publish(api: api, token: token, member: member, baseline: baseline, outsider: outsider)
         } catch {
             try await disable(api: api, token: token, member: member)
             throw error
@@ -33,7 +35,9 @@ final class HostedCalendarPublishTests: XCTestCase {
         XCTAssertFalse(consent.enabled)
     }
 
-    private func publish(api: CalendarAPI, token: String, member: VerifiedMember, baseline: CalendarConsent)
+    private func publish(
+        api: CalendarAPI, token: String, member: VerifiedMember, baseline: CalendarConsent, outsider: String
+    )
         async throws
     {
         let enable = SetCalendarConsent(
@@ -49,6 +53,12 @@ final class HostedCalendarPublishTests: XCTestCase {
             incarnation: capture.incarnation, consent: capture.consent, generation: capture.generation,
             covered: .init(start: start, end: start + 86_400_000),
             intervals: [.init(start: start + 3_600_000, end: start + 7_200_000)])
+        do {
+            _ = try await api.publish(token: outsider, member: member, command: command, capture: capture)
+            XCTFail("Outsider published another household's busy data")
+        } catch {
+            XCTAssertTrue((error as? NestAPIFailure) == .forbidden || (error as? NestAPIFailure) == .notMember)
+        }
         let receipt = try await api.publish(token: token, member: member, command: command, capture: capture)
         let repeated = try await api.publish(token: token, member: member, command: command, capture: capture)
         XCTAssertEqual(receipt.generation, repeated.generation)
@@ -57,6 +67,17 @@ final class HostedCalendarPublishTests: XCTestCase {
         XCTAssertEqual(own.generation, capture.generation)
         XCTAssertEqual(own.covered, command.covered)
         XCTAssertEqual(own.intervals, command.intervals)
+        let pending = try await api.begin(
+            token: token, member: member,
+            command: .init(incarnation: active.incarnation, consent: active.version))
+        try await disable(api: api, token: token, member: member)
+        let revoked = PublishBusy(
+            incarnation: pending.incarnation, consent: pending.consent,
+            generation: pending.generation, covered: command.covered, intervals: command.intervals)
+        do {
+            _ = try await api.publish(token: token, member: member, command: revoked, capture: pending)
+            XCTFail("Published a capture after opt-out")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .conflict) }
     }
 
     private func disable(api: CalendarAPI, token: String, member: VerifiedMember) async throws {
