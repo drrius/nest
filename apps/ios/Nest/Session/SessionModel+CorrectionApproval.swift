@@ -29,7 +29,7 @@ extension SessionModel {
         guard let saved = try await savedCorrectionDecision(context), let offline, let moneyAPI else {
             throw OfflineFailure.invalidOperation
         }
-        if let result = saved.result, [.consumed, .denied].contains(result.approval.status) { return saved }
+        if saved.isTerminal { return saved }
         let token = try await expenseToken(context)
         let recovered = try await moneyAPI.correctionApproval(
             token: token, member: context.member,
@@ -37,6 +37,17 @@ extension SessionModel {
         try requireMoneyAccount(context.member, generation: context.generation)
         try await offline.reconcileCorrectionDecision(recovered, lease: context.lease)
         if [.consumed, .denied].contains(recovered.approval.status) {
+            guard let current = try await savedCorrectionDecision(context) else {
+                throw OfflineFailure.invalidOperation
+            }
+            return current
+        }
+        let expiry = try await moneyAPI.approvalExpiry(
+            token: token, member: context.member, approvalId: saved.decision.approvalId,
+            operationId: saved.decision.operationId, command: .correction)
+        try requireMoneyAccount(context.member, generation: context.generation)
+        if expiry.expiredUnused {
+            try await offline.expireCorrectionDecision(expiry, lease: context.lease)
             guard let current = try await savedCorrectionDecision(context) else {
                 throw OfflineFailure.invalidOperation
             }

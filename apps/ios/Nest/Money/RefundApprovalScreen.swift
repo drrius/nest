@@ -22,7 +22,11 @@ struct RefundApprovalScreen: View {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this refund." : "You chose to decline this refund.")
-                    if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
+                    if saved.expiry?.expiredUnused == true {
+                        Text(
+                            "This approval expired without recording a change. Ask for a new proposal if still needed.")
+                        Button("Done") { Task { await finish() } }
+                    } else if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
                         outcome(result.approval)
                         Button("Done") { Task { await finish() } }
                     } else {

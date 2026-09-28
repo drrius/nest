@@ -73,6 +73,16 @@ private actor LostCorrectionDecisionReplyServer {
             throw URLError(.networkConnectionLost)
         }
         guard let decision else { throw NestAPIFailure.contract }
+        if request.url!.path.hasSuffix("/approval-expiry") {
+            let result = FinancialApprovalExpiry(
+                version: 1, actorId: member.userId, householdId: member.householdId,
+                approvalId: decision.approvalId, operationId: decision.operationId, command: .correction,
+                expiredUnused: false, checkedAt: "2026-09-28T08:00:00.000000Z")
+            return (
+                try JSONEncoder().encode(result),
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            )
+        }
         let result = CorrectionApprovalEnvelope(
             version: 1, actorId: member.userId, householdId: member.householdId,
             approval: .init(

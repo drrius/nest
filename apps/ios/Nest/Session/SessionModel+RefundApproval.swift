@@ -28,7 +28,7 @@ extension SessionModel {
         guard let saved = try await savedRefundDecision(context), let offline, let moneyAPI else {
             throw OfflineFailure.invalidOperation
         }
-        if let result = saved.result, [.consumed, .denied].contains(result.approval.status) { return saved }
+        if saved.isTerminal { return saved }
         let token = try await expenseToken(context)
         let recovered = try await moneyAPI.refundApproval(
             token: token, member: context.member,
@@ -36,6 +36,15 @@ extension SessionModel {
         try requireMoneyAccount(context.member, generation: context.generation)
         try await offline.reconcileRefundDecision(recovered, lease: context.lease)
         if [.consumed, .denied].contains(recovered.approval.status) {
+            guard let current = try await savedRefundDecision(context) else { throw OfflineFailure.invalidOperation }
+            return current
+        }
+        let expiry = try await moneyAPI.approvalExpiry(
+            token: token, member: context.member, approvalId: saved.decision.approvalId,
+            operationId: saved.decision.operationId, command: .refund)
+        try requireMoneyAccount(context.member, generation: context.generation)
+        if expiry.expiredUnused {
+            try await offline.expireRefundDecision(expiry, lease: context.lease)
             guard let current = try await savedRefundDecision(context) else { throw OfflineFailure.invalidOperation }
             return current
         }
