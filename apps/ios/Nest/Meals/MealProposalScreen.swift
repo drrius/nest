@@ -50,7 +50,11 @@ struct MealProposalScreen: View {
                             }
                         }
                     }
-                    if context.discard == nil { actions(context, proposal: proposal) }
+                    if context.edit != nil {
+                        ProposalEditRecovery(model: model, context: context, busy: busy) { self.context = $0 }
+                    } else if context.discard == nil {
+                        actions(context, proposal: proposal)
+                    }
                     ProposalDiscardControls(model: model, context: context, busy: busy) { updated in
                         self.context = updated
                     }

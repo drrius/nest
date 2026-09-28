@@ -19,7 +19,7 @@ struct ProposalDiscardControls: View {
                     Text("Your discard request is saved. Check its result before making another change.")
                     Button("Check discard") { Task { await run(.retry) } }
                 }
-            } else if context.approval == nil, let proposal = context.saved?.envelope?.proposal {
+            } else if context.approval == nil, context.edit == nil, let proposal = context.saved?.envelope?.proposal {
                 if proposal.status == .approved || proposal.status == .discarded {
                     Button("Close this plan") { Task { await run(.close) } }
                 } else {
