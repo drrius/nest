@@ -7,6 +7,7 @@ struct RecurringEditorScreen: View {
     @State private var context: ExpenseContext?
     @State private var draft: RecurringDraft?
     @State private var members: [MoneyBalance.Member] = []
+    @State private var categoryName: String?
     @State private var today: CivilDate?
     @State private var reviewed: RecurringInput?
     @State private var saved: SavedRecurring?
@@ -31,6 +32,16 @@ struct RecurringEditorScreen: View {
             } else if let draft {
                 RecurringEditorFields(
                     draft: Binding(get: { self.draft ?? draft }, set: { self.draft = $0 }), members: members)
+                Section {
+                    NavigationLink(
+                        categoryName ?? (draft.categoryId == nil ? "Choose category (optional)" : "Change category")
+                    ) {
+                        ExpenseCategoryPicker(
+                            session: session, member: member,
+                            selection: Binding(get: { self.draft?.categoryId }, set: { self.draft?.categoryId = $0 }),
+                            selectedName: $categoryName)
+                    }
+                }
                 Section { Button("Review rule") { review() } }
             } else {
                 Button("Load rule details") { Task { await load() } }
@@ -66,6 +77,9 @@ struct RecurringEditorScreen: View {
                     : "Weekly, weekday \(input.configuration.schedule.weekday ?? 1) (Monday = 1)")
             LabeledContent("Starts", value: input.configuration.startDate.value)
             LabeledContent("First due", value: input.firstDueOn.value)
+            if input.configuration.categoryId != nil {
+                LabeledContent("Category", value: categoryName ?? "Previously selected category")
+            }
             if let note = input.configuration.note { Text(note) }
             Text("Existing history stays unchanged. Saving does not move money.").font(.footnote)
         }
@@ -103,6 +117,7 @@ struct RecurringEditorScreen: View {
     }
     private func reload(_ current: ExpenseContext) async throws {
         draft = nil
+        categoryName = nil
         members = try await session.readMoneyBalance(member: member, generation: current.generation).members
         var existing: RecurringRule?
         let date: CivilDate
