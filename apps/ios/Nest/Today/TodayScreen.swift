@@ -13,14 +13,14 @@ struct TodayScreen: View {
                         .font(.caption)
                         .foregroundStyle(QuietPalette.muted)
                     Spacer()
-                    Button {
-                        Task { await model.signOut() }
+                    NavigationLink {
+                        ProfileScreen(model: model, member: member)
                     } label: {
                         Image(systemName: "person.crop.circle")
                             .font(.title2)
                             .foregroundStyle(QuietPalette.accent)
                     }
-                    .accessibilityLabel("Sign out")
+                    .accessibilityLabel("Profile and preferences")
                 }
                 Text("Today")
                     .font(.largeTitle.weight(.semibold))
