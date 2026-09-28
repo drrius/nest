@@ -4,6 +4,27 @@ import XCTest
 @testable import NestCore
 
 final class MealProposalStoreTests: XCTestCase {
+    func testOnlyDefinitivelyRejectedUnreservedRequestCanBeCleared() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "rejected-proposal-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(.init(userId: UUID(), householdId: UUID(), displayName: "Test"))
+        let command = GenerateMealProposal(
+            operationId: UUID(), weekStart: try MealWeekStart("2035-06-04"),
+            expectedWeekRevision: "0", familiarOnly: false)
+        try await store.enqueueProposalGeneration(command, lease: lease)
+        do {
+            try await store.clearRejectedGeneration(lease: lease)
+            XCTFail("Cleared uncertain request")
+        } catch {}
+        try await store.rejectUnreservedProposal(operation: command.operationId, lease: lease)
+        let rejected = try await store.readProposalGeneration(lease: lease)
+        XCTAssertEqual(rejected?.rejected, true)
+        try await store.clearRejectedGeneration(lease: lease)
+        let cleared = try await store.readProposalGeneration(lease: lease)
+        XCTAssertNil(cleared)
+    }
+
     func testInterruptedGenerationSurvivesRestartAndCannotBeReplaced() async throws {
         let url = FileManager.default.temporaryDirectory.appending(path: "proposal-\(UUID()).sqlite")
         defer { try? FileManager.default.removeItem(at: url) }

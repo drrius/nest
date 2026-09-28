@@ -69,6 +69,11 @@ struct MealProposalScreen: View {
                     ProposalDiscardControls(model: model, context: context, busy: busy) { updated in
                         self.context = updated
                     }
+                } else if saved.rejected == true {
+                    Text(
+                        "Planning could not start. Check household food and cooking setup, then refresh the week before trying again."
+                    )
+                    Button("Clear rejected request") { Task { await perform(.clearGeneration) } }
                 } else {
                     Text("Your request is saved. Continue with the same request when connected.")
                     Button("Continue planning") { Task { await perform(.generate) } }
@@ -105,7 +110,7 @@ struct MealProposalScreen: View {
         Button("Refresh plan") { Task { await perform(.refresh) } }
     }
 
-    private enum Action { case load, generate, refresh, approve, retryApproval, clearConflict }
+    private enum Action { case load, generate, refresh, approve, retryApproval, clearConflict, clearGeneration }
 
     private func perform(_ action: Action) async {
         guard !busy else { return }
@@ -129,6 +134,7 @@ struct MealProposalScreen: View {
     private func execute(_ action: Action, current: ProposalContext) async throws {
         switch action {
         case .load: context = current
+        case .clearGeneration: context = try await model.clearRejectedGeneration(current)
         case .generate:
             if current.saved == nil {
                 try await model.stageProposalGeneration(week: week, familiarOnly: familiarOnly, context: current)

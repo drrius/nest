@@ -37,12 +37,23 @@ extension SessionModel {
     func retryProposalGeneration(_ context: ProposalContext) async throws -> ProposalContext {
         try requireProposalContext(context)
         guard let auth, let api = proposalAPI, let offline, let lease,
-            let saved = try await offline.readProposalGeneration(lease: lease)
+            let saved = try await offline.readProposalGeneration(lease: lease), saved.rejected != true
         else { throw OfflineFailure.missingSnapshot }
         let session = try await auth.session()
         try requireProposalContext(context)
         guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
-        let receipt = try await api.reserve(token: session.accessToken, member: context.member, command: saved.command)
+        let receipt: MealProposalGenerationReceipt
+        do {
+            receipt = try await api.reserve(token: session.accessToken, member: context.member, command: saved.command)
+        } catch {
+            try requireProposalContext(context)
+            if saved.receipt == nil, let failure = error as? NestAPIFailure,
+                [NestAPIFailure.conflict, .invalid, .cutover, .removed].contains(failure)
+            {
+                try await offline.rejectUnreservedProposal(operation: saved.command.operationId, lease: lease)
+            }
+            throw error
+        }
         try requireProposalContext(context)
         try await offline.reserveProposalGeneration(receipt, lease: lease)
         try requireProposalContext(context)
@@ -64,6 +75,14 @@ extension SessionModel {
         let fresh = try await api.recover(token: session.accessToken, member: context.member, id: receipt.proposalId)
         try requireProposalContext(context)
         try await offline.saveGeneratedProposal(fresh, lease: lease)
+        try requireProposalContext(context)
+        return try await cachedProposalContext()
+    }
+
+    func clearRejectedGeneration(_ context: ProposalContext) async throws -> ProposalContext {
+        try requireProposalContext(context)
+        guard let offline, let lease else { throw OfflineFailure.sessionChanged }
+        try await offline.clearRejectedGeneration(lease: lease)
         try requireProposalContext(context)
         return try await cachedProposalContext()
     }

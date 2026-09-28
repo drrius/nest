@@ -4,9 +4,11 @@ struct SavedProposalGeneration: Codable, Equatable, Sendable {
     let command: GenerateMealProposal
     var receipt: MealProposalGenerationReceipt?
     var envelope: MealProposalEnvelope?
+    var rejected: Bool?
 
     func validated(_ lease: OfflineLease) throws -> Self {
         _ = try command.validated()
+        guard rejected != true || receipt == nil else { throw OfflineFailure.storage }
         let member = VerifiedMember(userId: lease.actor, householdId: lease.household, displayName: "")
         if let receipt {
             _ = try receipt.validated(member: member, command: command)
@@ -35,6 +37,20 @@ extension ChoreOfflineStore {
         let saved = try SavedProposalGeneration(command: command).validated(lease)
         let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
         try db.run("INSERT INTO proposal_generations(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
+    }
+
+    func rejectUnreservedProposal(operation: UUID, lease: OfflineLease) throws {
+        guard var saved = try readProposalGeneration(lease: lease), saved.receipt == nil,
+            saved.command.operationId == operation
+        else { throw OfflineFailure.invalidOperation }
+        saved.rejected = true
+        try writeProposalGeneration(saved, lease: lease)
+    }
+
+    func clearRejectedGeneration(lease: OfflineLease) throws {
+        guard let saved = try readProposalGeneration(lease: lease), saved.rejected == true, saved.receipt == nil
+        else { throw OfflineFailure.invalidOperation }
+        try db.run("DELETE FROM proposal_generations WHERE actor=? AND household=?", lease.scope)
     }
 
     func reserveProposalGeneration(_ receipt: MealProposalGenerationReceipt, lease: OfflineLease) throws {
