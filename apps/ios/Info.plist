@@ -10,6 +10,7 @@
   <key>CFBundlePackageType</key><string>APPL</string>
   <key>CFBundleShortVersionString</key><string>$(MARKETING_VERSION)</string>
   <key>CFBundleVersion</key><string>$(CURRENT_PROJECT_VERSION)</string>
+  <key>NSCalendarsFullAccessUsageDescription</key><string>Nest reads your selected calendars to show your day. Nest does not create, change or delete events. Event details stay on this device.</string>
   <key>LSRequiresIPhoneOS</key><true/>
   <key>UIApplicationSceneManifest</key><dict>
     <key>UIApplicationSupportsMultipleScenes</key><false/>
