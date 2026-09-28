@@ -56,3 +56,39 @@ test("consumed approvals never authorize discarding a recorded result", () => {
   expire(p);
   assert.equal(JSON.parse(db.sql(as(actor, query(p)))).expiredUnused, false);
 });
+
+test("expiry waits for an in-flight consumption before attesting unused", async () => {
+  const p = proposal();
+  expire(p);
+  // Fixture-only time adjustment makes the old visible row expired while a
+  // successful consumption is uncommitted. A nonlocking read would be unsafe.
+  const writer = db.concurrent(`begin;
+    set application_name='nest-expiry-writer';
+    update public.nest_action_approvals set expires_at=now()+interval '1 minute' where id='${p.approval}';
+    ${as(
+      actor,
+      `select public.nest_decide_action('${p.approval}','${p.operation}','expenses.record',1,'{}',true);
+    select public.fixture_execute('${p.approval}','${household}','${p.operation}','expenses.record',1,'{}',false);`,
+    )}
+    select pg_sleep(1); commit;`);
+  let observed = false;
+  try {
+    for (let attempt = 0; attempt < 50; attempt++) {
+      observed =
+        db.sql(
+          "select exists(select 1 from pg_stat_activity where application_name='nest-expiry-writer' and wait_event='PgSleep')",
+        ) === "t";
+      if (observed) break;
+      await new Promise((resolve) => setTimeout(resolve, 10));
+    }
+    assert.equal(observed, true, "writer must hold its uncommitted consumption");
+    const result = await db.concurrent(as(actor, query(p)));
+    assert.equal(JSON.parse(result.stdout).expiredUnused, false);
+  } finally {
+    await writer;
+  }
+  assert.equal(
+    db.sql(`select count(*) from private.fixture_writes where invocation_id='${p.operation}'`),
+    "1",
+  );
+});
