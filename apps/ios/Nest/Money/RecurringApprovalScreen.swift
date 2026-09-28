@@ -72,17 +72,7 @@ struct RecurringApprovalScreen: View {
     @ViewBuilder
     private func summary(_ rule: RecurringInput) -> some View {
         if let currentRule, currentRule.id == rule.ruleId {
-            Section("Current rule") {
-                Text(currentRule.configuration.description).font(.headline)
-                Text(currentRule.status.rawValue.capitalized)
-                Text(schedule(currentRule.configuration.schedule))
-                if let amount = currentRule.configuration.amountCentimes {
-                    LabeledContent("Amount", value: amount.absoluteCHF)
-                }
-                if !matchesCurrent(rule) {
-                    Text("This rule changed after the proposal. Ask for an updated proposal before approving.")
-                }
-            }
+            currentSummary(currentRule, proposal: rule)
         }
         Section("Rule to save") {
             Text(rule.configuration.description).font(.headline)
@@ -107,6 +97,31 @@ struct RecurringApprovalScreen: View {
                 NavigationLink("View current rule") {
                     RecurringRuleScreen(session: session, member: member, ruleId: rule.ruleId)
                 }
+            }
+        }
+    }
+
+    private func currentSummary(_ currentRule: RecurringRule, proposal rule: RecurringInput) -> some View {
+        Section("Current rule") {
+            Text(currentRule.configuration.description).font(.headline)
+            Text(currentRule.status.rawValue.capitalized)
+            Text(schedule(currentRule.configuration.schedule))
+            LabeledContent("Payer", value: currentRule.configuration.payerId == member.userId ? "You" : "Your partner")
+            LabeledContent("Starts", value: currentRule.configuration.startDate.value)
+            LabeledContent(
+                "Mode", value: currentRule.configuration.mode == .fixed ? "Fixed amount" : "Confirm each bill")
+            if let due = currentRule.nextDueOn { LabeledContent("Next due", value: due.value) }
+            if let covered = currentRule.coveredThrough { LabeledContent("Covered through", value: covered.value) }
+            ForEach(currentRule.configuration.allocations ?? [], id: \.memberId) {
+                LabeledContent(
+                    $0.memberId == member.userId ? "Your share" : "Partner’s share", value: $0.centimes.absoluteCHF)
+            }
+            if let note = currentRule.configuration.note { Text(note) }
+            if let amount = currentRule.configuration.amountCentimes {
+                LabeledContent("Amount", value: amount.absoluteCHF)
+            }
+            if !matchesCurrent(rule) {
+                Text("This rule changed after the proposal. Ask for an updated proposal before approving.")
             }
         }
     }
