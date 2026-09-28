@@ -78,6 +78,9 @@ final class HostedRecipeEditTests: XCTestCase {
             XCTFail("Outsider read household ingredients")
         } catch { XCTAssertTrue((error as? NestAPIFailure) == .forbidden || (error as? NestAPIFailure) == .notMember) }
 
+        try await verifyIngredientAddition(
+            try XCTUnwrap(plannedIngredients.first), listing: ingredients,
+            api: api, token: token, outsider: outsider, member: member)
         let ingredient = try XCTUnwrap(recipe.ingredients.first)
         let edit = EditRecipe(
             operationId: UUID(), definitionId: id, expectedRevision: library.revision,
