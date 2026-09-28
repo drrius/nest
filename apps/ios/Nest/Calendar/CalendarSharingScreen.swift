@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CalendarSharingScreen: View {
+    @Environment(\.scenePhase) private var scenePhase
     @ObservedObject var session: SessionModel
     @State private var context: CalendarConsentContext?
     @State private var consent: CalendarConsent?
@@ -43,6 +44,9 @@ struct CalendarSharingScreen: View {
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Busy sharing")
         .task { await load() }
+        .onChange(of: scenePhase) {
+            if scenePhase == .active && !working { Task { await load() } }
+        }
         .confirmationDialog("Share busy times with your household and AI?", isPresented: $confirmEnable) {
             Button("Enable sharing") { Task { await changeConsent(true) } }
         } message: {
@@ -101,13 +105,20 @@ struct CalendarSharingScreen: View {
             let value = try await session.calendarConsentContext()
             context = value
             consent = try await session.readCalendarConsent(value)
+            if value.pending == nil, reader.access == .denied || reader.access == .restricted {
+                consent = try await session.revokeCalendarConsentAfterPermissionLoss(
+                    access: reader.access, context: value)
+                context = try await session.calendarConsentContext()
+                notice = "Calendar access is off. Busy sharing has been turned off."
+            }
             calendars = reader.calendars()
             selected = CalendarSelectionStore(member: value.member, purpose: .sharing).read()
             selected.formIntersection(calendars.map(\.id))
             CalendarSelectionStore(member: value.member, purpose: .sharing).save(selected)
         } catch {
+            await reloadPending()
             consent = nil
-            notice = "Could not load sharing status. Try again online."
+            notice = "Could not confirm sharing status. Check any saved change and retry online."
         }
     }
 

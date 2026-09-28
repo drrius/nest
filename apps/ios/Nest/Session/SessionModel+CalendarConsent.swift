@@ -82,3 +82,18 @@ extension SessionModel {
         return session.accessToken
     }
 }
+
+extension SessionModel {
+    func revokeCalendarConsentAfterPermissionLoss(
+        access: CalendarAccess, context: CalendarConsentContext
+    ) async throws -> CalendarConsent? {
+        try requireCalendarContext(context)
+        guard access == .denied || access == .restricted else { return nil }
+        let currentContext = try await calendarConsentContext()
+        guard currentContext.pending == nil else { throw OfflineFailure.invalidOperation }
+        let current = try await readCalendarConsent(context)
+        guard current.enabled else { return current }
+        try await stageCalendarConsent(current, enabled: false, context: context)
+        return try await retryCalendarConsent(context)
+    }
+}

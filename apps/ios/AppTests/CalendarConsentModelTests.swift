@@ -5,7 +5,7 @@ import XCTest
 
 @MainActor
 final class CalendarConsentModelTests: XCTestCase {
-    func testLostOptOutReplyRetainsExactCommandUntilRetry() async throws {
+    func testPermissionLossRetainsLostOptOutUntilRetry() async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
         let auth = FakeAuthentication(
             active: .init(userId: member.userId, accessToken: "token-A"),
@@ -21,10 +21,11 @@ final class CalendarConsentModelTests: XCTestCase {
             calendarAPI: CalendarAPI(http: http))
         await model.restore()
         let context = try await model.calendarConsentContext()
-        let current = CalendarConsent(incarnation: UUID(), version: "4", enabled: true)
-        try await model.stageCalendarConsent(current, enabled: false, context: context)
+        let untouched = try await model.revokeCalendarConsentAfterPermissionLoss(
+            access: .notRequested, context: context)
+        XCTAssertNil(untouched)
         do {
-            _ = try await model.retryCalendarConsent(context)
+            _ = try await model.revokeCalendarConsentAfterPermissionLoss(access: .denied, context: context)
             XCTFail("Expected lost response")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .unavailable) }
         let pending = try await model.calendarConsentContext()
@@ -48,10 +49,20 @@ final class CalendarConsentModelTests: XCTestCase {
 
 private actor ConsentRetryServer {
     let member: VerifiedMember
+    let incarnation = UUID()
     var calls: [SetCalendarConsent] = []
     init(member: VerifiedMember) { self.member = member }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if request.url?.path == "/v1/calendar/consent" {
+            let value = CalendarConsentEnvelope(
+                version: 1, actorId: member.userId, householdId: member.householdId,
+                consent: .init(incarnation: incarnation, version: "4", enabled: true))
+            return (
+                try JSONEncoder().encode(value),
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+            )
+        }
         XCTAssertEqual(request.url?.path, "/v1/calendar/consent/set")
         let command = try JSONDecoder().decode(SetCalendarConsent.self, from: request.httpBody!)
         calls.append(command)
