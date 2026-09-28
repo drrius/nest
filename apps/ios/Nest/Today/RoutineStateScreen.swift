@@ -4,6 +4,7 @@ struct RoutineStateScreen: View {
     @ObservedObject var model: SessionModel
     let routine: HouseholdRoutine?
     @Environment(\.dismiss) private var dismiss
+    @State private var currentRoutine: HouseholdRoutine?
     @State private var context: RoutineCreateContext?
     @State private var saved: SavedRoutineState?
     @State private var notice: String?
@@ -29,7 +30,7 @@ struct RoutineStateScreen: View {
                         Button("Retry saved change") { Task { await apply(nil) } }
                     }
                 }
-            } else if let routine {
+            } else if let routine = currentRoutine {
                 Section(routine.definition.title) {
                     Text("Status: " + routine.state.rawValue.capitalized)
                     NavigationLink("Edit chore") { ChoreEditScreen(model: model, routine: routine) }
@@ -71,6 +72,12 @@ struct RoutineStateScreen: View {
             let current = try model.routineCreateContext()
             context = current
             saved = try await model.savedRoutineState(current)
+            if saved == nil, let routine {
+                let page = try await model.readRoutines(current)
+                currentRoutine = page.routines.first { $0.id == routine.id }
+                guard currentRoutine != nil else { throw NestAPIFailure.conflict }
+            }
+            notice = nil
         } catch { notice = "Could not load saved changes. Return to chores and try again." }
     }
 
@@ -79,7 +86,9 @@ struct RoutineStateScreen: View {
         working = true
         defer { working = false }
         do {
-            if let action, let routine { try await model.stageRoutineState(action, routine: routine, context: context) }
+            if let action, let routine = currentRoutine {
+                try await model.stageRoutineState(action, routine: routine, context: context)
+            }
             saved = try await model.savedRoutineState(context)
             saved = try await model.retryRoutineState(context)
             notice = nil

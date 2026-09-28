@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ChoreCreateDraft {
+struct ChoreCreateDraft: Equatable {
     var title = ""
     var kind = "one_off"
     var date = Date()

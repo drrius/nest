@@ -11,6 +11,8 @@ struct ChoreEditScreen: View {
     @State private var notice: String?
     @State private var working = false
     @State private var loaded = false
+    @State private var originalDraft: ChoreCreateDraft?
+    @State private var confirmingDiscard = false
 
     var body: some View {
         Form {
@@ -44,6 +46,24 @@ struct ChoreEditScreen: View {
         .scrollDismissesKeyboard(.interactively)
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Edit chore")
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Back", systemImage: "chevron.left") {
+                    if saved == nil, let originalDraft, draft != originalDraft {
+                        confirmingDiscard = true
+                    } else {
+                        dismiss()
+                    }
+                }.disabled(working)
+            }
+        }
+        .confirmationDialog("Discard unsaved changes?", isPresented: $confirmingDiscard) {
+            Button("Discard changes", role: .destructive) { dismiss() }
+            Button("Keep editing", role: .cancel) {}
+        } message: {
+            Text("These changes have not been sent.")
+        }
         .task { if !loaded { await load() } }
     }
 
@@ -62,6 +82,7 @@ struct ChoreEditScreen: View {
                 }
                 members = page.members
                 draft = try ChoreCreateDraft(definition: routine.definition)
+                originalDraft = draft
             }
             loaded = true
             notice = nil
