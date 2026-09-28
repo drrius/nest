@@ -19,6 +19,13 @@ final class HostedMoneyReadTests: XCTestCase {
         guard member.displayName.hasPrefix("Test ") else { throw NestAPIFailure.forbidden }
         let api = MoneyAPI(http: http)
         _ = try await api.balance(token: token, member: member)
+        _ = try await api.categories(token: token, member: member, after: nil)
+        do {
+            _ = try await api.categories(token: outsider, member: member, after: nil)
+            XCTFail("Outsider read another household’s categories")
+        } catch {
+            XCTAssertTrue((error as? NestAPIFailure) == .forbidden || (error as? NestAPIFailure) == .notMember)
+        }
         let history = try await api.history(token: token, member: member, before: nil)
         if let event = history.events.first {
             _ = try await api.detail(token: token, member: member, eventId: event.id)
