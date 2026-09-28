@@ -20,6 +20,16 @@ struct MealProposalScreen: View {
             if let context, model.generation == context.generation, model.status == .ready(context.member) {
                 content(context)
             }
+            Section("Planning preferences") {
+                NavigationLink("Your food preferences") {
+                    FoodPreferencesScreen(model: model).id(model.generation)
+                }
+                NavigationLink("Household cooking preferences") {
+                    CookingPreferencesScreen(model: model).id(model.generation)
+                }
+                Text("Each household member needs to save their own food preferences before planning can start.")
+                    .font(.footnote).foregroundStyle(QuietPalette.muted)
+            }
             if let notice { Section { Text(notice).foregroundStyle(QuietPalette.muted) } }
             if busy { ProgressView("Checking your plan…") }
         }
