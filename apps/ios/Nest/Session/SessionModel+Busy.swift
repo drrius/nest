@@ -47,6 +47,14 @@ extension SessionModel {
         return value
     }
 
+    func readCalendarChores(_ context: CalendarConsentContext, day: CivilDate) async throws -> CalendarChores {
+        let token = try await busyToken(context)
+        guard let calendarAPI else { throw NestAPIFailure.configuration }
+        let result = try await calendarAPI.chores(token: token, member: context.member, day: day)
+        try requireCalendarContext(context)
+        return result
+    }
+
     private func busyToken(_ context: CalendarConsentContext) async throws -> String {
         try requireCalendarContext(context)
         guard let auth else { throw NestAPIFailure.signedOut }

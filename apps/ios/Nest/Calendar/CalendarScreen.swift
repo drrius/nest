@@ -6,6 +6,7 @@ struct CalendarScreen: View {
     @StateObject private var model: CalendarModel
     @State private var day = Date()
     @State private var picking = false
+    @State private var showChores = false
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
 
@@ -31,6 +32,8 @@ struct CalendarScreen: View {
                 permission
             }
             PartnerBusySection(session: session, day: day)
+            Section { Toggle("Show household chores", isOn: $showChores) }
+            if showChores { CalendarChoreSection(session: session, day: day) }
         }
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
