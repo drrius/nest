@@ -7,16 +7,16 @@ struct ExpenseFormFields: View {
 
     var body: some View {
         Section("Expense") {
-            TextField("Description", text: $draft.description)
-            TextField("Shared amount in CHF", text: $draft.amount).keyboardType(.decimalPad)
+            input("Description", text: $draft.description)
+            input("Shared amount (CHF)", text: $draft.amount, keyboard: .decimalPad)
             Picker("Paid by", selection: $draft.payer) {
                 ForEach(members) { person in Text(person.displayName).tag(person.id) }
             }
             DatePicker("Date", selection: $date, displayedComponents: .date)
-            TextField("Note (optional)", text: $draft.note, axis: .vertical)
+            input("Note (optional)", text: $draft.note)
             Toggle("Receipt total differs from shared amount", isOn: $draft.separateReceiptTotal)
             if draft.separateReceiptTotal {
-                TextField("Receipt total in CHF", text: $draft.receiptTotal).keyboardType(.decimalPad)
+                input("Receipt total (CHF)", text: $draft.receiptTotal, keyboard: .decimalPad)
             }
         }
         Section("Split") {
@@ -25,13 +25,10 @@ struct ExpenseFormFields: View {
             }
             if members.count == 2 {
                 if draft.split == .exact {
-                    TextField("\(members[0].displayName)’s CHF share", text: $draft.firstExact).keyboardType(
-                        .decimalPad)
-                    TextField("\(members[1].displayName)’s CHF share", text: $draft.secondExact).keyboardType(
-                        .decimalPad)
+                    input("\(members[0].displayName)’s share (CHF)", text: $draft.firstExact, keyboard: .decimalPad)
+                    input("\(members[1].displayName)’s share (CHF)", text: $draft.secondExact, keyboard: .decimalPad)
                 } else if draft.split == .percentage {
-                    TextField("\(members[0].displayName)’s percentage", text: $draft.firstPercentage).keyboardType(
-                        .decimalPad)
+                    input("\(members[0].displayName)’s percentage", text: $draft.firstPercentage, keyboard: .decimalPad)
                     Text("The remainder goes to \(members[1].displayName).")
                 }
             }
@@ -39,4 +36,13 @@ struct ExpenseFormFields: View {
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
         }
     }
+    private func input(_ label: String, text: Binding<String>, keyboard: UIKeyboardType = .default) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(label).font(.caption).foregroundStyle(QuietPalette.muted)
+            TextField(label, text: text, axis: .vertical)
+                .keyboardType(keyboard)
+                .accessibilityLabel(label)
+        }.padding(.vertical, 4)
+    }
+
 }

@@ -14,7 +14,9 @@ struct ExpenseReviewSection: View {
             LabeledContent("Paid by", value: name(expense.payerId))
             LabeledContent("Date", value: expense.date.value)
             ForEach(expense.allocations, id: \.memberId) { share in
-                LabeledContent("\(name(share.memberId))’s share", value: share.centimes.absoluteCHF)
+                LabeledContent(
+                    share.memberId == member.userId ? "Your share" : "\(name(share.memberId))’s share",
+                    value: share.centimes.absoluteCHF)
             }
             if expense.categoryId != nil {
                 LabeledContent("Category", value: categoryName ?? "Previously selected category")
