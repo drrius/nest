@@ -80,6 +80,8 @@ struct IngredientReviewScreen: View {
                 }
             }
             Section {
+                Button("Save choices for later") { Task { await saveChoices() } }
+                Text("Save choices before leaving if you want to finish this review later.").font(.footnote)
                 Button("Add \(selectedCount) to groceries") { confirm = true }
                     .disabled(selectedCount == 0 || !validSelection(context))
             }
@@ -131,6 +133,18 @@ struct IngredientReviewScreen: View {
             choices = fresh.saved?.choices ?? []
             notice = nil
         } catch { notice = "Could not refresh ingredients. Your saved request is retained." }
+    }
+
+    private func saveChoices() async {
+        guard let original = context else { return }
+        busy = true
+        defer { busy = false }
+        do {
+            let saved = try await model.saveIngredientChoices(choices, context: original)
+            try model.requireIngredientContext(saved)
+            context = saved
+            notice = "Choices saved on this iPhone. No groceries were added."
+        } catch { notice = "Could not save these choices. Keep this review open and try again." }
     }
 
     private func add() async {

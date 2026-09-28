@@ -42,20 +42,31 @@ extension SessionModel {
         return updated
     }
 
-    func stageReviewedIngredients(_ choices: [MealIngredientChoice], context: IngredientReviewContext) async throws {
+    func saveIngredientChoices(
+        _ choices: [MealIngredientChoice], context: IngredientReviewContext
+    ) async throws -> IngredientReviewContext {
         try requireIngredientContext(context)
         guard let offline, let lease, let listing = context.listing, listing.complete,
             choices.map(\.id) == listing.ingredients.map(\.id),
             zip(choices, listing.ingredients).allSatisfy({ !$0.0.selected || $0.1.groceryItemId == nil })
         else { throw OfflineFailure.invalidOperation }
+        var updated = context
+        updated.saved = try await offline.saveIngredientReview(
+            week: context.week, revision: listing.revision, choices: choices,
+            expectedSequence: context.saved?.sequence, lease: lease)
+        try requireIngredientContext(context)
+        return updated
+    }
+
+    func stageReviewedIngredients(_ choices: [MealIngredientChoice], context: IngredientReviewContext) async throws {
+        try requireIngredientContext(context)
+        guard let offline, let lease, let listing = context.listing else { throw OfflineFailure.invalidOperation }
         let command = AddMealIngredients(
             operationId: UUID(), weekStart: context.week, expectedRevision: listing.revision,
             selected: choices.filter(\.selected).map(\.ingredient))
         _ = try command.validated()
-        let saved = try await offline.saveIngredientReview(
-            week: context.week, revision: listing.revision, choices: choices,
-            expectedSequence: context.saved?.sequence, lease: lease)
-        try requireIngredientContext(context)
+        let updated = try await saveIngredientChoices(choices, context: context)
+        guard let saved = updated.saved else { throw OfflineFailure.storage }
         _ = try await offline.stageIngredientAddition(command, expectedSequence: saved.sequence, lease: lease)
         try requireIngredientContext(context)
     }

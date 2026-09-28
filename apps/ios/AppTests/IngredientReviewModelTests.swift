@@ -36,7 +36,13 @@ final class IngredientReviewModelTests: XCTestCase {
                 ingredient: .init(entryId: row.entryId, ingredientId: row.ingredientId, quantity: "2", unit: "cups"),
                 selected: true)
         ]
-        try await model.stageReviewedIngredients(choices, context: context)
+        let savedChoices = try await model.saveIngredientChoices(choices, context: context)
+        let reopened = try await model.ingredientReviewContext(week: week)
+        XCTAssertEqual(reopened.saved?.choices, choices)
+        XCTAssertNil(reopened.saved?.pending)
+        let beforeAdd = await server.calls
+        XCTAssertTrue(beforeAdd.isEmpty)
+        try await model.stageReviewedIngredients(choices, context: savedChoices)
         do {
             try await model.retryReviewedIngredients(context)
             XCTFail("Expected lost response")
