@@ -6,8 +6,8 @@ import UIKit
 @MainActor
 final class SessionModel: ObservableObject {
     @Published var status: Status = .loading
-    @Published private(set) var today: TodayStatus = .idle
-    @Published private(set) var todayNotice: String?
+    @Published var today: TodayStatus = .idle
+    @Published var todayNotice: String?
     @Published var groceries: GroceryStatus = .idle
     @Published var groceryNotice: String?
     @Published var groceryAdd: SavedGroceryAdd?
@@ -68,13 +68,14 @@ final class SessionModel: ObservableObject {
     let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
     let mealAPI: MealAPI?
+    let assistantAPI: AssistantAPI?
     let calendarAPI: CalendarAPI?
     let moneyAPI: MoneyAPI?
     let receiptTransport: ReceiptTransport?
     let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
     let offline: ChoreOfflineStore?
-    private let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
+    let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
     var lease: OfflineLease?
     private var syncingGeneration: Int?
@@ -107,6 +108,7 @@ final class SessionModel: ObservableObject {
             chores = ChoreAPI(http: http)
             groceryAPI = GroceryAPI(http: http)
             mealAPI = MealAPI(http: http)
+            assistantAPI = AssistantAPI(http: http)
             foodAPI = FoodAPI(http: http)
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
@@ -118,6 +120,7 @@ final class SessionModel: ObservableObject {
             chores = nil
             groceryAPI = nil
             mealAPI = nil
+            assistantAPI = nil
             foodAPI = nil
             proposalAPI = nil
             calendarAPI = nil
@@ -130,6 +133,7 @@ final class SessionModel: ObservableObject {
             chores = nil
             groceryAPI = nil
             mealAPI = nil
+            assistantAPI = nil
             foodAPI = nil
             proposalAPI = nil
             calendarAPI = nil
@@ -144,7 +148,7 @@ final class SessionModel: ObservableObject {
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil, foodAPI: FoodAPI? = nil,
         proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil, moneyAPI: MoneyAPI? = nil,
-        receiptTransport: ReceiptTransport? = nil,
+        receiptTransport: ReceiptTransport? = nil, assistantAPI: AssistantAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -156,6 +160,7 @@ final class SessionModel: ObservableObject {
         self.chores = chores
         self.groceryAPI = groceryAPI
         self.mealAPI = mealAPI
+        self.assistantAPI = assistantAPI
         self.foodAPI = foodAPI
         self.proposalAPI = proposalAPI
         self.calendarAPI = calendarAPI
@@ -331,52 +336,6 @@ final class SessionModel: ObservableObject {
         } else {
             today = .failed
             todayNotice = nil
-        }
-    }
-
-    func complete(_ chore: NestChore) async {
-        guard let offline, let lease, case .ready(let member) = status else { return }
-        let attempt = generation
-        do {
-            let formatter = DateFormatter()
-            formatter.calendar = Calendar(identifier: .gregorian)
-            formatter.locale = Locale(identifier: "en_US_POSIX")
-            formatter.timeZone = .current
-            formatter.dateFormat = "yyyy-MM-dd"
-            let date = try CivilDate(formatter.string(from: .now))
-            try await offline.enqueue(chore, on: date, operation: UUID(), lease: lease)
-            guard generation == attempt, status == .ready(member) else { return }
-            UIImpactFeedbackGenerator(style: .light).impactOccurred()
-        } catch {
-            guard generation == attempt, status == .ready(member) else { return }
-            todayNotice = "Could not save this change. Please try again."
-            return
-        }
-        do {
-            let saved = try await savedReader(offline, lease)
-            guard generation == attempt, status == .ready(member) else { return }
-            if let saved { today = .loaded(saved) }
-            todayNotice = "Saved. This will sync when online."
-            await refreshToday()
-        } catch {
-            guard generation == attempt, status == .ready(member) else { return }
-            todayNotice = "Saved on this device, but could not display the change. Try reopening Nest."
-        }
-    }
-
-    func discard(_ operation: UUID) async {
-        guard let offline, let lease, case .ready(let member) = status else { return }
-        let attempt = generation
-        do {
-            try await offline.discard(operation, lease: lease)
-            let saved = try await savedReader(offline, lease)
-            guard generation == attempt, status == .ready(member) else { return }
-            if let saved { today = .loaded(saved) }
-            todayNotice = "Saved change discarded."
-            await refreshToday()
-        } catch {
-            guard generation == attempt, status == .ready(member) else { return }
-            todayNotice = "Could not discard this change. Please try again."
         }
     }
 
