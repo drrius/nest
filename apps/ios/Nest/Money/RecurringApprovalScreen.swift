@@ -7,6 +7,7 @@ struct RecurringApprovalScreen: View {
     let approvalId: UUID
     @State private var context: ExpenseContext?
     @State private var envelope: RecurringApprovalEnvelope?
+    @State private var currentRule: RecurringRule?
     @State private var saved: SavedRecurringDecision?
     @State private var working = false
     @State private var notice: String?
@@ -36,7 +37,7 @@ struct RecurringApprovalScreen: View {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
                                 Text("Only approve if the schedule, amount and shares above are correct.")
-                                Button("Approve rule") { choice = true }
+                                Button("Approve rule") { choice = true }.disabled(!matchesCurrent(approval.rule))
                                 Button("Decline rule", role: .destructive) { choice = false }
                             } else {
                                 Text("This approval has expired. Ask for a new proposal.")
@@ -68,7 +69,21 @@ struct RecurringApprovalScreen: View {
         }
     }
 
+    @ViewBuilder
     private func summary(_ rule: RecurringInput) -> some View {
+        if let currentRule, currentRule.id == rule.ruleId {
+            Section("Current rule") {
+                Text(currentRule.configuration.description).font(.headline)
+                Text(currentRule.status.rawValue.capitalized)
+                Text(schedule(currentRule.configuration.schedule))
+                if let amount = currentRule.configuration.amountCentimes {
+                    LabeledContent("Amount", value: amount.absoluteCHF)
+                }
+                if !matchesCurrent(rule) {
+                    Text("This rule changed after the proposal. Ask for an updated proposal before approving.")
+                }
+            }
+        }
         Section("Rule to save") {
             Text(rule.configuration.description).font(.headline)
             LabeledContent("Change", value: rule.expectedRevision == nil ? "Create rule" : "Update rule")
@@ -121,12 +136,25 @@ struct RecurringApprovalScreen: View {
             context = current
             saved = try await session.savedRecurringDecision(current)
             envelope = nil
-            if saved == nil { envelope = try await session.readRecurringApproval(current, approvalId: approvalId) }
+            currentRule = nil
+            if saved == nil {
+                let proposal = try await session.readRecurringApproval(current, approvalId: approvalId)
+                if proposal.approval.rule.expectedRevision != nil {
+                    currentRule = try await session.readRecurringRule(current, ruleId: proposal.approval.rule.ruleId)
+                        .rule
+                }
+                envelope = proposal
+            }
         }
     }
+    private func matchesCurrent(_ rule: RecurringInput) -> Bool {
+        guard let revision = rule.expectedRevision else { return true }
+        return currentRule?.id == rule.ruleId && currentRule?.revision == revision
+    }
+
     private func decide(_ approved: Bool) async {
         guard let context, let approval = envelope?.approval, approval.status == .pending,
-            ApprovalTime.isOpen(approval.expiresAt, now: .now)
+            ApprovalTime.isOpen(approval.expiresAt, now: .now), !approved || matchesCurrent(approval.rule)
         else { return }
         await perform {
             try await session.stageRecurringDecision(
