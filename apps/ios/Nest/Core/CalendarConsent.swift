@@ -76,10 +76,17 @@ struct CalendarAPI: Sendable {
 
     func setConsent(token: String, member: VerifiedMember, command: SetCalendarConsent) async throws -> CalendarConsent
     {
+        try await setConsentReceipt(token: token, member: member, command: command).consent
+    }
+
+    func setConsentReceipt(
+        token: String, member: VerifiedMember, command: SetCalendarConsent
+    ) async throws -> CalendarConsentReceipt {
         _ = try command.validated()
         let response = try await http.write(
             "v1/calendar/consent/set", token: token, household: member.householdId,
             body: command, as: CalendarConsentReceipt.self)
-        return try response.validated(member: member, command: command)
+        _ = try response.validated(member: member, command: command)
+        return response
     }
 }
