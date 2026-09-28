@@ -59,6 +59,8 @@ struct TodayScreen: View {
                 content
                 NavigationLink("Manage chores") { RoutinesScreen(model: model) }
                     .frame(minHeight: 44).padding(.top, 8)
+                TodayBillsSection(session: model, member: member, refresh: todayRefresh)
+                    .id(member.userId)
                 TodayCalendarSection(session: model, member: member, refresh: todayRefresh)
                     .id(member.userId)
                     .padding(.top, 24)
