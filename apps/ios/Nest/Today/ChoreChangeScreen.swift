@@ -10,6 +10,7 @@ struct ChoreChangeScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var confirmingSkip = false
+    @State private var confirmingDiscard = false
 
     var body: some View {
         Form {
@@ -46,6 +47,24 @@ struct ChoreChangeScreen: View {
         .disabled(working || context == nil)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .navigationTitle("Scheduled chore")
+        .navigationBarBackButtonHidden()
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                Button("Back", systemImage: "chevron.left") {
+                    if saved == nil, let chore, selectedDate != chore.dueDate {
+                        confirmingDiscard = true
+                    } else {
+                        dismiss()
+                    }
+                }.disabled(working)
+            }
+        }
+        .confirmationDialog("Discard unsaved date?", isPresented: $confirmingDiscard) {
+            Button("Discard date change", role: .destructive) { dismiss() }
+            Button("Keep editing", role: .cancel) {}
+        } message: {
+            Text("The selected date has not been saved.")
+        }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .task { await load() }
         .confirmationDialog("Skip this occurrence?", isPresented: $confirmingSkip) {
