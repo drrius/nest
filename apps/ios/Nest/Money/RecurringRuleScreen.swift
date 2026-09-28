@@ -21,6 +21,11 @@ struct RecurringRuleScreen: View {
                     )
                     .foregroundStyle(QuietPalette.muted)
                 }
+                Section {
+                    NavigationLink("Manage rule") {
+                        RecurringStateScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+                    }
+                }
                 Section("Schedule") {
                     Text(schedule(rule.configuration.schedule))
                     LabeledContent("Starts", value: rule.configuration.startDate.value)
