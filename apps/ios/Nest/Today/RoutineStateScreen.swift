@@ -32,6 +32,7 @@ struct RoutineStateScreen: View {
             } else if let routine {
                 Section(routine.definition.title) {
                     Text("Status: " + routine.state.rawValue.capitalized)
+                    NavigationLink("Edit chore") { ChoreEditScreen(model: model, routine: routine) }
                     if routine.state == .active { actionButton("Pause chore", action: .pause) }
                     if routine.state == .paused { actionButton("Resume chore", action: .resume) }
                     if routine.state != .archived { actionButton("Archive chore", action: .archive) }

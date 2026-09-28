@@ -6,6 +6,7 @@ struct RoutinesScreen: View {
     @State private var notice: String?
     @State private var working = false
     @State private var hasSavedChange = false
+    @State private var hasSavedEdit = false
 
     var body: some View {
         List {
@@ -17,6 +18,9 @@ struct RoutinesScreen: View {
             }
             if hasSavedChange {
                 NavigationLink("Review saved chore change") { RoutineStateScreen(model: model, routine: nil) }
+            }
+            if hasSavedEdit {
+                NavigationLink("Review saved chore edit") { ChoreEditScreen(model: model, routine: nil) }
             }
             if let list {
                 if list.routines.isEmpty {
@@ -66,6 +70,7 @@ struct RoutinesScreen: View {
         do {
             let context = try model.routineCreateContext()
             hasSavedChange = try await model.savedRoutineState(context) != nil
+            hasSavedEdit = try await model.savedRoutineEdit(context) != nil
             list = try await model.readRoutines(context)
             notice = nil
         } catch { notice = "Could not refresh chores. Connect and try again." }
