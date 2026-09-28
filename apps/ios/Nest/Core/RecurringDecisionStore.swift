@@ -3,6 +3,11 @@ import Foundation
 struct SavedRecurringDecision: Codable, Sendable {
     let decision: RecurringDecision
     var result: RecurringApprovalEnvelope?
+    var expiry: FinancialApprovalExpiry?
+
+    var isTerminal: Bool {
+        expiry?.expiredUnused == true || result.map { [.consumed, .denied].contains($0.approval.status) } == true
+    }
 }
 
 extension ChoreOfflineStore {
@@ -14,6 +19,15 @@ extension ChoreOfflineStore {
         let member = decisionMember(lease)
         try saved.decision.rule.validated(member: member)
         if let result = saved.result { _ = try result.matching(saved.decision, member: member, terminal: false) }
+        if let expiry = saved.expiry {
+            _ = try expiry.validated(
+                member: member, approvalId: saved.decision.approvalId,
+                operationId: saved.decision.operationId,
+                command: saved.decision.rule.expectedRevision == nil ? .createRule : .updateRule)
+            guard expiry.expiredUnused,
+                saved.result.map({ [.pending, .approved].contains($0.approval.status) }) != false
+            else { throw OfflineFailure.invalidOperation }
+        }
         return saved
     }
 
@@ -27,7 +41,9 @@ extension ChoreOfflineStore {
     }
 
     func reconcileRecurringDecision(_ result: RecurringApprovalEnvelope, lease: OfflineLease) throws {
-        guard var saved = try readRecurringDecision(lease: lease) else { throw OfflineFailure.invalidOperation }
+        guard var saved = try readRecurringDecision(lease: lease), saved.expiry == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         _ = try result.matching(saved.decision, member: decisionMember(lease), terminal: false)
         if let previous = saved.result, [.consumed, .denied].contains(previous.approval.status) {
             guard previous.approval.status == result.approval.status,
@@ -39,9 +55,23 @@ extension ChoreOfflineStore {
         try db.run("UPDATE recurring_decisions SET body=? WHERE actor=? AND household=?", [body] + lease.scope)
     }
 
+    func expireRecurringDecision(_ evidence: FinancialApprovalExpiry, lease: OfflineLease) throws {
+        guard var saved = try readRecurringDecision(lease: lease), !saved.isTerminal else {
+            throw OfflineFailure.invalidOperation
+        }
+        _ = try evidence.validated(
+            member: decisionMember(lease), approvalId: saved.decision.approvalId,
+            operationId: saved.decision.operationId,
+            command: saved.decision.rule.expectedRevision == nil ? .createRule : .updateRule)
+        guard evidence.expiredUnused else { throw OfflineFailure.invalidOperation }
+        saved.expiry = evidence
+        let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
+        try db.run("UPDATE recurring_decisions SET body=? WHERE actor=? AND household=?", [body] + lease.scope)
+    }
+
     func finishRecurringDecision(approvalId: UUID, lease: OfflineLease) throws {
         guard let saved = try readRecurringDecision(lease: lease), saved.decision.approvalId == approvalId,
-            let result = saved.result, [.consumed, .denied].contains(result.approval.status)
+            saved.isTerminal
         else { throw OfflineFailure.invalidOperation }
         try db.run("DELETE FROM recurring_decisions WHERE actor=? AND household=?", lease.scope)
     }

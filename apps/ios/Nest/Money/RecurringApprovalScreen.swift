@@ -23,7 +23,10 @@ struct RecurringApprovalScreen: View {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this rule." : "You chose to decline this rule.")
-                    if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
+                    if saved.expiry?.expiredUnused == true {
+                        Text("This approval expired without changing the rule. Ask for a new proposal if still needed.")
+                        Button("Done") { Task { await finish() } }
+                    } else if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
                         outcome(result.approval)
                         Button("Done") { Task { await finish() } }
                     } else {
