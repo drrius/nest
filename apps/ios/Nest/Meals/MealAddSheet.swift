@@ -33,6 +33,7 @@ struct MealAddSheet: View {
                         Text("Shared with your household · up to 120 characters.")
                     }
                 }
+                if let day = target.date.localDay() { SchedulingWarningSection(session: model, day: day) }
                 if let errorText {
                     Section { Text(errorText).foregroundStyle(QuietPalette.muted) }
                 }

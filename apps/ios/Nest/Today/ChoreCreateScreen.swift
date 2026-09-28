@@ -39,6 +39,7 @@ struct ChoreCreateScreen: View {
                 }
             } else if let roster, roster.members.count == 2 {
                 ChoreCreateFields(draft: $draft, members: roster.members)
+                if draft.kind == "one_off" { SchedulingWarningSection(session: model, day: draft.date) }
                 Section {
                     Button("Add chore") { Task { await submit() } }
                         .disabled((try? draft.command()) == nil)

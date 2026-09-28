@@ -32,6 +32,7 @@ struct ChoreEditScreen: View {
                 }
             } else if loaded, let routine {
                 ChoreCreateFields(draft: $draft, members: members)
+                if draft.kind == "one_off" { SchedulingWarningSection(session: model, day: draft.date) }
                 Section {
                     Button("Save changes") { Task { await save() } }
                         .disabled((try? draft.patch(comparedTo: routine.definition)) == nil)

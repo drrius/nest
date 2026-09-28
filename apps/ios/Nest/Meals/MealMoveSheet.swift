@@ -63,6 +63,7 @@ struct MealMoveSheet: View {
                         ForEach(MealSlot.allCases, id: \.self) { Text($0.label).tag($0) }
                     }
                 }.disabled(saving)
+                if let day = date.localDay() { SchedulingWarningSection(session: model, day: day) }
                 Text(
                     leftovers
                         ? "The original meal stays in your plan. Its recipe is copied to the leftovers."
