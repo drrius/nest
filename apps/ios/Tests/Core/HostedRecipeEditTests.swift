@@ -66,6 +66,18 @@ final class HostedRecipeEditTests: XCTestCase {
         let plannedWeek = try await api.week(token: token, member: member, start: start)
         let before = try await api.plannedRecipe(token: token, member: member, week: plannedWeek, id: placed.entryId)
         XCTAssertNotNil(before.snapshot)
+        let ingredients = try await api.allIngredients(
+            token: token, member: member, week: start, revision: plannedWeek.revision)
+        let plannedIngredients = ingredients.ingredients.filter { $0.entryId == placed.entryId }
+        XCTAssertEqual(plannedIngredients.map(\.name), ["Lentils"])
+        XCTAssertEqual(plannedIngredients.first?.quantity, "200")
+        XCTAssertEqual(plannedIngredients.first?.unit, "g")
+        do {
+            _ = try await api.allIngredients(
+                token: outsider, member: member, week: start, revision: plannedWeek.revision)
+            XCTFail("Outsider read household ingredients")
+        } catch { XCTAssertTrue((error as? NestAPIFailure) == .forbidden || (error as? NestAPIFailure) == .notMember) }
+
         let ingredient = try XCTUnwrap(recipe.ingredients.first)
         let edit = EditRecipe(
             operationId: UUID(), definitionId: id, expectedRevision: library.revision,
