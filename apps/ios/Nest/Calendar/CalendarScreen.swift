@@ -2,18 +2,23 @@ import EventKit
 import SwiftUI
 
 struct CalendarScreen: View {
+    @ObservedObject var session: SessionModel
     @StateObject private var model: CalendarModel
     @State private var day = Date()
     @State private var picking = false
     @Environment(\.scenePhase) private var scenePhase
     @Environment(\.openURL) private var openURL
 
-    init(member: VerifiedMember) {
+    init(member: VerifiedMember, session: SessionModel) {
+        self.session = session
         _model = StateObject(wrappedValue: CalendarModel(selectionStore: CalendarSelectionStore(member: member)))
     }
 
     var body: some View {
         List {
+            Section {
+                NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
+            }
             if let notice = model.notice { Section { Text(notice) } }
             if model.access == .allowed {
                 Section {

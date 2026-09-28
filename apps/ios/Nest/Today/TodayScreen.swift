@@ -71,7 +71,7 @@ struct TodayScreen: View {
                 .buttonStyle(.plain)
                 .padding(.top, 28)
                 mealsShortcut
-                NavigationLink("Calendar") { CalendarScreen(member: member).id(model.generation) }
+                NavigationLink("Calendar") { CalendarScreen(member: member, session: model).id(model.generation) }
                     .frame(minHeight: 44)
                     .padding(.top, 16)
             }
