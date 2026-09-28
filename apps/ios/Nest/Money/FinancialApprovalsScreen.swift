@@ -52,7 +52,7 @@ struct FinancialApprovalsScreen: View {
                         }
                     } else {
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(row.command.rawValue)
+                            Text(row.command.title)
                             Text("Review for this proposal type is not available in this build.")
                                 .font(.caption).foregroundStyle(QuietPalette.muted)
                         }
@@ -81,6 +81,7 @@ struct FinancialApprovalsScreen: View {
             next = nil
             loaded = false
             saved = nil
+            savedRefund = nil
         }
         do {
             let context = try session.expenseContext()
