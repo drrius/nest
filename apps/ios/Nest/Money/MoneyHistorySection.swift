@@ -12,15 +12,19 @@ struct MoneyHistorySection: View {
     var body: some View {
         Section("History") {
             ForEach(events) { event in
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(event.description).font(.headline)
-                    Text(event.amountCentimes.absoluteCHF).monospacedDigit()
-                    Text(
-                        "\(event.kind.rawValue.replacingOccurrences(of: "_", with: " ").capitalized) · \(event.occurredOn)"
-                    )
-                    .font(.caption).foregroundStyle(QuietPalette.muted)
-                    if event.hasReceipt { Label("Receipt attached", systemImage: "paperclip").font(.caption) }
-                }.padding(.vertical, 4)
+                NavigationLink {
+                    MoneyDetailScreen(session: session, member: member, eventId: event.id)
+                } label: {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(event.description).font(.headline)
+                        Text(event.amountCentimes.absoluteCHF).monospacedDigit()
+                        Text(
+                            "\(event.kind.rawValue.replacingOccurrences(of: "_", with: " ").capitalized) · \(event.occurredOn)"
+                        )
+                        .font(.caption).foregroundStyle(QuietPalette.muted)
+                        if event.hasReceipt { Label("Receipt attached", systemImage: "paperclip").font(.caption) }
+                    }.padding(.vertical, 4)
+                }
             }
             if loading { ProgressView("Loading history…") }
             if let notice { Text(notice) }
