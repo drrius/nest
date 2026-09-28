@@ -318,6 +318,7 @@ const methods: Record<string, string> = {
   "/v1/routines": "GET",
   "/v1/routines/roster": "GET",
   "/v1/routines/create": "POST",
+  "/v1/routines/cancel-create": "POST",
   "/v1/routines/edit": "POST",
   "/v1/routines/state": "POST",
   "/v1/setup/status": "GET",
