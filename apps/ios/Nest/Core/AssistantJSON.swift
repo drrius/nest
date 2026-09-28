@@ -2,8 +2,12 @@ import Foundation
 
 /// Keep tool payloads intact; never turn an unrecognized tool result into a success message.
 indirect enum AssistantJSON: Decodable, Equatable, Sendable {
-    case null, bool(Bool), string(String), number(Decimal)
-    case array([AssistantJSON]), object([String: AssistantJSON])
+    case null
+    case bool(Bool)
+    case string(String)
+    case number(Decimal)
+    case array([AssistantJSON])
+    case object([String: AssistantJSON])
 
     init(from decoder: Decoder) throws {
         let value = try decoder.singleValueContainer()

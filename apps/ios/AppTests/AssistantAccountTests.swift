@@ -22,7 +22,8 @@ final class AssistantAccountTests: XCTestCase {
         let chores = FakeChoreServer(actorA: member.userId, actorB: partner, household: member.householdId)
         let choreHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await chores.respond($0) }
         let eventId = UUID()
-        let server = DelayedAssistantServer(data: try payload(route, member: member, partner: partner, eventId: eventId))
+        let server = DelayedAssistantServer(
+            data: try payload(route, member: member, partner: partner, eventId: eventId))
         let http = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await server.respond($0) }
         let url = FileManager.default.temporaryDirectory.appending(path: "assistant-account-\(UUID()).sqlite")
         addTeardownBlock { try? FileManager.default.removeItem(at: url) }
@@ -61,7 +62,8 @@ final class AssistantAccountTests: XCTestCase {
                     version: 1, actorId: member.userId, householdId: member.householdId,
                     conversations: [], nextCursor: nil))
         }
-        return Data("""
+        return Data(
+            """
             {"version":1,"conversation":{"conversationId":"\(eventId)","revision":"1","messages":[
               {"id":"message","role":"assistant","parts":[{"type":"text","text":"Private reply"}]}]}}
             """.utf8)

@@ -34,9 +34,11 @@ struct AssistantConversationPage: Codable, Sendable {
 /// The conversation API accepts offset timestamps and one to six fractional digits.
 enum AssistantTimestamp {
     static func date(_ value: String) -> Date? {
-        guard value.range(
-            of: #"\A[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,6})?(Z|[+-][0-9]{2}:[0-9]{2})\z"#,
-            options: .regularExpression) != nil
+        guard
+            value.range(
+                of:
+                    #"\A[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}(\.[0-9]{1,6})?(Z|[+-][0-9]{2}:[0-9]{2})\z"#,
+                options: .regularExpression) != nil
         else { return nil }
         let formatter = ISO8601DateFormatter()
         formatter.formatOptions = [.withInternetDateTime]
