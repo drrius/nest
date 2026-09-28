@@ -8,6 +8,7 @@ struct MealProposalScreen: View {
     @State private var busy = false
     @State private var notice: String?
     @State private var confirming = false
+    @State private var editing: ProposedMeal?
 
     var body: some View {
         List {
@@ -27,6 +28,11 @@ struct MealProposalScreen: View {
         .tint(QuietPalette.accent)
         .navigationTitle("Plan meals")
         .navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $editing) { entry in
+            if let context {
+                ProposalMealEditSheet(model: model, context: context, entry: entry) { self.context = $0 }
+            }
+        }
         .task(id: model.generation) { await perform(.load) }
         .confirmationDialog("Save these meals to your household week?", isPresented: $confirming) {
             Button("Approve and save meals") { Task { await perform(.approve) } }
@@ -47,6 +53,11 @@ struct MealProposalScreen: View {
                                 ProposalRecipeScreen(entry: entry)
                             } label: {
                                 ProposalMealRow(entry: entry)
+                            }
+                            if proposal.status == .ready, context.edit == nil, context.approval == nil,
+                                context.discard == nil
+                            {
+                                Button("Change suggestion") { editing = entry }
                             }
                         }
                     }
