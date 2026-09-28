@@ -100,6 +100,7 @@ actor ChoreOfflineStore {
         try db.run(
             "CREATE TABLE IF NOT EXISTS receipt_uploads (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
+        try Self.createVariableCycleTable(db)
         try db.run(
             "CREATE TABLE IF NOT EXISTS recurring_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
