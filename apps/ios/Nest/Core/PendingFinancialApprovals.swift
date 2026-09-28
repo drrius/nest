@@ -38,7 +38,7 @@ struct PendingFinancialApprovals: Codable, Sendable {
         var previous = after?.uuidString.lowercased() ?? ""
         for approval in approvals {
             let identity = approval.id.uuidString.lowercased()
-            guard identity > previous, MoneyTime.timestamp(approval.expiresAt) else {
+            guard identity > previous, ApprovalTime.date(approval.expiresAt) != nil else {
                 throw NestAPIFailure.contract
             }
             previous = identity

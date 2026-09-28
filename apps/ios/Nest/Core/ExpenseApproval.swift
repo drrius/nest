@@ -18,7 +18,7 @@ struct ExpenseApprovalEnvelope: Codable, Sendable {
 
     func validated(member: VerifiedMember, approvalId: UUID) throws -> Self {
         guard version == 1, actorId == member.userId, householdId == member.householdId,
-            approval.id == approvalId, MoneyTime.timestamp(approval.expiresAt),
+            approval.id == approvalId, ApprovalTime.date(approval.expiresAt) != nil,
             (approval.status == .consumed) == (approval.receipt != nil)
         else { throw NestAPIFailure.contract }
         _ = try approval.expense.validated(member: member)

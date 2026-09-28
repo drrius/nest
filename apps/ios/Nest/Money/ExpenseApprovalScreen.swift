@@ -32,9 +32,15 @@ struct ExpenseApprovalScreen: View {
                 ExpenseReviewSection(expense: approval.expense, member: member, members: [], categoryName: nil)
                 Section {
                     if approval.status == .pending {
-                        Text("Only approve if the amount, payer and split above are correct.")
-                        Button("Approve expense") { choice = true }
-                        Button("Decline expense", role: .destructive) { choice = false }
+                        TimelineView(.periodic(from: .now, by: 1)) { clock in
+                            if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
+                                Text("Only approve if the amount, payer and split above are correct.")
+                                Button("Approve expense") { choice = true }
+                                Button("Decline expense", role: .destructive) { choice = false }
+                            } else {
+                                Text("This approval has expired. Ask for a new proposal.")
+                            }
+                        }
                     } else {
                         outcome(approval)
                     }
@@ -84,7 +90,9 @@ struct ExpenseApprovalScreen: View {
         }
     }
     private func decide(_ approved: Bool) async {
-        guard let context, let approval = envelope?.approval, approval.status == .pending else { return }
+        guard let context, let approval = envelope?.approval, approval.status == .pending,
+            ApprovalTime.isOpen(approval.expiresAt, now: .now)
+        else { return }
         await perform {
             try await session.stageExpenseDecision(
                 .init(
