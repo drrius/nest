@@ -40,6 +40,16 @@ struct MealWeekScreen: View {
                     MealReplacementStatus(model: model, saved: saved)
                 }
                 content
+                if case .loaded(let week) = model.mealStatus {
+                    NavigationLink {
+                        MealProposalScreen(model: model, week: week).id(model.generation)
+                    } label: {
+                        Label("Plan meals together", systemImage: "sparkles")
+                            .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                    }
+                    .buttonStyle(.plain)
+                    .foregroundStyle(QuietPalette.accent)
+                }
                 if let week = model.mealSelection {
                     NavigationLink {
                         IngredientReviewScreen(model: model, week: week)

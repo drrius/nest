@@ -62,7 +62,11 @@ public struct MealProposalChangeReceipt: Codable, Equatable, Sendable {
 
 public struct MealProposalEdit: Codable, Equatable, Sendable {
     public enum Status: String, Codable, Sendable { case pending, applied, failed }
-    public enum Failure: String, Codable, Sendable { case unavailable, constraints_changed, no_suitable_meals }
+    public enum Failure: String, Codable, Sendable {
+        case unavailable
+        case constraintsChanged = "constraints_changed"
+        case noSuitableMeals = "no_suitable_meals"
+    }
     public let version: Int
     public let actorId: UUID
     public let householdId: UUID
