@@ -25,7 +25,9 @@ extension ChoreOfflineStore {
 
     func enqueueRecipeCreation(_ command: CreateRecipe, lease: OfflineLease) throws {
         try authorize(lease)
-        guard try readRecipeCreation(lease: lease) == nil, try readRecipeArchive(lease: lease) == nil else {
+        guard try readRecipeCreation(lease: lease) == nil, try readRecipeArchive(lease: lease) == nil,
+            try readRecipeEdit(lease: lease) == nil
+        else {
             throw OfflineFailure.alreadyQueued
         }
         let saved = SavedRecipeCreation(command: command, state: .pending, receipt: nil)
