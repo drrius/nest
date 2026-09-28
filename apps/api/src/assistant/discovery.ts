@@ -27,6 +27,7 @@ export function discoverConversations(
       const query = new URLSearchParams({
         select:
           "conversationId:id,actorId:actor_id,householdId:household_id,revision:revision::text,createdAt:created_at,updatedAt:updated_at",
+        revision: "gt.0",
         actor_id: `eq.${caller.member.userId}`,
         household_id: `eq.${caller.member.householdId}`,
         ...filters,
@@ -46,7 +47,9 @@ export function discoverConversations(
         new Set(rows.map((row) => row.conversationId)).size !== rows.length ||
         rows.some(
           (row) =>
-            row.actorId !== caller.member.userId || row.householdId !== caller.member.householdId,
+            row.revision === "0" ||
+            row.actorId !== caller.member.userId ||
+            row.householdId !== caller.member.householdId,
         )
       )
         return yield* new ApiFailure({ code: "unavailable" });
