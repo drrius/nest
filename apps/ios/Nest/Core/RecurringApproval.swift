@@ -33,7 +33,7 @@ struct RecurringApprovalEnvelope: Codable, Sendable {
 }
 
 extension MoneyAPI {
-    func ruleApproval(token: String, member: VerifiedMember, approvalId: UUID) async throws
+    func recurringApproval(token: String, member: VerifiedMember, approvalId: UUID) async throws
         -> RecurringApprovalEnvelope
     {
         let result = try await http.read(
