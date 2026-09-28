@@ -62,7 +62,7 @@ struct CalendarSharingScreen: View {
                     calendar.title,
                     isOn: Binding(
                         get: { selected.contains(calendar.id) },
-                        set: { if $0 { selected.insert(calendar.id) } else { selected.remove(calendar.id) } }
+                        set: { updateSelection(calendar.id, enabled: $0) }
                     ))
             }
             Button("Publish selected busy times") { Task { await publish() } }
@@ -88,6 +88,12 @@ struct CalendarSharingScreen: View {
         }
     }
 
+    private func updateSelection(_ id: String, enabled: Bool) {
+        guard let context, (try? session.requireCalendarContext(context)) != nil else { return }
+        if enabled { selected.insert(id) } else { selected.remove(id) }
+        CalendarSelectionStore(member: context.member, purpose: .sharing).save(selected)
+    }
+
     private func load() async {
         working = true
         defer { working = false }
@@ -96,7 +102,9 @@ struct CalendarSharingScreen: View {
             context = value
             consent = try await session.readCalendarConsent(value)
             calendars = reader.calendars()
+            selected = CalendarSelectionStore(member: value.member, purpose: .sharing).read()
             selected.formIntersection(calendars.map(\.id))
+            CalendarSelectionStore(member: value.member, purpose: .sharing).save(selected)
         } catch {
             consent = nil
             notice = "Could not load sharing status. Try again online."

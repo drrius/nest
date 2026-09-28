@@ -12,6 +12,13 @@ final class CalendarSelectionStoreTests: XCTestCase {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
         let first = CalendarSelectionStore(member: member, defaults: defaults)
         first.save(["device-calendar-id"])
+        let sharing = CalendarSelectionStore(member: member, purpose: .sharing, defaults: defaults)
+        XCTAssertTrue(sharing.read().isEmpty)
+        sharing.save(["different-calendar"])
+        XCTAssertEqual(first.read(), ["device-calendar-id"])
+        XCTAssertEqual(
+            CalendarSelectionStore(member: member, purpose: .sharing, defaults: defaults).read(), ["different-calendar"]
+        )
         let reopened = CalendarSelectionStore(member: member, defaults: defaults)
         XCTAssertEqual(reopened.read(), ["device-calendar-id"])
         let partner = VerifiedMember(userId: UUID(), householdId: member.householdId, displayName: "Partner")

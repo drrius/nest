@@ -1,14 +1,16 @@
 import Foundation
 
-/// Device-local display choices only. These identifiers must never enter a server payload.
+/// Device-local calendar choices only. These identifiers must never enter a server payload.
 @MainActor
 final class CalendarSelectionStore {
+    enum Purpose: String { case display, sharing }
+
     private let defaults: UserDefaults
     private let key: String
 
-    init(member: VerifiedMember, defaults: UserDefaults = .standard) {
+    init(member: VerifiedMember, purpose: Purpose = .display, defaults: UserDefaults = .standard) {
         self.defaults = defaults
-        key = "nest.calendar.display.\(member.householdId.uuidString).\(member.userId.uuidString)"
+        key = "nest.calendar.\(purpose.rawValue).\(member.householdId.uuidString).\(member.userId.uuidString)"
     }
 
     func read() -> Set<String> {
