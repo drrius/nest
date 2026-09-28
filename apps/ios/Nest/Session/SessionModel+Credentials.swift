@@ -1,6 +1,20 @@
 import Foundation
 
 extension SessionModel {
+    func signOut() async {
+        guard let auth else { return }
+        generation += 1
+        let attempt = generation
+        await clearPresentation()
+        guard generation == attempt else { return }
+        do {
+            try await serializeCredentials { try await auth.signOut() }
+            if generation == attempt { status = .signedOut }
+        } catch {
+            if generation == attempt { status = .unavailable }
+        }
+    }
+
     func serializeCredentials<Value: Sendable>(
         _ action: @escaping @Sendable () async throws -> Value
     ) async throws -> Value {

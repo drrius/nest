@@ -69,6 +69,7 @@ final class SessionModel: ObservableObject {
     let groceryAPI: GroceryAPI?
     let mealAPI: MealAPI?
     let calendarAPI: CalendarAPI?
+    let moneyAPI: MoneyAPI?
     let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
     let offline: ChoreOfflineStore?
@@ -106,6 +107,7 @@ final class SessionModel: ObservableObject {
             foodAPI = FoodAPI(http: http)
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
+            moneyAPI = MoneyAPI(http: http)
             offline = store
         } catch is NestConfigurationError {
             auth = nil
@@ -115,6 +117,7 @@ final class SessionModel: ObservableObject {
             foodAPI = nil
             proposalAPI = nil
             calendarAPI = nil
+            moneyAPI = nil
             offline = nil
             status = .configuration
         } catch {
@@ -125,6 +128,7 @@ final class SessionModel: ObservableObject {
             foodAPI = nil
             proposalAPI = nil
             calendarAPI = nil
+            moneyAPI = nil
             offline = nil
             status = .unavailable
         }
@@ -133,7 +137,7 @@ final class SessionModel: ObservableObject {
     init(
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil, foodAPI: FoodAPI? = nil,
-        proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil,
+        proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil, moneyAPI: MoneyAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -148,6 +152,7 @@ final class SessionModel: ObservableObject {
         self.foodAPI = foodAPI
         self.proposalAPI = proposalAPI
         self.calendarAPI = calendarAPI
+        self.moneyAPI = moneyAPI
         self.offline = offline
         self.savedReader = savedReader
         self.deactivateLease = deactivateLease
@@ -204,20 +209,6 @@ final class SessionModel: ObservableObject {
             try await verify(session, attempt: attempt)
         } catch {
             if generation == attempt { status = state(for: error) }
-        }
-    }
-
-    func signOut() async {
-        guard let auth else { return }
-        generation += 1
-        let attempt = generation
-        await clearPresentation()
-        guard generation == attempt else { return }
-        do {
-            try await serializeCredentials { try await auth.signOut() }
-            if generation == attempt { status = .signedOut }
-        } catch {
-            if generation == attempt { status = .unavailable }
         }
     }
 

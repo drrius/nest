@@ -70,6 +70,8 @@ struct TodayScreen: View {
                 }
                 .buttonStyle(.plain)
                 .padding(.top, 28)
+                NavigationLink("Money") { MoneyScreen(session: model, member: member).id(model.generation) }
+                    .frame(minHeight: 44)
                 mealsShortcut
                 NavigationLink("Calendar") { CalendarScreen(member: member, session: model).id(model.generation) }
                     .frame(minHeight: 44)
