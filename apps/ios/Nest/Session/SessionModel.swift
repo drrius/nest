@@ -107,7 +107,7 @@ final class SessionModel: ObservableObject {
             foodAPI = FoodAPI(http: http)
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
-            moneyAPI = MoneyAPI(http: http)
+            moneyAPI = MoneyAPI(http: http, storageOrigin: configuration.supabaseURL)
             offline = store
         } catch is NestConfigurationError {
             auth = nil

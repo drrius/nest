@@ -54,6 +54,7 @@ struct MoneyBalance: Codable, Sendable {
 
 struct MoneyAPI: Sendable {
     let http: NestHTTP
+    var storageOrigin: URL? = nil
 
     func balance(token: String, member: VerifiedMember) async throws -> MoneyBalance {
         let result = try await http.read(

@@ -21,6 +21,9 @@ struct MoneyDetailScreen: View {
                     if let note = detail.note, !note.isEmpty { Text(note) }
                     if let total = detail.receiptTotalCentimes { Text("Receipt total: \(total.absoluteCHF)") }
                 }
+                if detail.event.hasReceipt {
+                    Section { ReceiptButton(session: session, member: member, eventId: eventId) }
+                }
                 Section("Recorded shares") {
                     ForEach(detail.shares) { share in
                         VStack(alignment: .leading, spacing: 6) {

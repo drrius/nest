@@ -48,6 +48,17 @@ extension SessionModel {
         return result
     }
 
+    func readReceiptLink(member: VerifiedMember, generation expected: Int, eventId: UUID) async throws -> URL {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth, let moneyAPI else { throw NestAPIFailure.configuration }
+        let session = try await auth.session()
+        try requireMoneyAccount(member, generation: expected)
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let result = try await moneyAPI.receiptLink(token: session.accessToken, member: member, eventId: eventId)
+        try requireMoneyAccount(member, generation: expected)
+        return result
+    }
+
     func requireMoneyAccount(_ member: VerifiedMember, generation expected: Int) throws {
         guard generation == expected, status == .ready(member) else { throw NestAPIFailure.signedOut }
     }
