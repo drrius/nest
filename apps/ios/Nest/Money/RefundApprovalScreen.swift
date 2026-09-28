@@ -6,6 +6,7 @@ struct RefundApprovalScreen: View {
     let approvalId: UUID
     @State private var context: ExpenseContext?
     @State private var envelope: RefundApprovalEnvelope?
+    @State private var original: MoneyDetail?
     @State private var saved: SavedRefundDecision?
     @State private var working = false
     @State private var notice: String?
@@ -67,7 +68,11 @@ struct RefundApprovalScreen: View {
         }
     }
 
+    @ViewBuilder
     private func summary(_ refund: RefundInput) -> some View {
+        if let original, original.event.id == refund.sourceEventId {
+            ApprovalOriginalEntry(detail: original, member: member)
+        }
         Section("Refund to record") {
             Text(refund.description).font(.headline)
             LabeledContent("Amount", value: refund.amountCentimes.absoluteCHF)
@@ -87,12 +92,12 @@ struct RefundApprovalScreen: View {
     @ViewBuilder
     private func outcome(_ approval: RefundApproval) -> some View {
         if let receipt = approval.receipt {
-            Text("Expense recorded.")
+            Text("Refund recorded.")
             NavigationLink("View recorded refund") {
                 MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId)
             }
         } else if approval.status == .denied {
-            Text("Expense declined. No refund was recorded by this approval.")
+            Text("Refund declined. No refund was recorded by this approval.")
         } else {
             Text("This approval is awaiting its recorded result. Refresh to check again.")
         }
@@ -103,12 +108,19 @@ struct RefundApprovalScreen: View {
             context = current
             saved = try await session.savedRefundDecision(current)
             envelope = nil
-            if saved == nil { envelope = try await session.readRefundApproval(current, approvalId: approvalId) }
+            original = nil
+            if saved == nil {
+                let proposal = try await session.readRefundApproval(current, approvalId: approvalId)
+                original = try await session.readMoneyDetail(
+                    member: member, generation: current.generation,
+                    eventId: proposal.approval.refund.sourceEventId)
+                envelope = proposal
+            }
         }
     }
     private func decide(_ approved: Bool) async {
         guard let context, let approval = envelope?.approval, approval.status == .pending,
-            ApprovalTime.isOpen(approval.expiresAt, now: .now)
+            ApprovalTime.isOpen(approval.expiresAt, now: .now), original?.event.id == approval.refund.sourceEventId
         else { return }
         await perform {
             try await session.stageRefundDecision(
