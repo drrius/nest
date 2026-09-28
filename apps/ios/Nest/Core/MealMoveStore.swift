@@ -31,6 +31,7 @@ extension ChoreOfflineStore {
         try authorize(lease)
         _ = try saved.validated(lease)
         guard saved.state == .pending, try readMealMove(lease: lease) == nil,
+            try readMealLeftovers(lease: lease) == nil,
             try readMealReplacement(lease: lease) == nil
         else { throw OfflineFailure.alreadyQueued }
         for week in [saved.source, saved.target] {

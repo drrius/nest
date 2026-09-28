@@ -32,6 +32,7 @@ extension ChoreOfflineStore {
         let start = saved.week.weekStart
         guard saved.state == .pending, try readMealReplacement(lease: lease) == nil,
             try readMealMove(lease: lease) == nil,
+            try readMealLeftovers(lease: lease) == nil,
             try readMealWeek(start, lease: lease) == saved.week,
             try readMealPlacement(start, lease: lease) == nil,
             try readMealRemoval(start, lease: lease) == nil,
