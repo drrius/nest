@@ -73,7 +73,7 @@ extension SessionModel {
         return confirmed
     }
 
-    private func expenseToken(_ context: ExpenseContext) async throws -> String {
+    func expenseToken(_ context: ExpenseContext) async throws -> String {
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let auth else { throw NestAPIFailure.signedOut }
         let session = try await auth.session()

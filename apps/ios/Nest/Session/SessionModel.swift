@@ -70,6 +70,7 @@ final class SessionModel: ObservableObject {
     let mealAPI: MealAPI?
     let calendarAPI: CalendarAPI?
     let moneyAPI: MoneyAPI?
+    let receiptTransport: ReceiptTransport?
     let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
     let offline: ChoreOfflineStore?
@@ -100,6 +101,8 @@ final class SessionModel: ObservableObject {
             let configuration = try NestConfiguration.fromBundle()
             let http = try NestHTTP(baseURL: configuration.apiURL)
             let store = try ChoreOfflineStore.application(environment: configuration.supabaseURL)
+            let upload = try ReceiptTransport(
+                origin: configuration.supabaseURL, publishableKey: configuration.publishableKey)
             auth = try NestAuth(configuration: configuration)
             chores = ChoreAPI(http: http)
             groceryAPI = GroceryAPI(http: http)
@@ -108,6 +111,7 @@ final class SessionModel: ObservableObject {
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
             moneyAPI = MoneyAPI(http: http, storageOrigin: configuration.supabaseURL)
+            receiptTransport = upload
             offline = store
         } catch is NestConfigurationError {
             auth = nil
@@ -118,6 +122,7 @@ final class SessionModel: ObservableObject {
             proposalAPI = nil
             calendarAPI = nil
             moneyAPI = nil
+            receiptTransport = nil
             offline = nil
             status = .configuration
         } catch {
@@ -129,6 +134,7 @@ final class SessionModel: ObservableObject {
             proposalAPI = nil
             calendarAPI = nil
             moneyAPI = nil
+            receiptTransport = nil
             offline = nil
             status = .unavailable
         }
@@ -138,6 +144,7 @@ final class SessionModel: ObservableObject {
         auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
         groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil, foodAPI: FoodAPI? = nil,
         proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil, moneyAPI: MoneyAPI? = nil,
+        receiptTransport: ReceiptTransport? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -153,6 +160,7 @@ final class SessionModel: ObservableObject {
         self.proposalAPI = proposalAPI
         self.calendarAPI = calendarAPI
         self.moneyAPI = moneyAPI
+        self.receiptTransport = receiptTransport
         self.offline = offline
         self.savedReader = savedReader
         self.deactivateLease = deactivateLease
