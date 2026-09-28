@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { financialApprovalExpiryRoute } from "../../apps/api/src/money/approval-expiry.ts";
+import { moneyRoute } from "../../apps/api/src/money/route.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 const Effect = await import(require.resolve("effect/Effect"));
 const Http = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
@@ -26,7 +26,7 @@ const url = new URL(
 );
 const run = (result, input = url) =>
   Effect.runPromise(
-    financialApprovalExpiryRoute(input, config, caller).pipe(
+    moneyRoute(new Request(input), config, caller).pipe(
       Effect.provideService(Http.Fetch, async () => Response.json(result)),
     ),
   );

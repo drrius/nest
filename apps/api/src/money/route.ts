@@ -50,8 +50,6 @@ export function moneyRoute(request: Request, config: IdentityConfig, caller: Aut
 }
 function readRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
-  if (url.pathname === "/v1/money/approval-expiry")
-    return financialApprovalExpiryRoute(url, config, caller);
   if (url.pathname === "/v1/money/pending-approvals")
     return pendingFinancialApprovalRoute(new Request(url), config, caller);
   if (url.pathname.startsWith("/v1/money/categor")) return categoryRoute(url, config, caller);
@@ -72,6 +70,8 @@ function approvalRoute(request: Request, config: IdentityConfig, caller: Authori
   return Effect.gen(function* () {
     const url = new URL(request.url),
       commands = expenseApprovals(config, caller);
+    if (url.pathname === "/v1/money/approval-expiry")
+      return yield* financialApprovalExpiryRoute(url, config, caller);
     if (url.pathname === "/v1/money/approval") {
       if (url.searchParams.size !== 1 || !url.searchParams.has("approvalId"))
         return yield* new ApiFailure({ code: "invalid_request" });
@@ -88,8 +88,6 @@ function singleParam(params: URLSearchParams, name: string) {
 
 function categoryRoute(url: URL, config: IdentityConfig, caller: AuthorizedCaller) {
   const params = url.searchParams;
-  if (url.pathname === "/v1/money/approval-expiry")
-    return financialApprovalExpiryRoute(url, config, caller);
   if (url.pathname === "/v1/money/categories")
     return params.size && !singleParam(params, "after")
       ? Effect.fail(new ApiFailure({ code: "invalid_request" }))
