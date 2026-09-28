@@ -73,6 +73,23 @@ final class AssistantComposerModel: ObservableObject {
         }
     }
 
+    func cancel(session: SessionModel) async {
+        guard !busy else { return }
+        busy = true
+        defer { busy = false }
+        do {
+            let cancelled = try await session.cancelAssistantTurn(session.assistantTurnContext())
+            await load(session: session)
+            notice =
+                cancelled
+                ? "Request cancelled before it started."
+                : "This request already started. Check its status and saved actions."
+        } catch {
+            await load(session: session)
+            notice = "Cancellation is not confirmed. Retry cancellation when online."
+        }
+    }
+
     private var terminalNotice: String {
         saved?.result?.turn.state == .completed
             ? "Reply saved. Open the conversation to read all action results."

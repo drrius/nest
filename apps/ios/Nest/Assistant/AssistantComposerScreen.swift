@@ -47,7 +47,10 @@ struct AssistantComposerScreen: View {
             Button("Done") { operation = Task { await model.acknowledge(session: session) } }
         } else {
             Button("Check status") { operation = Task { await model.recover(session: session) } }
-            if saved.command.conversationId == conversation {
+            Button(saved.cancellationRequested == true ? "Retry cancellation" : "Cancel if not started") {
+                operation = Task { await model.cancel(session: session) }
+            }.disabled(model.busy)
+            if saved.command.conversationId == conversation && saved.cancellationRequested != true {
                 Button("Retry saved request") {
                     operation = Task { await model.send(session: session, conversation: conversation, retry: true) }
                 }

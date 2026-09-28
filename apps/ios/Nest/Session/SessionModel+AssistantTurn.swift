@@ -62,7 +62,9 @@ extension SessionModel {
         _ context: AssistantTurnContext,
         receive: @escaping @MainActor @Sendable (AssistantStreamFrame) throws -> Void
     ) async throws {
-        guard let saved = try await savedAssistantTurn(context), !saved.terminal, let assistantAPI else {
+        guard let saved = try await savedAssistantTurn(context), !saved.terminal, saved.cancellationRequested != true,
+            let assistantAPI
+        else {
             throw OfflineFailure.invalidOperation
         }
         let token = try await assistantToken(context.account)
@@ -81,6 +83,21 @@ extension SessionModel {
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.finishAssistantTurn(operation: operation, lease: context.lease)
         try requireAssistantAccount(context.account)
+    }
+
+    func cancelAssistantTurn(_ context: AssistantTurnContext) async throws -> Bool {
+        try requireAssistantAccount(context.account)
+        guard let offline, let assistantAPI else { throw NestAPIFailure.configuration }
+        try await offline.requestAssistantCancellation(lease: context.lease)
+        guard let saved = try await savedAssistantTurn(context) else { throw OfflineFailure.invalidOperation }
+        let token = try await assistantToken(context.account)
+        let result = try await assistantAPI.cancel(token: token, member: context.account.member, command: saved.command)
+        try requireAssistantAccount(context.account)
+        if result.cancelled {
+            try await offline.confirmAssistantCancellation(result, member: context.account.member, lease: context.lease)
+        }
+        try requireAssistantAccount(context.account)
+        return result.cancelled
     }
 
     private func deliverAssistantFrame(

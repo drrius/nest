@@ -3,6 +3,7 @@ import Foundation
 struct SavedAssistantTurn: Codable, Equatable, Sendable {
     let command: StartAssistantTurn
     var result: AssistantTurnEnvelope?
+    var cancellationRequested: Bool?
     var terminal: Bool { result.map { $0.turn.state != .running } ?? false }
 
     func validated() throws -> Self {
