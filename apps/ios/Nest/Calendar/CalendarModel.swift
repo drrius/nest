@@ -37,6 +37,7 @@ final class CalendarModel: ObservableObject {
     func select(_ id: String, enabled: Bool, day: Date) {
         guard calendars.contains(where: { $0.id == id }) else { return }
         if enabled { selected.insert(id) } else { selected.remove(id) }
+        selectionStore?.save(selected)
         refresh(day: day)
     }
 
@@ -54,6 +55,7 @@ final class CalendarModel: ObservableObject {
             return
         }
         calendars = reader.calendars()
+        if let selectionStore { selected = selectionStore.read() }
         selected.formIntersection(calendars.map(\.id))
         selectionStore?.save(selected)
         guard let interval = calendar.dateInterval(of: .day, for: day) else {

@@ -5,6 +5,27 @@ import XCTest
 
 @MainActor
 final class CalendarModelTests: XCTestCase {
+    func testTwoScreensRefreshTheLatestSelectionWithoutOverwritingEachOther() throws {
+        let suite = "calendar-shared-selection-\(UUID())"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let storage = CalendarSelectionStore(member: member, defaults: defaults)
+        let reader = FakeCalendarReader()
+        let today = CalendarModel(reader: reader, selectionStore: storage)
+        let calendar = CalendarModel(reader: reader, selectionStore: storage)
+        calendar.refresh(day: .now)
+        calendar.select("personal", enabled: true, day: .now)
+        today.refresh(day: .now)
+        XCTAssertEqual(today.selected, ["personal"])
+        XCTAssertEqual(today.events.count, 1)
+        calendar.select("personal", enabled: false, day: .now)
+        today.refresh(day: .now)
+        XCTAssertTrue(today.selected.isEmpty)
+        XCTAssertTrue(today.events.isEmpty)
+        XCTAssertTrue(storage.read().isEmpty)
+    }
+
     func testSavedSelectionLoadsAndRevocationErasesIt() throws {
         let suite = "calendar-model-\(UUID())"
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
