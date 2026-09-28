@@ -9,16 +9,29 @@ struct ChoreCreateScreen: View {
     @State private var saved: SavedRoutineCreation?
     @State private var notice: String?
     @State private var working = false
+    @State private var confirmCancel = false
 
     var body: some View {
         Form {
             if let notice { Section { Text(notice) } }
             if let saved {
-                Section(saved.receipt == nil ? "Saved request" : "Chore added") {
+                Section(
+                    saved.cancellation?.status == .cancelled
+                        ? "Save cancelled" : saved.receipt == nil ? "Saved request" : "Chore added"
+                ) {
                     Text(saved.command.definition.title).font(.headline)
-                    if saved.receipt == nil {
-                        Text("This save is not confirmed. Retry the same request when online.")
+                    if saved.cancellation?.status == .cancelled {
+                        Text("This request did not create a chore.")
+                        Button("Done") { Task { await finish() } }
+                    } else if saved.receipt == nil {
+                        Text(
+                            saved.cancellationRequested == true
+                                ? "Cancellation is not confirmed. Retry to check the outcome."
+                                : "This save is not confirmed. Retry the same request when online.")
                         Button("Retry saved request") { Task { await submit() } }
+                        if saved.cancellationRequested != true {
+                            Button("Cancel pending save", role: .destructive) { confirmCancel = true }
+                        }
                     } else {
                         Text("Your household chore was saved.")
                         Button("Done") { Task { await finish() } }
@@ -49,6 +62,11 @@ struct ChoreCreateScreen: View {
         .navigationTitle("Add chore")
         .navigationBarTitleDisplayMode(.inline)
         .task { await load() }
+        .confirmationDialog("Cancel this pending save?", isPresented: $confirmCancel) {
+            Button("Cancel pending save", role: .destructive) { Task { await cancel() } }
+        } message: {
+            Text("Nest checks with the server. If the chore was already created, it is kept.")
+        }
     }
 
     private func load() async {
@@ -79,6 +97,19 @@ struct ChoreCreateScreen: View {
                 saved == nil
                 ? "Could not save this chore. Check the form and connection, then try again."
                 : "Could not confirm this save. Your original request is kept for retry."
+        }
+    }
+
+    private func cancel() async {
+        guard !working, let context else { return }
+        working = true
+        defer { working = false }
+        do {
+            saved = try await model.cancelRoutineCreation(context)
+            notice = nil
+        } catch {
+            saved = try? await model.savedRoutineCreation(context)
+            notice = "Could not confirm cancellation. Retry when online to check the outcome."
         }
     }
 

@@ -42,13 +42,29 @@ extension SessionModel {
         guard let saved = try await savedRoutineCreation(context), let offline, let chores else {
             throw OfflineFailure.invalidOperation
         }
-        if saved.receipt != nil { return saved }
+        if saved.receipt != nil || saved.cancellation != nil { return saved }
         let token = try await routineToken(context)
+        if saved.cancellationRequested == true {
+            let result = try await chores.cancelRoutineCreation(
+                token: token, member: context.member, command: saved.command)
+            try requireRoutineAccount(context)
+            try await offline.reconcileRoutineCancellation(result, lease: context.lease)
+            guard let resolved = try await savedRoutineCreation(context) else { throw OfflineFailure.invalidOperation }
+            return resolved
+        }
         let receipt = try await chores.createRoutine(token: token, member: context.member, command: saved.command)
         try requireRoutineAccount(context)
         try await offline.acknowledgeRoutineCreation(receipt, lease: context.lease)
         guard let confirmed = try await savedRoutineCreation(context) else { throw OfflineFailure.invalidOperation }
         return confirmed
+    }
+
+    func cancelRoutineCreation(_ context: RoutineCreateContext) async throws -> SavedRoutineCreation {
+        try requireRoutineAccount(context)
+        guard let offline else { throw NestAPIFailure.configuration }
+        try await offline.requestRoutineCancellation(lease: context.lease)
+        try requireRoutineAccount(context)
+        return try await retryRoutineCreation(context)
     }
 
     func finishRoutineCreation(_ context: RoutineCreateContext, operation: UUID) async throws {
