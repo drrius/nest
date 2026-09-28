@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import { after, test } from "node:test";
+import { aiRoutineFiles } from "./ai-routine-files.mjs";
 import { startFixturePostgres } from "./fixture-postgres.mjs";
 const db = startFixturePostgres();
 after(() => db.stop());
 for (const file of [
-  "tests/database/conversation-fixture.sql",
-  "supabase/migrations/20260919220034_native_private_conversations.sql",
-  "supabase/migrations/20260920022841_native_ai_turn_ownership.sql",
-  "tests/database/assistant-cancellation-draft.sql",
+  ...aiRoutineFiles,
+  "supabase/migrations/20260926094530_native_ai_turn_nonretryable_conflicts.sql",
+  "supabase/migrations/20260928113028_native_ai_unstarted_cancellation.sql",
 ])
   db.file(file);
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;

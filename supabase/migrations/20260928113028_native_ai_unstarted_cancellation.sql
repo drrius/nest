@@ -1,4 +1,4 @@
--- Local fixture prototype; not deployed or included in migration history yet.
+-- Serialize unstarted cancellation with begin; never cancel an already-created turn.
 create table private.nest_ai_cancelled_turns (
   conversation_id uuid not null references public.nest_ai_conversations(id),
   operation_id uuid not null,
@@ -36,7 +36,7 @@ do $patch$
 declare definition text; marker text := 'v_row:=private.nest_lock_ai_conversation(p_household,p_conversation);';
 begin
   definition:=pg_get_functiondef('private.nest_begin_ai_turn(uuid,uuid,uuid,bigint,jsonb)'::regprocedure);
-  if strpos(definition,marker)=0 then raise exception 'Missing turn lock'; end if;
+  if (length(definition)-length(replace(definition,marker,'')))/length(marker)<>1 then raise exception 'Missing turn lock'; end if;
   execute replace(definition,marker,marker || '
   if exists(select 1 from private.nest_ai_cancelled_turns where conversation_id=p_conversation and operation_id=p_operation) then
     raise exception ''AI turn cancelled'' using errcode=''PT412'';
