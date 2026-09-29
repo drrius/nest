@@ -1,6 +1,6 @@
 import Foundation
 
-struct RecurringRule: Codable, Identifiable, Sendable {
+struct RecurringRule: Codable, Equatable, Identifiable, Sendable {
     enum Status: String, Codable { case active, paused, cancelled }
     let ruleId: UUID
     let revision: UUID

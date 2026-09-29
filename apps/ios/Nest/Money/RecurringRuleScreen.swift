@@ -27,6 +27,11 @@ struct RecurringRuleScreen: View {
                     }
                 }
                 Section {
+                    NavigationLink("Reminder choices") {
+                        RecurringReminderScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+                    }
+                }
+                Section {
                     NavigationLink("Resume or recover resume") {
                         RecurringResumeScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
                     }

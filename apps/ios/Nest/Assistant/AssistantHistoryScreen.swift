@@ -94,6 +94,12 @@ struct AssistantHistoryScreen: View {
                 GroceryReminderScreen(session: session, member: member, itemId: receipt.reminder.itemId)
                     .id(session.generation)
             }
+        } else if let receipt = AssistantRecurringReminderLink.receipt(part, member: member) {
+            Text("Bill reminder choices saved. This does not confirm delivery or approve the bill.")
+            NavigationLink("View current bill reminder choices") {
+                RecurringReminderScreen(session: session, member: member, ruleId: receipt.reminder.ruleId)
+                    .id(session.generation)
+            }
         } else if part["type"] != .string("step-start") {
             Text("This message includes an action result that this view cannot display yet.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
