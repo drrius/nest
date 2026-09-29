@@ -74,6 +74,7 @@ final class SessionModel: ObservableObject {
     let receiptTransport: ReceiptTransport?
     let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
+    let notificationAPI: NotificationAPI?
     let offline: ChoreOfflineStore?
     let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
@@ -110,6 +111,7 @@ final class SessionModel: ObservableObject {
             mealAPI = MealAPI(http: http)
             assistantAPI = AssistantAPI(http: http)
             foodAPI = FoodAPI(http: http)
+            notificationAPI = NotificationAPI(http: http)
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
             moneyAPI = MoneyAPI(http: http, storageOrigin: configuration.supabaseURL)
@@ -122,6 +124,7 @@ final class SessionModel: ObservableObject {
             mealAPI = nil
             assistantAPI = nil
             foodAPI = nil
+            notificationAPI = nil
             proposalAPI = nil
             calendarAPI = nil
             moneyAPI = nil
@@ -135,6 +138,7 @@ final class SessionModel: ObservableObject {
             mealAPI = nil
             assistantAPI = nil
             foodAPI = nil
+            notificationAPI = nil
             proposalAPI = nil
             calendarAPI = nil
             moneyAPI = nil
@@ -149,6 +153,7 @@ final class SessionModel: ObservableObject {
         groceryAPI: GroceryAPI? = nil, mealAPI: MealAPI? = nil, foodAPI: FoodAPI? = nil,
         proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil, moneyAPI: MoneyAPI? = nil,
         receiptTransport: ReceiptTransport? = nil, assistantAPI: AssistantAPI? = nil,
+        notificationAPI: NotificationAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -162,6 +167,7 @@ final class SessionModel: ObservableObject {
         self.mealAPI = mealAPI
         self.assistantAPI = assistantAPI
         self.foodAPI = foodAPI
+        self.notificationAPI = notificationAPI
         self.proposalAPI = proposalAPI
         self.calendarAPI = calendarAPI
         self.moneyAPI = moneyAPI

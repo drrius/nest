@@ -31,6 +31,11 @@ struct ProfileScreen: View {
                 Text("Personal calendar details stay on this device. Busy sharing is optional.")
                     .font(.footnote).foregroundStyle(QuietPalette.muted)
             }
+            Section("Notifications") {
+                NavigationLink("Your notification choices") {
+                    NotificationPreferencesScreen(session: model, member: member).id(model.generation)
+                }
+            }
             Section {
                 Button("Sign out on this device", role: .destructive) { confirmSignOut = true }
                     .disabled(signingOut)
