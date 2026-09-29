@@ -6,11 +6,11 @@ import XCTest
 @MainActor
 final class AssistantAccountTests: XCTestCase {
     func testDelayedAssistantReadsCannotReturnAfterSignOut() async throws {
-        for route in 0..<3 { try await checkDelayedRead(route) }
+        for route in 0..<5 { try await checkDelayedRead(route) }
     }
 
     func testDelayedAssistantReadsCannotReturnToAnotherMember() async throws {
-        for route in 0..<3 { try await checkDelayedRead(route, switchAccount: true) }
+        for route in 0..<5 { try await checkDelayedRead(route, switchAccount: true) }
     }
 
     private func checkDelayedRead(_ route: Int, switchAccount: Bool = false) async throws {
@@ -38,6 +38,10 @@ final class AssistantAccountTests: XCTestCase {
                 _ = try await model.readConversations(context, after: nil)
             } else if route == 1 {
                 _ = try await model.readConversation(context, id: eventId)
+            } else if route == 3 {
+                _ = try await model.readMemories(context)
+            } else if route == 4 {
+                _ = try await model.readMemoryApproval(context, id: eventId)
             } else {
                 try await model.stageAssistantTurn(
                     .init(conversationId: eventId, operationId: UUID(), expectedRevision: "1", text: "Hello"),
@@ -61,6 +65,19 @@ final class AssistantAccountTests: XCTestCase {
     }
 
     private func payload(_ route: Int, member: VerifiedMember, partner: UUID, eventId: UUID) throws -> Data {
+        if route == 3 {
+            return try JSONEncoder().encode(
+                PrivateMemories(version: 1, actorId: member.userId, householdId: member.householdId, memories: []))
+        }
+        if route == 4 {
+            return try JSONEncoder().encode(
+                MemoryApprovalEnvelope(
+                    version: 1, actorId: member.userId, householdId: member.householdId,
+                    approval: MemoryApproval(
+                        id: eventId, operationId: UUID(),
+                        change: MemoryChange(memoryId: UUID(), expectedRevision: "0", content: "Private memory"),
+                        status: .pending, expiresAt: "2099-01-01T00:00:00Z")))
+        }
         if route == 2 {
             return Data(
                 "{\"version\":1,\"actorId\":\"\(member.userId)\",\"householdId\":\"\(member.householdId)\",\"available\":true}"

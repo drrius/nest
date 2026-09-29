@@ -22,6 +22,9 @@ struct ProfileScreen: View {
                 }
             }
             Section("Privacy") {
+                NavigationLink("Private memory") {
+                    PrivateMemoryScreen(session: model, member: member).id(model.generation)
+                }
                 NavigationLink("Calendar busy sharing") {
                     CalendarSharingScreen(session: model)
                 }
