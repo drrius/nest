@@ -35,6 +35,9 @@ struct ProfileScreen: View {
                 NavigationLink("Your notification choices") {
                     NotificationPreferencesScreen(session: model, member: member).id(model.generation)
                 }
+                NavigationLink("Your saved daily summary") {
+                    DailySummaryScreen(session: model, member: member).id(model.generation)
+                }
             }
             Section {
                 Button("Sign out on this device", role: .destructive) { confirmSignOut = true }

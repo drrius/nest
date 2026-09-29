@@ -70,6 +70,8 @@ struct AssistantHistoryScreen: View {
                 RenewalDetailScreen(session: session, member: member, renewalId: receipt.renewal.id)
                     .id(session.generation)
             }
+        } else if let summary = AssistantSummaryLink.read(part, member: member) {
+            AssistantSummaryRow(session: session, member: member, summary: summary)
         } else if let notice = AssistantActionNotice.text(part) {
             Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
         } else if part["type"] != .string("step-start") {

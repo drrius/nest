@@ -82,7 +82,7 @@ extension SessionModel {
         try requireNotificationAccount(context)
     }
 
-    private func notificationToken(_ context: NotificationContext) async throws -> String {
+    func notificationToken(_ context: NotificationContext) async throws -> String {
         try requireNotificationAccount(context)
         guard let auth else { throw NestAPIFailure.configuration }
         let session = try await auth.session()

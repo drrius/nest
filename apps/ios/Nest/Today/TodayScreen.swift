@@ -91,6 +91,9 @@ struct TodayScreen: View {
                 }
                 .buttonStyle(.plain)
                 .padding(.top, 28)
+                NavigationLink("Your saved daily summary") {
+                    DailySummaryScreen(session: model, member: member).id(model.generation)
+                }.frame(minHeight: 44).padding(.top, 12)
             }
             .padding(.horizontal, 20)
             .padding(.top, 14)
