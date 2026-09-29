@@ -6,7 +6,8 @@ struct NotificationPreferences: Codable, Equatable, Sendable {
     var itemRemindersEnabled: Bool
 
     func validated() throws -> Self {
-        guard dailySummaryTime.range(of: #"\A([01][0-9]|2[0-3]):[0-5][0-9]\z"#, options: .regularExpression) != nil else {
+        guard dailySummaryTime.range(of: #"\A([01][0-9]|2[0-3]):[0-5][0-9]\z"#, options: .regularExpression) != nil
+        else {
             throw NestAPIFailure.invalid
         }
         return self

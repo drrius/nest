@@ -8,12 +8,14 @@ final class NotificationPreferenceTests: XCTestCase {
         for time in ["00:00", "07:30", "23:59"] {
             XCTAssertNoThrow(
                 try NotificationPreferences(
-                    dailySummaryEnabled: true, dailySummaryTime: time, itemRemindersEnabled: false).validated())
+                    dailySummaryEnabled: true, dailySummaryTime: time, itemRemindersEnabled: false
+                ).validated())
         }
         for time in ["24:00", "7:30", "07:60", "07:30\n", " 07:30", "０７:３０"] {
             XCTAssertThrowsError(
                 try NotificationPreferences(
-                    dailySummaryEnabled: false, dailySummaryTime: time, itemRemindersEnabled: true).validated())
+                    dailySummaryEnabled: false, dailySummaryTime: time, itemRemindersEnabled: true
+                ).validated())
         }
     }
 
