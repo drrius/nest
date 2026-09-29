@@ -57,6 +57,8 @@ struct AssistantHistoryScreen: View {
             Text(text).textSelection(.enabled).foregroundStyle(QuietPalette.ink)
         } else if let approval = PendingFinancialApproval.assistantLink(part, member: member) {
             FinancialApprovalRow(session: session, member: member, row: approval)
+        } else if let notice = AssistantActionNotice.text(part) {
+            Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
         } else if part["type"] != .string("step-start") {
             Text("This message includes an action result that this view cannot display yet.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
