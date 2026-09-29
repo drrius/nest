@@ -1,7 +1,7 @@
 import Foundation
 
-struct CalendarRenewal: Codable, Identifiable, Sendable {
-    struct Fields: Codable, Sendable {
+struct CalendarRenewal: Codable, Equatable, Identifiable, Sendable {
+    struct Fields: Codable, Equatable, Sendable {
         let title: String
         let renewalOn: CivilDate
         let noticeDays: Int
@@ -16,19 +16,10 @@ struct CalendarRenewal: Codable, Identifiable, Sendable {
     var id: UUID { renewalId }
 
     func valid(on day: CivilDate) -> Bool {
-        guard !removed, (0...730).contains(fields.noticeDays),
-            (1...160).contains(fields.title.trimmingCharacters(in: .init(charactersIn: " ")).unicodeScalars.count),
+        guard !removed, (try? validated()) != nil,
             fields.renewalOn == day || cancellationOn == day
         else { return false }
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone(secondsFromGMT: 0)!
-        let parts = fields.renewalOn.value.split(separator: "-").compactMap { Int($0) }
-        guard let renewal = calendar.date(from: DateComponents(year: parts[0], month: parts[1], day: parts[2])),
-            let deadline = calendar.date(byAdding: .day, value: -fields.noticeDays, to: renewal)
-        else { return false }
-        let components = calendar.dateComponents([.year, .month, .day], from: deadline)
-        let expected = String(format: "%04d-%02d-%02d", components.year!, components.month!, components.day!)
-        return cancellationOn.value == expected
+        return true
     }
 }
 

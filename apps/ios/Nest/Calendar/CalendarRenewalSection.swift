@@ -22,6 +22,11 @@ struct CalendarRenewalSection: View {
             if !loading && notice == nil && rows.isEmpty { Text("No renewals or cancellation deadlines on this day.") }
             if next != nil { Button("Load more") { Task { await load(more: true) } }.disabled(loading) }
             Button("Refresh renewals") { Task { await load(more: false) } }.disabled(loading)
+            if case .ready(let member) = session.status {
+                NavigationLink("Manage renewals") {
+                    RenewalsScreen(session: session, member: member).id(session.generation)
+                }
+            }
             Text("Dates shown in Nest only. No calendar events or financial entries are created.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
         }

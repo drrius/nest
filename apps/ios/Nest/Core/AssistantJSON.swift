@@ -1,7 +1,7 @@
 import Foundation
 
 /// Keep tool payloads intact; never turn an unrecognized tool result into a success message.
-indirect enum AssistantJSON: Decodable, Equatable, Sendable {
+indirect enum AssistantJSON: Codable, Equatable, Sendable {
     case null
     case bool(Bool)
     case string(String)
@@ -29,5 +29,17 @@ indirect enum AssistantJSON: Decodable, Equatable, Sendable {
     var string: String? {
         if case .string(let value) = self { return value }
         return nil
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var value = encoder.singleValueContainer()
+        switch self {
+        case .null: try value.encodeNil()
+        case .bool(let item): try value.encode(item)
+        case .string(let item): try value.encode(item)
+        case .number(let item): try value.encode(item)
+        case .array(let items): try value.encode(items)
+        case .object(let items): try value.encode(items)
+        }
     }
 }

@@ -63,6 +63,13 @@ struct AssistantHistoryScreen: View {
             }
         } else if let handoff = AssistantHandoff.read(part, member: member) {
             AssistantHandoffRow(session: session, member: member, handoff: handoff)
+        } else if let receipt = AssistantRenewalLink.receipt(part, member: member) {
+            Text(receipt.action == .removed ? "Renewal removed from Nest." : "Renewal saved.")
+            Text(receipt.renewal.fields.title)
+            NavigationLink("View current renewal") {
+                RenewalDetailScreen(session: session, member: member, renewalId: receipt.renewal.id)
+                    .id(session.generation)
+            }
         } else if let notice = AssistantActionNotice.text(part) {
             Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
         } else if part["type"] != .string("step-start") {

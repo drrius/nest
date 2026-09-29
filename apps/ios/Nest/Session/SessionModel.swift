@@ -75,6 +75,7 @@ final class SessionModel: ObservableObject {
     let proposalAPI: MealProposalAPI?
     let foodAPI: FoodAPI?
     let notificationAPI: NotificationAPI?
+    let renewalAPI: RenewalAPI?
     let offline: ChoreOfflineStore?
     let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
@@ -112,6 +113,7 @@ final class SessionModel: ObservableObject {
             assistantAPI = AssistantAPI(http: http)
             foodAPI = FoodAPI(http: http)
             notificationAPI = NotificationAPI(http: http)
+            renewalAPI = RenewalAPI(http: http)
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
             moneyAPI = MoneyAPI(http: http, storageOrigin: configuration.supabaseURL)
@@ -125,6 +127,7 @@ final class SessionModel: ObservableObject {
             assistantAPI = nil
             foodAPI = nil
             notificationAPI = nil
+            renewalAPI = nil
             proposalAPI = nil
             calendarAPI = nil
             moneyAPI = nil
@@ -139,6 +142,7 @@ final class SessionModel: ObservableObject {
             assistantAPI = nil
             foodAPI = nil
             notificationAPI = nil
+            renewalAPI = nil
             proposalAPI = nil
             calendarAPI = nil
             moneyAPI = nil
@@ -154,6 +158,7 @@ final class SessionModel: ObservableObject {
         proposalAPI: MealProposalAPI? = nil, calendarAPI: CalendarAPI? = nil, moneyAPI: MoneyAPI? = nil,
         receiptTransport: ReceiptTransport? = nil, assistantAPI: AssistantAPI? = nil,
         notificationAPI: NotificationAPI? = nil,
+        renewalAPI: RenewalAPI? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -168,6 +173,7 @@ final class SessionModel: ObservableObject {
         self.assistantAPI = assistantAPI
         self.foodAPI = foodAPI
         self.notificationAPI = notificationAPI
+        self.renewalAPI = renewalAPI
         self.proposalAPI = proposalAPI
         self.calendarAPI = calendarAPI
         self.moneyAPI = moneyAPI
