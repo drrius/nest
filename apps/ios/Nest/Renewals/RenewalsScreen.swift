@@ -6,6 +6,7 @@ struct RenewalsScreen: View {
     @StateObject private var model = RenewalsModel()
     @State private var adding = false
     @State private var editing: CalendarRenewal?
+    @State private var reminding: CalendarRenewal?
     @State private var removing: CalendarRenewal?
 
     var body: some View {
@@ -33,6 +34,8 @@ struct RenewalsScreen: View {
                             Spacer()
                             Button("Remove", role: .destructive) { removing = row }
                         }.buttonStyle(.borderless).disabled(model.busy || model.saved != nil)
+                        Button("Reminder choices") { reminding = row }
+                            .buttonStyle(.borderless)
                     }.padding(.vertical, 6)
                 }
                 if model.loaded && model.rows.isEmpty { Text("No renewals yet.") }
@@ -55,6 +58,12 @@ struct RenewalsScreen: View {
         .sheet(item: $editing) { renewal in
             NavigationStack {
                 RenewalEditorScreen(model: model, session: session, member: member, baseline: renewal)
+                    .id(session.generation)
+            }
+        }
+        .sheet(item: $reminding) { renewal in
+            NavigationStack {
+                RenewalReminderScreen(session: session, member: member, renewalId: renewal.id)
                     .id(session.generation)
             }
         }
