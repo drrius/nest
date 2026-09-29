@@ -1,0 +1,19 @@
+# SwiftUI notification opening — 30 September 2026
+
+Dedicated fictional simulator: iPhone 17 Pro, iOS 26.3, `EE945B62-C56C-4AB9-A09E-C4B44F9CF03C`. Source is the notification-opening change committed with this evidence, based on `13a423bb`. This is simulator injection using `simctl push`, **not an APNs provider send, device enrollment or physical-iPhone delivery**.
+
+The payload contains a generic alert and routing identity only: fictional household `be772ffd-3ab5-41d5-8438-647a79a553da`, Test Alex recipient `791f7261-6c9d-4061-9c8a-57aa6e0b0200`, and deliberately nonexistent summary `00000000-0000-4000-8000-000000000099`. Opening performs the existing authorized test-API read. A failed target read never becomes a claim that the day is empty. No save, approval, calendar mutation or notification enrollment command was invoked.
+
+- `nest-push-opening-banner.png`: observed generic foreground banner, 01:16 CEST. The banner itself does not navigate. This initial capture precedes the two fixes below.
+- `nest-push-warm-summary.png`: initial warm banner tap opened Daily summary and showed the unavailable-target read error. This capture also precedes the fixes; it is not cold-start evidence.
+- `nest-push-draft-retained.png`: final stable build, 01:39 CEST. A real New renewal sheet contains unsaved title “Push tap draft.” A notification banner was tapped while editing; the sheet and exact title remained intact.
+- `nest-push-after-discard.png`: after explicit Cancel → Discard changes, the queued summary opened and attempted its authorized read. No Save renewal action was used. Closing the summary returned to the existing Renewals navigation stack with “No renewals yet.”
+- `nest-push-cold-final.png`: final stable build, 01:41:32 CEST. Nest was explicitly stopped, a simulator notification was injected from SpringBoard, and its banner was tapped without an app-opening command or accessibility capture bringing the home screen back. A direct `simctl io screenshot` captured Daily summary. The process was alive at 0.0% CPU and 0.5% memory. Only afterward did agent-device bind to Nest; its responsive accessibility tree independently reported Daily summary, Done, the target-read error and Refresh.
+
+The initial cold taps found two `SIGABRT` crashes, with UIKit's exact exception “Call must be made on main thread” in the generated async notification-response completion. The explicit delegate completion now executes once on MainActor, including ignored/malformed responses. Reports `Nest-2026-09-30-012143.ips` and `Nest-2026-09-30-012150.ips` remain on the Mac; no new Nest crash report appeared after the corrected cold tap.
+
+The surviving early build also exposed a rendering loop: sample `/private/tmp/nest-notification-ui-spin.sample` showed repeated TodayCalendarSection/SwiftUI timeline invalidation; the app consumed approximately 100% of one CPU core and reached a 1.7 GB footprint at sampling. Today and Today calendar now retain their timeline start dates in SwiftUI state. The normal rebuilt app was idle at 0.0% CPU, the same cold notification route remained at 0.0%, and editing/cancel/discard/sheet navigation stayed responsive. This is bounded simulator evidence, not a general device performance benchmark.
+
+A temporary simulator-only permission harness requested the real iOS notification permission and the visible Allow button was pressed. It was removed before normal-app callback QA. The restored `NestApp.swift` SHA-256 on Linux and Mac was `943c061c81ec80172a781707eb9f2aeba969fc0a97cd2eadb7d803e6b61f8e63`. Permission setup through this harness does not establish the future enrollment UI's acceptance.
+
+Remaining: actual provider delivery, registration/signing/rotation, hosted APNs migrations and scheduler activation, real populated targets for all six kinds, physical-phone foreground/background/cold acceptance, and broader accessibility/Quiet-design QA. No TestFlight release or production change occurred.

@@ -5,6 +5,7 @@ struct TodayScreen: View {
     let member: VerifiedMember
     @State private var everyone = false
     @State private var todayRefresh = UUID()
+    @State private var clockStart = Date()
 
     var body: some View {
         ScrollView {
@@ -33,7 +34,7 @@ struct TodayScreen: View {
                     .foregroundStyle(QuietPalette.muted)
                     .padding(.top, 3)
                 quickAdd.padding(.top, 20)
-                TimelineView(.periodic(from: .now, by: 60)) { _ in
+                TimelineView(.periodic(from: clockStart, by: 60)) { _ in
                     TodayMealsSection(model: model, member: member, day: todayDate, refresh: todayRefresh)
                         .id(member.userId)
                 }

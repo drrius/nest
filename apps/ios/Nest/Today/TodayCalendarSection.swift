@@ -2,6 +2,7 @@ import EventKit
 import SwiftUI
 
 struct TodayCalendarSection: View {
+    @State private var clockStart = Date()
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     let refresh: UUID
@@ -20,7 +21,7 @@ struct TodayCalendarSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
             Text("On your calendar").font(.headline).foregroundStyle(QuietPalette.ink)
-            TimelineView(.periodic(from: .now, by: 60)) { clock in
+            TimelineView(.periodic(from: clockStart, by: 60)) { clock in
                 content(now: clock.date)
                     .onChange(of: clock.date) { _, now in update(now) }
             }

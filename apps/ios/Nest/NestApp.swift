@@ -2,6 +2,7 @@ import SwiftUI
 
 @main
 struct NestApp: App {
+    @UIApplicationDelegateAdaptor(PushApplicationDelegate.self) private var pushDelegate
     @StateObject private var model = SessionModel()
 
     var body: some Scene {
@@ -32,6 +33,7 @@ struct NestApp: App {
                 }
             }
             .task { await model.restore() }
+            .modifier(NotificationOpening(session: model, inbox: pushDelegate.inbox))
             .tint(QuietPalette.accent)
         }
     }
