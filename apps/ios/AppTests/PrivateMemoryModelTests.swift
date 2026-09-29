@@ -7,7 +7,7 @@ import XCTest
 final class PrivateMemoryModelTests: XCTestCase {
     func testLostProposalResponseRetainsIdentityAndRequiresExplicitSave() async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
-        let auth = FakeAuthentication(active: .init(userId: member.userId, accessToken: "token"))
+        let auth = FakeAuthentication(active: .init(userId: member.userId, accessToken: "token-A"))
         let chores = FakeChoreServer(actorA: member.userId, actorB: UUID(), household: member.householdId)
         let choreHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await chores.respond($0) }
         let server = MemoryTestServer(member: member)
@@ -18,8 +18,10 @@ final class PrivateMemoryModelTests: XCTestCase {
             auth: auth, chores: ChoreAPI(http: choreHTTP), offline: try ChoreOfflineStore(url: url),
             assistantAPI: AssistantAPI(http: http))
         await session.restore()
+        XCTAssertEqual(session.status, .ready(member))
         let model = PrivateMemoryModel()
         await model.load(session: session, member: member)
+        XCTAssertTrue(model.loaded)
         await model.propose(content: "Exact text", memory: nil, session: session, member: member)
         XCTAssertNotNil(model.saved)
         XCTAssertNil(model.saved?.response)
