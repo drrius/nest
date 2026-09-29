@@ -5,6 +5,30 @@ extension ChoreOfflineStore {
         try db.run(
             "CREATE TABLE IF NOT EXISTS push_logout_intents (actor TEXT NOT NULL, session TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,session))"
         )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS push_session_associations (actor TEXT NOT NULL, session TEXT NOT NULL, PRIMARY KEY(actor,session))"
+        )
+    }
+
+    /// Call before enrollment can leave the device, including when its response may be lost.
+    func trackPushSession(actor: UUID, session: UUID) throws {
+        try db.run(
+            "INSERT OR IGNORE INTO push_session_associations(actor,session) VALUES(?,?)",
+            [actor.uuidString.lowercased(), session.uuidString.lowercased()])
+    }
+
+    func trackedPushSessions(actor: UUID) throws -> [UUID] {
+        try db.rows(
+            "SELECT session FROM push_session_associations WHERE actor=? ORDER BY session",
+            [actor.uuidString.lowercased()]
+        ).map { row in
+            guard let value = row.first, let session = UUID(uuidString: value) else { throw OfflineFailure.storage }
+            return session
+        }
+    }
+
+    func hasPendingPushCleanup() throws -> Bool {
+        !(try db.rows("SELECT 1 FROM push_logout_intents LIMIT 1")).isEmpty
     }
 
     /// Metadata only. Credentials remain in Keychain; cleanup survives membership loss and a deactivated lease.
@@ -50,7 +74,10 @@ extension ChoreOfflineStore {
         guard let intent = try pendingPushLogouts(actor: actor).first(where: { $0.sessionId == session }),
             intent.receipt != nil
         else { throw OfflineFailure.invalidOperation }
-        try db.run("DELETE FROM push_logout_intents WHERE actor=? AND session=?", pushLogoutScope(intent))
+        try db.transaction {
+            try db.run("DELETE FROM push_logout_intents WHERE actor=? AND session=?", pushLogoutScope(intent))
+            try db.run("DELETE FROM push_session_associations WHERE actor=? AND session=?", pushLogoutScope(intent))
+        }
     }
 
     private func pushLogoutScope(_ intent: PushLogoutIntent) -> [String] {

@@ -20,4 +20,5 @@
   <key>NEST_API_URL</key><string>$(NEST_API_URL)</string>
   <key>NEST_SUPABASE_URL</key><string>$(NEST_SUPABASE_URL)</string>
   <key>NEST_SUPABASE_PUBLISHABLE_KEY</key><string>$(NEST_SUPABASE_PUBLISHABLE_KEY)</string>
+  <key>NEST_PUSH_ENABLED</key><string>$(NEST_PUSH_ENABLED)</string>
 </dict></plist>

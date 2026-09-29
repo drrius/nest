@@ -34,6 +34,7 @@ extension ChoreOfflineStore {
 
     /// Protected local recovery only; enrollment is never added to the automatic offline outbox.
     func stagePushDeviceRequest(_ saved: SavedPushDeviceRequest, lease: OfflineLease) throws {
+        if saved.command.action == .register, try hasPendingPushCleanup() { throw OfflineFailure.sessionChanged }
         guard try readPushDeviceRequest(lease: lease) == nil, saved.result == nil, !saved.cancellationRequested else {
             throw OfflineFailure.alreadyQueued
         }

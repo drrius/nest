@@ -4,8 +4,9 @@ struct NestConfiguration: Sendable {
     let apiURL: URL
     let supabaseURL: URL
     let publishableKey: String
+    let pushEnabled: Bool
 
-    init(apiURL: String, supabaseURL: String, publishableKey: String) throws {
+    init(apiURL: String, supabaseURL: String, publishableKey: String, pushEnabled: Bool = false) throws {
         guard let api = URL(string: apiURL), Self.valid(api),
             let supabase = URL(string: supabaseURL), Self.valid(supabase),
             publishableKey.hasPrefix("sb_publishable_")
@@ -13,13 +14,15 @@ struct NestConfiguration: Sendable {
         self.apiURL = api
         self.supabaseURL = supabase
         self.publishableKey = publishableKey
+        self.pushEnabled = pushEnabled
     }
 
     static func fromBundle(_ bundle: Bundle = .main) throws -> Self {
         try Self(
             apiURL: bundle.object(forInfoDictionaryKey: "NEST_API_URL") as? String ?? "",
             supabaseURL: bundle.object(forInfoDictionaryKey: "NEST_SUPABASE_URL") as? String ?? "",
-            publishableKey: bundle.object(forInfoDictionaryKey: "NEST_SUPABASE_PUBLISHABLE_KEY") as? String ?? ""
+            publishableKey: bundle.object(forInfoDictionaryKey: "NEST_SUPABASE_PUBLISHABLE_KEY") as? String ?? "",
+            pushEnabled: bundle.object(forInfoDictionaryKey: "NEST_PUSH_ENABLED") as? String == "true"
         )
     }
 

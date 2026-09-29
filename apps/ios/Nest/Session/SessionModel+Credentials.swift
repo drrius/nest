@@ -5,6 +5,7 @@ extension SessionModel {
         guard let auth else { return }
         generation += 1
         let attempt = generation
+        status = .loading
         await clearPresentation()
         guard generation == attempt else { return }
         do {

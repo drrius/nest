@@ -106,7 +106,7 @@ final class SessionModel: ObservableObject {
             let store = try ChoreOfflineStore.application(environment: configuration.supabaseURL)
             let upload = try ReceiptTransport(
                 origin: configuration.supabaseURL, publishableKey: configuration.publishableKey)
-            auth = try NestAuth(configuration: configuration)
+            auth = try NestAuth(configuration: configuration, offline: store)
             chores = ChoreAPI(http: http)
             groceryAPI = GroceryAPI(http: http)
             mealAPI = MealAPI(http: http)

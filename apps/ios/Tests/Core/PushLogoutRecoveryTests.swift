@@ -6,6 +6,31 @@ import XCTest
 final class PushLogoutRecoveryTests: XCTestCase {
     private typealias F = PushRegistrationFixtures
 
+    func testUnresolvedPriorAccountLogoutBlocksNewEnrollmentWithoutDeletingEitherIntent() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "push-cleanup-fence-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        try await store.trackPushSession(actor: F.id(2), session: F.id(55))
+        try await store.stagePushLogout(actor: F.id(2), session: F.id(55))
+        let lease = try await store.activate(F.member)
+        do {
+            try await store.stagePushDeviceRequest(.init(baseline: F.baseline, command: F.command), lease: lease)
+            XCTFail("Associated a new account before old-session cleanup")
+        } catch { XCTAssertEqual(error as? OfflineFailure, .sessionChanged) }
+        let pending = try await store.pendingPushLogouts(actor: F.id(2))
+        XCTAssertEqual(pending.count, 1)
+        let request = try await store.readPushDeviceRequest(lease: lease)
+        XCTAssertNil(request)
+        let receipt = PushSessionRevocation(version: 1, actorId: F.id(2), sessionId: F.id(55), revoked: true)
+        try await store.recordPushLogout(receipt)
+        let stillFenced = try await store.hasPendingPushCleanup()
+        XCTAssertTrue(stillFenced)
+        try await store.finishPushLogout(actor: F.id(2), session: F.id(55))
+        try await store.stagePushDeviceRequest(.init(baseline: F.baseline, command: F.command), lease: lease)
+        let restored = try await store.readPushDeviceRequest(lease: lease)
+        XCTAssertEqual(restored?.command, F.command)
+    }
+
     func testPendingMetadataSurvivesRestartAndLeaseRemovalWithoutAutomaticCleanup() async throws {
         let path = NSTemporaryDirectory() + "nest-push-logout-\(UUID()).sqlite"
         defer { for suffix in ["", "-wal", "-shm"] { try? FileManager.default.removeItem(atPath: path + suffix) } }
