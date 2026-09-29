@@ -92,11 +92,27 @@ final class PrivateMemoryModel: ObservableObject {
                 notice = "The change is not confirmed. Review the saved request before trying again."
             }
             saved = try await session.savedMemoryRequest(context)
+            try await refreshConfirmedMutation(session: session, context: context)
         } catch {
             memories = []
             saved = nil
             loaded = false
             notice = "Could not access private memory. Sign in and try again."
+        }
+    }
+
+    private func refreshConfirmedMutation(session: SessionModel, context: MemoryContext) async throws {
+        guard let saved, saved.response != nil else { return }
+        if case .proposal = saved.request { return }
+        memories = []
+        loaded = false
+        do {
+            let current = try await session.readMemories(context.account)
+            memories = current.memories
+            loaded = true
+        } catch {
+            try session.requireAssistantAccount(context.account)
+            notice = "Your result is confirmed, but the current memory list could not reload. Connect and try again."
         }
     }
 }

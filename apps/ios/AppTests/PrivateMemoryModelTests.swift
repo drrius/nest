@@ -44,6 +44,7 @@ final class PrivateMemoryModelTests: XCTestCase {
         await reopened.retry(session: session, member: member)
         guard case .decision(let result) = reopened.saved?.response else { return XCTFail("Missing decision") }
         XCTAssertEqual(result.decision.status, "consumed")
+        XCTAssertEqual(reopened.memories.first?.content, "Exact text", "Confirmed save must refresh the visible list")
         let decisions = await server.decisions
         XCTAssertEqual(decisions, 1)
         await reopened.finish(session: session, member: member)
@@ -58,6 +59,7 @@ final class PrivateMemoryModelTests: XCTestCase {
         XCTAssertEqual(recovered.saved?.request.operation, removal)
         await recovered.retry(session: session, member: member)
         guard case .removal = recovered.saved?.response else { return XCTFail("Missing removal receipt") }
+        XCTAssertTrue(recovered.memories.isEmpty, "Confirmed removal must refresh before Done")
         await recovered.finish(session: session, member: member)
         XCTAssertNil(recovered.saved)
         XCTAssertTrue(recovered.memories.isEmpty)
