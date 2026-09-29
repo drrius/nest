@@ -8,6 +8,7 @@ private struct MemoryEditorTarget: Identifiable {
 struct PrivateMemoryScreen: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
+    var approvalId: UUID? = nil
     @StateObject private var model = PrivateMemoryModel()
     @State private var editor: MemoryEditorTarget?
     @State private var removal: PrivateMemory?
@@ -45,7 +46,7 @@ struct PrivateMemoryScreen: View {
             if let notice = model.notice {
                 Section {
                     Text(notice).foregroundStyle(QuietPalette.muted)
-                    Button("Reload") { Task { await model.load(session: session, member: member) } }
+                    Button("Reload") { Task { await model.load(session: session, member: member, approvalId: approvalId) } }
                 }
             }
         }
@@ -57,8 +58,8 @@ struct PrivateMemoryScreen: View {
             Button("Add") { editor = MemoryEditorTarget(memory: nil) }
                 .disabled(model.busy || !model.loaded || model.saved != nil)
         }
-        .task(id: session.generation) { await model.load(session: session, member: member) }
-        .refreshable { await model.load(session: session, member: member) }
+        .task(id: session.generation) { await model.load(session: session, member: member, approvalId: approvalId) }
+        .refreshable { await model.load(session: session, member: member, approvalId: approvalId) }
         .sheet(item: $editor) { target in
             MemoryEditorScreen(model: model, session: session, member: member, memory: target.memory)
         }

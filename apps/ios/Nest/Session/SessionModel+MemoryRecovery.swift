@@ -39,6 +39,13 @@ extension SessionModel {
         try requireAssistantAccount(context.account)
     }
 
+    func importMemoryProposal(id: UUID, context: MemoryContext) async throws {
+        let envelope = try await readMemoryApproval(context.account, id: id)
+        guard let offline else { throw NestAPIFailure.configuration }
+        try await offline.importMemoryProposal(envelope, lease: context.lease)
+        try requireAssistantAccount(context.account)
+    }
+
     func decideSavedMemory(approved: Bool, context: MemoryContext) async throws {
         _ = try await assistantToken(context.account)
         guard let offline else { throw NestAPIFailure.configuration }

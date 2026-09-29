@@ -57,6 +57,10 @@ struct AssistantHistoryScreen: View {
             Text(text).textSelection(.enabled).foregroundStyle(QuietPalette.ink)
         } else if let approval = PendingFinancialApproval.assistantLink(part, member: member) {
             FinancialApprovalRow(session: session, member: member, row: approval)
+        } else if let id = AssistantMemoryLink.approvalId(part, member: member) {
+            NavigationLink("Review private memory proposal") {
+                PrivateMemoryScreen(session: session, member: member, approvalId: id).id(session.generation)
+            }
         } else if let handoff = AssistantHandoff.read(part, member: member) {
             AssistantHandoffRow(session: session, member: member, handoff: handoff)
         } else if let notice = AssistantActionNotice.text(part) {

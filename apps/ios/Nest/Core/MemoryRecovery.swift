@@ -54,6 +54,12 @@ struct SavedMemoryRequest: Codable, Sendable {
     var response: MemoryResponse?
     var rejected = false
 
+    var approvalId: UUID? {
+        if case .proposal(let envelope) = response { return envelope.approval.id }
+        if case .decision(let command) = request { return command.approvalId }
+        return nil
+    }
+
     func validated(lease: OfflineLease) throws -> Self {
         guard !rejected || response == nil else { throw OfflineFailure.storage }
         try request.validate()
@@ -92,6 +98,18 @@ extension ChoreOfflineStore {
         }
         saved.response = response
         try writeMemoryRequest(saved, lease: lease)
+    }
+
+    func importMemoryProposal(_ envelope: MemoryApprovalEnvelope, lease: OfflineLease) throws {
+        guard try readMemoryRequest(lease: lease) == nil else { throw OfflineFailure.alreadyQueued }
+        let approval = envelope.approval
+        let command = ProposeMemory(
+            operationId: approval.operationId, memoryId: approval.change.memoryId,
+            expectedRevision: approval.change.expectedRevision, content: approval.change.content)
+        let saved = try SavedMemoryRequest(request: .proposal(command), response: .proposal(envelope))
+            .validated(lease: lease)
+        let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
+        try db.run("INSERT INTO memory_requests(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
     }
 
     /// A proposal is only a draft. Choosing its exact text starts a separate decision.

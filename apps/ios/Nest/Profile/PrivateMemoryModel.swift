@@ -9,7 +9,7 @@ final class PrivateMemoryModel: ObservableObject {
     @Published private(set) var loaded = false
     @Published private(set) var notice: String?
 
-    func load(session: SessionModel, member: VerifiedMember) async {
+    func load(session: SessionModel, member: VerifiedMember, approvalId: UUID? = nil) async {
         guard !busy else { return }
         busy = true
         memories = []
@@ -20,6 +20,13 @@ final class PrivateMemoryModel: ObservableObject {
         do {
             let context = try context(session, member)
             saved = try await session.savedMemoryRequest(context)
+            if let approvalId, saved == nil {
+                try await session.importMemoryProposal(id: approvalId, context: context)
+                saved = try await session.savedMemoryRequest(context)
+            }
+            if let approvalId, saved?.approvalId != approvalId {
+                notice = "Finish your saved memory request before opening another proposal."
+            }
             let result = try await session.readMemories(context.account)
             memories = result.memories
             loaded = true

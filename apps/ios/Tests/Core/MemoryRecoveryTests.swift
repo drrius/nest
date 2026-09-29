@@ -70,4 +70,33 @@ final class MemoryRecoveryTests: XCTestCase {
         let cleared = try await store.readMemoryRequest(lease: current)
         XCTAssertNil(cleared)
     }
+
+    func testImportedProposalIsPrivateAndCannotReplacePendingIntent() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "memory-import-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let approval = MemoryApproval(
+            id: UUID(), operationId: UUID(),
+            change: MemoryChange(memoryId: UUID(), expectedRevision: "0", content: "Review this"),
+            status: .pending, expiresAt: "2099-01-01T00:00:00Z")
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(member)
+        let foreign = MemoryApprovalEnvelope(
+            version: 1, actorId: UUID(), householdId: member.householdId, approval: approval)
+        do {
+            try await store.importMemoryProposal(foreign, lease: lease)
+            XCTFail("Imported another member's proposal")
+        } catch {}
+        let own = MemoryApprovalEnvelope(
+            version: 1, actorId: member.userId, householdId: member.householdId, approval: approval)
+        try await store.importMemoryProposal(own, lease: lease)
+        let saved = try await store.readMemoryRequest(lease: lease)
+        XCTAssertEqual(saved?.approvalId, approval.id)
+        guard case .proposal = saved?.request else { return XCTFail("Import implicitly decided") }
+        do {
+            try await store.importMemoryProposal(own, lease: lease)
+            XCTFail("Replaced existing saved intent")
+        } catch {}
+    }
+
 }
