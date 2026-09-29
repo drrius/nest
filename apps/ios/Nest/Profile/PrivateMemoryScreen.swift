@@ -1,12 +1,17 @@
 import SwiftUI
 
+private struct MemoryEditorTarget: Identifiable {
+    let id = UUID()
+    let memory: PrivateMemory?
+}
+
 struct PrivateMemoryScreen: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
-    @State private var memories: [PrivateMemory] = []
-    @State private var loaded = false
-    @State private var notice: String?
-    @State private var request = UUID()
+    @StateObject private var model = PrivateMemoryModel()
+    @State private var editor: MemoryEditorTarget?
+    @State private var removal: PrivateMemory?
+    @State private var confirmRemoval = false
 
     var body: some View {
         List {
@@ -14,54 +19,55 @@ struct PrivateMemoryScreen: View {
                 Text("Only you and your private assistant can use these saved memories.")
                     .foregroundStyle(QuietPalette.muted)
             }
-            if loaded {
-                if memories.isEmpty {
-                    Section { Text("No saved memories yet.") }
-                } else {
-                    Section("Saved memories") {
-                        ForEach(memories) { memory in
+            if let saved = model.saved {
+                MemoryRequestSection(model: model, session: session, member: member, saved: saved)
+            }
+            if model.loaded {
+                Section("Saved memories") {
+                    if model.memories.isEmpty { Text("No saved memories yet.") }
+                    ForEach(model.memories) { memory in
+                        VStack(alignment: .leading, spacing: 12) {
                             Text(memory.content).textSelection(.enabled)
+                            HStack {
+                                Button("Edit") { editor = MemoryEditorTarget(memory: memory) }
+                                Button("Remove", role: .destructive) {
+                                    removal = memory
+                                    confirmRemoval = true
+                                }
+                            }
+                            .buttonStyle(.bordered)
+                            .disabled(model.saved != nil)
                         }
                     }
                 }
-            } else if notice == nil {
-                ProgressView("Loading private memory…")
             }
-            if let notice {
+            if model.busy { ProgressView("Checking private memory…") }
+            if let notice = model.notice {
                 Section {
                     Text(notice).foregroundStyle(QuietPalette.muted)
-                    Button("Try again") { Task { await load() } }
+                    Button("Reload") { Task { await model.load(session: session, member: member) } }
                 }
             }
         }
+        .disabled(model.busy)
         .navigationTitle("Private memory")
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
-        .task(id: session.generation) { await load() }
-        .refreshable { await load() }
-        .onDisappear {
-            request = UUID()
-            memories = []
-            loaded = false
+        .toolbar {
+            Button("Add") { editor = MemoryEditorTarget(memory: nil) }
+                .disabled(model.busy || !model.loaded || model.saved != nil)
         }
-    }
-
-    private func load() async {
-        let current = UUID()
-        request = current
-        memories = []
-        loaded = false
-        notice = nil
-        do {
-            let context = try session.assistantContext()
-            guard context.member == member else { throw NestAPIFailure.signedOut }
-            let result = try await session.readMemories(context)
-            guard request == current, session.status == .ready(member) else { return }
-            memories = result.memories
-            loaded = true
-        } catch {
-            guard request == current, session.status == .ready(member) else { return }
-            notice = "Could not load private memory. Connect and try again."
+        .task(id: session.generation) { await model.load(session: session, member: member) }
+        .refreshable { await model.load(session: session, member: member) }
+        .sheet(item: $editor) { target in
+            MemoryEditorScreen(model: model, session: session, member: member, memory: target.memory)
+        }
+        .confirmationDialog("Remove this saved memory?", isPresented: $confirmRemoval) {
+            Button("Remove memory", role: .destructive) {
+                if let removal { Task { await model.remove(removal, session: session, member: member) } }
+            }
+        } message: {
+            Text("\(removal?.content ?? "")\n\nYour separate conversation and approval history will remain.")
         }
     }
 }
