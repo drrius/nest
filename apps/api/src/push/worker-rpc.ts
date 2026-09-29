@@ -34,6 +34,8 @@ const methods = {
   saveCheckpoint: "nest_save_push_checkpoint",
   scan: "nest_scan_push_deliveries",
   begin: "nest_begin_push_delivery",
+  beginApns: "nest_begin_apns_delivery",
+  finishApnsSend: "nest_finish_apns_send",
   finishSend: "nest_finish_push_send",
   finishReceipt: "nest_finish_push_receipt",
   claimReceipts: "nest_claim_push_receipt_polls",
