@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { generateKeyPairSync } from "node:crypto";
+import { fileURLToPath } from "node:url";
+const workerPath = fileURLToPath(new URL("../../apps/api/push-worker.mjs", import.meta.url));
 const { privateKey } = generateKeyPairSync("ec", { namedCurve: "prime256v1" });
 const key = privateKey.export({ type: "pkcs8", format: "pem" });
 const fixture = {
@@ -31,7 +33,7 @@ test("dedicated APNs process fails before listening for disabled, missing or inv
   for (const [override, expected] of cases) {
     const env = { PATH: process.env.PATH, ...fixture, ...override };
     for (const name of Object.keys(env)) if (env[name] === undefined) delete env[name];
-    const child = spawnSync(process.execPath, ["apps/api/push-worker.mjs"], {
+    const child = spawnSync(process.execPath, [workerPath], {
       env,
       timeout: 5000,
       encoding: "utf8",
