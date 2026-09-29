@@ -15,7 +15,7 @@ const Page = Schema.Struct({
 });
 export { PushScanCursorSchema } from "./scan-cursor.ts";
 export type { PushScanCursor } from "./scan-cursor.ts";
-type Worker = ReturnType<typeof pushDeliveryWorker>;
+type Worker = Pick<ReturnType<typeof pushDeliveryWorker>, "send">;
 type Rpc = ReturnType<typeof pushWorkerRpc>;
 function validatePage(page: typeof Page.Type) {
   const consistent =

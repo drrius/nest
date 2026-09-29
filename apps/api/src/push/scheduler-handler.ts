@@ -37,7 +37,10 @@ function summarize(report: Report) {
     chore.filter((v) => v.status === "failed").length +
     receipts.filter((v) => v.status === "failed").length;
   const healthy =
-    Object.values(report).every((phase) => phase.status === "recorded") && failed === 0;
+    Object.entries(report).every(
+      ([name, phase]) =>
+        phase.status === "recorded" || (name === "receipts" && phase.status === "not_applicable"),
+    ) && failed === 0;
   return response(healthy ? 200 : 503, {
     maintenance: report.maintenance.status,
     delivery: report.delivery.status,

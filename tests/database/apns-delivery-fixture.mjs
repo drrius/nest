@@ -3,10 +3,11 @@ import { as } from "./push-delivery-fixture.mjs";
 export { id, json };
 export const apnsOutcomesMigration =
   "supabase/migrations/20260929221917_native_apns_delivery_outcomes.sql";
-export function apnsDeliveryFixture(t, seedLedger = false) {
+export function apnsDeliveryFixture(t, seedLedger = false, beforeApns) {
   const f = fixture(t);
   if (seedLedger) f.seed("apns-ledger-fixture", 101, 51);
   f.db.file("supabase/migrations/20260923005427_native_push_worker_rpc.sql");
+  beforeApns?.(f.db);
   f.db.file("supabase/migrations/20260922235848_native_push_cancellation.sql");
   f.db.file("supabase/migrations/20260929220335_native_apns_registration.sql");
   f.db.file(apnsOutcomesMigration);

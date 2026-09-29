@@ -41,7 +41,8 @@ function outcome<A, E>(effect: Effect.Effect<A, E>) {
 /** A bounded invocation; hosting must schedule later invocations explicitly. */
 export function runPushCycle(
   rpc: ReturnType<typeof pushWorkerRpc>,
-  worker: ReturnType<typeof pushDeliveryWorker>,
+  worker: Pick<ReturnType<typeof pushDeliveryWorker>, "send"> &
+    Partial<Pick<ReturnType<typeof pushDeliveryWorker>, "receipt">>,
 ) {
   return Effect.gen(function* () {
     const maintenance = yield* outcome(
@@ -90,8 +91,10 @@ export function runPushCycle(
       recurringMaintenance.status === "recorded"
         ? yield* outcome(runCheckpointedPushPage(recurringPushRpc(rpc), worker))
         : { status: "skipped" as const };
-    // Receipt reads remain useful even when materialization or sending failed.
-    const receipts = yield* outcome(runPushReceipts(rpc, worker));
+    // APNs has no phone-delivery receipt API. Never claim legacy tickets for an APNs worker.
+    const receipts = worker.receipt
+      ? yield* outcome(runPushReceipts(rpc, { receipt: worker.receipt }))
+      : { status: "not_applicable" as const };
     return {
       maintenance,
       delivery,

@@ -17,7 +17,7 @@ function sameCursor(left: PushScanCursor | null, right: PushScanCursor | null) {
 /** Save progress only after all page attempts settle. Lost saves recover by rereading. */
 export function runCheckpointedPushPage(
   rpc: ReturnType<typeof pushWorkerRpc>,
-  worker: ReturnType<typeof pushDeliveryWorker>,
+  worker: Pick<ReturnType<typeof pushDeliveryWorker>, "send">,
 ) {
   return Effect.gen(function* () {
     const start = yield* Schema.decodeUnknownEffect(Checkpoint)(yield* rpc("readCheckpoint", {}));

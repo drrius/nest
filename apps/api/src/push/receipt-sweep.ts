@@ -10,7 +10,7 @@ const Claims = Schema.Struct({
 /** Poll claims are already durably delayed by the database, including on crash. */
 export function runPushReceipts(
   rpc: ReturnType<typeof pushWorkerRpc>,
-  worker: ReturnType<typeof pushDeliveryWorker>,
+  worker: Pick<ReturnType<typeof pushDeliveryWorker>, "receipt">,
 ) {
   return Effect.gen(function* () {
     const page = yield* Schema.decodeUnknownEffect(Claims)(yield* rpc("claimReceipts", {}));

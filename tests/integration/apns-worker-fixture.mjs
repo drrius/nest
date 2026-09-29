@@ -6,8 +6,8 @@ import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { pushWorkerRpc } from "../../apps/api/src/push/worker-rpc.ts";
 import { apnsPushTransport } from "../../apps/api/src/push/apns-transport.ts";
 import { ApnsHttp2Client } from "../../apps/api/src/push/apns-request.ts";
-export async function apnsWorkerFixture(t, respond) {
-  const f = apnsDeliveryFixture(t, true);
+export async function apnsWorkerFixture(t, respond, beforeApns) {
+  const f = apnsDeliveryFixture(t, true, beforeApns);
   f.db.file("tests/integration/food-postgrest.sql");
   const http = await postgrestFixture(t, [], f.db);
   const rpc = pushWorkerRpc(
