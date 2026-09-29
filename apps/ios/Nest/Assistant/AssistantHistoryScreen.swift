@@ -65,6 +65,12 @@ struct AssistantHistoryScreen: View {
             AssistantHandoffRow(session: session, member: member, handoff: handoff)
         } else if let result = AssistantRenewalLink.read(part, member: member) {
             AssistantRenewalRow(session: session, member: member, result: result)
+        } else if let receipt = AssistantChoreReminderLink.receipt(part, member: member) {
+            Text("Chore reminder choices saved. This does not confirm delivery.")
+            NavigationLink("View current chore reminder choices") {
+                ChoreReminderScreen(session: session, member: member, occurrenceId: receipt.reminder.occurrenceId)
+                    .id(session.generation)
+            }
         } else if let summary = AssistantSummaryLink.read(part, member: member) {
             AssistantSummaryRow(session: session, member: member, summary: summary)
         } else if let notice = AssistantActionNotice.text(part) {

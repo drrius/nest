@@ -38,6 +38,12 @@ struct ChoreChangeScreen: View {
                 }
                 SchedulingWarningSection(session: model, day: date)
                 Section {
+                    if case .ready(let member) = model.status {
+                        NavigationLink("Reminder choices") {
+                            ChoreReminderScreen(session: model, member: member, occurrenceId: chore.id)
+                                .id(model.generation)
+                        }
+                    }
                     Button("Skip this occurrence", role: .destructive) { confirmingSkip = true }
                     Text("Only this occurrence changes. The routine and completed history are kept.").font(.footnote)
                 }
