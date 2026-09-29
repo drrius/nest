@@ -46,7 +46,9 @@ struct PrivateMemoryScreen: View {
             if let notice = model.notice {
                 Section {
                     Text(notice).foregroundStyle(QuietPalette.muted)
-                    Button("Reload") { Task { await model.load(session: session, member: member, approvalId: approvalId) } }
+                    Button("Reload") {
+                        Task { await model.load(session: session, member: member, approvalId: approvalId) }
+                    }
                 }
             }
         }
