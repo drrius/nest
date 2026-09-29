@@ -11,7 +11,9 @@ struct RenewalRequestSection: View {
             Text(saved.command.removing ? "Remove from Nest" : "Save renewal").font(.headline)
             if let fields = saved.command.fields ?? saved.baseline?.fields {
                 Text(fields.title)
-                Text("Renews \(fields.renewalOn.value) · \(fields.noticeDays) days’ notice")
+                Text(
+                    "Renews \(fields.renewalOn.value) · \(fields.noticeDays) \(fields.noticeDays == 1 ? "day’s" : "days’") notice"
+                )
                 if let deadline = fields.cancellationDeadline { Text("Cancel by \(deadline.value)") }
                 if let id = fields.responsibleId {
                     Text(

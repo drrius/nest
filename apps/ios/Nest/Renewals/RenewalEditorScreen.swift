@@ -9,6 +9,7 @@ struct RenewalEditorScreen: View {
     @State private var draft: RenewalDraft
     @State private var discarding = false
     @StateObject private var choices = RenewalChoicesModel()
+    @FocusState private var titleFocused: Bool
     @Environment(\.dismiss) private var dismiss
 
     init(model: RenewalsModel, session: SessionModel, member: VerifiedMember, baseline: CalendarRenewal?) {
@@ -27,10 +28,13 @@ struct RenewalEditorScreen: View {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("Title").font(.caption).foregroundStyle(QuietPalette.muted)
                     TextField("e.g. Home insurance", text: $draft.title, axis: .vertical)
+                        .focused($titleFocused)
                 }
                 DatePicker("Renewal date", selection: $draft.date, displayedComponents: .date)
                     .environment(\.calendar, Calendar(identifier: .gregorian))
-                Stepper("Notice: \(draft.noticeDays) days", value: $draft.noticeDays, in: 0...730)
+                Stepper(
+                    "Notice: \(draft.noticeDays) \(draft.noticeDays == 1 ? "day" : "days")", value: $draft.noticeDays,
+                    in: 0...730)
                 if let date = try? draft.fields().cancellationDeadline {
                     Text("Cancel by \(date.value)").foregroundStyle(QuietPalette.muted)
                 }
@@ -44,6 +48,7 @@ struct RenewalEditorScreen: View {
                 if let notice = model.notice { Text(notice) }
                 if model.busy { ProgressView("Checking your change…") }
                 Button("Save renewal") {
+                    titleFocused = false
                     Task {
                         guard let fields = try? draft.fields() else { return }
                         await model.save(fields: fields, baseline: baseline, session: session, member: member)
@@ -54,8 +59,13 @@ struct RenewalEditorScreen: View {
         }
         .navigationTitle(baseline == nil ? "New renewal" : "Edit renewal")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
+        .scrollDismissesKeyboard(.interactively)
         .navigationBarBackButtonHidden()
         .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") { titleFocused = false }
+            }
             ToolbarItem(placement: .cancellationAction) {
                 Button("Cancel") { if draft == initial { dismiss() } else { discarding = true } }
                     .disabled(model.busy)

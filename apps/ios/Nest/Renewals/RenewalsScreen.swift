@@ -5,6 +5,7 @@ struct RenewalsScreen: View {
     let member: VerifiedMember
     @StateObject private var model = RenewalsModel()
     @State private var adding = false
+    @State private var editing: CalendarRenewal?
     @State private var removing: CalendarRenewal?
 
     var body: some View {
@@ -28,13 +29,10 @@ struct RenewalsScreen: View {
                         Text("Cancel by \(row.cancellationOn.value)")
                             .foregroundStyle(QuietPalette.muted)
                         HStack {
-                            NavigationLink("Edit") {
-                                RenewalEditorScreen(model: model, session: session, member: member, baseline: row)
-                                    .id(session.generation)
-                            }
+                            Button("Edit") { editing = row }
                             Spacer()
                             Button("Remove", role: .destructive) { removing = row }
-                        }.disabled(model.busy || model.saved != nil)
+                        }.buttonStyle(.borderless).disabled(model.busy || model.saved != nil)
                     }.padding(.vertical, 6)
                 }
                 if model.loaded && model.rows.isEmpty { Text("No renewals yet.") }
@@ -51,6 +49,12 @@ struct RenewalsScreen: View {
         .sheet(isPresented: $adding) {
             NavigationStack {
                 RenewalEditorScreen(model: model, session: session, member: member, baseline: nil)
+                    .id(session.generation)
+            }
+        }
+        .sheet(item: $editing) { renewal in
+            NavigationStack {
+                RenewalEditorScreen(model: model, session: session, member: member, baseline: renewal)
                     .id(session.generation)
             }
         }

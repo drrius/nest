@@ -15,7 +15,7 @@ struct RenewalDetailScreen: View {
                     Text(renewal.fields.title).font(.headline)
                     Text("Renews \(renewal.fields.renewalOn.value)")
                     Text("Cancel by \(renewal.cancellationOn.value)")
-                    Text("\(renewal.fields.noticeDays) days’ notice")
+                    Text("\(renewal.fields.noticeDays) \(renewal.fields.noticeDays == 1 ? "day’s" : "days’") notice")
                     if renewal.removed { Text("Removed from Nest. This record is retained as history.") }
                     if let id = renewal.fields.recurringRuleId {
                         NavigationLink("View linked recurring expense") {
