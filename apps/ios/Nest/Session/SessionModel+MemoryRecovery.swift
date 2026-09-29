@@ -8,7 +8,9 @@ struct MemoryContext {
 extension SessionModel {
     func memoryContext() throws -> MemoryContext {
         let account = try assistantContext()
-        guard let lease else { throw NestAPIFailure.configuration }
+        guard let lease, lease.actor == account.member.userId, lease.household == account.member.householdId else {
+            throw NestAPIFailure.configuration
+        }
         return MemoryContext(account: account, lease: lease)
     }
 
