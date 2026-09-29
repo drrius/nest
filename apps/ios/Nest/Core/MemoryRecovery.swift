@@ -18,8 +18,8 @@ enum MemoryRequest: Codable, Sendable {
         case .proposal(let command): _ = try command.change.validated()
         case .decision(let command):
             _ = try MemoryChange(
-                memoryId: command.memoryId, expectedRevision: command.expectedRevision, content: command.content)
-                .validated()
+                memoryId: command.memoryId, expectedRevision: command.expectedRevision, content: command.content
+            ).validated()
         case .removal(let command):
             guard MealRevision.valid(command.expectedRevision), command.expectedRevision != "0" else {
                 throw OfflineFailure.invalidOperation

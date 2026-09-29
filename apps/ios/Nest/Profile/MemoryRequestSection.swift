@@ -9,7 +9,9 @@ struct MemoryRequestSection: View {
     var body: some View {
         Section("Your memory request") {
             if saved.rejected {
-                Text("This request was rejected. The memory or approval may have changed or expired. Reload before editing.")
+                Text(
+                    "This request was rejected. The memory or approval may have changed or expired. Reload before editing."
+                )
                 Button("Dismiss rejected request") { Task { await model.finish(session: session, member: member) } }
             } else if let response = saved.response {
                 result(response)

@@ -19,7 +19,8 @@ extension AssistantAPI {
         -> MemoryDecisionEnvelope
     {
         _ = try MemoryChange(
-            memoryId: command.memoryId, expectedRevision: command.expectedRevision, content: command.content).validated()
+            memoryId: command.memoryId, expectedRevision: command.expectedRevision, content: command.content
+        ).validated()
         let result = try await http.write(
             "v1/memories/decide", token: token, household: member.householdId, body: command,
             as: MemoryDecisionEnvelope.self)
