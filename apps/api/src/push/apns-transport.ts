@@ -2,6 +2,10 @@ import * as Effect from "effect/Effect";
 import * as Redacted from "effect/Redacted";
 import * as Schema from "effect/Schema";
 import { NestNotification } from "../../../../packages/contracts/src/push-notification.ts";
+import {
+  ApnsEnvironment as Environment,
+  ApnsPushToken,
+} from "../../../../packages/contracts/src/push-registration.ts";
 import { apnsTokenSigner } from "./apns-token.ts";
 import type { ApnsCredentials } from "./apns-token.ts";
 import { ApnsHttp2Client } from "./apns-request.ts";
@@ -11,8 +15,8 @@ import type { ApnsResult } from "./apns-response.ts";
 
 export const ApnsDelivery = Schema.Struct({
   // Apple tokens are variable-length opaque bytes. Never assume a 32-byte token.
-  token: Schema.String.check(Schema.isPattern(/^(?:[0-9a-f]{2}){1,2048}$(?![\s\S])/)),
-  environment: Schema.Literals(["sandbox", "production"]),
+  token: ApnsPushToken,
+  environment: Environment,
   apnsId: Schema.String.check(Schema.isUUID()),
   notification: NestNotification,
 });
