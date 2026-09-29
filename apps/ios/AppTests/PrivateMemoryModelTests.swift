@@ -35,6 +35,11 @@ final class PrivateMemoryModelTests: XCTestCase {
         let stillBefore = await server.decisions
         XCTAssertEqual(stillBefore, 0)
         await reopened.decide(true, session: session, member: member)
+        XCTAssertNil(reopened.saved?.response)
+        XCTAssertEqual(reopened.saved?.request.operation, operation)
+        await reopened.finish(session: session, member: member)
+        XCTAssertNotNil(reopened.saved)
+        await reopened.retry(session: session, member: member)
         guard case .decision(let result) = reopened.saved?.response else { return XCTFail("Missing decision") }
         XCTAssertEqual(result.decision.status, "consumed")
         let decisions = await server.decisions
@@ -42,6 +47,18 @@ final class PrivateMemoryModelTests: XCTestCase {
         await reopened.finish(session: session, member: member)
         XCTAssertNil(reopened.saved)
         XCTAssertEqual(reopened.memories.first?.content, "Exact text")
+        let memory = try XCTUnwrap(reopened.memories.first)
+        await reopened.remove(memory, session: session, member: member)
+        XCTAssertNil(reopened.saved?.response)
+        let removal = reopened.saved?.request.operation
+        let recovered = PrivateMemoryModel()
+        await recovered.load(session: session, member: member)
+        XCTAssertEqual(recovered.saved?.request.operation, removal)
+        await recovered.retry(session: session, member: member)
+        guard case .removal = recovered.saved?.response else { return XCTFail("Missing removal receipt") }
+        await recovered.finish(session: session, member: member)
+        XCTAssertNil(recovered.saved)
+        XCTAssertTrue(recovered.memories.isEmpty)
     }
 }
 
@@ -50,6 +67,9 @@ private actor MemoryTestServer {
     var proposal: MemoryApproval?
     var loseResponse = true
     var decisions = 0
+    var loseDecision = true
+    var loseRemoval = true
+    var removedCommand: RemoveMemory?
     var memories: [PrivateMemory] = []
     init(member: VerifiedMember) { self.member = member }
 
@@ -80,6 +100,8 @@ private actor MemoryTestServer {
                     version: 1, actorId: member.userId, householdId: member.householdId, approval: proposal!))
         case "/v1/memories/decide":
             data = try decide(request)
+        case "/v1/memories/remove":
+            data = try remove(request)
         default: throw NestAPIFailure.contract
         }
         return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
@@ -90,7 +112,12 @@ private actor MemoryTestServer {
         guard let proposal, command == DecideMemory(approval: proposal, approved: true) else {
             throw NestAPIFailure.contract
         }
-        decisions += 1
+        if loseDecision {
+            decisions += 1
+            memories = [.init(id: command.memoryId, revision: "1", content: command.content)]
+            loseDecision = false
+            throw URLError(.networkConnectionLost)
+        }
         memories = [.init(id: command.memoryId, revision: "1", content: command.content)]
         let receipt = MemoryReceipt(
             actorId: member.userId, householdId: member.householdId, operationId: command.operationId,
@@ -100,4 +127,27 @@ private actor MemoryTestServer {
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 decision: .init(status: "consumed", receipt: receipt)))
     }
+
+    private func remove(_ request: URLRequest) throws -> Data {
+        let command = try JSONDecoder().decode(RemoveMemory.self, from: request.httpBody!)
+        if let removedCommand {
+            guard command == removedCommand else { throw NestAPIFailure.contract }
+        } else {
+            guard memories.contains(where: { $0.id == command.memoryId && $0.revision == command.expectedRevision })
+            else { throw NestAPIFailure.contract }
+            removedCommand = command
+            memories = []
+        }
+        if loseRemoval {
+            loseRemoval = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(
+            MemoryRemovalEnvelope(
+                version: 1, actorId: member.userId, householdId: member.householdId,
+                receipt: MemoryReceipt(
+                    actorId: member.userId, householdId: member.householdId, operationId: command.operationId,
+                    memoryId: command.memoryId, revision: "2", removed: true)))
+    }
+
 }
