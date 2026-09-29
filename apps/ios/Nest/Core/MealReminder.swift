@@ -1,14 +1,14 @@
 import Foundation
 
-struct ChoreReminder: Codable, Equatable, Sendable {
-    let occurrenceId: UUID
+struct MealReminder: Codable, Equatable, Sendable {
+    let entryId: UUID
     let revision: UUID
     let reviewedItemRevision: String
     let updatedBy: UUID
     let settings: ReminderSettings
 
     func validated(id: UUID) throws -> Self {
-        guard occurrenceId == id, ReminderFingerprint.valid(reviewedItemRevision) else {
+        guard entryId == id, ReminderFingerprint.valid(reviewedItemRevision) else {
             throw NestAPIFailure.contract
         }
         _ = try settings.validated()
@@ -16,37 +16,38 @@ struct ChoreReminder: Codable, Equatable, Sendable {
     }
 }
 
-struct ChoreReminderContext: Codable, Equatable, Sendable {
+struct MealReminderContext: Codable, Equatable, Sendable {
     let version: Int
     let householdId: UUID
     let itemRevision: String
-    let chore: NestChore
-    let reminder: ChoreReminder?
+    let meal: PlannedMeal
+    let reminder: MealReminder?
 
     func validated(member: VerifiedMember, id: UUID) throws -> Self {
-        guard version == 1, householdId == member.householdId, chore.id == id,
-            !chore.title.isEmpty, ReminderFingerprint.valid(itemRevision)
+        guard version == 1, householdId == member.householdId, meal.id == id,
+            ReminderFingerprint.valid(itemRevision)
         else { throw NestAPIFailure.contract }
+        _ = try meal.validated()
         _ = try reminder?.validated(id: id)
         return self
     }
 }
 
-struct SaveChoreReminder: Codable, Equatable, Sendable {
+struct SaveMealReminder: Codable, Equatable, Sendable {
     let operationId: UUID
-    let occurrenceId: UUID
+    let entryId: UUID
     let expectedItemRevision: String
     let expectedRevision: UUID?
     let settings: ReminderSettings
 
     enum CodingKeys: String, CodingKey {
-        case operationId, occurrenceId, expectedItemRevision, expectedRevision, settings
+        case operationId, entryId, expectedItemRevision, expectedRevision, settings
     }
 
     func encode(to encoder: Encoder) throws {
         var values = encoder.container(keyedBy: CodingKeys.self)
         try values.encode(operationId, forKey: .operationId)
-        try values.encode(occurrenceId, forKey: .occurrenceId)
+        try values.encode(entryId, forKey: .entryId)
         try values.encode(expectedItemRevision, forKey: .expectedItemRevision)
         try values.encode(expectedRevision, forKey: .expectedRevision)
         try values.encode(settings, forKey: .settings)
@@ -61,17 +62,17 @@ struct SaveChoreReminder: Codable, Equatable, Sendable {
     }
 }
 
-struct ChoreReminderReceipt: Codable, Equatable, Sendable {
+struct MealReminderReceipt: Codable, Equatable, Sendable {
     let version: Int
     let actorId: UUID
     let householdId: UUID
     let operationId: UUID
-    let command: SaveChoreReminder
-    let reminder: ChoreReminder
+    let command: SaveMealReminder
+    let reminder: MealReminder
 
-    func validated(member: VerifiedMember, expected: SaveChoreReminder) throws -> Self {
+    func validated(member: VerifiedMember, expected: SaveMealReminder) throws -> Self {
         _ = try expected.validated()
-        _ = try reminder.validated(id: expected.occurrenceId)
+        _ = try reminder.validated(id: expected.entryId)
         guard version == 1, actorId == member.userId, householdId == member.householdId,
             operationId == expected.operationId, command == expected,
             reminder.updatedBy == member.userId, reminder.reviewedItemRevision == expected.expectedItemRevision,
@@ -81,16 +82,16 @@ struct ChoreReminderReceipt: Codable, Equatable, Sendable {
     }
 }
 
-struct ChoreReminderRecovery: Codable, Equatable, Sendable {
+struct MealReminderRecovery: Codable, Equatable, Sendable {
     enum Status: String, Codable, Sendable { case unresolved, cancelled, recorded }
     let version: Int
     let actorId: UUID
     let householdId: UUID
     let operationId: UUID
     let status: Status
-    let receipt: ChoreReminderReceipt?
+    let receipt: MealReminderReceipt?
 
-    func validated(member: VerifiedMember, command: SaveChoreReminder) throws -> Self {
+    func validated(member: VerifiedMember, command: SaveMealReminder) throws -> Self {
         guard version == 1, actorId == member.userId, householdId == member.householdId,
             operationId == command.operationId, (status == .recorded) == (receipt != nil)
         else { throw NestAPIFailure.contract }

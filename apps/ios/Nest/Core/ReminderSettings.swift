@@ -56,3 +56,9 @@ struct RenewalReminderEnvelope: Codable, Equatable, Sendable {
         return self
     }
 }
+
+enum ReminderFingerprint {
+    static func valid(_ value: String) -> Bool {
+        value.range(of: #"\A[a-f0-9]{64}\z"#, options: .regularExpression) != nil
+    }
+}

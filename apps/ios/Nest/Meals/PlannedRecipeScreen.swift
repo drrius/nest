@@ -46,6 +46,11 @@ struct PlannedRecipeScreen: View {
     @ViewBuilder
     private func detail(_ value: PlannedRecipeEnvelope) -> some View {
         if let entry = value.entry {
+            if case .ready(let member) = model.status {
+                NavigationLink("Reminder choices") {
+                    MealReminderScreen(session: model, member: member, entryId: entry.id).id(model.generation)
+                }.frame(minHeight: 44, alignment: .leading)
+            }
             let context = "\(MealWeekScreen.label(entry.date)) · \(entry.slot.label)"
             if let snapshot = value.snapshot {
                 RecipeContentView(recipe: snapshot.recipe.content, context: context)

@@ -63,7 +63,14 @@ struct AssistantHistoryScreen: View {
             }
         } else if let handoff = AssistantHandoff.read(part, member: member) {
             AssistantHandoffRow(session: session, member: member, handoff: handoff)
-        } else if let result = AssistantRenewalLink.read(part, member: member) {
+        } else {
+            actionPart(part)
+        }
+    }
+
+    @ViewBuilder
+    private func actionPart(_ part: [String: AssistantJSON]) -> some View {
+        if let result = AssistantRenewalLink.read(part, member: member) {
             AssistantRenewalRow(session: session, member: member, result: result)
         } else if let receipt = AssistantChoreReminderLink.receipt(part, member: member) {
             Text("Chore reminder choices saved. This does not confirm delivery.")
@@ -73,6 +80,12 @@ struct AssistantHistoryScreen: View {
             }
         } else if let summary = AssistantSummaryLink.read(part, member: member) {
             AssistantSummaryRow(session: session, member: member, summary: summary)
+        } else if let receipt = AssistantMealReminderLink.receipt(part, member: member) {
+            Text("Meal reminder choices saved. This does not confirm delivery.")
+            NavigationLink("View current meal reminder choices") {
+                MealReminderScreen(session: session, member: member, entryId: receipt.reminder.entryId)
+                    .id(session.generation)
+            }
         } else if let notice = AssistantActionNotice.text(part) {
             Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
         } else if part["type"] != .string("step-start") {

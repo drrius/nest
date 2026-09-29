@@ -76,6 +76,16 @@ public struct PlannedMeal: Codable, Equatable, Identifiable, Sendable {
     public let leftoverSourceId: UUID?
 
     public var id: UUID { entryId }
+
+    func validated() throws -> Self {
+        let trimmed = title.trimmingCharacters(in: CharacterSet(charactersIn: " "))
+        guard !trimmed.isEmpty, trimmed.unicodeScalars.count <= 120, !title.contains("\0"),
+            leftoverSourceId != entryId,
+            (notes?.unicodeScalars.count ?? 0) <= 4_000, !(notes?.contains("\0") ?? false),
+            (recipeUrl?.unicodeScalars.count ?? 0) <= 2_000, !(recipeUrl?.contains("\0") ?? false)
+        else { throw MealContractError.invalidWeek }
+        return self
+    }
 }
 
 public struct MealWeekSnapshot: Codable, Equatable, Sendable {
@@ -93,18 +103,13 @@ public struct MealWeekSnapshot: Codable, Equatable, Sendable {
         else { throw MealContractError.invalidWeek }
         let dates = Set(week.days)
         for entry in entries {
-            guard dates.contains(entry.date), entry.leftoverSourceId != entry.id,
-                Self.validTitle(entry.title), (entry.notes?.count ?? 0) <= 4_000,
-                (entry.recipeUrl?.count ?? 0) <= 2_000
+            guard dates.contains(entry.date)
             else { throw MealContractError.invalidWeek }
+            _ = try entry.validated()
         }
         return self
     }
 
-    private static func validTitle(_ title: String) -> Bool {
-        let trimmed = title.trimmingCharacters(in: .whitespaces)
-        return !trimmed.isEmpty && trimmed.unicodeScalars.count <= 120 && !title.contains("\0")
-    }
 }
 
 enum MealRevision {
