@@ -88,6 +88,12 @@ struct AssistantHistoryScreen: View {
             }
         } else if let notice = AssistantActionNotice.text(part) {
             Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
+        } else if let receipt = AssistantGroceryReminderLink.receipt(part, member: member) {
+            Text("Grocery reminder choices saved. This does not confirm delivery.")
+            NavigationLink("View current grocery reminder choices") {
+                GroceryReminderScreen(session: session, member: member, itemId: receipt.reminder.itemId)
+                    .id(session.generation)
+            }
         } else if part["type"] != .string("step-start") {
             Text("This message includes an action result that this view cannot display yet.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)

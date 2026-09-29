@@ -5,6 +5,7 @@ struct GroceriesScreen: View {
     @State private var showChecked = false
     @State private var showingAdd = false
     @State private var editingItem: GroceryItem?
+    @State private var remindingItem: GroceryItem?
     @State private var removalCandidate: GroceryItem?
     @State private var showingRemoveConfirmation = false
 
@@ -46,6 +47,13 @@ struct GroceriesScreen: View {
         }
         .sheet(isPresented: $showingAdd) { GroceryAddSheet(model: model) }
         .sheet(item: $editingItem) { item in GroceryEditSheet(model: model, item: item) }
+        .sheet(item: $remindingItem) { item in
+            if case .ready(let member) = model.status {
+                NavigationStack {
+                    GroceryReminderScreen(session: model, member: member, itemId: item.id).id(model.generation)
+                }
+            }
+        }
         .confirmationDialog(
             "Remove grocery?", isPresented: $showingRemoveConfirmation,
             presenting: removalCandidate
@@ -261,6 +269,7 @@ struct GroceriesScreen: View {
                 if local.state == .open {
                     Menu {
                         Button("Edit", systemImage: "pencil") { editingItem = local.item }
+                        Button("Reminder choices", systemImage: "bell") { remindingItem = local.item }
                         Button("Remove", systemImage: "trash", role: .destructive) {
                             removalCandidate = local.item
                             showingRemoveConfirmation = true

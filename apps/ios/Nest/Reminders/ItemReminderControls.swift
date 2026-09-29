@@ -4,6 +4,7 @@ struct ItemReminderControls: View {
     @Binding var settings: ReminderSettings
     let members: [NestMember]
     let actor: UUID
+    var showsLeadTime = true
 
     var body: some View {
         Toggle("Reminder enabled", isOn: $settings.enabled)
@@ -26,7 +27,9 @@ struct ItemReminderControls: View {
                     set: { settings.localTime = ReminderClock.text($0) }), displayedComponents: .hourAndMinute
             )
             .environment(\.timeZone, ReminderClock.zone)
-            Stepper("Days before: \(settings.daysBefore)", value: $settings.daysBefore, in: 0...730)
+            if showsLeadTime {
+                Stepper("Days before: \(settings.daysBefore)", value: $settings.daysBefore, in: 0...730)
+            }
         }.disabled(!settings.enabled)
         if settings.enabled && settings.recipientIds.isEmpty {
             Text("Choose at least one person before saving.").font(.footnote).foregroundStyle(QuietPalette.muted)
