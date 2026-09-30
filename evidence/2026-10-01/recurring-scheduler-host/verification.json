@@ -74,9 +74,7 @@
     "rootDirectory": "apps/api",
     "resourceConfig": {
       "fluid": true,
-      "defaultRegions": [
-        "iad1"
-      ]
+      "defaultRegions": ["iad1"]
     }
   },
   "uploadAudit": {
