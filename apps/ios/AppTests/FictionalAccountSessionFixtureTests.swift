@@ -30,7 +30,7 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
         else { throw FixtureFailure.identity }
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
-        defer { try? FileManager.default.removeItem(at: directory) }
+        addTeardownBlock { [directory] in try FileManager.default.removeItem(at: directory) }
         let offline = try ChoreOfflineStore(url: directory.appendingPathComponent("fixture.sqlite"))
         let auth = try NestAuth(configuration: configuration, offline: offline)
         if let previous = await auth.cachedSession(), previous.userId != actor && previous.userId != partner {
@@ -58,7 +58,11 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
                 throw XCTSkip("Requires explicit fictional-account fixture setup.")
             }
             let configuration = try NestConfiguration.fromBundle()
-            guard environment["SIMULATOR_UDID"] == "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+            let ownedSimulators = [
+                "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+                "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+            ]
+            guard let simulator = environment["SIMULATOR_UDID"], ownedSimulators.contains(simulator),
                 configuration.apiURL.absoluteString == "https://nest-test-api-drrius-projects.vercel.app",
                 configuration.supabaseURL.absoluteString == "https://tkjixmujjoustdiedfmw.supabase.co",
                 !configuration.pushEnabled
