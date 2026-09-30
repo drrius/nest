@@ -83,7 +83,8 @@ final class LocalCalendarFixtureTests: XCTestCase {
         allDay.title = "Synthetic Nest all-day task"
         allDay.isAllDay = true
         allDay.startDate = day.start
-        allDay.endDate = day.end
+        // EventKit normalizes a saved all-day end to the final second of its inclusive date.
+        allDay.endDate = day.end.addingTimeInterval(-1)
         allDay.location = "Fictional all-day location"
         allDay.notes = "Synthetic local QA only; never share this note."
         try store.save(allDay, span: .thisEvent, commit: true)
@@ -104,12 +105,20 @@ final class LocalCalendarFixtureTests: XCTestCase {
         XCTAssertEqual(events.count, 2)
         XCTAssertEqual(Set(events.map(\.title)), ["Synthetic Nest all-day task", "Synthetic Nest timed visit"])
         XCTAssertEqual(events.filter(\.allDay).count, 1)
+        let allDay = try XCTUnwrap(events.first(where: \.allDay))
+        XCTAssertEqual(allDay.start, manifest.day.start)
+        XCTAssertEqual(allDay.end, manifest.day.end.addingTimeInterval(-1))
         XCTAssertTrue(events.allSatisfy { $0.calendar == manifest.title && $0.location != nil })
         let covered = try XCTUnwrap(EventKitBusyMapping.interval(start: manifest.day.start, end: manifest.day.end))
         guard case .known(let projection) = reader.captureBusy(selected: selected, covered: covered) else {
             return XCTFail("Real EventKit fixture capture must have known coverage.")
         }
         XCTAssertEqual(try projection.validated(), BusyProjection(covered: covered, intervals: [covered]))
+        let later = try XCTUnwrap(Calendar.current.date(byAdding: .day, value: 28, to: manifest.day.start))
+        let fullCoverage = try XCTUnwrap(EventKitBusyMapping.interval(start: manifest.day.start, end: later))
+        XCTAssertEqual(
+            reader.captureBusy(selected: selected, covered: fullCoverage),
+            .known(BusyProjection(covered: fullCoverage, intervals: [covered])))
         let payload = try XCTUnwrap(
             JSONSerialization.jsonObject(with: JSONEncoder().encode(projection)) as? [String: Any])
         XCTAssertEqual(Set(payload.keys), ["covered", "intervals"])
