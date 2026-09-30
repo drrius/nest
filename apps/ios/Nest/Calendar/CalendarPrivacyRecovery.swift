@@ -11,7 +11,9 @@ struct CalendarPrivacyRecovery: ViewModifier {
         content
             .safeAreaInset(edge: .top) {
                 if case .ready = session.status, session.calendarPrivacyPending {
-                    Button { detailsPresented = true } label: {
+                    Button {
+                        detailsPresented = true
+                    } label: {
                         HStack(spacing: 12) {
                             Image(systemName: "exclamationmark.shield").font(.system(size: 20))
                                 .accessibilityHidden(true)
