@@ -57,7 +57,19 @@
     },
     "apiBundle": "passed; guard excludes protocol/client modules and old provider endpoint"
   },
-  "ci": "pending for this increment",
+  "ci": {
+    "commit": "51cae3ef1ffbd01c17f927da331c4896df809bb5",
+    "nestChecks": {
+      "run": 36678584264,
+      "conclusion": "success"
+    },
+    "nativeRuntimeChanged": false,
+    "mostRecentNativeChecks": {
+      "commit": "80474da1b9eafd74019e9fb17b80a899f0036211",
+      "run": 36677195982,
+      "conclusion": "success"
+    }
+  },
   "hostedDeploymentChanged": false,
   "databaseChanged": false,
   "schedulesActivated": false,

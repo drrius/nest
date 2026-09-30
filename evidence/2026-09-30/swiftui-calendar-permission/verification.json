@@ -1,0 +1,42 @@
+{
+  "nativeSource": "80474da1b9eafd74019e9fb17b80a899f0036211",
+  "backendCleanupSource": "51cae3ef1ffbd01c17f927da331c4896df809bb5",
+  "simulator": "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+  "device": "iPhone 17 Pro",
+  "os": "iOS 26.3",
+  "account": "isolated fictional Test Alex",
+  "permission": {
+    "before": "not requested",
+    "systemPrompt": "\u201cNest\u201d would like full access to your Calendar.",
+    "action": "Allow Full Access",
+    "authorization": "owner explicitly approved full access on this clean simulator",
+    "after": "allowed; intentionally retained for subsequent QA"
+  },
+  "displaySelection": {
+    "initial": "none",
+    "selected": "Calendar / Default only",
+    "actualControlState": "native switch 0 -> 1",
+    "nativeRead": "No events in your selected calendars for this day.",
+    "availabilityWarning": "This does not confirm that you or your partner are free.",
+    "restored": "native switch 1 -> 0; choose-calendars screen returned"
+  },
+  "partnerAvailability": "unknown throughout",
+  "finalFreshHostedConsent": "Busy sharing is off",
+  "calendarRecordsCreatedOrChanged": false,
+  "busyPublishPressed": false,
+  "consentEnablePressed": false,
+  "financialSavePressed": false,
+  "automationCorrections": [
+    "Initial parent switch-row tap hit the label and did not select; retargeting the real native switch changed its value",
+    "A broad Done label matched navigation and button nodes; a fresh exact button completed dismissal"
+  ],
+  "physicalPhoneVerified": false,
+  "voiceOverVerified": false,
+  "populatedEventReadVerifiedInThisPass": false,
+  "newBuildOrSubmission": false,
+  "sourceChanged": false,
+  "simulatorAppearance": "light",
+  "simulatorContentSize": "large",
+  "hostedApiSource": "8fbe67d85f624d99fed919d62e62adc5bf695950",
+  "hostedApiAlias": "https://nest-test-api-drrius-projects.vercel.app"
+}
