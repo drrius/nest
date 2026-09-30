@@ -22,6 +22,14 @@ Preparation archive `/private/tmp/nest-swiftui-distribution-unlocked-20260930.xc
 
 This preparation archive's build 1 is not uploaded. Supported App Store Connect status confirms the latest existing beta is 0.1.0/9, VALID and in internal beta testing; native source advances to build 10. The new native privacy resource, app-scoped signing and audited OS-cryptography declaration are documented in [packaging](../../../docs/native-rewrite/native-packaging.md). Final build-10 archive/export, exact-source CI, Apple processing and phone acceptance remain outstanding. No release/submission or cloud-build credit was used. Prior source `4cf443fd` passed both workflows (`36658646072`, `36658646066`).
 
+## Verified build-10 export and private submission
+
+Source `127c34fa5500ee353ea72b2555a50e29f5336d07` passes both complete workflows: [Nest checks 36660598956](https://github.com/drrius/nest/actions/runs/36660598956) and [SwiftUI checks 36660598959](https://github.com/drrius/nest/actions/runs/36660598959). All 763 tracked native files on the Mac match that source. Local archive and export succeed at `/private/tmp/nest-swiftui-build10-20260930.xcarchive` and `/private/tmp/nest-swiftui-build10-export-20260930/Nest.ipa`; logs are `/private/tmp/nest-swiftui-build10-{archive,export}-20260930.log`.
+
+The **exported IPA**, extracted and checked independently of the archive, passes actual strict codesign verification, exact approved team/application and Apple Sign In, signed production APNs with Nest push disabled, iPhone-only arm64 metadata, version 0.1.0/10, exact nest-test API/Supabase origins and public-key prefix, original embedded profile, compiled AppIcon, both privacy manifests, encryption declaration and retained archive dSYM. [Public artifact metadata and SHA-256](build10-export.json) identify the exact 10,381,044-byte IPA; no credential or binary is committed. The copied Linux IPA has the same SHA-256. The isolated signing keychain is locked; the original owner search list remains restored.
+
+Private EAS submission [8e6fab46-a238-49eb-b5e3-90c625bbb045](https://expo.dev/accounts/drrius-dev/projects/nest/submissions/8e6fab46-a238-49eb-b5e3-90c625bbb045) uses the existing Nest App Store Connect key and app 6814119349. It is currently queued; Apple processing, tester-group access and physical-phone acceptance remain unverified. No new invitations/group setup, public release, production configuration or cloud build was requested.
+
 ## Real hosted Swift registration
 
 `HostedPushRegistrationTests` explicitly requires the exact isolated API, fictional Test Alex, household identity and opt-in environment flag. It uses random synthetic sandbox token bytes and never obtains an Apple token or invokes a provider. The uncredentialed CI test must skip honestly.
