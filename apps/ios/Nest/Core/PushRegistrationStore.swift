@@ -3,6 +3,7 @@ import Foundation
 struct SavedPushDeviceRequest: Codable, Equatable, Sendable, CustomStringConvertible, CustomDebugStringConvertible {
     let baseline: PushDeviceState
     let command: PushDeviceCommand
+    let sessionId: UUID
     var result: PushDeviceRecovery?
     var cancellationRequested = false
 
@@ -34,13 +35,17 @@ extension ChoreOfflineStore {
 
     /// Protected local recovery only; enrollment is never added to the automatic offline outbox.
     func stagePushDeviceRequest(_ saved: SavedPushDeviceRequest, lease: OfflineLease) throws {
-        if saved.command.action == .register, try hasPendingPushCleanup() { throw OfflineFailure.sessionChanged }
-        guard try readPushDeviceRequest(lease: lease) == nil, saved.result == nil, !saved.cancellationRequested else {
-            throw OfflineFailure.alreadyQueued
-        }
         _ = try saved.validated(member: pushMember(lease))
         let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
-        try db.run("INSERT INTO push_device_requests(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
+        try db.transaction {
+            if saved.command.action == .register, try hasPendingPushCleanup() { throw OfflineFailure.sessionChanged }
+            guard try readPushDeviceRequest(lease: lease) == nil, saved.result == nil, !saved.cancellationRequested
+            else {
+                throw OfflineFailure.alreadyQueued
+            }
+            try trackPushSession(actor: lease.actor, session: saved.sessionId)
+            try db.run("INSERT INTO push_device_requests(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
+        }
     }
 
     func recordPushDeviceRecovery(_ result: PushDeviceRecovery, lease: OfflineLease) throws {

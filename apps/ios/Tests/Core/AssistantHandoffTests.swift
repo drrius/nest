@@ -52,4 +52,21 @@ final class AssistantHandoffTests: XCTestCase {
         value["revision"] = .string("9223372036854775808")
         XCTAssertNil(read())
     }
+
+    func testNotificationHandoffRequiresSuccessfulMatchingDeviceNavigation() {
+        let value: [String: AssistantJSON] = [
+            "kind": .string("device_handoff"), "screen": .string("notification-preferences"),
+        ]
+        let handoff = part("openNotificationSetup", value: value)
+        XCTAssertEqual(AssistantHandoff.read(handoff, member: member), .notifications)
+        XCTAssertNil(AssistantHandoff.read(part("saveNotificationPreferences", value: value), member: member))
+        var pending = handoff
+        pending["state"] = .string("input-available")
+        XCTAssertNil(AssistantHandoff.read(pending, member: member))
+        var failed = handoff
+        failed["output"] = .object(["ok": .bool(false), "value": .object(value)])
+        XCTAssertNil(AssistantHandoff.read(failed, member: member))
+        let wrong: [String: AssistantJSON] = ["kind": .string("device_handoff"), "screen": .string("settings")]
+        XCTAssertNil(AssistantHandoff.read(part("openNotificationSetup", value: wrong), member: member))
+    }
 }

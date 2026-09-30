@@ -32,6 +32,7 @@ struct NotificationPreferencesScreen: View {
             if let notice = model.notice { Text(notice).foregroundStyle(QuietPalette.muted) }
             if model.busy { ProgressView("Checking choices…") }
             Section {
+                NavigationLink("This iPhone’s connection") { PushDeviceScreen(session: session, member: member) }
                 Button("Reload choices") { Task { await model.load(session: session, member: member) } }
                     .disabled(model.busy)
                 Text("Notification delivery is not available in this build yet.")

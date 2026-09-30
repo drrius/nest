@@ -77,6 +77,8 @@ final class SessionModel: ObservableObject {
     let notificationAPI: NotificationAPI?
     let renewalAPI: RenewalAPI?
     let offline: ChoreOfflineStore?
+    let pushBuild: NativePushBuild
+    let pushInstallation: PushInstallationIdentity?
     let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
     var lease: OfflineLease?
@@ -107,6 +109,8 @@ final class SessionModel: ObservableObject {
             let upload = try ReceiptTransport(
                 origin: configuration.supabaseURL, publishableKey: configuration.publishableKey)
             auth = try NestAuth(configuration: configuration, offline: store)
+            pushBuild = NativePushBuild(enabled: configuration.pushEnabled, entitlement: configuration.pushEntitlement)
+            pushInstallation = PushInstallationIdentity(environment: configuration.supabaseURL)
             chores = ChoreAPI(http: http)
             groceryAPI = GroceryAPI(http: http)
             mealAPI = MealAPI(http: http)
@@ -120,6 +124,8 @@ final class SessionModel: ObservableObject {
             receiptTransport = upload
             offline = store
         } catch is NestConfigurationError {
+            pushBuild = .disabled
+            pushInstallation = nil
             auth = nil
             chores = nil
             groceryAPI = nil
@@ -135,6 +141,8 @@ final class SessionModel: ObservableObject {
             offline = nil
             status = .configuration
         } catch {
+            pushBuild = .disabled
+            pushInstallation = nil
             auth = nil
             chores = nil
             groceryAPI = nil
@@ -159,6 +167,7 @@ final class SessionModel: ObservableObject {
         receiptTransport: ReceiptTransport? = nil, assistantAPI: AssistantAPI? = nil,
         notificationAPI: NotificationAPI? = nil,
         renewalAPI: RenewalAPI? = nil,
+        pushBuild: NativePushBuild = .disabled, pushInstallation: PushInstallationIdentity? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
         },
@@ -167,6 +176,8 @@ final class SessionModel: ObservableObject {
         }
     ) {
         self.auth = auth
+        self.pushBuild = pushBuild
+        self.pushInstallation = pushInstallation
         self.chores = chores
         self.groceryAPI = groceryAPI
         self.mealAPI = mealAPI

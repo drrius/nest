@@ -3,6 +3,7 @@ import Foundation
 enum AssistantHandoff: Equatable {
     case calendar
     case calendarSharing
+    case notifications
     case ingredients(MealWeekStart)
 
     static func read(_ part: [String: AssistantJSON], member: VerifiedMember) -> Self? {
@@ -17,6 +18,8 @@ enum AssistantHandoff: Equatable {
             return .calendarSharing
         case "tool-openMealIngredientReview":
             return ingredients(value, member: member)
+        case "tool-openNotificationSetup" where value["screen"] == .string("notification-preferences"):
+            return .notifications
         default: return nil
         }
     }

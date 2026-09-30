@@ -5,8 +5,12 @@ struct NestConfiguration: Sendable {
     let supabaseURL: URL
     let publishableKey: String
     let pushEnabled: Bool
+    let pushEntitlement: String?
 
-    init(apiURL: String, supabaseURL: String, publishableKey: String, pushEnabled: Bool = false) throws {
+    init(
+        apiURL: String, supabaseURL: String, publishableKey: String, pushEnabled: Bool = false,
+        pushEntitlement: String? = nil
+    ) throws {
         guard let api = URL(string: apiURL), Self.valid(api),
             let supabase = URL(string: supabaseURL), Self.valid(supabase),
             publishableKey.hasPrefix("sb_publishable_")
@@ -15,6 +19,7 @@ struct NestConfiguration: Sendable {
         self.supabaseURL = supabase
         self.publishableKey = publishableKey
         self.pushEnabled = pushEnabled
+        self.pushEntitlement = pushEntitlement
     }
 
     static func fromBundle(_ bundle: Bundle = .main) throws -> Self {
@@ -22,7 +27,8 @@ struct NestConfiguration: Sendable {
             apiURL: bundle.object(forInfoDictionaryKey: "NEST_API_URL") as? String ?? "",
             supabaseURL: bundle.object(forInfoDictionaryKey: "NEST_SUPABASE_URL") as? String ?? "",
             publishableKey: bundle.object(forInfoDictionaryKey: "NEST_SUPABASE_PUBLISHABLE_KEY") as? String ?? "",
-            pushEnabled: bundle.object(forInfoDictionaryKey: "NEST_PUSH_ENABLED") as? String == "true"
+            pushEnabled: bundle.object(forInfoDictionaryKey: "NEST_PUSH_ENABLED") as? String == "true",
+            pushEntitlement: bundle.object(forInfoDictionaryKey: "NEST_APNS_ENVIRONMENT") as? String
         )
     }
 

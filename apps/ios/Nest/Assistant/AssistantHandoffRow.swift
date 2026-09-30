@@ -23,6 +23,13 @@ struct AssistantHandoffRow: View {
                     IngredientReviewScreen(model: session, week: week).id(session.generation)
                 }
                 Text("Nothing was added. Review the current meal week and choose what you need.")
+            case .notifications:
+                NavigationLink("Review notifications") {
+                    NotificationPreferencesScreen(session: session, member: member).id(session.generation)
+                }
+                Text(
+                    "No choices or iPhone permissions changed. Open this iPhone’s connection to review device enrollment."
+                )
             }
         }
         .font(.footnote)

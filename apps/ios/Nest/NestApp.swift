@@ -34,6 +34,7 @@ struct NestApp: App {
             }
             .task { await model.restore() }
             .modifier(NotificationOpening(session: model, inbox: pushDelegate.inbox))
+            .environmentObject(pushDelegate.hardware)
             .tint(QuietPalette.accent)
         }
     }

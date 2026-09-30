@@ -14,7 +14,8 @@ final class PushLogoutRecoveryTests: XCTestCase {
         try await store.stagePushLogout(actor: F.id(2), session: F.id(55))
         let lease = try await store.activate(F.member)
         do {
-            try await store.stagePushDeviceRequest(.init(baseline: F.baseline, command: F.command), lease: lease)
+            try await store.stagePushDeviceRequest(
+                .init(baseline: F.baseline, command: F.command, sessionId: F.id(55)), lease: lease)
             XCTFail("Associated a new account before old-session cleanup")
         } catch { XCTAssertEqual(error as? OfflineFailure, .sessionChanged) }
         let pending = try await store.pendingPushLogouts(actor: F.id(2))
@@ -26,7 +27,8 @@ final class PushLogoutRecoveryTests: XCTestCase {
         let stillFenced = try await store.hasPendingPushCleanup()
         XCTAssertTrue(stillFenced)
         try await store.finishPushLogout(actor: F.id(2), session: F.id(55))
-        try await store.stagePushDeviceRequest(.init(baseline: F.baseline, command: F.command), lease: lease)
+        try await store.stagePushDeviceRequest(
+            .init(baseline: F.baseline, command: F.command, sessionId: F.id(55)), lease: lease)
         let restored = try await store.readPushDeviceRequest(lease: lease)
         XCTAssertEqual(restored?.command, F.command)
     }
@@ -39,7 +41,7 @@ final class PushLogoutRecoveryTests: XCTestCase {
         var store = try ChoreOfflineStore(url: URL(fileURLWithPath: path))
         let lease = try await store.activate(F.member)
         try await store.stagePushDeviceRequest(
-            .init(baseline: F.baseline, command: F.command, result: nil), lease: lease)
+            .init(baseline: F.baseline, command: F.command, sessionId: F.id(55), result: nil), lease: lease)
         try await store.stagePushLogout(actor: actor, session: session)
         try await store.stagePushLogout(actor: actor, session: session)
         try await store.deactivate(lease)

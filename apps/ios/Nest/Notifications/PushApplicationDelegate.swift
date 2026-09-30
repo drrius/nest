@@ -4,6 +4,15 @@ import UserNotifications
 @MainActor
 final class PushApplicationDelegate: NSObject, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     let inbox = PushNotificationInbox()
+    let hardware = NativePushDevice()
+
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        hardware.didRegister(deviceToken)
+    }
+
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: any Error) {
+        hardware.didFailRegistration()
+    }
 
     func application(
         _ application: UIApplication,
