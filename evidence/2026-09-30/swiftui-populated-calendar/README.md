@@ -20,6 +20,10 @@ Actual post-cleanup native taps verified no synthetic calendar in the picker, ev
 
 The Mac runner temporarily set the test-only scheme environment for each selected test, then restored the original scheme bytes in `finally`. Its SHA-256 is unchanged. Routine CI has no opt-in; these two tests skip honestly there and create no fixture. No new TestFlight build, deployment, provider request or production activity occurred.
 
+## Actual permission denial and recovery
+
+After fixture cleanup, `simctl privacy ... revoke calendar ch.drrius.nest` revoked only this app’s Calendar permission. The normal authenticated app showed Calendar access is off / Open Settings, no event details, an enabled Day picker and unknown partner availability. Resetting only that permission returned the actual iOS Full Access prompt; the existing explicit owner approval covered pressing Allow Full Access. Native readback confirmed the picker available, all display choices off, the fixture absent and sharing off. Permission is restored through the real prompt, not a programmatic grant. This checks denial/recovery from an already-empty display; it does not prove redaction of previously populated rows during revocation or server opt-out from an enabled-sharing state.
+
 ## Identity and evidence
 
 Shipping native Calendar source is unchanged from CI-verified `80474da1`; backend source remains `8fbe67d8` on the existing test alias. The new test source and all relevant native file hashes match between Linux and the Mac (see verification.json). Strict recursive Swift formatting, source limits and diff checks pass. New source needs its own CI; prior checks are not attributed to this increment.
@@ -30,6 +34,8 @@ Shipping native Calendar source is unchanged from CI-verified `80474da1`; backen
 - [Maximum-text timed metadata](max-timed.png)
 - [Sharing stayed off](sharing-off.png)
 - [Restored display state](restored.png)
+- [Actual permission denial](permission-denied.png)
+- [Permission recovered; sharing remains off](permission-recovered.png)
 
 Raw Xcode logs remain on the Mac under `/private/tmp/nest-populated-calendar-atomic-{0-seed,1-cleanup,2-seed,3-cleanup}-20260930.log`. Results are `Test-Nest-2026.09.30_{09-41-59,09-42-08,09-42-13,09-42-19}-+0200.xcresult` under `/tmp/nest-swiftui-planned-qa/Logs/Test/`. The initial logs preserve the failed UserDefaults-marker experiment rather than counting it as a pass.
 

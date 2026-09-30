@@ -52,5 +52,19 @@
   "financialCommandPerformed": false,
   "productionTouched": false,
   "phoneVerified": false,
-  "ci": "pending new increment"
+  "ci": {
+    "repository": {
+      "run": 36685659228,
+      "conclusion": "success"
+    },
+    "swiftui": {
+      "run": 36685659213,
+      "status": "in_progress"
+    }
+  },
+  "actualPermissionDenialUiVerified": true,
+  "deniedDatePickerEnabled": true,
+  "actualPromptPermissionRecoveryVerified": true,
+  "sharingEnabledRevocationCleanupVerified": false,
+  "sourceCommit": "71b775911831920db9c057a1254388db3a611ea2"
 }
