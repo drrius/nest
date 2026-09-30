@@ -112,3 +112,53 @@ test("fixture coverage check rejects newly added tables and disabled guards", (t
   db.sql("alter table public.fixture_history enable always trigger nest_household_write_barrier");
   verifyFixtureWriteBarrier(db);
 });
+
+test("recent private journals join the freeze without granting direct access or changing retained rows", (t) => {
+  const db = fixture(t);
+  const tables = [
+    "private.nest_routine_creation_cancellations",
+    "private.nest_ai_cancelled_turns",
+    "private.nest_apns_delivery_attempts",
+  ];
+  // Minimal journal rows exercise the statement barrier independent of each
+  // command schema. The complete-chain rehearsal uses the actual journal DDL.
+  for (const table of tables)
+    db.sql(`create table ${table}(id integer primary key);
+      insert into ${table} values(1);
+      grant all on ${table} to anon,authenticated,service_role;`);
+  db.sql("alter table private.nest_apns_delivery_attempts enable row level security");
+  assert.throws(() => setFixtureWritesFrozen(db, true), /write barrier missing or changed/);
+  assert.equal(db.sql("select frozen from private.nest_household_write_control"), "f");
+  db.file("supabase/migrations/20260930012204_native_recent_journal_write_barriers.sql");
+  verifyFixtureWriteBarrier(db);
+  for (const table of tables) {
+    assert.equal(db.sql(`select relrowsecurity from pg_class where oid='${table}'::regclass`), "t");
+    for (const role of ["anon", "authenticated", "service_role"])
+      for (const privilege of ["SELECT", "INSERT", "UPDATE", "DELETE", "TRUNCATE"])
+        assert.equal(
+          db.sql(`select has_table_privilege('${role}','${table}','${privilege}')`),
+          "f",
+        );
+  }
+  setFixtureWritesFrozen(db, true);
+  for (const table of tables) {
+    for (const sql of [
+      `insert into ${table} values(2)`,
+      `update ${table} set id=2`,
+      `delete from ${table}`,
+      `truncate ${table}`,
+    ]) {
+      assert.throws(() => db.sql(sql), /Household writes suspended/);
+      assert.throws(
+        () => db.sql(`set session_replication_role=replica; ${sql}`),
+        /Household writes suspended/,
+      );
+    }
+    assert.equal(db.sql(`select array_agg(id) from ${table}`), "{1}");
+  }
+  setFixtureWritesFrozen(db, false);
+  for (const table of tables) {
+    db.sql(`insert into ${table} values(2)`);
+    assert.equal(db.sql(`select array_agg(id order by id) from ${table}`), "{1,2}");
+  }
+});
