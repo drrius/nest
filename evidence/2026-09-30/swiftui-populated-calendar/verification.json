@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-30",
+  "simulator": "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+  "runtimeNativeSource": "80474da1",
+  "hostedServerSource": "8fbe67d8",
+  "finalFixtureSourceSha256": "22caac17fe8aadd84ff1570e5c148e6eb2ab591db41fca5a871e50f29b4fade9",
+  "fileHashesMatchMac": {
+    "apps/ios/AppTests/LocalCalendarFixtureTests.swift": "22caac17fe8aadd84ff1570e5c148e6eb2ab591db41fca5a871e50f29b4fade9",
+    "apps/ios/Nest/Calendar/CalendarScreen.swift": "fb23ee34290bfc36dd25e7688a90b23ccf6ac446abd9218227926e38be1d9fb3",
+    "apps/ios/Nest/Calendar/EventKitCalendarReader.swift": "936130d757541b5b27b6867ff7885a91b45262243bdb6436f66d806f41f64ef4",
+    "apps/ios/Nest/Calendar/CalendarSharingScreen.swift": "426f6301dd3a6c2bff00348b882f8c23958dba7ce2b0b262821268232becc3cd",
+    "apps/ios/Nest.xcodeproj/xcshareddata/xcschemes/Nest.xcscheme": "f98c7c1e7ebf843fdbb62b06987510e0ec35964da34488e098034f07305dada4"
+  },
+  "finalChecks": [
+    {
+      "action": "seed",
+      "passed": true,
+      "skipped": false,
+      "seconds": 0.076
+    },
+    {
+      "action": "cleanup",
+      "passed": true,
+      "skipped": false,
+      "seconds": 0.055
+    },
+    {
+      "action": "seed",
+      "passed": true,
+      "skipped": false,
+      "seconds": 0.076
+    },
+    {
+      "action": "cleanup",
+      "passed": true,
+      "skipped": false,
+      "seconds": 0.06
+    }
+  ],
+  "initialHarnessFailure": "UserDefaults cleanup marker survived termination; seed refused existingFixture before creating another calendar",
+  "normalNativeRowsVerified": true,
+  "maximumTextRowsReachedAndVisuallyInspected": true,
+  "displaySelectionReopenVerified": true,
+  "sharingOffAfterDisplaySelection": true,
+  "fixtureCalendarRemoved": true,
+  "atomicMarkerRemoved": true,
+  "displaySelectionRestoredEmpty": true,
+  "calendarPermissionRetained": "fullAccess",
+  "contentSizeRestored": "large",
+  "schemeRestoredExactly": true,
+  "busyPublishPerformed": false,
+  "financialCommandPerformed": false,
+  "productionTouched": false,
+  "phoneVerified": false,
+  "ci": "pending new increment"
+}
