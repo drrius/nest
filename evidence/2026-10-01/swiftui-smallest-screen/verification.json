@@ -1,0 +1,136 @@
+{
+  "source": "83f6010dd09c0299c7ac3c3a5c8c0d884d2d720d",
+  "fixtureGuardSource": "fd0304ef3a185ec282dcb78e69cef54117548f4e",
+  "device": "Owned clean iPhone SE (3rd generation), iOS 26.3, 375 x 667 points",
+  "simulatorId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "sdkLogin": {
+    "fictionalMember": "Test Alex",
+    "hostedTestsPassed": 1,
+    "failures": 0,
+    "physicalAppleSignInVerified": false,
+    "temporaryCredentialSidecarRemoved": true,
+    "schemeRestored": true
+  },
+  "renderedTabChecks": [
+    {
+      "capture": "today-max-light",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "meals-max-light",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "calendar-max-light",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "money-max-light",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "money-max-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "calendar-max-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "meals-max-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "today-max-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "today-default-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "meals-default-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "calendar-default-dark",
+      "tabBarAccessible": true
+    },
+    {
+      "capture": "money-default-dark",
+      "tabBarAccessible": true
+    }
+  ],
+  "interactions": [
+    "Get started dismisses first use to the real Today screen.",
+    "All four tabs navigate; all tab targets are at least 44 points high.",
+    "Meal Add opens for the exact Monday breakfast slot; Cancel returns without saving.",
+    "Real planned meal details open and Back returns.",
+    "Native PopUpButton opens Replace/Plan leftovers/Move/Remove; none executed.",
+    "Maximum-text native source rows switch One-off/Saved meal.",
+    "Saved source displays the actual Synthetic lentil bowl library item.",
+    "Save remains disabled without valid input/recipe selection.",
+    "Final maximum-text dark and default light meal checks pass; appearance/text restored."
+  ],
+  "state": {
+    "sdkActor": "Test Alex",
+    "scopeMatched": true,
+    "mealAndPrivacyJournalCounts": {
+      "meal_placements": 0,
+      "meal_recipe_placements": 0,
+      "meal_removals": 0,
+      "meal_moves": 0,
+      "meal_replacements": 0,
+      "meal_leftovers": 0,
+      "calendar_privacy_removals": 0
+    },
+    "boundedFinanceAndDisabledConsentUnchanged": true,
+    "currentWeekSha256": "915b258770d78b112d566bcd396189b6e739a09da81e172f38b712c8473fbbd5",
+    "comparison": "Read-only state; no direct journal deletion"
+  },
+  "sourceMatch": {
+    "trackedNativeFiles": 784,
+    "changed": [],
+    "missing": [],
+    "ordinaryRootRestored": true,
+    "temporaryVisualFixtureAbsent": true
+  },
+  "localVerification": [
+    "Swift strict formatting passed.",
+    "Swift source limits and diff checks passed.",
+    "Signed simulator app passed test-origin/push-disabled signing gate.",
+    "Current native source compiled on owner Mac.",
+    "Integrated migration source gate covers 55 legacy and 244 native inputs; four meaningful integrity tests pass."
+  ],
+  "ci": {
+    "nest": {
+      "run": 36782560633,
+      "status": "success"
+    },
+    "swiftui": {
+      "run": 36782560751,
+      "status": "in_progress"
+    }
+  },
+  "screenshots": {
+    "onboarding.png": "e43352d7c602c191276ed314d6fe4cab587dcf72209e40ae22daa20e557c5c22",
+    "today.png": "46ab01fe3c3ff8b785c042b4eaa9a2e8d1de6b36e8724b55e2d0d8139f5c608f",
+    "calendar.png": "f6ef3c9924d04fbb31a7ff80c1438e96984829818fec883b4883f4d6718aae0d",
+    "money.png": "8601bc79ec8eaff51369190c6d6db794139cb47af764e0177e7126a5370d0547",
+    "meal-row-before.png": "2325bb76c075c8670851bcdebe63c68808537a0b794610be0c33d69399a39b0a",
+    "meal-row-after.png": "cd192d92650e820d67d4958da469c962c19a7d73014d5ba3e58a71e0cbf8f86c",
+    "meal-row-dark.png": "b4479852746ec59f657261d938d3efc37d51d93831c272e524059049fb5d7fef",
+    "meals-default.png": "b5e4a70c8736d04299ee78b0346853054967fce97b5df382de4d8ef6d4f2b8c3",
+    "source-before.png": "92d06de5a3b88c2b93501f89144c6fb5f6c13ae658e7c4c2b98fdaf28f9f6764",
+    "source-after.png": "1c3c66e72504fed9bdd437ccd93d8a7df69919debcae2d3c5c3c328957596cd0",
+    "source-dark.png": "7142caed2d31481713b7111661a06018dcc73c32caf248d22c98b2a087a17f3f",
+    "saved-source.png": "08655f94f617737efee10cfa6a35fccdf3bcdb8a36d4cb2af34f73acbaf78171"
+  },
+  "limits": [
+    "Not Apple sign-in or physical-phone evidence.",
+    "No meal Save/mutation was attempted in this UI increment.",
+    "No actual offline transport, VoiceOver or Reduce Motion acceptance.",
+    "This is a selected small-screen pass, not every screen/error/input/weekly journey.",
+    "No new beta, production mutation, provider call, purchase or main/PR merge."
+  ]
+}
