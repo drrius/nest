@@ -24,7 +24,17 @@
   "voiceOverVerified": false,
   "newBetaSubmitted": false,
   "productionTouched": false,
-  "ci": "pending_push",
+  "ci": {
+    "codeEvidenceHead": "8739923a68cdeb7df1c8014ed7af777a2eda760f",
+    "repository": {
+      "run": 36711125744,
+      "status": "in_progress"
+    },
+    "swiftui": {
+      "run": 36711125430,
+      "status": "in_progress"
+    }
+  },
   "cornerDestinations": [
     "Profile",
     "Household chores",
