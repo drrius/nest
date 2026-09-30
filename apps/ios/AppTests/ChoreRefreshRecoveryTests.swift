@@ -7,7 +7,7 @@ import XCTest
 final class ChoreRefreshRecoveryTests: XCTestCase {
     func testCancelledPresentingTaskDoesNotLoseAcceptedQueuedCompletion() async throws {
         let f = try await ChoreRefreshFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.directory) }
+        addTeardownBlock { [url = f.directory] in try FileManager.default.removeItem(at: url) }
         let chore = try XCTUnwrap(try f.chores().first)
         await f.server.pauseSnapshot(f.server.a)
         let refresh = Task { await f.model.refreshToday() }
@@ -26,7 +26,7 @@ final class ChoreRefreshRecoveryTests: XCTestCase {
 
     func testCompletionsDuringSnapshotReadDrainWithoutAnotherUserAction() async throws {
         let f = try await ChoreRefreshFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.directory) }
+        addTeardownBlock { [url = f.directory] in try FileManager.default.removeItem(at: url) }
         let chores = try f.chores()
         XCTAssertEqual(chores.count, 2)
         await f.server.pauseSnapshot(f.server.a)
@@ -54,7 +54,7 @@ final class ChoreRefreshRecoveryTests: XCTestCase {
 
     func testFailedFollowupRetainsExactRequestUntilOnlineRetry() async throws {
         let f = try await ChoreRefreshFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.directory) }
+        addTeardownBlock { [url = f.directory] in try FileManager.default.removeItem(at: url) }
         let chore = try XCTUnwrap(try f.chores().first)
         await f.server.pauseSnapshot(f.server.a)
         let refresh = Task { await f.model.refreshToday() }
@@ -84,7 +84,7 @@ final class ChoreRefreshRecoveryTests: XCTestCase {
 
     func testOldRefreshCannotConsumeNewAccountsFollowupOrSendItsSavedRequest() async throws {
         let f = try await ChoreRefreshFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.directory) }
+        addTeardownBlock { [url = f.directory] in try FileManager.default.removeItem(at: url) }
         let chore = try XCTUnwrap(try f.chores().first)
         await f.server.pauseSnapshot(f.server.a)
         let old = Task { await f.model.refreshToday() }

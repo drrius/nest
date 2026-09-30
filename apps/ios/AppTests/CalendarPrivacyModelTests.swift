@@ -7,7 +7,7 @@ import XCTest
 final class CalendarPrivacyModelTests: XCTestCase {
     func testAllowedOrNotRequestedDoesNotReadOrChangeConsentWithoutRemovalIntent() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         for access in [CalendarAccess.allowed, .notRequested] {
             await fixture.model.refreshCalendarPrivacy(access: access)
             XCTAssertFalse(fixture.model.calendarPrivacyPending)
@@ -20,7 +20,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testOfflineBeforeConsentReadRetainsIntentAndRestoringAccessDoesNotReenable() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.setOfflineRead(true)
         await fixture.model.refreshCalendarPrivacy(access: .denied)
         XCTAssertTrue(fixture.model.calendarPrivacyPending)
@@ -54,7 +54,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testUncertainEnableIsFencedOffWithoutEverReplayingIt() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.setEnabled(false)
         let current = await fixture.server.current()
         let context = try await fixture.model.calendarConsentContext()
@@ -79,7 +79,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testDeclinedPermissionWithSharingAlreadyOffDoesNotWriteConsent() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.setEnabled(false)
         await fixture.model.refreshCalendarPrivacy(access: .denied)
         let finished = try await fixture.model.calendarConsentContext()
@@ -91,7 +91,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testLostWriteReplyKeepsExactOffRequestThroughReopen() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.loseNextReply()
         await fixture.model.refreshCalendarPrivacy(access: .denied)
         let uncertain = try await fixture.model.calendarConsentContext()
@@ -109,7 +109,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testKnownConflictRetainsIntentThenRebasesOnlyOff() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.conflictNextWrite()
         await fixture.model.refreshCalendarPrivacy(access: .denied)
         let rejected = try await fixture.model.calendarConsentContext()
@@ -128,7 +128,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testEnableAcknowledgementDuringStaleOffReadCannotClearRemovalIntent() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.setEnabled(false)
         let current = await fixture.server.current()
         let context = try await fixture.model.calendarConsentContext()
@@ -159,7 +159,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testConcurrentForegroundChecksDoNotDuplicateRemoval() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         await fixture.server.pauseNextWrite()
         let first = Task { await fixture.model.refreshCalendarPrivacy(access: .denied) }
         await fixture.server.waitForWrite()
@@ -176,7 +176,7 @@ final class CalendarPrivacyModelTests: XCTestCase {
 
     func testLateRemovalReplyAfterMemberSwitchCannotClearOriginalRecoveryOrExposeIt() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        addTeardownBlock { [url = fixture.url] in try FileManager.default.removeItem(at: url) }
         fixture.model.offlineReplayReady = true
         let context = try await fixture.model.calendarConsentContext()
         await fixture.server.pauseNextWrite()

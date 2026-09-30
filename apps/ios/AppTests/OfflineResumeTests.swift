@@ -7,7 +7,7 @@ import XCTest
 final class OfflineResumeTests: XCTestCase {
     func testReconnectionDuringUncertainPrivacyWriteRetainsItsFollowup() async throws {
         let f = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.url) }
+        addTeardownBlock { [url = f.url] in try FileManager.default.removeItem(at: url) }
         f.model.offlineReplayReady = true
         await f.server.loseNextReply()
         await f.server.pauseNextWrite()
@@ -28,7 +28,7 @@ final class OfflineResumeTests: XCTestCase {
 
     func testReconnectionRemovesRetainedSharingEvenWhenPermissionWasRestored() async throws {
         let f = try await CalendarPrivacyModelFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.url) }
+        addTeardownBlock { [url = f.url] in try FileManager.default.removeItem(at: url) }
         await f.server.setOfflineRead(true)
         await f.model.refreshCalendarPrivacy(access: .denied)
         XCTAssertTrue(f.model.calendarPrivacyPending)
@@ -44,7 +44,7 @@ final class OfflineResumeTests: XCTestCase {
 
     func testReconnectionReplaysOnlyAllowedChecksWithOriginalIdentities() async throws {
         let f = try await OfflineResumeFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.base.directory) }
+        addTeardownBlock { [url = f.base.directory] in try FileManager.default.removeItem(at: url) }
         let lease = try XCTUnwrap(f.model.lease)
         let chore = try XCTUnwrap(try f.chores().first)
         let grocery = try f.grocery()
@@ -96,7 +96,7 @@ final class OfflineResumeTests: XCTestCase {
 
     func testInactiveTransitionPreventsStartingTheNextGroceryStage() async throws {
         let f = try await OfflineResumeFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.base.directory) }
+        addTeardownBlock { [url = f.base.directory] in try FileManager.default.removeItem(at: url) }
         f.model.offlineReplayReady = true
         await f.base.server.pauseSnapshot(f.base.server.a)
         let before = await f.log.requests.count
@@ -111,7 +111,7 @@ final class OfflineResumeTests: XCTestCase {
 
     func testMemberSwitchDoesNotStartTheOldResumesGroceryStage() async throws {
         let f = try await OfflineResumeFixture.make()
-        defer { try? FileManager.default.removeItem(at: f.base.directory) }
+        addTeardownBlock { [url = f.base.directory] in try FileManager.default.removeItem(at: url) }
         f.model.offlineReplayReady = true
         await f.base.server.pauseSnapshot(f.base.server.a)
         let before = await f.log.requests.count
