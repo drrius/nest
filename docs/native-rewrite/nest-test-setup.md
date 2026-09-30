@@ -30,7 +30,7 @@ The stable API now again points to the prior working `dpl_AXFV8bWxhygAfd7D3QQyi6
 
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. Thirty-three subsequent conflict-handling and Storage-privacy migrations are installed, individually recorded in the manifest (292 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+The initial 55 legacy and 204 native source migrations were installed in batches. Forty subsequent native migrations are installed, individually recorded in the manifest (299 source inputs: 55 legacy and 244 native). The read-only `node tools/migration/verify-test-manifest.mjs` gate checks every current native file and its exact SHA-256; it does not prove hosted runtime equality, legacy-source hashes or data reconciliation. [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
