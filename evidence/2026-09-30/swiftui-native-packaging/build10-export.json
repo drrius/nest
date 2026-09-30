@@ -15,5 +15,11 @@
   "signing": "passed",
   "privacyManifestsPackaged": 2,
   "dSYM": "retained",
-  "appleUploadAtArtifactVerification": "not yet submitted"
+  "appleUploadAtArtifactVerification": "not yet submitted",
+  "submissionStatus": "FINISHED",
+  "appleProcessingState": "VALID",
+  "internalTestFlightState": "IN_BETA_TESTING",
+  "externalTestFlightState": "READY_FOR_BETA_SUBMISSION",
+  "appleUploadedDate": "2026-09-29T21:06:33-07:00",
+  "physicalPhoneAcceptance": "unverified"
 }

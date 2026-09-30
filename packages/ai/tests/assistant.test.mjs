@@ -80,7 +80,11 @@ test("model failures are masked in logs and streams, not retried, and finalize a
     t.mock.method(console, method, (...args) => logs.push(args));
   const model = new MockLanguageModelV4({
     doStream: async () => {
-      throw new Error("fixture provider secret");
+      throw Object.assign(new Error("fixture provider secret"), {
+        name: "GatewayForbiddenError",
+        statusCode: 403,
+        responseBody: "fixture provider secret",
+      });
     },
   });
   const response = await assistantStream({
@@ -98,7 +102,7 @@ test("model failures are masked in logs and streams, not retried, and finalize a
   assert.ok(text.includes("Could not finish"));
   assert.deepEqual(
     logs,
-    [["Nest assistant stream failed", { kind: "unknown", status: null }]],
+    [["Nest assistant stream failed", { kind: "GatewayForbiddenError", status: 403 }]],
     "only fixed failure metadata may reach server logs",
   );
   assert.equal(completed, false);

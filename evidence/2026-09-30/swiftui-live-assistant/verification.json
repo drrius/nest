@@ -1,0 +1,54 @@
+{
+  "nativeTestSourceCommit": "10f0c6afb4f1ae425282ddaebfd1b50dff3472fb",
+  "checkedAtUtc": "2026-09-30T04:41:19Z",
+  "backend": "nest-test",
+  "liveTestOutcome": "failed; provider error and interrupted turn, no tool output or answer",
+  "nativeFixtureConversations": [
+    "4e56f39e-9961-4839-9a3f-d2eb670937b0",
+    "8379bc45-2916-4a8b-bee3-9f38d919e3e6"
+  ],
+  "nativeTestDurationsSeconds": [10.029, 8.733],
+  "sanitizedHostedFailure": {
+    "kind": "GatewayInternalServerError",
+    "status": 403
+  },
+  "eligibilityProbe": {
+    "maxOutputTokens": 32,
+    "maxRetries": 0,
+    "outcome": {
+      "successfulGeneration": false,
+      "status": 403,
+      "creditCardRequired": true
+    },
+    "before": {
+      "balance": "0",
+      "totalUsed": "0"
+    },
+    "after": {
+      "balance": "0",
+      "totalUsed": "0"
+    }
+  },
+  "temporaryProbeKeyRevoked": true,
+  "existingKeyIdsPreserved": true,
+  "privateCredentialFilesRemoved": true,
+  "temporaryAiPreviewsRemoved": true,
+  "stableApiRestored": "https://nest-test-85rurh9o7-drrius-projects.vercel.app",
+  "stableAssistantAvailable": false,
+  "previewAiAuthFlagRemoved": true,
+  "financialEvents": 13,
+  "financialRowsSha256": "7c5dd62f66b723e089f44a9917b10e063790b5bd1482ac19d7c84514be9796a8",
+  "purchases": false,
+  "productionChanges": false,
+  "ciAtEvidenceCapture": {
+    "repository": {
+      "run": 36669007243,
+      "conclusion": "success"
+    },
+    "swiftui": {
+      "run": 36669007274,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  }
+}
