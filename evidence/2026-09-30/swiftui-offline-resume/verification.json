@@ -1,0 +1,60 @@
+{
+  "sameProcessWarmForeground": true,
+  "testCacheWriteObserved": true,
+  "pendingAllowedCommands": {
+    "chore_operations": 0,
+    "grocery_checks": 0
+  },
+  "cpuPercentSample": 0.2,
+  "files": {
+    "Nest/NestApp.swift": "9f0cae72436f840d817443b7841e10c7932aaef98c13b3703dac7f7e8a3286b1",
+    "Nest/Session/SessionModel.swift": "975de675d733667bc67a3e27944cb3d061b02c31f8ddc543313694a650aa766f",
+    "Nest/Session/SessionModel+Today.swift": "73b33b1dd6fcbd453eeaf8e542592db77a6d847b5b2d7f167ebe267f3dabc565",
+    "Nest/Session/SessionModel+OfflineResume.swift": "7a34ec42f3825833f105e27880fad65713a226cabbf5b44081d97153f1e4b029",
+    "Nest/Session/OfflineResume.swift": "4bf29b551ba20a3b6e4b5609b5c05690a7e40c24a21e52a13952bb57c765f575",
+    "AppTests/ChoreRefreshRecoveryTests.swift": "3e885891f7f082fb1ce86c43cb10d68ad65e821e234f126624da75f9833970bd",
+    "AppTests/ChoreRefreshTestServer.swift": "f2c440def9e343fa842fe71dd94e16b97ea7b1f83a305a168f25d1d7e4f30d8f",
+    "AppTests/OfflineResumeTests.swift": "73a82c7bcd575e58a7c0f40f2870ab0b3e8c74da747758a92f8b3291a4043fb3",
+    "Nest/Session/SessionModel+CalendarPrivacy.swift": "e5d3f15aa93fcec7010406ea8f60401b4532a59e208e471058dc90bfd02b86a5",
+    "AppTests/CalendarPrivacyModelTests.swift": "f8698051b17beab4238130cc01b2d93a8ac3df1076690a60180981061743ed63"
+  },
+  "sdkActor": "Test Alex",
+  "testOriginsVerified": true,
+  "hardwareOfflineVerified": false,
+  "liveOfflineFaultInjected": false,
+  "laterIdleCPUPercentSample": 0.0,
+  "date": "2026-09-30",
+  "sourceCommit": "ef9ec37c9d683680db0046575282e5dfcdcf5676",
+  "simulator": "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+  "nativeTests": {
+    "passed": 37,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 2.414,
+    "transport": "controlled HTTP with real session orchestration and SQLite",
+    "log": "/private/tmp/nest-offline-resume-privacy-final-20260930.log"
+  },
+  "coreTests": {
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 0.611,
+    "log": "/private/tmp/nest-offline-resume-core-20260930.log"
+  },
+  "beforeFix": {
+    "tests": 3,
+    "failedAssertions": 8,
+    "unexpectedFailures": 0,
+    "log": "/private/tmp/nest-chore-refresh-before-20260930.log"
+  },
+  "strictSwiftFormatting": "passed",
+  "sourceLimits": "passed",
+  "nativeSigning": "passed_push_disabled",
+  "financialAPIProjectionUnchanged": true,
+  "financialAPIProjectionSha256": "647a6641be579ffe113e28d406bb8bdc55288e8233fbfa14506a3afd921fc987",
+  "ci": "pending_new_branch_push",
+  "newBetaSubmitted": false,
+  "productionTouched": false,
+  "voiceOverVerified": false,
+  "captureSha256": "39acff7bfd721baf5e07c299696a6a835e1311026005d8ec212d9d46156fdf6a"
+}

@@ -27,12 +27,20 @@
   "ci": {
     "codeEvidenceHead": "8739923a68cdeb7df1c8014ed7af777a2eda760f",
     "repository": {
-      "run": 36711125744,
-      "status": "in_progress"
+      "run": 36711353958,
+      "head": "be7138f13700c461ea21a955cd35e3033c6f4d67",
+      "status": "completed",
+      "conclusion": "success"
     },
     "swiftui": {
       "run": 36711125430,
-      "status": "in_progress"
+      "head": "8739923a68cdeb7df1c8014ed7af777a2eda760f",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "supersededRepositoryRun": {
+      "run": 36711125744,
+      "conclusion": "cancelled"
     }
   },
   "cornerDestinations": [
