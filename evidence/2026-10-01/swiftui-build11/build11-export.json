@@ -1,0 +1,35 @@
+{
+  "sourceCommit": "d4981cbef686933a644444d8a87a8b56a8dd1bdb",
+  "sourceFilesVerified": 784,
+  "version": "0.1.0",
+  "build": "11",
+  "bundle": "ch.drrius.nest",
+  "ipaName": "Nest.ipa",
+  "ipaBytes": 10540904,
+  "ipaSha256": "870a88c1bf617a452d81785e1dbf0bf1e1c2f14ea6a9d213092185fdb8dd9dd3",
+  "team": "5ZKB6XKYFX",
+  "platform": "iPhoneOS",
+  "architecture": "arm64",
+  "backend": "nest-test",
+  "pushEnabled": false,
+  "signing": "passed",
+  "privacyManifestsPackaged": 2,
+  "dSYM": "retained",
+  "appleUpload": "submission initiated; processing unverified",
+  "ci": {
+    "nest": {
+      "run": 36785676608,
+      "status": "success"
+    },
+    "swiftui": {
+      "run": 36785676593,
+      "status": "success",
+      "nativeCasesExecuted": 211,
+      "nativeCasesSkipped": 4,
+      "nativeFailures": 0
+    }
+  },
+  "physicalPhoneAcceptance": "unverified",
+  "submissionId": "bffc8f0e-93f7-4e1e-a663-6d3a2ff08318",
+  "submissionStatus": "scheduled"
+}
