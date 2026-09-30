@@ -52,7 +52,19 @@
   "nativeSigning": "passed_push_disabled",
   "financialAPIProjectionUnchanged": true,
   "financialAPIProjectionSha256": "647a6641be579ffe113e28d406bb8bdc55288e8233fbfa14506a3afd921fc987",
-  "ci": "pending_new_branch_push",
+  "ci": {
+    "head": "43f4d0f048ced0be8f3a0066337b45ede51e448f",
+    "repository": {
+      "run": 36721387436,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    "swiftui": {
+      "run": 36721387372,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
   "newBetaSubmitted": false,
   "productionTouched": false,
   "voiceOverVerified": false,
