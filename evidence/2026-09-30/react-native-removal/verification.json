@@ -59,7 +59,17 @@
     "newSubmission": false,
     "privateFiles": "byte-for-byte move; ignored, restrictive permissions"
   },
-  "ci": "pending for this increment",
+  "ci": {
+    "commit": "4e999cfc9c85f792d65c3c86309b6b87cd76d34a",
+    "nestChecks": {
+      "run": 36675052495,
+      "conclusion": "success"
+    },
+    "swiftUIChecks": {
+      "run": 36675052428,
+      "conclusion": "success"
+    }
+  },
   "swiftRuntimeChanged": false,
   "databaseChanged": false,
   "hostedDeploymentChanged": false,
