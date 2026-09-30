@@ -109,7 +109,12 @@
     },
     "swiftui": {
       "run": 36782560751,
-      "status": "in_progress"
+      "status": "success"
+    },
+    "documentation": {
+      "run": 36783364886,
+      "status": "success",
+      "source": "4c1dc5e94d0bd57dc8fee0793bc8b86124765727"
     }
   },
   "screenshots": {
@@ -124,7 +129,11 @@
     "source-before.png": "92d06de5a3b88c2b93501f89144c6fb5f6c13ae658e7c4c2b98fdaf28f9f6764",
     "source-after.png": "1c3c66e72504fed9bdd437ccd93d8a7df69919debcae2d3c5c3c328957596cd0",
     "source-dark.png": "7142caed2d31481713b7111661a06018dcc73c32caf248d22c98b2a087a17f3f",
-    "saved-source.png": "08655f94f617737efee10cfa6a35fccdf3bcdb8a36d4cb2af34f73acbaf78171"
+    "saved-source.png": "08655f94f617737efee10cfa6a35fccdf3bcdb8a36d4cb2af34f73acbaf78171",
+    "privacy-warning-light.png": "4f4f6b7d66506c270bbf1ce780c3bff2ef3fb884be55f0392150a4802549ad43",
+    "privacy-warning-dark.png": "36334bd9370681fca21cba33472409dd7da132f6252af3aa28ff19af24187d5e",
+    "privacy-retry-light.png": "e75dafe73fe9184cf8568e0b9b93ddf18b1cef1339ef6fabf4ba16192a503bd5",
+    "privacy-retry-dark.png": "d3079aaee84ff25ee5c265b263750dfc77a0b81650b866225a843516fc35d073"
   },
   "limits": [
     "Not Apple sign-in or physical-phone evidence.",
@@ -132,5 +141,27 @@
     "No actual offline transport, VoiceOver or Reduce Motion acceptance.",
     "This is a selected small-screen pass, not every screen/error/input/weekly journey.",
     "No new beta, production mutation, provider call, purchase or main/PR merge."
-  ]
+  ],
+  "calendarWarning": {
+    "transport": "Temporary simulator-only Calendar HTTP failure; other adapters use real test APIs",
+    "eventKitPermissionChanged": false,
+    "maximumTextWarningHeightPoints": 248.5,
+    "todayHeaderBelowWarning": true,
+    "cornerTapPoints": [372, 23],
+    "fullRetryFramePoints": {
+      "x": 24,
+      "y": 503.5,
+      "width": 327,
+      "height": 139.5
+    },
+    "lightAndDarkRendered": true,
+    "failedRetryScopedIntents": 1,
+    "recoveredScopedIntents": 0,
+    "disabledConsentRevisionAndBoundedFinanceUnchanged": true,
+    "ownedFaultMarkerRemoved": true,
+    "ordinaryRootRestoredRebuiltAndReinstalled": true,
+    "sourceFilesMatchedAfterCleanup": 784,
+    "temporaryFixtureRemoved": true,
+    "physicalOfflineAcceptance": false
+  }
 }

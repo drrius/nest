@@ -29,8 +29,16 @@ All 784 tracked native files match the Mac copy, the ordinary app root is retain
 | Maximum-text source choices/date   | [Before](source-before.png), [after](source-after.png), [dark](source-dark.png)       |
 | Actual saved source                | [Saved meal](saved-source.png)                                                        |
 
-Nest36782560633 passes at source `83f6010d`; SwiftUI36782560751 remains pending. Prior fixture/integration source `fd0304ef` passed both workflows (Nest36780899428, SwiftUI36780899364). Current-head CI is required before delivery. Earlier Calendar source `c25b1321` separately passed both workflows, including 211 native cases with four explicit skips and zero failures.
+Nest36782560633 and SwiftUI36782560751 both pass at source `83f6010d`. Documentation-only `4c1dc5e9` passes Nest36783364886. Prior fixture/integration source `fd0304ef` passed both workflows (Nest36780899428, SwiftUI36780899364). Current-head CI is required before delivery. Earlier Calendar source `c25b1321` separately passed both workflows, including 211 native cases with four explicit skips and zero failures.
 
 ## Remaining acceptance
 
-This selected pass does not cover every form, populated/error state, full weekly journey, actual offline retry, VoiceOver, Reduce Motion, both physical phones or owner design acceptance. No meal was saved in this increment, so its UI evidence does not replace the existing command/database tests. The Calendar removal warning has 17 Pro controlled-failure evidence; the pending warning has not yet been rendered on this SE. Build10 lacks these corrections. No new beta, production mutation, provider call, purchase or main/PR merge occurred.
+This selected pass does not cover every form, populated/error state, full weekly journey, actual offline retry, VoiceOver, Reduce Motion, both physical phones or owner design acceptance. No meal was saved in this increment, so its UI evidence does not replace the existing command/database tests. The Calendar removal warning now has selected SE controlled-failure evidence as described below. Build10 lacks these corrections. No new beta, production mutation, provider call, purchase or main/PR merge occurred.
+
+## Small-screen Calendar warning and recovery
+
+The temporary Calendar-only transport failure renders the pending removal warning at maximum text in both appearances. Its 248.5-point area reserves space above Today; the date/header remains below it. An actual corner tap at (372, 23) opens Privacy. The initial sheet scroll left Retry partly clipped and was not counted as full-control evidence. Scrolling to the bottom exposes the entire 327 × 139.5-point Retry button in light/dark. Done retains the pending request; a failed Retry retains one scoped intent.
+
+Removing only the owned fault marker and tapping Retry empties the scoped journal, dismisses the sheet/warning and preserves the disabled consent/revision and bounded financial projection. This controls Calendar HTTP transport and injects denied permission state into the fixture; it does not change actual EventKit permission or prove airplane-mode behavior. The original root was restored, the temporary source removed, and the ordinary app rebuilt and reinstalled. All 784 native hashes match; actual test-origin/push-disabled signing and read-only journal/baseline checks pass after cleanup.
+
+[Warning light](privacy-warning-light.png), [warning dark](privacy-warning-dark.png), [full Retry light](privacy-retry-light.png), [full Retry dark](privacy-retry-dark.png).
