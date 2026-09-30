@@ -401,5 +401,19 @@
   "hostedSchemaChanged": false,
   "legacySourceHashesReverified": false,
   "allRuntimeFunctionsCompared": false,
-  "ci": "pending_new_branch_push"
+  "ci": {
+    "head": "a974afa079dca2f5101f98a4c779ce49b35fb2e2",
+    "repository": {
+      "run": 36775433779,
+      "conclusion": "success",
+      "status": "completed"
+    },
+    "swiftuiSourceUnchanged": "9b6fb44033d8286a09199f0f159cba26d7ec2f9d"
+  },
+  "receiptClaimRuntimeBody": {
+    "body_sha256": "eadb1f958af595ee5953cf7ef6ba2420cd41ee485643c9db098f2bcfa05954b9",
+    "security_definer": true,
+    "settings": ["search_path=\"\""],
+    "matchesSourceExactly": true
+  }
 }
