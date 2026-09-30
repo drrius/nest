@@ -1,0 +1,168 @@
+{
+  "source": "be456dbb28ac982f308d4be332b36558f67f8281",
+  "platform": "iPhone 17 Pro simulator / iOS 26.3 / Xcode 27",
+  "fixture": "Temporary simulator-only Calendar transport fault using real SDK and test membership. Removed after recovery. No actual EventKit permission change.",
+  "renderedChecks": [
+    {
+      "check": "controlled-failure-retained",
+      "pendingRemovals": 1
+    },
+    {
+      "check": "reserved-max-light",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 190.66666666666666
+      },
+      "header": {
+        "x": 20,
+        "y": 266.66666666666663,
+        "width": 264,
+        "height": 102.33333333333337
+      },
+      "overlap": false
+    },
+    {
+      "check": "reserved-max-dark",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 190.66666666666666
+      },
+      "header": {
+        "x": 20,
+        "y": 266.66666666666663,
+        "width": 264,
+        "height": 102.33333333333337
+      },
+      "overlap": false
+    },
+    {
+      "check": "scrollable-retry-max-dark",
+      "retry": {
+        "x": 24,
+        "y": 738.6666666666666,
+        "width": 354,
+        "height": 77.33333333333337
+      }
+    },
+    {
+      "check": "reserved-default-dark",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 60
+      },
+      "header": {
+        "x": 20,
+        "y": 150.83333333333334,
+        "width": 152.66666666666666,
+        "height": 14.333333333333343
+      },
+      "overlap": false
+    },
+    {
+      "check": "reserved-default-light",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 60
+      },
+      "header": {
+        "x": 20,
+        "y": 150.83333333333334,
+        "width": 152.66666666666666,
+        "height": 14.333333333333343
+      },
+      "overlap": false
+    },
+    {
+      "check": "persistent-notice-Meals",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 60
+      }
+    },
+    {
+      "check": "persistent-notice-Calendar",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 60
+      }
+    },
+    {
+      "check": "persistent-notice-Money",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 60
+      }
+    },
+    {
+      "check": "persistent-notice-Today",
+      "banner": {
+        "x": 0,
+        "y": 62,
+        "width": 402,
+        "height": 60
+      }
+    }
+  ],
+  "cornerTap": {
+    "point": [399, 65],
+    "destination": "Privacy",
+    "passed": true
+  },
+  "cleanup": {
+    "ownedFaultMarkerAbsent": true,
+    "scopedPrivacyRemovals": 0,
+    "originalRootSha256": "9f0cae72436f840d817443b7841e10c7932aaef98c13b3703dac7f7e8a3286b1",
+    "temporarySourceRemoved": true,
+    "normalRootEntryAndReads": true,
+    "disabledConsentAndRevisionUnchanged": true,
+    "boundedFinancialBalanceAndHistoryUnchanged": true
+  },
+  "screenshots": {
+    "before-max-light.png": "16efece83f66d0ef1a9b70f2e688fb0cf03b794b7855b1fc124d413132060626",
+    "overlay-max-light.png": "df44fabeb595ec93a7cecd21d2cdbd22bc8ad76a32f601a7be4df2243499eea4",
+    "max-light.png": "a9086dc48a2efd28ebd661f58a5e6c4c106b40fc4e6eeaf4bf9ac25048eabe40",
+    "max-dark.png": "bded6413701706ba7c63e38b70cff6134769d04716f09ed27d4b3e15dc8d80fb",
+    "default-light.png": "9b8ccd0717eefbcd9c4ca7729bc63d57a355809a6e4636237bfed4f3c167c06e",
+    "details-max-dark.png": "c0158507d9a458e8f404eadecdfe12e443d77b4b3b69cf175e958b4eaa733074",
+    "recovered-light.png": "055b47b206073cdfafd18243450ee0c4c1299743532f42228d70a62741018446",
+    "normal-root-restored.png": "a0b0d553aa890d01864e917b9b52dd0508b3b60e78287327d1634dd6f404f96a"
+  },
+  "limits": [
+    "Controlled Calendar fault, not actual airplane mode.",
+    "Account-change sheet dismissal not exercised with rendered native taps.",
+    "No VoiceOver, Reduce Motion, smallest-device or physical phone acceptance.",
+    "No new TestFlight build, APNs send, AI call, production mutation or merge."
+  ],
+  "fixtureCleanupSource": "c25b1321338db4711ba504bb28b86a99a8818185",
+  "focusedTests": {
+    "cases": 19,
+    "failures": 0,
+    "skipped": 0,
+    "warningComparison": {
+      "before": {
+        "vnode unlinked while in use": 14,
+        "database integrity compromised": 14,
+        "invalidated open fd": 14
+      },
+      "after": {
+        "vnode unlinked while in use": 0,
+        "database integrity compromised": 0,
+        "invalidated open fd": 0
+      }
+    }
+  }
+}
