@@ -12,6 +12,16 @@ Mac logs:
 
 This is compilation/packaging evidence, not a distribution signature, Apple processing, physical-phone rendering or TestFlight availability. Push remains disabled. No Expo cloud build was started.
 
+## Local distribution preparation
+
+The existing Nest-only App Store profile (`fff5dc55-5170-4433-9529-675cb2d2b8c0`) was downloaded through the supported EAS credentials manager and validated before importing its certificate: exact team `5ZKB6XKYFX`, app `ch.drrius.nest`, Apple Sign In, production APNs, debugging disabled, no device/ad-hoc provision, certificate match and expiry 2027-09-19. All private material remains ignored in protected temporary storage; no certificate/key was created or revoked.
+
+Initial archive attempts found project-wide provisioning leaking into Swift Crypto's resource bundle, then SSH keychain access failure. Release provisioning is now scoped to Nest's app target; a disposable binary proved freshly unlocked/searchable isolated signing works. The corrected archive command unlocks its separate keychain inside that SSH session, prevents idle sleep only during the build and restores the exact original user keychain search list in a finally block. The actual final search list contains only the owner's original login keychain.
+
+Preparation archive `/private/tmp/nest-swiftui-distribution-unlocked-20260930.xcarchive`: **ARCHIVE SUCCEEDED**, actual signed iPhoneOS arm64 app, 0.1.0/build 1, exact test API/Supabase origins, public-key prefix, disabled push, production APNs, approved embedded profile and AppIcon. Both app and Swift Crypto privacy manifests are packaged. The strengthened `--testflight` signature checker passes against the actual app, including exact Nest team and Apple Sign In. Three focused signing regressions pass on Linux and Mac, including a valid foreign team/bundle suffix and missing Sign In refusal. Log: `/private/tmp/nest-swiftui-distribution-unlocked-archive-20260930.log`.
+
+This preparation archive's build 1 is not uploaded. Supported App Store Connect status confirms the latest existing beta is 0.1.0/9, VALID and in internal beta testing; native source advances to build 10. The new native privacy resource, app-scoped signing and audited OS-cryptography declaration are documented in [packaging](../../../docs/native-rewrite/native-packaging.md). Final build-10 archive/export, exact-source CI, Apple processing and phone acceptance remain outstanding. No release/submission or cloud-build credit was used. Prior source `4cf443fd` passed both workflows (`36658646072`, `36658646066`).
+
 ## Real hosted Swift registration
 
 `HostedPushRegistrationTests` explicitly requires the exact isolated API, fictional Test Alex, household identity and opt-in environment flag. It uses random synthetic sandbox token bytes and never obtains an Apple token or invokes a provider. The uncredentialed CI test must skip honestly.

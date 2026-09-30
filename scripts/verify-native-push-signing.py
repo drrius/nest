@@ -5,7 +5,6 @@ from __future__ import annotations
 
 import argparse
 import plistlib
-import re
 import subprocess
 import sys
 from pathlib import Path
@@ -40,10 +39,12 @@ def validate_distribution(info: dict, entitlements: dict, configured: str, actua
     team = entitlements.get("com.apple.developer.team-identifier")
     bundle = info.get("CFBundleIdentifier")
     application = entitlements.get("application-identifier")
-    if not isinstance(team, str) or not re.fullmatch(r"[A-Z0-9]{10}", team):
-        raise SigningFailure("A valid signed Apple team identifier is required")
+    if team != "5ZKB6XKYFX":
+        raise SigningFailure("Distribution must use Nest's approved Apple team")
     if bundle != "ch.drrius.nest" or application != f"{team}.{bundle}":
         raise SigningFailure("Signed application/team identity must match Nest")
+    if entitlements.get("com.apple.developer.applesignin") != ["Default"]:
+        raise SigningFailure("Distribution requires Nest's Apple Sign In entitlement")
 
 
 def signed_entitlements(app: Path) -> dict:

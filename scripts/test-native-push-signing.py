@@ -18,7 +18,8 @@ class SigningTests(unittest.TestCase):
 
     def production(self):
         return {"aps-environment": "production", "get-task-allow": False,
-                "com.apple.developer.team-identifier": "ABCDEFGHIJ", "application-identifier": "ABCDEFGHIJ.ch.drrius.nest"}
+                "com.apple.developer.team-identifier": "5ZKB6XKYFX", "application-identifier": "5ZKB6XKYFX.ch.drrius.nest",
+                "com.apple.developer.applesignin": ["Default"]}
 
     def test_explicit_local_environment_and_disabled_build(self):
         self.assertEqual(SIGNING.validate(self.info(), {"aps-environment": "development"}), "enabled")
@@ -41,6 +42,8 @@ class SigningTests(unittest.TestCase):
         for changed in [
             {"aps-environment": "development"}, {"get-task-allow": True}, {"get-task-allow": "false"},
             {"application-identifier": "ABCDEFGHIJ.ch.drrius.other"}, {"com.apple.developer.team-identifier": None},
+            {"com.apple.developer.team-identifier": "ABCDEFGHIJ", "application-identifier": "ABCDEFGHIJ.ch.drrius.nest"},
+            {"com.apple.developer.applesignin": []}, {"com.apple.developer.applesignin": None},
         ]:
             with self.subTest(changed=changed), self.assertRaises(SIGNING.SigningFailure):
                 SIGNING.validate(info, signed | changed, testflight=True)
