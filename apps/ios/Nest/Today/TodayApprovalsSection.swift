@@ -32,8 +32,8 @@ struct TodayApprovalsSection: View {
             NavigationLink {
                 FinancialApprovalsScreen(session: model, member: member)
             } label: {
-                Text("All proposals and saved decisions")
-                    .font(.subheadline.weight(.medium)).frame(minHeight: 44, alignment: .leading)
+                QuietActionLabel("All proposals and saved decisions")
+                    .font(.subheadline.weight(.medium))
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)

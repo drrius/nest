@@ -29,6 +29,7 @@ struct TodayBillsSection: View {
                                     }
                                 }
                                 .frame(minHeight: 44, alignment: .leading)
+                                .contentShape(Rectangle())
                             }
                         }
                     } else if failed {
@@ -37,10 +38,11 @@ struct TodayBillsSection: View {
                     } else {
                         ProgressView("Checking due bills…")
                     }
-                    NavigationLink("View all due bills") {
+                    NavigationLink {
                         RecurringRulesScreen(session: session, member: member, dueOnly: true)
+                    } label: {
+                        QuietActionLabel("View all due bills").font(.subheadline.weight(.medium))
                     }
-                    .font(.subheadline.weight(.medium)).frame(minHeight: 44)
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(18)

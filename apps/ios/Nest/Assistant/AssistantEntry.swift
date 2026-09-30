@@ -10,6 +10,7 @@ struct AssistantEntry: View {
         } label: {
             Image(systemName: "bubble.left.and.bubble.right")
                 .foregroundStyle(QuietPalette.accent).frame(minWidth: 44, minHeight: 44)
+                .contentShape(Rectangle())
         }
         .accessibilityLabel("Private conversations")
     }

@@ -25,8 +25,11 @@ struct TodayCalendarSection: View {
                 content(now: clock.date)
                     .onChange(of: clock.date) { _, now in update(now) }
             }
-            NavigationLink("Open Calendar") { CalendarScreen(member: member, session: session) }
-                .font(.subheadline.weight(.medium)).frame(minHeight: 44)
+            NavigationLink {
+                CalendarScreen(member: member, session: session)
+            } label: {
+                QuietActionLabel("Open Calendar").font(.subheadline.weight(.medium))
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(18)

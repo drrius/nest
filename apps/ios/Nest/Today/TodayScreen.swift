@@ -10,41 +10,14 @@ struct TodayScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
-                HStack {
-                    Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
-                        .font(.caption)
-                        .foregroundStyle(QuietPalette.muted)
-                    Spacer()
-                    AssistantEntry(session: model, member: member)
-                    NavigationLink {
-                        ProfileScreen(model: model, member: member)
-                    } label: {
-                        Image(systemName: "person.crop.circle")
-                            .font(.title2)
-                            .foregroundStyle(QuietPalette.accent)
-                    }
-                    .accessibilityLabel("Profile and preferences")
-                }
-                Text("Today")
-                    .font(.largeTitle.weight(.semibold))
-                    .foregroundStyle(QuietPalette.ink)
-                    .padding(.top, 4)
-                Text("A good day to keep it simple.")
-                    .font(.subheadline)
-                    .foregroundStyle(QuietPalette.muted)
-                    .padding(.top, 3)
+                TodayHeader(model: model, member: member)
                 quickAdd.padding(.top, 20)
                 TimelineView(.periodic(from: clockStart, by: 60)) { _ in
                     TodayMealsSection(model: model, member: member, day: todayDate, refresh: todayRefresh)
                         .id(member.userId)
                 }
                 .padding(.top, 24)
-                Picker("Show chores", selection: $everyone) {
-                    Text("Me + shared").tag(false)
-                    Text("Everyone").tag(true)
-                }
-                .pickerStyle(.segmented)
-                .padding(.top, 24)
+                TodayChoreFilter(everyone: $everyone).padding(.top, 24)
                 Text("Around the house")
                     .font(.headline)
                     .foregroundStyle(QuietPalette.ink)
@@ -59,11 +32,16 @@ struct TodayScreen: View {
                         .padding(.top, 8)
                 }
                 content
-                NavigationLink("Manage chores") { RoutinesScreen(model: model) }
-                    .frame(minHeight: 44).padding(.top, 8)
-                NavigationLink("Manage renewals") {
+                NavigationLink {
+                    RoutinesScreen(model: model)
+                } label: {
+                    QuietActionLabel("Manage chores")
+                }.padding(.top, 8)
+                NavigationLink {
                     RenewalsScreen(session: model, member: member).id(model.generation)
-                }.frame(minHeight: 44)
+                } label: {
+                    QuietActionLabel("Manage renewals")
+                }
                 TodayBillsSection(session: model, member: member, refresh: todayRefresh)
                     .id(member.userId)
                 TodayCalendarSection(session: model, member: member, refresh: todayRefresh)
@@ -89,12 +67,15 @@ struct TodayScreen: View {
                     .padding(18)
                     .frame(minHeight: 76)
                     .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
+                    .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
                 .padding(.top, 28)
-                NavigationLink("Your saved daily summary") {
+                NavigationLink {
                     DailySummaryScreen(session: model, member: member).id(model.generation)
-                }.frame(minHeight: 44).padding(.top, 12)
+                } label: {
+                    QuietActionLabel("Your saved daily summary")
+                }.padding(.top, 12)
             }
             .padding(.horizontal, 20)
             .padding(.top, 14)

@@ -59,11 +59,15 @@ struct TodayMealsSection: View {
                     Image(systemName: "chevron.right").font(.caption).foregroundStyle(QuietPalette.muted)
                 }
                 .frame(minHeight: 44)
+                .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
         }
-        NavigationLink("Open meal plan") { MealWeekScreen(model: model) }
-            .font(.subheadline.weight(.medium)).frame(minHeight: 44)
+        NavigationLink {
+            MealWeekScreen(model: model)
+        } label: {
+            QuietActionLabel("Open meal plan").font(.subheadline.weight(.medium))
+        }
     }
 
     private func load() async {
