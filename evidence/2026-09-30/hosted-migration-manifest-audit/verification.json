@@ -1,0 +1,419 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "individualSources": [
+    {
+      "file": "20260926092224_native_grocery_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926092252",
+      "sourceSHA256": "5306fad04d8ba69129d2ce257419db2ac018d614c7e40754b5e7634a2d3dd7e7",
+      "hostedSHA256": "5306fad04d8ba69129d2ce257419db2ac018d614c7e40754b5e7634a2d3dd7e7",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926092453_native_ai_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926092529",
+      "sourceSHA256": "c426bffac9b51d7947beaff368d735551eea2128025c5ed77a59f39c7a8096c2",
+      "hostedSHA256": "c426bffac9b51d7947beaff368d735551eea2128025c5ed77a59f39c7a8096c2",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926092623_native_grocery_check_nonretryable_conflict.sql",
+      "hostedVersion": "20260926092652",
+      "sourceSHA256": "bb2817ef8dce967e58a16db4ed3a6b9ba423e375aa6f01a7c92b7a3a0d5d55ed",
+      "hostedSHA256": "bb2817ef8dce967e58a16db4ed3a6b9ba423e375aa6f01a7c92b7a3a0d5d55ed",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926092840_native_chore_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926092909",
+      "sourceSHA256": "c04f71224d0630318a756d57ba49c5efd35a00c584d3ac4cf5679d8715c8070a",
+      "hostedSHA256": "c04f71224d0630318a756d57ba49c5efd35a00c584d3ac4cf5679d8715c8070a",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926093101_native_chore_unavailable_conflict.sql",
+      "hostedVersion": "20260926093141",
+      "sourceSHA256": "fd19a19fd5396d9e58eddf6c1bc91887a0d2f5d28f1288fc8ebb1462de86dd98",
+      "hostedSHA256": "fd19a19fd5396d9e58eddf6c1bc91887a0d2f5d28f1288fc8ebb1462de86dd98",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926093243_native_settlement_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926093324",
+      "sourceSHA256": "6d62b7a8a94ed377c2577c33a464afc25752f93790eca8828c332664de236427",
+      "hostedSHA256": "6d62b7a8a94ed377c2577c33a464afc25752f93790eca8828c332664de236427",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926093435_native_expense_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926093600",
+      "sourceSHA256": "3df0cb090daeab147f12d4ab92f7e049ad7a3748fb65015066ba4ba5b3ca07ec",
+      "hostedSHA256": "3df0cb090daeab147f12d4ab92f7e049ad7a3748fb65015066ba4ba5b3ca07ec",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926094056_native_preference_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926094144",
+      "sourceSHA256": "06931ea74fa117ec7d54caf72fdfe32d14c66c1c7c3bf2f03fafd66ed2d8cd23",
+      "hostedSHA256": "06931ea74fa117ec7d54caf72fdfe32d14c66c1c7c3bf2f03fafd66ed2d8cd23",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926094310_native_calendar_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926094403",
+      "sourceSHA256": "5837b7a6e540ebbc0c7547248c83d8a22eec6f3324dbb151623e8d4fc2869ff3",
+      "hostedSHA256": "5837b7a6e540ebbc0c7547248c83d8a22eec6f3324dbb151623e8d4fc2869ff3",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926094530_native_ai_turn_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926094853",
+      "sourceSHA256": "b360449318a1ac0c47f1c25bcdc2efd0829fe4a0415a3c16362b9e0b7b32113d",
+      "hostedSHA256": "b360449318a1ac0c47f1c25bcdc2efd0829fe4a0415a3c16362b9e0b7b32113d",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926095056_native_refund_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926095211",
+      "sourceSHA256": "bae5ebd79f67b4b3dadcaff8176f2d709e64324227ad0c9152a20f2e4223abbe",
+      "hostedSHA256": "bae5ebd79f67b4b3dadcaff8176f2d709e64324227ad0c9152a20f2e4223abbe",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926095104_native_correction_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926095215",
+      "sourceSHA256": "008358c06364deba43d79e1d5f1da5afa510f315f88c222d01b368a7ae29f07b",
+      "hostedSHA256": "008358c06364deba43d79e1d5f1da5afa510f315f88c222d01b368a7ae29f07b",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926095607_native_memory_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926095657",
+      "sourceSHA256": "5a6721a1f8727a0eef847a62e36e3250c3285a6e89539d8ae5525a88409ae4ca",
+      "hostedSHA256": "5a6721a1f8727a0eef847a62e36e3250c3285a6e89539d8ae5525a88409ae4ca",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926095847_native_chore_edit_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926100030",
+      "sourceSHA256": "d145da301f773c548e4135324db7a6629b037df37bfe706e8672f587cfc36ff7",
+      "hostedSHA256": "d145da301f773c548e4135324db7a6629b037df37bfe706e8672f587cfc36ff7",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926100146_native_renewal_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926100234",
+      "sourceSHA256": "0bed42ee2cfdc80a93145f469382c531725c5cb59b177db49f1f12379acdc4ac",
+      "hostedSHA256": "0bed42ee2cfdc80a93145f469382c531725c5cb59b177db49f1f12379acdc4ac",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926100455_native_recurring_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926100657",
+      "sourceSHA256": "b1ac88ec0611287d6b561ab130f7e10eea92842cefc201a2838abf7ec9747258",
+      "hostedSHA256": "b1ac88ec0611287d6b561ab130f7e10eea92842cefc201a2838abf7ec9747258",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926100816_native_meal_edit_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926101038",
+      "sourceSHA256": "c04421d47d025e11f5ad037d0c5346096aa1a32cba72be8b4d10186ab7a886e5",
+      "hostedSHA256": "c04421d47d025e11f5ad037d0c5346096aa1a32cba72be8b4d10186ab7a886e5",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926101436_native_recipe_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926101551",
+      "sourceSHA256": "9899f62d35bbd481709ea8fa4ccd1dd48cb5730c0c0a67c390ae25cd112f7cf5",
+      "hostedSHA256": "9899f62d35bbd481709ea8fa4ccd1dd48cb5730c0c0a67c390ae25cd112f7cf5",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926101925_native_ingredient_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102009",
+      "sourceSHA256": "2462bcee118a2531c2590c86e0f5bfafca0a0c192229dd240197d746467dd028",
+      "hostedSHA256": "2462bcee118a2531c2590c86e0f5bfafca0a0c192229dd240197d746467dd028",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102144_native_preparation_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102235",
+      "sourceSHA256": "4cbc4c5c6f65b9a1849d32f2c3d993d94e6e6f8df667e4f791951c23c3b285d1",
+      "hostedSHA256": "4cbc4c5c6f65b9a1849d32f2c3d993d94e6e6f8df667e4f791951c23c3b285d1",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102440_native_proposal_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102551",
+      "sourceSHA256": "e458b9ad9bdcf4b9b3529d764d557f47ff26548fc6200c0f6ac28c1e3ee23dc8",
+      "hostedSHA256": "e458b9ad9bdcf4b9b3529d764d557f47ff26548fc6200c0f6ac28c1e3ee23dc8",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102723_native_chore_reminder_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102820",
+      "sourceSHA256": "e5ae5df12d2c8e4b191ceac1b68570d17a9ba6d5d921635efce3815c8a06aa99",
+      "hostedSHA256": "e5ae5df12d2c8e4b191ceac1b68570d17a9ba6d5d921635efce3815c8a06aa99",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102724_native_meal_reminder_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102824",
+      "sourceSHA256": "32ce8fe1486ff753408e996a714ccce084f938ee52c77fc58402f415eacaf3dd",
+      "hostedSHA256": "32ce8fe1486ff753408e996a714ccce084f938ee52c77fc58402f415eacaf3dd",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102725_native_grocery_reminder_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102829",
+      "sourceSHA256": "bce6e65429a30ffaf6e008396eae3168591ea2b1b1b2a44eceba75df49f07206",
+      "hostedSHA256": "bce6e65429a30ffaf6e008396eae3168591ea2b1b1b2a44eceba75df49f07206",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102727_native_recurring_reminder_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926102832",
+      "sourceSHA256": "819f9dae0df0f9b60f67e78e8a094bfcc41b48334ae982a5b6b4ab1b756f1efb",
+      "hostedSHA256": "819f9dae0df0f9b60f67e78e8a094bfcc41b48334ae982a5b6b4ab1b756f1efb",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926102946_native_receipt_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926103041",
+      "sourceSHA256": "7e5075f82aedcc60c1cccbadd36aff9af8ba269fd342aae4a9489c6da9422436",
+      "hostedSHA256": "7e5075f82aedcc60c1cccbadd36aff9af8ba269fd342aae4a9489c6da9422436",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926103200_native_receipt_storage_privacy.sql",
+      "hostedVersion": "20260926103252",
+      "sourceSHA256": "95bd073c1e9d7bc962977404b75cc7f7ebc0d8d3c7da99a7d34585d0b3e2a50f",
+      "hostedSHA256": "95bd073c1e9d7bc962977404b75cc7f7ebc0d8d3c7da99a7d34585d0b3e2a50f",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926103643_native_push_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926103803",
+      "sourceSHA256": "cc017d9a4d51b554391320f9f63e183e594570a9cbf303291b725ad573edc40c",
+      "hostedSHA256": "cc017d9a4d51b554391320f9f63e183e594570a9cbf303291b725ad573edc40c",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926103844_native_receipt_claim_owner.sql",
+      "hostedVersion": "20260926104111",
+      "sourceSHA256": "97e6c3b996567270dce6262c937cd22d8e1045ec3afd0d062460f400b9a7b72f",
+      "hostedSHA256": "1c887c9f855b6ae0fd4fa06c8dbacc99691e9540e92c26881b711d19d4ccc7a7",
+      "comparison": "knownLeadingCommentOmittedTrimmed"
+    },
+    {
+      "file": "20260926104914_native_legacy_dismissal_nonretryable_conflict.sql",
+      "hostedVersion": "20260926105043",
+      "sourceSHA256": "145b5e8155e4c89d6976ec36484a61876084ceb88a1cc4d088266f350c085bc5",
+      "hostedSHA256": "d9697e30b3c980cf957e59cc658280dfd87d51b41c0fa0c2405f053666c113e5",
+      "comparison": "trimmed"
+    },
+    {
+      "file": "20260926105124_native_legacy_confirmation_nonretryable_conflict.sql",
+      "hostedVersion": "20260926105242",
+      "sourceSHA256": "49fd4551c9eaabe8a3b29dbbc4eb29ccda4ec3a3bf8459bfe98c746b0afd0191",
+      "hostedSHA256": "49fd4551c9eaabe8a3b29dbbc4eb29ccda4ec3a3bf8459bfe98c746b0afd0191",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926105313_native_legacy_adoption_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926105438",
+      "sourceSHA256": "5881f71fc3dfec6b2fa6fc14d589c456e069b370bcb9e1aaa0579aec45752582",
+      "hostedSHA256": "5881f71fc3dfec6b2fa6fc14d589c456e069b370bcb9e1aaa0579aec45752582",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260926105535_native_renewal_conversion_nonretryable_conflicts.sql",
+      "hostedVersion": "20260926105728",
+      "sourceSHA256": "d8d7f7814bbcd12c33a72401d52603f24fef175c9086804689097363a88452e2",
+      "hostedSHA256": "d8d7f7814bbcd12c33a72401d52603f24fef175c9086804689097363a88452e2",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260928092000_native_financial_approval_expiry.sql",
+      "hostedVersion": "20260928072458",
+      "sourceSHA256": "72f6089bdec9071eeb7f727a8263feb1d6d3463f3948bb1839b2e3d888bd68fb",
+      "hostedSHA256": "72f6089bdec9071eeb7f727a8263feb1d6d3463f3948bb1839b2e3d888bd68fb",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260928100000_native_recurring_approval_expiry.sql",
+      "hostedVersion": "20260928075234",
+      "sourceSHA256": "ac8452b66b768e605ea1b663f56bff16a71ca5810e56e98ff956b644177a42d4",
+      "hostedSHA256": "ac8452b66b768e605ea1b663f56bff16a71ca5810e56e98ff956b644177a42d4",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260928104000_native_routine_creation_cancellation.sql",
+      "hostedVersion": "20260928084401",
+      "sourceSHA256": "8f1ec5745eeb5ab6adb0bd18d87e4c33dc0739ad01958579af45e47dfae3b3b7",
+      "hostedSHA256": "8f1ec5745eeb5ab6adb0bd18d87e4c33dc0739ad01958579af45e47dfae3b3b7",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260928113028_native_ai_unstarted_cancellation.sql",
+      "hostedVersion": "20260928113232",
+      "sourceSHA256": "88e9d8b0e2853674c379ab366dcc43a1fbaaaf2b793f74cd8c0ad4252a79e740",
+      "hostedSHA256": "88e9d8b0e2853674c379ab366dcc43a1fbaaaf2b793f74cd8c0ad4252a79e740",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260929220335_native_apns_registration.sql",
+      "hostedVersion": "20260930014440",
+      "sourceSHA256": "b637d43e5cab6e8f604c03c334084aab15f6fcbc6aad1358c2ff2a2ac71ae767",
+      "hostedSHA256": "b637d43e5cab6e8f604c03c334084aab15f6fcbc6aad1358c2ff2a2ac71ae767",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260929221917_native_apns_delivery_outcomes.sql",
+      "hostedVersion": "20260930014449",
+      "sourceSHA256": "cf04e959184f3f2f56042a067d9d07920999f3cedb7c92480dc8241493906463",
+      "hostedSHA256": "cf04e959184f3f2f56042a067d9d07920999f3cedb7c92480dc8241493906463",
+      "comparison": "exact"
+    },
+    {
+      "file": "20260930012204_native_recent_journal_write_barriers.sql",
+      "hostedVersion": "20260930014455",
+      "sourceSHA256": "dc2ecaddc8d138846c105b09f809564be877755c4cdf05770f3af466faa983bb",
+      "hostedSHA256": "dc2ecaddc8d138846c105b09f809564be877755c4cdf05770f3af466faa983bb",
+      "comparison": "exact"
+    }
+  ],
+  "unreverifiedBatches": [
+    {
+      "version": "20260926090658",
+      "name": "nest_test_audited_tenancy_baseline",
+      "statement_count": 1,
+      "statement_sha256": "d6ee89af9af91769e5b22143295f6cd5469ed5d781ec8735a88a544ff99f22c3"
+    },
+    {
+      "version": "20260926090730",
+      "name": "nest_test_audited_core_baseline",
+      "statement_count": 1,
+      "statement_sha256": "850b901ebb3782e411827046f41dc0f67bd623f5e8a3bc2a3cc426ba93bcc817"
+    },
+    {
+      "version": "20260926090830",
+      "name": "nest_test_notifications_without_schedules",
+      "statement_count": 1,
+      "statement_sha256": "39310f6305d57ff366c33d5823afd347b97269b6a62b4bf32021275b0096e6d4"
+    },
+    {
+      "version": "20260926090923",
+      "name": "nest_test_legacy_commands_without_push_schedule",
+      "statement_count": 1,
+      "statement_sha256": "a5241f675f4af4ba4dd033dd66526a65e38319f22b0343751955d76ad89647bd"
+    },
+    {
+      "version": "20260926091021",
+      "name": "nest_test_legacy_schema_batch_18_36",
+      "statement_count": 1,
+      "statement_sha256": "f32084ad76982975c02aac80554b54727bf83dd8cddaccf2e4e7ce1f5aba75d0"
+    },
+    {
+      "version": "20260926091034",
+      "name": "nest_test_legacy_schema_batch_36_54",
+      "statement_count": 1,
+      "statement_sha256": "ed91bcb67959c0a1c384840f5f8aeaabd3eef61302e158f2f55302912049b8c5"
+    },
+    {
+      "version": "20260926091055",
+      "name": "nest_test_native_batch_0_40",
+      "statement_count": 1,
+      "statement_sha256": "69e6c65d98ef2717678e8cbe88d15ad732e17608ad3a2533f27e07f20dc14c7e"
+    },
+    {
+      "version": "20260926091126",
+      "name": "nest_test_native_batch_40_80",
+      "statement_count": 1,
+      "statement_sha256": "88948f33dffa6074789957d9e4193d31afb3c25a2645b0088d136c925aa6165f"
+    },
+    {
+      "version": "20260926091141",
+      "name": "nest_test_native_batch_80_120",
+      "statement_count": 1,
+      "statement_sha256": "2408fef1518cd33cc8eebd6ba2562c540ea61697bec3fe933b1dda6815ab4f53"
+    },
+    {
+      "version": "20260926091214",
+      "name": "nest_test_native_batch_120_160",
+      "statement_count": 1,
+      "statement_sha256": "3a234765f752480f8407a7e0c90533aab02e6ee41946a62e970d4f2c592051b1"
+    },
+    {
+      "version": "20260926091244",
+      "name": "nest_test_native_batch_160_204",
+      "statement_count": 1,
+      "statement_sha256": "305494a15b09118f544acdb3d96bfcee25a57e296b15919adc0a7279b97fd48b"
+    }
+  ],
+  "hostedDataReconciliationVerified": false,
+  "productionTouched": false,
+  "date": "2026-09-30",
+  "sourceCommit": "f74fcb4eb59838c47ce2a52d1c2ef8d762716b32",
+  "manifestAudit": {
+    "complete": true,
+    "legacyCount": 55,
+    "nativeCount": 244,
+    "sourceCount": 244,
+    "missing": [],
+    "unexpected": [],
+    "changed": []
+  },
+  "hostedJournalFences": [
+    {
+      "table_name": "nest_ai_cancelled_turns",
+      "rls": true,
+      "trigger_mode": "A",
+      "trigger_type": 62,
+      "anon_access": false,
+      "authenticated_access": false,
+      "service_role_access": false
+    },
+    {
+      "table_name": "nest_apns_delivery_attempts",
+      "rls": true,
+      "trigger_mode": "A",
+      "trigger_type": 62,
+      "anon_access": false,
+      "authenticated_access": false,
+      "service_role_access": false
+    },
+    {
+      "table_name": "nest_routine_creation_cancellations",
+      "rls": true,
+      "trigger_mode": "A",
+      "trigger_type": 62,
+      "anon_access": false,
+      "authenticated_access": false,
+      "service_role_access": false
+    }
+  ],
+  "toolingTests": {
+    "passed": 11,
+    "failed": 0,
+    "skipped": 0,
+    "newManifestCases": 4
+  },
+  "hostedSchemaChanged": false,
+  "legacySourceHashesReverified": false,
+  "allRuntimeFunctionsCompared": false,
+  "ci": {
+    "head": "a974afa079dca2f5101f98a4c779ce49b35fb2e2",
+    "repository": {
+      "run": 36775433779,
+      "conclusion": "success",
+      "status": "completed"
+    },
+    "swiftuiSourceUnchanged": "9b6fb44033d8286a09199f0f159cba26d7ec2f9d"
+  },
+  "receiptClaimRuntimeBody": {
+    "body_sha256": "eadb1f958af595ee5953cf7ef6ba2420cd41ee485643c9db098f2bcfa05954b9",
+    "security_definer": true,
+    "settings": ["search_path=\"\""],
+    "matchesSourceExactly": true
+  }
+}
