@@ -164,6 +164,37 @@ final class CalendarPrivacyStoreTests: XCTestCase {
         let finished = try await fixture.store.readCalendarPrivacyRemoval(lease: fixture.lease)
         XCTAssertNil(finished)
     }
+
+    func testOlderOffReceiptCannotClearARequestAtOrBeyondItsRevision() async throws {
+        let fixture = try await CalendarPrivacyFixture.make()
+        defer { try? FileManager.default.removeItem(at: fixture.url) }
+        try await fixture.store.enqueueCalendarConsentChange(
+            current: fixture.current, enabled: true, operation: UUID(), lease: fixture.lease)
+        try await fixture.store.rememberCalendarPermissionLoss(lease: fixture.lease)
+        let command = try await fixture.store.stageCalendarPrivacyRemoval(
+            current: fixture.current, lease: fixture.lease)
+        let original = try await fixture.store.readCalendarConsentChange(lease: fixture.lease)
+        let saved = try XCTUnwrap(original)
+        let injection = try SQLiteConnection(url: fixture.url)
+        for revision in [Int64(5), 6, Int64.max - 1] {
+            let future = SavedCalendarConsent(
+                command: .init(
+                    incarnation: command.incarnation, operationId: saved.command.operationId,
+                    expectedRevision: String(revision), enabled: true), conflict: false)
+            let body = String(decoding: try JSONEncoder().encode(future), as: UTF8.self)
+            try injection.run(
+                "UPDATE calendar_consent_changes SET body=? WHERE actor=? AND household=?", [body] + fixture.lease.scope
+            )
+            do {
+                try await fixture.store.confirmCalendarPrivacyRemoval(fixture.receipt(command), lease: fixture.lease)
+                XCTFail("Cleared a request not proven superseded by the off receipt")
+            } catch OfflineFailure.invalidOperation {}
+            let pending = try await fixture.store.readCalendarConsentChange(lease: fixture.lease)
+            let removal = try await fixture.store.readCalendarPrivacyRemoval(lease: fixture.lease)
+            XCTAssertEqual(pending?.command, future.command)
+            XCTAssertEqual(removal?.command, command)
+        }
+    }
 }
 
 private struct CalendarPrivacyFixture {
