@@ -8,50 +8,50 @@ struct CalendarPrivacyRecovery: ViewModifier {
     private let reader = EventKitCalendarReader()
 
     func body(content: Content) -> some View {
-        content
-            .safeAreaInset(edge: .top) {
-                if case .ready = session.status, session.calendarPrivacyPending {
-                    Button {
-                        detailsPresented = true
-                    } label: {
-                        HStack(spacing: 12) {
-                            Image(systemName: "exclamationmark.shield").font(.system(size: 20))
-                                .accessibilityHidden(true)
-                            Text("Busy sharing removal pending")
-                                .font(.subheadline.weight(.semibold))
-                                .fixedSize(horizontal: false, vertical: true)
-                                .multilineTextAlignment(.leading)
-                            Spacer(minLength: 0)
-                            Image(systemName: "chevron.right").font(.system(size: 14))
-                                .accessibilityHidden(true)
-                        }
-                        .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                        .contentShape(Rectangle())
+        VStack(spacing: 0) {
+            if case .ready = session.status, session.calendarPrivacyPending {
+                Button {
+                    detailsPresented = true
+                } label: {
+                    HStack(spacing: 12) {
+                        Image(systemName: "exclamationmark.shield").font(.system(size: 20))
+                            .accessibilityHidden(true)
+                        Text("Busy sharing removal pending")
+                            .font(.subheadline.weight(.semibold))
+                            .fixedSize(horizontal: false, vertical: true)
+                            .multilineTextAlignment(.leading)
+                        Spacer(minLength: 0)
+                        Image(systemName: "chevron.right").font(.system(size: 14))
+                            .accessibilityHidden(true)
                     }
-                    .buttonStyle(.plain)
-                    .accessibilityHint("Review why removal is pending and retry.")
-                    .foregroundStyle(QuietPalette.ink)
+                    .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                     .padding(.horizontal, 20).padding(.vertical, 8)
-                    .background(QuietPalette.soft)
+                    .contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
+                .accessibilityHint("Review why removal is pending and retry.")
+                .foregroundStyle(QuietPalette.ink)
+                .background(QuietPalette.soft)
             }
-            .sheet(isPresented: $detailsPresented) {
-                if case .ready = session.status, session.calendarPrivacyPending {
-                    CalendarPrivacyRecoveryDetails(session: session).id(session.generation)
-                }
+            content
+        }
+        .sheet(isPresented: $detailsPresented) {
+            if case .ready = session.status, session.calendarPrivacyPending {
+                CalendarPrivacyRecoveryDetails(session: session).id(session.generation)
             }
-            .onChange(of: session.generation) { detailsPresented = false }
-            .onChange(of: session.calendarPrivacyPending) { _, pending in
-                if !pending { detailsPresented = false }
-            }
-            .onChange(of: session.status) { _, status in
-                if case .ready = status { return }
-                detailsPresented = false
-            }
-            .task(id: CheckState(status: session.status, generation: session.generation, phase: scenePhase)) {
-                guard scenePhase == .active else { return }
-                await session.refreshCalendarPrivacy(access: reader.access)
-            }
+        }
+        .onChange(of: session.generation) { detailsPresented = false }
+        .onChange(of: session.calendarPrivacyPending) { _, pending in
+            if !pending { detailsPresented = false }
+        }
+        .onChange(of: session.status) { _, status in
+            if case .ready = status { return }
+            detailsPresented = false
+        }
+        .task(id: CheckState(status: session.status, generation: session.generation, phase: scenePhase)) {
+            guard scenePhase == .active else { return }
+            await session.refreshCalendarPrivacy(access: reader.access)
+        }
     }
 
     private struct CheckState: Equatable {
