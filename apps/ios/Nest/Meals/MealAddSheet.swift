@@ -4,6 +4,7 @@ struct MealAddSheet: View {
     @ObservedObject var model: SessionModel
     let target: MealSlotTarget
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var textSize
     @State private var title = ""
     @State private var useSaved = false
     @State private var selectedId: UUID?
@@ -14,13 +15,14 @@ struct MealAddSheet: View {
         NavigationStack {
             Form {
                 Section {
-                    Picker("Meal source", selection: $useSaved) {
-                        Text("One-off").tag(false)
-                        Text("Saved meal").tag(true)
-                    }
-                    .pickerStyle(.segmented)
+                    sourcePicker
                 } header: {
-                    Text("\(target.slot.label) · \(target.date.value)")
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(target.slot.label)
+                        Text(target.date.localDay()?.formatted(date: .abbreviated, time: .omitted) ?? target.date.value)
+                    }
+                    .font(.caption).foregroundStyle(QuietPalette.muted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
                 if useSaved {
                     MealSavedChoice(model: model, selectedId: $selectedId)
@@ -70,6 +72,21 @@ struct MealAddSheet: View {
                     await model.refreshMealLibrary()
                 }
             }
+        }
+    }
+
+    @ViewBuilder
+    private var sourcePicker: some View {
+        if textSize.isAccessibilitySize {
+            Picker("Meal source", selection: $useSaved) {
+                Text("One-off").tag(false)
+                Text("Saved meal").tag(true)
+            }.pickerStyle(.inline)
+        } else {
+            Picker("Meal source", selection: $useSaved) {
+                Text("One-off").tag(false)
+                Text("Saved meal").tag(true)
+            }.pickerStyle(.segmented)
         }
     }
 

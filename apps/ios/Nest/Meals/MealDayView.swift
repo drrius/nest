@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct MealDayView<Detail: View>: View {
+    @Environment(\.dynamicTypeSize) private var textSize
     let date: CivilDate
     let meals: [PlannedMeal]
     let slots: [MealSlot]
@@ -22,18 +23,7 @@ struct MealDayView<Detail: View>: View {
                     if let meal = meals.first(where: { $0.slot == slot }) {
                         plannedRow(meal, slot: slot)
                     } else {
-                        Button {
-                            add(slot)
-                        } label: {
-                            HStack(spacing: 16) {
-                                Text(slot.label).frame(width: 84, alignment: .leading)
-                                Label("Add meal", systemImage: "plus")
-                                Spacer(minLength: 0)
-                            }
-                            .frame(minHeight: 60, alignment: .leading)
-                        }
-                        .disabled(!canChange)
-                        .accessibilityLabel("\(date.value), \(slot.label): Add meal")
+                        emptyRow(slot)
                     }
                     if slot != displaySlots.last {
                         Divider().overlay(QuietPalette.border)
@@ -62,8 +52,39 @@ struct MealDayView<Detail: View>: View {
         slots + meals.map(\.slot).filter { !slots.contains($0) }
     }
 
+    private func emptyRow(_ slot: MealSlot) -> some View {
+        Button {
+            add(slot)
+        } label: {
+            Group {
+                if textSize.isAccessibilitySize {
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(slot.label).font(.caption).foregroundStyle(QuietPalette.muted)
+                        Label("Add meal", systemImage: "plus")
+                    }
+                    .padding(.vertical, 12)
+                } else {
+                    HStack(spacing: 16) {
+                        Text(slot.label).frame(width: 84, alignment: .leading)
+                        Label("Add meal", systemImage: "plus")
+                        Spacer(minLength: 0)
+                    }
+                }
+            }
+            .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(!canChange)
+        .accessibilityLabel("\(date.value), \(slot.label): Add meal")
+    }
+
     private func plannedRow(_ meal: PlannedMeal, slot: MealSlot) -> some View {
-        HStack(spacing: 12) {
+        let layout =
+            textSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12))
+            : AnyLayout(HStackLayout(spacing: 12))
+        return layout {
             NavigationLink {
                 detail(meal)
             } label: {
@@ -73,7 +94,8 @@ struct MealDayView<Detail: View>: View {
                         Text(meal.title).font(.body).foregroundStyle(QuietPalette.ink)
                     }
                     Spacer(minLength: 0)
-                    Image(systemName: "chevron.right").font(.caption)
+                    Image(systemName: "chevron.right").font(.system(size: 14))
+                        .accessibilityHidden(true)
                 }
                 .frame(maxWidth: .infinity, minHeight: 60, alignment: .leading)
                 .contentShape(Rectangle())
@@ -88,13 +110,19 @@ struct MealDayView<Detail: View>: View {
                 Button("Move", systemImage: "arrow.right.arrow.left") { move(meal) }
                 Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
             } label: {
-                Image(systemName: "ellipsis")
-                    .foregroundStyle(QuietPalette.accent)
-                    .frame(width: 44, height: 44)
+                HStack(spacing: 12) {
+                    if textSize.isAccessibilitySize { Text("Meal options") }
+                    Image(systemName: "ellipsis").font(.system(size: 14))
+                        .accessibilityHidden(true)
+                }
+                .foregroundStyle(QuietPalette.accent)
+                .frame(minWidth: 44, minHeight: 44)
+                .contentShape(Rectangle())
             }
             .disabled(!canChange)
             .accessibilityLabel("More options for \(meal.title)")
         }
+        .padding(.vertical, textSize.isAccessibilitySize ? 12 : 0)
         .frame(minHeight: 60, alignment: .leading)
     }
 }
