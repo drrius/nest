@@ -34,7 +34,7 @@ struct RecurringEditorFields: View {
                         "\(person.displayName) share (CHF)",
                         text: Binding(
                             get: { draft.shares[person.id] ?? "" }, set: { draft.shares[person.id] = $0 }),
-                        keyboard: .decimalPad
+                        keyboard: .decimalPad, focusKey: person.id.uuidString
                     )
                 }
                 Text("This amount will be recorded automatically each cycle. Nest does not make payments.").font(
@@ -44,7 +44,9 @@ struct RecurringEditorFields: View {
         Section { field("Note (optional)", text: $draft.note) }
     }
     private var weekdays: [String] { ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
-    private func field(_ label: String, text: Binding<String>, keyboard: UIKeyboardType = .default) -> some View {
-        MoneyDraftField(label: label, text: text, focus: focus, keyboard: keyboard)
+    private func field(
+        _ label: String, text: Binding<String>, keyboard: UIKeyboardType = .default, focusKey: String? = nil
+    ) -> some View {
+        MoneyDraftField(label: label, text: text, focus: focus, keyboard: keyboard, focusKey: focusKey)
     }
 }

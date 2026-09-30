@@ -5,6 +5,7 @@ struct MoneyDraftField: View {
     @Binding var text: String
     let focus: FocusState<String?>.Binding
     var keyboard: UIKeyboardType = .default
+    var focusKey: String? = nil
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
@@ -12,7 +13,7 @@ struct MoneyDraftField: View {
                 .lineLimit(nil).fixedSize(horizontal: false, vertical: true)
             TextField(label, text: $text, axis: .vertical)
                 .keyboardType(keyboard)
-                .focused(focus, equals: label)
+                .focused(focus, equals: focusKey ?? label)
                 .accessibilityLabel(label)
         }.padding(.vertical, 4)
     }

@@ -1,0 +1,39 @@
+{
+  "visualRuntimeSource": "91bba831eaefb46c6c3db8e9d7eb7de1b94b32fb",
+  "simulator": {
+    "udid": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "model": "iPhone SE3",
+    "ios": "26.3",
+    "width": 375,
+    "height": 667
+  },
+  "actor": "fictional Test Alex",
+  "invalidPaymentNoticeVisible": true,
+  "paymentAmountCentimes": 1,
+  "paymentEditRetained": true,
+  "invalidRecurringSumRejected": true,
+  "reviewedFixedCentimes": 101,
+  "reviewedSharesCentimes": [51, 50],
+  "recurringEditRetained": true,
+  "maximumTextLightAndDarkActionsFullyAboveTabBar": true,
+  "reviewSavesPressed": 0,
+  "focusKeysUseMemberIdentity": true,
+  "focusedExistingTests": {
+    "cases": 4,
+    "failures": 0,
+    "skips": 0,
+    "initialTwoHostedSkipsExcluded": true
+  },
+  "sourceManifestInputsWithSigningChecker": 786,
+  "temporarySwiftFiles": 0,
+  "visualSourceCI": {
+    "nest": 36792454913,
+    "swiftui": 36792454947,
+    "status": "success"
+  },
+  "finalFocusVerification": "pending",
+  "physicalPhoneVerified": false,
+  "voiceOverVerified": false,
+  "extraBetaSubmissions": 0,
+  "productionChanged": false
+}
