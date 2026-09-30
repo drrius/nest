@@ -177,12 +177,14 @@ final class CalendarPrivacyModelTests: XCTestCase {
     func testLateRemovalReplyAfterMemberSwitchCannotClearOriginalRecoveryOrExposeIt() async throws {
         let fixture = try await CalendarPrivacyModelFixture.make()
         defer { try? FileManager.default.removeItem(at: fixture.url) }
+        fixture.model.offlineReplayReady = true
         let context = try await fixture.model.calendarConsentContext()
         await fixture.server.pauseNextWrite()
         let removal = Task {
             try await fixture.model.revokeCalendarConsentAfterPermissionLoss(access: .denied, context: context)
         }
         await fixture.server.waitForWrite()
+        await fixture.model.refreshCalendarPrivacy(access: .denied)
         await fixture.model.signIn(idToken: "B", nonce: "nonce")
         let other = try await fixture.model.calendarConsentContext()
         XCTAssertNotEqual(other.member.userId, context.member.userId)

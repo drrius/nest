@@ -8,12 +8,7 @@ extension SessionModel {
         guard calendarPrivacyGeneration != context.generation else { throw OfflineFailure.invalidOperation }
         calendarPrivacyGeneration = context.generation
         calendarPrivacyRemoving = true
-        defer {
-            if calendarPrivacyGeneration == context.generation {
-                calendarPrivacyGeneration = nil
-                calendarPrivacyRemoving = false
-            }
-        }
+        defer { finishCalendarPrivacy(context) }
         do {
             return try await removeCalendarSharing(access: access, context: context)
         } catch {
@@ -25,6 +20,21 @@ extension SessionModel {
             default: break
             }
             throw error
+        }
+    }
+
+    private func finishCalendarPrivacy(_ context: CalendarConsentContext) {
+        guard calendarPrivacyGeneration == context.generation else { return }
+        calendarPrivacyGeneration = nil
+        calendarPrivacyRemoving = false
+        let next = calendarPrivacyFollowup
+        calendarPrivacyFollowup = nil
+        guard offlineReplayReady, generation == context.generation, case .ready = status,
+            let next, next.generation == context.generation
+        else { return }
+        Task {
+            guard offlineReplayReady, generation == next.generation, status == .ready(context.member) else { return }
+            await refreshCalendarPrivacy(access: next.access)
         }
     }
 
@@ -91,6 +101,11 @@ extension SessionModel {
         guard case .ready = status else { return }
         do {
             let context = try await calendarConsentContext()
+            try requireCalendarContext(context)
+            if calendarPrivacyGeneration == context.generation {
+                calendarPrivacyFollowup = (context.generation, access)
+                return
+            }
             _ = try await revokeCalendarConsentAfterPermissionLoss(access: access, context: context)
         } catch {
             // The account-bound routine retains durable intent and exposes uncertainty.

@@ -67,6 +67,7 @@ final class SessionModel: ObservableObject {
     @Published var calendarPrivacyPending = false
     @Published var calendarPrivacyRemoving = false
     var calendarPrivacyGeneration: Int?
+    var calendarPrivacyFollowup: (generation: Int, access: CalendarAccess)?
     let auth: (any NestAuthentication)?
     let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -87,7 +88,9 @@ final class SessionModel: ObservableObject {
     let savedReader: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState?
     private let deactivateLease: @Sendable (ChoreOfflineStore, OfflineLease) async throws -> Void
     var lease: OfflineLease?
-    private var syncingGeneration: Int?
+    var syncingGeneration: Int?
+    var todayNeedsRefresh = false
+    var offlineReplayReady = false
     var grocerySyncingGeneration: Int?
     var groceryNeedsRefresh = false
     var groceryAddSavingGeneration: Int?
@@ -262,33 +265,6 @@ final class SessionModel: ObservableObject {
         }
     }
 
-    func refreshToday() async {
-        guard syncingGeneration != generation, let auth, let chores, let offline, let lease,
-            case .ready(let member) = status
-        else { return }
-        let attempt = generation
-        syncingGeneration = attempt
-        defer { if syncingGeneration == attempt { syncingGeneration = nil } }
-        let saved: ChoreOfflineState?
-        do {
-            saved = try await savedReader(offline, lease)
-        } catch {
-            guard generation == attempt, status == .ready(member) else { return }
-            today = .failed
-            todayNotice = "Could not read your saved chores."
-            return
-        }
-        guard generation == attempt, status == .ready(member) else { return }
-        today = saved.map(TodayStatus.loaded) ?? .loading
-        do {
-            try await syncToday(
-                auth: auth, chores: chores, offline: offline,
-                lease: lease, member: member, attempt: attempt)
-        } catch {
-            await handleTodayFailure(error, member: member, attempt: attempt)
-        }
-    }
-
     private func canShowCached(_ error: Error) -> Bool {
         (error as? NestAPIFailure) == .unavailable || error is URLError
     }
@@ -315,6 +291,7 @@ final class SessionModel: ObservableObject {
     func clearPresentation() async {
         calendarPrivacyPending = false
         calendarPrivacyRemoving = false
+        calendarPrivacyFollowup = nil
         let previous = lease
         lease = nil
         today = .idle
@@ -330,6 +307,7 @@ final class SessionModel: ObservableObject {
         groceryRemoveSaving = false
         clearMealPresentation()
         syncingGeneration = nil
+        todayNeedsRefresh = false
         grocerySyncingGeneration = nil
         groceryNeedsRefresh = false
         groceryAddSavingGeneration = nil
@@ -337,45 +315,6 @@ final class SessionModel: ObservableObject {
         groceryEditSavingGeneration = nil
         groceryRemoveSavingGeneration = nil
         if let previous, let offline { try? await deactivateLease(offline, previous) }
-    }
-
-    private func syncToday(
-        auth: any NestAuthentication, chores: ChoreAPI, offline: ChoreOfflineStore,
-        lease: OfflineLease, member: VerifiedMember, attempt: Int
-    ) async throws {
-        let session = try await auth.session()
-        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-        let (snapshot, conflicted) = try await ChoreSync(api: chores, store: offline)
-            .replayAndRead(token: session.accessToken, member: member, lease: lease)
-        guard generation == attempt, status == .ready(member) else { return }
-        try await offline.save(snapshot, lease: lease)
-        guard let saved = try await offline.read(lease),
-            generation == attempt, status == .ready(member)
-        else { return }
-        today = .loaded(saved)
-        todayNotice = conflicted ? "A saved change needs your review." : nil
-    }
-
-    private func handleTodayFailure(_ error: Error, member: VerifiedMember, attempt: Int) async {
-        guard generation == attempt, status == .ready(member) else { return }
-        let mapped = state(for: error)
-        if mapped == .signedOut || mapped == .notMember {
-            generation += 1
-            let clearAttempt = generation
-            await clearPresentation()
-            guard generation == clearAttempt else { return }
-            status = mapped
-            return
-        }
-        if case .loaded = today {
-            todayNotice =
-                (error as? NestAPIFailure) == .forbidden
-                ? "A saved change was refused. Your access may have changed; no change was discarded."
-                : "Showing saved chores. Changes will sync when online."
-        } else {
-            today = .failed
-            todayNotice = nil
-        }
     }
 
     private func verify(_ session: AuthenticatedSession, attempt: Int) async throws {
