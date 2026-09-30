@@ -51,13 +51,38 @@ struct CalendarSharingScreen: View {
                 calendars = []
             }
         }
-        .confirmationDialog("Share busy times with your household and AI?", isPresented: $confirmEnable) {
-            Button("Enable sharing") { Task { await changeConsent(true) } }
-        } message: {
-            Text(
-                "Only calendars you explicitly choose here will be included when you publish. Calendar details stay private."
-            )
+        .sheet(isPresented: $confirmEnable) { sharingConfirmation }
+    }
+
+    private var sharingConfirmation: some View {
+        NavigationStack {
+            List {
+                Section {
+                    Text("Share busy times with your partner and Nest’s meal planning.")
+                    Text("Event names, locations and calendar names stay on this iPhone.")
+                    Text(
+                        "After enabling, choose which calendars to share and publish their busy times. Enabling alone does not publish anything."
+                    )
+                }
+                Section {
+                    Button("Enable sharing") {
+                        confirmEnable = false
+                        Task { await changeConsent(true) }
+                    }
+                    Button("Cancel", role: .cancel) { confirmEnable = false }
+                }
+            }
+            .scrollContentBackground(.hidden)
+            .background(QuietPalette.background)
+            .navigationTitle("Share busy times")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("Cancel", role: .cancel) { confirmEnable = false }
+                }
+            }
         }
+        .presentationDetents([.large])
     }
 
     private var selection: some View {
