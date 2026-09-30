@@ -1,0 +1,21 @@
+{
+  "baseCommit": "66f6fafc",
+  "sourceSha256": {
+    "apps/ios/Nest/Money/ExpenseFormFields.swift": "f4316a7d7520ac6e24679cb8ec0bbeb9fe44a9aef1996f772c685c4f3ec29d2c",
+    "apps/ios/Nest/Money/ExpenseScreen.swift": "fb25194c62665238681e78e75e0c34c7e187375848f5dd605288a115ca060a21",
+    "apps/ios/Nest/Money/ExpenseReviewSection.swift": "4b106ec9c88ec554588d621c495420b92635eb36772aa559a35942bafa214079"
+  },
+  "verification": "native simulator and focused core; new-head CI pending",
+  "simulator": "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+  "device": "iPhone 17 Pro",
+  "os": "iOS 26.3",
+  "account": "isolated fictional Test Alex",
+  "financialEvents": 13,
+  "financialRowsSha256": "7c5dd62f66b723e089f44a9917b10e063790b5bd1482ac19d7c84514be9796a8",
+  "financialSavePressed": false,
+  "paletteInkSurfaceContrast": {
+    "light": 12.1,
+    "dark": 12.65
+  },
+  "testflightBuild10ContainsThisFollowup": false
+}

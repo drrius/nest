@@ -9,22 +9,30 @@ struct ExpenseReviewSection: View {
     var body: some View {
         Section("Review expense") {
             Text(expense.description).font(.headline)
-            LabeledContent("Shared amount", value: expense.amountCentimes.absoluteCHF)
-            if let total = expense.receiptTotalCentimes { LabeledContent("Receipt total", value: total.absoluteCHF) }
-            LabeledContent("Paid by", value: name(expense.payerId))
-            LabeledContent("Date", value: expense.date.value)
+            row("Shared amount", expense.amountCentimes.absoluteCHF)
+            if let total = expense.receiptTotalCentimes { row("Receipt total", total.absoluteCHF) }
+            row("Paid by", name(expense.payerId))
+            row("Date", expense.date.value)
             ForEach(expense.allocations, id: \.memberId) { share in
-                LabeledContent(
+                row(
                     share.memberId == member.userId ? "Your share" : "\(name(share.memberId))’s share",
-                    value: share.centimes.absoluteCHF)
+                    share.centimes.absoluteCHF)
             }
             if expense.categoryId != nil {
-                LabeledContent("Category", value: categoryName ?? "Previously selected category")
+                row("Category", categoryName ?? "Previously selected category")
             }
             if expense.receiptPath != nil { Label("Receipt attached", systemImage: "paperclip") }
             if let note = expense.note { Text(note) }
             Text("Saving records this expense in your shared financial history. It does not transfer money.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
+        }
+    }
+
+    private func row(_ title: String, _ value: String) -> some View {
+        LabeledContent {
+            Text(value).foregroundStyle(QuietPalette.ink)
+        } label: {
+            Text(title).foregroundStyle(QuietPalette.ink)
         }
     }
 

@@ -15,6 +15,7 @@ struct ExpenseScreen: View {
     @State private var loaded = false
     @State private var confirmCancel = false
     @State private var receiptReady = false
+    @FocusState private var focusedField: ExpenseFormFields.Field?
 
     init(session: SessionModel, member: VerifiedMember) {
         self.session = session
@@ -24,7 +25,7 @@ struct ExpenseScreen: View {
 
     var body: some View {
         Form {
-            if let notice { Section { Text(notice) } }
+            if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
                 ExpenseReviewSection(expense: saved.command.expense, member: member, members: members)
                 recovery(saved)
@@ -35,7 +36,7 @@ struct ExpenseScreen: View {
                     Button("Edit") { self.reviewed = nil }
                 }
             } else if loaded {
-                ExpenseFormFields(draft: $draft, date: $date, members: members)
+                ExpenseFormFields(draft: $draft, date: $date, members: members, focus: $focusedField)
                 Section {
                     NavigationLink(categoryName ?? "Choose category (optional)") {
                         ExpenseCategoryPicker(
@@ -46,7 +47,10 @@ struct ExpenseScreen: View {
                     ExpenseReceiptSection(
                         session: session, context: context, path: $draft.receiptPath, ready: $receiptReady)
                 }
-                Section { Button("Review expense") { review() }.disabled(!receiptReady) }
+                Section {
+                    if let notice { Text(notice).font(.subheadline).foregroundStyle(QuietPalette.ink) }
+                    Button("Review expense") { review() }.disabled(!receiptReady)
+                }
             } else {
                 Section { Button("Load expense form") { Task { await load() } } }
             }
@@ -63,6 +67,8 @@ struct ExpenseScreen: View {
                 "Nest checks with the server. If the expense was already recorded, it stays in your financial history.")
         }
     }
+
+    private var editingDraft: Bool { loaded && saved == nil && reviewed == nil }
 
     private func recovery(_ saved: SavedExpense) -> some View {
         Section("Save status") {
@@ -104,6 +110,7 @@ struct ExpenseScreen: View {
     }
 
     private func review() {
+        focusedField = nil
         do {
             let formatter = DateFormatter()
             formatter.calendar = Calendar(identifier: .gregorian)
