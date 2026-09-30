@@ -50,5 +50,10 @@
       "status": "completed",
       "conclusion": "success"
     }
+  },
+  "strongerMaskingAssertionCi": {
+    "sourceCommit": "2080ab66cb72bb5ecddeccef2aa81160edddc04c",
+    "run": 36670223656,
+    "conclusion": "success"
   }
 }

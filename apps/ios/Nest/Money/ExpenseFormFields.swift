@@ -51,6 +51,7 @@ struct ExpenseFormFields: View {
     {
         VStack(alignment: .leading, spacing: 6) {
             Text(label).font(.caption).foregroundStyle(QuietPalette.muted)
+                .lineLimit(nil).fixedSize(horizontal: false, vertical: true)
             TextField(label, text: text, axis: .vertical)
                 .keyboardType(keyboard)
                 .focused(focus, equals: field)
