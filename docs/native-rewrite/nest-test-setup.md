@@ -4,6 +4,24 @@ Created 26 September 2026 with owner authorization in `drrius's Org` on the Free
 
 Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This project contains fictional data only.
 
+## Current APNs test installation — 30 September 2026
+
+After the complete 54-legacy/244-native fixture rehearsal and passing source/deep CI, the following unchanged, hash-checked sources were applied only to nest-test:
+
+| Source migration                                          | Hosted version   |
+| --------------------------------------------------------- | ---------------- |
+| `20260929220335_native_apns_registration.sql`             | `20260930014440` |
+| `20260929221917_native_apns_delivery_outcomes.sql`        | `20260930014449` |
+| `20260930012204_native_recent_journal_write_barriers.sql` | `20260930014455` |
+
+Full financial-row and original device-operation projections had identical before/after hashes, preserving 13 events and two operations. No write freeze, worker or schedule was activated. The hosted barrier assertion passes; all three newly guarded private journals have RLS and ALWAYS statement triggers. Current advisors report 61 policy-absence INFO, 81 callable-definer WARN and one leaked-password-protection WARN. These remain separate from the clean local fixture advisor report.
+
+The API at `https://nest-test-api-drrius-projects.vercel.app` now aliases verified preview deployment `dpl_AXFV8bWxhygAfd7D3QQyi65hXtrZ` (`https://nest-test-85rurh9o7-drrius-projects.vercel.app`), built from server source `8fbe67d8`. This project configures its isolated backend in Preview only. Deploy from the repository root using the exact test project ID, without `--prod`; verify the immutable deployment before assigning the stable alias. `.vercelignore` excludes local credentials, workspace metadata and non-runtime artifacts. A failed production-target test deployment had no backend configuration; its stable alias was restored before retrying in Preview. No environment values were copied or altered.
+
+The real Swift registration test passes (one case, no failures/skips, 14.157 seconds): outsider denial, register/exact replay/read/recovery, stale-revision refusal, cancellation enforcement, exact disable/replay and retained historical registration receipt. It uses random synthetic sandbox token bytes, not an Apple token. Final catalog: one inactive APNs fixture device, zero retained token/hash, four total device operations (two preexisting plus registration/disable), zero APNs attempts, zero cron jobs and 13 financial events. The full event/allocation/ledger fingerprint still equals the pre-migration baseline `7c5dd62f66b723e089f44a9917b10e063790b5bd1482ac19d7c84514be9796a8`. Cancellation is retained in its separate journal. No Apple send occurred. This is hosted contract/authorization evidence, not native permission, hardware enrollment or delivery acceptance.
+
+Earlier dated entries below retain their historical counts and verification boundaries; they do not describe the current deployment.
+
 ## Installed schema
 
 The initial 55 legacy and 204 native source migrations were installed in batches. Thirty-three subsequent conflict-handling and Storage-privacy migrations are installed, individually recorded in the manifest (292 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
