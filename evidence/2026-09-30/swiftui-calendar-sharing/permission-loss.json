@@ -1,0 +1,30 @@
+{
+  "before": {
+    "version": 1,
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "snapshots": [
+      {
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "schemaVersion": 1,
+        "consent": "7",
+        "generation": "13",
+        "capturedAt": "2026-09-30T09:03:31.599903+00:00",
+        "expiresAt": "2026-09-30T09:18:31.599903+00:00",
+        "covered": { "start": 1790719200000, "end": 1793142000000 },
+        "intervals": [{ "start": 1790719200000, "end": 1790805600000 }]
+      }
+    ]
+  },
+  "consent": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "consent": {
+      "incarnation": "ab835c2c-84f5-40d1-80f8-07355766fabf",
+      "version": "8",
+      "enabled": false
+    }
+  },
+  "removedAt": "2026-09-30T09:07:36.685171+00:00",
+  "removedBeforeExpiry": true
+}

@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-30",
+  "simulator": "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
+  "hostedServerSource": "8fbe67d8",
+  "fileHashesMatchMac": {
+    "apps/ios/Nest/Core/CalendarBusyTime.swift": "550e767e2ecc4e08ceda61e1b201b340fcccc66728d91735e3c317c992b0ffa5",
+    "apps/ios/Nest/Calendar/EventKitBusyMapping.swift": "cf6308a6195b757d95809b4b76957b395f3677a0d2af1ea43c964f46f8760fed",
+    "apps/ios/Tests/Core/CalendarBusyTimeTests.swift": "139fd78c114ce8b59b8d5caf1a3e1080283606c702885cbc208d9189d54fda54",
+    "apps/ios/AppTests/LocalCalendarFixtureTests.swift": "c3c51de623e8022b286478899ee063c06716e861f0f802fa5b214471a1459faa",
+    "apps/ios/AppTests/FictionalAccountSessionFixtureTests.swift": "32589da788d468a8bc26d0f313339389c714f8a575d096f103f7cdeef3810586",
+    "apps/ios/Nest.xcodeproj/xcshareddata/xcschemes/Nest.xcscheme": "f98c7c1e7ebf843fdbb62b06987510e0ec35964da34488e098034f07305dada4"
+  },
+  "coreRegression": {
+    "tests": 10,
+    "failures": 0,
+    "skips": 0
+  },
+  "nativeMappingRegression": {
+    "tests": 2,
+    "failures": 0,
+    "skips": 0
+  },
+  "realSDKOneDayBoundsAnd28DayProjection": true,
+  "bothFictionalMemberReadbacksEqual": true,
+  "outsiderStatus": 403,
+  "normalPartnerTimeOnlyUI": true,
+  "permissionLossOnlineSharingScreenCleanup": true,
+  "permissionLossOutsideSharingScreen": false,
+  "offlinePermissionLossVerified": false,
+  "calendarPermissionRestored": "fullAccess",
+  "originalFictionalActorRestored": true,
+  "ownedCalendarAndMarkerRemoved": true,
+  "displayAndSharingSelectionsEmpty": true,
+  "sharingConsentEnabled": false,
+  "financialAPIProjection": {
+    "historySummaries": 13,
+    "unchanged": true,
+    "sha256": "647a6641be579ffe113e28d406bb8bdc55288e8233fbfa14506a3afd921fc987",
+    "rawLedgerAudit": false
+  },
+  "phoneVerified": false,
+  "appleSignInVerified": false,
+  "productionTouched": false,
+  "newBetaSubmitted": false,
+  "ci": "pending exact source push"
+}

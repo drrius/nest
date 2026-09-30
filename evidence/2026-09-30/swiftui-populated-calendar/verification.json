@@ -59,12 +59,13 @@
     },
     "swiftui": {
       "run": 36685659213,
-      "status": "in_progress"
+      "conclusion": "success"
     }
   },
   "actualPermissionDenialUiVerified": true,
   "deniedDatePickerEnabled": true,
   "actualPromptPermissionRecoveryVerified": true,
   "sharingEnabledRevocationCleanupVerified": false,
-  "sourceCommit": "71b775911831920db9c057a1254388db3a611ea2"
+  "sourceCommit": "71b775911831920db9c057a1254388db3a611ea2",
+  "laterFixtureCorrection": "Original seed was two days; one-day clipping masked it. See ../swiftui-calendar-sharing/README.md for corrected raw bounds/full-horizon capture."
 }
