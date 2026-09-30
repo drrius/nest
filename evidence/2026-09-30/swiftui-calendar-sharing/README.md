@@ -22,7 +22,7 @@ Full Access was restored through the actual OS prompt under existing explicit ow
 
 ## Source and limits
 
-Linux/Mac hashes match for all five changed Swift files and the unchanged scheme. Strict recursive Swift formatting, source limits, diff checks and actual signed simulator push-disabled configuration pass. Backend/schema remain `8fbe67d8`; no deployment or migration occurred. Source `95cd04a1` is pushed on `codex/swiftui-calendar-sharing-qa`. Nest CI 36696981769 passed; SwiftUI CI 36696981856 is still executing native account tests. Prior `71b77591` passed both workflows (36685659228 / 36685659213). Current fix is absent from the internally available TestFlight build10. No new build, merge, purchase, AI/provider request, production write or automation occurred.
+Linux/Mac hashes match for all five changed Swift files and the unchanged scheme. Strict recursive Swift formatting, source limits, diff checks and actual signed simulator push-disabled configuration pass. Backend/schema remain `8fbe67d8`; no deployment or migration occurred. Source `95cd04a1` is pushed on `codex/swiftui-calendar-sharing-qa`. Nest CI 36696981769 passed; SwiftUI CI 36696981856 also passed. Prior `71b77591` passed both workflows (36685659228 / 36685659213). Current fix is absent from the internally available TestFlight build10. No new build, merge, purchase, AI/provider request, production write or automation occurred.
 
 - [Only the owned calendar selected](synthetic-selection.png)
 - [Normal publish receipt](publish-receipt.png)
@@ -32,3 +32,5 @@ Linux/Mac hashes match for all five changed Swift files and the unchanged scheme
 Mac logs are `/private/tmp/nest-calendar-busy-focused-final-20260930.log`, `/private/tmp/nest-calendar-eventkit-regression-20260930.log`, `/private/tmp/nest-calendar-all-day-{0-cleanup,1-seed}-20260930.log`, `/private/tmp/nest-calendar-{partner-session,member-restored,sharing-final-cleanup}-20260930.log`. The final real cleanup xcresult is `Test-Nest-2026.09.30_11-13-56-+0200.xcresult` under `/private/tmp/nest-swiftui-planned-qa/Logs/Test/`.
 
 M6 remains incomplete: global/offline permission-loss recovery, pending races, populated account-specific recurring/free/declined/cancelled calendars, household layers, VoiceOver and both phones need verification or implementation. No milestone is marked complete.
+
+Follow-up: [app-wide foreground permission recovery](../swiftui-calendar-privacy-recovery/README.md) now has actual normal Today cleanup before expiry and durable controlled-offline/race evidence. Hardware/background/accessibility gates remain incomplete.

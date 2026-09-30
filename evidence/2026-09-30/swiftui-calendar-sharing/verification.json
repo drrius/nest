@@ -49,7 +49,7 @@
     },
     "swiftui": {
       "run": 36696981856,
-      "status": "in_progress"
+      "conclusion": "success"
     }
   },
   "sourceCommit": "95cd04a1093198c624cf2d69a43cf0e4a7d897f6"
