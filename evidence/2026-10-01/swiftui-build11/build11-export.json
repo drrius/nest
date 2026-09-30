@@ -27,6 +27,17 @@
       "nativeCasesExecuted": 211,
       "nativeCasesSkipped": 4,
       "nativeFailures": 0
+    },
+    "deep": {
+      "run": 36787052571,
+      "status": "success",
+      "head": "2fa0f5f4a1d34892bbd9fda76fe43487388e390d",
+      "nativeSourceUnchangedFromArtifact": true,
+      "coreCases": 11,
+      "terminalConflictCases": 50,
+      "databaseRlsCases": 1223,
+      "failures": 0,
+      "skips": 0
     }
   },
   "physicalPhoneAcceptance": "unverified",

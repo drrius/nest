@@ -19,3 +19,5 @@ Paths on the Mac: `/private/tmp/nest-swiftui-build11-20261001.xcarchive` and `/p
 ## Private submission
 
 Existing Nest App Store Connect credentials scheduled [submission bffc8f0e-93f7-4e1e-a663-6d3a2ff08318](https://expo.dev/accounts/drrius-dev/projects/nest/submissions/bffc8f0e-93f7-4e1e-a663-6d3a2ff08318). This is one identified locally exported IPA, not a cloud build or public release. Apple processing, internal availability and partner tester access are pending.
+
+The separately dispatched [deep36787052571](https://github.com/drrius/nest/actions/runs/36787052571) also passes at evidence head `2fa0f5f4`, whose native source matches the artifact: 11 core HTTP/PostgREST, 50 terminal conflict/approval recovery and 1,223 isolated PostgreSQL/RLS cases, zero failures/skips. These are isolated fixture checks; they do not reconcile hosted production data or substitute for the two phones.

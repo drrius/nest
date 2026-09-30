@@ -1,6 +1,6 @@
 # Recurring scheduler operations
 
-Status: implemented local server and default-disabled hosted adapter, not deployed or activated. Source merges do not register a timer or execute production migrations. Production scheduling needs separate owner approval.
+Status: implemented local server and default-disabled hosted adapter; disabled test Preview deployed and verified. Active hosted execution and timer registration remain outstanding. Source merges do not register a timer or execute production migrations. Production scheduling needs separate owner approval.
 
 ## Server entry point
 
