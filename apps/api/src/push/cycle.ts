@@ -8,7 +8,7 @@ import { runCheckpointedPushPage } from "./checkpoint-runner.ts";
 import { summaryPushRpc } from "./summary-rpc.ts";
 import { runPushReceipts } from "./receipt-sweep.ts";
 import type { pushWorkerRpc } from "./worker-rpc.ts";
-import type { pushDeliveryWorker } from "./delivery-worker.ts";
+import type { PushReceiptReader, PushSender } from "./delivery-contract.ts";
 const count = (maximum: number) => Schema.Int.check(Schema.isBetween({ minimum: 0, maximum }));
 const Materialized = Schema.Struct({
   scanned: count(250),
@@ -41,8 +41,7 @@ function outcome<A, E>(effect: Effect.Effect<A, E>) {
 /** A bounded invocation; hosting must schedule later invocations explicitly. */
 export function runPushCycle(
   rpc: ReturnType<typeof pushWorkerRpc>,
-  worker: Pick<ReturnType<typeof pushDeliveryWorker>, "send"> &
-    Partial<Pick<ReturnType<typeof pushDeliveryWorker>, "receipt">>,
+  worker: PushSender & Partial<PushReceiptReader>,
 ) {
   return Effect.gen(function* () {
     const maintenance = yield* outcome(

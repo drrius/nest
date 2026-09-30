@@ -3,7 +3,7 @@ import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { ApiFailure } from "../errors.ts";
 import type { pushWorkerRpc } from "./worker-rpc.ts";
-import type { pushDeliveryWorker } from "./delivery-worker.ts";
+import type { PushSender } from "./delivery-contract.ts";
 const Uuid = Schema.String.check(Schema.isUUID());
 const Count = Schema.Number.check(Schema.isInt(), Schema.isBetween({ minimum: 0, maximum: 100 }));
 const Page = Schema.Struct({
@@ -15,7 +15,7 @@ const Page = Schema.Struct({
 });
 export { PushScanCursorSchema } from "./scan-cursor.ts";
 export type { PushScanCursor } from "./scan-cursor.ts";
-type Worker = Pick<ReturnType<typeof pushDeliveryWorker>, "send">;
+type Worker = PushSender;
 type Rpc = ReturnType<typeof pushWorkerRpc>;
 function validatePage(page: typeof Page.Type) {
   const consistent =

@@ -6,8 +6,8 @@ import { pushWorkerFixture } from "./push-worker-fixture.mjs";
 import { pushWorkerRpc } from "../../apps/api/src/push/worker-rpc.ts";
 import { runPushReceipts } from "../../apps/api/src/push/receipt-sweep.ts";
 import { runCheckpointedPushPage } from "../../apps/api/src/push/checkpoint-runner.ts";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 
 test("server worker traverses HTTP/PostgREST, records tickets and receipts, and denies caller credentials", async (t) => {
   const f = await pushWorkerFixture(t);

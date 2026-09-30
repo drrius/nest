@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import * as Effect from "../../apps/api/node_modules/effect/dist/Effect.js";
 import * as Redacted from "../../apps/api/node_modules/effect/dist/Redacted.js";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 const delivery = {
   token: "ExponentPushToken[fixture]",
   householdId: "00000000-0000-4000-8000-000000000001",

@@ -43,5 +43,15 @@
   "physicalPhoneVerified": false,
   "voiceOverVerified": false,
   "newTestFlightSubmission": false,
-  "ci": "pending for this source"
+  "ci": {
+    "commit": "80474da1b9eafd74019e9fb17b80a899f0036211",
+    "nestChecks": {
+      "run": 36677196029,
+      "conclusion": "success"
+    },
+    "swiftUIChecks": {
+      "run": 36677195982,
+      "conclusion": "success"
+    }
+  }
 }

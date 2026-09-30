@@ -5,9 +5,9 @@ import { ApiFailure } from "../../apps/api/src/errors.ts";
 import { fixture as recurringFixture } from "../database/recurring-push-fixture.mjs";
 import { recurringPushRpc } from "../../apps/api/src/push/recurring-rpc.ts";
 import { summaryWorkerFixture } from "./summary-worker-fixture.mjs";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
 import { runCheckpointedPushPage } from "../../apps/api/src/push/checkpoint-runner.ts";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 import { id } from "../database/push-delivery-fixture.mjs";
 
 test("lost committed recurring checkpoint resumes the next page after restart and never resends", async (t) => {

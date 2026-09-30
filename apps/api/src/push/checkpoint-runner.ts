@@ -4,7 +4,7 @@ import * as Schema from "effect/Schema";
 import { ApiFailure } from "../errors.ts";
 import { PushScanCursorSchema, runPushPage } from "./sweep.ts";
 import type { pushWorkerRpc } from "./worker-rpc.ts";
-import type { pushDeliveryWorker } from "./delivery-worker.ts";
+import type { PushSender } from "./delivery-contract.ts";
 const Checkpoint = Schema.Struct({
   version: Schema.Literal(1),
   revision: Schema.String.check(Schema.isUUID()),
@@ -15,10 +15,7 @@ function sameCursor(left: PushScanCursor | null, right: PushScanCursor | null) {
   return !cursorAdvances(left, right) && !cursorAdvances(right, left);
 }
 /** Save progress only after all page attempts settle. Lost saves recover by rereading. */
-export function runCheckpointedPushPage(
-  rpc: ReturnType<typeof pushWorkerRpc>,
-  worker: Pick<ReturnType<typeof pushDeliveryWorker>, "send">,
-) {
+export function runCheckpointedPushPage(rpc: ReturnType<typeof pushWorkerRpc>, worker: PushSender) {
   return Effect.gen(function* () {
     const start = yield* Schema.decodeUnknownEffect(Checkpoint)(yield* rpc("readCheckpoint", {}));
     const report = yield* runPushPage(rpc, worker, start.after);

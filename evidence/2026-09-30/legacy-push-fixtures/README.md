@@ -1,0 +1,11 @@
+# Historical push transport isolation — 30 September 2026
+
+The former Expo HTTP provider, response decoder and legacy worker are moved out of server source into the unexported protocol fixture package. Generic sweep/checkpoint/cycle code now consumes small Effect delivery ports instead of types derived from that provider. Direct APNs remains the runtime transport. The exact historical receipt-claim schema stays in server source so existing ticket identities and recovery behavior are preserved; existing registration/recovery APIs, SQL migrations and data are unchanged.
+
+All four original paths/hashes and their new fixture hashes are recorded in [metadata](verification.json). Their existing tests now import the fixture paths. Transport behavior is not replaced with placeholder assertions: controlled request, uncertainty, no-resend, receipt, immutable acknowledgment, checkpoint and six-source cycle cases remain. Fixtures are excluded from backend uploads and have no package exports or production consumers.
+
+Local checks pass with no skips: 53 affected API/provider/sweep/scheduler/contract cases (1.129 seconds), 28 PostgreSQL/PostgREST/local HTTP cases (18.419 seconds), API/fixture typechecks, full lint and Swift source limits. The database/HTTP batch covers APNs six-source dispatch, replay/environment refusal, original historical-ticket flows, lost-response/checkpoint restart and independent maintenance failures. Providers/Auth are controlled fixtures; no Apple/Expo notification was sent.
+
+The actual API builds successfully. A new small tooling check builds its real entry point in memory and inspects the import graph/output, rejecting protocol/client fixtures or the former provider endpoint. All three tooling files pass (3.688 seconds total); the additional bundle guard takes 0.111 seconds locally. It protects the shipping boundary without a large E2E suite. New-source CI is pending.
+
+No hosted deployment, migration, schedule, financial write, signing change or beta submission occurred. Build10 remains the already available SwiftUI artifact with push disabled. Real provider credentials, hardware enrollment, delivery and both-phone acceptance remain separate incomplete gates. Historical compatibility is retained for safe drainage; this is not retirement of the existing app or production cutover.

@@ -1,8 +1,10 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
-import { PushToken } from "../../../../packages/contracts/src/push-registration.ts";
-import { ApiFailure } from "../errors.ts";
+import { PushToken } from "../../../contracts/src/push-registration.ts";
+import { ApiFailure } from "../../../../apps/api/src/errors.ts";
 import type { expoPushTransport } from "./expo-transport.ts";
+import { ReceiptClaim } from "../../../../apps/api/src/push/legacy-receipt-claim.ts";
+export { ReceiptClaim };
 const Uuid = Schema.String.check(Schema.isUUID());
 const attemptFields = {
   version: Schema.Literal(1),
@@ -31,13 +33,6 @@ export type PushWorkerRpc = (
   method: "begin" | "finishSend" | "finishReceipt",
   input: Record<string, unknown>,
 ) => Effect.Effect<unknown, ApiFailure>;
-const TicketId = Schema.String.check(Schema.isPattern(/^[A-Za-z0-9_-]{1,200}$(?![\s\S])/));
-export const ReceiptClaim = Schema.Struct({
-  version: Schema.Literal(1),
-  deliveryId: Uuid,
-  attemptId: Uuid,
-  ticketId: TicketId,
-});
 function canonical(value: unknown): string | undefined {
   return JSON.stringify(value, (_key, item: unknown) => {
     if (item === null || typeof item !== "object" || Array.isArray(item)) return item;

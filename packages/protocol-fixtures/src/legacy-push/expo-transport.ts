@@ -6,11 +6,11 @@ import type {
   GroceryNotification,
   RecurringNotification,
   DailySummaryNotification,
-} from "../../../../packages/contracts/src/push-notification.ts";
+} from "../../../contracts/src/push-notification.ts";
 import * as Effect from "effect/Effect";
 import * as Redacted from "effect/Redacted";
 import * as Schema from "effect/Schema";
-import { PushToken } from "../../../../packages/contracts/src/push-registration.ts";
+import { PushToken } from "../../../contracts/src/push-registration.ts";
 import { expoReceiptResult, expoTicketResult } from "./provider-results.ts";
 
 const Delivery = Schema.Struct({
@@ -45,7 +45,7 @@ const SummaryDelivery = Schema.Struct({
   summaryId: Schema.String.check(Schema.isUUID()),
 });
 const TicketId = Schema.String.check(Schema.isPattern(/^[A-Za-z0-9_-]{1,200}$(?![\s\S])/));
-/** Server-only adapter. Call send only after the one-use database authorization. */
+/** Historical fixture adapter; never imported by the shipping API. */
 export function expoPushTransport(
   accessToken?: Redacted.Redacted<string>,
   fetcher: typeof fetch = globalThis.fetch,

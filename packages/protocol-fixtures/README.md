@@ -7,3 +7,5 @@ These checks exercise authorized HTTP/Effect contracts, integer financial alloca
 `ProtocolChat` supplies in-memory state to the pinned AI SDK's `AbstractChat`. Streaming, transport and cancellation use the real SDK without React subscriptions; model responses in local HTTP tests are controlled fixtures. Live provider results are recorded separately.
 
 Root `test:*` scripts select each of the 202 root unit files exactly once; the tooling guard checks both duplicates and omissions. `tests/integration` imports these adapters for real PostgreSQL/PostgREST and HTTP journeys. This package has no exports or production consumers, and its source/tests are excluded from Vercel uploads. It has no React, React Native or Expo dependency.
+
+`src/legacy-push` retains the old HTTP provider/worker solely for historical ticket, checkpoint and migration tests. Tests supply controlled transports. The server consumes provider-independent delivery ports and direct APNs; its retained historical receipt identity schema has no provider transport. A tooling check bundles the actual API and rejects fixture/client modules or the former provider endpoint.

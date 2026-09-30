@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import * as Effect from "../../apps/api/node_modules/effect/dist/Effect.js";
 import { summaryWorkerFixture } from "./summary-worker-fixture.mjs";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 import { runPushCycle } from "../../apps/api/src/push/cycle.ts";
 import { ApiFailure } from "../../apps/api/src/errors.ts";
 test("bounded cycle materializes real reminders, sends once and settles a later receipt", async (t) => {

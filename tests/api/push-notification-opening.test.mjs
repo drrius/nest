@@ -62,7 +62,8 @@ test("a later explicit tap replaces a queued one and opening fetches only its id
 });
 
 test("the actual server transport payload opens only the matching household route", async () => {
-  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const { expoPushTransport } =
+    await import("../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts");
   const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
   const f = fixture();
   f.controller.update(ready);
@@ -103,7 +104,8 @@ test("daily-summary taps wait for identity and reject another member in the same
 });
 
 test("summary transport sends only routing IDs and its payload opens the recipient's screen", async () => {
-  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const { expoPushTransport } =
+    await import("../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts");
   const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
   const f = fixture();
   f.controller.update(ready);
@@ -142,7 +144,8 @@ test("summary transport sends only routing IDs and its payload opens the recipie
 });
 
 test("actual chore payload waits for authenticated foreground navigation and rejects foreign or injected destinations", async () => {
-  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const { expoPushTransport } =
+    await import("../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts");
   const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
   let delivered;
   const provider = expoPushTransport(undefined, async (_url, input) => {
@@ -170,7 +173,8 @@ test("actual chore payload waits for authenticated foreground navigation and rej
 });
 
 test("actual meal payload waits for authenticated foreground navigation and rejects foreign or injected destinations", async () => {
-  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const { expoPushTransport } =
+    await import("../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts");
   const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
   let delivered;
   const provider = expoPushTransport(undefined, async (_url, input) => {
@@ -198,7 +202,8 @@ test("actual meal payload waits for authenticated foreground navigation and reje
 });
 
 test("actual grocery payload waits for authenticated foreground navigation and rejects foreign or injected destinations", async () => {
-  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const { expoPushTransport } =
+    await import("../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts");
   const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
   let delivered;
   const provider = expoPushTransport(undefined, async (_url, input) => {
@@ -226,7 +231,8 @@ test("actual grocery payload waits for authenticated foreground navigation and r
 });
 
 test("actual recurring payload waits for authenticated foreground navigation and rejects foreign or injected destinations", async () => {
-  const { expoPushTransport } = await import("../../apps/api/src/push/expo-transport.ts");
+  const { expoPushTransport } =
+    await import("../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts");
   const Effect = await import("../../apps/api/node_modules/effect/dist/Effect.js");
   let delivered;
   const provider = expoPushTransport(undefined, async (_url, input) => {

@@ -5,8 +5,8 @@ import * as Redacted from "../../apps/api/node_modules/effect/dist/Redacted.js";
 import { fixture, id } from "../database/meal-push-fixture.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { pushWorkerRpc } from "../../apps/api/src/push/worker-rpc.ts";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 import { runPushReceipts } from "../../apps/api/src/push/receipt-sweep.ts";
 test("meal uses the actual server RPC worker, shared receipt polling and privacy-safe provider payload", async (t) => {
   const f = fixture(t);

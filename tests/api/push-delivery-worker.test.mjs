@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import * as Effect from "../../apps/api/node_modules/effect/dist/Effect.js";
 import { ApiFailure } from "../../apps/api/src/errors.ts";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
 const id = "00000000-0000-4000-8000-000000000001";
 const attempt = {
   version: 1,
