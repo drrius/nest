@@ -3,6 +3,7 @@ import SwiftUI
 struct RecurringEditorFields: View {
     @Binding var draft: RecurringDraft
     let members: [MoneyBalance.Member]
+    let focus: FocusState<String?>.Binding
 
     var body: some View {
         Section("Rule") {
@@ -27,14 +28,14 @@ struct RecurringEditorFields: View {
         }
         if draft.mode == .fixed {
             Section("Automatic amount and split") {
-                field("Amount (CHF)", text: $draft.amount).keyboardType(.decimalPad)
+                field("Amount (CHF)", text: $draft.amount, keyboard: .decimalPad)
                 ForEach(members) { person in
                     field(
                         "\(person.displayName) share (CHF)",
                         text: Binding(
-                            get: { draft.shares[person.id] ?? "" }, set: { draft.shares[person.id] = $0 })
+                            get: { draft.shares[person.id] ?? "" }, set: { draft.shares[person.id] = $0 }),
+                        keyboard: .decimalPad
                     )
-                    .keyboardType(.decimalPad)
                 }
                 Text("This amount will be recorded automatically each cycle. Nest does not make payments.").font(
                     .footnote)
@@ -43,10 +44,7 @@ struct RecurringEditorFields: View {
         Section { field("Note (optional)", text: $draft.note) }
     }
     private var weekdays: [String] { ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
-    private func field(_ label: String, text: Binding<String>) -> some View {
-        VStack(alignment: .leading) {
-            Text(label).font(.caption)
-            TextField(label, text: text)
-        }
+    private func field(_ label: String, text: Binding<String>, keyboard: UIKeyboardType = .default) -> some View {
+        MoneyDraftField(label: label, text: text, focus: focus, keyboard: keyboard)
     }
 }

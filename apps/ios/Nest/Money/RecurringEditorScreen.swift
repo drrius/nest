@@ -14,10 +14,11 @@ struct RecurringEditorScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var confirmCancel = false
+    @FocusState private var focusedField: String?
 
     var body: some View {
         Form {
-            if let notice { Section { Text(notice) } }
+            if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
                 summary(saved.command.rule)
                 recovery(saved)
@@ -31,7 +32,8 @@ struct RecurringEditorScreen: View {
                 }
             } else if let draft {
                 RecurringEditorFields(
-                    draft: Binding(get: { self.draft ?? draft }, set: { self.draft = $0 }), members: members)
+                    draft: Binding(get: { self.draft ?? draft }, set: { self.draft = $0 }), members: members,
+                    focus: $focusedField)
                 Section {
                     NavigationLink(
                         categoryName ?? (draft.categoryId == nil ? "Choose category (optional)" : "Change category")
@@ -42,7 +44,10 @@ struct RecurringEditorScreen: View {
                             selectedName: $categoryName)
                     }
                 }
-                Section { Button("Review rule") { review() } }
+                Section {
+                    if let notice { Text(notice).font(.subheadline).foregroundStyle(QuietPalette.ink) }
+                    Button("Review rule") { review() }
+                }
             } else {
                 Button("Load rule details") { Task { await load() } }
             }
@@ -50,6 +55,7 @@ struct RecurringEditorScreen: View {
         }
         .disabled(working)
         .navigationTitle(ruleId == nil ? "New recurring expense" : "Edit recurring expense")
+        .modifier(MoneyDraftKeyboard(focus: $focusedField))
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .task { await load() }
         .confirmationDialog("Cancel the pending save?", isPresented: $confirmCancel) {
@@ -58,6 +64,7 @@ struct RecurringEditorScreen: View {
             Text("If already saved, the recorded result is recovered.")
         }
     }
+    private var editingDraft: Bool { draft != nil && saved == nil && reviewed == nil }
     private func summary(_ input: RecurringInput) -> some View {
         Section("Review rule") {
             Text(input.configuration.description).font(.headline)
@@ -133,6 +140,7 @@ struct RecurringEditorScreen: View {
         draft = RecurringDraft(member: member, today: date, existing: existing)
     }
     private func review() {
+        focusedField = nil
         do {
             guard let draft, let today else { throw NestAPIFailure.invalid }
             reviewed = try draft.reviewed(member: member, members: members.map(\.id), today: today)

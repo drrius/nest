@@ -12,6 +12,7 @@ struct SettlementScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var confirmCancel = false
+    @FocusState private var focusedField: String?
 
     var body: some View {
         Form {
@@ -19,7 +20,7 @@ struct SettlementScreen: View {
                 Text("Record a payment you’ve already made outside Nest. Nest does not transfer money.")
                     .foregroundStyle(QuietPalette.muted)
             }
-            if let notice { Section { Text(notice) } }
+            if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
                 summary(saved.command.settlement)
                 recovery(saved)
@@ -39,6 +40,7 @@ struct SettlementScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Record payment")
+        .modifier(MoneyDraftKeyboard(focus: $focusedField))
         .task { await load() }
         .confirmationDialog("Cancel this pending record?", isPresented: $confirmCancel) {
             Button("Cancel pending record", role: .destructive) { Task { await resolve(cancel: true) } }
@@ -46,6 +48,8 @@ struct SettlementScreen: View {
             Text("If the payment was already recorded, it stays in your financial history.")
         }
     }
+
+    private var editingDraft: Bool { balance != nil && saved == nil && reviewed == nil }
 
     @ViewBuilder private func fields(_ balance: MoneyBalance) -> some View {
         if let recipient = balance.members.first(where: { $0.centimes.value > 0 }),
@@ -62,13 +66,12 @@ struct SettlementScreen: View {
                     Text("Partial amount").tag(SettlementInput.Mode.partial)
                 }
                 if draft.mode == .partial {
-                    VStack(alignment: .leading) {
-                        Text("Amount (CHF)").font(.caption).foregroundStyle(QuietPalette.muted)
-                        TextField("0.00", text: $draft.amount).keyboardType(.decimalPad)
-                    }
+                    MoneyDraftField(
+                        label: "Amount (CHF)", text: $draft.amount, focus: $focusedField, keyboard: .decimalPad)
                 }
                 DatePicker("Payment date", selection: $date, displayedComponents: .date)
-                TextField("Note (optional)", text: $draft.note, axis: .vertical).lineLimit(2...5)
+                MoneyDraftField(label: "Note (optional)", text: $draft.note, focus: $focusedField)
+                if let notice { Text(notice).font(.subheadline).foregroundStyle(QuietPalette.ink) }
                 Button("Review payment") { review() }
             }
         } else {
@@ -128,6 +131,7 @@ struct SettlementScreen: View {
     }
 
     private func review() {
+        focusedField = nil
         guard let balance else { return }
         do {
             let formatter = DateFormatter()
