@@ -38,3 +38,5 @@ Source is on `codex/swiftui-calendar-permission-recovery`; source/test head `cbe
 
 - [Today after actual global cleanup](today-after-denial.png)
 - [Restored permission and empty picker](restored-picker.png)
+
+Exact code/evidence head `cbec030265fb5cbfc9a7e3bed9c09288c0cb1b5a` passed Nest36705697468 and SwiftUI36705697274; documentation head `e8747955` passed Nest36706225907. These results were confirmed on 30 September before the next native navigation increment.
