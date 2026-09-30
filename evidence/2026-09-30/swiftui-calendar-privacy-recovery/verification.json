@@ -58,5 +58,15 @@
   "finalCopyBuildAndInstallationPassed": true,
   "newBetaSubmitted": false,
   "productionTouched": false,
-  "ci": "pending exact source push"
+  "ci": {
+    "codeHead": "cbec030265fb5cbfc9a7e3bed9c09288c0cb1b5a",
+    "repository": {
+      "run": 36705697468,
+      "status": "in_progress"
+    },
+    "swiftui": {
+      "run": 36705697274,
+      "status": "in_progress"
+    }
+  }
 }
