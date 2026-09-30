@@ -122,9 +122,7 @@ actor ChoreOfflineStore {
         try db.run(
             "CREATE TABLE IF NOT EXISTS expense_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
-        try db.run(
-            "CREATE TABLE IF NOT EXISTS calendar_consent_changes (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
-        )
+        try CalendarPrivacySchema.create(db)
         try db.run(
             "CREATE TABLE IF NOT EXISTS proposal_edits (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )

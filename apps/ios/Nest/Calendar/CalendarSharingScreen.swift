@@ -22,7 +22,12 @@ struct CalendarSharingScreen: View {
                     .font(.subheadline).foregroundStyle(QuietPalette.muted)
             }
             if let notice { Section { Text(notice) } }
-            if let pending = context?.pending {
+            if context?.removal != nil {
+                Section("Remove shared busy times") {
+                    Text("Calendar access was lost. Removal is saved on this iPhone but is not confirmed.")
+                    Button("Retry removal") { Task { await load() } }
+                }
+            } else if let pending = context?.pending {
                 recovery(pending)
             } else if let consent {
                 Section("Sharing") {
@@ -32,7 +37,12 @@ struct CalendarSharingScreen: View {
                             Task { await changeConsent(false) }
                         }
                     } else {
+                        if reader.access != .allowed {
+                            Text("Allow calendar access in Calendar before enabling sharing.")
+                                .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        }
                         Button("Enable busy sharing") { confirmEnable = true }
+                            .disabled(reader.access != .allowed || session.calendarPrivacyPending)
                     }
                 }
                 if consent.enabled { selection }
@@ -133,12 +143,14 @@ struct CalendarSharingScreen: View {
         do {
             let value = try await session.calendarConsentContext()
             context = value
-            consent = try await session.readCalendarConsent(value)
-            if value.pending == nil, reader.access == .denied || reader.access == .restricted {
+            if value.removal != nil || reader.access == .denied || reader.access == .restricted {
                 consent = try await session.revokeCalendarConsentAfterPermissionLoss(
                     access: reader.access, context: value)
                 context = try await session.calendarConsentContext()
-                notice = "Calendar access is off. Busy sharing has been turned off."
+                notice = "Busy sharing is off. Shared busy times have been removed."
+            } else {
+                consent = try await session.readCalendarConsent(value)
+                notice = nil
             }
             guard scenePhase == .active else { return }
             calendars = reader.calendars()
@@ -155,6 +167,7 @@ struct CalendarSharingScreen: View {
 
     private func changeConsent(_ enabled: Bool) async {
         guard let context, let consent else { return }
+        guard !enabled || reader.access == .allowed else { return }
         working = true
         defer { working = false }
         do {

@@ -19,7 +19,9 @@ extension ChoreOfflineStore {
         current: CalendarConsent, enabled: Bool, operation: UUID, lease: OfflineLease
     ) throws {
         try authorize(lease)
-        guard try readCalendarConsentChange(lease: lease) == nil else { throw OfflineFailure.invalidOperation }
+        guard try readCalendarConsentChange(lease: lease) == nil,
+            try readCalendarPrivacyRemoval(lease: lease) == nil
+        else { throw OfflineFailure.invalidOperation }
         _ = try current.validated()
         let command = try SetCalendarConsent(
             incarnation: current.incarnation, operationId: operation,

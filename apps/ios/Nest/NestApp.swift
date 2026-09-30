@@ -33,6 +33,7 @@ struct NestApp: App {
                 }
             }
             .task { await model.restore() }
+            .modifier(CalendarPrivacyRecovery(session: model))
             .modifier(NotificationOpening(session: model, inbox: pushDelegate.inbox))
             .environmentObject(pushDelegate.hardware)
             .tint(QuietPalette.accent)

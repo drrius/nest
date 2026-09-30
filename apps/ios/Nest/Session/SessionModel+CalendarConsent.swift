@@ -4,6 +4,7 @@ struct CalendarConsentContext {
     let member: VerifiedMember
     let generation: Int
     let pending: SavedCalendarConsent?
+    let removal: CalendarPrivacyRemoval?
 }
 
 extension SessionModel {
@@ -11,7 +12,8 @@ extension SessionModel {
         guard case .ready(let member) = status, let offline, let lease else { throw NestAPIFailure.signedOut }
         let attempt = generation
         let pending = try await offline.readCalendarConsentChange(lease: lease)
-        let context = CalendarConsentContext(member: member, generation: attempt, pending: pending)
+        let removal = try await offline.readCalendarPrivacyRemoval(lease: lease)
+        let context = CalendarConsentContext(member: member, generation: attempt, pending: pending, removal: removal)
         try requireCalendarContext(context)
         return context
     }
@@ -28,6 +30,7 @@ extension SessionModel {
         _ current: CalendarConsent, enabled: Bool, context: CalendarConsentContext
     ) async throws {
         try requireCalendarContext(context)
+        guard !calendarPrivacyPending else { throw OfflineFailure.invalidOperation }
         guard let offline, let lease else { throw NestAPIFailure.signedOut }
         try await offline.enqueueCalendarConsentChange(
             current: current, enabled: enabled, operation: UUID(), lease: lease)
@@ -39,8 +42,14 @@ extension SessionModel {
         guard let offline, let lease, let calendarAPI,
             let pending = try await offline.readCalendarConsentChange(lease: lease), !pending.conflict
         else { throw OfflineFailure.invalidOperation }
+        guard try await offline.readCalendarPrivacyRemoval(lease: lease) == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         do {
             let token = try await calendarToken(context)
+            guard try await offline.readCalendarPrivacyRemoval(lease: lease) == nil else {
+                throw OfflineFailure.invalidOperation
+            }
             let receipt = try await calendarAPI.setConsentReceipt(
                 token: token, member: context.member, command: pending.command)
             try requireCalendarContext(context)
@@ -73,27 +82,12 @@ extension SessionModel {
         }
     }
 
-    private func calendarToken(_ context: CalendarConsentContext) async throws -> String {
+    func calendarToken(_ context: CalendarConsentContext) async throws -> String {
         try requireCalendarContext(context)
         guard let auth else { throw NestAPIFailure.signedOut }
         let session = try await auth.session()
         try requireCalendarContext(context)
         guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
         return session.accessToken
-    }
-}
-
-extension SessionModel {
-    func revokeCalendarConsentAfterPermissionLoss(
-        access: CalendarAccess, context: CalendarConsentContext
-    ) async throws -> CalendarConsent? {
-        try requireCalendarContext(context)
-        guard access == .denied || access == .restricted else { return nil }
-        let currentContext = try await calendarConsentContext()
-        guard currentContext.pending == nil else { throw OfflineFailure.invalidOperation }
-        let current = try await readCalendarConsent(context)
-        guard current.enabled else { return current }
-        try await stageCalendarConsent(current, enabled: false, context: context)
-        return try await retryCalendarConsent(context)
     }
 }

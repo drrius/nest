@@ -6,9 +6,15 @@ extension SessionModel {
         guard consent.enabled, let offline, let lease,
             try await offline.readCalendarConsentChange(lease: lease) == nil
         else { throw OfflineFailure.invalidOperation }
+        guard !calendarPrivacyPending, try await offline.readCalendarPrivacyRemoval(lease: lease) == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         let fresh = try await readCalendarConsent(context)
         guard fresh == consent else { throw NestAPIFailure.conflict }
         let token = try await busyToken(context)
+        guard try await offline.readCalendarPrivacyRemoval(lease: lease) == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         guard let calendarAPI else { throw NestAPIFailure.configuration }
         let capture = try await calendarAPI.begin(
             token: token, member: context.member,
@@ -24,11 +30,17 @@ extension SessionModel {
         guard let offline, let lease, try await offline.readCalendarConsentChange(lease: lease) == nil else {
             throw OfflineFailure.invalidOperation
         }
+        guard !calendarPrivacyPending, try await offline.readCalendarPrivacyRemoval(lease: lease) == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         let fresh = try await readCalendarConsent(context)
         guard fresh.enabled, fresh.incarnation == capture.incarnation, fresh.version == capture.consent else {
             throw NestAPIFailure.conflict
         }
         let token = try await busyToken(context)
+        guard try await offline.readCalendarPrivacyRemoval(lease: lease) == nil else {
+            throw OfflineFailure.invalidOperation
+        }
         guard let calendarAPI else { throw NestAPIFailure.configuration }
         let receipt = try await calendarAPI.publish(
             token: token, member: context.member,

@@ -29,13 +29,15 @@ final class CalendarConsentModelTests: XCTestCase {
             XCTFail("Expected lost response")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .unavailable) }
         let pending = try await model.calendarConsentContext()
-        XCTAssertEqual(pending.pending?.command.enabled, false)
-        XCTAssertEqual(pending.pending?.conflict, false)
-        let result = try await model.retryCalendarConsent(pending)
+        XCTAssertEqual(pending.removal?.command?.enabled, false)
+        XCTAssertNil(pending.pending)
+        let retried = try await model.revokeCalendarConsentAfterPermissionLoss(access: .allowed, context: pending)
+        let result = try XCTUnwrap(retried)
         XCTAssertFalse(result.enabled)
         XCTAssertEqual(result.version, "5")
         let finished = try await model.calendarConsentContext()
         XCTAssertNil(finished.pending)
+        XCTAssertNil(finished.removal)
         let calls = await server.calls
         XCTAssertEqual(calls.count, 2)
         XCTAssertEqual(calls.first, calls.last)

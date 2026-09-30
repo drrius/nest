@@ -64,6 +64,9 @@ final class SessionModel: ObservableObject {
     var savedRecipeRevision: String?
     @Published var mealRecipePlacement: SavedMealRecipePlacement?
     @Published var mealRecipePlacementSaving = false
+    @Published var calendarPrivacyPending = false
+    @Published var calendarPrivacyRemoving = false
+    var calendarPrivacyGeneration: Int?
     let auth: (any NestAuthentication)?
     let chores: ChoreAPI?
     let groceryAPI: GroceryAPI?
@@ -310,6 +313,8 @@ final class SessionModel: ObservableObject {
     }
 
     func clearPresentation() async {
+        calendarPrivacyPending = false
+        calendarPrivacyRemoving = false
         let previous = lease
         lease = nil
         today = .idle
