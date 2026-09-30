@@ -96,7 +96,11 @@ test("model failures are masked in logs and streams, not retried, and finalize a
   const text = await response.text();
   assert.ok(!text.includes("fixture provider secret"));
   assert.ok(text.includes("Could not finish"));
-  assert.deepEqual(logs, [], "private provider errors must not reach server logs");
+  assert.deepEqual(
+    logs,
+    [["Nest assistant stream failed", { kind: "unknown", status: null }]],
+    "only fixed failure metadata may reach server logs",
+  );
   assert.equal(completed, false);
   assert.equal(model.doStreamCalls.length, 1);
 });

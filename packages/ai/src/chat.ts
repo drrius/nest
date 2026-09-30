@@ -10,6 +10,7 @@ import {
   type UIMessage,
   type StopCondition,
 } from "ai";
+import { assistantFailureDiagnostic } from "./failure-diagnostic.ts";
 export type AssistantModel = LanguageModel;
 export type AssistantTools = ToolSet;
 export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssistantAgent>>;
@@ -138,6 +139,7 @@ export function assistantStream({
   finish: (response: UIMessage, completed: boolean) => Promise<void>;
 }) {
   const agent = createAssistantAgent(model, tools, onInvalidToolCall);
+  let failureReported = false;
   return createAgentUIStreamResponse({
     agent,
     uiMessages: modelHistory(messages),
@@ -147,7 +149,13 @@ export function assistantStream({
     sendReasoning: false,
     sendSources: false,
     headers: { "Cache-Control": "no-store", "X-Nest-Assistant-Id": assistantId },
-    onError: () => "Could not finish this response. Reload the conversation before trying again.",
+    onError: (error) => {
+      if (!failureReported) {
+        failureReported = true;
+        console.warn("Nest assistant stream failed", assistantFailureDiagnostic(error));
+      }
+      return "Could not finish this response. Reload the conversation before trying again.";
+    },
     onEnd: ({ responseMessage, outcome, finishReason }) =>
       finish(
         withoutUnknownFailures(responseMessage, tools),
