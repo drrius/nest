@@ -2,16 +2,19 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { fixture, id, run } from "./recurring-manual-approval-fixture.mjs";
-import { manualCycleApprovalOperations } from "../../apps/mobile/src/money/recurring-manual-approval-operations.ts";
-import { ManualCycleApprovalRuntime } from "../../apps/mobile/src/money/recurring-manual-approval-runtime.ts";
+import { manualCycleApprovalOperations } from "../../packages/protocol-fixtures/src/money/recurring-manual-approval-operations.ts";
+import { ManualCycleApprovalRuntime } from "../../packages/protocol-fixtures/src/money/recurring-manual-approval-runtime.ts";
 import {
   manualCycleApprovalText,
   manualCycleApprovalActions,
-} from "../../apps/mobile/src/money/recurring-manual-approval-display.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+} from "../../packages/protocol-fixtures/src/money/recurring-manual-approval-display.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
-const { PreferenceFailure } = await import("../../apps/mobile/src/preferences/client.ts");
+const { PreferenceFailure } =
+  await import("../../packages/protocol-fixtures/src/preferences/client.ts");
 for (const conflict of ["cycle", "source"])
   test(`consumed ${conflict} retires stale approved intent only after a successful authoritative reread`, async (t) => {
     const { f, local, session, approvalId } = await fixture(t);

@@ -6,7 +6,7 @@ import {
   matchesConfirmationContext,
   legacyConfirmationApprovalActions,
   legacyConfirmationApprovalText,
-} from "../../apps/mobile/src/money/legacy-confirmation-approval-display.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-confirmation-approval-display.ts";
 const actions = (runtime) => legacyConfirmationApprovalActions(runtime.getSnapshot(), Date.now());
 test("private native card stages before dispatch and recovers a committed confirmation after write suspension and SQLite restart without replay", async (t) => {
   const f = await fixture(t),

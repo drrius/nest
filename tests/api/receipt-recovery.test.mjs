@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
 import { readReceiptUploads } from "../../apps/api/src/money/receipt-recovery.ts";
-import { receiptCleanupClient } from "../../apps/mobile/src/money/receipt-cleanup-client.ts";
+import { receiptCleanupClient } from "../../packages/protocol-fixtures/src/money/receipt-cleanup-client.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");

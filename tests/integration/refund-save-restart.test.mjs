@@ -1,15 +1,17 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { refundSaveOperations } from "../../apps/mobile/src/money/refund-save-operations.ts";
-import { RefundSaveRuntime } from "../../apps/mobile/src/money/refund-save-runtime.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { refundSaveOperations } from "../../packages/protocol-fixtures/src/money/refund-save-operations.ts";
+import { RefundSaveRuntime } from "../../packages/protocol-fixtures/src/money/refund-save-runtime.ts";
 import { refundApiFixture } from "./refund-api-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import { id } from "../database/native-expense-helpers.mjs";
 import { refund as payload } from "./refund-api-fixture.mjs";
 import { createRequire } from "node:module";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 for (const action of ["save", "cancel"]) {

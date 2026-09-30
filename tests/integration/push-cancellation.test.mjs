@@ -1,11 +1,11 @@
-import { rotatePushDevice } from "../../apps/mobile/src/push/rotation.ts";
-import { pushRotationCheckpoint } from "../../apps/mobile/src/push/rotation-checkpoint.ts";
+import { rotatePushDevice } from "../../packages/protocol-fixtures/src/push/rotation.ts";
+import { pushRotationCheckpoint } from "../../packages/protocol-fixtures/src/push/rotation-checkpoint.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
-import { protectedPushAttempts } from "../../apps/mobile/src/push/protected-attempt.ts";
-import { pushEnrollmentOperations } from "../../apps/mobile/src/push/operations.ts";
+import { pushDeviceClient } from "../../packages/protocol-fixtures/src/push/client.ts";
+import { protectedPushAttempts } from "../../packages/protocol-fixtures/src/push/protected-attempt.ts";
+import { pushEnrollmentOperations } from "../../packages/protocol-fixtures/src/push/operations.ts";
 import { fixture, id, Effect, Fetch, run } from "./renewal-fixture.mjs";
 async function setup(t) {
   const f = await fixture(t, [

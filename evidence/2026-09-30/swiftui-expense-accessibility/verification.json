@@ -22,7 +22,17 @@
   "physicalPhoneVerified": false,
   "voiceOverVerified": false,
   "newTestFlightSubmission": false,
-  "ci": "pending for this source",
+  "ci": {
+    "commit": "8190243907eaffdb2376ca17e7d68359b476b16a",
+    "nestChecks": {
+      "run": 36671351987,
+      "conclusion": "success"
+    },
+    "swiftUIChecks": {
+      "run": 36671352099,
+      "conclusion": "success"
+    }
+  },
   "financialEvents": 13,
   "financialRowsSha256": "7c5dd62f66b723e089f44a9917b10e063790b5bd1482ac19d7c84514be9796a8"
 }

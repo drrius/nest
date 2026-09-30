@@ -1,10 +1,12 @@
 import { createRequire } from "node:module";
 import { fixture as server, id, run } from "./chore-reminder-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { choreReminderSaveOperations } from "../../apps/mobile/src/chore-reminders/save-operations.ts";
-import { ChoreReminderSaveRuntime } from "../../apps/mobile/src/chore-reminders/save-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { choreReminderSaveOperations } from "../../packages/protocol-fixtures/src/chore-reminders/save-operations.ts";
+import { ChoreReminderSaveRuntime } from "../../packages/protocol-fixtures/src/chore-reminders/save-runtime.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t) {

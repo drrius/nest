@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createRequire } from "node:module";
 import { fixture, id, run } from "./recurring-manual-approval-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 test("manual context is private and binds the exact approval, source and recurring rule", async (t) => {

@@ -6,13 +6,15 @@ import { files, id, json, payload } from "../database/ai-legacy-confirmation-fix
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { legacyConfirmationApprovalOperations } from "../../apps/mobile/src/money/legacy-confirmation-approval-operations.ts";
-import { legacyConfirmationApprovalOwner } from "../../apps/mobile/src/money/legacy-confirmation-approval-owner.ts";
-import { legacyConfirmationApprovalActions } from "../../apps/mobile/src/money/legacy-confirmation-approval-display.ts";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { legacyConfirmationApprovalOperations } from "../../packages/protocol-fixtures/src/money/legacy-confirmation-approval-operations.ts";
+import { legacyConfirmationApprovalOwner } from "../../packages/protocol-fixtures/src/money/legacy-confirmation-approval-owner.ts";
+import { legacyConfirmationApprovalActions } from "../../packages/protocol-fixtures/src/money/legacy-confirmation-approval-display.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 async function api(t, config) {

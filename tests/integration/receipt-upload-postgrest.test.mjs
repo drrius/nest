@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { receiptUploadClient } from "../../apps/mobile/src/money/receipt-upload-client.ts";
+import { receiptUploadClient } from "../../packages/protocol-fixtures/src/money/receipt-upload-client.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";

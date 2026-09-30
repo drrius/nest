@@ -1,15 +1,17 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { calendarClient } from "../../apps/mobile/src/calendar/client.ts";
-import { calendarChoreOperations } from "../../apps/mobile/src/calendar/chore-operations.ts";
-import { CalendarChoreRuntime } from "../../apps/mobile/src/calendar/chore-runtime.ts";
+import { fixture, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { calendarClient } from "../../packages/protocol-fixtures/src/calendar/client.ts";
+import { calendarChoreOperations } from "../../packages/protocol-fixtures/src/calendar/chore-operations.ts";
+import { CalendarChoreRuntime } from "../../packages/protocol-fixtures/src/calendar/chore-runtime.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import { calendarChoreFixture as setup } from "./calendar-chore-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 test("native chore layer reads the real API, changes date and hides revoked access", async (t) => {

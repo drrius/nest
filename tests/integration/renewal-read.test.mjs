@@ -1,8 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run } from "./renewal-native-fixture.mjs";
-import { renewalReadOperations } from "../../apps/mobile/src/renewals/read-operations.ts";
-import { RenewalReadRuntime } from "../../apps/mobile/src/renewals/read-runtime.ts";
+import { renewalReadOperations } from "../../packages/protocol-fixtures/src/renewals/read-operations.ts";
+import { RenewalReadRuntime } from "../../packages/protocol-fixtures/src/renewals/read-runtime.ts";
 test("renewal reader loads retained details, clears background data and refuses a replaced account", async (t) => {
   const f = await fixture(t);
   const saved = await run(f.native.save(f.command));

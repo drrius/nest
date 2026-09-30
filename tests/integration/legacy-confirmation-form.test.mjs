@@ -1,18 +1,18 @@
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect } from "./legacy-confirmation-native-fixture.mjs";
-import { recurringReadOperations } from "../../apps/mobile/src/money/recurring-read-operations.ts";
-import { RecurringReadRuntime } from "../../apps/mobile/src/money/recurring-read-runtime.ts";
+import { recurringReadOperations } from "../../packages/protocol-fixtures/src/money/recurring-read-operations.ts";
+import { RecurringReadRuntime } from "../../packages/protocol-fixtures/src/money/recurring-read-runtime.ts";
 import {
   initialLegacyConfirmation,
   prepareLegacyConfirmation,
   legacyConfirmationGuard,
-} from "../../apps/mobile/src/money/legacy-confirmation-draft.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-confirmation-draft.ts";
 import {
   legacyConfirmationContext,
   legacyConfirmationPreviewCurrent,
-} from "../../apps/mobile/src/money/legacy-confirmation-context.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-confirmation-context.ts";
 async function options(f) {
   const client = moneyClient(
     f.url,

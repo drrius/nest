@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect } from "./renewal-fixture.mjs";
-import { calendarClient } from "../../apps/mobile/src/calendar/client.ts";
+import { calendarClient } from "../../packages/protocol-fixtures/src/calendar/client.ts";
 import { renewalReadTools } from "../../apps/api/src/renewals/tools.ts";
 test("native calendar renewal query uses real authorization, exact dates and SDK read tool", async (t) => {
   const f = await fixture(t, ["supabase/migrations/20260923012644_native_calendar_renewals.sql"]);

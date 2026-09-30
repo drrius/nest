@@ -1,13 +1,15 @@
 import { createRequire } from "node:module";
 import { recurringApiFixture, id, run } from "./recurring-api-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { RecurringReadRuntime } from "../../apps/mobile/src/money/recurring-read-runtime.ts";
-import { recurringReadOperations } from "../../apps/mobile/src/money/recurring-read-operations.ts";
-import { RecurringStateSaveRuntime } from "../../apps/mobile/src/money/recurring-state-save-runtime.ts";
-import { recurringStateSaveOperations } from "../../apps/mobile/src/money/recurring-state-save-operations.ts";
-import { prepareRecurringResume } from "../../apps/mobile/src/money/recurring-resume-confirmation.ts";
-import { stateConfirmationCurrent } from "../../apps/mobile/src/money/recurring-state-confirmation.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { RecurringReadRuntime } from "../../packages/protocol-fixtures/src/money/recurring-read-runtime.ts";
+import { recurringReadOperations } from "../../packages/protocol-fixtures/src/money/recurring-read-operations.ts";
+import { RecurringStateSaveRuntime } from "../../packages/protocol-fixtures/src/money/recurring-state-save-runtime.ts";
+import { recurringStateSaveOperations } from "../../packages/protocol-fixtures/src/money/recurring-state-save-operations.ts";
+import { prepareRecurringResume } from "../../packages/protocol-fixtures/src/money/recurring-resume-confirmation.ts";
+import { stateConfirmationCurrent } from "../../packages/protocol-fixtures/src/money/recurring-state-confirmation.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export { id, run };

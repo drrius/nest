@@ -3,11 +3,13 @@ import { test } from "node:test";
 import { createRequire } from "node:module";
 import { correctionApiFixture } from "./correction-api-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import { correctionSaveTool } from "../../apps/api/src/money/correction-save-tool.ts";
 import { id } from "../database/native-expense-helpers.mjs";
 import { correction } from "./correction-api-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 const run = (effect) => Effect.runPromise(effect.pipe(Effect.provideService(Fetch.Fetch, fetch)));

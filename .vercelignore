@@ -26,3 +26,6 @@ docs/
 evidence/
 supabase/
 tests/
+tools/distribution/
+packages/protocol-fixtures/src/
+packages/protocol-fixtures/tests/

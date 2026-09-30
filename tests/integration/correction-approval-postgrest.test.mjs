@@ -42,10 +42,12 @@ test("real approval HTTP confirmation recovers after committed response loss and
 
 test("native correction denial recovers a lost acknowledgement without posting money", async (t) => {
   const { createRequire } = await import("node:module");
-  const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+  const require = createRequire(
+    new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+  );
   const Effect = await import(require.resolve("effect/Effect")),
     Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
-  const { moneyClient } = await import("../../apps/mobile/src/money/client.ts");
+  const { moneyClient } = await import("../../packages/protocol-fixtures/src/money/client.ts");
   const f = await correctionApiFixture(t),
     operationId = id(200),
     correction = payload(f.source);

@@ -1,0 +1,73 @@
+{
+  "baseCommit": "8190243907eaffdb2376ca17e7d68359b476b16a",
+  "branch": "codex/remove-react-native-client",
+  "audit": {
+    "originalTrackedFiles": 1241,
+    "removedFiles": 501,
+    "removedTSX": 341,
+    "retainedSourceFiles": 497,
+    "retainedTestsAndHelpers": 243,
+    "rootUnitFiles": 202,
+    "installedPackagesRemoved": 657
+  },
+  "local": {
+    "frozenInstall": "passed",
+    "typecheck": "passed all workspaces",
+    "lint": "passed including Swift source limits",
+    "format": "passed all 2185 matched files",
+    "tooling": "2 files passed, no skips",
+    "rootUnits": {
+      "initialPassed": 201,
+      "initialFailed": 1,
+      "failure": "sandbox child-process EPERM in calendar properties",
+      "focusedRerun": "same file: 2 cases passed, no skips"
+    },
+    "workspaceTests": {
+      "domain": 43,
+      "ai": 30,
+      "receiptUpload": 19,
+      "api": 396,
+      "failures": 0,
+      "skips": 0
+    },
+    "selectedIntegration": {
+      "initialPassed": 19,
+      "initialFailed": 1,
+      "failure": "obsolete React-private subscription callback",
+      "fixedSDKGroupPassed": 5,
+      "fixedSDKGroupSkipped": 0,
+      "durationMs": 3853.054813
+    },
+    "routineIntegration": {
+      "passed": 11,
+      "failed": 0,
+      "skipped": 0,
+      "durationMs": 5313.500623
+    },
+    "fixtureVersions": {
+      "postgresql": "18.6",
+      "postgrest": "16.3"
+    },
+    "apiBundle": "passed; no protocol fixture or ProtocolChat references",
+    "frameworkDependencyQuery": "empty"
+  },
+  "distribution": {
+    "existingProjectResolved": true,
+    "build": "0.1.0 (10)",
+    "processingState": "VALID",
+    "internalState": "IN_BETA_TESTING",
+    "newSubmission": false,
+    "privateFiles": "byte-for-byte move; ignored, restrictive permissions"
+  },
+  "ci": "pending for this increment",
+  "swiftRuntimeChanged": false,
+  "databaseChanged": false,
+  "hostedDeploymentChanged": false,
+  "physicalPhoneVerified": false,
+  "remaining": [
+    "legacy backend Expo HTTP compatibility audit",
+    "live AI Gateway eligibility and successful provider/tool journeys",
+    "APNs provider/scheduling/hardware delivery",
+    "both-phone and full milestone acceptance"
+  ]
+}

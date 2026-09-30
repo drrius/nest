@@ -5,9 +5,11 @@ import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { files, id } from "../database/expense-receipt-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import { payload } from "../database/native-expense-helpers.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 test("native receipt metadata passes actual API and RLS before and after financial claim", async (t) => {

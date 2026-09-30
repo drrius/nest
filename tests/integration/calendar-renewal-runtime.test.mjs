@@ -1,10 +1,10 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect, Fetch } from "./renewal-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { calendarClient } from "../../apps/mobile/src/calendar/client.ts";
-import { calendarRenewalOperations } from "../../apps/mobile/src/calendar/renewal-operations.ts";
-import { CalendarRenewalRuntime } from "../../apps/mobile/src/calendar/renewal-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { calendarClient } from "../../packages/protocol-fixtures/src/calendar/client.ts";
+import { calendarRenewalOperations } from "../../packages/protocol-fixtures/src/calendar/renewal-operations.ts";
+import { CalendarRenewalRuntime } from "../../packages/protocol-fixtures/src/calendar/renewal-runtime.ts";
 test("optional Calendar renewal layer pages real data and clears on date/background/account replacement", async (t) => {
   const f = await fixture(t, ["supabase/migrations/20260923012644_native_calendar_renewals.sql"]);
   await run(f.native.save(f.command));

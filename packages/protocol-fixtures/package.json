@@ -1,0 +1,21 @@
+{
+  "name": "@nest/protocol-fixtures",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "exports": {},
+  "scripts": {
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@nest/ai": "workspace:*",
+    "@nest/contracts": "workspace:*",
+    "@nest/domain": "workspace:*",
+    "@supabase/supabase-js": "2.116.0",
+    "@types/node": "26.6.1",
+    "ai": "7.0.106",
+    "effect": "4.0.0-rc.115",
+    "fast-check": "4.9.0",
+    "typescript": "7.0.2"
+  }
+}

@@ -3,7 +3,9 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { fixture, id, run } from "./recurring-manual-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 const migrations = ["supabase/migrations/20260921235439_native_recurring_manual_approval.sql"];

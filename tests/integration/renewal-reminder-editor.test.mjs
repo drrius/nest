@@ -1,11 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect } from "./renewal-reminder-native-fixture.mjs";
-import { renewalClient } from "../../apps/mobile/src/renewals/client.ts";
-import { routineClient } from "../../apps/mobile/src/routines/client.ts";
-import { reminderEditorContext } from "../../apps/mobile/src/renewal-reminders/editor-context.ts";
-import { reminderDraft, parseReminderDraft } from "../../apps/mobile/src/renewal-reminders/form.ts";
-import { reminderConfirmation } from "../../apps/mobile/src/renewal-reminders/confirmation.ts";
+import { renewalClient } from "../../packages/protocol-fixtures/src/renewals/client.ts";
+import { routineClient } from "../../packages/protocol-fixtures/src/routines/client.ts";
+import { reminderEditorContext } from "../../packages/protocol-fixtures/src/renewal-reminders/editor-context.ts";
+import {
+  reminderDraft,
+  parseReminderDraft,
+} from "../../packages/protocol-fixtures/src/renewal-reminders/form.ts";
+import { reminderConfirmation } from "../../packages/protocol-fixtures/src/renewal-reminders/confirmation.ts";
 function clients(f) {
   const account = { actor: id(1), household: id(10) };
   const credentials = Effect.succeed({ user: { id: id(1) }, access_token: f.bearer });

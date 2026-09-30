@@ -1,10 +1,12 @@
 import { createRequire } from "node:module";
 import { fixture as server, id, run } from "./legacy-adoption-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { legacyAdoptionSaveOperations } from "../../apps/mobile/src/money/legacy-adoption-save-operations.ts";
-import { LegacyAdoptionSaveRuntime } from "../../apps/mobile/src/money/legacy-adoption-save-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { legacyAdoptionSaveOperations } from "../../packages/protocol-fixtures/src/money/legacy-adoption-save-operations.ts";
+import { LegacyAdoptionSaveRuntime } from "../../packages/protocol-fixtures/src/money/legacy-adoption-save-runtime.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t) {

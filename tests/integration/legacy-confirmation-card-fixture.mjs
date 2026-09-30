@@ -1,12 +1,14 @@
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { fixture as server, id, run } from "./legacy-confirmation-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { legacyConfirmationApprovalOperations } from "../../apps/mobile/src/money/legacy-confirmation-approval-operations.ts";
-import { LegacyConfirmationApprovalRuntime } from "../../apps/mobile/src/money/legacy-confirmation-approval-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { legacyConfirmationApprovalOperations } from "../../packages/protocol-fixtures/src/money/legacy-confirmation-approval-operations.ts";
+import { LegacyConfirmationApprovalRuntime } from "../../packages/protocol-fixtures/src/money/legacy-confirmation-approval-runtime.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t, withCategory = false) {

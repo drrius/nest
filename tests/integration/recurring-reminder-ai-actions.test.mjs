@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { files, id, json, recurringContext } from "../database/ai-recurring-reminder-fixture.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
 test("registered recurring reminder tools share authorized native save and retain exact retries", async (t) => {
   const f = await postgrestFixture(t, [...files, "tests/integration/food-postgrest.sql"]);
   const { input } = recurringContext(f.db);

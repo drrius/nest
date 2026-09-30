@@ -1,9 +1,11 @@
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import { fixture as recurring, id, run } from "./recurring-worker-fixture.mjs";
-import { renewalClient } from "../../apps/mobile/src/renewals/client.ts";
+import { renewalClient } from "../../packages/protocol-fixtures/src/renewals/client.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t, extraFiles = []) {

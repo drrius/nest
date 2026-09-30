@@ -3,11 +3,13 @@ import { test } from "node:test";
 import { createRequire } from "node:module";
 import { fixture, id } from "./meal-ingredient-api-fixture.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { IngredientRuntime } from "../../apps/mobile/src/meals/ingredient-runtime.ts";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { IngredientRuntime } from "../../packages/protocol-fixtures/src/meals/ingredient-runtime.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const options = { toolCallId: "ingredients", messages: [] };
 function connect(f, bearer = f.remote.bearer) {

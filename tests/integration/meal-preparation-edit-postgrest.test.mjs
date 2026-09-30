@@ -1,7 +1,7 @@
 import { createRequire } from "node:module";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { routineClient } from "../../apps/mobile/src/routines/client.ts";
-import { MealPreparationEditRuntime } from "../../apps/mobile/src/meals/preparation-edit-runtime.ts";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { routineClient } from "../../packages/protocol-fixtures/src/routines/client.ts";
+import { MealPreparationEditRuntime } from "../../packages/protocol-fixtures/src/meals/preparation-edit-runtime.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { nodeServer } from "../../apps/api/node-server.mjs";
@@ -130,7 +130,9 @@ test("preparation edit HTTP replays after lost response and partner completion w
   );
 });
 
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect");
 function nativeEditor(f) {
   const account = { actor: id(1), household: id(10) };

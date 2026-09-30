@@ -4,12 +4,12 @@ import test from "node:test";
 import { mkdtempSync, writeFileSync, rmSync } from "node:fs";
 import { join } from "node:path";
 
-function lint(source, native = false) {
-  const root = native ? "apps/mobile" : "apps/api";
-  const config = native ? "apps/mobile/.oxlintrc.json" : ".oxlintrc.json";
+function lint(source) {
+  const root = "apps/api";
+  const config = ".oxlintrc.json";
   const dir = mkdtempSync(`${root}/src/tooling-probe-`);
   try {
-    const path = join(dir, "probe.tsx");
+    const path = join(dir, "probe.ts");
     writeFileSync(path, source);
     const result = spawnSync(
       "pnpm",
@@ -46,22 +46,14 @@ test("rejects complexity above 10", () => {
   assert.match(result.output, /complexity/);
 });
 
-test("rejects raw native text and dynamic Expo environment access", () => {
-  const result = lint(
-    'import { View } from "react-native";\nexport const invalid = <View>Raw text</View>;\nexport const value = process.env["EXPO_PUBLIC_API_URL"];\n',
-    true,
-  );
-  assert.equal(result.status, 1, result.output);
-  assert.match(result.output, /no-raw-text/);
-  assert.match(result.output, /no-dynamic-env-var/);
-});
-
-test("accepts a small native component with wrapped text", () => {
-  const result = lint(
-    'import { Text, View } from "react-native";\nexport function Greeting() { return <View><Text>Nest</Text></View>; }\n',
-    true,
-  );
-  assert.equal(result.status, 0, result.output);
+test("rejects framework imports after the SwiftUI rewrite", () => {
+  for (const module of ["react", "react-native", "expo-calendar", "@expo/ui", "@ai-sdk/react"]) {
+    const result = lint(
+      `import * as framework from "${module}";\nexport const value = framework;\n`,
+    );
+    assert.equal(result.status, 1, result.output);
+    assert.match(result.output, /no-restricted-imports/);
+  }
 });
 
 test("Effect integration rejects an unexecuted floating Effect", () => {

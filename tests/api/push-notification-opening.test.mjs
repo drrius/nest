@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { notificationOpening } from "../../apps/mobile/src/push/notification-opening.ts";
+import { notificationOpening } from "../../packages/protocol-fixtures/src/push/notification-opening.ts";
 const home = "00000000-0000-4000-8000-000000000001";
 const renewal = "00000000-0000-4000-8000-000000000002";
 const payload = { version: 1, kind: "renewal", householdId: home, renewalId: renewal };

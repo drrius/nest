@@ -1,18 +1,20 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { settlementEntryOptions } from "../../apps/mobile/src/money/settlement-entry-options.ts";
-import { settlementSaveOperations } from "../../apps/mobile/src/money/settlement-save-operations.ts";
-import { SettlementSaveRuntime } from "../../apps/mobile/src/money/settlement-save-runtime.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { settlementEntryOptions } from "../../packages/protocol-fixtures/src/money/settlement-entry-options.ts";
+import { settlementSaveOperations } from "../../packages/protocol-fixtures/src/money/settlement-save-operations.ts";
+import { SettlementSaveRuntime } from "../../packages/protocol-fixtures/src/money/settlement-save-runtime.ts";
 import {
   initialSettlementDraft,
   parseSettlementDraft,
-} from "../../apps/mobile/src/money/settlement-draft.ts";
+} from "../../packages/protocol-fixtures/src/money/settlement-draft.ts";
 import { settlementApiFixture } from "./settlement-api-fixture.mjs";
 import { id } from "../database/native-expense-helpers.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect")),
   Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 async function fixture(t) {

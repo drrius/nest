@@ -1,6 +1,6 @@
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { SummaryReadRuntime } from "../../apps/mobile/src/notifications/summary-runtime.ts";
-import { summaryReadOperations } from "../../apps/mobile/src/notifications/summary-operations.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { SummaryReadRuntime } from "../../packages/protocol-fixtures/src/notifications/summary-runtime.ts";
+import { summaryReadOperations } from "../../packages/protocol-fixtures/src/notifications/summary-operations.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
@@ -8,7 +8,7 @@ import { fixture as contentFixture, id } from "../database/daily-summary-content
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { notificationClient } from "../../apps/mobile/src/notifications/client.ts";
+import { notificationClient } from "../../packages/protocol-fixtures/src/notifications/client.ts";
 import {
   dailySummaryTool,
   latestDailySummaryTool,

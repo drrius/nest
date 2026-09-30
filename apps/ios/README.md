@@ -1,6 +1,6 @@
 # Nest for iPhone (SwiftUI)
 
-This is the replacement client selected by the owner on 27 September 2026. The Xcode project builds, and an ad hoc signed simulator build read a fictional chore from the isolated test API after restoring a test session. Apple sign-in, chore completion by native tap, offline recovery and phone execution still need verification. The former Expo client is reference material until all agreed flows are rebuilt and verified. See [ADR 0002](../../../docs/adr/0002-swiftui-client.md) and [progress](../../../docs/progress.md).
+This is the replacement client selected by the owner on 27 September 2026. SwiftUI screens use the existing authorized backend and an environment/member-scoped SQLite journal. Focused simulator, hosted and CI checks cover selected commands, recovery, account changes, calendar privacy and notification routing. SwiftUI 0.1.0/build10 is internally available in TestFlight against the isolated test backend with push disabled. Apple sign-in on physical phones, complete two-member acceptance, live AI and real APNs delivery remain unverified. Later expense keyboard and maximum-text fixes are not in build10. The former React Native client and dependencies are removed. See [ADR 0002](../../../docs/adr/0002-swiftui-client.md), [progress](../../../docs/progress.md) and [distribution instructions](../../../tools/distribution/README.md).
 
 On a Mac with Xcode 27 and an iOS simulator:
 

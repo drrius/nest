@@ -5,8 +5,8 @@ import {
   prepareVariableConfirmation,
   variableConfirmationCurrent,
   variableConfirmationText,
-} from "../../apps/mobile/src/money/recurring-variable-confirmation.ts";
-import { dueVariableCycle } from "../../apps/mobile/src/money/recurring-variable-draft.ts";
+} from "../../packages/protocol-fixtures/src/money/recurring-variable-confirmation.ts";
+import { dueVariableCycle } from "../../packages/protocol-fixtures/src/money/recurring-variable-draft.ts";
 const members = [
   { actorId: id(1), displayName: "Alex", centimes: "0" },
   { actorId: id(2), displayName: "Sam", centimes: "0" },

@@ -2,8 +2,8 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createRequire } from "node:module";
 import { readLatestDailySummary } from "../../apps/api/src/notifications/latest-summary.ts";
-import { notificationClient } from "../../apps/mobile/src/notifications/client.ts";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
+import { notificationClient } from "../../packages/protocol-fixtures/src/notifications/client.ts";
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 const Effect = require("effect/Effect"),
   Http = require("effect/unstable/http/FetchHttpClient");

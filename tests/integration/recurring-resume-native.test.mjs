@@ -5,7 +5,7 @@ import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import {
   resumeConfirmationText,
   prepareRecurringResume,
-} from "../../apps/mobile/src/money/recurring-resume-confirmation.ts";
+} from "../../packages/protocol-fixtures/src/money/recurring-resume-confirmation.ts";
 for (const action of ["save", "cancel"]) {
   test(`native resume ${action} survives actual response loss and SQLite restart without resending`, async (t) => {
     const f = await fixture(t);

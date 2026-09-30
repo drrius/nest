@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect, Fetch } from "./renewal-fixture.mjs";
-import { revokePushSession } from "../../apps/mobile/src/push/logout-client.ts";
+import { revokePushSession } from "../../packages/protocol-fixtures/src/push/logout-client.ts";
 
 async function verifyNativeCleanup(f, receipt) {
   const config = {

@@ -8,6 +8,6 @@ The rebuilt signed iPhone 17 Pro/iOS26.3 simulator app shows the complete CHF la
 - [After: complete caption and preserved draft](after-max-form.png)
 - [Uncovered Save/Edit actions](review-max-actions.png)
 
-Strict Swift formatting, source limits, full Oxfmt, diff checks and the signed native build pass. No mirrored unit test was added for this reversible layout fix. New-source CI is pending. The previous native-test source `10f0c6af` passed both workflows; `2080ab66` passed routine CI for the stronger diagnostic assertion and evidence. [Metadata](verification.json) binds the changed file hash and bounded observations.
+Strict Swift formatting, source limits, full Oxfmt, diff checks and the signed native build pass. No mirrored unit test was added for this reversible layout fix. Both exact-source workflows at `81902439` pass: Nest `36671351987` and SwiftUI `36671352099`. The previous native-test source `10f0c6af` passed both workflows; `2080ab66` passed routine CI for the stronger diagnostic assertion and evidence. [Metadata](verification.json) binds the changed file hash and bounded observations.
 
 This is a fictional simulator form/review check, not saved-financial-command, VoiceOver, full maximum-text form-control, long-member-name or physical-phone acceptance. Appearance/content size were restored to light/large. Build10 on TestFlight remains exact source `127c34fa`; neither later expense fix is included, and no new beta submission was made.

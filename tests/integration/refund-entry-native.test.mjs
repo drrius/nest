@@ -1,15 +1,20 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { refundEntryOptions } from "../../apps/mobile/src/money/refund-entry-options.ts";
-import { refundSaveOperations } from "../../apps/mobile/src/money/refund-save-operations.ts";
-import { RefundSaveRuntime } from "../../apps/mobile/src/money/refund-save-runtime.ts";
-import { initialRefundDraft, parseRefundDraft } from "../../apps/mobile/src/money/refund-draft.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { refundEntryOptions } from "../../packages/protocol-fixtures/src/money/refund-entry-options.ts";
+import { refundSaveOperations } from "../../packages/protocol-fixtures/src/money/refund-save-operations.ts";
+import { RefundSaveRuntime } from "../../packages/protocol-fixtures/src/money/refund-save-runtime.ts";
+import {
+  initialRefundDraft,
+  parseRefundDraft,
+} from "../../packages/protocol-fixtures/src/money/refund-draft.ts";
 import { refundApiFixture } from "./refund-api-fixture.mjs";
 import { id } from "../database/native-expense-helpers.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect")),
   Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 async function fixture(t) {

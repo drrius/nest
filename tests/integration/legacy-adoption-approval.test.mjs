@@ -2,7 +2,9 @@ import { createRequire } from "node:module";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture as adoption, id, run } from "./legacy-adoption-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url)),
+const require = createRequire(
+    new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+  ),
   Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 async function fixture(t) {

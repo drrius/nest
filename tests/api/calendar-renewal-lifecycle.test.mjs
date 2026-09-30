@@ -1,13 +1,15 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 import {
   CalendarRenewalRuntime,
   visibleCalendarRenewals,
-} from "../../apps/mobile/src/calendar/renewal-runtime.ts";
-import { agendaRows } from "../../apps/mobile/src/calendar/agenda-rows.ts";
+} from "../../packages/protocol-fixtures/src/calendar/renewal-runtime.ts";
+import { agendaRows } from "../../packages/protocol-fixtures/src/calendar/agenda-rows.ts";
 
 test("late renewal reads cannot repopulate a hidden or changed day", async () => {
   const pending = [];
@@ -53,7 +55,8 @@ test("renewal day rows remain separate from booked personal and busy time", () =
 });
 
 test("same-owner authorization recovery can probe again without exposing denied rows", async () => {
-  const { PreferenceFailure } = await import("../../apps/mobile/src/preferences/client.ts");
+  const { PreferenceFailure } =
+    await import("../../packages/protocol-fixtures/src/preferences/client.ts");
   let denied = true;
   const runtime = new CalendarRenewalRuntime(
     {

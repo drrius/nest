@@ -2,17 +2,19 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createRequire } from "node:module";
 import { fixture as worker, id, run } from "./recurring-worker-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { recurringReadOperations } from "../../apps/mobile/src/money/recurring-read-operations.ts";
-import { RecurringReadRuntime } from "../../apps/mobile/src/money/recurring-read-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { recurringReadOperations } from "../../packages/protocol-fixtures/src/money/recurring-read-operations.ts";
+import { RecurringReadRuntime } from "../../packages/protocol-fixtures/src/money/recurring-read-runtime.ts";
 import {
   cycleHistoryPage,
   cycleOriginText,
   cycleExpenseTarget,
-} from "../../apps/mobile/src/money/recurring-history-display.ts";
-import { PreferenceFailure } from "../../apps/mobile/src/preferences/client.ts";
+} from "../../packages/protocol-fixtures/src/money/recurring-history-display.ts";
+import { PreferenceFailure } from "../../packages/protocol-fixtures/src/preferences/client.ts";
 import { payload } from "../database/native-expense-helpers.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 async function memberRpc(f, name, input) {

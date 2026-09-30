@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect, Fetch } from "./renewal-fixture.mjs";
-import { revokePreviousPushSession } from "../../apps/mobile/src/push/logout-client.ts";
+import { revokePreviousPushSession } from "../../packages/protocol-fixtures/src/push/logout-client.ts";
 
 test("native fresh authentication revokes the retained old session and rejects another account", async (t) => {
   const f = await fixture(t, [

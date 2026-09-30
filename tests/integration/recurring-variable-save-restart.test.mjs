@@ -2,11 +2,13 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
 import { fixture, id, run } from "./recurring-variable-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-import { VariableCycleSaveRuntime } from "../../apps/mobile/src/money/recurring-variable-save-runtime.ts";
-import { variableCycleSaveOperations } from "../../apps/mobile/src/money/recurring-variable-save-operations.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { VariableCycleSaveRuntime } from "../../packages/protocol-fixtures/src/money/recurring-variable-save-runtime.ts";
+import { variableCycleSaveOperations } from "../../packages/protocol-fixtures/src/money/recurring-variable-save-operations.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 async function open(runtime) {

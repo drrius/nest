@@ -7,7 +7,7 @@ import {
   manualConfirmationCurrent,
   manualConfirmationText,
   dueManualCycle,
-} from "../../apps/mobile/src/money/recurring-manual-confirmation.ts";
+} from "../../packages/protocol-fixtures/src/money/recurring-manual-confirmation.ts";
 const save = {
   active: true,
   online: true,

@@ -1,16 +1,18 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { recurringApprovalOperations } from "../../apps/mobile/src/money/recurring-approval-operations.ts";
-import { recurringApprovalOwner } from "../../apps/mobile/src/money/recurring-approval-owner.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { recurringApprovalOperations } from "../../packages/protocol-fixtures/src/money/recurring-approval-operations.ts";
+import { recurringApprovalOwner } from "../../packages/protocol-fixtures/src/money/recurring-approval-owner.ts";
 import {
   recurringApprovalActions,
   recurringApprovalText,
-} from "../../apps/mobile/src/money/recurring-approval-display.ts";
+} from "../../packages/protocol-fixtures/src/money/recurring-approval-display.ts";
 import { recurringApiFixture, id, run } from "./recurring-api-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 test("native approval owner reviews real category, invalidates on archive and allows explicit denial", async (t) => {

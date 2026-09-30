@@ -3,11 +3,13 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
 import { fixture, id, week } from "./meal-ingredient-api-fixture.mjs";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { groceryClient } from "../../apps/mobile/src/groceries/client.ts";
-import { groceryFlow } from "../../apps/mobile/src/groceries/flow.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { groceryClient } from "../../packages/protocol-fixtures/src/groceries/client.ts";
+import { groceryFlow } from "../../packages/protocol-fixtures/src/groceries/flow.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const files = [
   "tests/database/ingredient-checklist-columns.sql",

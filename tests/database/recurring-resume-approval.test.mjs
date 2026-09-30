@@ -152,7 +152,7 @@ test("fenced review reports a past date for uncommitted intent, after which resu
   const approval = propose(db, 202, stale);
   const reviewed = read(db, query(approval));
   const { resumeDatePassed } =
-    await import("../../apps/mobile/src/money/recurring-resume-review.ts");
+    await import("../../packages/protocol-fixtures/src/money/recurring-resume-review.ts");
   assert.equal(resumeDatePassed(reviewed.approval), true);
   assert.equal(reviewed.approval.status, "pending");
   assert.throws(() => read(db, decide(202, stale, approval)));

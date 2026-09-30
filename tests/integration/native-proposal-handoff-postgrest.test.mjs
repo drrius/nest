@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { backend, run, id } from "./native-proposal-edit-fixture.mjs";
-import { MealProposalRuntime } from "../../apps/mobile/src/meals/proposal-runtime.ts";
+import { MealProposalRuntime } from "../../packages/protocol-fixtures/src/meals/proposal-runtime.ts";
 import { freezeProposals, proposalSnapshot } from "./meal-proposal-freeze-fixture.mjs";
 const weekStart = "2030-01-07";
 test("native handoff opens an external proposal, survives a lost read and explicitly approves without another model call", async (t) => {

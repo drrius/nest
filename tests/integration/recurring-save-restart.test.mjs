@@ -1,13 +1,15 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { recurringClient } from "../../apps/mobile/src/money/recurring-client.ts";
-import { recurringSaveOperations } from "../../apps/mobile/src/money/recurring-save-operations.ts";
-import { RecurringSaveRuntime } from "../../apps/mobile/src/money/recurring-save-runtime.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { recurringClient } from "../../packages/protocol-fixtures/src/money/recurring-client.ts";
+import { recurringSaveOperations } from "../../packages/protocol-fixtures/src/money/recurring-save-operations.ts";
+import { RecurringSaveRuntime } from "../../packages/protocol-fixtures/src/money/recurring-save-runtime.ts";
 import { recurringApiFixture, id } from "./recurring-api-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 for (const action of ["save", "cancel"]) {
