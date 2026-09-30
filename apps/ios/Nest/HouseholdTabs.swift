@@ -3,6 +3,7 @@ import SwiftUI
 struct HouseholdTabs: View {
     @ObservedObject var model: SessionModel
     let member: VerifiedMember
+    @StateObject private var firstUse = FirstUseModel()
 
     var body: some View {
         TabView {
@@ -27,5 +28,10 @@ struct HouseholdTabs: View {
             .tabItem { Label("Money", systemImage: "creditcard") }
         }
         .tint(QuietPalette.accent)
+        .task { firstUse.load(session: model, member: member) }
+        .sheet(isPresented: $firstUse.presented) {
+            FirstUseScreen(session: model, member: member, entry: firstUse)
+        }
+        .onChange(of: model.generation) { firstUse.clear() }
     }
 }

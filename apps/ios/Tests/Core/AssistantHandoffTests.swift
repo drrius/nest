@@ -69,4 +69,23 @@ final class AssistantHandoffTests: XCTestCase {
         let wrong: [String: AssistantJSON] = ["kind": .string("device_handoff"), "screen": .string("settings")]
         XCTAssertNil(AssistantHandoff.read(part("openNotificationSetup", value: wrong), member: member))
     }
+
+    func testSetupAndAccountHandoffsCannotBeSwappedOrClaimWrites() {
+        for (tool, screen, expected) in [
+            ("openSetup", "setup", AssistantHandoff.setup),
+            ("openAccountSettings", "settings", AssistantHandoff.settings),
+        ] {
+            let value: [String: AssistantJSON] = ["kind": .string("device_handoff"), "screen": .string(screen)]
+            let output = part(tool, value: value)
+            XCTAssertEqual(AssistantHandoff.read(output, member: member), expected)
+            var pending = output
+            pending["state"] = .string("input-available")
+            XCTAssertNil(AssistantHandoff.read(pending, member: member))
+            XCTAssertNil(AssistantHandoff.read(part("saveNotificationPreferences", value: value), member: member))
+            let swapped: [String: AssistantJSON] = [
+                "kind": .string("device_handoff"), "screen": .string(screen == "setup" ? "settings" : "setup"),
+            ]
+            XCTAssertNil(AssistantHandoff.read(part(tool, value: swapped), member: member))
+        }
+    }
 }

@@ -4,6 +4,8 @@ enum AssistantHandoff: Equatable {
     case calendar
     case calendarSharing
     case notifications
+    case setup
+    case settings
     case ingredients(MealWeekStart)
 
     static func read(_ part: [String: AssistantJSON], member: VerifiedMember) -> Self? {
@@ -20,6 +22,10 @@ enum AssistantHandoff: Equatable {
             return ingredients(value, member: member)
         case "tool-openNotificationSetup" where value["screen"] == .string("notification-preferences"):
             return .notifications
+        case "tool-openSetup" where value["screen"] == .string("setup"):
+            return .setup
+        case "tool-openAccountSettings" where value["screen"] == .string("settings"):
+            return .settings
         default: return nil
         }
     }

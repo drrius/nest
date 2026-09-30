@@ -14,6 +14,9 @@ struct MealWeekScreen: View {
             VStack(alignment: .leading, spacing: 24) {
                 Text("A week of meals, at your pace.")
                     .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                if case .ready(let member) = model.status {
+                    MealSetupPrompt(session: model, member: member).id(model.generation)
+                }
                 weekNavigation
                 if let notice = model.mealNotice {
                     Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)

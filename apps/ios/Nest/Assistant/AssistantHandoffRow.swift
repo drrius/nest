@@ -30,6 +30,16 @@ struct AssistantHandoffRow: View {
                 Text(
                     "No choices or iPhone permissions changed. Open this iPhone’s connection to review device enrollment."
                 )
+            case .setup:
+                NavigationLink("Review your setup") {
+                    SetupScreen(session: session, member: member).id(session.generation)
+                }
+                Text("Nothing was saved. Review or skip each optional part on your iPhone.")
+            case .settings:
+                NavigationLink("Open Profile") {
+                    ProfileScreen(model: session, member: member).id(session.generation)
+                }
+                Text("Your account has not changed. Sign-out requires the explicit native control.")
             }
         }
         .font(.footnote)

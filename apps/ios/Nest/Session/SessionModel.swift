@@ -76,6 +76,8 @@ final class SessionModel: ObservableObject {
     let foodAPI: FoodAPI?
     let notificationAPI: NotificationAPI?
     let renewalAPI: RenewalAPI?
+    let setupAPI: SetupAPI?
+    let setupChoices: SetupChoiceStore?
     let offline: ChoreOfflineStore?
     let pushBuild: NativePushBuild
     let pushInstallation: PushInstallationIdentity?
@@ -118,12 +120,16 @@ final class SessionModel: ObservableObject {
             foodAPI = FoodAPI(http: http)
             notificationAPI = NotificationAPI(http: http)
             renewalAPI = RenewalAPI(http: http)
+            setupAPI = SetupAPI(http: http)
+            setupChoices = SetupChoiceStore(environment: configuration.supabaseURL)
             proposalAPI = MealProposalAPI(http: http)
             calendarAPI = CalendarAPI(http: http)
             moneyAPI = MoneyAPI(http: http, storageOrigin: configuration.supabaseURL)
             receiptTransport = upload
             offline = store
         } catch is NestConfigurationError {
+            setupAPI = nil
+            setupChoices = nil
             pushBuild = .disabled
             pushInstallation = nil
             auth = nil
@@ -141,6 +147,8 @@ final class SessionModel: ObservableObject {
             offline = nil
             status = .configuration
         } catch {
+            setupAPI = nil
+            setupChoices = nil
             pushBuild = .disabled
             pushInstallation = nil
             auth = nil
@@ -167,6 +175,7 @@ final class SessionModel: ObservableObject {
         receiptTransport: ReceiptTransport? = nil, assistantAPI: AssistantAPI? = nil,
         notificationAPI: NotificationAPI? = nil,
         renewalAPI: RenewalAPI? = nil,
+        setupAPI: SetupAPI? = nil, setupChoices: SetupChoiceStore? = nil,
         pushBuild: NativePushBuild = .disabled, pushInstallation: PushInstallationIdentity? = nil,
         savedReader: @escaping @Sendable (ChoreOfflineStore, OfflineLease) async throws -> ChoreOfflineState? = {
             store, lease in try await store.read(lease)
@@ -176,6 +185,8 @@ final class SessionModel: ObservableObject {
         }
     ) {
         self.auth = auth
+        self.setupAPI = setupAPI
+        self.setupChoices = setupChoices
         self.pushBuild = pushBuild
         self.pushInstallation = pushInstallation
         self.chores = chores

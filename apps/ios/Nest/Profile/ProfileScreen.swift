@@ -12,6 +12,9 @@ struct ProfileScreen: View {
                 Label(member.displayName, systemImage: "person.crop.circle")
                     .font(.title2.weight(.semibold))
                 Text("Your verified household account").foregroundStyle(QuietPalette.muted)
+                NavigationLink("Your setup") {
+                    SetupScreen(session: model, member: member).id(model.generation)
+                }
             }
             Section("Meals") {
                 NavigationLink("Your food preferences") {
