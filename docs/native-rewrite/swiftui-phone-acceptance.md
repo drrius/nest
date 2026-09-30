@@ -1,6 +1,6 @@
 # SwiftUI phone acceptance
 
-The next private candidate is 0.1.0/build11, source `d4981cbef686933a644444d8a87a8b56a8dd1bdb`. Archive/export and Apple availability are still pending. Check the current state in [progress](../progress.md) before installing. This uses **nest-test**, separate from Household OS production. Test entries remain fictional; production balances/history are not copied into this app.
+The next private candidate is 0.1.0/build11, source `d4981cbef686933a644444d8a87a8b56a8dd1bdb`. Exact-source local archive/export, signed IPA verification and routine/native CI pass. Apple upload/availability is pending. Check the current state in [progress](../progress.md) before installing. This uses **nest-test**, separate from Household OS production. Test entries remain fictional; production balances/history are not copied into this app.
 
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 

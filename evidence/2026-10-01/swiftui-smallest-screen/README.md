@@ -42,3 +42,9 @@ The temporary Calendar-only transport failure renders the pending removal warnin
 Removing only the owned fault marker and tapping Retry empties the scoped journal, dismisses the sheet/warning and preserves the disabled consent/revision and bounded financial projection. This controls Calendar HTTP transport and injects denied permission state into the fixture; it does not change actual EventKit permission or prove airplane-mode behavior. The original root was restored, the temporary source removed, and the ordinary app rebuilt and reinstalled. All 784 native hashes match; actual test-origin/push-disabled signing and read-only journal/baseline checks pass after cleanup.
 
 [Warning light](privacy-warning-light.png), [warning dark](privacy-warning-dark.png), [full Retry light](privacy-retry-light.png), [full Retry dark](privacy-retry-dark.png).
+
+## Small-screen financial review without a write
+
+Actual default-text input of a synthetic description and CHF 1.01 opens Review, dismissing the keyboard and showing exact payer/partner shares of CHF 0.51/0.50. At maximum text in dark appearance, scrolling exposes the complete Save (343 × 155.5 points) and Edit (343 × 93.5 points) controls above the tabs. Actual Edit returns to the retained description. Save was never pressed; before/after bounded financial, disabled consent and selected-week checks match. This is rendered review/Edit evidence, not native financial posting or approval acceptance. A cleanup helper initially found two Money controls (Back and tab) and stopped before tapping; explicit native Back returns safely.
+
+[Default review](expense-review-default.png), [maximum-text actions](expense-review-max-dark.png), [retained draft](expense-edit-max-dark.png).

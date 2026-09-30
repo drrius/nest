@@ -133,7 +133,10 @@
     "privacy-warning-light.png": "4f4f6b7d66506c270bbf1ce780c3bff2ef3fb884be55f0392150a4802549ad43",
     "privacy-warning-dark.png": "36334bd9370681fca21cba33472409dd7da132f6252af3aa28ff19af24187d5e",
     "privacy-retry-light.png": "e75dafe73fe9184cf8568e0b9b93ddf18b1cef1339ef6fabf4ba16192a503bd5",
-    "privacy-retry-dark.png": "d3079aaee84ff25ee5c265b263750dfc77a0b81650b866225a843516fc35d073"
+    "privacy-retry-dark.png": "d3079aaee84ff25ee5c265b263750dfc77a0b81650b866225a843516fc35d073",
+    "expense-review-default.png": "275f3c02b00f870a0fdac07b4ddd3b4c39b42001f8d2ef3c70c5f46c438dde7d",
+    "expense-review-max-dark.png": "10c13a4ad32d2eb82b92ddce1001358aee78212992bbd841c1f4ded944093926",
+    "expense-edit-max-dark.png": "66f9c0e46214717132c0b45bdcb4178b6ebe12caa75ab98923732fb5f35028cf"
   },
   "limits": [
     "Not Apple sign-in or physical-phone evidence.",
@@ -163,5 +166,28 @@
     "sourceFilesMatchedAfterCleanup": 784,
     "temporaryFixtureRemoved": true,
     "physicalOfflineAcceptance": false
+  },
+  "expenseReview": {
+    "sourceRuntime": "83f6010dd09c0299c7ac3c3a5c8c0d884d2d720d",
+    "totalCentimes": 101,
+    "payerShareCentimes": 51,
+    "partnerShareCentimes": 50,
+    "keyboardDismissedByReview": true,
+    "maximumDarkSaveFramePoints": {
+      "x": 16,
+      "y": 315,
+      "width": 343,
+      "height": 155.5
+    },
+    "maximumDarkEditFramePoints": {
+      "x": 16,
+      "y": 470.5,
+      "width": 343,
+      "height": 93.5
+    },
+    "bothControlsFullyReachableAfterScroll": true,
+    "actualEditRetainsDescription": true,
+    "savePressed": false,
+    "selectedWeekConsentAndBoundedFinanceUnchanged": true
   }
 }
