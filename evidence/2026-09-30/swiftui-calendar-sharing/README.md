@@ -22,7 +22,7 @@ Full Access was restored through the actual OS prompt under existing explicit ow
 
 ## Source and limits
 
-Linux/Mac hashes match for all five changed Swift files and the unchanged scheme. Strict recursive Swift formatting, source limits, diff checks and actual signed simulator push-disabled configuration pass. Backend/schema remain `8fbe67d8`; no deployment or migration occurred. Exact source needs fresh CI; prior `71b77591` passed both workflows (36685659228 / 36685659213). Current fix is absent from the internally available TestFlight build10. No new build, merge, purchase, AI/provider request, production write or automation occurred.
+Linux/Mac hashes match for all five changed Swift files and the unchanged scheme. Strict recursive Swift formatting, source limits, diff checks and actual signed simulator push-disabled configuration pass. Backend/schema remain `8fbe67d8`; no deployment or migration occurred. Source `95cd04a1` is pushed on `codex/swiftui-calendar-sharing-qa`. Nest CI 36696981769 passed; SwiftUI CI 36696981856 is still executing native account tests. Prior `71b77591` passed both workflows (36685659228 / 36685659213). Current fix is absent from the internally available TestFlight build10. No new build, merge, purchase, AI/provider request, production write or automation occurred.
 
 - [Only the owned calendar selected](synthetic-selection.png)
 - [Normal publish receipt](publish-receipt.png)

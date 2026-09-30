@@ -42,5 +42,15 @@
   "appleSignInVerified": false,
   "productionTouched": false,
   "newBetaSubmitted": false,
-  "ci": "pending exact source push"
+  "ci": {
+    "repository": {
+      "run": 36696981769,
+      "conclusion": "success"
+    },
+    "swiftui": {
+      "run": 36696981856,
+      "status": "in_progress"
+    }
+  },
+  "sourceCommit": "95cd04a1093198c624cf2d69a43cf0e4a7d897f6"
 }
