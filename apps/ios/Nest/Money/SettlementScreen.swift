@@ -30,7 +30,7 @@ struct SettlementScreen: View {
                     Button("Record payment") { Task { await save() } }
                     Button("Edit") { self.reviewed = nil }
                     Button("Reload balance and review again") {
-                        reviewed = nil
+                        self.reviewed = nil
                         Task { await load() }
                     }
                 }

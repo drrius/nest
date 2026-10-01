@@ -35,7 +35,7 @@ struct ExpenseScreen: View {
                     Button("Save expense") { Task { await saveReviewed() } }
                     Button("Edit") { self.reviewed = nil }
                     Button("Reload people and edit") {
-                        reviewed = nil
+                        self.reviewed = nil
                         Task { await load() }
                     }
                 }
