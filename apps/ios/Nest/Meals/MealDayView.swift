@@ -113,7 +113,7 @@ struct MealDayView<Detail: View>: View {
                 HStack(spacing: 12) {
                     if textSize.isAccessibilitySize { Text("Meal options") }
                     Image(systemName: "ellipsis").font(.system(size: 14))
-                        .accessibilityHidden(true)
+                        .accessibilityLabel("\(date.value), \(slot.label): More options for \(meal.title)")
                 }
                 .foregroundStyle(QuietPalette.accent)
                 .frame(minWidth: 44, minHeight: 44)

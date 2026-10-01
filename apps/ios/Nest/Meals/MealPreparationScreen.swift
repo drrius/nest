@@ -18,7 +18,12 @@ struct MealPreparationScreen: View {
                 if let saved = model.mealPreparationRequest { MealPreparationStatus(model: model, saved: saved) }
                 if let snapshot { details(snapshot) }
                 if loading { ProgressView("Loading preparation…") }
-                Button("Refresh preparation") { Task { await load() } }.frame(minHeight: 44)
+                Button {
+                    Task { await load() }
+                } label: {
+                    Text("Refresh preparation").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        .contentShape(Rectangle())
+                }
             }
             .frame(maxWidth: .infinity, alignment: .leading).padding(20)
         }
@@ -57,8 +62,12 @@ struct MealPreparationScreen: View {
                 Text("No preparation linked yet.").foregroundStyle(QuietPalette.muted)
             }
             if let context, context.baseline.preparation?.state != .archived {
-                Button(value.preparation == nil ? "Add preparation" : "Edit preparation") { editing = true }
-                    .frame(minHeight: 44).disabled(model.mealPreparationRequest != nil || loading)
+                Button {
+                    editing = true
+                } label: {
+                    Text(value.preparation == nil ? "Add preparation" : "Edit preparation")
+                        .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading).contentShape(Rectangle())
+                }.disabled(model.mealPreparationRequest != nil || loading)
             }
             Text("Preparation is a household task. It does not change the meal plan or record an expense.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)

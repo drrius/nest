@@ -87,5 +87,127 @@
       "status": "open",
       "state": "active"
     }
-  }
+  },
+  "titles": [
+    {
+      "title": "\t",
+      "valid": false
+    },
+    {
+      "title": "\n",
+      "valid": false
+    },
+    {
+      "title": "\u000b",
+      "valid": false
+    },
+    {
+      "title": "\f",
+      "valid": false
+    },
+    {
+      "title": "\r",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": "　",
+      "valid": false
+    },
+    {
+      "title": "﻿",
+      "valid": false
+    },
+    {
+      "title": "",
+      "valid": true
+    },
+    {
+      "title": "🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲",
+      "valid": true
+    },
+    {
+      "title": "🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲",
+      "valid": false
+    },
+    {
+      "title": " x ",
+      "valid": true
+    },
+    {
+      "title": "x\u0000",
+      "valid": false
+    }
+  ]
 }

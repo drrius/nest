@@ -39,6 +39,11 @@ test("Swift preparation wire fixtures match strict Effect schemas, including nul
   assert.equal(Object.hasOwn(fixtures.titleOnly.patch, "instructions"), false);
   assert.equal(fixtures.edit.patch.instructions, null);
   assert.equal(fixtures.create.preparation.instructions, null);
+  for (const { title, valid } of fixtures.titles) {
+    const input = { ...fixtures.create, preparation: { ...fixtures.create.preparation, title } };
+    if (valid) assert.deepEqual(Schema.decodeUnknownSync(CreateMealPreparation)(input), input);
+    else assert.throws(() => Schema.decodeUnknownSync(CreateMealPreparation)(input));
+  }
   assert.equal(
     fixtures.editReceipt.routineVersion > fixtures.editReceipt.previousRoutineVersion,
     true,

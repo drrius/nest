@@ -4,6 +4,16 @@ import XCTest
 @testable import NestCore
 
 final class MealPreparationTests: XCTestCase {
+    func testWhitespaceTitlesMatchSharedEffectFixtures() throws {
+        let fixture = try MealPreparationFixture()
+        let titles = try XCTUnwrap(fixture.object["titles"] as? [[String: Any]])
+        for item in titles {
+            let title = try XCTUnwrap(item["title"] as? String)
+            let valid = try XCTUnwrap(item["valid"] as? Bool)
+            XCTAssertEqual(MealPreparationDraft.validTitle(title), valid)
+        }
+    }
+
     func testWireRoundTripAndNullableInstructionsMatchEffectFixtures() throws {
         let fixture = try MealPreparationFixture()
         for name in ["edit", "titleOnly"] {
