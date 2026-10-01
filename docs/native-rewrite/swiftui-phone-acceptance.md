@@ -4,6 +4,8 @@ The available private candidate is 0.1.0/build11, source `d4981cbef686933a644444
 
 A 1 October simulator journey reproduced a post-add crash in build11’s ingredient-review binding. The first grocery was recorded and its receipt recovered; source `99dec6fb` fixes the crash and passes a distinct native addition plus regression tests. **Leave meal-to-grocery ingredient addition out of the build11 phone pass until the updated beta is available.** Sign-in/navigation results can still be recorded separately. See the [bounded evidence](../../evidence/2026-10-01/swiftui-manual-week/README.md).
 
+The replacement0.1.0/build12 candidate is exact source `5a2bb1b3`, with the later fixes and passing local artifact/required CI checks. Its original single [submission](https://expo.dev/accounts/drrius-dev/projects/nest/submissions/ef4a105a-a3de-41b1-be11-53afcf23dfb9) is queued; Apple availability is not yet confirmed. Use the identified updated build only once its availability is recorded.
+
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 
 ## First phone pass

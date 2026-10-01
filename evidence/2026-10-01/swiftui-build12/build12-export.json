@@ -1,0 +1,33 @@
+{
+  "sourceCommit": "5a2bb1b3a77b61d0d259a05c53906ba50b2d762c",
+  "sourceFilesVerified": 787,
+  "version": "0.1.0",
+  "build": "12",
+  "bundle": "ch.drrius.nest",
+  "ipaName": "Nest.ipa",
+  "ipaBytes": 10561421,
+  "ipaSha256": "ddbc85739d50e3f49a6939751932aa4144f54f136cb6fb31fa0b2482ee19260a",
+  "team": "5ZKB6XKYFX",
+  "platform": "iPhoneOS",
+  "architecture": "arm64",
+  "backend": "nest-test",
+  "pushEnabled": false,
+  "signing": "passed",
+  "privacyManifestsPackaged": 2,
+  "dSYM": "retained",
+  "appleUpload": "single submission scheduled; not yet confirmed uploaded",
+  "sourceCI": {
+    "nest": 36804641485,
+    "swiftui": 36804641470,
+    "status": "success",
+    "nativeCases": 213,
+    "nativeSkips": 4,
+    "nativeFailures": 0
+  },
+  "submissionId": "ef4a105a-a3de-41b1-be11-53afcf23dfb9",
+  "submissionStatus": "IN_QUEUE",
+  "submissionCreatedAt": "2026-10-01T02:21:23.769Z",
+  "submissionUrl": "https://expo.dev/accounts/drrius-dev/projects/nest/submissions/ef4a105a-a3de-41b1-be11-53afcf23dfb9",
+  "cloudBuildsStarted": 0,
+  "physicalPhoneVerified": false
+}
