@@ -24,6 +24,17 @@ Build13 batches these corrections instead of submitting a beta per UI adjustment
 
 On build13, create one clearly named test recipe with at least one ingredient, edit its instructions and confirm the detail refreshes. Archive that exact test recipe and confirm existing planned meals retain their recipe snapshot. For a clearly named future test meal, open Meal preparation, create a date-only shared task, then edit instructions/responsibility and confirm the partner sees the same task. Reminder consent is separate; preparation is household work and must not post money. Record the actual build and result. Do not infer generated-plan, AI, offline, notification or full accessibility acceptance from those online checks.
 
+## Later financial candidate checks
+
+These changes are **not in build13**. Wait for an identified newer candidate before testing them; do not infer a feature from current source or CI. Use clearly marked fictional entries in nest-test only. Record each phone/build/result and keep unresolved saved decisions intact.
+
+- Review a private variable-bill proposal's exact CHF amount, payer, two shares and due period. Merely opening it, returning from background or refreshing must not record it. Explicitly confirm one proposal and decline another, then check the matching immutable result. Do not use an ordinary bill form as a substitute for a private approval.
+- During review, have the other partner change the bill revision or cover that same cycle using a separate explicit test action. The old proposal must refuse confirmation and permit explicit decline or a fresh proposal. A saved uncertain decision must first resolve its exact recorded or unused result; do not discard it based only on a message or local clock.
+- To link an existing test expense, open its recurring rule and choose Link existing expense. Review the original expense and rule separately, including any difference in amount, payer or split. Explicit confirmation must cover one period while leaving the number of expenses and both balances unchanged. Both phones should observe the same covered cycle after refreshing. Check older history pages where applicable.
+- After an interrupted confirmation or cancellation, reopen the app and check the saved exact result before trying another entry. If already recorded, cancellation must preserve the receipt/history. Financial initiation needs an online fresh review; a disconnected phone must not silently queue a new financial approval or link. Report the exact state rather than deleting the app or saved intent.
+
+Private manual-link proposal cards and legacy draft/adoption journeys still require implementation. Full financial phone acceptance also includes expenses, refunds, reversals/replacements, settlements, rule creation/edit/state/resumption, approval privacy across the two members and repeated requests without duplicate posting. These focused checks do not close that full gate.
+
 ## Separate unfinished gates
 
 Live AI is disabled while Gateway eligibility requires a valid card; no purchase is authorized. Notification delivery is disabled pending APNs provider setup and physical delivery verification. A successful permission screen or simulated notification does not satisfy that gate. Complete both-member weekly/approval/offline-conflict/calendar journeys, exact migration reconciliation and owner design acceptance remain required. No result here authorizes production cutover or an App Store release.
