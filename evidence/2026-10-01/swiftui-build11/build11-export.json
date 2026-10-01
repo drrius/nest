@@ -15,7 +15,7 @@
   "signing": "passed",
   "privacyManifestsPackaged": 2,
   "dSYM": "retained",
-  "appleUpload": "submission initiated; processing unverified",
+  "appleUpload": "VALID and IN_BETA_TESTING internally; physical/partner acceptance unverified",
   "ci": {
     "nest": {
       "run": 36785676608,
@@ -42,5 +42,5 @@
   },
   "physicalPhoneAcceptance": "unverified",
   "submissionId": "bffc8f0e-93f7-4e1e-a663-6d3a2ff08318",
-  "submissionStatus": "scheduled"
+  "submissionStatus": "FINISHED"
 }

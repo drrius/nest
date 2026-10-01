@@ -10,7 +10,7 @@ The exported IPA was unpacked and verified independently: strict code signature,
 
 Archive/export temporarily unlocked only the existing isolated signing keychain, then locked it and restored the exact original user search list. A preflight helper initially used a Python timezone constant unavailable on the Mac; it failed before starting the archive or unlocking the keychain. Correcting that helper allowed the unchanged source to archive successfully.
 
-Paths on the Mac: `/private/tmp/nest-swiftui-build11-20261001.xcarchive` and `/private/tmp/nest-swiftui-build11-export-20261001/Nest.ipa`. Logs: `/private/tmp/nest-swiftui-build11-{archive,export}-20261001.log`. The owner-authorized private submission has started; Apple processing/tester access/phone acceptance remain unverified. This artifact does not enable AI/APNs providers, change production or authorize public release.
+Paths on the Mac: `/private/tmp/nest-swiftui-build11-20261001.xcarchive` and `/private/tmp/nest-swiftui-build11-export-20261001/Nest.ipa`. Logs: `/private/tmp/nest-swiftui-build11-{archive,export}-20261001.log`. The original private submission finished; Apple reports build11 VALID and IN_BETA_TESTING internally. Partner tester access and physical-phone acceptance remain unverified. This artifact does not enable AI/APNs providers, change production or authorize public release.
 
 ## Exact-source CI
 
@@ -18,6 +18,6 @@ Paths on the Mac: `/private/tmp/nest-swiftui-build11-20261001.xcarchive` and `/p
 
 ## Private submission
 
-Existing Nest App Store Connect credentials scheduled [submission bffc8f0e-93f7-4e1e-a663-6d3a2ff08318](https://expo.dev/accounts/drrius-dev/projects/nest/submissions/bffc8f0e-93f7-4e1e-a663-6d3a2ff08318). This is one identified locally exported IPA, not a cloud build or public release. Apple processing, internal availability and partner tester access are pending.
+Existing Nest App Store Connect credentials scheduled [submission bffc8f0e-93f7-4e1e-a663-6d3a2ff08318](https://expo.dev/accounts/drrius-dev/projects/nest/submissions/bffc8f0e-93f7-4e1e-a663-6d3a2ff08318). This is one identified locally exported IPA, not a cloud build or public release. Supported App Store Connect status now confirms 0.1.0/build11 VALID and IN_BETA_TESTING internally, uploaded30 September at18:07:42−07:00 (1 October01:07:42 UTC). The single submission finished at01:06:43.281 UTC. See [sanitized Apple availability](apple-availability.json). Partner tester access and physical-phone acceptance remain unverified. No additional upload or cloud build was started.
 
 The separately dispatched [deep36787052571](https://github.com/drrius/nest/actions/runs/36787052571) also passes at evidence head `2fa0f5f4`, whose native source matches the artifact: 11 core HTTP/PostgREST, 50 terminal conflict/approval recovery and 1,223 isolated PostgreSQL/RLS cases, zero failures/skips. These are isolated fixture checks; they do not reconcile hosted production data or substitute for the two phones.
