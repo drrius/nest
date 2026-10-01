@@ -74,6 +74,8 @@ struct AssistantHistoryScreen: View {
             AssistantRecipeRow(session: session, member: member, result: recipe)
         } else if let result = AssistantMealRecipeReplacementLink.receipt(part, member: member) {
             AssistantMealRecipeReplacementRow(session: session, result: result)
+        } else if let result = AssistantMealActionLink.read(part, member: member) {
+            AssistantMealActionRow(session: session, result: result)
         } else {
             householdActionPart(part)
         }

@@ -1,0 +1,28 @@
+{
+  "fixture": "controlled read-only canonical transcript; shipping SwiftUI views; no live provider or hosted writes",
+  "nativeTaps": [
+    {
+      "label": "View current planned meal",
+      "bounds": {
+        "x": 36,
+        "y": 251.5,
+        "width": 303,
+        "height": 44
+      },
+      "destination": "Fixture supper",
+      "reached": true
+    },
+    {
+      "label": "Check current meal status",
+      "bounds": {
+        "x": 36,
+        "y": 402.5,
+        "width": 303,
+        "height": 44
+      },
+      "destination": "This meal is no longer in this week.",
+      "reached": true
+    }
+  ],
+  "backReloadsHistory": true
+}
