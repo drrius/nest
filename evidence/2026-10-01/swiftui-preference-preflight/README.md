@@ -1,6 +1,6 @@
 # New preference intent preflight
 
-Source `ce15b3e2d` (full current source available through the linked CI) requires fresh authorized exact food/cooking baselines before staging a new preference command. Failed preflight preserves the editor baseline and does not update the cache or create a journal. Existing lost-response commands replay unchanged. Reload asks explicitly before discarding unsaved edits.
+Source `ce15b3e2488a463a29b9b50e8545186b80989ed1` requires fresh authorized exact food/cooking baselines before staging a new preference command. Failed preflight preserves the editor baseline and does not update the cache or create a journal. Existing lost-response commands replay unchanged. Reload asks explicitly before discarding unsaved edits.
 
 [Nest36831957709](https://github.com/drrius/nest/actions/runs/36831957709) and [SwiftUI36831957708](https://github.com/drrius/nest/actions/runs/36831957708) pass:400 Foundation cases/41 explicit skips,243 signed native cases/six explicit skips, zero failures. Strict formatting, source limits and actual app signing pass.
 
