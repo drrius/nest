@@ -30,7 +30,8 @@ extension ChoreOfflineStore {
     func enqueueMealLeftovers(_ saved: SavedMealLeftovers, lease: OfflineLease) throws {
         try authorize(lease)
         _ = try saved.validated(lease)
-        guard saved.state == .pending, try readMealLeftovers(lease: lease) == nil,
+        guard try readMealRecipeReplacement(lease: lease) == nil,
+            saved.state == .pending, try readMealLeftovers(lease: lease) == nil,
             try readMealReplacement(lease: lease) == nil,
             try readMealMove(lease: lease) == nil
         else { throw OfflineFailure.alreadyQueued }

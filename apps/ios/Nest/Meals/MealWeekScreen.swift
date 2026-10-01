@@ -44,6 +44,9 @@ struct MealWeekScreen: View {
                 if let saved = model.mealReplacement {
                     MealReplacementStatus(model: model, saved: saved)
                 }
+                if let saved = model.mealRecipeReplacement {
+                    MealRecipeReplacementStatus(model: model, saved: saved)
+                }
                 content
                 if case .loaded(let week) = model.mealStatus {
                     NavigationLink {
@@ -183,6 +186,7 @@ struct MealWeekScreen: View {
                     slots: model.mealVisibleSlots,
                     canChange: model.mealPlacement == nil && model.mealRemoval == nil
                         && model.mealRecipePlacement == nil && model.mealMove == nil && model.mealReplacement == nil
+                        && model.mealRecipeReplacement == nil
                         && model.mealLeftovers == nil
                 ) { slot in
                     addTarget = MealSlotTarget(date: date, slot: slot)

@@ -72,6 +72,8 @@ struct AssistantHistoryScreen: View {
     private func actionPart(_ part: [String: AssistantJSON]) -> some View {
         if let recipe = AssistantRecipeLink.read(part, member: member) {
             AssistantRecipeRow(session: session, member: member, result: recipe)
+        } else if let result = AssistantMealRecipeReplacementLink.receipt(part, member: member) {
+            AssistantMealRecipeReplacementRow(session: session, result: result)
         } else {
             householdActionPart(part)
         }
