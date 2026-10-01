@@ -10,6 +10,7 @@ struct IngredientReviewScreen: View {
     @State private var confirm = false
     @State private var discard = false
     @State private var request = UUID()
+    @FocusState private var focusedField: String?
 
     var body: some View {
         Form {
@@ -26,10 +27,17 @@ struct IngredientReviewScreen: View {
         }
         .disabled(busy)
         .scrollContentBackground(.hidden)
+        .scrollDismissesKeyboard(.interactively)
         .background(QuietPalette.background)
         .tint(QuietPalette.accent)
         .navigationTitle("Review ingredients")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button("Done") { focusedField = nil }.frame(minHeight: 44)
+            }
+        }
         .task(id: model.generation) { await load() }
         .confirmationDialog("Add \(selectedCount) ingredients to groceries?", isPresented: $confirm) {
             Button("Add to groceries") { Task { await add() } }
@@ -68,7 +76,7 @@ struct IngredientReviewScreen: View {
                 if listing.ingredients.isEmpty { Text("No ingredients to add for this week.") }
                 ForEach($choices) { $choice in
                     if let row = listing.ingredients.first(where: { $0.id == choice.id }) {
-                        IngredientChoiceRow(choice: $choice, row: row)
+                        IngredientChoiceRow(choice: $choice, row: row, focus: $focusedField)
                     }
                 }
             }

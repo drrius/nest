@@ -3,6 +3,7 @@ import SwiftUI
 struct IngredientChoiceRow: View {
     @Binding var choice: MealIngredientChoice
     let row: MealIngredient
+    let focus: FocusState<String?>.Binding
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -16,11 +17,17 @@ struct IngredientChoiceRow: View {
             } else {
                 LabeledContent("Quantity") {
                     TextField("Optional", text: quantity).multilineTextAlignment(.trailing).accessibilityLabel(
-                        "Quantity for \(row.name), \(occurrence)")
+                        "Quantity for \(row.name), \(occurrence)"
+                    )
+                    .focused(focus, equals: "\(row.entryId):\(row.ingredientId):quantity")
+                    .onSubmit { focus.wrappedValue = nil }
                 }
                 LabeledContent("Unit") {
                     TextField("Optional", text: unit).multilineTextAlignment(.trailing).accessibilityLabel(
-                        "Unit for \(row.name), \(occurrence)")
+                        "Unit for \(row.name), \(occurrence)"
+                    )
+                    .focused(focus, equals: "\(row.entryId):\(row.ingredientId):unit")
+                    .onSubmit { focus.wrappedValue = nil }
                 }
             }
         }.padding(.vertical, 6)
