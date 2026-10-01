@@ -7,6 +7,7 @@ struct CookingPreferencesScreen: View {
     @State private var slots = Set(MealSlot.allCases)
     @State private var loading = false
     @State private var submitting = false
+    @State private var confirmReload = false
 
     var body: some View {
         Form {
@@ -59,6 +60,10 @@ struct CookingPreferencesScreen: View {
             if context == nil && !loading {
                 Button("Load current preferences") { Task { await reload() } }
             }
+            if context != nil && model.cookingPending == nil {
+                Button("Reload current preferences") { confirmReload = true }
+                    .disabled(loading || submitting || model.cookingSaving)
+            }
         }
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
@@ -70,11 +75,17 @@ struct CookingPreferencesScreen: View {
                     .disabled(!editable || !valid)
             }
         }
-        .task { await reload() }
+        .task(id: model.generation) { await reload() }
+        .confirmationDialog("Reload and discard unsaved edits?", isPresented: $confirmReload) {
+            Button("Reload preferences", role: .destructive) { Task { await reload() } }
+            Button("Cancel", role: .cancel) {}
+        }
     }
 
     private var editable: Bool {
-        context != nil && !loading && !submitting && !model.cookingSaving && model.cookingPending == nil
+        guard let context else { return false }
+        return !loading && !submitting && !model.cookingSaving && model.cookingPending == nil
+            && model.generation == context.generation && model.status == .ready(context.member)
     }
 
     private var valid: Bool {

@@ -10,6 +10,7 @@ extension SessionModel {
             let command = try SaveCookingProfile(
                 operationId: UUID(), expectedRevision: context.profile.profile?.revision ?? "0",
                 notes: notes, slots: slots)
+            try await preflightCookingPreferences(context)
             let saved = SavedCookingPreference(
                 baseline: context.profile, command: command, state: .pending, receipt: nil)
             try await offline.enqueueCookingPreference(saved, lease: lease)

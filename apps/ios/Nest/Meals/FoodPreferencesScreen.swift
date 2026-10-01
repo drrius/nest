@@ -8,6 +8,7 @@ struct FoodPreferencesScreen: View {
     @State private var busy = false
     @State private var notice: String?
     @State private var discard = false
+    @State private var reload = false
     @State private var request = UUID()
 
     var body: some View {
@@ -33,6 +34,9 @@ struct FoodPreferencesScreen: View {
             if !busy && context?.profile == nil {
                 Button("Load preferences") { Task { await load() } }
             }
+            if !busy && context?.profile != nil && context?.pending == nil {
+                Button("Reload current preferences") { reload = true }
+            }
         }
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
@@ -47,6 +51,10 @@ struct FoodPreferencesScreen: View {
         .task(id: model.generation) { await load() }
         .confirmationDialog("Discard rejected preferences?", isPresented: $discard) {
             Button("Discard request", role: .destructive) { Task { await recover() } }
+            Button("Cancel", role: .cancel) {}
+        }
+        .confirmationDialog("Reload and discard unsaved edits?", isPresented: $reload) {
+            Button("Reload preferences", role: .destructive) { Task { await load() } }
             Button("Cancel", role: .cancel) {}
         }
     }
@@ -138,9 +146,14 @@ struct FoodPreferencesScreen: View {
         if let cached = try? await model.cachedFoodContext(),
             cached.generation == original.generation, cached.member == original.member
         {
-            if cached.pending != nil { try? apply(cached) } else { context = cached }
+            if cached.pending != nil {
+                try? apply(cached)
+                notice = "Could not confirm the save. Review the saved request before retrying."
+                return
+            }
         }
-        notice = "Could not confirm the save. Review the saved request before retrying."
+        notice =
+            "Could not confirm the save. Connect and reload current preferences before trying again. Your edits are still here."
     }
 
     private func recover() async {

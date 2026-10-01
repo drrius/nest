@@ -36,6 +36,8 @@ extension SessionModel {
         guard let offline, let lease, let baseline = context.profile else { throw OfflineFailure.missingSnapshot }
         let command = SaveFoodPreferences(
             operationId: UUID(), expectedRevision: baseline.profile?.revision ?? "0", preferences: preferences)
+        _ = try command.validated()
+        try await preflightFoodPreferences(context)
         try await offline.enqueueFoodPreference(
             .init(baseline: baseline, command: command, state: .pending, receipt: nil), lease: lease)
         try requireFoodContext(context)
