@@ -13,7 +13,17 @@ final class CorrectionDecisionModelTests: XCTestCase {
         try await verifyRecovery(expired: true)
     }
 
-    private func verifyRecovery(expired: Bool) async throws {
+    func testNewDecisionRequiresFreshOnlineUnexpiredExactPrivateProposal() async throws {
+        for approved in [true, false] {
+            for fault in ["offline", "expired", "operation", "actor", "denied"] {
+                try await verifyRecovery(expired: false, preflightFault: fault, approved: approved)
+            }
+        }
+    }
+
+    private func verifyRecovery(
+        expired: Bool, preflightFault: String? = nil, approved: Bool = true
+    ) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -36,9 +46,15 @@ final class CorrectionDecisionModelTests: XCTestCase {
             allocations: try ExpenseSplit.equal(Centimes("101"), payer: member.userId, other: partner),
             date: try CivilDate("2026-09-28"), note: nil, categoryId: nil)
         let correction = CorrectionInput(sourceEventId: UUID(), expectedReversalId: nil, replacement: .expense(expense))
-        let input = CorrectionDecision(operationId: UUID(), approvalId: UUID(), correction: correction, approved: true)
-        await server.prepare(input, expired: expired)
+        let input = CorrectionDecision(operationId: UUID(), approvalId: UUID(), correction: correction, approved: approved)
+        await server.prepare(input, expired: false)
+        if let preflightFault {
+            await server.failPreflight(preflightFault)
+            try await verifyRefusedPreflight(model, context: context, input: input, server: server)
+            return
+        }
         try await model.stageCorrectionDecision(input, context: context)
+        if expired { await server.prepare(input, expired: true) }
         let staged = try await model.savedCorrectionDecision(context)
         if expired {
             let recovered = try await model.retryCorrectionDecision(context)
@@ -72,6 +88,19 @@ final class CorrectionDecisionModelTests: XCTestCase {
             XCTFail("Signed-out context reused")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
+    private func verifyRefusedPreflight(
+        _ model: SessionModel, context: ExpenseContext, input: CorrectionDecision, server: LostCorrectionDecisionReplyServer
+    ) async throws {
+        do {
+            try await model.stageCorrectionDecision(input, context: context)
+            XCTFail("A new financial decision was journaled without valid online preflight")
+        } catch {}
+        let saved = try await model.savedCorrectionDecision(context)
+        XCTAssertNil(saved)
+        let sends = await server.saves
+        XCTAssertEqual(sends, 0)
+    }
+
 }
 
 private actor LostCorrectionDecisionReplyServer {
@@ -80,6 +109,11 @@ private actor LostCorrectionDecisionReplyServer {
     var receipt: CorrectionReceipt?
     var saves = 0
     var expired = false
+    var preflightFault: String?
+    func failPreflight(_ fault: String) {
+        preflightFault = fault
+        if fault == "expired" { expired = true }
+    }
     init(member: VerifiedMember) { self.member = member }
     func prepare(_ value: CorrectionDecision, expired: Bool) {
         decision = value
@@ -87,6 +121,7 @@ private actor LostCorrectionDecisionReplyServer {
     }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if preflightFault == "offline" { throw URLError(.notConnectedToInternet) }
         if request.url!.path.hasSuffix("/decide") {
             let input = try JSONDecoder().decode(CorrectionDecision.self, from: request.httpBody!)
             guard input == decision else { throw NestAPIFailure.contract }
@@ -110,10 +145,12 @@ private actor LostCorrectionDecisionReplyServer {
             )
         }
         let result = CorrectionApprovalEnvelope(
-            version: 1, actorId: member.userId, householdId: member.householdId,
+            version: 1, actorId: preflightFault == "actor" ? UUID() : member.userId,
+            householdId: member.householdId,
             approval: .init(
-                id: decision.approvalId, operationId: decision.operationId, correction: decision.correction,
-                status: receipt == nil ? .pending : .consumed,
+                id: decision.approvalId,
+                operationId: preflightFault == "operation" ? UUID() : decision.operationId, correction: decision.correction,
+                status: preflightFault == "denied" ? .denied : (receipt == nil ? .pending : .consumed),
                 expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
         return (

@@ -19,6 +19,11 @@ extension SessionModel {
     }
 
     func stageSettlementDecision(_ decision: SettlementDecision, context: ExpenseContext) async throws {
+        let proposal = try await readSettlementApproval(context, approvalId: decision.approvalId)
+            .matching(decision, member: context.member, terminal: false)
+        guard proposal.approval.status == .pending,
+            ApprovalTime.isOpen(proposal.approval.expiresAt, now: .now)
+        else { throw NestAPIFailure.conflict }
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueSettlementDecision(decision, lease: context.lease)

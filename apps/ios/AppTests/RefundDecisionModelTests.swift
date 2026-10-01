@@ -13,7 +13,17 @@ final class RefundDecisionModelTests: XCTestCase {
         try await verifyRecovery(expired: true)
     }
 
-    private func verifyRecovery(expired: Bool) async throws {
+    func testNewDecisionRequiresFreshOnlineUnexpiredExactPrivateProposal() async throws {
+        for approved in [true, false] {
+            for fault in ["offline", "expired", "operation", "actor", "denied"] {
+                try await verifyRecovery(expired: false, preflightFault: fault, approved: approved)
+            }
+        }
+    }
+
+    private func verifyRecovery(
+        expired: Bool, preflightFault: String? = nil, approved: Bool = true
+    ) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -35,9 +45,15 @@ final class RefundDecisionModelTests: XCTestCase {
             sourceEventId: UUID(), description: "Approval fixture", amountCentimes: try Centimes("101"),
             payerId: member.userId, allocations: shares, expectedRemaining: shares,
             date: try CivilDate("2026-09-28"), note: nil)
-        let input = RefundDecision(operationId: UUID(), approvalId: UUID(), refund: refund, approved: true)
-        await server.prepare(input, expired: expired)
+        let input = RefundDecision(operationId: UUID(), approvalId: UUID(), refund: refund, approved: approved)
+        await server.prepare(input, expired: false)
+        if let preflightFault {
+            await server.failPreflight(preflightFault)
+            try await verifyRefusedPreflight(model, context: context, input: input, server: server)
+            return
+        }
         try await model.stageRefundDecision(input, context: context)
+        if expired { await server.prepare(input, expired: true) }
         let staged = try await model.savedRefundDecision(context)
         if expired {
             let recovered = try await model.retryRefundDecision(context)
@@ -71,6 +87,19 @@ final class RefundDecisionModelTests: XCTestCase {
             XCTFail("Signed-out context reused")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
+    private func verifyRefusedPreflight(
+        _ model: SessionModel, context: ExpenseContext, input: RefundDecision, server: LostRefundDecisionReplyServer
+    ) async throws {
+        do {
+            try await model.stageRefundDecision(input, context: context)
+            XCTFail("A new financial decision was journaled without valid online preflight")
+        } catch {}
+        let saved = try await model.savedRefundDecision(context)
+        XCTAssertNil(saved)
+        let sends = await server.saves
+        XCTAssertEqual(sends, 0)
+    }
+
 }
 
 private actor LostRefundDecisionReplyServer {
@@ -79,6 +108,11 @@ private actor LostRefundDecisionReplyServer {
     var receipt: RefundReceipt?
     var saves = 0
     var expired = false
+    var preflightFault: String?
+    func failPreflight(_ fault: String) {
+        preflightFault = fault
+        if fault == "expired" { expired = true }
+    }
     init(member: VerifiedMember) { self.member = member }
     func prepare(_ value: RefundDecision, expired: Bool) {
         decision = value
@@ -86,6 +120,7 @@ private actor LostRefundDecisionReplyServer {
     }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if preflightFault == "offline" { throw URLError(.notConnectedToInternet) }
         if request.url!.path.hasSuffix("/decide") {
             let input = try JSONDecoder().decode(RefundDecision.self, from: request.httpBody!)
             guard input == decision else { throw NestAPIFailure.contract }
@@ -107,10 +142,12 @@ private actor LostRefundDecisionReplyServer {
             )
         }
         let result = RefundApprovalEnvelope(
-            version: 1, actorId: member.userId, householdId: member.householdId,
+            version: 1, actorId: preflightFault == "actor" ? UUID() : member.userId,
+            householdId: member.householdId,
             approval: .init(
-                id: decision.approvalId, operationId: decision.operationId, refund: decision.refund,
-                status: receipt == nil ? .pending : .consumed,
+                id: decision.approvalId,
+                operationId: preflightFault == "operation" ? UUID() : decision.operationId, refund: decision.refund,
+                status: preflightFault == "denied" ? .denied : (receipt == nil ? .pending : .consumed),
                 expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
         return (

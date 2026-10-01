@@ -12,7 +12,18 @@ final class RecurringDecisionModelTests: XCTestCase {
         try await verifyRecovery(expired: true, update: false)
         try await verifyRecovery(expired: true, update: true)
     }
-    private func verifyRecovery(expired: Bool, update: Bool) async throws {
+    func testNewDecisionRequiresFreshOnlineUnexpiredExactPrivateProposal() async throws {
+        for approved in [true, false] {
+            for fault in ["offline", "expired", "operation", "actor", "denied"] {
+                try await verifyRecovery(
+                    expired: false, update: false, preflightFault: fault, approved: approved)
+            }
+        }
+    }
+
+    private func verifyRecovery(
+        expired: Bool, update: Bool, preflightFault: String? = nil, approved: Bool = true
+    ) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -36,9 +47,15 @@ final class RecurringDecisionModelTests: XCTestCase {
                 note: nil, startDate: try CivilDate("2026-09-01"),
                 schedule: .init(kind: .monthly, weekday: nil, dayOfMonth: 28),
                 mode: .variable, amountCentimes: nil, allocations: nil), firstDueOn: try CivilDate("2026-09-28"))
-        let input = RecurringDecision(operationId: UUID(), approvalId: UUID(), rule: rule, approved: true)
-        await server.prepare(input, expired: expired)
+        let input = RecurringDecision(operationId: UUID(), approvalId: UUID(), rule: rule, approved: approved)
+        await server.prepare(input, expired: false)
+        if let preflightFault {
+            await server.failPreflight(preflightFault)
+            try await verifyRefusedPreflight(model, context: context, input: input, server: server)
+            return
+        }
         try await model.stageRecurringDecision(input, context: context)
+        if expired { await server.prepare(input, expired: true) }
         let staged = try await model.savedRecurringDecision(context)
         if expired {
             let result = try await model.retryRecurringDecision(context)
@@ -72,6 +89,19 @@ final class RecurringDecisionModelTests: XCTestCase {
             XCTFail("Signed-out context reused")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
+    private func verifyRefusedPreflight(
+        _ model: SessionModel, context: ExpenseContext, input: RecurringDecision, server: LostRecurringDecisionReplyServer
+    ) async throws {
+        do {
+            try await model.stageRecurringDecision(input, context: context)
+            XCTFail("A new financial decision was journaled without valid online preflight")
+        } catch {}
+        let saved = try await model.savedRecurringDecision(context)
+        XCTAssertNil(saved)
+        let sends = await server.saves
+        XCTAssertEqual(sends, 0)
+    }
+
 }
 
 private actor LostRecurringDecisionReplyServer {
@@ -80,6 +110,11 @@ private actor LostRecurringDecisionReplyServer {
     var receipt: RecurringReceipt?
     var saves = 0
     var expired = false
+    var preflightFault: String?
+    func failPreflight(_ fault: String) {
+        preflightFault = fault
+        if fault == "expired" { expired = true }
+    }
     init(member: VerifiedMember) { self.member = member }
     func prepare(_ value: RecurringDecision, expired: Bool) {
         decision = value
@@ -87,6 +122,7 @@ private actor LostRecurringDecisionReplyServer {
     }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if preflightFault == "offline" { throw URLError(.notConnectedToInternet) }
         if request.url!.path.hasSuffix("/decide") {
             let input = try JSONDecoder().decode(RecurringDecision.self, from: request.httpBody!)
             guard input == decision else { throw NestAPIFailure.contract }
@@ -110,10 +146,12 @@ private actor LostRecurringDecisionReplyServer {
             )
         }
         let result = RecurringApprovalEnvelope(
-            version: 1, actorId: member.userId, householdId: member.householdId,
+            version: 1, actorId: preflightFault == "actor" ? UUID() : member.userId,
+            householdId: member.householdId,
             approval: .init(
-                id: decision.approvalId, operationId: decision.operationId, rule: decision.rule,
-                status: receipt == nil ? .pending : .consumed,
+                id: decision.approvalId,
+                operationId: preflightFault == "operation" ? UUID() : decision.operationId, rule: decision.rule,
+                status: preflightFault == "denied" ? .denied : (receipt == nil ? .pending : .consumed),
                 expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
         return (
