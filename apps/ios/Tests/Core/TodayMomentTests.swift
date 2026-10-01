@@ -21,7 +21,8 @@ final class TodayMomentTests: XCTestCase {
         let today = try CivilDate("2026-09-30")
         let tomorrow = try CivilDate("2026-10-01")
         XCTAssertEqual(before.dueLabel(today), "Due today")
-        XCTAssertEqual(after.dueLabel(today), "Overdue since 30 Sept")
+        // English locale data uses either abbreviation across Foundation/ICU versions.
+        XCTAssertTrue(["Overdue since 30 Sep", "Overdue since 30 Sept"].contains(after.dueLabel(today)))
         XCTAssertEqual(before.dueLabel(tomorrow), "Due 1 Oct")
         XCTAssertEqual(after.dueLabel(tomorrow), "Due today")
         let actor = UUID()
