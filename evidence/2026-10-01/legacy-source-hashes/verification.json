@@ -1,0 +1,394 @@
+{
+  "legacySourceFiles": 55,
+  "matching": 55,
+  "changed": [],
+  "sources": [
+    {
+      "file": "20260809100000_core_tenancy.sql",
+      "manifestSha256": "db2d06e3f5a29432e3a1a9648a88fb6c993bf897c0edfc77e5dd1c35ff052e72",
+      "referenceSha256": "db2d06e3f5a29432e3a1a9648a88fb6c993bf897c0edfc77e5dd1c35ff052e72",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260809190100_harden_core_tenancy.sql",
+      "manifestSha256": "fc05891739ba59ce396c126032b813a1f717ffaffb42d496af61e048fbb8c70d",
+      "referenceSha256": "fc05891739ba59ce396c126032b813a1f717ffaffb42d496af61e048fbb8c70d",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260809201000_household_member_cap.sql",
+      "manifestSha256": "2ac90fcfdd53350f36be3e1cfe9be1ac2753da66b5ffbb594084180950935cc0",
+      "referenceSha256": "2ac90fcfdd53350f36be3e1cfe9be1ac2753da66b5ffbb594084180950935cc0",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260809202000_serialize_household_member_cap.sql",
+      "manifestSha256": "9fc16e87a7401f401c929db10e8ae8bd6779998f6c017b71978091c321011e5c",
+      "referenceSha256": "9fc16e87a7401f401c929db10e8ae8bd6779998f6c017b71978091c321011e5c",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260809210000_routine_engine.sql",
+      "manifestSha256": "e3441544c85fe74dbefe775880aefb383409efcd11c1728d637616211c5296bb",
+      "referenceSha256": "e3441544c85fe74dbefe775880aefb383409efcd11c1728d637616211c5296bb",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260811180000_meals_groceries.sql",
+      "manifestSha256": "105552a4fe0596141331711232d8b1e70990b25bf7687025897dbc456c943aa1",
+      "referenceSha256": "105552a4fe0596141331711232d8b1e70990b25bf7687025897dbc456c943aa1",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260811200000_chf_ledger.sql",
+      "manifestSha256": "de54846277e51e048aa416cd798b97ad4be2ba8a35aa35989e1a083877f6fc71",
+      "referenceSha256": "de54846277e51e048aa416cd798b97ad4be2ba8a35aa35989e1a083877f6fc71",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260812090000_notifications_realtime.sql",
+      "manifestSha256": "1fdf6a18945d47ad36b8e32956135e7d970f607c84cbd69e6610a3fb5bffd982",
+      "referenceSha256": "1fdf6a18945d47ad36b8e32956135e7d970f607c84cbd69e6610a3fb5bffd982",
+      "matches": true,
+      "testAdjustment": "omit seven cron registration blocks"
+    },
+    {
+      "file": "20260812193000_m7_atomic_meal_library.sql",
+      "manifestSha256": "272c5b76c3a4712632dfcbe31e4c63ae9956fa61d3eeb1f06704eb8d45785aa8",
+      "referenceSha256": "272c5b76c3a4712632dfcbe31e4c63ae9956fa61d3eeb1f06704eb8d45785aa8",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260812201042_atomic_settlement.sql",
+      "manifestSha256": "3dad72cba69285028163752a66c821154d5c804701e72e41608165caabf31dfc",
+      "referenceSha256": "3dad72cba69285028163752a66c821154d5c804701e72e41608165caabf31dfc",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260812202316_share_ledger_lock.sql",
+      "manifestSha256": "39358074862dbb99b20ffb879465f9cf29f7fed1ca243a2f4025f6d664543b50",
+      "referenceSha256": "39358074862dbb99b20ffb879465f9cf29f7fed1ca243a2f4025f6d664543b50",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260813140907_update_meal_plan_entry.sql",
+      "manifestSha256": "d4d1b6417cb433ab75cc00b733c886c77f1141f1f0e6759e3557ee3ae3f6d667",
+      "referenceSha256": "d4d1b6417cb433ab75cc00b733c886c77f1141f1f0e6759e3557ee3ae3f6d667",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260814084448_revoke_auto_rls_helper_execute.sql",
+      "manifestSha256": "fb6dc27f0a9343bc7f47a2bed3a7d06c9831147ea7ba369731ef80a3eed4a669",
+      "referenceSha256": "fb6dc27f0a9343bc7f47a2bed3a7d06c9831147ea7ba369731ef80a3eed4a669",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260814120000_invoke_push_dispatch.sql",
+      "manifestSha256": "ffb25dd50807660658cdb206bbf79ffdcf7ee7ae69fa7bd810ae49b4de38b9c8",
+      "referenceSha256": "ffb25dd50807660658cdb206bbf79ffdcf7ee7ae69fa7bd810ae49b4de38b9c8",
+      "matches": true,
+      "testAdjustment": "omit one cron registration block"
+    },
+    {
+      "file": "20260814153314_enable_pg_net.sql",
+      "manifestSha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70",
+      "referenceSha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260830190000_grant_schedule_validator_execute.sql",
+      "manifestSha256": "b9bd10d6c719b108a5e153f042313f4244b4f107a3733bcbacdab7c3560366c2",
+      "referenceSha256": "b9bd10d6c719b108a5e153f042313f4244b4f107a3733bcbacdab7c3560366c2",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260830210000_biweekly_schedule.sql",
+      "manifestSha256": "dcb0f55b56b11e37d19395fad3932f39cf9657b3bb23eb7c161445cc21a31604",
+      "referenceSha256": "dcb0f55b56b11e37d19395fad3932f39cf9657b3bb23eb7c161445cc21a31604",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260830220000_preserve_reschedule_on_rebuild.sql",
+      "manifestSha256": "cff807df5329d4ee312b5823491a46bd7dc69f635f842068c0304fdaa1e6cf18",
+      "referenceSha256": "cff807df5329d4ee312b5823491a46bd7dc69f635f842068c0304fdaa1e6cf18",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904224746_household_attachments.sql",
+      "manifestSha256": "ca17519d706dffdca0a32486cadaa3e12a7689c3dfefebdb827ad1f55475e36f",
+      "referenceSha256": "ca17519d706dffdca0a32486cadaa3e12a7689c3dfefebdb827ad1f55475e36f",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904225404_cancel_shopping_session.sql",
+      "manifestSha256": "6457ff8b0be33b241d2394484e289cfa7123479664466fa8aa4e24d5934c3ac4",
+      "referenceSha256": "6457ff8b0be33b241d2394484e289cfa7123479664466fa8aa4e24d5934c3ac4",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904225405_connected_household.sql",
+      "manifestSha256": "eed3c90bb2882835ee72d26a949c2371b5a7828d8976afa338921b153945ad2d",
+      "referenceSha256": "eed3c90bb2882835ee72d26a949c2371b5a7828d8976afa338921b153945ad2d",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904225416_reorder_household_areas.sql",
+      "manifestSha256": "a3eab28adadb3d56871c5743490cb0b805d8c8bf4c16a04e884f6975b54f0740",
+      "referenceSha256": "a3eab28adadb3d56871c5743490cb0b805d8c8bf4c16a04e884f6975b54f0740",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904230229_money_refund_limits_and_recurring_edit.sql",
+      "manifestSha256": "3e93c7881ba051752f413fe673c299b9c3ecaaf0a06a937fb66eb99adbcaad92",
+      "referenceSha256": "3e93c7881ba051752f413fe673c299b9c3ecaaf0a06a937fb66eb99adbcaad92",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904230557_private_icloud_calendar.sql",
+      "manifestSha256": "4bf3c985c06aa2435ac14c80e22a140d495dc2c1136987b1b6303698a6dc5bf6",
+      "referenceSha256": "4bf3c985c06aa2435ac14c80e22a140d495dc2c1136987b1b6303698a6dc5bf6",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904231923_meal_library_lifecycle_and_preparation.sql",
+      "manifestSha256": "0767bc7513adb3505dfa797cbf0135ee1030c27d26888ea0c9b795020b26da3f",
+      "referenceSha256": "0767bc7513adb3505dfa797cbf0135ee1030c27d26888ea0c9b795020b26da3f",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904233306_financial_context_read_model.sql",
+      "manifestSha256": "3b60f0c4276ff4d28eedb0d6b882875f90f1892bd4e5d55262c0d3d95259c063",
+      "referenceSha256": "3b60f0c4276ff4d28eedb0d6b882875f90f1892bd4e5d55262c0d3d95259c063",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260904234301_household_search.sql",
+      "manifestSha256": "c30634335e452b978abc16765bc2757226f8ad1c95a480bdee1413060c51420f",
+      "referenceSha256": "c30634335e452b978abc16765bc2757226f8ad1c95a480bdee1413060c51420f",
+      "matches": true,
+      "testAdjustment": "CREATE INDEX without CONCURRENTLY for transactional empty-project setup"
+    },
+    {
+      "file": "20260905001500_project_task_parent_lifecycle.sql",
+      "manifestSha256": "8801e15540957e48bca569316a9cdccd6c1744a01b25fc4f2ff8cf8133db7948",
+      "referenceSha256": "8801e15540957e48bca569316a9cdccd6c1744a01b25fc4f2ff8cf8133db7948",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905002000_routine_edit_versions.sql",
+      "manifestSha256": "cce3642928fd051b42c9f399b8f8344fd61d47c48e0586043ae3c8486b1d8718",
+      "referenceSha256": "cce3642928fd051b42c9f399b8f8344fd61d47c48e0586043ae3c8486b1d8718",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905002500_recurring_expense_edit_versions.sql",
+      "manifestSha256": "eea2ee13e9f7d477e3905184b8323d93a529be7831cb6dd67a76f5675d4dcf0d",
+      "referenceSha256": "eea2ee13e9f7d477e3905184b8323d93a529be7831cb6dd67a76f5675d4dcf0d",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905003000_device_push_tests.sql",
+      "manifestSha256": "83aab8d9755c6254aa6248b920a97efe718fcfb3126507b103217af57f4dcf48",
+      "referenceSha256": "83aab8d9755c6254aa6248b920a97efe718fcfb3126507b103217af57f4dcf48",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905003500_project_task_starters.sql",
+      "manifestSha256": "16b856df59d821b20011784a0860a74c867099b4d21746ce9389fbb41ac8185b",
+      "referenceSha256": "16b856df59d821b20011784a0860a74c867099b4d21746ce9389fbb41ac8185b",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905004000_release_replaced_document_files.sql",
+      "manifestSha256": "afc90ade1507ab16443ddfc297a5b51a9526615dc457dac2044eec79ee7d5765",
+      "referenceSha256": "afc90ade1507ab16443ddfc297a5b51a9526615dc457dac2044eec79ee7d5765",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905004500_calendar_timezone_validation.sql",
+      "manifestSha256": "9fafe534e289644fa77deb1763f280f5dee2a78ff164e32e8e68e4ecd73932ca",
+      "referenceSha256": "9fafe534e289644fa77deb1763f280f5dee2a78ff164e32e8e68e4ecd73932ca",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905005000_grocery_fallback_identity.sql",
+      "manifestSha256": "2255e9e5258a3ad7689b57c5767891e2bd01be2bdfb2629fd7cddcbfc5b1d764",
+      "referenceSha256": "2255e9e5258a3ad7689b57c5767891e2bd01be2bdfb2629fd7cddcbfc5b1d764",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905005500_home_record_activity.sql",
+      "manifestSha256": "1b3e102fedd92b8d52e89d39059579f86c9a3d371a2567d758e79fb827f7fddc",
+      "referenceSha256": "1b3e102fedd92b8d52e89d39059579f86c9a3d371a2567d758e79fb827f7fddc",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905005726_contextual_expenses.sql",
+      "manifestSha256": "059646c26728dd831ba409c1b013b5a52614969bbe5ed4ce3acfc37f05a1064f",
+      "referenceSha256": "059646c26728dd831ba409c1b013b5a52614969bbe5ed4ce3acfc37f05a1064f",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905005821_attachment_usage.sql",
+      "manifestSha256": "7a953e51434b6921b885f3992e2b6ca26807a0fd153a17ba6aad4913d7e1efcd",
+      "referenceSha256": "7a953e51434b6921b885f3992e2b6ca26807a0fd153a17ba6aad4913d7e1efcd",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905010000_decision_choice_retries.sql",
+      "manifestSha256": "f3e630f6b2ee62b5e4526ee5181205a8f8047c9263d8489966d360e9d211b3e1",
+      "referenceSha256": "f3e630f6b2ee62b5e4526ee5181205a8f8047c9263d8489966d360e9d211b3e1",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905053818_expense_context_associations.sql",
+      "manifestSha256": "7bb0f27df9cb6d719266557b95766737ec6c502978006489dcfa03afef766956",
+      "referenceSha256": "7bb0f27df9cb6d719266557b95766737ec6c502978006489dcfa03afef766956",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905060352_signout_push_fallback.sql",
+      "manifestSha256": "07a01df2793548a3e6c9b9abf5b95c605557f99ae39372cc20e377a38270642e",
+      "referenceSha256": "07a01df2793548a3e6c9b9abf5b95c605557f99ae39372cc20e377a38270642e",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905061222_household_search_realtime.sql",
+      "manifestSha256": "1bdfe9a85d9dab225746d1decb155064e3375d15a6d737b3cb22be3f75bd21aa",
+      "referenceSha256": "1bdfe9a85d9dab225746d1decb155064e3375d15a6d737b3cb22be3f75bd21aa",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905072131_serialize_leftover_source_dates.sql",
+      "manifestSha256": "5eb71c855ae10714cd014ea3550cde58a98fedb9cc2c6828492c18e80a7307cf",
+      "referenceSha256": "5eb71c855ae10714cd014ea3550cde58a98fedb9cc2c6828492c18e80a7307cf",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905073644_archived_decision_choice_guards.sql",
+      "manifestSha256": "61afc2dcb1122ed8b1dd38893597c088edfe63a0380d0ff95c11962bb92bb40e",
+      "referenceSha256": "61afc2dcb1122ed8b1dd38893597c088edfe63a0380d0ff95c11962bb92bb40e",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905075117_meal_template_edit_versions.sql",
+      "manifestSha256": "b8738c2788288c537fc07a17b5e156e14fb46f57b33123ad52c723d563165a1a",
+      "referenceSha256": "b8738c2788288c537fc07a17b5e156e14fb46f57b33123ad52c723d563165a1a",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905080151_trip_booking_lifecycle.sql",
+      "manifestSha256": "8e66dc5fb7f3d3c7a99fd86d960dbd378b64f9aea522e2deaab54b291e6aceb1",
+      "referenceSha256": "8e66dc5fb7f3d3c7a99fd86d960dbd378b64f9aea522e2deaab54b291e6aceb1",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905082952_home_review_guards.sql",
+      "manifestSha256": "4489b570c11e561a13d25e0aaabae613584ebc7917517887859de0beca0c9454",
+      "referenceSha256": "4489b570c11e561a13d25e0aaabae613584ebc7917517887859de0beca0c9454",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905085807_grocery_review_guards.sql",
+      "manifestSha256": "f978bd8f3324f82610140baf3254affc0d3c6ed278b47ab741c74b9fc8f1ded8",
+      "referenceSha256": "f978bd8f3324f82610140baf3254affc0d3c6ed278b47ab741c74b9fc8f1ded8",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905090314_project_archive_edit_guards.sql",
+      "manifestSha256": "9c3c003436f6971f2bd6afd3365fd51a1e4b0f83fdfd94a1f6c5d031a46da8cc",
+      "referenceSha256": "9c3c003436f6971f2bd6afd3365fd51a1e4b0f83fdfd94a1f6c5d031a46da8cc",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905093553_project_coordination_history.sql",
+      "manifestSha256": "a4d73de60e0d5bb3d03cb7963e04b3d60743082c6fecffcd55ac2f93555e356a",
+      "referenceSha256": "a4d73de60e0d5bb3d03cb7963e04b3d60743082c6fecffcd55ac2f93555e356a",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905141000_calendar_snapshot_recurrence_type.sql",
+      "manifestSha256": "11a03d77dec923705afb8435a3234097fdee9b18a3e9025ee430b05e22a671c8",
+      "referenceSha256": "11a03d77dec923705afb8435a3234097fdee9b18a3e9025ee430b05e22a671c8",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905141100_booking_restore_only.sql",
+      "manifestSha256": "489377a169a97303f30a3ad9c4eebd1db66f40735bf66db1f4b0cb7096d14c1e",
+      "referenceSha256": "489377a169a97303f30a3ad9c4eebd1db66f40735bf66db1f4b0cb7096d14c1e",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905154224_validate_calendar_timezone_constraints.sql",
+      "manifestSha256": "cd1c29ee1451377ef60243dd5eb51f352381ab7603d2160ded9954558baeea04",
+      "referenceSha256": "cd1c29ee1451377ef60243dd5eb51f352381ab7603d2160ded9954558baeea04",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905210500_routine_creation_retries.sql",
+      "manifestSha256": "7bc2f69be2ef93a685e9d79afdf00c05c8d970da23ca67459ade4ba17e2a9376",
+      "referenceSha256": "7bc2f69be2ef93a685e9d79afdf00c05c8d970da23ca67459ade4ba17e2a9376",
+      "matches": true,
+      "testAdjustment": "none"
+    },
+    {
+      "file": "20260905211520_restore_project_activity_constraints.sql",
+      "manifestSha256": "3460a7d2a9593046e3faa577efbf00d61ff757545e56cc9aff2fe84ecab100ea",
+      "referenceSha256": "3460a7d2a9593046e3faa577efbf00d61ff757545e56cc9aff2fe84ecab100ea",
+      "matches": true,
+      "testAdjustment": "none"
+    }
+  ],
+  "databaseAccess": false,
+  "copiedSourceFiles": 0
+}
