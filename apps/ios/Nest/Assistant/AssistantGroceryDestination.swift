@@ -14,7 +14,7 @@ struct AssistantGroceryDestination: View {
         .navigationTitle("Current grocery").navigationBarTitleDisplayMode(.inline)
         .task { await detail.load(session: session, member: member, result: result) }
         .refreshable { await detail.load(session: session, member: member, result: result) }
-        .onDisappear { detail.clear() }
+        .onDisappear { detail.invalidate() }
     }
 
     @ViewBuilder

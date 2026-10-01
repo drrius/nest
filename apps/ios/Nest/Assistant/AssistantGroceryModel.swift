@@ -28,7 +28,11 @@ final class AssistantGroceryModel: ObservableObject {
     }
 
     func clear() {
-        request = UUID()
+        invalidate()
         status = .idle
     }
+
+    // Keep the loaded navigation source while its child is pushed. The next load
+    // clears it before any read; a disappearing view still fences late responses.
+    func invalidate() { request = UUID() }
 }

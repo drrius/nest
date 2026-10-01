@@ -39,6 +39,8 @@ final class AssistantGroceryModelTests: XCTestCase {
         guard case .loaded(let first) = detail.status else { return XCTFail("Current grocery missing") }
         XCTAssertEqual(first?.name, "Current apples")
         XCTAssertEqual(first?.checked, true)
+        detail.invalidate()
+        XCTAssertEqual(detail.status, .loaded(first))
         await server.setRemoved()
         await detail.load(session: session, member: member, result: result)
         XCTAssertEqual(detail.status, .loaded(nil))
