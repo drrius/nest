@@ -10,6 +10,7 @@ struct FinancialApprovalsScreen: View {
     @State private var savedCorrection: SavedCorrectionDecision?
     @State private var savedRecurring: SavedRecurringDecision?
     @State private var savedRecurringState: SavedRecurringStateDecision?
+    @State private var savedRecurringResume: SavedRecurringResumeDecision?
     @State private var next: UUID?
     @State private var loading = false
     @State private var loaded = false
@@ -83,6 +84,15 @@ struct FinancialApprovalsScreen: View {
                 if next != nil { Button("Load more") { Task { await load(more: true) } }.disabled(loading) }
                 Button("Refresh approvals") { Task { await load(more: false) } }.disabled(loading)
             }
+            if let savedRecurringResume {
+                Section("Saved resumption decision") {
+                    NavigationLink("Check resumption decision") {
+                        RecurringResumeApprovalScreen(
+                            session: session, member: member, approvalId: savedRecurringResume.decision.approvalId
+                        ).id(session.generation)
+                    }
+                }
+            }
         }
         .navigationTitle("Your approvals")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
@@ -105,6 +115,7 @@ struct FinancialApprovalsScreen: View {
             savedCorrection = nil
             savedRecurring = nil
             savedRecurringState = nil
+            savedRecurringResume = nil
         }
         do {
             let context = try session.expenseContext()
@@ -114,6 +125,7 @@ struct FinancialApprovalsScreen: View {
             savedCorrection = try await session.savedCorrectionDecision(context)
             savedRecurring = try await session.savedRecurringDecision(context)
             savedRecurringState = try await session.savedRecurringStateDecision(context)
+            savedRecurringResume = try await session.savedRecurringResumeDecision(context)
             let page = try await session.readPendingApprovals(context, after: cursor)
             try Task.checkCancellation()
             rows.append(contentsOf: page.approvals)

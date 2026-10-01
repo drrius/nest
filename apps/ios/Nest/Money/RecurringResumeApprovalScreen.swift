@@ -1,18 +1,18 @@
 import SwiftUI
 
-struct RecurringStateApprovalScreen: View {
+struct RecurringResumeApprovalScreen: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var scenePhase
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
-    @StateObject private var model: RecurringStateApprovalModel
+    @StateObject private var model: RecurringResumeApprovalModel
     @State private var choice: Bool?
 
     init(session: SessionModel, member: VerifiedMember, approvalId: UUID) {
         self.session = session
         self.member = member
         _model = StateObject(
-            wrappedValue: RecurringStateApprovalModel(
+            wrappedValue: RecurringResumeApprovalModel(
                 session: session, member: member, approvalId: approvalId))
     }
 
@@ -33,7 +33,7 @@ struct RecurringStateApprovalScreen: View {
             Button("Refresh proposal") { Task { await model.load() } }
         }
         .disabled(model.working)
-        .navigationTitle("Review rule change")
+        .navigationTitle("Review resumption")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if model.working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task(id: session.generation) { await model.load() }
@@ -41,45 +41,52 @@ struct RecurringStateApprovalScreen: View {
             if phase == .active { Task { await model.load() } }
         }
         .confirmationDialog(
-            choice == true ? "Apply this rule change?" : "Decline this rule change?",
+            choice == true ? "Resume this recurring expense?" : "Decline this resumption?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Confirm rule change" : "Decline", role: .destructive) {
+                Button(choice ? "Confirm resumption" : "Decline") {
                     Task { await model.decide(choice) }
                 }
             }
         } message: {
-            Text("This applies only to the exact rule and revision you reviewed. Existing financial history remains.")
+            Text(
+                "This authorizes future recording using the exact amount, payer, split and dates reviewed. Skipped cycles and existing history stay unchanged."
+            )
         }
     }
 
-    private func requestedChange(_ change: RecurringStateInput) -> some View {
-        Section("Proposed change") {
-            Text(change.action == .pause ? "Pause future recording" : "Permanently cancel this rule").font(.headline)
+    private func requestedChange(_ change: RecurringResumeInput) -> some View {
+        Section("Proposed resumption") {
+            LabeledContent("Resume from", value: change.resumeFrom.value)
+            LabeledContent("First new cycle", value: change.firstDueOn.value)
             Text(
-                change.action == .pause
-                    ? "Resuming requires a separate decision."
-                    : "A cancelled rule cannot be edited or resumed.")
-            Text("Existing entries stay in your history. An entry recorded before this change is not reversed.")
-            Text("This does not cancel a bank payment, subscription or service with its provider.")
+                "Retain the amount, payer and split shown above. Fixed expenses resume automatic recording; variable expenses still need confirmation for each cycle."
+            )
+            Text("Skipped cycles are not backfilled. This does not make a bank payment or reverse existing history.")
         }
     }
 
     @ViewBuilder
-    private func review(_ approval: RecurringStateApproval, rule: RecurringRule) -> some View {
+    private func review(_ approval: RecurringResumeApproval, rule: RecurringRule) -> some View {
         Section {
             if let receipt = approval.receipt {
-                Text("Rule \(receipt.status.rawValue). No expense was recorded by this decision.")
+                Text(
+                    "Rule resumed. First new cycle: \(receipt.change.firstDueOn.value). No expense was recorded by this decision."
+                )
             } else if approval.status == .denied {
                 Text("Proposal declined. This decision did not change the rule.")
             } else {
                 TimelineView(.periodic(from: .now, by: 1)) { clock in
                     if ApprovalTime.isOpen(approval.expiresAt, now: clock.date), approval.status == .pending {
-                        if approval.change.matches(rule) {
-                            Button("Review confirmation", role: .destructive) { choice = true }
+                        if model.today.map({ approval.change.matches(rule, today: $0) }) == true,
+                            approval.change.resumeFrom.value >= approval.reviewedOn.value,
+                            (try? TodayMoment(now: clock.date, timeZone: TimeZone(identifier: "Europe/Zurich")!))
+                                .map({ approval.change.resumeFrom.value >= $0.day.value }) == true
+                        {
+                            Button("Review confirmation") { choice = true }
                         } else {
-                            Text("The rule changed. Decline this proposal and request a new one.")
+                            Text("The rule or available dates changed. Decline this proposal and request a new one.")
                         }
                         Button("Decline proposal", role: .destructive) { choice = false }
                     } else {
@@ -90,13 +97,17 @@ struct RecurringStateApprovalScreen: View {
         }
     }
 
-    private func recovery(_ saved: SavedRecurringStateDecision) -> some View {
+    private func recovery(_ saved: SavedRecurringResumeDecision) -> some View {
         Section("Saved decision") {
             Text(saved.decision.approved ? "You chose to confirm this change." : "You chose to decline this change.")
-            if saved.expiry?.expiredUnused == true {
+            if saved.datePassedUnused {
+                Text("The resumption date passed without applying this change. Ask for a new proposal if still needed.")
+            } else if saved.expiry?.expiredUnused == true {
                 Text("This proposal expired without applying its change. Ask for a new proposal if still needed.")
             } else if let receipt = saved.result?.approval.receipt {
-                Text("Rule \(receipt.status.rawValue). No expense was recorded by this decision.")
+                Text(
+                    "Rule resumed. First new cycle: \(receipt.change.firstDueOn.value). No expense was recorded by this decision."
+                )
             } else if saved.result?.approval.status == .denied {
                 Text("Proposal declined. This decision did not change the rule.")
             } else {

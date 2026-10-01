@@ -12,6 +12,7 @@ export const FinancialApprovalExpiryQuery = Schema.Struct({
     "recurring.update",
     "recurring.pause",
     "recurring.cancel",
+    "recurring.resume",
   ]),
 });
 export const FinancialApprovalExpiry = Schema.Struct({

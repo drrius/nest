@@ -5,6 +5,9 @@ extension PendingFinancialApproval {
         if part["type"] == .string("tool-proposeRecurringState") {
             return AssistantRecurringStateApprovalLink.read(part, member: member)
         }
+        if part["type"] == .string("tool-proposeRecurringResume") {
+            return AssistantRecurringResumeApprovalLink.read(part, member: member)
+        }
         return financialLink(part, member: member)
     }
 

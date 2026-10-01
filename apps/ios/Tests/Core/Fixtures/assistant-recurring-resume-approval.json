@@ -1,0 +1,38 @@
+[
+  {
+    "type": "tool-proposeRecurringResume",
+    "state": "output-available",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000100",
+      "expectedRevision": "00000000-0000-4000-8000-000000000101",
+      "expectedStatus": "paused",
+      "action": "resume",
+      "resumeFrom": "2026-10-05",
+      "firstDueOn": "2026-11-01"
+    },
+    "output": {
+      "ok": true,
+      "value": {
+        "version": 1,
+        "actorId": "00000000-0000-4000-8000-000000000001",
+        "householdId": "00000000-0000-4000-8000-000000000002",
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000200",
+          "operationId": "00000000-0000-4000-8000-000000000300",
+          "change": {
+            "ruleId": "00000000-0000-4000-8000-000000000100",
+            "expectedRevision": "00000000-0000-4000-8000-000000000101",
+            "expectedStatus": "paused",
+            "action": "resume",
+            "resumeFrom": "2026-10-05",
+            "firstDueOn": "2026-11-01"
+          },
+          "status": "pending",
+          "expiresAt": "2099-01-01T00:00:00.000000Z",
+          "receipt": null,
+          "reviewedOn": "2026-10-01"
+        }
+      }
+    }
+  }
+]
