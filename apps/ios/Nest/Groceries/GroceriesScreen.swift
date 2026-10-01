@@ -2,6 +2,7 @@ import SwiftUI
 
 struct GroceriesScreen: View {
     @ObservedObject var model: SessionModel
+    let refreshOnOpen: Bool
     @State private var showChecked = false
     @State private var showingAdd = false
     @State private var editingItem: GroceryItem?
@@ -9,8 +10,9 @@ struct GroceriesScreen: View {
     @State private var removalCandidate: GroceryItem?
     @State private var showingRemoveConfirmation = false
 
-    init(model: SessionModel, initiallyAdding: Bool = false) {
+    init(model: SessionModel, initiallyAdding: Bool = false, refreshOnOpen: Bool = false) {
         self.model = model
+        self.refreshOnOpen = refreshOnOpen
         _showingAdd = State(initialValue: initiallyAdding && model.groceryAdd == nil)
     }
 
@@ -65,7 +67,7 @@ struct GroceriesScreen: View {
             Text("\(item.name) will leave the shared list.")
         }
         .refreshable { await model.refreshGroceries() }
-        .task { if model.groceries == .idle { await model.refreshGroceries() } }
+        .task { if refreshOnOpen || model.groceries == .idle { await model.refreshGroceries() } }
     }
 
     private func addStatus(_ saved: SavedGroceryAdd) -> some View {

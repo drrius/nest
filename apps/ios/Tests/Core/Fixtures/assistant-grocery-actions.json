@@ -1,0 +1,95 @@
+[
+  {
+    "type": "tool-addGrocery",
+    "input": {
+      "name": "Fixture apples",
+      "quantity": "2",
+      "unit": "pieces",
+      "categoryId": null
+    },
+    "receipt": {
+      "operation": "00000000-0000-4000-8000-000000000003",
+      "target": "00000000-0000-4000-8000-000000000004",
+      "version": "43",
+      "checked": false,
+      "removed": false
+    }
+  },
+  {
+    "type": "tool-editGrocery",
+    "input": {
+      "name": "Fixture apples",
+      "quantity": "2",
+      "unit": "pieces",
+      "categoryId": null,
+      "itemId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "42"
+    },
+    "receipt": {
+      "operation": "00000000-0000-4000-8000-000000000003",
+      "target": "00000000-0000-4000-8000-000000000004",
+      "version": "43",
+      "checked": false,
+      "removed": false
+    }
+  },
+  {
+    "type": "tool-removeGrocery",
+    "input": {
+      "itemId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "42"
+    },
+    "receipt": {
+      "operation": "00000000-0000-4000-8000-000000000003",
+      "target": "00000000-0000-4000-8000-000000000004",
+      "version": "43",
+      "checked": false,
+      "removed": true
+    }
+  },
+  {
+    "type": "tool-checkGrocery",
+    "input": {
+      "itemId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "42",
+      "checked": true
+    },
+    "receipt": {
+      "operation": "00000000-0000-4000-8000-000000000003",
+      "target": "00000000-0000-4000-8000-000000000004",
+      "version": "43",
+      "checked": true,
+      "outcome": "applied"
+    }
+  },
+  {
+    "type": "tool-checkGrocery",
+    "input": {
+      "itemId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "42",
+      "checked": true
+    },
+    "receipt": {
+      "operation": "00000000-0000-4000-8000-000000000003",
+      "target": "00000000-0000-4000-8000-000000000004",
+      "version": "42",
+      "checked": true,
+      "outcome": "already_applied"
+    }
+  },
+  {
+    "type": "tool-checkGrocery",
+    "input": {
+      "itemId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "42",
+      "checked": false
+    },
+    "receipt": {
+      "operation": "00000000-0000-4000-8000-000000000003",
+      "target": "00000000-0000-4000-8000-000000000004",
+      "version": "43",
+      "checked": false,
+      "outcome": "applied"
+    }
+  }
+]
