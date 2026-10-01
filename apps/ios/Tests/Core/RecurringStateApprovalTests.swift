@@ -9,8 +9,9 @@ final class RecurringStateApprovalTests: XCTestCase {
         householdId: UUID(uuidString: "00000000-0000-4000-8000-000000000002")!, displayName: "Fixture")
 
     private func parts() throws -> [[String: AssistantJSON]] {
-        let url = try XCTUnwrap(Bundle.module.url(
-            forResource: "assistant-recurring-state-approval", withExtension: "json", subdirectory: "Fixtures"))
+        let url = try XCTUnwrap(
+            Bundle.module.url(
+                forResource: "assistant-recurring-state-approval", withExtension: "json", subdirectory: "Fixtures"))
         return try JSONDecoder().decode([[String: AssistantJSON]].self, from: Data(contentsOf: url))
     }
 
@@ -76,9 +77,10 @@ final class RecurringStateApprovalTests: XCTestCase {
                 changedApproval["receipt"] = changedReceipt
                 var changed = root
                 changed["approval"] = changedApproval
-                XCTAssertThrowsError(try JSONDecoder().decode(
-                    RecurringStateApprovalEnvelope.self, from: JSONSerialization.data(withJSONObject: changed))
-                    .matching(decision, member: member, terminal: true), key)
+                let changedData = try JSONSerialization.data(withJSONObject: changed)
+                XCTAssertThrowsError(
+                    try JSONDecoder().decode(RecurringStateApprovalEnvelope.self, from: changedData)
+                        .matching(decision, member: member, terminal: true), key)
             }
             let denied = RecurringStateDecision(
                 operationId: decision.operationId, approvalId: decision.approvalId,

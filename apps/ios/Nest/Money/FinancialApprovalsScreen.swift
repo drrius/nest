@@ -67,8 +67,9 @@ struct FinancialApprovalsScreen: View {
                 Section("Saved pause or cancellation decision") {
                     NavigationLink("Check rule change decision") {
                         RecurringStateApprovalScreen(
-                            session: session, member: member, approvalId: savedRecurringState.decision.approvalId)
-                            .id(session.generation)
+                            session: session, member: member, approvalId: savedRecurringState.decision.approvalId
+                        )
+                        .id(session.generation)
                     }
                 }
             }

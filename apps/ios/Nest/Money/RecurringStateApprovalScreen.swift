@@ -11,8 +11,9 @@ struct RecurringStateApprovalScreen: View {
     init(session: SessionModel, member: VerifiedMember, approvalId: UUID) {
         self.session = session
         self.member = member
-        _model = StateObject(wrappedValue: RecurringStateApprovalModel(
-            session: session, member: member, approvalId: approvalId))
+        _model = StateObject(
+            wrappedValue: RecurringStateApprovalModel(
+                session: session, member: member, approvalId: approvalId))
     }
 
     var body: some View {
@@ -84,9 +85,10 @@ struct RecurringStateApprovalScreen: View {
     private func requestedChange(_ change: RecurringStateInput) -> some View {
         Section("Proposed change") {
             Text(change.action == .pause ? "Pause future recording" : "Permanently cancel this rule").font(.headline)
-            Text(change.action == .pause
-                ? "Resuming requires a separate decision."
-                : "A cancelled rule cannot be edited or resumed.")
+            Text(
+                change.action == .pause
+                    ? "Resuming requires a separate decision."
+                    : "A cancelled rule cannot be edited or resumed.")
             Text("Existing entries stay in your history. An entry recorded before this change is not reversed.")
             Text("This does not cancel a bank payment, subscription or service with its provider.")
         }

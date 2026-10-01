@@ -118,23 +118,29 @@ actor RecurringStateApprovalTestServer {
             data = try JSONEncoder().encode(envelope())
         case "/v1/money/recurring/rule":
             guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
-            data = try JSONEncoder().encode(RecurringDetail(
-                version: 1, householdId: member.householdId, today: CivilDate("2026-10-01"), rule: rule))
+            let detail = RecurringDetail(
+                version: 1, householdId: member.householdId, today: try CivilDate("2026-10-01"), rule: rule)
+            data = try JSONEncoder().encode(detail)
         case "/v1/money/approval-expiry":
             guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
             if consumeDuringExpiry { record(decision) }
-            data = try JSONEncoder().encode(FinancialApprovalExpiry(
+            let expiry = FinancialApprovalExpiry(
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 approvalId: decision.approvalId, operationId: decision.operationId, command: decision.change.command,
-                expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z"))
+                expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z")
+            data = try JSONEncoder().encode(expiry)
         case "/v1/money/recurring/state/approval/decide":
             guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
             let input = try JSONDecoder().decode(RecurringStateDecision.self, from: XCTUnwrap(request.httpBody))
             guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
-                input.change == decision.change else { throw NestAPIFailure.contract }
+                input.change == decision.change
+            else { throw NestAPIFailure.contract }
             writes += 1
             record(input)
-            if loseReply { loseReply = false; throw URLError(.networkConnectionLost) }
+            if loseReply {
+                loseReply = false
+                throw URLError(.networkConnectionLost)
+            }
             data = try JSONEncoder().encode(envelope())
         default: throw NestAPIFailure.contract
         }
