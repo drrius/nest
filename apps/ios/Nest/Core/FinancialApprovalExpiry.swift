@@ -18,7 +18,7 @@ struct FinancialApprovalExpiry: Codable, Sendable {
             self.approvalId == approvalId, self.operationId == operationId, self.command == command,
             [
                 .expense, .refund, .correction, .settlement, .createRule, .updateRule, .pauseRule, .cancelRule,
-                .resumeRule,
+                .resumeRule, .recordCycle,
             ].contains(command),
             ApprovalTime.date(checkedAt) != nil
         else { throw NestAPIFailure.contract }

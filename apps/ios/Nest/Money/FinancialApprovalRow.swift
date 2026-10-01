@@ -8,7 +8,7 @@ struct FinancialApprovalRow: View {
     var body: some View {
         switch row.command {
         case .expense, .refund, .settlement, .correction, .createRule, .updateRule, .pauseRule, .cancelRule,
-            .resumeRule:
+            .resumeRule, .recordCycle:
             NavigationLink {
                 destination
             } label: {
@@ -45,6 +45,8 @@ struct FinancialApprovalRow: View {
             RecurringStateApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
         case .resumeRule:
             RecurringResumeApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
+        case .recordCycle:
+            VariableCycleApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
         default:
             EmptyView()
         }

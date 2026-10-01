@@ -42,7 +42,9 @@ struct VariableCycleReceipt: Codable, Sendable {
     let configuration: RecurringConfiguration
     let expense: ExpenseInput
 
-    func validated(member: VerifiedMember, command: SaveVariableCycle) throws -> Self {
+    func validated(member: VerifiedMember, command: SaveVariableCycle, approvalId expectedApprovalId: UUID? = nil)
+        throws -> Self
+    {
         try input.validated(member: member)
         try configuration.validated(member: member)
         let expected = ExpenseInput(
@@ -52,7 +54,8 @@ struct VariableCycleReceipt: Codable, Sendable {
             categoryId: configuration.categoryId)
         _ = try expected.validated(member: member)
         guard version == 1, actorId == member.userId, householdId == member.householdId,
-            operationId == command.operationId, approvalId == nil, source == "variable", input == command.input,
+            operationId == command.operationId, approvalId == expectedApprovalId, source == "variable",
+            input == command.input,
             configuration.mode == .variable, input.dueOn.value >= configuration.startDate.value,
             cycle == (try RecurringDates.cycle(schedule: configuration.schedule, dueOn: input.dueOn)),
             expense == expected

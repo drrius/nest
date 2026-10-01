@@ -11,6 +11,7 @@ struct FinancialApprovalsScreen: View {
     @State private var savedRecurring: SavedRecurringDecision?
     @State private var savedRecurringState: SavedRecurringStateDecision?
     @State private var savedRecurringResume: SavedRecurringResumeDecision?
+    @State private var savedVariableCycle: SavedVariableCycleDecision?
     @State private var next: UUID?
     @State private var loading = false
     @State private var loaded = false
@@ -84,19 +85,32 @@ struct FinancialApprovalsScreen: View {
                 if next != nil { Button("Load more") { Task { await load(more: true) } }.disabled(loading) }
                 Button("Refresh approvals") { Task { await load(more: false) } }.disabled(loading)
             }
-            if let savedRecurringResume {
-                Section("Saved resumption decision") {
-                    NavigationLink("Check resumption decision") {
-                        RecurringResumeApprovalScreen(
-                            session: session, member: member, approvalId: savedRecurringResume.decision.approvalId
-                        ).id(session.generation)
-                    }
-                }
-            }
+            laterSavedDecisions
         }
         .navigationTitle("Your approvals")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .task { await load(more: false) }
+    }
+
+    @ViewBuilder private var laterSavedDecisions: some View {
+        if let savedRecurringResume {
+            Section("Saved resumption decision") {
+                NavigationLink("Check resumption decision") {
+                    RecurringResumeApprovalScreen(
+                        session: session, member: member, approvalId: savedRecurringResume.decision.approvalId
+                    ).id(session.generation)
+                }
+            }
+        }
+        if let savedVariableCycle {
+            Section("Saved bill decision") {
+                NavigationLink("Check bill decision") {
+                    VariableCycleApprovalScreen(
+                        session: session, member: member, approvalId: savedVariableCycle.decision.approvalId
+                    ).id(session.generation)
+                }
+            }
+        }
     }
 
     private func load(more: Bool) async {
@@ -116,6 +130,7 @@ struct FinancialApprovalsScreen: View {
             savedRecurring = nil
             savedRecurringState = nil
             savedRecurringResume = nil
+            savedVariableCycle = nil
         }
         do {
             let context = try session.expenseContext()
@@ -126,6 +141,7 @@ struct FinancialApprovalsScreen: View {
             savedRecurring = try await session.savedRecurringDecision(context)
             savedRecurringState = try await session.savedRecurringStateDecision(context)
             savedRecurringResume = try await session.savedRecurringResumeDecision(context)
+            savedVariableCycle = try await session.savedVariableCycleDecision(context)
             let page = try await session.readPendingApprovals(context, after: cursor)
             try Task.checkCancellation()
             rows.append(contentsOf: page.approvals)
