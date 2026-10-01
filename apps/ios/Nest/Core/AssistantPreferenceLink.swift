@@ -61,7 +61,8 @@ enum AssistantPreferenceLink {
         switch type {
         case "tool-saveFoodPreferences": keys = ["restrictions", "dislikes", "calorieGoal", "portions"]
         case "tool-saveCookingPreferences": keys = ["cookingNotes", "mealSlots"]
-        case "tool-saveNotificationPreferences": keys = ["dailySummaryEnabled", "dailySummaryTime", "itemRemindersEnabled"]
+        case "tool-saveNotificationPreferences":
+            keys = ["dailySummaryEnabled", "dailySummaryTime", "itemRemindersEnabled"]
         default: throw NestAPIFailure.contract
         }
         guard case .object(let fields) = value, Set(fields.keys) == keys else { throw NestAPIFailure.contract }
