@@ -90,7 +90,8 @@ final class RecurringDecisionModelTests: XCTestCase {
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
     private func verifyRefusedPreflight(
-        _ model: SessionModel, context: ExpenseContext, input: RecurringDecision, server: LostRecurringDecisionReplyServer
+        _ model: SessionModel, context: ExpenseContext, input: RecurringDecision,
+        server: LostRecurringDecisionReplyServer
     ) async throws {
         do {
             try await model.stageRecurringDecision(input, context: context)
@@ -150,7 +151,8 @@ private actor LostRecurringDecisionReplyServer {
             householdId: member.householdId,
             approval: .init(
                 id: decision.approvalId,
-                operationId: preflightFault == "operation" ? UUID() : decision.operationId, rule: decision.rule,
+                operationId: preflightFault == "operation" ? UUID() : decision.operationId,
+                rule: decision.rule,
                 status: preflightFault == "denied" ? .denied : (receipt == nil ? .pending : .consumed),
                 expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))

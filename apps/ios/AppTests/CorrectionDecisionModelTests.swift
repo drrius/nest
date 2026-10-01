@@ -46,7 +46,8 @@ final class CorrectionDecisionModelTests: XCTestCase {
             allocations: try ExpenseSplit.equal(Centimes("101"), payer: member.userId, other: partner),
             date: try CivilDate("2026-09-28"), note: nil, categoryId: nil)
         let correction = CorrectionInput(sourceEventId: UUID(), expectedReversalId: nil, replacement: .expense(expense))
-        let input = CorrectionDecision(operationId: UUID(), approvalId: UUID(), correction: correction, approved: approved)
+        let input = CorrectionDecision(
+            operationId: UUID(), approvalId: UUID(), correction: correction, approved: approved)
         await server.prepare(input, expired: false)
         if let preflightFault {
             await server.failPreflight(preflightFault)
@@ -89,7 +90,8 @@ final class CorrectionDecisionModelTests: XCTestCase {
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
     private func verifyRefusedPreflight(
-        _ model: SessionModel, context: ExpenseContext, input: CorrectionDecision, server: LostCorrectionDecisionReplyServer
+        _ model: SessionModel, context: ExpenseContext, input: CorrectionDecision,
+        server: LostCorrectionDecisionReplyServer
     ) async throws {
         do {
             try await model.stageCorrectionDecision(input, context: context)
@@ -149,7 +151,8 @@ private actor LostCorrectionDecisionReplyServer {
             householdId: member.householdId,
             approval: .init(
                 id: decision.approvalId,
-                operationId: preflightFault == "operation" ? UUID() : decision.operationId, correction: decision.correction,
+                operationId: preflightFault == "operation" ? UUID() : decision.operationId,
+                correction: decision.correction,
                 status: preflightFault == "denied" ? .denied : (receipt == nil ? .pending : .consumed),
                 expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))

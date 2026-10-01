@@ -44,7 +44,8 @@ final class SettlementDecisionModelTests: XCTestCase {
             description: "Payment fixture", amountCentimes: try Centimes("101"),
             expectedOutstandingCentimes: try Centimes("101"), payerId: member.userId, recipientId: partner,
             mode: .full, date: try CivilDate("2026-09-28"), note: nil)
-        let input = SettlementDecision(operationId: UUID(), approvalId: UUID(), settlement: settlement, approved: approved)
+        let input = SettlementDecision(
+            operationId: UUID(), approvalId: UUID(), settlement: settlement, approved: approved)
         await server.prepare(input, expired: false)
         if let preflightFault {
             await server.failPreflight(preflightFault)
@@ -87,7 +88,8 @@ final class SettlementDecisionModelTests: XCTestCase {
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
     private func verifyRefusedPreflight(
-        _ model: SessionModel, context: ExpenseContext, input: SettlementDecision, server: LostSettlementDecisionReplyServer
+        _ model: SessionModel, context: ExpenseContext, input: SettlementDecision,
+        server: LostSettlementDecisionReplyServer
     ) async throws {
         do {
             try await model.stageSettlementDecision(input, context: context)
@@ -146,7 +148,8 @@ private actor LostSettlementDecisionReplyServer {
             householdId: member.householdId,
             approval: .init(
                 id: decision.approvalId,
-                operationId: preflightFault == "operation" ? UUID() : decision.operationId, settlement: decision.settlement,
+                operationId: preflightFault == "operation" ? UUID() : decision.operationId,
+                settlement: decision.settlement,
                 status: preflightFault == "denied" ? .denied : (receipt == nil ? .pending : .consumed),
                 expiresAt: expired ? "2026-09-28T07:00:00.000000Z" : "2099-01-01T00:00:00.000000Z",
                 receipt: receipt))
