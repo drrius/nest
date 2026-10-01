@@ -168,10 +168,11 @@ final class LegacyRecurringReadTests: XCTestCase {
                 unsupportedDates: String(total),
                 latestDraftOn: total == 0 ? nil : .init(kind: .date, value: "2026-01-05", reason: nil))
             XCTAssertTrue(value.valid, "seed \(seed)")
-            XCTAssertFalse(LegacyDraftCounts(
-                pending: value.pending, posted: value.posted, dismissed: value.dismissed,
-                postedWithoutEvent: String(posted + 1), unpostedWithEvent: "0", unsupportedDates: "0",
-                latestDraftOn: value.latestDraftOn).valid)
+            XCTAssertFalse(
+                LegacyDraftCounts(
+                    pending: value.pending, posted: value.posted, dismissed: value.dismissed,
+                    postedWithoutEvent: String(posted + 1), unpostedWithEvent: "0", unsupportedDates: "0",
+                    latestDraftOn: value.latestDraftOn).valid)
         }
     }
 }

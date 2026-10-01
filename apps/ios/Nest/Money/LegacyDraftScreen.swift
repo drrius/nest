@@ -15,8 +15,9 @@ struct LegacyDraftScreen: View {
                 LegacySplitTerms(split: draft.allocations, payerId: draft.payerId, member: member)
                 Text(
                     draft.sourceKind == .shopping
-                        ? "Kept from an old shopping session." : "Kept from an old recurring rule.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
+                        ? "Kept from an old shopping session." : "Kept from an old recurring rule."
+                )
+                .font(.footnote).foregroundStyle(QuietPalette.muted)
                 if draft.needsReconciliation {
                     Text(
                         "The retained status and linked entry need review. Neither this status nor this draft changes your balance."

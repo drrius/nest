@@ -3,7 +3,10 @@ import Foundation
 /// Retained values stay exact, including unsupported dates and microsecond versions.
 struct LegacyTemporalValue: Decodable, Equatable, Sendable {
     enum Kind: String, Decodable { case date, timestamp, unsupported }
-    enum Reason: String, Decodable { case nonFinite = "non_finite", outOfRange = "out_of_range" }
+    enum Reason: String, Decodable {
+        case nonFinite = "non_finite"
+        case outOfRange = "out_of_range"
+    }
     let kind: Kind
     let value: String
     let reason: Reason?
@@ -18,7 +21,10 @@ struct LegacyTemporalValue: Decodable, Equatable, Sendable {
 }
 
 struct LegacyRecurringSplit: Decodable, Equatable, Sendable {
-    enum Kind: String, Decodable { case valid, needsReview = "needs_review" }
+    enum Kind: String, Decodable {
+        case valid
+        case needsReview = "needs_review"
+    }
     let kind: Kind
     let shares: [ExpenseAllocation]?
     let reason: String?

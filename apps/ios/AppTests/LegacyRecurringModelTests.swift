@@ -90,8 +90,11 @@ final class LegacyRecurringModelTests: XCTestCase {
                     if isDraft { await drafts.load() } else { await inventory.load() }
                 }
                 await fixture.server.waitForRead()
-                if switchAccount { await fixture.session.signIn(idToken: "B", nonce: "test") }
-                else { await fixture.session.signOut() }
+                if switchAccount {
+                    await fixture.session.signIn(idToken: "B", nonce: "test")
+                } else {
+                    await fixture.session.signOut()
+                }
                 await fixture.server.releaseRead()
                 await load.value
                 XCTAssertTrue(inventory.rules.isEmpty)

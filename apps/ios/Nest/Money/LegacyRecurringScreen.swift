@@ -17,7 +17,7 @@ struct LegacyRecurringScreen: View {
                 Text(
                     "Kept from your previous app. These rules only created drafts; Nest will not add expenses from them automatically."
                 )
-                    .foregroundStyle(QuietPalette.muted)
+                .foregroundStyle(QuietPalette.muted)
             }
             ForEach(model.rules) { rule in
                 NavigationLink {
@@ -29,7 +29,7 @@ struct LegacyRecurringScreen: View {
                         Text(
                             "\(rule.drafts.pending) pending · \(rule.drafts.posted) posted · \(rule.drafts.dismissed) dismissed"
                         )
-                            .font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        .font(.subheadline).foregroundStyle(QuietPalette.muted)
                         if rule.drafts.needsReconciliation {
                             Text("Some retained records need review.").font(.footnote)
                         }

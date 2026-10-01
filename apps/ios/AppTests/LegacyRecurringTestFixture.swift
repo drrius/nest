@@ -97,10 +97,13 @@ actor LegacyRecurringTestServer {
     }
 
     private var split: [String: Any] {
-        ["kind": "valid", "shares": [
-            ["memberId": member.userId.uuidString.lowercased(), "centimes": "4503599627370495"],
-            ["memberId": partner.userId.uuidString.lowercased(), "centimes": "4503599627370496"],
-        ]]
+        [
+            "kind": "valid",
+            "shares": [
+                ["memberId": member.userId.uuidString.lowercased(), "centimes": "4503599627370495"],
+                ["memberId": partner.userId.uuidString.lowercased(), "centimes": "4503599627370496"],
+            ],
+        ]
     }
     private func rule(_ id: UUID) -> [String: Any] {
         [
@@ -110,9 +113,11 @@ actor LegacyRecurringTestServer {
             "active": true, "nextOccurrenceOn": ["kind": "date", "value": "2026-01-05"],
             "updatedAt": ["kind": "timestamp", "value": "2026-01-01T10:00:00.123456Z"],
             "schedule": ["kind": "weekly", "weekday": 1],
-            "drafts": ["pending": "21", "posted": "0", "dismissed": "0", "postedWithoutEvent": "0",
+            "drafts": [
+                "pending": "21", "posted": "0", "dismissed": "0", "postedWithoutEvent": "0",
                 "unpostedWithEvent": "0", "unsupportedDates": "0",
-                "latestDraftOn": ["kind": "date", "value": "2026-01-05"]],
+                "latestDraftOn": ["kind": "date", "value": "2026-01-05"],
+            ],
         ]
     }
     private func draft(_ id: UUID) -> [String: Any] {
