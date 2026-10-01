@@ -1,0 +1,204 @@
+{
+  "source": "99dec6fb1e3f466923ef2d5afab29bc445f91df0",
+  "sourceInputsMatched": 787,
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "actor": "fictional Test Alex",
+  "week": "2026-10-05",
+  "savedDefinitionId": "cb7c3569-f8b5-45d6-8530-9f9136a19f27",
+  "nativeSavedRecipePlacements": 7,
+  "retainedRecipeSnapshotsMatched": 7,
+  "ingredientSources": 7,
+  "ownedMealIds": [
+    "e8761c8a-6b4e-4359-9205-4acd93dcc300",
+    "dee5f44b-f600-4311-b362-377ef8678f30",
+    "cc14a8e6-ecb0-4fb7-beaf-ce3ecdee4ee1",
+    "5622139d-9326-4661-ad84-bbc2132858a4",
+    "1bab218b-884e-43d6-8c64-874625868853",
+    "faa8fd3d-0429-48d9-8f26-da29a6010e14",
+    "06e4db65-d6ad-4e0a-9cf6-2498941c908b"
+  ],
+  "weekRevisions": ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14"],
+  "originalCurrentWeekRevision": "15",
+  "originalCurrentWeekUnchanged": true,
+  "ownedGroceries": [
+    {
+      "itemId": "a53f0fc5-8bfa-46ca-8934-e0a2a67eade4",
+      "date": "2026-10-11",
+      "entryId": "06e4db65-d6ad-4e0a-9cf6-2498941c908b",
+      "quantity": "200",
+      "unit": "g"
+    },
+    {
+      "itemId": "4375c396-f86b-4693-b683-1c809a800332",
+      "date": "2026-10-09",
+      "entryId": "1bab218b-884e-43d6-8c64-874625868853",
+      "quantity": "200",
+      "unit": "g"
+    }
+  ],
+  "firstAdditionRecordedThenCrashed": true,
+  "firstReceiptRecoveredWithoutReplay": true,
+  "distinctFridayAdditionCompletedWithoutCrash": true,
+  "nativeRefreshDisabledBothAddedSources": true,
+  "bothMemberReadbackMatched": true,
+  "outsiderReadDenials": ["meal-week", "groceries"],
+  "originalProjectionHashes": {
+    "meals/week?weekStart=2026-09-28": "4f3b27f039e1057992a7672d30e07561eeca773595ef453682404a04bf134c09",
+    "calendar/consent": "dbb6c9e915fc6aaaeb0c08d8756bfa3b1f7f67e5442bbf1c2aab841fa0c83594",
+    "money/balance": "9fd9270b03f36d11dc363cf82d77d94992b506fe27589ab70cbe80db38359685",
+    "money/history": "c1b945cda6725c657eaef52122c7b67d38202cb718d85b06305335cadc0a91ca"
+  },
+  "libraryBeforeAfterSha256": "487f53a1eb2509605eae09eab584a76c254909d464dd4cfe548852748f4681ac",
+  "groceriesBeforeAfterSha256": "c599371872cecc7cbf3dc87d6a97aaca30b62304f47a97856c8e0cc6393809d2",
+  "exactOwnedMealsRemovedThroughNativeUI": 7,
+  "exactOwnedGroceriesRemovedThroughAuthorizedAPI": 2,
+  "futureWeekRestoredEmptyWithAdvancedRevision": true,
+  "scopedJournalCounts": {
+    "renewal_requests": 0,
+    "meal_placements": 0,
+    "meal_recipe_placements": 0,
+    "meal_removals": 0,
+    "meal_moves": 0,
+    "meal_replacements": 0,
+    "meal_leftovers": 0,
+    "calendar_privacy_removals": 0
+  },
+  "ingredientReviewCache": {
+    "rows": 1,
+    "choices": 0,
+    "pending": false,
+    "receipt": false,
+    "conflicted": false,
+    "revision": "14"
+  },
+  "scopedRowsDeletedDirectly": 0,
+  "diagnosticPartnerTokenRemovedFromCheckpoint": true,
+  "diagnosticPartnerJWTGloballyRevoked": false,
+  "crash": {
+    "timestamp": "2026-10-01T03:49:16+02:00",
+    "exception": "EXC_BREAKPOINT",
+    "signal": "SIGTRAP",
+    "frames": [
+      {
+        "image": "libswiftCore.dylib",
+        "symbol": "_assertionFailure(_:_:file:line:flags:)"
+      },
+      {
+        "image": "libswiftCore.dylib",
+        "symbol": "Array._checkSubscript(_:wasNativeTypeChecked:)"
+      },
+      {
+        "image": "libswiftCore.dylib",
+        "symbol": "Array.subscript.read"
+      },
+      {
+        "image": "libswiftCore.dylib",
+        "symbol": "protocol witness for Collection.subscript.read in conformance [A]"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "closure #1 in Binding<A>.subscript.getter"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "<deduplicated_symbol>"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "LocationBox.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "Binding.ScopedLocation.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "LocationBox.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "protocol witness for Location.get() in conformance LocationBox<A>"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "ProjectedLocation.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "LocationBox.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "Binding.ScopedLocation.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "LocationBox.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "Binding.ScopedLocation.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "LocationBox.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "Binding.ScopedLocation.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "LocationBox.get()"
+      },
+      {
+        "image": "SwiftUICore",
+        "symbol": "Binding.readValue()"
+      },
+      {
+        "image": "SwiftUI",
+        "symbol": "closure #1 in Switch.updateUIView(_:context:)"
+      }
+    ],
+    "newerCrashReportAfterFixedSave": false
+  },
+  "focusedTests": {
+    "coreCases": 8,
+    "signedNativeCases": 3,
+    "failures": 0,
+    "skips": 0
+  },
+  "sourceCI": {
+    "nest": 36803504492,
+    "swiftui": 36803504559,
+    "status": "success",
+    "nativeSuite": {
+      "cases": 213,
+      "skips": 4,
+      "failures": 0
+    }
+  },
+  "betaContainingFixSubmitted": false,
+  "originalWeekSelectedAgain": true,
+  "ordinaryTodayRestored": true,
+  "physicalPhoneVerified": false,
+  "voiceOverVerified": false,
+  "maximumTextForThisJourneyVerified": false,
+  "liveAIGenerationVerified": false,
+  "portionScalingForThisJourneyVerified": false,
+  "preparationForThisJourneyVerified": false,
+  "phaseSources": {
+    "sevenPlacements": "097858f04720748e59a4cf9fc6e37313e5d19506",
+    "firstAddition": {
+      "baseCommit": "e7db0690ab088f67d37e4301aa9adc54ce208262",
+      "uncommittedVisibleCountEdit": true,
+      "sourceInputsVerified": 786,
+      "affectedInputSha256": {
+        "apps/ios/Nest/Meals/IngredientChoiceRow.swift": "9ff560f461ca483cd3d23853b72cf8b8493a186eae381874fb3793a9d5364117",
+        "apps/ios/Nest/Meals/IngredientReviewScreen.swift": "a9e661e40a35fe22b768e54ac251b6c761e4fc56af1c0f21954100c980c60feb",
+        "apps/ios/Nest/Meals/MealWeekScreen.swift": "ef326a46fc0a93e44d5776ebffae31ea2e0c3b19973b14a9344b3f3ec7a96c6b"
+      }
+    },
+    "fixedAdditionRecoveryAndCleanup": "99dec6fb1e3f466923ef2d5afab29bc445f91df0"
+  }
+}

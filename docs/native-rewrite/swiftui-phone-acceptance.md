@@ -2,6 +2,8 @@
 
 The available private candidate is 0.1.0/build11, source `d4981cbef686933a644444d8a87a8b56a8dd1bdb`. Exact-source local archive/export, signed IPA verification and routine/native CI pass. Apple reports build11 VALID and IN_BETA_TESTING internally. Partner tester access and actual physical-phone acceptance remain unverified. The later payment/recurring form corrections at `d6d9b96c` are newer than this artifact. Check the current state in [progress](../progress.md) before installing. This uses **nest-test**, separate from Household OS production. Test entries remain fictional; production balances/history are not copied into this app.
 
+A 1 October simulator journey reproduced a post-add crash in build11’s ingredient-review binding. The first grocery was recorded and its receipt recovered; source `99dec6fb` fixes the crash and passes a distinct native addition plus regression tests. **Leave meal-to-grocery ingredient addition out of the build11 phone pass until the updated beta is available.** Sign-in/navigation results can still be recorded separately. See the [bounded evidence](../../evidence/2026-10-01/swiftui-manual-week/README.md).
+
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 
 ## First phone pass
