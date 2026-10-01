@@ -32,6 +32,13 @@ final class CorrectionContextTests: XCTestCase {
                 let allowed = !reversed && !refunds
                 _ = try context(reversed: reversed, refunds: refunds, reverse: allowed, replace: allowed)
                     .validated(member: member, sourceEventId: event)
+                let correction = CorrectionInput(sourceEventId: event, expectedReversalId: nil, replacement: nil)
+                let current = try context(reversed: reversed, refunds: refunds, reverse: allowed, replace: allowed)
+                if allowed {
+                    _ = try correction.validated(member: member, context: current)
+                } else {
+                    XCTAssertThrowsError(try correction.validated(member: member, context: current))
+                }
                 XCTAssertThrowsError(
                     try context(reversed: reversed, refunds: refunds, reverse: !allowed, replace: allowed)
                         .validated(member: member, sourceEventId: event))
@@ -49,6 +56,10 @@ final class CorrectionContextTests: XCTestCase {
         XCTAssertEqual(replacement.amountCentimes, editable.source.event.amountCentimes)
         XCTAssertEqual(replacement.allocations.map(\.centimes.value).sorted(), [50, 51])
         XCTAssertNil(replacement.receiptPath)
+        _ = try reviewed.validated(member: member, context: editable)
+        XCTAssertThrowsError(
+            try reviewed.validated(
+                member: member, context: context(reversed: false, refunds: true, reverse: false, replace: false)))
         draft.shares[member.userId] = "0.52"
         XCTAssertThrowsError(try draft.reviewed(context: editable, member: member))
         XCTAssertThrowsError(

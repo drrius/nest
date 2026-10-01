@@ -19,6 +19,8 @@ extension SessionModel {
     }
 
     func stageRefund(_ refund: RefundInput, context: ExpenseContext) async throws {
+        let current = try await readRefundContext(context, sourceEventId: refund.sourceEventId)
+        _ = try refund.validated(member: context.member, context: current)
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueRefund(.init(operationId: UUID(), refund: refund), lease: context.lease)

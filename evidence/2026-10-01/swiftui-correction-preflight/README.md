@@ -1,0 +1,13 @@
+# Refund and correction preflight — 1 October 2026
+
+Branch `codex/swiftui-correction-preflight`, following ordinary entry source `d9dd9fb3`. Not merged, deployed or in TestFlight13.
+
+New manual refund/correction intents require an online scoped source/context read before SQLite enqueue. Refunds compare exact reviewed remaining shares by member, ignoring order, without silently rebasing amounts. Corrections verify current permission, source kind, replacement members/payer and exact opening reversal lineage. Account/generation checks surround authenticated reads and journal operations. Existing staged recovery remains receipt-first and preserves the exact command; server transactions still own final authorization and race handling.
+
+Native review screens provide explicit reload/edit and preserve drafts. Failures before journaling are distinguished from unresolved saved requests. A failed correction reload retains its draft for the next attempt. No load or foreground action sends a financial command.
+
+Local verification: source/file/function/complexity limits and `git diff --check` pass. Seventeen actual isolated PostgreSQL/PostgREST/SQLite cases pass with zero failure/skip: generated centime/refund allowance and replacement zero-sum invariants, concurrent source locks, rollback, tenant/actor/payload refusals, opening single-root lineage and actual save/cancel response loss across SQLite restart. The command used `node --test --test-concurrency=1 --test-reporter=tap` with native-refund, native-correction, refund-save-restart and correction-save-restart test files and disposable local binaries. No hosted data was touched.
+
+New Foundation coverage extends existing context invariants with128 generated exact/refused refund limits and correction permission combinations. A new opening-lineage test covers stale nil/changed predecessor, foreign payer, wrong replacement kind and reversal of an already reversed entry. Four new native model methods exercise offline, wrong household/source and changed history plus delayed sign-out/member switch:12 refusal variants total. Two existing lost-save-reply tests now provide real typed current-context responses before staging.
+
+Pending: strict native formatting, Foundation/native XCTest execution and exact-source CI; owned rendered reload/draft/keyboard checks; both-phone/Quiet/live-provider acceptance. Existing controlled fixtures do not prove live integrations. Ordinary recurring staging, variable-cycle approval/manual linkage and retained legacy inventory/forms remain unfinished. No additional reviewer, new beta, hosted migration, production action, purchase or automation was used.

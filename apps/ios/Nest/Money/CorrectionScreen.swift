@@ -24,6 +24,13 @@ struct CorrectionScreen: View {
                 Section {
                     Button("Confirm correction") { Task { await save() } }
                     Button("Edit") { self.reviewed = nil }
+                    Button("Reload entry and edit") {
+                        self.reviewed = nil
+                        Task {
+                            guard let context else { return }
+                            await perform { try await reload(context, preserveDraft: true) }
+                        }
+                    }
                 }
             } else if let source, draft != nil, source.canReverse || source.canReplace {
                 fields(source)
@@ -154,17 +161,18 @@ struct CorrectionScreen: View {
             let current = try session.expenseContext()
             context = current
             saved = try await session.savedCorrection(current)
-            if saved == nil { try await reload(current) }
+            if saved == nil { try await reload(current, preserveDraft: draft != nil) }
         }
     }
-    private func reload(_ context: ExpenseContext) async throws {
+    private func reload(_ context: ExpenseContext, preserveDraft: Bool = false) async throws {
+        let previous = preserveDraft ? draft : nil
         source = nil
-        draft = nil
+        if !preserveDraft { draft = nil }
         let value = try await session.readCorrectionContext(context, sourceEventId: sourceEventId)
         source = value
         if value.canReverse || value.canReplace {
-            draft = try CorrectionDraft(source: value.source)
-            draft?.replace = !value.canReverse
+            draft = try previous ?? CorrectionDraft(source: value.source)
+            if previous == nil { draft?.replace = !value.canReverse }
         }
     }
     private func review() {
@@ -207,7 +215,10 @@ struct CorrectionScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedCorrection(context) }
-            notice = "Could not confirm this action. Resolve any saved request before trying a new correction."
+            notice =
+                saved == nil
+                ? "Could not start this correction. Connect and reload the entry before reviewing again. Your draft is kept."
+                : "Could not confirm this action. Resolve any saved request before trying a new correction."
         }
     }
 }

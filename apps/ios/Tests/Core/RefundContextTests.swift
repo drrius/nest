@@ -36,5 +36,18 @@ final class RefundContextTests: XCTestCase {
                 try context(first, second, refundable: flag).validated(member: member, sourceEventId: event))
         }
         XCTAssertThrowsError(try context(51, 50, refundable: true).validated(member: member, sourceEventId: UUID()))
+        for index in 0..<128 {
+            let first = index % 51 + 1
+            let second = index % 51
+            let current = try context(first, second, refundable: true)
+            let input = RefundInput(
+                sourceEventId: event, description: "Refund", amountCentimes: try Centimes(String(first + second)),
+                payerId: member.userId, allocations: current.remaining,
+                expectedRemaining: Array(current.remaining.reversed()), date: try CivilDate("2026-10-01"), note: nil)
+            _ = try input.validated(member: member, context: current)
+            let changed = try context(first == 51 ? 50 : first + 1, second, refundable: true)
+            XCTAssertThrowsError(try input.validated(member: member, context: changed))
+            XCTAssertThrowsError(try input.validated(member: member, context: context(0, 0, refundable: false)))
+        }
     }
 }

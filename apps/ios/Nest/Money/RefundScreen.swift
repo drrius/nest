@@ -28,6 +28,10 @@ struct RefundScreen: View {
                 Section {
                     Button("Record refund") { Task { await save() } }
                     Button("Edit") { self.reviewed = nil }
+                    Button("Reload refund limits and edit") {
+                        self.reviewed = nil
+                        Task { await load() }
+                    }
                 }
             } else if let source, source.refundable {
                 fields(source)
@@ -123,7 +127,7 @@ struct RefundScreen: View {
             if saved == nil {
                 source = nil
                 source = try await session.readRefundContext(current, sourceEventId: sourceEventId)
-                payer = source?.source.event.payerId
+                if payer == nil { payer = source?.source.event.payerId }
             }
         }
     }
@@ -185,7 +189,10 @@ struct RefundScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedRefund(context) }
-            notice = "Could not confirm this action. Resolve any saved request before reviewing updated refund amounts."
+            notice =
+                saved == nil
+                ? "Could not start this refund. Connect and reload the limits before reviewing again. Your draft is kept."
+                : "Could not confirm this action. Resolve any saved request before reviewing updated refund amounts."
         }
     }
 }

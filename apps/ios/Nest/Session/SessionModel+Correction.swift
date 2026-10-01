@@ -19,6 +19,8 @@ extension SessionModel {
     }
 
     func stageCorrection(_ correction: CorrectionInput, context: ExpenseContext) async throws {
+        let current = try await readCorrectionContext(context, sourceEventId: correction.sourceEventId)
+        _ = try correction.validated(member: context.member, context: current)
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueCorrection(.init(operationId: UUID(), correction: correction), lease: context.lease)
