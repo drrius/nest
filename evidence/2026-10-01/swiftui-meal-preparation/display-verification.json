@@ -1,0 +1,30 @@
+{
+  "source": "e0bd72b92e3f107b5ac7425ecfeef1f0a9051fb9",
+  "matchingSourceInputs": 810,
+  "checks": [
+    {
+      "style": "light",
+      "largestText": true,
+      "refreshBounds": {
+        "x": 20,
+        "y": 438.5,
+        "width": 335,
+        "height": 125.5
+      },
+      "tabsAvailable": true
+    },
+    {
+      "style": "dark",
+      "largestText": true,
+      "refreshBounds": {
+        "x": 20,
+        "y": 438.5,
+        "width": 335,
+        "height": 125.5
+      },
+      "tabsAvailable": true
+    }
+  ],
+  "restoredTextSize": "large",
+  "restoredAppearance": "light"
+}
