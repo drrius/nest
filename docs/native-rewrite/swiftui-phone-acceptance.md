@@ -18,6 +18,12 @@ These are checks for both partners to complete independently. Record phone/iOS, 
 6. Open Calendar and choose whether to grant permission. Personal events should stay on your phone. Busy sharing starts off and requires an explicit enable action; only times may be shared. Declining permission must leave the other tabs usable. Two-phone sharing/revocation and payload inspection are separate checks; the basic permission screen is not privacy acceptance.
 7. Open Profile and confirm settings are readable and navigation returns safely. Test VoiceOver and Reduce Motion if available, including keyboard controls and larger text. Report what was actually exercised.
 
+## Next batched candidate
+
+Build13 is being prepared from exact source `f4a4eb4b`; it is **not available yet**. Once Apple reports that identified build available, use it for the newer recipe/editor and preparation checks. It batches corrections instead of submitting a beta per UI adjustment. The archive is built locally on the Mac.
+
+On build13, create one clearly named test recipe with at least one ingredient, edit its instructions and confirm the detail refreshes. Archive that exact test recipe and confirm existing planned meals retain their recipe snapshot. For a clearly named future test meal, open Meal preparation, create a date-only shared task, then edit instructions/responsibility and confirm the partner sees the same task. Reminder consent is separate; preparation is household work and must not post money. Record the actual build and result. Do not infer generated-plan, AI, offline, notification or full accessibility acceptance from those online checks.
+
 ## Separate unfinished gates
 
 Live AI is disabled while Gateway eligibility requires a valid card; no purchase is authorized. Notification delivery is disabled pending APNs provider setup and physical delivery verification. A successful permission screen or simulated notification does not satisfy that gate. Complete both-member weekly/approval/offline-conflict/calendar journeys, exact migration reconciliation and owner design acceptance remain required. No result here authorizes production cutover or an App Store release.
