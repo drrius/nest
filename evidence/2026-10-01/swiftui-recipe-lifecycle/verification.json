@@ -143,6 +143,9 @@
     "nest": 36811127060,
     "nestStatus": "success",
     "swiftui": 36811127058,
-    "swiftuiStatus": "pending"
+    "swiftuiStatus": "success",
+    "nativeCases": 215,
+    "nativeSkips": 4,
+    "nativeFailures": 0
   }
 }
