@@ -111,9 +111,9 @@ struct MealDayView<Detail: View>: View {
                 Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
             } label: {
                 HStack(spacing: 12) {
-                    if textSize.isAccessibilitySize { Text("Meal options") }
+                    Text(textSize.isAccessibilitySize ? "Meal options" : "Options")
                     Image(systemName: "ellipsis").font(.system(size: 14))
-                        .accessibilityLabel("\(date.value), \(slot.label): More options for \(meal.title)")
+                        .accessibilityHidden(true)
                 }
                 .foregroundStyle(QuietPalette.accent)
                 .frame(minWidth: 44, minHeight: 44)
