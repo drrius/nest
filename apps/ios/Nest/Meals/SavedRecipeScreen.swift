@@ -18,7 +18,7 @@ struct SavedRecipeScreen: View {
         .navigationTitle("Recipe")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .primaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Button("Edit recipe", systemImage: "pencil") { editing = true }
                     .disabled(model.recipeEdit != nil || model.recipeArchive != nil || model.recipeCreation != nil)
                 Button("Archive recipe", systemImage: "archivebox") { archiving = true }
@@ -27,7 +27,15 @@ struct SavedRecipeScreen: View {
         }
         .sheet(isPresented: $editing) { RecipeEditSheet(model: model, id: id) }
         .sheet(isPresented: $archiving) { RecipeArchiveSheet(model: model, id: id) }
-        .task(id: id) { await model.loadSavedRecipe(id) }
+        .task(id: libraryRevision) {
+            guard libraryRevision != nil else { return }
+            await model.loadSavedRecipe(id)
+        }
+    }
+
+    private var libraryRevision: String? {
+        guard case .loaded(let listing) = model.mealLibrary else { return nil }
+        return listing.revision
     }
 
     @ViewBuilder
