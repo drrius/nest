@@ -6,7 +6,7 @@
     "owner": "drrius-dev",
     "ios": {
       "bundleIdentifier": "ch.drrius.nest",
-      "buildNumber": "10"
+      "buildNumber": "13"
     },
     "extra": {
       "eas": {
