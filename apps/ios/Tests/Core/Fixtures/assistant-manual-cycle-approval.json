@@ -1,0 +1,34 @@
+[
+  {
+    "type": "tool-proposeManualCycle",
+    "toolCallId": "manual-proposal-fixture",
+    "state": "output-available",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000004",
+      "expectedRevision": "00000000-0000-4000-8000-000000000005",
+      "dueOn": "2026-10-01",
+      "sourceEventId": "00000000-0000-4000-8000-000000000008"
+    },
+    "output": {
+      "ok": true,
+      "value": {
+        "version": 1,
+        "actorId": "00000000-0000-4000-8000-000000000001",
+        "householdId": "00000000-0000-4000-8000-000000000002",
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000007",
+          "operationId": "00000000-0000-4000-8000-000000000006",
+          "input": {
+            "ruleId": "00000000-0000-4000-8000-000000000004",
+            "expectedRevision": "00000000-0000-4000-8000-000000000005",
+            "dueOn": "2026-10-01",
+            "sourceEventId": "00000000-0000-4000-8000-000000000008"
+          },
+          "status": "pending",
+          "expiresAt": "2099-01-01T00:00:00.000000Z",
+          "receipt": null
+        }
+      }
+    }
+  }
+]

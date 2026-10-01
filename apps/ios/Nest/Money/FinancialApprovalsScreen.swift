@@ -12,6 +12,7 @@ struct FinancialApprovalsScreen: View {
     @State private var savedRecurringState: SavedRecurringStateDecision?
     @State private var savedRecurringResume: SavedRecurringResumeDecision?
     @State private var savedVariableCycle: SavedVariableCycleDecision?
+    @State private var savedManualCycle: SavedManualCycleDecision?
     @State private var next: UUID?
     @State private var loading = false
     @State private var loaded = false
@@ -86,6 +87,7 @@ struct FinancialApprovalsScreen: View {
                 Button("Refresh approvals") { Task { await load(more: false) } }.disabled(loading)
             }
             laterSavedDecisions
+            savedLinkDecision
         }
         .navigationTitle("Your approvals")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
@@ -113,6 +115,18 @@ struct FinancialApprovalsScreen: View {
         }
     }
 
+    @ViewBuilder private var savedLinkDecision: some View {
+        if let savedManualCycle {
+            Section("Saved expense-link decision") {
+                NavigationLink("Check expense-link decision") {
+                    ManualCycleApprovalScreen(
+                        session: session, member: member, approvalId: savedManualCycle.decision.approvalId
+                    ).id(session.generation)
+                }
+            }
+        }
+    }
+
     private func load(more: Bool) async {
         guard !loading else { return }
         loading = true
@@ -131,6 +145,7 @@ struct FinancialApprovalsScreen: View {
             savedRecurringState = nil
             savedRecurringResume = nil
             savedVariableCycle = nil
+            savedManualCycle = nil
         }
         do {
             let context = try session.expenseContext()
@@ -142,6 +157,7 @@ struct FinancialApprovalsScreen: View {
             savedRecurringState = try await session.savedRecurringStateDecision(context)
             savedRecurringResume = try await session.savedRecurringResumeDecision(context)
             savedVariableCycle = try await session.savedVariableCycleDecision(context)
+            savedManualCycle = try await session.savedManualCycleDecision(context)
             let page = try await session.readPendingApprovals(context, after: cursor)
             try Task.checkCancellation()
             rows.append(contentsOf: page.approvals)
