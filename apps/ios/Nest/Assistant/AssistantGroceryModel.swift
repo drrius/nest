@@ -3,7 +3,11 @@ import SwiftUI
 
 @MainActor
 final class AssistantGroceryModel: ObservableObject {
-    enum Status: Equatable { case idle, loading, loaded(GroceryItem?), failed }
+    enum Status: Equatable {
+        case idle, loading
+        case loaded(GroceryItem?)
+        case failed
+    }
     @Published private(set) var status = Status.idle
     private var request = UUID()
 

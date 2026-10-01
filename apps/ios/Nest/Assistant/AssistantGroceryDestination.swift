@@ -38,8 +38,9 @@ struct AssistantGroceryDestination: View {
                     if let category = item.categoryName { Text(category).foregroundStyle(QuietPalette.muted) }
                     Label(
                         item.checked ? "Picked up" : "Still to pick up",
-                        systemImage: item.checked ? "checkmark.circle" : "circle")
-                        .foregroundStyle(QuietPalette.accent)
+                        systemImage: item.checked ? "checkmark.circle" : "circle"
+                    )
+                    .foregroundStyle(QuietPalette.accent)
                 } else {
                     Text("This grocery is no longer in the shared list.").foregroundStyle(QuietPalette.muted)
                 }

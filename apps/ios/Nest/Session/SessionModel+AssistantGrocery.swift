@@ -4,6 +4,7 @@ extension SessionModel {
     func readAssistantGrocery(
         _ result: AssistantGroceryActionLink, context: AssistantContext
     ) async throws -> GroceryItem? {
+        guard AssistantGroceryActionLink.validVersion(result.version) else { throw GroceryContractError.invalidReceipt }
         let token = try await assistantToken(context)
         guard let groceryAPI else { throw NestAPIFailure.configuration }
         let list = try await groceryAPI.list(token: token, member: context.member)

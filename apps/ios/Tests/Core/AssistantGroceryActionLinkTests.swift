@@ -18,7 +18,8 @@ final class AssistantGroceryActionLinkTests: XCTestCase {
 
     private func fixtures() throws -> [Fixture] {
         let url = try XCTUnwrap(
-            Bundle.module.url(forResource: "assistant-grocery-actions", withExtension: "json", subdirectory: "Fixtures"))
+            Bundle.module.url(
+                forResource: "assistant-grocery-actions", withExtension: "json", subdirectory: "Fixtures"))
         return try JSONDecoder().decode([Fixture].self, from: Data(contentsOf: url))
     }
 
@@ -82,7 +83,7 @@ final class AssistantGroceryActionLinkTests: XCTestCase {
             XCTAssertNil(AssistantGroceryActionLink.read(part))
         }
         let fixture = try XCTUnwrap(all.first)
-        for name in ["\t\n", "A\0B", String(repeating: "a", count: 121)] {
+        for name in ["\t\n", "\u{FEFF}", "A\0B", String(repeating: "a", count: 121)] {
             var input = fixture.input
             input["name"] = .string(name)
             var part = fixture.part

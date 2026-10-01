@@ -1,7 +1,10 @@
 import Foundation
 
 struct AssistantGroceryActionLink: Equatable, Sendable {
-    enum Action: Equatable, Sendable { case added, edited, removed, checked(Bool) }
+    enum Action: Equatable, Sendable {
+        case added, edited, removed
+        case checked(Bool)
+    }
     let itemId: UUID
     let version: String
     let action: Action
@@ -95,7 +98,7 @@ struct AssistantGroceryActionLink: Equatable, Sendable {
     }
 
     private static func validName(_ value: String) -> Bool {
-        !value.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+        !value.trimmingCharacters(in: TextWhitespace.ecmaScript).isEmpty
             && value.unicodeScalars.count <= 120 && !value.contains("\0")
     }
 
