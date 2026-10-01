@@ -21,6 +21,8 @@ extension SessionModel {
     }
 
     func stageExpense(_ expense: ExpenseInput, context: ExpenseContext) async throws {
+        let balance = try await readMoneyBalance(member: context.member, generation: context.generation)
+        _ = try expense.validated(member: context.member, balance: balance)
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueExpense(.init(operationId: UUID(), expense: expense), lease: context.lease)

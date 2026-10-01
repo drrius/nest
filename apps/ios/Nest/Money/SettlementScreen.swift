@@ -29,6 +29,10 @@ struct SettlementScreen: View {
                 Section {
                     Button("Record payment") { Task { await save() } }
                     Button("Edit") { self.reviewed = nil }
+                    Button("Reload balance and review again") {
+                        reviewed = nil
+                        Task { await load() }
+                    }
                 }
             } else if let balance {
                 fields(balance)
@@ -182,8 +186,9 @@ struct SettlementScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedSettlement(context) }
-            notice =
-                "Could not confirm this action. If the balance changed, cancel the pending request and review the current balance."
+            notice = saved == nil
+                ? "Could not start this record. Connect and reload the balance before reviewing again. Your draft is kept."
+                : "Could not confirm this action. Resolve the saved request before reviewing another payment."
         }
     }
 }

@@ -34,6 +34,10 @@ struct ExpenseScreen: View {
                 Section {
                     Button("Save expense") { Task { await saveReviewed() } }
                     Button("Edit") { self.reviewed = nil }
+                    Button("Reload people and edit") {
+                        reviewed = nil
+                        Task { await load() }
+                    }
                 }
             } else if loaded {
                 ExpenseFormFields(draft: $draft, date: $date, members: members, focus: $focusedField)
@@ -138,7 +142,9 @@ struct ExpenseScreen: View {
             notice = nil
         } catch {
             saved = try? await session.savedExpense(context)
-            notice = "Save not confirmed. Check the saved request before trying again."
+            notice = saved == nil
+                ? "Could not start this save. Connect and reload the people before reviewing again. Your draft is kept."
+                : "Save not confirmed. Check the saved request before trying again."
         }
     }
 

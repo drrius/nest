@@ -10,6 +10,8 @@ extension SessionModel {
     }
 
     func stageSettlement(_ settlement: SettlementInput, context: ExpenseContext) async throws {
+        let balance = try await readMoneyBalance(member: context.member, generation: context.generation)
+        _ = try settlement.validated(member: context.member, balance: balance)
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueSettlement(.init(operationId: UUID(), settlement: settlement), lease: context.lease)
