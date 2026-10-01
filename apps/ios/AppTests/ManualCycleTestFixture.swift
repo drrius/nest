@@ -38,8 +38,10 @@ struct ManualCycleTestFixture {
             version: 1, householdId: member.householdId, event: event, receiptTotalCentimes: nil, note: "Expense note",
             category: nil, reversedById: nil,
             shares: [
-                .init(memberId: member.userId, allocatedCentimes: try Centimes("51"), deltaCentimes: try Centimes("50")),
-                .init(memberId: partner.userId, allocatedCentimes: try Centimes("50"), deltaCentimes: try Centimes("-50")),
+                .init(
+                    memberId: member.userId, allocatedCentimes: try Centimes("51"), deltaCentimes: try Centimes("50")),
+                .init(
+                    memberId: partner.userId, allocatedCentimes: try Centimes("50"), deltaCentimes: try Centimes("-50")),
             ])
         let server = ManualCycleTestServer(member: member, rule: rule, source: source, loseReply: loseReply)
         let url = FileManager.default.temporaryDirectory.appending(path: "manual-cycle-\(UUID()).sqlite")
@@ -194,7 +196,9 @@ actor ManualCycleTestServer {
         if let cursor {
             guard let index = all.firstIndex(where: { $0.id == cursor }) else { throw NestAPIFailure.contract }
             events = Array(all.dropFirst(index + 1).prefix(50))
-        } else { events = Array(all.prefix(50)) }
+        } else {
+            events = Array(all.prefix(50))
+        }
         return .init(
             version: 1, householdId: member.householdId, before: cursor,
             next: events.count == 50 ? events.last?.id : nil, events: events)
@@ -206,7 +210,8 @@ actor ManualCycleTestServer {
                 actorId: fault == "member" && $0.id != member.userId ? UUID() : $0.id,
                 displayName: $0.id == member.userId ? "Alex" : "Sam", centimes: try Centimes("0"))
         }
-        return .init(version: 1, householdId: member.householdId, eventCount: "1", openingEstablished: false, members: people)
+        return .init(
+            version: 1, householdId: member.householdId, eventCount: "1", openingEstablished: false, members: people)
     }
 
     private func target() throws -> RecurringDetail {
@@ -214,7 +219,8 @@ actor ManualCycleTestServer {
             version: 1, householdId: member.householdId,
             today: try CivilDate(fault == "future" ? "2026-09-30" : "2026-10-01"),
             rule: .init(
-                ruleId: rule.id, revision: fault == "revision" ? UUID() : rule.revision, configuration: rule.configuration,
+                ruleId: rule.id, revision: fault == "revision" ? UUID() : rule.revision,
+                configuration: rule.configuration,
                 status: fault == "paused" ? .paused : .active, authorizedBy: rule.authorizedBy,
                 authorizedAt: rule.authorizedAt,
                 coveredThrough: fault == "covered" ? try CivilDate("2026-10-31") : nil, nextDueOn: rule.nextDueOn))

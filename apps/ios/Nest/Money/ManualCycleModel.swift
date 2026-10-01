@@ -100,8 +100,11 @@ final class ManualCycleModel: ObservableObject {
     func retry(cancel: Bool = false) async {
         await perform {
             guard let context = self.context else { throw NestAPIFailure.signedOut }
-            self.saved = try await (
-                cancel ? self.session.cancelManualCycle(context) : self.session.retryManualCycle(context))
+            if cancel {
+                self.saved = try await self.session.cancelManualCycle(context)
+            } else {
+                self.saved = try await self.session.retryManualCycle(context)
+            }
         }
     }
 
@@ -144,7 +147,8 @@ final class ManualCycleModel: ObservableObject {
             let pending = try? await session.savedManualCycle(context)
             guard accept(context.generation) else { return }
             saved = pending
-            notice = pending == nil
+            notice =
+                pending == nil
                 ? "Could not start this link. Reload and review the current expense and bill online."
                 : "This link is not confirmed yet. Check its saved result or explicitly cancel the pending link."
         }

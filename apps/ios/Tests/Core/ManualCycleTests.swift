@@ -63,14 +63,16 @@ final class ManualCycleTests: XCTestCase {
                 let rule = RecurringRule(
                     ruleId: receipt.input.ruleId,
                     revision: fault == "revision" ? UUID() : receipt.input.expectedRevision,
-                    configuration: config, status: fault == "paused" ? .paused : fault == "cancelled" ? .cancelled : .active,
+                    configuration: config,
+                    status: fault == "paused" ? .paused : fault == "cancelled" ? .cancelled : .active,
                     authorizedBy: member.userId, authorizedAt: "2026-10-01T00:00:00.000000Z",
                     coveredThrough: fault == "covered" ? receipt.cycle.through : nil,
                     nextDueOn: receipt.input.dueOn)
                 let target = RecurringDetail(
                     version: 1, householdId: member.householdId,
                     today: try CivilDate(fault == "future" ? "2026-09-30" : "2026-10-01"), rule: rule)
-                let current = fault == "foreign"
+                let current =
+                    fault == "foreign"
                     ? MoneyBalance(
                         version: 1, householdId: member.householdId, eventCount: "1", openingEstablished: false,
                         members: [people[0], .init(actorId: UUID(), displayName: "Other", centimes: try Centimes("0"))])
@@ -81,7 +83,7 @@ final class ManualCycleTests: XCTestCase {
                 } else {
                     XCTAssertThrowsError(
                         try receipt.input.validated(
-                        member: member, balance: current, target: target, source: receipt.linkedExpense), fault)
+                            member: member, balance: current, target: target, source: receipt.linkedExpense), fault)
                 }
             }
         }

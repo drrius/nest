@@ -29,13 +29,15 @@ struct ManualCycleSummary: View {
                 ForEach(shares, id: \.memberId) { share in
                     LabeledContent("Rule share · \(name(share.memberId))", value: share.centimes.absoluteCHF)
                 }
-            } else { Text("The bill has a variable amount and split.") }
+            } else {
+                Text("The bill has a variable amount and split.")
+            }
             if configuration.categoryId != nil { Text("The rule has a selected category.") }
             if let note = configuration.note { Text(note) }
             Text(
                 "Use this existing expense even if its amount, payer or split differs from the rule. This covers one cycle and prevents another recurring posting for it. It creates no expense, payment or balance change. Your expense and future rule stay the same."
             )
-                .font(.footnote).foregroundStyle(QuietPalette.muted)
+            .font(.footnote).foregroundStyle(QuietPalette.muted)
         }
     }
 

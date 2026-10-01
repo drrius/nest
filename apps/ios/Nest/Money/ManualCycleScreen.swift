@@ -60,7 +60,9 @@ struct ManualCycleScreen: View {
                     }
                     if model.candidates.isEmpty { Text("No matching expense in the history loaded so far.") }
                     if model.next != nil { Button("Load older expenses") { Task { await model.load(more: true) } } }
-                } else { Text("This rule has no uncovered cycle due for linking.") }
+                } else {
+                    Text("This rule has no uncovered cycle due for linking.")
+                }
             }
             Button("Refresh bill and expenses") { Task { await model.load() } }
         }
