@@ -41,6 +41,7 @@ final class LegacyRecurringReadTests: XCTestCase {
         XCTAssertEqual(retained.description, "\t")
         XCTAssertEqual(retained.nextOccurrenceOn.value, "infinity")
         XCTAssertEqual(retained.allocations.kind, .needsReview)
+        XCTAssertTrue(retained.needsReview)
         XCTAssertEqual(LegacyRecurringLabel.display(retained.description), "Retained recurring expense")
         for label in ["", "   ", "a\0b", String(repeating: "a", count: 201)] {
             raw["description"] = label
@@ -172,7 +173,8 @@ final class LegacyRecurringReadTests: XCTestCase {
                 LegacyDraftCounts(
                     pending: value.pending, posted: value.posted, dismissed: value.dismissed,
                     postedWithoutEvent: String(posted + 1), unpostedWithEvent: "0", unsupportedDates: "0",
-                    latestDraftOn: value.latestDraftOn).valid)
+                    latestDraftOn: value.latestDraftOn).valid
+            )
         }
     }
 }

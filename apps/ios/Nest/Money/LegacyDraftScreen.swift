@@ -12,6 +12,7 @@ struct LegacyDraftScreen: View {
                 LabeledContent("Status", value: draft.status.rawValue.capitalized)
                 LabeledContent("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Needs review")
                 LabeledContent("Date", value: draft.occurredOn.display)
+                if draft.updatedAt.kind == .unsupported { Text("The old change date needs review.") }
                 LegacySplitTerms(split: draft.allocations, payerId: draft.payerId, member: member)
                 Text(
                     draft.sourceKind == .shopping

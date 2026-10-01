@@ -30,7 +30,7 @@ struct LegacyRecurringScreen: View {
                             "\(rule.drafts.pending) pending · \(rule.drafts.posted) posted · \(rule.drafts.dismissed) dismissed"
                         )
                         .font(.subheadline).foregroundStyle(QuietPalette.muted)
-                        if rule.drafts.needsReconciliation {
+                        if rule.needsReview {
                             Text("Some retained records need review.").font(.footnote)
                         }
                     }.padding(.vertical, 4)

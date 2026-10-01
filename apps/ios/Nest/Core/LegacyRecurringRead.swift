@@ -15,6 +15,11 @@ struct LegacyRecurringRule: Decodable, Equatable, Identifiable, Sendable {
     let drafts: LegacyDraftCounts
     var id: UUID { ruleId }
 
+    var needsReview: Bool {
+        allocations.kind == .needsReview || nextOccurrenceOn.kind == .unsupported
+            || updatedAt.kind == .unsupported || drafts.needsReconciliation
+    }
+
     var valid: Bool {
         mode == "legacy_draft_only" && LegacyRecurringLabel.valid(description) && amountCentimes.value >= 0
             && allocations.valid(amount: amountCentimes, payer: payerId) && schedule.valid && drafts.valid

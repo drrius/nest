@@ -64,6 +64,7 @@ private struct LegacyRecurringTerms: View {
             LegacySplitTerms(split: rule.allocations, payerId: rule.payerId, member: member)
             LabeledContent("Old rule", value: rule.active ? "Active · draft only" : "Inactive · draft only")
             LabeledContent("Next old date", value: rule.nextOccurrenceOn.display)
+            if rule.updatedAt.kind == .unsupported { Text("The old change date needs review.") }
             if let weekday = rule.schedule.weekday {
                 LabeledContent("Schedule", value: "Every \(Calendar.current.weekdaySymbols[weekday % 7])")
             }
