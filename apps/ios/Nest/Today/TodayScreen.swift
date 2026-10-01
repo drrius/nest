@@ -8,77 +8,85 @@ struct TodayScreen: View {
     @State private var clockStart = Date()
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 0) {
-                TodayHeader(model: model, member: member)
-                quickAdd.padding(.top, 20)
-                TimelineView(.periodic(from: clockStart, by: 60)) { _ in
-                    TodayMealsSection(model: model, member: member, day: todayDate, refresh: todayRefresh)
-                        .id(member.userId)
-                }
-                .padding(.top, 24)
-                TodayChoreFilter(everyone: $everyone).padding(.top, 24)
-                Text("Around the house")
-                    .font(.headline)
-                    .foregroundStyle(QuietPalette.ink)
-                    .padding(.top, 30)
-                if let notice = model.todayNotice {
-                    Text(notice)
-                        .font(.subheadline)
-                        .foregroundStyle(QuietPalette.muted)
-                        .padding(.top, 14)
-                    Button("Retry sync") { Task { await model.refreshToday() } }
-                        .font(.subheadline.weight(.medium))
-                        .padding(.top, 8)
-                }
-                content
-                NavigationLink {
-                    RoutinesScreen(model: model)
-                } label: {
-                    QuietActionLabel("Manage chores")
-                }.padding(.top, 8)
-                NavigationLink {
-                    RenewalsScreen(session: model, member: member).id(model.generation)
-                } label: {
-                    QuietActionLabel("Manage renewals")
-                }
-                TodayBillsSection(session: model, member: member, refresh: todayRefresh)
-                    .id(member.userId)
-                TodayCalendarSection(session: model, member: member, refresh: todayRefresh)
-                    .id(member.userId)
-                    .padding(.top, 24)
-                TodayApprovalsSection(model: model, member: member, refresh: todayRefresh)
-                    .id(member.userId)
-                    .padding(.top, 24)
-                NavigationLink {
-                    GroceriesScreen(model: model)
-                } label: {
-                    HStack(spacing: 14) {
-                        Image(systemName: "basket")
-                            .font(.title3)
-                            .foregroundStyle(QuietPalette.accent)
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text("Groceries").font(.headline).foregroundStyle(QuietPalette.ink)
-                            Text(grocerySummary).font(.subheadline).foregroundStyle(QuietPalette.muted)
+        TimelineView(.periodic(from: clockStart, by: 60)) { clock in
+            if let moment = try? TodayMoment(now: clock.date) {
+                ScrollView {
+                    VStack(alignment: .leading, spacing: 0) {
+                        TodayHeader(model: model, member: member, moment: moment)
+                        quickAdd.padding(.top, 20)
+                        TodayMealsSection(model: model, member: member, day: moment.day, refresh: todayRefresh)
+                            .id(member.userId)
+                            .padding(.top, 24)
+                        TodayChoreFilter(everyone: $everyone).padding(.top, 24)
+                        Text("Around the house")
+                            .font(.headline)
+                            .foregroundStyle(QuietPalette.ink)
+                            .padding(.top, 30)
+                        if let notice = model.todayNotice {
+                            Text(notice)
+                                .font(.subheadline)
+                                .foregroundStyle(QuietPalette.muted)
+                                .padding(.top, 14)
+                            Button("Retry sync") { Task { await model.refreshToday() } }
+                                .font(.subheadline.weight(.medium))
+                                .padding(.top, 8)
                         }
-                        Spacer()
-                        Image(systemName: "chevron.right").foregroundStyle(QuietPalette.muted)
+                        content(moment: moment)
+                        NavigationLink {
+                            RoutinesScreen(model: model)
+                        } label: {
+                            QuietActionLabel("Manage chores")
+                        }.padding(.top, 8)
+                        NavigationLink {
+                            RenewalsScreen(session: model, member: member).id(model.generation)
+                        } label: {
+                            QuietActionLabel("Manage renewals")
+                        }
+                        TodayBillsSection(session: model, member: member, refresh: todayRefresh)
+                            .id(member.userId)
+                        TodayCalendarSection(session: model, member: member, refresh: todayRefresh)
+                            .id(member.userId)
+                            .padding(.top, 24)
+                        TodayApprovalsSection(model: model, member: member, refresh: todayRefresh)
+                            .id(member.userId)
+                            .padding(.top, 24)
+                        NavigationLink {
+                            GroceriesScreen(model: model)
+                        } label: {
+                            HStack(spacing: 14) {
+                                Image(systemName: "basket")
+                                    .font(.title3)
+                                    .foregroundStyle(QuietPalette.accent)
+                                VStack(alignment: .leading, spacing: 3) {
+                                    Text("Groceries").font(.headline).foregroundStyle(QuietPalette.ink)
+                                    Text(grocerySummary).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                                }
+                                Spacer()
+                                Image(systemName: "chevron.right").foregroundStyle(QuietPalette.muted)
+                            }
+                            .padding(18)
+                            .frame(minHeight: 76)
+                            .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
+                            .contentShape(Rectangle())
+                        }
+                        .buttonStyle(.plain)
+                        .padding(.top, 28)
+                        NavigationLink {
+                            DailySummaryScreen(session: model, member: member).id(model.generation)
+                        } label: {
+                            QuietActionLabel("Your saved daily summary")
+                        }.padding(.top, 12)
                     }
-                    .padding(18)
-                    .frame(minHeight: 76)
-                    .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
-                    .contentShape(Rectangle())
+                    .padding(.horizontal, 20)
+                    .padding(.top, 14)
                 }
-                .buttonStyle(.plain)
-                .padding(.top, 28)
-                NavigationLink {
-                    DailySummaryScreen(session: model, member: member).id(model.generation)
-                } label: {
-                    QuietActionLabel("Your saved daily summary")
-                }.padding(.top, 12)
+                .onChange(of: moment.day) { _, _ in
+                    todayRefresh = UUID()
+                    Task { await model.refreshToday() }
+                }
+            } else {
+                ContentUnavailableView("Could not read today's date", systemImage: "calendar")
             }
-            .padding(.horizontal, 20)
-            .padding(.top, 14)
         }
         .background(QuietPalette.background)
         .refreshable {
@@ -133,7 +141,7 @@ struct TodayScreen: View {
     }
 
     @ViewBuilder
-    private var content: some View {
+    private func content(moment: TodayMoment) -> some View {
         switch model.today {
         case .idle, .loading:
             ProgressView("Loading chores…").padding(.top, 24)
@@ -146,20 +154,20 @@ struct TodayScreen: View {
             .padding(.top, 24)
         case .loaded(let state):
             let visible = state.chores.filter {
-                $0.visibleToday(on: todayDate, actor: member.userId, everyone: everyone)
+                $0.visibleToday(on: moment.day, actor: member.userId, everyone: everyone)
             }
             if visible.isEmpty {
                 Text("Nothing due in this view.")
                     .foregroundStyle(QuietPalette.muted)
                     .padding(.top, 24)
             } else {
-                ForEach(visible) { chore in choreRow(chore) }
+                ForEach(visible) { chore in choreRow(chore, moment: moment) }
             }
         }
     }
 
     @ViewBuilder
-    private func choreRow(_ item: LocalChore) -> some View {
+    private func choreRow(_ item: LocalChore, moment: TodayMoment) -> some View {
         VStack(alignment: .leading, spacing: 0) {
             Button {
                 Task { await model.complete(item.chore) }
@@ -170,7 +178,7 @@ struct TodayScreen: View {
                         .foregroundStyle(QuietPalette.accent)
                     VStack(alignment: .leading, spacing: 3) {
                         Text(item.chore.title).foregroundStyle(QuietPalette.ink)
-                        Text(detail(item)).font(.caption).foregroundStyle(QuietPalette.muted)
+                        Text(detail(item, moment: moment)).font(.caption).foregroundStyle(QuietPalette.muted)
                     }
                     Spacer()
                 }
@@ -180,7 +188,7 @@ struct TodayScreen: View {
             .buttonStyle(.plain)
             .disabled(item.state != .open)
             .accessibilityLabel(item.chore.title)
-            .accessibilityValue(detail(item))
+            .accessibilityValue(detail(item, moment: moment))
             if item.state == .conflict, let operation = item.operationId {
                 Button("Discard saved change") { Task { await model.discard(operation) } }
                     .font(.caption.weight(.medium))
@@ -191,35 +199,14 @@ struct TodayScreen: View {
         .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
     }
 
-    private func detail(_ item: LocalChore) -> String {
+    private func detail(_ item: LocalChore, moment: TodayMoment) -> String {
         let state =
             switch item.state {
-            case .open: dueLabel(item.chore.dueDate)
+            case .open: moment.dueLabel(item.chore.dueDate)
             case .pending: "Saved · waiting to sync"
             case .completed: "Done"
             case .conflict: "Needs review · change was not applied"
             }
         return state
-    }
-
-    private var todayDate: CivilDate {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = .current
-        formatter.dateFormat = "yyyy-MM-dd"
-        return try! CivilDate(formatter.string(from: .now))
-    }
-
-    private func dueLabel(_ dueDate: CivilDate) -> String {
-        let formatter = DateFormatter()
-        formatter.calendar = Calendar(identifier: .gregorian)
-        formatter.locale = Locale(identifier: "en_US_POSIX")
-        formatter.timeZone = .current
-        formatter.dateFormat = "yyyy-MM-dd"
-        if formatter.string(from: .now) == dueDate.value { return "Due today" }
-        guard let date = formatter.date(from: dueDate.value) else { return "Due " + dueDate.value }
-        let label = date.formatted(.dateTime.day().month(.abbreviated))
-        return date < .now ? "Overdue since " + label : "Due " + label
     }
 }

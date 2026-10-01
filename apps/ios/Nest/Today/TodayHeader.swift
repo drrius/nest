@@ -3,6 +3,7 @@ import SwiftUI
 struct TodayHeader: View {
     @ObservedObject var model: SessionModel
     let member: VerifiedMember
+    let moment: TodayMoment
     @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
@@ -30,7 +31,7 @@ struct TodayHeader: View {
     }
 
     private var date: some View {
-        Text(Date.now.formatted(.dateTime.weekday(.wide).day().month(.wide)))
+        Text(moment.header)
             .font(.caption)
             .foregroundStyle(QuietPalette.muted)
             .fixedSize(horizontal: false, vertical: true)

@@ -30,7 +30,6 @@ struct TodayMealsSection: View {
         .padding(18)
         .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
         .task(id: refresh) { await load() }
-        .onChange(of: day) { _, _ in Task { await load() } }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await load() } }
         }
