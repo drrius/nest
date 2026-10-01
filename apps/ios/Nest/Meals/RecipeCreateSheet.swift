@@ -13,22 +13,26 @@ struct RecipeCreateSheet: View {
     @State private var notice: String?
     @State private var saving = false
     @State private var confirmingDiscard = false
+    @FocusState private var focusedField: String?
 
     var body: some View {
         NavigationStack {
             Form {
                 Section("Recipe") {
-                    TextField("Name", text: $title)
-                    LabeledContent("Servings") {
-                        TextField("Servings", text: $servings)
-                            .keyboardType(.numberPad).multilineTextAlignment(.trailing)
-                            .accessibilityLabel("Servings")
-                    }
-                    TextField("Cooking instructions", text: $instructions, axis: .vertical).lineLimit(3...8)
+                    RecipeDraftField(label: "Name", text: $title, key: "name", focus: $focusedField)
+                    RecipeDraftField(
+                        label: "Servings", text: $servings, key: "servings", focus: $focusedField, keyboard: .numberPad)
+                    RecipeDraftField(
+                        label: "Cooking instructions", text: $instructions, key: "instructions",
+                        focus: $focusedField, axis: .vertical, lines: 3...8)
                 }
                 Section("Ingredients") {
-                    ForEach($ingredients) { $ingredient in
-                        RecipeIngredientEditor(value: $ingredient) {
+                    ForEach(Array(ingredients.enumerated()), id: \.element.id) { position, ingredient in
+                        RecipeIngredientEditor(
+                            value: identifiedDraftBinding(for: ingredient, in: $ingredients),
+                            position: position + 1, focus: $focusedField
+                        ) {
+                            focusedField = nil
                             ingredients.removeAll { $0.id == ingredient.id }
                         }
                     }
@@ -36,9 +40,12 @@ struct RecipeCreateSheet: View {
                         .disabled(ingredients.count >= 200)
                 }
                 Section("Optional details") {
-                    TextField("Recipe link", text: $link).keyboardType(.URL)
-                        .textInputAutocapitalization(.never).autocorrectionDisabled()
-                    TextField("Notes", text: $notes, axis: .vertical).lineLimit(2...5)
+                    RecipeDraftField(
+                        label: "Recipe link", text: $link, key: "link", focus: $focusedField, keyboard: .URL
+                    )
+                    .textInputAutocapitalization(.never).autocorrectionDisabled()
+                    RecipeDraftField(
+                        label: "Notes", text: $notes, key: "notes", focus: $focusedField, axis: .vertical, lines: 2...5)
                 }
                 Section {
                     Text(
@@ -52,6 +59,7 @@ struct RecipeCreateSheet: View {
                 }
             }
             .disabled(saving)
+            .modifier(RecipeEditorKeyboard(focus: $focusedField))
             .scrollContentBackground(.hidden)
             .background(QuietPalette.background)
             .navigationTitle("New recipe")
@@ -66,7 +74,9 @@ struct RecipeCreateSheet: View {
                 }
             }
             .interactiveDismissDisabled()
-            .confirmationDialog("Discard this recipe draft?", isPresented: $confirmingDiscard) {
+            .confirmationDialog(
+                "Discard this recipe draft?", isPresented: $confirmingDiscard, titleVisibility: .visible
+            ) {
                 Button("Discard draft", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
             }
@@ -95,6 +105,7 @@ struct RecipeCreateSheet: View {
 
     private func save() async {
         guard !saving, let context, let draft else { return }
+        focusedField = nil
         saving = true
         defer { saving = false }
         if await model.createRecipe(draft, context: context) {
@@ -115,20 +126,5 @@ struct RecipeIngredientFields: Identifiable {
         RecipeIngredientDraft(
             name: name, quantity: quantity.isEmpty ? nil : quantity,
             unit: unit.isEmpty ? nil : unit, categoryId: nil, note: note.isEmpty ? nil : note)
-    }
-}
-
-struct RecipeIngredientEditor: View {
-    @Binding var value: RecipeIngredientFields
-    let remove: () -> Void
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            TextField("Ingredient", text: $value.name)
-            TextField("Quantity (optional)", text: $value.quantity)
-            TextField("Unit (optional)", text: $value.unit)
-            TextField("Ingredient note (optional)", text: $value.note, axis: .vertical)
-            Button("Remove ingredient", role: .destructive, action: remove)
-                .accessibilityLabel("Remove \(value.name.isEmpty ? "ingredient" : value.name)")
-        }.padding(.vertical, 8)
     }
 }

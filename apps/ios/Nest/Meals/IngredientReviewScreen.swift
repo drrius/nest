@@ -82,7 +82,7 @@ struct IngredientReviewScreen: View {
                 ForEach(choices) { choice in
                     if let row = listing.ingredients.first(where: { $0.id == choice.id }) {
                         IngredientChoiceRow(
-                            choice: ingredientChoiceBinding(for: choice, choices: $choices), row: row,
+                            choice: identifiedDraftBinding(for: choice, in: $choices), row: row,
                             focus: $focusedField)
                     }
                 }

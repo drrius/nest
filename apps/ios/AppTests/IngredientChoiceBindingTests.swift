@@ -8,8 +8,8 @@ final class IngredientChoiceBindingTests: XCTestCase {
     func testRetiredSwitchBindingSurvivesClearedAndReplacedChoices() {
         let original = choice()
         var choices = [original]
-        let binding = ingredientChoiceBinding(
-            for: original, choices: Binding(get: { choices }, set: { choices = $0 }))
+        let binding = identifiedDraftBinding(
+            for: original, in: Binding(get: { choices }, set: { choices = $0 }))
 
         choices.removeAll()
         XCTAssertEqual(binding.wrappedValue, original)
@@ -29,8 +29,8 @@ final class IngredientChoiceBindingTests: XCTestCase {
         let original = choice()
         let other = choice()
         var choices = [original, other]
-        let binding = ingredientChoiceBinding(
-            for: original, choices: Binding(get: { choices }, set: { choices = $0 }))
+        let binding = identifiedDraftBinding(
+            for: original, in: Binding(get: { choices }, set: { choices = $0 }))
 
         choices = [other, original]
         var edited = binding.wrappedValue

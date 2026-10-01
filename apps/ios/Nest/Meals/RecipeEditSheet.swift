@@ -44,6 +44,7 @@ struct RecipeEditForm: View {
     @State private var saving = false
     @State private var discard = false
     @State private var notice: String?
+    @FocusState private var focusedField: String?
     @Environment(\.dismiss) private var dismiss
 
     init(model: SessionModel, context: RecipeArchiveContext) {
@@ -56,42 +57,45 @@ struct RecipeEditForm: View {
         NavigationStack {
             Form {
                 Section("Recipe") {
-                    TextField("Name", text: $draft.title)
-                    LabeledContent("Servings") {
-                        TextField("Unknown", text: $draft.servings).keyboardType(.numberPad)
-                            .multilineTextAlignment(.trailing).accessibilityLabel("Servings")
-                    }
-                    TextField("Instructions", text: $draft.instructions, axis: .vertical).lineLimit(3...8)
+                    RecipeDraftField(label: "Name", text: $draft.title, key: "name", focus: $focusedField)
+                    RecipeDraftField(
+                        label: "Servings", text: $draft.servings, key: "servings", focus: $focusedField,
+                        keyboard: .numberPad)
+                    RecipeDraftField(
+                        label: "Cooking instructions", text: $draft.instructions, key: "instructions",
+                        focus: $focusedField, axis: .vertical, lines: 3...8)
                 }
                 Section("Ingredients") {
-                    ForEach($draft.ingredients) { $ingredient in
-                        VStack(alignment: .leading, spacing: 12) {
-                            TextField("Ingredient", text: $ingredient.name)
-                            LabeledContent("Quantity") {
-                                TextField("Optional", text: $ingredient.quantity)
-                                    .multilineTextAlignment(.trailing).accessibilityLabel("Quantity")
-                            }
-                            LabeledContent("Unit") {
-                                TextField("Optional", text: $ingredient.unit)
-                                    .multilineTextAlignment(.trailing).accessibilityLabel("Unit")
-                            }
-                            TextField("Note", text: $ingredient.note, axis: .vertical)
-                        }.padding(.vertical, 8)
+                    ForEach(Array(draft.ingredients.enumerated()), id: \.element.id) { position, ingredient in
+                        RecipeEditIngredientRow(
+                            value: identifiedDraftBinding(for: ingredient, in: $draft.ingredients),
+                            position: position + 1, focus: $focusedField)
                     }
-                    .onDelete { draft.ingredients.remove(atOffsets: $0) }
-                    .onMove { draft.ingredients.move(fromOffsets: $0, toOffset: $1) }
+                    .onDelete {
+                        focusedField = nil
+                        draft.ingredients.remove(atOffsets: $0)
+                    }
+                    .onMove {
+                        focusedField = nil
+                        draft.ingredients.move(fromOffsets: $0, toOffset: $1)
+                    }
                     Button("Add ingredient", systemImage: "plus") { draft.ingredients.append(RecipeEditIngredient()) }
                         .disabled(draft.ingredients.count >= 200)
                 }
                 Section("Optional details") {
-                    TextField("Recipe link", text: $draft.link).keyboardType(.URL)
-                        .textInputAutocapitalization(.never).autocorrectionDisabled()
-                    TextField("Notes", text: $draft.notes, axis: .vertical).lineLimit(2...5)
+                    RecipeDraftField(
+                        label: "Recipe link", text: $draft.link, key: "link", focus: $focusedField, keyboard: .URL
+                    )
+                    .textInputAutocapitalization(.never).autocorrectionDisabled()
+                    RecipeDraftField(
+                        label: "Notes", text: $draft.notes, key: "notes", focus: $focusedField, axis: .vertical,
+                        lines: 2...5)
                     Text("Changes affect future uses. Existing meal plans keep their captured recipe.").font(.footnote)
                 }
                 if let notice { Text(notice) }
             }
             .disabled(saving)
+            .modifier(RecipeEditorKeyboard(focus: $focusedField))
             .scrollContentBackground(.hidden)
             .background(QuietPalette.background)
             .navigationTitle("Edit recipe")
@@ -104,7 +108,7 @@ struct RecipeEditForm: View {
                 }
             }
             .interactiveDismissDisabled()
-            .confirmationDialog("Discard recipe changes?", isPresented: $discard) {
+            .confirmationDialog("Discard recipe changes?", isPresented: $discard, titleVisibility: .visible) {
                 Button("Discard changes", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
             }
@@ -118,6 +122,7 @@ struct RecipeEditForm: View {
 
     private func save() async {
         guard canSave else { return }
+        focusedField = nil
         saving = true
         defer { saving = false }
         if await model.editRecipe(draft, context: context) {
