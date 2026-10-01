@@ -46,6 +46,11 @@ struct RecurringRuleScreen: View {
                         VariableCycleScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
                     }
                 }
+                Section {
+                    NavigationLink("Link an existing expense or recover link") {
+                        ManualCycleScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+                    }
+                }
                 Section("Schedule") {
                     Text(schedule(rule.configuration.schedule))
                     LabeledContent("Starts", value: rule.configuration.startDate.value)
