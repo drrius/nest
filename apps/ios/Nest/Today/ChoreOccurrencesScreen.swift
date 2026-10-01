@@ -2,10 +2,16 @@ import SwiftUI
 
 struct ChoreOccurrencesScreen: View {
     @ObservedObject var model: SessionModel
+    let recordedCompletion: ChoreCompletion?
     @State private var snapshot: ChoreSnapshot?
     @State private var hasSavedChange = false
     @State private var notice: String?
     @State private var working = false
+
+    init(model: SessionModel, recordedCompletion: ChoreCompletion? = nil) {
+        self.model = model
+        self.recordedCompletion = recordedCompletion
+    }
 
     var body: some View {
         List {
@@ -19,6 +25,9 @@ struct ChoreOccurrencesScreen: View {
                 }
             }
             if let snapshot {
+                if let recordedCompletion {
+                    RecordedChoreCompletionSection(receipt: recordedCompletion, members: snapshot.members)
+                }
                 if snapshot.chores.isEmpty {
                     ContentUnavailableView("No scheduled chores", systemImage: "checkmark.circle")
                 }
