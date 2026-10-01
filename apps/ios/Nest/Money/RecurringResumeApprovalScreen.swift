@@ -25,7 +25,9 @@ struct RecurringResumeApprovalScreen: View {
                 recovery(saved)
             } else if let approval = model.proposal, let rule = model.rule {
                 RecurringApprovalRuleSummary(
-                    session: session, member: member, rule: rule, title: "Current recurring expense")
+                    session: session, member: member, rule: rule,
+                    title: approval.receipt == nil ? "Current recurring expense" : "Terms when resumed",
+                    recordedResume: approval.receipt)
                 requestedChange(approval.change)
                 review(approval, rule: rule)
             }
