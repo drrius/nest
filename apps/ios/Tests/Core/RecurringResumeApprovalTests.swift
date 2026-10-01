@@ -22,7 +22,10 @@ final class RecurringResumeApprovalTests: XCTestCase {
                 case .object(let value) = output["value"]
             else { return XCTFail("Missing wire fixture") }
             XCTAssertEqual(row.command, .resumeRule)
-            for key in ["ruleId", "expectedRevision", "expectedStatus", "action", "resumeFrom", "firstDueOn", "operationId", "actorId"] {
+            for key in [
+                "ruleId", "expectedRevision", "expectedStatus", "action", "resumeFrom", "firstDueOn", "operationId",
+                "actorId",
+            ] {
                 var changed = part
                 var fields = input
                 fields[key] = .string(UUID().uuidString)
@@ -63,7 +66,8 @@ final class RecurringResumeApprovalTests: XCTestCase {
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 approval: .init(
                     id: approval.id, operationId: approval.operationId, change: approval.change,
-                    status: .consumed, expiresAt: approval.expiresAt, reviewedOn: approval.reviewedOn, receipt: receipt))
+                    status: .consumed, expiresAt: approval.expiresAt, reviewedOn: approval.reviewedOn, receipt: receipt)
+            )
             _ = try result.matching(decision, member: member, terminal: true)
             let encoded = try JSONEncoder().encode(result)
             let root = try XCTUnwrap(JSONSerialization.jsonObject(with: encoded) as? [String: Any])

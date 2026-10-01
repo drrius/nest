@@ -7,7 +7,8 @@ struct FinancialApprovalRow: View {
 
     var body: some View {
         switch row.command {
-        case .expense, .refund, .settlement, .correction, .createRule, .updateRule, .pauseRule, .cancelRule, .resumeRule:
+        case .expense, .refund, .settlement, .correction, .createRule, .updateRule, .pauseRule, .cancelRule,
+            .resumeRule:
             NavigationLink {
                 destination
             } label: {

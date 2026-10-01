@@ -28,9 +28,10 @@ extension SessionModel {
         else { throw NestAPIFailure.conflict }
         let detail = try await readRecurringRule(context, ruleId: decision.change.ruleId)
         let rule = detail.rule
-        guard !decision.approved
-            || (decision.change.matches(rule, today: detail.today)
-                && decision.change.resumeFrom.value >= proposal.approval.reviewedOn.value)
+        guard
+            !decision.approved
+                || (decision.change.matches(rule, today: detail.today)
+                    && decision.change.resumeFrom.value >= proposal.approval.reviewedOn.value)
         else { throw NestAPIFailure.conflict }
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
@@ -61,9 +62,11 @@ extension SessionModel {
             try await offline.expireRecurringResumeDecision(expiry, lease: context.lease)
         } else {
             if saved.decision.approved {
-                let detail = try await readRecurringRule(context, ruleId: saved.decision.change.ruleId)
+                let detail = try await readRecurringRule(
+                    context, ruleId: saved.decision.change.ruleId)
                 guard saved.decision.change.matches(detail.rule, today: detail.today),
-                    saved.decision.change.resumeFrom.value >= recovered.approval.reviewedOn.value else { throw NestAPIFailure.conflict }
+                    saved.decision.change.resumeFrom.value >= recovered.approval.reviewedOn.value
+                else { throw NestAPIFailure.conflict }
             }
             let result = try await moneyAPI.decideRecurringResume(
                 token: token, member: context.member, decision: saved.decision)

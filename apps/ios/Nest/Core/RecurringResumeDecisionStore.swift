@@ -7,10 +7,11 @@ struct SavedRecurringResumeDecision: Codable, Sendable {
     var expiry: FinancialApprovalExpiry?
 
     var datePassedUnused: Bool {
-        decision.approved && result.map {
-            [.pending, .approved].contains($0.approval.status)
-                && $0.approval.reviewedOn.value > decision.change.resumeFrom.value
-        } == true
+        decision.approved
+            && result.map {
+                [.pending, .approved].contains($0.approval.status)
+                    && $0.approval.reviewedOn.value > decision.change.resumeFrom.value
+            } == true
     }
 
     var isTerminal: Bool {
@@ -35,12 +36,14 @@ extension ChoreOfflineStore {
         try saved.decision.change.validated()
         try saved.reviewedRule.validated(member: member)
         guard saved.reviewedRule.id == saved.decision.change.ruleId,
-            !saved.decision.approved || saved.decision.change.matches(saved.reviewedRule, today: saved.decision.change.resumeFrom)
+            !saved.decision.approved
+                || saved.decision.change.matches(saved.reviewedRule, today: saved.decision.change.resumeFrom)
         else { throw OfflineFailure.invalidOperation }
         if let result = saved.result {
             _ = try result.matching(saved.decision, member: member, terminal: false)
-            guard result.approval.receipt?.configuration == nil
-                || result.approval.receipt?.configuration == saved.reviewedRule.configuration
+            guard
+                result.approval.receipt?.configuration == nil
+                    || result.approval.receipt?.configuration == saved.reviewedRule.configuration
             else { throw OfflineFailure.invalidOperation }
         }
         if let expiry = saved.expiry {
@@ -83,8 +86,9 @@ extension ChoreOfflineStore {
                 previous.approval.receipt?.revision == result.approval.receipt?.revision
             else { throw OfflineFailure.invalidOperation }
         }
-        guard result.approval.receipt?.configuration == nil
-            || result.approval.receipt?.configuration == saved.reviewedRule.configuration
+        guard
+            result.approval.receipt?.configuration == nil
+                || result.approval.receipt?.configuration == saved.reviewedRule.configuration
         else { throw OfflineFailure.invalidOperation }
         saved.result = result
         try updateRecurringResumeDecision(saved, lease: lease)

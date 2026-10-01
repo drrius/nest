@@ -170,7 +170,8 @@ actor RecurringResumeApprovalTestServer {
             receipt = .init(
                 version: 1, actorId: member.userId, householdId: member.householdId,
                 operationId: decision.operationId, approvalId: decision.approvalId, revision: UUID(),
-                status: .active, change: decision.change, configuration: rule.configuration, coveredThrough: rule.coveredThrough)
+                status: .active, change: decision.change, configuration: rule.configuration,
+                coveredThrough: rule.coveredThrough)
         }
     }
 
