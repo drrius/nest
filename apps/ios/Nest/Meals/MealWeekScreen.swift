@@ -122,7 +122,9 @@ struct MealWeekScreen: View {
                 Task { await model.removeMeal(meal) }
             }
         } message: { meal in
-            Text("\(meal.title) will leave the shared week. Any linked preparation will be skipped.")
+            Text(
+                "\(meal.title) · \(MealWeekScreen.label(meal.date)) · \(meal.slot.label)\n\nThis meal will leave the shared week. Any linked preparation will be skipped."
+            )
         }
         .refreshable {
             await model.refreshMealWeek()

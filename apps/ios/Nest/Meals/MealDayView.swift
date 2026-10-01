@@ -101,7 +101,7 @@ struct MealDayView<Detail: View>: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-            .accessibilityLabel("\(slot.label): \(meal.title), recipe details")
+            .accessibilityLabel("\(date.value), \(slot.label): \(meal.title), recipe details")
             Menu {
                 Button("Replace", systemImage: "arrow.triangle.2.circlepath") { replace(meal) }
                 if meal.leftoverSourceId == nil {
@@ -120,7 +120,7 @@ struct MealDayView<Detail: View>: View {
                 .contentShape(Rectangle())
             }
             .disabled(!canChange)
-            .accessibilityLabel("More options for \(meal.title)")
+            .accessibilityLabel("\(date.value), \(slot.label): More options for \(meal.title)")
         }
         .padding(.vertical, textSize.isAccessibilitySize ? 12 : 0)
         .frame(minHeight: 60, alignment: .leading)
