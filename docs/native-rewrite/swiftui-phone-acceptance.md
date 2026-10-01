@@ -1,8 +1,8 @@
 # SwiftUI phone acceptance
 
-The available private candidate is **0.1.0/build12**, source `5a2bb1b3a77b61d0d259a05c53906ba50b2d762c`. Exact-source local archive/export, signed IPA verification and routine/native CI pass. Apple reports build12 VALID and IN_BETA_TESTING internally; the original single submission finished1 October03:16:17 UTC. [Availability evidence](../../evidence/2026-10-01/swiftui-build12/apple-availability.json) records the supported read. Partner tester access and actual physical-phone acceptance remain unverified. This uses **nest-test**, separate from Household OS production. Test entries remain fictional; production balances/history are not copied into this app.
+The available private candidate is **0.1.0/build13**, source `f4a4eb4b3e813c8c6f160823457fe9ea38ffde2c`. Exact-source local archive/export, signed IPA verification and routine/native CI pass. Apple reports build13 VALID and IN_BETA_TESTING internally; the original single submission finished1 October05:29:35 UTC. [Availability evidence](../../evidence/2026-10-01/swiftui-build13/apple-availability.json) records the supported read. Partner tester access and actual physical-phone acceptance remain unverified. This uses **nest-test**, separate from Household OS production. Test entries remain fictional; production balances/history are not copied into this app.
 
-Build12 includes the payment/recurring keyboard corrections and the ingredient-review crash fix at `99dec6fb`. The earlier build11 post-add crash is historical evidence; use build12 for the updated meal-to-grocery check. The newer recipe-editor safe-gap, Remove target, keyboard and identity fix at `44ffd66c` is not in build12 and remains a later batched candidate. Check [progress](../progress.md) before judging any tested flow complete. No additional beta was submitted for that fix.
+Build13 includes the payment/recurring keyboard corrections, ingredient-review crash fix, recipe-editor safe-gap/Remove/keyboard/binding fixes, fresh recipe detail and Archive, linked preparation and assistant recipe-result links. Use this identified build for the checks below. Check [progress](../progress.md) before judging any tested flow complete.
 
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 
@@ -18,9 +18,9 @@ These are checks for both partners to complete independently. Record phone/iOS, 
 6. Open Calendar and choose whether to grant permission. Personal events should stay on your phone. Busy sharing starts off and requires an explicit enable action; only times may be shared. Declining permission must leave the other tabs usable. Two-phone sharing/revocation and payload inspection are separate checks; the basic permission screen is not privacy acceptance.
 7. Open Profile and confirm settings are readable and navigation returns safely. Test VoiceOver and Reduce Motion if available, including keyboard controls and larger text. Report what was actually exercised.
 
-## Next batched candidate
+## Recipe and preparation checks
 
-Build13 is being prepared from exact source `f4a4eb4b`; it is **not available yet**. Once Apple reports that identified build available, use it for the newer recipe/editor and preparation checks. It batches corrections instead of submitting a beta per UI adjustment. The archive is built locally on the Mac.
+Build13 batches these corrections instead of submitting a beta per UI adjustment. Its archive was built locally on the Mac.
 
 On build13, create one clearly named test recipe with at least one ingredient, edit its instructions and confirm the detail refreshes. Archive that exact test recipe and confirm existing planned meals retain their recipe snapshot. For a clearly named future test meal, open Meal preparation, create a date-only shared task, then edit instructions/responsibility and confirm the partner sees the same task. Reminder consent is separate; preparation is household work and must not post money. Record the actual build and result. Do not infer generated-plan, AI, offline, notification or full accessibility acceptance from those online checks.
 
