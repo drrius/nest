@@ -1,7 +1,7 @@
 import Foundation
 
 public struct MealAPI: Sendable {
-    private let http: NestHTTP
+    let http: NestHTTP
 
     public init(http: NestHTTP) { self.http = http }
 

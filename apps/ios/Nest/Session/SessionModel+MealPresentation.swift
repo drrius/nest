@@ -2,6 +2,10 @@ import Foundation
 
 extension SessionModel {
     func clearMealPresentation() {
+        mealPreparationRequest = nil
+        mealPreparationNotice = nil
+        mealPreparationSaving = false
+        mealPreparationSavingGeneration = nil
         cookingProfile = nil
         cookingPending = nil
         cookingNotice = nil

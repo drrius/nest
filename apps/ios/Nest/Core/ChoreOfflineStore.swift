@@ -36,6 +36,7 @@ actor ChoreOfflineStore {
             "CREATE TABLE IF NOT EXISTS chore_operations (sequence INTEGER PRIMARY KEY AUTOINCREMENT, actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, chore TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), reason TEXT)"
         )
         try db.run("CREATE INDEX IF NOT EXISTS chore_operations_scope ON chore_operations(actor, household, sequence)")
+        try Self.createMealPreparationTables(db)
         try db.run(
             "CREATE TABLE IF NOT EXISTS grocery_snapshots (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor, household))"
         )

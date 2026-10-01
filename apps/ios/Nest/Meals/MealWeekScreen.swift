@@ -18,6 +18,8 @@ struct MealWeekScreen: View {
                     MealSetupPrompt(session: model, member: member).id(model.generation)
                 }
                 weekNavigation
+                if let notice = model.mealPreparationNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
+                if let saved = model.mealPreparationRequest { MealPreparationStatus(model: model, saved: saved) }
                 if let notice = model.mealNotice {
                     Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)
                 }
@@ -131,6 +133,7 @@ struct MealWeekScreen: View {
             await model.refreshMealVisibleSlots()
         }
         .task {
+            await model.restorePreparationRecovery()
             if model.mealSelection == nil { await model.openCurrentMealWeek() }
             await model.refreshMealVisibleSlots()
         }

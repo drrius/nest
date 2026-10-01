@@ -7,6 +7,7 @@ let package = Package(
     products: [.library(name: "NestCore", targets: ["NestCore"])],
     targets: [
         .target(name: "NestCore", path: "Nest/Core", linkerSettings: [.linkedLibrary("sqlite3")]),
-        .testTarget(name: "NestCoreTests", dependencies: ["NestCore"], path: "Tests/Core")
+        .testTarget(
+            name: "NestCoreTests", dependencies: ["NestCore"], path: "Tests/Core", resources: [.copy("Fixtures")]),
     ]
 )
