@@ -22,3 +22,20 @@ test("Swift retained rule and draft fixtures match exact Effect read schemas wit
   assert.equal(drafts.drafts[0].amountCentimes, "9007199254740991");
   assert.equal(drafts.drafts[0].updatedAt.value, "2026-01-01T10:00:00.123456Z");
 });
+
+test("retained unsupported value limits use UTF-16 length while raw labels preserve scalar length", () => {
+  for (const count of [40, 41]) {
+    const page = structuredClone(fixture.rules);
+    page.rules[0].nextOccurrenceOn = {
+      kind: "unsupported",
+      reason: "out_of_range",
+      value: "🙂".repeat(count),
+    };
+    assert.equal(Schema.is(LegacyRecurringList)(page), count === 40);
+  }
+  const page = structuredClone(fixture.rules);
+  page.rules[0].description = "🙂".repeat(200);
+  assert.equal(Schema.is(LegacyRecurringList)(page), true);
+  page.rules[0].description += "🙂";
+  assert.equal(Schema.is(LegacyRecurringList)(page), false);
+});

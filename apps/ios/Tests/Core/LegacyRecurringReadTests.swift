@@ -42,6 +42,12 @@ final class LegacyRecurringReadTests: XCTestCase {
         XCTAssertEqual(retained.nextOccurrenceOn.value, "infinity")
         XCTAssertEqual(retained.allocations.kind, .needsReview)
         XCTAssertTrue(retained.needsReview)
+        let supportedLength = LegacyTemporalValue(
+            kind: .unsupported, value: String(repeating: "🙂", count: 40), reason: .outOfRange)
+        let excessiveLength = LegacyTemporalValue(
+            kind: .unsupported, value: String(repeating: "🙂", count: 41), reason: .outOfRange)
+        XCTAssertTrue(supportedLength.valid(expected: .date))
+        XCTAssertFalse(excessiveLength.valid(expected: .date))
         XCTAssertEqual(LegacyRecurringLabel.display(retained.description), "Retained recurring expense")
         for label in ["", "   ", "a\0b", String(repeating: "a", count: 201)] {
             raw["description"] = label

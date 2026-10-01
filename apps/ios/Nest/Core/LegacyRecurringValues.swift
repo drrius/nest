@@ -12,7 +12,7 @@ struct LegacyTemporalValue: Decodable, Equatable, Sendable {
     let reason: Reason?
 
     func valid(expected: Kind) -> Bool {
-        if kind == .unsupported { return reason != nil && !value.isEmpty && value.unicodeScalars.count <= 80 }
+        if kind == .unsupported { return reason != nil && !value.isEmpty && value.utf16.count <= 80 }
         guard kind == expected, reason == nil else { return false }
         return kind == .date ? (try? CivilDate(value)) != nil : MoneyTime.timestamp(value)
     }
