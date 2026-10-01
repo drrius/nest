@@ -167,13 +167,17 @@ private actor PreferencePreflightServer {
     private func profileData(_ path: String?) throws -> Data {
         switch path {
         case "/v1/food-preferences":
-            let profile: FoodProfile? = changed
-                ? .init(revision: "1", preferences: .init(restrictions: [], dislikes: ["Olives"], calorieGoal: nil, portions: 2))
+            let profile: FoodProfile? =
+                changed
+                ? .init(
+                    revision: "1",
+                    preferences: .init(restrictions: [], dislikes: ["Olives"], calorieGoal: nil, portions: 2))
                 : nil
             return try JSONEncoder().encode(
                 FoodProfileEnvelope(version: 1, actorId: actor, householdId: household, profile: profile))
         case "/v1/cooking-preferences":
-            let profile: CookingSlotsEnvelope.Profile? = changed
+            let profile: CookingSlotsEnvelope.Profile? =
+                changed
                 ? .init(revision: "1", preferences: .init(cookingNotes: "Partner changed this", mealSlots: [.lunch]))
                 : nil
             return try JSONEncoder().encode(CookingSlotsEnvelope(version: 1, householdId: household, profile: profile))
