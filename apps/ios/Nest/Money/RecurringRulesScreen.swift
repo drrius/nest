@@ -22,6 +22,9 @@ struct RecurringRulesScreen: View {
             }
             if !dueOnly {
                 Section {
+                    NavigationLink("Retained recurring expenses") {
+                        LegacyRecurringScreen(session: session, member: member).id(session.generation)
+                    }
                     NavigationLink("New recurring expense") {
                         RecurringEditorScreen(session: session, member: member, ruleId: nil).id(session.generation)
                     }

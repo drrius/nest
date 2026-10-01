@@ -91,6 +91,8 @@ struct AssistantHistoryScreen: View {
     private func householdActionPart(_ part: [String: AssistantJSON]) -> some View {
         if let result = AssistantPreferenceLink.read(part, member: member) {
             AssistantPreferenceRow(session: session, member: member, result: result)
+        } else if let result = AssistantLegacyRecurringLink.read(part, member: member) {
+            AssistantLegacyRecurringRow(session: session, member: member, result: result)
         } else {
             reminderActionPart(part)
         }
