@@ -78,6 +78,8 @@ struct AssistantHistoryScreen: View {
             AssistantMealActionRow(session: session, result: result)
         } else if let result = AssistantGroceryActionLink.read(part) {
             AssistantGroceryActionRow(session: session, member: member, result: result)
+        } else if let receipt = AssistantRoutineLink.receipt(part, member: member) {
+            AssistantRoutineRow(session: session, member: member, receipt: receipt)
         } else {
             householdActionPart(part)
         }
