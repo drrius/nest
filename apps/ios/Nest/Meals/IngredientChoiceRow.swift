@@ -1,5 +1,19 @@
 import SwiftUI
 
+@MainActor
+func ingredientChoiceBinding(
+    for choice: MealIngredientChoice, choices: Binding<[MealIngredientChoice]>
+) -> Binding<MealIngredientChoice> {
+    Binding(
+        get: { choices.wrappedValue.first(where: { $0.id == choice.id }) ?? choice },
+        set: { updated in
+            guard updated.id == choice.id,
+                let index = choices.wrappedValue.firstIndex(where: { $0.id == choice.id })
+            else { return }
+            choices.wrappedValue[index] = updated
+        })
+}
+
 struct IngredientChoiceRow: View {
     @Binding var choice: MealIngredientChoice
     let row: MealIngredient

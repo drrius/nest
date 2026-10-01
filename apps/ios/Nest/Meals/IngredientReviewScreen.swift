@@ -39,7 +39,10 @@ struct IngredientReviewScreen: View {
             }
         }
         .task(id: model.generation) { await load() }
-        .confirmationDialog("Add \(selectedCount) ingredients to groceries?", isPresented: $confirm) {
+        .confirmationDialog(
+            "Add \(selectedCount) \(selectedCount == 1 ? "ingredient" : "ingredients") to groceries?",
+            isPresented: $confirm, titleVisibility: .visible
+        ) {
             Button("Add to groceries") { Task { await add() } }
             Button("Cancel", role: .cancel) {}
         } message: {
@@ -67,16 +70,20 @@ struct IngredientReviewScreen: View {
             }
         } else if let receipt = context.saved?.receipt {
             Section("Added to groceries") {
-                Text("\(receipt.ingredients.count) ingredients confirmed. Items already added were not duplicated.")
+                Text(
+                    "\(receipt.ingredients.count) \(receipt.ingredients.count == 1 ? "ingredient" : "ingredients") confirmed. Items already added were not duplicated."
+                )
                 NavigationLink("Open groceries") { GroceriesScreen(model: model) }
                 Button("Review current ingredients") { Task { await refresh(context) } }
             }
         } else if let listing = context.listing {
             Section("Ingredients") {
                 if listing.ingredients.isEmpty { Text("No ingredients to add for this week.") }
-                ForEach($choices) { $choice in
+                ForEach(choices) { choice in
                     if let row = listing.ingredients.first(where: { $0.id == choice.id }) {
-                        IngredientChoiceRow(choice: $choice, row: row, focus: $focusedField)
+                        IngredientChoiceRow(
+                            choice: ingredientChoiceBinding(for: choice, choices: $choices), row: row,
+                            focus: $focusedField)
                     }
                 }
             }
