@@ -77,3 +77,60 @@ for (const action of ["pause", "cancel"]) {
     );
   });
 }
+
+for (const action of ["pause", "cancel"]) {
+  test(`${action} expiry waits for the real in-flight recurring decision and preserves its receipt`, async (t) => {
+    const f = await recurringApiFixture(t, files);
+    const saved = await run(f.client().saveRecurring({ operationId: id(800), rule: f.rule }));
+    const change = {
+      ruleId: f.rule.ruleId,
+      expectedRevision: saved.revision,
+      expectedStatus: "active",
+      action,
+    };
+    const operation = id(801);
+    const approval = await f.rpc("nest_propose_action", {
+      p_household: id(10),
+      p_invocation: operation,
+      p_command: `recurring.${action}`,
+      p_version: 1,
+      p_payload: change,
+    });
+    f.db.sql(
+      `update public.nest_action_approvals set expires_at=now()-interval '1 second' where id='${approval}'`,
+    );
+    const writer = f.db.concurrent(`begin;
+      set application_name='nest-state-expiry-race';
+      update public.nest_action_approvals set expires_at=now()+interval '1 minute' where id='${approval}';
+      set role authenticated; set request.jwt.claims='${JSON.stringify({ sub: id(1) })}';
+      select public.nest_decide_recurring_state('${id(10)}','${operation}','${JSON.stringify(change)}'::jsonb,'${approval}',true);
+      select pg_sleep(0.5); commit;`);
+    try {
+      let observed = false;
+      for (let attempt = 0; attempt < 50; attempt++) {
+        observed =
+          f.db.sql(
+            "select exists(select 1 from pg_stat_activity where application_name='nest-state-expiry-race' and wait_event='PgSleep')",
+          ) === "t";
+        if (observed) break;
+        await new Promise((resolve) => setTimeout(resolve, 10));
+      }
+      assert.equal(observed, true, "writer must hold its successful uncommitted decision");
+      const response = await fetch(
+        `${f.url}/v1/money/approval-expiry?approvalId=${approval}&operationId=${operation}&command=recurring.${action}`,
+        {
+          headers: { authorization: `Bearer ${f.bearer}`, "x-nest-household": id(10) },
+        },
+      );
+      assert.equal(response.status, 200);
+      assert.equal((await response.json()).expiredUnused, false);
+    } finally {
+      await writer;
+    }
+    const result = await run(f.client().recurringStateApproval(approval));
+    assert.equal(result.status, "consumed");
+    assert.equal(result.receipt.approvalId, approval);
+    assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
+    assert.equal(f.db.sql("select count(*) from public.nest_recurring_state_receipts"), "1");
+  });
+}
