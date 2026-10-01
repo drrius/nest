@@ -10,7 +10,9 @@ final class VariableCycleRecoveryModelTests: XCTestCase {
     }
 
     func testFreshPreflightRefusesOfflineOrChangedRuleBeforeJournaling() async throws {
-        for fault in ["offline", "household", "member", "revision", "state", "covered"] { try await verifyEntry(fault: fault) }
+        for fault in ["offline", "household", "member", "revision", "state", "covered"] {
+            try await verifyEntry(fault: fault)
+        }
     }
 
     private func verifyEntry(fault: String?) async throws {
@@ -34,9 +36,11 @@ final class VariableCycleRecoveryModelTests: XCTestCase {
         let input = VariableCycleInput(
             ruleId: UUID(), expectedRevision: UUID(),
             dueOn: try CivilDate("2026-09-28"), amountCentimes: try Centimes("101"), allocations: shares)
-        await server.prepare(.init(
+        let preflight = RecurringEntryPreflightFixture(
             member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision,
-            configuration: try RecurringEntryPreflightFixture.configuration(member: member), status: .active, fault: fault))
+            configuration: try RecurringEntryPreflightFixture.configuration(member: member),
+            status: .active, fault: fault)
+        await server.prepare(preflight)
         if fault != nil {
             do {
                 try await model.stageVariableCycle(input, context: context)

@@ -10,11 +10,15 @@ final class RecurringStateRecoveryModelTests: XCTestCase {
     }
 
     func testFreshPreflightRefusesOfflineOrChangedRuleBeforeJournaling() async throws {
-        for fault in ["offline", "household", "revision", "state"] { try await verifyEntry(fault: fault) }
+        for fault in ["offline", "household", "revision", "state"] {
+            try await verifyEntry(fault: fault)
+        }
     }
 
     func testDelayedRuleCannotJournalAfterSignOutOrMemberSwitch() async throws {
-        for fault in ["signout", "switch"] { try await verifyEntry(fault: fault) }
+        for fault in ["signout", "switch"] {
+            try await verifyEntry(fault: fault)
+        }
     }
 
     private func verifyEntry(fault: String?) async throws {
@@ -36,9 +40,11 @@ final class RecurringStateRecoveryModelTests: XCTestCase {
         let context = try model.expenseContext()
         let input = RecurringStateInput(
             ruleId: UUID(), expectedRevision: UUID(), expectedStatus: .active, action: .pause)
-        await server.prepare(.init(
+        let preflight = RecurringEntryPreflightFixture(
             member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision,
-            configuration: try RecurringEntryPreflightFixture.configuration(member: member), status: .active, fault: fault))
+            configuration: try RecurringEntryPreflightFixture.configuration(member: member),
+            status: .active, fault: fault)
+        await server.prepare(preflight)
         if let fault, ["signout", "switch"].contains(fault) {
             try await verifyInterrupted(model, context: context, input: input, server: server, fault: fault)
             return

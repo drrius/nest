@@ -10,7 +10,9 @@ final class RecurringResumeRecoveryModelTests: XCTestCase {
     }
 
     func testFreshPreflightRefusesOfflineOrChangedRuleBeforeJournaling() async throws {
-        for fault in ["offline", "household", "revision", "state", "day", "covered"] { try await verifyEntry(fault: fault) }
+        for fault in ["offline", "household", "revision", "state", "day", "covered"] {
+            try await verifyEntry(fault: fault)
+        }
     }
 
     private func verifyEntry(fault: String?) async throws {
@@ -33,9 +35,11 @@ final class RecurringResumeRecoveryModelTests: XCTestCase {
         let input = RecurringResumeInput(
             ruleId: UUID(), expectedRevision: UUID(), expectedStatus: "paused",
             action: "resume", resumeFrom: try CivilDate("2026-09-28"), firstDueOn: try CivilDate("2026-09-28"))
-        await server.prepare(.init(
+        let preflight = RecurringEntryPreflightFixture(
             member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision,
-            configuration: try RecurringEntryPreflightFixture.configuration(member: member), status: .paused, fault: fault))
+            configuration: try RecurringEntryPreflightFixture.configuration(member: member),
+            status: .paused, fault: fault)
+        await server.prepare(preflight)
         if fault != nil {
             do {
                 try await model.stageRecurringResume(input, context: context)

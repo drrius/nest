@@ -46,9 +46,11 @@ final class RecurringRecoveryModelTests: XCTestCase {
             expectedRevision: editing || ["revision", "covered", "cancelled"].contains(fault ?? "") ? UUID() : nil,
             configuration: configuration,
             firstDueOn: try CivilDate("2026-09-28"))
-        await server.prepare(.init(
-            member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision ?? UUID(), configuration: input.configuration,
-            status: .active, fault: fault))
+        let preflight = RecurringEntryPreflightFixture(
+            member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision ?? UUID(),
+            configuration: input.configuration,
+            status: .active, fault: fault)
+        await server.prepare(preflight)
         if fault != nil {
             do {
                 try await model.stageRecurring(input, context: context)
