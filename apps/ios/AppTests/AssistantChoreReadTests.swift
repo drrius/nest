@@ -51,7 +51,8 @@ final class AssistantChoreReadTests: XCTestCase {
             await session.signOut()
             if switching {
                 await session.signIn(idToken: "B", nonce: "test")
-                XCTAssertEqual(session.status, .ready(.init(userId: partner, householdId: household, displayName: "Sam")))
+                XCTAssertEqual(
+                    session.status, .ready(.init(userId: partner, householdId: household, displayName: "Sam")))
             }
             await reader.release()
             do {
