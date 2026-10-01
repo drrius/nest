@@ -35,26 +35,9 @@ struct CookingPreferencesScreen: View {
                     }
                 }.disabled(model.cookingSaving || loading)
             }
-            Section("Show in your week") {
-                ForEach(MealSlot.allCases, id: \.self) { slot in
-                    Toggle(
-                        slot.label,
-                        isOn: Binding(
-                            get: { slots.contains(slot) },
-                            set: { enabled in
-                                if enabled { slots.insert(slot) } else { slots.remove(slot) }
-                            }))
-                }
-                Text("Already-planned meals stay visible even when their slot is hidden.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
-            }.disabled(!editable)
-            Section("Cooking notes") {
-                TextField("What helps you cook?", text: $notes, axis: .vertical).lineLimit(3...8)
-                Text("Shared with your household and used for meal planning.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
-            }.disabled(!editable)
-            if slots.isEmpty { Text("Keep at least one meal slot.") }
-            if notes.utf16.count > 2_000 { Text("Keep cooking notes under 2,000 characters.") }
+            if let context, context.generation == model.generation, model.status == .ready(context.member) {
+                preferenceFields
+            }
             if let notice = model.cookingNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
             if loading { ProgressView("Loading preferences…") }
             if context == nil && !loading {
@@ -80,6 +63,30 @@ struct CookingPreferencesScreen: View {
             Button("Reload preferences", role: .destructive) { Task { await reload() } }
             Button("Cancel", role: .cancel) {}
         }
+    }
+
+    @ViewBuilder
+    private var preferenceFields: some View {
+        Section("Show in your week") {
+            ForEach(MealSlot.allCases, id: \.self) { slot in
+                Toggle(
+                    slot.label,
+                    isOn: Binding(
+                        get: { slots.contains(slot) },
+                        set: { enabled in
+                            if enabled { slots.insert(slot) } else { slots.remove(slot) }
+                        }))
+            }
+            Text("Already-planned meals stay visible even when their slot is hidden.")
+                .font(.footnote).foregroundStyle(QuietPalette.muted)
+        }.disabled(!editable)
+        Section("Cooking notes") {
+            TextField("What helps you cook?", text: $notes, axis: .vertical).lineLimit(3...8)
+            Text("Shared with your household and used for meal planning.")
+                .font(.footnote).foregroundStyle(QuietPalette.muted)
+        }.disabled(!editable)
+        if slots.isEmpty { Text("Keep at least one meal slot.") }
+        if notes.utf16.count > 2_000 { Text("Keep cooking notes under 2,000 characters.") }
     }
 
     private var editable: Bool {

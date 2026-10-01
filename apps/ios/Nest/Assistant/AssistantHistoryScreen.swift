@@ -89,6 +89,15 @@ struct AssistantHistoryScreen: View {
 
     @ViewBuilder
     private func householdActionPart(_ part: [String: AssistantJSON]) -> some View {
+        if let result = AssistantPreferenceLink.read(part, member: member) {
+            AssistantPreferenceRow(session: session, member: member, result: result)
+        } else {
+            reminderActionPart(part)
+        }
+    }
+
+    @ViewBuilder
+    private func reminderActionPart(_ part: [String: AssistantJSON]) -> some View {
         if let receipt = AssistantMealPreparationLink.receipt(part, member: member) {
             Text("Meal preparation saved.")
             NavigationLink("View current preparation") {
