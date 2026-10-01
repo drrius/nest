@@ -45,5 +45,20 @@
   "voiceOverVerified": false,
   "maximumTextVerified": false,
   "recipeSavedJourneyVerified": false,
-  "queuedBuild12ContainsFix": false
+  "queuedBuild12ContainsFix": false,
+  "sourceCI": {
+    "source": "44ffd66c1fa26f4d6e8a5521fbeaebcfa861cba7",
+    "nest": 36808832137,
+    "swiftui": 36808832176,
+    "status": "success",
+    "nativeCases": 215,
+    "nativeSkips": 4,
+    "nativeFailures": 0,
+    "foundationCases": 373,
+    "foundationSkips": 41,
+    "foundationFailures": 0,
+    "evidenceCommit": "8b9f58002e7c3157b1b0e5b549ebb41b381ea7b8",
+    "evidenceNest": 36809623317,
+    "evidenceStatus": "success"
+  }
 }
