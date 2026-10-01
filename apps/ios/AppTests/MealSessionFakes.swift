@@ -17,6 +17,7 @@ actor FakeMealServer {
     private var loseNextPlaceResponse = false
     private var rejectNextPlace = false
     private var pagedLibrary = false
+    private var failLibrary = false
     private var libraryRevision = "4"
     private var recipeInstructions = "Cook and serve."
     private var forbidNextRecipeResponse = false
@@ -48,6 +49,7 @@ actor FakeMealServer {
     func removalOperations() -> [UUID] { removeAttempts }
     func savedRecipeId() -> UUID { recipeId }
     func usePagedLibrary() { pagedLibrary = true }
+    func failNextLibraryRead() { failLibrary = true }
     func queriedLibraryPages() -> [String] { libraryQueries }
     func loseNextRecipePlace() { loseNextRecipeResponse = true }
     func rejectRecipePlace() { rejectNextRecipe = true }
@@ -227,6 +229,10 @@ actor FakeMealServer {
     }
 
     private func library(for actor: UUID, request: URLRequest) throws -> String {
+        if failLibrary {
+            failLibrary = false
+            throw URLError(.networkConnectionLost)
+        }
         libraryQueries.append(request.url?.query ?? "")
         if pagedLibrary && actor == actorA { return try page(request) }
         let title = actor == actorA ? "Alex pasta" : "Sam soup"

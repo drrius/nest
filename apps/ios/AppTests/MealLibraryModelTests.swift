@@ -137,6 +137,64 @@ final class MealLibraryModelTests: XCTestCase {
         XCTAssertEqual(queries, ["", "afterId=\(cursor)&expectedRevision=4"])
     }
 
+    func testAssistantRecipeDestinationRefreshesAndFindsBeyondFirstPage() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        await server.usePagedLibrary()
+        let model = try model(server: server)
+        await model.restore()
+        let member = try model.assistantContext().member
+        let absent = UUID(uuidString: "ffffffff-ffff-4fff-8fff-ffffffffffff")!
+        let ready = await model.refreshAssistantRecipeLibrary(definition: absent, member: member)
+        XCTAssertTrue(ready)
+        guard case .loaded(let listing) = model.mealLibrary else { return XCTFail("Missing fresh library") }
+        XCTAssertEqual(listing.meals.count, 51)
+        XCTAssertNil(listing.nextAfterId)
+        await model.loadSavedRecipe(absent)
+        XCTAssertEqual(model.savedRecipe, .missing)
+        let last = try XCTUnwrap(listing.meals.last?.id)
+        let found = await model.refreshAssistantRecipeLibrary(definition: last, member: member)
+        XCTAssertTrue(found)
+        guard case .loaded(let current) = model.mealLibrary else { return XCTFail("Missing paged library") }
+        XCTAssertTrue(current.meals.contains(where: { $0.id == last }))
+        let queries = await server.queriedLibraryPages()
+        XCTAssertEqual(queries.count, 4)
+    }
+
+    func testAssistantArchiveDestinationAlwaysRefreshesAndRejectsOldAccount() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        let member = try model.assistantContext().member
+        await model.refreshMealLibrary()
+        await server.changeSavedRecipe()
+        let refreshed = await model.refreshAssistantRecipeLibrary(definition: nil, member: member)
+        XCTAssertTrue(refreshed)
+        guard case .loaded(let listing) = model.mealLibrary else { return XCTFail("Missing fresh library") }
+        XCTAssertEqual(listing.revision, "5")
+        await server.pauseActorA()
+        let delayed = Task { await model.refreshAssistantRecipeLibrary(definition: nil, member: member) }
+        await server.waitForActorA()
+        await model.signIn(idToken: "B", nonce: "test")
+        await server.releaseActorA()
+        let oldReady = await delayed.value
+        XCTAssertFalse(oldReady)
+        XCTAssertEqual(model.mealLibrary, .idle)
+        let rejected = await model.refreshAssistantRecipeLibrary(definition: nil, member: member)
+        XCTAssertFalse(rejected)
+    }
+
+    func testAssistantRecipeDestinationRefusesUnavailableFreshRead() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        let member = try model.assistantContext().member
+        await model.refreshMealLibrary()
+        await server.failNextLibraryRead()
+        let ready = await model.refreshAssistantRecipeLibrary(definition: nil, member: member)
+        XCTAssertFalse(ready)
+        XCTAssertEqual(model.mealLibrary, .failed)
+    }
+
     func testLostRecipePlacementResponseRetriesExactOperationAndShowsOneMeal() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)
