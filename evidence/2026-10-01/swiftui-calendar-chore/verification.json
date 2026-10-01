@@ -1,0 +1,51 @@
+{
+  "source": "d6d9b96cb537019a3cad49626c4258fc603e136e",
+  "sourceInputsMatched": 786,
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "actor": "fictional Test Alex",
+  "existingOccurrence": "ce88cf42-4359-41d4-ab06-a7185c22306b",
+  "date": "2026-09-28",
+  "displayedTitle": "Hosted smoke tidy kitchen",
+  "displayedRole": "Current occurrence",
+  "actualNativeDatePickerSelectedAndRestored": true,
+  "actualRefreshPassed": true,
+  "originalDateRestored": "2026-10-01",
+  "localLayersRestored": true,
+  "ordinaryTodayRestored": true,
+  "selectedServerProjectionsUnchanged": [
+    "chores/snapshot",
+    "calendar/chores?date=2026-09-28",
+    "calendar/consent",
+    "money/balance",
+    "money/history",
+    "meals/week?weekStart=2026-09-28"
+  ],
+  "scopedJournalCounts": {
+    "renewal_requests": 0,
+    "meal_placements": 0,
+    "meal_recipe_placements": 0,
+    "meal_removals": 0,
+    "meal_moves": 0,
+    "meal_replacements": 0,
+    "meal_leftovers": 0,
+    "calendar_privacy_removals": 0
+  },
+  "focusedExistingTest": {
+    "cases": 1,
+    "failures": 0,
+    "skips": 0
+  },
+  "serverMutations": 0,
+  "fixtureCreated": false,
+  "calendarPermissionChanged": false,
+  "extraBetaSubmissions": 0,
+  "physicalPhoneVerified": false,
+  "voiceOverVerified": false,
+  "futurePreviewVerified": false,
+  "maximumTextPopulatedRowVerified": false,
+  "sourceCI": {
+    "nest": 36793398377,
+    "swiftui": 36793398294,
+    "status": "success"
+  }
+}
