@@ -17,3 +17,5 @@ The additive `20261001120000_native_variable_cycle_approval_expiry.sql` only add
 Owned rendered/Quiet/accessibility and both-phone journeys remain pending. A bounded authorized Mac SSH check timed out; no new native sync/rendered QA, artwork, reviewer, archive/beta, hosted mutation/provider call, purchase, main merge or automation occurred.
 
 The full safe schema probe passes with54 applied legacy and247 native migrations, synthetic Auth/Storage and explicit infrastructure exclusions. It exercises retained reconciliation and private committed recovery without modifying hosted data. Security advisors were not executed because no isolated Supabase CLI was configured. Report: `/tmp/nest-variable-approval-schema-probe.json`.
+
+Initial source `e3bf9f54` stopped at five strict Swift formatting findings only (SwiftUI36861448721); it did not run Foundation or native tests. The findings were corrected without relaxing gates; updated execution remains pending.

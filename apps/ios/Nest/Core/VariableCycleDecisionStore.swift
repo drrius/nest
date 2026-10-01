@@ -71,8 +71,8 @@ extension ChoreOfflineStore {
         if let previous = saved.result, [.consumed, .denied].contains(previous.approval.status) {
             guard previous.approval.status == result.approval.status,
                 previous.approval.receipt?.eventId == result.approval.receipt?.eventId
-                && previous.approval.receipt?.configuration == result.approval.receipt?.configuration
-                && previous.approval.receipt?.cycle == result.approval.receipt?.cycle
+                    && previous.approval.receipt?.configuration == result.approval.receipt?.configuration
+                    && previous.approval.receipt?.cycle == result.approval.receipt?.cycle
             else { throw OfflineFailure.invalidOperation }
         }
         saved.result = result

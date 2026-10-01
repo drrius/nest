@@ -22,7 +22,9 @@ final class VariableCycleApprovalTests: XCTestCase {
                 case .object(let value) = output["value"]
             else { return XCTFail("Missing wire fixture") }
             XCTAssertEqual(row.command, .recordCycle)
-            for key in ["ruleId", "expectedRevision", "dueOn", "amountCentimes", "allocations", "operationId", "actorId"] {
+            for key in [
+                "ruleId", "expectedRevision", "dueOn", "amountCentimes", "allocations", "operationId", "actorId",
+            ] {
                 var changed = part
                 var fields = input
                 fields[key] = .string(UUID().uuidString)
@@ -131,8 +133,9 @@ final class VariableCycleApprovalTests: XCTestCase {
         guard case .object(let output) = part["output"], let value = output["value"] else {
             return XCTFail("Missing fixture")
         }
-        let approval = try JSONDecoder().decode(
-            VariableCycleApprovalEnvelope.self, from: JSONEncoder().encode(value)).approval
+        let envelope = try JSONDecoder().decode(
+            VariableCycleApprovalEnvelope.self, from: JSONEncoder().encode(value))
+        let approval = envelope.approval
         let input = approval.input
         let rule = RecurringRule(
             ruleId: input.ruleId, revision: input.expectedRevision,
