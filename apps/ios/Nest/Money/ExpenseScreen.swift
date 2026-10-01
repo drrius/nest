@@ -142,7 +142,8 @@ struct ExpenseScreen: View {
             notice = nil
         } catch {
             saved = try? await session.savedExpense(context)
-            notice = saved == nil
+            notice =
+                saved == nil
                 ? "Could not start this save. Connect and reload the people before reviewing again. Your draft is kept."
                 : "Save not confirmed. Check the saved request before trying again."
         }

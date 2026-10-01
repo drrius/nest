@@ -186,7 +186,8 @@ struct SettlementScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedSettlement(context) }
-            notice = saved == nil
+            notice =
+                saved == nil
                 ? "Could not start this record. Connect and reload the balance before reviewing again. Your draft is kept."
                 : "Could not confirm this action. Resolve the saved request before reviewing another payment."
         }
