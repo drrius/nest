@@ -1,0 +1,23 @@
+{
+  "checkedAtUtc": "2026-10-01T03:27:03+00:00",
+  "sourceCommit": "5a2bb1b3a77b61d0d259a05c53906ba50b2d762c",
+  "ascAppIdentifier": "6814119349",
+  "submissionId": "ef4a105a-a3de-41b1-be11-53afcf23dfb9",
+  "submissionStatus": "FINISHED",
+  "submissionCompletedAt": "2026-10-01T03:16:17.642Z",
+  "appleBuild": {
+    "appVersion": "0.1.0",
+    "buildNumber": "12",
+    "processingState": "VALID",
+    "internalState": "IN_BETA_TESTING",
+    "externalState": "READY_FOR_BETA_SUBMISSION",
+    "uploadedDate": "2026-09-30T20:17:06-07:00",
+    "expired": false
+  },
+  "internalAvailabilityVerified": true,
+  "partnerTesterAccessVerified": false,
+  "physicalPhoneAcceptanceVerified": false,
+  "additionalUploads": 0,
+  "cloudBuildCreditsUsed": 0,
+  "laterRecipeEditorFixIncluded": false
+}

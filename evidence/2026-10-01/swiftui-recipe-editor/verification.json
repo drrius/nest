@@ -59,6 +59,9 @@
     "foundationFailures": 0,
     "evidenceCommit": "8b9f58002e7c3157b1b0e5b549ebb41b381ea7b8",
     "evidenceNest": 36809623317,
-    "evidenceStatus": "success"
+    "evidenceStatus": "success",
+    "followupEvidenceCommit": "f9675f36",
+    "followupEvidenceNest": 36810024024,
+    "followupEvidenceStatus": "success"
   }
 }
