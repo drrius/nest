@@ -27,7 +27,8 @@ final class TodayMomentTests: XCTestCase {
         let actor = UUID()
         let chore = LocalChore(
             chore: NestChore(
-                occurrenceId: UUID(), title: "Tomorrow's chore", dueDate: tomorrow, assigneeId: actor, offlineEpoch: nil),
+                occurrenceId: UUID(), title: "Tomorrow's chore", dueDate: tomorrow,
+                assigneeId: actor, offlineEpoch: nil),
             state: .open, operationId: nil)
         XCTAssertFalse(chore.visibleToday(on: before.day, actor: actor, everyone: false))
         XCTAssertTrue(chore.visibleToday(on: after.day, actor: actor, everyone: false))
