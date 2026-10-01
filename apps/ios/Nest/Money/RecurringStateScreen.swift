@@ -130,7 +130,10 @@ struct RecurringStateScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedRecurringState(context) }
-            notice = "Could not confirm the rule change. Resolve any saved request, then refresh for its latest state."
+            notice =
+                saved == nil
+                ? "Could not start this change. Connect and refresh the rule before deciding again."
+                : "Could not confirm the rule change. Resolve any saved request, then refresh for its latest state."
         }
     }
 }

@@ -25,6 +25,10 @@ struct VariableCycleScreen: View {
                 Section {
                     Button("Record bill") { Task { await save() } }
                     Button("Edit amount and split") { self.reviewed = nil }
+                    Button("Reload bill and edit") {
+                        self.reviewed = nil
+                        Task { await load() }
+                    }
                 }
             } else if let detail, detail.rule.isDue(on: detail.today) {
                 fields(detail)
@@ -161,7 +165,10 @@ struct VariableCycleScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedVariableCycle(context) }
-            notice = "Could not confirm this bill. Resolve any saved entry, then refresh for the latest rule."
+            notice =
+                saved == nil
+                ? "Could not start this bill entry. Connect and reload the bill before reviewing again. Your draft is kept."
+                : "Could not confirm this bill. Resolve any saved entry, then refresh for the latest rule."
         }
     }
 }

@@ -29,6 +29,10 @@ struct RecurringEditorScreen: View {
                         Task { await save() }
                     }
                     Button("Edit") { self.reviewed = nil }
+                    Button("Reload rule and edit") {
+                        self.reviewed = nil
+                        Task { await load() }
+                    }
                 }
             } else if let draft {
                 RecurringEditorFields(
@@ -119,12 +123,15 @@ struct RecurringEditorScreen: View {
             let current = try session.expenseContext()
             context = current
             saved = try await session.savedRecurring(current)
-            if saved == nil { try await reload(current) }
+            if saved == nil { try await reload(current, preserveDraft: true) }
         }
     }
-    private func reload(_ current: ExpenseContext) async throws {
-        draft = nil
-        categoryName = nil
+    private func reload(_ current: ExpenseContext, preserveDraft: Bool = false) async throws {
+        let previous = preserveDraft ? draft : nil
+        if !preserveDraft {
+            draft = nil
+            categoryName = nil
+        }
         members = try await session.readMoneyBalance(member: member, generation: current.generation).members
         var existing: RecurringRule?
         let date: CivilDate
@@ -137,7 +144,7 @@ struct RecurringEditorScreen: View {
             date = try await session.readRecurringRules(current, after: nil, dueOnly: false).today
         }
         today = date
-        draft = RecurringDraft(member: member, today: date, existing: existing)
+        draft = RecurringDraft(member: member, today: date, existing: existing).retainingEdits(from: previous)
     }
     private func review() {
         focusedField = nil
@@ -180,7 +187,10 @@ struct RecurringEditorScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedRecurring(context) }
-            notice = "Could not confirm this action. Resolve any saved request, then reload the latest rule."
+            notice =
+                saved == nil
+                ? "Could not start this save. Connect and reload the rule before reviewing again. Your draft is kept."
+                : "Could not confirm this action. Resolve any saved request, then reload the latest rule."
         }
     }
 }

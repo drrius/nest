@@ -70,6 +70,22 @@ struct RecurringDraft {
         schedule?.dayOfMonth ?? schedule?.weekday ?? 1
     }
 
+    func retainingEdits(from previous: Self?) -> Self {
+        guard let previous else { return self }
+        var result = self
+        result.description = previous.description
+        result.mode = previous.mode
+        result.payer = previous.payer
+        result.amount = previous.amount
+        result.shares = previous.shares
+        result.note = previous.note
+        result.categoryId = previous.categoryId
+        result.startDate = previous.startDate
+        result.scheduleKind = previous.scheduleKind
+        result.scheduleDay = previous.scheduleDay
+        return result
+    }
+
     private static func decimal(_ value: Centimes) -> String {
         "\(value.value / 100).\(String(format: "%02lld", value.value % 100))"
     }

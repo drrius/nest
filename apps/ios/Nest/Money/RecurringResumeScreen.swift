@@ -24,6 +24,10 @@ struct RecurringResumeScreen: View {
                 Section {
                     Button("Confirm resume") { Task { await save() } }
                     Button("Edit") { self.reviewed = nil }
+                    Button("Reload rule and review again") {
+                        self.reviewed = nil
+                        Task { await load() }
+                    }
                 }
             } else if let detail, detail.rule.status == .paused {
                 Section {
@@ -109,7 +113,7 @@ struct RecurringResumeScreen: View {
         detail = nil
         let result = try await session.readRecurringRule(context, ruleId: ruleId)
         detail = result
-        resumeFrom = max(result.today.value, result.rule.configuration.startDate.value)
+        if resumeFrom.isEmpty { resumeFrom = max(result.today.value, result.rule.configuration.startDate.value) }
     }
     private func review(_ detail: RecurringDetail) {
         do {
@@ -147,6 +151,7 @@ struct RecurringResumeScreen: View {
             try await session.finishRecurringResume(context, operation: saved.command.operationId)
             self.saved = nil
             reviewed = nil
+            resumeFrom = ""
             try await reload(context)
         }
     }
@@ -159,7 +164,10 @@ struct RecurringResumeScreen: View {
             notice = nil
         } catch {
             if let context { saved = try? await session.savedRecurringResume(context) }
-            notice = "Could not confirm the resume. Resolve any saved request, then refresh the rule."
+            notice =
+                saved == nil
+                ? "Could not start this resume. Connect and reload the rule before reviewing again. Your date is kept."
+                : "Could not confirm the resume. Resolve any saved request, then refresh the rule."
         }
     }
 }

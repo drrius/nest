@@ -6,6 +6,18 @@ import XCTest
 @MainActor
 final class RecurringStateRecoveryModelTests: XCTestCase {
     func testLostSaveReplyRecoversWithoutSubmittingAgain() async throws {
+        try await verifyEntry(fault: nil)
+    }
+
+    func testFreshPreflightRefusesOfflineOrChangedRuleBeforeJournaling() async throws {
+        for fault in ["offline", "household", "revision", "state"] { try await verifyEntry(fault: fault) }
+    }
+
+    func testDelayedRuleCannotJournalAfterSignOutOrMemberSwitch() async throws {
+        for fault in ["signout", "switch"] { try await verifyEntry(fault: fault) }
+    }
+
+    private func verifyEntry(fault: String?) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -24,6 +36,24 @@ final class RecurringStateRecoveryModelTests: XCTestCase {
         let context = try model.expenseContext()
         let input = RecurringStateInput(
             ruleId: UUID(), expectedRevision: UUID(), expectedStatus: .active, action: .pause)
+        await server.prepare(.init(
+            member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision,
+            configuration: try RecurringEntryPreflightFixture.configuration(member: member), status: .active, fault: fault))
+        if let fault, ["signout", "switch"].contains(fault) {
+            try await verifyInterrupted(model, context: context, input: input, server: server, fault: fault)
+            return
+        }
+        if fault != nil {
+            do {
+                try await model.stageRecurringState(input, context: context)
+                XCTFail("Changed or unavailable recurring context created a new request")
+            } catch { XCTAssertTrue(error is NestAPIFailure) }
+            let saved = try await model.savedRecurringState(context)
+            XCTAssertNil(saved)
+            let saves = await server.saves
+            XCTAssertEqual(saves, 0)
+            return
+        }
         try await model.stageRecurringState(input, context: context)
         let staged = try await model.savedRecurringState(context)
         do {
@@ -44,15 +74,60 @@ final class RecurringStateRecoveryModelTests: XCTestCase {
             XCTFail("Signed-out context reused")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
+    private func verifyInterrupted(
+        _ model: SessionModel, context: ExpenseContext, input: RecurringStateInput,
+        server: LostRecurringStateReplyServer, fault: String
+    ) async throws {
+        let staging = Task { try await model.stageRecurringState(input, context: context) }
+        await server.waitForRead()
+        if fault == "switch" {
+            await model.signIn(idToken: "B", nonce: "fixture")
+        } else {
+            await model.signOut()
+        }
+        await server.releaseRead()
+        do {
+            try await staging.value
+            XCTFail("A stale account created a recurring request")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+        let saves = await server.saves
+        XCTAssertEqual(saves, 0)
+        if fault == "switch" {
+            let saved = try await model.savedRecurringState(model.expenseContext())
+            XCTAssertNil(saved)
+        }
+    }
 }
 
 private actor LostRecurringStateReplyServer {
     let member: VerifiedMember
     var receipt: RecurringStateReceipt?
     var saves = 0
+    private var waiting = false
+    private var began: CheckedContinuation<Void, Never>?
+    private var resume: CheckedContinuation<Void, Never>?
+    func waitForRead() async {
+        if waiting { return }
+        await withCheckedContinuation { began = $0 }
+    }
+    func releaseRead() {
+        resume?.resume()
+        resume = nil
+    }
+    var preflight: RecurringEntryPreflightFixture?
+    func prepare(_ value: RecurringEntryPreflightFixture) { preflight = value }
     init(member: VerifiedMember) { self.member = member }
 
-    func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+    func respond(_ request: URLRequest) async throws -> (Data, URLResponse) {
+        if let result = try preflight?.respond(request) {
+            if ["signout", "switch"].contains(preflight?.fault ?? "") {
+                waiting = true
+                began?.resume()
+                began = nil
+                await withCheckedContinuation { resume = $0 }
+            }
+            return result
+        }
         if request.url!.path.hasSuffix("/save") {
             let command = try JSONDecoder().decode(SaveRecurringState.self, from: request.httpBody!)
             saves += 1

@@ -6,6 +6,14 @@ import XCTest
 @MainActor
 final class RecurringResumeRecoveryModelTests: XCTestCase {
     func testLostSaveReplyRecoversWithoutSubmittingAgain() async throws {
+        try await verifyEntry(fault: nil)
+    }
+
+    func testFreshPreflightRefusesOfflineOrChangedRuleBeforeJournaling() async throws {
+        for fault in ["offline", "household", "revision", "state", "day", "covered"] { try await verifyEntry(fault: fault) }
+    }
+
+    private func verifyEntry(fault: String?) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -25,6 +33,20 @@ final class RecurringResumeRecoveryModelTests: XCTestCase {
         let input = RecurringResumeInput(
             ruleId: UUID(), expectedRevision: UUID(), expectedStatus: "paused",
             action: "resume", resumeFrom: try CivilDate("2026-09-28"), firstDueOn: try CivilDate("2026-09-28"))
+        await server.prepare(.init(
+            member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision,
+            configuration: try RecurringEntryPreflightFixture.configuration(member: member), status: .paused, fault: fault))
+        if fault != nil {
+            do {
+                try await model.stageRecurringResume(input, context: context)
+                XCTFail("Changed or unavailable recurring context created a new request")
+            } catch { XCTAssertTrue(error is NestAPIFailure) }
+            let saved = try await model.savedRecurringResume(context)
+            XCTAssertNil(saved)
+            let saves = await server.saves
+            XCTAssertEqual(saves, 0)
+            return
+        }
         try await model.stageRecurringResume(input, context: context)
         let staged = try await model.savedRecurringResume(context)
         do {
@@ -51,9 +73,12 @@ private actor LostRecurringResumeReplyServer {
     let member: VerifiedMember
     var receipt: RecurringResumeReceipt?
     var saves = 0
+    var preflight: RecurringEntryPreflightFixture?
+    func prepare(_ value: RecurringEntryPreflightFixture) { preflight = value }
     init(member: VerifiedMember) { self.member = member }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if let result = try preflight?.respond(request) { return result }
         if request.url!.path.hasSuffix("/save") {
             let command = try JSONDecoder().decode(SaveRecurringResume.self, from: request.httpBody!)
             saves += 1

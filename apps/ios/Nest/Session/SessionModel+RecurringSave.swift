@@ -10,6 +10,18 @@ extension SessionModel {
     }
 
     func stageRecurring(_ rule: RecurringInput, context: ExpenseContext) async throws {
+        let balance = try await readMoneyBalance(member: context.member, generation: context.generation)
+        let current: RecurringDetail?
+        let today: CivilDate
+        if rule.expectedRevision != nil {
+            let detail = try await readRecurringRule(context, ruleId: rule.ruleId)
+            current = detail
+            today = detail.today
+        } else {
+            current = nil
+            today = try await readRecurringRules(context, after: nil, dueOnly: false).today
+        }
+        try rule.validated(member: context.member, balance: balance, today: today, current: current?.rule)
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueRecurring(.init(operationId: UUID(), rule: rule), lease: context.lease)

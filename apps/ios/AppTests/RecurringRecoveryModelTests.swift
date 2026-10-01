@@ -6,6 +6,20 @@ import XCTest
 @MainActor
 final class RecurringRecoveryModelTests: XCTestCase {
     func testLostSaveReplyRecoversWithoutSubmittingAgain() async throws {
+        try await verifyEntry(fault: nil)
+    }
+
+    func testFreshPreflightRefusesOfflineOrChangedRuleBeforeJournaling() async throws {
+        for fault in ["offline", "household", "member", "day", "revision", "covered", "cancelled"] {
+            try await verifyEntry(fault: fault)
+        }
+    }
+
+    func testEditedRuleRecoversLostReplyWithoutSubmittingAgain() async throws {
+        try await verifyEntry(fault: nil, editing: true)
+    }
+
+    private func verifyEntry(fault: String?, editing: Bool = false) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let partner = UUID()
         let auth = FakeAuthentication(
@@ -23,13 +37,29 @@ final class RecurringRecoveryModelTests: XCTestCase {
         await model.restore()
         let context = try model.expenseContext()
         let configuration = RecurringConfiguration(
-            description: "Bill", payerId: member.userId,
+            description: "Bill", payerId: fault == "member" ? partner : member.userId,
             categoryId: nil, note: nil, startDate: try CivilDate("2026-09-28"),
             schedule: .init(kind: .monthly, weekday: nil, dayOfMonth: 28), mode: .variable,
             amountCentimes: nil, allocations: nil)
         let input = RecurringInput(
-            ruleId: UUID(), expectedRevision: nil, configuration: configuration,
+            ruleId: UUID(),
+            expectedRevision: editing || ["revision", "covered", "cancelled"].contains(fault ?? "") ? UUID() : nil,
+            configuration: configuration,
             firstDueOn: try CivilDate("2026-09-28"))
+        await server.prepare(.init(
+            member: member, partner: partner, ruleId: input.ruleId, revision: input.expectedRevision ?? UUID(), configuration: input.configuration,
+            status: .active, fault: fault))
+        if fault != nil {
+            do {
+                try await model.stageRecurring(input, context: context)
+                XCTFail("Changed or unavailable recurring context created a new request")
+            } catch { XCTAssertTrue(error is NestAPIFailure) }
+            let saved = try await model.savedRecurring(context)
+            XCTAssertNil(saved)
+            let saves = await server.saves
+            XCTAssertEqual(saves, 0)
+            return
+        }
         try await model.stageRecurring(input, context: context)
         let staged = try await model.savedRecurring(context)
         do {
@@ -56,9 +86,12 @@ private actor LostRecurringReplyServer {
     let member: VerifiedMember
     var receipt: RecurringReceipt?
     var saves = 0
+    var preflight: RecurringEntryPreflightFixture?
+    func prepare(_ value: RecurringEntryPreflightFixture) { preflight = value }
     init(member: VerifiedMember) { self.member = member }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if let result = try preflight?.respond(request) { return result }
         if request.url!.path.hasSuffix("/save") {
             let command = try JSONDecoder().decode(SaveRecurring.self, from: request.httpBody!)
             saves += 1

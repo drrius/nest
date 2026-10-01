@@ -10,6 +10,9 @@ extension SessionModel {
     }
 
     func stageRecurringState(_ change: RecurringStateInput, context: ExpenseContext) async throws {
+        try change.validated()
+        let current = try await readRecurringRule(context, ruleId: change.ruleId)
+        guard change.matches(current.rule) else { throw NestAPIFailure.conflict }
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueRecurringState(.init(operationId: UUID(), change: change), lease: context.lease)

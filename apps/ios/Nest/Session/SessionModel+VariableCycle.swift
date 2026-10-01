@@ -10,6 +10,9 @@ extension SessionModel {
     }
 
     func stageVariableCycle(_ input: VariableCycleInput, context: ExpenseContext) async throws {
+        let current = try await readRecurringRule(context, ruleId: input.ruleId)
+        let balance = try await readMoneyBalance(member: context.member, generation: context.generation)
+        try input.validated(member: context.member, balance: balance, detail: current)
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueVariableCycle(.init(operationId: UUID(), input: input), lease: context.lease)
