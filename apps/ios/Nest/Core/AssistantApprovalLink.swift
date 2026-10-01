@@ -2,6 +2,13 @@ import Foundation
 
 extension PendingFinancialApproval {
     static func assistantLink(_ part: [String: AssistantJSON], member: VerifiedMember) -> Self? {
+        if part["type"] == .string("tool-proposeRecurringState") {
+            return AssistantRecurringStateApprovalLink.read(part, member: member)
+        }
+        return financialLink(part, member: member)
+    }
+
+    private static func financialLink(_ part: [String: AssistantJSON], member: VerifiedMember) -> Self? {
         let commands: [String: Command] = [
             "tool-proposeExpense": .expense, "tool-proposeRefund": .refund,
             "tool-proposeSettlement": .settlement, "tool-proposeCorrection": .correction,

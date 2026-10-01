@@ -9,6 +9,7 @@ struct FinancialApprovalsScreen: View {
     @State private var savedSettlement: SavedSettlementDecision?
     @State private var savedCorrection: SavedCorrectionDecision?
     @State private var savedRecurring: SavedRecurringDecision?
+    @State private var savedRecurringState: SavedRecurringStateDecision?
     @State private var next: UUID?
     @State private var loading = false
     @State private var loaded = false
@@ -62,6 +63,15 @@ struct FinancialApprovalsScreen: View {
                     }
                 }
             }
+            if let savedRecurringState {
+                Section("Saved pause or cancellation decision") {
+                    NavigationLink("Check rule change decision") {
+                        RecurringStateApprovalScreen(
+                            session: session, member: member, approvalId: savedRecurringState.decision.approvalId)
+                            .id(session.generation)
+                    }
+                }
+            }
             Section("Waiting for your review") {
                 ForEach(rows) { row in
                     FinancialApprovalRow(session: session, member: member, row: row)
@@ -93,6 +103,7 @@ struct FinancialApprovalsScreen: View {
             savedSettlement = nil
             savedCorrection = nil
             savedRecurring = nil
+            savedRecurringState = nil
         }
         do {
             let context = try session.expenseContext()
@@ -101,6 +112,7 @@ struct FinancialApprovalsScreen: View {
             savedSettlement = try await session.savedSettlementDecision(context)
             savedCorrection = try await session.savedCorrectionDecision(context)
             savedRecurring = try await session.savedRecurringDecision(context)
+            savedRecurringState = try await session.savedRecurringStateDecision(context)
             let page = try await session.readPendingApprovals(context, after: cursor)
             try Task.checkCancellation()
             rows.append(contentsOf: page.approvals)

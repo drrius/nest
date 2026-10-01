@@ -46,8 +46,13 @@ test("expiry API rejects substituted identities and malformed responses", async 
   await assert.rejects(run(value, new URL(url + "&actorId=" + id(1))));
 });
 
-test("recurring expiry requests retain exact create versus update identity", async () => {
-  for (const command of ["recurring.create", "recurring.update"]) {
+test("recurring expiry requests retain exact configuration and state identity", async () => {
+  for (const command of [
+    "recurring.create",
+    "recurring.update",
+    "recurring.pause",
+    "recurring.cancel",
+  ]) {
     const input = new URL(url);
     input.searchParams.set("command", command);
     const result = { ...value, command };

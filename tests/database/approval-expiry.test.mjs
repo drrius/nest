@@ -8,6 +8,7 @@ db.file("supabase/migrations/20260919213407_native_action_approvals.sql");
 db.file("tests/database/approval-write-fixture.sql");
 db.file("supabase/migrations/20260928092000_native_financial_approval_expiry.sql");
 db.file("supabase/migrations/20260928100000_native_recurring_approval_expiry.sql");
+db.file("supabase/migrations/20261001093000_native_recurring_state_approval_expiry.sql");
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const actor = id(1),
   household = id(10);
@@ -94,8 +95,13 @@ test("expiry waits for an in-flight consumption before attesting unused", async 
   );
 });
 
-test("recurring create and update expiry remain owner and command bound", () => {
-  for (const command of ["recurring.create", "recurring.update"]) {
+test("recurring configuration and state expiry remain owner and command bound", () => {
+  for (const command of [
+    "recurring.create",
+    "recurring.update",
+    "recurring.pause",
+    "recurring.cancel",
+  ]) {
     const operation = id(sequence++);
     const approval = db.sql(
       as(
