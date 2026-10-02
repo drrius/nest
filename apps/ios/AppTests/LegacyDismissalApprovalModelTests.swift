@@ -256,4 +256,19 @@ final class LegacyDismissalApprovalModelTests: XCTestCase {
         let finished = await model.finish()
         XCTAssertTrue(finished)
     }
+
+    func testInaccessibleDraftContextAllowsOnlyDeclineOfTheFreshOwnerBoundProposal() async throws {
+        let fixture = try await fixture()
+        await fixture.server.hideDraftContext()
+        let model = await fixture.presentation()
+        await model.load()
+        let review = try XCTUnwrap(model.review)
+        XCTAssertNil(review.context)
+        await model.decide(true, expected: review)
+        XCTAssertNil(model.saved)
+        await model.decide(false, expected: review)
+        XCTAssertEqual(model.saved?.result?.approval.status, .denied)
+        let writes = await fixture.server.dismissals
+        XCTAssertEqual(writes, 0)
+    }
 }

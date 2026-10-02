@@ -48,9 +48,7 @@ final class LegacyDismissalApprovalModel: ObservableObject {
                 return
             }
             let approval = try await session.readLegacyDismissalApproval(current, approvalId: approvalId).approval
-            let proposalContext =
-                approval.isTerminal
-                ? nil : try await session.readLegacyDismissalProposalContext(current, approval: approval)
+            let proposalContext = try await reviewContext(current, approval: approval)
             guard accept(generation), reviewEpoch == epoch, !Task.isCancelled else { return }
             review = .init(identity: UUID(), approval: approval, context: proposalContext)
         } catch {
@@ -60,15 +58,19 @@ final class LegacyDismissalApprovalModel: ObservableObject {
     }
 
     func decide(_ approved: Bool, expected: LegacyDismissalProposalReview) async {
-        guard saved == nil, review == expected, !expected.approval.isTerminal, let reviewed = expected.context,
-            !approved || (reviewed.matches && ApprovalTime.isOpen(expected.approval.expiresAt, now: .now))
+        guard saved == nil, review == expected, !expected.approval.isTerminal
         else { return }
+        if approved {
+            guard expected.context?.matches == true, ApprovalTime.isOpen(expected.approval.expiresAt, now: .now) else {
+                return
+            }
+        }
         await perform {
             guard let context = self.context else { throw NestAPIFailure.signedOut }
             let decision = LegacyDismissalDecision(
                 operationId: expected.approval.operationId, approvalId: expected.approval.id,
                 input: expected.approval.input, approved: approved)
-            try await self.session.stageLegacyDismissalDecision(decision, reviewed: reviewed, context: context)
+            try await self.session.stageLegacyDismissalDecision(decision, reviewed: expected.context, context: context)
             self.saved = try await self.session.savedLegacyDismissalDecision(context)
             self.review = nil
             self.saved = try await self.session.retryLegacyDismissalDecision(context)
@@ -107,6 +109,20 @@ final class LegacyDismissalApprovalModel: ObservableObject {
         review = nil
     }
 
+    private func reviewContext(_ current: ExpenseContext, approval: LegacyDismissalApproval) async throws
+        -> LegacyDismissalProposalContext?
+    {
+        if approval.isTerminal { return nil }
+        do {
+            return try await session.readLegacyDismissalProposalContext(current, approval: approval)
+        } catch NestAPIFailure.forbidden {
+            // The separately authorized private proposal can still be declined.
+            return nil
+        } catch NestAPIFailure.removed {
+            return nil
+        }
+    }
+
     private func perform(_ work: () async throws -> Void) async {
         guard !working, let context, accept(context.generation) else { return }
         working = true
@@ -119,7 +135,7 @@ final class LegacyDismissalApprovalModel: ObservableObject {
             let pending = try? await session.savedLegacyDismissalDecision(context)
             guard accept(context.generation) else { return }
             saved = pending
-            notice = "Not confirmed. Reload the private result, retry the exact decision, or explicitly withdraw consent."
+            notice = "Not confirmed. Check the saved result, retry this decision, or explicitly withdraw consent."
         }
     }
 

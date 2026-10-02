@@ -161,4 +161,24 @@ final class LegacyDismissalApprovalTests: XCTestCase {
         part["state"] = .string("input-available")
         XCTAssertNil(PendingFinancialApproval.assistantLink(part, member: owner))
     }
+
+    func testAbsentDraftContextCannotAuthorizeConsentButAllowsAReviewedPrivateDecline() async throws {
+        let proposal = try proposal()
+        let url = FileManager.default.temporaryDirectory.appending(path: "legacy-decline-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(member(proposal))
+        do {
+            try await store.enqueueLegacyDismissalDecision(decision(proposal), context: nil, lease: lease)
+            XCTFail("Missing retained terms authorized dismissal")
+        } catch OfflineFailure.invalidOperation {}
+        let decline = decision(proposal, approved: false)
+        try await store.enqueueLegacyDismissalDecision(decline, context: nil, lease: lease)
+        let saved = try await store.readLegacyDismissalDecision(lease: lease)
+        XCTAssertEqual(saved?.decision, decline)
+        XCTAssertNil(saved?.reviewedContext)
+        XCTAssertFalse(saved?.isTerminal == true)
+        try await store.reconcileLegacyDismissalDecision(outcome(proposal, consumed: false), lease: lease)
+        try await store.finishLegacyDismissalDecision(approvalId: proposal.approval.id, lease: lease)
+    }
 }

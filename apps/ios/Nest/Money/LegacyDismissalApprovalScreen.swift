@@ -75,7 +75,7 @@ struct LegacyDismissalApprovalScreen: View {
                 LabeledContent("Draft", value: input.draftId.uuidString.lowercased())
                 LabeledContent("Old rule", value: input.ruleId.uuidString.lowercased())
                 Text(
-                    "The current draft does not match this proposal. Its current terms cannot replace the original review."
+                    "The current draft could not be matched to this proposal. Its current terms cannot replace the original review."
                 )
                 Text("Decline this proposal and request a new review if dismissal is still needed.")
                     .font(.footnote).foregroundStyle(QuietPalette.muted)

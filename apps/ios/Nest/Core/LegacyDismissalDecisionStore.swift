@@ -2,7 +2,7 @@ import Foundation
 
 struct SavedLegacyDismissalDecision: Codable, Sendable {
     let decision: LegacyDismissalDecision
-    let reviewedContext: LegacyDismissalProposalContext
+    let reviewedContext: LegacyDismissalProposalContext?
     var result: LegacyDismissalApprovalEnvelope?
     var withdrawalRequested: Bool
 
@@ -27,27 +27,30 @@ extension ChoreOfflineStore {
         guard let body = rows.first?.first, let data = body.data(using: .utf8) else { return nil }
         let saved = try JSONDecoder().decode(SavedLegacyDismissalDecision.self, from: data)
         let member = legacyDecisionMember(lease)
-        _ = try saved.reviewedContext.validated(
-            member: member, approvalId: saved.decision.approvalId, input: saved.decision.input)
-        guard !saved.decision.approved || saved.reviewedContext.matches,
+        if let context = saved.reviewedContext {
+            _ = try context.validated(member: member, approvalId: saved.decision.approvalId, input: saved.decision.input)
+        }
+        guard !saved.decision.approved || saved.reviewedContext?.matches == true,
             !saved.withdrawalRequested || saved.decision.approved
         else { throw OfflineFailure.invalidOperation }
         if let result = saved.result {
             _ = try result.matching(saved.decision, member: member)
             if saved.decision.approved, let receipt = result.approval.receipt {
-                guard receipt.reviewed == saved.reviewedContext.review else { throw OfflineFailure.invalidOperation }
+                guard receipt.reviewed == saved.reviewedContext?.review else { throw OfflineFailure.invalidOperation }
             }
         }
         return saved
     }
 
     func enqueueLegacyDismissalDecision(
-        _ decision: LegacyDismissalDecision, context: LegacyDismissalProposalContext, lease: OfflineLease
+        _ decision: LegacyDismissalDecision, context: LegacyDismissalProposalContext?, lease: OfflineLease
     ) throws {
         try authorize(lease)
-        _ = try context.validated(
-            member: legacyDecisionMember(lease), approvalId: decision.approvalId, input: decision.input)
-        guard !decision.approved || context.matches, try readLegacyDismissalDecision(lease: lease) == nil else {
+        if let context {
+            _ = try context.validated(
+                member: legacyDecisionMember(lease), approvalId: decision.approvalId, input: decision.input)
+        }
+        guard !decision.approved || context?.matches == true, try readLegacyDismissalDecision(lease: lease) == nil else {
             throw OfflineFailure.invalidOperation
         }
         let saved = SavedLegacyDismissalDecision(
@@ -60,7 +63,7 @@ extension ChoreOfflineStore {
         guard var saved = try readLegacyDismissalDecision(lease: lease) else { throw OfflineFailure.invalidOperation }
         _ = try result.matching(saved.decision, member: legacyDecisionMember(lease))
         if saved.decision.approved, let receipt = result.approval.receipt {
-            guard receipt.reviewed == saved.reviewedContext.review else { throw OfflineFailure.invalidOperation }
+            guard receipt.reviewed == saved.reviewedContext?.review else { throw OfflineFailure.invalidOperation }
         }
         if let previous = saved.result, previous.approval.isTerminal {
             let encoder = JSONEncoder()

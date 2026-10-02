@@ -54,6 +54,7 @@ actor LegacyDismissalApprovalTestServer {
     private var loseReply = false
     private var failReply = false
     private var offline = false
+    private var contextMissing = false
     private(set) var sends = 0
     private(set) var dismissals = 0
     private(set) var lastDecision: LegacyDismissalDecision?
@@ -66,6 +67,7 @@ actor LegacyDismissalApprovalTestServer {
     func loseNextReply() { loseReply = true }
     func failNextReply() { failReply = true }
     func setOffline(_ value: Bool) { offline = value }
+    func hideDraftContext() { contextMissing = true }
     func expire() { expiresAt = "2000-01-01T00:00:00.000000Z" }
     func commitApproved() {
         guard !envelope().approval.isTerminal else { return }
@@ -90,6 +92,9 @@ actor LegacyDismissalApprovalTestServer {
             data = try JSONEncoder().encode(envelope())
         case "/v1/money/recurring/legacy-dismissal/approval/context":
             try query(request)
+            if contextMissing {
+                return (Data(), HTTPURLResponse(url: url, statusCode: 403, httpVersion: nil, headerFields: nil)!)
+            }
             data = try JSONEncoder().encode(await currentContext())
         case "/v1/money/recurring/legacy-dismissal/approval/decide":
             guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
@@ -116,9 +121,10 @@ actor LegacyDismissalApprovalTestServer {
     }
 
     private func currentContext() async throws -> LegacyDismissalProposalContext {
+        let path = "https://nest.example/v1/money/recurring/legacy-dismissal/context"
         var request = URLRequest(
             url: URL(
-                string: "https://nest.example/v1/money/recurring/legacy-dismissal/context?draftId=\(original.draft.id.uuidString.lowercased())"
+                string: "\(path)?draftId=\(original.draft.id.uuidString.lowercased())"
             )!)
         request.httpMethod = "GET"
         request.setValue("Bearer token-A", forHTTPHeaderField: "Authorization")

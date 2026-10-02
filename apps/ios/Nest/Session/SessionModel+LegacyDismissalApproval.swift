@@ -32,14 +32,15 @@ extension SessionModel {
     }
 
     func stageLegacyDismissalDecision(
-        _ decision: LegacyDismissalDecision, reviewed: LegacyDismissalProposalContext, context: ExpenseContext
+        _ decision: LegacyDismissalDecision, reviewed: LegacyDismissalProposalContext?, context: ExpenseContext
     ) async throws {
         let proposal = try await readLegacyDismissalApproval(context, approvalId: decision.approvalId)
             .matching(decision, member: context.member)
         guard !proposal.approval.isTerminal else { throw NestAPIFailure.conflict }
-        let current = try await readLegacyDismissalProposalContext(context, approval: proposal.approval)
+        var current = reviewed
         if decision.approved {
-            guard current.matches, current == reviewed,
+            current = try await readLegacyDismissalProposalContext(context, approval: proposal.approval)
+            guard current?.matches == true, current == reviewed,
                 ApprovalTime.isOpen(proposal.approval.expiresAt, now: .now)
             else { throw NestAPIFailure.conflict }
         }
@@ -57,7 +58,9 @@ extension SessionModel {
         if saved.isTerminal { return saved }
         let result = try await readLegacyDismissalApproval(context, approvalId: saved.decision.approvalId)
         try await offline.reconcileLegacyDismissalDecision(result, lease: context.lease)
-        guard let current = try await savedLegacyDismissalDecision(context) else { throw OfflineFailure.invalidOperation }
+        guard let current = try await savedLegacyDismissalDecision(context) else {
+            throw OfflineFailure.invalidOperation
+        }
         return current
     }
 
