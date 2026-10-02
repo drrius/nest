@@ -28,7 +28,8 @@ extension ChoreOfflineStore {
         let saved = try JSONDecoder().decode(SavedLegacyDismissalDecision.self, from: data)
         let member = legacyDecisionMember(lease)
         if let context = saved.reviewedContext {
-            _ = try context.validated(member: member, approvalId: saved.decision.approvalId, input: saved.decision.input)
+            _ = try context.validated(
+                member: member, approvalId: saved.decision.approvalId, input: saved.decision.input)
         }
         guard !saved.decision.approved || saved.reviewedContext?.matches == true,
             !saved.withdrawalRequested || saved.decision.approved
@@ -50,7 +51,8 @@ extension ChoreOfflineStore {
             _ = try context.validated(
                 member: legacyDecisionMember(lease), approvalId: decision.approvalId, input: decision.input)
         }
-        guard !decision.approved || context?.matches == true, try readLegacyDismissalDecision(lease: lease) == nil else {
+        guard !decision.approved || context?.matches == true, try readLegacyDismissalDecision(lease: lease) == nil
+        else {
             throw OfflineFailure.invalidOperation
         }
         let saved = SavedLegacyDismissalDecision(
