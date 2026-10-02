@@ -2,6 +2,9 @@ import Foundation
 
 extension PendingFinancialApproval {
     static func assistantLink(_ part: [String: AssistantJSON], member: VerifiedMember) -> Self? {
+        if part["type"] == .string("tool-proposeLegacyDismissal") {
+            return AssistantLegacyDismissalApprovalLink.read(part, member: member)
+        }
         if part["type"] == .string("tool-proposeManualCycle") {
             return AssistantManualCycleApprovalLink.read(part, member: member)
         }
