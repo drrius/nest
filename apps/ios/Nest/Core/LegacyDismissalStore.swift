@@ -41,7 +41,8 @@ extension ChoreOfflineStore {
         guard reviewed.canDismiss, reviewed.dismissalInput == command.input,
             try readLegacyDismissal(lease: lease) == nil
         else { throw OfflineFailure.invalidOperation }
-        let saved = SavedLegacyDismissal(command: command, reviewed: reviewed, result: nil, cancellationRequested: false)
+        let saved = SavedLegacyDismissal(
+            command: command, reviewed: reviewed, result: nil, cancellationRequested: false)
         let body = String(decoding: try JSONEncoder().encode(saved), as: UTF8.self)
         try db.run("INSERT INTO legacy_dismissal_commands(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
     }

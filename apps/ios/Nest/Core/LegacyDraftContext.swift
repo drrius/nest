@@ -4,7 +4,8 @@ struct LegacyReviewToken: Codable, Equatable, Sendable {
     let value: String
 
     init(_ value: String) throws {
-        guard value.utf8.count == 64, value.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) }) else {
+        guard value.utf8.count == 64, value.utf8.allSatisfy({ (48...57).contains($0) || (97...102).contains($0) })
+        else {
             throw NestAPIFailure.contract
         }
         self.value = value

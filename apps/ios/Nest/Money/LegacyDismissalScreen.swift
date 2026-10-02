@@ -57,10 +57,14 @@ struct LegacyDismissalScreen: View {
             if let expected = confirmation {
                 Button("Dismiss this draft", role: .destructive) { Task { await model.confirm(expected) } }
             }
-        } message: { Text("No expense or payment will be recorded, and no recurring rule will be paused or cancelled.") }
+        } message: {
+            Text("No expense or payment will be recorded, and no recurring rule will be paused or cancelled.")
+        }
         .confirmationDialog("Cancel this pending request?", isPresented: $confirmCancellation) {
             Button("Cancel pending request", role: .destructive) { Task { await model.retry(cancel: true) } }
-        } message: { Text("If dismissal already happened, Nest will recover that exact result instead.") }
+        } message: {
+            Text("If dismissal already happened, Nest will recover that exact result instead.")
+        }
     }
 
     private var confirming: Binding<Bool> {

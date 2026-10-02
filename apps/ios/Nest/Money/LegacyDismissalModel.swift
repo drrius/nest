@@ -115,7 +115,8 @@ final class LegacyDismissalModel: ObservableObject {
             let pending = try? await session.savedLegacyDismissal(context)
             guard accept(context.generation) else { return }
             saved = pending
-            notice = pending == nil
+            notice =
+                pending == nil
                 ? "Could not start dismissal. Reload and review the exact current draft online."
                 : "Not confirmed. Check the saved result or explicitly cancel this pending request; its terms may have changed."
         }

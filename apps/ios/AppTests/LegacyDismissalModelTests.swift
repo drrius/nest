@@ -193,7 +193,8 @@ final class LegacyDismissalModelTests: XCTestCase {
         let reviewed = try XCTUnwrap(model.review)
         let db = try SQLiteConnection(url: fixture.base.url)
         try db.run(
-            "CREATE TRIGGER fail_legacy_insert BEFORE INSERT ON legacy_dismissal_commands BEGIN SELECT RAISE(ABORT,'fixture'); END")
+            "CREATE TRIGGER fail_legacy_insert BEFORE INSERT ON legacy_dismissal_commands BEGIN SELECT RAISE(ABORT,'fixture'); END"
+        )
         await model.confirm(reviewed)
         XCTAssertNil(model.saved)
         let before = await fixture.server.writes
@@ -202,7 +203,8 @@ final class LegacyDismissalModelTests: XCTestCase {
         await model.confirm(reviewed)
         XCTAssertEqual(model.saved?.result?.status, .recorded)
         try db.run(
-            "CREATE TRIGGER fail_legacy_delete BEFORE DELETE ON legacy_dismissal_commands BEGIN SELECT RAISE(ABORT,'fixture'); END")
+            "CREATE TRIGGER fail_legacy_delete BEFORE DELETE ON legacy_dismissal_commands BEGIN SELECT RAISE(ABORT,'fixture'); END"
+        )
         let cannotFinish = await model.finish()
         XCTAssertFalse(cannotFinish)
         XCTAssertEqual(model.saved?.result?.status, .recorded)

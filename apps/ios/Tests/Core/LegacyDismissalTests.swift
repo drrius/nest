@@ -67,9 +67,10 @@ final class LegacyDismissalTests: XCTestCase {
             XCTAssertThrowsError(
                 try decoded.validated(member: member(receipt), command: command, review: receipt.reviewed), key)
         }
-        for token in ["", String(repeating: "a", count: 63), String(repeating: "A", count: 64),
-            String(repeating: "🙂", count: 32), String(repeating: "g", count: 64)]
-        {
+        for token in [
+            "", String(repeating: "a", count: 63), String(repeating: "A", count: 64),
+            String(repeating: "🙂", count: 32), String(repeating: "g", count: 64),
+        ] {
             XCTAssertThrowsError(try LegacyReviewToken(token))
         }
         let changed = LegacyDraftContext(

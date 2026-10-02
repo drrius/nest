@@ -30,7 +30,8 @@ struct LegacyDraftScreen: View {
             if draft.status == .pending, draft.sourceKind == .recurring, draft.eventId == nil {
                 Section {
                     NavigationLink("Review dismissal of this draft") {
-                        LegacyDismissalScreen(session: session, member: member, draftId: draft.id).id(session.generation)
+                        LegacyDismissalScreen(session: session, member: member, draftId: draft.id)
+                            .id(session.generation)
                     }
                 }
             }
