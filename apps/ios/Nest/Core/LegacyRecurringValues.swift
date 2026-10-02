@@ -1,9 +1,9 @@
 import Foundation
 
 /// Retained values stay exact, including unsupported dates and microsecond versions.
-struct LegacyTemporalValue: Decodable, Equatable, Sendable {
-    enum Kind: String, Decodable { case date, timestamp, unsupported }
-    enum Reason: String, Decodable {
+struct LegacyTemporalValue: Codable, Equatable, Sendable {
+    enum Kind: String, Codable { case date, timestamp, unsupported }
+    enum Reason: String, Codable {
         case nonFinite = "non_finite"
         case outOfRange = "out_of_range"
     }
@@ -20,8 +20,8 @@ struct LegacyTemporalValue: Decodable, Equatable, Sendable {
     var display: String { kind == .unsupported ? "Needs review · \(value)" : value }
 }
 
-struct LegacyRecurringSplit: Decodable, Equatable, Sendable {
-    enum Kind: String, Decodable {
+struct LegacyRecurringSplit: Codable, Equatable, Sendable {
+    enum Kind: String, Codable {
         case valid
         case needsReview = "needs_review"
     }

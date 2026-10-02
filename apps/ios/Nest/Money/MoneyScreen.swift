@@ -44,6 +44,9 @@ struct MoneyScreen: View {
                 NavigationLink("Recurring expenses") {
                     RecurringRulesScreen(session: session, member: member, dueOnly: false).id(session.generation)
                 }
+                NavigationLink("Saved draft dismissal") {
+                    LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
+                }
             }
             MoneyHistorySection(session: session, member: member)
         }

@@ -1,8 +1,8 @@
 import Foundation
 
-struct LegacyRecurringDraft: Decodable, Equatable, Identifiable, Sendable {
-    enum Status: String, Decodable { case pending, posted, dismissed }
-    enum Source: String, Decodable { case shopping, recurring }
+struct LegacyRecurringDraft: Codable, Equatable, Identifiable, Sendable {
+    enum Status: String, Codable { case pending, posted, dismissed }
+    enum Source: String, Codable { case shopping, recurring }
     let draftId: UUID
     let ruleId: UUID
     let description: String
@@ -23,6 +23,28 @@ struct LegacyRecurringDraft: Decodable, Equatable, Identifiable, Sendable {
             && allocations.valid(amount: amountCentimes, payer: payerId)
             && (sourceKind == .shopping) == (shoppingSessionId != nil)
             && occurredOn.valid(expected: .date) && updatedAt.valid(expected: .timestamp)
+    }
+
+    enum CodingKeys: String, CodingKey {
+        case draftId, ruleId, description, amountCentimes, payerId, allocations, categoryId,
+            sourceKind, shoppingSessionId, occurredOn, status, updatedAt, eventId
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(draftId, forKey: .draftId)
+        try values.encode(ruleId, forKey: .ruleId)
+        try values.encode(description, forKey: .description)
+        try values.encode(amountCentimes, forKey: .amountCentimes)
+        try values.encode(payerId, forKey: .payerId)
+        try values.encode(allocations, forKey: .allocations)
+        try values.encode(categoryId, forKey: .categoryId)
+        try values.encode(sourceKind, forKey: .sourceKind)
+        try values.encode(shoppingSessionId, forKey: .shoppingSessionId)
+        try values.encode(occurredOn, forKey: .occurredOn)
+        try values.encode(status, forKey: .status)
+        try values.encode(updatedAt, forKey: .updatedAt)
+        try values.encode(eventId, forKey: .eventId)
     }
 
     var needsReconciliation: Bool {

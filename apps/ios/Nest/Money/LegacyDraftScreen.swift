@@ -27,6 +27,13 @@ struct LegacyDraftScreen: View {
                 Text("This is a retained snapshot. Viewing it does not record an expense or enable automatic posting.")
                     .font(.footnote).foregroundStyle(QuietPalette.muted)
             }
+            if draft.status == .pending, draft.sourceKind == .recurring, draft.eventId == nil {
+                Section {
+                    NavigationLink("Review dismissal of this draft") {
+                        LegacyDismissalScreen(session: session, member: member, draftId: draft.id).id(session.generation)
+                    }
+                }
+            }
             if let eventId = draft.eventId {
                 Section {
                     NavigationLink("View recorded entry") {

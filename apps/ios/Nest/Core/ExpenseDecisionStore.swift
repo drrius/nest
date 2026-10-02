@@ -29,6 +29,7 @@ extension ChoreOfflineStore {
         try createVariableCycleDecisionTable(db)
         try createManualCycleTable(db)
         try createManualCycleDecisionTable(db)
+        try createLegacyDismissalTable(db)
         try db.run(
             "CREATE TABLE IF NOT EXISTS recurring_decisions (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
         )
