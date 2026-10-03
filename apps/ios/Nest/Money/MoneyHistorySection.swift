@@ -56,7 +56,9 @@ struct MoneyHistorySection: View {
             Text("Recent activity").font(.headline).foregroundStyle(QuietPalette.ink)
                 .textCase(nil).padding(.top, 12)
         }
-        .task { await load(more: false) }
+        .task {
+            if previewCount != nil || events.isEmpty { await load(more: false) }
+        }
     }
 
     @ViewBuilder private func activity(_ event: MoneyEventSummary) -> some View {
