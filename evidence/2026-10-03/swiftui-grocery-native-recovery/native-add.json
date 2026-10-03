@@ -1,0 +1,26 @@
+{
+  "source": "994dc83d",
+  "marker": "Nest native grocery form 8af6cdca",
+  "controlledAPIOutage": true,
+  "nativeKeyboardObserved": true,
+  "offlineCreationNotStaged": true,
+  "offlineFailureRetainedFields": {
+    "Grocery name": "Nest native grocery form 8af6cdca",
+    "Quantity": "2",
+    "Unit": "litres"
+  },
+  "uncertainSaveKeptFormAndFrozenFields": true,
+  "processRestartPreservedExactRequest": true,
+  "onlineOnlyAddNotAutomaticallyReplayed": true,
+  "explicitRetryReturnedIdenticalReceipt": true,
+  "operationId": "e9e5ab84-abf1-46ae-8d28-4c059e1b22a6",
+  "itemId": "55b264d1-43b4-4a3e-8fc6-9914efa49d8a",
+  "receipt": {
+    "operation": "e9e5ab84-abf1-46ae-8d28-4c059e1b22a6",
+    "target": "55b264d1-43b4-4a3e-8fc6-9914efa49d8a",
+    "version": "1",
+    "checked": false,
+    "removed": false
+  },
+  "physicalAirplaneModeVerified": false
+}
