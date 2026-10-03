@@ -30,6 +30,7 @@ extension ChoreOfflineStore {
         try createManualCycleTable(db)
         try createManualCycleDecisionTable(db)
         try createLegacyConfirmationTable(db)
+        try createLegacyConfirmationDecisionTable(db)
         try createLegacyDismissalTable(db)
         try createLegacyDismissalDecisionTable(db)
         try db.run(

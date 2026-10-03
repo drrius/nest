@@ -3,6 +3,7 @@ import SwiftUI
 struct FinancialApprovalsScreen: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
+    @StateObject private var legacyRecovery: LegacyDecisionRecoveryModel
     @State private var rows: [PendingFinancialApproval] = []
     @State private var saved: SavedExpenseDecision?
     @State private var savedRefund: SavedRefundDecision?
@@ -17,6 +18,12 @@ struct FinancialApprovalsScreen: View {
     @State private var loading = false
     @State private var loaded = false
     @State private var notice: String?
+
+    init(session: SessionModel, member: VerifiedMember) {
+        self.session = session
+        self.member = member
+        _legacyRecovery = StateObject(wrappedValue: LegacyDecisionRecoveryModel(session: session, member: member))
+    }
 
     var body: some View {
         List {
@@ -88,10 +95,11 @@ struct FinancialApprovalsScreen: View {
             }
             laterSavedDecisions
             savedLinkDecision
+            LegacyDecisionRecoverySection(session: session, member: member, model: legacyRecovery)
         }
         .navigationTitle("Your approvals")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
-        .task { await load(more: false) }
+        .task(id: session.generation) { await load(more: false) }
     }
 
     @ViewBuilder private var laterSavedDecisions: some View {
@@ -146,6 +154,7 @@ struct FinancialApprovalsScreen: View {
             savedRecurringResume = nil
             savedVariableCycle = nil
             savedManualCycle = nil
+            await legacyRecovery.load()
         }
         do {
             let context = try session.expenseContext()

@@ -1,0 +1,32 @@
+{
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "actions": [
+    {
+      "action": "Decline proposal",
+      "rect": {
+        "y": 508,
+        "width": 343,
+        "x": 16,
+        "height": 52
+      }
+    },
+    {
+      "action": "Review proposed expense",
+      "rect": {
+        "width": 343,
+        "x": 16,
+        "y": 428,
+        "height": 217.5
+      }
+    }
+  ],
+  "fictional": true,
+  "submission": "Record and Decline never selected; XCTest asserts zero decisions, zero postings and no staged private command",
+  "remaining": [
+    "rendered uncertain/recorded/withdrawal recovery",
+    "hosted private legacy journeys",
+    "phones",
+    "VoiceOver gestures",
+    "live AI"
+  ]
+}
