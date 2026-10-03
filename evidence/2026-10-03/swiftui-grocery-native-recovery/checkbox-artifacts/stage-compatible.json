@@ -1,0 +1,29 @@
+{
+  "request": {
+    "operationId": "6fb9dbcc-7b21-47c0-87c2-43234cb47bd5",
+    "target": "30e2ff8b-c2cd-4042-85f7-e1d874560e75",
+    "item": {
+      "name": "Nest native grocery compatible fbdc09ab",
+      "itemId": "30E2FF8B-C2CD-4042-85F7-E1D874560E75",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "version": "1",
+      "legacyClaimed": false,
+      "unit": "test item",
+      "quantity": "1",
+      "checked": false
+    },
+    "command": {
+      "itemId": "30E2FF8B-C2CD-4042-85F7-E1D874560E75",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "operationId": "6FB9DBCC-7B21-47C0-87C2-43234CB47BD5",
+      "expectedVersion": "1",
+      "checked": true
+    },
+    "status": "pending",
+    "confirmedVersion": null,
+    "reason": null
+  },
+  "pendingVisible": true,
+  "fault": "offline",
+  "driverCorrection": "Disabled checkbox visibility uses viewport intersection, not hittability"
+}

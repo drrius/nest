@@ -1,0 +1,12 @@
+{
+  "source": "ba501cedf3b50416c91f292054a8a8a67e0f78a6",
+  "nativeInputs": 1025,
+  "sourceMismatches": 0,
+  "groceryJournalsEmpty": true,
+  "stableAPIOriginRestored": true,
+  "keychainAndDataPreserved": true,
+  "faultRelayStopped": true,
+  "generatedLocalhostPrivateKeyDestroyed": true,
+  "testCertificateRemainsOnlyOnOwnedSimulatorUntilExpiry": true,
+  "pushEnabled": false
+}
