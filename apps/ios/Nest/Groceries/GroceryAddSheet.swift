@@ -38,8 +38,13 @@ struct GroceryAddSheet: View {
                     Section {
                         Text("The selected category is unavailable. Choose another or clear it.")
                             .foregroundStyle(QuietPalette.muted)
-                        Button("Clear category") { categoryId = nil }
-                            .disabled(submitting)
+                        Button {
+                            categoryId = nil
+                        } label: {
+                            QuietActionLabel("Clear category")
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(submitting)
                     }
                 }
                 if let saved = model.groceryAdd {
@@ -59,8 +64,12 @@ struct GroceryAddSheet: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text(model.groceryAdd == nil ? "Cancel" : "Close").frame(minHeight: 44)
+                        Text(model.groceryAdd == nil ? "Cancel" : "Close")
+                            .fixedSize(horizontal: true, vertical: false)
+                            .frame(minWidth: 44, minHeight: 44)
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .disabled(submitting)
                 }
                 ToolbarItem(placement: .confirmationAction) {
@@ -75,11 +84,17 @@ struct GroceryAddSheet: View {
                         }
                     } label: {
                         if submitting {
-                            ProgressView().frame(minHeight: 44)
+                            ProgressView()
+                                .frame(minWidth: 44, minHeight: 44)
+                                .contentShape(Rectangle())
                         } else {
-                            Text("Add").frame(minHeight: 44)
+                            Text("Add")
+                                .fixedSize(horizontal: true, vertical: false)
+                                .frame(minWidth: 44, minHeight: 44)
+                                .contentShape(Rectangle())
                         }
                     }
+                    .buttonStyle(.plain)
                     .disabled(
                         name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                             || name.count > 120 || quantity.count > 80 || unit.count > 80
@@ -105,8 +120,9 @@ struct GroceryAddSheet: View {
                         if confirmed { dismiss() }
                     }
                 } label: {
-                    Text("Retry saved add").frame(minHeight: 44, alignment: .leading)
+                    Text("Retry saved add").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
                 .disabled(submitting || model.groceryAddSaving)
             } else if saved.state == .conflict {
                 Text("This add was rejected. Discard the rejected request before editing and trying again.")
@@ -114,8 +130,9 @@ struct GroceryAddSheet: View {
                 Button {
                     Task { await model.discardConflictedGroceryAdd() }
                 } label: {
-                    Text("Discard unconfirmed add").frame(minHeight: 44, alignment: .leading)
+                    Text("Discard unconfirmed add").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
             } else {
                 Text("Added. Refreshing the shared list.").foregroundStyle(QuietPalette.muted)
             }

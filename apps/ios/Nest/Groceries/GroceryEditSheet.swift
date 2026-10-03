@@ -45,8 +45,13 @@ struct GroceryEditSheet: View {
                     Section {
                         Text("The selected category is unavailable. Choose another or clear it.")
                             .foregroundStyle(QuietPalette.muted)
-                        Button("Clear category") { categoryId = nil }
-                            .disabled(submitting || reloading)
+                        Button {
+                            categoryId = nil
+                        } label: {
+                            QuietActionLabel("Clear category")
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(submitting || reloading)
                     }
                 }
                 if let saved = model.groceryEdit, saved.item.id == item.id {
@@ -57,8 +62,10 @@ struct GroceryEditSheet: View {
                         Button {
                             Task { await reload() }
                         } label: {
-                            Text("Reload current item").frame(minHeight: 44, alignment: .leading)
+                            Text("Reload current item").frame(minHeight: 44, alignment: .leading).contentShape(
+                                Rectangle())
                         }
+                        .buttonStyle(.plain)
                         .disabled(fieldsLocked)
                     }
                 }
@@ -83,8 +90,12 @@ struct GroceryEditSheet: View {
                     Button {
                         close()
                     } label: {
-                        Text(model.groceryEdit == nil ? "Cancel" : "Close").frame(minHeight: 44)
+                        Text(model.groceryEdit == nil ? "Cancel" : "Close")
+                            .fixedSize(horizontal: true, vertical: false)
+                            .frame(minWidth: 44, minHeight: 44)
+                            .contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .disabled(submitting || reloading)
                 }
                 ToolbarItem(placement: .confirmationAction) {
@@ -100,11 +111,17 @@ struct GroceryEditSheet: View {
                         }
                     } label: {
                         if submitting {
-                            ProgressView().frame(minHeight: 44)
+                            ProgressView()
+                                .frame(minWidth: 44, minHeight: 44)
+                                .contentShape(Rectangle())
                         } else {
-                            Text("Save").frame(minHeight: 44)
+                            Text("Save")
+                                .fixedSize(horizontal: true, vertical: false)
+                                .frame(minWidth: 44, minHeight: 44)
+                                .contentShape(Rectangle())
                         }
                     }
+                    .buttonStyle(.plain)
                     .disabled(!validChanges || fieldsLocked || model.groceryEditSaving)
                 }
             }
@@ -164,8 +181,9 @@ struct GroceryEditSheet: View {
                         if confirmed { dismiss() }
                     }
                 } label: {
-                    Text("Retry saved edit").frame(minHeight: 44, alignment: .leading)
+                    Text("Retry saved edit").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
                 .disabled(submitting || model.groceryEditSaving)
             } else if saved.state == .conflict {
                 Text("This edit was refused. Discard the rejected request, then reload the item to review your edits.")
@@ -177,8 +195,9 @@ struct GroceryEditSheet: View {
                         submitting = false
                     }
                 } label: {
-                    Text("Discard rejected edit").frame(minHeight: 44, alignment: .leading)
+                    Text("Discard rejected edit").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
                 .disabled(submitting)
             } else {
                 Text("Updated. Refreshing the shared list.").foregroundStyle(QuietPalette.muted)

@@ -14,16 +14,19 @@ extension GroceriesScreen {
                     Button {
                         Task { await model.retryGroceryAdd() }
                     } label: {
-                        Text("Retry saved add").frame(minHeight: 44, alignment: .leading)
+                        Text("Retry saved add").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .disabled(model.groceryAddSaving)
                 }
                 if saved.state == .conflict {
                     Button {
                         Task { await model.discardConflictedGroceryAdd() }
                     } label: {
-                        Text("Discard unconfirmed add").frame(minHeight: 44, alignment: .leading)
+                        Text("Discard unconfirmed add").frame(minHeight: 44, alignment: .leading).contentShape(
+                            Rectangle())
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -54,16 +57,19 @@ extension GroceriesScreen {
                     Button {
                         Task { await model.retryGroceryEdit() }
                     } label: {
-                        Text("Retry saved edit").frame(minHeight: 44, alignment: .leading)
+                        Text("Retry saved edit").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .disabled(model.groceryEditSaving)
                 }
                 if saved.state == .conflict {
                     Button {
                         Task { await model.discardConflictedGroceryEdit() }
                     } label: {
-                        Text("Discard rejected edit").frame(minHeight: 44, alignment: .leading)
+                        Text("Discard rejected edit").frame(minHeight: 44, alignment: .leading).contentShape(
+                            Rectangle())
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }
@@ -103,16 +109,19 @@ extension GroceriesScreen {
                     Button {
                         Task { await model.retryGroceryRemove() }
                     } label: {
-                        Text("Retry saved removal").frame(minHeight: 44, alignment: .leading)
+                        Text("Retry saved removal").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .disabled(model.groceryRemoveSaving)
                 }
                 if saved.state == .conflict {
                     Button {
                         Task { await model.discardConflictedGroceryRemove() }
                     } label: {
-                        Text("Discard rejected removal").frame(minHeight: 44, alignment: .leading)
+                        Text("Discard rejected removal").frame(minHeight: 44, alignment: .leading).contentShape(
+                            Rectangle())
                     }
+                    .buttonStyle(.plain)
                 }
             }
         }

@@ -92,8 +92,12 @@ struct GroceriesScreen: View {
             Section {
                 Text("Could not load groceries. Try again online.")
                     .foregroundStyle(QuietPalette.muted)
-                Button("Retry") { Task { await model.refreshGroceries() } }
-                    .frame(minHeight: 44)
+                Button {
+                    Task { await model.refreshGroceries() }
+                } label: {
+                    QuietActionLabel("Retry")
+                }
+                .buttonStyle(.plain)
             }
             .listRowBackground(QuietPalette.background)
         case .loaded(let state):
@@ -134,8 +138,9 @@ struct GroceriesScreen: View {
             Button {
                 Task { await model.refreshGroceries() }
             } label: {
-                Text("Retry sync").frame(minHeight: 44, alignment: .leading)
+                Text("Retry sync").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
             .font(.subheadline.weight(.medium))
         }
         .listRowSeparator(.hidden)
@@ -212,15 +217,17 @@ struct GroceriesScreen: View {
             Button {
                 Task { await model.refreshGroceries() }
             } label: {
-                Text("Refresh shared list").frame(minHeight: 44, alignment: .leading)
+                Text("Refresh shared list").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
             }
+            .buttonStyle(.plain)
             .font(.caption.weight(.medium))
             if let operation = local.operationId {
                 Button {
                     Task { await model.discardGroceryCheck(operation) }
                 } label: {
-                    Text("Discard saved change").frame(minHeight: 44, alignment: .leading)
+                    Text("Discard saved change").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
                 }
+                .buttonStyle(.plain)
                 .font(.caption.weight(.medium))
             }
         case .open: EmptyView()
