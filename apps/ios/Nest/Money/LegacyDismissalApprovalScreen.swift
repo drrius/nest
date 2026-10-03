@@ -29,7 +29,7 @@ struct LegacyDismissalApprovalScreen: View {
             Section { Button("Check private proposal or saved result") { Task { await model.load() } } }
         }
         .disabled(model.working)
-        .navigationTitle("Review draft dismissal")
+        .navigationTitle("Draft proposal")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if model.working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task(id: session.generation) { await model.load() }
@@ -43,25 +43,23 @@ struct LegacyDismissalApprovalScreen: View {
             }
         }
         .alert(
-            choice?.approved == true ? "Dismiss this exact draft?" : "Decline this proposal?",
+            choice?.approved == true ? "Dismiss draft?" : "Decline?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let expected = choice {
-                Button(expected.approved ? "Dismiss reviewed draft" : "Decline", role: .destructive) {
+                Button(expected.approved ? "Dismiss" : "Decline", role: .destructive) {
                     Task { await model.decide(expected.approved, expected: expected.review) }
                 }
             }
-            Button("Keep reviewing", role: .cancel) { choice = nil }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text(
-                "Dismissal preserves history. It creates no expense, payment or balance change and leaves the old rule unchanged."
-            )
+            Text(choice?.approved == true ? "No money or rule changes." : "No draft is dismissed.")
         }
-        .alert("Withdraw saved consent?", isPresented: $withdrawal) {
-            Button("Withdraw consent", role: .destructive) { Task { await model.retry(withdraw: true) } }
-            Button("Keep saved consent", role: .cancel) { withdrawal = false }
+        .alert("Withdraw?", isPresented: $withdrawal) {
+            Button("Withdraw", role: .destructive) { Task { await model.retry(withdraw: true) } }
+            Button("Cancel", role: .cancel) { withdrawal = false }
         } message: {
-            Text("This fences a pending dismissal. If dismissal already committed, its exact recorded result wins.")
+            Text("Recorded results win.")
         }
     }
 
@@ -87,6 +85,7 @@ struct LegacyDismissalApprovalScreen: View {
 
     private func decision(_ review: LegacyDismissalProposalReview) -> some View {
         Section {
+            Text("Dismissal keeps history and the old rule. It records no expense, payment or balance change.")
             if review.approval.status == .consumed {
                 Text("Draft dismissed. No expense, payment or balance change was recorded.")
             } else if review.approval.status == .denied {

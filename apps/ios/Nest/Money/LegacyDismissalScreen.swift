@@ -41,7 +41,7 @@ struct LegacyDismissalScreen: View {
             Section { Button("Check current draft or saved result") { Task { await model.load() } } }
         }
         .disabled(model.working)
-        .navigationTitle("Dismiss retained draft")
+        .navigationTitle("Retained draft")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if model.working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task(id: session.generation) { await model.load() }
@@ -53,19 +53,19 @@ struct LegacyDismissalScreen: View {
                 model.suspendReview()
             }
         }
-        .alert("Dismiss this reviewed draft?", isPresented: confirming) {
+        .alert("Dismiss draft?", isPresented: confirming) {
             if let expected = confirmation {
-                Button("Dismiss this draft", role: .destructive) { Task { await model.confirm(expected) } }
+                Button("Dismiss", role: .destructive) { Task { await model.confirm(expected) } }
             }
-            Button("Keep this draft", role: .cancel) { confirmation = nil }
+            Button("Cancel", role: .cancel) { confirmation = nil }
         } message: {
-            Text("No expense or payment will be recorded, and no recurring rule will be paused or cancelled.")
+            Text("No money or rule changes.")
         }
-        .alert("Cancel this pending request?", isPresented: $confirmCancellation) {
-            Button("Cancel pending request", role: .destructive) { Task { await model.retry(cancel: true) } }
-            Button("Keep pending request", role: .cancel) { confirmCancellation = false }
+        .alert("Cancel request?", isPresented: $confirmCancellation) {
+            Button("Cancel request", role: .destructive) { Task { await model.retry(cancel: true) } }
+            Button("Keep", role: .cancel) { confirmCancellation = false }
         } message: {
-            Text("If dismissal already happened, Nest will recover that exact result instead.")
+            Text("Recorded results win.")
         }
     }
 
