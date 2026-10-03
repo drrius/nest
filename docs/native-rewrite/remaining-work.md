@@ -6,8 +6,8 @@ Updated 3 October 2026. SwiftUI is the selected client. Most everyday surfaces e
 
 - [ ] Finish direct draft-to-expense conversion: source and focused Mac/database tests pass; routine CI and fictional keyboard/review/cancel rendering now pass. Full native CI now also passes; saved recovery rendering and hosted/phone journeys remain.
 - [x] Implement private AI draft-confirmation review and exact decision/withdrawal recovery. Focused Mac/backend checks and fictional review/alert rendering pass. Offline recovery discovery/isolation tests also pass; both required workflows pass at `886773cc`, and hosted/provider/phone acceptance remains open.
-- [x] Implement direct recurring-rule adoption with explicit fresh terms and prospective consent. Focused Mac/backend and actual fictional variable-form checks pass; routine CI, fixed-form/recovery rendering and hosted/phone acceptance remain.
-- [ ] Implement private AI recurring-rule adoption review and exact decision recovery.
+- [x] Implement direct recurring-rule adoption with explicit fresh terms and prospective consent. Focused Mac/backend and actual fictional variable-form checks pass; both required CI workflows pass; fixed-form/recovery rendering and hosted/phone acceptance remain.
+- [x] Implement private AI recurring-rule adoption review and exact decision recovery. Focused Foundation/native/backend checks and fictional review/cancel rendering pass; current-source CI, hosted/provider/phone acceptance and recovery rendering remain pending.
 - [ ] Verify complete financial history, approvals, membership changes and uncertain retries with both members.
 
 Existing balance/history, ordinary expenses, refunds/corrections, settlements, recurring controls and retained-draft dismissal have implementation and bounded verification. That does not close the items above.
@@ -23,7 +23,7 @@ Selected rendered simulator checks already pass. Full phone and owner design acc
 ## 3. Prove live integrations
 
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual call failed403; successful fixture execution is not live AI proof.
-- [ ] Complete explicitly authorized test-worker credential configuration and compatible test API deployment. A server-secret transfer approval question remains pending.
+- [ ] Complete explicitly authorized test-worker credential configuration and compatible test API deployment. A specific worker server-secret transfer approval question remains pending; API deployment and worker activation are separate steps.
 - [ ] Configure Apple push provider credentials, test worker behavior, enroll both phones and verify all six notification kinds. Push is currently disabled.
 - [ ] Reconcile remaining test-environment security/external-writer checks and safe populated legacy fixtures.
 

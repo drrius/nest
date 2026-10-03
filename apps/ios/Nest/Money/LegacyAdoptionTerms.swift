@@ -36,6 +36,7 @@ struct LegacyAdoptionNewTerms: View {
     let input: LegacyAdoptionInput
     let members: [MoneyBalance.Member]
     let member: VerifiedMember
+    var categoryName: String? = nil
 
     var body: some View {
         Section("New terms to approve") {
@@ -54,7 +55,9 @@ struct LegacyAdoptionNewTerms: View {
                 input.configuration.schedule.kind == .monthly
                     ? "Monthly, day \(input.configuration.schedule.dayOfMonth ?? 1)"
                     : "Every \(weekdays[(input.configuration.schedule.weekday ?? 1) - 1])")
-            if input.configuration.categoryId != nil { Text("Includes your selected category.") }
+            if input.configuration.categoryId != nil {
+                LabeledContent("Category", value: categoryName ?? "Category chosen at review")
+            }
             if let note = input.configuration.note { Text(note) }
             Text("Previous history is kept. Saving adds no expense today and makes no bank transfer.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)

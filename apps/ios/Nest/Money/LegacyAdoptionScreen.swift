@@ -76,7 +76,8 @@ struct LegacyAdoptionScreen: View {
 
     @ViewBuilder private var editor: some View {
         if let review = model.review {
-            LegacyAdoptionNewTerms(input: review.input, members: model.members, member: member)
+            LegacyAdoptionNewTerms(
+                input: review.input, members: model.members, member: member, categoryName: categoryName)
             Section {
                 Button("Adopt reviewed terms") {
                     focused = nil

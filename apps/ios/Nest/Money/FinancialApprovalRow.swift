@@ -6,25 +6,15 @@ struct FinancialApprovalRow: View {
     let row: PendingFinancialApproval
 
     var body: some View {
-        switch row.command {
-        case .expense, .refund, .settlement, .correction, .createRule, .updateRule, .pauseRule, .cancelRule,
-            .resumeRule, .recordCycle, .linkCycle, .dismissLegacy, .confirmLegacy:
-            NavigationLink {
-                destination
-            } label: {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(row.command.title)
-                    if let expiry = ApprovalTime.date(row.expiresAt) {
-                        Text("Expires \(expiry.formatted(date: .abbreviated, time: .shortened))")
-                            .font(.caption).foregroundStyle(QuietPalette.muted)
-                    }
-                }
-            }
-        default:
+        NavigationLink {
+            destination
+        } label: {
             VStack(alignment: .leading, spacing: 4) {
                 Text(row.command.title)
-                Text("Review for this proposal type is not available in this build.")
-                    .font(.caption).foregroundStyle(QuietPalette.muted)
+                if let expiry = ApprovalTime.date(row.expiresAt) {
+                    Text("Expires \(expiry.formatted(date: .abbreviated, time: .shortened))")
+                        .font(.caption).foregroundStyle(QuietPalette.muted)
+                }
             }
         }
     }
@@ -49,13 +39,13 @@ struct FinancialApprovalRow: View {
             VariableCycleApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
         case .linkCycle:
             ManualCycleApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
+        case .adoptLegacy:
+            LegacyAdoptionApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
         case .confirmLegacy:
             LegacyConfirmationApprovalScreen(session: session, member: member, approvalId: row.id).id(
                 session.generation)
         case .dismissLegacy:
             LegacyDismissalApprovalScreen(session: session, member: member, approvalId: row.id).id(session.generation)
-        default:
-            EmptyView()
         }
     }
 }

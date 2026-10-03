@@ -8,9 +8,17 @@ struct LegacyDecisionRecoverySection: View {
     var body: some View {
         Group {
             if session.status == .ready(member),
-                model.confirmation != nil || model.dismissal != nil || model.notice != nil
+                model.adoption != nil || model.confirmation != nil || model.dismissal != nil || model.notice != nil
             {
-                Section("Saved draft decisions") {
+                Section("Saved recurring decisions") {
+                    if let saved = model.adoption {
+                        NavigationLink("Check rule adoption decision") {
+                            LegacyAdoptionApprovalScreen(
+                                session: session, member: member, approvalId: saved.decision.approvalId
+                            )
+                            .id(session.generation)
+                        }
+                    }
                     if let saved = model.confirmation {
                         NavigationLink("Check draft expense decision") {
                             LegacyConfirmationApprovalScreen(
@@ -26,7 +34,7 @@ struct LegacyDecisionRecoverySection: View {
                         }
                     }
                     if let notice = model.notice { Text(notice) }
-                    Button("Check saved draft decisions") { Task { await model.load() } }.disabled(model.working)
+                    Button("Check saved recurring decisions") { Task { await model.load() } }.disabled(model.working)
                 }
             }
         }

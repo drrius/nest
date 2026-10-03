@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: private approval executes atomically once and recovers the exact consumed receipt
+ok 1 - private approval executes atomically once and recovers the exact consumed receipt
+  ---
+  duration_ms: 730.725083
+  type: 'test'
+  ...
+# Subtest: approval denial, expiry and ownership prevent adoption and remain privately recoverable
+ok 2 - approval denial, expiry and ownership prevent adoption and remain privately recoverable
+  ---
+  duration_ms: 767.954823
+  type: 'test'
+  ...
+# Subtest: receipt failure rolls approval back; externally changed rules remain explicitly deniable
+ok 3 - receipt failure rolls approval back; externally changed rules remain explicitly deniable
+  ---
+  duration_ms: 766.074786
+  type: 'test'
+  ...
+# Subtest: a committed approval fences its competing decision and recovery
+ok 4 - a committed approval fences its competing decision and recovery
+  ---
+  duration_ms: 1200.695936
+  type: 'test'
+  ...
+# Subtest: a committed withdrawal fences its competing decision and recovery
+ok 5 - a committed withdrawal fences its competing decision and recovery
+  ---
+  duration_ms: 1188.408319
+  type: 'test'
+  ...
+# Subtest: real AI tool returns a private native handoff; only exact native approval adopts the retained rule
+ok 6 - real AI tool returns a private native handoff; only exact native approval adopts the retained rule
+  ---
+  duration_ms: 1300.851891
+  type: 'test'
+  ...
+# Subtest: native private approval reads current context and confirms or recovers exact atomic adoption
+ok 7 - native private approval reads current context and confirms or recovers exact atomic adoption
+  ---
+  duration_ms: 984.116322
+  type: 'test'
+  ...
+# Subtest: private approval APIs reject partner and changed rule but preserve an explicit denial path
+ok 8 - private approval APIs reject partner and changed rule but preserve an explicit denial path
+  ---
+  duration_ms: 948.1307
+  type: 'test'
+  ...
+# Subtest: lost approved response recovers privately and forged approval bindings fail closed
+ok 9 - lost approved response recovers privately and forged approval bindings fail closed
+  ---
+  duration_ms: 897.485582
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 9566.346925
