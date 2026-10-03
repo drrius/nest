@@ -23,13 +23,21 @@ struct CalendarScreen: View {
 
     var body: some View {
         List {
-            Section {
-                NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
-            }
             if let notice = model.notice { Section { Text(notice) } }
             Section {
-                DatePicker("Day", selection: $day, displayedComponents: .date)
-                    .datePickerStyle(.compact)
+                CalendarDayPicker(day: $day)
+                if model.access == .allowed {
+                    Button("Choose calendars", systemImage: "line.3.horizontal.decrease") { picking = true }
+                        .frame(minHeight: 44)
+                }
+            } header: {
+                if case .ready(let member) = session.status {
+                    QuietTabHeader(
+                        title: "Calendar", subtitle: "Your day, with room for everything.",
+                        session: session, member: member
+                    )
+                    .textCase(nil).padding(.bottom, 16)
+                }
             }
             if model.access == .allowed {
                 Section {
@@ -41,7 +49,8 @@ struct CalendarScreen: View {
                 permission
             }
             PartnerBusySection(session: session, day: day)
-            Section {
+            Section("Calendars and layers") {
+                NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
                 Toggle("Show household chores", isOn: $showChores)
                 Toggle("Show household renewals", isOn: $showRenewals)
             }
@@ -50,12 +59,7 @@ struct CalendarScreen: View {
         }
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
-        .navigationTitle("Calendar")
-        .toolbar {
-            if model.access == .allowed {
-                Button("Calendars", systemImage: "line.3.horizontal.decrease") { picking = true }
-            }
-        }
+        .navigationTitle("")
         .sheet(isPresented: $picking) { calendarPicker }
         .task { model.refresh(day: day) }
         .onChange(of: day) { model.refresh(day: day) }

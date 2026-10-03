@@ -3,36 +3,76 @@ import SwiftUI
 struct MoneyHistorySection: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
+    var previewCount: Int? = nil
     @State private var events: [MoneyEventSummary] = []
     @State private var next: UUID?
     @State private var loading = false
     @State private var notice: String?
     @State private var request = UUID()
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
-        Section("History") {
-            ForEach(events) { event in
+        Section {
+            ForEach(Array(events.prefix(previewCount ?? events.count))) { event in
                 NavigationLink {
                     MoneyDetailScreen(session: session, member: member, eventId: event.id)
                 } label: {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(event.description).font(.headline)
-                        Text(event.amountCentimes.absoluteCHF).monospacedDigit()
-                        Text(
-                            "\(event.kind.rawValue.replacingOccurrences(of: "_", with: " ").capitalized) · \(event.occurredOn)"
-                        )
-                        .font(.caption).foregroundStyle(QuietPalette.muted)
-                        if event.hasReceipt { Label("Receipt attached", systemImage: "paperclip").font(.caption) }
-                    }.padding(.vertical, 4)
+                    HStack(spacing: 12) {
+                        activity(event)
+                        Image(systemName: "chevron.right").font(.caption)
+                            .foregroundStyle(QuietPalette.muted)
+                    }
+                    .padding(.vertical, 8).frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                    .contentShape(Rectangle())
+                    .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
                 }
+                .buttonStyle(.plain)
             }
             if loading { ProgressView("Loading history…") }
             if let notice { Text(notice) }
             if events.isEmpty && !loading && notice == nil { Text("No financial history yet.") }
-            if next != nil { Button("Load older entries") { Task { await load(more: true) } }.disabled(loading) }
+            if previewCount == nil, next != nil {
+                Button("Load older entries") { Task { await load(more: true) } }.disabled(loading)
+                    .frame(minHeight: 44)
+            }
+            if let previewCount, events.count > previewCount || next != nil {
+                NavigationLink {
+                    MoneyHistoryScreen(session: session, member: member).id(session.generation)
+                } label: {
+                    QuietActionLabel("View full history")
+                }
+            }
             Button("Refresh history") { Task { await load(more: false) } }.disabled(loading)
+                .frame(minHeight: 44)
+        } header: {
+            Text("Recent activity").font(.headline).foregroundStyle(QuietPalette.ink)
+                .textCase(nil).padding(.top, 12)
         }
         .task { await load(more: false) }
+    }
+
+    @ViewBuilder private func activity(_ event: MoneyEventSummary) -> some View {
+        if textSize.isAccessibilitySize {
+            VStack(alignment: .leading, spacing: 8) {
+                description(event)
+                Text(event.amountCentimes.absoluteCHF).font(.headline).monospacedDigit()
+            }
+        } else {
+            HStack(alignment: .top, spacing: 16) {
+                description(event).frame(maxWidth: .infinity, alignment: .leading)
+                Text(event.amountCentimes.absoluteCHF).font(.subheadline.weight(.medium)).monospacedDigit()
+                    .fixedSize()
+            }
+        }
+    }
+
+    private func description(_ event: MoneyEventSummary) -> some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(event.description).font(.body.weight(.medium)).foregroundStyle(QuietPalette.ink)
+            Text("\(event.kind.rawValue.replacingOccurrences(of: "_", with: " ").capitalized) · \(event.occurredOn)")
+                .font(.caption).foregroundStyle(QuietPalette.muted)
+            if event.hasReceipt { Label("Receipt attached", systemImage: "paperclip").font(.caption) }
+        }
     }
 
     private func load(more: Bool) async {

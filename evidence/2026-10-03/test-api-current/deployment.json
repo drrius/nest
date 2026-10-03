@@ -1,0 +1,15 @@
+{
+  "id": "dpl_81ukPZ1D9BSznf6NmzLDZLiBDCYL",
+  "name": "nest-test-api",
+  "url": "nest-test-kjn4mw4di-drrius-projects.vercel.app",
+  "target": "preview",
+  "readyState": "READY",
+  "createdAt": 1791052746541,
+  "contextName": "drrius-projects",
+  "backendSource": "83a5a015c513f28181342cecf3430d214172d899",
+  "stableAlias": "https://nest-test-api-drrius-projects.vercel.app",
+  "testDatabase": "tkjixmujjoustdiedfmw",
+  "configuration": "existing preview environment; no secret transfer",
+  "workerEnabled": false,
+  "modelEnabled": false
+}

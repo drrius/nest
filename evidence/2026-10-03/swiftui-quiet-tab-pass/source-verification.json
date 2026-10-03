@@ -1,0 +1,14 @@
+{
+  "baseCommit": "83a5a015c513f28181342cecf3430d214172d899",
+  "workingTree": true,
+  "nativeInputsVerified": 1023,
+  "hashMismatches": 0,
+  "strictSwiftFormat": "passed",
+  "compiledAPIOrigin": "https://nest-test-api-drrius-projects.vercel.app",
+  "compiledSupabaseOrigin": "https://tkjixmujjoustdiedfmw.supabase.co",
+  "publishableKeyFormat": "passed, value omitted",
+  "pushEnabled": false,
+  "build": "passed",
+  "limits": "run separately on Linux",
+  "deviceAcceptance": "pending"
+}

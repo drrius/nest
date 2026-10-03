@@ -12,9 +12,10 @@ struct MealWeekScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
-                Text("A week of meals, at your pace.")
-                    .font(.subheadline).foregroundStyle(QuietPalette.muted)
                 if case .ready(let member) = model.status {
+                    QuietTabHeader(
+                        title: "Meals", subtitle: "Good food. One less daily decision.",
+                        session: model, member: member)
                     MealSetupPrompt(session: model, member: member).id(model.generation)
                 }
                 weekNavigation
@@ -47,17 +48,22 @@ struct MealWeekScreen: View {
                 if let saved = model.mealRecipeReplacement {
                     MealRecipeReplacementStatus(model: model, saved: saved)
                 }
-                content
                 if case .loaded(let week) = model.mealStatus {
                     NavigationLink {
                         MealProposalScreen(model: model, week: week).id(model.generation)
                     } label: {
-                        Label("Plan meals together", systemImage: "sparkles")
-                            .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                        Label("Plan the week with AI", systemImage: "sparkles")
+                            .font(.subheadline.weight(.semibold))
+                            .frame(maxWidth: .infinity, minHeight: 52)
+                            .padding(.horizontal, 16)
+                            .foregroundStyle(QuietPalette.onAccent)
+                            .background(QuietPalette.accent, in: RoundedRectangle(cornerRadius: 16))
+                            .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     .foregroundStyle(QuietPalette.accent)
                 }
+                content
                 if let week = model.mealSelection {
                     NavigationLink {
                         IngredientReviewScreen(model: model, week: week)
@@ -105,7 +111,7 @@ struct MealWeekScreen: View {
             .padding(20)
         }
         .background(QuietPalette.background)
-        .navigationTitle("Meals")
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $addTarget) { target in
             MealAddSheet(model: model, target: target)

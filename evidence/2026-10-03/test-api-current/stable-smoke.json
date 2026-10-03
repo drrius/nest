@@ -1,0 +1,97 @@
+{
+  "deployment": "https://nest-test-api-drrius-projects.vercel.app",
+  "database": "https://tkjixmujjoustdiedfmw.supabase.co",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "checks": [
+    {
+      "actor": "member-a",
+      "path": "/v1/session",
+      "status": 200
+    },
+    {
+      "actor": "member-a",
+      "path": "/v1/money/balance",
+      "status": 200
+    },
+    {
+      "actor": "member-a",
+      "path": "/v1/money/recurring/legacy",
+      "status": 200
+    },
+    {
+      "actor": "member-a",
+      "path": "/v1/money/pending-approvals",
+      "status": 200
+    },
+    {
+      "actor": "member-a",
+      "path": "/v1/meals/week?weekStart=2026-09-28",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "path": "/v1/session",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "path": "/v1/money/balance",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "path": "/v1/money/recurring/legacy",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "path": "/v1/money/pending-approvals",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "path": "/v1/meals/week?weekStart=2026-09-28",
+      "status": 200
+    },
+    {
+      "actor": "outsider",
+      "path": "/v1/session",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "path": "/v1/money/balance",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "path": "/v1/money/recurring/legacy",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "path": "/v1/money/pending-approvals",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "path": "/v1/meals/week?weekStart=2026-09-28",
+      "status": 403
+    },
+    {
+      "actor": "anonymous",
+      "path": "/v1/money/balance",
+      "status": 401
+    },
+    {
+      "actor": "anonymous",
+      "path": "/internal/recurring/run",
+      "status": 404,
+      "worker": "disabled"
+    }
+  ],
+  "financialWrites": 0,
+  "modelCalls": 0,
+  "workerRuns": 0,
+  "productionTouched": false
+}

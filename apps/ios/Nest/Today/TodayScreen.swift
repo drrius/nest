@@ -14,9 +14,6 @@ struct TodayScreen: View {
                     VStack(alignment: .leading, spacing: 0) {
                         TodayHeader(model: model, member: member, moment: moment)
                         quickAdd.padding(.top, 20)
-                        TodayMealsSection(model: model, member: member, day: moment.day, refresh: todayRefresh)
-                            .id(member.userId)
-                            .padding(.top, 24)
                         TodayChoreFilter(everyone: $everyone).padding(.top, 24)
                         Text("Around the house")
                             .font(.headline)
@@ -37,11 +34,9 @@ struct TodayScreen: View {
                         } label: {
                             QuietActionLabel("Manage chores")
                         }.padding(.top, 8)
-                        NavigationLink {
-                            RenewalsScreen(session: model, member: member).id(model.generation)
-                        } label: {
-                            QuietActionLabel("Manage renewals")
-                        }
+                        TodayMealsSection(model: model, member: member, day: moment.day, refresh: todayRefresh)
+                            .id(member.userId)
+                            .padding(.top, 24)
                         TodayBillsSection(session: model, member: member, refresh: todayRefresh)
                             .id(member.userId)
                         TodayCalendarSection(session: model, member: member, refresh: todayRefresh)
@@ -50,6 +45,11 @@ struct TodayScreen: View {
                         TodayApprovalsSection(model: model, member: member, refresh: todayRefresh)
                             .id(member.userId)
                             .padding(.top, 24)
+                        NavigationLink {
+                            RenewalsScreen(session: model, member: member).id(model.generation)
+                        } label: {
+                            QuietActionLabel("Manage renewals")
+                        }
                         NavigationLink {
                             GroceriesScreen(model: model)
                         } label: {
