@@ -12,10 +12,10 @@ struct TodayChoreFilter: View {
                 option("Everyone", value: true)
             }
         } else {
-            Picker("Show chores", selection: $everyone) {
-                Text("Me + shared").tag(false)
-                Text("Everyone").tag(true)
-            }.pickerStyle(.segmented)
+            HStack(spacing: 8) {
+                option("Me + shared", value: false)
+                option("Everyone", value: true)
+            }
         }
     }
 
