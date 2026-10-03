@@ -64,6 +64,21 @@ struct ExpenseScreen: View {
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Add expense")
         .task { await load() }
+        .toolbar {
+            ToolbarItemGroup(placement: .keyboard) {
+                Spacer()
+                Button {
+                    review()
+                } label: {
+                    Text("Review").fixedSize().frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Review expense")
+                .accessibilityIdentifier("expense.keyboard-review")
+                .disabled(!editingDraft || !receiptReady || working)
+            }
+        }
         .confirmationDialog("Cancel this pending save?", isPresented: $confirmCancel) {
             Button("Cancel pending save", role: .destructive) { Task { await resolve(cancel: true) } }
         } message: {
