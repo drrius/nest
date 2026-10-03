@@ -122,6 +122,9 @@ struct ExpenseScreen: View {
             if saved == nil {
                 let balance = try await session.readMoneyBalance(member: member, generation: context.generation)
                 members = balance.members
+                let upload = try await session.savedReceipt(context)
+                draft.receiptPath = upload?.cleanupRequested == false ? upload?.reservation?.path : nil
+                receiptReady = upload == nil || (draft.receiptPath != nil && upload?.cleanupRequested == false)
                 loaded = true
             }
             notice = nil
