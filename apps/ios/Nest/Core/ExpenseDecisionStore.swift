@@ -29,6 +29,7 @@ extension ChoreOfflineStore {
         try createVariableCycleDecisionTable(db)
         try createManualCycleTable(db)
         try createManualCycleDecisionTable(db)
+        try createLegacyAdoptionTable(db)
         try createLegacyConfirmationTable(db)
         try createLegacyConfirmationDecisionTable(db)
         try createLegacyDismissalTable(db)

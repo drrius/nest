@@ -10,7 +10,7 @@ final class LegacyDraftModel: ObservableObject {
     @Published private(set) var notice: String?
     private let session: SessionModel
     private let member: VerifiedMember
-    private let ruleId: UUID
+    let ruleId: UUID
 
     init(session: SessionModel, member: VerifiedMember, ruleId: UUID) {
         self.session = session

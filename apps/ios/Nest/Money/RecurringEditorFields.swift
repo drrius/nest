@@ -4,6 +4,7 @@ struct RecurringEditorFields: View {
     @Binding var draft: RecurringDraft
     let members: [MoneyBalance.Member]
     let focus: FocusState<String?>.Binding
+    var usesNativeDate = false
 
     var body: some View {
         Section("Rule") {
@@ -15,7 +16,12 @@ struct RecurringEditorFields: View {
             Picker("Payer", selection: $draft.payer) {
                 ForEach(members) { Text($0.displayName).tag($0.id) }
             }
-            field("Start date (YYYY-MM-DD)", text: $draft.startDate)
+            if usesNativeDate {
+                DatePicker("Starts", selection: nativeStart, displayedComponents: .date)
+                    .environment(\.timeZone, TimeZone(identifier: "Europe/Zurich")!)
+            } else {
+                field("Start date (YYYY-MM-DD)", text: $draft.startDate)
+            }
             Picker("Frequency", selection: $draft.scheduleKind) {
                 Text("Monthly").tag(RecurringSchedule.Kind.monthly)
                 Text("Weekly").tag(RecurringSchedule.Kind.weekly)
@@ -44,6 +50,16 @@ struct RecurringEditorFields: View {
         Section { field("Note (optional)", text: $draft.note) }
     }
     private var weekdays: [String] { ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"] }
+    private var nativeStart: Binding<Date> {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(identifier: "Europe/Zurich")
+        formatter.dateFormat = "yyyy-MM-dd"
+        return Binding(
+            get: { formatter.date(from: draft.startDate) ?? Date() },
+            set: { draft.startDate = formatter.string(from: $0) })
+    }
     private func field(
         _ label: String, text: Binding<String>, keyboard: UIKeyboardType = .default, focusKey: String? = nil
     ) -> some View {

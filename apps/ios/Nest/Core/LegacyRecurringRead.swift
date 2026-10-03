@@ -1,6 +1,6 @@
 import Foundation
 
-struct LegacyRecurringRule: Decodable, Equatable, Identifiable, Sendable {
+struct LegacyRecurringRule: Codable, Equatable, Identifiable, Sendable {
     let ruleId: UUID
     let mode: String
     let description: String
@@ -14,6 +14,27 @@ struct LegacyRecurringRule: Decodable, Equatable, Identifiable, Sendable {
     let schedule: RecurringSchedule
     let drafts: LegacyDraftCounts
     var id: UUID { ruleId }
+
+    enum CodingKeys: String, CodingKey {
+        case ruleId, mode, description, amountCentimes, payerId, allocations, categoryId, active,
+            nextOccurrenceOn, updatedAt, schedule, drafts
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(ruleId, forKey: .ruleId)
+        try values.encode(mode, forKey: .mode)
+        try values.encode(description, forKey: .description)
+        try values.encode(amountCentimes, forKey: .amountCentimes)
+        try values.encode(payerId, forKey: .payerId)
+        try values.encode(allocations, forKey: .allocations)
+        try values.encode(categoryId, forKey: .categoryId)
+        try values.encode(active, forKey: .active)
+        try values.encode(nextOccurrenceOn, forKey: .nextOccurrenceOn)
+        try values.encode(updatedAt, forKey: .updatedAt)
+        try values.encode(schedule, forKey: .schedule)
+        try values.encode(drafts, forKey: .drafts)
+    }
 
     var needsReview: Bool {
         allocations.kind == .needsReview || nextOccurrenceOn.kind == .unsupported

@@ -50,6 +50,9 @@ struct MoneyScreen: View {
                 NavigationLink("Saved draft confirmation") {
                     LegacyConfirmationScreen(session: session, member: member, draftId: nil).id(session.generation)
                 }
+                NavigationLink("Saved rule adoption") {
+                    LegacyAdoptionScreen(session: session, member: member, ruleId: nil).id(session.generation)
+                }
             }
             MoneyHistorySection(session: session, member: member)
         }

@@ -23,6 +23,11 @@ struct LegacyDraftsScreen: View {
     var body: some View {
         List {
             if let rule { LegacyRecurringTerms(rule: rule, member: member) }
+            Section {
+                NavigationLink("Review moving this rule to Nest") {
+                    LegacyAdoptionScreen(session: session, member: member, ruleId: model.ruleId).id(session.generation)
+                }
+            }
             Section("Retained drafts") {
                 ForEach(model.drafts) { draft in
                     NavigationLink {
@@ -53,7 +58,7 @@ struct LegacyDraftsScreen: View {
     }
 }
 
-private struct LegacyRecurringTerms: View {
+struct LegacyRecurringTerms: View {
     let rule: LegacyRecurringRule
     let member: VerifiedMember
 

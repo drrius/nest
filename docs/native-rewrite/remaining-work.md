@@ -5,8 +5,8 @@ Updated 3 October 2026. SwiftUI is the selected client. Most everyday surfaces e
 ## 1. Finish the retained financial flows
 
 - [ ] Finish direct draft-to-expense conversion: source and focused Mac/database tests pass; routine CI and fictional keyboard/review/cancel rendering now pass. Full native CI now also passes; saved recovery rendering and hosted/phone journeys remain.
-- [x] Implement private AI draft-confirmation review and exact decision/withdrawal recovery. Focused Mac/backend checks and fictional review/alert rendering pass. Offline recovery discovery/isolation tests also pass; current-source CI is pending, and hosted/provider/phone acceptance remains open.
-- [ ] Implement direct recurring-rule adoption with explicit fresh terms and prospective consent.
+- [x] Implement private AI draft-confirmation review and exact decision/withdrawal recovery. Focused Mac/backend checks and fictional review/alert rendering pass. Offline recovery discovery/isolation tests also pass; both required workflows pass at `886773cc`, and hosted/provider/phone acceptance remains open.
+- [x] Implement direct recurring-rule adoption with explicit fresh terms and prospective consent. Focused Mac/backend and actual fictional variable-form checks pass; routine CI, fixed-form/recovery rendering and hosted/phone acceptance remain.
 - [ ] Implement private AI recurring-rule adoption review and exact decision recovery.
 - [ ] Verify complete financial history, approvals, membership changes and uncertain retries with both members.
 

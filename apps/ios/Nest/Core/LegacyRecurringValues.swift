@@ -39,7 +39,7 @@ struct LegacyRecurringSplit: Codable, Equatable, Sendable {
     }
 }
 
-struct LegacyDraftCounts: Decodable, Equatable, Sendable {
+struct LegacyDraftCounts: Codable, Equatable, Sendable {
     let pending: String
     let posted: String
     let dismissed: String
@@ -47,6 +47,21 @@ struct LegacyDraftCounts: Decodable, Equatable, Sendable {
     let unpostedWithEvent: String
     let unsupportedDates: String
     let latestDraftOn: LegacyTemporalValue?
+
+    enum CodingKeys: String, CodingKey {
+        case pending, posted, dismissed, postedWithoutEvent, unpostedWithEvent, unsupportedDates, latestDraftOn
+    }
+
+    func encode(to encoder: Encoder) throws {
+        var values = encoder.container(keyedBy: CodingKeys.self)
+        try values.encode(pending, forKey: .pending)
+        try values.encode(posted, forKey: .posted)
+        try values.encode(dismissed, forKey: .dismissed)
+        try values.encode(postedWithoutEvent, forKey: .postedWithoutEvent)
+        try values.encode(unpostedWithEvent, forKey: .unpostedWithEvent)
+        try values.encode(unsupportedDates, forKey: .unsupportedDates)
+        try values.encode(latestDraftOn, forKey: .latestDraftOn)
+    }
 
     var valid: Bool {
         let texts = [pending, posted, dismissed, postedWithoutEvent, unpostedWithEvent, unsupportedDates]
