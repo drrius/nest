@@ -56,8 +56,12 @@ struct MoneyScreen: View {
                             QuietActionLabel("Rule adoption")
                         }
                     }
-                    Button("Refresh balance") { Task { await load() } }.disabled(loading)
-                        .frame(minHeight: 44)
+                    Button {
+                        Task { await load() }
+                    } label: {
+                        Text("Refresh balance").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }.disabled(loading)
                 }
             }
             .padding(.horizontal, 20)
@@ -87,7 +91,12 @@ struct MoneyScreen: View {
             }
             if let notice {
                 Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)
-                Button("Try again") { Task { await load() } }.frame(minHeight: 44).disabled(loading)
+                Button {
+                    Task { await load() }
+                } label: {
+                    Text("Try again").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        .contentShape(Rectangle())
+                }.disabled(loading)
             }
         }
         .padding(20).frame(maxWidth: .infinity, alignment: .leading)

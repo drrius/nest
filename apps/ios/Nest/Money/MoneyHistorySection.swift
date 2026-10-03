@@ -32,8 +32,12 @@ struct MoneyHistorySection: View {
             if let notice { Text(notice) }
             if events.isEmpty && !loading && notice == nil { Text("No financial history yet.") }
             if previewCount == nil, next != nil {
-                Button("Load older entries") { Task { await load(more: true) } }.disabled(loading)
-                    .frame(minHeight: 44)
+                Button {
+                    Task { await load(more: true) }
+                } label: {
+                    Text("Load older entries").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        .contentShape(Rectangle())
+                }.disabled(loading)
             }
             if let previewCount, events.count > previewCount || next != nil {
                 NavigationLink {
@@ -42,8 +46,12 @@ struct MoneyHistorySection: View {
                     QuietActionLabel("View full history")
                 }
             }
-            Button("Refresh history") { Task { await load(more: false) } }.disabled(loading)
-                .frame(minHeight: 44)
+            Button {
+                Task { await load(more: false) }
+            } label: {
+                Text("Refresh history").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                    .contentShape(Rectangle())
+            }.disabled(loading)
         } header: {
             Text("Recent activity").font(.headline).foregroundStyle(QuietPalette.ink)
                 .textCase(nil).padding(.top, 12)
