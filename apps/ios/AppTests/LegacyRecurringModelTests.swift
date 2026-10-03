@@ -7,7 +7,7 @@ import XCTest
 final class LegacyRecurringModelTests: XCTestCase {
     func testInventoryAndDraftsReadAllPagesWithoutPostingOrSubstitutingRuleTerms() async throws {
         let fixture = try await LegacyRecurringTestFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.base.url) }
+        cleanAfterTest(fixture.base.url)
         let inventory = LegacyRecurringModel(session: fixture.session, member: fixture.base.member)
         let drafts = LegacyDraftModel(
             session: fixture.session, member: fixture.base.member, ruleId: await fixture.server.ruleId)
@@ -34,7 +34,7 @@ final class LegacyRecurringModelTests: XCTestCase {
 
     func testPartnerReadsSameRetainedHouseholdWithTheirOwnVerifiedSession() async throws {
         let fixture = try await LegacyRecurringTestFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.base.url) }
+        cleanAfterTest(fixture.base.url)
         await fixture.session.signIn(idToken: "B", nonce: "test")
         XCTAssertEqual(fixture.session.status, .ready(fixture.base.partner))
         let inventory = LegacyRecurringModel(session: fixture.session, member: fixture.base.partner)
@@ -51,7 +51,7 @@ final class LegacyRecurringModelTests: XCTestCase {
 
     func testOfflineAndMalformedPagesClearOldRowsWithoutInventingEmptySuccess() async throws {
         let fixture = try await LegacyRecurringTestFixture.make()
-        defer { try? FileManager.default.removeItem(at: fixture.base.url) }
+        cleanAfterTest(fixture.base.url)
         let inventory = LegacyRecurringModel(session: fixture.session, member: fixture.base.member)
         let drafts = LegacyDraftModel(
             session: fixture.session, member: fixture.base.member, ruleId: await fixture.server.ruleId)
@@ -81,7 +81,7 @@ final class LegacyRecurringModelTests: XCTestCase {
         for switchAccount in [false, true] {
             for isDraft in [false, true] {
                 let fixture = try await LegacyRecurringTestFixture.make()
-                defer { try? FileManager.default.removeItem(at: fixture.base.url) }
+                cleanAfterTest(fixture.base.url)
                 let inventory = LegacyRecurringModel(session: fixture.session, member: fixture.base.member)
                 let drafts = LegacyDraftModel(
                     session: fixture.session, member: fixture.base.member, ruleId: await fixture.server.ruleId)
@@ -107,5 +107,9 @@ final class LegacyRecurringModelTests: XCTestCase {
                 XCTAssertEqual(writes, 0)
             }
         }
+    }
+
+    private func cleanAfterTest(_ url: URL) {
+        addTeardownBlock { try? FileManager.default.removeItem(at: url) }
     }
 }

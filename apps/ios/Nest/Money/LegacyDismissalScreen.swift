@@ -53,15 +53,17 @@ struct LegacyDismissalScreen: View {
                 model.suspendReview()
             }
         }
-        .confirmationDialog("Dismiss this reviewed draft?", isPresented: confirming) {
+        .alert("Dismiss this reviewed draft?", isPresented: confirming) {
             if let expected = confirmation {
                 Button("Dismiss this draft", role: .destructive) { Task { await model.confirm(expected) } }
             }
+            Button("Keep this draft", role: .cancel) { confirmation = nil }
         } message: {
             Text("No expense or payment will be recorded, and no recurring rule will be paused or cancelled.")
         }
-        .confirmationDialog("Cancel this pending request?", isPresented: $confirmCancellation) {
+        .alert("Cancel this pending request?", isPresented: $confirmCancellation) {
             Button("Cancel pending request", role: .destructive) { Task { await model.retry(cancel: true) } }
+            Button("Keep pending request", role: .cancel) { confirmCancellation = false }
         } message: {
             Text("If dismissal already happened, Nest will recover that exact result instead.")
         }

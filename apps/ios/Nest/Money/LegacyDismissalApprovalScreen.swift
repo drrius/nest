@@ -42,7 +42,7 @@ struct LegacyDismissalApprovalScreen: View {
                 model.suspendReview()
             }
         }
-        .confirmationDialog(
+        .alert(
             choice?.approved == true ? "Dismiss this exact draft?" : "Decline this proposal?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -51,13 +51,15 @@ struct LegacyDismissalApprovalScreen: View {
                     Task { await model.decide(expected.approved, expected: expected.review) }
                 }
             }
+            Button("Keep reviewing", role: .cancel) { choice = nil }
         } message: {
             Text(
                 "Dismissal preserves history. It creates no expense, payment or balance change and leaves the old rule unchanged."
             )
         }
-        .confirmationDialog("Withdraw saved consent?", isPresented: $withdrawal) {
+        .alert("Withdraw saved consent?", isPresented: $withdrawal) {
             Button("Withdraw consent", role: .destructive) { Task { await model.retry(withdraw: true) } }
+            Button("Keep saved consent", role: .cancel) { withdrawal = false }
         } message: {
             Text("This fences a pending dismissal. If dismissal already committed, its exact recorded result wins.")
         }
