@@ -10,6 +10,9 @@ actor FakeGroceryServer {
     private var offline = false
     private var checkedA = false
     private var loseNextAddResponse = false
+    private var rejectNextAdd = false
+    private var failNextAddedList = false
+    private var membershipDenied = false
     private var added: AddGrocery?
     private var addAttempts: [UUID] = []
     private var loseNextEditResponse = false
@@ -33,6 +36,9 @@ actor FakeGroceryServer {
 
     func setOffline(_ value: Bool) { offline = value }
     func loseNextAdd() { loseNextAddResponse = true }
+    func rejectAdd() { rejectNextAdd = true }
+    func loseListAfterAdd() { failNextAddedList = true }
+    func denyMembership() { membershipDenied = true }
     func addOperations() -> [UUID] { addAttempts }
     func addedCategory() -> UUID? { added?.categoryId }
     func loseNextEdit() { loseNextEditResponse = true }
@@ -58,10 +64,24 @@ actor FakeGroceryServer {
         if offline { throw URLError(.notConnectedToInternet) }
         let token = request.value(forHTTPHeaderField: "Authorization") ?? ""
         let actor = token == "Bearer token-A" ? actorA : actorB
+        if request.url?.path == "/v1/session" {
+            if membershipDenied {
+                return answer(request, data: Data("{\"error\":{\"code\":\"not_a_member\"}}".utf8), status: 403)
+            }
+            let name = actor == actorA ? "Alex" : "Sam"
+            let body = """
+                {"version":1,"member":{"userId":"\(actor)","householdId":"\(household)","displayName":"\(name)"}}
+                """
+            return answer(request, data: Data(body.utf8))
+        }
         if request.url?.path == "/v1/groceries/check" { return try check(request, actor: actor) }
         if request.url?.path == "/v1/groceries/add" { return try add(request) }
         if request.url?.path == "/v1/groceries/edit" { return try edit(request) }
         if request.url?.path == "/v1/groceries/remove" { return try remove(request) }
+        if request.url?.path == "/v1/groceries", added != nil, failNextAddedList {
+            failNextAddedList = false
+            throw URLError(.networkConnectionLost)
+        }
         if actor == actorA && pauseA {
             aWaiting = true
             aStarted?.resume()
@@ -77,6 +97,10 @@ actor FakeGroceryServer {
     private func add(_ request: URLRequest) throws -> (Data, URLResponse) {
         let command = try JSONDecoder().decode(AddGrocery.self, from: request.httpBody ?? Data())
         addAttempts.append(command.operationId)
+        if rejectNextAdd {
+            rejectNextAdd = false
+            return answer(request, data: Data("{\"error\":{\"code\":\"invalid_request\"}}".utf8), status: 400)
+        }
         if let added, added != command { throw NestAPIFailure.invalid }
         added = command
         if loseNextAddResponse {

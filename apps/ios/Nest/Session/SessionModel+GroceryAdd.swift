@@ -1,11 +1,12 @@
 import Foundation
 
 extension SessionModel {
-    func addGrocery(name: String, quantity: String?, unit: String?, categoryId: UUID? = nil) async {
-        guard let offline, let lease, case .ready(let member) = status else { return }
+    @discardableResult
+    func addGrocery(name: String, quantity: String?, unit: String?, categoryId: UUID? = nil) async -> Bool {
+        guard let offline, let lease, case .ready(let member) = status else { return false }
         guard groceryCategoryAvailable(categoryId) else {
             groceryNotice = "This category is no longer available. Refresh categories and try again."
-            return
+            return false
         }
         let attempt = generation
         let command: AddGrocery
@@ -13,23 +14,54 @@ extension SessionModel {
             command = try AddGrocery(
                 operationId: UUID(), itemId: UUID(), name: name,
                 quantity: quantity, unit: unit, categoryId: categoryId)
+            guard try await prepareGroceryAdd(member: member, categoryId: categoryId, attempt: attempt) else {
+                return false
+            }
             try await offline.enqueueGroceryAdd(command, lease: lease)
             let saved = try await offline.readGroceryAdd(lease)
-            guard generation == attempt, status == .ready(member) else { return }
+            guard generation == attempt, status == .ready(member) else { return false }
             groceryAdd = saved
             groceryNotice = "Saving your grocery…"
-            await retryGroceryAdd()
+            return await retryGroceryAdd()
         } catch {
-            guard generation == attempt, status == .ready(member) else { return }
-            groceryNotice = "Could not save this grocery. Check its details and try again."
+            await handleNewGroceryAddFailure(error, member: member, attempt: attempt)
+            return false
         }
     }
 
-    func retryGroceryAdd() async {
+    private func handleNewGroceryAddFailure(_ error: Error, member: VerifiedMember, attempt: Int) async {
+        guard generation == attempt, status == .ready(member) else { return }
+        let mapped = state(for: error)
+        if mapped == .signedOut || mapped == .notMember {
+            await leaveGroceryAccount(mapped)
+        } else {
+            groceryNotice =
+                "Could not save this grocery. Your entries are still here. Check the details and try again online."
+        }
+    }
+
+    private func prepareGroceryAdd(member: VerifiedMember, categoryId: UUID?, attempt: Int) async throws -> Bool {
+        guard let auth, let api = groceryAPI else { throw NestAPIFailure.unavailable }
+        let session = try await auth.session()
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let verified = try await api.verify(token: session.accessToken, expectedActor: member.userId)
+        guard generation == attempt, status == .ready(member) else { return false }
+        guard verified.householdId == member.householdId else { throw NestAPIFailure.notMember }
+        if let categoryId {
+            let categories = try await api.categories(token: session.accessToken, member: member).categories
+            guard generation == attempt, status == .ready(member) else { return false }
+            groceryCategoryStatus = .loaded(categories)
+            guard categories.contains(where: { $0.id == categoryId }) else { throw NestAPIFailure.conflict }
+        }
+        return true
+    }
+
+    @discardableResult
+    func retryGroceryAdd() async -> Bool {
         guard groceryAddSavingGeneration != generation,
             let auth, let api = groceryAPI, let offline, let lease,
             case .ready(let member) = status
-        else { return }
+        else { return false }
         let attempt = generation
         groceryAddSavingGeneration = attempt
         groceryAddSaving = true
@@ -40,36 +72,38 @@ extension SessionModel {
             }
         }
         do {
-            try await sendGroceryAdd(
+            return try await sendGroceryAdd(
                 auth: auth, api: api, offline: offline,
                 lease: lease, member: member, attempt: attempt)
         } catch {
             await handleGroceryAddFailure(
                 error, api: api, auth: auth, offline: offline,
                 lease: lease, member: member, attempt: attempt)
+            return false
         }
     }
 
     private func sendGroceryAdd(
         auth: any NestAuthentication, api: GroceryAPI, offline: ChoreOfflineStore,
         lease: OfflineLease, member: VerifiedMember, attempt: Int
-    ) async throws {
-        guard let saved = try await offline.readGroceryAdd(lease) else { return }
+    ) async throws -> Bool {
+        guard let saved = try await offline.readGroceryAdd(lease) else { return false }
         guard saved.state == .pending else {
             if saved.state == .acknowledged { await refreshGroceries() }
-            return
+            return saved.state == .acknowledged && generation == attempt && status == .ready(member)
         }
         let session = try await auth.session()
         guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
         let receipt = try await api.add(
             token: session.accessToken, member: member, command: saved.command)
         try await offline.acknowledgeGroceryAdd(receipt, lease: lease)
-        guard generation == attempt, status == .ready(member) else { return }
+        guard generation == attempt, status == .ready(member) else { return false }
         let confirmed = try await offline.readGroceryAdd(lease)
-        guard generation == attempt, status == .ready(member) else { return }
+        guard generation == attempt, status == .ready(member) else { return false }
         groceryAdd = confirmed
         groceryNotice = "Grocery added. Refreshing the list…"
         await refreshGroceries()
+        return generation == attempt && status == .ready(member)
     }
 
     func discardConflictedGroceryAdd() async {

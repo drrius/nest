@@ -1,0 +1,14 @@
+{
+  "remove": {
+    "operationId": "d2b4b781-8ccd-41ea-88bb-054db304c396",
+    "itemId": "7c6f99a3-678c-4a9e-86e8-3c47442af19f",
+    "expectedVersion": "1"
+  },
+  "check": {
+    "operationId": "a27a3a56-24fe-402c-b39c-a4cb3c4409cb",
+    "itemId": "7c6f99a3-678c-4a9e-86e8-3c47442af19f",
+    "expectedVersion": "1",
+    "checked": true,
+    "offlineEpoch": "fde324aa-aaf8-4179-aaf3-2d31a918c8cb"
+  }
+}

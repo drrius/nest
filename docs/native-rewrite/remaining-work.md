@@ -22,6 +22,8 @@ An actual native ordinary-expense save/review/edit/detail/restart journey now pa
 
 Selected rendered simulator checks already pass, including the revised four-tab roots at normal and largest text, expense/payment/date-picker navigation, and full-history entry/read-refresh corner targets. Full-history pagination, complete keyboard/error/recovery states, phone and owner design acceptance remain required. Build14 now contains the latest batch and is internally available. The immediate priority is phone acceptance plus remaining native/hosted checks.
 
+Seven real hosted grocery convergence/conflict/removal/isolation cases now pass with unchanged money and normal fixture cleanup. The visible native outage/restart journey remains pending while the Mac is offline. A grocery-add form failure/confirmation fix and fresh online staging preflight have been added with native regressions; compilation/CI/rendering are pending, and this source is newer than build14.
+
 ## 3. Prove live integrations
 
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual call failed403; successful fixture execution is not live AI proof.

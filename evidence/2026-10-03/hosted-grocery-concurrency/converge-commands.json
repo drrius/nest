@@ -1,0 +1,16 @@
+{
+  "member-a": {
+    "operationId": "e5641665-6bce-46fc-9b4a-7f2536d3b577",
+    "itemId": "0b893f92-a9d6-4e03-adbc-42023f620393",
+    "expectedVersion": "1",
+    "checked": true,
+    "offlineEpoch": "fde324aa-aaf8-4179-aaf3-2d31a918c8cb"
+  },
+  "member-b": {
+    "operationId": "8bbffc39-04d8-4b99-9d97-931791325e9f",
+    "itemId": "0b893f92-a9d6-4e03-adbc-42023f620393",
+    "expectedVersion": "1",
+    "checked": true,
+    "offlineEpoch": "fde324aa-aaf8-4179-aaf3-2d31a918c8cb"
+  }
+}
