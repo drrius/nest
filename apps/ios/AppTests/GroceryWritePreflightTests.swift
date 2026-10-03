@@ -73,6 +73,29 @@ final class GroceryWritePreflightTests: XCTestCase {
         XCTAssertTrue(attempts.isEmpty)
     }
 
+    func testBackgroundListFailureCannotReplaceOnlineOnlyFormFailure() async throws {
+        let (model, server) = try fixture()
+        let item = try await initialItem(model)
+        await server.setOffline(true)
+        let edited = await model.editGrocery(item, name: "My apples", quantity: nil, unit: nil, categoryId: nil)
+        XCTAssertFalse(edited)
+        let editNotice = try XCTUnwrap(model.groceryWriteNotice)
+        await model.refreshGroceries()
+        XCTAssertEqual(model.groceryWriteNotice, editNotice)
+        XCTAssertNotEqual(model.groceryNotice, editNotice)
+        XCTAssertTrue(editNotice.contains("Your entries are still here"))
+        let added = await model.addGrocery(name: "Oat milk", quantity: nil, unit: nil)
+        XCTAssertFalse(added)
+        let addNotice = try XCTUnwrap(model.groceryWriteNotice)
+        await model.refreshGroceries()
+        XCTAssertEqual(model.groceryWriteNotice, addNotice)
+        XCTAssertNotEqual(model.groceryNotice, addNotice)
+        XCTAssertTrue(addNotice.contains("Your entries are still here"))
+        try await assertNothingStaged(model, server: server)
+        await model.signOut()
+        XCTAssertNil(model.groceryWriteNotice)
+    }
+
     func testFreshMembershipRefusalCannotStageRemoval() async throws {
         let (model, server) = try fixture()
         let item = try await initialItem(model)
@@ -180,6 +203,7 @@ final class GroceryWritePreflightTests: XCTestCase {
         let confirmed = await old.value
         XCTAssertFalse(confirmed)
         XCTAssertNil(model.groceryEdit)
+        XCTAssertNil(model.groceryWriteNotice)
         guard case .ready(let member) = model.status else { return XCTFail("B is not ready") }
         XCTAssertEqual(member.userId, actorB)
         guard case .loaded(let current) = model.groceries else { return XCTFail("B list missing") }
@@ -199,6 +223,7 @@ final class GroceryWritePreflightTests: XCTestCase {
         await server.releaseActorA()
         let result = await old.value
         XCTAssertNil(result)
+        XCTAssertNil(model.groceryWriteNotice)
         guard case .loaded(let current) = model.groceries else { return XCTFail("B list missing") }
         XCTAssertEqual(current.items.first?.item.name, "Sam pears")
         try await assertNothingStaged(model, server: server)

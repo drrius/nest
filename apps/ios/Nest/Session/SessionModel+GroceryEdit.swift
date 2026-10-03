@@ -7,8 +7,10 @@ extension SessionModel {
         unit: String?, categoryId: UUID?
     ) async -> Bool {
         guard let offline, let lease, case .ready(let member) = status else { return false }
+        groceryWriteNotice = nil
         guard groceryCategoryAvailable(categoryId) else {
             groceryNotice = "This category is no longer available. Refresh and try again."
+            groceryWriteNotice = groceryNotice
             return false
         }
         let attempt = generation

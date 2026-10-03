@@ -45,7 +45,8 @@ extension SessionModel {
             guard generation == attempt, status == .ready(member) else { return nil }
             if let projection { groceries = .loaded(projection) }
             groceryCategoryStatus = .loaded(categories)
-            groceryNotice = "Latest item loaded. Your entries are unchanged. Review them before saving."
+            groceryWriteNotice = "Latest item loaded. Your entries are unchanged. Review them before saving."
+            groceryNotice = groceryWriteNotice
             return found
         } catch {
             await handleNewGroceryWriteFailure(
@@ -72,10 +73,11 @@ extension SessionModel {
         let mapped = state(for: error)
         if mapped == .signedOut || mapped == .notMember {
             await leaveGroceryAccount(mapped)
-        } else if error as? NestAPIFailure == .removed {
-            groceryNotice = "This item is no longer on the shared list. No new edit or removal was started."
-        } else {
-            groceryNotice = notice
+            return
         }
+        groceryWriteNotice =
+            error as? NestAPIFailure == .removed
+            ? "This item is no longer on the shared list. No new edit or removal was started." : notice
+        groceryNotice = groceryWriteNotice
     }
 }

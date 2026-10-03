@@ -51,7 +51,7 @@ struct GroceryEditSheet: View {
                 }
                 if let saved = model.groceryEdit, saved.item.id == item.id {
                     savedRequest(saved)
-                } else if attemptedSave, let notice = model.groceryNotice {
+                } else if attemptedSave, let notice = model.groceryWriteNotice {
                     Section {
                         Text(notice).foregroundStyle(QuietPalette.muted)
                         Button {
@@ -80,8 +80,12 @@ struct GroceryEditSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(model.groceryEdit == nil ? "Cancel" : "Close") { close() }
-                        .disabled(submitting || reloading)
+                    Button {
+                        close()
+                    } label: {
+                        Text(model.groceryEdit == nil ? "Cancel" : "Close").frame(minHeight: 44)
+                    }
+                    .disabled(submitting || reloading)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
@@ -95,13 +99,17 @@ struct GroceryEditSheet: View {
                             if confirmed { dismiss() }
                         }
                     } label: {
-                        if submitting { ProgressView() } else { Text("Save") }
+                        if submitting {
+                            ProgressView().frame(minHeight: 44)
+                        } else {
+                            Text("Save").frame(minHeight: 44)
+                        }
                     }
                     .disabled(!validChanges || fieldsLocked || model.groceryEditSaving)
                 }
             }
             .interactiveDismissDisabled(hasEdits || fieldsLocked)
-            .confirmationDialog("Discard grocery edits?", isPresented: $discardChanges, titleVisibility: .visible) {
+            .alert("Discard grocery edits?", isPresented: $discardChanges) {
                 Button("Discard edits", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
             }

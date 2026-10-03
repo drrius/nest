@@ -44,7 +44,7 @@ struct GroceryAddSheet: View {
                 }
                 if let saved = model.groceryAdd {
                     savedRequest(saved)
-                } else if attemptedSave, let notice = model.groceryNotice {
+                } else if attemptedSave, let notice = model.groceryWriteNotice {
                     Section {
                         Text(notice).foregroundStyle(QuietPalette.muted)
                     }
@@ -56,8 +56,12 @@ struct GroceryAddSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button(model.groceryAdd == nil ? "Cancel" : "Close") { dismiss() }
-                        .disabled(submitting)
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text(model.groceryAdd == nil ? "Cancel" : "Close").frame(minHeight: 44)
+                    }
+                    .disabled(submitting)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
@@ -70,7 +74,11 @@ struct GroceryAddSheet: View {
                             if confirmed { dismiss() }
                         }
                     } label: {
-                        if submitting { ProgressView() } else { Text("Add") }
+                        if submitting {
+                            ProgressView().frame(minHeight: 44)
+                        } else {
+                            Text("Add").frame(minHeight: 44)
+                        }
                     }
                     .disabled(
                         name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty

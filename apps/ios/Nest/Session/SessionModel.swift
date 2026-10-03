@@ -10,6 +10,7 @@ final class SessionModel: ObservableObject {
     @Published var todayNotice: String?
     @Published var groceries: GroceryStatus = .idle
     @Published var groceryNotice: String?
+    @Published var groceryWriteNotice: String?
     @Published var groceryAdd: SavedGroceryAdd?
     @Published var groceryAddSaving = false
     @Published var groceryCategoryStatus: GroceryCategoryStatus = .idle
@@ -305,6 +306,7 @@ final class SessionModel: ObservableObject {
         todayNotice = nil
         groceries = .idle
         groceryNotice = nil
+        groceryWriteNotice = nil
         groceryAdd = nil
         groceryAddSaving = false
         groceryCategoryStatus = .idle

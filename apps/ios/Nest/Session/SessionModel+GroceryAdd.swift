@@ -4,8 +4,10 @@ extension SessionModel {
     @discardableResult
     func addGrocery(name: String, quantity: String?, unit: String?, categoryId: UUID? = nil) async -> Bool {
         guard let offline, let lease, case .ready(let member) = status else { return false }
+        groceryWriteNotice = nil
         guard groceryCategoryAvailable(categoryId) else {
             groceryNotice = "This category is no longer available. Refresh categories and try again."
+            groceryWriteNotice = groceryNotice
             return false
         }
         let attempt = generation
