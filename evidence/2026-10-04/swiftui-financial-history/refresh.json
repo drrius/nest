@@ -1,0 +1,12 @@
+{
+  "firstPageRestored": true,
+  "olderCursorRestored": true,
+  "oldestNotRetainedAfterRefresh": true,
+  "journals": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0
+  }
+}

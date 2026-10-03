@@ -1,0 +1,24 @@
+{
+  "nativeCodeSource": "52fc69162bd3911d1d778a862767d328ecb1b217",
+  "nativeInputs": 1028,
+  "sourceMismatches": 0,
+  "started": 1791071541.38209,
+  "fictionalHistoryPreserved": true,
+  "bothBalancesUnchanged": true,
+  "buildPid": 85322,
+  "buildExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "ordinaryAppearanceAndTodayRestored": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0
+  },
+  "relayStopped": true,
+  "generatedPrivateKeyDestroyed": true,
+  "finished": 1791071552.813117
+}

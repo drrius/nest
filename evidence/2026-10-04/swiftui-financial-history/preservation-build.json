@@ -1,0 +1,13 @@
+{
+  "nativeSource": "working-tree history navigation preservation based on9db50589",
+  "nativeInputs": 1028,
+  "sourceMismatches": 0,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791071224.807816,
+  "buildPid": 82750,
+  "buildExit": 0,
+  "actualSigningVerified": true,
+  "testOriginsVerified": true,
+  "finished": 1791071241.333764
+}

@@ -1,0 +1,16 @@
+✔ history boundary rejects malformed authority, response identity/order and invented cursors (19.399493ms)
+✔ opening successors retain parent links while unrelated and self-linked events remain invalid (1.823699ms)
+✔ keyset history walks all microsecond/date/UUID ties without truncation or duplication (53.223566ms)
+✔ new top entries do not shift later pages; exact full last page has no next cursor (38.465728ms)
+✔ history preserves correction relationships and keeps receipt paths out of summaries (14.09732ms)
+✔ foreign and missing cursor IDs are indistinguishable and anonymous/nonmembers cannot read (30.463325ms)
+✔ history API and AI read all pages with scoped cursors and reject revoked/foreign reads (711.780817ms)
+✔ retained dates outside native ranges remain readable and correctly paged through API and AI (741.073261ms)
+ℹ tests 8
+ℹ suites 0
+ℹ pass 8
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1883.532145

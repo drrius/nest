@@ -1,0 +1,16 @@
+{"label": "Money", "rect": {"x": 261.75, "y": 588, "width": 88.25, "height": 54}, "corner": false, "phase": "history"}
+{"label": "View full history", "rect": {"x": 20, "y": 356.5, "width": 335, "height": 44}, "corner": false, "phase": "history"}
+{"label": "Load older entries", "rect": {"x": 20, "y": 456, "width": 335, "height": 44}, "corner": true, "phase": "fault"}
+{"label": "Load older entries", "rect": {"x": 20, "y": 496.5, "width": 335, "height": 44}, "corner": true, "phase": "retry"}
+{"label": "Nest history page 663d51ef 01, Expense \u00b7 2000-01-01, CHF 0.01", "rect": {"x": 20, "y": 456, "width": 335, "height": 79}, "corner": true, "phase": "detail"}
+{"label": "Refresh history", "rect": {"x": 20, "y": 520, "width": 335, "height": 44}, "corner": true, "phase": "refresh"}
+{"label": "Money", "rect": {"x": 261.75, "y": 588, "width": 88.25, "height": 54}, "corner": false, "phase": "preservation"}
+{"label": "View full history", "rect": {"x": 20, "y": 312.5, "width": 335, "height": 44}, "corner": false, "phase": "preservation"}
+{"label": "Load older entries", "rect": {"x": 20, "y": 456, "width": 335, "height": 44}, "corner": true, "phase": "preservation"}
+{"label": "Nest history page 663d51ef 01, Expense \u00b7 2000-01-01, CHF 0.01", "rect": {"x": 20, "y": 456, "width": 335, "height": 79}, "corner": true, "phase": "preservation"}
+{"label": "Today", "rect": {"x": 25, "y": 588, "width": 88.25, "height": 54}, "corner": true, "phase": "preservation"}
+{"label": "Money", "rect": {"x": 261.75, "y": 588, "width": 88.25, "height": 54}, "corner": true, "phase": "preservation"}
+{"label": "Refresh history", "rect": {"x": 20, "y": 555, "width": 335, "height": 44}, "corner": true, "phase": "preservation"}
+{"label": "Load older entries", "rect": {"x": 20, "y": 301.5, "width": 335, "height": 125.5}, "corner": true, "phase": "largest"}
+{"label": "Load older entries", "rect": {"x": 20, "y": 292.5, "width": 335, "height": 125.5}, "corner": true, "phase": "largest"}
+{"label": "Nest history page 663d51ef 01, Expense \u00b7 2000-01-01, CHF 0.01", "rect": {"x": 20, "y": 85, "width": 335, "height": 445.5}, "corner": true, "phase": "largest"}
