@@ -1,6 +1,6 @@
 # Native private retained-draft confirmation
 
-3 October 2026, Zurich. Branch `codex/swiftui-legacy-confirmation-approval`; source checkpoint pending. This is bounded implementation verification, not final M7 acceptance.
+3 October 2026, Zurich. Branch `codex/swiftui-legacy-confirmation-approval`; exact app source `886773cc8a927523c1da895de280d55a1fa1eefd`. This is bounded implementation verification, not final M7 acceptance.
 
 The private AI proposal supplies an immutable new expense separately from original retained draft terms. The native member explicitly approves or declines it. Positive consent requires fresh owner-bound proposal identity/input, current two-member balance/membership, exact retained context and unexpired consent before journal creation. Negative consent never posts money and remains available when retained context is inaccessible, changed or expired. Receipt paths and separate receipt totals are forbidden.
 
@@ -16,7 +16,7 @@ Local saved-decision recovery now has navigation independent of the server pendi
 - Actual opted-in fictional private form inspection passes in120.439 seconds, zero failures/skips. It asserts zero decisions/postings and no journal. Normal approval/decline alerts and largest-text dark approval alert were cancelled explicitly. A first driver step saw the bottom-clipped decline row as27pt; continuing the same live XCTest after scrolling it fully into view verified52pt, and the largest review action measures217.5pt. No source-limit/inspection timeout was relaxed. Native rendering is not hosted/provider/phone proof.
 - Both new offline recovery discovery/isolation tests pass signed-native, zero failures/skips,0.399 seconds, alongside an actual build of the parent approvals/recovery UI. Result: `/tmp/nest-swiftui-planned-qa/Logs/Test/Test-Nest-2026.10.03_19-36-37-+0200.xcresult`; log: `/private/tmp/nest-confirmation-approval-recovery-native.log`. This establishes12 new native methods across focused10+2 runs; it is not a rendered recovery-navigation assertion.
 - [Original retained draft](nest-confirmation-approval-original-normal.png), [normal approval alert](nest-confirmation-approval-alert-normal.png), [normal decline alert](nest-confirmation-approval-decline-normal.png), [largest-text approval](nest-confirmation-approval-alert-largest.png) and [continued touch evidence](nest-confirmation-approval-rendered-verification.json) preserve the actual bounded form checks. The continued driver records the fully visible normal decline and largest review sizes; the initial normal approval/cancel is captured separately by its screenshot and executed driver output.
-- Swift source limits and focused wire/JSON formatting pass. Current-source CI and saved-recovery actual rendering remain pending.
+- Swift source limits and focused wire/JSON formatting pass. Both workflows are live for this source: Nest37141297431 and SwiftUI37141297448. Their conclusions are pending; saved-recovery actual rendering remains pending. All993 native input hashes match the isolated Mac mirror with zero mismatches after temporary scheme restoration; [source comparison](nest-confirmation-approval-source-verification.json). The ordinary configured app and normal/light text settings were restored.
 
 ## Remaining boundaries
 
