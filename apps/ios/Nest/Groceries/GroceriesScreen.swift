@@ -26,6 +26,18 @@ struct GroceriesScreen: View {
                 if let notice = model.groceryNotice { noticeRow(notice) }
             }
             .listRowBackground(QuietPalette.background)
+            if case .ready(let member) = model.status {
+                Section {
+                    NavigationLink {
+                        ExpenseScreen(session: model, member: member)
+                    } label: {
+                        Label("Record grocery expense", systemImage: "creditcard")
+                            .frame(minHeight: 44, alignment: .leading)
+                    }
+                    .accessibilityHint("Enter the receipt total, shared amount, payer and split.")
+                }
+                .listRowBackground(QuietPalette.background)
+            }
             if let pending = model.groceryAdd { addStatus(pending) }
             if let pending = model.groceryEdit { editStatus(pending) }
             if let pending = model.groceryRemove { removeStatus(pending) }
