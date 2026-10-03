@@ -1,0 +1,61 @@
+{
+  "source": "bded62ec",
+  "ownedSimulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "marker": "Nest B14 native smoke 95ed1476",
+  "keyboardObserved": true,
+  "keyboardDismissedForReview": true,
+  "exactSharesReviewed": [51, 50],
+  "editPreservedDraft": true,
+  "saveSelectedOnce": true,
+  "expenseRecordedUI": true,
+  "recordedDetailOpened": true,
+  "records": [
+    {
+      "control": "Review expense",
+      "rect": {
+        "x": 16,
+        "y": 362,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "control": "Edit",
+      "rect": {
+        "x": 16,
+        "y": 460,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "control": "Review expense",
+      "rect": {
+        "x": 16,
+        "y": 512,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "control": "Save expense",
+      "rect": {
+        "x": 16,
+        "y": 408,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "control": "View recorded entry",
+      "rect": {
+        "x": 16,
+        "y": 483,
+        "width": 343,
+        "height": 52
+      }
+    }
+  ],
+  "financialEffects": "verify separately against API",
+  "physicalPhoneAcceptance": false
+}

@@ -12,6 +12,8 @@ Updated 3 October 2026. SwiftUI is the selected client. Most everyday surfaces e
 
 Existing balance/history, ordinary expenses, refunds/corrections, settlements, recurring controls and retained-draft dismissal have implementation and bounded verification. That does not close the items above.
 
+An actual native ordinary-expense save/review/edit/detail/restart journey now passes against fictional test data. Both members see exactly one event with correct zero-sum balances, while the operation receipt stays private to its owner. This closes that bounded check; it does not close full approvals, uncertain retries or both-phone acceptance. [Evidence](../../evidence/2026-10-03/swiftui-native-expense-journey/README.md).
+
 ## 2. Finish native usability and real-data acceptance
 
 - [ ] Review populated, empty, loading, error and keyboard states across Today, Meals, Calendar and Money, plus onboarding/settings and private assistant destinations.

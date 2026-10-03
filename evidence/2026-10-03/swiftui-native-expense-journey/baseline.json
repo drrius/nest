@@ -1,0 +1,49 @@
+{
+  "marker": "Nest B14 native smoke 95ed1476",
+  "api": "https://nest-test-api-drrius-projects.vercel.app",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "members": [
+    {
+      "label": "member-a",
+      "balance": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "eventCount": "13",
+        "openingEstablished": false,
+        "members": [
+          {
+            "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "displayName": "Test Alex",
+            "centimes": "50"
+          },
+          {
+            "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+            "displayName": "Test Sam",
+            "centimes": "-50"
+          }
+        ]
+      }
+    },
+    {
+      "label": "member-b",
+      "balance": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "eventCount": "13",
+        "openingEstablished": false,
+        "members": [
+          {
+            "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "displayName": "Test Alex",
+            "centimes": "50"
+          },
+          {
+            "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+            "displayName": "Test Sam",
+            "centimes": "-50"
+          }
+        ]
+      }
+    }
+  ]
+}

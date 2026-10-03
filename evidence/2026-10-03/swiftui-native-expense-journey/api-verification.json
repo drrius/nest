@@ -1,0 +1,49 @@
+{
+  "marker": "Nest B14 native smoke 95ed1476",
+  "source": "bded62ec",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "financialPostsSentByThisVerifier": 0,
+  "productionTouched": false,
+  "actors": [
+    {
+      "actor": "member-a",
+      "eventId": "bffa007b-5c00-4b63-941e-db7bdad45a30",
+      "amountCentimes": 101,
+      "allocations": {
+        "791f7261-6c9d-4061-9c8a-57aa6e0b0200": 51,
+        "e5f80cfd-b69a-4aa0-a267-75784e943676": 50
+      },
+      "balanceBefore": {
+        "791f7261-6c9d-4061-9c8a-57aa6e0b0200": 50,
+        "e5f80cfd-b69a-4aa0-a267-75784e943676": -50
+      },
+      "balanceAfter": {
+        "791f7261-6c9d-4061-9c8a-57aa6e0b0200": 100,
+        "e5f80cfd-b69a-4aa0-a267-75784e943676": -100
+      },
+      "eventCountBefore": "13",
+      "eventCountAfter": "14"
+    },
+    {
+      "actor": "member-b",
+      "eventId": "bffa007b-5c00-4b63-941e-db7bdad45a30",
+      "amountCentimes": 101,
+      "allocations": {
+        "791f7261-6c9d-4061-9c8a-57aa6e0b0200": 51,
+        "e5f80cfd-b69a-4aa0-a267-75784e943676": 50
+      },
+      "balanceBefore": {
+        "791f7261-6c9d-4061-9c8a-57aa6e0b0200": 50,
+        "e5f80cfd-b69a-4aa0-a267-75784e943676": -50
+      },
+      "balanceAfter": {
+        "791f7261-6c9d-4061-9c8a-57aa6e0b0200": 100,
+        "e5f80cfd-b69a-4aa0-a267-75784e943676": -100
+      },
+      "eventCountBefore": "13",
+      "eventCountAfter": "14"
+    }
+  ],
+  "outsiderDetailStatus": 403,
+  "anonymousDetailStatus": 401
+}
