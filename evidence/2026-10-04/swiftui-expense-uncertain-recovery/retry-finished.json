@@ -1,0 +1,5 @@
+{
+  "scenario": "retry",
+  "explicitCompletedReceiptDismissal": true,
+  "journalEmpty": true
+}

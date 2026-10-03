@@ -1,0 +1,5 @@
+{
+  "scenario": "unused-cancel",
+  "explicitCompletedReceiptDismissal": true,
+  "journalEmpty": true
+}

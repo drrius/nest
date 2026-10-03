@@ -1,0 +1,12 @@
+{
+  "nativeCodeSource": "6ccb5d5a83ffbe53c35bed6fc58a1928179ea514",
+  "nativeInputs": 1028,
+  "sourceMismatches": 0,
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "started": 1791068045.299464,
+  "buildPid": 66172,
+  "buildExit": 0,
+  "testOriginsVerified": true,
+  "actualSigningVerified": true,
+  "finished": 1791068053.435151
+}

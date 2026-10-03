@@ -1,0 +1,92 @@
+{
+  "scenario": "retry",
+  "saved": {
+    "result": {
+      "operationId": "D5FB6EEC-7603-482A-BD6A-114A5786C450",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "version": 1,
+      "status": "unresolved",
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    },
+    "cancellationRequested": false,
+    "command": {
+      "operationId": "D5FB6EEC-7603-482A-BD6A-114A5786C450",
+      "expense": {
+        "amountCentimes": "3",
+        "allocations": [
+          {
+            "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "centimes": "2"
+          },
+          {
+            "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+            "centimes": "1"
+          }
+        ],
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "description": "Nest money recovery retry 38857a0c",
+        "categoryId": null,
+        "note": null,
+        "date": "2026-10-04"
+      }
+    }
+  },
+  "posts": [
+    {
+      "time": 1791068305.0557282,
+      "method": "POST",
+      "path": "/v1/money/expense/save",
+      "command": {
+        "expense": {
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            }
+          ],
+          "amountCentimes": "3",
+          "categoryId": null,
+          "date": "2026-10-04",
+          "description": "Nest money recovery retry 38857a0c",
+          "note": null,
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+        },
+        "operationId": "D5FB6EEC-7603-482A-BD6A-114A5786C450"
+      },
+      "forwarded": true,
+      "upstreamStatus": 200,
+      "result": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "d5fb6eec-7603-482a-bd6a-114a5786c450",
+        "eventId": "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+        "approvalId": null,
+        "expense": {
+          "description": "Nest money recovery retry 38857a0c",
+          "amountCentimes": "3",
+          "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+          "allocations": [
+            {
+              "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "centimes": "2"
+            },
+            {
+              "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+              "centimes": "1"
+            }
+          ],
+          "date": "2026-10-04",
+          "note": null,
+          "categoryId": null
+        }
+      },
+      "fault": "response_dropped_after_upstream"
+    }
+  ],
+  "newSaveOffered": false
+}

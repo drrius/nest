@@ -1,0 +1,14 @@
+{
+  "nativeCodeSource": "working tree based on d44a2a99; expense keyboard review",
+  "nativeInputs": 1028,
+  "sourceMismatches": 0,
+  "started": 1791068956.5710459,
+  "unqueuedFictionalDraftExplicitlyDiscarded": true,
+  "expenseSlotEmpty": true,
+  "buildPid": 71653,
+  "buildExit": 0,
+  "testOriginsVerified": true,
+  "actualSigningVerified": true,
+  "finished": 1791068973.348773,
+  "dataAndKeychainPreserved": true
+}

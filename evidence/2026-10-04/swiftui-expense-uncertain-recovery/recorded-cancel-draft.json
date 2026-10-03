@@ -1,0 +1,14 @@
+{
+  "scenario": "recorded-cancel",
+  "marker": "Nest money recovery recorded-cancel c3e6461f",
+  "reviewedCentimes": 3,
+  "reviewedShares": [2, 1],
+  "journalEmpty": true,
+  "keyboardReviewTarget": {
+    "x": 310,
+    "y": 388,
+    "width": 44,
+    "height": 44
+  },
+  "keyboardReviewCornerSelected": true
+}

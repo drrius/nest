@@ -1,0 +1,526 @@
+{
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "nativeCodeSource": "9db5058981c5d74897f7bc67640d9a036926854f",
+  "firstRetryNativeCodeSource": "6ccb5d5a83ffbe53c35bed6fc58a1928179ea514",
+  "allThreeScenariosVerified": true,
+  "lateCancelledSaveRejected": true,
+  "productionTouched": false,
+  "fullFixtureReportSha256": "afb6cae5cf2e7bce12326a20d887c055db09f0786121f89a24d44625fd876028",
+  "baseline": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": {
+      "balance": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "eventCount": "14",
+        "openingEstablished": false,
+        "members": [
+          {
+            "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "displayName": "Test Alex",
+            "centimes": "100"
+          },
+          {
+            "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+            "displayName": "Test Sam",
+            "centimes": "-100"
+          }
+        ]
+      },
+      "historyEventIds": [
+        "bffa007b-5c00-4b63-941e-db7bdad45a30",
+        "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+        "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+        "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+        "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+        "609d9aa2-3749-4341-9f53-2212ce741b4d",
+        "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+        "8564461d-fd50-4163-b6d4-c73e487d5e69",
+        "db167a17-dd69-4505-8553-969a7f202103",
+        "52079b26-87de-4c13-98ac-0d8d13f6e929",
+        "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+        "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+        "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+        "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+      ]
+    },
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": {
+      "balance": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "eventCount": "14",
+        "openingEstablished": false,
+        "members": [
+          {
+            "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "displayName": "Test Alex",
+            "centimes": "100"
+          },
+          {
+            "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+            "displayName": "Test Sam",
+            "centimes": "-100"
+          }
+        ]
+      },
+      "historyEventIds": [
+        "bffa007b-5c00-4b63-941e-db7bdad45a30",
+        "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+        "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+        "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+        "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+        "609d9aa2-3749-4341-9f53-2212ce741b4d",
+        "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+        "8564461d-fd50-4163-b6d4-c73e487d5e69",
+        "db167a17-dd69-4505-8553-969a7f202103",
+        "52079b26-87de-4c13-98ac-0d8d13f6e929",
+        "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+        "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+        "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+        "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+      ]
+    }
+  },
+  "scenarios": {
+    "retry": {
+      "marker": "Nest money recovery retry 38857a0c",
+      "operationId": "d5fb6eec-7603-482a-bd6a-114a5786c450",
+      "members": [
+        {
+          "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+          "balance": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "eventCount": "15",
+            "openingEstablished": false,
+            "members": [
+              {
+                "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "displayName": "Test Alex",
+                "centimes": "101"
+              },
+              {
+                "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "displayName": "Test Sam",
+                "centimes": "-101"
+              }
+            ]
+          },
+          "historyEventIds": [
+            "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+            "bffa007b-5c00-4b63-941e-db7bdad45a30",
+            "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+            "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+            "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+            "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+            "609d9aa2-3749-4341-9f53-2212ce741b4d",
+            "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+            "8564461d-fd50-4163-b6d4-c73e487d5e69",
+            "db167a17-dd69-4505-8553-969a7f202103",
+            "52079b26-87de-4c13-98ac-0d8d13f6e929",
+            "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+            "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+            "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+            "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+          ],
+          "receiptHttpStatus": 200,
+          "recoveryStatus": "recorded",
+          "receiptVisible": true,
+          "matchingDetail": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "event": {
+              "eventId": "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+              "kind": "expense",
+              "occurredOn": "2026-10-04",
+              "createdAt": "2026-10-03T22:58:26.176279Z",
+              "occurredOrder": "9773",
+              "createdOrder": "1791068306176279",
+              "description": "Nest money recovery retry 38857a0c",
+              "amountCentimes": "3",
+              "createdBy": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "relatedEventId": null,
+              "hasReceipt": false
+            },
+            "receiptTotalCentimes": null,
+            "note": null,
+            "category": null,
+            "reversedById": null,
+            "shares": [
+              {
+                "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "allocatedCentimes": "2",
+                "deltaCentimes": "1"
+              },
+              {
+                "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "allocatedCentimes": "1",
+                "deltaCentimes": "-1"
+              }
+            ]
+          }
+        },
+        {
+          "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+          "balance": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "eventCount": "15",
+            "openingEstablished": false,
+            "members": [
+              {
+                "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "displayName": "Test Alex",
+                "centimes": "101"
+              },
+              {
+                "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "displayName": "Test Sam",
+                "centimes": "-101"
+              }
+            ]
+          },
+          "historyEventIds": [
+            "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+            "bffa007b-5c00-4b63-941e-db7bdad45a30",
+            "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+            "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+            "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+            "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+            "609d9aa2-3749-4341-9f53-2212ce741b4d",
+            "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+            "8564461d-fd50-4163-b6d4-c73e487d5e69",
+            "db167a17-dd69-4505-8553-969a7f202103",
+            "52079b26-87de-4c13-98ac-0d8d13f6e929",
+            "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+            "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+            "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+            "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+          ],
+          "receiptHttpStatus": 200,
+          "recoveryStatus": "unresolved",
+          "receiptVisible": false,
+          "matchingDetail": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "event": {
+              "eventId": "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+              "kind": "expense",
+              "occurredOn": "2026-10-04",
+              "createdAt": "2026-10-03T22:58:26.176279Z",
+              "occurredOrder": "9773",
+              "createdOrder": "1791068306176279",
+              "description": "Nest money recovery retry 38857a0c",
+              "amountCentimes": "3",
+              "createdBy": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "relatedEventId": null,
+              "hasReceipt": false
+            },
+            "receiptTotalCentimes": null,
+            "note": null,
+            "category": null,
+            "reversedById": null,
+            "shares": [
+              {
+                "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "allocatedCentimes": "2",
+                "deltaCentimes": "1"
+              },
+              {
+                "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "allocatedCentimes": "1",
+                "deltaCentimes": "-1"
+              }
+            ]
+          }
+        }
+      ],
+      "outsiderReceiptStatus": 403,
+      "anonymousReceiptStatus": 401
+    },
+    "recorded-cancel": {
+      "marker": "Nest money recovery recorded-cancel c3e6461f",
+      "operationId": "9870b58b-b822-40e8-95b9-4fde52faab02",
+      "members": [
+        {
+          "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+          "balance": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "eventCount": "16",
+            "openingEstablished": false,
+            "members": [
+              {
+                "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "displayName": "Test Alex",
+                "centimes": "102"
+              },
+              {
+                "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "displayName": "Test Sam",
+                "centimes": "-102"
+              }
+            ]
+          },
+          "historyEventIds": [
+            "76e8efd4-d6d8-490c-a703-58790523609d",
+            "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+            "bffa007b-5c00-4b63-941e-db7bdad45a30",
+            "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+            "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+            "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+            "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+            "609d9aa2-3749-4341-9f53-2212ce741b4d",
+            "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+            "8564461d-fd50-4163-b6d4-c73e487d5e69",
+            "db167a17-dd69-4505-8553-969a7f202103",
+            "52079b26-87de-4c13-98ac-0d8d13f6e929",
+            "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+            "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+            "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+            "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+          ],
+          "receiptHttpStatus": 200,
+          "recoveryStatus": "recorded",
+          "receiptVisible": true,
+          "matchingDetail": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "event": {
+              "eventId": "76e8efd4-d6d8-490c-a703-58790523609d",
+              "kind": "expense",
+              "occurredOn": "2026-10-04",
+              "createdAt": "2026-10-03T23:13:26.963054Z",
+              "occurredOrder": "9773",
+              "createdOrder": "1791069206963054",
+              "description": "Nest money recovery recorded-cancel c3e6461f",
+              "amountCentimes": "3",
+              "createdBy": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "relatedEventId": null,
+              "hasReceipt": false
+            },
+            "receiptTotalCentimes": null,
+            "note": null,
+            "category": null,
+            "reversedById": null,
+            "shares": [
+              {
+                "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "allocatedCentimes": "2",
+                "deltaCentimes": "1"
+              },
+              {
+                "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "allocatedCentimes": "1",
+                "deltaCentimes": "-1"
+              }
+            ]
+          }
+        },
+        {
+          "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+          "balance": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "eventCount": "16",
+            "openingEstablished": false,
+            "members": [
+              {
+                "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "displayName": "Test Alex",
+                "centimes": "102"
+              },
+              {
+                "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "displayName": "Test Sam",
+                "centimes": "-102"
+              }
+            ]
+          },
+          "historyEventIds": [
+            "76e8efd4-d6d8-490c-a703-58790523609d",
+            "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+            "bffa007b-5c00-4b63-941e-db7bdad45a30",
+            "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+            "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+            "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+            "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+            "609d9aa2-3749-4341-9f53-2212ce741b4d",
+            "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+            "8564461d-fd50-4163-b6d4-c73e487d5e69",
+            "db167a17-dd69-4505-8553-969a7f202103",
+            "52079b26-87de-4c13-98ac-0d8d13f6e929",
+            "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+            "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+            "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+            "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+          ],
+          "receiptHttpStatus": 200,
+          "recoveryStatus": "unresolved",
+          "receiptVisible": false,
+          "matchingDetail": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "event": {
+              "eventId": "76e8efd4-d6d8-490c-a703-58790523609d",
+              "kind": "expense",
+              "occurredOn": "2026-10-04",
+              "createdAt": "2026-10-03T23:13:26.963054Z",
+              "occurredOrder": "9773",
+              "createdOrder": "1791069206963054",
+              "description": "Nest money recovery recorded-cancel c3e6461f",
+              "amountCentimes": "3",
+              "createdBy": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+              "relatedEventId": null,
+              "hasReceipt": false
+            },
+            "receiptTotalCentimes": null,
+            "note": null,
+            "category": null,
+            "reversedById": null,
+            "shares": [
+              {
+                "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "allocatedCentimes": "2",
+                "deltaCentimes": "1"
+              },
+              {
+                "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "allocatedCentimes": "1",
+                "deltaCentimes": "-1"
+              }
+            ]
+          }
+        }
+      ],
+      "outsiderReceiptStatus": 403,
+      "anonymousReceiptStatus": 401
+    },
+    "unused-cancel": {
+      "marker": "Nest money recovery unused-cancel b213db00",
+      "operationId": "8eb38217-be7d-44df-9ebc-06d7d008697c",
+      "members": [
+        {
+          "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+          "balance": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "eventCount": "16",
+            "openingEstablished": false,
+            "members": [
+              {
+                "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "displayName": "Test Alex",
+                "centimes": "102"
+              },
+              {
+                "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "displayName": "Test Sam",
+                "centimes": "-102"
+              }
+            ]
+          },
+          "historyEventIds": [
+            "76e8efd4-d6d8-490c-a703-58790523609d",
+            "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+            "bffa007b-5c00-4b63-941e-db7bdad45a30",
+            "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+            "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+            "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+            "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+            "609d9aa2-3749-4341-9f53-2212ce741b4d",
+            "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+            "8564461d-fd50-4163-b6d4-c73e487d5e69",
+            "db167a17-dd69-4505-8553-969a7f202103",
+            "52079b26-87de-4c13-98ac-0d8d13f6e929",
+            "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+            "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+            "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+            "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+          ],
+          "receiptHttpStatus": 200,
+          "recoveryStatus": "cancelled",
+          "receiptVisible": false,
+          "matchingDetail": null
+        },
+        {
+          "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+          "balance": {
+            "version": 1,
+            "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+            "eventCount": "16",
+            "openingEstablished": false,
+            "members": [
+              {
+                "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+                "displayName": "Test Alex",
+                "centimes": "102"
+              },
+              {
+                "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+                "displayName": "Test Sam",
+                "centimes": "-102"
+              }
+            ]
+          },
+          "historyEventIds": [
+            "76e8efd4-d6d8-490c-a703-58790523609d",
+            "47d8b202-29d3-41ed-9fb8-ce1f97aea1fb",
+            "bffa007b-5c00-4b63-941e-db7bdad45a30",
+            "af8d7233-d9fd-4dc1-b711-e50a45ce444d",
+            "02a3d199-2cb7-4a1a-959c-f3be4a02ec1a",
+            "d91da77f-db6a-4916-ae70-54e1cf2dddd2",
+            "632a297f-5ac3-4cf9-90d6-3eccf11e6559",
+            "609d9aa2-3749-4341-9f53-2212ce741b4d",
+            "d50a6c7c-4fe7-4f28-aeef-a8b3ead05a32",
+            "8564461d-fd50-4163-b6d4-c73e487d5e69",
+            "db167a17-dd69-4505-8553-969a7f202103",
+            "52079b26-87de-4c13-98ac-0d8d13f6e929",
+            "9cd2bdf1-4895-427d-8494-ca164a3488ec",
+            "e89d42bf-f9cf-453b-a5c6-d49e208bb019",
+            "7117aab8-9cd7-4f4b-a812-1408b11fb001",
+            "a9f0f7f7-3d97-4daa-9515-84af6339bdec"
+          ],
+          "receiptHttpStatus": 200,
+          "recoveryStatus": "unresolved",
+          "receiptVisible": false,
+          "matchingDetail": null
+        }
+      ],
+      "outsiderReceiptStatus": 403,
+      "anonymousReceiptStatus": 401
+    }
+  },
+  "lateCancelledPacket": {
+    "exactOriginalCommand": {
+      "operationId": "8EB38217-BE7D-44DF-9EBC-06D7D008697C",
+      "expense": {
+        "allocations": [
+          {
+            "centimes": "2",
+            "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "centimes": "1",
+            "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          }
+        ],
+        "note": null,
+        "amountCentimes": "3",
+        "description": "Nest money recovery unused-cancel b213db00",
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "categoryId": null,
+        "date": "2026-10-04"
+      }
+    },
+    "saveHttpStatus": 409,
+    "apiCode": "conflict",
+    "recoveryStatus": "cancelled",
+    "financialEventAdded": false,
+    "balancesUnchanged": true,
+    "intentSelectedOnce": true
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "scenario": "retry",
+  "marker": "Nest money recovery retry 38857a0c",
+  "reviewedCentimes": 3,
+  "reviewedShares": [2, 1],
+  "journalEmpty": true,
+  "reviewCornerTarget": {
+    "x": 16,
+    "y": 405.5,
+    "width": 343,
+    "height": 52
+  },
+  "observerCorrection": "Initial reference tap failed without leaving the form. Inspected retained fields, then selected the actual settled corner without re-entering the draft."
+}

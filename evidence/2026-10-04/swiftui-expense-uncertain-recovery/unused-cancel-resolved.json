@@ -1,0 +1,90 @@
+{
+  "scenario": "unused-cancel",
+  "saved": {
+    "cancellationRequested": true,
+    "result": {
+      "version": 1,
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "status": "cancelled",
+      "operationId": "8EB38217-BE7D-44DF-9EBC-06D7D008697C"
+    },
+    "command": {
+      "operationId": "8EB38217-BE7D-44DF-9EBC-06D7D008697C",
+      "expense": {
+        "allocations": [
+          {
+            "centimes": "2",
+            "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "centimes": "1",
+            "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          }
+        ],
+        "note": null,
+        "amountCentimes": "3",
+        "description": "Nest money recovery unused-cancel b213db00",
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "categoryId": null,
+        "date": "2026-10-04"
+      }
+    }
+  },
+  "originalCommandPreserved": true,
+  "posts": [
+    {
+      "time": 1791069483.398893,
+      "method": "POST",
+      "path": "/v1/money/expense/save",
+      "command": {
+        "expense": {
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            }
+          ],
+          "amountCentimes": "3",
+          "categoryId": null,
+          "date": "2026-10-04",
+          "description": "Nest money recovery unused-cancel b213db00",
+          "note": null,
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+        },
+        "operationId": "8EB38217-BE7D-44DF-9EBC-06D7D008697C"
+      },
+      "forwarded": false,
+      "fault": "blocked_before_upstream"
+    },
+    {
+      "time": 1791069515.950356,
+      "method": "POST",
+      "path": "/v1/money/expense/cancel",
+      "command": {
+        "operationId": "8EB38217-BE7D-44DF-9EBC-06D7D008697C"
+      },
+      "forwarded": true,
+      "upstreamStatus": 200,
+      "result": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "8eb38217-be7d-44df-9ebc-06d7d008697c",
+        "status": "cancelled",
+        "receipt": null
+      }
+    }
+  ],
+  "target": {
+    "x": 16,
+    "y": 512,
+    "width": 343,
+    "height": 52
+  },
+  "noSecondSavePost": true
+}

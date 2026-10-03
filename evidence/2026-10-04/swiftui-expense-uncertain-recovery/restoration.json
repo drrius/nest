@@ -1,0 +1,26 @@
+{
+  "nativeCodeSource": "9db5058981c5d74897f7bc67640d9a036926854f",
+  "nativeInputs": 1028,
+  "sourceMismatches": 0,
+  "started": 1791069988.386753,
+  "completedReceiptSlotsExplicitlyCleared": true,
+  "hostedOutcomesVerified": true,
+  "fictionalFinancialHistoryPreserved": true,
+  "buildPid": 77557,
+  "buildExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "ordinaryTodayRestored": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0
+  },
+  "relayStopped": true,
+  "generatedPrivateKeyDestroyed": true,
+  "temporaryPublicCertificateOnlyOnOwnedSimulatorExpiresAfterTwoDays": true,
+  "finished": 1791069999.9055
+}
