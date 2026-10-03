@@ -13,6 +13,7 @@ actor FakeGroceryServer {
     private var rejectNextAdd = false
     private var failNextAddedList = false
     private var membershipDenied = false
+    private var categoriesRemoved = false
     private var added: AddGrocery?
     private var addAttempts: [UUID] = []
     private var loseNextEditResponse = false
@@ -39,6 +40,7 @@ actor FakeGroceryServer {
     func rejectAdd() { rejectNextAdd = true }
     func loseListAfterAdd() { failNextAddedList = true }
     func denyMembership() { membershipDenied = true }
+    func removeCategories() { categoriesRemoved = true }
     func addOperations() -> [UUID] { addAttempts }
     func addedCategory() -> UUID? { added?.categoryId }
     func loseNextEdit() { loseNextEditResponse = true }
@@ -181,6 +183,9 @@ actor FakeGroceryServer {
     }
 
     private func categories(for actor: UUID) -> String {
+        if categoriesRemoved {
+            return "{\"version\":1,\"householdId\":\"\(household)\",\"categories\":[]}"
+        }
         let name = actor == actorA ? "Alex produce" : "Sam pantry"
         return """
             {"version":1,"householdId":"\(household)","categories":[{"categoryId":"\(actor)","name":"\(name)"}]}

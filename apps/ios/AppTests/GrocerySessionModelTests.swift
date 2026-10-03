@@ -182,6 +182,23 @@ final class GrocerySessionModelTests: XCTestCase {
         XCTAssertTrue(attempts.isEmpty)
     }
 
+    func testCategoryRemovedAfterSelectionCannotBeStagedFromItsCachedChoice() async throws {
+        let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.refreshGroceryCategories()
+        XCTAssertTrue(model.groceryCategoryAvailable(actorA))
+        await server.removeCategories()
+        let confirmed = await model.addGrocery(name: "Oat milk", quantity: nil, unit: nil, categoryId: actorA)
+        XCTAssertFalse(confirmed)
+        XCTAssertFalse(model.groceryCategoryAvailable(actorA))
+        XCTAssertNil(model.groceryAdd)
+        let attempts = await server.addOperations()
+        XCTAssertTrue(attempts.isEmpty)
+        let withoutCategory = await model.addGrocery(name: "Oat milk", quantity: nil, unit: nil)
+        XCTAssertTrue(withoutCategory)
+    }
+
     func testInvalidAddCannotReportConfirmationOrStageARequest() async throws {
         let server = FakeGroceryServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)

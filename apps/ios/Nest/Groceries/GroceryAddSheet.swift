@@ -34,6 +34,14 @@ struct GroceryAddSheet: View {
                 .disabled(submitting || model.groceryAdd != nil)
                 GroceryCategoryPicker(model: model, selection: $categoryId)
                     .disabled(submitting || model.groceryAdd != nil)
+                if categoryId != nil, !model.groceryCategoryAvailable(categoryId), model.groceryAdd == nil {
+                    Section {
+                        Text("The selected category is unavailable. Choose another or clear it.")
+                            .foregroundStyle(QuietPalette.muted)
+                        Button("Clear category") { categoryId = nil }
+                            .disabled(submitting)
+                    }
+                }
                 if let saved = model.groceryAdd {
                     savedRequest(saved)
                 } else if attemptedSave, let notice = model.groceryNotice {
