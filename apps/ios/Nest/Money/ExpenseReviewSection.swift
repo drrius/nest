@@ -5,6 +5,7 @@ struct ExpenseReviewSection: View {
     let member: VerifiedMember
     let members: [MoneyBalance.Member]
     var categoryName: String? = nil
+    var unknownMemberLabel = "Your partner"
 
     var body: some View {
         Section("Review expense") {
@@ -38,6 +39,6 @@ struct ExpenseReviewSection: View {
 
     private func name(_ id: UUID) -> String {
         if id == member.userId { return "You" }
-        return members.first(where: { $0.id == id })?.displayName ?? "Your partner"
+        return members.first(where: { $0.id == id })?.displayName ?? unknownMemberLabel
     }
 }

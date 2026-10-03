@@ -47,6 +47,9 @@ struct MoneyScreen: View {
                 NavigationLink("Saved draft dismissal") {
                     LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
                 }
+                NavigationLink("Saved draft confirmation") {
+                    LegacyConfirmationScreen(session: session, member: member, draftId: nil).id(session.generation)
+                }
             }
             MoneyHistorySection(session: session, member: member)
         }

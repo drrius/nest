@@ -8,6 +8,7 @@ struct ExpenseFormFields: View {
     @Binding var date: Date
     let members: [MoneyBalance.Member]
     let focus: FocusState<Field?>.Binding
+    var allowsReceiptTotal = true
 
     var body: some View {
         Section("Expense") {
@@ -18,8 +19,10 @@ struct ExpenseFormFields: View {
             }
             DatePicker("Date", selection: $date, displayedComponents: .date)
             input("Note (optional)", text: $draft.note, field: .note)
-            Toggle("Receipt total differs from shared amount", isOn: $draft.separateReceiptTotal)
-            if draft.separateReceiptTotal {
+            if allowsReceiptTotal {
+                Toggle("Receipt total differs from shared amount", isOn: $draft.separateReceiptTotal)
+            }
+            if allowsReceiptTotal && draft.separateReceiptTotal {
                 input("Receipt total (CHF)", text: $draft.receiptTotal, field: .receiptTotal, keyboard: .decimalPad)
             }
         }
