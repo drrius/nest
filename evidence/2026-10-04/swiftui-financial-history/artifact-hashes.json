@@ -32,10 +32,7 @@
     "largest-detail-dark.png": "c57fb250799e5c268d72834944d8945ad038ab13b1a50663e5198c832840fbe8",
     "restored-today.png": "ca76127330b1f90720c6e59fb6d6d22d63a45f18c33a22768910acbec1639985"
   },
-  "formattingOnlyChanges": [
-    "detail.json",
-    "retry.json"
-  ],
+  "formattingOnlyChanges": ["detail.json", "retry.json"],
   "current": {
     "setup.json": "f53a733dbb831e70610ede00801c723ab511c155146dfb5cc1f660b6ae4af113",
     "installed.json": "bfd08c1269517f21c6358f04d33bc719f81ea84572193afd80ad4d2fd44ccc60",
