@@ -1,0 +1,5 @@
+View full history tap sent
+Refresh history tap sent
+Refresh balance tap sent
+Today tap sent
+Actual largest full-history and refresh corner navigation passed

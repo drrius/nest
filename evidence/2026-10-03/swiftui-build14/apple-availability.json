@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "bded62ecd2dcac8a2f0edc5edf7911587ff07fcb",
+  "read": "supported EAS submit:status",
+  "observedAtUTC": "2026-10-03T19:30:35.762166+00:00",
+  "app": "6814119349",
+  "build": {
+    "appVersion": "0.1.0",
+    "buildNumber": "14",
+    "processingState": "VALID",
+    "internalState": "IN_BETA_TESTING",
+    "externalState": "READY_FOR_BETA_SUBMISSION",
+    "uploadedDate": "2026-10-03T12:26:18-07:00",
+    "expired": false
+  },
+  "submission": "59693aa3-a6ef-4aa0-855b-28f547a045dd",
+  "submissionsCreated": 1,
+  "partnerTesterAccess": "unverified",
+  "physicalAcceptance": "unverified",
+  "publicRelease": false
+}

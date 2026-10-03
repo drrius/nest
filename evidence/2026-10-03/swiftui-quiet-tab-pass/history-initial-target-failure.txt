@@ -1,0 +1,8 @@
+Money tap sent
+View full history tap sent
+Traceback (most recent call last):
+  File "/private/tmp/nest-quiet-history-qa.py", line 54, in <module>
+    press('Refresh history',seek=True)
+  File "/private/tmp/nest-quiet-history-qa.py", line 22, in press
+    assert r['width']>=44 and r['height']>=44,(label,r)
+AssertionError: ('Refresh history', {'width': 115, 'x': 20, 'height': 20.5, 'y': 531.75})

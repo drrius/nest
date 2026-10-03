@@ -18,7 +18,7 @@ Existing balance/history, ordinary expenses, refunds/corrections, settlements, r
 - [ ] Verify large text, VoiceOver, navigation, motion settings and the approved Quiet appearance; fix findings.
 - [ ] Complete two-member offline/restart/conflict journeys, meal planning/constraints, chores/handovers, calendar privacy and longer background/reconnection behavior.
 
-Selected rendered simulator checks already pass, including the revised four-tab roots at normal and largest text and expense/payment/date-picker navigation. Full-history pagination, complete keyboard/error/recovery states, phone and owner design acceptance remain required. The immediate priority is a batched current private build; build13 does not contain the latest changes.
+Selected rendered simulator checks already pass, including the revised four-tab roots at normal and largest text, expense/payment/date-picker navigation, and full-history entry/read-refresh corner targets. Full-history pagination, complete keyboard/error/recovery states, phone and owner design acceptance remain required. Build14 now contains the latest batch and is internally available. The immediate priority is phone acceptance plus remaining native/hosted checks.
 
 ## 3. Prove live integrations
 
@@ -31,7 +31,7 @@ Continue independent native work while these inputs are unavailable. Do not purc
 
 ## 4. Deliver and accept a current private build
 
-- [ ] Batch the verified changes into a current signed TestFlight candidate. Build13 is the last identified available candidate and lacks later increments.
+- [x] Batch the verified changes into a current signed TestFlight candidate. Build14, exact source `bded62ec`, passes both CI workflows, native archive/export/package checks and supported internal Apple availability. Partner access and actual phone acceptance remain unverified.
 - [ ] Verify installation/sign-in and complete the [phone checklist](swiftui-phone-acceptance.md) with both partners; resolve findings.
 - [ ] Rehearse current-chain migration/reconciliation and old pending-intent drainage safely.
 - [ ] Prepare a reviewable cutover package. Production migration, retirement and public release remain separate owner decisions.

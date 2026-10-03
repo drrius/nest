@@ -1,0 +1,53 @@
+{
+  "ownedSimulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "appSource": "bded62ecd2dcac8a2f0edc5edf7911587ff07fcb",
+  "records": [
+    {
+      "action": "View full history",
+      "rect": {
+        "x": 20,
+        "y": 69.5,
+        "width": 335,
+        "height": 125.5
+      },
+      "corner": false
+    },
+    {
+      "action": "Refresh history",
+      "rect": {
+        "x": 20,
+        "y": 438,
+        "width": 335,
+        "height": 125.5
+      },
+      "corner": true
+    },
+    {
+      "action": "Refresh balance",
+      "rect": {
+        "x": 20,
+        "y": 458,
+        "width": 335,
+        "height": 125.5
+      },
+      "corner": true
+    },
+    {
+      "action": "Today",
+      "rect": {
+        "x": 25,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "corner": false
+    }
+  ],
+  "fullHistoryDestinationReached": true,
+  "refreshSelected": true,
+  "balanceRefreshSelected": true,
+  "financialSavesSelected": false,
+  "olderPagesLoaded": false,
+  "ordinaryAppRestored": true,
+  "initialScrollBudgetFailure": "12 scrolls stopped inside long fictional history descriptions; actual largest screen inspected before bounded32 continuation"
+}
