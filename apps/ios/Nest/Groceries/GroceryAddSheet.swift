@@ -64,12 +64,13 @@ struct GroceryAddSheet: View {
                     Button {
                         dismiss()
                     } label: {
-                        Text(model.groceryAdd == nil ? "Cancel" : "Close")
-                            .fixedSize(horizontal: true, vertical: false)
+                        Label(model.groceryAdd == nil ? "Cancel" : "Close", systemImage: "xmark")
+                            .labelStyle(.iconOnly)
                             .frame(minWidth: 44, minHeight: 44)
                             .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel(model.groceryAdd == nil ? "Cancel" : "Close")
                     .disabled(submitting)
                 }
                 ToolbarItem(placement: .confirmationAction) {
@@ -88,13 +89,14 @@ struct GroceryAddSheet: View {
                                 .frame(minWidth: 44, minHeight: 44)
                                 .contentShape(Rectangle())
                         } else {
-                            Text("Add")
-                                .fixedSize(horizontal: true, vertical: false)
+                            Label("Add", systemImage: "checkmark")
+                                .labelStyle(.iconOnly)
                                 .frame(minWidth: 44, minHeight: 44)
                                 .contentShape(Rectangle())
                         }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Add")
                     .disabled(
                         name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
                             || name.count > 120 || quantity.count > 80 || unit.count > 80

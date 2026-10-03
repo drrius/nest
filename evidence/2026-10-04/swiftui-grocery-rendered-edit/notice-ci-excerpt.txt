@@ -1,0 +1,68 @@
+2026-10-03T21:54:35.2982360Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 8.771 (8.841) seconds
+2026-10-03T21:54:35.2983180Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 8.771 (8.843) seconds
+2026-10-03T21:56:09.9366770Z SwiftCompile normal arm64 Compiling\ CookingPreferenceModelTests.swift,\ CorrectionDecisionModelTests.swift,\ CorrectionRecoveryModelTests.swift,\ DailySummaryAccountTests.swift,\ EventKitBusyMappingTests.swift,\ ExpenseDecisionModelTests.swift,\ ExpenseRecoveryModelTests.swift,\ FictionalAccountSessionFixtureTests.swift,\ FinancialCorrectionPreflightFixture.swift,\ FoodPreferenceModelTests.swift,\ GroceryReminderModelTests.swift,\ GroceryReminderTestServer.swift,\ GrocerySessionFakes.swift,\ GrocerySessionModelTests.swift,\ GroceryWritePreflightTests.swift,\ IngredientChoiceBindingTests.swift,\ IngredientReviewModelTests.swift,\ LegacyAdoptionApprovalModelTests.swift,\ LegacyAdoptionApprovalTestFixture.swift,\ LegacyAdoptionApprovalTestServer.swift,\ LegacyAdoptionModelTests.swift,\ LegacyAdoptionPresentationFixtureTests.swift,\ LegacyAdoptionTestFixture.swift /Users/runner/work/nest/nest/apps/ios/AppTests/CookingPreferenceModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/CorrectionDecisionModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/CorrectionRecoveryModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/DailySummaryAccountTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/EventKitBusyMappingTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/ExpenseDecisionModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/ExpenseRecoveryModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/FictionalAccountSessionFixtureTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/FinancialCorrectionPreflightFixture.swift /Users/runner/work/nest/nest/apps/ios/AppTests/FoodPreferenceModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/GroceryReminderModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/GroceryReminderTestServer.swift /Users/runner/work/nest/nest/apps/ios/AppTests/GrocerySessionFakes.swift /Users/runner/work/nest/nest/apps/ios/AppTests/GrocerySessionModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/GroceryWritePreflightTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/IngredientChoiceBindingTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/IngredientReviewModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/LegacyAdoptionApprovalModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/LegacyAdoptionApprovalTestFixture.swift /Users/runner/work/nest/nest/apps/ios/AppTests/LegacyAdoptionApprovalTestServer.swift /Users/runner/work/nest/nest/apps/ios/AppTests/LegacyAdoptionModelTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/LegacyAdoptionPresentationFixtureTests.swift /Users/runner/work/nest/nest/apps/ios/AppTests/LegacyAdoptionTestFixture.swift (in target 'NestAppTests' from project 'Nest')
+2026-10-03T21:56:12.6633520Z SwiftCompile normal arm64 /Users/runner/work/nest/nest/apps/ios/AppTests/GrocerySessionModelTests.swift (in target 'NestAppTests' from project 'Nest')
+2026-10-03T21:56:12.6634500Z     builtin-SwiftPerFileCompile GrocerySessionModelTests.swift
+2026-10-03T21:56:12.6635220Z SwiftCompile normal arm64 /Users/runner/work/nest/nest/apps/ios/AppTests/GroceryWritePreflightTests.swift (in target 'NestAppTests' from project 'Nest')
+2026-10-03T21:56:12.6636160Z     builtin-SwiftPerFileCompile GroceryWritePreflightTests.swift
+2026-10-03T21:56:12.6924110Z SwiftDriverJobDiscovery normal arm64 Compiling CookingPreferenceModelTests.swift, CorrectionDecisionModelTests.swift, CorrectionRecoveryModelTests.swift, DailySummaryAccountTests.swift, EventKitBusyMappingTests.swift, ExpenseDecisionModelTests.swift, ExpenseRecoveryModelTests.swift, FictionalAccountSessionFixtureTests.swift, FinancialCorrectionPreflightFixture.swift, FoodPreferenceModelTests.swift, GroceryReminderModelTests.swift, GroceryReminderTestServer.swift, GrocerySessionFakes.swift, GrocerySessionModelTests.swift, GroceryWritePreflightTests.swift, IngredientChoiceBindingTests.swift, IngredientReviewModelTests.swift, LegacyAdoptionApprovalModelTests.swift, LegacyAdoptionApprovalTestFixture.swift, LegacyAdoptionApprovalTestServer.swift, LegacyAdoptionModelTests.swift, LegacyAdoptionPresentationFixtureTests.swift, LegacyAdoptionTestFixture.swift (in target 'NestAppTests' from project 'Nest')
+2026-10-03T21:58:52.4887220Z Test Suite 'GrocerySessionModelTests' started at 2026-10-03 21:58:42.754.
+2026-10-03T21:58:52.4887880Z Test Case '-[NestAppTests.GrocerySessionModelTests testCategoryRemovedAfterSelectionCannotBeStagedFromItsCachedChoice]' started.
+2026-10-03T21:58:52.4888880Z Test Case '-[NestAppTests.GrocerySessionModelTests testCategoryRemovedAfterSelectionCannotBeStagedFromItsCachedChoice]' passed (0.094 seconds).
+2026-10-03T21:58:52.4889820Z Test Case '-[NestAppTests.GrocerySessionModelTests testConfirmedAddReportsSuccessEvenWhenTheFollowingReadFails]' started.
+2026-10-03T21:58:52.4890660Z Test Case '-[NestAppTests.GrocerySessionModelTests testConfirmedAddReportsSuccessEvenWhenTheFollowingReadFails]' passed (0.073 seconds).
+2026-10-03T21:58:52.4891520Z Test Case '-[NestAppTests.GrocerySessionModelTests testFreshMembershipRefusalPreventsStagingNewAdd]' started.
+2026-10-03T21:58:52.4892830Z Test Case '-[NestAppTests.GrocerySessionModelTests testFreshMembershipRefusalPreventsStagingNewAdd]' passed (0.068 seconds).
+2026-10-03T21:58:52.4893610Z Test Case '-[NestAppTests.GrocerySessionModelTests testInFlightAccountAListCannotReplaceAccountBDisplay]' started.
+2026-10-03T21:58:52.4894470Z Test Case '-[NestAppTests.GrocerySessionModelTests testInFlightAccountAListCannotReplaceAccountBDisplay]' passed (0.074 seconds).
+2026-10-03T21:58:52.4895240Z Test Case '-[NestAppTests.GrocerySessionModelTests testInFlightCategoriesCannotReplaceAnotherAccount]' started.
+2026-10-03T21:58:52.4896290Z Test Case '-[NestAppTests.GrocerySessionModelTests testInFlightCategoriesCannotReplaceAnotherAccount]' passed (0.086 seconds).
+2026-10-03T21:58:52.4897080Z Test Case '-[NestAppTests.GrocerySessionModelTests testInvalidAddCannotReportConfirmationOrStageARequest]' started.
+2026-10-03T21:58:52.4897960Z Test Case '-[NestAppTests.GrocerySessionModelTests testInvalidAddCannotReportConfirmationOrStageARequest]' passed (0.958 seconds).
+2026-10-03T21:58:52.4898870Z Test Case '-[NestAppTests.GrocerySessionModelTests testLostAddResponseRetriesExactOperationWithoutDuplicateItem]' started.
+2026-10-03T21:58:52.4899740Z Test Case '-[NestAppTests.GrocerySessionModelTests testLostAddResponseRetriesExactOperationWithoutDuplicateItem]' passed (0.097 seconds).
+2026-10-03T21:58:52.4900660Z Test Case '-[NestAppTests.GrocerySessionModelTests testLostEditResponseRetriesSameOperationAndShowsUpdatedItem]' started.
+2026-10-03T21:58:52.4901510Z Test Case '-[NestAppTests.GrocerySessionModelTests testLostEditResponseRetriesSameOperationAndShowsUpdatedItem]' passed (0.125 seconds).
+2026-10-03T21:58:52.4902570Z Test Case '-[NestAppTests.GrocerySessionModelTests testLostRemoveResponseRetriesSameOperationAndOmitsItem]' started.
+2026-10-03T21:58:52.4903500Z Test Case '-[NestAppTests.GrocerySessionModelTests testLostRemoveResponseRetriesSameOperationAndOmitsItem]' passed (0.089 seconds).
+2026-10-03T21:58:52.4904390Z Test Case '-[NestAppTests.GrocerySessionModelTests testOfflineCheckIsVisiblePendingThenConfirmedOnline]' started.
+2026-10-03T21:58:52.4905240Z Test Case '-[NestAppTests.GrocerySessionModelTests testOfflineCheckIsVisiblePendingThenConfirmedOnline]' passed (0.160 seconds).
+2026-10-03T21:58:52.4906010Z Test Case '-[NestAppTests.GrocerySessionModelTests testOfflineNewAddIsNotStagedOrReportedAsConfirmed]' started.
+2026-10-03T21:58:52.4906860Z Test Case '-[NestAppTests.GrocerySessionModelTests testOfflineNewAddIsNotStagedOrReportedAsConfirmed]' passed (0.105 seconds).
+2026-10-03T21:58:52.4907640Z Test Case '-[NestAppTests.GrocerySessionModelTests testOldAccountCategoryCannotBeSubmittedAfterSwitch]' started.
+2026-10-03T21:58:52.4908480Z Test Case '-[NestAppTests.GrocerySessionModelTests testOldAccountCategoryCannotBeSubmittedAfterSwitch]' passed (0.102 seconds).
+2026-10-03T21:58:52.4909420Z Test Case '-[NestAppTests.GrocerySessionModelTests testRejectedAddCannotReportConfirmationOrRetryAsANewRequest]' started.
+2026-10-03T21:58:52.4910340Z Test Case '-[NestAppTests.GrocerySessionModelTests testRejectedAddCannotReportConfirmationOrRetryAsANewRequest]' passed (0.722 seconds).
+2026-10-03T21:58:52.4911230Z Test Case '-[NestAppTests.GrocerySessionModelTests testRejectedEditRemainsVisibleUntilExplicitDiscard]' started.
+2026-10-03T21:58:52.4912020Z Test Case '-[NestAppTests.GrocerySessionModelTests testRejectedEditRemainsVisibleUntilExplicitDiscard]' passed (0.146 seconds).
+2026-10-03T21:58:52.4912860Z Test Case '-[NestAppTests.GrocerySessionModelTests testRejectedRemoveRemainsVisibleUntilExplicitDiscard]' started.
+2026-10-03T21:58:52.4913720Z Test Case '-[NestAppTests.GrocerySessionModelTests testRejectedRemoveRemainsVisibleUntilExplicitDiscard]' passed (0.140 seconds).
+2026-10-03T21:58:53.3355700Z Test Case '-[NestAppTests.GrocerySessionModelTests testUnconfirmedAddKeepsItsFieldsAndRetriesOnlyTheSavedOperation]' started.
+2026-10-03T21:58:53.3357170Z Test Case '-[NestAppTests.GrocerySessionModelTests testUnconfirmedAddKeepsItsFieldsAndRetriesOnlyTheSavedOperation]' passed (0.086 seconds).
+2026-10-03T21:58:53.3358810Z Test Suite 'GrocerySessionModelTests' passed at 2026-10-03 21:58:46.552.
+2026-10-03T21:58:53.3360100Z Test Suite 'GroceryWritePreflightTests' started at 2026-10-03 21:58:46.553.
+2026-10-03T21:58:53.3361020Z Test Case '-[NestAppTests.GroceryWritePreflightTests testAccountChangeDuringPreflightCannotQueueOldEdit]' started.
+2026-10-03T21:58:53.3362270Z Test Case '-[NestAppTests.GroceryWritePreflightTests testAccountChangeDuringPreflightCannotQueueOldEdit]' passed (0.398 seconds).
+2026-10-03T21:58:53.3363850Z Test Case '-[NestAppTests.GroceryWritePreflightTests testAcknowledgedEditReportsSuccessWhenFollowingReadFails]' started.
+2026-10-03T21:58:53.3365050Z Test Case '-[NestAppTests.GroceryWritePreflightTests testAcknowledgedEditReportsSuccessWhenFollowingReadFails]' passed (0.115 seconds).
+2026-10-03T21:58:53.3366130Z Test Case '-[NestAppTests.GroceryWritePreflightTests testBackgroundListFailureCannotReplaceOnlineOnlyFormFailure]' started.
+2026-10-03T21:58:53.3384170Z Test Case '-[NestAppTests.GroceryWritePreflightTests testBackgroundListFailureCannotReplaceOnlineOnlyFormFailure]' passed (0.074 seconds).
+2026-10-03T21:58:53.3385280Z Test Case '-[NestAppTests.GroceryWritePreflightTests testCategoryRemovedAfterSelectionCannotBeUsedForNewEdit]' started.
+2026-10-03T21:58:53.3386180Z Test Case '-[NestAppTests.GroceryWritePreflightTests testCategoryRemovedAfterSelectionCannotBeUsedForNewEdit]' passed (0.096 seconds).
+2026-10-03T21:58:53.3387010Z Test Case '-[NestAppTests.GroceryWritePreflightTests testChangedItemCannotBeEditedOrRemovedFromCachedForm]' started.
+2026-10-03T21:58:53.3387860Z Test Case '-[NestAppTests.GroceryWritePreflightTests testChangedItemCannotBeEditedOrRemovedFromCachedForm]' passed (0.162 seconds).
+2026-10-03T21:58:53.3388630Z Test Case '-[NestAppTests.GroceryWritePreflightTests testFreshMembershipRefusalCannotStageEdit]' started.
+2026-10-03T21:58:53.4165110Z Test Case '-[NestAppTests.GroceryWritePreflightTests testFreshMembershipRefusalCannotStageEdit]' passed (0.111 seconds).
+2026-10-03T21:58:53.4188080Z Test Case '-[NestAppTests.GroceryWritePreflightTests testFreshMembershipRefusalCannotStageRemoval]' started.
+2026-10-03T21:58:53.4188810Z Test Case '-[NestAppTests.GroceryWritePreflightTests testFreshMembershipRefusalCannotStageRemoval]' passed (0.109 seconds).
+2026-10-03T21:58:53.4189810Z Test Case '-[NestAppTests.GroceryWritePreflightTests testOfflineEditAndRemovalCannotCreateOnlineOnlyIntent]' started.
+2026-10-03T21:58:53.4190860Z Test Case '-[NestAppTests.GroceryWritePreflightTests testOfflineEditAndRemovalCannotCreateOnlineOnlyIntent]' passed (0.328 seconds).
+2026-10-03T21:58:53.4191760Z Test Case '-[NestAppTests.GroceryWritePreflightTests testOldReloadCannotReplaceNewMemberDisplayOrCache]' started.
+2026-10-03T21:58:53.9390960Z Test Case '-[NestAppTests.GroceryWritePreflightTests testOldReloadCannotReplaceNewMemberDisplayOrCache]' passed (0.079 seconds).
+2026-10-03T21:58:53.9391840Z Test Case '-[NestAppTests.GroceryWritePreflightTests testRemovedItemCannotStageAnEditOrRemovalOrBeRecreated]' started.
+2026-10-03T21:58:53.9392660Z Test Case '-[NestAppTests.GroceryWritePreflightTests testRemovedItemCannotStageAnEditOrRemovalOrBeRecreated]' passed (0.074 seconds).
+2026-10-03T21:58:53.9393560Z Test Case '-[NestAppTests.GroceryWritePreflightTests testUnconfirmedEditKeepsFieldsAndRetriesOnlyItsSavedOperation]' started.
+2026-10-03T21:58:53.9394710Z Test Case '-[NestAppTests.GroceryWritePreflightTests testUnconfirmedEditKeepsFieldsAndRetriesOnlyItsSavedOperation]' passed (0.102 seconds).
+2026-10-03T21:58:53.9395460Z Test Suite 'GroceryWritePreflightTests' passed at 2026-10-03 21:58:48.756.
+2026-10-03T22:00:32.5080990Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 102.204 (131.401) seconds
+2026-10-03T22:00:32.5553550Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 102.204 (131.402) seconds

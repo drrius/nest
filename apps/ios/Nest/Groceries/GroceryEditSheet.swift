@@ -90,12 +90,13 @@ struct GroceryEditSheet: View {
                     Button {
                         close()
                     } label: {
-                        Text(model.groceryEdit == nil ? "Cancel" : "Close")
-                            .fixedSize(horizontal: true, vertical: false)
+                        Label(model.groceryEdit == nil ? "Cancel" : "Close", systemImage: "xmark")
+                            .labelStyle(.iconOnly)
                             .frame(minWidth: 44, minHeight: 44)
                             .contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel(model.groceryEdit == nil ? "Cancel" : "Close")
                     .disabled(submitting || reloading)
                 }
                 ToolbarItem(placement: .confirmationAction) {
@@ -115,13 +116,14 @@ struct GroceryEditSheet: View {
                                 .frame(minWidth: 44, minHeight: 44)
                                 .contentShape(Rectangle())
                         } else {
-                            Text("Save")
-                                .fixedSize(horizontal: true, vertical: false)
+                            Label("Save", systemImage: "checkmark")
+                                .labelStyle(.iconOnly)
                                 .frame(minWidth: 44, minHeight: 44)
                                 .contentShape(Rectangle())
                         }
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Save")
                     .disabled(!validChanges || fieldsLocked || model.groceryEditSaving)
                 }
             }

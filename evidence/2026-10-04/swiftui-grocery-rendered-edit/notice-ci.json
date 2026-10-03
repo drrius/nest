@@ -17,5 +17,12 @@
     "skips": 0,
     "exitCode": 0,
     "transport": "controlled native transports and scoped SQLite; separate from rendered hosted UI"
+  },
+  "nativeTotals": {
+    "foundationMethods": 478,
+    "foundationExplicitSkips": 41,
+    "signedNativeMethods": 389,
+    "signedNativeExplicitSkips": 11,
+    "failures": 0
   }
 }
