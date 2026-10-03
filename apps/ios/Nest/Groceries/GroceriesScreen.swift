@@ -82,119 +82,6 @@ struct GroceriesScreen: View {
         .task { if refreshOnOpen || model.groceries == .idle { await model.refreshGroceries() } }
     }
 
-    private func addStatus(_ saved: SavedGroceryAdd) -> some View {
-        Section("Add to the list") {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(saved.command.name)
-                    .font(.headline)
-                    .foregroundStyle(QuietPalette.ink)
-                Text(addStatusText(saved.state))
-                    .font(.subheadline)
-                    .foregroundStyle(QuietPalette.muted)
-                if saved.state == .pending {
-                    Button("Retry saved add") { Task { await model.retryGroceryAdd() } }
-                        .disabled(model.groceryAddSaving)
-                        .frame(minHeight: 44, alignment: .leading)
-                }
-                if saved.state == .conflict {
-                    Button("Discard unconfirmed add") {
-                        Task { await model.discardConflictedGroceryAdd() }
-                    }
-                    .frame(minHeight: 44, alignment: .leading)
-                }
-            }
-        }
-        .listRowBackground(QuietPalette.background)
-    }
-
-    private func addStatusText(_ state: SavedGroceryAdd.State) -> String {
-        switch state {
-        case .pending: "Not confirmed. Retry the same saved request when online."
-        case .acknowledged: "Added. Refreshing the shared list."
-        case .conflict: "This add was rejected. Check the shared list before trying again."
-        }
-    }
-
-    private func editStatus(_ saved: SavedGroceryEdit) -> some View {
-        Section("Edit to review") {
-            VStack(alignment: .leading, spacing: 8) {
-                Text("\(saved.item.name) → \(saved.command.name)")
-                    .font(.headline)
-                    .foregroundStyle(QuietPalette.ink)
-                if let detail = editDetail(saved) {
-                    Text(detail).font(.subheadline).foregroundStyle(QuietPalette.muted)
-                }
-                Text(editStatusText(saved.state))
-                    .font(.subheadline)
-                    .foregroundStyle(QuietPalette.muted)
-                if saved.state == .pending {
-                    Button("Retry saved edit") { Task { await model.retryGroceryEdit() } }
-                        .disabled(model.groceryEditSaving)
-                        .frame(minHeight: 44, alignment: .leading)
-                }
-                if saved.state == .conflict {
-                    Button("Discard rejected edit") {
-                        Task { await model.discardConflictedGroceryEdit() }
-                    }
-                    .frame(minHeight: 44, alignment: .leading)
-                }
-            }
-        }
-        .listRowBackground(QuietPalette.background)
-    }
-
-    private func editStatusText(_ state: SavedGroceryEdit.State) -> String {
-        switch state {
-        case .pending: "Not confirmed. Retry the same saved request when online."
-        case .acknowledged: "Updated. Refreshing the shared list."
-        case .conflict: "Another change won. Review the current item before editing again."
-        }
-    }
-
-    private func editDetail(_ saved: SavedGroceryEdit) -> String? {
-        let command = saved.command
-        let amount = [command.quantity, command.unit].compactMap { $0 }.joined(separator: " ")
-        let removedAmount =
-            command.quantity == nil && command.unit == nil
-            && (saved.item.quantity != nil || saved.item.unit != nil)
-        let categoryChanged = command.categoryId != saved.item.categoryId
-        let category =
-            categoryChanged
-            ? (command.categoryId == nil ? "No category" : "Category changed") : nil
-        return [removedAmount ? "No quantity" : amount.nilIfEmpty, category].compactMap { $0 }
-            .joined(separator: " · ").nilIfEmpty
-    }
-
-    private func removeStatus(_ saved: SavedGroceryRemove) -> some View {
-        Section("Removal to review") {
-            VStack(alignment: .leading, spacing: 8) {
-                Text(saved.item.name).font(.headline).foregroundStyle(QuietPalette.ink)
-                Text(removeStatusText(saved.state))
-                    .font(.subheadline).foregroundStyle(QuietPalette.muted)
-                if saved.state == .pending {
-                    Button("Retry saved removal") { Task { await model.retryGroceryRemove() } }
-                        .disabled(model.groceryRemoveSaving)
-                        .frame(minHeight: 44, alignment: .leading)
-                }
-                if saved.state == .conflict {
-                    Button("Discard rejected removal") {
-                        Task { await model.discardConflictedGroceryRemove() }
-                    }
-                    .frame(minHeight: 44, alignment: .leading)
-                }
-            }
-        }
-        .listRowBackground(QuietPalette.background)
-    }
-
-    private func removeStatusText(_ state: SavedGroceryRemove.State) -> String {
-        switch state {
-        case .pending: "Not confirmed. Retry the same saved request when online."
-        case .acknowledged: "Removed. Refreshing the shared list."
-        case .conflict: "Another change won. Review the current item before removing again."
-        }
-    }
-
     @ViewBuilder
     private var content: some View {
         switch model.groceries {
@@ -244,9 +131,12 @@ struct GroceriesScreen: View {
             Text(notice)
                 .font(.subheadline)
                 .foregroundStyle(QuietPalette.muted)
-            Button("Retry sync") { Task { await model.refreshGroceries() } }
-                .font(.subheadline.weight(.medium))
-                .frame(minHeight: 44, alignment: .leading)
+            Button {
+                Task { await model.refreshGroceries() }
+            } label: {
+                Text("Retry sync").frame(minHeight: 44, alignment: .leading)
+            }
+            .font(.subheadline.weight(.medium))
         }
         .listRowSeparator(.hidden)
     }
@@ -311,16 +201,44 @@ struct GroceriesScreen: View {
             Text("Confirmed · refreshing list")
                 .font(.caption).foregroundStyle(QuietPalette.muted)
         case .conflict:
-            Text("Needs review · change was not applied")
+            Text("Needs review")
+                .font(.caption.weight(.medium)).foregroundStyle(QuietPalette.ink)
+            if let requested = local.requestedChecked {
+                Text("Saved change: \(requested ? "Picked up" : "To pick up")")
+                    .font(.caption).foregroundStyle(QuietPalette.muted)
+            }
+            Text(conflictExplanation(local))
                 .font(.caption).foregroundStyle(QuietPalette.muted)
+            Button {
+                Task { await model.refreshGroceries() }
+            } label: {
+                Text("Refresh shared list").frame(minHeight: 44, alignment: .leading)
+            }
+            .font(.caption.weight(.medium))
             if let operation = local.operationId {
-                Button("Discard saved change") {
+                Button {
                     Task { await model.discardGroceryCheck(operation) }
+                } label: {
+                    Text("Discard saved change").frame(minHeight: 44, alignment: .leading)
                 }
                 .font(.caption.weight(.medium))
-                .frame(minHeight: 44, alignment: .leading)
             }
         case .open: EmptyView()
+        }
+    }
+
+    private func conflictExplanation(_ local: LocalGrocery) -> String {
+        switch local.conflictReason {
+        case .removed:
+            "This item was removed from the shared list. Your change was not applied."
+        case .forbidden:
+            "Your access to this item changed. Your change was not applied."
+        case .cutover:
+            "The list changed while this request was saved. Review the shared list before trying again."
+        case .changed:
+            "Shared list when last loaded: \(local.item.checked ? "Picked up" : "To pick up"). Your change was not applied."
+        case .unknown, .none:
+            "This change could not be applied. Refresh the shared list before discarding it."
         }
     }
 

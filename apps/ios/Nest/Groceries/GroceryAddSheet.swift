@@ -57,6 +57,7 @@ struct GroceryAddSheet: View {
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button(model.groceryAdd == nil ? "Cancel" : "Close") { dismiss() }
+                        .disabled(submitting)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button {

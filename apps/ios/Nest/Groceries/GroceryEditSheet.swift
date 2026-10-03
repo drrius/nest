@@ -2,17 +2,21 @@ import SwiftUI
 
 struct GroceryEditSheet: View {
     @ObservedObject var model: SessionModel
-    let item: GroceryItem
     @Environment(\.dismiss) private var dismiss
+    @State private var item: GroceryItem
     @State private var name: String
     @State private var quantity: String
     @State private var unit: String
     @State private var categoryId: UUID?
     @State private var submitting = false
+    @State private var attemptedSave = false
+    @State private var showingLatest = false
+    @State private var reloading = false
+    @State private var discardChanges = false
 
     init(model: SessionModel, item: GroceryItem) {
         self.model = model
-        self.item = item
+        _item = State(initialValue: item)
         _name = State(initialValue: item.name)
         _quantity = State(initialValue: item.quantity ?? "")
         _unit = State(initialValue: item.unit ?? "")
@@ -25,17 +29,48 @@ struct GroceryEditSheet: View {
                 Section("Item") {
                     TextField("What do you need?", text: $name)
                         .textInputAutocapitalization(.sentences)
+                        .accessibilityLabel("Grocery name")
                 }
+                .disabled(fieldsLocked)
                 Section("Details") {
                     TextField("Quantity (optional)", text: $quantity)
+                        .accessibilityLabel("Quantity")
                     TextField("Unit (optional)", text: $unit)
+                        .accessibilityLabel("Unit")
                 }
+                .disabled(fieldsLocked)
                 GroceryCategoryPicker(model: model, selection: $categoryId)
-                if !model.groceryCategoryAvailable(categoryId) {
+                    .disabled(fieldsLocked)
+                if !model.groceryCategoryAvailable(categoryId), model.groceryEdit == nil {
                     Section {
-                        Text("The previous category is unavailable. Choose another or clear it.")
+                        Text("The selected category is unavailable. Choose another or clear it.")
                             .foregroundStyle(QuietPalette.muted)
                         Button("Clear category") { categoryId = nil }
+                            .disabled(submitting || reloading)
+                    }
+                }
+                if let saved = model.groceryEdit, saved.item.id == item.id {
+                    savedRequest(saved)
+                } else if attemptedSave, let notice = model.groceryNotice {
+                    Section {
+                        Text(notice).foregroundStyle(QuietPalette.muted)
+                        Button {
+                            Task { await reload() }
+                        } label: {
+                            Text("Reload current item").frame(minHeight: 44, alignment: .leading)
+                        }
+                        .disabled(fieldsLocked)
+                    }
+                }
+                if showingLatest {
+                    Section("Shared item now") {
+                        Text(item.name)
+                        let detail = [item.quantity, item.unit, item.categoryName].compactMap { $0 }
+                        if !detail.isEmpty {
+                            Text(detail.joined(separator: " · ")).foregroundStyle(QuietPalette.muted)
+                        }
+                        Text("Your entries are unchanged. Review them against this item before saving.")
+                            .font(.footnote).foregroundStyle(QuietPalette.muted)
                     }
                 }
             }
@@ -45,36 +80,101 @@ struct GroceryEditSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button(model.groceryEdit == nil ? "Cancel" : "Close") { close() }
+                        .disabled(submitting || reloading)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button {
                         submitting = true
+                        attemptedSave = true
                         Task {
-                            await model.editGrocery(
+                            let confirmed = await model.editGrocery(
                                 item, name: name, quantity: quantity,
                                 unit: unit, categoryId: categoryId)
-                            dismiss()
+                            submitting = false
+                            if confirmed { dismiss() }
                         }
                     } label: {
                         if submitting { ProgressView() } else { Text("Save") }
                     }
-                    .disabled(!validChanges || submitting || model.groceryEditSaving)
+                    .disabled(!validChanges || fieldsLocked || model.groceryEditSaving)
                 }
+            }
+            .interactiveDismissDisabled(hasEdits || fieldsLocked)
+            .confirmationDialog("Discard grocery edits?", isPresented: $discardChanges, titleVisibility: .visible) {
+                Button("Discard edits", role: .destructive) { dismiss() }
+                Button("Keep editing", role: .cancel) {}
             }
         }
         .tint(QuietPalette.accent)
         .task { await model.refreshGroceryCategories() }
     }
 
-    private var validChanges: Bool {
+    private var fieldsLocked: Bool { submitting || reloading || model.groceryEdit != nil }
+
+    private var hasEdits: Bool {
         let title = name.trimmingCharacters(in: .whitespacesAndNewlines)
         let amount = quantity.trimmingCharacters(in: .whitespacesAndNewlines)
         let measure = unit.trimmingCharacters(in: .whitespacesAndNewlines)
-        let changed =
-            title != item.name || (amount.isEmpty ? nil : amount) != item.quantity
+        return title != item.name || (amount.isEmpty ? nil : amount) != item.quantity
             || (measure.isEmpty ? nil : measure) != item.unit || categoryId != item.categoryId
-        return !title.isEmpty && name.count <= 120 && quantity.count <= 80 && unit.count <= 80
-            && model.groceryCategoryAvailable(categoryId) && changed
+    }
+
+    private var validChanges: Bool {
+        !name.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+            && name.count <= 120 && quantity.count <= 80 && unit.count <= 80
+            && model.groceryCategoryAvailable(categoryId) && hasEdits
+    }
+
+    private func close() {
+        if model.groceryEdit != nil || !hasEdits {
+            dismiss()
+        } else {
+            discardChanges = true
+        }
+    }
+
+    private func reload() async {
+        reloading = true
+        defer { reloading = false }
+        let attempt = model.generation
+        guard let current = await model.reloadGroceryForEditing(item), model.generation == attempt else { return }
+        item = current
+        showingLatest = true
+    }
+
+    private func savedRequest(_ saved: SavedGroceryEdit) -> some View {
+        Section("Saved request") {
+            if saved.state == .pending {
+                Text("This edit is not confirmed. Retry the same saved request when online.")
+                    .foregroundStyle(QuietPalette.muted)
+                Button {
+                    submitting = true
+                    Task {
+                        let confirmed = await model.retryGroceryEdit()
+                        submitting = false
+                        if confirmed { dismiss() }
+                    }
+                } label: {
+                    Text("Retry saved edit").frame(minHeight: 44, alignment: .leading)
+                }
+                .disabled(submitting || model.groceryEditSaving)
+            } else if saved.state == .conflict {
+                Text("This edit was refused. Discard the rejected request, then reload the item to review your edits.")
+                    .foregroundStyle(QuietPalette.muted)
+                Button {
+                    submitting = true
+                    Task {
+                        await model.discardConflictedGroceryEdit()
+                        submitting = false
+                    }
+                } label: {
+                    Text("Discard rejected edit").frame(minHeight: 44, alignment: .leading)
+                }
+                .disabled(submitting)
+            } else {
+                Text("Updated. Refreshing the shared list.").foregroundStyle(QuietPalette.muted)
+            }
+        }
     }
 }

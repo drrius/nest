@@ -14,7 +14,7 @@ extension SessionModel {
             command = try AddGrocery(
                 operationId: UUID(), itemId: UUID(), name: name,
                 quantity: quantity, unit: unit, categoryId: categoryId)
-            guard try await prepareGroceryAdd(member: member, categoryId: categoryId, attempt: attempt) else {
+            guard try await prepareGroceryWrite(member: member, categoryId: categoryId, attempt: attempt) else {
                 return false
             }
             try await offline.enqueueGroceryAdd(command, lease: lease)
@@ -24,36 +24,12 @@ extension SessionModel {
             groceryNotice = "Saving your grocery…"
             return await retryGroceryAdd()
         } catch {
-            await handleNewGroceryAddFailure(error, member: member, attempt: attempt)
+            await handleNewGroceryWriteFailure(
+                error, member: member, attempt: attempt,
+                notice:
+                    "Could not save this grocery. Your entries are still here. Check the details and try again online.")
             return false
         }
-    }
-
-    private func handleNewGroceryAddFailure(_ error: Error, member: VerifiedMember, attempt: Int) async {
-        guard generation == attempt, status == .ready(member) else { return }
-        let mapped = state(for: error)
-        if mapped == .signedOut || mapped == .notMember {
-            await leaveGroceryAccount(mapped)
-        } else {
-            groceryNotice =
-                "Could not save this grocery. Your entries are still here. Check the details and try again online."
-        }
-    }
-
-    private func prepareGroceryAdd(member: VerifiedMember, categoryId: UUID?, attempt: Int) async throws -> Bool {
-        guard let auth, let api = groceryAPI else { throw NestAPIFailure.unavailable }
-        let session = try await auth.session()
-        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-        let verified = try await api.verify(token: session.accessToken, expectedActor: member.userId)
-        guard generation == attempt, status == .ready(member) else { return false }
-        guard verified.householdId == member.householdId else { throw NestAPIFailure.notMember }
-        if let categoryId {
-            let categories = try await api.categories(token: session.accessToken, member: member).categories
-            guard generation == attempt, status == .ready(member) else { return false }
-            groceryCategoryStatus = .loaded(categories)
-            guard categories.contains(where: { $0.id == categoryId }) else { throw NestAPIFailure.conflict }
-        }
-        return true
     }
 
     @discardableResult

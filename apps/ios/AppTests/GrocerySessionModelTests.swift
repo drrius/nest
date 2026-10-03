@@ -257,12 +257,14 @@ final class GrocerySessionModelTests: XCTestCase {
             let item = before.items.first?.item
         else { return XCTFail("Initial list did not load") }
         await server.loseNextEdit()
-        await model.editGrocery(
+        let initiallyConfirmed = await model.editGrocery(
             item, name: "Alex sweet apples", quantity: nil, unit: nil, categoryId: nil)
+        XCTAssertFalse(initiallyConfirmed)
         XCTAssertEqual(model.groceryEdit?.state, .pending)
         let first = await server.editOperations()
         XCTAssertEqual(first.count, 1)
-        await model.retryGroceryEdit()
+        let retryConfirmed = await model.retryGroceryEdit()
+        XCTAssertTrue(retryConfirmed)
         let attempts = await server.editOperations()
         XCTAssertEqual(attempts, [first[0], first[0]])
         XCTAssertNil(model.groceryEdit)
@@ -279,8 +281,11 @@ final class GrocerySessionModelTests: XCTestCase {
             let item = before.items.first?.item
         else { return XCTFail("Initial list did not load") }
         await server.rejectEdit()
-        await model.editGrocery(
+        let confirmed = await model.editGrocery(
             item, name: "Alex sweet apples", quantity: nil, unit: nil, categoryId: nil)
+        XCTAssertFalse(confirmed)
+        let retryConfirmed = await model.retryGroceryEdit()
+        XCTAssertFalse(retryConfirmed)
         XCTAssertEqual(model.groceryEdit?.state, .conflict)
         guard case .loaded(let saved) = model.groceries else { return XCTFail("List disappeared") }
         XCTAssertEqual(saved.items.first?.item.name, "Alex apples")

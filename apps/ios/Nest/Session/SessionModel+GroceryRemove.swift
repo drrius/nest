@@ -6,6 +6,10 @@ extension SessionModel {
         let attempt = generation
         do {
             let command = RemoveGrocery(item: item, operationId: UUID())
+            guard
+                try await prepareGroceryWrite(
+                    member: member, categoryId: nil, item: item, attempt: attempt)
+            else { return }
             try await offline.enqueueGroceryRemove(item, command: command, lease: lease)
             let saved = try await offline.readGroceryRemove(lease)
             guard generation == attempt, status == .ready(member) else { return }
@@ -13,8 +17,9 @@ extension SessionModel {
             groceryNotice = "Removing grocery…"
             await retryGroceryRemove()
         } catch {
-            guard generation == attempt, status == .ready(member) else { return }
-            groceryNotice = "Could not save this removal. Refresh the list and try again."
+            await handleNewGroceryWriteFailure(
+                error, member: member, attempt: attempt,
+                notice: "This removal was not started. Refresh the list and try again online.")
         }
     }
 
