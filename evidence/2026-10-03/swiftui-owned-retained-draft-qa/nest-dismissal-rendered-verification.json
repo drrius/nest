@@ -1,0 +1,114 @@
+{
+  "source": "8ff82f9aa3bea131e2cc1657001836a144a68483",
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "modes": ["light normal", "dark accessibility-extra-extra-extra-large"],
+  "actions": [
+    {
+      "navigation": "Direct draft review",
+      "rect": {
+        "x": 16,
+        "y": 198.5,
+        "width": 343,
+        "height": 52
+      },
+      "destination": "Retained draft",
+      "reached": true
+    },
+    {
+      "action": "Dismiss this draft",
+      "rect": {
+        "x": 16,
+        "y": 508,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "navigation": "Private proposal review",
+      "rect": {
+        "x": 16,
+        "y": 250.5,
+        "width": 343,
+        "height": 52
+      },
+      "destination": "Draft proposal",
+      "reached": true
+    },
+    {
+      "action": "Review dismissal",
+      "rect": {
+        "x": 16,
+        "y": 456,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "action": "Decline proposal",
+      "rect": {
+        "x": 16,
+        "y": 508,
+        "width": 343,
+        "height": 52
+      }
+    },
+    {
+      "navigation": "Direct draft review",
+      "rect": {
+        "x": 16,
+        "y": 488.5,
+        "width": 343,
+        "height": 155.5
+      },
+      "destination": "Retained draft",
+      "reached": true
+    },
+    {
+      "action": "Dismiss this draft",
+      "rect": {
+        "x": 16,
+        "y": 340,
+        "width": 343,
+        "height": 155.5
+      }
+    },
+    {
+      "navigation": "Private proposal review",
+      "rect": {
+        "x": 16,
+        "y": 429.5,
+        "width": 343,
+        "height": 217.5
+      },
+      "destination": "Draft proposal",
+      "reached": true
+    },
+    {
+      "action": "Review dismissal",
+      "rect": {
+        "x": 16,
+        "y": 555.5,
+        "width": 343,
+        "height": 111.5
+      }
+    }
+  ],
+  "mutations": "asserted zero by opted-in XCTest",
+  "notAcceptance": ["hosted draft", "live AI", "phones", "VoiceOver gestures", "motion", "haptics"],
+  "nativeInputComparison": {
+    "count": 969,
+    "mismatches": 0
+  },
+  "regressionRun": {
+    "tests": 29,
+    "failures": 0,
+    "skips": 0,
+    "sqliteUnlinkWarnings": 0
+  },
+  "inspectionRun": {
+    "tests": 1,
+    "failures": 0,
+    "skips": 0,
+    "durationSeconds": 165.035
+  }
+}
