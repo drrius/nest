@@ -1,0 +1,63 @@
+{
+  "source": "71eaffea358ceb13d1c39f2a152dc5b7841adf1e",
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "checks": [
+    {
+      "mode": "ordinary",
+      "label": "Everyone",
+      "rect": {
+        "x": 191.5,
+        "y": 405,
+        "width": 163.5,
+        "height": 44.5
+      },
+      "point": [352.0, 408],
+      "selected": true
+    },
+    {
+      "mode": "ordinary",
+      "label": "Me + shared",
+      "rect": {
+        "x": 20,
+        "y": 405,
+        "width": 163.5,
+        "height": 44.5
+      },
+      "point": [23, 446.5],
+      "selected": true
+    },
+    {
+      "mode": "largest",
+      "label": "Everyone",
+      "rect": {
+        "x": 20,
+        "y": 257.5,
+        "width": 335,
+        "height": 87.5
+      },
+      "point": [352, 260.5],
+      "selected": true
+    },
+    {
+      "mode": "largest",
+      "label": "Me + shared",
+      "rect": {
+        "x": 20,
+        "y": 100,
+        "width": 335,
+        "height": 149.5
+      },
+      "point": [23, 246.5],
+      "selected": true
+    }
+  ],
+  "scope": "local filter only; no household or financial mutation",
+  "nativeInputComparison": {
+    "count": 969,
+    "mismatches": 0
+  },
+  "configuration": {
+    "testOriginsVerified": true,
+    "pushEnabled": false
+  }
+}
