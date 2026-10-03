@@ -1,0 +1,15 @@
+{
+  "source": "ba501cedf3b50416c91f292054a8a8a67e0f78a6",
+  "nativeInputs": 1025,
+  "installedBinaryMatchesRestoredCandidate": true,
+  "stableTestAPI": "https://nest-test-api-drrius-projects.vercel.app",
+  "originalCornerTapReachedExpenseForm": true,
+  "resumedAfterTerminalDriverFailure": true,
+  "switchCoordinateTapPassed": true,
+  "separateReceiptTotalVisible": true,
+  "noReviewOrSaveSelected": true,
+  "returnedToSameGroceryList": true,
+  "ordinaryTodayRestored": true,
+  "journalsEmpty": true,
+  "pushEnabled": false
+}

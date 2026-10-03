@@ -1,0 +1,19 @@
+{
+  "original": {
+    "command": {
+      "expectedVersion": "1",
+      "operationId": "47136310-94D6-4FC6-989A-23AA4BC35D72",
+      "itemId": "771FDB91-7B0C-486B-84C4-8F1216C4D5F5",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "checked": true
+    },
+    "status": "pending"
+  },
+  "checkCorner": {
+    "x": 16,
+    "y": 367.5,
+    "width": 291,
+    "height": 60
+  },
+  "noForwardedCheck": true
+}

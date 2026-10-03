@@ -1,0 +1,49 @@
+{
+  "nativeCodeSource": "6ccb5d5a83ffbe53c35bed6fc58a1928179ea514",
+  "files": {
+    "offline-finding.json": "85cf6f2b5cc9b47075fc65ed40d5479948949ae57d3baf4f3a6b216fd914b660",
+    "notice-alert-result.json": "f68bd7158b04b8b890d54cf8182c786201fe86212e4f95663d65cded837b052c",
+    "toolbar-probe.json": "e10caab901da181715367a686ba0c3002829ffa8fdf91cd2f4fb7af3efc1599e",
+    "offline-result.json": "33b050cb581952a0f233936fe1a3913a4498a5761ea220ff469e5267d319aebd",
+    "reload-result.json": "ee7246d20415ac4a8101286d2377a55db291e07bc094a48438fd7f59fa7ecfd7",
+    "lost-response.json": "a651fc49a8ac685aa783cbb68bb1ee92c7f9182a47141090231f57a35a6b8e83",
+    "retry-result.json": "019eb1fefb23ae764d11635f4d84bad7dee0babbd4308e395fe0153d03c88881",
+    "normal-entry-discarded.json": "88e36b334d2f54a460d582dbdf4226f57674079ff40bd243daec9a8f20399af3",
+    "normal-result.json": "345a6432f1e771c58e4bb6154a8ecacb1567ccb89fd0d89baabd54f84da4b25c",
+    "removed-queued.json": "9774d75c2a3b797207949f0ae8b17695cda3a2eb6535e95bf5ee0bccef2eca74",
+    "removed-result.json": "8031b9bc8158cc558a0921338b84d8f37b459bedf42136f63fe439302ddd3ab8",
+    "add-symbol-result.json": "8fd617181784e6b5d5537fa343fcfd9b791d7e20012d571b0877c7ff0b41c797",
+    "restoration.json": "f619e1ded1c57495d1eca1f6a3ddf06cc99735ae2083538f823002407434170f",
+    "hosted-final-state.json": "f622a9d99d176fb5485ca30ab9b8bfa8c91ba7f1215b8f11b6f2b5aebe95dc38",
+    "grocery-actions-build-state.json": "05b28d1b71678f4e8d99c67641d36d8a1fe3d652e8617d3a27fb43aa25c148e8",
+    "grocery-symbol-build-state.json": "14f9f2139b9c9ef150a9c2624c27f2833b9722558e1f71f58dac0da269bb8de9",
+    "recovery-installed.json": "d8d939570a1c137deb481378d1e1f0482275384ea35c5691837b013d0ca98d7b",
+    "symbol-installed.json": "b1a0738ca417c2cfb89f6e444d2807b17246c1bf864ab9ca27f09904d78757da",
+    "edit-offline-fields.png": "81d7f53df36d08e555a545f95b08ab8cf69b700b53d067e990d219c4e8e89009",
+    "edit-keep-alert.png": "71b549be692a19942eb132f4106a0469b513bdbae480197ce06e0c01d1f1373b",
+    "edit-latest-shared-item.png": "7f6b25cdd5552d8ccfe47e2ab2f10aa5b98b67abdbcd4bed5c6765bd2ea5aa6d",
+    "edit-lost-response.png": "de399f8b3b60030541c06032e69e750912d312d4412c35911c9a9138fff6a104",
+    "edit-restart-pending.png": "38f70cd7a3f4e2b470080480861ec66b5de190bfc8acdb134af68d4fedf4a513",
+    "edit-recovery-after-ui-update.png": "4d200c3a2155a11069f8efe820512cace44fe3a5ab36d198f51a1642f3687f16",
+    "edit-confirmed.png": "b5b9f1edfa4090ec7b1df0b77d5a41e716b73aa7ca1874758ba1e551e796bdbb",
+    "edit-symbol-toolbar.png": "eb0b63daa4d1eb8daabe2e17b428b0821040085fb392d8353be133f99c386cc7",
+    "edit-confirmed-dismissal.png": "da1542f22cbc1a7445a2b6b119f04279a87b7cfa4849b48f2ed7948aa0d329a8",
+    "check-before-partner-removal.png": "8c593f6274bb5788a54eac857b80f0c3729dfac0094ef8fb224608c566126ea8",
+    "check-removed-reason.png": "31827deedae77e41c58595d677408b0068ce6edd6ae3af862ca01b6fcfc5c1db",
+    "check-removed-discarded.png": "ca6c4164cb19cc4b580a47223c4f72ac9f1cfe1e14d7112b524ac8a9f5149e8d",
+    "add-symbol-offline-retained.png": "4e06e3c71b83966a517d2efcac3eee8fe9cd4da182932636a476bd16e9620d48",
+    "add-symbol-largest-dark.png": "e5cb6ac74752d3638e2121eeaf83ec362d111e3989dc67c67118c03c5b2674f0",
+    "restored-today.png": "155538a7ec13926f74846dc875f348b35359fac165b7ae79e820cfaa07ec6a71",
+    "native-inputs.json": "c9f1fd3ff40341e1e3b994d643997a7f1cda24b98ae15a8b38046c979497f32c",
+    "earlier-expense-handoff.json": "d830022f780dbceae87db783cdf0665530088f8d5cef24f84c77ac116990aa89",
+    "earlier-expense-handoff.png": "ff4b132150423502aa7d2e170a75d2c20926ca2263510edc8415db9ebc927390"
+  },
+  "onlyFictionalHouseholdData": true,
+  "credentialsAndKeysExcluded": true,
+  "serializationChanges": {
+    "toolbar-probe.json": {
+      "rawExportSha256": "843c90992540b5efda7cf13b6188758d9ed85c97249dee799a231dc0713a0454",
+      "reason": "Oxfmt formatting only; parsed object unchanged."
+    }
+  }
+}

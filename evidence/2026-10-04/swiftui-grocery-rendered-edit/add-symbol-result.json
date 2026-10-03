@@ -1,0 +1,37 @@
+{
+  "typedFieldsRetained": true,
+  "noAddJournalOrWrite": true,
+  "addCorner": {
+    "x": 311,
+    "y": 46.00000000000001,
+    "width": 44,
+    "height": 43.99999999999999
+  },
+  "cancelCorner": {
+    "x": 20.000000000000004,
+    "y": 46.00000000000001,
+    "width": 44,
+    "height": 43.99999999999999
+  },
+  "largeTextDarkToolbar": {
+    "Cancel": {
+      "x": 20.000000000000004,
+      "y": 46.00000000000001,
+      "width": 44,
+      "height": 43.99999999999999
+    },
+    "Add": {
+      "x": 311,
+      "y": 46.00000000000001,
+      "width": 44,
+      "height": 43.99999999999999
+    }
+  },
+  "largeTextCancelCorner": {
+    "x": 20.000000000000004,
+    "y": 46.00000000000001,
+    "width": 44,
+    "height": 43.99999999999999
+  },
+  "ordinaryAppearanceRestored": true
+}

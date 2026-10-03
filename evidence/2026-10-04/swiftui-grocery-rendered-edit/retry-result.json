@@ -1,0 +1,74 @@
+{
+  "original": {
+    "command": {
+      "itemId": "91B81B9E-E8BD-49E0-86D5-FA8D13CBA0D9",
+      "name": "Nest native grocery UI edit edit 0e8f4113 draft",
+      "operationId": "252B728E-91B4-4B3C-B3C9-7383E64FD14A",
+      "unit": "bags",
+      "quantity": "2",
+      "categoryId": null,
+      "expectedVersion": "2"
+    },
+    "status": "pending"
+  },
+  "forwarded": [
+    {
+      "time": 1791065586.572791,
+      "method": "POST",
+      "path": "/v1/groceries/edit",
+      "command": {
+        "operationId": "252B728E-91B4-4B3C-B3C9-7383E64FD14A",
+        "itemId": "91B81B9E-E8BD-49E0-86D5-FA8D13CBA0D9",
+        "expectedVersion": "2",
+        "name": "Nest native grocery UI edit edit 0e8f4113 draft",
+        "quantity": "2",
+        "unit": "bags",
+        "categoryId": null
+      },
+      "forwarded": true,
+      "upstreamStatus": 200,
+      "receipt": {
+        "operation": "252b728e-91b4-4b3c-b3c9-7383e64fd14a",
+        "target": "91b81b9e-e8bd-49e0-86d5-fa8d13cba0d9",
+        "version": "3",
+        "checked": false,
+        "removed": false
+      },
+      "fault": "response_dropped_after_upstream"
+    },
+    {
+      "time": 1791065872.6442492,
+      "method": "POST",
+      "path": "/v1/groceries/edit",
+      "command": {
+        "operationId": "252B728E-91B4-4B3C-B3C9-7383E64FD14A",
+        "itemId": "91B81B9E-E8BD-49E0-86D5-FA8D13CBA0D9",
+        "expectedVersion": "2",
+        "name": "Nest native grocery UI edit edit 0e8f4113 draft",
+        "quantity": "2",
+        "unit": "bags",
+        "categoryId": null
+      },
+      "forwarded": true,
+      "upstreamStatus": 200,
+      "receipt": {
+        "operation": "252b728e-91b4-4b3c-b3c9-7383e64fd14a",
+        "target": "91b81b9e-e8bd-49e0-86d5-fa8d13cba0d9",
+        "version": "3",
+        "checked": false,
+        "removed": false
+      }
+    }
+  ],
+  "survivedActualRestart": true,
+  "notAutomaticallyReplayed": true,
+  "survivedUIUpdate": true,
+  "retryHitTarget": {
+    "x": 16,
+    "y": 544,
+    "width": 123,
+    "height": 44
+  },
+  "exactReceiptReused": true,
+  "journalCleared": true
+}

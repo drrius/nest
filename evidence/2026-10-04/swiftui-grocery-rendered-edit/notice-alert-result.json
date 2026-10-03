@@ -1,0 +1,13 @@
+{
+  "source": "82f37582",
+  "fieldsRetainedAfterOfflineRefusal": {
+    "Grocery name": "Nest native grocery UI edit edit 0e8f4113 draft",
+    "Quantity": "2",
+    "Unit": "bags"
+  },
+  "explicitKeepEditingAlert": true,
+  "keepEditingPreservedFields": true,
+  "fictionalUnqueuedDraftExplicitlyDiscardedBeforeToolbarFix": true,
+  "noEditPost": true,
+  "journalEmpty": true
+}

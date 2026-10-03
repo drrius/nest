@@ -1,0 +1,6 @@
+Native job111307370268, source6ccb5d5a83ffbe53c35bed6fc58a1928179ea514
+2026-10-03T22:33:27.2185890Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 19.922 (20.031) seconds
+2026-10-03T22:33:27.2188760Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 19.922 (20.033) seconds
+2026-10-03T22:44:35.6621390Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 162.514 (209.157) seconds
+2026-10-03T22:44:35.6842460Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 162.514 (209.162) seconds
+2026-10-03T22:44:39.1557130Z ** TEST SUCCEEDED **
