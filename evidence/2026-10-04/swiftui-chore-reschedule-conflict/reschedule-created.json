@@ -1,0 +1,417 @@
+{
+  "saved": {
+    "command": {
+      "operationId": "2C7BFEEC-AB6A-4C73-9856-94BC2CA04D46",
+      "definition": {
+        "title": "Nest native changed 31aaff",
+        "schedule": {
+          "kind": "daily"
+        },
+        "assignment": {
+          "policy": "shared"
+        }
+      }
+    },
+    "receipt": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "operationId": "2C7BFEEC-AB6A-4C73-9856-94BC2CA04D46",
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "routineId": "2DC595B0-1BBE-4B46-96AC-2765CF9E62C9",
+      "version": "2026-10-04T12:25:38.485503Z",
+      "action": "create"
+    }
+  },
+  "nodes": [
+    {
+      "index": 0,
+      "type": "Application",
+      "hittable": false,
+      "label": "Nest",
+      "enabled": true,
+      "depth": 0,
+      "rect": {
+        "x": 0,
+        "width": 375,
+        "height": 667,
+        "y": 0
+      },
+      "ref": "e1"
+    },
+    {
+      "parentIndex": 0,
+      "identifier": "Add chore",
+      "rect": {
+        "width": 375,
+        "y": 20,
+        "x": 0,
+        "height": 54
+      },
+      "depth": 1,
+      "index": 1,
+      "type": "NavigationBar",
+      "hittable": true,
+      "enabled": true,
+      "ref": "e2"
+    },
+    {
+      "depth": 2,
+      "hittable": true,
+      "label": "Back",
+      "enabled": true,
+      "rect": {
+        "y": 20,
+        "x": 16,
+        "height": 44,
+        "width": 44
+      },
+      "index": 2,
+      "type": "Button",
+      "identifier": "BackButton",
+      "parentIndex": 1,
+      "ref": "e3"
+    },
+    {
+      "label": "Add chore",
+      "depth": 2,
+      "parentIndex": 1,
+      "rect": {
+        "width": 81.5,
+        "y": 31.5,
+        "height": 21,
+        "x": 146.5
+      },
+      "type": "StaticText",
+      "enabled": true,
+      "hittable": true,
+      "index": 3,
+      "ref": "e4"
+    },
+    {
+      "enabled": true,
+      "hittable": true,
+      "index": 4,
+      "depth": 1,
+      "parentIndex": 0,
+      "rect": {
+        "width": 375,
+        "y": 0,
+        "x": 0,
+        "height": 667
+      },
+      "type": "CollectionView",
+      "ref": "e5"
+    },
+    {
+      "type": "Cell",
+      "depth": 2,
+      "hittable": true,
+      "enabled": true,
+      "parentIndex": 4,
+      "rect": {
+        "width": 343,
+        "height": 40.5,
+        "y": 74,
+        "x": 16
+      },
+      "index": 5,
+      "ref": "e6"
+    },
+    {
+      "depth": 3,
+      "type": "StaticText",
+      "hittable": true,
+      "parentIndex": 5,
+      "label": "Chore added",
+      "rect": {
+        "x": 16,
+        "y": 74,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "index": 6,
+      "ref": "e7"
+    },
+    {
+      "depth": 2,
+      "enabled": true,
+      "hittable": true,
+      "parentIndex": 4,
+      "type": "Cell",
+      "rect": {
+        "x": 16,
+        "y": 114.5,
+        "width": 343,
+        "height": 52
+      },
+      "index": 7,
+      "ref": "e8"
+    },
+    {
+      "label": "Nest native changed 31aaff",
+      "enabled": true,
+      "rect": {
+        "x": 16,
+        "width": 343,
+        "height": 52,
+        "y": 114.5
+      },
+      "index": 8,
+      "hittable": true,
+      "depth": 3,
+      "parentIndex": 7,
+      "type": "StaticText",
+      "ref": "e9"
+    },
+    {
+      "type": "Cell",
+      "index": 9,
+      "hittable": true,
+      "parentIndex": 4,
+      "enabled": true,
+      "rect": {
+        "y": 166.5,
+        "width": 343,
+        "height": 52,
+        "x": 16
+      },
+      "depth": 2,
+      "ref": "e10"
+    },
+    {
+      "label": "Your household chore was saved.",
+      "rect": {
+        "y": 166.5,
+        "x": 16,
+        "width": 343,
+        "height": 52
+      },
+      "index": 10,
+      "type": "StaticText",
+      "parentIndex": 9,
+      "hittable": true,
+      "enabled": true,
+      "depth": 3,
+      "ref": "e11"
+    },
+    {
+      "type": "Cell",
+      "rect": {
+        "height": 52,
+        "x": 16,
+        "y": 218.5,
+        "width": 343
+      },
+      "enabled": true,
+      "hittable": true,
+      "index": 11,
+      "parentIndex": 4,
+      "depth": 2,
+      "ref": "e12"
+    },
+    {
+      "index": 12,
+      "hittable": true,
+      "type": "Button",
+      "label": "Done",
+      "parentIndex": 11,
+      "enabled": true,
+      "depth": 3,
+      "rect": {
+        "height": 52,
+        "width": 343,
+        "y": 218.5,
+        "x": 16
+      },
+      "ref": "e13"
+    },
+    {
+      "parentIndex": 4,
+      "depth": 2,
+      "enabled": true,
+      "type": "Other",
+      "value": "0%",
+      "hittable": true,
+      "rect": {
+        "width": 30,
+        "height": 510,
+        "y": 74,
+        "x": 342
+      },
+      "label": "Vertical scroll bar, 1 page",
+      "index": 13,
+      "ref": "e14"
+    },
+    {
+      "type": "Other",
+      "rect": {
+        "width": 30,
+        "y": 74,
+        "x": 342,
+        "height": 510
+      },
+      "index": 14,
+      "parentIndex": 4,
+      "enabled": true,
+      "label": "Vertical scroll bar, 1 page",
+      "hittable": true,
+      "depth": 2,
+      "value": "0%",
+      "ref": "e15"
+    },
+    {
+      "parentIndex": 0,
+      "rect": {
+        "y": 584,
+        "width": 375,
+        "x": 0,
+        "height": 83
+      },
+      "hittable": true,
+      "enabled": true,
+      "type": "TabBar",
+      "depth": 1,
+      "index": 15,
+      "label": "Tab Bar",
+      "ref": "e16"
+    },
+    {
+      "parentIndex": 15,
+      "index": 16,
+      "identifier": "house",
+      "label": "Today",
+      "rect": {
+        "y": 588,
+        "height": 54,
+        "x": 25,
+        "width": 88.25
+      },
+      "depth": 2,
+      "hittable": true,
+      "type": "Button",
+      "enabled": true,
+      "selected": true,
+      "ref": "e17"
+    },
+    {
+      "parentIndex": 16,
+      "type": "Image",
+      "depth": 3,
+      "label": "home",
+      "rect": {
+        "width": 33.5,
+        "x": 52,
+        "y": 594,
+        "height": 28
+      },
+      "index": 17,
+      "hittable": true,
+      "identifier": "house.fill",
+      "enabled": true,
+      "ref": "e18"
+    },
+    {
+      "type": "Button",
+      "depth": 2,
+      "hittable": true,
+      "parentIndex": 15,
+      "rect": {
+        "x": 103.91666666666667,
+        "y": 588,
+        "width": 88.25000000000001,
+        "height": 54
+      },
+      "index": 18,
+      "identifier": "fork.knife",
+      "label": "Meals",
+      "enabled": true,
+      "ref": "e19"
+    },
+    {
+      "rect": {
+        "x": 136.91666666666669,
+        "y": 591.5,
+        "width": 22,
+        "height": 31
+      },
+      "depth": 3,
+      "hittable": true,
+      "identifier": "fork.knife",
+      "index": 19,
+      "enabled": true,
+      "parentIndex": 18,
+      "label": "Food",
+      "type": "Image",
+      "ref": "e20"
+    },
+    {
+      "label": "Calendar",
+      "identifier": "calendar",
+      "enabled": true,
+      "index": 20,
+      "depth": 2,
+      "rect": {
+        "x": 182.83333333333334,
+        "y": 588,
+        "width": 88.25000000000003,
+        "height": 54
+      },
+      "hittable": true,
+      "type": "Button",
+      "parentIndex": 15,
+      "ref": "e21"
+    },
+    {
+      "label": "calendar",
+      "identifier": "calendar",
+      "enabled": true,
+      "index": 21,
+      "depth": 3,
+      "rect": {
+        "x": 212.83333333333334,
+        "y": 595.5,
+        "width": 29,
+        "height": 25
+      },
+      "hittable": true,
+      "type": "Image",
+      "parentIndex": 20,
+      "ref": "e22"
+    },
+    {
+      "parentIndex": 15,
+      "index": 22,
+      "hittable": true,
+      "rect": {
+        "x": 261.75,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "identifier": "creditcard",
+      "type": "Button",
+      "enabled": true,
+      "label": "Money",
+      "depth": 2,
+      "ref": "e23"
+    },
+    {
+      "parentIndex": 22,
+      "index": 23,
+      "hittable": true,
+      "rect": {
+        "x": 289.75,
+        "y": 596.5,
+        "width": 33,
+        "height": 23.5
+      },
+      "identifier": "creditcard.fill",
+      "type": "Image",
+      "enabled": true,
+      "label": "card",
+      "depth": 3,
+      "ref": "e24"
+    }
+  ],
+  "time": 1791116742.625238
+}

@@ -1,0 +1,12 @@
+{
+  "case": "reschedule",
+  "target": {
+    "height": 64,
+    "width": 335,
+    "x": 20,
+    "y": 391
+  },
+  "point": [23, 394],
+  "savedBeforeOneTap": true,
+  "time": 1791116938.737257
+}
