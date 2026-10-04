@@ -1,0 +1,6 @@
+swiftui	Test Foundation domain and offline rules	2026-10-04T00:33:06.4065180Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 21.367 (21.497) seconds
+swiftui	Test Foundation domain and offline rules	2026-10-04T00:33:06.4307640Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 21.367 (21.501) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T00:48:15.2121960Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 130.456 (131.442) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T00:48:15.6507000Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 130.456 (131.448) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T00:48:37.7197290Z ** TEST SUCCEEDED **
+swiftui	Verify actual app push signing	2026-10-04T00:48:39.6540050Z Native push signing: passed (disabled; local build)
