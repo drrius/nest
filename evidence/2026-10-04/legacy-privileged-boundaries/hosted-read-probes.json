@@ -1,0 +1,58 @@
+{
+  "testProject": "tkjixmujjoustdiedfmw",
+  "observedAt": "2026-10-04T11:22:45.487952+00:00",
+  "readOnlyFunctionsOnly": true,
+  "cases": [
+    {
+      "function": "search_household",
+      "actor": "member-a",
+      "status": 200,
+      "onlyKnownSyntheticRoutineReturned": true
+    },
+    {
+      "function": "search_household",
+      "actor": "member-b",
+      "status": 200,
+      "onlyKnownSyntheticRoutineReturned": true
+    },
+    {
+      "function": "search_household",
+      "actor": "outsider",
+      "status": 403,
+      "accessDenied": true
+    },
+    {
+      "function": "search_household",
+      "actor": "anonymous",
+      "status": 401,
+      "accessDenied": true
+    },
+    {
+      "function": "household_attachment_usage",
+      "actor": "member-a",
+      "status": 200
+    },
+    {
+      "function": "household_attachment_usage",
+      "actor": "member-b",
+      "status": 200
+    },
+    {
+      "function": "household_attachment_usage",
+      "actor": "outsider",
+      "status": 403,
+      "accessDenied": true
+    },
+    {
+      "function": "household_attachment_usage",
+      "actor": "anonymous",
+      "status": 401,
+      "accessDenied": true
+    }
+  ],
+  "bothMembersAgree": true,
+  "allPassed": true,
+  "fullFinancialHistoryUnchanged": true,
+  "hostedCalendarWritesNotInvoked": true,
+  "productionTouched": false
+}

@@ -2,6 +2,8 @@
 
 Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
 
+Latest bounded progress: an actual native daily/shared chore creation now passes, with Add above the keyboard, a real scoped creation receipt, normal finish and both-member canonical reads. Completion recovery is paused because the Mac disconnected during the second form; inspect that existing attempt before resuming. One known fictional routine remains active for the check. [Creation evidence](../../evidence/2026-10-04/swiftui-native-chore-creation/README.md). Independent server work adds36 real disposable legacy tenant/lease checks, eight hosted read-only probes and222 compiled function-body matches. Seven legacy public warnings now have a bounded guard review;53 and deeper private paths remain. [Security evidence](../../evidence/2026-10-04/legacy-privileged-boundaries/README.md). Neither closes a milestone or enables live AI.
+
 ## 1. Finish the retained financial flows
 
 - [ ] Finish direct draft-to-expense conversion: implementation and prior CI pass. A real retained fixture now passes ordinary-text keyboard/review, one native confirmation, dropped-reply/restart/client-update recovery without resend, entry viewing and explicit finish. Both members agree on the unchanged old history and exact new centime effects; owner-only receipts/isolation pass. The two native touch-target fixes now pass both exact-source CI workflows; largest-text/accessibility and phone acceptance remain.

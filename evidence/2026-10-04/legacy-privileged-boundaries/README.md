@@ -1,0 +1,35 @@
+# Legacy privileged boundaries
+
+Observed4 October2026 against the separate nest-test project and a disposable local PostgreSQL cluster. This investigates seven of the60 legacy public privileged-function findings. It does not approve production cutover, suppress advisor findings, restore legacy product features or certify the entire privileged surface.
+
+## Source and actual execution
+
+The [catalog queries](catalog-queries.sql) read all81 public and140 private authenticated-executable security-definer definitions, plus the delegated `private.require_calendar_lease` helper. All222 bodies match a fresh PostgreSQL compilation of the actual54 legacy and248 Nest migrations, comparing the exact function signature and trimming only surrounding body whitespace. [Comparison](compiled-definition-match.json) retains body/definition hashes and all302 migration hashes. The only excluded legacy statement enables unavailable pg_net. Simulated Auth/Storage, differing role owners and absence of full hosted ACL/header parity are explicit limitations. Body equality is source provenance, not an authorization test.
+
+The populated [rehearsal](populated-rehearsal.json) passes36 actual SQL cases through `verifyLegacyBoundaries`, alongside the existing financial/privacy/domain/recovery checks. It seeds a second two-person household and an unaffiliated actor inside rolled-back transactions. Known connection IDs and valid lease tokens do not permit another household to claim, release, reconcile, acknowledge a push or disconnect a calendar. Anonymous execution is denied. Expired/mismatched leases, an already-held lease and a cross-household event ID are rejected. The authorized partner can execute all five operations in rolled-back checks. Search returns only its caller's household calendar; attachment usage excludes the foreign household's909-byte metadata fixture. Original calendar, Storage metadata and tenancy rows remain byte-for-byte equal after the probes. Full financial/receipt reconciliation still passes.
+
+The fixture initially hit the real attachment reservation guard before reaching a boundary assertion; it now reserves its synthetic object through the guarded function instead of bypassing the trigger. A subsequent output-parser issue was corrected by using `PERFORM` for fixture setup. Neither failed attempt counts as a passing authorization check. The final populated rehearsal completes with36 passing cases.
+
+[Eight hosted probes](hosted-read-probes.json) invoke only the audited read-only `search_household` and `household_attachment_usage` RPCs for both fixtures, outsider and anonymous. Both members agree; search returns only the known newly created synthetic routine. Outsider/anonymous access is denied and both complete52-event financial histories/balances remain unchanged. No hosted calendar, Storage or financial mutation occurs in these probes.
+
+## Guard trace
+
+| Entry                                                                          | Reviewed boundary                                                                                                                                                                                                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `claim_calendar_sync`, `disconnect_calendar`                                   | Fetch and lock the specified connection, then require nonnull `auth.uid()` and membership in that connection's household before changing anything. Active leases prevent competing claims/disconnects. Disconnect affects only events linked to that exact connection.                                                                                                                  |
+| `release_calendar_sync`, `reconcile_calendar_snapshot`, `record_calendar_push` | Delegate to the actual `private.require_calendar_lease`: actor, connection-household membership, matching nonnull token and unexpired lease. Reconciliation bounds and validates the input array, scopes event lookup/insertion to the authorized tenant and missing-event handling to that connection. Push acknowledgment additionally matches event, tenant and connection together. |
+| `search_household`                                                             | Derives the tenant from authenticated membership; membership has a unique user constraint. Every search source and cross-table join uses that tenant. Query terms are quoted after plain-text tokenization; type/page/cursor inputs are bounded. The sources contain retained shared legacy records, not Nest private chats, memories, calorie profiles or on-device EventKit data.     |
+| `household_attachment_usage`                                                   | Requires an authenticated member, derives their tenant and aggregates only the `household-files` paths with that household prefix. Invalid sizes return unknown instead of a misleading total.                                                                                                                                                                                          |
+
+These capabilities remain part of the retained legacy database surface. Nest's shipping API contains no direct calls to these seven RPCs and its native Calendar remains read-only EventKit. Their tested access boundaries do not authorize using them for new shared-calendar creation or importing personal calendar text. The existing catalog-wide legacy API fence remains a disposable cutover experiment; production retirement/external-writer gates are unchanged.
+
+## Repeatable check and remaining work
+
+```sh
+NEST_TEST_PG_BIN=/tmp/nest-postgres/usr/bin node tools/migration/schema-probe.mjs \
+  /home/drrius/Work/household-os/supabase/migrations --without-pg-net
+```
+
+This tool creates its own database and accepts no existing database URL. [Source hashes](source-inputs.json) identify the two changed tooling files. Focused Oxlint and Oxfmt pass; the pre-existing Effect warnings for Node filesystem/path imports remain warnings. Current-head CI is recorded separately after push.
+
+The remaining53 legacy public functions and deeper private paths still require semantic review. These36 checks do not establish live iCloud synchronization, real Auth/Storage interfaces, native EventKit privacy, worker/APNs execution, full native acceptance or production safety. No hosted schema/configuration change, server-secret transfer, inference, purchase, production access or beta occurred.

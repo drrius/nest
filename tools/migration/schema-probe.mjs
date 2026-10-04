@@ -1,4 +1,5 @@
 import { verifyLegacyJobPause } from "./legacy-job-pause-rehearsal.mjs";
+import { verifyLegacyBoundaries } from "./legacy-boundary-rehearsal.mjs";
 import { verifyPendingLegacyJobs } from "./pending-legacy-jobs-rehearsal.mjs";
 import { verifyOfflineEpochAi } from "./offline-epoch-ai-rehearsal.mjs";
 import { verifyRoutineRepair } from "./routine-repair-rehearsal.mjs";
@@ -124,6 +125,7 @@ try {
   report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
+  report.legacyBoundaries = verifyLegacyBoundaries(db);
   report.routineRepair = verifyRoutineRepair(db);
   report.legacyJobPause = verifyLegacyJobPause(db);
   report.pendingLegacyJobs = verifyPendingLegacyJobs(db);

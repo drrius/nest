@@ -1,0 +1,6 @@
+{
+  "files": {
+    "tools/migration/legacy-boundary-rehearsal.mjs": "6d3bb4bb18583fb47f1b72769ef7d177026d113859f7a37973ed6f8fa5734f80",
+    "tools/migration/schema-probe.mjs": "98083ca6b8a38d52f8723ca7580c1418c9eec066868ff1df062f8919237220ff"
+  }
+}

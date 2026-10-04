@@ -1,0 +1,39 @@
+{
+  "shippingSource": "a04583041a816bcd9605eac3741bb7ff98b33afd",
+  "actor": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "nativeCommand": {
+    "definition": {
+      "schedule": {
+        "kind": "daily"
+      },
+      "title": "Nest native daily e77f70 lost reply",
+      "assignment": {
+        "policy": "shared"
+      }
+    },
+    "operationId": "093727BA-2E15-4B82-871D-81B9F7827C93"
+  },
+  "nativeReceipt": {
+    "action": "create",
+    "operationId": "093727BA-2E15-4B82-871D-81B9F7827C93",
+    "routineId": "2FADAA76-2AC5-4161-9A15-68DFF803E663",
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "version": "2026-10-04T11:04:24.462828Z",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+  },
+  "bothMemberCanonicalCreationVerified": true,
+  "sharedDailyDefinitionVerified": true,
+  "originalChoresUnchanged": true,
+  "fullFinancialHistoryUnchanged": true,
+  "financialEventCount": 52,
+  "financialBaselineSha256": "343db15e88c8d786938ce548cb8baa98abe3402c9f7fdb11a3a1a1a4d5cf462d",
+  "explicitDoneNormallyClearedJournal": true,
+  "completionNotAttempted": true,
+  "secondCreationNotFoundByBothMembersAfterSSHDisconnected": true,
+  "macConnectionLostDuringSecondForm": true,
+  "relayOrGeneratedCertificateNotCreated": true,
+  "firstRoutineRemainsActiveForBoundedCompletionQA": "2fadaa76-2ac5-4161-9a15-68dff803e663",
+  "nativePhoneOrFullM4AcceptanceNotClaimed": true,
+  "observedAt": "2026-10-04T11:24:57.253873+00:00"
+}
