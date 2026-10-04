@@ -84,6 +84,8 @@ The cleanup observer initially expected403 for removed metadata; actual source
 Only that read expectation was corrected; Remove was never repeated. These were
 observer failures, not successful native execution falsely counted from a timeout.
 
+Evidence checkpoint `03bb1bec` passes exact-source routine [CI37220894854](https://github.com/drrius/nest/actions/runs/37220894854). [CI record](ci-status.json). This routine workflow is separate from the actual native journey and the earlier shipping-native CI.
+
 This bounded PDF pick/upload/restart/removal flow is verified on a simulator and the
 real isolated backend. Other document providers, oversized/malformed picker input,
 background upload interruption, a newly posted PDF, partner native viewing, full

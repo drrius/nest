@@ -140,5 +140,6 @@ maximum-text/dark corner-removal verification against private test Storage. Exac
 claimed receipt, normal cleanup/empty64 scoped journals and ordinary app restoration
 pass. Other document providers/invalid input, new posted attachment, partner native
 viewer, interruption/full accessibility and both phones remain open. Shipping source
-is unchanged from both-CI-green177d0a70; no new compile/unit run is claimed.
+is unchanged from both-CI-green177d0a70; evidence checkpoint03bb1bec passes
+routine37220894854, and no new compile/unit run is claimed.
 [PDF evidence](../../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).

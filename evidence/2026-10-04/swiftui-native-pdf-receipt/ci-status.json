@@ -1,0 +1,10 @@
+{
+  "headSha": "03bb1bec85c449c631dc1a012bf1780f78bdf4c2",
+  "runId": 37220894854,
+  "status": "completed",
+  "conclusion": "success",
+  "url": "https://github.com/drrius/nest/actions/runs/37220894854",
+  "workflow": "Nest checks",
+  "newNativeCompileOrUnitRun": false,
+  "newFullChainDefinitionCasesExecutedByRoutineCI": false
+}

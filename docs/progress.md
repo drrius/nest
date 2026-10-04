@@ -311,7 +311,8 @@ data/Keychain. All1,041 native inputs, installed signature, retained executable 
 stable test origins match. [Evidence](../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).
 
 Shipping native source remains both-CI-green177d0a70; this is actual native/hosted
-verification, not a new build/unit run. The preceding definition audit checkpoint
+verification, not a new build/unit run. PDF evidence checkpoint03bb1bec now passes
+exact-source routine37220894854. The preceding definition audit checkpoint
 a8928b51 passes routine37219093738. Other PDF providers/invalid input, newly posted
 attachments, partner native viewer, interruption/full accessibility, live AI and
 both phones remain open. The observed system-owned picker Cancel rectangle is
