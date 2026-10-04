@@ -1,0 +1,14 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e4,NavigationBar,Back,,0,20,375,54,True,True
+e5,Button,Back,,16,20,44,44,True,True
+e6,StaticText,Record payment,,108.5,29,157.5,26,True,True
+e13,Cell,Record payment,,16,97.5,343,155.5,True,True
+e15,Button,Record payment,,16,97.5,343,155.5,True,True
+e16,Cell,Edit,,16,253,343,93.5,True,True
+e18,Button,Edit,,16,253,343,93.5,True,True
+e19,Cell,Reload balance and review again,,16,346.5,343,217.5,True,True
+e21,Button,,,16,346.5,343,217.5,True,True
+e26,Button,Today,,25,588,88.25,54,True,True
+e28,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e30,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e32,Button,Money,,261.75,588,88.25,54,True,True

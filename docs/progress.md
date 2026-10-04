@@ -319,3 +319,27 @@ both phones remain open. The observed system-owned picker Cancel rectangle is
 36.5×36pt, with no44pt/full-accessibility claim. M7 and all other unchecked milestones
 remain incomplete. No expense, approval, beta, production action, purchase, worker
 activation or merge occurred.
+
+## Native partial/full settlement and stale review
+
+One actual native partial payment now records one centime, survives process restart
+with its exact receipt, opens native detail/shares and normally finishes. A reviewed
+CHF1.02 full payment is refused after one ordinary partner test-API centime payment:
+original terms/note remain, all64 scoped journals stay empty and no event is added.
+Explicit reload/review and one maximum-text/dark343×155.5pt corner Save record only
+the101-centime remainder. Both members agree on exact52 original plus3 new events,
+zero balances and−1/+1 or−101/+101 details; operation receipts stay owner-only.
+Exact existing-operation API replay adds nothing; changed-note replay is refused400
+with the original receipt intact. All original financial/allocation/ledger/claimed
+Storage digests match. Normal terminal Done and readable maximum-text settled copy
+pass; normal/light Today/data/Keychain and64 empty journals are restored.
+[Evidence](../evidence/2026-10-04/swiftui-native-settlement/README.md).
+
+The payment journeys are bound to both-CI-green177d0a70. A separately source-matched
+signed Mac build/native detail check now clarifies signed balance changes: negative
+can mean owed less, positive can mean owing less. Only this explanation changes
+among1,041 native inputs; no new local unit run is claimed. Current-head CI is
+pending. Native lost-reply/cancellation/private approval variants, broader member/
+concurrency families, full accessibility/radio loss, two native clients and both
+phones remain open. M7 and other unchecked milestones remain incomplete. No actual
+transfer, beta, production change, purchase, worker activation or merge occurred.

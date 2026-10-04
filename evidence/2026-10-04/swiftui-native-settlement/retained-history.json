@@ -1,0 +1,21 @@
+{
+  "before": {
+    "claimedStorageHash": "3767ebe7738000c4de18c8e5841d9950",
+    "originalEventCount": 52,
+    "originalLedgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+    "originalFinancialHash": "04f76d23e4b97279c7b73dc214e0423a",
+    "originalAllocationHash": "8c86340b6309daa922e06f8ad74acd81"
+  },
+  "after": {
+    "claimedStorageHash": "3767ebe7738000c4de18c8e5841d9950",
+    "originalEventCount": 52,
+    "originalLedgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+    "originalFinancialHash": "04f76d23e4b97279c7b73dc214e0423a",
+    "originalAllocationHash": "8c86340b6309daa922e06f8ad74acd81"
+  },
+  "allOriginalDigestsEqual": true,
+  "originalEventCount": 52,
+  "scope": "52 exact original event IDs and their allocations/ledger/claimed storage rows; new append-only entries excluded",
+  "observerCorrection": "SQL result is one row containing snapshot; initial flat-row comparison stopped before accepting evidence",
+  "productionTouched": false
+}

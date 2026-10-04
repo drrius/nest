@@ -1,0 +1,17 @@
+{
+  "baseNativeSource": "177d0a70",
+  "parentCommit": "d6f2b3c6b1f597d023a6c995fb0e60100ca0f885",
+  "nativeInputs": 1041,
+  "changedFiles": ["apps/ios/Nest/Money/MoneyDetailScreen.swift"],
+  "allInputsMatch": true,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791139461.103486,
+  "buildPid": 75911,
+  "buildExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "installedCandidateSHA256": "7fa4d5b7595a6139d9b8e512b17ab1c6dc8bd3579fd507d1dc15c5ec6d3446ef",
+  "finished": 1791139478.505939,
+  "noUnitTestRun": true
+}

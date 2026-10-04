@@ -1,0 +1,27 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e4,NavigationBar,Back,,0,20,375,54,True,True
+e5,Button,Back,,16,20,44,44,True,True
+e6,StaticText,Entry details,,137.5,31.5,100,21,True,True
+e9,Cell,Settlement,,16,0,343,41.5,True,True
+e11,StaticText,Settlement,,16,0,343,41.5,True,True
+e13,Cell,Fictional native settlement QA; no actual transfer.,,16,41.5,343,72.5,True,True
+e15,StaticText,,,16,41.5,343,72.5,True,True
+e16,Cell,Correct entry,,16,149,343,52,True,True
+e18,Button,Correct entry,,16,149,343,52,True,True
+e19,StaticText,Correct entry,,32,164.75,101.5,20.5,True,True
+e21,Cell,Recorded shares,,16,218.5,343,40.5,True,True
+e23,StaticText,Recorded shares,,16,218.5,343,40.5,True,True
+e24,Cell,You,,16,259,343,77,True,True
+e26,StaticText,You,,32,274,30,20.5,True,True
+e27,StaticText,Balance change: −CHF 1.01,,32,300.5,213.5,20.5,True,True
+e28,Cell,Your partner,,16,336,343,77,True,True
+e30,StaticText,Your partner,,32,351,99.5,20.5,True,True
+e31,StaticText,Balance change: +CHF 1.01,,32,377.5,213.5,20.5,True,True
+e32,Cell,Positive means owed more or owing less; negative means owing more or owed less.,,16,413,343,64,True,True
+e34,StaticText,,,16,413,343,64,True,True
+e35,Cell,Refresh entry,,16,512,343,52,True,True
+e37,Button,Refresh entry,,16,512,343,52,True,True
+e42,Button,Today,,25,588,88.25,54,True,True
+e44,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e46,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e48,Button,Money,,261.75,588,88.25,54,True,True

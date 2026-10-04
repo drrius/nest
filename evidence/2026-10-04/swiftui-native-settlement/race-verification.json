@@ -1,0 +1,97 @@
+{
+  "command": {
+    "operationId": "961302c4-e79f-4a47-a697-5dfc4dda643c",
+    "settlement": {
+      "description": "Fictional settlement race",
+      "amountCentimes": "1",
+      "expectedOutstandingCentimes": "102",
+      "payerId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "recipientId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "mode": "partial",
+      "date": "2026-10-04",
+      "note": "Fictional partner settlement race QA; no actual transfer."
+    }
+  },
+  "receipt": {
+    "version": 1,
+    "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "operationId": "961302c4-e79f-4a47-a697-5dfc4dda643c",
+    "eventId": "c59430f2-16c7-4c30-848b-f4be0c4d85d6",
+    "approvalId": null,
+    "settlement": {
+      "description": "Fictional settlement race",
+      "amountCentimes": "1",
+      "expectedOutstandingCentimes": "102",
+      "payerId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "recipientId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "mode": "partial",
+      "date": "2026-10-04",
+      "note": "Fictional partner settlement race QA; no actual transfer."
+    }
+  },
+  "detail": {
+    "version": 1,
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "event": {
+      "eventId": "c59430f2-16c7-4c30-848b-f4be0c4d85d6",
+      "kind": "settlement",
+      "occurredOn": "2026-10-04",
+      "createdAt": "2026-10-04T18:09:09.921158Z",
+      "occurredOrder": "9773",
+      "createdOrder": "1791137349921158",
+      "description": "Fictional settlement race",
+      "amountCentimes": "1",
+      "createdBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "payerId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "relatedEventId": null,
+      "hasReceipt": false
+    },
+    "receiptTotalCentimes": null,
+    "note": "Fictional partner settlement race QA; no actual transfer.",
+    "category": null,
+    "reversedById": null,
+    "shares": [
+      {
+        "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "allocatedCentimes": null,
+        "deltaCentimes": "-1"
+      },
+      {
+        "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "allocatedCentimes": null,
+        "deltaCentimes": "1"
+      }
+    ]
+  },
+  "checks": [
+    {
+      "actor": "member-b",
+      "status": 200,
+      "recordingMemberReceiptOnly": true
+    },
+    {
+      "actor": "member-a",
+      "status": 200,
+      "recordingMemberReceiptOnly": false
+    },
+    {
+      "actor": "outsider",
+      "status": 403,
+      "recordingMemberReceiptOnly": false
+    },
+    {
+      "actor": "anonymous",
+      "status": 401,
+      "recordingMemberReceiptOnly": false
+    }
+  ],
+  "all52OriginalEventsUnchanged": true,
+  "bothCompleteHistoriesAndBalancesEqual": true,
+  "eventCountAfterNativeRefusal": 54,
+  "outstandingAfterNativeRefusal": "101",
+  "nativeRefusalAddedNoEvent": true,
+  "fictionalOnly": true,
+  "noActualTransfer": true,
+  "time": 1791137531.540838
+}

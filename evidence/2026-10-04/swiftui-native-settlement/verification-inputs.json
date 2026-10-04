@@ -1,0 +1,30 @@
+[
+  {
+    "path": "/tmp/nest-native-settlement-ui.py",
+    "sha256": "a7f71604255d859a667ce0034cf4e2b75f35631701ca46e312e9519dad8c75dd"
+  },
+  {
+    "path": "/tmp/nest-native-settlement-api.py",
+    "sha256": "8cda8b4e88d846077ff9d8fcdbf702cf7cbf64b0650463d163f3fae5ae1ba71c"
+  },
+  {
+    "path": "/tmp/nest-native-manual-link-ui.py",
+    "sha256": "55de6e963b069c1946b696e66ee54635d0fcea3bed459dfd8f1f7ded23975cbf"
+  },
+  {
+    "path": "/tmp/nest-history-page-api.py",
+    "sha256": "bf7e77cbf3a8db4b9abc346996ab8e721660e19aad45c8892ba9a47dd8a0f274"
+  },
+  {
+    "path": "/tmp/nest-b14-api-independent-login.py",
+    "sha256": "3a0182bbae244b44c1b0e774032c48abac7e59da94b98625d9b6fe693a9db25a"
+  },
+  {
+    "path": "/tmp/nest-settlement-copy-build.py",
+    "sha256": "880b9fd6a850ea2254144c170385eeca9d2a3e7da84f670f71c711075d82038a"
+  },
+  {
+    "path": "/tmp/nest-settlement-copy-ui.py",
+    "sha256": "0131f5aa0955e1ae7f8c36c1e66b327e323c87dde1f9546e4be58043424c9933"
+  }
+]

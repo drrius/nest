@@ -1,0 +1,13 @@
+{
+  "shippingNativeSource": "177d0a70",
+  "sourceInputs": 1041,
+  "allInputsMatch": true,
+  "installedSignatureValid": true,
+  "stableTestOrigins": true,
+  "pushDisabled": true,
+  "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "installedExecutableSHA256": "bccc7fd93eebe1534ee0fe476e5f413f8373f54b32682fdcc88ba62d4c909872",
+  "matchesRetainedSignedBuild": true,
+  "noNewCompile": true,
+  "time": 1791138531.880838
+}

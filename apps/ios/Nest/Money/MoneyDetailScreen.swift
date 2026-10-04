@@ -52,7 +52,7 @@ struct MoneyDetailScreen: View {
                             .monospacedDigit()
                         }
                     }
-                    Text("Positive increases what you are owed; negative increases what you owe.")
+                    Text("Positive means owed more or owing less; negative means owing more or owed less.")
                         .font(.footnote).foregroundStyle(QuietPalette.muted)
                 }
                 if let related = detail.event.relatedEventId {

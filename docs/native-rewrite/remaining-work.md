@@ -143,3 +143,15 @@ viewer, interruption/full accessibility and both phones remain open. Shipping so
 is unchanged from both-CI-green177d0a70; evidence checkpoint03bb1bec passes
 routine37220894854, and no new compile/unit run is claimed.
 [PDF evidence](../../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).
+
+Native partial/full settlement now has actual hosted verification: one-cent partial
+save/restart/detail/Done, stale full review refusal after an authorized partner change,
+explicit reload and maximum-text101-centime full save. Both members agree on55 exact
+entries/zero balances, private owner receipts and unchanged52 original financial/
+allocation/ledger/claimed Storage digests. Exact existing-command API retry adds
+nothing; changed retry is refused400. Terminal recovery/settled copy/restoration and
+64 empty journals pass. The signed balance explanation is separately clarified and
+source-matched/native-rendered; current-head CI is pending. Native uncertain replies/
+cancellation, private approvals, broader membership/concurrency, full accessibility/
+radio loss, two native clients and both phones remain open; M7 is incomplete.
+[Settlement evidence](../../evidence/2026-10-04/swiftui-native-settlement/README.md).

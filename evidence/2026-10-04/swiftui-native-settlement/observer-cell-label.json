@@ -1,0 +1,10 @@
+{
+  "semanticCellLabel": "Reload balance and review again",
+  "matchingButtonBounds": {
+    "height": 52,
+    "width": 343,
+    "x": 16,
+    "y": 518
+  },
+  "noDuplicateTarget": true
+}

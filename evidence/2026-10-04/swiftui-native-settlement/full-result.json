@@ -1,0 +1,40 @@
+{
+  "cancellationRequested": false,
+  "command": {
+    "settlement": {
+      "note": "Fictional native settlement QA; no actual transfer.",
+      "description": "Settlement",
+      "date": "2026-10-04",
+      "expectedOutstandingCentimes": "101",
+      "recipientId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "amountCentimes": "101",
+      "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+      "mode": "full"
+    },
+    "operationId": "A5C5AC86-9E63-41CD-B9EF-A0CE398525E0"
+  },
+  "result": {
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "version": 1,
+    "operationId": "A5C5AC86-9E63-41CD-B9EF-A0CE398525E0",
+    "status": "recorded",
+    "receipt": {
+      "eventId": "490D3EA5-9EEC-40A9-9D19-5AEC64184793",
+      "settlement": {
+        "note": "Fictional native settlement QA; no actual transfer.",
+        "description": "Settlement",
+        "date": "2026-10-04",
+        "expectedOutstandingCentimes": "101",
+        "recipientId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "amountCentimes": "101",
+        "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+        "mode": "full"
+      },
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "version": 1,
+      "operationId": "A5C5AC86-9E63-41CD-B9EF-A0CE398525E0",
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    }
+  }
+}

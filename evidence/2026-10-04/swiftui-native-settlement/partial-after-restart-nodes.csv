@@ -1,0 +1,33 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e4,NavigationBar,Back,,0,20,375,54,True,True
+e5,Button,Back,,16,20,44,44,True,True
+e6,StaticText,Record payment,,122,31.5,130.5,21,True,True
+e13,Cell,Paid by,,16,5.5,343,52,True,True
+e15,StaticText,Paid by,,32,21.25,56,20.5,True,True
+e16,StaticText,"Paid by, Your partner",,16,5.5,343,52,True,True
+e17,Cell,Paid to,,16,57.5,343,52,True,True
+e19,StaticText,Paid to,,32,73.25,52.5,20.5,True,True
+e20,StaticText,"Paid to, You",,16,57.5,343,52,True,True
+e21,Cell,Amount,,16,109.5,343,52,True,True
+e23,StaticText,Amount,,32,125.25,60,20.5,True,True
+e24,StaticText,"Amount, CHF 0.01",,16,109.5,343,52,True,True
+e25,Cell,Payment date,,16,161.5,343,52,True,True
+e27,StaticText,Payment date,,32,177.25,105,20.5,True,True
+e28,StaticText,"Payment date, 2026-10-04",,16,161.5,343,52,True,True
+e29,Cell,Fictional native settlement QA; no actual transfer.,,16,213.5,343,72.5,True,True
+e31,StaticText,,,16,213.5,343,72.5,True,True
+e32,Cell,Confirm only if this payment has already happened.,,16,286,343,64,True,True
+e34,StaticText,,,16,286,343,64,True,True
+e35,Cell,Record status,,16,367.5,343,40.5,True,True
+e37,StaticText,Record status,,16,367.5,343,40.5,True,True
+e38,Cell,Payment recorded.,,16,408,343,52,True,True
+e40,StaticText,Payment recorded.,,16,408,343,52,True,True
+e41,Cell,View recorded payment,,16,460,343,52,True,True
+e43,Button,View recorded payment,,16,460,343,52,True,True
+e44,StaticText,View recorded payment,,32,475.75,181,20.5,True,True
+e46,Cell,Done,,16,512,343,52,True,True
+e48,Button,Done,,16,512,343,52,True,True
+e53,Button,Today,,25,588,88.25,54,True,True
+e55,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e57,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e59,Button,Money,,261.75,588,88.25,54,True,True
