@@ -180,26 +180,16 @@ struct TodayScreen: View {
     @ViewBuilder
     private func choreRow(_ item: LocalChore, moment: TodayMoment) -> some View {
         VStack(alignment: .leading, spacing: 0) {
-            Button {
-                Task { await model.complete(item.chore) }
-            } label: {
-                HStack(spacing: 14) {
-                    Image(systemName: item.state == .open ? "circle" : "checkmark.circle.fill")
-                        .font(.title3)
-                        .foregroundStyle(QuietPalette.accent)
-                    VStack(alignment: .leading, spacing: 3) {
-                        Text(item.chore.title).foregroundStyle(QuietPalette.ink)
-                        Text(detail(item, moment: moment)).font(.caption).foregroundStyle(QuietPalette.muted)
-                    }
-                    Spacer()
+            if item.state == .open {
+                Button {
+                    Task { await model.complete(item.chore) }
+                } label: {
+                    choreLabel(item, moment: moment)
                 }
-                .frame(minHeight: 64)
-                .contentShape(Rectangle())
+                .buttonStyle(.plain)
+            } else {
+                choreLabel(item, moment: moment)
             }
-            .buttonStyle(.plain)
-            .disabled(item.state != .open)
-            .accessibilityLabel(item.chore.title)
-            .accessibilityValue(detail(item, moment: moment))
             if item.state == .conflict, let operation = item.operationId {
                 Button {
                     Task { await model.discard(operation) }
@@ -214,6 +204,33 @@ struct TodayScreen: View {
             }
         }
         .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
+    }
+
+    private func choreLabel(_ item: LocalChore, moment: TodayMoment) -> some View {
+        HStack(spacing: 14) {
+            Image(systemName: choreSymbol(item.state))
+                .font(.title3)
+                .foregroundStyle(QuietPalette.accent)
+            VStack(alignment: .leading, spacing: 3) {
+                Text(item.chore.title).foregroundStyle(QuietPalette.ink)
+                Text(detail(item, moment: moment)).font(.caption).foregroundStyle(QuietPalette.muted)
+            }
+            Spacer()
+        }
+        .frame(minHeight: 64)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(item.chore.title)
+        .accessibilityValue(detail(item, moment: moment))
+    }
+
+    private func choreSymbol(_ state: LocalChore.State) -> String {
+        switch state {
+        case .open: "circle"
+        case .pending: "clock"
+        case .completed: "checkmark.circle.fill"
+        case .conflict: "exclamationmark.circle"
+        }
     }
 
     private func detail(_ item: LocalChore, moment: TodayMoment) -> String {
