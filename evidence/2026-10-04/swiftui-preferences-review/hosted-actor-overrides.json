@@ -1,0 +1,35 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "readOnly": true,
+  "checks": [
+    {
+      "route": "/v1/food-preferences",
+      "authenticatedActor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "attemptedActorOverride": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "status": 200,
+      "returnedOnlyAuthenticatedActorsCanonicalEnvelope": true
+    },
+    {
+      "route": "/v1/setup/status",
+      "authenticatedActor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "attemptedActorOverride": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "status": 200,
+      "returnedOnlyAuthenticatedActorsCanonicalEnvelope": true
+    },
+    {
+      "route": "/v1/food-preferences",
+      "authenticatedActor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "attemptedActorOverride": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "status": 200,
+      "returnedOnlyAuthenticatedActorsCanonicalEnvelope": true
+    },
+    {
+      "route": "/v1/setup/status",
+      "authenticatedActor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "attemptedActorOverride": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "status": 200,
+      "returnedOnlyAuthenticatedActorsCanonicalEnvelope": true
+    }
+  ],
+  "verifiedAt": 1791092693.8413465
+}

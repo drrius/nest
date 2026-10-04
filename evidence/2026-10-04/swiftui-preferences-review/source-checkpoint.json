@@ -1,0 +1,9 @@
+{
+  "committedSource": "cd32d826c1fc6a175f1b7309c5432a8f3540de66",
+  "nativeInputs": 1037,
+  "nativeInputHashMismatches": 0,
+  "manifest": "fixed-inputs.json",
+  "availableTestFlightBuild": 16,
+  "availableTestFlightSource": "5a228bef3078e6da520b311981703367fea478c5",
+  "newUpload": false
+}

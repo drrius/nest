@@ -1,0 +1,36 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "publishableKeyAndOrdinaryMemberTokensOnly": true,
+  "readOnly": true,
+  "checks": [
+    {
+      "authenticatedActor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "attemptedPrivateProfileActor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "status": 200,
+      "rowsReturned": 0,
+      "contentRange": "*/0"
+    },
+    {
+      "authenticatedActor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "attemptedPrivateProfileActor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "status": 200,
+      "rowsReturned": 0,
+      "contentRange": "*/0"
+    },
+    {
+      "authenticatedActor": "c9aef3f3-bfc1-4fd0-bf52-f8ab3f90d74e",
+      "attemptedPrivateProfileActor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "status": 200,
+      "rowsReturned": 0,
+      "contentRange": "*/0"
+    }
+  ],
+  "verifiedAt": 1791092732.85408,
+  "positiveOwnerControl": {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "status": 200,
+    "rowsReturned": 1,
+    "contentRange": "0-0/1"
+  },
+  "scopeLimit": "Member B currently has no saved food profile; A querying B is an empty-data check. B and outsider querying the existing A profile are the substantive isolation probes."
+}
