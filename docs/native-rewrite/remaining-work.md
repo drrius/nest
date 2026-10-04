@@ -1,5 +1,11 @@
 # What remains before Nest is finished
 
+Legacy attachment cleanup has a confirmed native uploader bypass, now fixed and
+locally verified with17 real database tests and16 full-chain boundary probes.
+The303-migration rehearsal retains exact finance/receipts. Hosted application and
+current-source CI are pending;50 other legacy public privileged functions and
+deeper private paths remain. [Evidence](../../evidence/2026-10-04/legacy-receipt-cleanup/README.md).
+
 Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
 
 Latest bounded progress: two native daily/shared creations now pass committed-reply/restart/exact replay and partner-first completion convergence. A third saved completion encounters a real partner reschedule and409, retains its original terms/reason through restart/client update, and is explicitly discarded at maximum text without another POST. All three fictional routines are normally archived; stable signed origins, ordinary Today, empty journals and owned relay/key cleanup are restored. [Completion evidence](../../evidence/2026-10-04/swiftui-native-chore-completion/README.md), [reschedule evidence](../../evidence/2026-10-04/swiftui-chore-reschedule-conflict/README.md). Seven legacy public warnings have a bounded guard review with36 disposable checks/eight hosted probes/222 source-body matches;53 legacy public functions and deeper private paths remain. [Security evidence](../../evidence/2026-10-04/legacy-privileged-boundaries/README.md). These bounded journeys do not close a milestone or enable live AI.
