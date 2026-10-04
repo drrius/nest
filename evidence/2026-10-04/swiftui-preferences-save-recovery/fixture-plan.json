@@ -1,0 +1,64 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "partner": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "source": "8a35603e",
+  "foodOriginal": {
+    "restrictions": ["Vegetarian"],
+    "dislikes": [],
+    "calorieGoal": null,
+    "portions": 1
+  },
+  "cookingOriginal": {
+    "cookingNotes": "",
+    "mealSlots": ["breakfast", "lunch", "dinner"]
+  },
+  "partnerCooking": {
+    "cookingNotes": "Nest fictional cooking B: shared revision check.",
+    "mealSlots": ["breakfast", "lunch", "dinner"]
+  },
+  "staleNotes": "Nest unsaved A note must survive the stale-form refusal.",
+  "phases": {
+    "food-change": {
+      "path": "/v1/food-preferences/save",
+      "expectedRevision": "3",
+      "preferences": {
+        "restrictions": ["Vegetarian"],
+        "dislikes": [],
+        "calorieGoal": 1600,
+        "portions": 1
+      },
+      "dropReply": true
+    },
+    "food-restore": {
+      "path": "/v1/food-preferences/save",
+      "expectedRevision": "4",
+      "preferences": {
+        "restrictions": ["Vegetarian"],
+        "dislikes": [],
+        "calorieGoal": null,
+        "portions": 1
+      },
+      "dropReply": false
+    },
+    "cooking-change": {
+      "path": "/v1/cooking-preferences/save",
+      "expectedRevision": "3",
+      "preferences": {
+        "cookingNotes": "Nest fictional cooking A: simple weekday meals.",
+        "mealSlots": ["breakfast", "lunch", "dinner"]
+      },
+      "dropReply": true
+    },
+    "cooking-restore": {
+      "path": "/v1/cooking-preferences/save",
+      "expectedRevision": "5",
+      "preferences": {
+        "cookingNotes": "",
+        "mealSlots": ["breakfast", "lunch", "dinner"]
+      },
+      "dropReply": false
+    }
+  }
+}

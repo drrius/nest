@@ -1,0 +1,333 @@
+{
+  "nativePostAttempts": 6,
+  "distinctNativeCommands": 4,
+  "committedRepliesDropped": 2,
+  "exactReplays": 2,
+  "noUnrelatedOrRejectedPosts": true,
+  "requests": [
+    {
+      "method": "GET",
+      "path": "/v1/session",
+      "status": 200,
+      "time": 1791093433.475348
+    },
+    {
+      "method": "GET",
+      "path": "/v1/groceries",
+      "status": 200,
+      "time": 1791093435.053005
+    },
+    {
+      "method": "GET",
+      "path": "/v1/money/pending-approvals",
+      "status": 200,
+      "time": 1791093435.161688
+    },
+    {
+      "method": "GET",
+      "path": "/v1/money/recurring/due-variable",
+      "status": 200,
+      "time": 1791093435.194644
+    },
+    {
+      "method": "GET",
+      "path": "/v1/meals/week?weekStart=2026-09-28",
+      "status": 200,
+      "time": 1791093435.863719
+    },
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "time": 1791093435.864651
+    },
+    {
+      "method": "GET",
+      "path": "/v1/groceries",
+      "status": 200,
+      "time": 1791093436.322467
+    },
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "time": 1791093437.1040618
+    },
+    {
+      "method": "GET",
+      "path": "/v1/setup/status",
+      "status": 200,
+      "time": 1791093439.7704341
+    },
+    {
+      "method": "GET",
+      "path": "/v1/food-preferences",
+      "status": 200,
+      "time": 1791093444.0575428
+    },
+    {
+      "method": "GET",
+      "path": "/v1/food-preferences",
+      "status": 200,
+      "time": 1791093461.639348
+    },
+    {
+      "method": "POST",
+      "path": "/v1/food-preferences/save",
+      "phase": "food-change",
+      "mode": "save",
+      "time": 1791093461.710733,
+      "forwarded": true,
+      "status": 200,
+      "droppedReply": true,
+      "exactReplay": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/session",
+      "status": 200,
+      "time": 1791093466.367111
+    },
+    {
+      "method": "GET",
+      "path": "/v1/meals/week?weekStart=2026-09-28",
+      "status": 200,
+      "time": 1791093467.721868
+    },
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "time": 1791093467.724258
+    },
+    {
+      "method": "GET",
+      "path": "/v1/money/recurring/due-variable",
+      "status": 200,
+      "time": 1791093467.8972108
+    },
+    {
+      "method": "GET",
+      "path": "/v1/money/pending-approvals",
+      "status": 200,
+      "time": 1791093467.908084
+    },
+    {
+      "method": "GET",
+      "path": "/v1/groceries",
+      "status": 200,
+      "time": 1791093467.917094
+    },
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "time": 1791093468.562592
+    },
+    {
+      "method": "GET",
+      "path": "/v1/groceries",
+      "status": 200,
+      "time": 1791093469.136941
+    },
+    {
+      "method": "GET",
+      "path": "/v1/setup/status",
+      "status": 200,
+      "time": 1791093473.0055292
+    },
+    {
+      "method": "GET",
+      "path": "/v1/food-preferences",
+      "status": 200,
+      "time": 1791093476.852493
+    },
+    {
+      "method": "POST",
+      "path": "/v1/food-preferences/save",
+      "phase": "food-change",
+      "mode": "recover",
+      "time": 1791093560.207798,
+      "forwarded": true,
+      "status": 200,
+      "droppedReply": false,
+      "exactReplay": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/food-preferences",
+      "status": 200,
+      "time": 1791093562.448045
+    },
+    {
+      "method": "GET",
+      "path": "/v1/food-preferences",
+      "status": 200,
+      "time": 1791093625.509155
+    },
+    {
+      "method": "POST",
+      "path": "/v1/food-preferences/save",
+      "phase": "food-restore",
+      "mode": "save",
+      "time": 1791093625.573031,
+      "forwarded": true,
+      "status": 200,
+      "droppedReply": false,
+      "exactReplay": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/food-preferences",
+      "status": 200,
+      "time": 1791093627.576525
+    },
+    {
+      "method": "GET",
+      "path": "/v1/setup/status",
+      "status": 200,
+      "time": 1791093630.418248
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791093680.588616
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791093692.0046542
+    },
+    {
+      "method": "POST",
+      "path": "/v1/cooking-preferences/save",
+      "phase": "cooking-change",
+      "mode": "save",
+      "time": 1791093692.1012428,
+      "forwarded": true,
+      "status": 200,
+      "droppedReply": true,
+      "exactReplay": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791093693.768267
+    },
+    {
+      "method": "GET",
+      "path": "/v1/session",
+      "status": 200,
+      "time": 1791093696.310742
+    },
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "time": 1791093697.596218
+    },
+    {
+      "method": "GET",
+      "path": "/v1/meals/week?weekStart=2026-09-28",
+      "status": 200,
+      "time": 1791093697.648451
+    },
+    {
+      "method": "GET",
+      "path": "/v1/money/recurring/due-variable",
+      "status": 200,
+      "time": 1791093697.709375
+    },
+    {
+      "method": "GET",
+      "path": "/v1/money/pending-approvals",
+      "status": 200,
+      "time": 1791093697.803791
+    },
+    {
+      "method": "GET",
+      "path": "/v1/groceries",
+      "status": 200,
+      "time": 1791093697.882089
+    },
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "time": 1791093698.230635
+    },
+    {
+      "method": "GET",
+      "path": "/v1/groceries",
+      "status": 200,
+      "time": 1791093699.1091032
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791093702.684294
+    },
+    {
+      "method": "POST",
+      "path": "/v1/cooking-preferences/save",
+      "phase": "cooking-change",
+      "mode": "recover",
+      "time": 1791093837.947597,
+      "forwarded": true,
+      "status": 200,
+      "droppedReply": false,
+      "exactReplay": true
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791093839.6181278
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791093904.893475
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791094238.909167
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791094293.442591
+    },
+    {
+      "method": "POST",
+      "path": "/v1/cooking-preferences/save",
+      "phase": "cooking-restore",
+      "mode": "save",
+      "time": 1791094293.573824,
+      "forwarded": true,
+      "status": 200,
+      "droppedReply": false,
+      "exactReplay": false
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791094295.088851
+    },
+    {
+      "method": "GET",
+      "path": "/v1/cooking-preferences",
+      "status": 200,
+      "time": 1791094296.090637
+    }
+  ]
+}

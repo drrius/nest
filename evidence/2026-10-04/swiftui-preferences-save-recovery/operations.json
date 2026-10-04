@@ -1,0 +1,96 @@
+{
+  "food-change": {
+    "command": {
+      "expectedRevision": "3",
+      "operationId": "9D531FD1-ADC2-4578-83AC-0ED965195F5F",
+      "preferences": {
+        "calorieGoal": 1600,
+        "dislikes": [],
+        "portions": 1,
+        "restrictions": ["Vegetarian"]
+      }
+    },
+    "deliveryStarted": true,
+    "time": 1791093461.710997,
+    "status": 200,
+    "response": {
+      "version": 1,
+      "receipt": {
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "9d531fd1-adc2-4578-83ac-0ed965195f5f",
+        "revision": "4"
+      }
+    },
+    "exactReplayCount": 1
+  },
+  "food-restore": {
+    "command": {
+      "expectedRevision": "4",
+      "operationId": "1546A4BA-0FC8-4F38-BF42-AB3AE5BED4AC",
+      "preferences": {
+        "calorieGoal": null,
+        "dislikes": [],
+        "portions": 1,
+        "restrictions": ["Vegetarian"]
+      }
+    },
+    "deliveryStarted": true,
+    "time": 1791093625.573429,
+    "status": 200,
+    "response": {
+      "version": 1,
+      "receipt": {
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "1546a4ba-0fc8-4f38-bf42-ab3ae5bed4ac",
+        "revision": "5"
+      }
+    }
+  },
+  "cooking-change": {
+    "command": {
+      "expectedRevision": "3",
+      "operationId": "77AFA5AC-CFF2-4026-9876-FC2F1D66B24F",
+      "preferences": {
+        "cookingNotes": "Nest fictional cooking A: simple weekday meals.",
+        "mealSlots": ["breakfast", "lunch", "dinner"]
+      }
+    },
+    "deliveryStarted": true,
+    "time": 1791093692.101726,
+    "status": 200,
+    "response": {
+      "version": 1,
+      "receipt": {
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "77afa5ac-cff2-4026-9876-fc2f1d66b24f",
+        "revision": "4"
+      }
+    },
+    "exactReplayCount": 1
+  },
+  "cooking-restore": {
+    "command": {
+      "expectedRevision": "5",
+      "operationId": "D3EE0763-533D-43FE-B3B1-41B91E064CD6",
+      "preferences": {
+        "cookingNotes": "",
+        "mealSlots": ["breakfast", "lunch", "dinner"]
+      }
+    },
+    "deliveryStarted": true,
+    "time": 1791094293.5741608,
+    "status": 200,
+    "response": {
+      "version": 1,
+      "receipt": {
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "d3ee0763-533d-43fe-b3b1-41b91e064cd6",
+        "revision": "6"
+      }
+    }
+  }
+}
