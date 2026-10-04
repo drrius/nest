@@ -1,0 +1,26 @@
+{
+  "exactPendingSurvivesRestart": true,
+  "pending": {
+    "operation": "20bc1177-88fd-42ad-ae8e-67d458612751",
+    "target": "4188c736-5e6f-4ec0-bcd4-d8c858cad3ba",
+    "chore": {
+      "occurrenceId": "4188C736-5E6F-4EC0-BCD4-D8C858CAD3BA",
+      "title": "Nest native daily e77f70 partner first",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "dueDate": "2026-10-04"
+    },
+    "body": {
+      "occurrenceId": "4188C736-5E6F-4EC0-BCD4-D8C858CAD3BA",
+      "operationId": "20BC1177-88FD-42AD-AE8E-67D458612751",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "expectedDueDate": "2026-10-04",
+      "completedOn": "2026-10-04"
+    },
+    "status": "pending",
+    "reason": null
+  },
+  "automaticReplayAttemptsBlockedByOwnedOutage": true,
+  "newRestartAttempts": 1,
+  "noNewUpstreamCompletion": true,
+  "time": 1791113840.61872
+}
