@@ -1,0 +1,168 @@
+[
+  {
+    "function": "remove_meal_plan_entry",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 2,
+    "sameReceipt": true,
+    "addedEntries": 0,
+    "addedReceipts": 1,
+    "addedRoutines": 1,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 1,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "default"
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 2,
+    "sameReceipt": true,
+    "addedEntries": 0,
+    "addedReceipts": 0,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 1,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": true,
+    "variant": "default"
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 1,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 1,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "library-with-ingredient"
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 1,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "leftover-with-retained-recipe"
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "sameReceipt": true,
+    "addedEntries": 1,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 1,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "library-with-ingredient"
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "sameReceipt": true,
+    "addedEntries": 1,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "leftover-with-retained-recipe"
+  }
+]

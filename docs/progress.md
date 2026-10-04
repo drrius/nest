@@ -386,3 +386,15 @@ the52 full-chain cases ran locally, not in that routine workflow. All1041 native
 inputs remain identical to both-CI-green6c05bdb4. Thirty-seven other legacy public entries and deeper
 private paths remain. M9 remains incomplete; no schema/production change,
 successful hosted financial mutation, purchase, beta, worker activation or merge.
+
+## Legacy meal boundaries
+
+Seven retained meal commands now pass 130 full-chain PostgreSQL authorization,
+reference and retry cases, including populated library/leftover side effects.
+Their hosted bodies/grants match; fourteen real outsider/anonymous requests
+are refused, with meals, groceries, routines and all 58 financial events unchanged.
+[Evidence](../evidence/2026-10-04/legacy-meal-boundaries/README.md) distinguishes
+legacy automatic groceries/source-link retries from native approval semantics.
+Final lint/format/limits pass; CI is pending. Thirty other legacy public entries
+and deeper private paths remain. M9 stays open; no native/provider/schema change,
+successful hosted mutation, production action, beta or merge occurred.

@@ -1,0 +1,114 @@
+[
+  {
+    "function": "create_and_place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "create_and_place_meal",
+    "actor": 9893,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "create_and_place_meal",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "create_and_place_meal",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "create_and_place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "create_and_place_meal",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 9893,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": 9893,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  }
+]

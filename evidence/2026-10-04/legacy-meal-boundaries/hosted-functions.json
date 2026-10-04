@@ -1,0 +1,65 @@
+[
+  {
+    "name": "create_and_place_meal",
+    "signature": "create_and_place_meal(uuid,text,date,text,text,text,text)",
+    "bodySha256": "2dc9e3f628bb48f9aecc0cc9c2e0a9f5a80e44fe6d1b5e1c073aa6bbc5f893a4",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "create_meal_preparation",
+    "signature": "create_meal_preparation(uuid,text,text,date,uuid,text,uuid,uuid,text)",
+    "bodySha256": "d1a2020c53d9f9552c8d5eec860f9e62b2a099fd55d54d933d1506cc4c16d1d4",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "move_meal_plan_entry",
+    "signature": "move_meal_plan_entry(uuid,date,text,text)",
+    "bodySha256": "929bbfcb396f644a778807cbcc284854bb71171c99dd6f11a01c25020369f5e4",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "place_meal",
+    "signature": "place_meal(uuid,date,text,text,text,uuid,uuid,text,text,text)",
+    "bodySha256": "36dc1e1da41818c0abe8e167171f86066b55ee73471c750f6c7c100de5ea8dec",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "remove_meal_plan_entry",
+    "signature": "remove_meal_plan_entry(uuid,text)",
+    "bodySha256": "24cdfd68f65c161afb0f859d2f88dfca2d322dc07d033f0a18ef870f09578f69",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "save_planned_meal_to_library",
+    "signature": "save_planned_meal_to_library(uuid,uuid,text,text,text)",
+    "bodySha256": "5a0a1888985e083a5aa2b9288500762e3a99a95c556758734103109ebdbeca5c",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "update_meal_plan_entry",
+    "signature": "update_meal_plan_entry(uuid,text,date,text,text,text,text)",
+    "bodySha256": "6ce6406593ad2b9b3af787d823b5fa9f8979ef368b39c6f9c8be1cfd9ed76d4c",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  }
+]

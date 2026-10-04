@@ -1,0 +1,159 @@
+[
+  {
+    "function": "create_and_place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 1,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "default"
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 0,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "default"
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "update_meal_plan_entry",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "move_meal_plan_entry",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 0,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "default"
+  },
+  {
+    "function": "move_meal_plan_entry",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "move_meal_plan_entry",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "remove_meal_plan_entry",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 0,
+    "addedReceipts": 1,
+    "addedRoutines": 0,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 0,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "default"
+  },
+  {
+    "function": "remove_meal_plan_entry",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "remove_meal_plan_entry",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 1,
+    "sameReceipt": true,
+    "addedEntries": 0,
+    "addedReceipts": 1,
+    "addedRoutines": 1,
+    "addedGroceries": 0,
+    "addedDefinitions": 0,
+    "addedOccurrences": 1,
+    "sameStateAfterRetry": true,
+    "relatedRecipeAndIngredients": true,
+    "sameStateAfterCompetingSave": true,
+    "usesSourceLinkForRetry": false,
+    "variant": "default"
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  }
+]

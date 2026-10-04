@@ -1,0 +1,15 @@
+{
+  "files": {
+    "tools/migration/legacy-meal-boundary-calls.mjs": "39740747b5c6743521c25aa63587d86442a515a2bea1c2cf7b5ab21f464049bd",
+    "tools/migration/legacy-meal-boundaries.mjs": "6f1fe2ccce13e2dad241fdf092f6e5eb18a2cab154935ef16abffa4fd31729c2",
+    "tools/migration/schema-probe.mjs": "3ae03a3b9fbb576010c5e7f665e6a69319cddb452aca7d164545a0a8525d8f1f"
+  },
+  "fullRehearsalSha256": "acf5377300cb6d9c9e6b9cdb734025c293e7506f56480c245b12f5cca9a05f08",
+  "final130CasesBindExactSource": true,
+  "firstAttemptHarnessError": "The test date expression called revoked private.household_today; replaced with a caller-safe native PostgreSQL date expression. No server permission changed.",
+  "focusedAndFullLintExitCode": 0,
+  "formatExitCode": 0,
+  "twoExistingSchemaProbeEffectWarningsRemainVisible": true,
+  "shippingSwiftUnchanged": true,
+  "newNativeExecutionClaimed": false
+}

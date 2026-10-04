@@ -1,0 +1,43 @@
+{
+  "ledger": {
+    "count": 116,
+    "digest": "905da75bcdb77e5387cbe4b519ff539e"
+  },
+  "entries": {
+    "count": 55,
+    "digest": "63984569f470fc8858dc0179c5fe151e"
+  },
+  "finance": {
+    "count": 58,
+    "digest": "9096dc9ef0572c9210b356174befa22a"
+  },
+  "routines": {
+    "count": 19,
+    "digest": "3100f5fecd0ced1c7ed036e288d8a24d"
+  },
+  "groceries": {
+    "count": 28,
+    "digest": "0d3468a41896e46a66864c36c5485951"
+  },
+  "allocations": {
+    "count": 98,
+    "digest": "82b29825eb518a9f4d95c9171378a52d"
+  },
+  "definitions": {
+    "count": 7,
+    "digest": "d061c0ba664d5ed551fae46925b365e6"
+  },
+  "ingredients": {
+    "count": 11,
+    "digest": "0066de694ecd62f0144790a8ca4aa84c"
+  },
+  "occurrences": {
+    "count": 24,
+    "digest": "4c85346f9617ff96a39c6f90bcf534d5"
+  },
+  "mealReceipts": {
+    "count": 0,
+    "digest": "37a6259cc0c1dae299a7866489dff0bd"
+  },
+  "probeEntryId": "748d28f3-9c4d-4b0a-8874-f6a564493768"
+}

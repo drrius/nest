@@ -1,0 +1,114 @@
+[
+  {
+    "function": "create_meal_preparation",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "create_meal_preparation",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 9891,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 9893,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "save_planned_meal_to_library",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "foreign-target",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-library",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "foreign-library",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-leftover",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "foreign-leftover",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "removed-leftover",
+    "denied": true
+  },
+  {
+    "function": "place_meal",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "removed-leftover",
+    "denied": true
+  }
+]
