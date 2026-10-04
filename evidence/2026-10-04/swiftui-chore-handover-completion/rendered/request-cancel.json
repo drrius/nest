@@ -1,0 +1,16 @@
+{
+  "target": {
+    "x": 16,
+    "y": 333,
+    "width": 343,
+    "height": 108.5
+  },
+  "cancel": {
+    "x": 16,
+    "y": 607,
+    "width": 343,
+    "height": 44
+  },
+  "specificMessage": "Ask your partner to take Nest handover completion 3557c4ff request, due 2026-10-04. It stays assigned to you until accepted.",
+  "notStaged": true
+}

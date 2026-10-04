@@ -31,7 +31,7 @@ struct ChoreHandoversScreen: View {
                     } else if let receipt = saved.receipt {
                         Text(
                             receipt.state == "pending"
-                                ? "Request sent. Your partner still needs to accept." : "Decision saved.")
+                                ? "Request sent. Choose Done to see current handovers." : "Decision saved.")
                         Button("Done") { Task { await finish() } }
                     } else {
                         Text(working ? "Saving…" : "Not confirmed. Retry the saved request when online.")

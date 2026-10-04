@@ -1,0 +1,10 @@
+swiftui	Verify Swift source limits	2026-10-04T01:24:39.3504400Z Swift source limits: passed
+swiftui	Test Foundation domain and offline rules	2026-10-04T01:25:55.5474580Z Test Suite 'MoneyReadStoreTests' started at 2026-10-04 01:25:54.795.
+swiftui	Test Foundation domain and offline rules	2026-10-04T01:25:55.5485940Z Test Suite 'MoneyReadStoreTests' passed at 2026-10-04 01:25:55.519.
+swiftui	Test Foundation domain and offline rules	2026-10-04T01:26:02.0750580Z 	 Executed 484 tests, with 41 tests skipped and 0 failures (0 unexpected) in 15.504 (15.606) seconds
+swiftui	Test Foundation domain and offline rules	2026-10-04T01:26:02.0751420Z 	 Executed 484 tests, with 41 tests skipped and 0 failures (0 unexpected) in 15.504 (15.607) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T01:34:16.0517720Z Test Suite 'MoneySnapshotTests' started at 2026-10-04 01:34:00.111.
+swiftui	Test iPhone session and account boundaries	2026-10-04T01:34:16.4545520Z Test Suite 'MoneySnapshotTests' passed at 2026-10-04 01:34:01.887.
+swiftui	Test iPhone session and account boundaries	2026-10-04T01:34:48.9235530Z 	 Executed 396 tests, with 11 tests skipped and 0 failures (0 unexpected) in 140.411 (178.676) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T01:34:48.9641030Z 	 Executed 396 tests, with 11 tests skipped and 0 failures (0 unexpected) in 140.411 (178.678) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T01:34:52.1548090Z ** TEST SUCCEEDED **

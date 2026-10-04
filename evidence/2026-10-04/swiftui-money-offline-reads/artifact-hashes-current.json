@@ -1,5 +1,7 @@
 {
-  "README.md": "c995d1efb0f0b369fe61564e8bf23ac7a88c867816c83cd02322201ee9930e4a",
+  "README.md": "7a5d4d4626fb6f07a075df9b5af03f3cdeb94741515370ca7f0c5830030a4e2b",
+  "ci-excerpt.txt": "2458adccecab344f5d2acd25f09d994126cf129381e840ee75b5659fb8304af3",
+  "ci.json": "1aeff15b8e435b42c29d593cca8e5cc892762cf1bb9a6889212e27c20479461b",
   "core-tests.txt": "8854634ef39da1b76a73186310ed43d16f0277630d54e8ed5689a15437453e4e",
   "hosted-read-checks.json": "4db7db0ed1cccca76340ccd8c5dae0e74ef36607c3b75f7d17d1fe5b047c89c9",
   "native-initial-tests.txt": "7f15e55437284f16080cc377f927ec4181803b0524338d2faaae7a4fd9cdc550",

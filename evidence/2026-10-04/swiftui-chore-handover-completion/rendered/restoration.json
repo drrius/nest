@@ -1,0 +1,20 @@
+{
+  "source": "9c1db519 plus ChoreHandoversScreen status fix",
+  "sourceMismatches": 0,
+  "started": 1791078554.463048,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "ordinaryTodayRestored": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0,
+    "chore_transfers": 0
+  },
+  "relayStopped": true,
+  "generatedKeyDestroyed": true,
+  "finished": 1791078558.744861
+}
