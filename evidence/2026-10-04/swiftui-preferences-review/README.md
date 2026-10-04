@@ -1,0 +1,11 @@
+# Native preferences and setup review
+
+The signed SwiftUI app reads real actor-scoped food/setup and shared cooking preferences through the separate nest-test API. All POSTs are refused by the owned local relay; this pass does not claim successful saves.
+
+At ordinary text, an unsaved calorie goal of20,001 disables Save. Back/reopening restores the canonical value. Unsaved household cooking notes likewise disappear on deliberate Back. Every one of31 scoped command/decision slots stays empty; no requests are discarded or deleted. Independent before/after reads by both fictional members confirm unchanged preferences/setup and all52 financial events with unchanged balances. Outsiders receive403 and anonymous requests401 for the three preference/setup routes.
+
+The actual accessibility snapshot exposed36pt toolbar Save controls. The correction uses a44pt label and plain native Button style. The initial label-only trial still measured36pt and was rejected. The final signed, source-matched normal/light and maximum-text/dark rendering measures both Save controls at least44pt. Strict Swift formatting, source limits, Oxfmt and Oxlint pass (existing Effect advisory warnings remain). The1,037 input hashes match the isolated Mac. Required CI for this correction is pending the push. These snapshots establish minimum control size, not corner-tap or complete maximum-text form acceptance. Stable test origins/ordinary Today are restored, all31 scoped slots remain empty without deletion, Keychain/data are preserved, and only the owned relay and generated key were removed.
+
+The earlier observer’s two selector failures were harness mismatches: the calorie field combines its label and placeholder; the empty cooking TextView exposes its placeholder as its value. They were corrected without repeating edits or sending writes.
+
+This closes only the bounded read/validation/unsaved-cancellation check. Successful save/conflict/recovery, broader onboarding, VoiceOver, both phones and full M3 acceptance remain open. No production access, TestFlight upload or merge occurred. Build16 remains the available private candidate; these toolbar changes are newer.

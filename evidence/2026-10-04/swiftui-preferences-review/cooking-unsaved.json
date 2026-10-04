@@ -1,0 +1,1800 @@
+{
+  "nodes": [
+    {
+      "index": 0,
+      "type": "Other",
+      "role": "_TtC7SwiftUIP33_ACC2C5639A7D76F611E170E831FCA49118SwiftUIApplication",
+      "subrole": "UIApplication",
+      "label": "Nest",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "depth": 0,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e1"
+    },
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "type": "NavigationBar",
+      "role": "SwiftUI.UIKitNavigationBar",
+      "subrole": "UINavigationBar",
+      "identifier": "Cooking preferences",
+      "rect": {
+        "x": 0,
+        "y": 20,
+        "width": 375,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e2"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "UIAccessibilityBackButtonElement",
+      "subrole": "UIAccessibilityElement",
+      "label": "Profile",
+      "identifier": "BackButton",
+      "rect": {
+        "x": 16,
+        "y": 20,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e3"
+    },
+    {
+      "index": 3,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "UILabel",
+      "label": "Cooking preferences",
+      "rect": {
+        "x": 104.5,
+        "y": 31.5,
+        "width": 166,
+        "height": 21
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e4"
+    },
+    {
+      "index": 4,
+      "parentIndex": 1,
+      "type": "Other",
+      "role": "_TtGC7SwiftUI16UIKitBarItemHostVS_11BarItemView_",
+      "subrole": "UIView",
+      "label": "Save",
+      "rect": {
+        "x": 292.5,
+        "y": 24,
+        "width": 62.5,
+        "height": 36
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e5"
+    },
+    {
+      "index": 5,
+      "parentIndex": 4,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Save",
+      "rect": {
+        "x": 292.5,
+        "y": 24,
+        "width": 62.5,
+        "height": 36
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e6"
+    },
+    {
+      "index": 6,
+      "parentIndex": 0,
+      "type": "CollectionView",
+      "role": "SwiftUI.UpdateCoalescingCollectionView",
+      "subrole": "UICollectionView",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e7"
+    },
+    {
+      "index": 7,
+      "parentIndex": 6,
+      "type": "Image",
+      "role": "UIImageView",
+      "identifier": "AdditionalDimmingOverlay",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 124
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e8"
+    },
+    {
+      "index": 8,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewHeaderFooter",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 0,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e9"
+    },
+    {
+      "index": 9,
+      "parentIndex": 8,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Show in your week",
+      "rect": {
+        "x": 16,
+        "y": 0,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e10"
+    },
+    {
+      "index": 10,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 40.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e11"
+    },
+    {
+      "index": 11,
+      "parentIndex": 10,
+      "type": "Switch",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Breakfast",
+      "value": "1",
+      "rect": {
+        "x": 16,
+        "y": 40.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e12"
+    },
+    {
+      "index": 12,
+      "parentIndex": 11,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Breakfast",
+      "rect": {
+        "x": 32,
+        "y": 56.25,
+        "width": 72.5,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e13"
+    },
+    {
+      "index": 13,
+      "parentIndex": 11,
+      "type": "Switch",
+      "role": "UISwitch",
+      "value": "1",
+      "rect": {
+        "x": 282,
+        "y": 52.5,
+        "width": 63,
+        "height": 28
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e14"
+    },
+    {
+      "index": 14,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 92.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e15"
+    },
+    {
+      "index": 15,
+      "parentIndex": 14,
+      "type": "Switch",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Lunch",
+      "value": "1",
+      "rect": {
+        "x": 16,
+        "y": 92.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e16"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Lunch",
+      "rect": {
+        "x": 32,
+        "y": 108.25,
+        "width": 47,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e17"
+    },
+    {
+      "index": 17,
+      "parentIndex": 15,
+      "type": "Switch",
+      "role": "UISwitch",
+      "value": "1",
+      "rect": {
+        "x": 282,
+        "y": 104.5,
+        "width": 63,
+        "height": 28
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e18"
+    },
+    {
+      "index": 18,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 144.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e19"
+    },
+    {
+      "index": 19,
+      "parentIndex": 18,
+      "type": "Switch",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Dinner",
+      "value": "1",
+      "rect": {
+        "x": 16,
+        "y": 144.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e20"
+    },
+    {
+      "index": 20,
+      "parentIndex": 19,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Dinner",
+      "rect": {
+        "x": 32,
+        "y": 160.25,
+        "width": 50,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e21"
+    },
+    {
+      "index": 21,
+      "parentIndex": 19,
+      "type": "Switch",
+      "role": "UISwitch",
+      "value": "1",
+      "rect": {
+        "x": 282,
+        "y": 156.5,
+        "width": 63,
+        "height": 28
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e22"
+    },
+    {
+      "index": 22,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 196.5,
+        "width": 343,
+        "height": 64
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e23"
+    },
+    {
+      "index": 23,
+      "parentIndex": 22,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Already-planned meals stay visible even when their slot is hidden.",
+      "rect": {
+        "x": 16,
+        "y": 196.5,
+        "width": 343,
+        "height": 64
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e24"
+    },
+    {
+      "index": 24,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewHeaderFooter",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 278,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e25"
+    },
+    {
+      "index": 25,
+      "parentIndex": 24,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Cooking notes",
+      "rect": {
+        "x": 16,
+        "y": 278,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e26"
+    },
+    {
+      "index": 26,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 318.5,
+        "width": 343,
+        "height": 94.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e27"
+    },
+    {
+      "index": 27,
+      "parentIndex": 26,
+      "type": "TextView",
+      "role": "SwiftUI.VerticalTextView",
+      "subrole": "UITextView",
+      "value": "Unsaved fictional note for cancellation check",
+      "rect": {
+        "x": 32,
+        "y": 333.5,
+        "width": 311,
+        "height": 64.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e28"
+    },
+    {
+      "index": 28,
+      "parentIndex": 27,
+      "type": "Other",
+      "role": "_UITextSelectionRangeAdjustmentContainerView",
+      "identifier": "_UITextSelectionRangeAdjustmentContainerView",
+      "rect": {
+        "x": 32,
+        "y": 333.5,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e29"
+    },
+    {
+      "index": 29,
+      "parentIndex": 28,
+      "type": "Other",
+      "role": "_UITextSelectionLollipopView",
+      "identifier": "com.apple.text.grabber.leading",
+      "rect": {
+        "x": 32,
+        "y": 333.5,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 5,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e30"
+    },
+    {
+      "index": 30,
+      "parentIndex": 28,
+      "type": "Other",
+      "role": "_UITextSelectionLollipopView",
+      "identifier": "com.apple.text.grabber.leading",
+      "rect": {
+        "x": 32,
+        "y": 333.5,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 5,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e31"
+    },
+    {
+      "index": 31,
+      "parentIndex": 27,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Horizontal scroll bar, 1 page",
+      "value": "0%",
+      "rect": {
+        "x": 32,
+        "y": 365,
+        "width": 311,
+        "height": 30
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e32"
+    },
+    {
+      "index": 32,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 413,
+        "width": 343,
+        "height": 64
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e33"
+    },
+    {
+      "index": 33,
+      "parentIndex": 32,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Shared with your household and used for meal planning.",
+      "rect": {
+        "x": 16,
+        "y": 413,
+        "width": 343,
+        "height": 64
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e34"
+    },
+    {
+      "index": 34,
+      "parentIndex": 6,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 512,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e35"
+    },
+    {
+      "index": 35,
+      "parentIndex": 34,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Reload current preferences",
+      "rect": {
+        "x": 16,
+        "y": 512,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e36"
+    },
+    {
+      "index": 36,
+      "parentIndex": 6,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Vertical scroll bar, 2 pages",
+      "value": "29%",
+      "rect": {
+        "x": 342,
+        "y": 74,
+        "width": 30,
+        "height": 333
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e37"
+    },
+    {
+      "index": 37,
+      "parentIndex": 6,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Vertical scroll bar, 2 pages",
+      "value": "29%",
+      "rect": {
+        "x": 342,
+        "y": 74,
+        "width": 30,
+        "height": 333
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e38"
+    },
+    {
+      "index": 38,
+      "parentIndex": 0,
+      "type": "TabBar",
+      "role": "UITabBar",
+      "label": "Tab Bar",
+      "rect": {
+        "x": 0,
+        "y": 584,
+        "width": 375,
+        "height": 83
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e39"
+    },
+    {
+      "index": 39,
+      "parentIndex": 38,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Today",
+      "identifier": "house",
+      "rect": {
+        "x": 25,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "selected": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e40"
+    },
+    {
+      "index": 40,
+      "parentIndex": 39,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "home",
+      "identifier": "house.fill",
+      "rect": {
+        "x": 52,
+        "y": 594,
+        "width": 33.5,
+        "height": 28
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e41"
+    },
+    {
+      "index": 41,
+      "parentIndex": 38,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Meals",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 103.91666666666667,
+        "y": 588,
+        "width": 88.25000000000001,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e42"
+    },
+    {
+      "index": 42,
+      "parentIndex": 41,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "Food",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 136.91666666666669,
+        "y": 591.5,
+        "width": 22,
+        "height": 31
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e43"
+    },
+    {
+      "index": 43,
+      "parentIndex": 38,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Calendar",
+      "identifier": "calendar",
+      "rect": {
+        "x": 182.83333333333334,
+        "y": 588,
+        "width": 88.25000000000003,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e44"
+    },
+    {
+      "index": 44,
+      "parentIndex": 43,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "calendar",
+      "identifier": "calendar",
+      "rect": {
+        "x": 212.83333333333334,
+        "y": 595.5,
+        "width": 29,
+        "height": 25
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e45"
+    },
+    {
+      "index": 45,
+      "parentIndex": 38,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Money",
+      "identifier": "creditcard",
+      "rect": {
+        "x": 261.75,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e46"
+    },
+    {
+      "index": 46,
+      "parentIndex": 45,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "card",
+      "identifier": "creditcard.fill",
+      "rect": {
+        "x": 289.75,
+        "y": 596.5,
+        "width": 33,
+        "height": 23.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e47"
+    },
+    {
+      "index": 47,
+      "parentIndex": 0,
+      "type": "Other",
+      "role": "_UIRemoteKeyboardPlaceholderView",
+      "identifier": "inputView",
+      "rect": {
+        "x": 0,
+        "y": 407,
+        "width": 375,
+        "height": 260
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e48"
+    },
+    {
+      "index": 48,
+      "parentIndex": 0,
+      "type": "Other",
+      "role": "TUISystemInputAssistantView",
+      "subrole": "UIView",
+      "identifier": "SystemInputAssistantView",
+      "rect": {
+        "x": 0,
+        "y": 407,
+        "width": 375,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e49"
+    },
+    {
+      "index": 49,
+      "parentIndex": 48,
+      "type": "Other",
+      "role": "TUISystemInputAssistantPageView",
+      "subrole": "UIView",
+      "identifier": "CenterPageView",
+      "rect": {
+        "x": 0,
+        "y": 407,
+        "width": 375,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e50"
+    },
+    {
+      "index": 50,
+      "parentIndex": 49,
+      "type": "ScrollView",
+      "role": "UIScrollView",
+      "rect": {
+        "x": 0,
+        "y": 407,
+        "width": 375,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e51"
+    },
+    {
+      "index": 51,
+      "parentIndex": 49,
+      "type": "Other",
+      "role": "TUIPredictionView",
+      "subrole": "UIView",
+      "label": "Typing Predictions",
+      "rect": {
+        "x": 0,
+        "y": 407,
+        "width": 375,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e52"
+    },
+    {
+      "index": 52,
+      "parentIndex": 51,
+      "type": "Other",
+      "role": "TUIPredictionViewCell",
+      "subrole": "UIView",
+      "label": "I",
+      "rect": {
+        "x": 0,
+        "y": 407,
+        "width": 125,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e53"
+    },
+    {
+      "index": 53,
+      "parentIndex": 51,
+      "type": "Other",
+      "role": "TUIPredictionViewCell",
+      "subrole": "UIView",
+      "label": "The",
+      "rect": {
+        "x": 125,
+        "y": 407,
+        "width": 125,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e54"
+    },
+    {
+      "index": 54,
+      "parentIndex": 51,
+      "type": "Other",
+      "role": "TUIPredictionViewCell",
+      "subrole": "UIView",
+      "label": "Adopted",
+      "rect": {
+        "x": 250,
+        "y": 407,
+        "width": 125,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e55"
+    },
+    {
+      "index": 55,
+      "parentIndex": 0,
+      "type": "Other",
+      "role": "UIKeyboardLayoutStar",
+      "identifier": "UIKeyboardLayoutStar Preview",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 375,
+        "height": 216
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e56"
+    },
+    {
+      "index": 56,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Padding-Left",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e57"
+    },
+    {
+      "index": 57,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Padding-Right",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e58"
+    },
+    {
+      "index": 58,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Padding-Left",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e59"
+    },
+    {
+      "index": 59,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Padding-Right",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e60"
+    },
+    {
+      "index": 60,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Padding-Left",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e61"
+    },
+    {
+      "index": 61,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Padding-Right",
+      "rect": {
+        "x": 0,
+        "y": 451,
+        "width": 0,
+        "height": 0
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": false,
+      "ref": "e62"
+    },
+    {
+      "index": 62,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Q",
+      "rect": {
+        "x": 4.5,
+        "y": 458,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e63"
+    },
+    {
+      "index": 63,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "W",
+      "rect": {
+        "x": 41.5,
+        "y": 458,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e64"
+    },
+    {
+      "index": 64,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "E",
+      "rect": {
+        "x": 78,
+        "y": 458,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e65"
+    },
+    {
+      "index": 65,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "R",
+      "rect": {
+        "x": 115,
+        "y": 458,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e66"
+    },
+    {
+      "index": 66,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "T",
+      "rect": {
+        "x": 151.5,
+        "y": 458,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e67"
+    },
+    {
+      "index": 67,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Y",
+      "rect": {
+        "x": 188.5,
+        "y": 458,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e68"
+    },
+    {
+      "index": 68,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "U",
+      "rect": {
+        "x": 225.5,
+        "y": 458,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e69"
+    },
+    {
+      "index": 69,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "I",
+      "rect": {
+        "x": 262,
+        "y": 458,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e70"
+    },
+    {
+      "index": 70,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "O",
+      "rect": {
+        "x": 299,
+        "y": 458,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e71"
+    },
+    {
+      "index": 71,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "P",
+      "rect": {
+        "x": 335.5,
+        "y": 458,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e72"
+    },
+    {
+      "index": 72,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "A",
+      "rect": {
+        "x": 23,
+        "y": 512,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e73"
+    },
+    {
+      "index": 73,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "S",
+      "rect": {
+        "x": 59.5,
+        "y": 512,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e74"
+    },
+    {
+      "index": 74,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "D",
+      "rect": {
+        "x": 96.5,
+        "y": 512,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e75"
+    },
+    {
+      "index": 75,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "F",
+      "rect": {
+        "x": 133.5,
+        "y": 512,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e76"
+    },
+    {
+      "index": 76,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "G",
+      "rect": {
+        "x": 170,
+        "y": 512,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e77"
+    },
+    {
+      "index": 77,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "H",
+      "rect": {
+        "x": 207,
+        "y": 512,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e78"
+    },
+    {
+      "index": 78,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "J",
+      "rect": {
+        "x": 243.5,
+        "y": 512,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e79"
+    },
+    {
+      "index": 79,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "K",
+      "rect": {
+        "x": 280.5,
+        "y": 512,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e80"
+    },
+    {
+      "index": 80,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "L",
+      "rect": {
+        "x": 317.5,
+        "y": 512,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e81"
+    },
+    {
+      "index": 81,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "shift",
+      "identifier": "shift",
+      "rect": {
+        "x": 4.5,
+        "y": 566,
+        "width": 48,
+        "height": 54
+      },
+      "enabled": true,
+      "selected": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e82"
+    },
+    {
+      "index": 82,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Z",
+      "rect": {
+        "x": 59.5,
+        "y": 566,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e83"
+    },
+    {
+      "index": 83,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "X",
+      "rect": {
+        "x": 96.5,
+        "y": 566,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e84"
+    },
+    {
+      "index": 84,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "C",
+      "rect": {
+        "x": 133.5,
+        "y": 566,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e85"
+    },
+    {
+      "index": 85,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "V",
+      "rect": {
+        "x": 170,
+        "y": 566,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e86"
+    },
+    {
+      "index": 86,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "B",
+      "rect": {
+        "x": 207,
+        "y": 566,
+        "width": 36.5,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e87"
+    },
+    {
+      "index": 87,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "N",
+      "rect": {
+        "x": 243.5,
+        "y": 566,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e88"
+    },
+    {
+      "index": 88,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "M",
+      "rect": {
+        "x": 280.5,
+        "y": 566,
+        "width": 37,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e89"
+    },
+    {
+      "index": 89,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "delete",
+      "identifier": "delete",
+      "rect": {
+        "x": 324.5,
+        "y": 566,
+        "width": 48,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e90"
+    },
+    {
+      "index": 90,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "numbers",
+      "identifier": "more",
+      "rect": {
+        "x": 4.5,
+        "y": 620,
+        "width": 46,
+        "height": 47
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e91"
+    },
+    {
+      "index": 91,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Emoji",
+      "identifier": "emoji",
+      "rect": {
+        "x": 50.5,
+        "y": 620,
+        "width": 46,
+        "height": 47
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e92"
+    },
+    {
+      "index": 92,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "Dictate",
+      "identifier": "dictation",
+      "rect": {
+        "x": 96.5,
+        "y": 620,
+        "width": 37,
+        "height": 47
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e93"
+    },
+    {
+      "index": 93,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": " ",
+      "identifier": "space",
+      "rect": {
+        "x": 133.5,
+        "y": 620,
+        "width": 147,
+        "height": 47
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e94"
+    },
+    {
+      "index": 94,
+      "parentIndex": 55,
+      "type": "Key",
+      "role": "UIAccessibilityElementKBKey",
+      "subrole": "UIAccessibilityElement",
+      "label": "return",
+      "identifier": "Return",
+      "rect": {
+        "x": 280.5,
+        "y": 620,
+        "width": 92,
+        "height": 47
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 79974,
+      "hittable": true,
+      "ref": "e95"
+    }
+  ],
+  "noIntentOrPOST": true,
+  "time": 1791092082.949502
+}

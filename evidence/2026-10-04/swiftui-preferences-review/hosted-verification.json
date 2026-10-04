@@ -1,0 +1,115 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "partner": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "source": "e682b4d99fb0a29c155b37afae07c760c4dc38c9",
+  "isolation": [
+    {
+      "path": "/v1/food-preferences",
+      "outsiderStatus": 403,
+      "anonymousStatus": 401
+    },
+    {
+      "path": "/v1/cooking-preferences",
+      "outsiderStatus": 403,
+      "anonymousStatus": 401
+    },
+    {
+      "path": "/v1/setup/status",
+      "outsiderStatus": 403,
+      "anonymousStatus": 401
+    }
+  ],
+  "afterIsolation": [
+    {
+      "path": "/v1/food-preferences",
+      "outsiderStatus": 403,
+      "anonymousStatus": 401
+    },
+    {
+      "path": "/v1/cooking-preferences",
+      "outsiderStatus": 403,
+      "anonymousStatus": 401
+    },
+    {
+      "path": "/v1/setup/status",
+      "outsiderStatus": 403,
+      "anonymousStatus": 401
+    }
+  ],
+  "productionTouched": false,
+  "started": 1791091069.8064384,
+  "verifiedAt": 1791092159.4501314,
+  "completePreferenceAndFinancialStateUnchanged": true,
+  "members": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": {
+      "ownFoodAndSetup": true,
+      "food": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "profile": {
+          "revision": "3",
+          "preferences": {
+            "restrictions": ["Vegetarian"],
+            "dislikes": [],
+            "calorieGoal": null,
+            "portions": 1
+          }
+        }
+      },
+      "setup": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "foodConfigured": true,
+        "cookingConfigured": true,
+        "notificationsConfigured": true
+      },
+      "sharedCooking": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "profile": {
+          "revision": "3",
+          "preferences": {
+            "cookingNotes": "",
+            "mealSlots": ["breakfast", "lunch", "dinner"]
+          }
+        }
+      },
+      "financialEventCount": "52",
+      "completeFinancialReadSHA256": "94737cbfb4086d82b9c56f8421f7cac3503241a3d3b4811c69de3d22b9a25d2c"
+    },
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": {
+      "ownFoodAndSetup": true,
+      "food": {
+        "version": 1,
+        "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "profile": null
+      },
+      "setup": {
+        "version": 1,
+        "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "foodConfigured": false,
+        "cookingConfigured": true,
+        "notificationsConfigured": false
+      },
+      "sharedCooking": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "profile": {
+          "revision": "3",
+          "preferences": {
+            "cookingNotes": "",
+            "mealSlots": ["breakfast", "lunch", "dinner"]
+          }
+        }
+      },
+      "financialEventCount": "52",
+      "completeFinancialReadSHA256": "94737cbfb4086d82b9c56f8421f7cac3503241a3d3b4811c69de3d22b9a25d2c"
+    }
+  }
+}

@@ -45,7 +45,11 @@ struct FoodPreferencesScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save") { Task { await save() } }.disabled(!editable || draft == nil)
+                Button {
+                    Task { await save() }
+                } label: {
+                    Text("Save").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(!editable || draft == nil)
             }
         }
         .task(id: model.generation) { await load() }

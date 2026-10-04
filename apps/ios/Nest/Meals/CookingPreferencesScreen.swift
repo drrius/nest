@@ -54,8 +54,12 @@ struct CookingPreferencesScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button(submitting ? "Saving…" : "Save") { Task { await save() } }
-                    .disabled(!editable || !valid)
+                Button {
+                    Task { await save() }
+                } label: {
+                    Text(submitting ? "Saving…" : "Save")
+                        .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(!editable || !valid)
             }
         }
         .task(id: model.generation) { await reload() }
