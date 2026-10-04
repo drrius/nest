@@ -29,6 +29,6 @@
     "matchedNativeInputs": 1039,
     "installedWithDataAndKeychainPreserved": true
   },
-  "artifactTransfer": "Mac result.json and logs remain on authorized Mac; SCP timed out after the completed run.",
-  "renderedSmoke": "Interrupted after Next week; native attempt/result markers and remote process state require Mac inspection. No repeated Save."
+  "artifactTransfer": "Completed Mac result retrieved as native-result.json; source/test totals retained.",
+  "renderedSmoke": "Resumed after inspecting no earlier Save attempt. One real linked recipe saved; stale Save refused but keyboard covered error. Both fixtures normally removed; later keyboard fix has separate evidence."
 }

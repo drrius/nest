@@ -1,0 +1,38 @@
+{
+  "testProject": "tkjixmujjoustdiedfmw",
+  "productionTouched": false,
+  "source": "8ec13274b3947cb6f0031338456287f9e53bbda2",
+  "reconciledInterruptedSmoke": {
+    "noSaveAttemptMarker": true,
+    "nativeScopedSlotsEmpty": 31,
+    "mealJournalsEmpty": 7,
+    "bothMemberWeekRevisionBeforeSave": "37",
+    "entryCountBeforeSave": 0
+  },
+  "nativeLinkedRecipeSavedOnce": {
+    "revision": "38",
+    "entryCount": 1
+  },
+  "partnerChange": {
+    "revision": "39",
+    "entryCount": 2
+  },
+  "staleNativeSave": {
+    "time": 1791104471.872508,
+    "canonicalWeekUnchangedAfterRefusedSave": true,
+    "noLocalIntentsStaged": true,
+    "typedTitleReadImmediatelyAfterSave": true,
+    "laterFieldRereadFailed": true,
+    "keyboardOccludesErrorInScreenshot": true,
+    "visualAcceptanceFailed": true
+  },
+  "restored": {
+    "revision": "41",
+    "entryCount": 0,
+    "normalRemovals": 2,
+    "originalGroceriesAndComplete52EventFinanceUnchanged": true,
+    "receiptsRetained": true
+  },
+  "nativeRestorationAndKeyboardFixPending": false,
+  "subsequentKeyboardFixEvidence": "../swiftui-meal-keyboard-failure/README.md"
+}

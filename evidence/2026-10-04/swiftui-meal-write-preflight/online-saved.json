@@ -1,0 +1,61 @@
+{
+  "snapshot": {
+    "version": 1,
+    "entries": [
+      {
+        "slot": "dinner",
+        "notes": "Synthetic edit verified.",
+        "entryId": "7960767D-89A6-4305-9945-9CCBFC3CE175",
+        "title": "Synthetic lentil bowl",
+        "date": "2026-10-05",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27"
+      }
+    ],
+    "revision": "38",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "weekStart": "2026-10-05"
+  },
+  "scopedSlots": {
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0,
+    "cooking_commands": 0,
+    "food_commands": 0,
+    "routine_state_commands": 0,
+    "recurring_decisions": 0,
+    "correction_decisions": 0,
+    "settlement_decisions": 0,
+    "refund_decisions": 0,
+    "variable_cycle_commands": 0,
+    "expense_decisions": 0,
+    "recurring_commands": 0,
+    "recurring_resume_commands": 0,
+    "recurring_state_commands": 0,
+    "correction_commands": 0,
+    "refund_commands": 0,
+    "settlement_commands": 0,
+    "expense_commands": 0,
+    "recurring_state_decisions": 0,
+    "recurring_resume_decisions": 0,
+    "variable_cycle_decisions": 0,
+    "manual_cycle_commands": 0,
+    "manual_cycle_decisions": 0,
+    "legacy_dismissal_commands": 0,
+    "legacy_dismissal_decisions": 0,
+    "legacy_confirmation_commands": 0,
+    "legacy_confirmation_decisions": 0,
+    "legacy_adoption_commands": 0,
+    "legacy_adoption_decisions": 0
+  },
+  "mealJournals": {
+    "meal_placements": 0,
+    "meal_removals": 0,
+    "meal_recipe_placements": 0,
+    "meal_moves": 0,
+    "meal_leftovers": 0,
+    "meal_replacements": 0,
+    "meal_recipe_replacements": 0
+  },
+  "time": 1791103598.641546
+}

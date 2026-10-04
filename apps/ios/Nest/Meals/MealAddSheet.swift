@@ -10,6 +10,7 @@ struct MealAddSheet: View {
     @State private var selectedId: UUID?
     @State private var saving = false
     @State private var errorText: String?
+    @FocusState private var editingTitle: Bool
 
     var body: some View {
         NavigationStack {
@@ -31,6 +32,7 @@ struct MealAddSheet: View {
                         TextField("What are you having?", text: $title)
                             .textInputAutocapitalization(.sentences)
                             .submitLabel(.done)
+                            .focused($editingTitle)
                     } footer: {
                         Text("Shared with your household · up to 120 characters.")
                     }
@@ -40,6 +42,7 @@ struct MealAddSheet: View {
                     Section { Text(errorText).foregroundStyle(QuietPalette.muted) }
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
             .scrollContentBackground(.hidden)
             .background(QuietPalette.background)
             .navigationTitle("Add meal")
@@ -50,6 +53,7 @@ struct MealAddSheet: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     QuietToolbarButton("Save", systemImage: "checkmark") {
+                        editingTitle = false
                         saving = true
                         Task {
                             let accepted = await save()
