@@ -1,6 +1,6 @@
 # Nest progress
 
-Updated 4 October 2026. **The goal is active and incomplete. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open.** [ADR0002](adr/0002-swiftui-client.md) makes SwiftUI authoritative; Expo/RN client code and dependencies are removed. The Effect v4/Vercel AI SDK backend, financial/privacy rules and approved Quiet design remain in force.
+Updated 5 October 2026. **The goal is active and incomplete. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open.** [ADR0002](adr/0002-swiftui-client.md) makes SwiftUI authoritative; Expo/RN client code and dependencies are removed. The Effect v4/Vercel AI SDK backend, financial/privacy rules and approved Quiet design remain in force.
 
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
@@ -353,7 +353,10 @@ Same58-ID raw financial/allocation/ledger/claimed Storage metadata digests match
 Only the fictional rule is normally paused;59 events and other rules remain.
 Ordinary/light Today, stable test origins, data/Keychain and64 empty journals are
 restored. [Evidence](../evidence/2026-10-04/swiftui-native-variable-bill/README.md)
-distinguishes first-source keyboard/Save from final-source recovery. CI for this
-increment is pending. Hosted lost reply/cancellation, private approval variants,
+distinguishes first-source keyboard/Save from final-source recovery. Exact-source3e0d377b passes Nest37237659698/SwiftUI37237659725:491 Foundation/41
+explicit skips and409 signed-native/11 explicit skips, zero failures, strict
+format/limits and actual signing. A read-only real-midnight snapshot shows
+Today’s header4→5October with64 journals still empty; background/meal convergence
+and token renewal are not established. Hosted lost reply/cancellation, private approval variants,
 full accessibility/races/two clients/live AI/both phones remain open. No beta,
 production action, purchase, worker activation or merge occurs; M7 is incomplete.

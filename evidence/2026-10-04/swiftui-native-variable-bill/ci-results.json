@@ -1,0 +1,28 @@
+{
+  "commit": "3e0d377b3fe5108c4e2d09d3001dd1eef7ef0981",
+  "results": [
+    {
+      "conclusion": "success",
+      "headSha": "3e0d377b3fe5108c4e2d09d3001dd1eef7ef0981",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37237659698",
+      "runId": 37237659698
+    },
+    {
+      "conclusion": "success",
+      "headSha": "3e0d377b3fe5108c4e2d09d3001dd1eef7ef0981",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37237659725",
+      "runId": 37237659725
+    }
+  ],
+  "nativeSummaries": [
+    "swiftui\tTest Foundation domain and offline rules\t2026-10-04T21:52:18.1821780Z \t Executed 491 tests, with 41 tests skipped and 0 failures (0 unexpected) in 16.300 (16.397) seconds",
+    "swiftui\tTest Foundation domain and offline rules\t2026-10-04T21:52:18.1822210Z Test Suite 'All tests' passed at 2026-10-04 21:52:18.002.",
+    "swiftui\tTest Foundation domain and offline rules\t2026-10-04T21:52:18.1822600Z \t Executed 491 tests, with 41 tests skipped and 0 failures (0 unexpected) in 16.300 (16.399) seconds",
+    "swiftui\tTest iPhone session and account boundaries\t2026-10-04T22:00:10.9268360Z \t Executed 409 tests, with 11 tests skipped and 0 failures (0 unexpected) in 128.737 (150.128) seconds",
+    "swiftui\tTest iPhone session and account boundaries\t2026-10-04T22:00:11.0412370Z Test Suite 'All tests' passed at 2026-10-04 22:00:10.405.",
+    "swiftui\tTest iPhone session and account boundaries\t2026-10-04T22:00:11.0577170Z \t Executed 409 tests, with 11 tests skipped and 0 failures (0 unexpected) in 128.737 (150.130) seconds",
+    "swiftui\tTest iPhone session and account boundaries\t2026-10-04T22:00:13.4721220Z ** TEST SUCCEEDED **"
+  ]
+}

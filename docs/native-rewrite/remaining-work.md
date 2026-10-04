@@ -174,6 +174,8 @@ members agree on59 events/unchanged balances; original58 raw financial/ledger/
 allocation/claimed Storage metadata digests match. One explicit known-operation
 wire replay is idempotent; the new fictional rule is normally paused and64 local
 journals are empty. Final recovery restores original receipt description/payer.
-Two focused signed native methods pass final source. Full variable approvals,
+Two focused signed native methods pass final source. Both exact-source workflows
+pass3e0d377b (491 Foundation/41 skips,409 signed-native/11 skips, zero failures).
+Full variable approvals,
 hosted uncertain cancellation/lost reply, accessibility/races/live AI/two clients
 and phones remain open. No M7 acceptance or new beta is claimed.

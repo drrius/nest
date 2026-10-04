@@ -19,7 +19,9 @@ transport tests cover lost reply and six preflight faults; they are not an actua
 hosted lost-reply journey. Four source-input parts per build record all1,041
 hashes. [Final installation](final-installed.json) matches the signed executable,
 uses stable test origins and preserves data/Keychain and the original receipt.
-Current commit CI is recorded in docs/progress.md when complete.
+Both required [exact-source CI workflows](ci-results.json) pass at3e0d377b:
+491 Foundation/41 explicit skips and409 signed-native/11 explicit skips, zero
+failures, format/source limits and actual app signing. Skips are not acceptance.
 
 ## Real confirmation and recovery
 
@@ -65,3 +67,9 @@ Final normal/light Today is restored. Largest-text recorded-recovery rendering,
 hosted uncertain cancellation/lost reply, private approval variants, broader
 membership/concurrency/radio-loss/VoiceOver, two native clients, live AI and both
 phones remain unverified. The available TestFlight16 predates this view change.
+
+A later read-only snapshot across real Zurich midnight shows Sunday4October→
+Monday5October in Today, with no clock change or tap and all64 journals still
+empty. [After midnight](after-midnight-today.png). This proves the foreground
+header rollover only; it does not establish background refresh, cached meal-week
+convergence, notification delivery or token renewal.
