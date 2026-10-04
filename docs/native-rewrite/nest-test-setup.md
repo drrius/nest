@@ -30,6 +30,19 @@ The stable API now again points to the prior working `dpl_AXFV8bWxhygAfd7D3QQyi6
 
 ## Installed schema
 
+4 October receipt cleanup update: hosted migration `20261004135633`
+(`native_receipt_legacy_cleanup_owner`) applies source
+`20261004134604_native_receipt_legacy_cleanup_owner.sql` only to `nest-test`.
+The source checksum is recorded in the manifest; hosted function bodies/ACLs match
+and complete financial/attachment digests remain unchanged. [Evidence](../../evidence/2026-10-04/legacy-receipt-cleanup/README.md).
+The current source manifest contains55 legacy and249 native inputs. Historical
+batch counts below describe the earlier installation.
+
+For every new migration, record its exact source checksum in
+`nest-test-migration-manifest.csv` and run
+`node tools/migration/verify-test-manifest.mjs` before pushing or applying it.
+The checksum gate remains required alongside meaningful database verification.
+
 The initial 55 legacy and 204 native source migrations were installed in batches. Forty subsequent native migrations are installed, individually recorded in the manifest (299 source inputs: 55 legacy and 244 native). The read-only `node tools/migration/verify-test-manifest.mjs` gate checks every current native file and its exact SHA-256; it does not prove hosted runtime equality, legacy-source hashes or data reconciliation. [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |

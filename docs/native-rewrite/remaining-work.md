@@ -4,7 +4,8 @@ Legacy attachment cleanup has a confirmed native uploader bypass, now fixed and
 locally verified with17 real database tests and16 full-chain boundary probes.
 The303-migration rehearsal retains exact finance/receipts. The fix is applied only
 to `nest-test`, with matching bodies/ACLs and unchanged complete finance/attachment
-digests. Current-source CI is pending;50 other legacy public privileged functions and
+digests. Corrected-source routine CI passes at3b141cc5; the unchanged SQL/tests have
+an active deep-integration run37207534599. Fifty other legacy public privileged functions and
 deeper private paths remain. [Evidence](../../evidence/2026-10-04/legacy-receipt-cleanup/README.md).
 
 Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).

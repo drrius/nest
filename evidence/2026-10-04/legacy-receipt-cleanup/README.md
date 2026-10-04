@@ -63,7 +63,14 @@ Source `956cd927` is pushed. Routine CI37207407493 rejected its missing new
 migration checksum manifest entry; the omission is now corrected, without changing
 the verified SQL. The four focused manifest tests pass locally. Deep
 integration37207534599 is pending; it was explicitly dispatched for the touched
-database invariants. Current corrected-source CI remains pending push.
+database invariants. Corrected-source `3b141cc5` passes routine CI37207727428,
+including formatting, limits, typechecking, the Edge entry-point check, all four
+manifest cases and existing focused unit/core integration checks. The migration
+SQL and regression source are unchanged from the running deep integration source.
+
+Hosted migration version `20261004135633` is recorded separately from the source
+filename timestamp; equality was checked from actual compiled bodies, not inferred
+from migration names or the checksum manifest.
 
 No production action, purchase, new beta, merge or live AI enablement occurred.
 M1–M9 remain incomplete;50 other legacy public privileged functions and deeper
