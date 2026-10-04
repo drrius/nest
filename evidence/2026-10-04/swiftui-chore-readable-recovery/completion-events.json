@@ -1,0 +1,179 @@
+[
+  {
+    "method": "GET",
+    "path": "/v1/session",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/money/recurring/due-variable",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/groceries",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/meals/week?weekStart=2026-09-28",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/money/pending-approvals",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/chores/snapshot",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/groceries",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/chores/snapshot",
+    "status": 200
+  },
+  {
+    "method": "POST",
+    "path": "/v1/chores/complete",
+    "time": 1791120156.9254432,
+    "case": "removed",
+    "command": {
+      "completedOn": "2026-10-04",
+      "expectedDueDate": "2026-10-04",
+      "occurrenceId": "837AD7BB-514D-4144-8635-5F6587A598D5",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "operationId": "CAAF1467-CD60-4927-A607-C3EC8A7123A0"
+    },
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "GET",
+    "path": "/v1/session",
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "GET",
+    "path": "/v1/money/pending-approvals",
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "GET",
+    "path": "/v1/meals/week?weekStart=2026-09-28",
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "GET",
+    "path": "/v1/money/recurring/due-variable",
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "GET",
+    "path": "/v1/groceries",
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "POST",
+    "path": "/v1/chores/complete",
+    "time": 1791120216.9576802,
+    "case": "removed",
+    "command": {
+      "completedOn": "2026-10-04",
+      "expectedDueDate": "2026-10-04",
+      "occurrenceId": "837AD7BB-514D-4144-8635-5F6587A598D5",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "operationId": "CAAF1467-CD60-4927-A607-C3EC8A7123A0"
+    },
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "GET",
+    "path": "/v1/groceries",
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "method": "POST",
+    "path": "/v1/chores/complete",
+    "time": 1791120278.2756312,
+    "case": "removed",
+    "command": {
+      "completedOn": "2026-10-04",
+      "expectedDueDate": "2026-10-04",
+      "occurrenceId": "837AD7BB-514D-4144-8635-5F6587A598D5",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "operationId": "CAAF1467-CD60-4927-A607-C3EC8A7123A0"
+    },
+    "status": 409,
+    "result": {
+      "error": {
+        "code": "conflict"
+      }
+    },
+    "forwarded": true,
+    "droppedReply": false
+  },
+  {
+    "method": "GET",
+    "path": "/v1/chores/snapshot",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/session",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/chores/snapshot",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/meals/week?weekStart=2026-09-28",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/money/pending-approvals",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/money/recurring/due-variable",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/groceries",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/chores/snapshot",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/groceries",
+    "status": 200
+  },
+  {
+    "method": "GET",
+    "path": "/v1/chores/snapshot",
+    "status": 200
+  }
+]

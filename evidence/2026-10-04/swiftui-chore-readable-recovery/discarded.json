@@ -1,0 +1,449 @@
+{
+  "source": "177d0a705c0d0372787fb134e0ce9b7d65f9fc35",
+  "explicitMaximumTextCornerDiscard": true,
+  "target": {
+    "height": 102.5,
+    "x": 58,
+    "y": 448.5,
+    "width": 275.5
+  },
+  "corner": [61, 548.0],
+  "removedIntentNormallyCleared": true,
+  "noReplacementCompletionOrPost": true,
+  "emptyChoreState": {
+    "counts": {
+      "routine_creations": 0,
+      "routine_edits": 0,
+      "chore_changes": 0,
+      "chore_transfers": 0,
+      "routine_state_commands": 0
+    },
+    "creation": null,
+    "operations": [],
+    "snapshot": {
+      "members": [
+        {
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "displayName": "Test Alex"
+        },
+        {
+          "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+          "displayName": "Test Sam"
+        }
+      ],
+      "version": 1,
+      "transfers": [],
+      "chores": [
+        {
+          "occurrenceId": "CE88CF42-4359-41D4-AB06-A7185C22306B",
+          "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+          "title": "Hosted smoke tidy kitchen",
+          "dueDate": "2026-09-28"
+        }
+      ],
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+    }
+  },
+  "nodes": [
+    {
+      "label": "Nest",
+      "index": 0,
+      "type": "Application",
+      "hittable": false,
+      "depth": 0,
+      "rect": {
+        "x": 0,
+        "width": 375,
+        "y": 0,
+        "height": 667
+      },
+      "enabled": true,
+      "ref": "e1"
+    },
+    {
+      "type": "Other",
+      "rect": {
+        "x": 0,
+        "width": 375,
+        "height": 667,
+        "y": 0
+      },
+      "label": "Tab Bar",
+      "parentIndex": 0,
+      "enabled": true,
+      "index": 1,
+      "hittable": true,
+      "depth": 1,
+      "ref": "e2"
+    },
+    {
+      "type": "Other",
+      "rect": {
+        "width": 375,
+        "y": 0,
+        "x": 0,
+        "height": 667
+      },
+      "label": "Vertical scroll bar, 8 pages",
+      "parentIndex": 1,
+      "enabled": true,
+      "index": 2,
+      "hittable": true,
+      "depth": 2,
+      "ref": "e3"
+    },
+    {
+      "type": "Other",
+      "rect": {
+        "width": 375,
+        "y": 0,
+        "x": 0,
+        "height": 667
+      },
+      "label": "Sunday, October 4",
+      "parentIndex": 2,
+      "enabled": true,
+      "index": 3,
+      "hittable": true,
+      "depth": 3,
+      "ref": "e4"
+    },
+    {
+      "type": "ScrollView",
+      "rect": {
+        "width": 375,
+        "y": 0,
+        "x": 0,
+        "height": 667
+      },
+      "label": "Sunday, October 4",
+      "parentIndex": 3,
+      "enabled": true,
+      "index": 4,
+      "hittable": true,
+      "depth": 4,
+      "hiddenContentAbove": true,
+      "hiddenContentBelow": true,
+      "ref": "e5"
+    },
+    {
+      "type": "Other",
+      "rect": {
+        "width": 375,
+        "y": 0,
+        "x": 0,
+        "height": 667
+      },
+      "label": "Sunday, October 4",
+      "parentIndex": 4,
+      "enabled": true,
+      "index": 5,
+      "hittable": false,
+      "depth": 5,
+      "ref": "e6"
+    },
+    {
+      "type": "Button",
+      "rect": {
+        "width": 335,
+        "y": 0,
+        "x": 20,
+        "height": 23
+      },
+      "label": "Manage chores",
+      "parentIndex": 5,
+      "enabled": true,
+      "index": 6,
+      "hittable": false,
+      "depth": 6,
+      "ref": "e7"
+    },
+    {
+      "type": "StaticText",
+      "rect": {
+        "width": 169,
+        "y": 65,
+        "x": 38,
+        "height": 125.5
+      },
+      "label": "On the menu",
+      "parentIndex": 5,
+      "enabled": true,
+      "index": 7,
+      "hittable": true,
+      "depth": 6,
+      "ref": "e8"
+    },
+    {
+      "type": "StaticText",
+      "rect": {
+        "width": 262.5,
+        "y": 204.5,
+        "x": 38,
+        "height": 187.5
+      },
+      "label": "Nothing planned for today.",
+      "parentIndex": 5,
+      "enabled": true,
+      "index": 8,
+      "hittable": true,
+      "depth": 6,
+      "ref": "e9"
+    },
+    {
+      "hittable": true,
+      "type": "Button",
+      "index": 9,
+      "depth": 6,
+      "enabled": true,
+      "rect": {
+        "y": 406,
+        "x": 38,
+        "width": 299,
+        "height": 116.5
+      },
+      "parentIndex": 5,
+      "label": "Open meal plan",
+      "ref": "e10"
+    },
+    {
+      "depth": 6,
+      "type": "StaticText",
+      "enabled": true,
+      "label": "On your calendar",
+      "index": 10,
+      "rect": {
+        "y": 582.5,
+        "x": 38,
+        "width": 206,
+        "height": 84.5
+      },
+      "parentIndex": 5,
+      "hittable": false,
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"],
+      "ref": "e11"
+    },
+    {
+      "depth": 5,
+      "type": "Image",
+      "enabled": true,
+      "identifier": "AdditionalDimmingOverlay",
+      "rect": {
+        "y": 524,
+        "width": 375,
+        "height": 143,
+        "x": 0
+      },
+      "index": 11,
+      "parentIndex": 4,
+      "hittable": false,
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"],
+      "ref": "e12"
+    },
+    {
+      "depth": 5,
+      "type": "Other",
+      "enabled": true,
+      "label": "Vertical scroll bar, 8 pages",
+      "index": 12,
+      "rect": {
+        "y": 20,
+        "width": 30,
+        "height": 564,
+        "x": 342
+      },
+      "parentIndex": 4,
+      "hittable": true,
+      "value": "38%",
+      "ref": "e13"
+    },
+    {
+      "depth": 2,
+      "type": "Other",
+      "enabled": true,
+      "label": "Tab Bar",
+      "index": 13,
+      "rect": {
+        "y": 584,
+        "width": 375,
+        "height": 83,
+        "x": 0
+      },
+      "parentIndex": 1,
+      "hittable": true,
+      "ref": "e14"
+    },
+    {
+      "type": "TabBar",
+      "label": "Tab Bar",
+      "index": 14,
+      "hittable": true,
+      "enabled": true,
+      "rect": {
+        "x": 0,
+        "height": 83,
+        "width": 375,
+        "y": 584
+      },
+      "parentIndex": 13,
+      "depth": 3,
+      "ref": "e15"
+    },
+    {
+      "rect": {
+        "x": 21,
+        "height": 62,
+        "width": 333,
+        "y": 584
+      },
+      "depth": 4,
+      "type": "Other",
+      "index": 15,
+      "parentIndex": 14,
+      "enabled": true,
+      "hittable": true,
+      "label": "Today",
+      "ref": "e16"
+    },
+    {
+      "hittable": true,
+      "type": "Button",
+      "identifier": "house",
+      "enabled": true,
+      "parentIndex": 15,
+      "depth": 5,
+      "index": 16,
+      "selected": true,
+      "rect": {
+        "x": 25,
+        "height": 54,
+        "width": 88.25,
+        "y": 588
+      },
+      "label": "Today",
+      "ref": "e17"
+    },
+    {
+      "label": "home",
+      "index": 17,
+      "rect": {
+        "x": 52,
+        "height": 28,
+        "width": 33.5,
+        "y": 594
+      },
+      "hittable": true,
+      "parentIndex": 16,
+      "depth": 6,
+      "identifier": "house.fill",
+      "enabled": true,
+      "type": "Image",
+      "ref": "e18"
+    },
+    {
+      "label": "Meals",
+      "index": 18,
+      "rect": {
+        "x": 103.91666666666667,
+        "height": 54,
+        "width": 88.25000000000001,
+        "y": 588
+      },
+      "hittable": true,
+      "parentIndex": 15,
+      "depth": 5,
+      "identifier": "fork.knife",
+      "enabled": true,
+      "type": "Button",
+      "ref": "e19"
+    },
+    {
+      "hittable": true,
+      "type": "Image",
+      "label": "Food",
+      "index": 19,
+      "rect": {
+        "x": 136.91666666666669,
+        "height": 31,
+        "width": 22,
+        "y": 591.5
+      },
+      "parentIndex": 18,
+      "identifier": "fork.knife",
+      "depth": 6,
+      "enabled": true,
+      "ref": "e20"
+    },
+    {
+      "hittable": true,
+      "type": "Button",
+      "label": "Calendar",
+      "index": 20,
+      "rect": {
+        "x": 182.83333333333334,
+        "height": 54,
+        "width": 88.25000000000003,
+        "y": 588
+      },
+      "parentIndex": 15,
+      "identifier": "calendar",
+      "depth": 5,
+      "enabled": true,
+      "ref": "e21"
+    },
+    {
+      "hittable": true,
+      "type": "Image",
+      "label": "calendar",
+      "index": 21,
+      "rect": {
+        "x": 212.83333333333334,
+        "height": 25,
+        "width": 29,
+        "y": 595.5
+      },
+      "parentIndex": 20,
+      "identifier": "calendar",
+      "depth": 6,
+      "enabled": true,
+      "ref": "e22"
+    },
+    {
+      "hittable": true,
+      "type": "Button",
+      "label": "Money",
+      "index": 22,
+      "rect": {
+        "x": 261.75,
+        "height": 54,
+        "width": 88.25,
+        "y": 588
+      },
+      "parentIndex": 15,
+      "identifier": "creditcard",
+      "depth": 5,
+      "enabled": true,
+      "ref": "e23"
+    },
+    {
+      "type": "Image",
+      "rect": {
+        "x": 289.75,
+        "height": 23.5,
+        "width": 33,
+        "y": 596.5
+      },
+      "depth": 6,
+      "parentIndex": 22,
+      "enabled": true,
+      "label": "card",
+      "identifier": "creditcard.fill",
+      "index": 23,
+      "hittable": true,
+      "ref": "e24"
+    }
+  ],
+  "time": 1791120393.6875641
+}

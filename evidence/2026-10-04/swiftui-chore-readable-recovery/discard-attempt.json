@@ -1,0 +1,30 @@
+{
+  "originalConflict": {
+    "operation": "caaf1467-cd60-4927-a607-c3ec8a7123a0",
+    "target": "837ad7bb-514d-4144-8635-5f6587a598d5",
+    "chore": {
+      "title": "Nest native removed 177111",
+      "occurrenceId": "837AD7BB-514D-4144-8635-5F6587A598D5",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "dueDate": "2026-10-04"
+    },
+    "body": {
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "expectedDueDate": "2026-10-04",
+      "completedOn": "2026-10-04",
+      "occurrenceId": "837AD7BB-514D-4144-8635-5F6587A598D5",
+      "operationId": "CAAF1467-CD60-4927-A607-C3EC8A7123A0"
+    },
+    "status": "conflict",
+    "reason": "changed"
+  },
+  "target": {
+    "height": 102.5,
+    "x": 58,
+    "y": 448.5,
+    "width": 275.5
+  },
+  "corner": [61, 548.0],
+  "recordedBeforeOneTap": true,
+  "time": 1791120390.771143
+}

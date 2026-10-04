@@ -1,0 +1,24 @@
+{
+  "source": "177d0a705c0d0372787fb134e0ce9b7d65f9fc35",
+  "creationSource": "46c75247827edba7c868b5616511543da08f79ee",
+  "exactOriginalNativeCommand": {
+    "completedOn": "2026-10-04",
+    "expectedDueDate": "2026-10-04",
+    "occurrenceId": "837AD7BB-514D-4144-8635-5F6587A598D5",
+    "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+    "operationId": "CAAF1467-CD60-4927-A607-C3EC8A7123A0"
+  },
+  "actualNativeConflictStatus": 409,
+  "partnerArchive": {
+    "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "operationId": "61226252-a0b4-4ae3-a0ad-cb809e4fc114",
+    "routineId": "20b6722c-cec5-4e78-85f2-04513e6a0088",
+    "version": "2026-10-04T13:24:04.869399Z",
+    "action": "archive"
+  },
+  "noCompletionOccurred": true,
+  "originalChoreSnapshotAndFullMoneyRestored": true,
+  "fixtureNormallyArchived": true,
+  "testOnly": true
+}
