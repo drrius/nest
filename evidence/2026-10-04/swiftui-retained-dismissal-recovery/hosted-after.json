@@ -1,0 +1,26 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "operation": "0fe027c7-8394-4cef-b904-246f1d199ca0",
+  "retainedDismissalRecorded": true,
+  "otherDraftUnchanged": true,
+  "all52EventsAndExactBalancesUnchanged": true,
+  "inactiveRuleTermsUnchanged": true,
+  "noLinkedEvent": true,
+  "originalDraftTermsPreserved": true,
+  "ownerRecordedPartnerUnresolved": true,
+  "isolation": [
+    {
+      "path": "/v1/money/recurring/legacy-dismissal/receipt?operationId=0fe027c7-8394-4cef-b904-246f1d199ca0",
+      "outsider": 403,
+      "anonymous": 401
+    },
+    {
+      "path": "/v1/money/recurring/legacy-dismissal/context?draftId=cc96fb8e-e5d1-455e-a199-4e60f9ec24a8",
+      "outsider": 403,
+      "anonymous": 401
+    }
+  ],
+  "productionTouched": false,
+  "time": 1791083741.1658978
+}

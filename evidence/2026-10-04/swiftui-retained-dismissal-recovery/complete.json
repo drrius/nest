@@ -1,0 +1,71 @@
+{
+  "source": "0686d437b4e9c8831e81436fe151e318bec21990",
+  "oneNativeOnlineDeliverySelection": true,
+  "oneOfflineRefusalSelection": true,
+  "oneUpstreamSave": true,
+  "lostReplyAndActualRestart": true,
+  "exactRequestPreservedAcrossReinstall": true,
+  "recordedReceiptRecoveredWithoutResend": true,
+  "originalTermsPreserved": true,
+  "explicitFinishClearedSlot": true,
+  "operation": "0FE027C7-8394-4CEF-B904-246F1D199CA0",
+  "result": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "operationId": "0FE027C7-8394-4CEF-B904-246F1D199CA0",
+    "status": "recorded",
+    "receipt": {
+      "operationId": "0FE027C7-8394-4CEF-B904-246F1D199CA0",
+      "status": "dismissed",
+      "input": {
+        "draftId": "CC96FB8E-E5D1-455E-A199-4E60F9EC24A8",
+        "reviewToken": "9ae96f94e8d681e3095dcc72041ccb1fe7e333c697efeecd9b695443e233733c",
+        "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F"
+      },
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "approvalId": null,
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "reviewed": {
+        "reviewToken": "9ae96f94e8d681e3095dcc72041ccb1fe7e333c697efeecd9b695443e233733c",
+        "version": 1,
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "draft": {
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "sourceKind": "recurring",
+          "status": "pending",
+          "description": "Synthetic retained dismissal draft",
+          "occurredOn": {
+            "value": "2026-09-28",
+            "kind": "date"
+          },
+          "categoryId": null,
+          "updatedAt": {
+            "value": "2026-10-04T02:42:36.341494Z",
+            "kind": "timestamp"
+          },
+          "amountCentimes": "101",
+          "shoppingSessionId": null,
+          "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+          "draftId": "CC96FB8E-E5D1-455E-A199-4E60F9EC24A8",
+          "allocations": {
+            "kind": "valid",
+            "shares": [
+              {
+                "centimes": "51",
+                "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+              },
+              {
+                "centimes": "50",
+                "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+              }
+            ]
+          },
+          "eventId": null
+        }
+      },
+      "version": 1
+    },
+    "version": 1,
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+  },
+  "time": 1791083826.4868622
+}

@@ -1,0 +1,19 @@
+{
+  "source": "0686d437b4e9c8831e81436fe151e318bec21990",
+  "sourceMismatches": 0,
+  "started": 1791083860.1708832,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "ordinaryTodayRestored": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0
+  },
+  "relayStopped": true,
+  "generatedKeyDestroyed": true,
+  "finished": 1791083871.970529
+}

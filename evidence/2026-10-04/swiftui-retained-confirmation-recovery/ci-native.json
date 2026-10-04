@@ -1,0 +1,98 @@
+{
+  "conclusion": "success",
+  "headSha": "0686d437b4e9c8831e81436fe151e318bec21990",
+  "jobs": [
+    {
+      "completedAt": "2026-10-04T03:18:02Z",
+      "conclusion": "success",
+      "databaseId": 111350066501,
+      "name": "swiftui",
+      "startedAt": "2026-10-04T03:07:30Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-04T03:07:31Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-04T03:07:30Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:07:36Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-04T03:07:31Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:07:37Z",
+          "conclusion": "success",
+          "name": "Verify Swift source limits",
+          "number": 3,
+          "startedAt": "2026-10-04T03:07:36Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:07:37Z",
+          "conclusion": "success",
+          "name": "Test native push signing gates",
+          "number": 4,
+          "startedAt": "2026-10-04T03:07:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:07:48Z",
+          "conclusion": "success",
+          "name": "Verify Swift formatting",
+          "number": 5,
+          "startedAt": "2026-10-04T03:07:37Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:08:56Z",
+          "conclusion": "success",
+          "name": "Test Foundation domain and offline rules",
+          "number": 6,
+          "startedAt": "2026-10-04T03:07:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:17:56Z",
+          "conclusion": "success",
+          "name": "Test iPhone session and account boundaries",
+          "number": 7,
+          "startedAt": "2026-10-04T03:08:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:17:58Z",
+          "conclusion": "success",
+          "name": "Verify actual app push signing",
+          "number": 8,
+          "startedAt": "2026-10-04T03:17:56Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:17:59Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 16,
+          "startedAt": "2026-10-04T03:17:58Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-04T03:18:00Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 17,
+          "startedAt": "2026-10-04T03:17:59Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/drrius/nest/actions/runs/37173145402/job/111350066501"
+    }
+  ],
+  "status": "completed"
+}

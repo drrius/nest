@@ -1,0 +1,7 @@
+swiftui	Test Foundation domain and offline rules	2026-10-04T03:08:56.2311430Z 	 Executed 490 tests, with 41 tests skipped and 0 failures (0 unexpected) in 9.180 (9.254) seconds
+swiftui	Test Foundation domain and offline rules	2026-10-04T03:08:56.2312230Z 	 Executed 490 tests, with 41 tests skipped and 0 failures (0 unexpected) in 9.180 (9.255) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T03:17:41.1709410Z 	 Executed 403 tests, with 11 tests skipped and 0 failures (0 unexpected) in 87.330 (92.218) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T03:17:41.1710650Z 	 Executed 403 tests, with 11 tests skipped and 0 failures (0 unexpected) in 87.330 (92.223) seconds
+swiftui	Test iPhone session and account boundaries	2026-10-04T03:17:46.2443080Z ** TEST SUCCEEDED **
+swiftui	Test iPhone session and account boundaries	2026-10-04T03:17:22.7307970Z 2026-10-04 03:17:22.723077+0000 Nest[95592:220397] [Nest] *** ERROR: CGImageSourceCreateThumbnailAtIndexEx:5504: create thumbnail at index failed
+swiftui	Test iPhone session and account boundaries	2026-10-04T03:17:22.7410040Z 2026-10-04 03:17:22.723306+0000 Nest[95592:220397] [Nest] CGImageSourceCreateThumbnailAtIndexEx:5525: *** ERROR: CGImageSourceCreateThumbnailAtIndex[0] - 'n/a ' - failed to create thumbnail [1] {alw:1, abs: -1 tra:1 max:2000}
