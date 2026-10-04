@@ -1,0 +1,801 @@
+{
+  "target": {
+    "height": 44,
+    "width": 74.5,
+    "y": 387,
+    "x": 20
+  },
+  "offlineCorner": [91.5, 390],
+  "actualFailedRetry": [
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 503,
+      "forwarded": false,
+      "time": 1791115164.8442628
+    }
+  ],
+  "recoveryTarget": {
+    "width": 74.5,
+    "height": 44,
+    "y": 387,
+    "x": 20
+  },
+  "recoveryCorner": [23, 428],
+  "actualSuccessfulRetry": [
+    {
+      "method": "GET",
+      "path": "/v1/chores/snapshot",
+      "status": 200,
+      "forwarded": true,
+      "time": 1791115169.3862138
+    }
+  ],
+  "retryNoticeCleared": true,
+  "nodes": [
+    {
+      "index": 0,
+      "label": "Nest",
+      "enabled": true,
+      "type": "Application",
+      "rect": {
+        "width": 375,
+        "x": 0,
+        "height": 667,
+        "y": 0
+      },
+      "hittable": false,
+      "depth": 0,
+      "ref": "e1"
+    },
+    {
+      "index": 1,
+      "label": "Tab Bar",
+      "enabled": true,
+      "parentIndex": 0,
+      "type": "Other",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "hittable": true,
+      "depth": 1,
+      "ref": "e2"
+    },
+    {
+      "index": 2,
+      "label": "Vertical scroll bar, 3 pages",
+      "enabled": true,
+      "parentIndex": 1,
+      "type": "Other",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "hittable": true,
+      "depth": 2,
+      "ref": "e3"
+    },
+    {
+      "index": 3,
+      "label": "Sunday, October 4",
+      "enabled": true,
+      "parentIndex": 2,
+      "type": "Other",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "hittable": true,
+      "depth": 3,
+      "ref": "e4"
+    },
+    {
+      "index": 4,
+      "label": "Sunday, October 4",
+      "enabled": true,
+      "parentIndex": 3,
+      "type": "ScrollView",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "hiddenContentBelow": true,
+      "hittable": true,
+      "depth": 4,
+      "ref": "e5"
+    },
+    {
+      "index": 5,
+      "enabled": true,
+      "parentIndex": 4,
+      "type": "Image",
+      "rect": {
+        "x": 0,
+        "y": 524,
+        "width": 375,
+        "height": 143
+      },
+      "identifier": "AdditionalDimmingOverlay",
+      "hittable": false,
+      "depth": 5,
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"],
+      "ref": "e6"
+    },
+    {
+      "index": 6,
+      "label": "Sunday, October 4",
+      "enabled": true,
+      "parentIndex": 4,
+      "type": "Other",
+      "rect": {
+        "x": 0,
+        "y": 20,
+        "width": 375,
+        "height": 647
+      },
+      "hittable": false,
+      "depth": 5,
+      "ref": "e7"
+    },
+    {
+      "index": 7,
+      "label": "Sunday, October 4",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "StaticText",
+      "rect": {
+        "x": 20,
+        "y": 48.75,
+        "width": 105.5,
+        "height": 14.5
+      },
+      "hittable": true,
+      "depth": 6,
+      "ref": "e8"
+    },
+    {
+      "index": 8,
+      "label": "Private conversations",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "Button",
+      "rect": {
+        "x": 259,
+        "y": 34,
+        "width": 44,
+        "height": 44
+      },
+      "identifier": "bubble.left.and.bubble.right",
+      "hittable": true,
+      "depth": 6,
+      "ref": "e9"
+    },
+    {
+      "index": 9,
+      "label": "Profile and preferences",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "Button",
+      "rect": {
+        "x": 311,
+        "y": 34,
+        "width": 44,
+        "height": 44
+      },
+      "identifier": "person.crop.circle",
+      "hittable": true,
+      "depth": 6,
+      "ref": "e10"
+    },
+    {
+      "index": 10,
+      "label": "Today",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "StaticText",
+      "rect": {
+        "x": 20,
+        "y": 82,
+        "width": 92.5,
+        "height": 41
+      },
+      "hittable": true,
+      "depth": 6,
+      "ref": "e11"
+    },
+    {
+      "index": 11,
+      "label": "A good day to keep it simple.",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "StaticText",
+      "rect": {
+        "y": 126,
+        "x": 20,
+        "width": 198.5,
+        "height": 18
+      },
+      "hittable": true,
+      "depth": 6,
+      "ref": "e12"
+    },
+    {
+      "index": 12,
+      "label": "Add to your household",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "Button",
+      "rect": {
+        "y": 164,
+        "x": 20,
+        "width": 89.5,
+        "height": 44
+      },
+      "hittable": true,
+      "depth": 6,
+      "ref": "e13"
+    },
+    {
+      "index": 13,
+      "label": "Add",
+      "enabled": true,
+      "parentIndex": 12,
+      "type": "Button",
+      "rect": {
+        "y": 164,
+        "x": 20,
+        "width": 89.5,
+        "height": 44
+      },
+      "hittable": true,
+      "depth": 7,
+      "ref": "e14"
+    },
+    {
+      "index": 14,
+      "label": "Add",
+      "enabled": true,
+      "parentIndex": 13,
+      "type": "Image",
+      "rect": {
+        "y": 180,
+        "x": 40,
+        "width": 12.5,
+        "height": 12.5
+      },
+      "identifier": "plus",
+      "hittable": true,
+      "depth": 8,
+      "ref": "e15"
+    },
+    {
+      "index": 15,
+      "label": "Add",
+      "enabled": true,
+      "parentIndex": 13,
+      "type": "StaticText",
+      "rect": {
+        "y": 177,
+        "x": 40,
+        "width": 51.5,
+        "height": 18
+      },
+      "hittable": true,
+      "depth": 8,
+      "ref": "e16"
+    },
+    {
+      "index": 16,
+      "label": "Me + shared",
+      "enabled": true,
+      "selected": true,
+      "type": "Button",
+      "parentIndex": 6,
+      "rect": {
+        "y": 232,
+        "x": 20,
+        "width": 163.5,
+        "height": 44.5
+      },
+      "hittable": true,
+      "depth": 6,
+      "ref": "e17"
+    },
+    {
+      "index": 17,
+      "label": "Me + shared",
+      "enabled": true,
+      "parentIndex": 16,
+      "type": "StaticText",
+      "rect": {
+        "y": 232,
+        "x": 20,
+        "width": 163.5,
+        "height": 44.5
+      },
+      "hittable": true,
+      "depth": 7,
+      "ref": "e18"
+    },
+    {
+      "index": 18,
+      "label": "Selected",
+      "enabled": true,
+      "selected": true,
+      "type": "Image",
+      "parentIndex": 16,
+      "rect": {
+        "y": 247,
+        "x": 155,
+        "width": 14.5,
+        "height": 14.5
+      },
+      "identifier": "checkmark",
+      "hittable": true,
+      "depth": 7,
+      "ref": "e19"
+    },
+    {
+      "index": 19,
+      "label": "Everyone",
+      "enabled": true,
+      "parentIndex": 6,
+      "type": "Button",
+      "rect": {
+        "y": 232,
+        "x": 191.5,
+        "width": 163.5,
+        "height": 44.5
+      },
+      "hittable": true,
+      "depth": 6,
+      "ref": "e20"
+    },
+    {
+      "index": 20,
+      "label": "Everyone",
+      "enabled": true,
+      "parentIndex": 19,
+      "type": "StaticText",
+      "rect": {
+        "y": 232,
+        "x": 191.5,
+        "width": 163.5,
+        "height": 44.5
+      },
+      "hittable": true,
+      "depth": 7,
+      "ref": "e21"
+    },
+    {
+      "type": "Image",
+      "rect": {
+        "x": 326.5,
+        "y": 247,
+        "width": 14.5,
+        "height": 14.5
+      },
+      "enabled": true,
+      "depth": 7,
+      "label": "Selected",
+      "index": 21,
+      "hittable": true,
+      "identifier": "checkmark",
+      "selected": true,
+      "parentIndex": 19,
+      "ref": "e22"
+    },
+    {
+      "enabled": true,
+      "hittable": true,
+      "rect": {
+        "x": 20,
+        "y": 306.5,
+        "width": 141,
+        "height": 20.5
+      },
+      "index": 22,
+      "depth": 6,
+      "label": "Around the house",
+      "parentIndex": 6,
+      "type": "StaticText",
+      "ref": "e23"
+    },
+    {
+      "depth": 6,
+      "parentIndex": 6,
+      "index": 23,
+      "rect": {
+        "x": 20,
+        "y": 327,
+        "width": 335,
+        "height": 64
+      },
+      "value": "Overdue since Sep 28",
+      "hittable": true,
+      "enabled": true,
+      "label": "Hosted smoke tidy kitchen",
+      "type": "Button",
+      "ref": "e24"
+    },
+    {
+      "parentIndex": 23,
+      "hittable": true,
+      "type": "Image",
+      "rect": {
+        "x": 21.5,
+        "y": 349,
+        "width": 20,
+        "height": 20
+      },
+      "depth": 7,
+      "index": 24,
+      "label": "circle",
+      "identifier": "circle",
+      "enabled": true,
+      "ref": "e25"
+    },
+    {
+      "hittable": true,
+      "enabled": true,
+      "index": 25,
+      "type": "StaticText",
+      "depth": 7,
+      "parentIndex": 23,
+      "rect": {
+        "x": 57,
+        "y": 340,
+        "width": 202.5,
+        "height": 20.5
+      },
+      "ref": "e26",
+      "inheritsLabel": true
+    },
+    {
+      "parentIndex": 23,
+      "enabled": true,
+      "hittable": true,
+      "type": "StaticText",
+      "rect": {
+        "x": 57,
+        "y": 363.5,
+        "width": 125,
+        "height": 14.5
+      },
+      "label": "Overdue since Sep 28",
+      "index": 26,
+      "depth": 7,
+      "ref": "e27"
+    },
+    {
+      "parentIndex": 6,
+      "label": "Manage chores",
+      "rect": {
+        "x": 20,
+        "y": 399,
+        "width": 335,
+        "height": 44
+      },
+      "hittable": true,
+      "enabled": true,
+      "type": "Button",
+      "depth": 6,
+      "index": 27,
+      "ref": "e28"
+    },
+    {
+      "label": "On the menu",
+      "depth": 6,
+      "rect": {
+        "x": 38,
+        "y": 485,
+        "width": 101.5,
+        "height": 20.5
+      },
+      "index": 28,
+      "type": "StaticText",
+      "parentIndex": 6,
+      "enabled": true,
+      "hittable": true,
+      "ref": "e29"
+    },
+    {
+      "parentIndex": 6,
+      "type": "StaticText",
+      "label": "Nothing planned for today.",
+      "depth": 6,
+      "rect": {
+        "x": 38,
+        "y": 519.5,
+        "width": 201.5,
+        "height": 20.5
+      },
+      "index": 29,
+      "enabled": true,
+      "hittable": true,
+      "ref": "e30"
+    },
+    {
+      "parentIndex": 6,
+      "type": "Button",
+      "label": "Open meal plan",
+      "rect": {
+        "x": 38,
+        "y": 554,
+        "width": 299,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 6,
+      "index": 30,
+      "hittable": true,
+      "ref": "e31"
+    },
+    {
+      "depth": 6,
+      "rect": {
+        "x": 38,
+        "y": 612,
+        "width": 285,
+        "height": 14.5
+      },
+      "parentIndex": 6,
+      "type": "StaticText",
+      "label": "Showing saved meals. Refresh when you\u2019re online.",
+      "enabled": true,
+      "hittable": false,
+      "index": 31,
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"],
+      "ref": "e32"
+    },
+    {
+      "hittable": true,
+      "index": 32,
+      "parentIndex": 4,
+      "enabled": true,
+      "depth": 5,
+      "rect": {
+        "x": 342,
+        "y": 20,
+        "width": 30,
+        "height": 564
+      },
+      "type": "Other",
+      "label": "Vertical scroll bar, 3 pages",
+      "value": "0%",
+      "ref": "e33"
+    },
+    {
+      "depth": 2,
+      "parentIndex": 1,
+      "type": "Other",
+      "enabled": true,
+      "index": 33,
+      "rect": {
+        "x": 0,
+        "y": 584,
+        "width": 375,
+        "height": 83
+      },
+      "hittable": true,
+      "label": "Tab Bar",
+      "ref": "e34"
+    },
+    {
+      "parentIndex": 33,
+      "label": "Tab Bar",
+      "index": 34,
+      "rect": {
+        "x": 0,
+        "y": 584,
+        "width": 375,
+        "height": 83
+      },
+      "hittable": true,
+      "enabled": true,
+      "depth": 3,
+      "type": "TabBar",
+      "ref": "e35"
+    },
+    {
+      "type": "Other",
+      "depth": 4,
+      "parentIndex": 34,
+      "index": 35,
+      "enabled": true,
+      "hittable": true,
+      "label": "Today",
+      "rect": {
+        "x": 21,
+        "y": 584,
+        "width": 333,
+        "height": 62
+      },
+      "ref": "e36"
+    },
+    {
+      "type": "Button",
+      "hittable": true,
+      "enabled": true,
+      "rect": {
+        "x": 25,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "depth": 5,
+      "label": "Today",
+      "parentIndex": 35,
+      "selected": true,
+      "index": 36,
+      "identifier": "house",
+      "ref": "e37"
+    },
+    {
+      "parentIndex": 36,
+      "depth": 6,
+      "rect": {
+        "x": 52,
+        "y": 594,
+        "width": 33.5,
+        "height": 28
+      },
+      "identifier": "house.fill",
+      "label": "home",
+      "type": "Image",
+      "enabled": true,
+      "hittable": true,
+      "index": 37,
+      "ref": "e38"
+    },
+    {
+      "enabled": true,
+      "parentIndex": 35,
+      "identifier": "fork.knife",
+      "hittable": true,
+      "depth": 5,
+      "index": 38,
+      "label": "Meals",
+      "type": "Button",
+      "rect": {
+        "x": 103.91666666666667,
+        "y": 588,
+        "width": 88.25000000000001,
+        "height": 54
+      },
+      "ref": "e39"
+    },
+    {
+      "type": "Image",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 136.91666666666669,
+        "y": 591.5,
+        "width": 22,
+        "height": 31
+      },
+      "hittable": true,
+      "depth": 6,
+      "index": 39,
+      "label": "Food",
+      "enabled": true,
+      "parentIndex": 38,
+      "ref": "e40"
+    },
+    {
+      "parentIndex": 35,
+      "identifier": "calendar",
+      "label": "Calendar",
+      "index": 40,
+      "rect": {
+        "x": 182.83333333333334,
+        "y": 588,
+        "width": 88.25000000000003,
+        "height": 54
+      },
+      "hittable": true,
+      "type": "Button",
+      "enabled": true,
+      "depth": 5,
+      "ref": "e41"
+    },
+    {
+      "identifier": "calendar",
+      "index": 41,
+      "label": "calendar",
+      "enabled": true,
+      "rect": {
+        "x": 212.83333333333334,
+        "y": 595.5,
+        "width": 29,
+        "height": 25
+      },
+      "hittable": true,
+      "type": "Image",
+      "parentIndex": 40,
+      "depth": 6,
+      "ref": "e42"
+    },
+    {
+      "type": "Button",
+      "enabled": true,
+      "index": 42,
+      "hittable": true,
+      "depth": 5,
+      "parentIndex": 35,
+      "label": "Money",
+      "identifier": "creditcard",
+      "rect": {
+        "x": 261.75,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "ref": "e43"
+    },
+    {
+      "type": "Image",
+      "enabled": true,
+      "index": 43,
+      "hittable": true,
+      "depth": 6,
+      "parentIndex": 42,
+      "label": "card",
+      "identifier": "creditcard.fill",
+      "rect": {
+        "x": 289.75,
+        "y": 596.5,
+        "width": 33,
+        "height": 23.5
+      },
+      "ref": "e44"
+    }
+  ],
+  "noWrites": true,
+  "scopedState": {
+    "counts": {
+      "routine_creations": 0,
+      "routine_edits": 0,
+      "chore_changes": 0,
+      "chore_transfers": 0,
+      "routine_state_commands": 0
+    },
+    "creation": null,
+    "operations": [],
+    "snapshot": {
+      "transfers": [],
+      "chores": [
+        {
+          "occurrenceId": "CE88CF42-4359-41D4-AB06-A7185C22306B",
+          "title": "Hosted smoke tidy kitchen",
+          "dueDate": "2026-09-28",
+          "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB"
+        }
+      ],
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "members": [
+        {
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "displayName": "Test Alex"
+        },
+        {
+          "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+          "displayName": "Test Sam"
+        }
+      ],
+      "version": 1
+    }
+  },
+  "time": 1791115171.038136
+}
