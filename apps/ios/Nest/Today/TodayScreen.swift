@@ -158,7 +158,7 @@ struct TodayScreen: View {
                 Button {
                     Task { await model.refreshToday() }
                 } label: {
-                    Text("Retry").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
+                    Text("Retry").frame(minWidth: 44, minHeight: 44, alignment: .leading).contentShape(Rectangle())
                 }
             }
             .foregroundStyle(QuietPalette.muted)
