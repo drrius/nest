@@ -1,0 +1,140 @@
+{
+  "reviewedDetail": {
+    "rule": {
+      "nextDueOn": "2026-10-05",
+      "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+      "configuration": {
+        "categoryId": null,
+        "startDate": "2026-10-05",
+        "description": "Fictional private bill approval 3e7cd25c",
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "amountCentimes": null,
+        "allocations": null,
+        "schedule": {
+          "dayOfMonth": 5,
+          "kind": "monthly"
+        },
+        "note": "Fictional private approval QA; no payment or actual transfer.",
+        "mode": "variable"
+      },
+      "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "authorizedAt": "2026-10-04T22:23:03.220877Z",
+      "status": "active",
+      "revision": "38800DBA-ED58-4EBB-A708-B7750EF1B0E6"
+    },
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "version": 1,
+    "today": "2026-10-05"
+  },
+  "result": {
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "approval": {
+      "expiresAt": "2026-10-04T22:57:26.538147Z",
+      "receipt": {
+        "cycle": {
+          "startsOn": "2026-10-01",
+          "through": "2026-10-31",
+          "dueOn": "2026-10-05",
+          "key": "monthly:2026-10-01"
+        },
+        "eventId": "96562F14-7500-4C47-80BF-487705CA02A2",
+        "source": "variable",
+        "version": 1,
+        "operationId": "15B35398-DAB2-4BD6-B6BA-3C9BC3AB38F0",
+        "configuration": {
+          "description": "Fictional private bill approval 3e7cd25c",
+          "schedule": {
+            "dayOfMonth": 5,
+            "kind": "monthly"
+          },
+          "categoryId": null,
+          "mode": "variable",
+          "amountCentimes": null,
+          "startDate": "2026-10-05",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "allocations": null,
+          "note": "Fictional private approval QA; no payment or actual transfer."
+        },
+        "expense": {
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "categoryId": null,
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            }
+          ],
+          "date": "2026-10-05",
+          "amountCentimes": "3",
+          "note": "Fictional private approval QA; no payment or actual transfer.",
+          "description": "Fictional private bill approval 3e7cd25c"
+        },
+        "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "approvalId": "79C71D74-81BC-4B15-B292-D3CB28B18655",
+        "input": {
+          "amountCentimes": "3",
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            }
+          ],
+          "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+          "dueOn": "2026-10-05",
+          "expectedRevision": "38800DBA-ED58-4EBB-A708-B7750EF1B0E6"
+        }
+      },
+      "operationId": "15B35398-DAB2-4BD6-B6BA-3C9BC3AB38F0",
+      "input": {
+        "amountCentimes": "3",
+        "allocations": [
+          {
+            "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "centimes": "2"
+          },
+          {
+            "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+            "centimes": "1"
+          }
+        ],
+        "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+        "dueOn": "2026-10-05",
+        "expectedRevision": "38800DBA-ED58-4EBB-A708-B7750EF1B0E6"
+      },
+      "id": "79C71D74-81BC-4B15-B292-D3CB28B18655",
+      "status": "consumed"
+    },
+    "version": 1
+  },
+  "decision": {
+    "approvalId": "79C71D74-81BC-4B15-B292-D3CB28B18655",
+    "approved": true,
+    "operationId": "15B35398-DAB2-4BD6-B6BA-3C9BC3AB38F0",
+    "input": {
+      "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+      "amountCentimes": "3",
+      "dueOn": "2026-10-05",
+      "allocations": [
+        {
+          "centimes": "2",
+          "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+        },
+        {
+          "centimes": "1",
+          "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+        }
+      ],
+      "expectedRevision": "38800DBA-ED58-4EBB-A708-B7750EF1B0E6"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e9,StaticText,"""Our household""",null,20,48.75,83.5,14.5,True,True
+e10,Button,"""Private conversations""",null,259,34,44,44,True,True
+e11,Button,"""Profile and preferences""",null,311,34,44,44,True,True
+e12,StaticText,"""Money""",null,20,82,104.5,41,True,True
+e13,StaticText,"""All square, without the guesswork.""",null,20,127,235,18,True,True
+e14,StaticText,"""You’re settled up""",null,40,189,116,18,True,True
+e15,StaticText,"""CHF 0.00""",null,40,219,149,41,True,True
+e16,StaticText,"""Across your shared expenses""",null,40,272,201,18,True,True
+e17,Button,"""Add expense""",null,20,334,161.5,52,True,True
+e19,StaticText,"""Expense""",null,20,334,161.5,52,True,True
+e20,Button,"""Record a payment""",null,193.5,334,161.5,52,True,True
+e21,Button,"""Fictional private bill QA balance restoration, Settlement · 2026-10-05, CHF 0.01""",null,20,466.5,335,79,True,True
+e22,StaticText,"""Fictional private bill QA balance restoration""",null,20,474.5,183,42.5,True,True
+e23,StaticText,"""Settlement · 2026-10-05""",null,20,523,141.5,14.5,True,True
+e24,StaticText,"""CHF 0.01""",null,267.5,474.5,67,18,True,True
+e31,StaticText,"""Recent activity""",null,20,422,118.5,20.5,True,True
+e36,Button,"""Today""",null,25,588,88.25,54,True,True
+e38,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e40,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e42,Button,"""Money""",null,261.75,588,88.25,54,True,True

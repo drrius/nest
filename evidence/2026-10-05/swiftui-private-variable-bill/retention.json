@@ -1,0 +1,18 @@
+{
+  "before": {
+    "events": "8c55fd54aa6c1a07bd932ab3fe726111",
+    "ledger": "8593cc3b20ed0c86eddbce2f16da13f7",
+    "eventCount": 59,
+    "allocations": "71008fd2606fb7b8a736fb0d420e017a",
+    "claimedStorage": "3767ebe7738000c4de18c8e5841d9950"
+  },
+  "after": {
+    "events": "8c55fd54aa6c1a07bd932ab3fe726111",
+    "ledger": "8593cc3b20ed0c86eddbce2f16da13f7",
+    "eventCount": 59,
+    "allocations": "71008fd2606fb7b8a736fb0d420e017a",
+    "claimedStorage": "3767ebe7738000c4de18c8e5841d9950"
+  },
+  "identical": true,
+  "scope": "Original59 financial event/allocation/ledger rows and claimed Storage metadata; no Storage bytes comparison"
+}

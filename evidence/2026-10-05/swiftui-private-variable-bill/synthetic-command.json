@@ -1,0 +1,54 @@
+{
+  "conversationId": "c03d1ecf-b3f6-4145-936f-2122da2c02ff",
+  "turnId": "ed58aada-6645-4fb0-85d2-d6f6018dc5bb",
+  "toolCallId": "synthetic-variable-bill-273f5635420e4a69a21706cad3803ac2",
+  "begin": {
+    "state": "running",
+    "claimed": true,
+    "deadline": "2026-10-04T22:44:26.435545+00:00",
+    "assistantId": "dd42f803-c296-443b-a795-87babe55a212",
+    "finalRevision": null,
+    "inputRevision": "1"
+  },
+  "toolResult": {
+    "ok": true,
+    "value": {
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "version": 1,
+      "approval": {
+        "id": "79c71d74-81bc-4b15-b292-d3cb28b18655",
+        "input": {
+          "dueOn": "2026-10-05",
+          "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676"
+            }
+          ],
+          "amountCentimes": "3",
+          "expectedRevision": "38800dba-ed58-4ebb-a708-b7750ef1b0e6"
+        },
+        "status": "pending",
+        "receipt": null,
+        "expiresAt": "2026-10-04T22:57:26.538147Z",
+        "operationId": "15b35398-dab2-4bd6-b6ba-3c9bc3ab38f0"
+      },
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da"
+    }
+  },
+  "finish": {
+    "state": "interrupted",
+    "claimed": false,
+    "deadline": "2026-10-04T22:44:26.435545+00:00",
+    "assistantId": "dd42f803-c296-443b-a795-87babe55a212",
+    "finalRevision": "2",
+    "inputRevision": "1"
+  },
+  "liveModelCalled": false,
+  "path": "authenticated public nest_begin_ai_turn / nest_execute_ai_command(proposeVariableCycle) / nest_finish_ai_turn(interrupted,null)"
+}

@@ -1,0 +1,15 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review bill""",null,136.5,29,101.5,26,True,True
+e7,Cell,null,null,16,74,343,145.5,True,True
+e8,StaticText,"""Bill being reviewed""",null,16,74,343,145.5,True,True
+e9,Cell,null,null,16,219.5,343,279.5,True,True
+e10,StaticText,"""Fictional private bill approval 3e7cd25c""",null,16,219.5,343,279.5,True,True
+e11,Cell,null,null,16,499,343,161,True,True
+e12,StaticText,"""Amount""",null,32,514,178.5,63.5,True,True
+e13,StaticText,"""Amount, CHF 0.03""",null,16,499,343,161,True,True
+e19,Button,"""Today""",null,25,588,88.25,54,True,True
+e21,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e23,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e25,Button,"""Money""",null,261.75,588,88.25,54,True,True

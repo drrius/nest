@@ -1,0 +1,33 @@
+{
+  "navigation": {
+    "MoneyPreservedPriorBillScreen": true,
+    "initialSearchStoppedWithoutSubmission": true,
+    "correctedByOrdinaryBackNavigation": true
+  },
+  "originalTarget": {
+    "reviewHeight": 20.5,
+    "declineHeight": 20.5,
+    "noConsentSubmitted": true
+  },
+  "firstCandidate": {
+    "sharedFormRowTriggeredBothChoices": true,
+    "reviewOpenedDeclinePopover": true,
+    "popoverHadNoExplicitCancel": true,
+    "dismissedOutsideWithoutDecision": true,
+    "notSuccessfulRendering": true
+  },
+  "finalCandidate": {
+    "borderlessChoicesSeparate": true,
+    "nativeAlertExplicitCancel": true,
+    "normalAndLargestCornerCancellation": true,
+    "declineOnlyOpensDecline": true,
+    "oneActualApproval": true
+  },
+  "directReceiptProbe": {
+    "initialExpectation": "Mistook direct Save recovery for approval recovery",
+    "actualOwnerHTTP": 400,
+    "auditedBoundary": "nest_read_recurring_cycle_save rejects nonnull approvalId; use owner-private approval envelope",
+    "noSaveOrApprovalRepeated": true
+  },
+  "financialPostingNeverRepeatedByObserver": true
+}

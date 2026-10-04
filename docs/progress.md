@@ -367,11 +367,11 @@ Actual owned rendering exposed20.5pt review/decline buttons inside the timed
 approval section. Enlarging them exposed the Form row triggering both actions;
 the first candidate wrongly opened Decline from Review, with no decision staged.
 The corrected section separates borderless buttons, uses44pt interactive labels
-and a native alert with explicit Cancel. Normal Review/Cancel corner execution
-now selects only Record and stages nothing. All1,041 native inputs match the
-isolated Mac; strict formatting/source limits, actual signing and seven focused
-native approval/preflight/account/recovery methods pass without failures/skips
-after the final correction. Maximum-text/positive execution remains in progress.
+and a native alert with explicit Cancel. Normal/largest/dark Review/Cancel and
+separate Decline/Cancel corners select only the intended branch and stage nothing.
+All1,041 native inputs match the Mac; strict formatting/source limits, signing
+and seven focused native approval/preflight/account/recovery methods pass with
+zero failures/skips after the final correction.
 One clearly synthetic authenticated AI-journal tool invocation creates an
 owner-private pending bill proposal without posting money; its turn is honestly
 interrupted, with no fabricated model answer. Actual partner/outsider403 and
@@ -379,6 +379,22 @@ anonymous401 reads/decisions, owner execution-before-consent409 and altered-inpu
 refusals preserve the same pending proposal and all59 financial events/balances.
 Conversation/turn/command RLS yields zero rows for B/outsider, denies anonymous
 access and exposes the known rows only to A. This is not live AI verification.
-The first proposal expired normally without any posting; all original private
-journal facts remain, and a fresh synthetic turn targets the same uncovered rule.
-Documentation checkpoint21550910 passes Nest37238842339. No beta or merge occurs.
+The first proposal expired unused; a fresh synthetic turn targets the same rule.
+One largest-text native approval posts exactly3centimes, A2/B1 split, deriving
+A+1/B−1 with all59 earlier events exact. Actual restart/native recovery/detail
+navigation and one known-operation replay preserve the identical consumed receipt
+without reposting. Ordinary B1-cent settlement restores zero balances and retains
+all61 events; only the new rule is paused. Raw original59 financial/allocation/ledger
+and claimed Storage metadata hashes stay exact. Owner-private consumed approval,
+shared expense visibility, normal native Done/zero balance/ordinary Today and64
+empty journals pass. The direct-Save receipt probe correctly returns400 for an
+AI operation; the verifier uses the private approval envelope. No save was repeated.
+[Evidence](../evidence/2026-10-05/swiftui-private-variable-bill/README.md) separates
+candidate failures, synthetic command proof and actual native/hosted execution.
+Final source36e6fb73 passes Nest37241219456 and SwiftUI37241219530:491 Foundation/41
+explicit skips,409 signed-native/11 explicit skips, zero failures, strict format/limits
+and actual signing. All seven focused bill-approval methods pass without skips.
+First-candidate native CI was automatically superseded/cancelled, not passed.
+Other timed financial consent rows need the same isolation/cancellation audit;
+hosted lost-reply/declined variants, VoiceOver/races/both phones/live AI stay open.
+Documentation checkpoint21550910 passes Nest37238842339. No beta/merge occurs; M7 remains open.

@@ -1,0 +1,5 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e9,StaticText,"""Record this bill?""",null,57.5,269.5,260,20.5,True,True
+e10,StaticText,"""This applies only to the exact amount, split and cycle you reviewed. Nest does not move money.""",null,57.5,297,260,58,True,True
+e16,Button,"""Cancel""",null,43.5,375.5,140,48,True,True
+e17,Button,"""Record bill""",null,191.5,375.5,140,48,True,True

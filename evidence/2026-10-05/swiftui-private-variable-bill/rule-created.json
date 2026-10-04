@@ -1,0 +1,80 @@
+{
+  "command": {
+    "operationId": "ac784f94-7e61-4bad-83d0-bcb755ac23a1",
+    "rule": {
+      "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+      "expectedRevision": null,
+      "configuration": {
+        "description": "Fictional private bill approval 3e7cd25c",
+        "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "categoryId": null,
+        "note": "Fictional private approval QA; no payment or actual transfer.",
+        "startDate": "2026-10-05",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "variable",
+        "amountCentimes": null,
+        "allocations": null
+      },
+      "firstDueOn": "2026-10-05"
+    }
+  },
+  "receipt": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "operationId": "ac784f94-7e61-4bad-83d0-bcb755ac23a1",
+    "approvalId": null,
+    "revision": "38800dba-ed58-4ebb-a708-b7750ef1b0e6",
+    "status": "active",
+    "rule": {
+      "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+      "expectedRevision": null,
+      "configuration": {
+        "description": "Fictional private bill approval 3e7cd25c",
+        "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "categoryId": null,
+        "note": "Fictional private approval QA; no payment or actual transfer.",
+        "startDate": "2026-10-05",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "variable",
+        "amountCentimes": null,
+        "allocations": null
+      },
+      "firstDueOn": "2026-10-05"
+    }
+  },
+  "bothMemberDetail": {
+    "version": 1,
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "today": "2026-10-05",
+    "rule": {
+      "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+      "revision": "38800dba-ed58-4ebb-a708-b7750ef1b0e6",
+      "configuration": {
+        "description": "Fictional private bill approval 3e7cd25c",
+        "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "categoryId": null,
+        "note": "Fictional private approval QA; no payment or actual transfer.",
+        "startDate": "2026-10-05",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "variable",
+        "amountCentimes": null,
+        "allocations": null
+      },
+      "status": "active",
+      "authorizedBy": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "authorizedAt": "2026-10-04T22:23:03.220877Z",
+      "coveredThrough": null,
+      "nextDueOn": "2026-10-05"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "parentCommit": "21550910681ea2f874fd2c403194ee66672d2714",
+  "nativeInputs": 1041,
+  "changedFiles": ["apps/ios/Nest/Money/VariableCycleApprovalScreen.swift"],
+  "allInputsMatch": true,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791153200.655186,
+  "testPid": 30630,
+  "testExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "installedCandidateSHA256": "b124b97aeb70dc6af341d600c5e417de8bbd2968d0b325715c3c359641aa3100",
+  "finished": 1791153222.840927,
+  "nativeTests": 7,
+  "skips": 0,
+  "failures": 0,
+  "summaries": [
+    "Executed 7 tests, with 0 failures (0 unexpected) in 1.933 (1.935) seconds",
+    "Executed 7 tests, with 0 failures (0 unexpected) in 1.933 (1.936) seconds",
+    "Executed 7 tests, with 0 failures (0 unexpected) in 1.933 (1.936) seconds"
+  ]
+}
