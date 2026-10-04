@@ -1,0 +1,16 @@
+{
+  "metadata": {
+    "name": "Nest synthetic PDF receipt.pdf",
+    "bytes": 660,
+    "sha256": "33ed3cabbae34f22cac1b5938f386e112ee8560652d8945eed64703b74f032f4",
+    "syntheticTextOnly": true
+  },
+  "target": {
+    "y": 180,
+    "x": 10,
+    "width": 113,
+    "height": 190
+  },
+  "singleNativeSelection": true,
+  "time": 1791134291.227072
+}

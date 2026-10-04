@@ -1,0 +1,18 @@
+[
+  {
+    "path": "/tmp/nest-pdf-picker-ui.py",
+    "sha256": "b81af7ea24d93b4b7f55af09599f10ee56e64a676fe7bd0e54e6aceb80c21ef4"
+  },
+  {
+    "path": "/tmp/nest-native-manual-link-ui.py",
+    "sha256": "55de6e963b069c1946b696e66ee54635d0fcea3bed459dfd8f1f7ded23975cbf"
+  },
+  {
+    "path": "/tmp/nest-pdf-hosted-verify.py",
+    "sha256": "b3206096eb322afbef4026db527c6571607992e98e201334c488170383bd5702"
+  },
+  {
+    "path": "/tmp/nest-history-page-api.py",
+    "sha256": "bf7e77cbf3a8db4b9abc346996ab8e721660e19aad45c8892ba9a47dd8a0f274"
+  }
+]

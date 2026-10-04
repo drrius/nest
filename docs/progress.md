@@ -288,11 +288,33 @@ completion, receipt, full financial and attachment rows/digests remain unchanged
 No defect requiring a shipping SQL change was found in these tested paths.
 [Evidence](../evidence/2026-10-04/legacy-routine-definition-boundaries/README.md).
 
-The52 new cases have local execution evidence; routine CI for this checkpoint is
-pending, and no new deep/native run is claimed. Native manual-link evidence source
+The52 new cases have local execution evidence; exact-source routine CI37219093738
+passes at a8928b51, and no new deep/native run is claimed. Native manual-link evidence source
 6d53901e now passes Nest37217179614; shipping native source remains177d0a70.
 Fresh hosted advisor counts remain61INFO/81 privileged WARN/one leaked-password
 WARN. Forty-one other public legacy entries plus deeper private paths, full safe
 cutover and live/provider/phone acceptance remain. This is bounded M9 progress;
 all previously unchecked milestones stay open. No successful hosted mutation,
 production action, beta, purchase, worker activation or merge occurred.
+
+## Native PDF receipt picker
+
+One actual Apple document-picker selection now uploads a synthetic660-byte PDF to
+private nest-test Storage. Picker cancellation leaves no intent; uploader-only
+exact-byte/API reads, partner/outsider/anonymous denials and complete52-event finance
+retention pass. Actual terminate/launch retains identical PDF bytes/reservation.
+One343×155.5pt maximum-text/dark native corner Remove deletes only this unposted PDF;
+fresh Storage absence, household410 Gone, unchanged pending inventories and the
+existing claimed receipt's exact bytes for both members pass. The known local PDF
+is removed, normal/light Today restored and all64 scoped journals empty, preserving
+data/Keychain. All1,041 native inputs, installed signature, retained executable and
+stable test origins match. [Evidence](../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).
+
+Shipping native source remains both-CI-green177d0a70; this is actual native/hosted
+verification, not a new build/unit run. The preceding definition audit checkpoint
+a8928b51 passes routine37219093738. Other PDF providers/invalid input, newly posted
+attachments, partner native viewer, interruption/full accessibility, live AI and
+both phones remain open. The observed system-owned picker Cancel rectangle is
+36.5×36pt, with no44pt/full-accessibility claim. M7 and all other unchecked milestones
+remain incomplete. No expense, approval, beta, production action, purchase, worker
+activation or merge occurred.

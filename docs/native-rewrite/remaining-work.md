@@ -130,6 +130,15 @@ unversioned primitive. Four compiled/current hosted bodies and client ACLs match
 all retained local/hosted rows and complete finance/attachments remain unchanged.
 Forty-one other public legacy entries and deeper private paths remain. Native
 manual-link evidence checkpoint6d53901e also passes routine37217179614. New definition
-checks are locally verified; this tooling checkpoint's routine CI is pending,
+checks are locally verified and routine CI37219093738 passes at a8928b51,
 with no new deep/native execution or provider/phone acceptance claimed.
 [Evidence](../../evidence/2026-10-04/legacy-routine-definition-boundaries/README.md).
+
+The native PDF receipt picker now has bounded actual selection/upload/restart and
+maximum-text/dark corner-removal verification against private test Storage. Exact
+660-byte retention/isolation, unchanged complete52-event finance and existing
+claimed receipt, normal cleanup/empty64 scoped journals and ordinary app restoration
+pass. Other document providers/invalid input, new posted attachment, partner native
+viewer, interruption/full accessibility and both phones remain open. Shipping source
+is unchanged from both-CI-green177d0a70; no new compile/unit run is claimed.
+[PDF evidence](../../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).

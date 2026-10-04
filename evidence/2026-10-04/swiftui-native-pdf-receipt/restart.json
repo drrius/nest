@@ -1,0 +1,11 @@
+{
+  "exactSameReceiptAndBytes": true,
+  "onlyReceiptJournalPopulated": true,
+  "removeTarget": {
+    "x": 16,
+    "y": 479,
+    "width": 343,
+    "height": 52
+  },
+  "time": 1791134497.0921202
+}

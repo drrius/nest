@@ -64,7 +64,7 @@ ledger, allocations and attachment references. Fresh advisors remain61INFO,
 links; none is suppressed. This bounded review covers three more legacy warning
 entries, leaving41 other public legacy entries and deeper private paths open.
 
-Focused Oxfmt/Oxlint/source checks pass. Existing schema-probe filesystem/path
+Exact-source routine [CI37219093738](https://github.com/drrius/nest/actions/runs/37219093738) passes at `a8928b51`. These52 new full-chain cases were executed locally, not by that routine workflow. Focused Oxfmt/Oxlint/source checks pass. Existing schema-probe filesystem/path
 Effect warnings remain visible. An initial sandbox child-start error occurred
 before database execution; the authorized fresh isolated execution then passed.
 The artifact exporter initially assumed all older diagnostic groups had a
