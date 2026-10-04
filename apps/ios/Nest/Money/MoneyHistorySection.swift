@@ -14,6 +14,7 @@ struct MoneyHistorySection: View {
 
     var body: some View {
         Section {
+            if let savedNotice { Text(savedNotice).foregroundStyle(QuietPalette.muted) }
             ForEach(Array(events.prefix(previewCount ?? events.count))) { event in
                 NavigationLink {
                     MoneyDetailScreen(session: session, member: member, eventId: event.id)
@@ -31,7 +32,6 @@ struct MoneyHistorySection: View {
             }
             if loading { ProgressView("Loading history…") }
             if let notice { Text(notice) }
-            if let savedNotice { Text(savedNotice).foregroundStyle(QuietPalette.muted) }
             if events.isEmpty && !loading && notice == nil { Text("No financial history yet.") }
             if previewCount == nil, next != nil {
                 Button {

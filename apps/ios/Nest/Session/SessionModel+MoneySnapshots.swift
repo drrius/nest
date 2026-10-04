@@ -9,7 +9,7 @@ extension SessionModel {
     func cachedMoneyRead<Value>(_ target: MoneyReadTarget<Value>, generation expected: Int) async throws
         -> MoneyViewRead<Value>?
     {
-        try requireMoneyAccount(target.member, generation: expected)
+        try await requireCachedMoneyIdentity(target.member, generation: expected)
         guard let offline, let currentLease = lease else { throw NestAPIFailure.configuration }
         let ticket = try await offline.beginMoneyRead(target, lease: currentLease)
         let saved = try await offline.readMoneySnapshot(ticket)
@@ -24,6 +24,14 @@ extension SessionModel {
             notice:
                 "Showing saved information from \(saved.savedAt.formatted(date: .abbreviated, time: .shortened)). Connect and refresh for updates."
         )
+    }
+
+    private func requireCachedMoneyIdentity(_ member: VerifiedMember, generation expected: Int) async throws {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth else { throw NestAPIFailure.configuration }
+        let cached = await auth.cachedSession()
+        try requireMoneyAccount(member, generation: expected)
+        guard cached?.userId == member.userId else { throw NestAPIFailure.signedOut }
     }
 
     func cachedMoneyLease(auth: any NestAuthentication, generation expected: Int) async -> OfflineLease? {
@@ -75,6 +83,7 @@ extension SessionModel {
                 throw error
             }
             guard (error as? NestAPIFailure) == .unavailable || error is URLError else { throw error }
+            try await requireCachedMoneyIdentity(target.member, generation: expected)
             guard let saved = try await offline.readMoneySnapshot(ticket) else { throw error }
             try Task.checkCancellation()
             try requireMoneyAccount(target.member, generation: expected)

@@ -112,7 +112,7 @@ Backend worker source `01467d62` passes isolated routine/deep checks:13 core,50 
 
 ## Next work
 
-Money offline read persistence is now implemented for balance, visited history pages and visited entry details. Six real SQLite and19 signed native tests pass locally, zero failures/skips, together with strict formatting/source limits. Known authorization denial purges scoped read snapshots and fresh-process membership denial revokes the cached offline scope; uncertain commands remain intact. Existing financial command reads remain online-only. Exact-source CI, owned rendered/hosted acceptance and phones remain pending; this fix is newer than TestFlight15. [Evidence](../evidence/2026-10-04/swiftui-money-offline-reads/README.md).
+Money offline read persistence is now implemented for balance, visited history pages and visited entry details. Six real SQLite and20 signed native tests pass locally, zero failures/skips, together with strict formatting/source limits. Known authorization denial purges scoped read snapshots and fresh-process membership denial revokes the cached offline scope; uncertain commands remain intact. Existing financial command reads remain online-only. Exact-source CI, owned rendered/hosted acceptance and phones remain pending; this fix is newer than TestFlight15. [Evidence](../evidence/2026-10-04/swiftui-money-offline-reads/README.md).
 
 The owner-facing [remaining-work checklist](native-rewrite/remaining-work.md) groups the outstanding outcomes into financial completion, native usability, live integrations and a current private build. Most daily surfaces exist; neither test counts nor implementation alone establish final acceptance.
 

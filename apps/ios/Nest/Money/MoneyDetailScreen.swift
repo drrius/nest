@@ -11,6 +11,7 @@ struct MoneyDetailScreen: View {
 
     var body: some View {
         List {
+            if let notice { Text(notice).foregroundStyle(QuietPalette.muted) }
             if let detail {
                 Section {
                     Text(detail.event.description).font(.headline)
@@ -62,7 +63,6 @@ struct MoneyDetailScreen: View {
                 }
             }
             if loading { ProgressView("Loading entry…") }
-            if let notice { Text(notice) }
             Button("Refresh entry") { Task { await load() } }.disabled(loading)
         }
         .navigationTitle("Entry details")

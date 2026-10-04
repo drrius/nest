@@ -1,57 +1,59 @@
-Test Suite 'Selected tests' started at 2026-10-04 03:14:43.403.
-Test Suite 'NestAppTests.xctest' started at 2026-10-04 03:14:43.403.
-Test Suite 'ExpenseRecoveryModelTests' started at 2026-10-04 03:14:43.404.
+Test Suite 'Selected tests' started at 2026-10-04 03:23:27.346.
+Test Suite 'NestAppTests.xctest' started at 2026-10-04 03:23:27.347.
+Test Suite 'ExpenseRecoveryModelTests' started at 2026-10-04 03:23:27.347.
 Test Case '-[NestAppTests.ExpenseRecoveryModelTests testLostSaveReplyRecoversWithoutSubmittingAgain]' started.
-Test Case '-[NestAppTests.ExpenseRecoveryModelTests testLostSaveReplyRecoversWithoutSubmittingAgain]' passed (0.155 seconds).
+Test Case '-[NestAppTests.ExpenseRecoveryModelTests testLostSaveReplyRecoversWithoutSubmittingAgain]' passed (0.151 seconds).
 Test Case '-[NestAppTests.ExpenseRecoveryModelTests testOfflineOrChangedHouseholdCannotJournalANewEntry]' started.
-Test Case '-[NestAppTests.ExpenseRecoveryModelTests testOfflineOrChangedHouseholdCannotJournalANewEntry]' passed (0.216 seconds).
-Test Suite 'ExpenseRecoveryModelTests' passed at 2026-10-04 03:14:43.776.
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.371 (0.372) seconds
-Test Suite 'MoneyAccountTests' started at 2026-10-04 03:14:43.776.
+Test Case '-[NestAppTests.ExpenseRecoveryModelTests testOfflineOrChangedHouseholdCannotJournalANewEntry]' passed (0.164 seconds).
+Test Suite 'ExpenseRecoveryModelTests' passed at 2026-10-04 03:23:27.663.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.315 (0.316) seconds
+Test Suite 'MoneyAccountTests' started at 2026-10-04 03:23:27.663.
 Test Case '-[NestAppTests.MoneyAccountTests testDelayedFinancialReadsCannotReturnAfterSignOut]' started.
-Test Case '-[NestAppTests.MoneyAccountTests testDelayedFinancialReadsCannotReturnAfterSignOut]' passed (0.197 seconds).
+Test Case '-[NestAppTests.MoneyAccountTests testDelayedFinancialReadsCannotReturnAfterSignOut]' passed (0.220 seconds).
 Test Case '-[NestAppTests.MoneyAccountTests testDelayedFinancialReadsCannotReturnToAnotherMember]' started.
-Test Case '-[NestAppTests.MoneyAccountTests testDelayedFinancialReadsCannotReturnToAnotherMember]' passed (0.165 seconds).
-Test Suite 'MoneyAccountTests' passed at 2026-10-04 03:14:44.139.
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.362 (0.363) seconds
-Test Suite 'MoneySnapshotTests' started at 2026-10-04 03:14:44.139.
+Test Case '-[NestAppTests.MoneyAccountTests testDelayedFinancialReadsCannotReturnToAnotherMember]' passed (0.202 seconds).
+Test Suite 'MoneyAccountTests' passed at 2026-10-04 03:23:28.086.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.422 (0.423) seconds
+Test Suite 'MoneySnapshotTests' started at 2026-10-04 03:23:28.086.
 Test Case '-[NestAppTests.MoneySnapshotTests testAuthoritativeMoneyDenialNeverFallsBackAndRevokesSavedReads]' started.
-Test Case '-[NestAppTests.MoneySnapshotTests testAuthoritativeMoneyDenialNeverFallsBackAndRevokesSavedReads]' passed (0.233 seconds).
+Test Case '-[NestAppTests.MoneySnapshotTests testAuthoritativeMoneyDenialNeverFallsBackAndRevokesSavedReads]' passed (0.227 seconds).
+Test Case '-[NestAppTests.MoneySnapshotTests testCachedIdentityChangeCannotExposePreviousAccountBeforePresentationCatchesUp]' started.
+Test Case '-[NestAppTests.MoneySnapshotTests testCachedIdentityChangeCannotExposePreviousAccountBeforePresentationCatchesUp]' passed (0.045 seconds).
 Test Case '-[NestAppTests.MoneySnapshotTests testConflictAndInvalidResponsesNeverUseSavedMoney]' started.
-Test Case '-[NestAppTests.MoneySnapshotTests testConflictAndInvalidResponsesNeverUseSavedMoney]' passed (0.156 seconds).
+Test Case '-[NestAppTests.MoneySnapshotTests testConflictAndInvalidResponsesNeverUseSavedMoney]' passed (0.144 seconds).
 Test Case '-[NestAppTests.MoneySnapshotTests testFreshProcessMembershipDenialCannotReviveCacheOnLaterOfflineBoot]' started.
-Test Case '-[NestAppTests.MoneySnapshotTests testFreshProcessMembershipDenialCannotReviveCacheOnLaterOfflineBoot]' passed (0.063 seconds).
+Test Case '-[NestAppTests.MoneySnapshotTests testFreshProcessMembershipDenialCannotReviveCacheOnLaterOfflineBoot]' passed (0.054 seconds).
 Test Case '-[NestAppTests.MoneySnapshotTests testLateSuccessAndDenialCannotAffectTheNewAccount]' started.
-Test Case '-[NestAppTests.MoneySnapshotTests testLateSuccessAndDenialCannotAffectTheNewAccount]' passed (0.109 seconds).
+Test Case '-[NestAppTests.MoneySnapshotTests testLateSuccessAndDenialCannotAffectTheNewAccount]' passed (0.113 seconds).
 Test Case '-[NestAppTests.MoneySnapshotTests testMalformedLiveResponseCannotMasqueradeAsSuccessfulSavedRead]' started.
-Test Case '-[NestAppTests.MoneySnapshotTests testMalformedLiveResponseCannotMasqueradeAsSuccessfulSavedRead]' passed (0.046 seconds).
+Test Case '-[NestAppTests.MoneySnapshotTests testMalformedLiveResponseCannotMasqueradeAsSuccessfulSavedRead]' passed (0.054 seconds).
 Test Case '-[NestAppTests.MoneySnapshotTests testPreviouslyLoadedFinancialReadsSurviveOfflineProcessRestart]' started.
-Test Case '-[NestAppTests.MoneySnapshotTests testPreviouslyLoadedFinancialReadsSurviveOfflineProcessRestart]' passed (0.069 seconds).
-Test Suite 'MoneySnapshotTests' passed at 2026-10-04 03:14:44.817.
-	 Executed 6 tests, with 0 failures (0 unexpected) in 0.676 (0.678) seconds
-Test Suite 'SessionModelTests' started at 2026-10-04 03:14:44.817.
+Test Case '-[NestAppTests.MoneySnapshotTests testPreviouslyLoadedFinancialReadsSurviveOfflineProcessRestart]' passed (0.076 seconds).
+Test Suite 'MoneySnapshotTests' passed at 2026-10-04 03:23:28.800.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.712 (0.714) seconds
+Test Suite 'SessionModelTests' started at 2026-10-04 03:23:28.800.
 Test Case '-[NestAppTests.SessionModelTests testAccountARejectionCannotDisplayItsChoresDuringBSignIn]' started.
-Test Case '-[NestAppTests.SessionModelTests testAccountARejectionCannotDisplayItsChoresDuringBSignIn]' passed (0.053 seconds).
+Test Case '-[NestAppTests.SessionModelTests testAccountARejectionCannotDisplayItsChoresDuringBSignIn]' passed (0.066 seconds).
 Test Case '-[NestAppTests.SessionModelTests testColdOfflineRestoreShowsOnlyVerifiedCachedAccount]' started.
-Test Case '-[NestAppTests.SessionModelTests testColdOfflineRestoreShowsOnlyVerifiedCachedAccount]' passed (0.057 seconds).
+Test Case '-[NestAppTests.SessionModelTests testColdOfflineRestoreShowsOnlyVerifiedCachedAccount]' passed (0.065 seconds).
 Test Case '-[NestAppTests.SessionModelTests testInvalidRefreshCanClearLocalSession]' started.
-Test Case '-[NestAppTests.SessionModelTests testInvalidRefreshCanClearLocalSession]' passed (0.060 seconds).
+Test Case '-[NestAppTests.SessionModelTests testInvalidRefreshCanClearLocalSession]' passed (0.050 seconds).
 Test Case '-[NestAppTests.SessionModelTests testOverlappingSignInsLeaveDisplayAndCredentialsOnLatestAccount]' started.
-Test Case '-[NestAppTests.SessionModelTests testOverlappingSignInsLeaveDisplayAndCredentialsOnLatestAccount]' passed (0.060 seconds).
+Test Case '-[NestAppTests.SessionModelTests testOverlappingSignInsLeaveDisplayAndCredentialsOnLatestAccount]' passed (0.067 seconds).
 Test Case '-[NestAppTests.SessionModelTests testPausedAccountACompletionCannotReplaceAccountBPresentation]' started.
-Test Case '-[NestAppTests.SessionModelTests testPausedAccountACompletionCannotReplaceAccountBPresentation]' passed (0.072 seconds).
+Test Case '-[NestAppTests.SessionModelTests testPausedAccountACompletionCannotReplaceAccountBPresentation]' passed (0.063 seconds).
 Test Case '-[NestAppTests.SessionModelTests testPausedAccountADeactivationCannotSignOutAccountB]' started.
-Test Case '-[NestAppTests.SessionModelTests testPausedAccountADeactivationCannotSignOutAccountB]' passed (0.050 seconds).
+Test Case '-[NestAppTests.SessionModelTests testPausedAccountADeactivationCannotSignOutAccountB]' passed (0.056 seconds).
 Test Case '-[NestAppTests.SessionModelTests testPausedAccountAReadCannotReplaceAccountBPresentation]' started.
-Test Case '-[NestAppTests.SessionModelTests testPausedAccountAReadCannotReplaceAccountBPresentation]' passed (0.058 seconds).
+Test Case '-[NestAppTests.SessionModelTests testPausedAccountAReadCannotReplaceAccountBPresentation]' passed (0.078 seconds).
 Test Case '-[NestAppTests.SessionModelTests testReadyAccountCanReverifyFromSavedDataWhenOffline]' started.
-Test Case '-[NestAppTests.SessionModelTests testReadyAccountCanReverifyFromSavedDataWhenOffline]' passed (0.055 seconds).
+Test Case '-[NestAppTests.SessionModelTests testReadyAccountCanReverifyFromSavedDataWhenOffline]' passed (0.054 seconds).
 Test Case '-[NestAppTests.SessionModelTests testSecondRestoreCannotBeReplacedByDelayedFirstRestore]' started.
-Test Case '-[NestAppTests.SessionModelTests testSecondRestoreCannotBeReplacedByDelayedFirstRestore]' passed (0.054 seconds).
-Test Suite 'SessionModelTests' passed at 2026-10-04 03:14:45.340.
-	 Executed 9 tests, with 0 failures (0 unexpected) in 0.521 (0.524) seconds
-Test Suite 'NestAppTests.xctest' passed at 2026-10-04 03:14:45.341.
-	 Executed 19 tests, with 0 failures (0 unexpected) in 1.930 (1.937) seconds
-Test Suite 'Selected tests' passed at 2026-10-04 03:14:45.341.
-	 Executed 19 tests, with 0 failures (0 unexpected) in 1.930 (1.938) seconds
+Test Case '-[NestAppTests.SessionModelTests testSecondRestoreCannotBeReplacedByDelayedFirstRestore]' passed (0.076 seconds).
+Test Suite 'SessionModelTests' passed at 2026-10-04 03:23:29.379.
+	 Executed 9 tests, with 0 failures (0 unexpected) in 0.576 (0.578) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-04 03:23:29.379.
+	 Executed 20 tests, with 0 failures (0 unexpected) in 2.025 (2.032) seconds
+Test Suite 'Selected tests' passed at 2026-10-04 03:23:29.379.
+	 Executed 20 tests, with 0 failures (0 unexpected) in 2.025 (2.033) seconds
 ** TEST SUCCEEDED **

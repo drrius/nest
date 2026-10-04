@@ -148,6 +148,20 @@ final class MoneySnapshotTests: XCTestCase {
         } catch { XCTAssertEqual(error as? NestAPIFailure, .contract) }
     }
 
+    func testCachedIdentityChangeCannotExposePreviousAccountBeforePresentationCatchesUp() async throws {
+        let fixture = try fixture()
+        let model = try fixture.model()
+        await model.restore()
+        try await fixture.seed(model)
+        await fixture.auth.queueSessions([.init(userId: fixture.partner, accessToken: "token-B")])
+        _ = try await fixture.auth.session()
+        XCTAssertEqual(model.status, .ready(fixture.member))
+        do {
+            _ = try await model.cachedMoneyRead(.balance(fixture.member), generation: model.generation)
+            XCTFail("Cached SDK identity changed but old-account data was exposed")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+    }
+
     private func fixture() throws -> MoneySnapshotFixture {
         let fixture = try MoneySnapshotFixture()
         addTeardownBlock { try? FileManager.default.removeItem(at: fixture.url) }
