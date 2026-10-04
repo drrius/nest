@@ -52,7 +52,7 @@ Native food/cooking Save and committed-reply/restart/exact retry now pass real t
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual call failed403; successful fixture execution is not live AI proof.
 - [ ] Complete explicitly authorized test-worker credential configuration and activation. The compatible test API is deployed and passes read-only member/isolation checks. A specific worker server-secret transfer approval question remains pending; API deployment and worker activation are separate steps.
 - [ ] Configure Apple push provider credentials, test worker behavior, enroll both phones and verify all six notification kinds. Push is currently disabled.
-- [ ] Reconcile remaining test-environment security/external-writer checks and safe populated legacy fixtures.
+- [ ] Reconcile remaining test-environment security/external-writer checks and safe populated legacy fixtures. The fresh read-only hosted inventory now proves public RLS coverage, private-schema REST rejection, source-derived worker client-denial grants and zero database cron jobs. It also records81 public privileged-function warnings requiring semantic review, ten unexposed private tables without RLS, enabled public signup/email fixtures and the paid leaked-password protection limitation. Live external writers and production remain uninspected. [Evidence](../../evidence/2026-10-04/test-environment-security-inventory/README.md).
 
 Continue independent native work while these inputs are unavailable. Do not purchase services or modify production to clear a test blocker.
 
