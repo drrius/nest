@@ -146,4 +146,47 @@ final class ChoreOfflineStoreTests: XCTestCase {
             XCTFail("Changed snapshot was accepted")
         } catch OfflineFailure.missingSnapshot {}
     }
+
+    func testRecoveryKeepsOriginalTermsAndReasonUntilExplicitDiscard() async throws {
+        for reason in ["changed", "removed", "forbidden", "cutover", "future_reason"] {
+            let url = try database()
+            addTeardownBlock { try FileManager.default.removeItem(at: url.deletingLastPathComponent()) }
+            let (member, snapshot) = fixture()
+            let original = snapshot.chores[0]
+            let operation = UUID()
+            let store = try ChoreOfflineStore(url: url)
+            let lease = try await store.activate(member)
+            try await store.save(snapshot, lease: lease)
+            try await store.enqueue(original, on: original.dueDate, operation: operation, lease: lease)
+            let changed = NestChore(
+                occurrenceId: original.id, title: "Partner changed recycling",
+                dueDate: try CivilDate("2026-09-29"), assigneeId: partner, offlineEpoch: UUID())
+            let canonical = ChoreSnapshot(
+                version: 1, householdId: household,
+                members: snapshot.members + [NestMember(actorId: partner, displayName: "Sam")],
+                transfers: [], chores: [changed])
+            try await store.save(canonical, lease: lease)
+            let pending = try await store.read(lease)
+            XCTAssertEqual(pending?.chores[0].chore, original)
+            let queued = try await store.next(lease)
+            XCTAssertEqual(queued?.expectedDueDate, original.dueDate)
+            XCTAssertEqual(queued?.offlineEpoch, original.offlineEpoch)
+            try await store.conflict(operation, reason: reason, lease: lease)
+            let reopened = try ChoreOfflineStore(url: url)
+            let currentLease = try await reopened.activate(member)
+            let recovered = try await reopened.read(currentLease)
+            XCTAssertEqual(recovered?.snapshot, canonical)
+            XCTAssertEqual(recovered?.chores[0].chore, original)
+            XCTAssertEqual(recovered?.chores[0].state, .conflict)
+            XCTAssertEqual(recovered?.chores[0].operationId, operation)
+            XCTAssertEqual(recovered?.chores[0].conflictReason, ChoreConflictReason(rawValue: reason))
+            let blocked = try await reopened.next(currentLease)
+            XCTAssertNil(blocked)
+            try await reopened.discard(operation, lease: currentLease)
+            let discarded = try await reopened.read(currentLease)
+            XCTAssertEqual(discarded?.chores[0].chore, changed)
+            XCTAssertEqual(discarded?.chores[0].state, .open)
+            XCTAssertNil(discarded?.chores[0].conflictReason)
+        }
+    }
 }

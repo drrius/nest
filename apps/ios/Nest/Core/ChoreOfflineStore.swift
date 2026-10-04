@@ -13,6 +13,7 @@ struct LocalChore: Identifiable, Equatable, Sendable {
     let chore: NestChore
     let state: State
     let operationId: UUID?
+    var conflictReason: ChoreConflictReason? = nil
     var id: UUID { chore.id }
 }
 
@@ -196,9 +197,9 @@ actor ChoreOfflineStore {
         let snapshot = try JSONDecoder().decode(ChoreSnapshot.self, from: data)
             .validated(household: lease.household, actor: lease.actor)
         let operations = try db.rows(
-            "SELECT target,status,operation,chore FROM chore_operations WHERE actor=? AND household=? ORDER BY sequence",
+            "SELECT target,status,operation,chore,reason FROM chore_operations WHERE actor=? AND household=? ORDER BY sequence",
             lease.scope)
-        var states: [UUID: (LocalChore.State, UUID, NestChore)] = [:]
+        var states: [UUID: (LocalChore.State, UUID, NestChore, ChoreConflictReason?)] = [:]
         for row in operations {
             guard let target = UUID(uuidString: row[0]),
                 let operation = UUID(uuidString: row[2]),
@@ -212,16 +213,20 @@ actor ChoreOfflineStore {
                 case "conflict": .conflict
                 default: throw OfflineFailure.storage
                 }
-            states[target] = (state, operation, chore)
+            states[target] = (state, operation, chore, ChoreConflictReason(rawValue: row[4]))
         }
         let current = snapshot.chores.map {
             LocalChore(
-                chore: $0, state: states[$0.id]?.0 ?? .open,
-                operationId: states[$0.id]?.1)
+                chore: states[$0.id]?.2 ?? $0, state: states[$0.id]?.0 ?? .open,
+                operationId: states[$0.id]?.1, conflictReason: states[$0.id]?.3)
         }
         let currentIDs = Set(snapshot.chores.map(\.id))
         let removed = states.filter { !currentIDs.contains($0.key) && $0.value.0 != .completed }
-            .map { LocalChore(chore: $0.value.2, state: $0.value.0, operationId: $0.value.1) }
+            .map {
+                LocalChore(
+                    chore: $0.value.2, state: $0.value.0,
+                    operationId: $0.value.1, conflictReason: $0.value.3)
+            }
             .sorted { $0.chore.dueDate.value < $1.chore.dueDate.value }
         return ChoreOfflineState(snapshot: snapshot, chores: current + removed)
     }

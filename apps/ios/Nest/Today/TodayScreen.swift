@@ -155,7 +155,11 @@ struct TodayScreen: View {
         case .failed:
             VStack(alignment: .leading, spacing: 12) {
                 Text("Could not load your chores. Try again online.")
-                Button("Retry") { Task { await model.refreshToday() } }
+                Button {
+                    Task { await model.refreshToday() }
+                } label: {
+                    Text("Retry").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
+                }
             }
             .foregroundStyle(QuietPalette.muted)
             .padding(.top, 24)
@@ -197,10 +201,16 @@ struct TodayScreen: View {
             .accessibilityLabel(item.chore.title)
             .accessibilityValue(detail(item, moment: moment))
             if item.state == .conflict, let operation = item.operationId {
-                Button("Discard saved change") { Task { await model.discard(operation) } }
-                    .font(.caption.weight(.medium))
-                    .padding(.leading, 38)
-                    .padding(.bottom, 10)
+                Button {
+                    Task { await model.discard(operation) }
+                } label: {
+                    Text("Discard saved change")
+                        .frame(minHeight: 44, alignment: .leading)
+                        .contentShape(Rectangle())
+                }
+                .font(.caption.weight(.medium))
+                .padding(.leading, 38)
+                .padding(.bottom, 10)
             }
         }
         .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
@@ -212,7 +222,7 @@ struct TodayScreen: View {
             case .open: moment.dueLabel(item.chore.dueDate)
             case .pending: "Saved · waiting to sync"
             case .completed: "Done"
-            case .conflict: "Needs review · change was not applied"
+            case .conflict: item.conflictReason?.message ?? "Needs review · change was not applied"
             }
         return state
     }
