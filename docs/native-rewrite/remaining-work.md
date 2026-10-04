@@ -111,5 +111,6 @@ legacy functions/deeper private paths remain.
 Pause/resume/archive/skip now have20 actual full-chain local boundary/replay/state
 checks and eight real hosted outsider/anonymous denials. Four fresh hosted bodies
 match audited source, and all retained local/hosted history is unchanged. Tooling
-CI is pending. Forty-four other public legacy functions/deeper private paths remain.
+CI passes source2e114f04 in run37213217127. Twenty full-chain cases have local evidence,
+not a new deep/native run. Forty-four other public legacy functions/deeper private paths remain.
 [Evidence](../../evidence/2026-10-04/legacy-routine-boundaries/README.md).

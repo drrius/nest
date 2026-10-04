@@ -35,5 +35,8 @@ notification delivery, new hosted schema/configuration or native run is attempte
 
 This does not establish every paused/archived race, revoked membership/concurrency
 variant, native/phone delivery or live AI. Forty-four other public legacy functions
-and deeper private paths remain. Current tooling CI is pending. No production
+and deeper private paths remain. [Routine CI](ci-results.json) passes exact source
+2e114f04 in run37213217127, including formatting/lint/limits/typechecking and focused
+existing checks. The20 full-chain lifecycle cases have local execution evidence;
+no new deep or native run is claimed for them. No production
 access/mutation, purchase, beta, merge or worker activation occurred.

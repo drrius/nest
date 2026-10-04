@@ -248,7 +248,9 @@ replies, window/skip state, private recipient reminders and cancellation/restora
 pass. All original local/hosted routine/closure/full finance/attachment rows or digests
 remain unchanged. Four fresh hosted bodies/ACLs match the audited source. Initial
 helper-parameter and private-reminder observer assumptions were corrected without
-weakening limits/RLS. Focused format/lint pass; tooling CI pending. [Evidence](../evidence/2026-10-04/legacy-routine-boundaries/README.md).
+weakening limits/RLS. Focused format/lint and exact-source routine CI37213217127
+pass at2e114f04. The20 new full-chain cases are locally executed; no new deep/native
+run is claimed for them. [Evidence](../evidence/2026-10-04/legacy-routine-boundaries/README.md).
 Forty-four other legacy public functions/deeper private paths remain; this is bounded
 M9 progress, not full semantic/phone/provider acceptance. No shipping SQL, production,
 notification, worker, beta, purchase or merge action occurred.
