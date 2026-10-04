@@ -6,7 +6,7 @@ extension SessionModel {
         let attempt = generation
         await refreshMealLibrary()
         while generation == attempt, status == .ready(member), !Task.isCancelled {
-            guard case .loaded(let listing) = mealLibrary, mealLibraryNotice == nil else { return false }
+            guard case .loaded(let listing) = mealLibrary, mealLibraryFresh else { return false }
             guard let definition, !listing.meals.contains(where: { $0.id == definition }),
                 let cursor = listing.nextAfterId
             else { return true }

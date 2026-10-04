@@ -9,6 +9,9 @@ struct SavedRecipeScreen: View {
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
+                if let notice = model.savedRecipeNotice {
+                    Text(notice).font(.footnote).foregroundStyle(QuietPalette.muted)
+                }
                 content
             }
             .frame(maxWidth: .infinity, alignment: .leading)
@@ -48,8 +51,12 @@ struct SavedRecipeScreen: View {
             ProgressView("Loading recipe…")
                 .frame(maxWidth: .infinity, minHeight: 120)
         case .missing:
-            Text("This meal is no longer in your saved library.")
-                .foregroundStyle(QuietPalette.muted)
+            Text(
+                model.savedRecipeFresh
+                    ? "This meal is no longer in your saved library."
+                    : "This saved copy does not contain the recipe. Connect and refresh to check the library."
+            )
+            .foregroundStyle(QuietPalette.muted)
         case .failed:
             VStack(alignment: .leading, spacing: 12) {
                 Text("Could not load this recipe. Refresh saved meals and try again.")

@@ -1,0 +1,33 @@
+{
+  "files": {
+    "native-inputs.json": "05d5a31bd45b4ebf57028f942c61ba696fa01b34033bf24c443c410a9483dad1",
+    "setup.json": "1b5bf3e1f3e9e1dcf1f6390194b3d2fe75c1c0660ec14ddd64d04b28e0260b09",
+    "online.json": "bd5738df304a4b02996c5d7480d8f923ee87b9fe1c0bff5e0afe6263e4892acc",
+    "offline.json": "c22685aea9ba22eaa55bfb22b990a7667b33d5eeaa2699a9704afe90c715cb11",
+    "restoration.json": "2564662d8a7e02250a61713bd8bf908ab09a5a86058c1bd26fad3491af297a42",
+    "requests.jsonl": "0c670816c2fd9ad4e7012b6df8ad88704115b4639b4cc1b6e6b23471e61ba360",
+    "online-library.png": "05d41b0a402030c137c5df158a6cf4efdbad67bc84f1e4c7121d834f985a5ab0",
+    "online-recipe.png": "db14e0dcf5e704d5928619d47db8d18e37b715b3dab3fa56b2f873344b350112",
+    "offline-library.png": "45a514306f74ccb2c979b65cbcb391aa5725e80ed0d1bcf437e2d93db0dc4327",
+    "offline-recipe.png": "1191c302061cdc7e87130be825d13d7e310ba58e6818695e6065e4f69f7da44b",
+    "offline-recipe-largest.png": "36498229004deb2a2957e7a9ef9048807e392871ec986670edf7d931f82d0fd7",
+    "restored-today.png": "e5fb4e863c997e10bf4d6aad2c53552ede99de2518dd6cf5456780f2b1aa1b6c",
+    "layout-native-inputs.json": "8ef22de4b57c2f53d4911125aa86f3af9a9af8526df86502c2c96978fffffde6",
+    "final-native-inputs.json": "c238025b2be9c456bafbd10069d526e43f75fb62f961d3b5a76ad124505f4cf7",
+    "layout.json": "648e1fc9eae5f411f828a5d401f4f5bdeed70cbf79a4e96538039b3ad4956741",
+    "revocation-tests.json": "1963e28e2ff73b58b49e65e3d4a35e1879422d29cba5e461db245bf8b9c540af",
+    "final-restoration.json": "5484eec7af30f50a4f8d6ea2c9c2071e0081b2ca821d8b460bf49fc38f766d10",
+    "final-offline-library.png": "2ecb25e4c53df4780e6b91bb9dd5e64428d2c221d5e51df6077a9f1d53424382",
+    "final-offline-recipe.png": "dc8737afe571e82a64481575731ea4ab35b73b89f9e560d262c85e9e3d647303",
+    "final-offline-recipe-largest.png": "865575b6665e9c79bad3e7084eb033161ece9955446dade47389400a2977a563",
+    "final-restored-today.png": "f5dd41b655b6f28ced2b8c1c739742ced8052931888b7526b4a6777b1efe9df0",
+    "core-test-excerpt.txt": "6d334be052dc93d45ee9d6b1a91553c04f149a2813347498fef3a12737a72b34",
+    "native-test-excerpt.txt": "10e95a4423fbf084b52d7b038708c7e8138757a7c122a12b4d17a4145fbb27d8",
+    "layout-test-excerpt.txt": "80ccf86060f3193e96e66afc6360bfa5ef9cd6a2f62390ebe86c84017144524f",
+    "revocation-test-excerpt.txt": "175e4db6938e3f3b83c381740d90e0c8a69a003f2ac2c7b1aab6cc2df5a6f241"
+  },
+  "allowlistOnly": true,
+  "includesCredentials": false,
+  "includesDatabase": false,
+  "includesPrivateKey": false
+}

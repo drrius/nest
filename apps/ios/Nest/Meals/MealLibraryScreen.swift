@@ -11,7 +11,7 @@ struct MealLibraryScreen: View {
                 Text("Meals you keep for another day.")
                     .font(.subheadline).foregroundStyle(QuietPalette.muted)
                 if let notice = model.mealLibraryNotice {
-                    Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                    Text(notice).font(.footnote).foregroundStyle(QuietPalette.muted)
                     Button("Refresh saved meals") {
                         Task { await model.refreshMealLibrary() }
                     }
@@ -52,9 +52,12 @@ struct MealLibraryScreen: View {
                 .frame(minHeight: 52, alignment: .leading)
         case .loaded(let listing):
             if listing.meals.isEmpty {
-                Text("No saved meals yet.")
-                    .foregroundStyle(QuietPalette.muted)
-                    .frame(maxWidth: .infinity, minHeight: 120, alignment: .leading)
+                Text(
+                    model.mealLibraryFresh
+                        ? "No saved meals yet." : "No meals in this saved copy. Refresh to check the library."
+                )
+                .foregroundStyle(QuietPalette.muted)
+                .frame(maxWidth: .infinity, minHeight: 120, alignment: .leading)
             } else {
                 VStack(spacing: 0) {
                     ForEach(listing.meals) { meal in

@@ -157,7 +157,8 @@ final class MealLibraryModelTests: XCTestCase {
         guard case .loaded(let current) = model.mealLibrary else { return XCTFail("Missing paged library") }
         XCTAssertTrue(current.meals.contains(where: { $0.id == last }))
         let queries = await server.queriedLibraryPages()
-        XCTAssertEqual(queries.count, 4)
+        XCTAssertEqual(queries.filter { $0.isEmpty }.count, 2)
+        XCTAssertEqual(queries.last, "")
     }
 
     func testAssistantArchiveDestinationAlwaysRefreshesAndRejectsOldAccount() async throws {
@@ -192,7 +193,9 @@ final class MealLibraryModelTests: XCTestCase {
         await server.failNextLibraryRead()
         let ready = await model.refreshAssistantRecipeLibrary(definition: nil, member: member)
         XCTAssertFalse(ready)
-        XCTAssertEqual(model.mealLibrary, .failed)
+        guard case .loaded = model.mealLibrary else { return XCTFail("Saved library was discarded") }
+        XCTAssertFalse(model.mealLibraryFresh)
+        XCTAssertNotNil(model.mealLibraryNotice)
     }
 
     func testLostRecipePlacementResponseRetriesExactOperationAndShowsOneMeal() async throws {

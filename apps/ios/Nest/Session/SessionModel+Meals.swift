@@ -149,8 +149,13 @@ extension SessionModel {
     }
 
     func leaveMealAccount(_ next: Status) async {
+        let previousLease = lease
         generation += 1
         let current = generation
+        if next == .notMember, let offline, let previousLease {
+            try? await offline.revokeMoneyMembership(lease: previousLease)
+            guard generation == current else { return }
+        }
         await clearPresentation()
         if generation == current { status = next }
     }

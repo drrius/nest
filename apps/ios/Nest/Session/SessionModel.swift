@@ -63,12 +63,15 @@ final class SessionModel: ObservableObject {
     @Published var mealRemovalSaving = false
     @Published var mealLibrary: MealLibraryStatus = .idle
     @Published var mealLibraryNotice: String?
+    @Published var mealLibraryFresh = false
     @Published var plannedRecipe: PlannedRecipeStatus = .idle
     @Published var plannedRecipeNotice: String?
     @Published var plannedRecipeTarget: PlannedRecipeTarget?
     @Published var plannedRecipeFresh = false
     var plannedRecipeRequest: UUID?
     @Published var savedRecipe: SavedRecipeStatus = .idle
+    @Published var savedRecipeNotice: String?
+    @Published var savedRecipeFresh = false
     var savedRecipeRevision: String?
     @Published var mealRecipePlacement: SavedMealRecipePlacement?
     @Published var mealRecipePlacementSaving = false

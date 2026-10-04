@@ -23,4 +23,4 @@ Observation recovery: the UI observer initially assumed a one-page list could sc
 
 ## Still open
 
-Both physical phones, VoiceOver/haptics, actual radio loss, full alternating/membership-change native journeys and complete M4 acceptance remain open. This correction is newer than TestFlight build15. CI for this new copy increment will be recorded after push. No cloud build, release submission, production mutation or service purchase occurred.
+Both physical phones, VoiceOver/haptics, actual radio loss, full alternating/membership-change native journeys and complete M4 acceptance remain open. This correction is newer than TestFlight build15. Exact-source CI at `32897294` now passes Nest37169218381 and SwiftUI37169218366:484 Foundation/41 explicit skips and396 signed-native/11 explicit skips, zero failures, strict formatting/source limits and actual signing. See `ci-routine.json` and `ci-native.json`. No cloud build, release submission, production mutation or service purchase occurred.

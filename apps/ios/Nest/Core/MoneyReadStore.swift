@@ -105,6 +105,7 @@ extension ChoreOfflineStore {
         try authorize(lease)
         try db.transaction {
             try db.run("DELETE FROM money_read_snapshots WHERE actor=? AND household=?", lease.scope)
+            try db.run("DELETE FROM recipe_read_snapshots WHERE actor=? AND household=?", lease.scope)
             try db.run(
                 "DELETE FROM offline_scope WHERE id=1 AND actor=? AND household=? AND lease=?",
                 lease.scope + [lease.value.uuidString.lowercased()])

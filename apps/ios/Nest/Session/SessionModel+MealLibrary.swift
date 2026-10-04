@@ -8,8 +8,11 @@ extension SessionModel {
         mealLibraryRequest = request
         mealLibrary = .loading
         mealLibraryNotice = nil
+        mealLibraryFresh = false
         savedRecipeRequest = UUID()
         savedRecipe = .idle
+        savedRecipeNotice = nil
+        savedRecipeFresh = false
         savedRecipeRevision = nil
         do {
             let pending = try await readLibraryPending()
@@ -17,11 +20,22 @@ extension SessionModel {
             recipeCreation = pending.0
             recipeArchive = pending.1
             recipeEdit = pending.2
-            let session = try await auth.session()
-            guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let page = try await api.library(token: session.accessToken, member: member)
+            let cachedLibrary = try await cachedRecipeRead(.library(member), generation: attempt)
+            if let cached = cachedLibrary {
+                guard currentMealLibraryRequest(request, member: member, attempt: attempt) else { return }
+                mealLibrary = .loaded(cached.value)
+                mealLibraryNotice = cached.notice
+            }
+            let loaded = try await loadRecipeRead(.library(member), generation: attempt) {
+                let session = try await auth.session()
+                guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+                let first = MealLibraryListing(page: try await api.library(token: session.accessToken, member: member))
+                return try cachedLibrary?.value.retainingVisitedPages(afterRefreshing: first) ?? first
+            }
             guard currentMealLibraryRequest(request, member: member, attempt: attempt) else { return }
-            mealLibrary = .loaded(MealLibraryListing(page: page))
+            mealLibrary = .loaded(loaded.value)
+            mealLibraryNotice = loaded.notice
+            mealLibraryFresh = loaded.fresh
         } catch {
             await handleMealLibraryFailure(
                 error, api: api, auth: auth, member: member,
@@ -45,14 +59,19 @@ extension SessionModel {
         let request = UUID()
         mealLibraryRequest = request
         mealLibraryNotice = nil
+        mealLibraryFresh = false
         do {
-            let session = try await auth.session()
-            guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let page = try await api.library(
-                token: session.accessToken, member: member,
-                after: after, revision: listing.revision)
+            let loaded = try await loadRecipeRead(.library(member), generation: attempt) {
+                let session = try await auth.session()
+                guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+                let page = try await api.library(
+                    token: session.accessToken, member: member, after: after, revision: listing.revision)
+                return try listing.appending(page)
+            }
             guard currentMealLibraryRequest(request, member: member, attempt: attempt) else { return }
-            mealLibrary = .loaded(try listing.appending(page))
+            mealLibrary = .loaded(loaded.value)
+            mealLibraryNotice = loaded.notice
+            mealLibraryFresh = loaded.fresh
         } catch {
             await handleMealLibraryFailure(
                 error, api: api, auth: auth, member: member,
@@ -65,6 +84,8 @@ extension SessionModel {
         let request = UUID()
         savedRecipeRequest = request
         savedRecipeRevision = nil
+        savedRecipeNotice = nil
+        savedRecipeFresh = false
         guard case .loaded(let listing) = mealLibrary else {
             savedRecipe = .failed
             return
@@ -76,17 +97,22 @@ extension SessionModel {
         let attempt = generation
         savedRecipe = .loading
         do {
-            let session = try await auth.session()
-            guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let recipe = try await api.recipe(
-                token: session.accessToken, member: member,
-                id: id, revision: listing.revision)
+            let target = RecipeReadTarget<SavedRecipe?>.recipe(member, id: id, revision: listing.revision)
+            try await showCachedSavedRecipe(target, request: request, revision: listing.revision, attempt: attempt)
+            let loaded = try await loadRecipeRead(target, generation: attempt) {
+                let session = try await auth.session()
+                guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+                return try await api.recipe(
+                    token: session.accessToken, member: member, id: id, revision: listing.revision)
+            }
             guard generation == attempt, status == .ready(member),
                 savedRecipeRequest == request,
                 savedRecipeLibraryIsCurrent(listing.revision)
             else { return }
-            savedRecipeRevision = recipe == nil ? nil : listing.revision
-            savedRecipe = recipe.map(SavedRecipeStatus.loaded) ?? .missing
+            savedRecipeRevision = loaded.value == nil ? nil : listing.revision
+            savedRecipe = loaded.value.map(SavedRecipeStatus.loaded) ?? .missing
+            savedRecipeNotice = loaded.notice
+            savedRecipeFresh = loaded.fresh
         } catch {
             await handleSavedRecipeFailure(
                 error, api: api, auth: auth, member: member,
@@ -97,6 +123,17 @@ extension SessionModel {
     private func savedRecipeLibraryIsCurrent(_ revision: String) -> Bool {
         guard case .loaded(let listing) = mealLibrary else { return false }
         return listing.revision == revision
+    }
+
+    private func showCachedSavedRecipe(
+        _ target: RecipeReadTarget<SavedRecipe?>, request: UUID, revision: String, attempt: Int
+    ) async throws {
+        guard let cached = try await cachedRecipeRead(target, generation: attempt),
+            generation == attempt, status == .ready(target.member), savedRecipeRequest == request,
+            savedRecipeLibraryIsCurrent(revision)
+        else { return }
+        savedRecipe = cached.value.map(SavedRecipeStatus.loaded) ?? .missing
+        savedRecipeNotice = cached.notice
     }
 
     private func handleSavedRecipeFailure(
