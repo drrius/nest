@@ -1536,13 +1536,7 @@
   ],
   "complete": true,
   "infrastructure": {
-    "simulated": [
-      "auth.users",
-      "auth.sessions",
-      "auth.uid",
-      "storage.buckets",
-      "storage.objects"
-    ],
+    "simulated": ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
     "schedulingVerified": false,
     "storageBytesVerified": false
   },
@@ -2977,11 +2971,7 @@
       "replayAndFinalizationRefused": true
     },
     "legacySaveRecovery": {
-      "kinds": [
-        "legacy_adoption",
-        "legacy_confirmation",
-        "legacy_dismissal"
-      ],
+      "kinds": ["legacy_adoption", "legacy_confirmation", "legacy_dismissal"],
       "recordedCancelledUnresolvedPreserved": true,
       "partnerReceiptsHidden": true,
       "savesAndCancellationsRefused": true
@@ -3012,10 +3002,7 @@
       "decisionsAndExecutionRefused": true
     },
     "adjustmentApprovalRecovery": {
-      "kinds": [
-        "refund",
-        "correction"
-      ],
+      "kinds": ["refund", "correction"],
       "consumedDeniedPendingPreserved": true,
       "ownerOnlyReads": true,
       "decisionsAndExecutionRefused": true
@@ -3033,11 +3020,7 @@
       "decisionsRefused": true
     },
     "recurringRecovery": {
-      "recoveredKinds": [
-        "recurring",
-        "recurring_cycle",
-        "recurring_state"
-      ],
+      "recoveredKinds": ["recurring", "recurring_cycle", "recurring_state"],
       "historyPreserved": true,
       "newWritesRefused": true
     },

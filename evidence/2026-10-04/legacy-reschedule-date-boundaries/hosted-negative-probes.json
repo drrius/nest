@@ -1,0 +1,79 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "realAuthAndPostgrest": true,
+  "matchedShippingBodyBeforeProbes": true,
+  "cases": [
+    {
+      "actor": "first",
+      "newDueDate": "infinity",
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "first",
+      "newDueDate": "-infinity",
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "first",
+      "newDueDate": "10000-01-01",
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "first",
+      "newDueDate": null,
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "second",
+      "newDueDate": "infinity",
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "second",
+      "newDueDate": "-infinity",
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "second",
+      "newDueDate": "10000-01-01",
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "second",
+      "newDueDate": null,
+      "status": 400,
+      "code": "22023",
+      "newWriteDenied": true
+    },
+    {
+      "actor": "outsider",
+      "validDate": true,
+      "status": 403,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "actor": "anonymous",
+      "validDate": true,
+      "status": 401,
+      "code": "42501",
+      "denied": true
+    }
+  ],
+  "successfulMutationNotAttempted": true,
+  "storageBytesOrNativeExecutionNotClaimed": true
+}

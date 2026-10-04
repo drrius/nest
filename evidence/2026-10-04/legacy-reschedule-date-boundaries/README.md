@@ -24,7 +24,19 @@ excluded. Disposable local advisors pass their error gate. Manifest55/251 contai
 exact source hashes and its four tests pass. Scoped formatting/lint and configured
 source limits pass. No limit, permission or original trigger is weakened.
 
-Hosted application and current-source CI remain pending. This is a bounded public
+Applied only to nest-test, hosted version20261004151736. The actual body, empty
+search path and authenticated/anonymous ACL match. [Ten real Auth/PostgREST negative
+probes](hosted-negative-probes.json) pass for both members, outsider and anonymous.
+[Hosted proof](hosted-proof.json) records unchanged complete finance/attachments and
+all occurrences/completions/receipts. No successful hosted reschedule is attempted.
+Advisors remain61 INFO/81 privileged WARN/one leaked-password WARN; remediation links
+are preserved, with no findings suppressed. The first definition observer expected
+a newline before the function delimiter; exact delimiter slicing corrected it
+before any probe, without modifying deployed SQL.
+
+Source138c1b01 routine CI37212413311 caught an unformatted saved rehearsal JSON.
+Its formatting is corrected; repository format checking passes. Corrected routine
+CI and source deep37212413167 remain pending. This is a bounded public
 RPC/closure review;48 other legacy public functions and deeper private paths remain.
 Local Auth/Storage are fixture interfaces, not live byte/native/phone evidence. No
 production mutation, inference, worker activation, purchase, beta or merge occurred.

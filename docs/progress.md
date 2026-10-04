@@ -230,7 +230,10 @@ new null/nonfinite/unsupported years, retaining all finite dates and old exact
 replies/history. Eleven focused real database tests and the305-migration rehearsal
 pass:31 parent/date boundaries plus existing tenant/attachment/reconciliation and
 epoch/AI dispatch checks. Manifest55/251 and four manifest tests pass; scoped format,
-lint and source limits pass. Hosted application/current-source CI remain pending;
+lint and source limits pass. Applied only to nest-test (hosted20261004151736): exact body/ACL, ten live negative
+Auth/PostgREST probes and unchanged complete finance/attachments/routine history
+pass. Routine37212413311 caught saved-report formatting, now corrected with passing
+repository format checking. Corrected routine/source deep37212413167 are pending;
 48 other public legacy functions/deeper private paths remain. [Evidence](../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
 Prior completion evidence checkpoint1a3e060c passes Nest37212140744. M9 remains open;
 no new native run, production mutation, inference, purchase, beta or merge occurred.

@@ -147,3 +147,11 @@ finance, attachments and routine-history digests unchanged. Exact-source routine
 and deep CI pass c5469baf; hosted advisors remain61 INFO/81 privileged WARN/one
 leaked-password WARN. [Evidence and remediation links](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
 No successful hosted completion, native run or production change is claimed here.
+
+The adjacent retained reschedule RPC is now guarded by source migration
+`20261004151358_native_legacy_reschedule_dates.sql`, installed here under hosted
+version20261004151736. Manifest55/251,11 focused database tests,305-migration
+rehearsal/31 parent-date checks and ten live negative Auth/PostgREST probes pass,
+with exact body/ACL and unchanged full finance/attachments/routine-history digests.
+Valid future reschedules and old replies remain supported. [Evidence](../../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
+Current CI correction/deep checks remain pending; no native or production change.
