@@ -16,6 +16,7 @@ extension SessionModel {
             let command = try PlaceSavedRecipe(
                 week: week, recipe: recipe, libraryRevision: listing.revision,
                 operationId: UUID(), date: date, slot: slot)
+            try await requireSelectedMealWeek(week, member: member, attempt: attempt)
             try await offline.enqueueMealRecipePlacement(
                 week, recipe: recipe, command: command, lease: lease)
             let saved = try await offline.readMealRecipePlacement(week.weekStart, lease: lease)

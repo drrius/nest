@@ -65,6 +65,8 @@ extension SessionModel {
             operationId: UUID(), weekStart: context.week, expectedRevision: listing.revision,
             selected: choices.filter(\.selected).map(\.ingredient))
         _ = try command.validated()
+        _ = try await requireMealWeekOnline(
+            start: context.week, revision: listing.revision, member: context.member, attempt: context.generation)
         let updated = try await saveIngredientChoices(choices, context: context)
         guard let saved = updated.saved else { throw OfflineFailure.storage }
         _ = try await offline.stageIngredientAddition(command, expectedSequence: saved.sequence, lease: lease)

@@ -5,21 +5,73 @@ import XCTest
 
 @MainActor
 final class IngredientReviewModelTests: XCTestCase {
+    private func fixture(a: UUID, b: UUID, household: UUID, http: NestHTTP) throws -> SessionModel {
+        let auth = FakeAuthentication(
+            active: .init(userId: a, accessToken: "token-A"), nextSignIn: .init(userId: b, accessToken: "token-B"))
+        let chores = FakeChoreServer(actorA: a, actorB: b, household: household)
+        let choreHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await chores.respond($0) }
+        let url = FileManager.default.temporaryDirectory.appending(path: "ingredient-model-\(UUID()).sqlite")
+        addTeardownBlock { try? FileManager.default.removeItem(at: url) }
+        return SessionModel(
+            auth: auth, chores: ChoreAPI(http: choreHTTP), offline: try ChoreOfflineStore(url: url),
+            mealAPI: MealAPI(http: http))
+    }
+
+    func testOfflineOrStaleReviewPreservesChoicesWithoutStagingAddition() async throws {
+        for available in [false, true] {
+            let a = UUID()
+            let b = UUID()
+            let household = UUID()
+            let week = try MealWeekStart("2035-06-04")
+            let server = IngredientAddTestServer(actor: a, household: household)
+            let http = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { request in
+                if request.url?.path == "/v1/meals/week" {
+                    guard available else { throw URLError(.notConnectedToInternet) }
+                    let fresh = MealWeekSnapshot(
+                        version: 1, householdId: household, weekStart: week, revision: "3", entries: [])
+                    return (
+                        try JSONEncoder().encode(fresh),
+                        HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!
+                    )
+                }
+                return try await server.respond(request)
+            }
+            let model = try fixture(a: a, b: b, household: household, http: http)
+            await model.restore()
+            var context = try await model.ingredientReviewContext(week: week)
+            let row = MealIngredient(
+                entryId: UUID(), ingredientId: UUID(), quantity: "1", unit: "cup", mealTitle: "Soup",
+                date: week.date, slot: .dinner, name: "Lentils", categoryId: nil, groceryItemId: nil)
+            context.listing = try MealIngredientListing(week: week, revision: "2", household: household)
+                .appending(
+                    .init(
+                        version: 1, householdId: household, weekStart: week, revision: "2",
+                        ingredients: [row], skipped: [], nextAfter: nil))
+            let choices = [
+                MealIngredientChoice(
+                    ingredient: .init(entryId: row.entryId, ingredientId: row.ingredientId, quantity: "1", unit: "cup"),
+                    selected: true)
+            ]
+            let saved = try await model.saveIngredientChoices(choices, context: context)
+            do {
+                try await model.stageReviewedIngredients(choices, context: saved)
+                XCTFail("Offline or stale review staged a new addition")
+            } catch { XCTAssertEqual(error as? NestAPIFailure, available ? .conflict : .unavailable) }
+            let reopened = try await model.ingredientReviewContext(week: week)
+            XCTAssertEqual(reopened.saved, saved.saved)
+            XCTAssertNil(reopened.saved?.pending)
+            let calls = await server.calls
+            XCTAssertTrue(calls.isEmpty)
+        }
+    }
+
     func testLostResponseRetriesExactSelectionAndOldAccountCannotRetry() async throws {
         let a = UUID()
         let b = UUID()
         let household = UUID()
         let server = IngredientAddTestServer(actor: a, household: household)
-        let auth = FakeAuthentication(
-            active: .init(userId: a, accessToken: "token-A"), nextSignIn: .init(userId: b, accessToken: "token-B"))
-        let chores = FakeChoreServer(actorA: a, actorB: b, household: household)
-        let choreHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await chores.respond($0) }
         let http = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await server.respond($0) }
-        let url = FileManager.default.temporaryDirectory.appending(path: "ingredient-model-\(UUID()).sqlite")
-        addTeardownBlock { try? FileManager.default.removeItem(at: url) }
-        let model = SessionModel(
-            auth: auth, chores: ChoreAPI(http: choreHTTP), offline: try ChoreOfflineStore(url: url),
-            mealAPI: MealAPI(http: http))
+        let model = try fixture(a: a, b: b, household: household, http: http)
         await model.restore()
         let week = try MealWeekStart("2035-06-04")
         var context = try await model.ingredientReviewContext(week: week)
@@ -77,6 +129,15 @@ actor IngredientAddTestServer {
     }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if request.url?.path == "/v1/meals/week" {
+            let week = try MealWeekStart("2035-06-04")
+            let snapshot = MealWeekSnapshot(
+                version: 1, householdId: household, weekStart: week, revision: "2", entries: [])
+            return (
+                try JSONEncoder().encode(snapshot),
+                HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: "HTTP/1.1", headerFields: nil)!
+            )
+        }
         guard request.url?.path == "/v1/meals/ingredients/add" else { throw URLError(.unsupportedURL) }
         let command = try JSONDecoder().decode(AddMealIngredients.self, from: request.httpBody!)
         calls.append(command)

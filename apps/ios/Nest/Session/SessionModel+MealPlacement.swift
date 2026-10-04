@@ -11,6 +11,7 @@ extension SessionModel {
         do {
             let command = try PlaceMeal(
                 week: week, operationId: UUID(), date: date, slot: slot, title: title)
+            try await requireSelectedMealWeek(week, member: member, attempt: attempt)
             try await offline.enqueueMealPlacement(week, command: command, lease: lease)
             let saved = try await offline.readMealPlacement(week.weekStart, lease: lease)
             guard generation == attempt, status == .ready(member), mealSelection == week.weekStart

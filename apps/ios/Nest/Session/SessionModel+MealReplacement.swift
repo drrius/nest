@@ -10,6 +10,7 @@ extension SessionModel {
             let command = try ReplaceMeal(
                 week: context.source, meal: context.meal,
                 operationId: UUID(), title: title)
+            try await requireCurrentMealWeeks(context)
             let saved = SavedMealReplacement(
                 week: context.source, meal: context.meal,
                 command: command, state: .pending, receipt: nil)

@@ -27,6 +27,26 @@ final class MealLibraryModelTests: XCTestCase {
             mealAPI: MealAPI(http: mealHTTP))
     }
 
+    func testCachedRecipeCannotStartOfflinePlacement() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await model.refreshMealLibrary()
+        let id = await server.savedRecipeId()
+        await model.loadSavedRecipe(id)
+        guard case .loaded(let recipe) = model.savedRecipe else { return XCTFail("Missing recipe") }
+        await server.failWeeks(.unavailable)
+        let accepted = await model.placeSavedRecipe(date: start.date, slot: .dinner, recipe: recipe)
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.mealRecipePlacement)
+        let operations = await server.recipeOperations()
+        XCTAssertTrue(operations.isEmpty)
+        guard let offline = model.offline, let lease = model.lease else { return XCTFail("Missing store") }
+        let pending = try await offline.readMealRecipePlacement(start, lease: lease)
+        XCTAssertNil(pending)
+    }
+
     func testLateIngredientWeekReadRejectsOldAccountContext() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)

@@ -41,6 +41,7 @@ extension SessionModel {
             let command = try MoveMeal(
                 source: context.source, target: context.target, meal: context.meal,
                 operationId: UUID(), date: date, slot: slot)
+            try await requireCurrentMealWeeks(context)
             let saved = SavedMealMove(
                 source: context.source, target: context.target, meal: context.meal,
                 command: command, state: .pending, receipt: nil)

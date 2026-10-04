@@ -10,6 +10,7 @@ extension SessionModel {
             let command = try PlaceLeftovers(
                 source: context.source, target: context.target, meal: context.meal,
                 operationId: UUID(), date: date, slot: slot)
+            try await requireCurrentMealWeeks(context)
             let saved = SavedMealLeftovers(
                 source: context.source, target: context.target, meal: context.meal,
                 placement: command, state: .pending, receipt: nil)

@@ -9,6 +9,7 @@ extension SessionModel {
         let attempt = generation
         do {
             let command = try RemoveMeal(week: week, meal: meal, operationId: UUID())
+            try await requireSelectedMealWeek(week, member: member, attempt: attempt)
             try await offline.enqueueMealRemoval(week, meal: meal, command: command, lease: lease)
             let saved = try await offline.readMealRemoval(week.weekStart, lease: lease)
             guard generation == attempt, status == .ready(member), mealSelection == week.weekStart

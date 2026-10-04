@@ -1,0 +1,34 @@
+{
+  "source": "working tree matched by native-inputs.json",
+  "baseline": {
+    "nativeCases": 2,
+    "assertionFailures": 8,
+    "exit": 65,
+    "testNames": [
+      "MealSessionModelTests/testCachedWeekCannotStartOfflinePlacement",
+      "MealLibraryModelTests/testCachedRecipeCannotStartOfflinePlacement"
+    ],
+    "evidence": "Completed Mac xcodebuild output, exec session48640"
+  },
+  "corrected": {
+    "nativeCases": 44,
+    "failures": 0,
+    "skips": 0,
+    "groups": {
+      "IngredientReviewModelTests": 2,
+      "MealLeftoversModelTests": 3,
+      "MealLibraryModelTests": 15,
+      "MealMoveModelTests": 3,
+      "MealRecipeReplacementModelTests": 5,
+      "MealReplacementModelTests": 3,
+      "MealSessionModelTests": 13
+    },
+    "evidence": "Completed Mac xcodebuild output, exec session78305",
+    "signedStableOriginBuild": true,
+    "strictSwiftFormattingAndLimits": true,
+    "matchedNativeInputs": 1039,
+    "installedWithDataAndKeychainPreserved": true
+  },
+  "artifactTransfer": "Mac result.json and logs remain on authorized Mac; SCP timed out after the completed run.",
+  "renderedSmoke": "Interrupted after Next week; native attempt/result markers and remote process state require Mac inspection. No repeated Save."
+}

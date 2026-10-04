@@ -188,4 +188,89 @@ final class MealSessionModelTests: XCTestCase {
         let operations = await server.operations()
         XCTAssertTrue(operations.isEmpty)
     }
+
+    func testCachedWeekCannotStartOfflinePlacement() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await server.failWeeks(.unavailable)
+        let accepted = await model.placeMeal(date: start.date, slot: .dinner, title: "Soup")
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.mealPlacement)
+        let operations = await server.operations()
+        XCTAssertTrue(operations.isEmpty)
+        guard let offline = model.offline, let lease = model.lease else { return XCTFail("Missing store") }
+        let pending = try await offline.readMealPlacement(start, lease: lease)
+        XCTAssertNil(pending)
+    }
+
+    func testLoadedMealCannotStartOfflineEditsOrRemoval() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        _ = await model.placeMeal(date: start.date, slot: .dinner, title: "Soup")
+        guard case .ready(let member) = model.status, case .loaded(let week) = model.mealStatus,
+            let meal = week.entries.first, let offline = model.offline, let lease = model.lease
+        else { return XCTFail("Missing placed meal") }
+        let context = MealMoveContext(
+            member: member, generation: model.generation, source: week, target: week, meal: meal)
+        await server.failWeeks(.unavailable)
+        let replacement = await model.replaceMeal(context, title: "Pasta")
+        let move = await model.moveMeal(context, date: start.date, slot: .lunch)
+        let leftovers = await model.placeMealLeftovers(context, date: start.days[1], slot: .dinner)
+        await model.removeMeal(meal)
+        XCTAssertFalse(replacement)
+        XCTAssertFalse(move)
+        XCTAssertFalse(leftovers)
+        XCTAssertNil(model.mealReplacement)
+        XCTAssertNil(model.mealMove)
+        XCTAssertNil(model.mealLeftovers)
+        XCTAssertNil(model.mealRemoval)
+        let savedReplacement = try await offline.readMealReplacement(lease: lease)
+        let savedMove = try await offline.readMealMove(lease: lease)
+        let savedLeftovers = try await offline.readMealLeftovers(lease: lease)
+        let savedRemoval = try await offline.readMealRemoval(start, lease: lease)
+        XCTAssertNil(savedReplacement)
+        XCTAssertNil(savedMove)
+        XCTAssertNil(savedLeftovers)
+        XCTAssertNil(savedRemoval)
+        let removals = await server.removalOperations()
+        XCTAssertTrue(removals.isEmpty)
+        XCTAssertEqual(model.mealStatus, .loaded(week))
+    }
+
+    func testStaleWeekRefusesBeforeCreatingAnotherPlacement() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        let baseline = model.mealStatus
+        _ = await model.placeMeal(date: start.date, slot: .dinner, title: "Soup")
+        model.mealStatus = baseline
+        let accepted = await model.placeMeal(date: start.days[1], slot: .dinner, title: "Pasta")
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.mealPlacement)
+        let attempts = await server.operations()
+        XCTAssertEqual(attempts.count, 1)
+        XCTAssertEqual(model.mealStatus, baseline)
+    }
+
+    func testAccountSwitchDuringPreflightCannotQueueOldPlacement() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await server.pauseActorA()
+        let pending = Task { await model.placeMeal(date: start.date, slot: .dinner, title: "Soup") }
+        await server.waitForActorA()
+        await model.signIn(idToken: "B", nonce: "test")
+        await server.releaseActorA()
+        let accepted = await pending.value
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.mealPlacement)
+        let attempts = await server.operations()
+        XCTAssertTrue(attempts.isEmpty)
+    }
 }
