@@ -39,7 +39,7 @@ struct VariableCycleApprovalScreen: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await model.load() } }
         }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Record this bill?" : "Decline this proposal?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -48,6 +48,7 @@ struct VariableCycleApprovalScreen: View {
                     Task { await model.decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text("This applies only to the exact amount, split and cycle you reviewed. Nest does not move money.")
         }
@@ -89,7 +90,7 @@ struct VariableCycleApprovalScreen: View {
                     } else {
                         Text("This proposal is expired or awaiting its recorded result. Refresh to check again.")
                     }
-                }
+                }.buttonStyle(.borderless)
             }
         }
     }

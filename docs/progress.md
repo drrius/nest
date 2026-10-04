@@ -364,11 +364,14 @@ production action, purchase, worker activation or merge occurs; M7 is incomplete
 ## Private variable bill consent (5 October 2026)
 
 Actual owned rendering exposed20.5pt review/decline buttons inside the timed
-approval section. The view now uses the shared44pt interactive label for review,
-decline, refresh, recorded-detail navigation, retry and Done. All1,041 native
-inputs match the isolated Mac; strict formatting/source limits, actual signing
-and seven focused native approval/preflight/account/recovery methods pass with
-zero failures/skips. Corrected normal/maximum-text rendering is in progress.
+approval section. Enlarging them exposed the Form row triggering both actions;
+the first candidate wrongly opened Decline from Review, with no decision staged.
+The corrected section separates borderless buttons, uses44pt interactive labels
+and a native alert with explicit Cancel. Normal Review/Cancel corner execution
+now selects only Record and stages nothing. All1,041 native inputs match the
+isolated Mac; strict formatting/source limits, actual signing and seven focused
+native approval/preflight/account/recovery methods pass without failures/skips
+after the final correction. Maximum-text/positive execution remains in progress.
 One clearly synthetic authenticated AI-journal tool invocation creates an
 owner-private pending bill proposal without posting money; its turn is honestly
 interrupted, with no fabricated model answer. Actual partner/outsider403 and
@@ -376,4 +379,6 @@ anonymous401 reads/decisions, owner execution-before-consent409 and altered-inpu
 refusals preserve the same pending proposal and all59 financial events/balances.
 Conversation/turn/command RLS yields zero rows for B/outsider, denies anonymous
 access and exposes the known rows only to A. This is not live AI verification.
+The first proposal expired normally without any posting; all original private
+journal facts remain, and a fresh synthetic turn targets the same uncovered rule.
 Documentation checkpoint21550910 passes Nest37238842339. No beta or merge occurs.
