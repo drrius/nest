@@ -1,0 +1,68 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "projectName": "nest-test",
+  "migration": {
+    "version": "20261004144314",
+    "name": "native_legacy_completion_dates"
+  },
+  "bodyMatchesMigration": true,
+  "anonymousExecute": false,
+  "authenticatedExecute": true,
+  "before": {
+    "ledgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+    "financeHash": "04f76d23e4b97279c7b73dc214e0423a",
+    "intentsHash": "8dc39e89b63ddf6eb02ebeaa867bf2f9",
+    "storageHash": "3767ebe7738000c4de18c8e5841d9950",
+    "uploadsHash": "7547027c205b8f910c5635665f36de41",
+    "allocationsHash": "8442d1e55a252f4722177220f18bbbb7",
+    "financialEvents": 52
+  },
+  "after": {
+    "ledgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+    "financeHash": "04f76d23e4b97279c7b73dc214e0423a",
+    "intentsHash": "8dc39e89b63ddf6eb02ebeaa867bf2f9",
+    "storageHash": "3767ebe7738000c4de18c8e5841d9950",
+    "uploadsHash": "7547027c205b8f910c5635665f36de41",
+    "allocationsHash": "8442d1e55a252f4722177220f18bbbb7",
+    "financialEvents": 52
+  },
+  "allRetainedDigestsEqual": true,
+  "historyBefore": {
+    "completions": 5,
+    "unsupported_completion_dates": 0,
+    "completion_hash": "aeb6b88b69fe1eabb10f90a026f18daf",
+    "occurrence_hash": "4c85346f9617ff96a39c6f90bcf534d5",
+    "command_receipt_hash": "e82ba255ad3b50d1bb3d6945767c6c9f"
+  },
+  "historyAfter": {
+    "completions": 5,
+    "unsupported_completion_dates": 0,
+    "completion_hash": "aeb6b88b69fe1eabb10f90a026f18daf",
+    "occurrence_hash": "4c85346f9617ff96a39c6f90bcf534d5",
+    "command_receipt_hash": "e82ba255ad3b50d1bb3d6945767c6c9f"
+  },
+  "allRoutineHistoryDigestsEqual": true,
+  "liveNegativeProbes": 10,
+  "successfulMutationNotAttempted": true,
+  "nativeExecutionOrStorageBytesNotClaimed": true,
+  "advisorSummary": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 61,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "level": "WARN",
+      "count": 81,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ]
+}

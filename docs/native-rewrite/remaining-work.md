@@ -11,8 +11,11 @@ deeper private paths remain. [Evidence](../../evidence/2026-10-04/legacy-receipt
 
 A subsequent retained completion-RPC review found future completed dates were
 accepted. The new guard preserves historical replies and passes seven focused
-database tests plus21 full-chain parent/date checks. Hosted application and CI are
-pending;49 other legacy public functions/deeper private paths remain.
+database tests plus21 full-chain parent/date checks. It is applied only to nest-test;
+ten real authenticated/anonymous negative probes pass with all routine history and
+complete finance/attachment digests unchanged. Exact-source routine and deep CI
+pass c5469baf (23 core,50 conflicts,1,235 database/RLS, zero failures/skips).
+Forty-nine other legacy public functions/deeper private paths remain.
 [Evidence](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
 
 Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).

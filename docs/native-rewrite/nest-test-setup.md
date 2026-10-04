@@ -135,3 +135,15 @@ Previously authorized object URLs returned Cloudflare cache hits after policy ch
 Receipt claim review fix: migration `20260926103844` requires the native uploader for the first claim under the existing attachment row lock. A partner claim is rejected without changing financial events, ledger, upload state or byte visibility; the uploader can then post normally. The local receipt RLS regression and three push conflict cases pass (4/4). Installed only on nest-test; exact-commit review and CI remain pending. Hosted push checkpoint probes returned 412 for all six stale revisions in 0.115–0.163 seconds with unchanged checkpoints; no notifications were sent.
 
 Subsequent hosted signing/claim verification: the actual local API signed the pending uploader receipt and returned exact JPEG bytes while rejecting the partner/outsider. A partner first-claim attempt returned 403; the owner then saved and exactly replayed one fictional CHF 1.01 expense. Both household members could obtain signed bytes after claim; the outsider remained denied. Catalog reconciliation found one event, one stored object, one claimed upload and net ledger delta zero. These test records remain as append-only history. Earlier zero-object/zero-event counts describe prior cleanup probes. Harnesses: `/tmp/nest-hosted-receipt-signing.mjs` and `/tmp/nest-hosted-claimed-receipt.mjs`. These do not prove iPhone execution.
+
+## Latest retained completion-date guard
+
+Manifest provenance now covers55 legacy and250 native sources. Migration
+`20261004143015_native_legacy_completion_dates.sql` is installed only here under
+hosted version `20261004144314`. New invalid/future dates are denied; old exact
+receipts and history are retained. Seven focused local tests,21 full-chain parent
+checks and ten real Auth/PostgREST negative probes pass, with complete52-event
+finance, attachments and routine-history digests unchanged. Exact-source routine
+and deep CI pass c5469baf; hosted advisors remain61 INFO/81 privileged WARN/one
+leaked-password WARN. [Evidence and remediation links](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
+No successful hosted completion, native run or production change is claimed here.

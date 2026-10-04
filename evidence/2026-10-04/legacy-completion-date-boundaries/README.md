@@ -52,9 +52,27 @@ The existing epoch/AI rehearsal proves database command execution, not live mode
 
 ## Hosted and CI status
 
-No hosted migration or fixture mutation has occurred yet. Current-source CI is
-pending push. Prior receipt-cleanup documentation checkpoint `1d67f235` passes
-Nest37208513631; its source fix/deep-integration evidence remains valid separately.
+Applied only to `nest-test`, hosted version `20261004144314`. The deployed function
+body exactly matches the migration, keeps an empty search path and grants execution
+to authenticated callers while denying anonymous callers. [Hosted proof](hosted-proof.json)
+records unchanged complete52-event finance/ledger/allocation/attachment digests and
+all five completions, occurrences and command receipts before and after the probes.
+
+[Ten actual Auth/PostgREST negative probes](hosted-negative-probes.json) pass:
+both members' new future/infinite/year10000/null dates return400/22023; an outsider
+and anonymous caller cannot complete with a valid date. No successful hosted write
+was attempted. Expired independent fictional verifier sessions stopped preflight
+before any RPC, then were renewed without changing native Keychain sessions. An
+initial read-only digest observer assumed an `id` column on completions; the actual
+catalog's occurrence key corrected the query and the original digests match exactly.
+
+[Exact-source CI](ci-results.json) passes `c5469baf`: Nest37210225147 and
+Deep37210426388, with23 core,50 conflict and1,235 database/RLS cases, zero
+failures/skips. Native sources are unchanged; no new native execution is claimed.
+Hosted advisors remain61 informational policy-absence notices,81 privileged-function
+warnings and one leaked-password warning; no findings were suppressed. Their
+remediation links are retained in the hosted proof. Prior receipt-cleanup checkpoint
+`1d67f235` also passes Nest37208513631.
 
 This is a bounded review of the public completion RPC and its receipt parent paths.
 Forty-nine other legacy public privileged functions and deeper private paths remain.
