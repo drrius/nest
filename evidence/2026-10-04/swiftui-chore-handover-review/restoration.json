@@ -1,0 +1,16 @@
+{
+  "ordinaryToday": true,
+  "stableTestOriginsVerified": true,
+  "installedExecutableMatchesFinalBuild": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "chore_transfers": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0,
+    "grocery_checks": 0,
+    "expense_commands": 0
+  },
+  "noFaultRelayCreated": true,
+  "pushDisabled": true
+}

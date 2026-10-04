@@ -1,9 +1,16 @@
 import SwiftUI
 
 struct ChoreHandoversScreen: View {
-    private enum Choice {
+    private enum Choice: Identifiable {
         case request(NestChore, UUID)
         case respond(PendingChoreTransfer, RespondChoreTransfer.Action)
+
+        var id: UUID {
+            switch self {
+            case .request(let chore, _): chore.id
+            case .respond(let transfer, _): transfer.requestId
+            }
+        }
     }
     @ObservedObject var model: SessionModel
     @State private var context: RoutineCreateContext?
@@ -12,7 +19,6 @@ struct ChoreHandoversScreen: View {
     @State private var notice: String?
     @State private var working = false
     @State private var choice: Choice?
-    @State private var confirming = false
 
     var body: some View {
         List {
@@ -43,32 +49,55 @@ struct ChoreHandoversScreen: View {
         .navigationTitle("Chore handovers")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .task { await load() }
-        .confirmationDialog("Confirm handover action?", isPresented: $confirming) {
-            Button(confirmationAction) { Task { await apply(choice) } }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("Requests leave responsibility unchanged until the recipient accepts.")
-        }
+        .sheet(item: $choice) { confirmation($0) }
     }
 
-    private var confirmationAction: String {
-        switch choice {
+    private func confirmation(_ selected: Choice) -> some View {
+        NavigationStack {
+            List {
+                Section {
+                    Text(confirmationMessage(selected)).fixedSize(horizontal: false, vertical: true)
+                }
+                Section {
+                    Button {
+                        choice = nil
+                        Task { await apply(selected) }
+                    } label: {
+                        Text(confirmationAction(selected)).frame(maxWidth: .infinity, minHeight: 44)
+                            .contentShape(Rectangle())
+                    }
+                }
+            }
+            .navigationTitle("Review handover").navigationBarTitleDisplayMode(.inline)
+            .scrollContentBackground(.hidden).background(QuietPalette.background)
+            .safeAreaInset(edge: .bottom) {
+                Button(role: .cancel) {
+                    choice = nil
+                } label: {
+                    Text("Cancel").frame(maxWidth: .infinity, minHeight: 44).contentShape(Rectangle())
+                }
+                .buttonStyle(.borderless).padding().background(QuietPalette.background)
+            }
+        }
+        .presentationDetents([.large])
+    }
+
+    private func confirmationAction(_ selected: Choice) -> String {
+        switch selected {
         case .request: "Send request"
         case .respond(_, .accept): "Accept handover"
         case .respond(_, .decline): "Decline handover"
-        case nil: "Confirm"
         }
     }
 
-    private var confirmationMessage: String {
-        switch choice {
+    private func confirmationMessage(_ selected: Choice) -> String {
+        switch selected {
         case .request(let chore, _):
             "Ask your partner to take \(chore.title), due \(chore.dueDate.value). It stays assigned to you until accepted."
         case .respond(let transfer, .accept):
             "Take responsibility for \(transfer.title), due \(transfer.dueDate.value)."
         case .respond(let transfer, .decline):
             "Decline \(transfer.title). Responsibility stays with the sender."
-        case nil: "Review this handover before confirming."
         }
     }
 
@@ -82,8 +111,18 @@ struct ChoreHandoversScreen: View {
                     if transfer.toMemberId == actor {
                         Text("From " + name(transfer.fromMemberId, page: page)).font(.subheadline)
                         HStack {
-                            Button("Accept") { choose(.respond(transfer, .accept)) }
-                            Button("Decline") { choose(.respond(transfer, .decline)) }
+                            Button {
+                                choose(.respond(transfer, .accept))
+                            } label: {
+                                Text("Accept").frame(maxWidth: .infinity, minHeight: 44)
+                                    .contentShape(Rectangle())
+                            }
+                            Button {
+                                choose(.respond(transfer, .decline))
+                            } label: {
+                                Text("Decline").frame(maxWidth: .infinity, minHeight: 44)
+                                    .contentShape(Rectangle())
+                            }
                         }.buttonStyle(.borderless)
                     } else {
                         Text("Waiting for " + name(transfer.toMemberId, page: page))
@@ -124,7 +163,6 @@ struct ChoreHandoversScreen: View {
 
     private func choose(_ choice: Choice) {
         self.choice = choice
-        confirming = true
     }
 
     private func load() async {

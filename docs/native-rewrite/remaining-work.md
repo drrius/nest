@@ -27,6 +27,8 @@ Grocery add/checkbox/edit recovery now has bounded real hosted and owned native 
 
 Native expense keyboard Review now passes44pt corner taps at ordinary and largest text/dark, including incomplete-amount refusal. Scoped receipt readiness is loaded before the offscreen receipt row so no-receipt review is immediately available. Source `9db50589` passes both required CI workflows; the signed app is restored to ordinary Today/stable test origins with empty journals, preserved data/Keychain/history, stopped relay and destroyed generated key. These changes also postdate build14.
 
+Native handover decline now has a bounded owned-rendered/hosted check at normal and largest text, including explicit cancellation and unchanged responsibility/money. Three fictional routines were normally archived and the ordinary app restored with empty scoped journals. Final-sheet acceptance, outgoing requests, recovery and phones remain open; new-source CI is pending. [Evidence](../../evidence/2026-10-04/swiftui-chore-handover-review/README.md).
+
 ## 3. Prove live integrations
 
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual call failed403; successful fixture execution is not live AI proof.

@@ -1,0 +1,48 @@
+{
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "day": "2026-10-04",
+  "fixtures": [
+    {
+      "case": "accept",
+      "routineId": "038a7c26-40e6-4315-917b-ab6199666059",
+      "occurrenceId": "290b3cad-8d01-43c6-b3ce-f29a2dec78ac",
+      "title": "Nest handover f5f4db3c accept",
+      "normallyArchived": true
+    },
+    {
+      "case": "decline",
+      "routineId": "5c789395-eb17-4ec7-a27d-f808616d0b70",
+      "occurrenceId": "458c79a1-1561-4aab-a1cb-8c0a46cdab7f",
+      "title": "Nest handover f5f4db3c decline",
+      "normallyArchived": true
+    },
+    {
+      "case": "request",
+      "routineId": "8d6d26b5-0849-4766-8155-8fafa0e523ce",
+      "occurrenceId": "77ec6dc8-a175-4e83-9603-bd8023b531a8",
+      "title": "Nest handover f5f4db3c request",
+      "normallyArchived": true
+    }
+  ],
+  "originalIntermediateAlertAcceptVerifiedByBothMembers": true,
+  "finalSheetDeclineVerifiedByBothMembers": true,
+  "requestRefusals": {
+    "accept": {
+      "senderAccept": 403,
+      "outsider": 403,
+      "anonymous": 401,
+      "responsibilityUnchanged": true
+    },
+    "decline": {
+      "senderAccept": 403,
+      "outsider": 403,
+      "anonymous": 401,
+      "responsibilityUnchanged": true
+    }
+  },
+  "bothFinancialHistoriesAndBalancesUnchanged": true,
+  "ledgerEvents": 51,
+  "noPendingTransfers": true,
+  "productionTouched": false,
+  "outgoingRequestAndFinalSheetAcceptUnverified": true
+}

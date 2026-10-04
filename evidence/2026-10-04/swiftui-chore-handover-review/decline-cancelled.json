@@ -1,0 +1,55 @@
+{
+  "case": "decline",
+  "records": [
+    {
+      "mode": "normal",
+      "target": {
+        "x": 191.5,
+        "y": 216,
+        "width": 151.5,
+        "height": 44
+      },
+      "cancel": {
+        "x": 16,
+        "y": 607,
+        "width": 343,
+        "height": 44
+      },
+      "exactMessage": "Decline Nest handover f5f4db3c decline. Responsibility stays with the sender.",
+      "journalEmpty": true,
+      "reviewScrollableToAction": true,
+      "positiveTarget": {
+        "x": 16,
+        "y": 242.5,
+        "width": 343,
+        "height": 74
+      }
+    },
+    {
+      "mode": "largest",
+      "target": {
+        "x": 191.5,
+        "y": 398.5,
+        "width": 151.5,
+        "height": 125.5
+      },
+      "cancel": {
+        "x": 16,
+        "y": 587.5,
+        "width": 343,
+        "height": 63.5
+      },
+      "exactMessage": "Decline Nest handover f5f4db3c decline. Responsibility stays with the sender.",
+      "journalEmpty": true,
+      "reviewScrollableToAction": true,
+      "positiveTarget": {
+        "x": 16,
+        "y": 388,
+        "width": 343,
+        "height": 155.5
+      }
+    }
+  ],
+  "noDecisionStaged": true,
+  "ordinaryAppearanceRestored": true
+}
