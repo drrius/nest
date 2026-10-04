@@ -24,9 +24,15 @@ struct TodayScreen: View {
                                 .font(.subheadline)
                                 .foregroundStyle(QuietPalette.muted)
                                 .padding(.top, 14)
-                            Button("Retry sync") { Task { await model.refreshToday() } }
-                                .font(.subheadline.weight(.medium))
-                                .padding(.top, 8)
+                            Button {
+                                Task { await model.refreshToday() }
+                            } label: {
+                                Text("Retry sync")
+                                    .frame(minHeight: 44, alignment: .leading)
+                                    .contentShape(Rectangle())
+                            }
+                            .font(.subheadline.weight(.medium))
+                            .padding(.top, 8)
                         }
                         content(moment: moment)
                         NavigationLink {
@@ -80,6 +86,7 @@ struct TodayScreen: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 14)
                 }
+                .clipped()
                 .onChange(of: moment.day) { _, _ in
                     todayRefresh = UUID()
                     Task { await model.refreshToday() }
