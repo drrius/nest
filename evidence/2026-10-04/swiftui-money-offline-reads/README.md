@@ -12,8 +12,18 @@ Financial commands still call the unchanged online-only `readMoneyBalance`, `rea
 
 The first native attempt selected a nonexistent test target and executed no tests. The next attempt found a fixture routing mismatch for `detail?eventId=…`; this was corrected to the real API route before the passing execution. Neither failed attempt counts as verification.
 
-A real rendered pass on the initial source found the entry’s saved-data warning below the fold. History and detail warnings now precede their data. The initial rendered attempt is a finding, not a passing offline-detail check; current-source rendering remains pending.
+A real rendered pass on initial source `0b1290ab` found the entry’s saved-data warning below the fold. History and detail warnings now precede their data. The [initial finding](rendered/initial-rendered-finding.json) is retained separately from passing evidence.
+
+## Owned rendered and hosted verification
+
+Corrected source `b99795c903d6b91c2073c318a8de5746fb32d275` matches all1,033 native/build input hashes on the authorized Mac. The signed app uses the owned375×667 iPhone simulator, stable test Supabase identity and a read-only loopback relay to the existing test API. All POSTs are refused. Online reads populate real fictional balance/history/detail data; no new financial fixture is recorded.
+
+After all API GETs return controlled503 responses and the process restarts, the real native app displays the exact saved CHF1.02 balance, both previously visited50+1 history pages and the previously visited oldest CHF0.01 entry. Saved notices precede history and detail data. [Current native journey](rendered/offline-history.json) records actual navigation, snapshots, failed request paths and scoped cache metadata. [Balance](rendered/fixed-offline-money.png), [history](rendered/fixed-offline-history-top.png) and [detail](rendered/fixed-offline-detail.png) show normal rendering. The notice is first at largest text/dark too; it occupies a large scrollable row, so this bounded check does not establish complete large-text readability or accessibility acceptance.
+
+[Independent hosted reads](hosted-read-checks.json) verify both members still agree on all51 unchanged events, exact zero-sum102/−102 centimes and the oldest detail. Outsider403/anonymous401 checks pass on balance, both history pages and detail. [Restoration](rendered/restoration.json) verifies stable test origins/ordinary Today, preserved Keychain/data, empty expense/grocery journals, stopped relay and destroyed generated private key. The temporary simulator certificate expires after two days; no physical-device permissions changed.
+
+The raw allowlisted export has [original hashes](rendered/artifact-hashes.json); repository JSON formatting is covered by the separate current artifact hash manifest. No key, auth file, configuration, certificate or database was exported.
 
 ## Remaining verification
 
-Exact-source CI, owned rendered/hosted offline navigation and both-phone acceptance remain pending. This change is not included in the already-available TestFlight build15. No new submission, production change, hosted financial mutation, purchase or merge occurred.
+Routine CI37167913752 passes for corrected source `b99795c9`; native CI37167913761 is still running the real iPhone session/account step at this checkpoint. Initial source `0b1290ab` passes both workflows, but that does not establish CI completion for the correction. Both-phone acceptance, VoiceOver, real radio loss/expired refresh tokens and full two-member offline/conflict acceptance remain open. Controlled API503s do not prove airplane-mode behavior. This change is newer than the already-available TestFlight build15. No new submission, production change, hosted financial mutation, purchase or merge occurred.
