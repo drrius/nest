@@ -107,17 +107,28 @@ struct MoneyScreen: View {
         let attempt = UUID()
         request = attempt
         loading = true
-        balance = nil
         notice = nil
         defer { if request == attempt { loading = false } }
         do {
-            let result = try await session.readMoneyBalance(member: member, generation: session.generation)
+            if balance == nil,
+                let saved = try? await session.cachedMoneyRead(.balance(member), generation: session.generation)
+            {
+                guard request == attempt, !Task.isCancelled else { return }
+                balance = saved.value
+                notice = saved.notice
+            }
+            let result = try await session.loadMoneyBalance(member: member, generation: session.generation)
             try Task.checkCancellation()
             guard request == attempt else { return }
-            balance = result
+            balance = result.value
+            notice = result.notice
         } catch {
             guard request == attempt, !Task.isCancelled else { return }
-            notice = "Could not confirm your balance. Try again online."
+            if (error as? NestAPIFailure) != .unavailable && !(error is URLError) { balance = nil }
+            notice =
+                balance == nil
+                ? "Could not confirm your balance. Try again online."
+                : "Showing your previous balance. Connect and refresh for updates."
         }
     }
 }

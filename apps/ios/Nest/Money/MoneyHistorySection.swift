@@ -8,6 +8,7 @@ struct MoneyHistorySection: View {
     @State private var next: UUID?
     @State private var loading = false
     @State private var notice: String?
+    @State private var savedNotice: String?
     @State private var request = UUID()
     @Environment(\.dynamicTypeSize) private var textSize
 
@@ -30,6 +31,7 @@ struct MoneyHistorySection: View {
             }
             if loading { ProgressView("Loading history…") }
             if let notice { Text(notice) }
+            if let savedNotice { Text(savedNotice).foregroundStyle(QuietPalette.muted) }
             if events.isEmpty && !loading && notice == nil { Text("No financial history yet.") }
             if previewCount == nil, next != nil {
                 Button {
@@ -89,28 +91,48 @@ struct MoneyHistorySection: View {
         let attempt = UUID()
         request = attempt
         let cursor = more ? next : nil
-        if !more {
-            events = []
-            next = nil
-        }
         loading = true
         notice = nil
         defer { if request == attempt { loading = false } }
         do {
-            let result = try await session.readMoneyHistory(
+            await showSavedHistory(more: more, attempt: attempt)
+            let read = try await session.loadMoneyHistory(
                 member: member, generation: session.generation, before: cursor)
             try Task.checkCancellation()
             guard request == attempt else { return }
-            if let last = events.last, let first = result.events.first {
-                guard last.precedes(first), Set(events.map(\.id)).isDisjoint(with: result.events.map(\.id)) else {
-                    throw NestAPIFailure.contract
-                }
-            }
-            events.append(contentsOf: result.events)
-            next = result.next
+            let result = read.value
+            try present(result, more: more)
+            if !more || read.notice != nil { savedNotice = read.notice }
         } catch {
             guard request == attempt, !Task.isCancelled else { return }
+            if (error as? NestAPIFailure) != .unavailable && !(error is URLError) {
+                events = []
+                next = nil
+                savedNotice = nil
+            }
             notice = "Could not load history. Try again online."
         }
+    }
+
+    private func showSavedHistory(more: Bool, attempt: UUID) async {
+        guard !more, events.isEmpty else { return }
+        guard
+            let saved = try? await session.cachedMoneyRead(
+                .history(member, before: nil), generation: session.generation),
+            request == attempt, !Task.isCancelled
+        else { return }
+        events = saved.value.events
+        next = saved.value.next
+        savedNotice = saved.notice
+    }
+
+    private func present(_ result: MoneyHistory, more: Bool) throws {
+        if more, let last = events.last, let first = result.events.first {
+            guard last.precedes(first), Set(events.map(\.id)).isDisjoint(with: result.events.map(\.id)) else {
+                throw NestAPIFailure.contract
+            }
+        }
+        events = more ? events + result.events : result.events
+        next = result.next
     }
 }

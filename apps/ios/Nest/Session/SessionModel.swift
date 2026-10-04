@@ -227,13 +227,15 @@ final class SessionModel: ObservableObject {
         let pendingMutation = credentialTail
         await pendingMutation?.value
         guard generation == attempt else { return }
+        let cachedLease = await cachedMoneyLease(auth: auth, generation: attempt)
+        guard generation == attempt else { return }
         do {
             let session = try await auth.session()
             try await verify(session, attempt: attempt)
         } catch AuthError.sessionMissing {
             await missingSession(attempt: attempt)
         } catch {
-            await failedRestore(error, auth: auth, attempt: attempt)
+            await failedRestore(error, auth: auth, attempt: attempt, cachedLease: cachedLease)
         }
     }
 
@@ -244,13 +246,19 @@ final class SessionModel: ObservableObject {
         status = .signedOut
     }
 
-    private func failedRestore(_ error: Error, auth: any NestAuthentication, attempt: Int) async {
+    private func failedRestore(_ error: Error, auth: any NestAuthentication, attempt: Int, cachedLease: OfflineLease?)
+        async
+    {
         guard generation == attempt else { return }
         if canShowCached(error), (try? await showCached(auth: auth, attempt: attempt)) == true {
             return
         }
         guard generation == attempt else { return }
         let next = state(for: error)
+        if let cachedLease, [.signedOut, .notMember, .forbidden].contains(error as? NestAPIFailure) {
+            try? await offline?.revokeMoneyMembership(lease: cachedLease)
+        }
+        guard generation == attempt else { return }
         if next == .signedOut || next == .notMember { await clearPresentation() }
         guard generation == attempt else { return }
         status = next

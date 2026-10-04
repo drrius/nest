@@ -1,0 +1,15 @@
+{
+  "base": "45b08d1a96017ba3df72ada41efb158e262938dc",
+  "changedFiles": {
+    "apps/ios/AppTests/MoneySnapshotFixture.swift": "d74319116db79c5ac9b0893166a7e28a1265915d577aea3cac66a33bfed8c641",
+    "apps/ios/AppTests/MoneySnapshotTests.swift": "a6ec4673b6aa29632901704e40e780cc2cb3091963ae47051766abe1fff53617",
+    "apps/ios/Nest/Core/ChoreOfflineStore.swift": "94857b4c4df6046419f0bedd983bd42a3c6c9a817a14bfaf0a4633ea112074c2",
+    "apps/ios/Nest/Core/MoneyReadStore.swift": "f80b0806311ee21f39bc7f55f56e2ef609c8280a7dbc42b38d6041f5b13e968b",
+    "apps/ios/Nest/Money/MoneyDetailScreen.swift": "3fd0f30dc7d79f50cb5f8d789dd0941b9bf600b77e3bdae84232317ddd336781",
+    "apps/ios/Nest/Money/MoneyHistorySection.swift": "87ed54d64968da9b29546ac4fde5996b3f2f6c9ce67ddb6a11ae5e235e1b3887",
+    "apps/ios/Nest/Money/MoneyScreen.swift": "76bfacafbcb09cb0ee8a12adf76e84387348de1b0a0b30818d5b94468e62a920",
+    "apps/ios/Nest/Session/SessionModel+MoneySnapshots.swift": "f07bcfa9b9f4b9eae8172a3b18f79f2c4fce5251cb04a41dbee05f3db477df9a",
+    "apps/ios/Nest/Session/SessionModel.swift": "6ffb1decac8bd98e1a4d2c96f2c6f2fc70310efbc35fb6214aed661804acb35c",
+    "apps/ios/Tests/Core/MoneyReadStoreTests.swift": "ee954c3f5f9ef8cc682f0d3c9c73a4d125db1c5346bde0e8dc20ad638e7528ab"
+  }
+}

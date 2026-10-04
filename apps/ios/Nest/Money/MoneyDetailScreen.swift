@@ -77,19 +77,31 @@ struct MoneyDetailScreen: View {
     private func load() async {
         let attempt = UUID()
         request = attempt
-        detail = nil
         notice = nil
         loading = true
         defer { if request == attempt { loading = false } }
         do {
-            let value = try await session.readMoneyDetail(
+            if detail == nil,
+                let saved = try? await session.cachedMoneyRead(
+                    .detail(member, eventId: eventId), generation: session.generation)
+            {
+                guard request == attempt, !Task.isCancelled else { return }
+                detail = saved.value
+                notice = saved.notice
+            }
+            let read = try await session.loadMoneyDetail(
                 member: member, generation: session.generation, eventId: eventId)
             try Task.checkCancellation()
             guard request == attempt else { return }
-            detail = value
+            detail = read.value
+            notice = read.notice
         } catch {
             guard request == attempt, !Task.isCancelled else { return }
-            notice = "Could not load this entry. Try again online."
+            if (error as? NestAPIFailure) != .unavailable && !(error is URLError) { detail = nil }
+            notice =
+                detail == nil
+                ? "Could not load this entry. Try again online."
+                : "Showing the previous entry details. Connect and refresh for updates."
         }
     }
 }
