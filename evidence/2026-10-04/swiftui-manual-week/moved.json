@@ -1,0 +1,142 @@
+{
+  "before": {
+    "weekStart": "2026-10-05",
+    "version": 1,
+    "revision": "29",
+    "entries": [
+      {
+        "title": "Synthetic lentil bowl",
+        "notes": "Synthetic edit verified.",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "entryId": "DBDF2CC9-CB92-4B8D-8A01-49BF60DFAD1C",
+        "date": "2026-10-05"
+      },
+      {
+        "title": "Fictional quick supper",
+        "slot": "dinner",
+        "entryId": "2AF905F2-822A-401E-BB1E-A0CAA5F0AA83",
+        "date": "2026-10-06"
+      },
+      {
+        "title": "Synthetic lentil bowl",
+        "notes": "Synthetic edit verified.",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "entryId": "79AC35CE-90B1-4095-A24B-2887B8447FF8",
+        "date": "2026-10-07"
+      },
+      {
+        "title": "Synthetic lentil bowl",
+        "notes": "Synthetic edit verified.",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "entryId": "7723E83E-903B-4DBF-939F-7C6998BA99D8",
+        "date": "2026-10-08"
+      },
+      {
+        "title": "Synthetic lentil bowl",
+        "notes": "Synthetic edit verified.",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "entryId": "D0754D6C-9C64-4520-8925-E2C69DB58237",
+        "date": "2026-10-09"
+      },
+      {
+        "title": "Synthetic lentil bowl",
+        "notes": "Synthetic edit verified.",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "entryId": "DC8B9921-6A4C-415E-B761-382315D21E25",
+        "date": "2026-10-10"
+      },
+      {
+        "title": "Synthetic lentil bowl",
+        "notes": "Synthetic edit verified.",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "entryId": "1538ED2A-E90A-4F42-A82D-77E23590F1AE",
+        "date": "2026-10-11"
+      }
+    ],
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+  },
+  "after": {
+    "version": 1,
+    "entries": [
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-05",
+        "entryId": "DBDF2CC9-CB92-4B8D-8A01-49BF60DFAD1C",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "date": "2026-10-06",
+        "entryId": "2AF905F2-822A-401E-BB1E-A0CAA5F0AA83",
+        "slot": "dinner",
+        "title": "Fictional quick supper"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-07",
+        "entryId": "79AC35CE-90B1-4095-A24B-2887B8447FF8",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "lunch",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-08",
+        "entryId": "7723E83E-903B-4DBF-939F-7C6998BA99D8",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-09",
+        "entryId": "D0754D6C-9C64-4520-8925-E2C69DB58237",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-10",
+        "entryId": "DC8B9921-6A4C-415E-B761-382315D21E25",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-11",
+        "entryId": "1538ED2A-E90A-4F42-A82D-77E23590F1AE",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "slot": "dinner",
+        "title": "Synthetic lentil bowl"
+      }
+    ],
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "revision": "30",
+    "weekStart": "2026-10-05"
+  },
+  "targets": {
+    "Move": {
+      "x": 311,
+      "y": 46.00000000000001,
+      "width": 44,
+      "height": 43.99999999999999
+    },
+    "Cancel": {
+      "x": 20.000000000000004,
+      "y": 46.00000000000001,
+      "width": 44,
+      "height": 43.99999999999999
+    }
+  },
+  "sameEntryIdentity": true,
+  "time": 1791099200.584331
+}

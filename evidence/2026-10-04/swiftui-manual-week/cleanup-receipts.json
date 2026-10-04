@@ -1,0 +1,111 @@
+{
+  "ingredientReplay": {
+    "status": 200,
+    "body": {
+      "version": 1,
+      "receipt": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "operationId": "be1b4f61-1ff3-4f92-941d-00f1d93cc1b2",
+        "weekStart": "2026-10-05",
+        "weekRevision": "27",
+        "ingredients": [
+          {
+            "entryId": "dbdf2cc9-cb92-4b8d-8a01-49bf60dfad1c",
+            "ingredientId": "2c8f8702-5a56-479c-abf0-0c3001b4f729",
+            "itemId": "7a36552e-6351-4110-bf71-3a90ce5c5442",
+            "outcome": "added"
+          }
+        ]
+      }
+    }
+  },
+  "groceryRemoval": {
+    "operation": "fddf041e-018f-4218-b0cb-fc94899720d9",
+    "target": "7a36552e-6351-4110-bf71-3a90ce5c5442",
+    "version": "2",
+    "checked": false,
+    "removed": true
+  },
+  "mealRemovals": [
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "5c810ab8-b1de-48fd-ad5b-d36b60c8d44b",
+      "entryId": "dbdf2cc9-cb92-4b8d-8a01-49bf60dfad1c",
+      "weekStart": "2026-10-05",
+      "revision": "31",
+      "removed": true,
+      "skippedPreparationId": null
+    },
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "37207801-8327-44d5-a642-693a2bfd8a95",
+      "entryId": "2af905f2-822a-401e-bb1e-a0caa5f0aa83",
+      "weekStart": "2026-10-05",
+      "revision": "32",
+      "removed": true,
+      "skippedPreparationId": null
+    },
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "25f9ce71-f563-4530-be94-d444b77b89a9",
+      "entryId": "79ac35ce-90b1-4095-a24b-2887b8447ff8",
+      "weekStart": "2026-10-05",
+      "revision": "33",
+      "removed": true,
+      "skippedPreparationId": null
+    },
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "34b809fe-c361-4cea-ab06-d3ea5ba5655f",
+      "entryId": "7723e83e-903b-4dbf-939f-7c6998ba99d8",
+      "weekStart": "2026-10-05",
+      "revision": "34",
+      "removed": true,
+      "skippedPreparationId": null
+    },
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "2d72546c-4ee3-4248-ae9a-28d6a376f665",
+      "entryId": "d0754d6c-9c64-4520-8925-e2c69db58237",
+      "weekStart": "2026-10-05",
+      "revision": "35",
+      "removed": true,
+      "skippedPreparationId": null
+    },
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "700d25d5-2733-4eef-960d-4ab4260c4f7e",
+      "entryId": "dc8b9921-6a4c-415e-b761-382315d21e25",
+      "weekStart": "2026-10-05",
+      "revision": "36",
+      "removed": true,
+      "skippedPreparationId": null
+    },
+    {
+      "version": 1,
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "operationId": "9d665cd5-917e-4ec4-986a-f0dae96979cb",
+      "entryId": "1538ed2a-e90a-4f42-a82d-77e23590f1ae",
+      "weekStart": "2026-10-05",
+      "revision": "37",
+      "removed": true,
+      "skippedPreparationId": null
+    }
+  ],
+  "productionTouched": false
+}
