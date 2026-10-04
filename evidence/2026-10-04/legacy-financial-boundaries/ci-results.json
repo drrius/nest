@@ -1,0 +1,15 @@
+{
+  "commit": "80909db73f6f5681a7c48cf35d5113dbe69455f7",
+  "routine": {
+    "id": 37233023935,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "full52CaseMigrationRehearsal": "Executed locally with actual disposable PostgreSQL; not part of routine CI",
+  "nativeSource": {
+    "inputs": 1041,
+    "unchangedSince": "6c05bdb49a5fe0b2a3363892115dfb6a49765246",
+    "priorRequiredNativeRun": 37231483842
+  },
+  "noNewNativeOrProviderOrProductionProof": true
+}

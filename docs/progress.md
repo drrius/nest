@@ -381,7 +381,8 @@ chain; eight verified outsider/anonymous RPC refusals return401/403+42501 with
 all58 hosted financial/ledger/allocation/claimed Storage digests unchanged.
 [Evidence](../evidence/2026-10-04/legacy-financial-boundaries/README.md).
 Final focused lint/format/limits pass without exceptions; earlier helper-size/
-parameter errors were corrected. Routine CI is pending for this diagnostic change;
-the52 cases ran locally. Thirty-seven other legacy public entries and deeper
+parameter errors were corrected. Exact-source80909db7 passes routine CI37233023935;
+the52 full-chain cases ran locally, not in that routine workflow. All1041 native
+inputs remain identical to both-CI-green6c05bdb4. Thirty-seven other legacy public entries and deeper
 private paths remain. M9 remains incomplete; no schema/production change,
 successful hosted financial mutation, purchase, beta, worker activation or merge.

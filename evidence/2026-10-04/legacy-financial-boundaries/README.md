@@ -60,8 +60,10 @@ The initial five-parameter helper and82-line verifier lint errors were corrected
 by grouping inputs and extracting member-flow verification. The final source
 passes focused Oxfmt/Oxlint/source limits, retaining the two existing schema-probe
 Effect filesystem/path warnings. [Source hashes](source-inputs.json) bind the
-final52-case/compiled metadata report. CI results are recorded separately after
-this feature commit finishes; routine CI does not execute this full rehearsal.
+final52-case/compiled metadata report. Exact-source80909db7 passes
+[routine CI37233023935](https://github.com/drrius/nest/actions/runs/37233023935).
+Routine CI does not execute this full rehearsal. All1041 native inputs remain
+identical to both-CI-green6c05bdb4; no new native execution is claimed.
 
 ## Limits and remaining work
 
