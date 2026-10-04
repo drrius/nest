@@ -254,3 +254,24 @@ run is claimed for them. [Evidence](../evidence/2026-10-04/legacy-routine-bounda
 Forty-four other legacy public functions/deeper private paths remain; this is bounded
 M9 progress, not full semantic/phone/provider acceptance. No shipping SQL, production,
 notification, worker, beta, purchase or merge action occurred.
+
+## Native existing-expense cycle linkage
+
+One actual native explicit link now covers4 October using an existing CHF1.01
+expense against a fictional CHF0.03 rule. Both members independently agree on
+one retained manual cycle and next due11 October; the exact expense, complete52-event
+histories/balances and all finance/attachment digests stay unchanged. The operation
+receipt remains private. Normal52pt confirmation, largest-text amount/period review,
+actual restart/exact recorded-receipt recovery, original-detail navigation and normal
+Finish recovery pass. The fictional rule is normally paused; its cycle/history remain.
+Ordinary Today/default text/light, empty journals, preserved data/Keychain and stable
+signed test origins are restored. All1,041 native/helper inputs match; the installed
+executable exactly matches the retained signed build. [Evidence](../evidence/2026-10-04/swiftui-native-manual-cycle-link/README.md)
+records observer corrections and Swift nil-field serialization reconciliation.
+
+Shipping native source remains both-CI-green177d0a70; no new compile/unit run is
+claimed. The prior retained-lifecycle checkpoint97ea840a is now freshly confirmed
+Nest37213542541 SUCCESS. Lost replies, offline/concurrent/private-AI variants,
+maximum-text confirmation/finish tapping, full accessibility and both phones remain
+open; M7 acceptance is incomplete. No new expense, beta, production mutation,
+purchase, worker activation or merge occurred.

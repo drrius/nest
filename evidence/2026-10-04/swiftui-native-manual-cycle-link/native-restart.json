@@ -1,0 +1,23 @@
+{
+  "recordedNativeReceiptMatchesAPIWithUUIDCaseAndExplicitNullableCodableOmissions": true,
+  "nilFieldsOmittedBySwiftEncoder": [
+    "receipt.approvalId",
+    "receipt.linkedExpense.event.relatedEventId",
+    "receipt.linkedExpense.category",
+    "receipt.linkedExpense.receiptTotalCentimes",
+    "receipt.linkedExpense.note",
+    "receipt.linkedExpense.reversedById"
+  ],
+  "exactRecordedCommandAndReceiptSurviveRestart": true,
+  "reopenedRecoveryUnchanged": true,
+  "linkedExpenseNavigationKeepsReceipt": true,
+  "finishTarget": {
+    "y": 512,
+    "height": 52,
+    "x": 16,
+    "width": 343
+  },
+  "allJournalsEmptyAfterFinish": true,
+  "allJournalsEmptyAtRestoration": true,
+  "recoveryScreenshot": "recovered-native.png"
+}

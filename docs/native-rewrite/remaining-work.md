@@ -40,6 +40,15 @@ An actual native photo picker/private Storage check now verifies uploader-only e
 
 ## 2. Finish native usability and real-data acceptance
 
+One bounded direct existing-expense cycle link now passes actual native selection,
+review/one normal52pt confirmation, recorded-receipt restart/reopen, original-detail
+navigation and Finish recovery. Both independent member reads agree on one covered
+cycle with unchanged complete52-event finance/source/attachment digests; the receipt
+is private. The fictional rule is normally paused and ordinary Today/empty journals/
+stable signed origins restored. [Evidence](../../evidence/2026-10-04/swiftui-native-manual-cycle-link/README.md).
+Lost replies, offline/concurrency/private-AI variants, maximum-text confirmation/finish,
+VoiceOver and both phones remain open; this does not close M7.
+
 - [ ] Review populated, empty, loading, error and keyboard states across Today, Meals, Calendar and Money, plus onboarding/settings and private assistant destinations.
 - [ ] Verify large text, VoiceOver, navigation, motion settings and the approved Quiet appearance; fix findings.
 
