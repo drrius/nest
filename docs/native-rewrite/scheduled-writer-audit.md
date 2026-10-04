@@ -26,7 +26,7 @@ Reconcile financial events, ledger entries, receipt references, retained drafts 
 ## Remaining implementation and environment work
 
 - All seven supported schedule kinds (including both after-completion units) crossed with shared/assigned/alternating policies now pass 24 full-schema synthetic repair cases, including exact window comparison and retry/no-op behavior. Verify parameter/calendar edges, historical-completion reconstruction, missing-preview-only cases and transfer/reschedule interactions before deciding the complete replacement/retention path.
-- Rehearse legacy draft-generation and notification producer/consumer shutdown with pending work, alongside the existing grocery-retention probe.
+- The current full-schema synthetic rehearsal now verifies due reminder and recurring draft producers plus the pending push-outbox database consumer before and after pause, including a preserved live claim. [Evidence](../../evidence/2026-10-04/current-chain-pending-job-rehearsal/README.md). Actual Edge delivery, expired-claim/retry variants and hosted drainage remain open.
 - Complete pending native command reconciliation and the cutover epoch decision.
 - Obtain authorized hosted job/function inventory and delivery state; the local fixture lacks real `pg_cron`, `pg_net`, Edge delivery and production data.
 - Exercise the approved plan on an isolated representative backend before asking for production cutover approval.

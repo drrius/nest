@@ -44,7 +44,7 @@ Continue independent native work while these inputs are unavailable. Do not purc
 
 - [x] Batch the verified changes into a current signed TestFlight candidate. Build15, exact source `45047c2c`, passes both CI workflows, native archive/export/package checks and supported internal Apple availability. Partner access and actual phone acceptance remain unverified.
 - [ ] Verify installation/sign-in and complete the [phone checklist](swiftui-phone-acceptance.md) with both partners; resolve findings.
-- [ ] Rehearse current-chain migration/reconciliation and old pending-intent drainage safely.
-- [ ] Prepare a reviewable cutover package. Production migration, retirement and public release remain separate owner decisions.
+- [ ] Complete migration and old pending-intent drainage safely. Current54-legacy/248-Nest populated reconciliation and pending reminder/draft/outbox pause probes pass locally; hosted Auth/Storage, live external writers and full old-client intent drainage remain. [Evidence](../../evidence/2026-10-04/current-chain-pending-job-rehearsal/README.md).
+- [ ] Complete the [cutover review package](cutover-review-package.md). The initial evidence map, transition sequence and history-preserving recovery rules are prepared; live inventory, client intent outcomes, representative hosted rehearsal and final acceptance are still required. Production migration, retirement and public release remain separate owner decisions.
 
 There is no reliable percentage or completion date until these outcomes are verified. Unit-test totals and source coverage do not establish that the app is finished.

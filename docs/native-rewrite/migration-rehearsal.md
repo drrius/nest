@@ -14,6 +14,10 @@ For an explicitly partial schema diagnostic, append `--without-pg-net`. That opt
 
 The partial run applies **54 legacy migrations and all 195 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
 
+## Current-chain rerun — 4 October2026
+
+The current runner applies54 legacy and all248 Nest migrations and passes retained financial/receipt/domain reconciliation. A new rollback-only pending-job probe now demonstrates actual unpaused reminder/draft/outbox work, then proves three paused producer/consumer entry points preserve the complete pending backlog, live claim, attempts and recurring cursor. All eight pause guards and the committed recovery of24 new financial events also pass. [Durable report and limits](../../evidence/2026-10-04/current-chain-pending-job-rehearsal/README.md). Auth/Storage are simulated, pg_net is explicitly excluded, security advisors were not configured, live scheduler/external drainage and complete recovery remain unverified. The counts below retain their historical context; this rerun supplies current-chain evidence.
+
 ## Current populated coverage
 
 | Domain            | Evidence required by the diagnostic                                                                                                                                                                                                                                                                                             |

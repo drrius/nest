@@ -1,0 +1,17 @@
+{
+  "referenceHead": "4a528c96caf41515a70291ccecbba9d7b35e3349",
+  "referenceFiles": {
+    "supabase/functions/push-dispatch/index.ts": "1c1eecc6c0a3e444a85392ec0b5664ff582af76c00d2e9446e96b70631616199",
+    "supabase/functions/_shared/push-dispatch-delivery.ts": "c5657d197a2112c95b017c1e29f97e36832de5b5c0dc86cc0fc5961123cdc19b",
+    ".github/workflows/ci.yml": "6dbd155786f1c132f0de489096cbc37788e3c3a1004010055075633fefe98853",
+    ".github/workflows/claude.yml": "35c170ebee6acf61f0dc127b0cc3568662e30f39db4fc562832d8cf2b336fd3e"
+  },
+  "currentNativeMigrationCount": 248,
+  "legacyAppliedCount": 54,
+  "sourceHashes": {
+    "tools/migration/schema-probe.mjs": "15334b5df6de9cfe1a4840dd7798bf59642c1660614f7c2cc5a837747554ab42",
+    "tools/migration/pending-legacy-jobs-rehearsal.mjs": "89eaa5fd050542e8189a8fa5316772ad9a1e96442d0a9a7963d40728dbec7791"
+  },
+  "separateTestProjectTouched": false,
+  "productionTouched": false
+}
