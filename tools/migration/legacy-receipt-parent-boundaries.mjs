@@ -107,6 +107,7 @@ export function verifyLegacyReceiptParents(db) {
     /Choose a completion photo/,
   );
   verifyCompletionDates(db, denied, check);
+  verifyRescheduleDates(db, denied, check);
   verifyDocumentRelease(db, run, check);
   assert.equal(snapshot(db), before, "Parent probes must preserve original retained rows");
   return {
@@ -144,6 +145,38 @@ function verifyCompletionDates(db, denied, check) {
     const result = JSON.parse(run(db, actor, `select ${complete(undefined, `'${photo}'`)}`));
     check("legacy completion photo remains valid", result.status, "completed");
   }
+}
+
+function verifyRescheduleDates(db, denied, check) {
+  const reschedule = (date = `${today}+1`, key = "reschedule-boundary") =>
+    `public.reschedule_occurrence('${occurrence}',${date},'${key}')`;
+  for (const actor of [9611, 9612])
+    denied(
+      "foreign or unaffiliated reschedule",
+      actor,
+      `select ${reschedule()}`,
+      /caller is not a member/,
+    );
+  denied(
+    "anonymous reschedule",
+    1,
+    `set local role anon; select ${reschedule()}`,
+    /permission denied/,
+  );
+  for (const date of [
+    "'infinity'::date",
+    "'-infinity'::date",
+    "'10000-01-01'::date",
+    "'0001-12-31 BC'::date",
+    "null",
+  ])
+    denied("invalid reschedule date", 1, `select ${reschedule(date)}`, /invalid_reschedule_date/);
+  for (const actor of [1, 2])
+    check(
+      "valid future reschedule retains occurrence identity",
+      JSON.parse(run(db, actor, `select ${reschedule()}`)).occurrence_id,
+      occurrence,
+    );
 }
 
 function verifyDocumentRelease(db, run, check) {

@@ -222,3 +222,15 @@ The narrow follow-up `46c75247` also makes the short failed-state Retry label44p
 Actual screenshot review found faded conflict information in a disabled completion button. Source `177d0a70` now presents saved pending/completed/conflict rows as readable semantic information, with clock/check/review symbols and a separate44pt Discard; only open work is actionable. A distinct native-created daily/shared routine is completed during owned outage, survives restart, then is normally archived by B. One exact native retry returns real409/changed with removed canonical row and retained original terms; this is not live410/removed-reason proof. Normal/full-color accessible title/status and maximum-text/dark restart/no POST pass. One maximum-text corner Discard clears the intent without replacement completion or another archive. Independent A/B zero-completion/original snapshot/full52-event finance checks and stable signed origins/ordinary Today/empty journals/preserved data/Keychain/owned helper/key cleanup pass. [Evidence](../evidence/2026-10-04/swiftui-chore-readable-recovery/README.md).
 
 All1,039 native inputs match. Exact-source Nest37205046774/SwiftUI37205046782 both pass:491 Foundation/41 explicit skips and409 signed-native/11 explicit skips, zero failures, strict format/limits and actual signing. Previous evidence checkpoint36098998 passes routine CI37204866418. Actual VoiceOver speech/focus, haptics/radio loss, full recurrence/membership/two-native-client/phone and live AI acceptance remain open; M1–M9 remain incomplete. No financial write, beta, purchase, production action or merge occurred.
+
+## Retained reschedule date boundary
+
+The adjacent old reschedule RPC accepts infinite due dates. Its new guard rejects
+new null/nonfinite/unsupported years, retaining all finite dates and old exact
+replies/history. Eleven focused real database tests and the305-migration rehearsal
+pass:31 parent/date boundaries plus existing tenant/attachment/reconciliation and
+epoch/AI dispatch checks. Manifest55/251 and four manifest tests pass; scoped format,
+lint and source limits pass. Hosted application/current-source CI remain pending;
+48 other public legacy functions/deeper private paths remain. [Evidence](../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
+Prior completion evidence checkpoint1a3e060c passes Nest37212140744. M9 remains open;
+no new native run, production mutation, inference, purchase, beta or merge occurred.

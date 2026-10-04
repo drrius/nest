@@ -15,7 +15,7 @@ database tests plus21 full-chain parent/date checks. It is applied only to nest-
 ten real authenticated/anonymous negative probes pass with all routine history and
 complete finance/attachment digests unchanged. Exact-source routine and deep CI
 pass c5469baf (23 core,50 conflicts,1,235 database/RLS, zero failures/skips).
-Forty-nine other legacy public functions/deeper private paths remain.
+Forty-nine other legacy public functions/deeper private paths remained at that checkpoint.
 [Evidence](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
 
 Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
@@ -98,3 +98,9 @@ Continue independent native work while these inputs are unavailable. Do not purc
 - [ ] Complete the [cutover review package](cutover-review-package.md). The initial evidence map, transition sequence and history-preserving recovery rules are prepared; live inventory, client intent outcomes, representative hosted rehearsal and final acceptance are still required. Production migration, retirement and public release remain separate owner decisions.
 
 There is no reliable percentage or completion date until these outcomes are verified. Unit-test totals and source coverage do not establish that the app is finished.
+
+The next adjacent reschedule boundary now rejects new infinite/unsupported dates
+without rewriting old receipts. Eleven focused database tests and the305-migration
+rehearsal pass, including31 parent/date checks and retained finance. Hosted/CI proof
+is pending;48 other public legacy functions/deeper private paths remain.
+[Evidence](../../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).

@@ -1,0 +1,19 @@
+✔ legacy completion refuses future, nonfinite and unsupported civil dates before any write (561.467886ms)
+✔ valid civil completion retains attribution, advances once and replays without any changes (615.551923ms)
+✔ date hardening preserves an already committed legacy future-date receipt and immutable history (527.816382ms)
+✔ valid completion still enforces tenant membership and anonymous denial (504.635817ms)
+✔ legacy reschedule rejects nonfinite, unsupported and null dates without altering recurrence (539.779413ms)
+✔ finite reschedule retains original recurrence anchor, allows future dates and replays once (635.944329ms)
+✔ retained infinite reschedule reply remains replayable without rewriting legacy state (523.132024ms)
+✔ finite reschedule remains tenant bound and anonymous callers cannot execute it (507.966568ms)
+✔ actual complete and skip advance current/preview exactly once and retain closed history (84.471948ms)
+✔ reschedule preserves identity and original recurrence anchor, updates reminder dates and notifies partner (48.618346ms)
+✔ actual closure denies foreign members and preview changes without partial state (29.324525ms)
+ℹ tests 11
+ℹ suites 0
+ℹ pass 11
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2245.538793
