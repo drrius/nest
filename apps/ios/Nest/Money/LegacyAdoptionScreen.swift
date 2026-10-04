@@ -45,7 +45,11 @@ struct LegacyAdoptionScreen: View {
         }
         .disabled(model.working)
         .navigationTitle("Move rule to Nest")
-        .modifier(MoneyDraftKeyboard(focus: $focused))
+        .modifier(
+            MoneyDraftKeyboard(
+                focus: $focused, review: keyboardReview, reviewLabel: "Review new terms",
+                reviewIdentifier: "legacy-adoption.keyboard-review")
+        )
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if model.working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task(id: session.generation) { await reload() }
@@ -72,6 +76,13 @@ struct LegacyAdoptionScreen: View {
         } message: {
             Text("Recorded results win.")
         }
+    }
+
+    private var keyboardReview: (() -> Void)? {
+        guard draft != nil, model.saved == nil, model.review == nil, model.currentRule?.canAdopt == true,
+            !model.working
+        else { return nil }
+        return { prepare() }
     }
 
     @ViewBuilder private var editor: some View {

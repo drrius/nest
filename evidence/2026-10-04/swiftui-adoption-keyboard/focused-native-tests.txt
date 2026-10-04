@@ -1,0 +1,28 @@
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testActiveOldRuleNeverDefaultsToAutomaticAndExplicitVariableTermsCarryNoFixedAmount]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testActiveOldRuleNeverDefaultsToAutomaticAndExplicitVariableTermsCarryNoFixedAmount]' passed (0.231 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testBothMembersAdoptOnlyExplicitNewTermsBeyondCoveredHistory]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testBothMembersAdoptOnlyExplicitNewTermsBeyondCoveredHistory]' passed (0.138 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testChangedRawTokenPreservesIntentAndLostCancellationRecoversWithoutConfirmation]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testChangedRawTokenPreservesIntentAndLostCancellationRecoversWithoutConfirmation]' passed (0.072 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testDelayedReadsAndPreflightCannotCrossSignOutOrMemberReplacement]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testDelayedReadsAndPreflightCannotCrossSignOutOrMemberReplacement]' passed (0.192 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testEditingInvalidatesOldTermsAndCancellationMustPersistBeforeDispatch]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testEditingInvalidatesOldTermsAndCancellationMustPersistBeforeDispatch]' passed (0.062 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testFreshReviewRefusesOfflineChangedTokenTermsSourceStatusAndHouseholdBeforeJournaling]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testFreshReviewRefusesOfflineChangedTokenTermsSourceStatusAndHouseholdBeforeJournaling]' passed (0.423 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testLostCommittedReplyRecoversOriginalReceiptOnRestartWithoutResendingOrRebasing]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testLostCommittedReplyRecoversOriginalReceiptOnRestartWithoutResendingOrRebasing]' passed (0.065 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testReloadAndBackgroundInvalidateOldCallbacksEvenWhenRawTermsHaveNotChanged]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testReloadAndBackgroundInvalidateOldCallbacksEvenWhenRawTermsHaveNotChanged]' passed (0.047 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testRevertedRawFingerprintDoesNotRetireOrRebaseConsentAndRequiresAnExplicitRetry]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testRevertedRawFingerprintDoesNotRetireOrRebaseConsentAndRequiresAnExplicitRetry]' passed (0.060 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testServerDayAdvanceKeepsExactUnknownIntentUntilExplicitCancellation]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testServerDayAdvanceKeepsExactUnknownIntentUntilExplicitCancellation]' passed (0.057 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testSQLiteStagingFailureSendsNothingAndCleanupFailureKeepsTheRecordedReceipt]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testSQLiteStagingFailureSendsNothingAndCleanupFailureKeepsTheRecordedReceipt]' passed (0.058 seconds).
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testUnresolvedRestartChecksOnlyAndExplicitRetryUsesTheOriginalOperation]' started.
+Test Case '-[NestAppTests.LegacyAdoptionModelTests testUnresolvedRestartChecksOnlyAndExplicitRetryUsesTheOriginalOperation]' passed (0.061 seconds).
+	 Executed 12 tests, with 0 failures (0 unexpected) in 1.467 (1.471) seconds
+	 Executed 12 tests, with 0 failures (0 unexpected) in 1.467 (1.471) seconds
+	 Executed 12 tests, with 0 failures (0 unexpected) in 1.467 (1.472) seconds
+** TEST SUCCEEDED **

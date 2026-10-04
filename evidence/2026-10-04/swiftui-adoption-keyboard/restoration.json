@@ -1,0 +1,24 @@
+{
+  "source": "cdb6218f4fff63c6b5714cdd0b382c199595721c",
+  "uncommittedChanges": [
+    "apps/ios/Nest/Money/MoneyDraftField.swift",
+    "apps/ios/Nest/Money/LegacyAdoptionScreen.swift",
+    "apps/ios/Nest.xcodeproj/project.pbxproj"
+  ],
+  "sourceMismatches": 0,
+  "started": 1791085892.4043782,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "ordinaryTodayRestored": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0
+  },
+  "relayStopped": true,
+  "generatedKeyDestroyed": true,
+  "finished": 1791085906.296277
+}
