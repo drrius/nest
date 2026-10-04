@@ -1,6 +1,6 @@
 # What remains before Nest is finished
 
-Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist, but every full milestone acceptance gate remains open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
+Updated 4 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
 
 ## 1. Finish the retained financial flows
 
@@ -20,6 +20,9 @@ An actual native ordinary-expense save/review/edit/detail/restart journey now pa
 
 - [ ] Review populated, empty, loading, error and keyboard states across Today, Meals, Calendar and Money, plus onboarding/settings and private assistant destinations.
 - [ ] Verify large text, VoiceOver, navigation, motion settings and the approved Quiet appearance; fix findings.
+
+The clean sign-in gate now has a concrete maximum-text fix: full copy scrolls instead of truncating, and final viewport clipping avoids status-bar overlap. The actual signed Mac app passes normal/maximum-text rendering, strict formatting/source limits and exact1,037-input matching; new-source CI is pending. [Evidence](../../evidence/2026-10-04/swiftui-sign-in-readable/README.md). This correction is newer than the available build16 and does not close broader accessibility or phone acceptance. M0’s source-matched cold-launch/four-tab/distribution foundation is now separately [audited and verified](../../evidence/2026-10-04/swiftui-m0-foundation/README.md).
+
 - [ ] Complete two-member offline/restart/conflict journeys, meal planning/constraints, chores/handovers, calendar privacy and longer background/reconnection behavior.
 
 Money balance, visited history pages and entry details now have scoped durable offline read snapshots with explicit saved-information dates. Six real SQLite and20 signed native session/account/expense tests pass locally; source limits and strict formatting pass. Corrected source `b99795c9` also passes owned native50+1 history/detail navigation after restart with controlled API unavailability and independent two-member unchanged-ledger/isolation reads. Financial command preflights remain online-only. Both exact-source CI workflows pass:484 Foundation/41 explicit skips and396 signed-native/11 explicit skips, zero failures. Real radio loss, VoiceOver, both-phone and full offline/conflict acceptance remain pending. This fix is newer than build15. [Evidence](../../evidence/2026-10-04/swiftui-money-offline-reads/README.md).

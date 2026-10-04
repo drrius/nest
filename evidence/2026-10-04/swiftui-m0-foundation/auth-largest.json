@@ -1,0 +1,120 @@
+{
+  "nodes": [
+    {
+      "rect": {
+        "x": 0,
+        "width": 375,
+        "height": 667,
+        "y": 0
+      },
+      "type": "Application",
+      "hittable": false,
+      "index": 0,
+      "label": "Nest",
+      "depth": 0,
+      "enabled": true,
+      "ref": "e1"
+    },
+    {
+      "rect": {
+        "x": 0,
+        "width": 375,
+        "height": 667,
+        "y": 0
+      },
+      "type": "Other",
+      "hittable": true,
+      "parentIndex": 0,
+      "index": 1,
+      "label": "Nest",
+      "depth": 1,
+      "enabled": true,
+      "ref": "e2"
+    },
+    {
+      "rect": {
+        "x": 24,
+        "width": 126,
+        "height": 72,
+        "y": 100
+      },
+      "type": "StaticText",
+      "hittable": true,
+      "parentIndex": 1,
+      "index": 2,
+      "label": "Nest",
+      "depth": 2,
+      "enabled": true,
+      "ref": "e3"
+    },
+    {
+      "rect": {
+        "x": 24,
+        "width": 305.5,
+        "height": 133,
+        "y": 190
+      },
+      "type": "StaticText",
+      "hittable": true,
+      "parentIndex": 1,
+      "index": 3,
+      "label": "A little less to remember.",
+      "depth": 2,
+      "enabled": true,
+      "ref": "e4"
+    },
+    {
+      "rect": {
+        "x": 24,
+        "width": 309,
+        "height": 187.5,
+        "y": 341
+      },
+      "type": "StaticText",
+      "hittable": true,
+      "parentIndex": 1,
+      "index": 4,
+      "label": "One place for your household\u2019s day, meals and shared expenses.",
+      "depth": 2,
+      "enabled": true,
+      "ref": "e5"
+    },
+    {
+      "rect": {
+        "x": 24,
+        "width": 327,
+        "height": 50,
+        "y": 564.5
+      },
+      "type": "Button",
+      "hittable": true,
+      "parentIndex": 1,
+      "index": 5,
+      "label": "Sign in with Apple",
+      "depth": 2,
+      "enabled": true,
+      "ref": "e6"
+    }
+  ],
+  "appleButtonTargets": [
+    {
+      "rect": {
+        "x": 24,
+        "width": 327,
+        "height": 50,
+        "y": 564.5
+      },
+      "type": "Button",
+      "hittable": true,
+      "parentIndex": 1,
+      "index": 5,
+      "label": "Sign in with Apple",
+      "depth": 2,
+      "enabled": true,
+      "ref": "e6"
+    }
+  ],
+  "noAppleAccountInteraction": true,
+  "signedOutGate": true,
+  "time": 1791089830.723364
+}

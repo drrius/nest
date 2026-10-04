@@ -1,0 +1,1014 @@
+{
+  "nodes": [
+    {
+      "index": 0,
+      "type": "Other",
+      "role": "_TtC7SwiftUIP33_ACC2C5639A7D76F611E170E831FCA49118SwiftUIApplication",
+      "subrole": "UIApplication",
+      "label": "Nest",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "depth": 0,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e1"
+    },
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "type": "ScrollView",
+      "role": "SwiftUI.HostingScrollView",
+      "subrole": "UIScrollView",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 73111,
+      "hittable": true,
+      "hiddenContentBelow": true,
+      "ref": "e2"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "type": "Image",
+      "role": "UIImageView",
+      "identifier": "AdditionalDimmingOverlay",
+      "rect": {
+        "x": 0,
+        "y": 524,
+        "width": 375,
+        "height": 143
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e3",
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"]
+    },
+    {
+      "index": 3,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Our household",
+      "rect": {
+        "x": 20,
+        "y": 54.75,
+        "width": 83.5,
+        "height": 14.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e4"
+    },
+    {
+      "index": 4,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Private conversations",
+      "identifier": "bubble.left.and.bubble.right",
+      "rect": {
+        "x": 259,
+        "y": 40,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e5"
+    },
+    {
+      "index": 5,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Profile and preferences",
+      "identifier": "person.crop.circle",
+      "rect": {
+        "x": 311,
+        "y": 40,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e6"
+    },
+    {
+      "index": 6,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Meals",
+      "rect": {
+        "x": 20,
+        "y": 88,
+        "width": 92,
+        "height": 41
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e7"
+    },
+    {
+      "index": 7,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Good food. One less daily decision.",
+      "rect": {
+        "x": 20,
+        "y": 133,
+        "width": 241,
+        "height": 18
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e8"
+    },
+    {
+      "index": 8,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Previous week",
+      "identifier": "chevron.left",
+      "rect": {
+        "x": 20,
+        "y": 175,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e9"
+    },
+    {
+      "index": 9,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "28 Sep \u2013 4 Oct",
+      "rect": {
+        "x": 128.5,
+        "y": 186.75,
+        "width": 118,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e10"
+    },
+    {
+      "index": 10,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Next week",
+      "identifier": "chevron.right",
+      "rect": {
+        "x": 311,
+        "y": 175,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e11"
+    },
+    {
+      "index": 11,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Plan the week with AI",
+      "rect": {
+        "x": 20,
+        "y": 243,
+        "width": 335,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e12"
+    },
+    {
+      "index": 12,
+      "parentIndex": 11,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Sparkle",
+      "identifier": "sparkles",
+      "rect": {
+        "x": 100.5,
+        "y": 260.5,
+        "width": 14,
+        "height": 17
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e13"
+    },
+    {
+      "index": 13,
+      "parentIndex": 11,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Plan the week with AI",
+      "rect": {
+        "x": 20,
+        "y": 243,
+        "width": 335,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e14"
+    },
+    {
+      "index": 14,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Monday \u00b7 28 Sep",
+      "rect": {
+        "x": 20,
+        "y": 319,
+        "width": 153.5,
+        "height": 24
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e15"
+    },
+    {
+      "index": 15,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-28, Breakfast: Add meal",
+      "rect": {
+        "x": 36,
+        "y": 353,
+        "width": 303,
+        "height": 60
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e16"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Breakfast",
+      "rect": {
+        "x": 36,
+        "y": 374,
+        "width": 65,
+        "height": 18
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e17"
+    },
+    {
+      "index": 17,
+      "parentIndex": 15,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Add",
+      "identifier": "plus",
+      "rect": {
+        "x": 138,
+        "y": 377,
+        "width": 12.5,
+        "height": 12.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e18"
+    },
+    {
+      "index": 18,
+      "parentIndex": 15,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Add meal",
+      "rect": {
+        "x": 138,
+        "y": 374,
+        "width": 87,
+        "height": 18
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e19"
+    },
+    {
+      "index": 19,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-28, Lunch: Synthetic lentil soup, recipe details",
+      "rect": {
+        "x": 36,
+        "y": 413.5,
+        "width": 210,
+        "height": 60
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e20"
+    },
+    {
+      "index": 20,
+      "parentIndex": 19,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Lunch",
+      "rect": {
+        "x": 36,
+        "y": 424,
+        "width": 35,
+        "height": 14.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e21"
+    },
+    {
+      "index": 21,
+      "parentIndex": 19,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Synthetic lentil soup",
+      "rect": {
+        "x": 36,
+        "y": 442.5,
+        "width": 154.5,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e22"
+    },
+    {
+      "index": 22,
+      "parentIndex": 19,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Forward",
+      "identifier": "chevron.right",
+      "rect": {
+        "x": 238,
+        "y": 437.5,
+        "width": 7,
+        "height": 12
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e23"
+    },
+    {
+      "index": 23,
+      "parentIndex": 1,
+      "type": "PopUpButton",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-28, Lunch: More options for Synthetic lentil soup",
+      "rect": {
+        "x": 258,
+        "y": 421.5,
+        "width": 81,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e24"
+    },
+    {
+      "index": 24,
+      "parentIndex": 23,
+      "type": "Button",
+      "role": "SwiftUI.HostingUIButton",
+      "subrole": "UIButton",
+      "rect": {
+        "x": 258,
+        "y": 421.5,
+        "width": 81,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e25"
+    },
+    {
+      "index": 25,
+      "parentIndex": 24,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Options",
+      "rect": {
+        "x": 258,
+        "y": 421.5,
+        "width": 81,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e26"
+    },
+    {
+      "index": 26,
+      "parentIndex": 24,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "More",
+      "identifier": "ellipsis",
+      "rect": {
+        "x": 325,
+        "y": 442,
+        "width": 13,
+        "height": 3
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e27"
+    },
+    {
+      "index": 27,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-28, Dinner: Synthetic lentil bowl, recipe details",
+      "rect": {
+        "x": 36,
+        "y": 474,
+        "width": 210,
+        "height": 60
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e28"
+    },
+    {
+      "index": 28,
+      "parentIndex": 27,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Dinner",
+      "rect": {
+        "x": 36,
+        "y": 484.5,
+        "width": 37.5,
+        "height": 14.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e29"
+    },
+    {
+      "index": 29,
+      "parentIndex": 27,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Synthetic lentil bowl",
+      "rect": {
+        "x": 36,
+        "y": 503,
+        "width": 152.5,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e30"
+    },
+    {
+      "index": 30,
+      "parentIndex": 27,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Forward",
+      "identifier": "chevron.right",
+      "rect": {
+        "x": 238,
+        "y": 498,
+        "width": 7,
+        "height": 12
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e31"
+    },
+    {
+      "index": 31,
+      "parentIndex": 1,
+      "type": "PopUpButton",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-28, Dinner: More options for Synthetic lentil bowl",
+      "rect": {
+        "x": 258,
+        "y": 482,
+        "width": 81,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e32"
+    },
+    {
+      "index": 32,
+      "parentIndex": 31,
+      "type": "Button",
+      "role": "SwiftUI.HostingUIButton",
+      "subrole": "UIButton",
+      "rect": {
+        "x": 258,
+        "y": 482,
+        "width": 81,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e33"
+    },
+    {
+      "index": 33,
+      "parentIndex": 32,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Options",
+      "rect": {
+        "x": 258,
+        "y": 482,
+        "width": 81,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e34"
+    },
+    {
+      "index": 34,
+      "parentIndex": 32,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "More",
+      "identifier": "ellipsis",
+      "rect": {
+        "x": 325,
+        "y": 502.5,
+        "width": 13,
+        "height": 3
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e35"
+    },
+    {
+      "index": 35,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Tuesday \u00b7 29 Sep",
+      "rect": {
+        "x": 20,
+        "y": 558,
+        "width": 157.5,
+        "height": 24
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e36"
+    },
+    {
+      "index": 36,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-29, Breakfast: Add meal",
+      "rect": {
+        "x": 36,
+        "y": 592,
+        "width": 303,
+        "height": 60
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e37",
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"]
+    },
+    {
+      "index": 37,
+      "parentIndex": 36,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Breakfast",
+      "rect": {
+        "x": 36,
+        "y": 613,
+        "width": 65,
+        "height": 18
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e38",
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"]
+    },
+    {
+      "index": 38,
+      "parentIndex": 36,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Add",
+      "identifier": "plus",
+      "rect": {
+        "x": 138,
+        "y": 616,
+        "width": 12.5,
+        "height": 12.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e39",
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"]
+    },
+    {
+      "index": 39,
+      "parentIndex": 36,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Add meal",
+      "rect": {
+        "x": 138,
+        "y": 613,
+        "width": 87,
+        "height": 18
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e40",
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"]
+    },
+    {
+      "index": 40,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "2026-09-29, Lunch: Add meal",
+      "rect": {
+        "x": 36,
+        "y": 652.5,
+        "width": 303,
+        "height": 14.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": false,
+      "ref": "e41",
+      "interactionBlocked": "covered",
+      "presentationHints": ["covered"]
+    },
+    {
+      "index": 41,
+      "parentIndex": 1,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Vertical scroll bar, 5 pages",
+      "value": "0%",
+      "rect": {
+        "x": 342,
+        "y": 20,
+        "width": 30,
+        "height": 564
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e42"
+    },
+    {
+      "index": 42,
+      "parentIndex": 1,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Vertical scroll bar, 5 pages",
+      "value": "0%",
+      "rect": {
+        "x": 342,
+        "y": 20,
+        "width": 30,
+        "height": 564
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e43"
+    },
+    {
+      "index": 43,
+      "parentIndex": 0,
+      "type": "TabBar",
+      "role": "UITabBar",
+      "label": "Tab Bar",
+      "rect": {
+        "x": 0,
+        "y": 584,
+        "width": 375,
+        "height": 83
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e44"
+    },
+    {
+      "index": 44,
+      "parentIndex": 43,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Today",
+      "identifier": "house",
+      "rect": {
+        "x": 25,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e45"
+    },
+    {
+      "index": 45,
+      "parentIndex": 44,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "home",
+      "identifier": "house.fill",
+      "rect": {
+        "x": 52,
+        "y": 594,
+        "width": 33.5,
+        "height": 28
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e46"
+    },
+    {
+      "index": 46,
+      "parentIndex": 43,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Meals",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 103.91666666666667,
+        "y": 588,
+        "width": 88.25000000000001,
+        "height": 54
+      },
+      "enabled": true,
+      "selected": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e47"
+    },
+    {
+      "index": 47,
+      "parentIndex": 46,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "Food",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 136.91666666666669,
+        "y": 591.5,
+        "width": 22,
+        "height": 31
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e48"
+    },
+    {
+      "index": 48,
+      "parentIndex": 43,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Calendar",
+      "identifier": "calendar",
+      "rect": {
+        "x": 182.83333333333334,
+        "y": 588,
+        "width": 88.25000000000003,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e49"
+    },
+    {
+      "index": 49,
+      "parentIndex": 48,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "calendar",
+      "identifier": "calendar",
+      "rect": {
+        "x": 212.83333333333334,
+        "y": 595.5,
+        "width": 29,
+        "height": 25
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e50"
+    },
+    {
+      "index": 50,
+      "parentIndex": 43,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Money",
+      "identifier": "creditcard",
+      "rect": {
+        "x": 261.75,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e51"
+    },
+    {
+      "index": 51,
+      "parentIndex": 50,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "card",
+      "identifier": "creditcard.fill",
+      "rect": {
+        "x": 289.75,
+        "y": 596.5,
+        "width": 33,
+        "height": 23.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 73111,
+      "hittable": true,
+      "ref": "e52"
+    }
+  ],
+  "sourceMatched": true,
+  "actualNativeRoute": true,
+  "time": 1791089872.970999
+}

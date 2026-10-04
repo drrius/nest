@@ -9,23 +9,27 @@ struct AppleSignInView: View {
     @State private var message: String?
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 18) {
-            Text("Nest").font(.largeTitle.weight(.semibold))
-            Text("A little less to remember.")
-                .font(.title2.weight(.semibold))
-            Text("One place for your household’s day, meals and shared expenses.")
-                .foregroundStyle(QuietPalette.muted)
-            if let message { Text(message).foregroundStyle(QuietPalette.muted) }
-            SignInWithAppleButton(.signIn, onRequest: prepare, onCompletion: finish)
-                .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
-                .frame(height: 50)
-                .clipShape(RoundedRectangle(cornerRadius: 12))
-                .padding(.top, 18)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 18) {
+                Text("Nest").font(.largeTitle.weight(.semibold))
+                Text("A little less to remember.")
+                    .font(.title2.weight(.semibold))
+                Text("One place for your household’s day, meals and shared expenses.")
+                    .foregroundStyle(QuietPalette.muted)
+                if let message { Text(message).foregroundStyle(QuietPalette.muted) }
+                SignInWithAppleButton(.signIn, onRequest: prepare, onCompletion: finish)
+                    .signInWithAppleButtonStyle(colorScheme == .dark ? .white : .black)
+                    .frame(height: 50)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    .padding(.top, 18)
+            }
+            .foregroundStyle(QuietPalette.ink)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal, 24)
+            .padding(.top, 80)
+            .padding(.bottom, 24)
         }
-        .foregroundStyle(QuietPalette.ink)
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-        .padding(.horizontal, 24)
-        .padding(.top, 80)
+        .clipped()
         .background(QuietPalette.background)
     }
 

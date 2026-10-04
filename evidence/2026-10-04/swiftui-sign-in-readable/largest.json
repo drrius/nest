@@ -1,0 +1,317 @@
+{
+  "snapshots": [
+    [
+      {
+        "depth": 0,
+        "hittable": false,
+        "index": 0,
+        "rect": {
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "x": 0
+        },
+        "type": "Application",
+        "label": "Nest",
+        "enabled": true,
+        "ref": "e1"
+      },
+      {
+        "depth": 1,
+        "hittable": true,
+        "index": 1,
+        "rect": {
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "x": 0
+        },
+        "type": "Other",
+        "label": "Vertical scroll bar, 2 pages",
+        "enabled": true,
+        "parentIndex": 0,
+        "ref": "e2"
+      },
+      {
+        "depth": 2,
+        "hittable": true,
+        "index": 2,
+        "rect": {
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "x": 0
+        },
+        "type": "Other",
+        "label": "Nest",
+        "enabled": true,
+        "parentIndex": 1,
+        "ref": "e3"
+      },
+      {
+        "depth": 3,
+        "hittable": true,
+        "index": 3,
+        "rect": {
+          "y": 0,
+          "width": 375,
+          "height": 667,
+          "x": 0
+        },
+        "type": "ScrollView",
+        "label": "Nest",
+        "enabled": true,
+        "parentIndex": 2,
+        "hiddenContentBelow": true,
+        "ref": "e4"
+      },
+      {
+        "index": 4,
+        "enabled": true,
+        "type": "Other",
+        "rect": {
+          "y": 20,
+          "width": 375,
+          "height": 647,
+          "x": 0
+        },
+        "hittable": true,
+        "label": "Nest",
+        "parentIndex": 3,
+        "depth": 4,
+        "ref": "e5"
+      },
+      {
+        "rect": {
+          "y": 100,
+          "width": 126,
+          "height": 72,
+          "x": 24
+        },
+        "type": "StaticText",
+        "enabled": true,
+        "depth": 5,
+        "parentIndex": 4,
+        "hittable": true,
+        "label": "Nest",
+        "index": 5,
+        "ref": "e6"
+      },
+      {
+        "hittable": true,
+        "index": 6,
+        "type": "StaticText",
+        "rect": {
+          "y": 190,
+          "width": 280.5,
+          "height": 199,
+          "x": 24
+        },
+        "label": "A little less to remember.",
+        "parentIndex": 4,
+        "enabled": true,
+        "depth": 5,
+        "ref": "e7"
+      },
+      {
+        "enabled": true,
+        "rect": {
+          "y": 407,
+          "width": 309,
+          "height": 260,
+          "x": 24
+        },
+        "hittable": true,
+        "type": "StaticText",
+        "label": "One place for your household\u2019s day, meals and shared expenses.",
+        "index": 7,
+        "depth": 5,
+        "parentIndex": 4,
+        "ref": "e8"
+      },
+      {
+        "type": "Other",
+        "value": "0%",
+        "rect": {
+          "y": 20,
+          "width": 30,
+          "height": 647,
+          "x": 342
+        },
+        "depth": 4,
+        "hittable": true,
+        "parentIndex": 3,
+        "index": 8,
+        "label": "Vertical scroll bar, 2 pages",
+        "enabled": true,
+        "ref": "e9"
+      }
+    ],
+    [
+      {
+        "depth": 0,
+        "rect": {
+          "y": 0,
+          "x": 0,
+          "width": 375,
+          "height": 667
+        },
+        "label": "Nest",
+        "hittable": false,
+        "enabled": true,
+        "index": 0,
+        "type": "Application",
+        "ref": "e1"
+      },
+      {
+        "depth": 1,
+        "rect": {
+          "y": 0,
+          "x": 0,
+          "width": 375,
+          "height": 667
+        },
+        "parentIndex": 0,
+        "label": "Vertical scroll bar, 2 pages",
+        "hittable": true,
+        "enabled": true,
+        "index": 1,
+        "type": "Other",
+        "ref": "e2"
+      },
+      {
+        "depth": 2,
+        "rect": {
+          "y": 0,
+          "x": 0,
+          "width": 375,
+          "height": 667
+        },
+        "parentIndex": 1,
+        "label": "Nest",
+        "hittable": true,
+        "enabled": true,
+        "index": 2,
+        "type": "Other",
+        "ref": "e3"
+      },
+      {
+        "depth": 3,
+        "rect": {
+          "y": 0,
+          "x": 0,
+          "width": 375,
+          "height": 667
+        },
+        "hiddenContentAbove": true,
+        "parentIndex": 2,
+        "label": "Nest",
+        "hittable": true,
+        "enabled": true,
+        "index": 3,
+        "type": "ScrollView",
+        "ref": "e4"
+      },
+      {
+        "depth": 4,
+        "rect": {
+          "y": 0,
+          "x": 0,
+          "width": 375,
+          "height": 667
+        },
+        "parentIndex": 3,
+        "label": "Nest",
+        "hittable": true,
+        "enabled": true,
+        "index": 4,
+        "type": "Other",
+        "ref": "e5"
+      },
+      {
+        "depth": 5,
+        "rect": {
+          "y": 0,
+          "x": 24,
+          "width": 280.5,
+          "height": 165.5
+        },
+        "parentIndex": 4,
+        "label": "A little less to remember.",
+        "hittable": true,
+        "enabled": true,
+        "index": 5,
+        "type": "StaticText",
+        "ref": "e6"
+      },
+      {
+        "depth": 5,
+        "rect": {
+          "y": 183.5,
+          "x": 24,
+          "width": 309,
+          "height": 373.5
+        },
+        "parentIndex": 4,
+        "label": "One place for your household\u2019s day, meals and shared expenses.",
+        "hittable": true,
+        "enabled": true,
+        "index": 6,
+        "type": "StaticText",
+        "ref": "e7"
+      },
+      {
+        "depth": 5,
+        "rect": {
+          "y": 593,
+          "x": 24,
+          "width": 327,
+          "height": 50
+        },
+        "parentIndex": 4,
+        "label": "Sign in with Apple",
+        "hittable": true,
+        "enabled": true,
+        "index": 7,
+        "type": "Button",
+        "ref": "e8"
+      },
+      {
+        "depth": 4,
+        "rect": {
+          "y": 20,
+          "x": 342,
+          "width": 30,
+          "height": 647
+        },
+        "value": "100%",
+        "parentIndex": 3,
+        "label": "Vertical scroll bar, 2 pages",
+        "hittable": true,
+        "enabled": true,
+        "index": 8,
+        "type": "Other",
+        "ref": "e9"
+      }
+    ]
+  ],
+  "reachableAppleButton": {
+    "depth": 5,
+    "rect": {
+      "y": 593,
+      "x": 24,
+      "width": 327,
+      "height": 50
+    },
+    "parentIndex": 4,
+    "label": "Sign in with Apple",
+    "hittable": true,
+    "enabled": true,
+    "index": 7,
+    "type": "Button",
+    "ref": "e8"
+  },
+  "noAuthOrPermissionSelection": true,
+  "sourceMismatches": 0,
+  "time": 1791090222.833874
+}
