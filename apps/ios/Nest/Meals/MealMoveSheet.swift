@@ -92,13 +92,15 @@ struct MealMoveSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }.disabled(saving)
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { dismiss() }.disabled(saving)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(saving ? "Saving…" : (leftovers ? "Add" : "Move")) { Task { await save() } }
-                        .disabled(
-                            saving || context.map { !valid($0) } != false || model.mealMove != nil
-                                || model.mealLeftovers != nil)
+                    QuietToolbarButton(saving ? "Saving…" : (leftovers ? "Add" : "Move"), systemImage: "checkmark") {
+                        Task { await save() }
+                    }
+                    .disabled(
+                        saving || context.map { !valid($0) } != false || model.mealMove != nil
+                            || model.mealLeftovers != nil)
                 }
             }
             .interactiveDismissDisabled(saving)

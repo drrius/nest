@@ -1,0 +1,43 @@
+{
+  "snapshot": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "entries": [
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-05",
+        "entryId": "DBDF2CC9-CB92-4B8D-8A01-49BF60DFAD1C",
+        "slot": "dinner",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-06",
+        "entryId": "D0067682-675D-45BC-8078-649A91F2A6F2",
+        "slot": "dinner",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-07",
+        "entryId": "79AC35CE-90B1-4095-A24B-2887B8447FF8",
+        "slot": "dinner",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "title": "Synthetic lentil bowl"
+      },
+      {
+        "notes": "Synthetic edit verified.",
+        "date": "2026-10-08",
+        "entryId": "7723E83E-903B-4DBF-939F-7C6998BA99D8",
+        "slot": "dinner",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+        "title": "Synthetic lentil bowl"
+      }
+    ],
+    "version": 1,
+    "revision": "24",
+    "weekStart": "2026-10-05"
+  },
+  "time": 1791096949.868305
+}

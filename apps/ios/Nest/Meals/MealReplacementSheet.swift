@@ -50,13 +50,15 @@ struct MealReplacementSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }.disabled(saving)
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { dismiss() }.disabled(saving)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(saving ? "Saving…" : "Replace") { Task { await save() } }
-                        .disabled(
-                            saving || !valid || model.mealReplacement != nil || model.mealMove != nil
-                                || model.mealRecipeReplacement != nil)
+                    QuietToolbarButton(saving ? "Saving…" : "Replace", systemImage: "checkmark") {
+                        Task { await save() }
+                    }
+                    .disabled(
+                        saving || !valid || model.mealReplacement != nil || model.mealMove != nil
+                            || model.mealRecipeReplacement != nil)
                 }
             }
             .interactiveDismissDisabled(saving)

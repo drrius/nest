@@ -46,10 +46,10 @@ struct MealAddSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { dismiss() }
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") {
+                    QuietToolbarButton("Save", systemImage: "checkmark") {
                         saving = true
                         Task {
                             let accepted = await save()

@@ -1,0 +1,11 @@
+# Native manual week and meal toolbar correction
+
+4 October2026. Real signed native app, owned375×667 simulator and the separate fictional test household. No new TestFlight build or financial/production mutation.
+
+Add meal originally exposed a36pt Save target. A shared native symbol button with explicit semantic labels, plain styling and a44pt rectangular label now serves Add, Replace and Move/Leftovers toolbar actions. Actual Add-form normal/largest-text dark geometry and corner cancellation pass; seven normal-text Save corner taps each create exactly one real saved-recipe dinner. One geometry observer stopped because44 was represented as43.99999999999999; rounding to a thousandth for the assertion preserves the44pt requirement. No app rebuild was needed for that observer correction.
+
+Both ordinary members independently agree after every Save: the empty5–11 October week advances revision20→27 with exactly seven distinct dinner entries, all linked to the real saved recipe. Its seven ingredient sources are separate. Planning itself adds no groceries and leaves both complete52-event financial histories and103/−103-centime balances unchanged. [Hosted assertions](hosted-summary.json).
+
+All1,038 current native input hashes match the owned checkout; strict Mac Swift formatting/source limits, actual signing and stable test-origin build pass. Eighteen focused signed-native meal session/move/replacement/leftover tests pass with zero failures/skips. [Input hashes](native-inputs.json), [build result](build-result.json), [toolbar check](toolbar-check.json), [largest-text rendering](corrected-form-largest.png). These model tests use controlled transports; the seven placements above are actual native/test-API execution.
+
+This checkpoint does not close M5. Ingredient selection/addition, plan editing and normal fixture restoration are still in progress; the test week currently contains these seven fictional meals. Existing uncertain meal intents are never deleted to complete this check. Live generation/approvals, membership/concurrency/offline initiation, other toolbar destinations, VoiceOver and both phones remain separate acceptance gates. Source remains on the feature branch; required CI is pending for this correction.

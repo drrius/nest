@@ -1,0 +1,17 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "weekStart": "2026-10-05",
+  "initialRevision": "20",
+  "plannedRevision": "27",
+  "nativeSaveCount": 7,
+  "canonicalMealCount": 7,
+  "ingredientSourceCount": 7,
+  "bothMembersAgreeAfterEverySave": true,
+  "moneyAndGroceriesUnchangedAfterPlanning": true,
+  "financialEventCount": "52",
+  "balanceCentimes": ["103", "-103"],
+  "cleanupComplete": false,
+  "ingredientAdditionVerified": false,
+  "productionTouched": false
+}

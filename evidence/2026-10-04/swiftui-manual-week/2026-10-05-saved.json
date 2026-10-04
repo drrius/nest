@@ -1,0 +1,19 @@
+{
+  "snapshot": {
+    "entries": [
+      {
+        "entryId": "DBDF2CC9-CB92-4B8D-8A01-49BF60DFAD1C",
+        "slot": "dinner",
+        "date": "2026-10-05",
+        "notes": "Synthetic edit verified.",
+        "title": "Synthetic lentil bowl",
+        "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27"
+      }
+    ],
+    "weekStart": "2026-10-05",
+    "revision": "21",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "version": 1
+  },
+  "time": 1791096874.406713
+}
