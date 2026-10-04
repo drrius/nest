@@ -24,13 +24,25 @@ struct ExpenseApprovalScreen: View {
                     if saved.expiry?.expiredUnused == true {
                         Text(
                             "This approval expired without recording a change. Ask for a new proposal if still needed.")
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
                         outcome(result.approval)
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else {
                         Text("Not confirmed yet. Check the saved decision before reviewing another expense.")
-                        Button("Check and retry") { Task { await retry() } }
+                        Button {
+                            Task { await retry() }
+                        } label: {
+                            QuietActionLabel("Check and retry")
+                        }
                     }
                 }
             } else if let approval = envelope?.approval {
@@ -40,25 +52,37 @@ struct ExpenseApprovalScreen: View {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
                                 Text("Only approve if the amount, payer and split above are correct.")
-                                Button("Approve expense") { choice = true }
-                                Button("Decline expense", role: .destructive) { choice = false }
+                                Button {
+                                    choice = true
+                                } label: {
+                                    QuietActionLabel("Approve expense")
+                                }
+                                Button(role: .destructive) {
+                                    choice = false
+                                } label: {
+                                    QuietActionLabel("Decline expense")
+                                }
                             } else {
                                 Text("This approval has expired. Ask for a new proposal.")
                             }
-                        }
+                        }.buttonStyle(.borderless)
                     } else {
                         outcome(approval)
                     }
                 }
             }
-            Button("Refresh approval") { Task { await load() } }
+            Button {
+                Task { await load() }
+            } label: {
+                QuietActionLabel("Refresh approval")
+            }
         }
         .disabled(working)
         .navigationTitle("Review expense")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task { await load() }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Record this expense?" : "Decline this expense?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -67,6 +91,7 @@ struct ExpenseApprovalScreen: View {
                     Task { await decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text("This applies only to the exact expense you reviewed. Nest does not transfer money.")
         }
@@ -76,8 +101,10 @@ struct ExpenseApprovalScreen: View {
     private func outcome(_ approval: ExpenseApproval) -> some View {
         if let receipt = approval.receipt {
             Text("Expense recorded.")
-            NavigationLink("View recorded expense") {
+            NavigationLink {
                 MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId)
+            } label: {
+                QuietActionLabel("View recorded expense")
             }
         } else if approval.status == .denied {
             Text("Expense declined. No expense was recorded by this approval.")

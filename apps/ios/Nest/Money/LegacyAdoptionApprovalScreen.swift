@@ -26,7 +26,13 @@ struct LegacyAdoptionApprovalScreen: View {
                 decision(review)
             }
             if let notice = model.notice { Section { Text(notice) } }
-            Section { Button("Check private proposal or saved result") { Task { await model.load() } } }
+            Section {
+                Button {
+                    Task { await model.load() }
+                } label: {
+                    QuietActionLabel("Check private proposal or saved result")
+                }
+            }
         }
         .disabled(model.working)
         .navigationTitle("Rule proposal")
@@ -89,7 +95,11 @@ struct LegacyAdoptionApprovalScreen: View {
                 TimelineView(.periodic(from: .now, by: 1)) { clock in
                     if ApprovalTime.isOpen(review.approval.expiresAt, now: clock.date) {
                         if review.canConfirm {
-                            Button("Review proposed rule") { choice = (true, review) }
+                            Button {
+                                choice = (true, review)
+                            } label: {
+                                QuietActionLabel("Review proposed rule")
+                            }
                         } else {
                             Text(
                                 "The source, people or prospective dates no longer match this proposal. Adoption is unavailable."
@@ -98,8 +108,12 @@ struct LegacyAdoptionApprovalScreen: View {
                     } else {
                         Text("This proposal has expired. Adoption is unavailable; you can still decline it.")
                     }
+                }.buttonStyle(.borderless)
+                Button(role: .destructive) {
+                    choice = (false, review)
+                } label: {
+                    QuietActionLabel("Decline proposal")
                 }
-                Button("Decline proposal", role: .destructive) { choice = (false, review) }
             }
         }
     }
@@ -116,22 +130,34 @@ struct LegacyAdoptionApprovalScreen: View {
                 Text("Proposal declined. This proposal did not adopt a rule.")
             } else {
                 Text("Not confirmed. Changed rule terms alone cannot finish this saved decision.")
-                Button(saved.withdrawalRequested ? "Retry withdrawal" : "Check and retry exact decision") {
+                Button {
                     Task { await model.retry() }
+                } label: {
+                    QuietActionLabel(saved.withdrawalRequested ? "Retry withdrawal" : "Check and retry exact decision")
                 }
                 if saved.decision.approved && !saved.withdrawalRequested {
-                    Button("Withdraw saved consent", role: .destructive) { withdrawal = true }
+                    Button(role: .destructive) {
+                        withdrawal = true
+                    } label: {
+                        QuietActionLabel("Withdraw saved consent")
+                    }
                 }
             }
             if saved.isTerminal {
-                Button("Finish recovery") { Task { if await model.finish() { dismiss() } } }
+                Button {
+                    Task { if await model.finish() { dismiss() } }
+                } label: {
+                    QuietActionLabel("Finish recovery")
+                }
             }
         }
     }
 
     private func entry(_ receipt: LegacyAdoptionReceipt) -> some View {
-        NavigationLink("View adopted rule") {
+        NavigationLink {
             RecurringRuleScreen(session: session, member: member, ruleId: receipt.input.ruleId).id(session.generation)
+        } label: {
+            QuietActionLabel("View adopted rule")
         }
     }
 }

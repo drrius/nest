@@ -25,13 +25,25 @@ struct RecurringApprovalScreen: View {
                             ? "You chose to approve this rule." : "You chose to decline this rule.")
                     if saved.expiry?.expiredUnused == true {
                         Text("This approval expired without changing the rule. Ask for a new proposal if still needed.")
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
                         outcome(result.approval)
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else {
                         Text("Not confirmed yet. Check the saved decision before reviewing another rule.")
-                        Button("Check and retry") { Task { await retry() } }
+                        Button {
+                            Task { await retry() }
+                        } label: {
+                            QuietActionLabel("Check and retry")
+                        }
                     }
                 }
             } else if let approval = envelope?.approval {
@@ -41,25 +53,37 @@ struct RecurringApprovalScreen: View {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
                                 Text("Only approve if the schedule, amount and shares above are correct.")
-                                Button("Approve rule") { choice = true }.disabled(!matchesCurrent(approval.rule))
-                                Button("Decline rule", role: .destructive) { choice = false }
+                                Button {
+                                    choice = true
+                                } label: {
+                                    QuietActionLabel("Approve rule")
+                                }.disabled(!matchesCurrent(approval.rule))
+                                Button(role: .destructive) {
+                                    choice = false
+                                } label: {
+                                    QuietActionLabel("Decline rule")
+                                }
                             } else {
                                 Text("This approval has expired. Ask for a new proposal.")
                             }
-                        }
+                        }.buttonStyle(.borderless)
                     } else {
                         outcome(approval)
                     }
                 }
             }
-            Button("Refresh approval") { Task { await load() } }
+            Button {
+                Task { await load() }
+            } label: {
+                QuietActionLabel("Refresh approval")
+            }
         }
         .disabled(working)
         .navigationTitle("Review rule")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task { await load() }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Save this rule?" : "Decline this rule?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -68,6 +92,7 @@ struct RecurringApprovalScreen: View {
                     Task { await decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text("This applies only to the exact rule you reviewed. Nest does not transfer money.")
         }
@@ -99,8 +124,10 @@ struct RecurringApprovalScreen: View {
             }
             if let note = rule.configuration.note { Text(note) }
             if rule.expectedRevision != nil {
-                NavigationLink("View current rule") {
+                NavigationLink {
                     RecurringRuleScreen(session: session, member: member, ruleId: rule.ruleId)
+                } label: {
+                    QuietActionLabel("View current rule")
                 }
             }
         }
@@ -142,8 +169,10 @@ struct RecurringApprovalScreen: View {
     private func outcome(_ approval: RecurringApproval) -> some View {
         if let receipt = approval.receipt {
             Text("Rule saved.")
-            NavigationLink("View recorded rule") {
+            NavigationLink {
                 RecurringRuleScreen(session: session, member: member, ruleId: receipt.rule.ruleId)
+            } label: {
+                QuietActionLabel("View recorded rule")
             }
         } else if approval.status == .denied {
             Text("Rule declined. No rule was recorded by this approval.")

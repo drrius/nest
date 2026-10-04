@@ -26,7 +26,13 @@ struct LegacyDismissalApprovalScreen: View {
                 decision(review)
             }
             if let notice = model.notice { Section { Text(notice) } }
-            Section { Button("Check private proposal or saved result") { Task { await model.load() } } }
+            Section {
+                Button {
+                    Task { await model.load() }
+                } label: {
+                    QuietActionLabel("Check private proposal or saved result")
+                }
+            }
         }
         .disabled(model.working)
         .navigationTitle("Draft proposal")
@@ -94,13 +100,21 @@ struct LegacyDismissalApprovalScreen: View {
                 TimelineView(.periodic(from: .now, by: 1)) { clock in
                     if ApprovalTime.isOpen(review.approval.expiresAt, now: clock.date) {
                         if review.context?.matches == true {
-                            Button("Review dismissal", role: .destructive) { choice = (true, review) }
+                            Button(role: .destructive) {
+                                choice = (true, review)
+                            } label: {
+                                QuietActionLabel("Review dismissal")
+                            }
                         }
                     } else {
                         Text("This proposal has expired. Confirmation is unavailable; you can still decline it.")
                     }
+                }.buttonStyle(.borderless)
+                Button(role: .destructive) {
+                    choice = (false, review)
+                } label: {
+                    QuietActionLabel("Decline proposal")
                 }
-                Button("Decline proposal", role: .destructive) { choice = (false, review) }
             }
         }
     }
@@ -114,15 +128,25 @@ struct LegacyDismissalApprovalScreen: View {
                 Text("Proposal declined. This proposal did not dismiss the draft.")
             } else {
                 Text("Not confirmed. Changed draft terms alone cannot finish this saved decision.")
-                Button(saved.withdrawalRequested ? "Retry withdrawal" : "Check and retry exact decision") {
+                Button {
                     Task { await model.retry() }
+                } label: {
+                    QuietActionLabel(saved.withdrawalRequested ? "Retry withdrawal" : "Check and retry exact decision")
                 }
                 if saved.decision.approved && !saved.withdrawalRequested {
-                    Button("Withdraw saved consent", role: .destructive) { withdrawal = true }
+                    Button(role: .destructive) {
+                        withdrawal = true
+                    } label: {
+                        QuietActionLabel("Withdraw saved consent")
+                    }
                 }
             }
             if saved.isTerminal {
-                Button("Finish recovery") { Task { if await model.finish() { dismiss() } } }
+                Button {
+                    Task { if await model.finish() { dismiss() } }
+                } label: {
+                    QuietActionLabel("Finish recovery")
+                }
             }
         }
     }

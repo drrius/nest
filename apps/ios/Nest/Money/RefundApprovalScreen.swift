@@ -25,13 +25,25 @@ struct RefundApprovalScreen: View {
                     if saved.expiry?.expiredUnused == true {
                         Text(
                             "This approval expired without recording a change. Ask for a new proposal if still needed.")
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
                         outcome(result.approval)
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else {
                         Text("Not confirmed yet. Check the saved decision before reviewing another refund.")
-                        Button("Check and retry") { Task { await retry() } }
+                        Button {
+                            Task { await retry() }
+                        } label: {
+                            QuietActionLabel("Check and retry")
+                        }
                     }
                 }
             } else if let approval = envelope?.approval {
@@ -41,25 +53,37 @@ struct RefundApprovalScreen: View {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
                                 Text("Only approve if the amount, recipient and shares above are correct.")
-                                Button("Approve refund") { choice = true }
-                                Button("Decline refund", role: .destructive) { choice = false }
+                                Button {
+                                    choice = true
+                                } label: {
+                                    QuietActionLabel("Approve refund")
+                                }
+                                Button(role: .destructive) {
+                                    choice = false
+                                } label: {
+                                    QuietActionLabel("Decline refund")
+                                }
                             } else {
                                 Text("This approval has expired. Ask for a new proposal.")
                             }
-                        }
+                        }.buttonStyle(.borderless)
                     } else {
                         outcome(approval)
                     }
                 }
             }
-            Button("Refresh approval") { Task { await load() } }
+            Button {
+                Task { await load() }
+            } label: {
+                QuietActionLabel("Refresh approval")
+            }
         }
         .disabled(working)
         .navigationTitle("Review refund")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task { await load() }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Record this refund?" : "Decline this refund?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -68,6 +92,7 @@ struct RefundApprovalScreen: View {
                     Task { await decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text("This applies only to the exact refund you reviewed. Nest does not transfer money.")
         }
@@ -88,8 +113,10 @@ struct RefundApprovalScreen: View {
                     $0.memberId == member.userId ? "Your share" : "Partner’s share", value: $0.centimes.absoluteCHF)
             }
             if let note = refund.note { Text(note) }
-            NavigationLink("View original expense") {
+            NavigationLink {
                 MoneyDetailScreen(session: session, member: member, eventId: refund.sourceEventId)
+            } label: {
+                QuietActionLabel("View original expense")
             }
         }
     }
@@ -98,8 +125,10 @@ struct RefundApprovalScreen: View {
     private func outcome(_ approval: RefundApproval) -> some View {
         if let receipt = approval.receipt {
             Text("Refund recorded.")
-            NavigationLink("View recorded refund") {
+            NavigationLink {
                 MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId)
+            } label: {
+                QuietActionLabel("View recorded refund")
             }
         } else if approval.status == .denied {
             Text("Refund declined. No refund was recorded by this approval.")

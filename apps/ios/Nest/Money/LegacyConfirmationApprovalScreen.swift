@@ -26,7 +26,13 @@ struct LegacyConfirmationApprovalScreen: View {
                 decision(review)
             }
             if let notice = model.notice { Section { Text(notice) } }
-            Section { Button("Check private proposal or saved result") { Task { await model.load() } } }
+            Section {
+                Button {
+                    Task { await model.load() }
+                } label: {
+                    QuietActionLabel("Check private proposal or saved result")
+                }
+            }
         }
         .disabled(model.working)
         .navigationTitle("Expense proposal")
@@ -92,7 +98,11 @@ struct LegacyConfirmationApprovalScreen: View {
                 TimelineView(.periodic(from: .now, by: 1)) { clock in
                     if ApprovalTime.isOpen(review.approval.expiresAt, now: clock.date) {
                         if review.canConfirm {
-                            Button("Review proposed expense") { choice = (true, review) }
+                            Button {
+                                choice = (true, review)
+                            } label: {
+                                QuietActionLabel("Review proposed expense")
+                            }
                         } else {
                             Text(
                                 "The original draft or current people no longer match this proposal. Recording is unavailable."
@@ -101,8 +111,12 @@ struct LegacyConfirmationApprovalScreen: View {
                     } else {
                         Text("This proposal has expired. Recording is unavailable; you can still decline it.")
                     }
+                }.buttonStyle(.borderless)
+                Button(role: .destructive) {
+                    choice = (false, review)
+                } label: {
+                    QuietActionLabel("Decline proposal")
                 }
-                Button("Decline proposal", role: .destructive) { choice = (false, review) }
             }
         }
     }
@@ -119,22 +133,34 @@ struct LegacyConfirmationApprovalScreen: View {
                 Text("Proposal declined. This proposal did not record an expense.")
             } else {
                 Text("Not confirmed. Changed draft terms alone cannot finish this saved decision.")
-                Button(saved.withdrawalRequested ? "Retry withdrawal" : "Check and retry exact decision") {
+                Button {
                     Task { await model.retry() }
+                } label: {
+                    QuietActionLabel(saved.withdrawalRequested ? "Retry withdrawal" : "Check and retry exact decision")
                 }
                 if saved.decision.approved && !saved.withdrawalRequested {
-                    Button("Withdraw saved consent", role: .destructive) { withdrawal = true }
+                    Button(role: .destructive) {
+                        withdrawal = true
+                    } label: {
+                        QuietActionLabel("Withdraw saved consent")
+                    }
                 }
             }
             if saved.isTerminal {
-                Button("Finish recovery") { Task { if await model.finish() { dismiss() } } }
+                Button {
+                    Task { if await model.finish() { dismiss() } }
+                } label: {
+                    QuietActionLabel("Finish recovery")
+                }
             }
         }
     }
 
     private func entry(_ receipt: LegacyConfirmationReceipt) -> some View {
-        NavigationLink("View recorded entry") {
+        NavigationLink {
             MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId).id(session.generation)
+        } label: {
+            QuietActionLabel("View recorded entry")
         }
     }
 }

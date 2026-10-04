@@ -25,7 +25,11 @@ struct ManualCycleApprovalScreen: View {
                 review(approval, context: context)
             }
             if let notice = model.notice { Section { Text(notice) } }
-            Button("Refresh proposal") { Task { await model.load() } }
+            Button {
+                Task { await model.load() }
+            } label: {
+                QuietActionLabel("Refresh proposal")
+            }
         }
         .disabled(model.working)
         .navigationTitle("Review expense link")
@@ -35,7 +39,7 @@ struct ManualCycleApprovalScreen: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await model.load() } }
         }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Cover this bill cycle?" : "Decline this proposal?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -44,6 +48,7 @@ struct ManualCycleApprovalScreen: View {
                     Task { await model.decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text("This uses the exact existing expense and cycle you reviewed. It creates no new expense or payment.")
         }
@@ -66,8 +71,10 @@ struct ManualCycleApprovalScreen: View {
                 Text("The current expense or bill no longer matches this proposal. Request a new review.")
                 Text("A changed rule’s current terms are not part of this original proposal.")
                     .font(.footnote).foregroundStyle(QuietPalette.muted)
-                NavigationLink("View selected expense as it is now") {
+                NavigationLink {
                     MoneyDetailScreen(session: session, member: member, eventId: input.sourceEventId)
+                } label: {
+                    QuietActionLabel("View selected expense as it is now")
                 }
             }
         }
@@ -82,12 +89,22 @@ struct ManualCycleApprovalScreen: View {
             } else {
                 TimelineView(.periodic(from: .now, by: 1)) { clock in
                     if ApprovalTime.isOpen(approval.expiresAt, now: clock.date), approval.status == .pending {
-                        if context.matches { Button("Review confirmation") { choice = true } }
-                        Button("Decline proposal", role: .destructive) { choice = false }
+                        if context.matches {
+                            Button {
+                                choice = true
+                            } label: {
+                                QuietActionLabel("Review confirmation")
+                            }
+                        }
+                        Button(role: .destructive) {
+                            choice = false
+                        } label: {
+                            QuietActionLabel("Decline proposal")
+                        }
                     } else {
                         Text("This proposal is expired or awaiting its recorded result. Refresh to check again.")
                     }
-                }
+                }.buttonStyle(.borderless)
             }
         }
     }
@@ -95,8 +112,10 @@ struct ManualCycleApprovalScreen: View {
     private func recorded(_ receipt: ManualCycleReceipt) -> some View {
         VStack(alignment: .leading) {
             Text("Existing expense linked. This cycle is covered; no new expense or balance change was created.")
-            NavigationLink("View linked expense") {
+            NavigationLink {
                 MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId)
+            } label: {
+                QuietActionLabel("View linked expense")
             }
         }
     }
@@ -115,10 +134,18 @@ struct ManualCycleApprovalScreen: View {
                 Text("Proposal declined. No cycle was linked by this decision.")
             } else {
                 Text("Not confirmed yet. Resolve this exact decision before reviewing another link proposal.")
-                Button("Check and retry") { Task { await model.retry() } }
+                Button {
+                    Task { await model.retry() }
+                } label: {
+                    QuietActionLabel("Check and retry")
+                }
             }
             if saved.isTerminal {
-                Button("Done") { Task { if await model.finish() { dismiss() } } }
+                Button {
+                    Task { if await model.finish() { dismiss() } }
+                } label: {
+                    QuietActionLabel("Done")
+                }
             }
         }
     }

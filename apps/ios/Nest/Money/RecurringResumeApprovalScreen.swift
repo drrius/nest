@@ -32,7 +32,11 @@ struct RecurringResumeApprovalScreen: View {
                 review(approval, rule: rule)
             }
             if let notice = model.notice { Section { Text(notice) } }
-            Button("Refresh proposal") { Task { await model.load() } }
+            Button {
+                Task { await model.load() }
+            } label: {
+                QuietActionLabel("Refresh proposal")
+            }
         }
         .disabled(model.working)
         .navigationTitle("Review resumption")
@@ -42,7 +46,7 @@ struct RecurringResumeApprovalScreen: View {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await model.load() } }
         }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Resume this recurring expense?" : "Decline this resumption?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -51,6 +55,7 @@ struct RecurringResumeApprovalScreen: View {
                     Task { await model.decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text(
                 "This authorizes future recording using the exact amount, payer, split and dates reviewed. Skipped cycles and existing history stay unchanged."
@@ -86,15 +91,23 @@ struct RecurringResumeApprovalScreen: View {
                             (try? TodayMoment(now: clock.date, timeZone: TimeZone(identifier: "Europe/Zurich")!))
                                 .map({ approval.change.resumeFrom.value >= $0.day.value }) == true
                         {
-                            Button("Review confirmation") { choice = true }
+                            Button {
+                                choice = true
+                            } label: {
+                                QuietActionLabel("Review confirmation")
+                            }
                         } else {
                             Text("The rule or available dates changed. Decline this proposal and request a new one.")
                         }
-                        Button("Decline proposal", role: .destructive) { choice = false }
+                        Button(role: .destructive) {
+                            choice = false
+                        } label: {
+                            QuietActionLabel("Decline proposal")
+                        }
                     } else {
                         Text("This proposal is expired or awaiting its recorded result. Refresh to check again.")
                     }
-                }
+                }.buttonStyle(.borderless)
             }
         }
     }
@@ -114,10 +127,18 @@ struct RecurringResumeApprovalScreen: View {
                 Text("Proposal declined. This decision did not change the rule.")
             } else {
                 Text("Not confirmed yet. Resolve this exact decision before reviewing another rule change.")
-                Button("Check and retry") { Task { await model.retry() } }
+                Button {
+                    Task { await model.retry() }
+                } label: {
+                    QuietActionLabel("Check and retry")
+                }
             }
             if saved.isTerminal {
-                Button("Done") { Task { if await model.finish() { dismiss() } } }
+                Button {
+                    Task { if await model.finish() { dismiss() } }
+                } label: {
+                    QuietActionLabel("Done")
+                }
             }
         }
     }

@@ -25,13 +25,25 @@ struct CorrectionApprovalScreen: View {
                     if saved.expiry?.expiredUnused == true {
                         Text(
                             "This approval expired without recording a change. Ask for a new proposal if still needed.")
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else if let result = saved.result, [.consumed, .denied].contains(result.approval.status) {
                         outcome(result.approval)
-                        Button("Done") { Task { await finish() } }
+                        Button {
+                            Task { await finish() }
+                        } label: {
+                            QuietActionLabel("Done")
+                        }
                     } else {
                         Text("Not confirmed yet. Check the saved decision before reviewing another correction.")
-                        Button("Check and retry") { Task { await retry() } }
+                        Button {
+                            Task { await retry() }
+                        } label: {
+                            QuietActionLabel("Check and retry")
+                        }
                     }
                 }
             } else if let approval = envelope?.approval {
@@ -41,25 +53,37 @@ struct CorrectionApprovalScreen: View {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
                             if ApprovalTime.isOpen(approval.expiresAt, now: clock.date) {
                                 Text("Only approve if the amount, payer and split above are correct.")
-                                Button("Approve correction") { choice = true }
-                                Button("Decline correction", role: .destructive) { choice = false }
+                                Button {
+                                    choice = true
+                                } label: {
+                                    QuietActionLabel("Approve correction")
+                                }
+                                Button(role: .destructive) {
+                                    choice = false
+                                } label: {
+                                    QuietActionLabel("Decline correction")
+                                }
                             } else {
                                 Text("This approval has expired. Ask for a new proposal.")
                             }
-                        }
+                        }.buttonStyle(.borderless)
                     } else {
                         outcome(approval)
                     }
                 }
             }
-            Button("Refresh approval") { Task { await load() } }
+            Button {
+                Task { await load() }
+            } label: {
+                QuietActionLabel("Refresh approval")
+            }
         }
         .disabled(working)
         .navigationTitle("Review correction")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task { await load() }
-        .confirmationDialog(
+        .alert(
             choice == true ? "Apply this correction?" : "Decline this correction?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
@@ -68,6 +92,7 @@ struct CorrectionApprovalScreen: View {
                     Task { await decide(choice) }
                 }
             }
+            Button("Cancel", role: .cancel) { choice = nil }
         } message: {
             Text("This applies only to the exact correction you reviewed. Nest does not transfer money.")
         }
@@ -82,8 +107,10 @@ struct CorrectionApprovalScreen: View {
             Text(correction.replacement == nil ? "Undo the original entry" : "Replace the original entry")
                 .font(.headline)
             Text("The original remains in financial history. A reversal cancels its effect on your balance.")
-            NavigationLink("Review original entry") {
+            NavigationLink {
                 MoneyDetailScreen(session: session, member: member, eventId: correction.sourceEventId)
+            } label: {
+                QuietActionLabel("Review original entry")
             }
         }
         switch correction.replacement {
@@ -105,9 +132,11 @@ struct CorrectionApprovalScreen: View {
     private func outcome(_ approval: CorrectionApproval) -> some View {
         if let receipt = approval.receipt {
             Text("Correction recorded.")
-            NavigationLink("View recorded correction") {
+            NavigationLink {
                 MoneyDetailScreen(
                     session: session, member: member, eventId: receipt.replacementEventId ?? receipt.reversalEventId)
+            } label: {
+                QuietActionLabel("View recorded correction")
             }
         } else if approval.status == .denied {
             Text("Correction declined. No correction was recorded by this approval.")
