@@ -62,11 +62,13 @@ other privileged paths and Auth configuration remain M9 work. See the
 Source `956cd927` is pushed. Routine CI37207407493 rejected its missing new
 migration checksum manifest entry; the omission is now corrected, without changing
 the verified SQL. The four focused manifest tests pass locally. Deep
-integration37207534599 is pending; it was explicitly dispatched for the touched
-database invariants. Corrected-source `3b141cc5` passes routine CI37207727428,
+integration37207534599 now passes:23 core HTTP/database,50 terminal-conflict and
+1,231 database/RLS cases, zero failures/skips, including all seven new regressions.
+[CI results](ci-results.json) retain the actual labels/counts. It was explicitly
+dispatched for the touched database invariants. Corrected-source `3b141cc5` passes routine CI37207727428,
 including formatting, limits, typechecking, the Edge entry-point check, all four
 manifest cases and existing focused unit/core integration checks. The migration
-SQL and regression source are unchanged from the running deep integration source.
+SQL and regression source are unchanged from the successful deep integration source.
 
 Hosted migration version `20261004135633` is recorded separately from the source
 filename timestamp; equality was checked from actual compiled bodies, not inferred
