@@ -45,10 +45,25 @@ receipt execution, phone behavior or the exact candidate-selection race interlea
 ## Hosted and CI status
 
 The authorized `nest-test` project (`tkjixmujjoustdiedfmw`) was read as healthy and
-still had the vulnerable legacy definitions. A pre-change digest snapshot covers
-all52 financial events, allocations, ledger, upload registry, native intents and
-Storage metadata. No hosted migration or fixture mutation has occurred yet.
-Current-source routine and deep-integration CI remain pending submission.
+still had the vulnerable legacy definitions. The verified migration is now applied
+only there. Before/after digests exactly match all52 financial events, allocations,
+ledger, upload registry, native intents and Storage metadata. Both hosted function
+bodies match the local migration, empty search paths remain and anonymous EXECUTE
+is denied while authenticated EXECUTE remains. No hosted fixture mutation occurred.
+[Hosted proof](hosted-proof.json) distinguishes definition/ACL/digest checks from
+live Auth, Storage HTTP and native behavior.
+
+Hosted security advisors still report81 authenticated security-definer warnings,
+61 RLS-without-policy informational findings and the existing leaked-password
+protection warning. These are retained findings, not a clean-schema claim; the
+other privileged paths and Auth configuration remain M9 work. See the
+[privileged-function guidance](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable).
+
+Source `956cd927` is pushed. Routine CI37207407493 rejected its missing new
+migration checksum manifest entry; the omission is now corrected, without changing
+the verified SQL. The four focused manifest tests pass locally. Deep
+integration37207534599 is pending; it was explicitly dispatched for the touched
+database invariants. Current corrected-source CI remains pending push.
 
 No production action, purchase, new beta, merge or live AI enablement occurred.
 M1–M9 remain incomplete;50 other legacy public privileged functions and deeper
