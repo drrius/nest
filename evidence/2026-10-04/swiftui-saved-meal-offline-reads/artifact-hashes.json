@@ -1,6 +1,9 @@
 {
   "files": {
-    "README.md": "21c0f4517d7c0e7c12cd3c07fb5fbc3a5ce3ca25e2e821bd9d277403e383ae59",
+    "README.md": "ab9d3e0f5760e305d434bab6dad9707d9a8164d40e620e0d39a153368ef912e8",
+    "ci-native-excerpt.txt": "cd4b2efedc46e28d1a24e17faaeab5ab6ea2766b32f4e469c42fbec099321206",
+    "ci-native.json": "0370fa49fc4f430c9f491ef2c3561d5a390e5718470584e0667276725f313724",
+    "ci-routine.json": "297796664f8188f04e65860b6df5704df257eed3e6284d33146fc6ba88e39067",
     "core-test-excerpt.txt": "6d334be052dc93d45ee9d6b1a91553c04f149a2813347498fef3a12737a72b34",
     "final-native-inputs.json": "c238025b2be9c456bafbd10069d526e43f75fb62f961d3b5a76ad124505f4cf7",
     "final-offline-library.png": "2ecb25e4c53df4780e6b91bb9dd5e64428d2c221d5e51df6077a9f1d53424382",
@@ -30,5 +33,5 @@
     "revocation-tests.json": "1963e28e2ff73b58b49e65e3d4a35e1879422d29cba5e461db245bf8b9c540af",
     "setup.json": "1b5bf3e1f3e9e1dcf1f6390194b3d2fe75c1c0660ec14ddd64d04b28e0260b09"
   },
-  "note": "Hashes of the repository-formatted artifacts; raw-export-hashes.json records original Mac bytes."
+  "note": "Hashes of repository-formatted proof artifacts."
 }
