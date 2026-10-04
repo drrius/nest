@@ -3,6 +3,7 @@ import { verifyLegacyBoundaries } from "./legacy-boundary-rehearsal.mjs";
 import { verifyLegacyAttachmentBoundaries } from "./legacy-attachment-boundaries.mjs";
 import { verifyLegacyReceiptParents } from "./legacy-receipt-parent-boundaries.mjs";
 import { verifyLegacyRoutineBoundaries } from "./legacy-routine-boundaries.mjs";
+import { verifyLegacyRoutineDefinitions } from "./legacy-routine-definition-boundaries.mjs";
 import { verifyPendingLegacyJobs } from "./pending-legacy-jobs-rehearsal.mjs";
 import { verifyOfflineEpochAi } from "./offline-epoch-ai-rehearsal.mjs";
 import { verifyRoutineRepair } from "./routine-repair-rehearsal.mjs";
@@ -132,6 +133,7 @@ try {
   report.legacyAttachmentBoundaries = verifyLegacyAttachmentBoundaries(db);
   report.legacyReceiptParents = verifyLegacyReceiptParents(db);
   report.legacyRoutineBoundaries = verifyLegacyRoutineBoundaries(db);
+  report.legacyRoutineDefinitions = verifyLegacyRoutineDefinitions(db);
   report.routineRepair = verifyRoutineRepair(db);
   report.legacyJobPause = verifyLegacyJobPause(db);
   report.pendingLegacyJobs = verifyPendingLegacyJobs(db);

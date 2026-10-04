@@ -1,0 +1,139 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "before": {
+    "finance": {
+      "ledgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+      "financeHash": "04f76d23e4b97279c7b73dc214e0423a",
+      "intentsHash": "8dc39e89b63ddf6eb02ebeaa867bf2f9",
+      "storageHash": "3767ebe7738000c4de18c8e5841d9950",
+      "uploadsHash": "7547027c205b8f910c5635665f36de41",
+      "allocationsHash": "8442d1e55a252f4722177220f18bbbb7",
+      "financialEvents": 52
+    },
+    "history": {
+      "completions": 5,
+      "completion_hash": "aeb6b88b69fe1eabb10f90a026f18daf",
+      "occurrence_hash": "4c85346f9617ff96a39c6f90bcf534d5",
+      "command_receipt_hash": "e82ba255ad3b50d1bb3d6945767c6c9f",
+      "unsupported_completion_dates": 0
+    },
+    "routines": {
+      "count": 19,
+      "digest": "3100f5fecd0ced1c7ed036e288d8a24d"
+    },
+    "definitions": [
+      {
+        "function": "create_routine(uuid,text,uuid,text,text,jsonb,uuid,uuid,text,uuid,text,date,date)",
+        "bodySHA256": "9be3690a94881a654da7da5709de9af274cb735028ca6f59314ea9ecee2c5e67",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "function": "create_routine_once(uuid,text,jsonb)",
+        "bodySHA256": "e7c15b6b6abf70fc7eaa5989aac8d5d31ce4c4da8639da01f78d3cbad5ce70b5",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "function": "edit_routine_definition(uuid,timestamp with time zone,text,jsonb)",
+        "bodySHA256": "eb47d1665e5f94c6ecf5f106434fac23f7e4ff77027981ab21a83805a8df29dd",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "function": "update_routine_definition(uuid,text,text,uuid,uuid,text,uuid,uuid,text,jsonb,text,date,date,boolean)",
+        "bodySHA256": "d20424c614aef722a3d040808b5efbf489a050ece7938374f8685a82eaf4e531",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": false
+      }
+    ]
+  },
+  "after": {
+    "finance": {
+      "ledgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+      "financeHash": "04f76d23e4b97279c7b73dc214e0423a",
+      "intentsHash": "8dc39e89b63ddf6eb02ebeaa867bf2f9",
+      "storageHash": "3767ebe7738000c4de18c8e5841d9950",
+      "uploadsHash": "7547027c205b8f910c5635665f36de41",
+      "allocationsHash": "8442d1e55a252f4722177220f18bbbb7",
+      "financialEvents": 52
+    },
+    "history": {
+      "completions": 5,
+      "completion_hash": "aeb6b88b69fe1eabb10f90a026f18daf",
+      "occurrence_hash": "4c85346f9617ff96a39c6f90bcf534d5",
+      "command_receipt_hash": "e82ba255ad3b50d1bb3d6945767c6c9f",
+      "unsupported_completion_dates": 0
+    },
+    "routines": {
+      "count": 19,
+      "digest": "3100f5fecd0ced1c7ed036e288d8a24d"
+    },
+    "definitions": [
+      {
+        "function": "create_routine(uuid,text,uuid,text,text,jsonb,uuid,uuid,text,uuid,text,date,date)",
+        "bodySHA256": "9be3690a94881a654da7da5709de9af274cb735028ca6f59314ea9ecee2c5e67",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "function": "create_routine_once(uuid,text,jsonb)",
+        "bodySHA256": "e7c15b6b6abf70fc7eaa5989aac8d5d31ce4c4da8639da01f78d3cbad5ce70b5",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "function": "edit_routine_definition(uuid,timestamp with time zone,text,jsonb)",
+        "bodySHA256": "eb47d1665e5f94c6ecf5f106434fac23f7e4ff77027981ab21a83805a8df29dd",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "function": "update_routine_definition(uuid,text,text,uuid,uuid,text,uuid,uuid,text,jsonb,text,date,date,boolean)",
+        "bodySHA256": "d20424c614aef722a3d040808b5efbf489a050ece7938374f8685a82eaf4e531",
+        "configuration": ["search_path=\"\""],
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": false
+      }
+    ]
+  },
+  "allFourBodiesAndClientACLsMatchCompiledChain": true,
+  "allRetainedDigestsEqual": true,
+  "advisors": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 61,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "level": "WARN",
+      "count": 81,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "successfulHostedMemberMutationNotAttempted": true,
+  "nativeExecutionNotClaimed": true
+}

@@ -123,3 +123,13 @@ match audited source, and all retained local/hosted history is unchanged. Toolin
 CI passes source2e114f04 in run37213217127. Twenty full-chain cases have local evidence,
 not a new deep/native run. Forty-four other public legacy functions/deeper private paths remain.
 [Evidence](../../evidence/2026-10-04/legacy-routine-boundaries/README.md).
+
+Three further legacy routine definition entry points now pass52 rolled-back
+full-chain checks and nine real hosted denial probes, including the revoked
+unversioned primitive. Four compiled/current hosted bodies and client ACLs match;
+all retained local/hosted rows and complete finance/attachments remain unchanged.
+Forty-one other public legacy entries and deeper private paths remain. Native
+manual-link evidence checkpoint6d53901e also passes routine37217179614. New definition
+checks are locally verified; this tooling checkpoint's routine CI is pending,
+with no new deep/native execution or provider/phone acceptance claimed.
+[Evidence](../../evidence/2026-10-04/legacy-routine-definition-boundaries/README.md).

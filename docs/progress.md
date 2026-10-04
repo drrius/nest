@@ -275,3 +275,24 @@ Nest37213542541 SUCCESS. Lost replies, offline/concurrent/private-AI variants,
 maximum-text confirmation/finish tapping, full accessibility and both phones remain
 open; M7 acceptance is incomplete. No new expense, beta, production mutation,
 purchase, worker activation or merge occurred.
+
+## Retained routine definition boundaries
+
+Three further legacy public warning entries now have a bounded source/guard trace,
+52 actual rolled-back full-chain database checks and nine real hosted Auth/PostgREST
+denials. Foreign/absent membership, foreign tenant references, patch injection,
+revoked unversioned update, exact creation/edit replay, changed creation identity,
+instruction clearing and stale edits pass. Four fresh hosted bodies and client
+grants match the compiled305-migration chain. All original local/hosted routine,
+completion, receipt, full financial and attachment rows/digests remain unchanged.
+No defect requiring a shipping SQL change was found in these tested paths.
+[Evidence](../evidence/2026-10-04/legacy-routine-definition-boundaries/README.md).
+
+The52 new cases have local execution evidence; routine CI for this checkpoint is
+pending, and no new deep/native run is claimed. Native manual-link evidence source
+6d53901e now passes Nest37217179614; shipping native source remains177d0a70.
+Fresh hosted advisor counts remain61INFO/81 privileged WARN/one leaked-password
+WARN. Forty-one other public legacy entries plus deeper private paths, full safe
+cutover and live/provider/phone acceptance remain. This is bounded M9 progress;
+all previously unchecked milestones stay open. No successful hosted mutation,
+production action, beta, purchase, worker activation or merge occurred.

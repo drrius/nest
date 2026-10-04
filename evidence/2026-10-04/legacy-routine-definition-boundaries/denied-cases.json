@@ -1,0 +1,326 @@
+{
+  "cases": [
+    {
+      "function": "create_routine",
+      "actor": 9831,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 9833,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": null,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 1,
+      "role": "anon",
+      "reason": "anonymous-execution",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 9831,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 9833,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": null,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "anon",
+      "reason": "anonymous-execution",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 9831,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 9833,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": null,
+      "role": "authenticated",
+      "reason": "foreign-or-absent-member",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "anon",
+      "reason": "anonymous-execution",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-area",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-area",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-area",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-pet",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-pet",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-pet",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-assignee",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-assignee",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-assignee",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-rotation",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-rotation",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "foreign-rotation",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "tenant-field-injection",
+      "denied": true
+    },
+    {
+      "function": "update_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "revoked-unversioned-primitive",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-area",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-area",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-area",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-pet",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-pet",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-pet",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-assignee",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-assignee",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-assignee",
+      "denied": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-rotation",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-rotation",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "foreign-rotation",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "tenant-field-injection",
+      "denied": true
+    },
+    {
+      "function": "update_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "revoked-unversioned-primitive",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "changed-retry-payload",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "other-member-retry-identity",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "changed-retry-payload",
+      "denied": true
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "other-member-retry-identity",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "role": "authenticated",
+      "reason": "stale-version",
+      "denied": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "role": "authenticated",
+      "reason": "stale-version",
+      "denied": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "cases": [
+    {
+      "function": "create_routine",
+      "actor": 1,
+      "createdOneRoutineWithTwoOpenOccurrences": true,
+      "exactReplayVerified": false
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 1,
+      "createdOneRoutineWithTwoOpenOccurrences": true,
+      "exactReplayVerified": true
+    },
+    {
+      "function": "create_routine",
+      "actor": 2,
+      "createdOneRoutineWithTwoOpenOccurrences": true,
+      "exactReplayVerified": false
+    },
+    {
+      "function": "create_routine_once",
+      "actor": 2,
+      "createdOneRoutineWithTwoOpenOccurrences": true,
+      "exactReplayVerified": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 1,
+      "exactReplayAndExplicitClearPassed": true
+    },
+    {
+      "function": "edit_routine_definition",
+      "actor": 2,
+      "exactReplayAndExplicitClearPassed": true
+    }
+  ]
+}
