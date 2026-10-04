@@ -2370,5 +2370,19 @@
     "pushNotVerified": true,
     "publicSignupAndFixtureProviderReleaseDecisionPending": true,
     "partnerAppleLinkingUnverified": true
+  },
+  "nativeGuardReview": {
+    "entryPoints": 21,
+    "compiledBodyMatches": 34,
+    "migrationInputs": 302,
+    "focusedDatabaseTestsPassed": 41,
+    "focusedDatabaseTestsFailed": 0,
+    "focusedDatabaseTestsSkipped": 0,
+    "hostedReadOnlyCasesPassed": 25,
+    "nativeOrDeviceVerificationClaimed": false,
+    "legacySemanticReviewComplete": false,
+    "broaderPrivateSemanticReviewComplete": false,
+    "warningSuppressionPerformed": false,
+    "evidence": "native-guard-review.md"
   }
 }

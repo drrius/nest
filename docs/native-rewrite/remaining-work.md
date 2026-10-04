@@ -54,6 +54,8 @@ Native food/cooking Save and committed-reply/restart/exact retry now pass real t
 - [ ] Configure Apple push provider credentials, test worker behavior, enroll both phones and verify all six notification kinds. Push is currently disabled.
 - [ ] Reconcile remaining test-environment security/external-writer checks and safe populated legacy fixtures. The fresh read-only hosted inventory now proves public RLS coverage, private-schema REST rejection, source-derived worker client-denial grants and zero database cron jobs. It also records81 public privileged-function warnings requiring semantic review, ten unexposed private tables without RLS, enabled public signup/email fixtures and the paid leaked-password protection limitation. Live external writers and production remain uninspected. [Evidence](../../evidence/2026-10-04/test-environment-security-inventory/README.md).
 
+The21 Nest warnings now have an actual delegated-guard review,34 compiled-chain body matches,41 focused database checks and25 hosted read-only access probes passing. The60 legacy/broader private semantic review, signup/provider choices and full hosted/runtime acceptance remain incomplete; no advisor warning was suppressed. [Guard evidence](../../evidence/2026-10-04/test-environment-security-inventory/native-guard-review.md).
+
 Continue independent native work while these inputs are unavailable. Do not purchase services or modify production to clear a test blocker.
 
 ## 4. Deliver and accept a current private build

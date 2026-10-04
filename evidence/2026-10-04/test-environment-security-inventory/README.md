@@ -24,6 +24,8 @@ Security advisors report three groups:
 
 There are also140 authenticated-executable private security-definer functions. Unexposed schemas do not excuse authorization inside helpers reached from public wrappers. Full helper/public/legacy semantic review remains incomplete.
 
+The later [narrow Nest guard review](native-guard-review.md) now traces all21 Nest public entry points and their delegated actor/membership guards. All34 inspected public/direct-helper bodies match the actual compiled302-migration local chain;41 focused database tests and25 hosted read-only member/outsider/anonymous/unjoined-household probes pass. This investigates the21 findings without suppressing them or claiming the60 legacy/broader private warnings are resolved.
+
 ## Evidence and limitations
 
 [Report](report.json) retains sanitized advisor/catalog/migration/function metadata. [Catalog queries](catalog-queries.sql) contain only SELECT metadata reads. [Public configuration](public-config.json) records the allowlisted Auth response and actual private-schema rejection. The REST OpenAPI root initially returned401 “Secret API key required”; that result was not treated as schema proof. The subsequent zero-row table request provided the406 evidence without a secret key or user session.
