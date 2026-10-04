@@ -1,0 +1,15 @@
+{
+  "ascAppIdentifier": "6814119349",
+  "build": {
+    "appVersion": "0.1.0",
+    "buildNumber": "16",
+    "processingState": "VALID",
+    "internalState": "IN_BETA_TESTING",
+    "externalState": "READY_FOR_BETA_SUBMISSION",
+    "uploadedDate": "2026-10-03T21:05:47-07:00",
+    "expired": false
+  },
+  "verifiedAt": "2026-10-04T04:07:08Z",
+  "partnerTesterAccess": "unverified",
+  "phoneInstallation": "unverified"
+}
