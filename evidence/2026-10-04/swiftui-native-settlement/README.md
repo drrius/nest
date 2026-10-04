@@ -94,7 +94,11 @@ exact−1.01/+1.01 shares. [Build](wording-build.json), [installation](wording-i
 zero balances remain unchanged. The updated app returns through Back to Money root,
 then ordinary Today with64 empty journals. [Final updated app](wording-restored.png),
 [state](wording-restored-state.json). No new local unit test run is claimed for this
-copy-only change; current-head CI is recorded separately when it finishes.
+copy-only change. Exact source `c45b265b57f9d6b05c591fa1096591171b17d990` now
+passes [Nest37227213383](https://github.com/drrius/nest/actions/runs/37227213383)
+and [SwiftUI37227213372](https://github.com/drrius/nest/actions/runs/37227213372):
+491 Foundation cases/41 explicit skips and409 signed-native cases/11 explicit
+skips, zero failures, strict format/limits and actual app signing.
 
 ## Observer corrections and limits
 

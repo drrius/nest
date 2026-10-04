@@ -16,6 +16,7 @@ struct RefundScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var confirmCancel = false
+    @FocusState private var focusedField: String?
 
     var body: some View {
         Form {
@@ -46,6 +47,12 @@ struct RefundScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Record refund")
+        .scrollDismissesKeyboard(.interactively)
+        .modifier(
+            MoneyDraftKeyboard(
+                focus: $focusedField, review: keyboardReview,
+                reviewLabel: "Review refund", reviewIdentifier: "refund.keyboard-review")
+        )
         .task { await load() }
         .confirmationDialog("Cancel this pending refund?", isPresented: $confirmCancel) {
             Button("Cancel pending refund", role: .destructive) { Task { await resolve(cancel: true) } }
@@ -59,7 +66,7 @@ struct RefundScreen: View {
             Text(source.source.event.description).font(.headline)
             Text("Record money returned for this expense. The original entry stays in your history.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
-            TextField("Description", text: $description)
+            MoneyDraftField(label: "Description", text: $description, focus: $focusedField)
             Picker("Received by", selection: $payer) {
                 ForEach(source.remaining, id: \.memberId) { share in
                     Text(name(share.memberId)).tag(Optional(share.memberId))
@@ -68,17 +75,18 @@ struct RefundScreen: View {
             ForEach(source.remaining, id: \.memberId) { share in
                 VStack(alignment: .leading) {
                     Text("\(name(share.memberId)) · up to \(share.centimes.absoluteCHF)").font(.caption)
-                    TextField(
-                        "Refund share (CHF)",
+                    MoneyDraftField(
+                        label: share.memberId == member.userId
+                            ? "Your refund share (CHF)" : "Partner’s refund share (CHF)",
                         text: Binding(
-                            get: { shares[share.memberId] ?? "" }, set: { shares[share.memberId] = $0 })
+                            get: { shares[share.memberId] ?? "" }, set: { shares[share.memberId] = $0 }),
+                        focus: $focusedField, keyboard: .decimalPad, focusKey: share.memberId.uuidString
                     )
-                    .keyboardType(.decimalPad)
                 }
             }
             DatePicker("Refund date", selection: $date, displayedComponents: .date)
-            TextField("Note (optional)", text: $note, axis: .vertical).lineLimit(2...5)
-            Button("Review refund") { review(source) }
+            MoneyDraftField(label: "Note (optional)", text: $note, focus: $focusedField)
+            Button("Review refund") { reviewDraft() }
         }
     }
 
@@ -118,6 +126,18 @@ struct RefundScreen: View {
     }
 
     private func name(_ id: UUID) -> String { id == member.userId ? "You" : "Your partner" }
+
+    private var editingDraft: Bool { saved == nil && reviewed == nil && source?.refundable == true }
+    private var keyboardReview: (() -> Void)? {
+        guard editingDraft, !working else { return nil }
+        return { reviewDraft() }
+    }
+
+    private func reviewDraft() {
+        guard let source else { return }
+        focusedField = nil
+        review(source)
+    }
 
     private func load() async {
         await perform {

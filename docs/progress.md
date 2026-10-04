@@ -338,8 +338,32 @@ pass; normal/light Today/data/Keychain and64 empty journals are restored.
 The payment journeys are bound to both-CI-green177d0a70. A separately source-matched
 signed Mac build/native detail check now clarifies signed balance changes: negative
 can mean owed less, positive can mean owing less. Only this explanation changes
-among1,041 native inputs; no new local unit run is claimed. Current-head CI is
-pending. Native lost-reply/cancellation/private approval variants, broader member/
+among1,041 native inputs; no new local unit run is claimed. Exact-sourcec45b265b
+passes Nest37227213383/SwiftUI37227213372:491 Foundation/41 explicit skips,
+409 signed-native/11 explicit skips, zero failures, strict formatting/limits and
+actual signing. Native lost-reply/cancellation/private approval variants, broader member/
 concurrency families, full accessibility/radio loss, two native clients and both
 phones remain open. M7 and other unchecked milestones remain incomplete. No actual
 transfer, beta, production change, purchase, worker activation or merge occurred.
+
+## Native refund/correction and keyboard controls — 4 October
+
+Actual refund/correction forms now have persistent distinct field labels and
+44-point Done/Review controls above the keyboard. One native fictional1-centime
+refund and one5-centime replacement pass normal/maximum-text review, single Save,
+actual restart, exact receipt reopen and native detail/shares/Done. An active
+refund honestly blocks correction of its original. Both members agree on exact55
+original plus3 appended entries and zero balances; original financial/allocation/
+ledger/claimed Storage metadata digests match. Private operation receipts remain
+owner-only; outsider403/anonymous401. Ordinary normal/light Today, preserved data/
+Keychain/stable origins and all64 scoped journals empty are restored.
+[Evidence](../evidence/2026-10-04/swiftui-native-refund-correction/README.md).
+
+Both journey and final1041-input signed Mac builds pass strict formatting/limits
+and six native recovery/preflight/account-boundary tests,0failures/0skips. Final
+source additionally removes duplicate share headings and receives a separate
+unsaved native check. Current feature commit CI is pending; parentc45b CI cannot
+cover these changes. Native interruption/cancellation/private approval variants,
+broader races/full accessibility/radio loss/two native clients/live AI/both phones
+remain open. M7 and other unchecked milestones remain incomplete. No beta, merge,
+production change, actual transfer, purchase or worker activation occurred.

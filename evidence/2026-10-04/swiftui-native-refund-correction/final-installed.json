@@ -1,0 +1,7 @@
+{
+  "signatureValid": true,
+  "installedExecutableSHA256": "7e5222444a3de51b8fe769bfd3951a2278ce3197ec45fe6c041c988ad38c60ad",
+  "matchesSourceMatchedSignedBuild": true,
+  "sameScopeAnd64EmptyJournals": true,
+  "dataAndKeychainNotRemoved": true
+}

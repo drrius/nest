@@ -34,6 +34,17 @@ Latest bounded progress: two native daily/shared creations now pass committed-re
 
 Existing balance/history, ordinary expenses, refunds/corrections, settlements, recurring controls and retained-draft dismissal have implementation and bounded verification. That does not close the items above.
 
+Native refund/replacement now additionally pass normal/maximum-text keyboard
+Review, one Save, actual restart, exact receipt reopening, result detail/shares
+and normal Done against nest-test. An active refund blocks correction of its
+original. Both members agree on55 original plus3 appended entries, zero balances
+and exact retained financial/allocation/ledger/claimed Storage metadata digests;
+private operation receipts remain owner-only. Both forms now have persistent
+distinct labels and keyboard Done/Review. Six final-source signed native tests
+and strict formatting/limits pass. [Evidence](../../evidence/2026-10-04/swiftui-native-refund-correction/README.md).
+Hosted interrupted replies/cancellation/private approval families, broader races,
+full accessibility/two native clients/live AI and both phones remain open.
+
 An actual native ordinary-expense save/review/edit/detail/restart journey now passes against fictional test data. Both members see exactly one event with correct zero-sum balances, while the operation receipt stays private to its owner. This closes that bounded check; it does not close full approvals or both-phone acceptance. A later real native/hosted pass now also proves ordinary expense lost-reply/restart recovery, cancellation after recording, cancellation before delivery and rejection of a late cancelled packet. Both members' exact centime effects and owner-only receipts pass, and all completed local slots are explicitly cleared. [Recovery evidence](../../evidence/2026-10-04/swiftui-expense-uncertain-recovery/README.md). Other financial approval/recurring retries remain open. The later [history pass](../../evidence/2026-10-04/swiftui-financial-history/README.md) now proves50+1 native loading, failed-page retention, exact-cursor retry, oldest detail, preserved navigation and explicit refresh. Its35 personal fictional entries leave balances unchanged and all16 earlier events intact. [Evidence](../../evidence/2026-10-03/swiftui-native-expense-journey/README.md).
 
 An actual native photo picker/private Storage check now verifies uploader-only exact normalized bytes, restart/client-update persistence, interrupted unposted-receipt removal and exact explicit retry at largest text. The new object is removed normally; both complete financial histories and the existing claimed receipt remain intact. A misleading removal error message is fixed, with nine Foundation/three signed native tests passing. [Receipt evidence](../../evidence/2026-10-04/swiftui-native-receipt-recovery/README.md). Both exact-source workflows now pass at `a0458304` (490 Foundation/41 skips,409 signed-native/11 skips, zero failures). An existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry, with unchanged complete finance/Storage. [Viewer evidence](../../evidence/2026-10-04/swiftui-claimed-receipt-viewer/README.md) records observer corrections without repeated opens or exported signed URLs. PDF picking, new posted attachment, partner native viewer, full accessibility, live AI handoff and phones remain open; no new expense or beta was created.

@@ -1,0 +1,34 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e15,Key,q,,4.5,458,37,54,True,True
+e16,Key,w,,41.5,458,36.5,54,True,True
+e17,Key,e,,78,458,37,54,True,True
+e18,Key,r,,115,458,36.5,54,True,True
+e19,Key,t,,151.5,458,37,54,True,True
+e20,Key,y,,188.5,458,37,54,True,True
+e21,Key,u,,225.5,458,36.5,54,True,True
+e22,Key,i,,262,458,37,54,True,True
+e23,Key,o,,299,458,36.5,54,True,True
+e24,Key,p,,335.5,458,37,54,True,True
+e25,Key,a,,23,512,36.5,54,True,True
+e26,Key,s,,59.5,512,37,54,True,True
+e27,Key,d,,96.5,512,37,54,True,True
+e28,Key,f,,133.5,512,36.5,54,True,True
+e29,Key,g,,170,512,37,54,True,True
+e30,Key,h,,207,512,36.5,54,True,True
+e31,Key,j,,243.5,512,37,54,True,True
+e32,Key,k,,280.5,512,37,54,True,True
+e33,Key,l,,317.5,512,36.5,54,True,True
+e53,Button,Done,,21.000000000000007,361,43.99999999999999,44,True,True
+e57,Button,Review correction,,310,361,44,44,True,True
+e61,NavigationBar,Entry details,,0,20,375,54,True,True
+e62,Button,Entry details,,16,20,44,44,True,True
+e63,StaticText,Correct entry,,123.5,29,128,26,True,True
+e66,Cell,Note (optional),,16,0,343,382,True,True
+e68,StaticText,Note (optional),,32,0,273.5,45,True,True
+e69,TextField,Note (optional),Fictional native correction QA; no actual transfer.,32,51,311,312,True,True
+e75,Cell,Review correction,,16,417,343,155.5,True,True
+e77,Button,Review correction,,16,417,343,155.5,True,True
+e82,Button,Today,,25,588,88.25,54,True,True
+e84,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e86,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e88,Button,Money,,261.75,588,88.25,54,True,True

@@ -1,0 +1,21 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "scope": "55 original fictional financial events; newly appended refund/reversal/replacement excluded",
+  "before": {
+    "claimedStorageHash": "3767ebe7738000c4de18c8e5841d9950",
+    "originalEventCount": 55,
+    "originalLedgerHash": "1870967e6baf4b25a4a11f941969cf3f",
+    "originalFinancialHash": "9109549e14ea44dfc8298bdc814aa0f1",
+    "originalAllocationHash": "8c86340b6309daa922e06f8ad74acd81"
+  },
+  "after": {
+    "claimedStorageHash": "3767ebe7738000c4de18c8e5841d9950",
+    "originalEventCount": 55,
+    "originalLedgerHash": "1870967e6baf4b25a4a11f941969cf3f",
+    "originalFinancialHash": "9109549e14ea44dfc8298bdc814aa0f1",
+    "originalAllocationHash": "8c86340b6309daa922e06f8ad74acd81"
+  },
+  "allDigestsEqual": true,
+  "claimedStorageProof": "Retained row metadata digest; no new byte-download proof",
+  "productionTouched": false
+}

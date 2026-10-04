@@ -1,0 +1,11 @@
+{
+  "target": {
+    "width": 44,
+    "height": 44,
+    "y": 361,
+    "x": 310
+  },
+  "cornerPoint": [351, 364],
+  "textSize": "largest",
+  "exactKeyboardIdentifier": "refund.keyboard-review"
+}

@@ -1,0 +1,13 @@
+{
+  "target": {
+    "y": 361,
+    "width": 44,
+    "x": 310,
+    "height": 44
+  },
+  "cornerPoint": [351, 364],
+  "textSize": "largest",
+  "selectorResolution": "actualKeyboardToolbarBoundsAndLabel",
+  "requestedKeyboardIdentifier": "correction.keyboard-review",
+  "actualTargetLabel": "Review correction"
+}

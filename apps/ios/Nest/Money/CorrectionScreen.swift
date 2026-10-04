@@ -12,6 +12,7 @@ struct CorrectionScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var confirmCancel = false
+    @FocusState private var focusedField: String?
 
     var body: some View {
         Form {
@@ -47,6 +48,12 @@ struct CorrectionScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Correct entry")
+        .scrollDismissesKeyboard(.interactively)
+        .modifier(
+            MoneyDraftKeyboard(
+                focus: $focusedField, review: keyboardReview,
+                reviewLabel: "Review correction", reviewIdentifier: "correction.keyboard-review")
+        )
         .task { await load() }
         .confirmationDialog("Cancel this pending correction?", isPresented: $confirmCancel) {
             Button("Cancel pending correction", role: .destructive) { Task { await resolve(cancel: true) } }
@@ -70,22 +77,19 @@ struct CorrectionScreen: View {
         if draft?.replace == true {
             Section("Replacement") {
                 field("Description", key: \.description)
-                field("Amount (CHF)", key: \.amount).keyboardType(.decimalPad)
+                field("Amount (CHF)", key: \.amount)
                 Picker("Payer", selection: Binding(get: { draft?.payer ?? member.userId }, set: { draft?.payer = $0 }))
                 {
                     ForEach(source.source.shares) { Text(name($0.memberId)).tag($0.memberId) }
                 }
                 if source.source.event.kind != .openingBalance {
                     ForEach(source.source.shares) { share in
-                        VStack(alignment: .leading) {
-                            Text("\(name(share.memberId)) share (CHF)").font(.caption)
-                            TextField(
-                                "Share",
-                                text: Binding(
-                                    get: { draft?.shares[share.memberId] ?? "" },
-                                    set: { draft?.shares[share.memberId] = $0 })
-                            ).keyboardType(.decimalPad)
-                        }
+                        MoneyDraftField(
+                            label: share.memberId == member.userId ? "Your share (CHF)" : "Partner’s share (CHF)",
+                            text: Binding(
+                                get: { draft?.shares[share.memberId] ?? "" },
+                                set: { draft?.shares[share.memberId] = $0 }),
+                            focus: $focusedField, keyboard: .decimalPad, focusKey: share.memberId.uuidString)
                     }
                 }
                 field("Date (YYYY-MM-DD)", key: \.date)
@@ -99,10 +103,9 @@ struct CorrectionScreen: View {
     }
 
     private func field(_ label: String, key: WritableKeyPath<CorrectionDraft, String>) -> some View {
-        VStack(alignment: .leading) {
-            Text(label).font(.caption)
-            TextField(label, text: Binding(get: { draft?[keyPath: key] ?? "" }, set: { draft?[keyPath: key] = $0 }))
-        }
+        MoneyDraftField(
+            label: label, text: Binding(get: { draft?[keyPath: key] ?? "" }, set: { draft?[keyPath: key] = $0 }),
+            focus: $focusedField, keyboard: key == \.amount ? .decimalPad : .default)
     }
 
     private func summary(_ input: CorrectionInput) -> some View {
@@ -156,6 +159,10 @@ struct CorrectionScreen: View {
     }
 
     private func name(_ id: UUID) -> String { id == member.userId ? "You" : "Your partner" }
+    private var keyboardReview: (() -> Void)? {
+        guard saved == nil, reviewed == nil, draft != nil, !working else { return nil }
+        return { review() }
+    }
     private func load() async {
         await perform {
             let current = try session.expenseContext()
@@ -176,6 +183,7 @@ struct CorrectionScreen: View {
         }
     }
     private func review() {
+        focusedField = nil
         do {
             guard let draft, let source else { throw NestAPIFailure.invalid }
             reviewed = try draft.reviewed(context: source, member: member)

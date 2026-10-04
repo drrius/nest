@@ -1,0 +1,45 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e15,Key,Q,,4.5,458,37,54,True,True
+e16,Key,W,,41.5,458,36.5,54,True,True
+e17,Key,E,,78,458,37,54,True,True
+e18,Key,R,,115,458,36.5,54,True,True
+e19,Key,T,,151.5,458,37,54,True,True
+e20,Key,Y,,188.5,458,37,54,True,True
+e21,Key,U,,225.5,458,36.5,54,True,True
+e22,Key,I,,262,458,37,54,True,True
+e23,Key,O,,299,458,36.5,54,True,True
+e24,Key,P,,335.5,458,37,54,True,True
+e25,Key,A,,23,512,36.5,54,True,True
+e26,Key,S,,59.5,512,37,54,True,True
+e27,Key,D,,96.5,512,37,54,True,True
+e28,Key,F,,133.5,512,36.5,54,True,True
+e29,Key,G,,170,512,37,54,True,True
+e30,Key,H,,207,512,36.5,54,True,True
+e31,Key,J,,243.5,512,37,54,True,True
+e32,Key,K,,280.5,512,37,54,True,True
+e33,Key,L,,317.5,512,36.5,54,True,True
+e53,Button,Done,,21.000000000000007,361,43.99999999999999,44,True,True
+e57,Button,Review correction,,310,361,44,44,True,True
+e61,NavigationBar,Entry details,,0,20,375,54,True,True
+e62,Button,Entry details,,16,20,44,44,True,True
+e63,StaticText,Correct entry,,134,31.5,107,21,True,True
+e72,Cell,You share (CHF),,16,16,343,102.5,True,True
+e74,StaticText,You share (CHF),,32,31.0673828125,92.5,14.5,True,True
+e75,StaticText,Your share (CHF),,32,56.9326171875,97.5,14.5,True,True
+e76,TextField,Your share (CHF),0.04,32,77.5,311,22,True,True
+e80,Cell,Your partner share (CHF),,16,118.5,343,102.5,True,True
+e82,StaticText,,,32,133.5673828125,142,14.5,True,True
+e83,StaticText,Partner’s share (CHF),,32,159.4326171875,123,14.5,True,True
+e84,TextField,Partner’s share (CHF),0.01,32,180,311,22,True,True
+e86,Cell,Date (YYYY-MM-DD),,16,221,343,80.5,True,True
+e88,StaticText,Date (YYYY-MM-DD),,32,240,119.5,14.5,True,True
+e89,TextField,Date (YYYY-MM-DD),2026-10-04,32,260.5,311,22,True,True
+e91,Cell,Note (optional),,16,301.5,343,102.5,True,True
+e93,StaticText,Note (optional),,32,320.5,85.5,14.5,True,True
+e94,TextField,Note (optional),Fictional native correction QA; no actual transfer.,32,341,311,44,True,True
+e98,Cell,Review correction,,16,439,343,52,True,True
+e100,Button,Review correction,,16,439,343,52,True,True
+e105,Button,Today,,25,588,88.25,54,True,True
+e107,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e109,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e111,Button,Money,,261.75,588,88.25,54,True,True
