@@ -103,6 +103,13 @@ The next adjacent reschedule boundary now rejects new infinite/unsupported dates
 without rewriting old receipts. Eleven focused database tests and the305-migration
 rehearsal pass, including31 parent/date checks and retained finance. Test-only hosted
 body/ACL/ten negative probes and all retained digests pass. CI report formatting is
-corrected; corrected routine/source deep are pending. Forty-eight other public
+corrected; routine37212616501 and source deep37212413167 pass (23 core,50 conflicts,
+1,239 database/RLS, zero failures/skips). Forty-eight other public
 legacy functions/deeper private paths remain.
 [Evidence](../../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
+
+Pause/resume/archive/skip now have20 actual full-chain local boundary/replay/state
+checks and eight real hosted outsider/anonymous denials. Four fresh hosted bodies
+match audited source, and all retained local/hosted history is unchanged. Tooling
+CI is pending. Forty-four other public legacy functions/deeper private paths remain.
+[Evidence](../../evidence/2026-10-04/legacy-routine-boundaries/README.md).

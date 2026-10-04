@@ -233,7 +233,22 @@ epoch/AI dispatch checks. Manifest55/251 and four manifest tests pass; scoped fo
 lint and source limits pass. Applied only to nest-test (hosted20261004151736): exact body/ACL, ten live negative
 Auth/PostgREST probes and unchanged complete finance/attachments/routine history
 pass. Routine37212413311 caught saved-report formatting, now corrected with passing
-repository format checking. Corrected routine/source deep37212413167 are pending;
+repository format checking. Corrected routine37212616501 passes e2c9b536; source deep37212413167 passes138c1b01
+(23 core,50 conflicts,1,239 database/RLS, zero failures/skips). Migration/tests/tooling
+are unchanged by the evidence correction;
 48 other public legacy functions/deeper private paths remain. [Evidence](../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
 Prior completion evidence checkpoint1a3e060c passes Nest37212140744. M9 remains open;
 no new native run, production mutation, inference, purchase, beta or merge occurred.
+
+## Retained routine lifecycle boundaries
+
+Pause/resume/archive/skip now have a bounded guard trace,20 rolled-back full-chain
+checks and eight real hosted outsider/anonymous denials. Both members' exact repeat
+replies, window/skip state, private recipient reminders and cancellation/restoration
+pass. All original local/hosted routine/closure/full finance/attachment rows or digests
+remain unchanged. Four fresh hosted bodies/ACLs match the audited source. Initial
+helper-parameter and private-reminder observer assumptions were corrected without
+weakening limits/RLS. Focused format/lint pass; tooling CI pending. [Evidence](../evidence/2026-10-04/legacy-routine-boundaries/README.md).
+Forty-four other legacy public functions/deeper private paths remain; this is bounded
+M9 progress, not full semantic/phone/provider acceptance. No shipping SQL, production,
+notification, worker, beta, purchase or merge action occurred.

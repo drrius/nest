@@ -1,0 +1,85 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "functions": [
+    {
+      "function": "archive_routine",
+      "bodyMatchesAuditedOriginal": true,
+      "securityDefiner": true,
+      "emptySearchPath": true,
+      "anonymousExecute": false,
+      "authenticatedExecute": true
+    },
+    {
+      "function": "pause_routine",
+      "bodyMatchesAuditedOriginal": true,
+      "securityDefiner": true,
+      "emptySearchPath": true,
+      "anonymousExecute": false,
+      "authenticatedExecute": true
+    },
+    {
+      "function": "skip_occurrence",
+      "bodyMatchesAuditedOriginal": true,
+      "securityDefiner": true,
+      "emptySearchPath": true,
+      "anonymousExecute": false,
+      "authenticatedExecute": true
+    },
+    {
+      "function": "unpause_routine",
+      "bodyMatchesAuditedOriginal": true,
+      "securityDefiner": true,
+      "emptySearchPath": true,
+      "anonymousExecute": false,
+      "authenticatedExecute": true
+    }
+  ],
+  "auditedLegacySource": "20260809210000_routine_engine.sql",
+  "sourceSha256": "e3441544c85fe74dbefe775880aefb383409efcd11c1728d637616211c5296bb",
+  "before": {
+    "routines": {
+      "routines_hash": "3100f5fecd0ced1c7ed036e288d8a24d"
+    },
+    "financeAttachments": {
+      "ledgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+      "financeHash": "04f76d23e4b97279c7b73dc214e0423a",
+      "intentsHash": "8dc39e89b63ddf6eb02ebeaa867bf2f9",
+      "storageHash": "3767ebe7738000c4de18c8e5841d9950",
+      "uploadsHash": "7547027c205b8f910c5635665f36de41",
+      "allocationsHash": "8442d1e55a252f4722177220f18bbbb7",
+      "financialEvents": 52
+    },
+    "closureHistory": {
+      "completions": 5,
+      "unsupported_completion_dates": 0,
+      "completion_hash": "aeb6b88b69fe1eabb10f90a026f18daf",
+      "occurrence_hash": "4c85346f9617ff96a39c6f90bcf534d5",
+      "command_receipt_hash": "e82ba255ad3b50d1bb3d6945767c6c9f"
+    }
+  },
+  "after": {
+    "routines": {
+      "routines_hash": "3100f5fecd0ced1c7ed036e288d8a24d"
+    },
+    "financeAttachments": {
+      "ledgerHash": "391afd2cc9b7c308a9448087a9e51b2d",
+      "financeHash": "04f76d23e4b97279c7b73dc214e0423a",
+      "intentsHash": "8dc39e89b63ddf6eb02ebeaa867bf2f9",
+      "storageHash": "3767ebe7738000c4de18c8e5841d9950",
+      "uploadsHash": "7547027c205b8f910c5635665f36de41",
+      "allocationsHash": "8442d1e55a252f4722177220f18bbbb7",
+      "financialEvents": 52
+    },
+    "closureHistory": {
+      "completions": 5,
+      "unsupported_completion_dates": 0,
+      "completion_hash": "aeb6b88b69fe1eabb10f90a026f18daf",
+      "occurrence_hash": "4c85346f9617ff96a39c6f90bcf534d5",
+      "command_receipt_hash": "e82ba255ad3b50d1bb3d6945767c6c9f"
+    }
+  },
+  "allRetainedDigestsEqual": true,
+  "negativeAuthPostgrestProbes": 8,
+  "successfulMemberMutationNotAttempted": true,
+  "nativeExecutionNotClaimed": true
+}

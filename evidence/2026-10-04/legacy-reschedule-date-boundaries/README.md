@@ -35,8 +35,11 @@ a newline before the function delimiter; exact delimiter slicing corrected it
 before any probe, without modifying deployed SQL.
 
 Source138c1b01 routine CI37212413311 caught an unformatted saved rehearsal JSON.
-Its formatting is corrected; repository format checking passes. Corrected routine
-CI and source deep37212413167 remain pending. This is a bounded public
+Its formatting is corrected; repository format checking passes. [Corrected routine CI](ci-results.json) passes37212616501 at e2c9b536. Source
+deep37212413167 passes138c1b01:23 core,50 conflicts and1,239 database/RLS cases,
+zero failures/skips. The correction changes only documentation/report formatting;
+a git comparison confirms migrations/tests/tooling are unchanged. The later new
+lifecycle checker has separate local evidence and is not claimed in these counts. This is a bounded public
 RPC/closure review;48 other legacy public functions and deeper private paths remain.
 Local Auth/Storage are fixture interfaces, not live byte/native/phone evidence. No
 production mutation, inference, worker activation, purchase, beta or merge occurred.

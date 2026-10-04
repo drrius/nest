@@ -1,0 +1,39 @@
+{
+  "migrationSourceCommit": "138c1b01ec5678d6b29c689796b46813e8774804",
+  "sourceRoutine": {
+    "runId": 37212413311,
+    "conclusion": "failure",
+    "reason": "unformatted saved rehearsal JSON"
+  },
+  "formatCorrectionCommit": "e2c9b5366891310acf0e96ec028638ae8b075975",
+  "correctedRoutine": {
+    "runId": 37212616501,
+    "conclusion": "success"
+  },
+  "deep": {
+    "runId": 37212413167,
+    "sourceCommit": "138c1b01ec5678d6b29c689796b46813e8774804",
+    "conclusion": "success",
+    "core": {
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "skipped": 0
+    },
+    "conflicts": {
+      "tests": 50,
+      "pass": 50,
+      "fail": 0,
+      "skipped": 0
+    },
+    "database": {
+      "tests": 1239,
+      "pass": 1239,
+      "fail": 0,
+      "skipped": 0
+    }
+  },
+  "migrationTestsUnchangedByFormatCorrection": true,
+  "newLifecycleToolingNotCoveredByThisDeepRun": true,
+  "newNativeRunNotClaimed": true
+}

@@ -154,4 +154,5 @@ version20261004151736. Manifest55/251,11 focused database tests,305-migration
 rehearsal/31 parent-date checks and ten live negative Auth/PostgREST probes pass,
 with exact body/ACL and unchanged full finance/attachments/routine-history digests.
 Valid future reschedules and old replies remain supported. [Evidence](../../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
-Current CI correction/deep checks remain pending; no native or production change.
+Corrected routine37212616501 and source deep37212413167 pass, with23 core/50
+conflicts/1,239 database cases and no failures/skips. No native or production change.
