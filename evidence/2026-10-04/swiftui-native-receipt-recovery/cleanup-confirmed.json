@@ -1,0 +1,529 @@
+{
+  "exactOriginalInputReplayed": true,
+  "sameDeletedReceipt": true,
+  "localReceiptSlotEmpty": true,
+  "operation": {
+    "input": {
+      "bytes": 1476,
+      "contentType": "image/jpeg",
+      "sha256": "981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c",
+      "uploadId": "E42E20D5-8208-48B0-959C-B7B23F31A3A4"
+    },
+    "deliveryStarted": true,
+    "time": 1791108595.185565,
+    "status": 200,
+    "response": {
+      "version": 1,
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "uploadId": "e42e20d5-8208-48b0-959c-b7b23f31a3a4",
+      "path": "be772ffd-3ab5-41d5-8438-647a79a553da/receipts/e42e20d5-8208-48b0-959c-b7b23f31a3a4.jpg",
+      "status": "deleted"
+    },
+    "exactReplayCount": 2
+  },
+  "posts": [
+    {
+      "method": "POST",
+      "path": "/v1/money/receipt/cleanup",
+      "time": 1791108595.1846101,
+      "forwarded": true,
+      "status": 200,
+      "input": {
+        "bytes": 1476,
+        "contentType": "image/jpeg",
+        "sha256": "981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c",
+        "uploadId": "E42E20D5-8208-48B0-959C-B7B23F31A3A4"
+      },
+      "response": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "uploadId": "e42e20d5-8208-48b0-959c-b7b23f31a3a4",
+        "path": "be772ffd-3ab5-41d5-8438-647a79a553da/receipts/e42e20d5-8208-48b0-959c-b7b23f31a3a4.jpg",
+        "status": "deleted"
+      },
+      "droppedReply": true,
+      "exactReplay": false
+    },
+    {
+      "method": "POST",
+      "path": "/v1/money/receipt/cleanup",
+      "time": 1791108968.548949,
+      "forwarded": true,
+      "status": 200,
+      "input": {
+        "bytes": 1476,
+        "contentType": "image/jpeg",
+        "sha256": "981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c",
+        "uploadId": "E42E20D5-8208-48B0-959C-B7B23F31A3A4"
+      },
+      "response": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "uploadId": "e42e20d5-8208-48b0-959c-b7b23f31a3a4",
+        "path": "be772ffd-3ab5-41d5-8438-647a79a553da/receipts/e42e20d5-8208-48b0-959c-b7b23f31a3a4.jpg",
+        "status": "deleted"
+      },
+      "droppedReply": true,
+      "exactReplay": true
+    },
+    {
+      "method": "POST",
+      "path": "/v1/money/receipt/cleanup",
+      "time": 1791109035.498272,
+      "forwarded": true,
+      "status": 200,
+      "input": {
+        "bytes": 1476,
+        "contentType": "image/jpeg",
+        "sha256": "981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c",
+        "uploadId": "E42E20D5-8208-48B0-959C-B7B23F31A3A4"
+      },
+      "response": {
+        "version": 1,
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "uploadId": "e42e20d5-8208-48b0-959c-b7b23f31a3a4",
+        "path": "be772ffd-3ab5-41d5-8438-647a79a553da/receipts/e42e20d5-8208-48b0-959c-b7b23f31a3a4.jpg",
+        "status": "deleted"
+      },
+      "droppedReply": false,
+      "exactReplay": true
+    }
+  ],
+  "scopedSlots": {
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0,
+    "cooking_commands": 0,
+    "food_commands": 0,
+    "routine_state_commands": 0,
+    "recurring_decisions": 0,
+    "correction_decisions": 0,
+    "settlement_decisions": 0,
+    "refund_decisions": 0,
+    "variable_cycle_commands": 0,
+    "expense_decisions": 0,
+    "recurring_commands": 0,
+    "recurring_resume_commands": 0,
+    "recurring_state_commands": 0,
+    "correction_commands": 0,
+    "refund_commands": 0,
+    "settlement_commands": 0,
+    "expense_commands": 0,
+    "recurring_state_decisions": 0,
+    "recurring_resume_decisions": 0,
+    "variable_cycle_decisions": 0,
+    "manual_cycle_commands": 0,
+    "manual_cycle_decisions": 0,
+    "legacy_dismissal_commands": 0,
+    "legacy_dismissal_decisions": 0,
+    "legacy_confirmation_commands": 0,
+    "legacy_confirmation_decisions": 0,
+    "legacy_adoption_commands": 0,
+    "legacy_adoption_decisions": 0
+  },
+  "mealJournals": {
+    "meal_placements": 0,
+    "meal_removals": 0,
+    "meal_recipe_placements": 0,
+    "meal_moves": 0,
+    "meal_leftovers": 0,
+    "meal_replacements": 0,
+    "meal_recipe_replacements": 0
+  },
+  "nodes": [
+    {
+      "ref": "e2",
+      "type": "NavigationBar",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 0,
+        "y": 20,
+        "width": 375,
+        "height": 54
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e3",
+      "type": "Button",
+      "label": "Back",
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 20,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e4",
+      "type": "StaticText",
+      "label": "Add expense",
+      "value": null,
+      "rect": {
+        "x": 125,
+        "y": 29,
+        "width": 124.5,
+        "height": 26
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e5",
+      "type": "CollectionView",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e6",
+      "type": "Cell",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 0,
+        "width": 343,
+        "height": 124.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e7",
+      "type": "StaticText",
+      "label": "Receipt (optional)",
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 0,
+        "width": 343,
+        "height": 124.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e8",
+      "type": "Image",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 124
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e10",
+      "type": "Cell",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 124.5,
+        "width": 343,
+        "height": 155.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e11",
+      "type": "Button",
+      "label": "Choose photo",
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 124.5,
+        "width": 343,
+        "height": 155.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e12",
+      "type": "Image",
+      "label": "Photo",
+      "value": null,
+      "rect": {
+        "x": 41.5,
+        "y": 152,
+        "width": 48.5,
+        "height": 38
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e13",
+      "type": "StaticText",
+      "label": "Choose photo",
+      "value": null,
+      "rect": {
+        "x": 41.5,
+        "y": 139.5,
+        "width": 260.5,
+        "height": 125.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e14",
+      "type": "Cell",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 280,
+        "width": 343,
+        "height": 155.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e15",
+      "type": "Button",
+      "label": "Choose PDF",
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 280,
+        "width": 343,
+        "height": 155.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e16",
+      "type": "Image",
+      "label": "Document",
+      "value": null,
+      "rect": {
+        "x": 48.5,
+        "y": 304.5,
+        "width": 34.5,
+        "height": 44
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e17",
+      "type": "StaticText",
+      "label": "Choose PDF",
+      "value": null,
+      "rect": {
+        "x": 48.5,
+        "y": 295,
+        "width": 253.5,
+        "height": 125.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e18",
+      "type": "Cell",
+      "label": null,
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 435.5,
+        "width": 343,
+        "height": 231.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e19",
+      "type": "StaticText",
+      "label": "Photos are resized and location metadata removed. PDFs must be under 4 MB.",
+      "value": null,
+      "rect": {
+        "x": 16,
+        "y": 435.5,
+        "width": 343,
+        "height": 231.5
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e20",
+      "type": "Other",
+      "label": "Vertical scroll bar, 6 pages",
+      "value": "80%",
+      "rect": {
+        "x": 342,
+        "y": 74,
+        "width": 30,
+        "height": 510
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e21",
+      "type": "Other",
+      "label": "Vertical scroll bar, 6 pages",
+      "value": "80%",
+      "rect": {
+        "x": 342,
+        "y": 74,
+        "width": 30,
+        "height": 510
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e22",
+      "type": "TabBar",
+      "label": "Tab Bar",
+      "value": null,
+      "rect": {
+        "x": 0,
+        "y": 584,
+        "width": 375,
+        "height": 83
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e23",
+      "type": "Button",
+      "label": "Today",
+      "value": null,
+      "rect": {
+        "x": 25,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e24",
+      "type": "Image",
+      "label": "home",
+      "value": null,
+      "rect": {
+        "x": 52,
+        "y": 594,
+        "width": 33.5,
+        "height": 28
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e25",
+      "type": "Button",
+      "label": "Meals",
+      "value": null,
+      "rect": {
+        "x": 103.91666666666667,
+        "y": 588,
+        "width": 88.25000000000001,
+        "height": 54
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e26",
+      "type": "Image",
+      "label": "Food",
+      "value": null,
+      "rect": {
+        "x": 136.91666666666669,
+        "y": 591.5,
+        "width": 22,
+        "height": 31
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e27",
+      "type": "Button",
+      "label": "Calendar",
+      "value": null,
+      "rect": {
+        "x": 182.83333333333334,
+        "y": 588,
+        "width": 88.25000000000003,
+        "height": 54
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e28",
+      "type": "Image",
+      "label": "calendar",
+      "value": null,
+      "rect": {
+        "x": 212.83333333333334,
+        "y": 595.5,
+        "width": 29,
+        "height": 25
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e29",
+      "type": "Button",
+      "label": "Money",
+      "value": null,
+      "rect": {
+        "x": 261.75,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "ref": "e30",
+      "type": "Image",
+      "label": "card",
+      "value": null,
+      "rect": {
+        "x": 289.75,
+        "y": 596.5,
+        "width": 33,
+        "height": 23.5
+      },
+      "enabled": true,
+      "hittable": true
+    }
+  ],
+  "time": 1791109038.007293
+}

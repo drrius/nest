@@ -78,6 +78,9 @@ struct ExpenseReceiptSection: View {
             notice = "Receipt not confirmed. Retry if it is pending, or choose a smaller photo or PDF."
         }
         await refresh()
+        if notice != nil, receiptLoaded, saved?.cleanupRequested == true {
+            notice = "Removal is not confirmed yet. Retry removal when connected."
+        }
     }
 
     private func refresh() async {

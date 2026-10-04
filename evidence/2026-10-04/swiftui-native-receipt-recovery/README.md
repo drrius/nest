@@ -1,0 +1,33 @@
+# Actual native receipt upload and removal recovery
+
+On 4 October, the signed SwiftUI client on the owned SE3 simulator selected an existing synthetic photo, uploaded its actual normalized bytes to the separate nest-test Storage, and removed the unposted upload through native controls. No expense was reviewed or saved. Production, purchases, signing credentials, push configuration and TestFlight were untouched.
+
+The first picker/upload/restart/removal uses shipping native source `6339a87a`. The later interrupted retry and restoration use the three-line `ExpenseReceiptSection` correction in this commit. [All1,039 native inputs](native-inputs.json) match the authorized Mac checkout. The backend stays on the existing stable test deployment; the locally signed fault-observation build overrides only the API origin to an owned HTTPS loopback relay. Its Supabase origin remains the separate test project. This is simulator evidence, not physical-phone or Apple sign-in acceptance.
+
+## Photo selection and actual private bytes
+
+- The audited existing `packages/receipt-upload/tests/fixtures/progressive.jpg` fixture has SHA256 `95df7e041e557d8e8d288609341145999e7cad27fe52564348f3d97ba2bdad8f`. No new artwork or personal photograph was used.
+- It was added only to the owned simulator's Photos library. [The system picker](photo-picker.png) shows limited access to selected photos. The remote Photos extension returned an empty accessibility tree; the screenshot established the synthetic gradient's location before one recorded coordinate selection. This observer limitation is retained in [the attempt](photo-selection-attempt.json).
+- Native PhotosPicker/ReceiptMedia produced1,476 JPEG bytes, SHA256 `981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c`. Actual scoped SQLite retains those exact bytes and the confirmed reservation. [Native result](photo-result.json), [attached receipt](receipt-attached.png).
+- Independent authenticated Storage reads return the same exact bytes to the uploader. The partner and outsider receive400 from Storage/403 from receipt metadata; anonymous receives400/401. Fresh random query parameters avoid treating cached object reads as current authorization evidence. The partner's pending inventory remains empty, and both complete52-event histories/balances are unchanged. [Authorization evidence](hosted-upload-authorization.json).
+- A signed app replacement and actual process restart preserve the same upload identifier, reservation and bytes. Reopening shows Receipt attached and emits no cleanup request. [Restart evidence](upload-restart.json).
+
+## Interrupted removal and exact retry
+
+One ordinary native44pt-or-larger corner tap on Remove receipt sends only this unposted synthetic upload's exact cleanup input. The test relay forwards it to the real test API; the server returns deleted and the relay drops the reply. Native SQLite retains `cleanupRequested=true`, the original input/bytes and its reservation. Removal pending and Retry removal render. [Attempt](remove-attempt.json), [pending result](removal-pending.json).
+
+Actual process restart and the subsequent signed client update retain that same intent. Neither reopening automatically sends a cleanup request. [Restart](removal-restart.json), [client update](candidate-restart.json). The relay validates this fixture's actor, household and exact input before forwarding; the real upstream still authenticates/authorizes the bearer. Every other POST, including expense saves, is refused. No credentials are logged or exported.
+
+The initial error copy incorrectly suggested choosing a smaller photo/PDF while removal was pending. [Before](original-removal-pending.png). The correction changes only the recovery notice after successfully rereading a saved pending removal: “Removal is not confirmed yet. Retry removal when connected.” An explicit largest-text/dark retry returns the identical deleted receipt, whose reply is again deliberately dropped. The original intent remains, and the corrected notice renders. [Updated result](updated-removal-pending.json), [actual screen](largest-updated-removal-pending.png). This screenshot captures the readable message prefix before further scrolling; full largest-text notice visibility and VoiceOver are not established here.
+
+A final explicit largest-text44pt-or-larger corner retry returns that identical deletion result and clears the upload slot normally. There are exactly three forwarded cleanup calls, two lost replies, one upload identity and no financial command. [Final recovery](cleanup-confirmed.json), [native attempt](retry-attempt.json). These controlled missing replies establish recovery behavior; they are not evidence of real phone radio loss.
+
+After all retries, both members independently see the original pending-upload inventories and unchanged full histories/balances. A fresh authenticated Storage request establishes the new object is absent. Both can still read the exact bytes/hash of the distinct pre-existing claimed receipt. That receipt and all financial history are retained. [Hosted final checks](hosted-cleanup-final.json).
+
+## Focused checks and restoration
+
+Nine actual Foundation receipt contract/SQLite/transport cases and three signed native receipt session/UIKit media cases pass, zero failures/skips. These include exact retry identity, account isolation, unfinished-expense deletion prevention, image resize/location-metadata removal and PDF limits; controlled test transports are distinct from the live picker/Storage evidence above. Strict Swift formatting, source limits, source matching and actual app signature pass. [Verification](candidate-verification.json). CI for this increment is pending when initially committed; its result is recorded separately after the run finishes.
+
+The signed app is rebuilt for the stable test API/Supabase origins and restored to ordinary Today/default text/light. All31 scoped command/decision slots, seven meal journals and the receipt slot are empty through normal reconciliation. App data and Keychain are preserved. Only the exact owned relay is stopped; its generated private key is destroyed. A two-day public test certificate remains only in the owned simulator. [Restoration](restored.json), [Today](restored-today.png). No databases, configuration, tokens, private keys or image bodies were exported.
+
+PDF picking, attaching a receipt to a posted expense in SwiftUI, claimed-receipt viewer behavior, additional account/membership changes, full accessibility, live AI handoff and both phones remain open. This closes the bounded actual photo-upload/unposted-removal recovery check; it does not close M7 or the full goal.

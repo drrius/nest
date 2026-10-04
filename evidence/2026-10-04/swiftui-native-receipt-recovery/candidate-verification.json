@@ -1,0 +1,39 @@
+{
+  "nativeInputs": 1039,
+  "sourceMismatches": 0,
+  "checks": {
+    "format": {
+      "exitCode": 0,
+      "testTotals": []
+    },
+    "limits": {
+      "exitCode": 0,
+      "testTotals": []
+    },
+    "core": {
+      "exitCode": 0,
+      "testTotals": [
+        "Executed 1 test, with 0 failures (0 unexpected) in 0.137 (0.137) seconds",
+        "Executed 1 test, with 0 failures (0 unexpected) in 0.004 (0.004) seconds",
+        "Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds",
+        "Executed 1 test, with 0 failures (0 unexpected) in 0.069 (0.069) seconds",
+        "Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds",
+        "Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds",
+        "Executed 9 tests, with 0 failures (0 unexpected) in 0.213 (0.214) seconds",
+        "Executed 9 tests, with 0 failures (0 unexpected) in 0.213 (0.215) seconds"
+      ]
+    },
+    "native": {
+      "exitCode": 0,
+      "testTotals": [
+        "Executed 2 tests, with 0 failures (0 unexpected) in 0.075 (0.076) seconds",
+        "Executed 1 test, with 0 failures (0 unexpected) in 0.105 (0.106) seconds",
+        "Executed 3 tests, with 0 failures (0 unexpected) in 0.180 (0.182) seconds",
+        "Executed 3 tests, with 0 failures (0 unexpected) in 0.180 (0.183) seconds"
+      ]
+    }
+  },
+  "actualSigningVerified": true,
+  "testOriginsVerified": true,
+  "time": 1791108877.418688
+}

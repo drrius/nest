@@ -1,0 +1,32 @@
+{
+  "receipt": {
+    "cleanupRequested": true,
+    "input": {
+      "uploadId": "E42E20D5-8208-48B0-959C-B7B23F31A3A4",
+      "sha256": "981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c",
+      "contentType": "image/jpeg",
+      "bytes": 1476
+    },
+    "reservation": {
+      "uploaderId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "path": "be772ffd-3ab5-41d5-8438-647a79a553da/receipts/e42e20d5-8208-48b0-959c-b7b23f31a3a4.jpg",
+      "sha256": "981149eaba71111d9c54ab5bd1eca14ca473d3fb17cec9254b461658314f8a2c",
+      "uploadId": "E42E20D5-8208-48B0-959C-B7B23F31A3A4",
+      "version": 1,
+      "contentType": "image/jpeg",
+      "stored": true,
+      "bytes": 1476
+    },
+    "dataMatchesInput": true
+  },
+  "target": {
+    "x": 16,
+    "y": 280,
+    "width": 343,
+    "height": 93.5
+  },
+  "point": [356, 283],
+  "recordedBeforeTap": true,
+  "time": 1791109034.838746
+}
