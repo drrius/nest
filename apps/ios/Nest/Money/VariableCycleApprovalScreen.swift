@@ -25,7 +25,11 @@ struct VariableCycleApprovalScreen: View {
                 review(approval, detail: detail)
             }
             if let notice = model.notice { Section { Text(notice) } }
-            Button("Refresh proposal") { Task { await model.load() } }
+            Button {
+                Task { await model.load() }
+            } label: {
+                QuietActionLabel("Refresh proposal")
+            }
         }
         .disabled(model.working)
         .navigationTitle("Review bill")
@@ -69,11 +73,19 @@ struct VariableCycleApprovalScreen: View {
                 TimelineView(.periodic(from: .now, by: 1)) { clock in
                     if ApprovalTime.isOpen(approval.expiresAt, now: clock.date), approval.status == .pending {
                         if approval.input.matches(detail) {
-                            Button("Review confirmation") { choice = true }
+                            Button {
+                                choice = true
+                            } label: {
+                                QuietActionLabel("Review confirmation")
+                            }
                         } else {
                             Text("The bill changed or its cycle is covered. Decline and request a new proposal.")
                         }
-                        Button("Decline proposal", role: .destructive) { choice = false }
+                        Button(role: .destructive) {
+                            choice = false
+                        } label: {
+                            QuietActionLabel("Decline proposal")
+                        }
                     } else {
                         Text("This proposal is expired or awaiting its recorded result. Refresh to check again.")
                     }
@@ -85,8 +97,10 @@ struct VariableCycleApprovalScreen: View {
     private func recorded(_ receipt: VariableCycleReceipt) -> some View {
         VStack(alignment: .leading) {
             Text("Bill recorded. This cycle will not be recorded again by this decision.")
-            NavigationLink("View recorded expense") {
+            NavigationLink {
                 MoneyDetailScreen(session: session, member: member, eventId: receipt.eventId)
+            } label: {
+                QuietActionLabel("View recorded expense")
             }
         }
     }
@@ -105,10 +119,18 @@ struct VariableCycleApprovalScreen: View {
                 Text("Proposal declined. No expense was recorded by this decision.")
             } else {
                 Text("Not confirmed yet. Resolve this exact decision before reviewing another bill proposal.")
-                Button("Check and retry") { Task { await model.retry() } }
+                Button {
+                    Task { await model.retry() }
+                } label: {
+                    QuietActionLabel("Check and retry")
+                }
             }
             if saved.isTerminal {
-                Button("Done") { Task { if await model.finish() { dismiss() } } }
+                Button {
+                    Task { if await model.finish() { dismiss() } }
+                } label: {
+                    QuietActionLabel("Done")
+                }
             }
         }
     }
