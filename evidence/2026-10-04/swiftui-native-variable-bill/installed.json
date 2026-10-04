@@ -1,0 +1,10 @@
+{
+  "sourceInputs": 1041,
+  "allInputsMatch": true,
+  "signatureValid": true,
+  "installedExecutableSHA256": "43daee06e4077bfa9a932cde8a1f0192f58793c0b0c0d012efd188893e3f3a2c",
+  "sameScopeAnd64EmptyJournals": true,
+  "dataAndKeychainNotRemoved": true,
+  "stableTestOrigins": true,
+  "pushDisabled": true
+}

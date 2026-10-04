@@ -1,0 +1,18 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e4,NavigationBar,"""Recurring expense""",null,0,20,375,54,True,True
+e5,Button,"""Recurring expense""",null,16,20,44,44,True,True
+e6,StaticText,"""Confirm bill""",null,132.5,29,110,26,True,True
+e9,Cell,"""Test Alex""",null,16,0,343,151,True,True
+e11,StaticText,"""Test Alex""",null,32,5,201.5,63.5,True,True
+e12,StaticText,"""Test Alex, CHF 0.03""",null,16,0,343,151,True,True
+e15,Cell,"""Test Sam""",null,16,151,343,161,True,True
+e17,StaticText,"""Test Sam""",null,32,166,206,63.5,True,True
+e18,StaticText,"""Test Sam, CHF 0.00""",null,16,151,343,161,True,True
+e19,Cell,"""Record bill""",null,16,347,343,93.5,True,True
+e21,Button,"""Record bill""",null,16,347,343,93.5,True,True
+e22,Cell,"""Edit amount and split""",null,16,440.5,343,155.5,True,True
+e24,Button,"""Edit amount and split""",null,16,440.5,343,155.5,True,True
+e32,Button,"""Today""",null,25,588,88.25,54,True,True
+e34,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e36,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e38,Button,"""Money""",null,261.75,588,88.25,54,True,True

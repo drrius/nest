@@ -1,0 +1,24 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e4,NavigationBar,"""Confirm bill""",null,0,20,375,54,True,True
+e5,Button,"""Confirm bill""",null,16,20,44,44,True,True
+e6,StaticText,"""Entry details""",null,137.5,31.5,100,21,True,True
+e10,Cell,"""Fictional native variable bill 894747fa""",null,16,109,343,52,True,True
+e12,StaticText,null,null,16,109,343,52,True,True
+e13,Cell,"""CHF 0.03""",null,16,161,343,63.5,True,True
+e15,StaticText,"""CHF 0.03""",null,16,161,343,63.5,True,True
+e16,Cell,"""2026-10-04""",null,16,224.5,343,52,True,True
+e18,StaticText,"""2026-10-04""",null,16,224.5,343,52,True,True
+e19,Cell,"""Expense""",null,16,276.5,343,52,True,True
+e21,StaticText,"""Expense""",null,16,276.5,343,52,True,True
+e22,Cell,"""Fictional native bill QA; no payment or actual transfer.""",null,16,328.5,343,72.5,True,True
+e24,StaticText,null,null,16,328.5,343,72.5,True,True
+e25,Cell,"""Record refund""",null,16,436,343,52,True,True
+e27,Button,"""Record refund""",null,16,436,343,52,True,True
+e28,StaticText,"""Record refund""",null,32,451.75,108.5,20.5,True,True
+e30,Cell,"""Correct entry""",null,16,523,343,52,True,True
+e32,Button,"""Correct entry""",null,16,523,343,52,True,True
+e33,StaticText,"""Correct entry""",null,32,538.75,101.5,20.5,True,True
+e45,Button,"""Today""",null,25,588,88.25,54,True,True
+e47,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e49,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e51,Button,"""Money""",null,261.75,588,88.25,54,True,True

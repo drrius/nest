@@ -1,0 +1,35 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e4,NavigationBar,"""Recurring expense""",null,0,20,375,54,True,True
+e5,Button,"""Recurring expense""",null,16,20,44,44,True,True
+e6,StaticText,"""Confirm bill""",null,141.5,31.5,91.5,21,True,True
+e11,Cell,"""Paid by""",null,16,0,343,51,True,True
+e13,StaticText,"""Paid by""",null,32,14.75,56,20.5,True,True
+e14,StaticText,"""Paid by, You""",null,16,0,343,51,True,True
+e15,Cell,"""Fictional native bill QA; no payment or actual transfer.""",null,16,51,343,72.5,True,True
+e17,StaticText,null,null,16,51,343,72.5,True,True
+e18,Cell,"""View bill rule""",null,16,123.5,343,52,True,True
+e20,Button,"""View bill rule""",null,16,123.5,343,52,True,True
+e21,StaticText,"""View bill rule""",null,32,139.25,96,20.5,True,True
+e23,Cell,"""Due date""",null,16,175.5,343,52,True,True
+e25,StaticText,"""Due date""",null,32,191.25,69,20.5,True,True
+e26,StaticText,"""Due date, 2026-10-04""",null,16,175.5,343,52,True,True
+e27,Cell,"""Amount""",null,16,227.5,343,52,True,True
+e29,StaticText,"""Amount""",null,32,243.25,60,20.5,True,True
+e30,StaticText,"""Amount, CHF 0.03""",null,16,227.5,343,52,True,True
+e31,Cell,"""You""",null,16,279.5,343,52,True,True
+e33,StaticText,"""You""",null,32,295.25,28.5,20.5,True,True
+e34,StaticText,"""You, CHF 0.03""",null,16,279.5,343,52,True,True
+e35,Cell,"""Your partner""",null,16,331.5,343,52,True,True
+e37,StaticText,"""Your partner""",null,32,347.25,94.5,20.5,True,True
+e38,StaticText,"""Your partner, CHF 0.00""",null,16,331.5,343,52,True,True
+e39,Cell,"""Bill recorded.""",null,16,418.5,343,52,True,True
+e41,StaticText,"""Bill recorded.""",null,16,418.5,343,52,True,True
+e42,Cell,"""View recorded expense""",null,16,470.5,343,52,True,True
+e44,Button,"""View recorded expense""",null,16,470.5,343,52,True,True
+e45,StaticText,"""View recorded expense""",null,32,486.25,178.5,20.5,True,True
+e47,Cell,"""Done""",null,16,522.5,343,52,True,True
+e49,Button,"""Done""",null,16,522.5,343,52,True,True
+e54,Button,"""Today""",null,25,588,88.25,54,True,True
+e56,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e58,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e60,Button,"""Money""",null,261.75,588,88.25,54,True,True

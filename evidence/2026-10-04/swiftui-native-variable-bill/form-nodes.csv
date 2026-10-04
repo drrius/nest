@@ -1,0 +1,25 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e4,NavigationBar,"""Recurring expense""",null,0,20,375,54,True,True
+e5,Button,"""Recurring expense""",null,16,20,44,44,True,True
+e6,StaticText,"""Confirm bill""",null,141.5,31.5,91.5,21,True,True
+e10,Cell,"""Fictional native variable bill 894747fa""",null,16,74,343,40.5,True,True
+e12,StaticText,null,null,16,74,343,40.5,True,True
+e13,Cell,"""Confirm this bill’s amount and each person’s share. Nest records the expense; it does not pay it.""",null,16,114.5,343,94.5,True,True
+e15,StaticText,null,null,16,114.5,343,94.5,True,True
+e16,Cell,"""Amount (CHF)""",null,16,209,343,80.5,True,True
+e18,StaticText,"""Amount (CHF)""",null,32,228,81,14.5,True,True
+e19,TextField,"""Amount (CHF)""",null,32,248.5,311,22,True,True
+e21,Cell,"""Your share (CHF)""",null,16,289.5,343,80.5,True,True
+e23,StaticText,"""Your share (CHF)""",null,32,308.5,97.5,14.5,True,True
+e24,TextField,"""Your share (CHF)""",null,32,329,311,22,True,True
+e26,Cell,"""Partner’s share (CHF)""",null,16,370,343,80.5,True,True
+e28,StaticText,"""Partner’s share (CHF)""",null,32,389,123,14.5,True,True
+e29,TextField,"""Partner’s share (CHF)""",null,32,409.5,311,22,True,True
+e31,Cell,"""Review bill""",null,16,450.5,343,52,True,True
+e33,Button,"""Review bill""",null,16,450.5,343,52,True,True
+e34,Cell,"""Refresh bill""",null,16,537.5,343,52,True,True
+e36,Button,"""Refresh bill""",null,16,537.5,343,52,True,True
+e41,Button,"""Today""",null,25,588,88.25,54,True,True
+e43,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e45,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e47,Button,"""Money""",null,261.75,588,88.25,54,True,True

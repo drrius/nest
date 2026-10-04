@@ -1,0 +1,91 @@
+{
+  "command": {
+    "operationId": "48ADF697-C510-4611-8ADA-1BE0367AC5FD",
+    "input": {
+      "allocations": [
+        {
+          "centimes": "3",
+          "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+        },
+        {
+          "centimes": "0",
+          "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+        }
+      ],
+      "dueOn": "2026-10-04",
+      "expectedRevision": "BDA43ED2-2460-45D1-B5FA-4DA74AF020F3",
+      "ruleId": "10EAAC3C-8445-49A9-B894-A18272EF3325",
+      "amountCentimes": "3"
+    }
+  },
+  "result": {
+    "operationId": "48ADF697-C510-4611-8ADA-1BE0367AC5FD",
+    "receipt": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "operationId": "48ADF697-C510-4611-8ADA-1BE0367AC5FD",
+      "version": 1,
+      "source": "variable",
+      "input": {
+        "dueOn": "2026-10-04",
+        "ruleId": "10EAAC3C-8445-49A9-B894-A18272EF3325",
+        "allocations": [
+          {
+            "centimes": "3",
+            "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "centimes": "0",
+            "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          }
+        ],
+        "expectedRevision": "BDA43ED2-2460-45D1-B5FA-4DA74AF020F3",
+        "amountCentimes": "3"
+      },
+      "eventId": "CCF21DB1-49C8-4327-AE5F-E65A4A643EAD",
+      "cycle": {
+        "dueOn": "2026-10-04",
+        "through": "2026-10-31",
+        "startsOn": "2026-10-01",
+        "key": "monthly:2026-10-01"
+      },
+      "expense": {
+        "categoryId": null,
+        "amountCentimes": "3",
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "allocations": [
+          {
+            "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "centimes": "3"
+          },
+          {
+            "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+            "centimes": "0"
+          }
+        ],
+        "date": "2026-10-04",
+        "note": "Fictional native bill QA; no payment or actual transfer.",
+        "description": "Fictional native variable bill 894747fa"
+      },
+      "configuration": {
+        "categoryId": null,
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 4
+        },
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "amountCentimes": null,
+        "allocations": null,
+        "note": "Fictional native bill QA; no payment or actual transfer.",
+        "description": "Fictional native variable bill 894747fa",
+        "mode": "variable",
+        "startDate": "2026-10-04"
+      },
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    },
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "status": "recorded",
+    "version": 1,
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+  },
+  "cancellationRequested": false
+}

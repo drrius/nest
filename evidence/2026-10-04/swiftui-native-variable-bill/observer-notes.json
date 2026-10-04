@@ -1,0 +1,39 @@
+{
+  "initialSnapshot": {
+    "error": "COMMAND_FAILED",
+    "noNativeTapSent": true,
+    "resolvedAfterSourceMatchedInstall": true
+  },
+  "testFixture400": {
+    "httpStatus": 400,
+    "receiptStatus": "unresolved",
+    "rulesUnchanged": true,
+    "financeUnchanged": true,
+    "verifiedAt": 1791148981.7272723,
+    "originalOperationIdNotRetained": true,
+    "originalMonthlyExtraField": "weekday:null",
+    "originalReceiptCheckedBeforeChangingIdentity": true,
+    "note": "Original failed command identity was not retained by the diagnostic; do not attribute its400 to the successful corrected operation."
+  },
+  "receiptComparison": {
+    "wireHTTP": 200,
+    "wireStatus": "recorded",
+    "onlyDifference": "Native JSON omits nil approvalId; wire returns approvalId:null",
+    "normalizationLimitedToApprovalId": true,
+    "noNativeSaveRepeated": true
+  },
+  "oversizedScroll": {
+    "pixels": 1000,
+    "switchedToMeals": true,
+    "beforeSave": true,
+    "restoredMoneyDraftRetainedFields": true,
+    "reviewReenteredExplicitly": true,
+    "subsequentScrollingBounded": true
+  },
+  "readOnlySQL": {
+    "firstQueryUsedIncorrectEventColumn": true,
+    "postgres42703": true,
+    "correctedUsingAuditedSchema": true,
+    "noMutation": true
+  }
+}

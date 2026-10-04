@@ -1,0 +1,25 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e8,StaticText,"""Sunday, October 4""",null,20,48.75,105.5,14.5,True,True
+e9,Button,"""Private conversations""",null,259,34,44,44,True,True
+e10,Button,"""Profile and preferences""",null,311,34,44,44,True,True
+e11,StaticText,"""Today""",null,20,82,92.5,41,True,True
+e12,StaticText,"""A good day to keep it simple.""",null,20,126,198.5,18,True,True
+e13,Button,"""Add to your household""",null,20,164,89.5,44,True,True
+e14,Button,"""Add""",null,20,164,89.5,44,True,True
+e16,StaticText,"""Add""",null,40,177,51.5,18,True,True
+e17,Button,"""Me + shared""",null,20,232,163.5,44.5,True,True
+e18,StaticText,"""Me + shared""",null,20,232,163.5,44.5,True,True
+e20,Button,"""Everyone""",null,191.5,232,163.5,44.5,True,True
+e21,StaticText,"""Everyone""",null,191.5,232,163.5,44.5,True,True
+e23,StaticText,"""Around the house""",null,20,306.5,141,20.5,True,True
+e24,Button,"""Hosted smoke tidy kitchen""","""Overdue since Sep 28""",20,327,335,64,True,True
+e26,StaticText,null,null,57,340,202.5,20.5,True,True
+e27,StaticText,"""Overdue since Sep 28""",null,57,363.5,125,14.5,True,True
+e28,Button,"""Manage chores""",null,20,399,335,44,True,True
+e29,StaticText,"""On the menu""",null,38,485,101.5,20.5,True,True
+e30,StaticText,"""Nothing planned for today.""",null,38,519.5,201.5,20.5,True,True
+e31,Button,"""Open meal plan""",null,38,554,299,44,True,True
+e37,Button,"""Today""",null,25,588,88.25,54,True,True
+e39,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e41,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e43,Button,"""Money""",null,261.75,588,88.25,54,True,True

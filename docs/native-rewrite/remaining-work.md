@@ -166,3 +166,14 @@ source-matched/native-rendered; current-head CI is pending. Native uncertain rep
 cancellation, private approvals, broader membership/concurrency, full accessibility/
 radio loss, two native clients and both phones remain open; M7 is incomplete.
 [Settlement evidence](../../evidence/2026-10-04/swiftui-native-settlement/README.md).
+
+A bounded [native variable bill check](../../evidence/2026-10-04/swiftui-native-variable-bill/README.md)
+now passes ordinary/maximum-text keyboard review, one3-centime confirmation,
+exact restart/client-update recovery, recorded detail and native Done. Both
+members agree on59 events/unchanged balances; original58 raw financial/ledger/
+allocation/claimed Storage metadata digests match. One explicit known-operation
+wire replay is idempotent; the new fictional rule is normally paused and64 local
+journals are empty. Final recovery restores original receipt description/payer.
+Two focused signed native methods pass final source. Full variable approvals,
+hosted uncertain cancellation/lost reply, accessibility/races/live AI/two clients
+and phones remain open. No M7 acceptance or new beta is claimed.

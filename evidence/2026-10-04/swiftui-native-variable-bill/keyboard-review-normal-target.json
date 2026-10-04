@@ -1,0 +1,17 @@
+{
+  "target": {
+    "x": 310,
+    "y": 383,
+    "width": 44,
+    "height": 44
+  },
+  "point": [351, 386],
+  "actualLabel": "Review bill",
+  "pairedDone": {
+    "y": 383,
+    "height": 44,
+    "x": 21.000000000000007,
+    "width": 43.99999999999999
+  },
+  "requestedIdentifier": "variable-bill.keyboard-review"
+}

@@ -1,0 +1,32 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e4,NavigationBar,"""Recurring expense""",null,0,20,375,54,True,True
+e5,Button,"""Recurring expense""",null,16,20,44,44,True,True
+e6,StaticText,"""Confirm bill""",null,141.5,31.5,91.5,21,True,True
+e10,Cell,"""Recorded bill""",null,16,74,343,40.5,True,True
+e12,StaticText,"""Recorded bill""",null,16,74,343,40.5,True,True
+e13,Cell,"""Fictional native variable bill 894747fa""",null,16,114.5,343,52,True,True
+e15,StaticText,null,null,16,114.5,343,52,True,True
+e16,Cell,"""Paid by""",null,16,166.5,343,52,True,True
+e18,StaticText,"""Paid by""",null,32,182.25,56,20.5,True,True
+e19,StaticText,"""Paid by, You""",null,16,166.5,343,52,True,True
+e20,Cell,"""Fictional native bill QA; no payment or actual transfer.""",null,16,218.5,343,72.5,True,True
+e22,StaticText,null,null,16,218.5,343,72.5,True,True
+e23,Cell,"""View bill rule""",null,16,291,343,52,True,True
+e25,Button,"""View bill rule""",null,16,291,343,52,True,True
+e26,StaticText,"""View bill rule""",null,32,306.75,96,20.5,True,True
+e28,Cell,"""Due date""",null,16,343,343,52,True,True
+e30,StaticText,"""Due date""",null,32,358.75,69,20.5,True,True
+e31,StaticText,"""Due date, 2026-10-04""",null,16,343,343,52,True,True
+e32,Cell,"""Amount""",null,16,395,343,52,True,True
+e34,StaticText,"""Amount""",null,32,410.75,60,20.5,True,True
+e35,StaticText,"""Amount, CHF 0.03""",null,16,395,343,52,True,True
+e36,Cell,"""You""",null,16,447,343,52,True,True
+e38,StaticText,"""You""",null,32,462.75,28.5,20.5,True,True
+e39,StaticText,"""You, CHF 0.03""",null,16,447,343,52,True,True
+e40,Cell,"""Your partner""",null,16,499,343,52,True,True
+e42,StaticText,"""Your partner""",null,32,514.75,94.5,20.5,True,True
+e43,StaticText,"""Your partner, CHF 0.00""",null,16,499,343,52,True,True
+e56,Button,"""Today""",null,25,588,88.25,54,True,True
+e58,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e60,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e62,Button,"""Money""",null,261.75,588,88.25,54,True,True

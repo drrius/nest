@@ -13,12 +13,13 @@ struct VariableCycleScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var confirmCancel = false
+    @FocusState private var focusedField: String?
 
     var body: some View {
         Form {
             if let notice { Section { Text(notice) } }
             if let saved {
-                summary(saved.command.input)
+                summary(saved.command.input, receipt: saved.result?.receipt)
                 recovery(saved)
             } else if let reviewed {
                 summary(reviewed)
@@ -43,6 +44,12 @@ struct VariableCycleScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .navigationTitle("Confirm bill")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
+        .scrollDismissesKeyboard(.interactively)
+        .modifier(
+            MoneyDraftKeyboard(
+                focus: $focusedField, review: keyboardReview,
+                reviewLabel: "Review bill", reviewIdentifier: "variable-bill.keyboard-review")
+        )
         .task { await load() }
         .confirmationDialog("Cancel this pending bill entry?", isPresented: $confirmCancel) {
             Button("Cancel pending entry", role: .destructive) { Task { await resolve(cancel: true) } }
@@ -55,27 +62,41 @@ struct VariableCycleScreen: View {
         Section(detail.rule.configuration.description) {
             Text("Confirm this bill’s amount and each person’s share. Nest records the expense; it does not pay it.")
                 .foregroundStyle(QuietPalette.muted)
-            TextField("Amount in CHF", text: $draft.amount).keyboardType(.decimalPad)
+            MoneyDraftField(
+                label: "Amount (CHF)", text: $draft.amount, focus: $focusedField, keyboard: .decimalPad)
             ForEach(members) { person in
-                TextField(
-                    "\(person.displayName)’s share in CHF",
+                MoneyDraftField(
+                    label: person.id == member.userId ? "Your share (CHF)" : "Partner’s share (CHF)",
                     text: Binding(
-                        get: { draft.shares[person.id] ?? "" }, set: { draft.shares[person.id] = $0 })
+                        get: { draft.shares[person.id] ?? "" }, set: { draft.shares[person.id] = $0 }),
+                    focus: $focusedField, keyboard: .decimalPad, focusKey: person.id.uuidString
                 )
-                .keyboardType(.decimalPad)
             }
-            Button("Review bill") {
-                do {
-                    reviewed = try draft.reviewed(detail: detail, member: member, members: members.map(\.id))
-                    notice = nil
-                } catch { notice = "Enter a valid CHF amount and two shares that add up exactly to it." }
-            }
+            Button("Review bill") { reviewDraft() }
         }
     }
 
-    private func summary(_ input: VariableCycleInput) -> some View {
-        Section("Bill to record") {
-            if let config = detail?.rule.configuration, detail?.rule.id == input.ruleId {
+    private var keyboardReview: (() -> Void)? {
+        guard saved == nil, reviewed == nil, !working, let detail, detail.rule.isDue(on: detail.today) else {
+            return nil
+        }
+        return { reviewDraft() }
+    }
+
+    private func reviewDraft() {
+        guard let detail else { return }
+        focusedField = nil
+        do {
+            reviewed = try draft.reviewed(detail: detail, member: member, members: members.map(\.id))
+            notice = nil
+        } catch { notice = "Enter a valid CHF amount and two shares that add up exactly to it." }
+    }
+
+    private func summary(_ input: VariableCycleInput, receipt: VariableCycleReceipt? = nil) -> some View {
+        Section(receipt == nil ? "Bill to record" : "Recorded bill") {
+            if let config = receipt?.configuration
+                ?? (detail?.rule.id == input.ruleId ? detail?.rule.configuration : nil)
+            {
                 Text(config.description).font(.headline)
                 LabeledContent("Paid by", value: name(config.payerId))
                 if let note = config.note { Text(note) }
