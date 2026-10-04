@@ -1,0 +1,22 @@
+{
+  "originalTermsNotCopied": true,
+  "chosenAmountCentimes": "3",
+  "originalAmountCentimes": "101",
+  "keyboardReviewTarget": {
+    "x": 310,
+    "y": 388,
+    "width": 44,
+    "height": 44
+  },
+  "cornerPoint": [351, 391],
+  "cornerReachedReview": true,
+  "fields": {
+    "Description": "Synthetic retained expense",
+    "Shared amount (CHF)": "0.03",
+    "Note (optional)": "Note (optional)"
+  },
+  "nativePositiveSelections": 0,
+  "commandsStaged": false,
+  "savePosts": 0,
+  "time": 1791082690.438211
+}

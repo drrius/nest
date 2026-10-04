@@ -52,12 +52,7 @@ struct LegacyConfirmationScreen: View {
         .disabled(model.working)
         .scrollDismissesKeyboard(.interactively)
         .navigationTitle("Draft expense")
-        .toolbar {
-            ToolbarItemGroup(placement: .keyboard) {
-                Spacer()
-                Button("Done") { focused = nil }
-            }
-        }
+        .toolbar { keyboardActions }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .overlay { if model.working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task(id: session.generation) { await model.load() }
@@ -80,6 +75,28 @@ struct LegacyConfirmationScreen: View {
             Button("Keep", role: .cancel) { cancellation = false }
         } message: {
             Text("Recorded results win.")
+        }
+    }
+
+    @ToolbarContentBuilder private var keyboardActions: some ToolbarContent {
+        ToolbarItemGroup(placement: .keyboard) {
+            Button {
+                focused = nil
+            } label: {
+                Text("Done").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            Spacer()
+            if model.saved == nil, model.currentDraft?.canDismiss == true, model.review == nil {
+                Button {
+                    prepare()
+                } label: {
+                    Text("Review").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Review new expense")
+                .accessibilityIdentifier("legacy-confirmation.keyboard-review")
+            }
         }
     }
 

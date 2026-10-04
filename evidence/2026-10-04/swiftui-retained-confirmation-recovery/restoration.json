@@ -1,0 +1,19 @@
+{
+  "source": "5fec6011c26ca14f36542a1a1de1293b21b86b14 plus keyboard review and saved-changes target fixes",
+  "sourceMismatches": 0,
+  "started": 1791083128.284694,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "ordinaryTodayRestored": true,
+  "keychainAndDataPreserved": true,
+  "journalCounts": {
+    "expense_commands": 0,
+    "grocery_checks": 0,
+    "grocery_adds": 0,
+    "grocery_edits": 0,
+    "grocery_removes": 0
+  },
+  "relayStopped": true,
+  "generatedKeyDestroyed": true,
+  "finished": 1791083140.289048
+}

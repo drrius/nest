@@ -38,7 +38,7 @@ struct MoneyScreen: View {
                     }
                 }
                 Section {
-                    DisclosureGroup("Saved changes") {
+                    DisclosureGroup {
                         NavigationLink {
                             LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
                         } label: {
@@ -55,6 +55,9 @@ struct MoneyScreen: View {
                         } label: {
                             QuietActionLabel("Rule adoption")
                         }
+                    } label: {
+                        Text("Saved changes").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
                     }
                     Button {
                         Task { await load() }

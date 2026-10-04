@@ -1,0 +1,55 @@
+{
+  "nodes": [
+    {
+      "ref": "e19",
+      "type": "TextView",
+      "label": "Description",
+      "value": "Synthetic retained expenseThe ",
+      "rect": {
+        "x": 32,
+        "y": 316.5,
+        "width": 311,
+        "height": 22
+      }
+    },
+    {
+      "ref": "e26",
+      "type": "TextView",
+      "label": "Shared amount (CHF)",
+      "value": "Shared amount (CHF)",
+      "rect": {
+        "x": 32,
+        "y": 397,
+        "width": 311,
+        "height": 22
+      }
+    },
+    {
+      "ref": "e37",
+      "type": "TextView",
+      "label": "Note (optional)",
+      "value": "Note (optional)",
+      "rect": {
+        "x": 32,
+        "y": 594,
+        "width": 311,
+        "height": 22
+      }
+    },
+    {
+      "ref": "e54",
+      "type": "Button",
+      "label": "Done",
+      "value": null,
+      "rect": {
+        "x": 291.5,
+        "y": 365,
+        "width": 62.5,
+        "height": 36
+      }
+    }
+  ],
+  "commandsStaged": false,
+  "posts": 0,
+  "diagnosis": "Amount target was below the software keyboard; typing activated a prediction in the still-focused description field. No financial action occurred. Keyboard toolbar exposes Done only; primary review is below the form."
+}
