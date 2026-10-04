@@ -1,0 +1,29 @@
+{
+  "sourceCommit": "6339a87ab7a21e0a3b4d0b1ec4b9cad2eb9821a9",
+  "runs": [
+    {
+      "conclusion": "success",
+      "databaseId": 37192247205,
+      "headSha": "6339a87ab7a21e0a3b4d0b1ec4b9cad2eb9821a9",
+      "name": "Nest checks",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37192247205"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 37192247221,
+      "headSha": "6339a87ab7a21e0a3b4d0b1ec4b9cad2eb9821a9",
+      "name": "SwiftUI client checks",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37192247221"
+    }
+  ],
+  "actualNativeWorkflowSummaries": [
+    "Executed 490 tests, with 41 tests skipped and 0 failures (0 unexpected) in 10.658 (10.740) seconds",
+    "Executed 490 tests, with 41 tests skipped and 0 failures (0 unexpected) in 10.658 (10.741) seconds",
+    "Executed 409 tests, with 11 tests skipped and 0 failures (0 unexpected) in 144.854 (155.039) seconds",
+    "Executed 409 tests, with 11 tests skipped and 0 failures (0 unexpected) in 144.854 (155.045) seconds",
+    "** TEST SUCCEEDED **"
+  ],
+  "physicalDeviceVerified": false
+}

@@ -1,0 +1,61 @@
+{
+  "saved": {
+    "state": "acknowledged",
+    "meal": {
+      "notes": "Synthetic edit verified.",
+      "date": "2026-10-05",
+      "slot": "dinner",
+      "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+      "entryId": "CB1D4172-898A-448F-A982-B2D0F8746B72",
+      "title": "Synthetic lentil bowl"
+    },
+    "receipt": {
+      "entryId": "8BA2BE31-58D9-462F-896A-350F6F50A272",
+      "targetRevision": "1",
+      "operationId": "48F48F87-2735-48A5-B4DD-EAFAFB6A7C91",
+      "version": 1,
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "targetWeekStart": "2026-10-12",
+      "sourceRevision": "44",
+      "date": "2026-10-12",
+      "sourceEntryId": "CB1D4172-898A-448F-A982-B2D0F8746B72",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "sourceWeekStart": "2026-10-05",
+      "slot": "dinner"
+    },
+    "source": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "version": 1,
+      "entries": [
+        {
+          "notes": "Synthetic edit verified.",
+          "definitionId": "CB7C3569-F8B5-45D6-8530-9F9136A19F27",
+          "entryId": "CB1D4172-898A-448F-A982-B2D0F8746B72",
+          "slot": "dinner",
+          "date": "2026-10-05",
+          "title": "Synthetic lentil bowl"
+        }
+      ],
+      "revision": "44",
+      "weekStart": "2026-10-05"
+    },
+    "target": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "version": 1,
+      "entries": [],
+      "revision": "0",
+      "weekStart": "2026-10-12"
+    },
+    "placement": {
+      "expectedSourceRevision": "44",
+      "entryId": "CB1D4172-898A-448F-A982-B2D0F8746B72",
+      "operationId": "48F48F87-2735-48A5-B4DD-EAFAFB6A7C91",
+      "targetWeekStart": "2026-10-12",
+      "expectedTargetRevision": "0",
+      "date": "2026-10-12",
+      "sourceWeekStart": "2026-10-05",
+      "slot": "dinner"
+    }
+  },
+  "time": 1791106479.259968
+}
