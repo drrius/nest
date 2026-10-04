@@ -50,8 +50,9 @@ The first attempt stopped because the harness date argument called a revoked
 private helper. It was replaced with a caller-safe PostgreSQL date expression;
 no server permission was relaxed. Final focused/full lint and format checks
 pass, with existing Effect warnings retained. File/function/complexity limits
-pass without exceptions. Routine CI is recorded after the feature commit;
-this full populated rehearsal runs locally rather than on every branch push.
+pass without exceptions. Source `3abe3df7` passes
+[routine CI37234581666](https://github.com/drrius/nest/actions/runs/37234581666).
+The full populated rehearsal runs locally rather than on every branch push.
 
 ## Hosted isolated test evidence
 

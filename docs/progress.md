@@ -395,6 +395,6 @@ Their hosted bodies/grants match; fourteen real outsider/anonymous requests
 are refused, with meals, groceries, routines and all 58 financial events unchanged.
 [Evidence](../evidence/2026-10-04/legacy-meal-boundaries/README.md) distinguishes
 legacy automatic groceries/source-link retries from native approval semantics.
-Final lint/format/limits pass; CI is pending. Thirty other legacy public entries
+Exact source `3abe3df7` passes routine CI37234581666; the 130 cases ran locally. Thirty other legacy public entries
 and deeper private paths remain. M9 stays open; no native/provider/schema change,
 successful hosted mutation, production action, beta or merge occurred.

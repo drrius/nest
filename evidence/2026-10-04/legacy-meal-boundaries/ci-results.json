@@ -1,0 +1,18 @@
+{
+  "commit": "3abe3df733cc3ae9266acf6f6d8284c45ad90c14",
+  "routine": {
+    "id": 37234581666,
+    "status": "completed",
+    "conclusion": "success"
+  },
+  "localFullChainCases": 130,
+  "hostedExpectedDenials": 14,
+  "fullChainRehearsalIncludedInRoutineCI": false,
+  "newNativeExecutionClaimed": false,
+  "shippingSwiftUnchangedSince": "6c05bdb49a5fe0b2a3363892115dfb6a49765246",
+  "previousEvidenceCheckpoint": {
+    "commit": "e40de86c9541d21288ee8aaccb8c1c0444aaa648",
+    "routineRun": 37233683113,
+    "conclusion": "success"
+  }
+}
