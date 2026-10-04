@@ -1,0 +1,113 @@
+{
+  "source": "163854872266a991e518a5016142efbcf759f566",
+  "oneNativeOnlineDeliverySelection": true,
+  "newAmountCentimes": "3",
+  "firstDueOn": "2030-01-07",
+  "oneOfflineRefusalSelection": true,
+  "oneUpstreamSave": true,
+  "lostReplyAndActualRestart": true,
+  "exactRequestPreservedAcrossReinstall": true,
+  "recordedReceiptRecoveredWithoutResend": true,
+  "originalTermsPreserved": true,
+  "explicitFinishClearedSlot": true,
+  "operation": "681ACE53-65BF-4E52-BD1B-93FE7B781F59",
+  "result": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "receipt": {
+      "status": "active",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "reviewed": {
+        "blockers": [],
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "coveredThrough": "2026-10-31",
+        "adoption": null,
+        "rule": {
+          "mode": "legacy_draft_only",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "description": "Synthetic retained recurring rule",
+          "categoryId": null,
+          "nextOccurrenceOn": {
+            "kind": "date",
+            "value": "2030-01-07"
+          },
+          "updatedAt": {
+            "kind": "timestamp",
+            "value": "2026-10-04T02:42:36.341494Z"
+          },
+          "schedule": {
+            "weekday": 1,
+            "kind": "weekly"
+          },
+          "amountCentimes": "101",
+          "drafts": {
+            "unpostedWithEvent": "0",
+            "dismissed": "1",
+            "unsupportedDates": "0",
+            "postedWithoutEvent": "0",
+            "latestDraftOn": {
+              "kind": "date",
+              "value": "2026-09-28"
+            },
+            "pending": "0",
+            "posted": "1"
+          },
+          "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+          "allocations": {
+            "shares": [
+              {
+                "centimes": "51",
+                "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+              },
+              {
+                "centimes": "50",
+                "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+              }
+            ],
+            "kind": "valid"
+          },
+          "active": false
+        },
+        "version": 1,
+        "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f"
+      },
+      "input": {
+        "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+        "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f",
+        "firstDueOn": "2030-01-07",
+        "configuration": {
+          "categoryId": null,
+          "startDate": "2030-01-07",
+          "description": "Synthetic retained adopted rule",
+          "mode": "fixed",
+          "note": null,
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            }
+          ],
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "amountCentimes": "3",
+          "schedule": {
+            "kind": "weekly",
+            "weekday": 1
+          }
+        }
+      },
+      "operationId": "681ACE53-65BF-4E52-BD1B-93FE7B781F59",
+      "version": 1,
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "revision": "C02637A6-11EA-40C3-BB65-4A95AEED52A7",
+      "approvalId": null
+    },
+    "status": "recorded",
+    "operationId": "681ACE53-65BF-4E52-BD1B-93FE7B781F59",
+    "version": 1,
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+  },
+  "time": 1791088967.0315788
+}

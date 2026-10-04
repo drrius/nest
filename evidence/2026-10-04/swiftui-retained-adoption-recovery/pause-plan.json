@@ -1,0 +1,7 @@
+{
+  "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "ruleId": "8102650a-db30-441e-b693-4f5b9561116f",
+  "expectedRevision": "c02637a6-11ea-40c3-bb65-4a95aeed52a7",
+  "expectedStatus": "active",
+  "action": "pause"
+}

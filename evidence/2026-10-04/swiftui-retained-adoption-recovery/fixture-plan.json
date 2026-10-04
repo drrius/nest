@@ -1,0 +1,16 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "partner": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "rule": "8102650a-db30-441e-b693-4f5b9561116f",
+  "confirmationDraft": "93d9639d-ff5d-4c58-8e53-47e405e91199",
+  "dismissalDraft": "cc96fb8e-e5d1-455e-a199-4e60f9ec24a8",
+  "ruleLabel": "Synthetic retained recurring rule",
+  "confirmationLabel": "Synthetic retained confirmation draft",
+  "dismissalLabel": "Synthetic retained dismissal draft",
+  "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f",
+  "newDescription": "Synthetic retained adopted rule",
+  "firstDueOn": "2030-01-07",
+  "startDate": "2030-01-07"
+}

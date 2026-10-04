@@ -1,0 +1,11 @@
+{
+  "d3fd375b-149d-4539-85c5-5cb625dbb087": {
+    "change": {
+      "action": "pause",
+      "expectedRevision": "C02637A6-11EA-40C3-BB65-4A95AEED52A7",
+      "expectedStatus": "active",
+      "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F"
+    },
+    "operationId": "D3FD375B-149D-4539-85C5-5CB625DBB087"
+  }
+}

@@ -1,0 +1,977 @@
+{
+  "saved": {
+    "reviewed": {
+      "rule": {
+        "amountCentimes": "101",
+        "nextOccurrenceOn": {
+          "kind": "date",
+          "value": "2030-01-07"
+        },
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "categoryId": null,
+        "drafts": {
+          "pending": "0",
+          "posted": "1",
+          "dismissed": "1",
+          "unsupportedDates": "0",
+          "postedWithoutEvent": "0",
+          "unpostedWithEvent": "0",
+          "latestDraftOn": {
+            "kind": "date",
+            "value": "2026-09-28"
+          }
+        },
+        "mode": "legacy_draft_only",
+        "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+        "allocations": {
+          "kind": "valid",
+          "shares": [
+            {
+              "centimes": "51",
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+            },
+            {
+              "centimes": "50",
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            }
+          ]
+        },
+        "schedule": {
+          "kind": "weekly",
+          "weekday": 1
+        },
+        "description": "Synthetic retained recurring rule",
+        "updatedAt": {
+          "kind": "timestamp",
+          "value": "2026-10-04T02:42:36.341494Z"
+        },
+        "active": false
+      },
+      "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "adoption": null,
+      "blockers": [],
+      "coveredThrough": "2026-10-31",
+      "version": 1
+    },
+    "command": {
+      "operationId": "681ACE53-65BF-4E52-BD1B-93FE7B781F59",
+      "input": {
+        "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+        "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f",
+        "configuration": {
+          "mode": "fixed",
+          "note": null,
+          "schedule": {
+            "kind": "weekly",
+            "weekday": 1
+          },
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "description": "Synthetic retained adopted rule",
+          "amountCentimes": "3",
+          "startDate": "2030-01-07",
+          "allocations": [
+            {
+              "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "centimes": "2"
+            },
+            {
+              "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+              "centimes": "1"
+            }
+          ],
+          "categoryId": null
+        },
+        "firstDueOn": "2030-01-07"
+      }
+    },
+    "cancellationRequested": false,
+    "result": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "receipt": {
+        "status": "active",
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "reviewed": {
+          "blockers": [],
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "coveredThrough": "2026-10-31",
+          "adoption": null,
+          "rule": {
+            "mode": "legacy_draft_only",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "description": "Synthetic retained recurring rule",
+            "categoryId": null,
+            "nextOccurrenceOn": {
+              "kind": "date",
+              "value": "2030-01-07"
+            },
+            "updatedAt": {
+              "kind": "timestamp",
+              "value": "2026-10-04T02:42:36.341494Z"
+            },
+            "schedule": {
+              "weekday": 1,
+              "kind": "weekly"
+            },
+            "amountCentimes": "101",
+            "drafts": {
+              "unpostedWithEvent": "0",
+              "dismissed": "1",
+              "unsupportedDates": "0",
+              "postedWithoutEvent": "0",
+              "latestDraftOn": {
+                "kind": "date",
+                "value": "2026-09-28"
+              },
+              "pending": "0",
+              "posted": "1"
+            },
+            "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+            "allocations": {
+              "shares": [
+                {
+                  "centimes": "51",
+                  "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+                },
+                {
+                  "centimes": "50",
+                  "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+                }
+              ],
+              "kind": "valid"
+            },
+            "active": false
+          },
+          "version": 1,
+          "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f"
+        },
+        "input": {
+          "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+          "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f",
+          "firstDueOn": "2030-01-07",
+          "configuration": {
+            "categoryId": null,
+            "startDate": "2030-01-07",
+            "description": "Synthetic retained adopted rule",
+            "mode": "fixed",
+            "note": null,
+            "allocations": [
+              {
+                "centimes": "2",
+                "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+              },
+              {
+                "centimes": "1",
+                "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+              }
+            ],
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "amountCentimes": "3",
+            "schedule": {
+              "kind": "weekly",
+              "weekday": 1
+            }
+          }
+        },
+        "operationId": "681ACE53-65BF-4E52-BD1B-93FE7B781F59",
+        "version": 1,
+        "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "revision": "C02637A6-11EA-40C3-BB65-4A95AEED52A7",
+        "approvalId": null
+      },
+      "status": "recorded",
+      "operationId": "681ACE53-65BF-4E52-BD1B-93FE7B781F59",
+      "version": 1,
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    }
+  },
+  "nodes": [
+    {
+      "index": 0,
+      "type": "Other",
+      "role": "_TtC7SwiftUIP33_ACC2C5639A7D76F611E170E831FCA49118SwiftUIApplication",
+      "subrole": "UIApplication",
+      "label": "Nest",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "depth": 0,
+      "pid": 67300,
+      "hittable": false,
+      "ref": "e1"
+    },
+    {
+      "index": 1,
+      "parentIndex": 0,
+      "type": "NavigationBar",
+      "role": "SwiftUI.UIKitNavigationBar",
+      "subrole": "UINavigationBar",
+      "identifier": "Move rule to Nest",
+      "rect": {
+        "x": 0,
+        "y": 20,
+        "width": 375,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e2"
+    },
+    {
+      "index": 2,
+      "parentIndex": 1,
+      "type": "Button",
+      "role": "UIAccessibilityBackButtonElement",
+      "subrole": "UIAccessibilityElement",
+      "label": "Back",
+      "identifier": "BackButton",
+      "rect": {
+        "x": 16,
+        "y": 20,
+        "width": 44,
+        "height": 44
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e3"
+    },
+    {
+      "index": 3,
+      "parentIndex": 1,
+      "type": "StaticText",
+      "role": "UILabel",
+      "label": "Move rule to Nest",
+      "rect": {
+        "x": 118,
+        "y": 31.5,
+        "width": 139,
+        "height": 21
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e4"
+    },
+    {
+      "index": 4,
+      "parentIndex": 0,
+      "type": "CollectionView",
+      "role": "SwiftUI.UpdateCoalescingCollectionView",
+      "subrole": "UICollectionView",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 667
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e5"
+    },
+    {
+      "index": 5,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 0,
+        "width": 343,
+        "height": 22.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": false,
+      "ref": "e6"
+    },
+    {
+      "index": 6,
+      "parentIndex": 5,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Other member at review",
+      "rect": {
+        "x": 32,
+        "y": 0,
+        "width": 184,
+        "height": 6.75
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": false,
+      "ref": "e7"
+    },
+    {
+      "index": 7,
+      "parentIndex": 5,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Other member at review, CHF 0.01",
+      "rect": {
+        "x": 16,
+        "y": 0,
+        "width": 343,
+        "height": 22.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": false,
+      "ref": "e8"
+    },
+    {
+      "index": 8,
+      "parentIndex": 4,
+      "type": "Image",
+      "role": "UIImageView",
+      "identifier": "AdditionalDimmingOverlay",
+      "rect": {
+        "x": 0,
+        "y": 0,
+        "width": 375,
+        "height": 124
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e9"
+    },
+    {
+      "index": 9,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 22.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e10"
+    },
+    {
+      "index": 10,
+      "parentIndex": 9,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Starts",
+      "rect": {
+        "x": 32,
+        "y": 38.25,
+        "width": 45.5,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e11"
+    },
+    {
+      "index": 11,
+      "parentIndex": 9,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Starts, 2030-01-07",
+      "rect": {
+        "x": 16,
+        "y": 22.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e12"
+    },
+    {
+      "index": 12,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 74.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e13"
+    },
+    {
+      "index": 13,
+      "parentIndex": 12,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "First uncovered bill",
+      "rect": {
+        "x": 32,
+        "y": 90.25,
+        "width": 143.5,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e14"
+    },
+    {
+      "index": 14,
+      "parentIndex": 12,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "First uncovered bill, 2030-01-07",
+      "rect": {
+        "x": 16,
+        "y": 74.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e15"
+    },
+    {
+      "index": 15,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 126.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e16"
+    },
+    {
+      "index": 16,
+      "parentIndex": 15,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Every Monday",
+      "rect": {
+        "x": 16,
+        "y": 126.5,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e17"
+    },
+    {
+      "index": 17,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 178.5,
+        "width": 343,
+        "height": 64
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e18"
+    },
+    {
+      "index": 18,
+      "parentIndex": 17,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Previous history is kept. Saving adds no expense today and makes no bank transfer.",
+      "rect": {
+        "x": 16,
+        "y": 178.5,
+        "width": 343,
+        "height": 64
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e19"
+    },
+    {
+      "index": 19,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewHeaderFooter",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 260,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e20"
+    },
+    {
+      "index": 20,
+      "parentIndex": 19,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Saved adoption",
+      "rect": {
+        "x": 16,
+        "y": 260,
+        "width": 343,
+        "height": 40.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e21"
+    },
+    {
+      "index": 21,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 300.5,
+        "width": 343,
+        "height": 72.5
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e22"
+    },
+    {
+      "index": 22,
+      "parentIndex": 21,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Rule adopted. Old history is unchanged; no expense was recorded by this save.",
+      "rect": {
+        "x": 16,
+        "y": 300.5,
+        "width": 343,
+        "height": 72.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e23"
+    },
+    {
+      "index": 23,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 373,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e24"
+    },
+    {
+      "index": 24,
+      "parentIndex": 23,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "View current rule",
+      "rect": {
+        "x": 16,
+        "y": 373,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e25"
+    },
+    {
+      "index": 25,
+      "parentIndex": 24,
+      "type": "StaticText",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "View current rule",
+      "rect": {
+        "x": 32,
+        "y": 388.75,
+        "width": 129.5,
+        "height": 20.5
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e26"
+    },
+    {
+      "index": 26,
+      "parentIndex": 24,
+      "type": "Image",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "identifier": "chevron.forward",
+      "rect": {
+        "x": 333.5,
+        "y": 393,
+        "width": 7,
+        "height": 12
+      },
+      "enabled": true,
+      "depth": 4,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e27"
+    },
+    {
+      "index": 27,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 425,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e28"
+    },
+    {
+      "index": 28,
+      "parentIndex": 27,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Finish recovery",
+      "rect": {
+        "x": 16,
+        "y": 425,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e29"
+    },
+    {
+      "index": 29,
+      "parentIndex": 4,
+      "type": "Cell",
+      "role": "SwiftUI.ListCollectionViewCell",
+      "subrole": "UICollectionViewListCell",
+      "rect": {
+        "x": 16,
+        "y": 512,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e30"
+    },
+    {
+      "index": 30,
+      "parentIndex": 29,
+      "type": "Button",
+      "role": "SwiftUI.AccessibilityNode",
+      "subrole": "UIResponder",
+      "label": "Reload rule and people",
+      "rect": {
+        "x": 16,
+        "y": 512,
+        "width": 343,
+        "height": 52
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e31"
+    },
+    {
+      "index": 31,
+      "parentIndex": 4,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Vertical scroll bar, 4 pages",
+      "value": "100%",
+      "rect": {
+        "x": 342,
+        "y": 74,
+        "width": 30,
+        "height": 510
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e32"
+    },
+    {
+      "index": 32,
+      "parentIndex": 4,
+      "type": "Other",
+      "role": "_UIScrollViewScrollIndicator",
+      "label": "Vertical scroll bar, 4 pages",
+      "value": "100%",
+      "rect": {
+        "x": 342,
+        "y": 74,
+        "width": 30,
+        "height": 510
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e33"
+    },
+    {
+      "index": 33,
+      "parentIndex": 0,
+      "type": "TabBar",
+      "role": "UITabBar",
+      "label": "Tab Bar",
+      "rect": {
+        "x": 0,
+        "y": 584,
+        "width": 375,
+        "height": 83
+      },
+      "enabled": true,
+      "depth": 1,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e34"
+    },
+    {
+      "index": 34,
+      "parentIndex": 33,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Today",
+      "identifier": "house",
+      "rect": {
+        "x": 25,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e35"
+    },
+    {
+      "index": 35,
+      "parentIndex": 34,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "home",
+      "identifier": "house.fill",
+      "rect": {
+        "x": 52,
+        "y": 594,
+        "width": 33.5,
+        "height": 28
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e36"
+    },
+    {
+      "index": 36,
+      "parentIndex": 33,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Meals",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 103.91666666666667,
+        "y": 588,
+        "width": 88.25000000000001,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e37"
+    },
+    {
+      "index": 37,
+      "parentIndex": 36,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "Food",
+      "identifier": "fork.knife",
+      "rect": {
+        "x": 136.91666666666669,
+        "y": 591.5,
+        "width": 22,
+        "height": 31
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e38"
+    },
+    {
+      "index": 38,
+      "parentIndex": 33,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Calendar",
+      "identifier": "calendar",
+      "rect": {
+        "x": 182.83333333333334,
+        "y": 588,
+        "width": 88.25000000000003,
+        "height": 54
+      },
+      "enabled": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e39"
+    },
+    {
+      "index": 39,
+      "parentIndex": 38,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "calendar",
+      "identifier": "calendar",
+      "rect": {
+        "x": 212.83333333333334,
+        "y": 595.5,
+        "width": 29,
+        "height": 25
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e40"
+    },
+    {
+      "index": 40,
+      "parentIndex": 33,
+      "type": "Button",
+      "role": "_UITabButton",
+      "label": "Money",
+      "identifier": "creditcard",
+      "rect": {
+        "x": 261.75,
+        "y": 588,
+        "width": 88.25,
+        "height": 54
+      },
+      "enabled": true,
+      "selected": true,
+      "depth": 2,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e41"
+    },
+    {
+      "index": 41,
+      "parentIndex": 40,
+      "type": "Image",
+      "role": "UIImageView",
+      "label": "card",
+      "identifier": "creditcard.fill",
+      "rect": {
+        "x": 289.75,
+        "y": 596.5,
+        "width": 33,
+        "height": 23.5
+      },
+      "enabled": true,
+      "depth": 3,
+      "pid": 67300,
+      "hittable": true,
+      "ref": "e42"
+    }
+  ],
+  "receiptCheckWithoutResend": true,
+  "saveCount": 1
+}

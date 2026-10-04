@@ -1,0 +1,24 @@
+{
+  "681ace53-65bf-4e52-bd1b-93fe7b781f59": {
+    "input": {
+      "configuration": {
+        "allocations": [
+          { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+          { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+        ],
+        "amountCentimes": "3",
+        "categoryId": null,
+        "description": "Synthetic retained adopted rule",
+        "mode": "fixed",
+        "note": null,
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "schedule": { "kind": "weekly", "weekday": 1 },
+        "startDate": "2030-01-07"
+      },
+      "firstDueOn": "2030-01-07",
+      "reviewToken": "a94aacdcd38417a182daf7ce2e434507f9fb62255d39bb8c45ba69962319874f",
+      "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F"
+    },
+    "operationId": "681ACE53-65BF-4E52-BD1B-93FE7B781F59"
+  }
+}
