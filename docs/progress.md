@@ -362,8 +362,26 @@ Keychain/stable origins and all64 scoped journals empty are restored.
 Both journey and final1041-input signed Mac builds pass strict formatting/limits
 and six native recovery/preflight/account-boundary tests,0failures/0skips. Final
 source additionally removes duplicate share headings and receives a separate
-unsaved native check. Current feature commit CI is pending; parentc45b CI cannot
-cover these changes. Native interruption/cancellation/private approval variants,
+unsaved native check. Exact-source6c05bdb4 passes Nest37231483788/SwiftUI37231483842:
+491 Foundation/41 explicit skips,409 signed-native/11 explicit skips, zero failures,
+strict formatting/limits and actual signing. Native interruption/cancellation/private approval variants,
 broader races/full accessibility/radio loss/two native clients/live AI/both phones
 remain open. M7 and other unchecked milestones remain incomplete. No beta, merge,
 production change, actual transfer, purchase or worker activation occurred.
+
+## Legacy direct financial authorization review — 4 October
+
+Four more legacy public entry points now pass52 full-chain disposable cases:
+current membership/tenant payer/category/allocation guards, safe centimes/refund
+limits, active-refund blocking, both-member zero-sum posting/exact retries and
+changed-payload/nonmember historical refusal. All305 migration inputs apply with
+only the exact pg_net declaration excluded; original finance/receipts/metadata
+remain unchanged. Four fresh hosted bodies/client grants match the compiled
+chain; eight verified outsider/anonymous RPC refusals return401/403+42501 with
+all58 hosted financial/ledger/allocation/claimed Storage digests unchanged.
+[Evidence](../evidence/2026-10-04/legacy-financial-boundaries/README.md).
+Final focused lint/format/limits pass without exceptions; earlier helper-size/
+parameter errors were corrected. Routine CI is pending for this diagnostic change;
+the52 cases ran locally. Thirty-seven other legacy public entries and deeper
+private paths remain. M9 remains incomplete; no schema/production change,
+successful hosted financial mutation, purchase, beta, worker activation or merge.

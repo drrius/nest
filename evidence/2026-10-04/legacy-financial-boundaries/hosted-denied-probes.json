@@ -1,0 +1,66 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "realAuthAndPostgrest": true,
+  "fourBodiesMatchPriorCompiledSource": true,
+  "cases": [
+    {
+      "function": "post_manual_expense",
+      "actor": "outsider",
+      "status": 403,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "post_manual_expense",
+      "actor": "anonymous",
+      "status": 401,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "post_refund",
+      "actor": "outsider",
+      "status": 403,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "post_refund",
+      "actor": "anonymous",
+      "status": 401,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "correct_financial_event",
+      "actor": "outsider",
+      "status": 403,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "correct_financial_event",
+      "actor": "anonymous",
+      "status": 401,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "record_settlement",
+      "actor": "outsider",
+      "status": 403,
+      "code": "42501",
+      "denied": true
+    },
+    {
+      "function": "record_settlement",
+      "actor": "anonymous",
+      "status": 401,
+      "code": "42501",
+      "denied": true
+    }
+  ],
+  "successfulMutationNotAttempted": true,
+  "nativeExecutionNotClaimed": true,
+  "productionTouched": false
+}

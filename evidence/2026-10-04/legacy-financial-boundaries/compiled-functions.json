@@ -1,0 +1,38 @@
+[
+  {
+    "name": "correct_financial_event",
+    "config": ["search_path=\"\""],
+    "signature": "correct_financial_event(uuid,text,jsonb)",
+    "bodySha256": "5ef9c1656485cbd0bba929ae9e4e1946778d0af12dba826b4a7cafd513de66b4",
+    "securityDefiner": true,
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "post_manual_expense",
+    "config": ["search_path=\"\""],
+    "signature": "post_manual_expense(uuid,text,bigint,uuid,jsonb,date,text,uuid,text,text)",
+    "bodySha256": "d340c836072566b7a149b08926e7e876e071ce3daff640cd942ebf1b16dff798",
+    "securityDefiner": true,
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "post_refund",
+    "config": ["search_path=\"\""],
+    "signature": "post_refund(uuid,bigint,jsonb,date,text,text,text)",
+    "bodySha256": "b79d2d5d9b3ff9f197be44616403400354b7ede933e9567253964498ead2c919",
+    "securityDefiner": true,
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "name": "record_settlement",
+    "config": ["search_path=\"\""],
+    "signature": "record_settlement(uuid,uuid,bigint,date,text,text,text,text)",
+    "bodySha256": "c2c96f011b8eb443305c0d6ccf6d3713a2ba4452033368c231041ba9417717d4",
+    "securityDefiner": true,
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  }
+]

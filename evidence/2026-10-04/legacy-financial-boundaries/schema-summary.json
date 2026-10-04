@@ -1,0 +1,32 @@
+{
+  "complete": true,
+  "appliedInputs": 305,
+  "bySource": {
+    "legacy": 54,
+    "native": 251
+  },
+  "skipped": [
+    {
+      "source": "legacy",
+      "name": "20260814153314_enable_pg_net.sql",
+      "sha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70"
+    }
+  ],
+  "infrastructure": {
+    "simulated": ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
+    "schedulingVerified": false,
+    "storageBytesVerified": false
+  },
+  "localFinancialCases": 52,
+  "byFunction": {
+    "post_manual_expense": 15,
+    "post_refund": 12,
+    "correct_financial_event": 13,
+    "record_settlement": 12
+  },
+  "bothFinancialReconciliationsPass": true,
+  "originalFinancialAndReceiptRowsRetained": true,
+  "metadataAndNotificationsRetained": true,
+  "actualTimerOrStorageBytesNotClaimed": true,
+  "productionTouched": false
+}

@@ -1,0 +1,366 @@
+[
+  {
+    "function": "post_manual_expense",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 9873,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 9873,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 9873,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 9873,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": null,
+    "role": "authenticated",
+    "reason": "foreign-or-absent-member",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 1,
+    "role": "anon",
+    "reason": "anonymous-execution",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-payer",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-allocation",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-category",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "negative-amount",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "unsafe-centime-amount",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "excess-member-refund",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-allocation",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-replacement-payer",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-replacement-allocation",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "foreign-settlement-payer",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "zero-partial-settlement",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "active-refund-blocks-source-correction",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "sameReceipt": true,
+    "exactAddedEvents": 1,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 1,
+    "sameReceipt": true,
+    "exactAddedEvents": 1,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 1,
+    "sameReceipt": true,
+    "exactAddedEvents": 2,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 1,
+    "sameReceipt": true,
+    "exactAddedEvents": 1,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 1,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 2,
+    "sameReceipt": true,
+    "exactAddedEvents": 1,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "post_manual_expense",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 2,
+    "sameReceipt": true,
+    "exactAddedEvents": 1,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "post_refund",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 2,
+    "sameReceipt": true,
+    "exactAddedEvents": 2,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "correct_financial_event",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 2,
+    "sameReceipt": true,
+    "exactAddedEvents": 1,
+    "twoMemberZeroSum": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 2,
+    "role": "authenticated",
+    "reason": "changed-idempotent-payload",
+    "denied": true
+  },
+  {
+    "function": "record_settlement",
+    "actor": 9871,
+    "role": "authenticated",
+    "reason": "nonmember-historical-retry",
+    "denied": true
+  }
+]

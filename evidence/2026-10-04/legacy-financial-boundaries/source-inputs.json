@@ -1,0 +1,9 @@
+{
+  "files": {
+    "tools/migration/legacy-financial-boundaries.mjs": "27ca3547705db39a30e0eb16bbc905ca2e25f59677a3c62a3ee52fabf8bac426",
+    "tools/migration/schema-probe.mjs": "9a4117d720c0263a3ba5e7329af9d3c9975463a7dbc4c96d91e11b4613ef4815"
+  },
+  "final52CaseAndCompiledMetadataReport": true,
+  "initialLintLimitErrorsCorrectedWithoutExceptions": true,
+  "twoExistingSchemaProbeEffectWarningsRemainVisible": true
+}
