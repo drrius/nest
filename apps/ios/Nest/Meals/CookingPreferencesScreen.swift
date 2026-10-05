@@ -107,7 +107,7 @@ struct CookingPreferencesScreen: View {
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
         }.disabled(!editable)
         Section("Cooking notes") {
-            CookingNotesEditor(text: $notes)
+            QuietTextEditor(text: $notes, label: "Cooking notes")
                 .frame(height: dynamicTypeSize.isAccessibilitySize ? 240 : 180)
                 .overlay(alignment: .topLeading) {
                     if notes.isEmpty {

@@ -1,0 +1,17 @@
+{
+  "send": {
+    "x": 267,
+    "y": 339,
+    "width": 88,
+    "height": 60
+  },
+  "field": {
+    "y": 161.5,
+    "width": 311,
+    "height": 137.5,
+    "x": 32
+  },
+  "keyboardKeyTop": 458,
+  "noSendPressed": true,
+  "renderedCaretRequiresImageInspection": true
+}

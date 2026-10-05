@@ -1,0 +1,40 @@
+{
+  "parentCommit": "e47342e16aac050e7b4a52337c10f5115b012b24",
+  "nativeInputs": 1045,
+  "changedFiles": [
+    "apps/ios/Nest/QuietTextEditor.swift",
+    "apps/ios/AppTests/QuietTextEditorTests.swift",
+    "apps/ios/Nest/Meals/CookingPreferencesScreen.swift",
+    "apps/ios/Nest/Assistant/AssistantComposerScreen.swift"
+  ],
+  "allInputsMatch": true,
+  "started": 1791187959.08355,
+  "formatPid": 79156,
+  "formatExit": 0,
+  "formatTotals": [],
+  "limitsPid": 79165,
+  "limitsExit": 0,
+  "limitsTotals": [],
+  "corePid": 79168,
+  "coreExit": 0,
+  "coreTotals": [
+    "Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds",
+    "Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds",
+    "Executed 8 tests, with 2 tests skipped and 0 failures (0 unexpected) in 0.095 (0.096) seconds",
+    "Executed 8 tests, with 2 tests skipped and 0 failures (0 unexpected) in 0.095 (0.096) seconds"
+  ],
+  "nativePid": 79211,
+  "nativeExit": 0,
+  "nativeTotals": [
+    "Executed 2 tests, with 0 failures (0 unexpected) in 0.537 (0.538) seconds",
+    "Executed 3 tests, with 0 failures (0 unexpected) in 0.192 (0.193) seconds",
+    "Executed 4 tests, with 0 failures (0 unexpected) in 0.746 (0.747) seconds",
+    "Executed 3 tests, with 0 failures (0 unexpected) in 0.286 (0.287) seconds",
+    "Executed 13 tests, with 0 failures (0 unexpected) in 1.854 (1.861) seconds",
+    "Executed 13 tests, with 0 failures (0 unexpected) in 1.854 (1.861) seconds"
+  ],
+  "signingPid": 79415,
+  "signingExit": 0,
+  "signingTotals": [],
+  "finished": 1791187989.232351
+}

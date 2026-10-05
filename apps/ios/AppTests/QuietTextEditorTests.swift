@@ -5,14 +5,14 @@ import XCTest
 @testable import Nest
 
 @MainActor
-final class CookingNotesEditorTests: XCTestCase {
+final class QuietTextEditorTests: XCTestCase {
     func testNativeInputPreservesUTF16TextAndUsesLargestBodyFont() throws {
         var text = String(repeating: "🍲", count: 998) + "end"
         let (window, view) = try editor(
             Binding(get: { text }, set: { text = $0 }), category: .accessibilityExtraExtraExtraLarge)
         defer { window.isHidden = true }
         XCTAssertEqual(view.text, text)
-        XCTAssertEqual(view.accessibilityLabel, "Cooking notes")
+        XCTAssertEqual(view.accessibilityLabel, "Message to Nest")
         let font = try XCTUnwrap(view.font)
         let expected = UIFont.preferredFont(forTextStyle: .body, compatibleWith: view.traitCollection)
         XCTAssertEqual(font.pointSize, expected.pointSize, accuracy: 0.1)
@@ -69,7 +69,7 @@ final class CookingNotesEditorTests: XCTestCase {
         _ text: Binding<String>, enabled: Bool = true, category: UIContentSizeCategory
     ) throws -> (UIWindow, UITextView) {
         let controller = UIHostingController(
-            rootView: CookingNotesEditor(text: text)
+            rootView: QuietTextEditor(text: text, label: "Message to Nest")
                 .environment(\.isEnabled, enabled).frame(width: 311, height: 240))
         controller.traitOverrides.preferredContentSizeCategory = category
         let scene = try XCTUnwrap(

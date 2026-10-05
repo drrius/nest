@@ -1,8 +1,9 @@
 import SwiftUI
 import UIKit
 
-struct CookingNotesEditor: UIViewRepresentable {
+struct QuietTextEditor: UIViewRepresentable {
     @Binding var text: String
+    let label: String
 
     func makeUIView(context: Context) -> UITextView {
         let view = UITextView(usingTextLayoutManager: false)
@@ -12,13 +13,14 @@ struct CookingNotesEditor: UIViewRepresentable {
         view.font = UIFont.preferredFont(forTextStyle: .body)
         view.adjustsFontForContentSizeCategory = true
         view.keyboardDismissMode = .interactive
-        view.accessibilityLabel = "Cooking notes"
+        view.accessibilityLabel = label
         view.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
         return view
     }
 
     func updateUIView(_ view: UITextView, context: Context) {
         context.coordinator.text = $text
+        view.accessibilityLabel = label
         view.isEditable = context.environment.isEnabled
         view.isSelectable = context.environment.isEnabled
         if view.text != text { view.text = text }

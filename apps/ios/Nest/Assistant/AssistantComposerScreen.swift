@@ -8,33 +8,77 @@ struct AssistantComposerScreen: View {
     @State private var operation: Task<Void, Never>?
 
     var body: some View {
+        VStack(spacing: 0) {
+            if let saved = model.saved {
+                recoveryContent(saved)
+            } else {
+                compositionContent
+            }
+        }
+        .safeAreaInset(edge: .bottom) {
+            if model.saved == nil { sendControl }
+        }
+        .background(QuietPalette.background).navigationTitle("Ask Nest")
+        .navigationBarTitleDisplayMode(.inline)
+        .task { await model.load(session: session) }
+        .onDisappear { operation?.cancel() }
+    }
+
+    private var compositionContent: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Private to you").font(.caption).foregroundStyle(QuietPalette.muted)
+            QuietTextEditor(text: $model.text, label: "Message to Nest")
+                .frame(minHeight: 88, maxHeight: .infinity)
+                .padding(12)
+                .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 16))
+                .overlay(alignment: .topLeading) {
+                    if model.text.isEmpty {
+                        Text("What would help today?")
+                            .foregroundStyle(QuietPalette.muted)
+                            .padding(.top, 20).padding(.leading, 17).padding(.trailing, 12)
+                            .allowsHitTesting(false).accessibilityHidden(true)
+                    }
+                }
+                .disabled(model.busy)
+            if model.busy { ProgressView("Working…") }
+            if let notice = model.notice {
+                Text(notice).font(.footnote).foregroundStyle(QuietPalette.muted)
+            }
+        }.padding(.horizontal, 20).padding(.vertical, 12)
+    }
+
+    private var sendControl: some View {
+        HStack(spacing: 12) {
+            Text("\(model.text.utf16.count)/2,000")
+                .font(.caption).monospacedDigit()
+                .lineLimit(1).minimumScaleFactor(0.5)
+                .foregroundStyle(model.text.utf16.count > 2_000 ? Color.red : QuietPalette.muted)
+                .accessibilityLabel("\(model.text.utf16.count) of 2,000 characters")
+            Spacer(minLength: 8)
+            Button {
+                operation = Task { await model.send(session: session, conversation: conversation) }
+            } label: {
+                Image(systemName: "arrow.up")
+                    .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+            }
+            .accessibilityLabel("Send")
+            .buttonStyle(.borderedProminent)
+            .disabled(
+                model.busy || model.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
+                    || model.text.utf16.count > 2_000)
+        }.padding(.horizontal, 20).padding(.vertical, 8).background(QuietPalette.background)
+    }
+
+    private func recoveryContent(_ saved: SavedAssistantTurn) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 Text("Private to you").font(.caption).foregroundStyle(QuietPalette.muted)
-                if let saved = model.saved {
-                    recovery(saved)
-                } else {
-                    TextField("What would help today?", text: $model.text, axis: .vertical)
-                        .lineLimit(3...8).padding(16)
-                        .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 16))
-                        .accessibilityLabel("Message to Nest")
-                    Button("Send", systemImage: "arrow.up") {
-                        operation = Task { await model.send(session: session, conversation: conversation) }
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(
-                        model.busy || model.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty
-                            || model.text.utf16.count > 2_000)
-                    if model.text.utf16.count > 2_000 { Text("Please shorten your message to 2,000 characters.") }
-                }
+                recovery(saved)
                 if model.busy { ProgressView("Working…") }
                 if !model.reply.isEmpty { Text(model.reply).textSelection(.enabled) }
                 if let notice = model.notice { Text(notice).foregroundStyle(QuietPalette.muted) }
             }.frame(maxWidth: .infinity, alignment: .leading).padding(20)
         }
-        .background(QuietPalette.background).navigationTitle("Ask Nest")
-        .task { await model.load(session: session) }
-        .onDisappear { operation?.cancel() }
     }
 
     @ViewBuilder

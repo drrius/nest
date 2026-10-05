@@ -1,0 +1,12 @@
+index,node_json
+0,"{""ref"":""e4"",""type"":""NavigationBar"",""label"":""Private conversations"",""value"":null,""rect"":{""height"":54,""x"":0,""width"":375,""y"":20},""enabled"":true,""hittable"":true}"
+1,"{""ref"":""e5"",""type"":""Button"",""label"":""Private conversations"",""value"":null,""rect"":{""height"":44,""x"":16,""width"":44,""y"":20},""enabled"":true,""hittable"":true}"
+2,"{""ref"":""e6"",""type"":""StaticText"",""label"":""Ask Nest"",""value"":null,""rect"":{""width"":86,""y"":29,""height"":26,""x"":144.5},""enabled"":true,""hittable"":true}"
+3,"{""ref"":""e8"",""type"":""StaticText"",""label"":""Private to you"",""value"":null,""rect"":{""width"":247,""y"":86,""height"":51.5,""x"":20},""enabled"":true,""hittable"":true}"
+4,"{""ref"":""e9"",""type"":""TextView"",""label"":""Message to Nest"",""value"":null,""rect"":{""width"":311,""y"":161.5,""height"":314.5,""x"":32},""enabled"":true,""hittable"":true}"
+5,"{""ref"":""e12"",""type"":""StaticText"",""label"":""What would help today?"",""value"":null,""rect"":{""width"":279.5,""y"":169.5,""height"":125.5,""x"":37},""enabled"":true,""hittable"":true}"
+6,"{""ref"":""e13"",""type"":""StaticText"",""label"":""0 of 2,000 characters"",""value"":null,""rect"":{""width"":154,""y"":520.25,""height"":51.5,""x"":20},""enabled"":true,""hittable"":true}"
+7,"{""ref"":""e18"",""type"":""Button"",""label"":""Today"",""value"":null,""rect"":{""width"":88.25,""y"":588,""height"":54,""x"":25},""enabled"":true,""hittable"":true}"
+8,"{""ref"":""e20"",""type"":""Button"",""label"":""Meals"",""value"":null,""rect"":{""width"":88.25000000000001,""y"":588,""height"":54,""x"":103.91666666666667},""enabled"":true,""hittable"":true}"
+9,"{""ref"":""e22"",""type"":""Button"",""label"":""Calendar"",""value"":null,""rect"":{""width"":88.25000000000003,""y"":588,""height"":54,""x"":182.83333333333334},""enabled"":true,""hittable"":true}"
+10,"{""ref"":""e24"",""type"":""Button"",""label"":""Money"",""value"":null,""rect"":{""width"":88.25,""y"":588,""height"":54,""x"":261.75},""enabled"":true,""hittable"":true}"

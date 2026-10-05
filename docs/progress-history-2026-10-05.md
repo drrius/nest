@@ -185,3 +185,23 @@ both phones remain open. The observed system-owned picker Cancel rectangle is
 36.5×36pt, with no44pt/full-accessibility claim. M7 and all other unchecked milestones
 remain incomplete. No expense, approval, beta, production action, purchase, worker
 activation or merge occurred.
+
+## Cooking-notes keyboard readability
+
+Actual typing exposes clipped final notes in the expanding field and both
+SwiftUI editor candidates. Native TextKit2 reports insufficient final content
+height; an explicit TextKit1 editor fixes the bounded field without shrinking
+Dynamic Type or guessing keyboard offsets. Exact1,045 inputs, strict format/
+limits/signing,6 Foundation passes/2 hosted skips and8 signed-native methods
+pass. Corrected scene/focus tests preserve full caret visibility; earlier
+scene-less observer failures are retained. Actual largest/dark and normal/light
+input plus one typed suffix show the full final line/cursor and44pt Save target.
+Both Back/reopen checks restore original profiles/64 empty journals; Today/
+default text/light and data/Keychain are retained. All seven hosted aggregate
+hashes match, including61 events/102 allocations/122 ledger entries/receipts.
+[Evidence](../evidence/2026-10-05/swiftui-preference-keyboard-readability/README.md).
+Source `2ffc3504` passes Nest37278013369/SwiftUI37278013379:418 native methods,
+11 explicit skips;496 Foundation/41 skips, zero failures, strict format/limits/signing.
+No Save, model call, beta, production mutation,
+purchase or merge occurred. Other editors/VoiceOver/two phones and full M1–M9
+acceptance/external gates remain open.
