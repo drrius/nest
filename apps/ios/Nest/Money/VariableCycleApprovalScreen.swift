@@ -40,17 +40,17 @@ struct VariableCycleApprovalScreen: View {
             if phase == .active { Task { await model.load() } }
         }
         .alert(
-            choice == true ? "Record this bill?" : "Decline this proposal?",
+            choice == true ? "Record bill?" : "Decline bill?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Record bill" : "Decline", role: choice ? nil : .destructive) {
+                Button(choice ? "Record" : "Decline", role: choice ? nil : .destructive) {
                     Task { await model.decide(choice) }
                 }
             }
             Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text("This applies only to the exact amount, split and cycle you reviewed. Nest does not move money.")
+            Text("This cycle only. No payment.")
         }
     }
 

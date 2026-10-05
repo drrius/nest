@@ -84,17 +84,17 @@ struct RefundApprovalScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task { await load() }
         .alert(
-            choice == true ? "Record this refund?" : "Decline this refund?",
+            choice == true ? "Record refund?" : "Decline refund?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Approve and record" : "Decline", role: choice ? nil : .destructive) {
+                Button(choice ? "Record" : "Decline", role: choice ? nil : .destructive) {
                     Task { await decide(choice) }
                 }
             }
             Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text("This applies only to the exact refund you reviewed. Nest does not transfer money.")
+            Text("No bank transfer.")
         }
     }
 

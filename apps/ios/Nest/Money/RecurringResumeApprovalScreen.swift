@@ -47,19 +47,17 @@ struct RecurringResumeApprovalScreen: View {
             if phase == .active { Task { await model.load() } }
         }
         .alert(
-            choice == true ? "Resume this recurring expense?" : "Decline this resumption?",
+            choice == true ? "Resume rule?" : "Decline resumption?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Confirm resumption" : "Decline") {
+                Button(choice ? "Resume" : "Decline") {
                     Task { await model.decide(choice) }
                 }
             }
             Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text(
-                "This authorizes future recording using the exact amount, payer, split and dates reviewed. Skipped cycles and existing history stay unchanged."
-            )
+            Text("No backfill. No payment.")
         }
     }
 

@@ -84,17 +84,17 @@ struct CorrectionApprovalScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .task { await load() }
         .alert(
-            choice == true ? "Apply this correction?" : "Decline this correction?",
+            choice == true ? "Correct entry?" : "Decline correction?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Approve and record" : "Decline", role: choice ? nil : .destructive) {
+                Button(choice ? "Apply" : "Decline", role: choice ? nil : .destructive) {
                     Task { await decide(choice) }
                 }
             }
             Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text("This applies only to the exact correction you reviewed. Nest does not transfer money.")
+            Text("History stays. No transfer.")
         }
     }
 

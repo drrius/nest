@@ -45,17 +45,17 @@ struct RecurringStateApprovalScreen: View {
             if phase == .active { Task { await model.load() } }
         }
         .alert(
-            choice == true ? "Apply this rule change?" : "Decline this rule change?",
+            choice == true ? "Confirm change?" : "Decline change?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Confirm rule change" : "Decline", role: .destructive) {
+                Button(choice ? "Confirm" : "Decline", role: .destructive) {
                     Task { await model.decide(choice) }
                 }
             }
             Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text("This applies only to the exact rule and revision you reviewed. Existing financial history remains.")
+            Text("History stays.")
         }
     }
 

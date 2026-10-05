@@ -40,17 +40,17 @@ struct ManualCycleApprovalScreen: View {
             if phase == .active { Task { await model.load() } }
         }
         .alert(
-            choice == true ? "Cover this bill cycle?" : "Decline this proposal?",
+            choice == true ? "Link expense?" : "Decline link?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
-                Button(choice ? "Link existing expense" : "Decline", role: choice ? nil : .destructive) {
+                Button(choice ? "Link" : "Decline", role: choice ? nil : .destructive) {
                     Task { await model.decide(choice) }
                 }
             }
             Button("Cancel", role: .cancel) { choice = nil }
         } message: {
-            Text("This uses the exact existing expense and cycle you reviewed. It creates no new expense or payment.")
+            Text("No new expense or payment.")
         }
     }
 
