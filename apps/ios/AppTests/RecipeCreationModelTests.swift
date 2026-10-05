@@ -185,7 +185,7 @@ actor RecipeCreationTestServer {
                     "receipt": [
                         "version": 1, "actorId": actor.uuidString, "householdId": household.uuidString,
                         "operationId": command.operationId.uuidString, "definitionId": definition.uuidString,
-                        "revision": "3",
+                        "revision": revision,
                     ],
                 ])
         }
@@ -193,7 +193,7 @@ actor RecipeCreationTestServer {
         return try answer(
             request,
             [
-                "version": 1, "householdId": household.uuidString, "revision": "3",
+                "version": 1, "householdId": household.uuidString, "revision": revision,
                 "recipe": [
                     "definitionId": definition.uuidString, "title": "Soup", "servings": 2,
                     "instructions": "Simmer.", "recipeUrl": NSNull(), "notes": NSNull(),
@@ -230,8 +230,13 @@ actor RecipeCreationTestServer {
             request,
             [
                 "version": 1, "householdId": household.uuidString,
-                "revision": created == nil ? libraryRevision : "3", "meals": meals, "nextAfterId": NSNull(),
+                "revision": revision, "meals": meals, "nextAfterId": NSNull(),
             ])
+    }
+
+    private var revision: String {
+        guard let created else { return libraryRevision }
+        return String(Int64(created.expectedRevision)! + Int64(created.recipe.ingredients.count + 1))
     }
 
     private func answer(_ request: URLRequest, _ body: [String: Any], status: Int = 200) throws -> (Data, URLResponse) {

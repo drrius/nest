@@ -17,17 +17,24 @@ fields. Discard uses the short native alert, whose actual recipe rendering remai
 unverified. A creation accepted into uncertain recovery is not claimed as a
 confirmed server save.
 
-Eleven new AppTests cases cover unavailable libraries before staging, changed
+Thirteen new AppTests cases cover unavailable libraries before staging, changed
 revisions, changed edit/archive content at the same revision, account switches
-during held reads, and new-recipe fresh-context recovery using the same draft.
+during held reads, new-recipe fresh-context recovery using the same draft, and editor refresh that
+preserves a typed patch when only the library revision changed. Refresh refuses
+a changed recipe or another account rather than rebasing the patch automatically.
 Refusal checks require zero write attempts and no staged SQLite slot. Nine existing
 cases retain lost-reply exact retry/reconciliation, old-account refusal, and explicit
 conflict discard. These use injected HTTP and temporary SQLite; they are not hosted
 provider or rendered-native evidence. The original source has not been executed
 with the new tests, so no reproduced before-fix native failure is claimed.
 
-Linux source-limit and diff checks pass. Swift compiler/format and actual execution
-await the exact commit on the Mac CI runner. The authorized owner Mac is currently
+Linux source-limit and diff checks pass. Initial29ee1515 strict Swift format,
+Foundation and routine CI pass; signed-native execution is still live. The
+follow-up editor refresh and dynamic fixture revisions await their own CI.
+The creation fixture originally hardcoded the post-write revision3, which is
+invalid for the new revision2 recovery case; its reply now derives the exact
+revision increment from the requested revision and ingredient count. Production
+receipt validation remains unchanged. No outcome is claimed until execution. The authorized owner Mac is currently
 offline on Tailscale and SSH times out. Actual normal-session form input/keyboard,
 refusal/refresh/discard, partner reads and a complete real seven-day manual week
 remain open. No hosted recipe/meal write, personal or production data, model call,

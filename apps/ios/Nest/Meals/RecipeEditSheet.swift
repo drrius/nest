@@ -39,7 +39,7 @@ struct RecipeEditSheet: View {
 
 struct RecipeEditForm: View {
     @ObservedObject var model: SessionModel
-    let context: RecipeArchiveContext
+    @State private var context: RecipeArchiveContext
     @State private var draft: RecipeEditDraft
     @State private var saving = false
     @State private var discard = false
@@ -49,7 +49,7 @@ struct RecipeEditForm: View {
 
     init(model: SessionModel, context: RecipeArchiveContext) {
         self.model = model
-        self.context = context
+        _context = State(initialValue: context)
         _draft = State(initialValue: RecipeEditDraft(context.recipe))
     }
 
@@ -92,7 +92,12 @@ struct RecipeEditForm: View {
                         lines: 2...5)
                     Text("Changes affect future uses. Existing meal plans keep their captured recipe.").font(.footnote)
                 }
-                if let notice { Text(notice) }
+                if let notice {
+                    Section {
+                        Text(notice)
+                        Button("Refresh saved meals") { Task { await refresh() } }
+                    }
+                }
             }
             .disabled(saving)
             .modifier(RecipeEditorKeyboard(focus: $focusedField))
@@ -108,7 +113,7 @@ struct RecipeEditForm: View {
                 }
             }
             .interactiveDismissDisabled()
-            .confirmationDialog("Discard recipe changes?", isPresented: $discard, titleVisibility: .visible) {
+            .alert("Discard changes?", isPresented: $discard) {
                 Button("Discard changes", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
             }
@@ -128,7 +133,22 @@ struct RecipeEditForm: View {
         if await model.editRecipe(draft, context: context) {
             dismiss()
         } else {
-            notice = "Could not save these changes. Your draft stays here. Close and reopen to load a newer recipe."
+            notice = "Could not save these changes. Your draft stays here. Refresh saved meals and try again."
+        }
+    }
+
+    private func refresh() async {
+        guard !saving else { return }
+        focusedField = nil
+        saving = true
+        defer { saving = false }
+        do {
+            context = try await model.refreshRecipeEditContext(draft, context: context)
+            notice = nil
+        } catch NestAPIFailure.conflict {
+            notice = "This recipe changed. Your draft stays here. Close and reopen to review the newer recipe."
+        } catch {
+            notice = "Could not refresh saved meals. Connect and try again. Your draft stays here."
         }
     }
 }

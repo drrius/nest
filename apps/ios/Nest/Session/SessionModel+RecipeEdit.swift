@@ -1,6 +1,21 @@
 import Foundation
 
 extension SessionModel {
+    func refreshRecipeEditContext(
+        _ draft: RecipeEditDraft, context: RecipeArchiveContext
+    ) async throws -> RecipeArchiveContext {
+        guard generation == context.generation, status == .ready(context.member) else {
+            throw OfflineFailure.sessionChanged
+        }
+        guard draft.baseline == context.recipe else { throw NestAPIFailure.conflict }
+        let current = try await loadRecipeArchiveContext(context.recipe.id)
+        guard current.generation == context.generation, current.member == context.member else {
+            throw OfflineFailure.sessionChanged
+        }
+        guard current.recipe == draft.baseline else { throw NestAPIFailure.conflict }
+        return current
+    }
+
     func editRecipe(_ draft: RecipeEditDraft, context: RecipeArchiveContext) async -> Bool {
         guard let offline, let lease, generation == context.generation, status == .ready(context.member)
         else { return false }

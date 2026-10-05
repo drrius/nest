@@ -93,6 +93,54 @@ final class RecipeEditModelTests: XCTestCase {
         XCTAssertNil(persisted)
         let attempts = await server.attempts
         XCTAssertTrue(attempts.isEmpty)
+        let fresh = try await model.refreshRecipeEditContext(draft, context: context)
+        XCTAssertEqual(fresh.revision, "3")
+        XCTAssertEqual(fresh.recipe, context.recipe)
+        XCTAssertEqual(draft.ingredients[0].quantity, "")
+        let recovered = await model.editRecipe(draft, context: fresh)
+        XCTAssertTrue(recovered)
+        XCTAssertNil(model.recipeEdit)
+        let saved = await server.attempts
+        XCTAssertEqual(saved.count, 1)
+        XCTAssertEqual(saved.first?.expectedRevision, "3")
+        XCTAssertEqual(saved.first, try draft.command(operation: XCTUnwrap(saved.first?.operationId), revision: "3"))
+    }
+
+    func testRefreshDoesNotRebaseDraftOverChangedRecipe() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeArchiveContext(server.definition)
+        var draft = RecipeEditDraft(context.recipe)
+        draft.ingredients[0].quantity = ""
+        await server.changeRecipe()
+        do {
+            _ = try await model.refreshRecipeEditContext(draft, context: context)
+            XCTFail("Changed recipe must require a separate review")
+        } catch {
+            XCTAssertEqual(error as? NestAPIFailure, .conflict)
+        }
+        XCTAssertEqual(draft.baseline, context.recipe)
+        XCTAssertEqual(draft.ingredients[0].quantity, "")
+        XCTAssertNil(model.recipeEdit)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
+    func testOldAccountDraftCannotRefreshIntoNewAccount() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeArchiveContext(server.definition)
+        let draft = RecipeEditDraft(context.recipe)
+        await model.signIn(idToken: "B", nonce: "test")
+        do {
+            _ = try await model.refreshRecipeEditContext(draft, context: context)
+            XCTFail("Old-account draft must not obtain a new-account context")
+        } catch {
+            XCTAssertEqual(error as? OfflineFailure, .sessionChanged)
+        }
+        XCTAssertNil(model.recipeEdit)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
     }
 
     func testChangedRecipeAtSameRevisionRefusesBeforeStaging() async throws {
@@ -204,7 +252,7 @@ actor RecipeEditTestServer {
                     "receipt": [
                         "version": 1, "actorId": actor.uuidString, "householdId": household.uuidString,
                         "operationId": command.operationId.uuidString, "definitionId": definition.uuidString,
-                        "previousRevision": command.expectedRevision, "revision": "2",
+                        "previousRevision": command.expectedRevision, "revision": revision,
                     ],
                 ])
         }
@@ -222,7 +270,7 @@ actor RecipeEditTestServer {
                 request,
                 [
                     "version": 1, "householdId": household.uuidString,
-                    "revision": created == nil ? libraryRevision : "2", "meals": meals, "nextAfterId": NSNull(),
+                    "revision": revision, "meals": meals, "nextAfterId": NSNull(),
                 ])
         }
         if holdRecipe {
@@ -235,7 +283,7 @@ actor RecipeEditTestServer {
         return try answer(
             request,
             [
-                "version": 1, "householdId": household.uuidString, "revision": created == nil ? "1" : "2",
+                "version": 1, "householdId": household.uuidString, "revision": revision,
                 "recipe": [
                     "definitionId": definition.uuidString, "title": "Soup", "servings": 2,
                     "instructions": instructions, "recipeUrl": NSNull(), "notes": NSNull(),
@@ -248,6 +296,11 @@ actor RecipeEditTestServer {
                     ],
                 ],
             ])
+    }
+
+    private var revision: String {
+        guard let created else { return libraryRevision }
+        return String(Int64(created.expectedRevision)! + 1)
     }
 
     private func answer(_ request: URLRequest, _ body: [String: Any], status: Int = 200) throws -> (Data, URLResponse) {
