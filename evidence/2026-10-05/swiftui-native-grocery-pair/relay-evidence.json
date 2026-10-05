@@ -1,0 +1,176 @@
+{
+  "forwardedWrites": [
+    {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "operation": "5c203958-483e-4475-9ac8-98b9bb699bbf",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "1",
+      "checked": true,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "5c203958-483e-4475-9ac8-98b9bb699bbf",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "2",
+        "checked": true,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "operation": "fbb4322c-e5d6-4df4-b639-baeea6cc5040",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "1",
+      "checked": true,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "fbb4322c-e5d6-4df4-b639-baeea6cc5040",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "2",
+        "checked": true,
+        "outcome": "already_applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "operation": "52bc3a54-0333-4fc9-aa62-179e77f94bc1",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "2",
+      "checked": false,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "52bc3a54-0333-4fc9-aa62-179e77f94bc1",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "3",
+        "checked": false,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "operation": "d80a839f-46ae-4b64-a344-3f4bc77f44ab",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "3",
+      "checked": true,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "d80a839f-46ae-4b64-a344-3f4bc77f44ab",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "4",
+        "checked": true,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "operation": "62dad207-d3aa-4ceb-8810-9f19ca884e19",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "4",
+      "checked": false,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "62dad207-d3aa-4ceb-8810-9f19ca884e19",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "5",
+        "checked": false,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "operation": "a685daf7-e23e-403b-99aa-df98b6a57ff6",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "3",
+      "checked": true,
+      "forwarded": true,
+      "status": 409,
+      "receipt": null,
+      "replyDropped": false
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "operation": "83b80d90-de16-46be-bf4c-06251f57fc17",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "5",
+      "checked": true,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "83b80d90-de16-46be-bf4c-06251f57fc17",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "6",
+        "checked": true,
+        "outcome": "applied"
+      },
+      "replyDropped": true
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "operation": "83b80d90-de16-46be-bf4c-06251f57fc17",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "5",
+      "checked": true,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "83b80d90-de16-46be-bf4c-06251f57fc17",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "6",
+        "checked": true,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "operation": "7e324cfd-0ae5-4a71-932e-752ce5dbdb03",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "6",
+      "checked": false,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "7e324cfd-0ae5-4a71-932e-752ce5dbdb03",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "7",
+        "checked": false,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "operation": "f4cf847e-2f04-476d-b2d3-d1116c9d71f3",
+      "item": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "expectedVersion": "7",
+      "checked": true,
+      "forwarded": true,
+      "status": 200,
+      "receipt": {
+        "operation": "f4cf847e-2f04-476d-b2d3-d1116c9d71f3",
+        "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+        "version": "8",
+        "checked": true,
+        "outcome": "applied"
+      },
+      "replyDropped": false
+    }
+  ],
+  "forwardedReadCounts": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200 /v1/session 200": 9,
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200 /v1/groceries 200": 20,
+    "e5f80cfd-b69a-4aa0-a267-75784e943676 /v1/session 200": 8,
+    "e5f80cfd-b69a-4aa0-a267-75784e943676 /v1/groceries 200": 20
+  },
+  "injectedUnavailableResponses": 20,
+  "rawHeadersAndBodiesPublished": false
+}

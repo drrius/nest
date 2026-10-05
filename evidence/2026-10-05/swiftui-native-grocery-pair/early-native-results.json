@@ -1,0 +1,230 @@
+{
+  "cases": 22,
+  "outcomes": {
+    "passed": 19,
+    "failed": 3,
+    "skipped": 0
+  },
+  "tests": [
+    {
+      "step": "original-preflight",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedNativePairGroceryTests/testOwnedNativeMemberReadsExactGroceryFixture",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 4.677
+    },
+    {
+      "step": "partner-preflight",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedNativePairGroceryTests/testOwnedNativeMemberReadsExactGroceryFixture",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 4.115
+    },
+    {
+      "step": "create-owned-item",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testCreateOwnedGroceryOnce",
+      "exitCode": 65,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "seconds": 51.176
+    },
+    {
+      "step": "original-created-read",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedNativePairGroceryTests/testOwnedNativeMemberReadsExactGroceryFixture",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 4.667
+    },
+    {
+      "step": "partner-created-read",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedNativePairGroceryTests/testOwnedNativeMemberReadsExactGroceryFixture",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 3.773
+    },
+    {
+      "step": "partner-warm-item",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 31.578
+    },
+    {
+      "step": "original-warm-item",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 32.348
+    },
+    {
+      "step": "relay-original-online",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 31.829
+    },
+    {
+      "step": "relay-partner-online",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 31.632
+    },
+    {
+      "step": "compatible-original-offline-check",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testCheckOwnedGroceryOnce",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 41.731
+    },
+    {
+      "step": "compatible-original-offline-restart",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 40.623
+    },
+    {
+      "step": "compatible-partner-online-check",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "NativeGroceryPairTests/testCheckOwnedGroceryOnce",
+      "exitCode": 65,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "seconds": 76.627
+    },
+    {
+      "step": "compatible-partner-committed-read",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 48.221
+    },
+    {
+      "step": "compatible-original-retained-restart",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 40.428
+    },
+    {
+      "step": "compatible-original-online-replay",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 47.521
+    },
+    {
+      "step": "compatible-original-canonical",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedNativePairGroceryTests/testOwnedNativeMemberReadsExactGroceryFixture",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 4.517
+    },
+    {
+      "step": "compatible-partner-canonical",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedNativePairGroceryTests/testOwnedNativeMemberReadsExactGroceryFixture",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 3.454
+    },
+    {
+      "step": "reset-partner-uncheck",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "NativeGroceryPairTests/testCheckOwnedGroceryOnce",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 50.523
+    },
+    {
+      "step": "opposing-original-warm",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 31.847
+    },
+    {
+      "step": "opposing-original-offline-check",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testCheckOwnedGroceryOnce",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 41.9
+    },
+    {
+      "step": "opposing-original-offline-restart",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeGroceryPairTests/testReadOwnedGroceryState",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 39.818
+    },
+    {
+      "step": "opposing-partner-check",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "NativeGroceryPairTests/testCheckOwnedGroceryOnce",
+      "exitCode": 65,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0,
+      "seconds": 77.146
+    }
+  ]
+}

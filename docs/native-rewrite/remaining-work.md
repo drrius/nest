@@ -333,3 +333,7 @@ maximum/dark with continuous scrolling coverage. This is actual signed native
 execution with unchanged permissions/session/household data. The full audit's20
 unsuppressed reports, VoiceOver, all forms and both phones remain open.
 [Reading evidence](../../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
+
+## Two independent native grocery clients — 5 October
+
+The real checklist now verifies compatible offline replay, opposing intent/review/explicit discard and a committed lost reply with exact retry across two independently signed-in fictional simulators. Normal removal, both stable-origin Today views,64 empty journals each and six retained finance/activity/Storage fingerprints pass. Earlier native observer failures and the controller correction remain visible; the final row observer passes, while whole Add is not rerun. [Evidence](../../evidence/2026-10-05/swiftui-native-grocery-pair/README.md). Source1075f60c passes both CI workflows; newer observer CI is pending. This bounds the earlier two-client checkbox gap only. Radio loss, larger-text/VoiceOver/phones, other chores/handovers and full M4 remain open.

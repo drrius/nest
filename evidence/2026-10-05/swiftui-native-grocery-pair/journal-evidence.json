@@ -1,0 +1,102 @@
+{
+  "compatible-before-restart": [
+    {
+      "operation": "fbb4322c-e5d6-4df4-b639-baeea6cc5040",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "70a56324db6c94dec6de5429e594b5f95db6628832723855552f3604168d3101",
+      "version": "1",
+      "checked": true
+    }
+  ],
+  "compatible-after-restart": [
+    {
+      "operation": "fbb4322c-e5d6-4df4-b639-baeea6cc5040",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "70a56324db6c94dec6de5429e594b5f95db6628832723855552f3604168d3101",
+      "version": "1",
+      "checked": true
+    }
+  ],
+  "compatible-resume2-before-replay": [
+    {
+      "operation": "fbb4322c-e5d6-4df4-b639-baeea6cc5040",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "70a56324db6c94dec6de5429e594b5f95db6628832723855552f3604168d3101",
+      "version": "1",
+      "checked": true
+    }
+  ],
+  "compatible-resume3-before-replay": [
+    {
+      "operation": "fbb4322c-e5d6-4df4-b639-baeea6cc5040",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "70a56324db6c94dec6de5429e594b5f95db6628832723855552f3604168d3101",
+      "version": "1",
+      "checked": true
+    }
+  ],
+  "opposing-resume4-before-replay": [
+    {
+      "operation": "a685daf7-e23e-403b-99aa-df98b6a57ff6",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "160258f5749bf8d200bf4270c9e247b6c6599526238bb974d2983c3fd9ab90e6",
+      "version": "3",
+      "checked": true
+    }
+  ],
+  "opposing-before-restart": [
+    {
+      "operation": "a685daf7-e23e-403b-99aa-df98b6a57ff6",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "160258f5749bf8d200bf4270c9e247b6c6599526238bb974d2983c3fd9ab90e6",
+      "version": "3",
+      "checked": true
+    }
+  ],
+  "opposing-after-restart": [
+    {
+      "operation": "a685daf7-e23e-403b-99aa-df98b6a57ff6",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "160258f5749bf8d200bf4270c9e247b6c6599526238bb974d2983c3fd9ab90e6",
+      "version": "3",
+      "checked": true
+    }
+  ],
+  "opposing-retained-conflict": [
+    {
+      "operation": "a685daf7-e23e-403b-99aa-df98b6a57ff6",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "conflict",
+      "bodySha256": "160258f5749bf8d200bf4270c9e247b6c6599526238bb974d2983c3fd9ab90e6",
+      "version": "3",
+      "checked": true
+    }
+  ],
+  "lost-reply-before-restart": [
+    {
+      "operation": "83b80d90-de16-46be-bf4c-06251f57fc17",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "fd53e0317f04e74da2946893c4c3e0f0f0c2a14eb6f24cf43946efa00dfa8654",
+      "version": "5",
+      "checked": true
+    }
+  ],
+  "lost-reply-after-restart": [
+    {
+      "operation": "83b80d90-de16-46be-bf4c-06251f57fc17",
+      "target": "b3a8a9b5-7123-470c-9ca3-f620335bfb22",
+      "status": "pending",
+      "bodySha256": "fd53e0317f04e74da2946893c4c3e0f0f0c2a14eb6f24cf43946efa00dfa8654",
+      "version": "5",
+      "checked": true
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "sourceCommit": "1075f60cb8aeb8dc8ae1f7b8f1c532872c73b906",
+  "workflows": [
+    {
+      "conclusion": "success",
+      "databaseId": 37338868861,
+      "headSha": "1075f60cb8aeb8dc8ae1f7b8f1c532872c73b906",
+      "name": "Nest checks",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37338868861"
+    },
+    {
+      "conclusion": "success",
+      "databaseId": 37338868957,
+      "headSha": "1075f60cb8aeb8dc8ae1f7b8f1c532872c73b906",
+      "name": "SwiftUI client checks",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37338868957"
+    }
+  ],
+  "native": {
+    "foundationCases": 496,
+    "foundationSkipped": 41,
+    "signedAppCases": 423,
+    "signedAppSkipped": 14,
+    "failures": 0,
+    "strictFormattingPassed": true,
+    "sourceLimitsPassed": true,
+    "actualPushDisabledSigningPassed": true,
+    "manualPairFixtureExecutedByCI": false
+  },
+  "laterObserverSource": "2d0a2c6674872ce1c7b71226ec629fde4dd22ebc",
+  "laterObserverSourceCI": "not yet run at evidence capture",
+  "manualObserverMethodPassed": true,
+  "shippingAndSDKTestSourcesUnchangedFromPassingCI": true,
+  "phoneAcceptance": false,
+  "milestoneM4Complete": false
+}
