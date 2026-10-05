@@ -48,9 +48,12 @@ separately proves the confirmed UI state. Five read-only form-inspection
 methods pass separately. [Form check](form-inspection/results.json),
 [date/navigation failure](saved-date-navigation-failure/failure-excerpt.txt).
 
-Sourcee7d8fcff passes routine37384664580; its native37384664324 was live before
-the final observer/read-check update. Source32a8609d adds only the bounded
-read-only Today check and stronger completion observation; its CI remains pending.
+Final source4bea41bf passes Nest37385375622/SwiftUI37385375630:496 Foundation/
+41 skips and442 signed-app/20 skips, zero failures, strict formatting/source
+limits, signing and guarded UI compilation. [Native CI](native-ci.json),
+[routine CI](routine-ci.json). Source32a8609d is its unchanged native input.
+Earlier nativee7d8fcff37384664324 is cancelled by that meaningful observer update;
+its routine37384664580 passes.
 The earlierf85a7f72 passes both required workflows with496 Foundation/41 skips
 and442 signed-app/20 skips. The new tests are guarded manual native checks;
 CI only compiles their UI target. Full accessibility, maximum-text finished-editor

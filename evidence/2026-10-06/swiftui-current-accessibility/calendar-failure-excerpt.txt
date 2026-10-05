@@ -1,0 +1,30 @@
+    t =     9.37s Checking existence of `"Your partner’s availability" StaticText`
+    t =     9.39s Find the "Your partner’s availability" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Contrast failed
+    t =     9.45s Find the "Tab Bar" TabBar
+    t =     9.47s Find the "Tab Bar" TabBar
+    t =     9.50s Find the "Tab Bar" TabBar
+    t =     9.51s Added attachment named 'Accessibility issue'
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Contrast failed
+    t =     9.51s Find the Any (Descendant with identity binding to AX element pid: 987, elementOrHash.elementID: 4350887312.146)
+    t =     9.53s Find the "iOS calls this Full Access. Nest uses it only to read your calendars." StaticText
+    t =     9.69s Checking existence of `"iOS calls this Full Access. Nest uses it only to read your calendars." StaticText`
+    t =     9.70s Find the "iOS calls this Full Access. Nest uses it only to read your calendars." StaticText
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =     9.74s Find the Any (Descendant with identity binding to AX element pid: 987, elementOrHash.elementID: 4351435024.137)
+    t =     9.76s Find the "Your partner’s availability" StaticText
+    t =     9.90s Checking existence of `"Your partner’s availability" StaticText`
+    t =     9.92s Find the "Your partner’s availability" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =     9.96s Find the "Tab Bar" TabBar
+    t =     9.97s Find the "Tab Bar" TabBar
+    t =    10.01s Find the "Tab Bar" TabBar
+    t =    10.02s Added attachment named 'Accessibility issue'
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =    10.02s Find the Any (Descendant with identity binding to AX element pid: 987, elementOrHash.elementID: 4351408496.147)
+    t =    10.04s Find the "Allow calendar access" Button
+    t =    10.18s Checking existence of `"Allow calendar access" Button`
+    t =    10.20s Find the "Allow calendar access" Button
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =    10.23s Tear Down
+Test Case '-[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility]' failed (10.496 seconds).
