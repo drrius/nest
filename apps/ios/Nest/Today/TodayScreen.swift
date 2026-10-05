@@ -59,21 +59,7 @@ struct TodayScreen: View {
                         NavigationLink {
                             GroceriesScreen(model: model)
                         } label: {
-                            HStack(spacing: 14) {
-                                Image(systemName: "basket")
-                                    .font(.title3)
-                                    .foregroundStyle(QuietPalette.accent)
-                                VStack(alignment: .leading, spacing: 3) {
-                                    Text("Groceries").font(.headline).foregroundStyle(QuietPalette.ink)
-                                    Text(grocerySummary).font(.subheadline).foregroundStyle(QuietPalette.muted)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right").foregroundStyle(QuietPalette.muted)
-                            }
-                            .padding(18)
-                            .frame(minHeight: 76)
-                            .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
-                            .contentShape(Rectangle())
+                            TodayGroceryShortcut(summary: grocerySummary)
                         }
                         .buttonStyle(.plain)
                         .padding(.top, 28)
