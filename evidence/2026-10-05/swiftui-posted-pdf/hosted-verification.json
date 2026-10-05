@@ -1,0 +1,39 @@
+{
+  "project": "nest-test",
+  "before": {
+    "events": 61,
+    "uploads": 11,
+    "objects": 1,
+    "namedFixture": 0,
+    "eventsDigest": "daef8b9923651a53d48ecef333b2d1df2d45c599f84a3f708ce1dfbbe7089650",
+    "ledgerDigest": "d2dfd62009613d1924547a1c247adac32a0fd7ee9f4ad10470970fb55220d76c",
+    "allocationsDigest": "f64054a5eacf1e0e70b0bb7b76340f3db527a442020bc57198dddae482be25eb"
+  },
+  "after": {
+    "events": 62,
+    "fixtures": 1,
+    "amountCentimes": 2,
+    "ledgerCount": 2,
+    "ledgerSum": 0,
+    "allocationCount": 2,
+    "allocationSum": 2,
+    "uploadState": "claimed",
+    "intent": {
+      "bytes": 640,
+      "mime": "application/pdf",
+      "sha256": "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9",
+      "uploaderMatches": true
+    },
+    "objects": 2,
+    "object": {
+      "mime": "application/pdf",
+      "bytes": "640"
+    },
+    "originalEventsDigest": "daef8b9923651a53d48ecef333b2d1df2d45c599f84a3f708ce1dfbbe7089650",
+    "originalLedgerDigest": "d2dfd62009613d1924547a1c247adac32a0fd7ee9f4ad10470970fb55220d76c",
+    "originalAllocationsDigest": "f64054a5eacf1e0e70b0bb7b76340f3db527a442020bc57198dddae482be25eb"
+  },
+  "originalEventsUnchanged": true,
+  "originalLedgerUnchanged": true,
+  "originalAllocationsUnchanged": true
+}

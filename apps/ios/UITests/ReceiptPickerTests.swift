@@ -63,6 +63,101 @@ final class ReceiptPickerTests: XCTestCase {
         XCTAssertTrue(tabs.buttons["Today"].isSelected)
     }
 
+    func testPDFAttachmentPostsWithReviewedExpense() throws {
+        guard ProcessInfo.processInfo.environment["NEST_QA_POST_PDF"] == "20261005" else {
+            throw XCTSkip("Requires the separately authorized, one-time nest-test financial fixture")
+        }
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        let file = try openFixture(in: app)
+        let cell = app.cells.containing(.staticText, identifier: file.label).firstMatch
+        XCTAssertTrue(cell.exists)
+        cell.tap()
+        XCTAssertTrue(app.staticTexts["Receipt attached"].waitForExistence(timeout: 60))
+        enter("Nest QA PDF posted 20261005", label: "Description", in: app)
+        enter("0.02", label: "Shared amount (CHF)", in: app)
+        let review = app.buttons["expense.keyboard-review"]
+        XCTAssertTrue(review.isHittable)
+        review.tap()
+        XCTAssertTrue(app.staticTexts["Nest QA PDF posted 20261005"].waitForExistence(timeout: 15))
+        XCTAssertTrue(app.staticTexts["Receipt attached"].exists)
+        XCTAssertTrue(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "0.02")).firstMatch.exists)
+        let save = app.buttons["Save expense"]
+        reveal(save, in: app)
+        XCTAssertTrue(save.isEnabled)
+        save.tap()
+        XCTAssertTrue(app.staticTexts["Expense recorded."].waitForExistence(timeout: 60))
+        let entry = app.buttons["View recorded entry"]
+        reveal(entry, in: app)
+        entry.tap()
+        XCTAssertTrue(app.staticTexts["Nest QA PDF posted 20261005"].waitForExistence(timeout: 30))
+        let receipt = app.buttons["View receipt"]
+        reveal(receipt, in: app)
+        XCTAssertGreaterThanOrEqual(receipt.frame.height, 44)
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Posted synthetic PDF expense details"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+        app.navigationBars["Entry details"].buttons.firstMatch.tap()
+        XCTAssertTrue(app.staticTexts["Expense recorded."].waitForExistence(timeout: 15))
+        let finish = app.buttons["Start another expense"]
+        reveal(finish, in: app)
+        finish.tap()
+        reveal(app.buttons["Choose PDF"], in: app)
+        XCTAssertTrue(app.buttons["Choose PDF"].waitForExistence(timeout: 30))
+        XCTAssertFalse(app.staticTexts["Receipt attached"].exists)
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
+    func testExistingPostedPDFExpenseRemainsReachable() throws {
+        guard ProcessInfo.processInfo.environment["NEST_QA_READ_POSTED_PDF"] == "20261005" else {
+            throw XCTSkip("Requires the existing, separately verified nest-test PDF expense")
+        }
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        app.launch()
+        let tabs = app.tabBars.firstMatch
+        XCTAssertTrue(tabs.waitForExistence(timeout: 30))
+        defer {
+            tabs.buttons["Today"].tap()
+            XCTAssertTrue(tabs.buttons["Today"].isSelected)
+        }
+        tabs.buttons["Money"].tap()
+        let history = app.buttons["View full history"]
+        reveal(history, in: app)
+        history.tap()
+        let entry = app.buttons.matching(
+            NSPredicate(format: "label CONTAINS %@", "Nest QA PDF posted 20261005")
+        ).firstMatch
+        XCTAssertTrue(entry.waitForExistence(timeout: 30))
+        reveal(entry, in: app)
+        entry.tap()
+        XCTAssertTrue(app.staticTexts["Nest QA PDF posted 20261005"].waitForExistence(timeout: 30))
+        let receipt = app.buttons["View receipt"]
+        reveal(receipt, in: app)
+        XCTAssertGreaterThanOrEqual(receipt.frame.height, 44)
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Existing synthetic PDF expense details"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+    }
+
+    private func enter(_ value: String, label: String, in app: XCUIApplication) {
+        let predicate = NSPredicate(
+            format: "label == %@ AND (elementType == %d OR elementType == %d)", label,
+            XCUIElement.ElementType.textField.rawValue, XCUIElement.ElementType.textView.rawValue)
+        let field = app.descendants(matching: .any).matching(predicate).firstMatch
+        for _ in 0..<12 {
+            if field.exists && field.isHittable && field.frame.minY >= 60 {
+                field.tap()
+                field.typeText(value)
+                return
+            }
+            app.swipeDown()
+        }
+        add(XCTAttachment(screenshot: app.screenshot()))
+        XCTFail("Could not enter the synthetic expense field")
+    }
+
     private func openFixture(in app: XCUIApplication) throws -> XCUIElement {
         app.launch()
         let tabs = app.tabBars.firstMatch

@@ -53,3 +53,17 @@ contrast. Run it at an ordinary text size with the unrequested-permission/unknow
 availability fixture. It records every reported issue through the same diagnostic
 handler as the root audit, suppresses none and returns to Today even on failure.
 It remains a failing diagnostic, not an accessibility approval or a CI gate.
+
+Receipt-picker cancellation and unposted upload/removal methods use the clearly
+marked local PDF fixture. The posting method is different: it requires the runner
+environment `NEST_QA_POST_PDF=20261005` and creates one permanent CHF0.02 test
+expense. It must never run against production or after that named fixture exists.
+Use a fresh result directory, preflight the fixture count as zero and inspect
+any interrupted outcome before another action. This fixture has now been posted;
+do not rerun its creation. Without explicit opt-in the method skips.
+
+`NEST_QA_READ_POSTED_PDF=20261005` opts into the separate existing-entry navigation
+method and the hosted `NestAppTests/HostedPDFReceiptTests` byte-download method.
+Both read the existing synthetic expense and must use the authorized test origins
+and preserved real member session. They do not create another expense. These
+manual opt-ins are not enabled in routine CI.

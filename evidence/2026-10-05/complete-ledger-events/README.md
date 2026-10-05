@@ -57,4 +57,5 @@ guard is flagged; this is not blanket security approval. See remediation links i
 No hosted financial mutation probe was performed. Actual transaction refusal and
 native command/approval compatibility are proved in disposable PostgreSQL; hosted
 metadata/body parity and retained-history validation are read-only postflight.
-Required source CI remains pending. Production is untouched.
+Source4c4cc96b passes [Nest37316715801](https://github.com/drrius/nest/actions/runs/37316715801);
+postflight docs cb88c6a6 pass Nest37317182854. Production is untouched.
