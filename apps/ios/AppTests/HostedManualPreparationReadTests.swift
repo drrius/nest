@@ -14,7 +14,7 @@ final class HostedManualPreparationReadTests: XCTestCase {
         let environment = ProcessInfo.processInfo.environment
         let actor = try role(environment)
         let phase = try XCTUnwrap(environment["NEST_QA_PREPARATION_PHASE"])
-        XCTAssertTrue(["absent", "shared", "assigned"].contains(phase))
+        XCTAssertTrue(["absent", "shared", "assigned", "due_today", "completed"].contains(phase))
         let configuration = try NestConfiguration.fromBundle()
         guard configuration.apiURL.absoluteString == "https://nest-test-api-drrius-projects.vercel.app",
             configuration.supabaseURL.absoluteString == "https://tkjixmujjoustdiedfmw.supabase.co",
@@ -66,8 +66,18 @@ final class HostedManualPreparationReadTests: XCTestCase {
         }
         let preparation = try XCTUnwrap(value.preparation)
         XCTAssertEqual(preparation.title, "Nest native preparation 20261005")
-        XCTAssertEqual(preparation.dueOn.value, "2026-10-19")
-        XCTAssertEqual(preparation.status, .open)
+        if ["due_today", "completed"].contains(phase) {
+            let date = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_QA_PREPARATION_DUE"])
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .gregorian)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.dateFormat = "yyyy-MM-dd"
+            XCTAssertEqual(date, formatter.string(from: .now))
+            XCTAssertEqual(preparation.dueOn.value, date)
+        } else {
+            XCTAssertEqual(preparation.dueOn.value, "2026-10-19")
+        }
+        XCTAssertEqual(preparation.status, phase == "completed" ? .completed : .open)
         XCTAssertEqual(preparation.state, .active)
         XCTAssertEqual(
             preparation.instructions,
@@ -107,6 +117,18 @@ final class HostedManualPreparationReadTests: XCTestCase {
         attachment.name = "Owned preparation and unchanged meal plan"
         attachment.lifetime = .keepAlways
         add(attachment)
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .gregorian)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = XCTAttachment(
+            data: try JSONSerialization.data(
+                withJSONObject: [
+                    "deviceDay": formatter.string(from: .now), "timeZone": TimeZone.current.identifier,
+                ], options: [.sortedKeys]), uniformTypeIdentifier: "public.json")
+        date.name = "Native preparation civil date context"
+        date.lifetime = .keepAlways
+        add(date)
     }
 
     private func role(_ environment: [String: String]) throws -> (UUID, String) {

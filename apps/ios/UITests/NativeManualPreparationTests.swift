@@ -60,13 +60,14 @@ final class NativeManualPreparationTests: XCTestCase {
     func testBothMembersReadOwnedPreparationWithoutChangingIt() throws {
         let week = try open(action: "read_owned_preparation")
         let phase = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_QA_PREPARATION_PHASE"])
-        XCTAssertTrue(["shared", "assigned"].contains(phase))
+        XCTAssertTrue(["shared", "assigned", "due_today", "completed"].contains(phase))
         XCTAssertTrue(week.app.staticTexts[title].waitForExistence(timeout: 30))
         let instructions = week.app.staticTexts[
             phase == "shared" ? "Soak the fictional lentils." : "Drain the fictional lentils."]
         week.reveal(instructions)
         XCTAssertTrue(instructions.isHittable)
         XCTAssertTrue(week.app.staticTexts[phase == "shared" ? "Shared" : "Assigned to Test Sam"].exists)
+        XCTAssertTrue(week.app.staticTexts[phase == "completed" ? "Completed · Active" : "Open · Active"].exists)
         capture(week.fixture.name + " reads owned preparation", app: week.app)
         finish(week.app)
     }
