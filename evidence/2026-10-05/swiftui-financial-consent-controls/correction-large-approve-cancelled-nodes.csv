@@ -1,0 +1,21 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review correction""",null,116,31.5,143,21,True,True
+e9,Cell,null,null,16,20,343,52,True,True
+e10,StaticText,"""Undo the original entry""",null,16,20,343,52,True,True
+e11,Cell,null,null,16,72,343,94.5,True,True
+e12,StaticText,"""The original remains in financial history. A reversal cancels its effect on your balance.""",null,16,72,343,94.5,True,True
+e13,Cell,null,null,16,166.5,343,74,True,True
+e14,Button,"""Review original entry""",null,16,166.5,343,74,True,True
+e15,StaticText,"""Review original entry""",null,32,181.5,289,44,True,True
+e17,Cell,null,null,16,275.5,343,179.5,True,True
+e18,StaticText,"""Only approve if the amount, payer and split above are correct.""",null,40.25,290.595458984375,294.5,42.5,True,True
+e19,Button,"""Approve correction""",null,32,344,311,44,True,True
+e20,Button,"""Decline correction""",null,32,396,311,44,True,True
+e21,Cell,null,null,16,490,343,74,True,True
+e22,Button,"""Refresh approval""",null,16,490,343,74,True,True
+e26,Button,"""Today""",null,25,588,88.25,54,True,True
+e28,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e30,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e32,Button,"""Money""",null,261.75,588,88.25,54,True,True

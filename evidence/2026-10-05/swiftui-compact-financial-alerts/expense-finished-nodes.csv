@@ -1,0 +1,10 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Back""",null,16,20,44,44,True,True
+e4,StaticText,"""Your approvals""",null,116.5,29,142,26,True,True
+e7,Cell,null,null,16,109,343,403.5,True,True
+e8,StaticText,"""Private to you. Review the exact change before deciding.""",null,16,109,343,403.5,True,True
+e14,Button,"""Today""",null,25,588,88.25,54,True,True
+e16,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e18,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e20,Button,"""Money""",null,261.75,588,88.25,54,True,True

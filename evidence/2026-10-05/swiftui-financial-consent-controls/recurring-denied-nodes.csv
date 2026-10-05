@@ -1,0 +1,14 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review rule""",null,132.5,29,110,26,True,True
+e10,Cell,null,null,16,20,343,279.5,True,True
+e11,StaticText,"""Rule declined. No rule was recorded by this approval.""",null,16,20,343,279.5,True,True
+e12,Cell,null,null,16,299.5,343,93.5,True,True
+e13,Button,"""Done""",null,16,299.5,343,93.5,True,True
+e14,Cell,null,null,16,428,343,155.5,True,True
+e15,Button,"""Refresh approval""",null,16,428,343,155.5,True,True
+e19,Button,"""Today""",null,25,588,88.25,54,True,True
+e21,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e23,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e25,Button,"""Money""",null,261.75,588,88.25,54,True,True

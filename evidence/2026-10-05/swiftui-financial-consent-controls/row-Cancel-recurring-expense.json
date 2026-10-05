@@ -1,0 +1,15 @@
+{
+  "label": "Cancel recurring expense",
+  "semanticText": {
+    "x": 32,
+    "height": 20.5,
+    "y": 254.5,
+    "width": 194.5
+  },
+  "pairedButton": {
+    "x": 16,
+    "height": 69,
+    "y": 239.5,
+    "width": 343
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "prepareReceiptLookup": {
+    "nullOriginalApprovalReceiptRejectedBeforeFixtureStateOrWrites": true,
+    "correctedToOriginalKnownNativeResultWithoutRepeatingPosting": true
+  },
+  "prepareRuleField": {
+    "observerUsedIdInsteadOfTypedRuleId": true,
+    "rejectedBeforeFixtureStateOrWrites": true
+  },
+  "expenseReadRoute": {
+    "wrongObserverPathReturned404": true,
+    "realJournalProposalAndInterruptedTurnRetained": true,
+    "verifiedThroughCorrectTypedRouteWithoutRecreatingProposal": true
+  },
+  "refundNavigation": {
+    "largestTextWholeBoundsSearchStopped": true,
+    "pendingOriginalRefundUnchanged": true,
+    "resumedAtOrdinaryTextWithoutRepeatingProposalOrDecision": true,
+    "largestMoneyEntrySeparateUnverifiedIssue": true
+  },
+  "scrolling": {
+    "supportedScrollBottomUsedForConsentChecks": true,
+    "boundedDirectionalFallbackForWholeUnobscuredTargets": true
+  },
+  "noFinancialPostingOrRuleMutation": true
+}

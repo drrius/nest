@@ -1,0 +1,10 @@
+type,label,x,y,width,height,hittable
+Button,"""Your financial approvals""",20,1.5,335,125.5,True
+Button,"""Recurring expenses""",20,151,335,125.5,True
+Button,"""Saved changes""",20,300.5,335,133.5,True
+StaticText,"""Saved changes""",20,300.5,335,133.5,True
+Button,"""Refresh balance""",20,458,335,125.5,True
+Button,"""Today""",25,588,88.25,54,True
+Button,"""Meals""",103.91666666666667,588,88.25000000000001,54,True
+Button,"""Calendar""",182.83333333333334,588,88.25000000000003,54,True
+Button,"""Money""",261.75,588,88.25,54,True

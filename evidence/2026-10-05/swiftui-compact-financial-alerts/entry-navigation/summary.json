@@ -1,0 +1,20 @@
+{
+  "source": "05f1e94c9196be65f62130320281b1776702c61b",
+  "initialSearchFailureRetained": "../../swiftui-financial-consent-controls/observer-findings.json",
+  "supportedScrollBottomThenOneUp200PixelGesture": true,
+  "fullyExposedTarget": {
+    "x": 20,
+    "y": 135.5,
+    "width": 335,
+    "height": 125.5
+  },
+  "aboveTabBarY": 588,
+  "belowStatusBarY": 20,
+  "singleTopRightCornerOpensOnlyPrivateApprovalsList": true,
+  "actualWholeLabelImageInspected": true,
+  "noProductChange": true,
+  "noHostedMutationOrDecision": true,
+  "all64JournalsEmpty": true,
+  "normalTodayAndDisplaySettingsRestored": true,
+  "fullMoneySafeAreaAndAccessibilityAcceptanceNotClaimed": true
+}

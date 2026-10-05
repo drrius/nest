@@ -1,0 +1,126 @@
+{
+  "family": "recurring",
+  "tool": "proposeRecurring",
+  "input": {
+    "ruleId": null,
+    "expectedRevision": null,
+    "configuration": {
+      "description": "Fictional unadopted variable proposal c6e22b53",
+      "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "categoryId": null,
+      "note": "Synthetic consent-only QA; no automatic mandate.",
+      "startDate": "2026-10-05",
+      "schedule": {
+        "kind": "monthly",
+        "dayOfMonth": 5
+      },
+      "mode": "variable",
+      "amountCentimes": null,
+      "allocations": null
+    },
+    "firstDueOn": "2026-10-05"
+  },
+  "conversationId": "17cd520b-3b79-4e35-ad92-5d116dbdc737",
+  "turnId": "1b75932a-a73b-455c-97da-eee84f3d93f8",
+  "callId": "synthetic-consent-recurring-70331a3752a04c22b1124155966d38d3",
+  "begin": {
+    "state": "running",
+    "claimed": true,
+    "deadline": "2026-10-04T23:41:43.694018+00:00",
+    "assistantId": "49c9b44f-6a38-4360-b0e8-cbb54eb6e959",
+    "finalRevision": null,
+    "inputRevision": "1"
+  },
+  "toolResult": {
+    "ok": true,
+    "value": {
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "version": 1,
+      "approval": {
+        "id": "2d356938-5309-405d-9f1e-c2e60cddcc7f",
+        "rule": {
+          "ruleId": "5bed7509-1ef2-45be-9165-c62987af1954",
+          "firstDueOn": "2026-10-05",
+          "configuration": {
+            "mode": "variable",
+            "note": "Synthetic consent-only QA; no automatic mandate.",
+            "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "schedule": {
+              "kind": "monthly",
+              "dayOfMonth": 5
+            },
+            "startDate": "2026-10-05",
+            "categoryId": null,
+            "allocations": null,
+            "description": "Fictional unadopted variable proposal c6e22b53",
+            "amountCentimes": null
+          },
+          "expectedRevision": null
+        },
+        "status": "pending",
+        "receipt": null,
+        "expiresAt": "2026-10-04T23:54:43.764019Z",
+        "operationId": "0ca5e1f7-806a-4dcb-b0a5-596a00d817d3"
+      },
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da"
+    }
+  },
+  "finish": {
+    "state": "interrupted",
+    "claimed": false,
+    "deadline": "2026-10-04T23:41:43.694018+00:00",
+    "assistantId": "49c9b44f-6a38-4360-b0e8-cbb54eb6e959",
+    "finalRevision": "2",
+    "inputRevision": "1"
+  },
+  "privacy": [
+    {
+      "actor": "member-a",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "status": 403
+    },
+    {
+      "actor": "anonymous",
+      "status": 401
+    }
+  ],
+  "finalPrivateResult": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "2d356938-5309-405d-9f1e-c2e60cddcc7f",
+      "operationId": "0ca5e1f7-806a-4dcb-b0a5-596a00d817d3",
+      "rule": {
+        "ruleId": "5bed7509-1ef2-45be-9165-c62987af1954",
+        "expectedRevision": null,
+        "configuration": {
+          "description": "Fictional unadopted variable proposal c6e22b53",
+          "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+          "categoryId": null,
+          "note": "Synthetic consent-only QA; no automatic mandate.",
+          "startDate": "2026-10-05",
+          "schedule": {
+            "kind": "monthly",
+            "dayOfMonth": 5
+          },
+          "mode": "variable",
+          "amountCentimes": null,
+          "allocations": null
+        },
+        "firstDueOn": "2026-10-05"
+      },
+      "status": "denied",
+      "expiresAt": "2026-10-04T23:54:43.764019Z",
+      "receipt": null
+    }
+  },
+  "modelCalled": false
+}

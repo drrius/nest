@@ -1,0 +1,21 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review rule change""",null,110.5,31.5,154,21,True,True
+e9,Cell,null,null,16,2.5,343,52,True,True
+e10,StaticText,"""Permanently cancel this rule""",null,16,2.5,343,52,True,True
+e11,Cell,null,null,16,54.5,343,72.5,True,True
+e12,StaticText,"""A cancelled rule cannot be edited or resumed.""",null,16,54.5,343,72.5,True,True
+e13,Cell,null,null,16,127,343,94.5,True,True
+e14,StaticText,"""Existing entries stay in your history. An entry recorded before this change is not reversed.""",null,16,127,343,94.5,True,True
+e15,Cell,null,null,16,221.5,343,72.5,True,True
+e16,StaticText,"""This does not cancel a bank payment, subscription or service with its provider.""",null,16,221.5,343,72.5,True,True
+e17,Cell,null,null,16,329,343,126,True,True
+e18,Button,"""Review confirmation""",null,32,344,311,44,True,True
+e19,Button,"""Decline proposal""",null,32,396,311,44,True,True
+e20,Cell,null,null,16,490,343,74,True,True
+e21,Button,"""Refresh proposal""",null,16,490,343,74,True,True
+e25,Button,"""Today""",null,25,588,88.25,54,True,True
+e27,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e29,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e31,Button,"""Money""",null,261.75,588,88.25,54,True,True

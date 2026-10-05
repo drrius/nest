@@ -1,0 +1,17 @@
+{
+  "message": "No bank transfer.",
+  "fullMessageBounds": {
+    "x": 57.5,
+    "y": 317,
+    "width": 260,
+    "height": 18
+  },
+  "followingActionBounds": {
+    "y": 355.5,
+    "height": 48,
+    "x": 191.5,
+    "width": 140
+  },
+  "wholeMessageAboveActions": true,
+  "actualImageInspectionAlsoRequired": true
+}

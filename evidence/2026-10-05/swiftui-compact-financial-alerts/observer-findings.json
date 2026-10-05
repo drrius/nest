@@ -1,0 +1,25 @@
+{
+  "independentVerifierExpiry": {
+    "firstPostDeclineReadStoppedOnExpiry": true,
+    "readOnlyPreflightThenConfirmed401": true,
+    "onlyThreeIndependentFixtureSessionsRenewed": true,
+    "originalDeniedResultVerifiedWithoutRepeatingDecision": true,
+    "nativeKeychainUnchanged": true
+  },
+  "visualInspection": {
+    "expenseLargest": {
+      "fullTitleMessageAndBothActionsVisible": true
+    },
+    "resumeLargest": {
+      "fullTitleMessageAndBothActionsVisible": true
+    },
+    "expenseNormal": {
+      "fullTitleMessageAndBothActionsVisible": true
+    },
+    "resumeNormal": {
+      "fullTitleMessageAndBothActionsVisible": true
+    }
+  },
+  "renderedScope": ["expense", "resume"],
+  "otherSevenAlertFamiliesNotClaimedAsRendered": true
+}

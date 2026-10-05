@@ -1,0 +1,5 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e9,StaticText,"""Apply this correction?""",null,57.5,241.5,260,20.5,True,True
+e10,StaticText,"""This applies only to the exact correction you reviewed. Nest does not transfer money.""",null,57.5,269,260,58,True,True
+e16,Button,"""Approve and record""",null,43.5,347.5,288,48,True,True
+e17,Button,"""Cancel""",null,43.5,403.5,288,48,True,True

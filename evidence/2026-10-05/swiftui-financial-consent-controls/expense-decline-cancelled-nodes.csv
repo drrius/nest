@@ -1,0 +1,12 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review expense""",null,110,29,154.5,26,True,True
+e6,Cell,null,null,16,0,343,590.5,True,True
+e7,StaticText,"""Only approve if the amount, payer and split above are correct.""",null,32,0,311,284.047607421875,True,True
+e8,Button,"""Approve expense""",null,32,316.5,311,125.5,True,True
+e9,Button,"""Decline expense""",null,32,450,311,125.5,True,True
+e17,Button,"""Today""",null,25,588,88.25,54,True,True
+e19,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e21,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e23,Button,"""Money""",null,261.75,588,88.25,54,True,True

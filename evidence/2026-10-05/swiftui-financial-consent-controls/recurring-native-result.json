@@ -1,0 +1,56 @@
+{
+  "result": {
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "approval": {
+      "status": "denied",
+      "id": "2D356938-5309-405D-9F1E-C2E60CDDCC7F",
+      "expiresAt": "2026-10-04T23:54:43.764019Z",
+      "operationId": "0CA5E1F7-806A-4DCB-B0A5-596A00D817D3",
+      "rule": {
+        "firstDueOn": "2026-10-05",
+        "ruleId": "5BED7509-1EF2-45BE-9165-C62987AF1954",
+        "configuration": {
+          "mode": "variable",
+          "startDate": "2026-10-05",
+          "schedule": {
+            "kind": "monthly",
+            "dayOfMonth": 5
+          },
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "description": "Fictional unadopted variable proposal c6e22b53",
+          "amountCentimes": null,
+          "categoryId": null,
+          "note": "Synthetic consent-only QA; no automatic mandate.",
+          "allocations": null
+        },
+        "expectedRevision": null
+      }
+    },
+    "version": 1
+  },
+  "decision": {
+    "approvalId": "2D356938-5309-405D-9F1E-C2E60CDDCC7F",
+    "approved": false,
+    "operationId": "0CA5E1F7-806A-4DCB-B0A5-596A00D817D3",
+    "rule": {
+      "ruleId": "5BED7509-1EF2-45BE-9165-C62987AF1954",
+      "expectedRevision": null,
+      "configuration": {
+        "mode": "variable",
+        "startDate": "2026-10-05",
+        "schedule": {
+          "dayOfMonth": 5,
+          "kind": "monthly"
+        },
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "description": "Fictional unadopted variable proposal c6e22b53",
+        "amountCentimes": null,
+        "categoryId": null,
+        "note": "Synthetic consent-only QA; no automatic mandate.",
+        "allocations": null
+      },
+      "firstDueOn": "2026-10-05"
+    }
+  }
+}

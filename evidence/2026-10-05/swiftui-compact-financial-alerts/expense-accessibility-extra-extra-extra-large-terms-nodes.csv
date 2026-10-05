@@ -1,0 +1,12 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review expense""",null,110,29,154.5,26,True,True
+e7,Cell,null,null,16,74,343,145.5,True,True
+e8,StaticText,"""Review expense""",null,16,74,343,145.5,True,True
+e9,Cell,null,null,16,219.5,343,341.5,True,True
+e10,StaticText,"""Fictional private expense consent cbb8fce1""",null,16,219.5,343,341.5,True,True
+e16,Button,"""Today""",null,25,588,88.25,54,True,True
+e18,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e20,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e22,Button,"""Money""",null,261.75,588,88.25,54,True,True

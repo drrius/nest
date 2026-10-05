@@ -1,0 +1,25 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review refund""",null,130.5,31.5,113.5,21,True,True
+e6,Cell,null,null,16,0,343,42,True,True
+e7,StaticText,"""Your share""",null,32,5.75,81,20.5,True,True
+e8,StaticText,"""Your share, CHF 0.01""",null,16,0,343,42,True,True
+e10,Cell,null,null,16,42,343,52,True,True
+e11,StaticText,"""Partner’s share""",null,32,57.75,115.5,20.5,True,True
+e12,StaticText,"""Partner’s share, CHF 0.00""",null,16,42,343,52,True,True
+e13,Cell,null,null,16,94,343,72.5,True,True
+e14,StaticText,"""Synthetic consent-only QA; no actual transfer.""",null,16,94,343,72.5,True,True
+e15,Cell,null,null,16,166.5,343,74,True,True
+e16,Button,"""View original expense""",null,16,166.5,343,74,True,True
+e17,StaticText,"""View original expense""",null,32,181.5,289,44,True,True
+e19,Cell,null,null,16,275.5,343,179.5,True,True
+e20,StaticText,"""Only approve if the amount, recipient and shares above are correct.""",null,44.75,290.595458984375,285.5,42.5,True,True
+e21,Button,"""Approve refund""",null,32,344,311,44,True,True
+e22,Button,"""Decline refund""",null,32,396,311,44,True,True
+e23,Cell,null,null,16,490,343,74,True,True
+e24,Button,"""Refresh approval""",null,16,490,343,74,True,True
+e28,Button,"""Today""",null,25,588,88.25,54,True,True
+e30,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e32,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e34,Button,"""Money""",null,261.75,588,88.25,54,True,True

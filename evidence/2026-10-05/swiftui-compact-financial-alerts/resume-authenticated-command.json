@@ -1,0 +1,95 @@
+{
+  "family": "resume",
+  "tool": "proposeRecurringResume",
+  "input": {
+    "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+    "expectedRevision": "28e419f4-236a-4a4d-80d3-7060e94a4c63",
+    "expectedStatus": "paused",
+    "action": "resume",
+    "resumeFrom": "2026-11-05",
+    "firstDueOn": "2026-11-05"
+  },
+  "conversationId": "9b0fd291-94b9-4645-9106-1b1383fffbe5",
+  "turnId": "625fe25a-e05d-45fa-8458-621065ece26e",
+  "callId": "synthetic-consent-resume-1871a4f09013419b909a18b8f59f8622",
+  "begin": {
+    "state": "running",
+    "claimed": true,
+    "deadline": "2026-10-05T00:16:03.271549+00:00",
+    "assistantId": "fa1b9ad6-3cd9-413b-9ef3-81462ad575a7",
+    "finalRevision": null,
+    "inputRevision": "1"
+  },
+  "toolResult": {
+    "ok": true,
+    "value": {
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "version": 1,
+      "approval": {
+        "id": "34e52c71-2a46-4ab2-90a5-e0f4653adc73",
+        "change": {
+          "action": "resume",
+          "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+          "firstDueOn": "2026-11-05",
+          "resumeFrom": "2026-11-05",
+          "expectedStatus": "paused",
+          "expectedRevision": "28e419f4-236a-4a4d-80d3-7060e94a4c63"
+        },
+        "status": "pending",
+        "receipt": null,
+        "expiresAt": "2026-10-05T00:29:03.362029Z",
+        "reviewedOn": "2026-10-05",
+        "operationId": "ab49029c-c6f9-4886-8dc1-2fe46784b7a9"
+      },
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da"
+    }
+  },
+  "finish": {
+    "state": "interrupted",
+    "claimed": false,
+    "deadline": "2026-10-05T00:16:03.271549+00:00",
+    "assistantId": "fa1b9ad6-3cd9-413b-9ef3-81462ad575a7",
+    "finalRevision": "2",
+    "inputRevision": "1"
+  },
+  "privacy": [
+    {
+      "actor": "member-a",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "status": 403
+    },
+    {
+      "actor": "anonymous",
+      "status": 401
+    }
+  ],
+  "finalPrivateResult": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "34e52c71-2a46-4ab2-90a5-e0f4653adc73",
+      "operationId": "ab49029c-c6f9-4886-8dc1-2fe46784b7a9",
+      "change": {
+        "ruleId": "db1568a6-24e4-48e5-ab6b-f0a8968068c1",
+        "expectedRevision": "28e419f4-236a-4a4d-80d3-7060e94a4c63",
+        "expectedStatus": "paused",
+        "action": "resume",
+        "resumeFrom": "2026-11-05",
+        "firstDueOn": "2026-11-05"
+      },
+      "status": "denied",
+      "expiresAt": "2026-10-05T00:29:03.362029Z",
+      "reviewedOn": "2026-10-05",
+      "receipt": null
+    }
+  },
+  "modelCalled": false
+}

@@ -1,0 +1,23 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review rule""",null,141.5,31.5,91.5,21,True,True
+e6,Cell,null,null,16,0,343,43.5,True,True
+e7,StaticText,"""First due""",null,32,7.25,66.5,20.5,True,True
+e8,StaticText,"""First due, 2026-10-05""",null,16,0,343,43.5,True,True
+e10,Cell,null,null,16,43.5,343,52,True,True
+e11,StaticText,"""Monthly on day 5""",null,16,43.5,343,52,True,True
+e12,Cell,null,null,16,95.5,343,72.5,True,True
+e13,StaticText,"""Each cycle needs its amount and shares confirmed separately.""",null,16,95.5,343,72.5,True,True
+e14,Cell,null,null,16,168,343,72.5,True,True
+e15,StaticText,"""Synthetic consent-only QA; no automatic mandate.""",null,16,168,343,72.5,True,True
+e16,Cell,null,null,16,275.5,343,179.5,True,True
+e17,StaticText,"""Only approve if the schedule, amount and shares above are correct.""",null,43.5,290.595458984375,288,42.5,True,True
+e18,Button,"""Approve rule""",null,32,344,311,44,True,True
+e19,Button,"""Decline rule""",null,32,396,311,44,True,True
+e20,Cell,null,null,16,490,343,74,True,True
+e21,Button,"""Refresh approval""",null,16,490,343,74,True,True
+e25,Button,"""Today""",null,25,588,88.25,54,True,True
+e27,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e29,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e31,Button,"""Money""",null,261.75,588,88.25,54,True,True

@@ -1,0 +1,34 @@
+{
+  "parentCommit": "32debb524c9c24cb884d3e115d7d9eb5698729d1",
+  "nativeInputs": 1041,
+  "changedFiles": [
+    "apps/ios/Nest/Money/CorrectionApprovalScreen.swift",
+    "apps/ios/Nest/Money/ExpenseApprovalScreen.swift",
+    "apps/ios/Nest/Money/LegacyAdoptionApprovalScreen.swift",
+    "apps/ios/Nest/Money/LegacyConfirmationApprovalScreen.swift",
+    "apps/ios/Nest/Money/LegacyDismissalApprovalScreen.swift",
+    "apps/ios/Nest/Money/ManualCycleApprovalScreen.swift",
+    "apps/ios/Nest/Money/RecurringApprovalScreen.swift",
+    "apps/ios/Nest/Money/RecurringResumeApprovalScreen.swift",
+    "apps/ios/Nest/Money/RecurringStateApprovalScreen.swift",
+    "apps/ios/Nest/Money/RefundApprovalScreen.swift",
+    "apps/ios/Nest/Money/SettlementApprovalScreen.swift"
+  ],
+  "allInputsMatch": true,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791155710.807721,
+  "testPid": 42031,
+  "testExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "installedCandidateSHA256": "d684ba2a63fee14abb95044799c5100dbb32cd19bbfe0ebcf05b2b7f38fd095e",
+  "finished": 1791155745.527602,
+  "nativeTests": 72,
+  "skips": 0,
+  "failures": 0,
+  "summaries": [
+    "Executed 72 tests, with 0 failures (0 unexpected) in 14.264 (14.289) seconds",
+    "Executed 72 tests, with 0 failures (0 unexpected) in 14.264 (14.289) seconds"
+  ]
+}

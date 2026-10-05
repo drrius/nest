@@ -1,0 +1,15 @@
+{
+  "label": "Resume recurring expense",
+  "semanticText": {
+    "height": 20.5,
+    "y": 254.5,
+    "width": 203,
+    "x": 32
+  },
+  "pairedButton": {
+    "y": 239.5,
+    "x": 16,
+    "width": 343,
+    "height": 69
+  }
+}

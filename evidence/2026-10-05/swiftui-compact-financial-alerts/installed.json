@@ -1,0 +1,10 @@
+{
+  "parentSource": "a34407436f154a433b86167c8d92816284f42613",
+  "all1041SourceHashesMatch": true,
+  "signatureValid": true,
+  "sameScopeAnd64EmptyJournals": true,
+  "dataAndKeychainNotRemoved": true,
+  "stableTestOrigins": true,
+  "pushDisabled": true,
+  "executableSHA256": "ad3371d2fa0298dec05e58957c42075e0d1c2dd1a87d452b4f11891de1be3d80"
+}

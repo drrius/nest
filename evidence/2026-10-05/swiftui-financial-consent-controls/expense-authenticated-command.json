@@ -1,0 +1,123 @@
+{
+  "family": "expense",
+  "tool": "proposeExpense",
+  "input": {
+    "description": "Fictional private expense consent 63611457",
+    "amountCentimes": "3",
+    "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "allocations": [
+      {
+        "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "centimes": "2"
+      },
+      {
+        "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "centimes": "1"
+      }
+    ],
+    "date": "2026-10-05",
+    "note": "Synthetic approval QA; no model or actual transfer.",
+    "categoryId": null
+  },
+  "conversationId": "05169733-9c9c-4f6d-a283-2f2cf562ec4e",
+  "turnId": "14aa7398-4af7-4d15-a890-309e543617df",
+  "callId": "synthetic-consent-expense-8562480a07bc44889f5a7d57e3a72b9c",
+  "begin": {
+    "state": "running",
+    "claimed": true,
+    "deadline": "2026-10-04T23:23:50.692726+00:00",
+    "assistantId": "c5a976b0-f23b-4317-b7a5-51415131c949",
+    "finalRevision": null,
+    "inputRevision": "1"
+  },
+  "toolResult": {
+    "ok": true,
+    "value": {
+      "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "version": 1,
+      "approval": {
+        "id": "6fed4c0a-57f4-491c-926f-2a82707c1b10",
+        "status": "pending",
+        "expense": {
+          "date": "2026-10-05",
+          "note": "Synthetic approval QA; no model or actual transfer.",
+          "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+          "categoryId": null,
+          "allocations": [
+            {
+              "centimes": "2",
+              "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200"
+            },
+            {
+              "centimes": "1",
+              "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676"
+            }
+          ],
+          "description": "Fictional private expense consent 63611457",
+          "amountCentimes": "3"
+        },
+        "receipt": null,
+        "expiresAt": "2026-10-04T23:36:50.792158Z",
+        "operationId": "c3db77ca-9573-493d-aa10-d0be6c2c41bf"
+      },
+      "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da"
+    }
+  },
+  "finish": {
+    "state": "interrupted",
+    "claimed": false,
+    "deadline": "2026-10-04T23:23:50.692726+00:00",
+    "assistantId": "c5a976b0-f23b-4317-b7a5-51415131c949",
+    "finalRevision": "2",
+    "inputRevision": "1"
+  },
+  "privacy": [
+    {
+      "actor": "member-a",
+      "status": 200
+    },
+    {
+      "actor": "member-b",
+      "status": 403
+    },
+    {
+      "actor": "outsider",
+      "status": 403
+    },
+    {
+      "actor": "anonymous",
+      "status": 401
+    }
+  ],
+  "finalPrivateResult": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "6fed4c0a-57f4-491c-926f-2a82707c1b10",
+      "operationId": "c3db77ca-9573-493d-aa10-d0be6c2c41bf",
+      "expense": {
+        "description": "Fictional private expense consent 63611457",
+        "amountCentimes": "3",
+        "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "allocations": [
+          {
+            "memberId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "centimes": "2"
+          },
+          {
+            "memberId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+            "centimes": "1"
+          }
+        ],
+        "date": "2026-10-05",
+        "note": "Synthetic approval QA; no model or actual transfer.",
+        "categoryId": null
+      },
+      "status": "denied",
+      "expiresAt": "2026-10-04T23:36:50.792158Z",
+      "receipt": null
+    }
+  },
+  "modelCalled": false
+}

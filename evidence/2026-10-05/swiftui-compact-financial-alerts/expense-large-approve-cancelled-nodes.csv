@@ -1,0 +1,24 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review expense""",null,123.5,31.5,127.5,21,True,True
+e7,Cell,null,null,16,0,343,52,True,True
+e8,StaticText,"""Your share""",null,32,15.75,81,20.5,True,True
+e9,StaticText,"""CHF 0.02""",null,271.5,15.75,71.5,20.5,True,True
+e10,Cell,null,null,16,52,343,52,True,True
+e11,StaticText,"""Your partner’s share""",null,32,67.75,154,20.5,True,True
+e12,StaticText,"""CHF 0.01""",null,274,67.75,69,20.5,True,True
+e13,Cell,null,null,16,104,343,72.5,True,True
+e14,StaticText,"""Synthetic approval QA; no model or actual transfer.""",null,16,104,343,72.5,True,True
+e15,Cell,null,null,16,176.5,343,64,True,True
+e16,StaticText,"""Saving records this expense in your shared financial history. It does not transfer money.""",null,16,176.5,343,64,True,True
+e17,Cell,null,null,16,275.5,343,179.5,True,True
+e18,StaticText,"""Only approve if the amount, payer and split above are correct.""",null,40.25,290.595458984375,294.5,42.5,True,True
+e19,Button,"""Approve expense""",null,32,344,311,44,True,True
+e20,Button,"""Decline expense""",null,32,396,311,44,True,True
+e21,Cell,null,null,16,490,343,74,True,True
+e22,Button,"""Refresh approval""",null,16,490,343,74,True,True
+e26,Button,"""Today""",null,25,588,88.25,54,True,True
+e28,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e30,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e32,Button,"""Money""",null,261.75,588,88.25,54,True,True

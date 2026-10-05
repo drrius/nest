@@ -1,0 +1,17 @@
+{
+  "message": "No backfill. No payment.",
+  "fullMessageBounds": {
+    "width": 260,
+    "y": 317,
+    "height": 18,
+    "x": 57.5
+  },
+  "followingActionBounds": {
+    "width": 140,
+    "y": 355.5,
+    "height": 48,
+    "x": 191.5
+  },
+  "wholeMessageAboveActions": true,
+  "actualImageInspectionAlsoRequired": true
+}

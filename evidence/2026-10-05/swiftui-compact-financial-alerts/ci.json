@@ -1,0 +1,31 @@
+{
+  "source": "05f1e94c9196be65f62130320281b1776702c61b",
+  "runs": {
+    "routine": {
+      "conclusion": "success",
+      "headSha": "05f1e94c9196be65f62130320281b1776702c61b",
+      "name": "Nest checks",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37246759952"
+    },
+    "native": {
+      "conclusion": "success",
+      "headSha": "05f1e94c9196be65f62130320281b1776702c61b",
+      "name": "SwiftUI client checks",
+      "status": "completed",
+      "url": "https://github.com/drrius/nest/actions/runs/37246759982"
+    }
+  },
+  "foundation": {
+    "cases": 491,
+    "skips": 41,
+    "failures": 0
+  },
+  "signedNative": {
+    "cases": 409,
+    "skips": 11,
+    "failures": 0
+  },
+  "nativeLogSHA256": "4d703255e62f5de15e4a1fd0d6f05b739030739091b8c19004630c22cba2f273",
+  "skipsAreNotHostedOrRenderedProof": true
+}

@@ -1,0 +1,13 @@
+ref,type,label,value,x,y,width,height,hittable,enabled
+e2,NavigationBar,null,null,0,20,375,54,True,True
+e3,Button,"""Your approvals""",null,16,20,44,44,True,True
+e4,StaticText,"""Review rule change""",null,94.5,29,186,26,True,True
+e9,Cell,null,null,16,84.5,343,289,True,True
+e10,Button,"""Review confirmation""",null,32,99.5,311,125.5,True,True
+e11,Button,"""Decline proposal""",null,32,233,311,125.5,True,True
+e12,Cell,null,null,16,408.5,343,155.5,True,True
+e13,Button,"""Refresh proposal""",null,16,408.5,343,155.5,True,True
+e17,Button,"""Today""",null,25,588,88.25,54,True,True
+e19,Button,"""Meals""",null,103.91666666666667,588,88.25000000000001,54,True,True
+e21,Button,"""Calendar""",null,182.83333333333334,588,88.25000000000003,54,True,True
+e23,Button,"""Money""",null,261.75,588,88.25,54,True,True
