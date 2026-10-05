@@ -1,0 +1,31 @@
+{
+  "project": "nest-test",
+  "after": {
+    "financial_events": {
+      "count": 62,
+      "sha256": "395e422fe37c6ee013525dd98ae630fbceca88182dee1f9b25039268aeca5828"
+    },
+    "financial_allocations": {
+      "count": 104,
+      "sha256": "25481ba79d5e7b57bdf8a95ccff164871cebba95aaa4ac2f64f6286f0747a1dc"
+    },
+    "ledger_entries": {
+      "count": 124,
+      "sha256": "c78b9066edfec31d9debf775da834b9ca2f2604e875fde98fb7b3453fb843bfe"
+    },
+    "activity_events": {
+      "count": 112,
+      "sha256": "3cf629501c11d0366cbdd37bf065592ac28ae6a35a076bba0702a3e5d2df7cd8"
+    },
+    "storage_objects": {
+      "count": 2,
+      "sha256": "b9a7f1546920307ce17e3b7395184b8fa812f339e5abf26640c21dcb309527c8"
+    },
+    "storage_buckets": {
+      "count": 1,
+      "sha256": "f2ef3da6180fa8563fbd74d664bd60504821069b9fed59faa66b08d4223dac34"
+    }
+  },
+  "noFinancialOrStorageMutation": true,
+  "comparisonBaseline": "../financial-allocation-consistency/hosted-verification.json#after"
+}

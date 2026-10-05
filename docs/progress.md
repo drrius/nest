@@ -384,11 +384,11 @@ The two-member guard and passing CI are in [dated history](progress-history-2026
 
 ## Native posted PDF expense
 
-One actual native CHF0.02 test expense now has a claimed640-byte PDF and valid pair;
-all original61 event/allocation/ledger fingerprints stay exact. The final observer
-fails on an offscreen reset control; no second expense is posted. A subsequent
-read-only Money scroll stalls at100% CPU. Its bounded-stack experiment is pending
-on the unreachable Mac. Source1463a805 passes Nest37319142790/SwiftUI37319142748; bytes/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact.
+The bounded Money stack fix passes real normal/light and maximum/dark history/detail
+navigation with64 empty journals and Today/large/light restoration. All786 captured
+inputs match. Native authenticated URLSession proves HTTP200/PDF/exact bytes/hash;
+six complete hosted fingerprints stay exact. No second expense was posted. Current-source CI, PDF browser/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
 
 ## Financial allocation consistency
 

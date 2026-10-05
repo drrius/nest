@@ -10,7 +10,7 @@ struct MoneyScreen: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: 24) {
                 VStack(alignment: .leading, spacing: 24) {
                     QuietTabHeader(
                         title: "Money", subtitle: "All square, without the guesswork.",

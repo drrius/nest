@@ -214,13 +214,13 @@ final class ReceiptPickerTests: XCTestCase {
     }
 
     private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
-        for _ in 0..<12 {
+        for _ in 0..<32 {
             if element.exists && element.isHittable { return }
             let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
             let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.35))
             start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         add(XCTAttachment(screenshot: app.screenshot()))
-        XCTFail("Could not reach the PDF picker control")
+        XCTFail("Could not reach the receipt workflow control")
     }
 }

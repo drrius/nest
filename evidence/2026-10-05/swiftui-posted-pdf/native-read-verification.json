@@ -1,0 +1,75 @@
+{
+  "platform": "owned signed SE3 iOS26.3.1 simulator",
+  "apiOrigin": "https://nest-test-api-drrius-projects.vercel.app",
+  "supabaseOrigin": "https://tkjixmujjoustdiedfmw.supabase.co",
+  "pushEnabled": false,
+  "signatureVerified": true,
+  "sourceMatch": {
+    "inputs": 786,
+    "exact": true,
+    "sha256": "e26ecc32cf9a62c6a0c67338dbd092b4ee1e5288a318527fb743542d88cc3a70",
+    "scope": ["Nest", "AppTests", "UITests", "Nest.xcodeproj"]
+  },
+  "navigation": [
+    {
+      "size": "large",
+      "observedSize": "large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "resultBundle": "/private/tmp/nest-pdf-navigation-final-20261005/large/reading.xcresult",
+      "tests": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "testBundleSeconds": 19.803,
+      "todaySelectionAsserted": true
+    },
+    {
+      "size": "accessibility-extra-extra-extra-large",
+      "observedSize": "accessibility-extra-extra-extra-large",
+      "appearance": "dark",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "resultBundle": "/private/tmp/nest-pdf-navigation-final-20261005/accessibility-extra-extra-extra-large/reading.xcresult",
+      "tests": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "testBundleSeconds": 56.774,
+      "todaySelectionAsserted": true
+    }
+  ],
+  "restoration": {
+    "original": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "restored": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "emptyJournals": 64
+  },
+  "authenticatedDownload": {
+    "bytes": 640,
+    "mime": "application/pdf",
+    "nativeAuthenticatedDownload": true,
+    "sha256": "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9",
+    "status": 200
+  },
+  "downloadTests": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "methodSeconds": 5.884,
+    "resultBundle": "/private/tmp/nest-pdf-posted-download-20261005/large/reading.xcresult"
+  },
+  "financialAndStorageFingerprintsUnchanged": true,
+  "expensePostedAgain": false,
+  "browserRenderingVerified": false,
+  "partnerNativeViewerVerified": false,
+  "physicalPhonesVerified": false
+}

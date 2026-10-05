@@ -31,7 +31,7 @@ native byte download using the actual stored member session and API clients.
 The latter must compare the independent downloaded bytes, MIME and SHA256; intent
 or Storage metadata alone does not prove that check.
 
-## Scrolling finding and pending run
+## Scrolling finding and native read verification
 
 The first read-only navigation run reaches the populated Money dashboard but
 stalls during scrolling. At3 minutes15 seconds the actual app consumes100.1% CPU;
@@ -41,20 +41,38 @@ The owned Xcode process is intentionally interrupted after inspecting this
 behavior, returning75. All64 journals remain empty and large/light are restored.
 It is not an accessibility, navigation or performance pass.
 
-A one-line, uncommitted experiment changes the bounded dashboard's outer lazy
-stack to a regular stack, preserving the virtualized full-history screen. The
-same read-only check starts in a fresh result directory; it builds and passes
-signature, test-origin and push-disabled checks. Its runner PID54768 was observed
-live, then the Mac became unreachable over both SSH and Tailscale. The result is
-unknown; inspect the existing process/result before any further run. The byte
-download method has not run. Ordinary Today restoration after this run is also
-unverified. No new beta, model call, push activation, production action or merge.
+The bounded dashboard now uses a regular outer stack, preserving the virtualized
+full-history screen. Its first read-only run completes after the Mac reconnects:
+one pass, zero failures/skips, but791.797 seconds and an animation-idle timeout.
+That run alone is not responsiveness proof. A new awake normal-text run passes
+in17.717 seconds. The first maximum-text observer stops after12 small drags while
+still inside the five recent entries; its31.769-second failure is retained. The
+observer now allows32 drags. This changes no app data, font scale or audit policy.
 
-This moves the posted-receipt workflow forward but does not close M7. Independent
-bytes, actual PDF browser rendering, partner native viewing, full accessibility,
+The final signed source passes the same actual history/detail/receipt-target
+journey at normal/light and maximum/dark, one pass each with zero failures/skips.
+The maximum method takes54.958 seconds; each returns to Today. All786 captured
+app/app-test/manual-test/project inputs match the Mac and Linux. Both runs verify
+the stable test origins and disabled push, preserve the existing Keychain/data
+and64 empty command journals, and restore large/light settings. This resolves the
+observed dashboard navigation reproduction; it is not broad scrolling profiling,
+VoiceOver, a clean accessibility audit or phone acceptance.
+
+The real authenticated `NestAppTests/HostedPDFReceiptTests` method also runs:
+one pass, zero failures/skips,5.884 seconds. It obtains the existing stored session,
+verifies membership through the test API, reads the recorded event/detail and
+downloads through native URLSession. HTTP200, application/pdf,640 bytes, PDF magic
+and exact SHA256 all pass. Its JSON attachment contains no credential or signed
+URL. See [native verification](native-read-verification.json). A subsequent hosted
+read matches all six complete financial/activity/Storage fingerprints, retaining
+62 events and two objects. [Fingerprints](read-only-fingerprints.json). No second
+expense, beta, model call, push activation, production action or merge occurred.
+
+This moves the posted-receipt workflow forward but does not close M7. Actual PDF
+browser rendering, partner native viewing, full accessibility,
 both phones and live AI receipt handoff remain open. Source1463a805 passes routine
 [Nest37319142790](https://github.com/drrius/nest/actions/runs/37319142790);
 [SwiftUI37319142748](https://github.com/drrius/nest/actions/runs/37319142748) passes. CI reports496 Foundation tests/41 skips and419 signed-native tests/12 skips,
 zero failures; the guarded hosted download is explicitly skipped. CI does not
-execute the opt-in hosted/UI methods. The dashboard experiment
-remains outside that commit and has no claimed verification.
+execute the opt-in hosted/UI methods. The dashboard fix and larger scroll budget
+are newer than that commit; their current-source CI remains pending.
