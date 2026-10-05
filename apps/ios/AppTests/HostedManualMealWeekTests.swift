@@ -70,10 +70,15 @@ final class HostedManualMealWeekTests: XCTestCase {
     }
 
     private func verify(_ week: MealWeekSnapshot, count: Int, recipe: SavedRecipe) {
+        let movedDate = ProcessInfo.processInfo.environment["NEST_QA_MANUAL_WEEK_MOVED_DATE"]
+        if let movedDate {
+            XCTAssertEqual(movedDate, "2026-10-20")
+            XCTAssertEqual(count, 7)
+        }
         XCTAssertEqual(week.entries.count, count)
         XCTAssertEqual(Set(week.entries.map(\.date)), Set(week.weekStart.days.prefix(count)))
         for entry in week.entries {
-            XCTAssertEqual(entry.slot, .dinner)
+            XCTAssertEqual(entry.slot, entry.date.value == movedDate ? .lunch : .dinner)
             let saved = entry.date.value == "2026-10-19"
             XCTAssertEqual(entry.title, saved ? title : "\(title) · \(entry.date.value)")
             XCTAssertEqual(entry.definitionId, saved ? recipe.id : nil)

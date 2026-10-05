@@ -1,0 +1,24 @@
+{
+  "routine": {
+    "conclusion": "success",
+    "headSha": "d2330171890dd5664bad1219a160a923d76c2689",
+    "status": "completed",
+    "updatedAt": "2026-10-05T19:59:00Z",
+    "url": "https://github.com/drrius/nest/actions/runs/37366435420"
+  },
+  "native": {
+    "conclusion": "success",
+    "headSha": "d2330171890dd5664bad1219a160a923d76c2689",
+    "status": "completed",
+    "updatedAt": "2026-10-05T20:03:12Z",
+    "url": "https://github.com/drrius/nest/actions/runs/37366435471"
+  },
+  "nativeTotals": {
+    "foundationExecuted": 496,
+    "foundationSkipped": 41,
+    "signedAppExecuted": 439,
+    "signedAppSkipped": 17,
+    "failures": 0
+  },
+  "guardedHostedJourneysNotExecutedByCI": true
+}

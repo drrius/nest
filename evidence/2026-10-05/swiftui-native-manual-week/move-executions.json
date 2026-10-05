@@ -1,0 +1,123 @@
+{
+  "terminal": {
+    "success": true,
+    "inspectBeforeResuming": false,
+    "eachMoveMustNotBeRepeated": true
+  },
+  "results": [
+    {
+      "step": "original-before",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 6.934
+    },
+    {
+      "step": "partner-before",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 5.239
+    },
+    {
+      "step": "move-once-lunch",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeManualMealMoveTests/testMoveOwnedTuesdayMealOnce",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 77.071
+    },
+    {
+      "step": "original-after-lunch",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 5.107
+    },
+    {
+      "step": "partner-after-lunch",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 5.347
+    },
+    {
+      "step": "move-once-dinner",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeManualMealMoveTests/testMoveOwnedTuesdayMealOnce",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 76.241
+    },
+    {
+      "step": "original-after-dinner",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 5.222
+    },
+    {
+      "step": "partner-after-dinner",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 4.957
+    }
+  ],
+  "restoration": {
+    "original": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "partner": {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "settings": {
+      "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A": {
+        "content_size": "large",
+        "appearance": "light"
+      },
+      "CA0BCEDE-A297-493A-8921-9E31F8B65783": {
+        "content_size": "large",
+        "appearance": "light"
+      }
+    },
+    "bothStableOrigins": true,
+    "eachMoveTodaySelectionAsserted": true,
+    "ownedRecipeAndWeekRetainedForEditingAndIngredients": true
+  },
+  "sourceIdentity": {
+    "recordedInputCount": 808,
+    "canonicalManifestSHA256": "3485b46f00065c213ce03f8622a90b3009cfe6db2e6a1d89b5935247b0ea51a9",
+    "guardedPreparationsAreNotClaimedExecuted": true
+  },
+  "oneMoveQueryResolvesToCheckmarkPerDirection": {
+    "lunch": 1,
+    "dinner": 1
+  }
+}
