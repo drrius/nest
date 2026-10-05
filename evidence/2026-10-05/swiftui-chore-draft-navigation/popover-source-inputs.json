@@ -1,0 +1,11 @@
+{
+  "parentCommit": "f9ec8792f7c0f7cb94d9b46e67b581c83cf81e54",
+  "additionalSourceChanges": [
+    "Nest/Today/ChoreCreateScreen.swift: unsent draft discard confirmation",
+    "UITests/ChoreCreateNavigationTests.swift: actual unchanged/Keep editing/Discard navigation"
+  ],
+  "matchedInputCount": 799,
+  "allCompiledInputsMatchLinux": true,
+  "sourceMapSHA256": "f7c0d70e0923002a0810c0ae6882155f5eb419d29ca54fc12d5e516658da9467",
+  "phoneOrTestFlightBuild": false
+}

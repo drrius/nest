@@ -4,12 +4,14 @@ struct ChoreCreateScreen: View {
     @ObservedObject var model: SessionModel
     @Environment(\.dismiss) private var dismiss
     @State private var draft = ChoreCreateDraft()
+    @State private var originalDraft: ChoreCreateDraft?
     @State private var context: RoutineCreateContext?
     @State private var roster: RoutineRoster?
     @State private var saved: SavedRoutineCreation?
     @State private var notice: String?
     @State private var working = false
     @State private var confirmCancel = false
+    @State private var confirmingDiscard = false
 
     var body: some View {
         Form {
@@ -62,6 +64,27 @@ struct ChoreCreateScreen: View {
         .background(QuietPalette.background)
         .navigationTitle("Add chore")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(hasUnsavedChanges)
+        .interactiveDismissDisabled(hasUnsavedChanges)
+        .toolbar {
+            if hasUnsavedChanges {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        confirmingDiscard = true
+                    } label: {
+                        Label("Back", systemImage: "chevron.left")
+                            .frame(minWidth: 44, minHeight: 44)
+                            .contentShape(Rectangle())
+                    }
+                    .buttonStyle(.plain)
+                    .disabled(working)
+                }
+            }
+        }
+        .alert("Discard draft?", isPresented: $confirmingDiscard) {
+            Button("Discard draft", role: .destructive) { dismiss() }
+            Button("Keep editing", role: .cancel) {}
+        }
         .task { await load() }
         .confirmationDialog("Cancel this pending save?", isPresented: $confirmCancel) {
             Button("Cancel pending save", role: .destructive) { Task { await cancel() } }
@@ -70,8 +93,14 @@ struct ChoreCreateScreen: View {
         }
     }
 
+    private var hasUnsavedChanges: Bool {
+        guard saved == nil, let originalDraft else { return false }
+        return draft != originalDraft
+    }
+
     private func load() async {
         guard !working else { return }
+        if originalDraft == nil { originalDraft = draft }
         working = true
         defer { working = false }
         do {

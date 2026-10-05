@@ -1,0 +1,200 @@
+{
+  "status": "completed",
+  "conclusion": "success",
+  "headSha": "f9ec8792f7c0f7cb94d9b46e67b581c83cf81e54",
+  "url": "https://github.com/drrius/nest/actions/runs/37350253862",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:06Z",
+      "completedAt": "2026-10-05T17:41:09Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:09Z",
+      "completedAt": "2026-10-05T17:41:17Z"
+    },
+    {
+      "name": "Run pnpm/action-setup@v4",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:17Z",
+      "completedAt": "2026-10-05T17:41:18Z"
+    },
+    {
+      "name": "Run actions/setup-node@v4",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:18Z",
+      "completedAt": "2026-10-05T17:41:21Z"
+    },
+    {
+      "name": "Run pnpm install --frozen-lockfile",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:21Z",
+      "completedAt": "2026-10-05T17:41:25Z"
+    },
+    {
+      "name": "Run pnpm format:check",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:25Z",
+      "completedAt": "2026-10-05T17:41:28Z"
+    },
+    {
+      "name": "Run pnpm lint",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:28Z",
+      "completedAt": "2026-10-05T17:41:38Z"
+    },
+    {
+      "name": "Run pnpm typecheck",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:38Z",
+      "completedAt": "2026-10-05T17:41:42Z"
+    },
+    {
+      "name": "Run denoland/setup-deno@v2",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:42Z",
+      "completedAt": "2026-10-05T17:41:44Z"
+    },
+    {
+      "name": "Check pinned receipt Edge entry point",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:44Z",
+      "completedAt": "2026-10-05T17:41:45Z"
+    },
+    {
+      "name": "Run pnpm test:tooling",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:45Z",
+      "completedAt": "2026-10-05T17:41:51Z"
+    },
+    {
+      "name": "Run pnpm test:calendar",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:51Z",
+      "completedAt": "2026-10-05T17:41:55Z"
+    },
+    {
+      "name": "Run pnpm test:assistant",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:55Z",
+      "completedAt": "2026-10-05T17:41:59Z"
+    },
+    {
+      "name": "Run pnpm test:food",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:41:59Z",
+      "completedAt": "2026-10-05T17:42:00Z"
+    },
+    {
+      "name": "Run pnpm test:cooking",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:00Z",
+      "completedAt": "2026-10-05T17:42:01Z"
+    },
+    {
+      "name": "Run pnpm test:setup",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:01Z",
+      "completedAt": "2026-10-05T17:42:01Z"
+    },
+    {
+      "name": "Run pnpm test:routines",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:01Z",
+      "completedAt": "2026-10-05T17:42:03Z"
+    },
+    {
+      "name": "Run pnpm test:meals",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:03Z",
+      "completedAt": "2026-10-05T17:42:11Z"
+    },
+    {
+      "name": "Run pnpm test:money",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:11Z",
+      "completedAt": "2026-10-05T17:42:29Z"
+    },
+    {
+      "name": "Run pnpm test:notifications",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:29Z",
+      "completedAt": "2026-10-05T17:42:31Z"
+    },
+    {
+      "name": "Run pnpm test:memory",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:31Z",
+      "completedAt": "2026-10-05T17:42:32Z"
+    },
+    {
+      "name": "Run pnpm test:session",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:32Z",
+      "completedAt": "2026-10-05T17:42:33Z"
+    },
+    {
+      "name": "Run pnpm test:checklist",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:33Z",
+      "completedAt": "2026-10-05T17:42:35Z"
+    },
+    {
+      "name": "Run pnpm test:chores",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:35Z",
+      "completedAt": "2026-10-05T17:42:37Z"
+    },
+    {
+      "name": "Run pnpm test:offline",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:37Z",
+      "completedAt": "2026-10-05T17:42:42Z"
+    },
+    {
+      "name": "Install pinned PostgREST integration fixture",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:42Z",
+      "completedAt": "2026-10-05T17:42:42Z"
+    },
+    {
+      "name": "Test core native HTTP and database journeys",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:42:42Z",
+      "completedAt": "2026-10-05T17:43:12Z"
+    },
+    {
+      "name": "Test retained attention date handling",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:43:12Z",
+      "completedAt": "2026-10-05T17:43:16Z"
+    },
+    {
+      "name": "Test retained routine schedule validation",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:43:16Z",
+      "completedAt": "2026-10-05T17:43:25Z"
+    },
+    {
+      "name": "Test complete append-only ledger events",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:43:25Z",
+      "completedAt": "2026-10-05T17:43:34Z"
+    },
+    {
+      "name": "Test financial allocation consistency",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:43:34Z",
+      "completedAt": "2026-10-05T17:43:45Z"
+    },
+    {
+      "name": "Run pnpm test",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:43:45Z",
+      "completedAt": "2026-10-05T17:44:22Z"
+    }
+  ]
+}

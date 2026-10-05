@@ -85,7 +85,9 @@ Source b4dd8494 passes Nest37348042463/SwiftUI37348042498:
 strict format/limits, actual push-disabled signing and guarded UI compilation.
 [Native CI](ci-native-keyboard.json), [routine CI](ci-routine-keyboard.json).
 CI compiles manual tests but does not execute their hosted actions.
-The later archived-list assertion correction needs its own current-head CI.
+The archived-list assertion correction at f9ec8792 now also passes
+Nest37350253862/SwiftUI37350254016 with the same case/skip counts and zero failures:
+[native CI](ci-native-archive-readback.json), [routine CI](ci-routine-archive-readback.json).
 
 Earlier prepared-source/CI artifacts remain historical checkpoints.
 [Baseline](baseline.json) establishes original rows.
