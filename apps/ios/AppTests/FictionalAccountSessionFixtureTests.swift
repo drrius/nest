@@ -76,6 +76,7 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
             let ownedSimulators = [
                 "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
                 "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+                "CA0BCEDE-A297-493A-8921-9E31F8B65783",
             ]
             guard let simulator = environment["SIMULATOR_UDID"], ownedSimulators.contains(simulator),
                 configuration.apiURL.absoluteString == "https://nest-test-api-drrius-projects.vercel.app",
