@@ -57,7 +57,7 @@ struct MealPreparationForm: View {
                 }
             }
             .interactiveDismissDisabled(saving || hasChanges)
-            .confirmationDialog("Discard preparation changes?", isPresented: $discard, titleVisibility: .visible) {
+            .alert("Discard changes?", isPresented: $discard) {
                 Button("Discard changes", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
             }

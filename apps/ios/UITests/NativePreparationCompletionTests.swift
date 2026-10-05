@@ -22,7 +22,7 @@ final class NativePreparationCompletionTests: XCTestCase {
         add(image)
         week.app.navigationBars["Edit preparation"].buttons["Cancel"].tap()
         waitForEditorDismissal(week.app)
-        XCTAssertFalse(week.app.staticTexts["Discard preparation changes?"].exists)
+        XCTAssertFalse(week.app.staticTexts["Discard changes?"].exists)
         XCTAssertTrue(week.app.navigationBars["Meal preparation"].waitForExistence(timeout: 15))
         finish(week.app)
     }
@@ -124,7 +124,7 @@ final class NativePreparationCompletionTests: XCTestCase {
         add(image)
         week.app.navigationBars["Edit preparation"].buttons["Cancel"].tap()
         waitForEditorDismissal(week.app)
-        XCTAssertFalse(week.app.staticTexts["Discard preparation changes?"].exists)
+        XCTAssertFalse(week.app.staticTexts["Discard changes?"].exists)
         XCTAssertTrue(week.app.navigationBars["Meal preparation"].waitForExistence(timeout: 15))
         finish(week.app)
     }
@@ -169,7 +169,7 @@ final class NativePreparationCompletionTests: XCTestCase {
         XCTAssertTrue(cancel.isHittable)
         XCTAssertGreaterThanOrEqual(cancel.frame.height + 0.000_001, 44)
         cancel.tap()
-        let heading = app.staticTexts["Discard preparation changes?"]
+        let heading = app.staticTexts["Discard changes?"]
         XCTAssertTrue(heading.waitForExistence(timeout: 15))
         XCTAssertGreaterThanOrEqual(heading.frame.minY, 40)
         XCTAssertLessThanOrEqual(heading.frame.maxY, bottom)
@@ -180,6 +180,14 @@ final class NativePreparationCompletionTests: XCTestCase {
             XCTAssertLessThanOrEqual(button.frame.maxY, app.frame.maxY - 8)
         }
         capture("Finished preparation discard choices", app: app)
+        let edited = instructions.value as? String
+        app.buttons["Keep editing"].tap()
+        let kept = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: heading)
+        XCTAssertEqual(XCTWaiter.wait(for: [kept], timeout: 15), .completed)
+        XCTAssertTrue(app.navigationBars["Edit preparation"].exists)
+        XCTAssertEqual(instructions.value as? String, edited)
+        cancel.tap()
+        XCTAssertTrue(app.buttons["Discard changes"].waitForExistence(timeout: 15))
         app.buttons["Discard changes"].tap()
         let dismissed = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == false"), object: app.navigationBars["Edit preparation"])
