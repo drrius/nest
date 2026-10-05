@@ -18,3 +18,15 @@ The owner-facing [remaining-work checklist](native-rewrite/remaining-work.md) gr
 4. Obtain both-phone/design acceptance of the already-available build17; batch further candidates only when verified changes justify them. Prepare a concrete release/cutover package only after all remaining gates pass.
 
 No new automation was created. No service purchase, production mutation/migration, old-app retirement, public release or merge occurred during these increments.
+
+## Complete ledger-event guard
+
+A retained zero-sum gap permits missing/single-zero ledger entries. The additive
+commit-time pair guard now passes eight database tests,259 signed cases, native
+retry/authorization/AI approval checks and a309-migration exact-retention rehearsal.
+Four manifest tests and scoped lint/limits pass. Hosted preflight sees61 valid
+pairs. Applied only to nest-test as20261005132407: exact bodies/privileges/deferred
+triggers and unchanged six financial/activity/Storage fingerprints pass. Source
+4c4cc96b passes Nest37316715801; postflight docs cb88c6a6 pass Nest37317182854.
+Hosted mutation/native-phone checks are not claimed. Production stays gated.
+[Evidence](../evidence/2026-10-05/complete-ledger-events/README.md). Native/phone acceptance remains open.

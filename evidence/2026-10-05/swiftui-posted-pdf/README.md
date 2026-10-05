@@ -54,6 +54,5 @@ This moves the posted-receipt workflow forward but does not close M7. Independen
 bytes, actual PDF browser rendering, partner native viewing, full accessibility,
 both phones and live AI receipt handoff remain open. Source1463a805 passes routine
 [Nest37319142790](https://github.com/drrius/nest/actions/runs/37319142790);
-[SwiftUI37319142748](https://github.com/drrius/nest/actions/runs/37319142748) remains
-running. CI does not execute the opt-in hosted/UI methods. The dashboard experiment
+[SwiftUI37319142748](https://github.com/drrius/nest/actions/runs/37319142748) passes. CI does not execute the opt-in hosted/UI methods. The dashboard experiment
 remains outside that commit and has no claimed verification.

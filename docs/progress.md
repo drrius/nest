@@ -380,15 +380,7 @@ routine CI does not execute or approve the failing manual suite.
 
 ## Complete ledger-event guard
 
-A retained zero-sum gap permits missing/single-zero ledger entries. The additive
-commit-time pair guard now passes eight database tests,259 signed cases, native
-retry/authorization/AI approval checks and a309-migration exact-retention rehearsal.
-Four manifest tests and scoped lint/limits pass. Hosted preflight sees61 valid
-pairs. Applied only to nest-test as20261005132407: exact bodies/privileges/deferred
-triggers and unchanged six financial/activity/Storage fingerprints pass. Source
-4c4cc96b passes Nest37316715801; postflight docs cb88c6a6 pass Nest37317182854.
-Hosted mutation/native-phone checks are not claimed. Production stays gated.
-[Evidence](../evidence/2026-10-05/complete-ledger-events/README.md). Native/phone acceptance remains open.
+The two-member guard and passing CI are in [dated history](progress-history-2026-10-05-late.md#complete-ledger-event-guard).
 
 ## Native posted PDF expense
 
@@ -396,4 +388,13 @@ One actual native CHF0.02 test expense now has a claimed640-byte PDF and valid p
 all original61 event/allocation/ledger fingerprints stay exact. The final observer
 fails on an offscreen reset control; no second expense is posted. A subsequent
 read-only Money scroll stalls at100% CPU. Its bounded-stack experiment is pending
-on the unreachable Mac. Source1463a805 passes Nest37319142790; native CI and bytes/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+on the unreachable Mac. Source1463a805 passes Nest37319142790/SwiftUI37319142748; bytes/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+
+## Financial allocation consistency
+
+A balanced trusted write can omit allocations or contradict them. The additive
+expense/refund/replacement guard passes eight database tests,792 arithmetic cases,
+six concurrent exact retries and the310-migration retained-history rehearsal.
+Four manifest tests and scoped lint/format/limits pass; hosted preflight finds
+52 consistent allocation-bearing events among62 total. Test deployment/source CI
+and native acceptance are pending. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
