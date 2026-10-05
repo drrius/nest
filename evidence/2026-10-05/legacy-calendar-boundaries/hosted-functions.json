@@ -1,0 +1,62 @@
+[
+  {
+    "schema": "public",
+    "name": "claim_calendar_sync",
+    "signature": "claim_calendar_sync(uuid)",
+    "bodySha256": "f548f06d22055a6b46e5822fb6adafd8d2217778ac320b7f14957a35d1c05d6b",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "public",
+    "name": "disconnect_calendar",
+    "signature": "disconnect_calendar(uuid)",
+    "bodySha256": "db6d2b56502d3fb7c649f57a9ccd44ce620769c598ce1b9a05594d3d1adfda0c",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "public",
+    "name": "reconcile_calendar_snapshot",
+    "signature": "reconcile_calendar_snapshot(uuid,uuid,jsonb)",
+    "bodySha256": "81042298e954449b578ab3e27a4010d3b39a147160fc16f07897ef5475d27b0a",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "public",
+    "name": "record_calendar_push",
+    "signature": "record_calendar_push(uuid,uuid,uuid,text,boolean,text,text)",
+    "bodySha256": "be24e455bf99626d45ccf4f7cf16c44c09482b813b8093ff01b892a62045e866",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "public",
+    "name": "release_calendar_sync",
+    "signature": "release_calendar_sync(uuid,uuid,text)",
+    "bodySha256": "544b2127bb37300e760dfd509632f93d8d6818ee40ed5556a39852831226857c",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "private",
+    "name": "require_calendar_lease",
+    "signature": "private.require_calendar_lease(uuid,uuid)",
+    "bodySha256": "f98675b646bb95360edc8c9027b1a0588c48ea227c08b3917ae7d9b7ce993c68",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  }
+]

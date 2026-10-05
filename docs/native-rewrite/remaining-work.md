@@ -173,7 +173,13 @@ retained, and all seven public/two private definitions match hosted read-only
 hashes/grants. Local PostgreSQL18.6 differs from hosted17.6; Auth/Storage are
 simulated, and no hosted mutation or native journey is claimed.
 [Evidence](../../evidence/2026-10-05/legacy-shopping-boundaries/README.md).
-Twenty-three other legacy entry points/deeper helpers remain to review.
+That shopping checkpoint left23 legacy entries. Five retained calendar-sync
+entries/private lease guard now pass92 rolled-back full-chain cases and six fresh
+hosted body/ACL matches with original calendar/finance/native privacy retained.
+Routine CI for the new diagnostic source is pending. Eighteen other public entries/
+deeper helpers, concurrent leases/external writers and full M9 remain. No hosted
+mutation or CalDAV credential/network execution is claimed.
+[Calendar audit](../../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
 
 ## 4. Deliver and accept a current private build
 

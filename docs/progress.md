@@ -380,20 +380,18 @@ No native, provider, worker, production, merge or release action occurred.
 The bounded cooking-editor keyboard fix and complete native/routine CI are
 preserved in [the dated history](progress-history-2026-10-05.md#cooking-notes-keyboard-readability).
 
-## Private composer keyboard
+The keyboard-safe private composer and exact full native/routine CI are preserved
+in [the dated history](progress-history-2026-10-05.md#private-composer-keyboard).
 
-Actual largest-text unsent typing hides the final text/cursor and Send. The shared
-native TextKit1 editor and bottom inset now keep the final selected line/caret and
-44pt Send above the keyboard at normal/largest text. Native Back/reopen discards
-each unsent draft. The final one-line counter also passes actual2,001 disabledSend
-→ one native Delete →2,000 enabledSend without sending. Long-text readback is
-capped512 by the observer; the actual native counter/visible state are verified.
-Exact1,045 final input hashes, strict format/limits/signing,6 Foundation passes/
-2 hosted skips and13 signed-native methods pass. All ten complete hosted profile/
-receipt/chat/61-event-finance hashes/counts remain exact; original profiles/Today/
-light/default text/data/Keychain and64 empty journals are restored. Current-source
-CI: source `f77d5846` passes Nest37282661041 and SwiftUI37282660851;496 Foundation/
-41 skips and418 native/11 skips, zero failures, strict format/limits/signing.
-[Evidence](../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
-No Send/model call/beta/worker/production/purchase/merge/automation occurs. Live
-provider, full recovery/accessibility/two-phone and M1–M9 acceptance remain open.
+## Retained calendar-sync authorization
+
+Five legacy sync entries/private lease guard pass92 rolled-back full-chain cases:
+82 refusals and10 both-member transitions, including foreign connections/events,
+wrong/expired leases, snapshot validation and exact replay/terminal retry behavior.
+Original calendar/finance/native privacy state and fixture reconciliation remain
+exact. Six fresh hosted bodies/ACLs match compiled source; no hosted mutation or
+CalDAV credential/network execution is claimed. Scoped format/lint/limits pass;
+routine CI for the new diagnostic source is pending. Eighteen other public legacy
+entries/deeper helpers, concurrent leases/external writers and full M9 remain.
+[Evidence](../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
+No provider/worker/phone/beta/production/purchase/merge/automation action occurs.
