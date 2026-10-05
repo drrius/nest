@@ -1,0 +1,43 @@
+{
+  "scheme": "NestAccessibility",
+  "test": "ReceiptPickerTests/testPDFPickerCancellationPreservesUnattachedExpense",
+  "ownedSimulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "os": "iOS26.3",
+  "screenPoints": [375, 667],
+  "run": "/private/tmp/nest-pdf-picker-cancel-v13-20261005",
+  "passed": 1,
+  "failures": 0,
+  "skips": 0,
+  "compiledInputs": 641,
+  "sourceMatches": true,
+  "sourceMapSha256": "f2005afdbdb70f4fb6f3d236fa1c429d5726642c6c373238d4c4d03dc5551f15",
+  "signedPreparation": {
+    "verified": true,
+    "api": "https://nest-test-api-drrius-projects.vercel.app",
+    "supabase": "https://tkjixmujjoustdiedfmw.supabase.co",
+    "pushEnabled": false
+  },
+  "fixture": {
+    "bytes": 640,
+    "sha256": "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9"
+  },
+  "pickerDisappearanceAndFormHittable": true,
+  "todaySelected": true,
+  "emptyJournals": 64,
+  "restoration": {
+    "original": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "restored": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "emptyJournals": 64
+  },
+  "pdfSelectedOrUploaded": false,
+  "financialCommandSent": false,
+  "weakRunSuperseded": "v9 passed underlying-form existence despite pressing More; v10/v11/v12 exposed this. Only v13 strict outcome counts.",
+  "screenshot": "native-picker-fixture.png is the earlier v9 synthetic folder view, not final dismissal evidence",
+  "ciExecution": "Manual UI check; default routine/native CI does not execute this UI method."
+}

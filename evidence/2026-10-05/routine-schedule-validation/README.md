@@ -32,8 +32,20 @@ simulated, pg_net is explicitly excluded, and local Supabase advisors did not ru
 Four manifest tests, formatting, Oxlint and Swift source limits pass. SQL helper
 bodies are3–15 code lines with manually checked complexity at most10.
 
-Hosted inventory/after-checks and deployment remain pending: two fresh read-only
-queries did not execute because automatic approval review's model was at capacity.
-The migration has not been applied to nest-test or production. CI for this new
-source remains pending until its commit is pushed and checked. No native execution,
+Two fresh read-only queries initially did not execute because automatic approval
+review's model was at capacity. Approval review recovered; the strict inventory
+found19 valid retained definitions. The migration is now applied only to nest-test
+as20261005124055. All six function bodies match source, the original named CHECK
+is validated, ten valid/invalid probes pass and all nine chore/finance/Storage
+fingerprints are unchanged. All61 financial events remain. New helpers are
+invokers with empty search paths and no anonymous execution; the validator retains
+its existing authenticated-only execute grant. Security advisors report the same
+three notice names as the prior checkpoint, with no validator notice. Existing
+[privileged-function](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable),
+[leaked-password](https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection)
+and [RLS-without-policy](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy)
+notices remain tracked; this is not blanket security acceptance. Production is
+untouched. Routine CI passes
+exact source `b035e9e2` at [run37309163039](https://github.com/drrius/nest/actions/runs/37309163039),
+including all eight new database tests. No native execution,
 new receipt upload, financial mutation, model call, release or merge is claimed.

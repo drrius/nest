@@ -25,10 +25,14 @@ retained database validator. A source fix now requires exact fields/types and
 revalidates the original table CHECK without modifying retained rows. Eight
 focused database tests and the308-migration disposable rehearsal pass, preserving
 chore/financial/receipt history; formatting/lint/limits and four manifest tests pass.
-[Evidence](../evidence/2026-10-05/routine-schedule-validation/README.md). Hosted
-inventory/deployment/after-checks are pending because automatic approval review's
-model is at capacity; no hosted query or migration executed in this pass. Source CI
-is pending. Native PDF cancellation remains failing (no upload;64 empty journals).
+[Evidence](../evidence/2026-10-05/routine-schedule-validation/README.md). Approval
+review recovered; nest-test20261005124055 now has all six exact source bodies and
+a validated CHECK, ten passing probes,19 valid retained definitions and unchanged
+fingerprints across nine chore/finance/Storage tables (61 financial events).
+Existing advisor notice names remain; no validator notice. Routine CI37309163039
+passes source `b035e9e2`, including all eight tests. Production is untouched.
+Native PDF browsing/cancellation now passes strict picker-gone/form-hittable and
+Today-selection checks,641 matching inputs and64 empty journals. No upload was made.
 
 Unchecked means complete acceptance is outstanding, even where implementation and bounded verification exist.
 

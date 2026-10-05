@@ -1,0 +1,210 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "migration": {
+    "name": "native_routine_schedule_validation",
+    "version": "20261005124055"
+  },
+  "strictPreflight": {
+    "routineCount": 19,
+    "incompleteOrInvalidCount": 0
+  },
+  "sourceBodiesMatch": true,
+  "tableFingerprintsUnchanged": true,
+  "before": [
+    {
+      "table_name": "public.routines",
+      "rows": 19,
+      "sha256": "0de9f3d0c570c0cda2469e5a1ec0465e649d2fd0bad92968130ee63450c02323"
+    },
+    {
+      "table_name": "public.routine_occurrences",
+      "rows": 24,
+      "sha256": "8917ae6f59ecccb41935e5a26194f1429cf9c5d59f0fd559b992fe8b37467b09"
+    },
+    {
+      "table_name": "public.routine_completions",
+      "rows": 5,
+      "sha256": "940a7f05caf7dfac479790f94b4dc99de22fbcc0adf070b1321cba11e1c1c077"
+    },
+    {
+      "table_name": "public.activity_events",
+      "rows": 111,
+      "sha256": "0152885817840db5d808f23d22ce31681b5f44ee88c06436a86c38fa082ee074"
+    },
+    {
+      "table_name": "public.financial_events",
+      "rows": 61,
+      "sha256": "4ec2148f5a9d269cd187ca03ee0bfb8fc4c436729a13ea99fcbb1b2d933218b1"
+    },
+    {
+      "table_name": "public.financial_allocations",
+      "rows": 102,
+      "sha256": "3d1c085b5c13f8083967d3aa3cd7f70bbbf5f0ed263342bf49693b71a52844ef"
+    },
+    {
+      "table_name": "public.ledger_entries",
+      "rows": 122,
+      "sha256": "2bf961930d364ba5f8972d911849a6cbcbd1a729b231f51ddeee3a46727f085d"
+    },
+    {
+      "table_name": "storage.objects",
+      "rows": 1,
+      "sha256": "7ffe47dcc2f543012bf25e124b707bb9d2105ae94be9ece9ae3498073916cf95"
+    },
+    {
+      "table_name": "storage.buckets",
+      "rows": 1,
+      "sha256": "e5145bffdedd32a651a83b2a6d005a0fd188c9e73b48996d552f8d31621f496c"
+    }
+  ],
+  "after": [
+    {
+      "table_name": "public.routines",
+      "rows": 19,
+      "sha256": "0de9f3d0c570c0cda2469e5a1ec0465e649d2fd0bad92968130ee63450c02323"
+    },
+    {
+      "table_name": "public.routine_occurrences",
+      "rows": 24,
+      "sha256": "8917ae6f59ecccb41935e5a26194f1429cf9c5d59f0fd559b992fe8b37467b09"
+    },
+    {
+      "table_name": "public.routine_completions",
+      "rows": 5,
+      "sha256": "940a7f05caf7dfac479790f94b4dc99de22fbcc0adf070b1321cba11e1c1c077"
+    },
+    {
+      "table_name": "public.activity_events",
+      "rows": 111,
+      "sha256": "0152885817840db5d808f23d22ce31681b5f44ee88c06436a86c38fa082ee074"
+    },
+    {
+      "table_name": "public.financial_events",
+      "rows": 61,
+      "sha256": "4ec2148f5a9d269cd187ca03ee0bfb8fc4c436729a13ea99fcbb1b2d933218b1"
+    },
+    {
+      "table_name": "public.financial_allocations",
+      "rows": 102,
+      "sha256": "3d1c085b5c13f8083967d3aa3cd7f70bbbf5f0ed263342bf49693b71a52844ef"
+    },
+    {
+      "table_name": "public.ledger_entries",
+      "rows": 122,
+      "sha256": "2bf961930d364ba5f8972d911849a6cbcbd1a729b231f51ddeee3a46727f085d"
+    },
+    {
+      "table_name": "storage.objects",
+      "rows": 1,
+      "sha256": "7ffe47dcc2f543012bf25e124b707bb9d2105ae94be9ece9ae3498073916cf95"
+    },
+    {
+      "table_name": "storage.buckets",
+      "rows": 1,
+      "sha256": "e5145bffdedd32a651a83b2a6d005a0fd188c9e73b48996d552f8d31621f496c"
+    }
+  ],
+  "verification": {
+    "probes": {
+      "nullUnit": false,
+      "validDate": true,
+      "validDaily": true,
+      "missingDate": false,
+      "missingDays": false,
+      "missingUnit": false,
+      "missingWeekly": false,
+      "validWeekdays": true,
+      "missingMonthly": false,
+      "validCompletion": true
+    },
+    "functions": [
+      {
+        "config": ["search_path=\"\""],
+        "definer": false,
+        "signature": "private.is_valid_routine_schedule(text,jsonb)",
+        "bodySha256": "56b44e65208f022c4ff69575a02bcf31d005e454195a9dd99813450dfdf0f1e7",
+        "volatility": "i",
+        "anonExecute": false,
+        "serviceExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "config": ["search_path=\"\""],
+        "definer": false,
+        "signature": "private.nest_routine_schedule_date(jsonb)",
+        "bodySha256": "b8afade525042b0d5b6d19528188ab2e3a9f4073cd87d9336ade9b619f1e049f",
+        "volatility": "i",
+        "anonExecute": false,
+        "serviceExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "config": ["search_path=\"\""],
+        "definer": false,
+        "signature": "private.nest_routine_schedule_integer(jsonb,integer)",
+        "bodySha256": "aa4dff4f7d7e9df7869659b0c62531e037bf389b6fe96b95b9368417933e5014",
+        "volatility": "i",
+        "anonExecute": false,
+        "serviceExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "config": ["search_path=\"\""],
+        "definer": false,
+        "signature": "private.nest_routine_schedule_keys(text,text)",
+        "bodySha256": "1c485439c24790cdd34bf02095c35a011df3d68f4b41034b17f29a91911f3076",
+        "volatility": "i",
+        "anonExecute": false,
+        "serviceExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "config": ["search_path=\"\""],
+        "definer": false,
+        "signature": "private.nest_routine_schedule_shape(jsonb,text[])",
+        "bodySha256": "a19a6ef58ec4be46d3dfa18afc75243edfc7eb6d5e26075ba6fbb1b438fe4bad",
+        "volatility": "i",
+        "anonExecute": false,
+        "serviceExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "config": ["search_path=\"\""],
+        "definer": false,
+        "signature": "private.nest_routine_schedule_weekdays(jsonb)",
+        "bodySha256": "a40de40ef2c08d9ffc5c5311aa5ff5978b8d1c740886720a15cafd52074a0a97",
+        "volatility": "i",
+        "anonExecute": false,
+        "serviceExecute": true,
+        "authenticatedExecute": true
+      }
+    ],
+    "migration": [
+      {
+        "name": "native_routine_schedule_validation",
+        "version": "20261005124055"
+      }
+    ],
+    "constraint": [
+      {
+        "name": "routines_check1",
+        "validated": true,
+        "definition": "CHECK ((private.is_valid_routine_schedule(schedule_kind, schedule_rule) IS TRUE))"
+      }
+    ],
+    "invalidRetainedRows": 0
+  },
+  "advisors": {
+    "levels": {
+      "INFO": 1,
+      "WARN": 2
+    },
+    "validatorFindings": 0,
+    "noticeNames": [
+      "auth_leaked_password_protection",
+      "authenticated_security_definer_function_executable",
+      "rls_enabled_no_policy"
+    ],
+    "scope": "Same three notice names as prior invoker checkpoint; no validator notice. Existing notices remain open."
+  }
+}

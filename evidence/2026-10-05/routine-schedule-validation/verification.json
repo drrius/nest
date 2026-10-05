@@ -67,14 +67,27 @@
   },
   "hosted": {
     "project": "tkjixmujjoustdiedfmw",
-    "applied": false,
-    "freshQueriesExecuted": false,
-    "blocker": "Automatic approval review model at capacity"
+    "applied": true,
+    "migrationVersion": "20261005124055",
+    "sourceBodiesMatch": true,
+    "allNineFingerprintsUnchanged": true,
+    "retainedValidRoutines": 19,
+    "retainedFinancialEvents": 61,
+    "probesPassed": 10,
+    "initialBlocker": "Automatic approval review model at capacity; subsequently recovered",
+    "productionTouched": false
   },
   "commands": [
     "NEST_TEST_PG_BIN=/tmp/nest-postgres-18-fixture/usr/bin node --test tests/database/routine-schedule-validation.test.mjs",
     "NEST_TEST_PG_BIN=/tmp/nest-postgres-18-fixture/usr/bin node tools/migration/schema-probe.mjs /home/drrius/Work/household-os/supabase/migrations --without-pg-net",
     "node --test tests/tooling/migration-manifest.test.mjs",
     "pnpm lint"
-  ]
+  ],
+  "ci": {
+    "source": "b035e9e2fba16ae39f7ac1d743a9835e895e143a",
+    "run": 37309163039,
+    "conclusion": "success",
+    "url": "https://github.com/drrius/nest/actions/runs/37309163039",
+    "focusedDatabaseTestsPassed": 8
+  }
 }
