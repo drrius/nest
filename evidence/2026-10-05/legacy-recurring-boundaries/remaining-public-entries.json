@@ -1,0 +1,20 @@
+{
+  "totalAuthenticatedLegacyPublicDefiners": 60,
+  "boundedEvidenceEntries": 47,
+  "remainingEntries": [
+    "add_project_task_batch(uuid,jsonb)",
+    "archive_household_decision_option(uuid,boolean)",
+    "choose_household_decision_option(uuid,uuid)",
+    "convert_household_decision(uuid,text)",
+    "enqueue_self_device_push_test(text,uuid)",
+    "mark_inbox_notifications_read(uuid[])",
+    "pause_my_push_for_signout()",
+    "read_self_device_push_test(text,uuid)",
+    "register_push_subscription(text,text,text,text)",
+    "reorder_household_areas(uuid[])",
+    "set_household_decision_status(uuid,text)",
+    "unregister_push_subscription(text)",
+    "upsert_digest_preference(boolean,time without time zone)"
+  ],
+  "privateHelpersAndExternalWriters": "Broader review remains open; bounded case evidence is not full acceptance."
+}

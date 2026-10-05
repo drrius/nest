@@ -283,3 +283,15 @@ public definers have bounded evidence,19 remain pending. Recurring legacy RPCs,
 notifications and excluded-record commands remain listed explicitly; broader
 helpers/races/hosted interfaces/external writers and M9 stay open. No new migration,
 hosted mutation, native execution, provider call or release occurred.
+
+## Retained recurring-command review
+
+Six retained entries pass144 actual full-chain cases:132 refusals/12 member flows.
+Both-member authorization, foreign terms, stale versions, changed/exact retries,
+revoked unversioned updates, malformed adopted-source guards and draft-only
+month-end catch-up pass. Ordinary confirmation adds one balanced entry; complete
+retained draft terms and original finance/receipts/excluded rows remain exact.
+Eleven hosted catalog rows match. [Evidence](../../evidence/2026-10-05/legacy-recurring-boundaries/README.md).
+The unique inventory now records47 bounded entries/13 pending; broader private
+helpers/concurrency/hosted interfaces/external writers and full M9 remain open.
+Scoped checks pass; new CI pending. No worker, model call or production change.

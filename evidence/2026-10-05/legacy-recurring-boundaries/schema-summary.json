@@ -1,0 +1,39 @@
+{
+  "complete": true,
+  "cases": 144,
+  "refusals": 132,
+  "successfulFlows": 12,
+  "migrationCounts": {
+    "legacy": 54,
+    "native": 251
+  },
+  "excludedDeclarations": [
+    {
+      "source": "legacy",
+      "name": "20260814153314_enable_pg_net.sql",
+      "sha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70"
+    }
+  ],
+  "infrastructure": {
+    "simulated": ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
+    "schedulingVerified": false,
+    "storageBytesVerified": false
+  },
+  "fixturePostgres": "18.6",
+  "hostedPostgres": "17.6",
+  "hostedReadOnly": true,
+  "hostedFunctionMatches": 11,
+  "originalFinancialRecurringReceiptsAndExcludedRowsRetained": true,
+  "retainedFinancialEvents": 7,
+  "retainedAllocations": 8,
+  "retainedLedgerEntries": 14,
+  "retainedReceiptReferences": 1,
+  "cutoverFinancialReconciliationPassed": true,
+  "adoptionSeedTestsGuardsOnly": true,
+  "newMigrationOrGrantChange": false,
+  "scheduledPostingActivated": false,
+  "productionTouched": false,
+  "nativeExecutionClaimed": false,
+  "freshAdvisorsClaimed": false,
+  "diagnosticReportSha256": "fc94d1bb3416d48c5173201a3d91b3172ee8b8eb2a49225c7de33105da972696"
+}

@@ -248,3 +248,15 @@ PostgreSQL18.6 is distinct from hosted17.6; Auth/Storage remain simulated.
 [Evidence](../evidence/2026-10-05/legacy-shopping-boundaries/README.md).
 Twenty-three legacy entries/deeper helpers and broader M9 acceptance remain.
 No native, provider, worker, production, merge or release action occurred.
+
+## Retained financial context and opening balances
+
+Four legacy entries pass98 full-chain SQL cases:84 refusals and14 member flows.
+Opening/retry, foreign context, stale association, zero-sum ledger and complete
+lineage pagination checks preserve original finance/receipts/excluded records.
+Eleven hosted read-only function/hash/grant rows match the tested305-migration
+chain. Routine CI37287967042 passes source `ff31623e`.
+[Evidence](../evidence/2026-10-05/legacy-context-boundaries/README.md).
+The unique60-entry inventory records41 bounded reviews and19 pending, correcting
+older totals that counted overlapping calendar reviews. Private helpers, races,
+hosted Auth/Storage, external writers and full M9 remain; no migration was needed.
