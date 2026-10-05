@@ -66,11 +66,13 @@ struct RecipeCreateSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { confirmingDiscard = true }.disabled(saving)
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { confirmingDiscard = true }.disabled(saving)
                 }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button(saving ? "Saving…" : "Save") { Task { await save() } }
-                        .disabled(saving || context == nil || draft == nil || model.recipeCreation != nil)
+                    QuietToolbarButton(saving ? "Saving…" : "Save", systemImage: "checkmark") {
+                        Task { await save() }
+                    }
+                    .disabled(saving || context == nil || draft == nil || model.recipeCreation != nil)
                 }
             }
             .interactiveDismissDisabled()
