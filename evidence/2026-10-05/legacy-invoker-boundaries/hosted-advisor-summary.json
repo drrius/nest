@@ -1,0 +1,38 @@
+{
+  "security": {
+    "beforeCount": 3,
+    "afterCount": 3,
+    "beforeNames": [
+      "auth_leaked_password_protection",
+      "authenticated_security_definer_function_executable",
+      "rls_enabled_no_policy"
+    ],
+    "afterNames": [
+      "auth_leaked_password_protection",
+      "authenticated_security_definer_function_executable",
+      "rls_enabled_no_policy"
+    ],
+    "exactMetadataUnchanged": false,
+    "normalizedFindingsUnchanged": true,
+    "onlyIgnoredField": "observed_at",
+    "beforeSha256": "8fcf5eab6ac80b79f381f298dd0e2fa7f33dd554109aad3487e5432468f118fe",
+    "afterSha256": "f39fe43f95bc4cb0a058331ad7cc5a92e6f4cc4492dbbb34e0451725fb8c95e8",
+    "newNoticeNames": [],
+    "newFindings": 0,
+    "noLongerReportedFindings": 0
+  },
+  "performance": {
+    "beforeCount": 2,
+    "afterCount": 2,
+    "beforeNames": ["unindexed_foreign_keys", "unused_index"],
+    "afterNames": ["unindexed_foreign_keys", "unused_index"],
+    "exactMetadataUnchanged": false,
+    "normalizedFindingsUnchanged": false,
+    "onlyIgnoredField": "observed_at",
+    "beforeSha256": "544339c05b69139043dde5a1ef893f951f85414039909f5593a2c4406bd1ca6c",
+    "afterSha256": "ba2fb8ee32bedfd4da6d9ea1b2594e23051d4e6a90fac260767857007e7fb0ae",
+    "newNoticeNames": [],
+    "newFindings": 0,
+    "noLongerReportedFindings": 1
+  }
+}

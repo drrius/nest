@@ -385,16 +385,15 @@ Its inventory count is superseded below; full acceptance remains open.
 
 The144-case retained recurring audit and passing CI are [in the dated history](progress-history-2026-10-05.md#retained-recurring-command-boundaries).
 
-The retained notification privacy fix and127-case verification with passing source
-CI are [in the dated history](progress-history-2026-10-05.md#retained-notification-privacy-and-device-boundaries).
+The retained notification privacy fix and127-case verification with passing source CI are [in the dated history](progress-history-2026-10-05.md#retained-notification-privacy-and-device-boundaries).
 
-## Retained excluded-feature command boundaries
+The130-case retained excluded-feature check and passing source CI are
+[in the dated history](progress-history-2026-10-05.md#retained-excluded-feature-command-boundaries).
 
-The final six entries pass130 full-chain cases:102 refusals and28 flows for both members. Task selections retain edits/archives/skips on retry; decision changes
-and complete-list area ordering preserve foreign rows and complete finance/Storage.
-Nine hosted read-only bodies/grants match the306-migration fixture. No application, migration or grant change was needed; plans/decisions/trips stay outside Nest.
-[Evidence](../evidence/2026-10-05/legacy-excluded-boundaries/README.md).
-Scoped checks and routine CI37293541809 pass source `beef1eba`. The unique60-entry authenticated legacy public-definer inventory now has60 bounded reviews; public invoker wrappers, private paths, direct table/Storage
-policies, service writers/jobs and cutover acceptance remain outside that count.
-Live AI billing verification, worker/APNs, both phones and full M1–M9 stay open.
-No hosted write, new binary/release, model call, production, purchase or merge occurred.
+## Retained public invoker reads and option revisions
+
+The two public invokers pass53 full-chain cases:31 refusals/22 flows. A real retained renewal-date underflow crashed attention reads; the pure private helper fixes calculation only, preserving all rows/public grants in nest-test.
+Four database tests pass2,928 arithmetic cases; the307-migration rehearsal preserves complete finance/excluded/renewal state. Both hosted members see the two valid synthetic renewals; an outsider sees none. Rollback restores all20 fingerprints, including61 financial events.
+Three bodies/client grants/configs match; the existing trusted-service archive grant differs from standalone defaults and is recorded. Fresh advisors add no findings. [Evidence](../evidence/2026-10-05/legacy-invoker-boundaries/README.md).
+Scoped checks and four manifest tests pass; current-source CI is pending. The public inventory has60 definers/2 invokers with bounded evidence; private/table/Storage/service/external-writer and cutover acceptance remain.
+Live AI billing, worker/APNs, both phones and full M1–M9 stay open. No release, production, purchase or merge.

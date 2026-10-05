@@ -1,0 +1,6 @@
+{
+  "boundedLegacyPublicDefiners": 60,
+  "boundedLegacyPublicInvokers": 2,
+  "fullAcceptance": "open",
+  "remaining": "Private call chains/direct table and Storage policies, trusted service writers, hosted external requests/old-client intent drainage and full M9 cutover remain."
+}
