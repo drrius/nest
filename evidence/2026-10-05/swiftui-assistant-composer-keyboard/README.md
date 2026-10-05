@@ -66,6 +66,7 @@ Gateway's last actual response remains403 `customer_verification_required`.
 TestFlight remains build16. No new beta, production action, credential change,
 worker activation, purchase, source merge or automation occurs here.
 M1–M9 full acceptance remains open. Source `f77d5846` passes routine CI37282661041.
-Native CI37282660851 is still running at the recorded observation; it is not
-claimed passed. [Exact-source CI state](ci-f77d5846.json) is distinct from the
+Native CI37282660851 also passes:496 Foundation methods/41 explicit skips and
+418 signed-native methods/11 explicit skips, zero failures, strict format/limits
+and actual signing. [Exact-source CI state](ci-f77d5846.json) is distinct from the
 13 focused Mac methods and the existing phone build16.

@@ -152,7 +152,8 @@ The assistant's native composer now has bounded normal/largest keyboard-safe
 typing/discard and largest2,001→2,000 validation evidence,13 signed-native passes,
 unchanged private chat/profile/61-event finance and restored64 empty journals.
 Long-text accessible readback stops512; full value equality is not claimed.
-Source `f77d5846` passes routine CI; native CI37282660851 is still running.
+Source `f77d5846` passes routine/native CI:496 Foundation/41 skips,418 native/
+11 skips, zero failures, strict format/limits/signing.
 Live model streaming/tools, full recovery/VoiceOver and both phones remain open.
 [Composer evidence](../../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
 

@@ -13,12 +13,20 @@
     },
     {
       "runId": 37282660851,
-      "conclusion": "",
+      "conclusion": "success",
       "createdAt": "2026-10-05T08:16:56Z",
       "headSha": "f77d5846f3f875d74ca4619ffa26ed8eb87a5464",
-      "status": "in_progress",
-      "updatedAt": "2026-10-05T08:17:05Z",
+      "status": "completed",
+      "updatedAt": "2026-10-05T08:25:30Z",
       "url": "https://github.com/drrius/nest/actions/runs/37282660851"
     }
-  ]
+  ],
+  "nativeTotals": {
+    "foundationMethods": 496,
+    "foundationSkipped": 41,
+    "signedNativeMethods": 418,
+    "signedNativeSkipped": 11,
+    "failures": 0,
+    "formatLimitsAndActualSigningPassed": true
+  }
 }
