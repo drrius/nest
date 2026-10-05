@@ -103,3 +103,23 @@ Both source CI workflows pass: Nest37248045916/SwiftUI37248045819,
 [Evidence](../evidence/2026-10-05/swiftui-resumption-decline-title/README.md).
 Other branches/full accessibility/phones/live AI and M1/M7 acceptance stay open.
 No financial/rule mutation, model, beta, production action, purchase or merge.
+
+## Native preferences input and reload controls — 5 October
+
+Source `9adbc3eb` fixes a small portion target, calorie-field corner focus and
+maximum-text input layout, explicit reload cancellation and cooking semantic naming.
+Eight focused native preferences/preflight/recovery methods pass at the food/control
+source; final label source passes signed build/all1,041 committed hashes/format/limits.
+Both exact-source CI workflows pass: Nest37251890365/SwiftUI37251890375,
+491 Foundation/41 skips and409 signed-native/11 skips, zero failures.
+Actual normal/light and largest/dark calorie corner/keyboard validation, intended
+reload alerts/both Cancel branches and retained drafts pass without Save. One explicit
+reload per form restores original values; largest portion corner/current selection
+also passes. Both members' exact preference revisions/setup/full61-event finance
+and zero balances stay unchanged. Ordinary Today/display settings/64 empty journals,
+stable signed test origins/data/Keychain are restored. Observer scroll/label/launch
+failures and premature overlap are recorded; no already-selected action is repeated.
+[Evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
+Whole multiline cooking-keyboard readability, rejected recovery rendering, restriction/
+dislike corners, VoiceOver, broader onboarding/partner native/phones/live AI remain
+open. No preference Save, financial write, model, beta, production action or merge.

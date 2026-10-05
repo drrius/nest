@@ -1,0 +1,33 @@
+{
+  "response": {
+    "proposal": {
+      "_0": {
+        "approval": {
+          "change": {
+            "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+            "expectedRevision": "1",
+            "content": "Fictional updated memory check"
+          },
+          "status": "pending",
+          "expiresAt": "2026-10-05T02:56:17.117944+00:00",
+          "operationId": "D21374FF-A67D-4071-A826-9BEDDF556470",
+          "id": "C08D528A-0F93-4D07-A2F9-34BA69E75478"
+        },
+        "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "version": 1
+      }
+    }
+  },
+  "rejected": false,
+  "request": {
+    "proposal": {
+      "_0": {
+        "expectedRevision": "1",
+        "content": "Fictional updated memory check",
+        "operationId": "D21374FF-A67D-4071-A826-9BEDDF556470",
+        "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D"
+      }
+    }
+  }
+}

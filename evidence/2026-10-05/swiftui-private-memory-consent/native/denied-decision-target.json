@@ -1,0 +1,13 @@
+{
+  "label": "Don\u2019t save",
+  "target": {
+    "y": 438,
+    "x": 16,
+    "width": 343,
+    "height": 74
+  },
+  "point": [356, 441],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791168346.925206
+}

@@ -1,0 +1,13 @@
+{
+  "label": "Review memory text",
+  "target": {
+    "y": 361,
+    "height": 44,
+    "width": 88,
+    "x": 266
+  },
+  "point": [351, 364],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791168072.963871
+}

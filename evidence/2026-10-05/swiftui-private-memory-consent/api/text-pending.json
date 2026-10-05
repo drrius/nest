@@ -1,0 +1,48 @@
+{
+  "approval": {
+    "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+    "expiresAt": "2026-10-05T02:46:13.023899+00:00",
+    "id": "E5BA3652-6A3C-4E4D-A022-B860963BA32C",
+    "status": "pending",
+    "change": {
+      "expectedRevision": "0",
+      "content": "Fictional memory consent check",
+      "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D"
+    }
+  },
+  "command": {
+    "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+    "expectedRevision": "0",
+    "content": "Fictional memory consent check",
+    "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6"
+  },
+  "privateAccess": {
+    "B": {
+      "status": 403
+    },
+    "outsider": {
+      "status": 403
+    },
+    "anonymous": {
+      "status": 401
+    },
+    "ARLS": {
+      "status": 200,
+      "rows": 1
+    },
+    "BRLS": {
+      "status": 200,
+      "rows": 0
+    },
+    "outsiderRLS": {
+      "status": 200,
+      "rows": 0
+    },
+    "anonymousRLS": {
+      "status": 401,
+      "rows": null
+    }
+  },
+  "verifiedAt": 1791167513.0041091,
+  "noNativeMemoryYet": true
+}

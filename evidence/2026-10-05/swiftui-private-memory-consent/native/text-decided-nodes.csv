@@ -1,0 +1,16 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e4,NavigationBar,Profile,,0,20,375,54,True,True
+e5,Button,Profile,,16,20,44,44,True,True
+e6,StaticText,Private memory,,112,29,151,26,True,True
+e11,Cell,Memory saved.,,16,0,343,142,True,True
+e13,StaticText,Memory saved.,,16,0,343,142,True,True
+e16,Cell,Done,,16,142,343,93.5,True,True
+e18,Button,Done,,16,142,343,93.5,True,True
+e19,Cell,Saved memories,,16,253,343,145.5,True,True
+e21,StaticText,Saved memories,,16,253,343,145.5,True,True
+e22,Cell,Fictional memory consent check,,16,398.5,343,268.5,True,True
+e24,StaticText,,,32,413.5,200,249.5,True,True
+e29,Button,Today,,25,588,88.25,54,True,True
+e31,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e33,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e35,Button,Money,,261.75,588,88.25,54,True,True

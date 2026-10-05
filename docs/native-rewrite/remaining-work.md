@@ -130,6 +130,15 @@ Whole multiline cooking-keyboard readability, restriction/dislike corners, rejec
 recovery rendering, VoiceOver, broader onboarding/partner native/phones/live AI remain.
 [Evidence](../../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
 
+Private memory now has actual separate-test native proposal/restart, explicit
+save/edit/decline, normal/largest removal cancellation, independent populated
+private RLS and removal/non-resurrecting exact replay evidence. Final row layout
+source `bf0542d4` passes both required workflows; unchanged editor/request actions
+ran at `49c526d6`. Both active lists/complete61-event finance and ordinary native
+state are restored. [Evidence](../../evidence/2026-10-05/swiftui-private-memory-consent/README.md).
+Full-length input/review, hosted lost-reply/conflict/expiry/account-switch rendering,
+VoiceOver, two native clients/both phones and live AI tools remain open.
+
 ## 3. Prove live integrations
 
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual provider call returned403 `customer_verification_required`. Owner: check the existing valid card on [drrius-projects billing](https://vercel.com/drrius-projects/~/settings/billing) and finish any verification prompt, then report that eligibility changed. No credits purchase or upgrade is requested. Retry within the unchanged project-only USD1 cap after verification. Successful synthetic journal fixtures are not live AI proof.

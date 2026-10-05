@@ -1,0 +1,22 @@
+{
+  "parentCommit": "9eafce32",
+  "nativeInputs": 1041,
+  "changedFiles": [
+    "apps/ios/Nest/Profile/PrivateMemoryScreen.swift",
+    "apps/ios/Nest/Profile/MemoryEditorScreen.swift",
+    "apps/ios/Nest/Profile/MemoryRequestSection.swift"
+  ],
+  "allInputsMatch": true,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791167269.168455,
+  "testPid": 93493,
+  "buildExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "installedCandidateSHA256": "7141b5df65ae8c33c920986599aa900b6f5d0cb4c66bef6136f2129d8b0695ba",
+  "finished": 1791167285.137836,
+  "earlierFocusedNativeTests": 2,
+  "noNewFocusedTestsClaimed": true,
+  "summaries": ["BUILD SUCCEEDED"]
+}

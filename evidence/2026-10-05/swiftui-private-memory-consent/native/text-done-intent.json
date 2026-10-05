@@ -1,0 +1,38 @@
+{
+  "terminalRequest": {
+    "request": {
+      "decision": {
+        "_0": {
+          "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+          "approvalId": "E5BA3652-6A3C-4E4D-A022-B860963BA32C",
+          "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+          "expectedRevision": "0",
+          "content": "Fictional memory consent check",
+          "approved": true
+        }
+      }
+    },
+    "response": {
+      "decision": {
+        "_0": {
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "version": 1,
+          "decision": {
+            "receipt": {
+              "revision": "1",
+              "removed": false,
+              "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+              "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+              "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D"
+            },
+            "status": "consumed"
+          }
+        }
+      }
+    },
+    "rejected": false
+  },
+  "time": 1791167790.227644
+}

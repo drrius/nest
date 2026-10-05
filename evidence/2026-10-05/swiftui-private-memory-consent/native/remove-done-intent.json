@@ -1,0 +1,32 @@
+{
+  "terminalRequest": {
+    "request": {
+      "removal": {
+        "_0": {
+          "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+          "expectedRevision": "2",
+          "operationId": "BCCF5492-CF3A-4B65-9C92-2E54CE7BD6F8"
+        }
+      }
+    },
+    "response": {
+      "removal": {
+        "_0": {
+          "version": 1,
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "receipt": {
+            "operationId": "BCCF5492-CF3A-4B65-9C92-2E54CE7BD6F8",
+            "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+            "revision": "3",
+            "removed": true,
+            "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+          },
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+        }
+      }
+    },
+    "rejected": false
+  },
+  "time": 1791168945.446957
+}

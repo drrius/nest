@@ -1,0 +1,4 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e9,StaticText,Discard text?,,48,219.5,279,125.5,True,True
+e15,Button,Discard,,34,371,307,125.5,True,True
+e16,Button,Cancel,,34,504.5,307,125.5,True,True

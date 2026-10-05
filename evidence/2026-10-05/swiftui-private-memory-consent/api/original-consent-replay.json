@@ -1,0 +1,19 @@
+{
+  "intent": {
+    "exactCommand": {
+      "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+      "approvalId": "E5BA3652-6A3C-4E4D-A022-B860963BA32C",
+      "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+      "expectedRevision": "0",
+      "content": "Fictional memory consent check",
+      "approved": true
+    },
+    "time": 1791168950.8052876
+  },
+  "result": {
+    "sameRevision1Receipt": true,
+    "noResurrection": true,
+    "retainedRevision3Tombstone": true,
+    "verifiedAt": 1791168955.8055778
+  }
+}

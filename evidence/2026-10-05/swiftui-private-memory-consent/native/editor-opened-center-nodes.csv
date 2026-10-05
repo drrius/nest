@@ -1,0 +1,9 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e3,NavigationBar,Cancel,,0,46,375,106,True,True
+e5,Button,Cancel,,278.5,50.00000000000001,76.5,35.99999999999999,True,True
+e6,StaticText,New memory,,16,103.5,209,41,True,True
+e9,Cell,,,16,152,343,116.5,True,True
+e11,TextField,,,32,167,311,86.5,True,True
+e13,Cell,Private to you. You’ll review the exact text before saving.,,16,268.5,343,64,True,True
+e15,StaticText,,,16,268.5,343,64,True,True
+e16,Cell,Review text,,16,367.5,343,52,True,True

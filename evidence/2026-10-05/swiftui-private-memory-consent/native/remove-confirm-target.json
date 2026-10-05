@@ -1,0 +1,13 @@
+{
+  "label": "Remove",
+  "target": {
+    "x": 34,
+    "y": 378,
+    "width": 307,
+    "height": 125.5
+  },
+  "point": [338, 381],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791168892.2690182
+}

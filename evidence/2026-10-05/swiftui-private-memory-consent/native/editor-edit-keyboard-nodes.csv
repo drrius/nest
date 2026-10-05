@@ -1,0 +1,44 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e11,Key,Q,,4.5,458,37,54,True,True
+e12,Key,W,,41.5,458,36.5,54,True,True
+e13,Key,E,,78,458,37,54,True,True
+e14,Key,R,,115,458,36.5,54,True,True
+e15,Key,T,,151.5,458,37,54,True,True
+e16,Key,Y,,188.5,458,37,54,True,True
+e17,Key,U,,225.5,458,36.5,54,True,True
+e18,Key,I,,262,458,37,54,True,True
+e19,Key,O,,299,458,36.5,54,True,True
+e20,Key,P,,335.5,458,37,54,True,True
+e21,Key,A,,23,512,36.5,54,True,True
+e22,Key,S,,59.5,512,37,54,True,True
+e23,Key,D,,96.5,512,37,54,True,True
+e24,Key,F,,133.5,512,36.5,54,True,True
+e25,Key,G,,170,512,37,54,True,True
+e26,Key,H,,207,512,36.5,54,True,True
+e27,Key,J,,243.5,512,37,54,True,True
+e28,Key,K,,280.5,512,37,54,True,True
+e29,Key,L,,317.5,512,36.5,54,True,True
+e30,Button,shift,,4.5,566,48,54,True,True
+e31,Key,Z,,59.5,566,37,54,True,True
+e32,Key,X,,96.5,566,37,54,True,True
+e33,Key,C,,133.5,566,36.5,54,True,True
+e34,Key,V,,170,566,37,54,True,True
+e35,Key,B,,207,566,36.5,54,True,True
+e36,Key,N,,243.5,566,37,54,True,True
+e37,Key,M,,280.5,566,37,54,True,True
+e38,Key,delete,,324.5,566,48,54,True,True
+e39,Key,numbers,,4.5,620,46,47,True,True
+e40,Button,Emoji,,50.5,620,46,47,True,True
+e41,Button,Dictate,,96.5,620,37,47,True,True
+e42,Key,,,133.5,620,147,47,True,True
+e43,Button,return,,280.5,620,92,47,True,True
+e49,Button,Review memory text,,266,361,88,44,True,True
+e52,NavigationBar,Cancel,,0,46,375,54,True,True
+e54,Button,Cancel,,20,46.00000000000001,80,43.99999999999999,True,True
+e55,StaticText,Edit memory,,137,57.5,101,21,True,True
+e58,Cell,Memory text,,16,135,343,116.5,True,True
+e60,TextField,Memory text,Fictional updated memory check,32,150,311,86.5,True,True
+e65,Cell,Private to you. You’ll review the exact text before saving.,,16,251.5,343,64,True,True
+e67,StaticText,,,16,251.5,343,64,True,True
+e68,Cell,Review text,,16,350.5,343,74,True,True
+e70,Button,Review text,,16,350.5,343,74,True,True

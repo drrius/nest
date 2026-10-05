@@ -1,0 +1,5 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e9,StaticText,Remove memory?,,57.5,289.5,260,20.5,True,True
+e10,StaticText,History is kept.,,57.5,317,260,18,True,True
+e16,Button,Cancel,,43.5,355.5,140,48,True,True
+e17,Button,Remove,,191.5,355.5,140,48,True,True

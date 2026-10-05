@@ -1,0 +1,10 @@
+ref,type,label,value,x,y,width,height,enabled,hittable
+e4,NavigationBar,Profile,,0,20,375,54,True,True
+e5,Button,Profile,,16,20,44,44,True,True
+e6,StaticText,Private memory,,112,29,151,26,True,True
+e12,Cell,Only you and your private assistant can use these saved memories.,,16,109,343,403.5,True,True
+e14,StaticText,,,16,109,343,403.5,True,True
+e22,Button,Today,,25,588,88.25,54,True,True
+e24,Button,Meals,,103.91666666666667,588,88.25000000000001,54,True,True
+e26,Button,Calendar,,182.83333333333334,588,88.25000000000003,54,True,True
+e28,Button,Money,,261.75,588,88.25,54,True,True

@@ -1,0 +1,114 @@
+{
+  "native": {
+    "request": {
+      "decision": {
+        "_0": {
+          "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+          "approvalId": "E5BA3652-6A3C-4E4D-A022-B860963BA32C",
+          "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+          "expectedRevision": "0",
+          "content": "Fictional memory consent check",
+          "approved": true
+        }
+      }
+    },
+    "response": {
+      "decision": {
+        "_0": {
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "version": 1,
+          "decision": {
+            "receipt": {
+              "revision": "1",
+              "removed": false,
+              "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+              "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+              "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D"
+            },
+            "status": "consumed"
+          }
+        }
+      }
+    },
+    "rejected": false
+  },
+  "approval": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "e5ba3652-6a3c-4e4d-a022-b860963ba32c",
+      "operationId": "96fd6b20-c669-4c82-b964-d5bbab7f02a6",
+      "change": {
+        "memoryId": "d262a5e7-29d3-4642-b4f4-c5c1ff03b00d",
+        "expectedRevision": "0",
+        "content": "Fictional memory consent check"
+      },
+      "status": "consumed",
+      "expiresAt": "2026-10-05T02:46:13.023899+00:00"
+    }
+  },
+  "reads": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": {
+      "memories": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "memories": [
+          {
+            "id": "d262a5e7-29d3-4642-b4f4-c5c1ff03b00d",
+            "revision": "1",
+            "content": "Fictional memory consent check"
+          }
+        ]
+      },
+      "fullMoneySHA256": "27da84f3dd804a1e276475b8c4cbe6e4c0ad6c4e60c1ff8d19a59f23ffab8f37"
+    },
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": {
+      "memories": {
+        "version": 1,
+        "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "memories": []
+      },
+      "fullMoneySHA256": "27da84f3dd804a1e276475b8c4cbe6e4c0ad6c4e60c1ff8d19a59f23ffab8f37"
+    }
+  },
+  "knownMemoryRLS": {
+    "A": {
+      "status": 200,
+      "rows": 1
+    },
+    "B": {
+      "status": 200,
+      "rows": 0
+    },
+    "outsider": {
+      "status": 200,
+      "rows": 0
+    },
+    "anonymous": {
+      "status": 401,
+      "rows": null
+    },
+    "AReceipt": {
+      "status": 200,
+      "rows": 1
+    },
+    "BReceipt": {
+      "status": 200,
+      "rows": 0
+    },
+    "outsiderReceipt": {
+      "status": 200,
+      "rows": 0
+    },
+    "anonymousReceipt": {
+      "status": 401,
+      "rows": null
+    }
+  },
+  "verifiedAt": 1791167789.3952208
+}

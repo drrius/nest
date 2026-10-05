@@ -1,0 +1,33 @@
+{
+  "request": {
+    "proposal": {
+      "_0": {
+        "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+        "expectedRevision": "0",
+        "content": "Fictional memory consent check",
+        "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6"
+      }
+    }
+  },
+  "rejected": false,
+  "response": {
+    "proposal": {
+      "_0": {
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "version": 1,
+        "approval": {
+          "operationId": "96FD6B20-C669-4C82-B964-D5BBAB7F02A6",
+          "expiresAt": "2026-10-05T02:46:13.023899+00:00",
+          "id": "E5BA3652-6A3C-4E4D-A022-B860963BA32C",
+          "status": "pending",
+          "change": {
+            "expectedRevision": "0",
+            "content": "Fictional memory consent check",
+            "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D"
+          }
+        },
+        "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+      }
+    }
+  }
+}

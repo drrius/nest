@@ -1,0 +1,9 @@
+{
+  "all1041InputsMatch": true,
+  "actualSigningVerified": true,
+  "stableTestOrigins": true,
+  "pushDisabled": true,
+  "dataAndKeychainPreserved": true,
+  "same64EmptyJournals": true,
+  "executableSHA256": "fa419a5490c09e846c44f89023145b4b70a8ef3a9c57781ee249da00d6baadff"
+}

@@ -1,0 +1,114 @@
+{
+  "native": {
+    "response": {
+      "decision": {
+        "_0": {
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "version": 1,
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "decision": {
+            "status": "consumed",
+            "receipt": {
+              "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+              "operationId": "D21374FF-A67D-4071-A826-9BEDDF556470",
+              "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+              "revision": "2",
+              "removed": false
+            }
+          }
+        }
+      }
+    },
+    "request": {
+      "decision": {
+        "_0": {
+          "memoryId": "D262A5E7-29D3-4642-B4F4-C5C1FF03B00D",
+          "content": "Fictional updated memory check",
+          "approved": true,
+          "approvalId": "C08D528A-0F93-4D07-A2F9-34BA69E75478",
+          "expectedRevision": "1",
+          "operationId": "D21374FF-A67D-4071-A826-9BEDDF556470"
+        }
+      }
+    },
+    "rejected": false
+  },
+  "approval": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "c08d528a-0f93-4d07-a2f9-34ba69e75478",
+      "operationId": "d21374ff-a67d-4071-a826-9beddf556470",
+      "change": {
+        "memoryId": "d262a5e7-29d3-4642-b4f4-c5c1ff03b00d",
+        "expectedRevision": "1",
+        "content": "Fictional updated memory check"
+      },
+      "status": "consumed",
+      "expiresAt": "2026-10-05T02:56:17.117944+00:00"
+    }
+  },
+  "reads": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": {
+      "memories": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "memories": [
+          {
+            "id": "d262a5e7-29d3-4642-b4f4-c5c1ff03b00d",
+            "revision": "2",
+            "content": "Fictional updated memory check"
+          }
+        ]
+      },
+      "fullMoneySHA256": "27da84f3dd804a1e276475b8c4cbe6e4c0ad6c4e60c1ff8d19a59f23ffab8f37"
+    },
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": {
+      "memories": {
+        "version": 1,
+        "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "memories": []
+      },
+      "fullMoneySHA256": "27da84f3dd804a1e276475b8c4cbe6e4c0ad6c4e60c1ff8d19a59f23ffab8f37"
+    }
+  },
+  "knownMemoryRLS": {
+    "A": {
+      "status": 200,
+      "rows": 1
+    },
+    "B": {
+      "status": 200,
+      "rows": 0
+    },
+    "outsider": {
+      "status": 200,
+      "rows": 0
+    },
+    "anonymous": {
+      "status": 401,
+      "rows": null
+    },
+    "AReceipt": {
+      "status": 200,
+      "rows": 1
+    },
+    "BReceipt": {
+      "status": 200,
+      "rows": 0
+    },
+    "outsiderReceipt": {
+      "status": 200,
+      "rows": 0
+    },
+    "anonymousReceipt": {
+      "status": 401,
+      "rows": null
+    }
+  },
+  "verifiedAt": 1791168206.2450855
+}

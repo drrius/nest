@@ -1,0 +1,13 @@
+{
+  "commit": "bf0542d4db9f90192bbdd6ea8e0cde3d710ba2a4",
+  "all1041InputsMatch": true,
+  "signatureVerified": true,
+  "executableSHA256": "fa419a5490c09e846c44f89023145b4b70a8ef3a9c57781ee249da00d6baadff",
+  "stableTestOrigins": true,
+  "pushDisabled": true,
+  "sameActorAndHousehold": true,
+  "dataAndKeychainPreserved": true,
+  "all64JournalsEmpty": true,
+  "actualRootTodayVerified": true,
+  "noModelOrProductionCall": true
+}

@@ -1,0 +1,73 @@
+{
+  "native": {
+    "rejected": false,
+    "request": {
+      "decision": {
+        "_0": {
+          "approvalId": "9918017E-BD8D-4AE9-8F95-59948F10F34C",
+          "approved": false,
+          "expectedRevision": "0",
+          "operationId": "6225085A-97A9-4973-A371-9F8C9E69E1E8",
+          "content": "Fictional rejected memory check",
+          "memoryId": "D65381EB-3B9D-4E50-8DA9-9D33462C90D2"
+        }
+      }
+    },
+    "response": {
+      "decision": {
+        "_0": {
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "decision": {
+            "status": "denied"
+          },
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "version": 1
+        }
+      }
+    }
+  },
+  "approval": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "9918017e-bd8d-4ae9-8f95-59948f10f34c",
+      "operationId": "6225085a-97a9-4973-a371-9f8c9e69e1e8",
+      "change": {
+        "memoryId": "d65381eb-3b9d-4e50-8da9-9d33462c90d2",
+        "expectedRevision": "0",
+        "content": "Fictional rejected memory check"
+      },
+      "status": "denied",
+      "expiresAt": "2026-10-05T02:59:27.28552+00:00"
+    }
+  },
+  "reads": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": {
+      "memories": {
+        "version": 1,
+        "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "memories": [
+          {
+            "id": "d262a5e7-29d3-4642-b4f4-c5c1ff03b00d",
+            "revision": "2",
+            "content": "Fictional updated memory check"
+          }
+        ]
+      },
+      "fullMoneySHA256": "27da84f3dd804a1e276475b8c4cbe6e4c0ad6c4e60c1ff8d19a59f23ffab8f37"
+    },
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": {
+      "memories": {
+        "version": 1,
+        "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "memories": []
+      },
+      "fullMoneySHA256": "27da84f3dd804a1e276475b8c4cbe6e4c0ad6c4e60c1ff8d19a59f23ffab8f37"
+    }
+  },
+  "knownMemoryRLS": {},
+  "verifiedAt": 1791168393.830173
+}

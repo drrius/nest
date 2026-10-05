@@ -1,0 +1,13 @@
+{
+  "label": "Cancel",
+  "target": {
+    "height": 43.99999999999999,
+    "width": 80,
+    "y": 46.00000000000001,
+    "x": 20
+  },
+  "point": [97, 49.00000000000001],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791168050.346509
+}

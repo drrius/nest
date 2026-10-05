@@ -1,0 +1,13 @@
+{
+  "label": "Done",
+  "target": {
+    "y": 291.5,
+    "height": 74,
+    "width": 343,
+    "x": 16
+  },
+  "point": [356, 294.5],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791168421.489852
+}

@@ -17,7 +17,7 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 - [x] **M0 — Decisions and native execution.** Approved ADRs/action inventory, source/build/environment identity, repeatable signed local Xcode/native CI execution and internally available build16 installation path are verified. Current source-matched clean signed-out cold launch and real scoped-session four-tab smoke pass. [Criterion-by-criterion audit](../evidence/2026-10-04/swiftui-m0-foundation/README.md). The plan explicitly separates physical permission/calendar/push acceptance; both-phone installation/sign-in remain M3/M6/M8/M9 gates. Full M1–M9 acceptance stays open.
 - [ ] **M1 — Quiet native interactions.** Four SwiftUI tabs and real-data surfaces exist, with selected rendered and large-text simulator evidence. The [artwork inventory](native-rewrite/artwork-inventory.md) now audits the single generated-icon source, native symbols and build13 packaging. Full populated/error/keyboard/VoiceOver/Reduce Motion review and owner design acceptance remain.
 - [ ] **M2 — Authenticated offline/AI slice.** Keychain, verified sessions, scoped SQLite and limited exact replay are implemented and tested. Private chat, streaming/interruption/cancellation and honest handoffs exist. Live AI still fails Gateway eligibility403; successful live tool/stream behavior and both-member phone/offline acceptance remain.
-- [ ] **M3 — Identity, onboarding and settings.** Quick/comprehensive setup, progressive entry, food/cooking/notification preferences and private-memory consent/recovery exist. New online preflight, canonical settings-result links and account/read fences pass CI. Normal-text owned native saves/lost-reply recovery/stale-form refusal and hosted populated-goal privacy now pass; both-member forms, broader setup/private settings, accessibility and hardware enrollment remain.
+- [ ] **M3 — Identity, onboarding and settings.** Quick/comprehensive setup, progressive entry, food/cooking/notification preferences and private-memory consent/recovery exist. New online preflight, canonical settings-result links and account/read fences pass CI. Normal-text owned native saves/lost-reply recovery/stale-form refusal and hosted populated-goal privacy pass. Private-memory pending restart, explicit save/edit/decline/removal, populated RLS and non-resurrecting old-consent replay now pass; both-member forms, broader setup/private settings, accessibility and hardware enrollment remain.
 - [ ] **M4 — Today, chores and groceries.** Today filters, ordinary/alternating chore commands, handovers, grocery CRUD/checking, exact scoped SQLite retry/conflicts and corresponding AI commands exist. Source/native/property/RLS checks and selected hosted/owned flows pass. Current grocery edit preflight, retained fields, explicit latest-item reload, committed lost-response restart/update/exact retry, precise removed-intent copy/discard and normal/large-text touch targets now pass owned test-API execution with normal cleanup and unchanged money. Earlier checkbox compatibility/opposing-intent cases and grocery→expense switch/back also pass. Both required grocery-source CI workflows pass. Two-native-client/phone chores/handovers, broader settings/navigation, VoiceOver/haptics/radio loss and complete daily-use acceptance remain open; full M4 is not closed.
 - [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation and replacement have bounded real native/two-member evidence with normal cleanup. Varied portions/partner constraints, live generation/replacement and full phone/UI acceptance remain.
 - [ ] **M6 — Read-only Calendar.** EventKit, permission/selection, agenda/layers and explicit numeric-only busy sharing exist. Selected real timed/all-day/DST, both-member sharing, outsider denial and online cleanup pass; durable offline removal and races have focused tests. Hardware offline/reconnection, long background periods, complex calendars and full accessibility/privacy journeys remain. Personal event text stays on-device.
@@ -367,20 +367,28 @@ The compact financial alerts and final resumption-title proof, exact source CI a
 
 ## Native preferences input and reload controls — 5 October
 
-Source `9adbc3eb` fixes a small portion target, calorie-field corner focus and
-maximum-text input layout, explicit reload cancellation and cooking semantic naming.
-Eight focused native preferences/preflight/recovery methods pass at the food/control
-source; final label source passes signed build/all1,041 committed hashes/format/limits.
-Both exact-source CI workflows pass: Nest37251890365/SwiftUI37251890375,
-491 Foundation/41 skips and409 signed-native/11 skips, zero failures.
-Actual normal/light and largest/dark calorie corner/keyboard validation, intended
-reload alerts/both Cancel branches and retained drafts pass without Save. One explicit
-reload per form restores original values; largest portion corner/current selection
-also passes. Both members' exact preference revisions/setup/full61-event finance
-and zero balances stay unchanged. Ordinary Today/display settings/64 empty journals,
-stable signed test origins/data/Keychain are restored. Observer scroll/label/launch
-failures and premature overlap are recorded; no already-selected action is repeated.
-[Evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
-Whole multiline cooking-keyboard readability, rejected recovery rendering, restriction/
-dislike corners, VoiceOver, broader onboarding/partner native/phones/live AI remain
-open. No preference Save, financial write, model, beta, production action or merge.
+The verified preference controls and exact CI evidence are retained in the
+[5 October archive](progress-history-2026-10-05.md#native-preferences-input-and-reload-controls--5-october)
+and [native evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
+Whole cooking-keyboard readability and broader accessibility/phone/live-AI gates stay open.
+
+## Native private-memory consent — 5 October
+
+Source `bf0542d4` fixes named/keyboard controls, readable toolbar capsules and
+rectangular Edit/Remove targets stacked at accessibility sizes. Two focused native
+methods pass at the initial candidate; final source passes both required CI runs:
+Nest37257095087/SwiftUI37257095096,491 Foundation/41 explicit skips and409
+signed-native/11 explicit skips, zero failures, strict format/limits and signing.
+Actual normal/largest draft cancellation, exact proposal restart and separate
+save/edit/decline pass at unchanged editor/request source `49c526d6`. Final source
+passes normal/largest removal-alert Cancel, separate largest Edit/Cancel and one
+removal retaining revision3. Known populated approval/memory/receipt RLS denies
+partner/outsider/anonymous access; altered consent fails400 without saving.
+Original exact consent replay after removal returns its old receipt without
+resurrection. Both active lists/full61-event finances match baseline; ordinary
+Today/default display, stable test origins/data/Keychain and64 empty journals are
+restored. [Evidence](../evidence/2026-10-05/swiftui-private-memory-consent/README.md)
+records real input/corner/format failures and source-specific execution. Full-length
+editor/review, VoiceOver, hosted lost-reply/conflict/expiry/account-switch rendering,
+two native clients/phones and live AI remain. No model, beta, production action or
+merge; M1–M9 remain open. Available build16 is unchanged and older than this source.

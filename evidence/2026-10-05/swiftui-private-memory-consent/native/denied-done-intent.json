@@ -1,0 +1,30 @@
+{
+  "terminalRequest": {
+    "rejected": false,
+    "request": {
+      "decision": {
+        "_0": {
+          "approvalId": "9918017E-BD8D-4AE9-8F95-59948F10F34C",
+          "approved": false,
+          "expectedRevision": "0",
+          "operationId": "6225085A-97A9-4973-A371-9F8C9E69E1E8",
+          "content": "Fictional rejected memory check",
+          "memoryId": "D65381EB-3B9D-4E50-8DA9-9D33462C90D2"
+        }
+      }
+    },
+    "response": {
+      "decision": {
+        "_0": {
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "decision": {
+            "status": "denied"
+          },
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "version": 1
+        }
+      }
+    }
+  },
+  "time": 1791168420.9370072
+}
