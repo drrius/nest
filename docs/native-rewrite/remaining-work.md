@@ -7,8 +7,20 @@ adds an optional XCUITest scheme and stronger Calendar headings. Actual normal a
 largest/dark permission reading pass, with preserved settings and64 empty journals.
 The full five-test audit still fails with20 reports (some duplicated), including
 Calendar font/clipping warnings and contrast near/beneath the native floating bar.
-Nothing is suppressed; full accessibility, intermediate sizes, VoiceOver and phone
-acceptance remain open. This creates no new TestFlight build.
+All12 supported text sizes have bounded permission-reading proof, including
+largest/dark; this is not every light/dark pairing. Three further visual experiments
+fail and are removed, most recently the explicit tab-bar background retaining the
+same three contrast findings. Nothing is suppressed. Full accessibility, VoiceOver
+and phone acceptance remain open. This creates no new TestFlight build.
+
+The request-time auth boundary now fixes two reproduced single-client credential
+races: late refresh restoring a signed-out account or replacing a new sign-in.
+Focused native regression tests and real separate-test provider refresh pass;
+normal/partner native account switching and PDF viewing also pass. The real refresh
+forces only the copied cached lifetime, so natural JWT expiry, Apple identities,
+both phones and full M3 acceptance remain open. This does not establish the earlier
+multi-client fixture's exact cause. [Auth evidence](../../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md),
+[partner evidence](../../evidence/2026-10-05/swiftui-posted-pdf/README.md).
 
 Legacy attachment cleanup has a confirmed native uploader bypass, now fixed and
 locally verified with17 real database tests and16 full-chain boundary probes.
@@ -79,7 +91,7 @@ full accessibility/two native clients/live AI and both phones remain open.
 
 An actual native ordinary-expense save/review/edit/detail/restart journey now passes against fictional test data. Both members see exactly one event with correct zero-sum balances, while the operation receipt stays private to its owner. This closes that bounded check; it does not close full approvals or both-phone acceptance. A later real native/hosted pass now also proves ordinary expense lost-reply/restart recovery, cancellation after recording, cancellation before delivery and rejection of a late cancelled packet. Both members' exact centime effects and owner-only receipts pass, and all completed local slots are explicitly cleared. [Recovery evidence](../../evidence/2026-10-04/swiftui-expense-uncertain-recovery/README.md). Other financial approval/recurring retries remain open. The later [history pass](../../evidence/2026-10-04/swiftui-financial-history/README.md) now proves50+1 native loading, failed-page retention, exact-cursor retry, oldest detail, preserved navigation and explicit refresh. Its35 personal fictional entries leave balances unchanged and all16 earlier events intact. [Evidence](../../evidence/2026-10-03/swiftui-native-expense-journey/README.md).
 
-An actual native photo picker/private Storage check now verifies uploader-only exact normalized bytes, restart/client-update persistence, interrupted unposted-receipt removal and exact explicit retry at largest text. The new object is removed normally; both complete financial histories and the existing claimed receipt remain intact. A misleading removal error message is fixed, with nine Foundation/three signed native tests passing. [Receipt evidence](../../evidence/2026-10-04/swiftui-native-receipt-recovery/README.md). Both exact-source workflows now pass at `a0458304` (490 Foundation/41 skips,409 signed-native/11 skips, zero failures). An existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry, with unchanged complete finance/Storage. [Viewer evidence](../../evidence/2026-10-04/swiftui-claimed-receipt-viewer/README.md) records observer corrections without repeated opens or exported signed URLs. PDF picking, new posted attachment, partner native viewer, full accessibility, live AI handoff and phones remain open; no new expense or beta was created.
+An actual native photo picker/private Storage check now verifies uploader-only exact normalized bytes, restart/client-update persistence, interrupted unposted-receipt removal and exact explicit retry at largest text. The new object is removed normally; both complete financial histories and the existing claimed receipt remain intact. A misleading removal error message is fixed, with nine Foundation/three signed native tests passing. [Receipt evidence](../../evidence/2026-10-04/swiftui-native-receipt-recovery/README.md). Both exact-source workflows now pass at `a0458304` (490 Foundation/41 skips,409 signed-native/11 skips, zero failures). An existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry, with unchanged complete finance/Storage. [Viewer evidence](../../evidence/2026-10-04/swiftui-claimed-receipt-viewer/README.md) records observer corrections without repeated opens or exported signed URLs. At that checkpoint, PDF picking/posting/partner viewing were pending; the later [posted-PDF pass](../../evidence/2026-10-05/swiftui-posted-pdf/README.md) verifies those bounded journeys. Full receipt accessibility, live AI handoff, other providers/formats and phones remain open. No beta was created by either receipt pass.
 
 ## 2. Finish native usability and real-data acceptance
 
@@ -230,8 +242,7 @@ The native PDF receipt picker now has bounded actual selection/upload/restart an
 maximum-text/dark corner-removal verification against private test Storage. Exact
 660-byte retention/isolation, unchanged complete52-event finance and existing
 claimed receipt, normal cleanup/empty64 scoped journals and ordinary app restoration
-pass. Other document providers/invalid input, new posted attachment, partner native
-viewer, interruption/full accessibility and both phones remain open. Shipping source
+pass. The later [posted-PDF pass](../../evidence/2026-10-05/swiftui-posted-pdf/README.md) verifies one posted attachment and partner native browser/download. Other document providers/invalid input, interruption/full accessibility and both phones remain open. Shipping source
 is unchanged from both-CI-green177d0a70; evidence checkpoint03bb1bec passes
 routine37220894854, and no new compile/unit run is claimed.
 [PDF evidence](../../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).

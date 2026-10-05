@@ -364,18 +364,16 @@ The full audit and twelve-size reading evidence are preserved in
 and [native evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
 The original full audit has20 unsuppressed reports; focused reading passes do not close it.
 
-## Focused Calendar contrast diagnostic
+## Focused Calendar contrast diagnostics
 
-Two actual native experiments—hidden bottom-edge effect and darker refresh ink—
-remain failing and were removed. Original permission reading passes after restore.
-The new manual diagnostic reveals the full unknown paragraph above the tab bar;
-its shared handler then reports three contrast failures with none suppressed.
-Today selection,641 matching inputs, signature/test origins/push-disabled gates,
-large/light restoration and64 empty journals pass. The shipping native UI is
-unchanged; the original20-report full audit, VoiceOver and both phones stay open.
-[Evidence](../evidence/2026-10-05/swiftui-calendar-contrast/README.md).
-PDF source b48e6160 now passes Nest37313762429 and SwiftUI37313762258.
-Diagnostic source ccde252b passes Nest37315433885/SwiftUI37315433660;
+Bottom-edge hiding, darker refresh ink and an explicitly visible Quiet tab-bar
+background all fail actual native contrast checks and are removed. The latest
+experiment retains the same three unsuppressed findings; it does not fix the
+original20-report audit. Restored permission reading and native detail/Today
+navigation pass;790 source inputs match, original actor/large/light/64 empty
+journals and six hosted fingerprints stay exact. [Evidence](../evidence/2026-10-05/swiftui-calendar-contrast/README.md#explicit-tab-bar-background-experiment).
+The shipping UI is unchanged. Full accessibility, VoiceOver and phones stay open.
+Preceding diagnostic ccde252b passes Nest37315433885/SwiftUI37315433660;
 routine CI does not execute or approve the failing manual suite.
 
 ## Complete ledger-event guard
@@ -398,4 +396,4 @@ This fixes the reproduced single-client credential races, not proof of the earli
 
 ### Actual test-provider refresh
 
-The guarded native SDK exchanges one real test-provider refresh (HTTP200), retains both fresh tokens/the same provider session and verifies original membership/reopened Keychain. Actual PDF download/navigation then pass;790 inputs,64 journals, Today/large/light and six retained fingerprints match. Only the copied cached lifetime is forced expired; natural JWT expiry is unverified. New manual-fixture CI/phones/M3 acceptance stay open. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md#actual-test-provider-refresh).
+The guarded native SDK exchanges one real test-provider refresh (HTTP200), retains both fresh tokens/the same provider session and verifies original membership/reopened Keychain. Actual PDF download/navigation then pass;790 inputs,64 journals, Today/large/light and six retained fingerprints match. Only the copied cached lifetime is forced expired; natural JWT expiry is unverified. Manual-fixture Nest37332265237 passes; SwiftUI37332265139 is running. Phones/M3 acceptance stay open. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md#actual-test-provider-refresh).

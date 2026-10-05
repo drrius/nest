@@ -47,3 +47,23 @@ The preceding PDF source b48e6160 passes both required workflows:
 Routine CI formats/limits manual UI sources but does not execute these live-session
 diagnostics. Current diagnostic-source CI will be recorded separately; a green
 routine workflow cannot clear this failing accessibility gate.
+
+## Explicit tab-bar background experiment
+
+An additional actual native experiment requests the Quiet background and visible
+tab-bar background through Apple's public SwiftUI modifiers. It still fails with
+the same three findings: Refresh busy times, Calendars and layers, and Busy sharing.
+The latter two are beneath the bar; the refresh row ends at573pt, above its584pt
+top. Nothing is suppressed. This does not establish the cause or justify retaining
+the visual change, so both modifiers are removed from Linux and the Mac.
+
+The restored source passes the actual permission-reading method and ordinary
+history/detail/Today navigation, with zero failures or skips. All790 compiled
+inputs match; signatures, separate test origins, disabled push, original fictional
+actor/household, large/light settings and64 empty journals are verified.
+All six complete finance/activity/Storage fingerprints remain unchanged.
+[Diagnostic and restoration](opaque-tab-bar-diagnostic.json),
+[retained fingerprints](opaque-tab-bar-fingerprints.json).
+The original20-report full audit, VoiceOver and both-phone acceptance remain open.
+No shipping UI change, model call, financial posting, Calendar grant, beta,
+production change or merge occurred.
