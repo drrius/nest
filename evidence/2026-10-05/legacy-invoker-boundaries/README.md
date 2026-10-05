@@ -66,6 +66,7 @@ evidence for60 definers and2 invokers. [Remaining scope](remaining-review-scope.
 includes private/direct table/Storage/service/external-writer and cutover acceptance.
 Legacy inventory/decisions/plans stay outside Nest's client/tools. Full M1–M9,
 live AI, worker/APNs and both phones remain open. Scoped format/lint/limits and
-four manifest tests pass; current-source CI is pending. Two pre-existing
+four manifest tests pass. Routine CI37295749488 passes exact source `40d01132`,
+including the four focused database tests. [CI metadata](ci-40d01132.json). Two pre-existing
 schema-probe Effect Node-import warnings remain. No new binary/beta, provider call,
 dispatcher, production change, purchase, merge or automation occurred.
