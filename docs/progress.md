@@ -396,4 +396,4 @@ One actual native CHF0.02 test expense now has a claimed640-byte PDF and valid p
 all original61 event/allocation/ledger fingerprints stay exact. The final observer
 fails on an offscreen reset control; no second expense is posted. A subsequent
 read-only Money scroll stalls at100% CPU. Its bounded-stack experiment is pending
-on the unreachable Mac; bytes/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+on the unreachable Mac. Source1463a805 passes Nest37319142790; native CI and bytes/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
