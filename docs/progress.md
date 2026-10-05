@@ -395,6 +395,6 @@ on the unreachable Mac. Source1463a805 passes Nest37319142790/SwiftUI37319142748
 A balanced trusted write can omit allocations or contradict them. The additive
 expense/refund/replacement guard passes eight database tests,792 arithmetic cases,
 six concurrent exact retries and the310-migration retained-history rehearsal.
-Four manifest tests and scoped lint/format/limits pass; hosted preflight finds
-52 consistent allocation-bearing events among62 total. Test deployment/source CI
-and native acceptance are pending. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
+Four manifest tests and scoped lint/format/limits pass. Nest-test20261005140239 retains52 consistent allocation-bearing events among62
+total; both bodies, private privileges/three deferred triggers and all six
+fingerprints match. Sourcefea47c1a passes Nest37321459416; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).

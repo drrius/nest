@@ -38,6 +38,18 @@ compatibility is not SwiftUI/device execution or successful live model inference
 
 Nest-test preflight finds62 events, including52 allocation-bearing events, all
 consistent with the proposed rule. Six full financial/activity/Storage fingerprints
-are captured before deployment. Deployment and postflight remain pending.
+remain unchanged after deployment20261005140239. Both exact function bodies,
+private-only EXECUTE privileges and three enabled/deferred constraint triggers
+match. All62 retained events and52 allocation-bearing events remain consistent.
+See [hosted verification](hosted-verification.json). No hosted financial mutation
+probe is claimed: actual refusal and native-command compatibility are proved in
+disposable PostgreSQL, while hosted bodies/metadata/revalidation match. Existing
+advisor groups remain61 no-policy informational findings,81 signed-in definer
+warnings and disabled leaked-password protection. Neither new helper is flagged;
+this is not blanket security approval. Remediation links are in hosted verification.
 Production is untouched. No hosted financial write, new native run, beta, purchase,
 model call, worker activation or source merge occurred for this database change.
+
+Sourcefea47c1a passes [Nest37321459416](https://github.com/drrius/nest/actions/runs/37321459416),
+including the new focused database suite. Shipping native source is unchanged by
+this database commit; no new native execution is claimed.

@@ -77,7 +77,22 @@
     "allocationEvents": 52,
     "invalid": 0
   },
-  "hostedDeployment": "pending",
+  "hostedDeployment": {
+    "project": "nest-test",
+    "version": "20261005140239",
+    "allocationEvents": 52,
+    "events": 62,
+    "invalid": 0,
+    "sixFingerprintsUnchanged": true,
+    "sourceBodiesMatch": true,
+    "privatePrivilegesAndDeferredTriggersMatch": true,
+    "hostedFinancialMutationProbe": false
+  },
   "nativeExecutionClaimed": false,
-  "productionModified": false
+  "productionModified": false,
+  "sourceCI": {
+    "commit": "fea47c1a1029a9e744267489a56158266b45ddaa",
+    "workflow": 37321459416,
+    "conclusion": "success"
+  }
 }
