@@ -32,13 +32,22 @@ struct FoodPreferencesScreen: View {
             if let notice { Text(notice).foregroundStyle(QuietPalette.muted) }
             if busy { ProgressView("Checking preferences…") }
             if !busy && context?.profile == nil {
-                Button("Load preferences") { Task { await load() } }
+                Button {
+                    Task { await load() }
+                } label: {
+                    QuietActionLabel("Load preferences")
+                }
             }
             if !busy && context?.profile != nil && context?.pending == nil {
-                Button("Reload current preferences") { reload = true }
+                Button {
+                    reload = true
+                } label: {
+                    QuietActionLabel("Reload current preferences")
+                }
             }
         }
         .scrollContentBackground(.hidden)
+        .scrollDismissesKeyboard(.interactively)
         .background(QuietPalette.background)
         .tint(QuietPalette.accent)
         .navigationTitle("Your food preferences")
@@ -53,13 +62,15 @@ struct FoodPreferencesScreen: View {
             }
         }
         .task(id: model.generation) { await load() }
-        .confirmationDialog("Discard rejected preferences?", isPresented: $discard) {
-            Button("Discard request", role: .destructive) { Task { await recover() } }
+        .alert("Discard request?", isPresented: $discard) {
+            Button("Discard", role: .destructive) { Task { await recover() } }
             Button("Cancel", role: .cancel) {}
         }
-        .confirmationDialog("Reload and discard unsaved edits?", isPresented: $reload) {
-            Button("Reload preferences", role: .destructive) { Task { await load() } }
+        .alert("Discard edits?", isPresented: $reload) {
+            Button("Reload", role: .destructive) { Task { await load() } }
             Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Use saved values.")
         }
     }
 
@@ -68,15 +79,27 @@ struct FoodPreferencesScreen: View {
             switch pending.state {
             case .pending:
                 Text("This save is stored on this iPhone. Retry the same request when connected.")
-                Button("Retry save") { Task { await retry() } }
+                Button {
+                    Task { await retry() }
+                } label: {
+                    QuietActionLabel("Retry save")
+                }
             case .acknowledged:
                 Text("Saved. Refresh to confirm your current preferences.")
-                Button("Refresh") { Task { await retry() } }
+                Button {
+                    Task { await retry() }
+                } label: {
+                    QuietActionLabel("Refresh")
+                }
             case .conflict:
                 Text(
                     "These preferences changed or the save was rejected. Discard this request, then review the current values."
                 )
-                Button("Discard rejected request") { discard = true }
+                Button {
+                    discard = true
+                } label: {
+                    QuietActionLabel("Discard rejected request")
+                }
             }
         }.disabled(busy)
     }

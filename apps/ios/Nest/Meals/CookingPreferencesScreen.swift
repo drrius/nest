@@ -18,19 +18,29 @@ struct CookingPreferencesScreen: View {
                     switch pending.state {
                     case .pending:
                         Text("Waiting for confirmation. Retry this saved request when connected.")
-                        Button("Retry save") { Task { await model.retryCookingPreferences() } }
+                        Button {
+                            Task { await model.retryCookingPreferences() }
+                        } label: {
+                            QuietActionLabel("Retry save")
+                        }
                     case .acknowledged:
                         Text("Saved. Refresh to see the confirmed household preferences.")
-                        Button("Refresh") { Task { await reload() } }
+                        Button {
+                            Task { await reload() }
+                        } label: {
+                            QuietActionLabel("Refresh")
+                        }
                     case .conflict:
                         Text(
                             "Someone changed these preferences. Discard this rejected change and review the current settings."
                         )
-                        Button("Discard rejected change") {
+                        Button {
                             Task {
                                 await model.discardCookingConflict()
                                 await reload()
                             }
+                        } label: {
+                            QuietActionLabel("Discard rejected change")
                         }
                     }
                 }.disabled(model.cookingSaving || loading)
@@ -41,14 +51,23 @@ struct CookingPreferencesScreen: View {
             if let notice = model.cookingNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
             if loading { ProgressView("Loading preferences…") }
             if context == nil && !loading {
-                Button("Load current preferences") { Task { await reload() } }
+                Button {
+                    Task { await reload() }
+                } label: {
+                    QuietActionLabel("Load current preferences")
+                }
             }
             if context != nil && model.cookingPending == nil {
-                Button("Reload current preferences") { confirmReload = true }
-                    .disabled(loading || submitting || model.cookingSaving)
+                Button {
+                    confirmReload = true
+                } label: {
+                    QuietActionLabel("Reload current preferences")
+                }
+                .disabled(loading || submitting || model.cookingSaving)
             }
         }
         .scrollContentBackground(.hidden)
+        .scrollDismissesKeyboard(.interactively)
         .background(QuietPalette.background)
         .navigationTitle("Cooking preferences")
         .navigationBarTitleDisplayMode(.inline)
@@ -63,9 +82,11 @@ struct CookingPreferencesScreen: View {
             }
         }
         .task(id: model.generation) { await reload() }
-        .confirmationDialog("Reload and discard unsaved edits?", isPresented: $confirmReload) {
-            Button("Reload preferences", role: .destructive) { Task { await reload() } }
+        .alert("Discard edits?", isPresented: $confirmReload) {
+            Button("Reload", role: .destructive) { Task { await reload() } }
             Button("Cancel", role: .cancel) {}
+        } message: {
+            Text("Use saved values.")
         }
     }
 
