@@ -63,6 +63,72 @@ final class RecipeEditModelTests: XCTestCase {
         XCTAssertNil(model.recipeEdit)
     }
 
+    func testUnavailableLibraryRefusesBeforeStaging() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeArchiveContext(server.definition)
+        var draft = RecipeEditDraft(context.recipe)
+        draft.ingredients[0].quantity = ""
+        await server.setLibraryAvailable(false)
+        let accepted = await model.editRecipe(draft, context: context)
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.recipeEdit)
+        let persisted = try await model.offline?.readRecipeEdit(lease: XCTUnwrap(model.lease))
+        XCTAssertNil(persisted)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
+    func testChangedLibraryRefusesBeforeStaging() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeArchiveContext(server.definition)
+        var draft = RecipeEditDraft(context.recipe)
+        draft.ingredients[0].quantity = ""
+        await server.changeLibraryRevision()
+        let accepted = await model.editRecipe(draft, context: context)
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.recipeEdit)
+        let persisted = try await model.offline?.readRecipeEdit(lease: XCTUnwrap(model.lease))
+        XCTAssertNil(persisted)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
+    func testChangedRecipeAtSameRevisionRefusesBeforeStaging() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeArchiveContext(server.definition)
+        var draft = RecipeEditDraft(context.recipe)
+        draft.ingredients[0].quantity = ""
+        await server.changeRecipe()
+        let accepted = await model.editRecipe(draft, context: context)
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.recipeEdit)
+        let persisted = try await model.offline?.readRecipeEdit(lease: XCTUnwrap(model.lease))
+        XCTAssertNil(persisted)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
+    func testAccountChangeDuringRecipeCheckRefusesBeforeStaging() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeArchiveContext(server.definition)
+        var draft = RecipeEditDraft(context.recipe)
+        draft.ingredients[0].quantity = ""
+        await server.holdNextRecipeRead()
+        let save = Task { await model.editRecipe(draft, context: context) }
+        await server.waitForHeldRecipeRead()
+        await model.signIn(idToken: "B", nonce: "test")
+        await server.releaseRecipeRead()
+        let accepted = await save.value
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.recipeEdit)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
     private func fixture() throws -> (SessionModel, RecipeEditTestServer) {
         let auth = FakeAuthentication(
             active: AuthenticatedSession(userId: actorA, accessToken: "token-A"),
@@ -94,6 +160,13 @@ actor RecipeEditTestServer {
     private var created: EditRecipe?
     private var lose = false
     private var rejected = false
+    private var libraryAvailable = true
+    private var libraryRevision = "1"
+    private var instructions = "Simmer."
+    private var holdRecipe = false
+    private var recipeStarted = false
+    private var recipeWaiter: CheckedContinuation<Void, Never>?
+    private var recipeGate: CheckedContinuation<Void, Never>?
 
     init(actor: UUID, household: UUID) {
         self.actor = actor
@@ -101,8 +174,20 @@ actor RecipeEditTestServer {
     }
     func loseReply() { lose = true }
     func reject() { rejected = true }
+    func setLibraryAvailable(_ available: Bool) { libraryAvailable = available }
+    func changeLibraryRevision() { libraryRevision = "3" }
+    func changeRecipe() { instructions = "Partner instructions." }
+    func holdNextRecipeRead() { holdRecipe = true }
+    func waitForHeldRecipeRead() async {
+        if recipeStarted { return }
+        await withCheckedContinuation { recipeWaiter = $0 }
+    }
+    func releaseRecipeRead() {
+        recipeGate?.resume()
+        recipeGate = nil
+    }
 
-    func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+    func respond(_ request: URLRequest) async throws -> (Data, URLResponse) {
         if request.url?.path == "/v1/meals/recipe/edit" {
             let command = try JSONDecoder().decode(EditRecipe.self, from: request.httpBody!)
             attempts.append(command)
@@ -124,6 +209,9 @@ actor RecipeEditTestServer {
                 ])
         }
         if request.url?.path == "/v1/meals/library" {
+            guard libraryAvailable else {
+                return try answer(request, ["error": ["code": "unavailable"]], status: 503)
+            }
             let meals: [[String: Any]] =
                 [
                     [
@@ -134,8 +222,15 @@ actor RecipeEditTestServer {
                 request,
                 [
                     "version": 1, "householdId": household.uuidString,
-                    "revision": created == nil ? "1" : "2", "meals": meals, "nextAfterId": NSNull(),
+                    "revision": created == nil ? libraryRevision : "2", "meals": meals, "nextAfterId": NSNull(),
                 ])
+        }
+        if holdRecipe {
+            holdRecipe = false
+            recipeStarted = true
+            recipeWaiter?.resume()
+            recipeWaiter = nil
+            await withCheckedContinuation { recipeGate = $0 }
         }
         return try answer(
             request,
@@ -143,7 +238,7 @@ actor RecipeEditTestServer {
                 "version": 1, "householdId": household.uuidString, "revision": created == nil ? "1" : "2",
                 "recipe": [
                     "definitionId": definition.uuidString, "title": "Soup", "servings": 2,
-                    "instructions": "Simmer.", "recipeUrl": NSNull(), "notes": NSNull(),
+                    "instructions": instructions, "recipeUrl": NSNull(), "notes": NSNull(),
                     "ingredients": [
                         [
                             "ingredientId": ingredient.uuidString, "name": "Lentils",

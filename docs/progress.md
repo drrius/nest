@@ -372,10 +372,6 @@ The shipping UI is unchanged. Full accessibility, VoiceOver and phones stay open
 Preceding diagnostic ccde252b passes Nest37315433885/SwiftUI37315433660;
 routine CI does not execute or approve the failing manual suite.
 
-## Complete ledger-event guard
-
-The two-member guard and passing CI are in [dated history](progress-history-2026-10-05-late.md#complete-ledger-event-guard).
-
 ## Native posted PDF expense
 
 One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact. The Money fix passes normal/light and maximum/dark history/detail; native bytes and Apple's browser rendering/dismissal pass. Source2def44b6 passes both required CI workflows (496 Foundation/41 skips,419 signed-native/12 skips, zero failures).
@@ -396,4 +392,8 @@ The guarded native SDK exchanges one real test-provider refresh (HTTP200), retai
 
 ## Native unsent chore drafts
 
-New-chore Back now protects edited unsent drafts with a native Discard draft?/Keep editing alert; untouched forms retain normal navigation and durable-request recovery remains separate. The real before-fix loss is retained. Six preceding alert cases pass; after a copy-only reduction, two final normal/light and maximum/dark edited-draft cases pass with visible alert/heading/button bounds,44pt targets and intact input. Both final images show the complete choices; earlier functional passes with clipped rendering remain failed visual evidence. All799 compiled inputs match, both clients return to Today/large/light/64 empty journals, and ten hosted fingerprints stay exact. Strict Swift format/limits pass; current-source CI is pending. [Evidence](../evidence/2026-10-05/swiftui-chore-draft-navigation/README.md). Full20-report accessibility, other forms, VoiceOver and phones stay open; no model call, beta, production operation, purchase or merge.
+New-chore Back now protects edited unsent drafts with a native Discard draft?/Keep editing alert; untouched forms retain normal navigation and durable-request recovery remains separate. The real before-fix loss is retained. Six preceding alert cases pass; after a copy-only reduction, two final normal/light and maximum/dark edited-draft cases pass with visible alert/heading/button bounds,44pt targets and intact input. Both final images show the complete choices; earlier functional passes with clipped rendering remain failed visual evidence. All799 compiled inputs match, both clients return to Today/large/light/64 empty journals, and ten hosted fingerprints stay exact. Strict Swift format/limits pass. Exact fa5c29a4 passes Nest37354314093/SwiftUI37354314167:496 Foundation/41 skips,425 signed-native/16 skips, zero failures; CI compiles the guarded UI target while manual journeys remain separate. [Evidence](../evidence/2026-10-05/swiftui-chore-draft-navigation/README.md). Full20-report accessibility, other forms, VoiceOver and phones stay open; no model call, beta, production operation, purchase or merge.
+
+## Fresh recipe write checks
+
+New recipe, edit and archive now require a fresh authorized library revision before staging; edit/archive also compare the exact displayed recipe. New-recipe refresh preserves typed input after refusal, and its discard uses the short native alert. Eleven new native model cases cover unavailable/stale reads, exact content changes, account switches during reads and explicit fresh-context recovery; nine existing lost-reply/account/conflict cases remain. Source limits/diff checks pass; execution/Swift formatting are pending CI because the Mac is offline (SSH timeout, Tailscale offline). Rendered refusal/refresh/discard and the full manual seven-day week remain unverified. No hosted write, model call, beta, purchase, production or merge occurred. [Verification scope](../evidence/2026-10-05/swiftui-recipe-write-preflight/README.md).

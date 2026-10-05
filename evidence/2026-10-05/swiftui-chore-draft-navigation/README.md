@@ -58,7 +58,9 @@ images show the complete question and both choices after that change.
 test origins, large/light and64 empty journals each. All ten hosted full-row
 aggregate fingerprints remain exact: [retention](hosted-retention.json).
 Strict Swift formatting and source limits pass. Current changes are newer than
-TestFlight build17; their own current-head CI is still pending.
+TestFlight build17. Exact-source fa5c29a4 passes [routine CI](ci-routine.json)
+and [SwiftUI CI](ci-native.json):496 Foundation/41 skips and425 signed-native/16 skips,
+zero failures. CI compiles guarded UI checks; the manual draft journeys above are separate.
 
 The full20-report accessibility audit, VoiceOver, all other text sizes/forms,
 Reduce Motion/haptics and both-phone design acceptance remain open.

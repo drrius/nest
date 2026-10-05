@@ -6,6 +6,7 @@ extension SessionModel {
         else { return false }
         do {
             guard draft.baseline == context.recipe else { throw MealContractError.invalidPlacement }
+            try await requireCurrentRecipe(context)
             let command = try draft.command(operation: UUID(), revision: context.revision)
             try await offline.enqueueRecipeEdit(command, baseline: context.recipe, lease: lease)
             let pending = try await offline.readRecipeEdit(lease: lease)

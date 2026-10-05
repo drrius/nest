@@ -53,7 +53,7 @@ struct RecipeCreateSheet: View {
                     )
                     .font(.footnote).foregroundStyle(QuietPalette.muted)
                     if let notice { Text(notice) }
-                    if context == nil {
+                    if context == nil || notice != nil {
                         Button("Refresh saved meals") { Task { await load() } }
                     }
                 }
@@ -74,9 +74,7 @@ struct RecipeCreateSheet: View {
                 }
             }
             .interactiveDismissDisabled()
-            .confirmationDialog(
-                "Discard this recipe draft?", isPresented: $confirmingDiscard, titleVisibility: .visible
-            ) {
+            .alert("Discard draft?", isPresented: $confirmingDiscard) {
                 Button("Discard draft", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
             }

@@ -39,6 +39,58 @@ final class RecipeCreationModelTests: XCTestCase {
         XCTAssertTrue(attempts.isEmpty)
     }
 
+    func testUnavailableLibraryRefusesBeforeStaging() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeCreateContext()
+        await server.setLibraryAvailable(false)
+        let accepted = await model.createRecipe(draft, context: context)
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.recipeCreation)
+        let persisted = try await model.offline?.readRecipeCreation(lease: XCTUnwrap(model.lease))
+        XCTAssertNil(persisted)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
+    func testChangedLibraryRefusesThenFreshContextSavesSameDraft() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeCreateContext()
+        await server.changeLibraryRevision()
+        let refused = await model.createRecipe(draft, context: context)
+        XCTAssertFalse(refused)
+        XCTAssertNil(model.recipeCreation)
+        let persisted = try await model.offline?.readRecipeCreation(lease: XCTUnwrap(model.lease))
+        XCTAssertNil(persisted)
+        let before = await server.attempts
+        XCTAssertTrue(before.isEmpty)
+        let fresh = try await model.loadRecipeCreateContext()
+        let accepted = await model.createRecipe(draft, context: fresh)
+        XCTAssertTrue(accepted)
+        let attempts = await server.attempts
+        XCTAssertEqual(attempts.count, 1)
+        XCTAssertEqual(attempts.first?.expectedRevision, "2")
+        XCTAssertEqual(attempts.first?.recipe, draft)
+        XCTAssertNil(model.recipeCreation)
+    }
+
+    func testAccountChangeDuringLibraryCheckRefusesBeforeStaging() async throws {
+        let (model, server) = try fixture()
+        await model.restore()
+        let context = try await model.loadRecipeCreateContext()
+        await server.holdNextLibraryRead()
+        let save = Task { await model.createRecipe(draft, context: context) }
+        await server.waitForHeldLibraryRead()
+        await model.signIn(idToken: "B", nonce: "test")
+        await server.releaseLibraryRead()
+        let accepted = await save.value
+        XCTAssertFalse(accepted)
+        XCTAssertNil(model.recipeCreation)
+        let attempts = await server.attempts
+        XCTAssertTrue(attempts.isEmpty)
+    }
+
     func testConflictRequiresExplicitDiscard() async throws {
         let (model, server) = try fixture()
         await model.restore()
@@ -91,6 +143,12 @@ actor RecipeCreationTestServer {
     private var created: CreateRecipe?
     private var lose = false
     private var rejected = false
+    private var libraryAvailable = true
+    private var libraryRevision = "1"
+    private var holdLibrary = false
+    private var libraryStarted = false
+    private var libraryWaiter: CheckedContinuation<Void, Never>?
+    private var libraryGate: CheckedContinuation<Void, Never>?
 
     init(actor: UUID, household: UUID) {
         self.actor = actor
@@ -98,8 +156,19 @@ actor RecipeCreationTestServer {
     }
     func loseReply() { lose = true }
     func reject() { rejected = true }
+    func setLibraryAvailable(_ available: Bool) { libraryAvailable = available }
+    func changeLibraryRevision() { libraryRevision = "2" }
+    func holdNextLibraryRead() { holdLibrary = true }
+    func waitForHeldLibraryRead() async {
+        if libraryStarted { return }
+        await withCheckedContinuation { libraryWaiter = $0 }
+    }
+    func releaseLibraryRead() {
+        libraryGate?.resume()
+        libraryGate = nil
+    }
 
-    func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+    func respond(_ request: URLRequest) async throws -> (Data, URLResponse) {
         if request.url?.path == "/v1/meals/recipe/create" {
             let command = try JSONDecoder().decode(CreateRecipe.self, from: request.httpBody!)
             attempts.append(command)
@@ -120,22 +189,7 @@ actor RecipeCreationTestServer {
                     ],
                 ])
         }
-        if request.url?.path == "/v1/meals/library" {
-            let meals: [[String: Any]] =
-                created == nil
-                ? []
-                : [
-                    [
-                        "definitionId": definition.uuidString, "title": "Soup", "servings": 2,
-                    ]
-                ]
-            return try answer(
-                request,
-                [
-                    "version": 1, "householdId": household.uuidString,
-                    "revision": created == nil ? "1" : "3", "meals": meals, "nextAfterId": NSNull(),
-                ])
-        }
+        if request.url?.path == "/v1/meals/library" { return try await library(request) }
         return try answer(
             request,
             [
@@ -150,6 +204,33 @@ actor RecipeCreationTestServer {
                         ]
                     ],
                 ],
+            ])
+    }
+
+    private func library(_ request: URLRequest) async throws -> (Data, URLResponse) {
+        guard libraryAvailable else {
+            return try answer(request, ["error": ["code": "unavailable"]], status: 503)
+        }
+        if holdLibrary {
+            holdLibrary = false
+            libraryStarted = true
+            libraryWaiter?.resume()
+            libraryWaiter = nil
+            await withCheckedContinuation { libraryGate = $0 }
+        }
+        let meals: [[String: Any]] =
+            created == nil
+            ? []
+            : [
+                [
+                    "definitionId": definition.uuidString, "title": "Soup", "servings": 2,
+                ]
+            ]
+        return try answer(
+            request,
+            [
+                "version": 1, "householdId": household.uuidString,
+                "revision": created == nil ? libraryRevision : "3", "meals": meals, "nextAfterId": NSNull(),
             ])
     }
 

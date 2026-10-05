@@ -12,6 +12,7 @@ extension SessionModel {
         let attempt = generation
         let session = try await auth.session()
         guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
         let page = try await api.library(token: session.accessToken, member: member)
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
         return RecipeCreateContext(member: member, generation: attempt, revision: page.revision)
@@ -21,6 +22,8 @@ extension SessionModel {
         guard let offline, let lease, generation == context.generation, status == .ready(context.member)
         else { return false }
         do {
+            _ = try await requireMealLibraryOnline(
+                revision: context.revision, member: context.member, attempt: context.generation)
             let command = CreateRecipe(operationId: UUID(), expectedRevision: context.revision, recipe: recipe)
             try await offline.enqueueRecipeCreation(command, lease: lease)
             let pending = try await offline.readRecipeCreation(lease: lease)
