@@ -362,6 +362,9 @@ Calendar warnings are duplicated across two tests. Dynamic Type, clipped copy an
 contrast near/beneath the bar or with nil elements remain investigated but open.
 A stronger scroll-edge treatment remained failing and was removed. Focused
 reading success does not close the audit, VoiceOver, phones or M1/M6/M9.
-Local formatting/Oxlint/source limits pass; current-source CI is pending.
+Local formatting/Oxlint/source limits pass. Both exact-source workflows pass
+`039b62b0`: Nest37298961797/SwiftUI37298961716,496 Foundation tests/41 explicit skips,
+418 signed app tests/11 explicit skips, zero failures and actual signing. CI does
+not run or certify the separate failing full accessibility audit.
 [Evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
 Build17 remains the private candidate; no beta/model/worker/production/merge occurred.

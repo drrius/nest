@@ -57,3 +57,14 @@ Private raw result bundles, full rendered financial content and credentials stay
 outside the repository. This evidence does not close M1, M6 or M9, or prove phone
 VoiceOver, haptics, all forms or two-member usability. The owner-facing candidate
 remains build17; this pass does not produce a new release.
+
+Both exact-source CI workflows pass `039b62b066db6eab4aa546e430fe58fdf830c710`:
+[Nest37298961797](https://github.com/drrius/nest/actions/runs/37298961797) and
+[SwiftUI37298961716](https://github.com/drrius/nest/actions/runs/37298961716).
+The latter runs496 Foundation tests with41 explicit skips and418 signed app tests
+with11 explicit skips, zero failures, plus actual push-disabled signing checks.
+This CI success does not run or certify the separate full accessibility audit.
+
+Safe public-permission screenshots: [normal](calendar-normal.png) and
+[largest/dark explanation](calendar-largest-explanation.png). No personal events,
+financial records or credentials appear in these two reviewed images.
