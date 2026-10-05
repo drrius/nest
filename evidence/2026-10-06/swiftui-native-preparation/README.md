@@ -40,8 +40,10 @@ assertion or shipping meal data/UI. Normal source599d1c1a and currentf85a7f72
 differ only in that test helper. All18 successful native methods count separately
 from CI.
 
-Sourcef85a7f72 is pushed on the feature branch. Nest37382474658 passes;
-SwiftUI37382474659 is running. Earlier599d1c1a passes routine37381040566;
+Sourcef85a7f72 passes both Nest37382474658 and SwiftUI37382474659.
+The native workflow runs496 Foundation/41 skips and442 signed-app/20 skips,
+with zero failures, strict formatting/source limits, signing and guarded UI
+compilation. [Native CI](native-ci.json), [routine CI](routine-ci.json). Earlier599d1c1a passes routine37381040566;
 its native37381040668 is cancelled by the observer source update. Guarded hosted SDK/UI cases run manually on the
 owned Mac; CI does not execute them. Full accessibility, VoiceOver, timed busy
 warnings, losses/conflicts for this specific task, live AI and both phones remain

@@ -1,0 +1,32 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.871
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.572
+  },
+  {
+    "step": "partner-due-picker-probe",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NativePreparationCompletionTests/testInspectOwnedDuePickerWithoutSaving",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 48.212
+  }
+]

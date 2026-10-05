@@ -1,6 +1,6 @@
 # What remains before Nest is finished
 
-Current private candidate: **0.1.0/build17**, source `fad84b0b`, now Apple VALID/IN_BETA_TESTING internally and unexpired after one finished submission. Both exact-source CI workflows and Mac signing/package checks pass. [Evidence](../../evidence/2026-10-05/swiftui-build17/README.md), [phone pass](build17-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
+Current private candidate: **0.1.0/build18**, source `e7926c89`, Apple VALID/IN_BETA_TESTING internally and unexpired after one finished private submission. Both exact-source CI workflows and Mac signing/package checks pass. Build18 includes the consistent shared header/insets for all four tabs and Quiet Calendar cards. [Evidence](../../evidence/2026-10-05/swiftui-build18-layout/README.md), [phone layout pass](build18-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
 
 The later [native accessibility diagnostic pass](../../evidence/2026-10-05/swiftui-accessibility-audit/README.md)
 adds an optional XCUITest scheme and stronger Calendar headings. Actual normal and

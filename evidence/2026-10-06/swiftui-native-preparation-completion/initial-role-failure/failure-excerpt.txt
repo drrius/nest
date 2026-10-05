@@ -1,0 +1,10 @@
+    t =    17.60s Waiting 30.0s for "Nest native preparation 20261005" StaticText to exist
+    t =    18.68s     Checking `Expect predicate `existsNoRetry == 1` for object "Nest native preparation 20261005" StaticText`
+    t =    18.68s         Checking existence of `"Nest native preparation 20261005" StaticText`
+    t =    18.72s Checking existence of `"Assigned to Test Sam" StaticText`
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativePreparationCompletionTests.swift:45: error: -[NestAccessibilityTests.NativePreparationCompletionTests testInspectOwnedDuePickerWithoutSaving] : XCTAssertTrue failed
+    t =    18.77s Tear Down
+Test Case '-[NestAccessibilityTests.NativePreparationCompletionTests testInspectOwnedDuePickerWithoutSaving]' failed (19.097 seconds).
+Test Suite 'NativePreparationCompletionTests' failed at 2026-10-06 00:36:25.321.
+	 Executed 1 test, with 1 failure (0 unexpected) in 19.097 (19.099) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 00:36:25.322.

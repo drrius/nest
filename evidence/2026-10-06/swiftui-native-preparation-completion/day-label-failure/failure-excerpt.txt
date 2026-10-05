@@ -1,0 +1,10 @@
+    t =    38.92s         Capturing element debug description
+    t =    38.92s     Checking existence of `"Tuesday, October 6" Button`
+    t =    39.02s Collecting debug information to assist test failure triage
+    t =    39.02s     Requesting snapshot of accessibility hierarchy for app with pid 86894
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativePreparationCompletionTests.swift:73: error: -[NestAccessibilityTests.NativePreparationCompletionTests testMoveOwnedPreparationToTodayOnce] : XCTAssertTrue failed
+    t =    39.21s Tear Down
+Test Case '-[NestAccessibilityTests.NativePreparationCompletionTests testMoveOwnedPreparationToTodayOnce]' failed (39.482 seconds).
+Test Suite 'NativePreparationCompletionTests' failed at 2026-10-06 00:42:57.728.
+	 Executed 1 test, with 1 failure (0 unexpected) in 39.482 (39.483) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 00:42:57.728.
