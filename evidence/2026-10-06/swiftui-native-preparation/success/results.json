@@ -1,0 +1,122 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.482
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.966
+  },
+  {
+    "step": "write-once-shared",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeManualPreparationTests/testCreateOneOwnedSharedPreparation",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 52.875
+  },
+  {
+    "step": "original-after-shared",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 7.498
+  },
+  {
+    "step": "partner-after-shared",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.541
+  },
+  {
+    "step": "original-read-shared",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeManualPreparationTests/testBothMembersReadOwnedPreparationWithoutChangingIt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 23.303
+  },
+  {
+    "step": "partner-read-shared",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NativeManualPreparationTests/testBothMembersReadOwnedPreparationWithoutChangingIt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 23.861
+  },
+  {
+    "step": "write-once-assigned",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NativeManualPreparationTests/testPartnerEditsOwnedInstructionsAndResponsibilityOnce",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 72.288
+  },
+  {
+    "step": "original-after-assigned",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.958
+  },
+  {
+    "step": "partner-after-assigned",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.528
+  },
+  {
+    "step": "original-read-assigned",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeManualPreparationTests/testBothMembersReadOwnedPreparationWithoutChangingIt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 23.82
+  },
+  {
+    "step": "partner-read-assigned",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NativeManualPreparationTests/testBothMembersReadOwnedPreparationWithoutChangingIt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 23.556
+  }
+]
