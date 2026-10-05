@@ -41,7 +41,7 @@ final class NativePreparationCompletionTests: XCTestCase {
         XCTAssertGreaterThanOrEqual(item.frame.height + 0.000_001, 44)
         item.tap()
         let settled = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "exists == false"), object: app.buttons[title])
+            predicate: NSPredicate(format: "exists == false"), object: app.descendants(matching: .any)[title])
         XCTAssertEqual(XCTWaiter.wait(for: [settled], timeout: 30), .completed)
         XCTAssertFalse(app.staticTexts["A saved change needs your review."].exists)
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
@@ -49,6 +49,26 @@ final class NativePreparationCompletionTests: XCTestCase {
         image.name = "Assigned preparation completed through Today"
         image.lifetime = .keepAlways
         add(image)
+    }
+
+    func testCompletedPreparationDoesNotReappearAfterRestart() throws {
+        let fixture = try NativeMealWeekFixture(action: "read_completed_preparation_today")
+        let app = fixture.openMeals()
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        app.buttons["Everyone"].tap()
+        XCTAssertTrue(app.buttons["Hosted smoke tidy kitchen"].waitForExistence(timeout: 30))
+        let absent = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: app.descendants(matching: .any)[title])
+        XCTAssertEqual(XCTWaiter.wait(for: [absent], timeout: 30), .completed)
+        XCTAssertFalse(app.staticTexts["Saved. This will sync when online."].exists)
+        XCTAssertFalse(app.staticTexts["A saved change needs your review."].exists)
+        let image = XCTAttachment(screenshot: app.screenshot())
+        image.name = fixture.name + " completed preparation stays absent after restart"
+        image.lifetime = .keepAlways
+        add(image)
+        app.buttons["Me + shared"].tap()
+        XCTAssertTrue(app.buttons["Me + shared"].isSelected)
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
 
     func testMoveOwnedPreparationToTodayOnce() throws {
