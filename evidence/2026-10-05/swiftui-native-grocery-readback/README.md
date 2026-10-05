@@ -51,5 +51,6 @@ The header correction is separately verified in the [root layout evidence](../sw
 Full accessibility, VoiceOver, Reduce Motion and actual phones remain open.
 SwiftUI37374014748 and Nest37374014717 both pass for exacte7926c89;
 manual native executions are separate from CI guarded-test compilation.
-Build18 is signed and verified with this fix, and both exact-source CI workflows pass. One authorized private upload is now being observed; TestFlight availability
-is unverified. See [updated candidate](../swiftui-build18-layout/README.md).
+Build18 is signed and verified with this fix, and both exact-source CI workflows pass. Exactly one authorized private submission finishes; the21:22:43 UTC supported
+Apple check verifies0.1.0/build18 VALID/IN_BETA_TESTING/unexpired. Particular
+partner access, installation and both-phone acceptance are still unverified. See [updated candidate](../swiftui-build18-layout/README.md).

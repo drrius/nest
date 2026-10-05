@@ -7,6 +7,7 @@
   "exitCode": 0,
   "submissionIds": ["fcd756b6-fe07-4356-8346-521c2c6113da"],
   "singleAttempt": true,
-  "easStatus": "IN_PROGRESS",
-  "appleAvailability": "not yet verified"
+  "easStatus": "FINISHED",
+  "appleAvailability": "VALID/IN_BETA_TESTING/unexpired at2026-10-05T21:22:43.547489+00:00",
+  "particularPartnerTesterAccess": "not verified"
 }

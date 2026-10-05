@@ -1,4 +1,4 @@
-# Updated unpublished build18 candidate
+# SwiftUI private build18
 
 This separately frozen candidate is exacte7926c895f236c9f0f042d68c2e9123457649017.
 It includes the shared Today/Meals/Calendar/Money header,20pt side/14pt top inset,
@@ -6,7 +6,7 @@ Calendar Quiet cards, prior auth/draft/recipe fixes and the verified full-width
 Today grocery shortcut at accessibility sizes. The original signeda3 candidate
 remains preserved in [original preparation](../swiftui-build18/README.md).
 The original candidate was never uploaded. The updated0.1.0/build18 has one
-authorized submission started below; Apple processing/availability remains open.
+authorized submission recorded below; Apple internal availability is verified.
 
 The [root layout captures](../swiftui-root-layout/README.md) verify twelve native
 headers and24 Profile/assistant links. The [grocery check](../swiftui-native-grocery-readback/README.md)
@@ -33,6 +33,11 @@ strict formatting/source limits/signing and guarded UI compilation.
 [Routine](routine-ci.json), [native](native-ci.json), [totals](native-ci-excerpt.txt).
 Fresh supported Apple preflight confirms18 absent. Exactly one authorized
 submissionfcd756b6-fe07-4356-8346-521c2c6113da starts successfully and reports
-IN_PROGRESS. [Submission](submission.json). Apple processing/availability is still
-being checked. Do not repeat the upload on an observation timeout. No cloud build, purchase, production operation, new tester
+FINISHED on the same submission. [Submission](submission.json). The first supported
+Apple check at21:21 UTC does not yet list18; [receipt](apple-first-post-submit.json).
+The spaced second Apple check at21:22:43 UTC lists0.1.0/build18 as
+VALID/IN_BETA_TESTING/unexpired; [availability](apple-availability.json).
+This verifies internal availability, not a particular partner's access or either
+phone's installation/design acceptance. Use the [short phone pass](../../../docs/native-rewrite/build18-first-phone-pass.md).
+No second upload is needed. No cloud build, purchase, production operation, new tester
 invitation, public release or source merge is performed. Push remains disabled.

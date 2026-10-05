@@ -35,11 +35,12 @@ The release gate is not bypassed. [First failure](routine-attempt1.json),
 [GitHub incident](github-actions-incident.json).
 After the923f1db routine job actually acquires a runner and passes, the unchanged
 a3 source gets one attempt4. It also fails before checks; [receipt](routine-attempt4.json).
-No further unchanged-source rerun is requested. The unpublished candidate is now
-being refreshed frome7926c89 for the real grocery accessibility fix, with separate
+No further unchanged-source rerun is requested. Before submission, the candidate
+is refreshed frome7926c89 for the real grocery accessibility fix, with separate
 source/signing/current CI receipts in [updated preparation](../swiftui-build18-layout/README.md).
 The original source, IPA and receipts remain intact.
-No build18 upload or availability is claimed. One private submission and Apple's
-availability check remain pending. No cloud build, purchase, production change,
+The originala3 package is never uploaded. The updatede7926c89 package has one
+finished submission and a supported Apple VALID/IN_BETA_TESTING/unexpired check
+in the separate evidence above. Actual phone installation/acceptance remains open. No cloud build, purchase, production change,
 expanded invitation, public release or merge occurred. After availability, use
 the [short phone layout check](../../../docs/native-rewrite/build18-first-phone-pass.md).

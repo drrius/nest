@@ -15,7 +15,7 @@
   "signing": "passed",
   "privacyManifestsPackaged": 2,
   "dSYM": "retained",
-  "appleUpload": "not yet submitted",
+  "appleUpload": "same-source single submission FINISHED; internal availability verified separately",
   "bundleAudit": "no signing-key, environment, SQLite/test target or React/Expo framework files",
   "sourceDefaultIconDimensions": "1024x1024",
   "sourceDefaultIconHasAlpha": false

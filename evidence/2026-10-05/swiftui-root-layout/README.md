@@ -59,8 +59,9 @@ executing any steps: GitHub reported “The job was not acquired by Runner of ty
 hosted even after multiple attempts.” Its same-source failed job is rerun as
 attempt2 also fails before any step with runnerId0 and the same allocation error.
 [Second attempt](routine-attempt2.json). Descendant d2330171 passes both workflows
-with identical shipping Swift code; build18 reserves only the native version plus
-guarded test additions. The original unpublished package is preserved. The current build18 candidate
+with identical shipping Swift code; the initial build18 preparation reserves only
+the native version plus guarded test additions. The original unpublished package is preserved. The current build18 candidate
 also includes the demonstrated large-text grocery shortcut fix and is tracked
-in [updated preparation](../swiftui-build18-layout/README.md). Exact-source CI and
-private submission remain required. Physical-phone acceptance remains open.
+in [updated preparation](../swiftui-build18-layout/README.md). Both exact-source CI workflows now pass at the updated source, and one private
+submission establishes Apple VALID/IN_BETA_TESTING/unexpired availability.
+Physical-phone acceptance remains open.
