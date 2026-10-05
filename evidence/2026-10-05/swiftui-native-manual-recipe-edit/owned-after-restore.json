@@ -1,0 +1,80 @@
+[
+  {
+    "checkpoint": {
+      "recipe": {
+        "id": "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+        "name": "Nest native manual week 20261005",
+        "notes": null,
+        "created_at": "2026-10-05T19:36:31.446839+00:00",
+        "recipe_url": null,
+        "updated_at": "2026-10-05T21:58:24.961963+00:00",
+        "archived_at": null,
+        "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "nest_servings": 2,
+        "nest_instructions": "Simmer the fictional ingredients."
+      },
+      "ingredients": [
+        {
+          "id": "c49e2275-e68a-4a95-b49c-247b8dddd7e4",
+          "name": "QA lentils",
+          "note": null,
+          "unit": "g",
+          "quantity": "200",
+          "sort_order": 0,
+          "updated_at": "2026-10-05T19:36:31.539781+00:00",
+          "archived_at": null,
+          "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+          "meal_definition_id": "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+          "grocery_category_id": null
+        },
+        {
+          "id": "ad5bc996-178d-4f4b-b85d-e60ae87765b1",
+          "name": "QA rice",
+          "note": null,
+          "unit": "g",
+          "quantity": "100",
+          "sort_order": 1,
+          "updated_at": "2026-10-05T19:36:31.541321+00:00",
+          "archived_at": null,
+          "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+          "meal_definition_id": "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+          "grocery_category_id": null
+        }
+      ],
+      "planned": {
+        "recipe": {
+          "notes": null,
+          "title": "Nest native manual week 20261005",
+          "servings": 2,
+          "recipeUrl": null,
+          "ingredients": [
+            {
+              "name": "QA lentils",
+              "note": null,
+              "unit": "g",
+              "order": 0,
+              "quantity": "200",
+              "categoryId": null,
+              "ingredientId": "c49e2275-e68a-4a95-b49c-247b8dddd7e4"
+            },
+            {
+              "name": "QA rice",
+              "note": null,
+              "unit": "g",
+              "order": 1,
+              "quantity": "100",
+              "categoryId": null,
+              "ingredientId": "ad5bc996-178d-4f4b-b85d-e60ae87765b1"
+            }
+          ],
+          "definitionId": "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+          "instructions": "Simmer the fictional ingredients."
+        },
+        "entry_id": "f040105f-89b5-4370-aa2f-636c7c284be1",
+        "created_at": "2026-10-05T19:49:07.712511+00:00",
+        "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "library_revision": 37
+      }
+    }
+  }
+]

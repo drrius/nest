@@ -1,0 +1,2 @@
+<unknown>:0: warning: -[NestAccessibilityTests.NativeManualRecipeEditTests testBothMembersCanEditInstructionsWithoutSaving] : Invalid frame dimension (negative or non-finite).
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeManualRecipeEditTests.swift:28: error: -[NestAccessibilityTests.NativeManualRecipeEditTests testBothMembersCanEditInstructionsWithoutSaving] : XCTAssertEqual failed: ("Optional("Simmer the fictional ingredients.")") is not equal to ("Optional("")")

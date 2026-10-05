@@ -1,0 +1,2 @@
+<unknown>:0: warning: -[NestAccessibilityTests.NativeManualRecipeEditTests testBothMembersCanSelectInstructionsWithoutSaving] : Invalid frame dimension (negative or non-finite).
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeManualRecipeEditTests.swift:31: error: -[NestAccessibilityTests.NativeManualRecipeEditTests testBothMembersCanSelectInstructionsWithoutSaving] : XCTAssertTrue failed
