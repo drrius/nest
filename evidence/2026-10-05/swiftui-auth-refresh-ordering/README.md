@@ -78,3 +78,12 @@ in [User sessions](https://supabase.com/docs/guides/auth/sessions). That is why 
 fixture retains the fresh credentials for the normal client rather than restoring
 an old snapshot after a successful exchange. No session limits, JWT lifetime,
 reuse settings, Auth users or production configuration were changed.
+
+Provider fixture source `2f53c64d` passes both required workflows:
+[Nest37332265237](https://github.com/drrius/nest/actions/runs/37332265237) and
+[SwiftUI37332265139](https://github.com/drrius/nest/actions/runs/37332265139).
+The native workflow records496 Foundation cases/41 explicit skips and422 signed
+app cases/13 explicit skips, zero failures, strict format/limits and actual
+push-disabled signing. The real provider fixture is guarded and skipped in routine
+CI; its actual execution is the separate owned-simulator evidence above.
+[Exact source CI](provider-source-ci.json). This does not close M3 or phone acceptance.
