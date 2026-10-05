@@ -1,0 +1,6 @@
+<unknown>:0: error: -[NestAccessibilityTests.NativeManualIngredientReviewTests testSaveOwnedRiceChoiceWithoutAddingGroceries] : Failed to get matching snapshot: No matches found for Elements matching predicate '"Quantity for QA rice, 2026-10-19, Dinner" IN identifiers' from input {(
+    TextField, label: 'Quantity, Quantity for QA rice, 2026-10-19, Dinner', placeholderValue: 'Optional', value: 100,
+    TextField, label: 'Unit, Unit for QA rice, 2026-10-19, Dinner', placeholderValue: 'Optional', value: g,
+    TextField, label: 'Quantity, Quantity for QA lentils, 2026-10-19, Dinner', placeholderValue: 'Optional', value: 200,
+    TextField, label: 'Unit, Unit for QA lentils, 2026-10-19, Dinner', placeholderValue: 'Optional', value: g
+)}

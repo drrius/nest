@@ -25,8 +25,11 @@ SwiftUI37367380997 are tracked separately. Native CI passes496 Foundation/41
 skips and439 signed-app/17 skips with zero failures, strict format/source limits,
 actual signing and guarded UI compilation. [Receipt](native-ci.json),
 [actual totals](native-ci-excerpt.txt). The routine job fails before any step with
-runnerId0 and a runner-allocation annotation; its failed job is retried once on
-the same commit as attempt2, currently queued. [Failure](routine-attempt1.json),
+runnerId0 and a runner-allocation annotation. Attempt2 fails identically before
+any step. The separate move-source routine run37369824038 then succeeds on the
+same runner configuration; this changed availability justifies one attempt3 on
+the unchanged release commit, currently queued. [First failure](routine-attempt1.json),
+[second failure](routine-attempt2.json),
 [GitHub incident](github-actions-incident.json).
 No build18 upload or availability is claimed. One private submission and Apple's
 availability check remain pending. No cloud build, purchase, production change,

@@ -7,8 +7,7 @@ struct NativeOwnedMealWeek {
 
     init(action: String) throws {
         fixture = try NativeMealWeekFixture(action: action)
-        app = fixture.openLibrary()
-        app.navigationBars["Saved meals"].buttons.element(boundBy: 0).tap()
+        app = fixture.openMeals()
         for _ in 0..<30 {
             let next = app.buttons["Next week"]
             if next.isHittable && next.frame.minY >= 80 { break }
@@ -35,9 +34,9 @@ struct NativeOwnedMealWeek {
             if element.isHittable && element.frame.minY >= 80 && element.frame.maxY <= bottom { return }
             let frame = element.exists ? element.frame : .zero
             if frame.height > 0 && frame.minY < 80 {
-                app.scrollViews.firstMatch.swipeDown(velocity: .slow)
+                app.swipeDown(velocity: .slow)
             } else {
-                app.scrollViews.firstMatch.swipeUp(velocity: .slow)
+                app.swipeUp(velocity: .slow)
             }
         }
         XCTFail("The exact reserved meal-week control is not visible")

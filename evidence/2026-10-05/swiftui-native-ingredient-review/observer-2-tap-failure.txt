@@ -1,0 +1,8 @@
+    t =    67.12s Tap "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.12s     Wait for ch.drrius.nest to idle
+    t =    67.12s     Find the "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.16s     Check for interrupting elements affecting "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.20s     Synthesize event
+    t =    67.50s     Wait for ch.drrius.nest to idle
+    t =    67.50s Find the "QA rice, 2026-10-19, Dinner" Switch
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeManualIngredientReviewTests.swift:25: error: -[NestAccessibilityTests.NativeManualIngredientReviewTests testSaveOwnedRiceChoiceWithoutAddingGroceries] : XCTAssertEqual failed: ("Optional("0")") is not equal to ("Optional("1")")

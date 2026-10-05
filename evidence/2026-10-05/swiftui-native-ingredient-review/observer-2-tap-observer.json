@@ -1,0 +1,12 @@
+{
+  "wholeAccessibilityRowCenterTap": {
+    "x": 187.5,
+    "y": 345
+  },
+  "nativeSwitchVisibleOnTrailingEdge": true,
+  "valueBefore": "0",
+  "valueAfter": "0",
+  "saveNotReached": true,
+  "addNotReached": true,
+  "runtimeWarning": "Invalid frame dimension (negative or non-finite); not diagnosed or suppressed"
+}

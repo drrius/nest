@@ -1,0 +1,23 @@
+    t =    67.12s Tap "QA rice, 2026-10-19, Dinner" Switch[0.90, 0.50]
+    t =    67.12s     Wait for ch.drrius.nest to idle
+    t =    67.12s     Find the "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.16s     Check for interrupting elements affecting "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.19s     Synthesize event
+    t =    67.20s         Find the "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.24s         Find the "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.28s         Find the "QA rice, 2026-10-19, Dinner" Switch
+    t =    67.60s     Wait for ch.drrius.nest to idle
+    t =    69.95s Checking `Expect predicate `value == "1"` for object "QA rice, 2026-10-19, Dinner" Switch`
+    t =    69.95s     Find the "QA rice, 2026-10-19, Dinner" Switch
+    t =    70.01s Find the TabBar (First Match)
+    t =    70.04s Find the "Save choices for later" Button
+    t =    71.09s     Find the "Save choices for later" Button (retry 1)
+    t =    72.15s     Find the "Save choices for later" Button (retry 2)
+    t =    72.20s Checking existence of `"Save choices for later" Button`
+    t =    72.24s Swipe up ScrollView (First Match)
+    t =    72.24s     Wait for ch.drrius.nest to idle
+    t =    72.24s     Find the ScrollView (First Match)
+    t =    73.32s         Find the ScrollView (First Match) (retry 1)
+    t =    74.43s         Find the ScrollView (First Match) (retry 2)
+    t =    74.55s Requesting snapshot of accessibility hierarchy for app with pid 55564
+<unknown>:0: error: -[NestAccessibilityTests.NativeManualIngredientReviewTests testSaveOwnedRiceChoiceWithoutAddingGroceries] : Failed to swipe up ScrollView (First Match): No matches found for first query match sequence: `Descendants matching type ScrollView`, given input App element pid: 55564

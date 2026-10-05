@@ -22,7 +22,7 @@ struct NativeMealWeekFixture {
         #endif
     }
 
-    func openLibrary() -> XCUIApplication {
+    func openMeals() -> XCUIApplication {
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.launch()
         let tabs = app.tabBars.firstMatch
@@ -33,6 +33,11 @@ struct NativeMealWeekFixture {
         XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 15))
         app.navigationBars.buttons.element(boundBy: 0).tap()
         tabs.buttons["Meals"].tap()
+        return app
+    }
+
+    func openLibrary() -> XCUIApplication {
+        let app = openMeals()
         let library = app.buttons["Saved meals"]
         revealLibrary(library, in: app)
         XCTAssertTrue(library.isHittable)

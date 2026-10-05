@@ -1,0 +1,82 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualIngredientReviewTests/testBothMembersReadOwnedIngredientsAndCanonicalGrocery",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.828
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualIngredientReviewTests/testBothMembersReadOwnedIngredientsAndCanonicalGrocery",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.357
+  },
+  {
+    "step": "save-choice-no-addition",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeManualIngredientReviewTests/testSaveOwnedRiceChoiceWithoutAddingGroceries",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 55.816
+  },
+  {
+    "step": "original-after-save",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualIngredientReviewTests/testBothMembersReadOwnedIngredientsAndCanonicalGrocery",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.565
+  },
+  {
+    "step": "partner-after-save",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualIngredientReviewTests/testBothMembersReadOwnedIngredientsAndCanonicalGrocery",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.764
+  },
+  {
+    "step": "confirm-rice-once",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeManualIngredientReviewTests/testConfirmOwnedRiceOnceAndExcludePantryLentils",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 50.584
+  },
+  {
+    "step": "original-after-confirm",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualIngredientReviewTests/testBothMembersReadOwnedIngredientsAndCanonicalGrocery",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.971
+  },
+  {
+    "step": "partner-after-confirm",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualIngredientReviewTests/testBothMembersReadOwnedIngredientsAndCanonicalGrocery",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.915
+  }
+]
