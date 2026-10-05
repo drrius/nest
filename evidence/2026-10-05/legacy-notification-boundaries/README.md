@@ -60,6 +60,6 @@ notice. Existing project-wide advisor acceptance remains open. The unique
 writers, live AI, native APNs/worker delivery, both phones and full M1–M9 remain.
 
 Scoped Oxfmt/Oxlint/source limits and manifest checks pass; two pre-existing
-schema-probe Effect Node-import warnings remain. Routine CI is pending.
+schema-probe Effect Node-import warnings remain. Routine CI37291976625 passes `9e94b0f7`. [CI metadata](ci-9e94b0f7.json).
 No dispatcher, provider inference, new binary/beta, production migration/data
 change, purchase, source merge or automation occurred.

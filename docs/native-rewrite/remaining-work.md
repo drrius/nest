@@ -306,4 +306,4 @@ zero-row digest. Seven function bodies/grants and three policies match; security
 advisors add no notices. [Evidence](../../evidence/2026-10-05/legacy-notification-boundaries/README.md).
 The unique inventory now has54 bounded entries/6 pending. Broader helpers/races,
 external writers, actual APNs delivery/live AI/phones and full M9 remain open.
-Scoped checks pass; new CI pending. Production, workers and the binary are unchanged.
+Scoped checks and routine CI37291976625 pass `9e94b0f7`. Production, workers and the binary are unchanged.

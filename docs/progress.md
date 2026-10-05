@@ -394,6 +394,6 @@ Both hosted members see only their temporary preference; an outsider sees none.
 Rollback restores the original zero-row digest; no new security notices appear.
 Seven hosted bodies/grants and all three policies match the306-migration fixture.
 [Evidence](../evidence/2026-10-05/legacy-notification-boundaries/README.md).
-Scoped checks pass; new routine CI pending. The unique60-entry inventory has54 bounded entries and6 pending. Broader helpers/races/hosted interfaces/old
+Scoped checks and routine CI37291976625 pass source `9e94b0f7`; the unique60-entry inventory has54 bounded entries and6 pending. Broader helpers/races/hosted interfaces/old
 writers, M1–M9, live AI, native push and both-phone acceptance remain open.
 No dispatch, new binary/release, production change, purchase or merge occurred.
