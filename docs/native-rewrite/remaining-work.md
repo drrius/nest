@@ -2,6 +2,14 @@
 
 Current private candidate: **0.1.0/build17**, source `fad84b0b`, now Apple VALID/IN_BETA_TESTING internally and unexpired after one finished submission. Both exact-source CI workflows and Mac signing/package checks pass. [Evidence](../../evidence/2026-10-05/swiftui-build17/README.md), [phone pass](build17-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
 
+The later [native accessibility diagnostic pass](../../evidence/2026-10-05/swiftui-accessibility-audit/README.md)
+adds an optional XCUITest scheme and stronger Calendar headings. Actual normal and
+largest/dark permission reading pass, with preserved settings and64 empty journals.
+The full five-test audit still fails with20 reports (some duplicated), including
+Calendar font/clipping warnings and contrast near/beneath the native floating bar.
+Nothing is suppressed; full accessibility, intermediate sizes, VoiceOver and phone
+acceptance remain open. This creates no new TestFlight build.
+
 Legacy attachment cleanup has a confirmed native uploader bypass, now fixed and
 locally verified with17 real database tests and16 full-chain boundary probes.
 The303-migration rehearsal retains exact finance/receipts. The fix is applied only

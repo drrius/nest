@@ -12,21 +12,24 @@
 /* Begin PBXFileReference section */
 		A10000000000000000000001 /* Nest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Nest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A30000000000000000000001 /* NestAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NestAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A40000000000000000000001 /* NestAccessibilityTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NestAccessibilityTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		A10000000000000000000002 /* Nest */ = {isa = PBXFileSystemSynchronizedRootGroup; path = Nest; sourceTree = "<group>"; };
 		A30000000000000000000002 /* AppTests */ = {isa = PBXFileSystemSynchronizedRootGroup; path = AppTests; sourceTree = "<group>"; };
+		A40000000000000000000002 /* UITests */ = {isa = PBXFileSystemSynchronizedRootGroup; path = UITests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		A10000000000000000000003 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (A20000000000000000000001 /* Auth in Frameworks */); runOnlyForDeploymentPostprocessing = 0; };
 		A30000000000000000000003 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A40000000000000000000003 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		A10000000000000000000004 = {isa = PBXGroup; children = (A10000000000000000000002 /* Nest */, A30000000000000000000002 /* AppTests */, A10000000000000000000005 /* Products */); sourceTree = "<group>"; };
-		A10000000000000000000005 /* Products */ = {isa = PBXGroup; children = (A10000000000000000000001 /* Nest.app */, A30000000000000000000001 /* NestAppTests.xctest */); name = Products; sourceTree = "<group>"; };
+		A10000000000000000000004 = {isa = PBXGroup; children = (A10000000000000000000002 /* Nest */, A30000000000000000000002 /* AppTests */, A40000000000000000000002 /* UITests */, A10000000000000000000005 /* Products */); sourceTree = "<group>"; };
+		A10000000000000000000005 /* Products */ = {isa = PBXGroup; children = (A10000000000000000000001 /* Nest.app */, A30000000000000000000001 /* NestAppTests.xctest */, A40000000000000000000001 /* NestAccessibilityTests.xctest */); name = Products; sourceTree = "<group>"; };
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -55,12 +58,24 @@
 			productReference = A30000000000000000000001 /* NestAppTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		A40000000000000000000006 /* NestAccessibilityTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A40000000000000000000007;
+			buildPhases = (A40000000000000000000008, A40000000000000000000003, A40000000000000000000009);
+			buildRules = ();
+			dependencies = (A40000000000000000000010);
+			fileSystemSynchronizedGroups = (A40000000000000000000002);
+			name = NestAccessibilityTests;
+			productName = NestAccessibilityTests;
+			productReference = A40000000000000000000001;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		A1000000000000000000000A /* Project object */ = {
 			isa = PBXProject;
-			attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 2700; TargetAttributes = {A10000000000000000000006 = {CreatedOnToolsVersion = 27.0; }; A30000000000000000000006 = {CreatedOnToolsVersion = 27.0; TestTargetID = A10000000000000000000006; }; }; };
+			attributes = {BuildIndependentTargetsInParallel = 1; LastUpgradeCheck = 2700; TargetAttributes = {A10000000000000000000006 = {CreatedOnToolsVersion = 27.0; }; A30000000000000000000006 = {CreatedOnToolsVersion = 27.0; TestTargetID = A10000000000000000000006; }; A40000000000000000000006 = {CreatedOnToolsVersion = 27.0; TestTargetID = A10000000000000000000006; }; }; };
 			buildConfigurationList = A1000000000000000000000B /* Build configuration list for PBXProject "Nest" */;
 			compatibilityVersion = "Xcode 16.0";
 			developmentRegion = en;
@@ -71,26 +86,30 @@
 			productRefGroup = A10000000000000000000005 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
-			targets = (A10000000000000000000006 /* Nest */, A30000000000000000000006 /* NestAppTests */);
+			targets = (A10000000000000000000006 /* Nest */, A30000000000000000000006 /* NestAppTests */, A40000000000000000000006 /* NestAccessibilityTests */);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		A10000000000000000000009 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 		A30000000000000000000009 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A40000000000000000000009 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A10000000000000000000008 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 		A30000000000000000000008 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		A40000000000000000000008 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXContainerItemProxy section */
 		A30000000000000000000011 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = A1000000000000000000000A /* Project object */; proxyType = 1; remoteGlobalIDString = A10000000000000000000006; remoteInfo = Nest; };
+		A40000000000000000000011 /* PBXContainerItemProxy */ = {isa = PBXContainerItemProxy; containerPortal = A1000000000000000000000A; proxyType = 1; remoteGlobalIDString = A10000000000000000000006; remoteInfo = Nest; };
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXTargetDependency section */
 		A30000000000000000000010 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = A10000000000000000000006 /* Nest */; targetProxy = A30000000000000000000011 /* PBXContainerItemProxy */; };
+		A40000000000000000000010 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = A10000000000000000000006; targetProxy = A40000000000000000000011; };
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
@@ -100,12 +119,15 @@
 		A1000000000000000000000F /* Release */ = {isa = XCBuildConfiguration; buildSettings = {ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon; ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES; CODE_SIGN_ENTITLEMENTS = Nest.entitlements; CODE_SIGN_IDENTITY = "Apple Distribution"; CODE_SIGN_STYLE = Manual; DEVELOPMENT_TEAM = 5ZKB6XKYFX; PROVISIONING_PROFILE_SPECIFIER = "$(NEST_DISTRIBUTION_PROFILE)"; CURRENT_PROJECT_VERSION = 17; GENERATE_INFOPLIST_FILE = NO; INFOPLIST_FILE = Info.plist; INFOPLIST_KEY_CFBundleDisplayName = Nest; INFOPLIST_KEY_LSRequiresIPhoneOS = YES; INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES; INFOPLIST_KEY_UILaunchScreen_Generation = YES; INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait; IPHONEOS_DEPLOYMENT_TARGET = 18.0; MARKETING_VERSION = 0.1.0; NEST_PUSH_ENABLED = false; NEST_APNS_ENVIRONMENT = production; OTHER_LDFLAGS = "$(inherited) -lsqlite3"; PRODUCT_BUNDLE_IDENTIFIER = ch.drrius.nest; PRODUCT_NAME = "$(TARGET_NAME)"; SWIFT_STRICT_CONCURRENCY = complete; SWIFT_VERSION = 6.0; TARGETED_DEVICE_FAMILY = 1; }; name = Release; };
 		A3000000000000000000000E /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.0; PRODUCT_BUNDLE_IDENTIFIER = ch.drrius.nest.tests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_STRICT_CONCURRENCY = complete; SWIFT_VERSION = 6.0; TARGETED_DEVICE_FAMILY = 1; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nest.app/Nest"; }; name = Debug; };
 		A3000000000000000000000F /* Release */ = {isa = XCBuildConfiguration; buildSettings = {BUNDLE_LOADER = "$(TEST_HOST)"; GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.0; PRODUCT_BUNDLE_IDENTIFIER = ch.drrius.nest.tests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_STRICT_CONCURRENCY = complete; SWIFT_VERSION = 6.0; TARGETED_DEVICE_FAMILY = 1; TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Nest.app/Nest"; }; name = Release; };
+		A4000000000000000000000E /* Debug */ = {isa = XCBuildConfiguration; buildSettings = {GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.0; PRODUCT_BUNDLE_IDENTIFIER = ch.drrius.nest.accessibilitytests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_STRICT_CONCURRENCY = complete; SWIFT_VERSION = 6.0; TARGETED_DEVICE_FAMILY = 1; TEST_TARGET_NAME = Nest; }; name = Debug; };
+		A4000000000000000000000F /* Release */ = {isa = XCBuildConfiguration; buildSettings = {GENERATE_INFOPLIST_FILE = YES; IPHONEOS_DEPLOYMENT_TARGET = 18.0; PRODUCT_BUNDLE_IDENTIFIER = ch.drrius.nest.accessibilitytests; PRODUCT_NAME = "$(TARGET_NAME)"; SDKROOT = iphoneos; SWIFT_STRICT_CONCURRENCY = complete; SWIFT_VERSION = 6.0; TARGETED_DEVICE_FAMILY = 1; TEST_TARGET_NAME = Nest; }; name = Release; };
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
 		A10000000000000000000007 /* Build configuration list for PBXNativeTarget "Nest" */ = {isa = XCConfigurationList; buildConfigurations = (A1000000000000000000000E /* Debug */, A1000000000000000000000F /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		A30000000000000000000007 /* Build configuration list for PBXNativeTarget "NestAppTests" */ = {isa = XCConfigurationList; buildConfigurations = (A3000000000000000000000E /* Debug */, A3000000000000000000000F /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 		A1000000000000000000000B /* Build configuration list for PBXProject "Nest" */ = {isa = XCConfigurationList; buildConfigurations = (A1000000000000000000000C /* Debug */, A1000000000000000000000D /* Release */); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		A40000000000000000000007 /* Build configuration list for NestAccessibilityTests */ = {isa = XCConfigurationList; buildConfigurations = (A4000000000000000000000E, A4000000000000000000000F); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */

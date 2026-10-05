@@ -49,14 +49,17 @@ struct CalendarScreen: View {
                 permission
             }
             PartnerBusySection(session: session, day: day)
-            Section("Calendars and layers") {
+            Section {
                 NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
                 Toggle("Show household chores", isOn: $showChores)
                 Toggle("Show household renewals", isOn: $showRenewals)
+            } header: {
+                QuietSectionHeader(title: "Calendars and layers")
             }
             if showChores { CalendarChoreSection(session: session, day: day) }
             if showRenewals { CalendarRenewalSection(session: session, day: day) }
         }
+        .font(.body)
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
         .navigationTitle("")
@@ -82,7 +85,7 @@ struct CalendarScreen: View {
     }
 
     private var agenda: some View {
-        Section("On your calendar") {
+        Section {
             if model.calendars.isEmpty {
                 Text("No calendars are available on this device. Check your calendar accounts in Settings.")
             } else if model.selected.isEmpty {
@@ -112,11 +115,13 @@ struct CalendarScreen: View {
                     .padding(.vertical, 6)
                 }
             }
+        } header: {
+            QuietSectionHeader(title: "On your calendar")
         }
     }
 
     private var permission: some View {
-        Section("Your day, in one place") {
+        Section {
             Text("Nest reads the calendars you choose. It does not create, change or delete events.")
             switch model.access {
             case .notRequested:
@@ -135,6 +140,8 @@ struct CalendarScreen: View {
             case .allowed:
                 EmptyView()
             }
+        } header: {
+            QuietSectionHeader(title: "Your day, in one place")
         }
     }
 

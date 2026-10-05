@@ -1,0 +1,29 @@
+{
+  "test": "RootAccessibilityTests/testMoneyAccessibility()",
+  "findings": [
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [0, 0, 0, 0],
+      "label": "",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "nil"
+    },
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [0, 0, 0, 0],
+      "label": "",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "nil"
+    },
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [0, 0, 0, 0],
+      "label": "",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "nil"
+    }
+  ]
+}

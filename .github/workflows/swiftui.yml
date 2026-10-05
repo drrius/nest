@@ -29,7 +29,7 @@ jobs:
       - name: Test native push signing gates
         run: python3 scripts/test-native-push-signing.py
       - name: Verify Swift formatting
-        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests apps/ios/AppTests
+        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests apps/ios/AppTests apps/ios/UITests
       - name: Test Foundation domain and offline rules
         run: swift test --package-path apps/ios
       - name: Test iPhone session and account boundaries

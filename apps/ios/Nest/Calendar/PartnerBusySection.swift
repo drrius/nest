@@ -9,7 +9,7 @@ struct PartnerBusySection: View {
     @State private var loading = false
 
     var body: some View {
-        Section("Your partner’s availability") {
+        Section {
             if loading {
                 ProgressView("Checking busy times…")
             } else if let notice {
@@ -20,6 +20,8 @@ struct PartnerBusySection: View {
                 }
             }
             Button("Refresh busy times") { Task { await load() } }
+        } header: {
+            QuietSectionHeader(title: "Your partner’s availability")
         }
         .task { await load() }
     }

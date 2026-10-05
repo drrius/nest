@@ -1,0 +1,61 @@
+{
+  "test": "RootAccessibilityTests/testCalendarAccessibility()",
+  "findings": [
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [16, 661, 343, 52],
+      "label": "Refresh busy times",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [16, 528.5, 343, 38],
+      "label": "Your partner\u2019s availability",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.",
+      "frame": [16, 566.5, 343, 94.5],
+      "label": "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day.",
+      "summary": "Text clipped",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+      "frame": [16, 296.5, 343, 94.5],
+      "label": "Nest reads the calendars you choose. It does not create, change or delete events.",
+      "summary": "Dynamic Type font sizes are partially unsupported",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+      "frame": [16, 391, 343, 68],
+      "label": "iOS calls this Full Access. Nest uses it only to read your calendars.",
+      "summary": "Dynamic Type font sizes are partially unsupported",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+      "frame": [16, 459, 343, 52],
+      "label": "Allow calendar access",
+      "summary": "Dynamic Type font sizes are partially unsupported",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+      "frame": [16, 566.5, 343, 94.5],
+      "label": "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day.",
+      "summary": "Dynamic Type font sizes are partially unsupported",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    }
+  ]
+}
