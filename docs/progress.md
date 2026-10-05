@@ -387,8 +387,8 @@ The two-member guard and passing CI are in [dated history](progress-history-2026
 One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact.
 The bounded Money stack fix passes real normal/light and maximum/dark history/detail
 navigation with64 empty journals and Today/large/light restoration. All786 captured
-inputs match. Native authenticated URLSession proves HTTP200/PDF/exact bytes/hash;
-six complete hosted fingerprints stay exact. No second expense was posted. Current-source CI, PDF browser/partner/phone acceptance remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+inputs match. Native URLSession proves exact PDF bytes/hash; the actual browser
+renders and returns to the same entry; six hosted fingerprints stay exact. No second expense was posted. Current-source CI/partner/phones remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
 
 ## Financial allocation consistency
 

@@ -1,0 +1,39 @@
+{
+  "platform": "owned signed SE3 iOS26.3.1 simulator",
+  "test": "ReceiptPickerTests/testExistingPostedPDFBrowserOpensAndReturnsToEntry",
+  "tests": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "methodSeconds": 23.439
+  },
+  "resultBundle": "/private/tmp/nest-pdf-native-browser-20261005/large/reading.xcresult",
+  "sourceMatch": {
+    "inputs": 786,
+    "exact": true,
+    "sha256": "e5ec7a1a60b7dc857f1ee9e18a0d0e450e821085f18ed5b85c44ac75704fe509"
+  },
+  "signatureVerified": true,
+  "stableTestOriginsVerified": true,
+  "pushEnabled": false,
+  "nativeDismissalTargetAtLeast44Points": true,
+  "sameEntryAfterDismissal": true,
+  "todaySelectionAsserted": true,
+  "pdfContentVisuallyVerified": true,
+  "reviewedScreenshot": "native-browser.png",
+  "screenshotContainsCredentialsOrSignedURL": false,
+  "restoration": {
+    "original": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "restored": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "emptyJournals": 64
+  },
+  "financialAndStorageFingerprintsUnchanged": true,
+  "partnerNativeViewerVerified": false,
+  "physicalPhonesVerified": false
+}

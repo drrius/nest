@@ -68,8 +68,24 @@ read matches all six complete financial/activity/Storage fingerprints, retaining
 62 events and two objects. [Fingerprints](read-only-fingerprints.json). No second
 expense, beta, model call, push activation, production action or merge occurred.
 
-This moves the posted-receipt workflow forward but does not close M7. Actual PDF
-browser rendering, partner native viewing, full accessibility,
+## Native PDF browser
+
+The later read-only browser method passes with zero failures/skips in23.439
+seconds. It opens the existing receipt through the real API, waits for Apple's
+browser/WebView, checks a44pt dismissal target, returns to the same recorded entry
+and selects Today. Independent inspection of the [reviewed screenshot](native-browser.png)
+confirms the actual synthetic PDF page and text rendered; a WebView alone would
+not prove this. Only the public test hostname appears in its address display.
+No signed URL or credential is exported. All786 captured inputs match again,
+signature/origin/push-disabled gates pass,64 journals remain empty and large/light
+settings are restored. All six hosted fingerprints remain exact after this check.
+[Native browser verification](native-browser-verification.json), [fingerprints](browser-fingerprints.json).
+The refactored shared navigation helper also passes again at maximum/dark in54.111
+seconds, with normal Today/settings/journal restoration. Earlier JSON checkpoint
+flags for unverified browser rendering are superseded by this separate result.
+
+This moves the posted-receipt workflow forward but does not close M7. Partner
+native viewing, full accessibility,
 both phones and live AI receipt handoff remain open. Source1463a805 passes routine
 [Nest37319142790](https://github.com/drrius/nest/actions/runs/37319142790);
 [SwiftUI37319142748](https://github.com/drrius/nest/actions/runs/37319142748) passes. CI reports496 Foundation tests/41 skips and419 signed-native tests/12 skips,

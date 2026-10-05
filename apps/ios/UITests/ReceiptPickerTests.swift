@@ -110,17 +110,47 @@ final class ReceiptPickerTests: XCTestCase {
     }
 
     func testExistingPostedPDFExpenseRemainsReachable() throws {
-        guard ProcessInfo.processInfo.environment["NEST_QA_READ_POSTED_PDF"] == "20261005" else {
-            throw XCTSkip("Requires the existing, separately verified nest-test PDF expense")
-        }
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
-        app.launch()
+        _ = try openPostedPDFDetail(in: app)
         let tabs = app.tabBars.firstMatch
-        XCTAssertTrue(tabs.waitForExistence(timeout: 30))
         defer {
             tabs.buttons["Today"].tap()
             XCTAssertTrue(tabs.buttons["Today"].isSelected)
         }
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Existing synthetic PDF expense details"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+    }
+
+    func testExistingPostedPDFBrowserOpensAndReturnsToEntry() throws {
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        let receipt = try openPostedPDFDetail(in: app)
+        receipt.tap()
+        let close = app.buttons.matching(NSPredicate(format: "label == %@ OR label == %@", "Close", "Done"))
+            .firstMatch
+        XCTAssertTrue(close.waitForExistence(timeout: 30), "The native receipt browser must expose dismissal")
+        XCTAssertTrue(app.webViews.firstMatch.waitForExistence(timeout: 30))
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Existing synthetic PDF native browser"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+        XCTAssertGreaterThanOrEqual(close.frame.width, 44)
+        XCTAssertGreaterThanOrEqual(close.frame.height, 44)
+        close.tap()
+        XCTAssertTrue(app.staticTexts["Nest QA PDF posted 20261005"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.buttons["View receipt"].exists)
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
+    private func openPostedPDFDetail(in app: XCUIApplication) throws -> XCUIElement {
+        guard ProcessInfo.processInfo.environment["NEST_QA_READ_POSTED_PDF"] == "20261005" else {
+            throw XCTSkip("Requires the existing, separately verified nest-test PDF expense")
+        }
+        app.launch()
+        let tabs = app.tabBars.firstMatch
+        XCTAssertTrue(tabs.waitForExistence(timeout: 30))
         tabs.buttons["Money"].tap()
         let history = app.buttons["View full history"]
         reveal(history, in: app)
@@ -135,10 +165,7 @@ final class ReceiptPickerTests: XCTestCase {
         let receipt = app.buttons["View receipt"]
         reveal(receipt, in: app)
         XCTAssertGreaterThanOrEqual(receipt.frame.height, 44)
-        let screenshot = XCTAttachment(screenshot: app.screenshot())
-        screenshot.name = "Existing synthetic PDF expense details"
-        screenshot.lifetime = .keepAlways
-        add(screenshot)
+        return receipt
     }
 
     private func enter(_ value: String, label: String, in app: XCUIApplication) {

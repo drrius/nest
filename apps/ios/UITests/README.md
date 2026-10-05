@@ -64,6 +64,9 @@ do not rerun its creation. Without explicit opt-in the method skips.
 
 `NEST_QA_READ_POSTED_PDF=20261005` opts into the separate existing-entry navigation
 method and the hosted `NestAppTests/HostedPDFReceiptTests` byte-download method.
-Both read the existing synthetic expense and must use the authorized test origins
-and preserved real member session. They do not create another expense. These
-manual opt-ins are not enabled in routine CI.
+They read the existing synthetic expense and must use the authorized test origins
+and preserved real member session. The browser method additionally opens Apple's
+in-app browser, checks its dismissal target and returns to the same expense and
+Today. Its screenshot needs independent inspection for actual PDF rendering; a
+WebView alone is not proof of loaded content. These methods create no expense,
+and the manual opt-ins are not enabled in routine CI.
