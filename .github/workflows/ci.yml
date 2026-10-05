@@ -55,4 +55,6 @@ jobs:
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/legacy-attention-dates.test.mjs
       - name: Test retained routine schedule validation
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/routine-schedule-validation.test.mjs
+      - name: Test complete append-only ledger events
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/complete-ledger-events.test.mjs
       - run: pnpm test

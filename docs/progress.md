@@ -386,3 +386,12 @@ unchanged; the original20-report full audit, VoiceOver and both phones stay open
 [Evidence](../evidence/2026-10-05/swiftui-calendar-contrast/README.md).
 PDF source b48e6160 now passes Nest37313762429 and SwiftUI37313762258.
 Diagnostic-source CI remains pending; routine CI does not run the manual suite.
+
+## Complete ledger-event guard
+
+A retained zero-sum gap permits missing/single-zero ledger entries. The additive
+commit-time pair guard now passes eight database tests,259 signed cases, native
+retry/authorization/AI approval checks and a309-migration exact-retention rehearsal.
+Four manifest tests and scoped lint/limits pass. Hosted preflight sees61 valid
+pairs; nest-test deployment/postflight and source CI are pending. Production stays gated.
+[Evidence](../evidence/2026-10-05/complete-ledger-events/README.md). Native/phone acceptance remains open.
