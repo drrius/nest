@@ -36,6 +36,33 @@ final class ReceiptPickerTests: XCTestCase {
         XCTAssertTrue(tabs.buttons["Today"].isSelected)
     }
 
+    func testPDFUploadAndRemovalPreservesUnpostedExpense() throws {
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        let file = try openFixture(in: app)
+        let cell = app.cells.containing(.staticText, identifier: file.label).firstMatch
+        XCTAssertTrue(cell.exists)
+        cell.tap()
+        let attached = app.staticTexts["Receipt attached"]
+        XCTAssertTrue(attached.waitForExistence(timeout: 60), "The real receipt API must confirm the upload")
+        XCTAssertFalse(app.staticTexts["Upload pending"].exists)
+        let remove = app.buttons["Remove receipt"]
+        XCTAssertTrue(remove.isHittable)
+        remove.tap()
+        let choosePDF = app.buttons["Choose PDF"]
+        let usable = XCTNSPredicateExpectation(predicate: NSPredicate(format: "isHittable == true"), object: choosePDF)
+        XCTAssertEqual(XCTWaiter.wait(for: [usable], timeout: 60), .completed)
+        XCTAssertFalse(attached.exists)
+        XCTAssertFalse(app.staticTexts["Removal pending"].exists)
+        XCTAssertFalse(app.buttons["Retry removal"].exists)
+        XCTAssertFalse(app.buttons["Remove receipt"].exists)
+        XCTAssertFalse(
+            app.staticTexts["Receipt not confirmed. Retry if it is pending, or choose a smaller photo or PDF."].exists)
+        XCTAssertFalse(app.staticTexts["Removal is not confirmed yet. Retry removal when connected."].exists)
+        let tabs = app.tabBars.firstMatch
+        tabs.buttons["Today"].tap()
+        XCTAssertTrue(tabs.buttons["Today"].isSelected)
+    }
+
     private func openFixture(in app: XCUIApplication) throws -> XCUIElement {
         app.launch()
         let tabs = app.tabBars.firstMatch

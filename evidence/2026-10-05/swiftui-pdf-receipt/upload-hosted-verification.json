@@ -1,0 +1,117 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "fixtureSha256": "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9",
+  "fixtureBytes": 640,
+  "before": [
+    {
+      "fixture_intents": 0,
+      "deleted": 0,
+      "pending": 0
+    }
+  ],
+  "after": [
+    {
+      "fixture_intents": 1,
+      "deleted": 1,
+      "pending": 0,
+      "claimed": 0,
+      "registry_identity_matches": true,
+      "stored_objects": 0
+    }
+  ],
+  "allNineFingerprintsUnchanged": true,
+  "beforeTables": [
+    {
+      "table_name": "public.routines",
+      "rows": 19,
+      "sha256": "0de9f3d0c570c0cda2469e5a1ec0465e649d2fd0bad92968130ee63450c02323"
+    },
+    {
+      "table_name": "public.routine_occurrences",
+      "rows": 24,
+      "sha256": "8917ae6f59ecccb41935e5a26194f1429cf9c5d59f0fd559b992fe8b37467b09"
+    },
+    {
+      "table_name": "public.routine_completions",
+      "rows": 5,
+      "sha256": "940a7f05caf7dfac479790f94b4dc99de22fbcc0adf070b1321cba11e1c1c077"
+    },
+    {
+      "table_name": "public.activity_events",
+      "rows": 111,
+      "sha256": "0152885817840db5d808f23d22ce31681b5f44ee88c06436a86c38fa082ee074"
+    },
+    {
+      "table_name": "public.financial_events",
+      "rows": 61,
+      "sha256": "4ec2148f5a9d269cd187ca03ee0bfb8fc4c436729a13ea99fcbb1b2d933218b1"
+    },
+    {
+      "table_name": "public.financial_allocations",
+      "rows": 102,
+      "sha256": "3d1c085b5c13f8083967d3aa3cd7f70bbbf5f0ed263342bf49693b71a52844ef"
+    },
+    {
+      "table_name": "public.ledger_entries",
+      "rows": 122,
+      "sha256": "2bf961930d364ba5f8972d911849a6cbcbd1a729b231f51ddeee3a46727f085d"
+    },
+    {
+      "table_name": "storage.objects",
+      "rows": 1,
+      "sha256": "7ffe47dcc2f543012bf25e124b707bb9d2105ae94be9ece9ae3498073916cf95"
+    },
+    {
+      "table_name": "storage.buckets",
+      "rows": 1,
+      "sha256": "e5145bffdedd32a651a83b2a6d005a0fd188c9e73b48996d552f8d31621f496c"
+    }
+  ],
+  "afterTables": [
+    {
+      "table_name": "public.routines",
+      "rows": 19,
+      "sha256": "0de9f3d0c570c0cda2469e5a1ec0465e649d2fd0bad92968130ee63450c02323"
+    },
+    {
+      "table_name": "public.routine_occurrences",
+      "rows": 24,
+      "sha256": "8917ae6f59ecccb41935e5a26194f1429cf9c5d59f0fd559b992fe8b37467b09"
+    },
+    {
+      "table_name": "public.routine_completions",
+      "rows": 5,
+      "sha256": "940a7f05caf7dfac479790f94b4dc99de22fbcc0adf070b1321cba11e1c1c077"
+    },
+    {
+      "table_name": "public.activity_events",
+      "rows": 111,
+      "sha256": "0152885817840db5d808f23d22ce31681b5f44ee88c06436a86c38fa082ee074"
+    },
+    {
+      "table_name": "public.financial_events",
+      "rows": 61,
+      "sha256": "4ec2148f5a9d269cd187ca03ee0bfb8fc4c436729a13ea99fcbb1b2d933218b1"
+    },
+    {
+      "table_name": "public.financial_allocations",
+      "rows": 102,
+      "sha256": "3d1c085b5c13f8083967d3aa3cd7f70bbbf5f0ed263342bf49693b71a52844ef"
+    },
+    {
+      "table_name": "public.ledger_entries",
+      "rows": 122,
+      "sha256": "2bf961930d364ba5f8972d911849a6cbcbd1a729b231f51ddeee3a46727f085d"
+    },
+    {
+      "table_name": "storage.objects",
+      "rows": 1,
+      "sha256": "7ffe47dcc2f543012bf25e124b707bb9d2105ae94be9ece9ae3498073916cf95"
+    },
+    {
+      "table_name": "storage.buckets",
+      "rows": 1,
+      "sha256": "e5145bffdedd32a651a83b2a6d005a0fd188c9e73b48996d552f8d31621f496c"
+    }
+  ]
+}

@@ -1,4 +1,20 @@
-# Native PDF picker cancellation
+# Native PDF selection, upload and removal
+
+## Real unposted PDF upload and removal
+
+The subsequent manual UI method selects the actual PDF collection cell, waits
+for the real test receipt API's confirmed `Receipt attached` state, and removes
+that receipt through Nest. Choose PDF becomes usable again, no pending/removal
+error remains, Today is selected and all64 command slots are empty. Exactly one
+new server intent retains the fixture's640 bytes/SHA/content type and matching
+registry identity, marked deleted; no object remains. All nine chore/finance/
+Storage fingerprints match the prior baseline, including61 financial events and
+the existing claimed receipt. No expense was reviewed or saved.
+
+This verifies the native security-scoped PDF selection, confirmed upload and
+normal removal. It does not independently download the object before removal or
+prove new posted attachments, PDF-specific partner/outsider reads, phone behavior
+or live AI. The earlier cancellation-only checkpoint follows.
 
 The manually selected `NestAccessibility` scheme runs against the authorized
 nest-test member session on the owned iPhone SE3/iOS26.3 simulator. It opens Money's
@@ -40,8 +56,12 @@ all61 financial events and complete allocation/ledger/Storage metadata match.
 They do not prove the later native outcome. Approval review subsequently recovered;
 the separate schedule-fix check again finds identical finance/Storage fingerprints.
 
-This proves PDF browsing/cancellation only. Selecting/uploading, exact stored
-bytes, receipt posting, partner native viewing, full accessibility and both phones
-remain open. No PDF was selected, uploaded, attached to an expense or posted;
+The earlier checkpoint proves PDF browsing/cancellation only. The subsequent
+upload/removal proof is scoped above; independently downloaded bytes, receipt
+posting, partner native viewing, full accessibility and both phones remain open.
+In the cancellation-only checkpoint, no PDF was selected or uploaded;
 no financial command, model call, beta submission, production action or merge ran.
 Routine CI formats/limits this source but does not execute this manual UI test.
+Both exact-source workflows pass cancellation checkpoint `4195090a`:
+Nest37312018896/SwiftUI37312018914. The later upload/removal method has separate
+owned native/hosted proof above; its new-source CI is pending until pushed.
