@@ -46,4 +46,15 @@ provider/native phone execution, every financial rule or production cutover.
 Fresh nest-test preflight sees61 events, zero invalid pairs and unchanged complete
 financial/activity/Storage fingerprints. The first automatic approval review was
 at capacity and executed no query; a later ordinary read-only retry succeeded.
-Deployment/postflight and required source CI are pending. Production is untouched.
+Applied only to nest-test as20261005132407. Both exact function bodies, private-only
+EXECUTE privileges and both enabled/deferred constraint triggers match. The same61
+valid events remain; all six complete financial/activity/Storage fingerprints are
+unchanged. Existing advisor groups remain:61 no-policy informational findings,
+81 signed-in definer warnings and disabled leaked-password protection. Neither new
+guard is flagged; this is not blanket security approval. See remediation links in
+[hosted verification](hosted-verification.json).
+
+No hosted financial mutation probe was performed. Actual transaction refusal and
+native command/approval compatibility are proved in disposable PostgreSQL; hosted
+metadata/body parity and retained-history validation are read-only postflight.
+Required source CI remains pending. Production is untouched.

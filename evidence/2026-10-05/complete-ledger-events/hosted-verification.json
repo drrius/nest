@@ -1,0 +1,144 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "hostedVersion": "20261005132407",
+  "before": {
+    "snapshots": [
+      {
+        "rows": 61,
+        "table": "public.financial_events",
+        "sha256": "4ec2148f5a9d269cd187ca03ee0bfb8fc4c436729a13ea99fcbb1b2d933218b1"
+      },
+      {
+        "rows": 102,
+        "table": "public.financial_allocations",
+        "sha256": "3d1c085b5c13f8083967d3aa3cd7f70bbbf5f0ed263342bf49693b71a52844ef"
+      },
+      {
+        "rows": 122,
+        "table": "public.ledger_entries",
+        "sha256": "2bf961930d364ba5f8972d911849a6cbcbd1a729b231f51ddeee3a46727f085d"
+      },
+      {
+        "rows": 111,
+        "table": "public.activity_events",
+        "sha256": "0152885817840db5d808f23d22ce31681b5f44ee88c06436a86c38fa082ee074"
+      },
+      {
+        "rows": 1,
+        "table": "storage.objects",
+        "sha256": "7ffe47dcc2f543012bf25e124b707bb9d2105ae94be9ece9ae3498073916cf95"
+      },
+      {
+        "rows": 1,
+        "table": "storage.buckets",
+        "sha256": "e5145bffdedd32a651a83b2a6d005a0fd188c9e73b48996d552f8d31621f496c"
+      }
+    ],
+    "invalidPairs": 0,
+    "financialEvents": 61,
+    "existingGuardFunctions": 0
+  },
+  "after": {
+    "snapshots": [
+      {
+        "rows": 61,
+        "table": "public.financial_events",
+        "sha256": "4ec2148f5a9d269cd187ca03ee0bfb8fc4c436729a13ea99fcbb1b2d933218b1"
+      },
+      {
+        "rows": 102,
+        "table": "public.financial_allocations",
+        "sha256": "3d1c085b5c13f8083967d3aa3cd7f70bbbf5f0ed263342bf49693b71a52844ef"
+      },
+      {
+        "rows": 122,
+        "table": "public.ledger_entries",
+        "sha256": "2bf961930d364ba5f8972d911849a6cbcbd1a729b231f51ddeee3a46727f085d"
+      },
+      {
+        "rows": 111,
+        "table": "public.activity_events",
+        "sha256": "0152885817840db5d808f23d22ce31681b5f44ee88c06436a86c38fa082ee074"
+      },
+      {
+        "rows": 1,
+        "table": "storage.objects",
+        "sha256": "7ffe47dcc2f543012bf25e124b707bb9d2105ae94be9ece9ae3498073916cf95"
+      },
+      {
+        "rows": 1,
+        "table": "storage.buckets",
+        "sha256": "e5145bffdedd32a651a83b2a6d005a0fd188c9e73b48996d552f8d31621f496c"
+      }
+    ],
+    "invalidPairs": 0,
+    "financialEvents": 61,
+    "existingGuardFunctions": 2
+  },
+  "unchangedRetainedSnapshots": true,
+  "metadata": {
+    "version": "20261005132407",
+    "triggers": [
+      {
+        "name": "nest_financial_event_complete_ledger",
+        "table": "financial_events",
+        "enabled": "O",
+        "deferrable": true,
+        "definition": "CREATE CONSTRAINT TRIGGER nest_financial_event_complete_ledger AFTER INSERT ON public.financial_events DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION private.nest_check_complete_ledger_event()",
+        "initiallyDeferred": true
+      },
+      {
+        "name": "nest_ledger_entry_complete_event",
+        "table": "ledger_entries",
+        "enabled": "O",
+        "deferrable": true,
+        "definition": "CREATE CONSTRAINT TRIGGER nest_ledger_entry_complete_event AFTER INSERT ON public.ledger_entries DEFERRABLE INITIALLY DEFERRED FOR EACH ROW EXECUTE FUNCTION private.nest_check_complete_ledger_event()",
+        "initiallyDeferred": true
+      }
+    ],
+    "functions": [
+      {
+        "name": "nest_check_complete_ledger_event",
+        "config": ["search_path=\"\""],
+        "bodySha256": "19d2ec5a4f26fb8411f49d7a8440b75550f6d50946511090e1e5ad34c2be1012",
+        "serviceExecute": false,
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "name": "nest_require_complete_ledger_event",
+        "config": ["search_path=\"\""],
+        "bodySha256": "312b40ba5a11ea8705f3891e80459ed4c3ed828cf028cd05cf32a97a534a212e",
+        "serviceExecute": false,
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "authenticatedExecute": false
+      }
+    ]
+  },
+  "advisors": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 61,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "level": "WARN",
+      "count": 81,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "newGuardAdvisory": false,
+  "hostedMutationProbePerformed": false,
+  "productionTouched": false,
+  "sourceBodiesMatch": true
+}

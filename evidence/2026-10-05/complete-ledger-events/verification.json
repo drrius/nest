@@ -60,5 +60,12 @@
   },
   "nativeExecutionClaimed": false,
   "productionTouched": false,
-  "hostedDeployment": "pending"
+  "hostedDeployment": {
+    "project": "tkjixmujjoustdiedfmw",
+    "version": "20261005132407",
+    "sourceBodiesMatch": true,
+    "retainedSnapshotsUnchanged": true,
+    "invalidEvents": 0,
+    "mutationProbePerformed": false
+  }
 }

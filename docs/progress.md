@@ -393,5 +393,7 @@ A retained zero-sum gap permits missing/single-zero ledger entries. The additive
 commit-time pair guard now passes eight database tests,259 signed cases, native
 retry/authorization/AI approval checks and a309-migration exact-retention rehearsal.
 Four manifest tests and scoped lint/limits pass. Hosted preflight sees61 valid
-pairs; nest-test deployment/postflight and source CI are pending. Production stays gated.
+pairs. Applied only to nest-test as20261005132407: exact bodies/privileges/deferred
+triggers and unchanged six financial/activity/Storage fingerprints pass. Source CI
+is pending; hosted mutation/native-phone checks are not claimed. Production stays gated.
 [Evidence](../evidence/2026-10-05/complete-ledger-events/README.md). Native/phone acceptance remains open.
