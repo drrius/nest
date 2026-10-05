@@ -81,3 +81,12 @@ before the guarded SDK fixture changes accounts, then restore Test Alex normally
 Never run against an owner's real phone/account. Hosted PDF byte checks accept
 `NEST_QA_RECEIPT_ACTOR` to require the exact expected fictional member and always
 require the isolated fixture household. These checks do not prove Apple sign-in.
+
+The separate `NestAppTests/HostedSessionRefreshTests` method requires
+`NEST_QA_REFRESH_FICTIONAL_MEMBER=20261005`, the owned SE3 and the exact fictional
+member/test origins. It makes a real Auth refresh request using a temporary copy
+of that member's credentials with a locally expired lifetime. A successful exchange
+retains the fresh credentials in the normal test Keychain; never restore the old
+token snapshot after rotation. Preflight64 empty journals and preserve the original
+scope/settings. This is not natural JWT expiration or real Apple sign-in proof,
+and the provider request must not run automatically in routine CI.

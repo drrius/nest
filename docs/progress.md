@@ -394,4 +394,8 @@ The allocation guard passes eight DB tests,792 arithmetic cases,six concurrent r
 ## Native credential refresh ordering
 
 Two controlled late-refresh cases resurrect old Keychain credentials after logout or replace a newly signed-in account. Both fail on old NestAuth; the serialized/request-time auth boundary passes those cases and15 existing native auth/session checks. Actual test-API PDF download/navigation also pass, with789 matching inputs, original actor/Today/large/light/64 empty journals restored and six retained fingerprints exact. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md).
-This fixes the reproduced single-client credential races, not proof of the earlier multi-client fixture's exact cause. New auth-source CI, real Apple/expired-session/phone journeys and complete M3 acceptance remain open. No production, model call, beta or merge occurred.
+This fixes the reproduced single-client credential races, not proof of the earlier multi-client fixture's exact cause. Auth source81964951 passes Nest37330470647/SwiftUI37330470658 (496 Foundation/41 skips,421 signed-native/12 skips, zero failures). Real Apple/natural-expiry/phone journeys and complete M3 acceptance remain open. No production, model call, beta or merge occurred.
+
+### Actual test-provider refresh
+
+The guarded native SDK exchanges one real test-provider refresh (HTTP200), retains both fresh tokens/the same provider session and verifies original membership/reopened Keychain. Actual PDF download/navigation then pass;790 inputs,64 journals, Today/large/light and six retained fingerprints match. Only the copied cached lifetime is forced expired; natural JWT expiry is unverified. New manual-fixture CI/phones/M3 acceptance stay open. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md#actual-test-provider-refresh).
