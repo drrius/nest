@@ -294,4 +294,4 @@ retained draft terms and original finance/receipts/excluded rows remain exact.
 Eleven hosted catalog rows match. [Evidence](../../evidence/2026-10-05/legacy-recurring-boundaries/README.md).
 The unique inventory now records47 bounded entries/13 pending; broader private
 helpers/concurrency/hosted interfaces/external writers and full M9 remain open.
-Scoped checks pass; new CI pending. No worker, model call or production change.
+Scoped checks and routine CI37289460002 pass `aa005b1e`. No worker, model call or production change.

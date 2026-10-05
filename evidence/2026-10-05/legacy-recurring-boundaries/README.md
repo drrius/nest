@@ -46,6 +46,6 @@ writers/adoption races, hosted Auth/Storage, external writers, native phone/UI
 acceptance, live AI and worker/push. Scheduled posting remains disabled.
 
 Scoped Oxfmt/Oxlint/source limits pass; two pre-existing schema-probe Effect
-Node-import warnings remain. Routine CI is pending for this new checkpoint.
+Node-import warnings remain. Routine CI37289460002 passes source `aa005b1e`. [CI metadata](ci-aa005b1e.json).
 No native binary, beta, production mutation, purchase, source merge, automation,
 provider inference or worker activation occurred.
