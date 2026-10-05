@@ -44,6 +44,14 @@ final class RootAccessibilityTests: XCTestCase {
         screenshot.lifetime = .keepAlways
         add(screenshot)
         continueAfterFailure = true
+        try AccessibilityAuditDiagnostics.audit(app: app, types: types, test: self)
+    }
+}
+
+@MainActor
+enum AccessibilityAuditDiagnostics {
+    static func audit(app: XCUIApplication, types: XCUIAccessibilityAuditType, test: XCTestCase) throws {
+        let tabs = app.tabBars.firstMatch
         try app.performAccessibilityAudit(for: types) { issue in
             let element = issue.element
             let frame = element?.frame ?? .zero
@@ -59,7 +67,7 @@ final class RootAccessibilityTests: XCTestCase {
                 let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
                 attachment.name = "Accessibility issue"
                 attachment.lifetime = .keepAlways
-                self.add(attachment)
+                test.add(attachment)
             }
             return false
         }

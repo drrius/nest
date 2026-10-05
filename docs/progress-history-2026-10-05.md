@@ -359,3 +359,32 @@ Two actual current-source native daily/shared creations and their completion rec
 ## Today recovery touch target and viewport correction
 
 Source `9c550f2a` makes Today Retry sync at least44pt and clips the scroll viewport so scrolled maximum-text content stays below the status bar. Actual owned normal/light74.5×44pt and maximum-text/dark227×58.5pt corner taps each cause503 retention followed by real test snapshot200/notice clearing. All1,039 native inputs match; strict Swift formatting/source limits and four focused signed-native recovery tests pass with zero failures/skips. The corrected maximum-text observer requires the whole target above the tab overlay; its terminal missed-corner assumption required no app/domain change. Both candidate stages restore stable signed test origins/default text/light/ordinary Today, empty journals and preserved data/Keychain, stop owned relays and destroy generated keys. Both-member original chore/full52-event finance reads remain unchanged; no mutation requests, new beta, production action or merge occurred. [Evidence](../evidence/2026-10-04/swiftui-today-retry-target/README.md). Exact-source Nest37201092684/SwiftUI37201092688 both pass:490 Foundation/41 explicit skips and409 signed-native/11 explicit skips, zero failures, strict format/limits and actual signing. Full accessibility/phone/AI and M1/M2/M4 acceptance remain open.
+
+## Native accessibility diagnostics and Calendar readability
+
+The signed smallest SE3/real test API now has a separate manually selected
+`NestAccessibility` XCUITest scheme. Routine CI only formats/limits these sources;
+its default Nest scheme remains unchanged. Six Calendar headers use explicit Quiet
+ink/semantic heading type; the list uses semantic body text. The initial permission
+heading's contrast warning disappears, but the nearby partner heading still fails.
+All639 compiled app/test/project inputs match Linux and the authorized Mac.
+
+Actual normal/light and largest/dark permission reading pass with every full
+paragraph revealed above the floating bar and a minimum44pt access target. The
+explanation grows94.5→465.5pt, Full Access copy68→378.5pt and button52→217.5pt.
+Native screenshots and bounds agree. Corrected lazy-row/scroll observers were
+necessary; no permission grant or household command occurred. All64 saved-command
+slots remain empty, original large/light/stable test origins/push-disabled settings
+are restored and actual signing/preserved Keychain are verified.
+
+The full five-test audit **fails with20 reported findings**, zero suppressed;
+Calendar warnings are duplicated across two tests. Dynamic Type, clipped copy and
+contrast near/beneath the bar or with nil elements remain investigated but open.
+A stronger scroll-edge treatment remained failing and was removed. Focused
+reading success does not close the audit, VoiceOver, phones or M1/M6/M9.
+Local formatting/Oxlint/source limits pass. Both exact-source workflows pass
+`039b62b0`: Nest37298961797/SwiftUI37298961716,496 Foundation tests/41 explicit skips,
+418 signed app tests/11 explicit skips, zero failures and actual signing. CI does
+not run or certify the separate failing full accessibility audit.
+[Evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
+Build17 remains the private candidate; no beta/model/worker/production/merge occurred.

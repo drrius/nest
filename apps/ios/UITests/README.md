@@ -46,3 +46,10 @@ It requires the authorized fixture to have unknown partner availability.
 
 The 5 October full audit remains failing. See the [recorded findings](../../../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
 Do not use a successful focused reading check as approval of the full audit.
+
+`testVisibleUnknownAvailabilityContrast` requires the entire unknown-availability
+paragraph to fit above the native tab bar before auditing the current viewport's
+contrast. Run it at an ordinary text size with the unrequested-permission/unknown
+availability fixture. It records every reported issue through the same diagnostic
+handler as the root audit, suppresses none and returns to Today even on failure.
+It remains a failing diagnostic, not an accessibility approval or a CI gate.

@@ -1,0 +1,14 @@
+{
+  "scope": "Restored original Calendar UI, entire unknown paragraph revealed above native tab bar",
+  "bounds": {
+    "paragraph": [16, 426.5, 343, 94.5],
+    "tabBarTop": 584
+  },
+  "auditTypes": ["contrast"],
+  "passed": false,
+  "reportedFailure": "Refresh busy times, confirmed by actual element crop",
+  "notExhaustiveAllAppAudit": true,
+  "resultBundle": "/private/tmp/nest-calendar-visible-contrast-20261005/large/reading.xcresult",
+  "pendingCommandSlots": 64,
+  "allSlotsEmptyBeforeAndAfter": true
+}

@@ -369,29 +369,20 @@ Live AI billing, worker/APNs, both phones and full M1–M9 stay open. No release
 
 ## Native accessibility diagnostics and Calendar readability
 
-The signed smallest SE3/real test API now has a separate manually selected
-`NestAccessibility` XCUITest scheme. Routine CI only formats/limits these sources;
-its default Nest scheme remains unchanged. Six Calendar headers use explicit Quiet
-ink/semantic heading type; the list uses semantic body text. The initial permission
-heading's contrast warning disappears, but the nearby partner heading still fails.
-All639 compiled app/test/project inputs match Linux and the authorized Mac.
+The full audit and twelve-size reading evidence are preserved in
+[the dated history](progress-history-2026-10-05.md#native-accessibility-diagnostics-and-calendar-readability)
+and [native evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
+The original full audit has20 unsuppressed reports; focused reading passes do not close it.
 
-Actual normal/light and largest/dark permission reading pass with every full
-paragraph revealed above the floating bar and a minimum44pt access target. The
-explanation grows94.5→465.5pt, Full Access copy68→378.5pt and button52→217.5pt.
-Native screenshots and bounds agree. Corrected lazy-row/scroll observers were
-necessary; no permission grant or household command occurred. All64 saved-command
-slots remain empty, original large/light/stable test origins/push-disabled settings
-are restored and actual signing/preserved Keychain are verified.
+## Focused Calendar contrast diagnostic
 
-The full five-test audit **fails with20 reported findings**, zero suppressed;
-Calendar warnings are duplicated across two tests. Dynamic Type, clipped copy and
-contrast near/beneath the bar or with nil elements remain investigated but open.
-A stronger scroll-edge treatment remained failing and was removed. Focused
-reading success does not close the audit, VoiceOver, phones or M1/M6/M9.
-Local formatting/Oxlint/source limits pass. Both exact-source workflows pass
-`039b62b0`: Nest37298961797/SwiftUI37298961716,496 Foundation tests/41 explicit skips,
-418 signed app tests/11 explicit skips, zero failures and actual signing. CI does
-not run or certify the separate failing full accessibility audit.
-[Evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
-Build17 remains the private candidate; no beta/model/worker/production/merge occurred.
+Two actual native experiments—hidden bottom-edge effect and darker refresh ink—
+remain failing and were removed. Original permission reading passes after restore.
+The new manual diagnostic reveals the full unknown paragraph above the tab bar;
+its shared handler then reports three contrast failures with none suppressed.
+Today selection,641 matching inputs, signature/test origins/push-disabled gates,
+large/light restoration and64 empty journals pass. The shipping native UI is
+unchanged; the original20-report full audit, VoiceOver and both phones stay open.
+[Evidence](../evidence/2026-10-05/swiftui-calendar-contrast/README.md).
+PDF source b48e6160 now passes Nest37313762429 and SwiftUI37313762258.
+Diagnostic-source CI remains pending; routine CI does not run the manual suite.

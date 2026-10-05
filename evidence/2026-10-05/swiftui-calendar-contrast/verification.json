@@ -1,0 +1,58 @@
+{
+  "test": "CalendarReadabilityTests/testVisibleUnknownAvailabilityContrast",
+  "resultBundle": "/private/tmp/nest-calendar-visible-contrast-final-20261005/large/reading.xcresult",
+  "testExitCode": 65,
+  "passed": false,
+  "findings": [
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [32, 644.25, 98, 20.5],
+      "label": "Busy sharing",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [16, 590.5, 343, 38],
+      "label": "Calendars and layers",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [16, 521, 343, 52],
+      "label": "Refresh busy times",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    }
+  ],
+  "suppressed": 0,
+  "bounds": {
+    "paragraph": [16, 426.5, 343, 94.5],
+    "tabBarTop": 584
+  },
+  "compiledInputs": 641,
+  "sourceMatches": true,
+  "sourceMapSha256": "0bb50fd4bd186ee099ed9d7ddfe7030fdc36bae4c6e4443e6a0401acf9007d10",
+  "signatureAndSeparateTestOriginsVerified": true,
+  "pushEnabled": false,
+  "nativeClientSourceUnchanged": true,
+  "todaySelectionAssertedEvenOnAuditFailure": true,
+  "restoration": {
+    "original": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "restored": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "emptyJournals": 64
+  },
+  "physicalPhoneVerified": false,
+  "entireAppAccessibilityApproved": false,
+  "experimentsRetained": false
+}

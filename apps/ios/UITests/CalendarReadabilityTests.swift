@@ -75,6 +75,37 @@ final class CalendarReadabilityTests: XCTestCase {
         add(attachment)
     }
 
+    func testVisibleUnknownAvailabilityContrast() throws {
+        let app = openCalendar()
+        defer {
+            app.tabBars.firstMatch.buttons["Today"].tap()
+            XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+        }
+        let text = app.staticTexts[
+            "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day."
+        ]
+        reveal(text, in: app)
+        let frame = text.frame
+        XCTAssertTrue(text.isHittable)
+        XCTAssertGreaterThanOrEqual(frame.minY, 40)
+        XCTAssertLessThanOrEqual(frame.maxY, app.tabBars.firstMatch.frame.minY)
+        let screenshot = XCTAttachment(screenshot: app.screenshot())
+        screenshot.name = "Visible unknown availability contrast"
+        screenshot.lifetime = .keepAlways
+        add(screenshot)
+        let data = try JSONSerialization.data(
+            withJSONObject: [
+                "paragraph": [frame.minX, frame.minY, frame.width, frame.height],
+                "tabBarTop": app.tabBars.firstMatch.frame.minY,
+            ], options: [.sortedKeys])
+        let bounds = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+        bounds.name = "Visible unknown availability bounds"
+        bounds.lifetime = .keepAlways
+        add(bounds)
+        continueAfterFailure = true
+        try AccessibilityAuditDiagnostics.audit(app: app, types: .contrast, test: self)
+    }
+
     private func openCalendar() -> XCUIApplication {
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.launch()
