@@ -1,0 +1,28 @@
+Test Suite 'Selected tests' started at 2026-10-05 05:29:39.520.
+Test Suite 'NestCoreTests.xctest' started at 2026-10-05 05:29:39.521.
+Test Suite 'MemoryProposalRecoveryTests' started at 2026-10-05 05:29:39.521.
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testExpiredDecisionStillRequiresItsOwnConfirmedResult]' started.
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testExpiredDecisionStillRequiresItsOwnConfirmedResult]' passed (0.036 seconds).
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testExpiryCannotGrantConsentAndAnotherAccountCannotDiscardProposal]' started.
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testExpiryCannotGrantConsentAndAnotherAccountCannotDiscardProposal]' passed (0.030 seconds).
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testForeignOrDifferentProposalCannotRefreshOrStageConsent]' started.
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testForeignOrDifferentProposalCannotRefreshOrStageConsent]' passed (0.206 seconds).
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testOnlyConfirmedExpiredOrTerminalProposalCanBeDismissed]' started.
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testOnlyConfirmedExpiredOrTerminalProposalCanBeDismissed]' passed (0.234 seconds).
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testRefreshRetainsCommandAndOnlyReplacesCanonicalStatus]' started.
+Test Case '-[NestCoreTests.MemoryProposalRecoveryTests testRefreshRetainsCommandAndOnlyReplacesCanonicalStatus]' passed (0.062 seconds).
+Test Suite 'MemoryProposalRecoveryTests' passed at 2026-10-05 05:29:40.088.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.567 (0.568) seconds
+Test Suite 'MemoryRecoveryTests' started at 2026-10-05 05:29:40.088.
+Test Case '-[NestCoreTests.MemoryRecoveryTests testAnotherMemberCannotReadOrClearSavedRequest]' started.
+Test Case '-[NestCoreTests.MemoryRecoveryTests testAnotherMemberCannotReadOrClearSavedRequest]' passed (0.030 seconds).
+Test Case '-[NestCoreTests.MemoryRecoveryTests testImportedProposalIsPrivateAndCannotReplacePendingIntent]' started.
+Test Case '-[NestCoreTests.MemoryRecoveryTests testImportedProposalIsPrivateAndCannotReplacePendingIntent]' passed (0.029 seconds).
+Test Case '-[NestCoreTests.MemoryRecoveryTests testRestartRetainsExactRequestAndProposalRequiresSeparateDecision]' started.
+Test Case '-[NestCoreTests.MemoryRecoveryTests testRestartRetainsExactRequestAndProposalRequiresSeparateDecision]' passed (0.033 seconds).
+Test Suite 'MemoryRecoveryTests' passed at 2026-10-05 05:29:40.180.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.092 (0.092) seconds
+Test Suite 'NestCoreTests.xctest' passed at 2026-10-05 05:29:40.180.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.659 (0.660) seconds
+Test Suite 'Selected tests' passed at 2026-10-05 05:29:40.180.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.659 (0.660) seconds

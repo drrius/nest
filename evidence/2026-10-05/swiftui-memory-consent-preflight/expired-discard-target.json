@@ -1,0 +1,13 @@
+{
+  "label": "Discard expired proposal",
+  "target": {
+    "y": 100,
+    "x": 16,
+    "width": 343,
+    "height": 217.5
+  },
+  "point": [356, 103],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791173562.0818088
+}

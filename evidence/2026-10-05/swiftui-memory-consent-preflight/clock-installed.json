@@ -1,0 +1,12 @@
+{
+  "all1043InputsMatch": true,
+  "actualSignedBuildForTesting": true,
+  "stableTestOrigins": true,
+  "pushDisabled": true,
+  "dataAndKeychainNotRemoved": true,
+  "executableSHA256": "5acea27fb9bc283f8e74532ce052f7210828ee3ce305a0dc86068efe23b49691",
+  "updateStartedBeforeDeadline": true,
+  "time": 1791173249.9144802,
+  "observerFailure": "pre-expiry Save target search expired and ended Missing unobscured Save this memory; no successful pre-expiry corner claim",
+  "onlyReadOnlyIdentityRecovery": true
+}

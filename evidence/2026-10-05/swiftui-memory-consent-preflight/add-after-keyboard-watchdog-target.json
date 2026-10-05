@@ -1,0 +1,13 @@
+{
+  "label": "Add",
+  "target": {
+    "width": 44,
+    "x": 311,
+    "y": 20,
+    "height": 44
+  },
+  "point": [352, 23],
+  "logical44PointMinimumWithFloatingEpsilon": true,
+  "epsilonPoints": 0.001,
+  "time": 1791171826.732369
+}

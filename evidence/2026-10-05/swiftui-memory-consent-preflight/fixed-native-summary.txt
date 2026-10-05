@@ -1,0 +1,32 @@
+Test Suite 'Selected tests' started at 2026-10-05 05:30:00.956.
+Test Suite 'NestAppTests.xctest' started at 2026-10-05 05:30:00.956.
+Test Suite 'MemoryAccountTests' started at 2026-10-05 05:30:00.956.
+Test Case '-[NestAppTests.MemoryAccountTests testLateMemoryDecisionCannotAcknowledgeAfterSignOutOrAccountSwitch]' started.
+Test Case '-[NestAppTests.MemoryAccountTests testLateMemoryDecisionCannotAcknowledgeAfterSignOutOrAccountSwitch]' passed (0.205 seconds).
+Test Suite 'MemoryAccountTests' passed at 2026-10-05 05:30:01.162.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.205 (0.206) seconds
+Test Suite 'MemoryDecisionPreflightTests' started at 2026-10-05 05:30:01.162.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testChangedExpiredOrForeignApprovalCannotReplaceSavedProposal]' started.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testChangedExpiredOrForeignApprovalCannotReplaceSavedProposal]' passed (1.044 seconds).
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testFailedReloadKeepsExactProposalWithoutAcceptingChangedTerms]' started.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testFailedReloadKeepsExactProposalWithoutAcceptingChangedTerms]' passed (0.187 seconds).
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testFreshExactApprovalStagesOnlyChosenDecisionWithOriginalIdentity]' started.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testFreshExactApprovalStagesOnlyChosenDecisionWithOriginalIdentity]' passed (0.583 seconds).
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testLateApprovalReadCannotStageAfterSignOutOrMemberSwitch]' started.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testLateApprovalReadCannotStageAfterSignOutOrMemberSwitch]' passed (0.203 seconds).
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testOfflineConsentKeepsOriginalProposalWithoutStagingDecision]' started.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testOfflineConsentKeepsOriginalProposalWithoutStagingDecision]' passed (0.089 seconds).
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testReloadRefreshesCanonicalTerminalProposalAndExplicitlyClearsLocalSlot]' started.
+Test Case '-[NestAppTests.MemoryDecisionPreflightTests testReloadRefreshesCanonicalTerminalProposalAndExplicitlyClearsLocalSlot]' passed (0.144 seconds).
+Test Suite 'MemoryDecisionPreflightTests' passed at 2026-10-05 05:30:03.414.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 2.250 (2.253) seconds
+Test Suite 'PrivateMemoryModelTests' started at 2026-10-05 05:30:03.415.
+Test Case '-[NestAppTests.PrivateMemoryModelTests testLostProposalResponseRetainsIdentityAndRequiresExplicitSave]' started.
+Test Case '-[NestAppTests.PrivateMemoryModelTests testLostProposalResponseRetainsIdentityAndRequiresExplicitSave]' passed (0.544 seconds).
+Test Suite 'PrivateMemoryModelTests' passed at 2026-10-05 05:30:03.959.
+	 Executed 1 test, with 0 failures (0 unexpected) in 0.544 (0.545) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-05 05:30:03.960.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 3.000 (3.004) seconds
+Test Suite 'Selected tests' passed at 2026-10-05 05:30:03.960.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 3.000 (3.004) seconds
+** TEST SUCCEEDED **

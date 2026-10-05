@@ -1,0 +1,10 @@
+{
+  "observedFromActualToolTranscript": true,
+  "navigationSelections": ["Profile and preferences", "Private memory"],
+  "viewOpenedByUTC": "2026-10-05 04:04:07 UTC",
+  "toolClockWasReadAfterBothNavigationSelections": true,
+  "deadlineUTC": "2026-10-05T04:05:28.981007+00:00",
+  "preExpirySaveCornerNotVerified": true,
+  "subsequentTimedTargetSearchEndedMissingSave": true,
+  "firstExpiredHeldOpenInspectionOccurredBeforeAnyRestartOrReload": true
+}

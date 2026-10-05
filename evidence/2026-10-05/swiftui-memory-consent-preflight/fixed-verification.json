@@ -1,0 +1,43 @@
+{
+  "parentCommit": "57a237f833994479433de986648342e151b1509c",
+  "nativeInputs": 1043,
+  "changedFiles": [
+    "apps/ios/AppTests/MemoryAccountTests.swift",
+    "apps/ios/AppTests/PrivateMemoryModelTests.swift",
+    "apps/ios/Nest/Core/MemoryRecovery.swift",
+    "apps/ios/Nest/Core/PrivateMemory.swift",
+    "apps/ios/Nest/Profile/MemoryRequestSection.swift",
+    "apps/ios/Nest/Profile/PrivateMemoryModel.swift",
+    "apps/ios/Nest/Session/SessionModel+MemoryRecovery.swift",
+    "apps/ios/Tests/Core/MemoryRecoveryTests.swift",
+    "apps/ios/AppTests/MemoryDecisionPreflightTests.swift",
+    "apps/ios/Tests/Core/MemoryProposalRecoveryTests.swift"
+  ],
+  "allInputsMatch": true,
+  "started": 1791170962.759394,
+  "formatPid": 10849,
+  "formatExit": 0,
+  "formatTotals": [],
+  "limitsPid": 10850,
+  "limitsExit": 0,
+  "limitsTotals": [],
+  "corePid": 10852,
+  "coreExit": 0,
+  "coreTotals": [
+    "Executed 5 tests, with 0 failures (0 unexpected) in 0.567 (0.568) seconds",
+    "Executed 3 tests, with 0 failures (0 unexpected) in 0.092 (0.092) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 0.659 (0.660) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 0.659 (0.660) seconds"
+  ],
+  "nativePid": 10956,
+  "nativeExit": 0,
+  "nativeTotals": [
+    "Executed 6 tests, with 0 failures (0 unexpected) in 2.250 (2.253) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 3.000 (3.004) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 3.000 (3.004) seconds"
+  ],
+  "signingPid": 11135,
+  "signingExit": 0,
+  "signingTotals": [],
+  "finished": 1791171004.497566
+}

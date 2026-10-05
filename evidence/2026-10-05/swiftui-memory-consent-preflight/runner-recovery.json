@@ -1,0 +1,7 @@
+{
+  "priorAuthoritativeFailure": "RUNNER_WEDGED",
+  "onlyOwnedSessionClosedAndReopened": true,
+  "unsavedDraftAbandonedBeforeAnyReview": "1000-character malformed typing attempt",
+  "noSavedCommandRepeated": true,
+  "time": 1791171576.332913
+}

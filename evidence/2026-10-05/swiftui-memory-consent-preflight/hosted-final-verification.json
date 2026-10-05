@@ -1,0 +1,35 @@
+{
+  "actualHostedExpiredApprovalRetained": {
+    "version": 1,
+    "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "approval": {
+      "id": "3298d95d-5f00-4646-b624-17b37ea02187",
+      "operationId": "d8a6a395-982b-4fef-b18a-7decc1097092",
+      "change": {
+        "memoryId": "c40112e2-d605-4565-b2ab-e2d84886ba65",
+        "expectedRevision": "0",
+        "content": "Fictional QA memory. Keep shared planning suggestions simple. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is temporary private test text, not a household instruction. This is tempo."
+      },
+      "status": "pending",
+      "expiresAt": "2026-10-05T04:05:28.981007+00:00"
+    }
+  },
+  "fullBeforeAfterEqual": true,
+  "bothActivePrivateMemoryListsEmpty": true,
+  "bothCompleteFinancialHistoriesEqual": true,
+  "eventCount": 61,
+  "financialPages": [50, 11],
+  "bothFinancialBalancesUnchanged": true,
+  "perMemberBaselineSHA256": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": "dcd3546ec9fb5cd5785d961e0176738abbfb01fa1c371be17af54963bf01bc6a",
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": "3ed4853a45626bbefc5bb2f9502e780fcad20d5d833ec4c2151fb5ae25f285cd"
+  },
+  "perMemberAfterSHA256": {
+    "791f7261-6c9d-4061-9c8a-57aa6e0b0200": "dcd3546ec9fb5cd5785d961e0176738abbfb01fa1c371be17af54963bf01bc6a",
+    "e5f80cfd-b69a-4aa0-a267-75784e943676": "3ed4853a45626bbefc5bb2f9502e780fcad20d5d833ec4c2151fb5ae25f285cd"
+  },
+  "started": 1791171133.8299663,
+  "finished": 1791173661.7385733,
+  "productionTouched": false
+}

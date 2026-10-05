@@ -141,3 +141,24 @@ Counts below include the explicitly stated skips; skipped hosted/presentation te
 Required completed native runs also pass strict Swift formatting, source limits and actual app signing. Initial chore/preflight/settings runs stopped on formatting findings and were corrected before passing execution. The handover disposable integration fixture initially lacked the current epoch RPC; existing epoch migrations plus an exact epoch assertion fixed it without changing application/RLS/production migrations. A sandbox child test did not establish real execution; the authorized isolated test runs do. Logs and boundaries remain in the evidence/archive.
 
 Backend worker source `01467d62` passes isolated routine/deep checks:13 core,50 conflict,1,223 database/RLS cases, zero failures/skips. Its disabled preview has no alias, schedules or jobs. Live activation is not verified. Controlled/injected transport, compilation, signing and SDK execution do not prove live model calls, actual taps or phone delivery.
+
+## Native private-memory consent — 5 October
+
+Source `bf0542d4` fixes named/keyboard controls, readable toolbar capsules and
+rectangular Edit/Remove targets stacked at accessibility sizes. Two focused native
+methods pass at the initial candidate; final source passes both required CI runs:
+Nest37257095087/SwiftUI37257095096,491 Foundation/41 explicit skips and409
+signed-native/11 explicit skips, zero failures, strict format/limits and signing.
+Actual normal/largest draft cancellation, exact proposal restart and separate
+save/edit/decline pass at unchanged editor/request source `49c526d6`. Final source
+passes normal/largest removal-alert Cancel, separate largest Edit/Cancel and one
+removal retaining revision3. Known populated approval/memory/receipt RLS denies
+partner/outsider/anonymous access; altered consent fails400 without saving.
+Original exact consent replay after removal returns its old receipt without
+resurrection. Both active lists/full61-event finances match baseline; ordinary
+Today/default display, stable test origins/data/Keychain and64 empty journals are
+restored. [Evidence](../evidence/2026-10-05/swiftui-private-memory-consent/README.md)
+records real input/corner/format failures and source-specific execution. Full-length
+editor/review, VoiceOver, hosted lost-reply/conflict/expiry/account-switch rendering,
+two native clients/phones and live AI remain. No model, beta, production action or
+merge; M1–M9 remain open. Available build16 is unchanged and older than this source.

@@ -358,41 +358,28 @@ The verified preference controls and exact CI evidence are retained in the
 and [native evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
 Whole cooking-keyboard readability and broader accessibility/phone/live-AI gates stay open.
 
-## Native private-memory consent — 5 October
+## Earlier private-memory consent
 
-Source `bf0542d4` fixes named/keyboard controls, readable toolbar capsules and
-rectangular Edit/Remove targets stacked at accessibility sizes. Two focused native
-methods pass at the initial candidate; final source passes both required CI runs:
-Nest37257095087/SwiftUI37257095096,491 Foundation/41 explicit skips and409
-signed-native/11 explicit skips, zero failures, strict format/limits and signing.
-Actual normal/largest draft cancellation, exact proposal restart and separate
-save/edit/decline pass at unchanged editor/request source `49c526d6`. Final source
-passes normal/largest removal-alert Cancel, separate largest Edit/Cancel and one
-removal retaining revision3. Known populated approval/memory/receipt RLS denies
-partner/outsider/anonymous access; altered consent fails400 without saving.
-Original exact consent replay after removal returns its old receipt without
-resurrection. Both active lists/full61-event finances match baseline; ordinary
-Today/default display, stable test origins/data/Keychain and64 empty journals are
-restored. [Evidence](../evidence/2026-10-05/swiftui-private-memory-consent/README.md)
-records real input/corner/format failures and source-specific execution. Full-length
-editor/review, VoiceOver, hosted lost-reply/conflict/expiry/account-switch rendering,
-two native clients/phones and live AI remain. No model, beta, production action or
-merge; M1–M9 remain open. Available build16 is unchanged and older than this source.
+Original save/edit/decline/removal and approval/receipt RLS checkpoints remain in [the 5 October history](progress-history-2026-10-05.md).
 
 ## Fresh private-memory consent and terminal recovery
 
-The old token-only consent gate demonstrably fails two real signed-native tests
-(38 assertions): offline and stale/expired proposals could stage a new decision.
-New source requires an online exact approval read before staging consent, with
-account fences and atomic SQLite binding checks. Reload updates only the same
-confirmed proposal; terminal or expired drafts can be explicitly dismissed locally.
-Uncertain decisions retain their exact retry command and cannot be discarded.
-Eight focused Foundation and eight signed-native methods pass with zero failures
-and no skips; all1,043 native inputs, strict formatting/limits and signing match.
-These controlled tests preserve the meaningful lost-reply/account-switch cases.
-Exact-source Nest37260096733/SwiftUI37260096762 pass:496 Foundation/41 skips,
-415 signed-native/11 skips, zero failures. Natural hosted expiry/rendering remains pending.
-Live Gateway eligibility, full accessibility/two clients/phones and M1–M9 acceptance
-remain open. No inference, beta, production action or merge occurred.
-
-A deadline-only follow-up now compiles/signs; held-open expiry and its own CI remain pending.
+Source `d96b9678` fixes the demonstrated token-only consent defect: two native
+regression methods fail38 assertions before the fix. Eight focused Foundation
+and eight signed-native methods pass, retaining lost-reply/account-switch checks.
+New consent needs a fresh exact online approval; canonical reload changes only
+the same confirmed proposal. Explicit terminal/expired dismissal preserves
+uncertain decisions and their exact retry command. Follow-up `d6189131` also
+updates the open view at expiry without changing rows or sending a command.
+Both commits pass their own routine/native CI; latest Nest37261862852 and
+SwiftUI37261862814 pass:496 Foundation/41 skips,415 native/11 skips,0 failures,
+strict format/limits/signing. A real1000-character native Paste/Review matches
+the private test-API proposal. Keyboard watchdogs,512-character observer bounds
+and the obsolete pre-expiry Save search remain honestly recorded. Actual held-open
+expiry, cold restart and one largest-text44pt corner Discard preserve approval
+history, both empty memory lists and exact full61-event finances/zero balances.
+All1,043 final inputs match. [Evidence](../evidence/2026-10-05/swiftui-memory-consent-preflight/README.md).
+Ordinary Today/default text/light/64 empty journals/data/Keychain restoration passes.
+VoiceOver/two clients/phones/live Gateway and M1–M9 acceptance remain open.
+Build16/PR85/provider gates are unchanged; no inference, beta, production action,
+source merge, purchase or automation occurred.

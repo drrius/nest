@@ -219,3 +219,20 @@ pass3e0d377b (491 Foundation/41 skips,409 signed-native/11 skips, zero failures)
 Full variable approvals,
 hosted uncertain cancellation/lost reply, accessibility/races/live AI/two clients
 and phones remain open. No M7 acceptance or new beta is claimed.
+
+## Fresh private-memory consent
+
+Sources `d96b9678`/`d6189131` require fresh exact online consent, preserve uncertain
+commands, refresh only the same canonical proposal and expose explicit expiry
+discard without a new command. Eight focused Foundation/eight signed-native
+methods and both commits' exact-source CI pass; latest496 Foundation/41 skips and
+415 native/11 skips,0 failures, strict format/limits/signing.
+[Evidence](../../evidence/2026-10-05/swiftui-memory-consent-preflight/README.md).
+A real1000-character native Paste/Review matches the hosted private proposal,
+with partner/outsider403 and anonymous401. Actual held-open expiry/cold restart
+and one largest-text corner Discard preserve approval history and both complete
+61-event finances/empty active memories. Observer failures and prefix limits are
+recorded separately; ordinary Today/default text/light/64 empty journals and
+data/Keychain restoration pass.
+Full VoiceOver/two native clients/phones/live AI and M1–M9 acceptance remain open.
+No inference, new beta, production mutation, purchase or merge occurred.
