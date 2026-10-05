@@ -8,6 +8,8 @@ Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work us
 
 **Latest private candidate: SwiftUI0.1.0/build16**, source `5a228bef`. Exact-source routine/native CI, the signed native archive/export and Apple VALID/IN_BETA_TESTING/unexpired checks pass. [Release evidence](../evidence/2026-10-04/swiftui-build16/README.md). Next owner action: update Nest in TestFlight and try the [short phone pass](native-rewrite/build16-first-phone-pass.md). Partner access, installation and phone/design acceptance are unverified. AI, scheduled posting/reminders and push remain inactive; production is untouched. Older candidate statements below are historical.
 
+Build17 is being prepared from the verified client; it is not yet archived, submitted or available. Build16 remains the installable candidate until Apple availability is verified.
+
 Detailed earlier slice checkpoints, including previous candidate numbers, remain in [the 4 October history](progress-history-2026-10-04.md). Later evidence below supersedes their pending states.
 
 ## Milestone checklist
