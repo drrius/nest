@@ -1,0 +1,128 @@
+function,actor,role,denied,reason,assertions
+register_push_subscription,,authenticated,True,absent-identity,{}
+register_push_subscription,1,anon,True,anonymous-execution,{}
+unregister_push_subscription,,authenticated,True,absent-identity,{}
+unregister_push_subscription,1,anon,True,anonymous-execution,{}
+enqueue_self_device_push_test,,authenticated,True,absent-identity,{}
+enqueue_self_device_push_test,1,anon,True,anonymous-execution,{}
+read_self_device_push_test,,authenticated,True,absent-identity,{}
+read_self_device_push_test,1,anon,True,anonymous-execution,{}
+mark_inbox_notifications_read,,authenticated,True,absent-identity,{}
+mark_inbox_notifications_read,1,anon,True,anonymous-execution,{}
+upsert_digest_preference,,authenticated,True,absent-identity,{}
+upsert_digest_preference,1,anon,True,anonymous-execution,{}
+pause_my_push_for_signout,,authenticated,True,absent-identity,{}
+pause_my_push_for_signout,1,anon,True,anonymous-execution,{}
+register_push_subscription,9923,authenticated,True,nonmember,{}
+enqueue_self_device_push_test,9923,authenticated,True,nonmember,{}
+read_self_device_push_test,9923,authenticated,True,nonmember,{}
+upsert_digest_preference,9923,authenticated,True,nonmember,{}
+pause_my_push_for_signout,9923,authenticated,True,nonmember,{}
+device_push_test_requests,1,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+push_outbox,1,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+device_push_test_requests,2,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+push_outbox,2,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+device_push_test_requests,9921,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+push_outbox,9921,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+device_push_test_requests,9923,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+push_outbox,9923,authenticated,True,private-test-or-dispatch-state-direct-read,{}
+register_push_subscription,1,authenticated,True,missing-endpoint,{}
+register_push_subscription,1,authenticated,True,blank-endpoint,{}
+register_push_subscription,1,authenticated,True,oversized-endpoint,{}
+register_push_subscription,1,authenticated,True,missing-key,{}
+register_push_subscription,1,authenticated,True,missing-auth,{}
+register_push_subscription,1,authenticated,True,oversized-key,{}
+register_push_subscription,1,authenticated,True,oversized-auth,{}
+unregister_push_subscription,1,authenticated,True,missing-endpoint,{}
+unregister_push_subscription,1,authenticated,True,blank-endpoint,{}
+unregister_push_subscription,1,authenticated,True,oversized-endpoint,{}
+upsert_digest_preference,1,authenticated,True,missing-enabled-state,{}
+upsert_digest_preference,1,authenticated,True,missing-time,{}
+enqueue_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+enqueue_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+enqueue_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+enqueue_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,1,authenticated,True,invalid-test-request,{}
+register_push_subscription,2,authenticated,True,missing-endpoint,{}
+register_push_subscription,2,authenticated,True,blank-endpoint,{}
+register_push_subscription,2,authenticated,True,oversized-endpoint,{}
+register_push_subscription,2,authenticated,True,missing-key,{}
+register_push_subscription,2,authenticated,True,missing-auth,{}
+register_push_subscription,2,authenticated,True,oversized-key,{}
+register_push_subscription,2,authenticated,True,oversized-auth,{}
+unregister_push_subscription,2,authenticated,True,missing-endpoint,{}
+unregister_push_subscription,2,authenticated,True,blank-endpoint,{}
+unregister_push_subscription,2,authenticated,True,oversized-endpoint,{}
+upsert_digest_preference,2,authenticated,True,missing-enabled-state,{}
+upsert_digest_preference,2,authenticated,True,missing-time,{}
+enqueue_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+enqueue_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+enqueue_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+enqueue_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+read_self_device_push_test,2,authenticated,True,invalid-test-request,{}
+register_push_subscription,2,authenticated,True,other-member-endpoint-takeover,{}
+register_push_subscription,9921,authenticated,True,other-member-endpoint-takeover,{}
+register_push_subscription,9923,authenticated,True,other-member-endpoint-takeover,{}
+read_self_device_push_test,1,authenticated,True,other-or-unknown-device-request,{}
+read_self_device_push_test,1,authenticated,True,other-or-unknown-device-request,{}
+read_self_device_push_test,1,authenticated,True,other-or-unknown-device-request,{}
+read_self_device_push_test,1,authenticated,True,other-or-unknown-device-request,{}
+enqueue_self_device_push_test,1,authenticated,True,other-member-device,{}
+enqueue_self_device_push_test,1,authenticated,True,other-member-device,{}
+enqueue_self_device_push_test,1,authenticated,True,other-member-request-id,{}
+enqueue_self_device_push_test,1,authenticated,True,disabled-device-new-test,{}
+enqueue_self_device_push_test,1,authenticated,True,one-minute-rate-limit,{}
+enqueue_self_device_push_test,1,authenticated,True,five-tests-rolling-day,{}
+read_self_device_push_test,2,authenticated,True,other-or-unknown-device-request,{}
+read_self_device_push_test,2,authenticated,True,other-or-unknown-device-request,{}
+read_self_device_push_test,2,authenticated,True,other-or-unknown-device-request,{}
+read_self_device_push_test,2,authenticated,True,other-or-unknown-device-request,{}
+enqueue_self_device_push_test,2,authenticated,True,other-member-device,{}
+enqueue_self_device_push_test,2,authenticated,True,other-member-device,{}
+enqueue_self_device_push_test,2,authenticated,True,other-member-request-id,{}
+enqueue_self_device_push_test,2,authenticated,True,disabled-device-new-test,{}
+enqueue_self_device_push_test,2,authenticated,True,one-minute-rate-limit,{}
+enqueue_self_device_push_test,2,authenticated,True,five-tests-rolling-day,{}
+enqueue_self_device_push_test,1,authenticated,True,same-member-different-device-retry,{}
+enqueue_self_device_push_test,1,authenticated,True,device-deletion-preserves-quota,{}
+register_push_subscription,1,authenticated,False,explicit-reenable-own-endpoint-repeat,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""matches"": 1}}, ""results"": [{""disabled"": false, ""subscription_id"": ""00000000-0000-4000-8000-000000009931""}, {""disabled"": false, ""subscription_id"": ""00000000-0000-4000-8000-000000009931""}]}"
+register_push_subscription,1,authenticated,False,new-endpoint-repeat-one-row,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""matches"": 1}}, ""results"": [{""disabled"": false, ""subscription_id"": ""e55d9e22-9dfc-4b08-a8d1-f857a58468cc""}, {""disabled"": false, ""subscription_id"": ""e55d9e22-9dfc-4b08-a8d1-f857a58468cc""}]}"
+unregister_push_subscription,1,authenticated,False,disable-own-endpoint-repeat-keeps-record,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""disabled"": true, ""retained"": 1}}, ""results"": [{""disabled"": 1}, {""disabled"": 1}]}"
+pause_my_push_for_signout,1,authenticated,False,all-own-devices-only-pause-retains-old-receipt,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""enabledOwn"": 0, ""outboxUnchanged"": true}}, ""results"": [{""disabled"": 2}, {""disabled"": 0}, {""id"": ""00000000-0000-4000-8000-000000009945"", ""status"": ""queued""}]}"
+enqueue_self_device_push_test,1,authenticated,False,one-private-request-repeat-no-inbox-activity,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""inboxUnchanged"": true, ""outbox"": 1, ""requests"": 1}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}, {""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}, {""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}]}"
+read_self_device_push_test,1,authenticated,False,status-envelope-pending,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009945"", ""status"": ""queued""}]}"
+read_self_device_push_test,1,authenticated,False,status-envelope-sent,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009945"", ""status"": ""accepted""}]}"
+read_self_device_push_test,1,authenticated,False,status-envelope-failed,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009945"", ""status"": ""failed""}]}"
+read_self_device_push_test,1,authenticated,False,status-envelope-skipped_no_subscription,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009945"", ""status"": ""failed""}]}"
+mark_inbox_notifications_read,1,authenticated,False,mixed-tenant-ids-mark-only-self,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""oldReadPreserved"": false, ""read"": true}}, ""results"": [{""marked"": 1}, {""marked"": 1}]}"
+mark_inbox_notifications_read,1,authenticated,False,repeat-preserves-earlier-read-time,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""oldReadPreserved"": true, ""read"": true}}, ""results"": [{""marked"": 1}, {""marked"": 1}]}"
+upsert_digest_preference,1,authenticated,False,self-only-preference-repeat-no-native-opt-in,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""preferences"": [{""enabled"": false, ""time"": ""06:45:00""}]}}, ""results"": [{""enabled"": false, ""household_id"": ""00000000-0000-4000-8000-000000000010"", ""local_time"": ""06:45:00"", ""member_id"": ""00000000-0000-4000-8000-000000000001""}, {""enabled"": false, ""household_id"": ""00000000-0000-4000-8000-000000000010"", ""local_time"": ""06:45:00"", ""member_id"": ""00000000-0000-4000-8000-000000000001""}]}"
+register_push_subscription,2,authenticated,False,explicit-reenable-own-endpoint-repeat,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""matches"": 1}}, ""results"": [{""disabled"": false, ""subscription_id"": ""00000000-0000-4000-8000-000000009932""}, {""disabled"": false, ""subscription_id"": ""00000000-0000-4000-8000-000000009932""}]}"
+register_push_subscription,2,authenticated,False,new-endpoint-repeat-one-row,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""matches"": 1}}, ""results"": [{""disabled"": false, ""subscription_id"": ""7e516a66-08d2-4d81-9c0a-619147cdb4a1""}, {""disabled"": false, ""subscription_id"": ""7e516a66-08d2-4d81-9c0a-619147cdb4a1""}]}"
+unregister_push_subscription,2,authenticated,False,disable-own-endpoint-repeat-keeps-record,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""disabled"": true, ""retained"": 1}}, ""results"": [{""disabled"": 1}, {""disabled"": 1}]}"
+pause_my_push_for_signout,2,authenticated,False,all-own-devices-only-pause-retains-old-receipt,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""enabledOwn"": 0, ""outboxUnchanged"": true}}, ""results"": [{""disabled"": 1}, {""disabled"": 0}, {""id"": ""00000000-0000-4000-8000-000000009946"", ""status"": ""queued""}]}"
+enqueue_self_device_push_test,2,authenticated,False,one-private-request-repeat-no-inbox-activity,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""inboxUnchanged"": true, ""outbox"": 1, ""requests"": 1}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}, {""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}, {""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}]}"
+read_self_device_push_test,2,authenticated,False,status-envelope-pending,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009946"", ""status"": ""queued""}]}"
+read_self_device_push_test,2,authenticated,False,status-envelope-sent,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009946"", ""status"": ""accepted""}]}"
+read_self_device_push_test,2,authenticated,False,status-envelope-failed,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009946"", ""status"": ""failed""}]}"
+read_self_device_push_test,2,authenticated,False,status-envelope-skipped_no_subscription,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009946"", ""status"": ""failed""}]}"
+mark_inbox_notifications_read,2,authenticated,False,mixed-tenant-ids-mark-only-self,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""oldReadPreserved"": false, ""read"": true}}, ""results"": [{""marked"": 1}, {""marked"": 1}]}"
+mark_inbox_notifications_read,2,authenticated,False,repeat-preserves-earlier-read-time,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""oldReadPreserved"": true, ""read"": true}}, ""results"": [{""marked"": 1}, {""marked"": 1}]}"
+upsert_digest_preference,2,authenticated,False,self-only-preference-repeat-no-native-opt-in,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""preferences"": [{""enabled"": false, ""time"": ""06:45:00""}]}}, ""results"": [{""enabled"": false, ""household_id"": ""00000000-0000-4000-8000-000000000010"", ""local_time"": ""06:45:00"", ""member_id"": ""00000000-0000-4000-8000-000000000002""}, {""enabled"": false, ""household_id"": ""00000000-0000-4000-8000-000000000010"", ""local_time"": ""06:45:00"", ""member_id"": ""00000000-0000-4000-8000-000000000002""}]}"
+unregister_push_subscription,2,authenticated,False,other-endpoint-inert,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""disabled"": 0}]}"
+unregister_push_subscription,9921,authenticated,False,other-endpoint-inert,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""disabled"": 0}]}"
+unregister_push_subscription,9923,authenticated,False,other-endpoint-inert,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""disabled"": 0}]}"
+mark_inbox_notifications_read,9921,authenticated,False,foreign-or-nonmember-mark-inert,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""marked"": 0}]}"
+mark_inbox_notifications_read,9923,authenticated,False,foreign-or-nonmember-mark-inert,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""marked"": 0}]}"
+mark_inbox_notifications_read,1,authenticated,False,empty-and-null-ids-inert,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""marked"": 0}, {""marked"": 0}]}"
+notification-table-RLS,1,authenticated,False,self-only-row-visibility,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""foreignInbox"": 0, ""foreignPreferences"": 0, ""foreignSubscriptions"": 0, ""knownInbox"": 1, ""preferences"": 1, ""subscriptions"": 2}]}"
+notification-table-RLS,2,authenticated,False,self-only-row-visibility,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""foreignInbox"": 0, ""foreignPreferences"": 0, ""foreignSubscriptions"": 0, ""knownInbox"": 1, ""preferences"": 1, ""subscriptions"": 1}]}"
+notification-table-RLS,9921,authenticated,False,self-only-row-visibility,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""foreignInbox"": 0, ""foreignPreferences"": 0, ""foreignSubscriptions"": 0, ""knownInbox"": 1, ""preferences"": 1, ""subscriptions"": 1}]}"
+notification-table-RLS,9923,authenticated,False,self-only-row-visibility,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {}}, ""results"": [{""foreignInbox"": 0, ""foreignPreferences"": 0, ""foreignSubscriptions"": 0, ""knownInbox"": 0, ""preferences"": 0, ""subscriptions"": 0}]}"
+enqueue_self_device_push_test,1,authenticated,False,bounded-owner-cleanup-preserves-live-claims-and-partner,"{""observed"": {""financialUnchanged"": true, ""nativeDevices"": 0, ""nativePreferences"": 0, ""otherStateUnchanged"": true, ""state"": {""expiredOwnRemoved"": true, ""liveOwnPreserved"": true, ""oldPartnerPreserved"": true, ""ownOldQuotaRemoved"": true}}, ""results"": [{""id"": ""00000000-0000-4000-8000-000000009948"", ""status"": ""queued""}]}"

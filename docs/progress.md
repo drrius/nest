@@ -127,7 +127,7 @@ Money offline read persistence is implemented for balance, visited history pages
 The owner-facing [remaining-work checklist](native-rewrite/remaining-work.md) groups the outstanding outcomes into financial completion, native usability, live integrations and a current private build. Most daily surfaces exist; neither test counts nor implementation alone establish final acceptance.
 
 1. Continue complete two-member Money/approval/recurring, meal, chore, settings and offline-conflict journeys on current source. The checkpoints below and dated history are bounded evidence; keep the ordinary app restored after owned fixture checks.
-2. Continue acceptance against the [action source map](native-rewrite/action-inventory.md), thirteen listed retained public entries and broader private helpers/races/external writers. Prove full two-member approval/retry/privacy and Quiet interactions; implemented source is not completion.
+2. Continue acceptance against the [action source map](native-rewrite/action-inventory.md), six listed retained public entries and broader private helpers/races/external writers. Prove full two-member approval/retry/privacy and Quiet interactions; implemented source is not completion.
 3. After exact provider prerequisites/approval arrive, verify bounded live AI and isolated APNs/worker behavior; keep production untouched.
 4. Obtain both-phone/design acceptance of the already-available build17; batch further candidates only when verified changes justify them. Prepare a concrete release/cutover package only after all remaining gates pass.
 
@@ -383,15 +383,17 @@ The98-case retained financial-context/opening audit and passing source CI are
 preserved in [the dated history](progress-history-2026-10-05.md#retained-financial-context-and-opening-balances).
 Its inventory count is superseded below; full acceptance remains open.
 
-## Retained recurring-command boundaries
+The144-case retained recurring audit and passing CI are [in the dated history](progress-history-2026-10-05.md#retained-recurring-command-boundaries).
 
-Six retained commands pass144 full-chain cases:132 refusals and12 member flows.
-Actual authorization, version/retry, adopted-source guards, month-end draft-only
-generation and one zero-sum ordinary confirmation preserve original financial,
-recurring, receipt and excluded records. Eleven hosted read-only body/grant rows
-match the305-migration fixture. Strict scoped checks and routine CI37289460002
-pass source `aa005b1e`.
-[Evidence](../evidence/2026-10-05/legacy-recurring-boundaries/README.md).
-The unique60-entry inventory records47 bounded reviews and13 pending. Broader
-helpers/races/hosted interfaces/external writers and all M1–M9 acceptance remain.
-No migration, scheduled posting, live AI, production, release or merge occurred.
+## Retained notification privacy and device boundaries
+
+Seven entries pass127 full-chain cases:92 refusals and35 member/RLS flows.
+The audit found legacy digest reads exposed partner settings. A policy-only
+migration now enforces owner reads in nest-test, preserving write policies/data.
+Both hosted members see only their temporary preference; an outsider sees none.
+Rollback restores the original zero-row digest; no new security notices appear.
+Seven hosted bodies/grants and all three policies match the306-migration fixture.
+[Evidence](../evidence/2026-10-05/legacy-notification-boundaries/README.md).
+Scoped checks pass; new routine CI pending. The unique60-entry inventory has54 bounded entries and6 pending. Broader helpers/races/hosted interfaces/old
+writers, M1–M9, live AI, native push and both-phone acceptance remain open.
+No dispatch, new binary/release, production change, purchase or merge occurred.

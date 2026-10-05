@@ -260,3 +260,16 @@ chain. Routine CI37287967042 passes source `ff31623e`.
 The unique60-entry inventory records41 bounded reviews and19 pending, correcting
 older totals that counted overlapping calendar reviews. Private helpers, races,
 hosted Auth/Storage, external writers and full M9 remain; no migration was needed.
+
+## Retained recurring-command boundaries
+
+Six retained commands pass144 full-chain cases:132 refusals and12 member flows.
+Actual authorization, version/retry, adopted-source guards, month-end draft-only
+generation and one zero-sum ordinary confirmation preserve original financial,
+recurring, receipt and excluded records. Eleven hosted read-only body/grant rows
+match the305-migration fixture. Strict scoped checks and routine CI37289460002
+pass source `aa005b1e`.
+[Evidence](../evidence/2026-10-05/legacy-recurring-boundaries/README.md).
+The unique60-entry inventory records47 bounded reviews and13 pending. Broader
+helpers/races/hosted interfaces/external writers and all M1–M9 acceptance remain.
+No migration, scheduled posting, live AI, production, release or merge occurred.

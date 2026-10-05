@@ -1,0 +1,14 @@
+[
+  {
+    "reason": "Initial fixed-count fixture assumption; later corrected to compare complete inbox/outbox snapshots.",
+    "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n+   inbox: 5,\n-   inbox: 3,\n    outbox: 1,\n    requests: 1\n  }\n",
+    "appliedMigrations": 305,
+    "reportSha256": "cc44118be9188bf59b9cd88375ec09f676f232d66d35c487d7e3b24aaa216207"
+  },
+  {
+    "reason": "Actual retained cross-partner preference exposure before the owner-read migration.",
+    "error": "Expected values to be strictly deep-equal:\n+ actual - expected\n\n  {\n    foreignInbox: 0,\n+   foreignPreferences: 1,\n-   foreignPreferences: 0,\n    foreignSubscriptions: 0,\n    knownInbox: 1,\n+   preferences: 2,\n-   preferences: 1,\n    subscriptions: 2\n  }\n",
+    "appliedMigrations": 305,
+    "reportSha256": "84ec25932db3da36d11837d9ea9923cf1aad92f6d5f55bf2c1b030335047b84d"
+  }
+]

@@ -295,3 +295,15 @@ Eleven hosted catalog rows match. [Evidence](../../evidence/2026-10-05/legacy-re
 The unique inventory now records47 bounded entries/13 pending; broader private
 helpers/concurrency/hosted interfaces/external writers and full M9 remain open.
 Scoped checks and routine CI37289460002 pass `aa005b1e`. No worker, model call or production change.
+
+## Retained notification privacy correction
+
+Seven entries pass127 full-chain cases:92 refusals/35 flows. The existing legacy
+SELECT policy exposed partner digest settings; the new owner-read policy is
+applied to nest-test only, retaining values and INSERT/UPDATE policies. Populated
+hosted member/outsider RLS passes inside a rolled-back fixture, restoring the
+zero-row digest. Seven function bodies/grants and three policies match; security
+advisors add no notices. [Evidence](../../evidence/2026-10-05/legacy-notification-boundaries/README.md).
+The unique inventory now has54 bounded entries/6 pending. Broader helpers/races,
+external writers, actual APNs delivery/live AI/phones and full M9 remain open.
+Scoped checks pass; new CI pending. Production, workers and the binary are unchanged.
