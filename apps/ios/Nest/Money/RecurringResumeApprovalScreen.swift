@@ -47,7 +47,7 @@ struct RecurringResumeApprovalScreen: View {
             if phase == .active { Task { await model.load() } }
         }
         .alert(
-            choice == true ? "Resume rule?" : "Decline resumption?",
+            choice == true ? "Resume rule?" : "Decline change?",
             isPresented: Binding(get: { choice != nil }, set: { if !$0 { choice = nil } })
         ) {
             if let choice {
