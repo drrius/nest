@@ -126,8 +126,14 @@ validation, intended reload alerts and explicit cancellation for both food/cooki
 restored original values, largest portion corner and unchanged canonical profiles/
 setup/full61-event finance. The final semantic cooking label, all1,041 source hashes,
 format/limits/signing and both exact-source CI workflows pass at `9adbc3eb`.
-Whole multiline cooking-keyboard readability, restriction/dislike corners, rejected
-recovery rendering, VoiceOver, broader onboarding/partner native/phones/live AI remain.
+Restriction/dislike corners, rejected recovery rendering, VoiceOver, broader
+onboarding/partner native/phones/live AI remain. The later cooking-editor pass
+now shows full final notes/cursor above the keyboard at normal and maximum text,
+with native Back/reopen restoring original preferences and64 empty journals.
+Three UIKit/input and five preference model methods pass; all seven hosted
+profile/receipt/full-finance aggregate hashes remain unchanged. Source `2ffc3504`
+passes routine CI37278013369; full native CI37278013379 is running.
+[Keyboard evidence](../../evidence/2026-10-05/swiftui-preference-keyboard-readability/README.md).
 [Evidence](../../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
 
 Private memory now has actual separate-test native proposal/restart, explicit
