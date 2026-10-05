@@ -102,6 +102,11 @@ private actor MemoryTestServer {
             data = try JSONEncoder().encode(
                 MemoryApprovalEnvelope(
                     version: 1, actorId: member.userId, householdId: member.householdId, approval: proposal!))
+        case "/v1/memories/approval":
+            guard let proposal else { throw NestAPIFailure.contract }
+            data = try JSONEncoder().encode(
+                MemoryApprovalEnvelope(
+                    version: 1, actorId: member.userId, householdId: member.householdId, approval: proposal))
         case "/v1/memories/decide":
             data = try decide(request)
         case "/v1/memories/remove":

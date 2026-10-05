@@ -32,7 +32,11 @@ final class MemoryRecoveryTests: XCTestCase {
             try await reopened.finishMemoryRequest(operation: command.operationId, lease: current)
             XCTFail("Lost pending proposal")
         } catch {}
-        try await reopened.decideSavedMemoryProposal(approved: false, lease: current)
+        try await reopened.decideSavedMemoryProposal(
+            approved: false,
+            approval: MemoryApprovalEnvelope(
+                version: 1, actorId: member.userId, householdId: member.householdId, approval: approval),
+            lease: current)
         let decided = try await reopened.readMemoryRequest(lease: current)
         guard case .decision(let decision) = decided?.request else { return XCTFail("Missing separate decision") }
         XCTAssertFalse(decision.approved)

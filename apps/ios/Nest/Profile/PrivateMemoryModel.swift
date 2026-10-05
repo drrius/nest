@@ -27,6 +27,8 @@ final class PrivateMemoryModel: ObservableObject {
             if let approvalId, saved?.approvalId != approvalId {
                 notice = "Finish your saved memory request before opening another proposal."
             }
+            try await session.refreshSavedMemoryProposal(context)
+            saved = try await session.savedMemoryRequest(context)
             let result = try await session.readMemories(context.account)
             memories = result.memories
             loaded = true

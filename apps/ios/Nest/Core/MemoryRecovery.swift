@@ -112,12 +112,26 @@ extension ChoreOfflineStore {
         try db.run("INSERT INTO memory_requests(actor,household,body) VALUES(?,?,?)", lease.scope + [body])
     }
 
-    /// A proposal is only a draft. Choosing its exact text starts a separate decision.
-    func decideSavedMemoryProposal(approved: Bool, lease: OfflineLease) throws {
+    func refreshMemoryProposal(_ envelope: MemoryApprovalEnvelope, lease: OfflineLease) throws {
+        guard var saved = try readMemoryRequest(lease: lease), case .proposal = saved.request,
+            case .proposal(let previous) = saved.response,
+            envelope.approval.hasSameTerms(as: previous.approval)
+        else { throw OfflineFailure.invalidOperation }
+        saved.response = .proposal(envelope)
+        try writeMemoryRequest(saved, lease: lease)
+    }
+
+    /// A fresh, exact proposal is only a draft. Consent starts a separate decision.
+    func decideSavedMemoryProposal(
+        approved: Bool, approval: MemoryApprovalEnvelope, lease: OfflineLease
+    ) throws {
         guard let saved = try readMemoryRequest(lease: lease),
             case .proposal(let envelope) = saved.response,
-            [.pending, .approved].contains(envelope.approval.status)
+            approval.approval.hasSameTerms(as: envelope.approval), approval.approval.canDecide()
         else { throw OfflineFailure.invalidOperation }
+        try MemoryResponse.proposal(approval).validate(
+            request: saved.request,
+            member: VerifiedMember(userId: lease.actor, householdId: lease.household, displayName: ""))
         let command = DecideMemory(approval: envelope.approval, approved: approved)
         try writeMemoryRequest(SavedMemoryRequest(request: .decision(command)), lease: lease)
     }
@@ -135,7 +149,7 @@ extension ChoreOfflineStore {
             saved.response != nil || saved.rejected
         else { throw OfflineFailure.invalidOperation }
         if case .proposal(let envelope) = saved.response {
-            guard [.denied, .consumed].contains(envelope.approval.status) else {
+            guard [.denied, .consumed].contains(envelope.approval.status) || envelope.approval.isExpired() else {
                 throw OfflineFailure.invalidOperation
             }
         }

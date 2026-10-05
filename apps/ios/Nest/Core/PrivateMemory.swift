@@ -52,6 +52,20 @@ struct MemoryApproval: Codable, Equatable, Sendable {
     let change: MemoryChange
     let status: Status
     let expiresAt: String
+
+    func hasSameTerms(as other: Self) -> Bool {
+        id == other.id && operationId == other.operationId && change == other.change
+    }
+
+    func isExpired(at now: Date = .now) -> Bool {
+        guard let deadline = AssistantTimestamp.date(expiresAt) else { return false }
+        return deadline <= now
+    }
+
+    func canDecide(at now: Date = .now) -> Bool {
+        guard let deadline = AssistantTimestamp.date(expiresAt) else { return false }
+        return [.pending, .approved].contains(status) && now < deadline
+    }
 }
 
 struct MemoryApprovalEnvelope: Codable, Sendable {

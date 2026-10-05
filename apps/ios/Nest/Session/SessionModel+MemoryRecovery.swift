@@ -49,9 +49,25 @@ extension SessionModel {
     }
 
     func decideSavedMemory(approved: Bool, context: MemoryContext) async throws {
-        _ = try await assistantToken(context.account)
+        guard let saved = try await savedMemoryRequest(context), case .proposal(let expected) = saved.response else {
+            throw OfflineFailure.invalidOperation
+        }
+        let current = try await readMemoryApproval(context.account, id: expected.approval.id)
+        guard current.approval.hasSameTerms(as: expected.approval), current.approval.canDecide()
+        else { throw NestAPIFailure.conflict }
         guard let offline else { throw NestAPIFailure.configuration }
-        try await offline.decideSavedMemoryProposal(approved: approved, lease: context.lease)
+        try await offline.decideSavedMemoryProposal(approved: approved, approval: current, lease: context.lease)
+        try requireAssistantAccount(context.account)
+    }
+
+    func refreshSavedMemoryProposal(_ context: MemoryContext) async throws {
+        guard let saved = try await savedMemoryRequest(context), case .proposal(let expected) = saved.response else {
+            return
+        }
+        let current = try await readMemoryApproval(context.account, id: expected.approval.id)
+        guard current.approval.hasSameTerms(as: expected.approval) else { throw NestAPIFailure.conflict }
+        guard let offline else { throw NestAPIFailure.configuration }
+        try await offline.refreshMemoryProposal(current, lease: context.lease)
         try requireAssistantAccount(context.account)
     }
 

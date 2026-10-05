@@ -33,7 +33,18 @@ struct MemoryRequestSection: View {
     @ViewBuilder private func result(_ response: MemoryResponse) -> some View {
         switch response {
         case .proposal(let envelope):
-            if [.pending, .approved].contains(envelope.approval.status) {
+            if [.denied, .consumed].contains(envelope.approval.status) {
+                Text("This proposal has already been decided. Reload to see your current memory.")
+                done
+            } else if envelope.approval.isExpired() {
+                Text("This proposal has expired. Discard it and reload your current memories.")
+                Text(envelope.approval.change.content).textSelection(.enabled)
+                Button {
+                    Task { await model.finish(session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Discard expired proposal")
+                }
+            } else {
                 Text("Review the exact text before saving it to your private memory.")
                 Text(envelope.approval.change.content).textSelection(.enabled)
                 Button {
@@ -46,9 +57,6 @@ struct MemoryRequestSection: View {
                 } label: {
                     QuietActionLabel("Don’t save")
                 }
-            } else {
-                Text("This proposal has already been decided. Reload to see your current memory.")
-                done
             }
         case .decision(let envelope):
             Text(envelope.decision.status == "consumed" ? "Memory saved." : "Memory was not saved.")

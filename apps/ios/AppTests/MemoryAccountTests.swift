@@ -39,7 +39,10 @@ final class MemoryAccountTests: XCTestCase {
         try await store.importMemoryProposal(
             .init(version: 1, actorId: member.userId, householdId: member.householdId, approval: approval),
             lease: context.lease)
-        try await store.decideSavedMemoryProposal(approved: true, lease: context.lease)
+        try await store.decideSavedMemoryProposal(
+            approved: true,
+            approval: .init(version: 1, actorId: member.userId, householdId: member.householdId, approval: approval),
+            lease: context.lease)
         let request = Task { try await session.retryMemoryRequest(context) }
         await server.waitForRequest()
         await session.signOut()
