@@ -274,7 +274,8 @@ No inference, new beta, production mutation, purchase or merge occurred.
 
 Four additional legacy entries now pass98 rolled-back full-chain cases, including
 opening-balance reset refusal, contextual posting retries, stale associations and
-complete correction/refund pagination. Eleven hosted signatures/body hashes/grants
+complete correction/refund pagination. Exact-source routine CI37287967042 passes
+`ff31623e`. Eleven hosted signatures/body hashes/grants
 match tested source; original finance/receipts/excluded records remain exact.
 [Evidence](../../evidence/2026-10-05/legacy-context-boundaries/README.md).
 A unique-signature inventory corrects overlapping earlier counts:41 of60 legacy
