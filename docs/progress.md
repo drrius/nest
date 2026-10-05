@@ -367,17 +367,7 @@ VoiceOver/two clients/phones/live Gateway and M1–M9 acceptance remain open.
 Build16/PR85/provider gates are unchanged; no inference, beta, production action,
 source merge, purchase or automation occurred.
 
-## Retained shopping authorization
-
-The full305-migration disposable chain passes133 new shopping-boundary cases
-(115 refusals,18 member flows). Both-member session ownership, foreign references,
-terminal states, exact retries and pending-draft-only purchase completion pass;
-complete original grocery/session/receipt/financial state is retained. Seven
-public definitions/two helpers match hosted read-only hashes/grants. Local
-PostgreSQL18.6 is distinct from hosted17.6; Auth/Storage remain simulated.
-[Evidence](../evidence/2026-10-05/legacy-shopping-boundaries/README.md).
-Twenty-three legacy entries/deeper helpers and broader M9 acceptance remain.
-No native, provider, worker, production, merge or release action occurred.
+The retained shopping audit is preserved in [the dated history](progress-history-2026-10-05.md#retained-shopping-authorization).
 
 The bounded cooking-editor keyboard fix and complete native/routine CI are
 preserved in [the dated history](progress-history-2026-10-05.md#cooking-notes-keyboard-readability).
@@ -387,4 +377,15 @@ in [the dated history](progress-history-2026-10-05.md#private-composer-keyboard)
 
 The92-case retained calendar-sync audit, hosted read-only matches and passing
 routine CI are preserved in [the dated history](progress-history-2026-10-05.md#retained-calendar-sync-authorization).
-Eighteen other legacy entries/deeper helpers and broader M9 gates remain.
+The older count is superseded by the unique inventory below; broader M9 stays open.
+
+## Retained financial context and opening balances
+
+Four legacy entries pass98 full-chain SQL cases:84 refusals and14 member flows.
+Opening/retry, foreign context, stale association, zero-sum ledger and complete
+lineage pagination checks preserve original finance/receipts/excluded records.
+Eleven hosted read-only function/hash/grant rows match the tested305-migration
+chain. [Evidence](../evidence/2026-10-05/legacy-context-boundaries/README.md).
+The unique60-entry inventory records41 bounded reviews and19 pending, correcting
+older totals that counted overlapping calendar reviews. Private helpers, races,
+hosted Auth/Storage, external writers and full M9 remain; no migration was needed.

@@ -269,3 +269,16 @@ recorded separately; ordinary Today/default text/light/64 empty journals and
 data/Keychain restoration pass.
 Full VoiceOver/two native clients/phones/live AI and M1–M9 acceptance remain open.
 No inference, new beta, production mutation, purchase or merge occurred.
+
+## Unique retained financial-entry review
+
+Four additional legacy entries now pass98 rolled-back full-chain cases, including
+opening-balance reset refusal, contextual posting retries, stale associations and
+complete correction/refund pagination. Eleven hosted signatures/body hashes/grants
+match tested source; original finance/receipts/excluded records remain exact.
+[Evidence](../../evidence/2026-10-05/legacy-context-boundaries/README.md).
+A unique-signature inventory corrects overlapping earlier counts:41 of60 legacy
+public definers have bounded evidence,19 remain pending. Recurring legacy RPCs,
+notifications and excluded-record commands remain listed explicitly; broader
+helpers/races/hosted interfaces/external writers and M9 stay open. No new migration,
+hosted mutation, native execution, provider call or release occurred.

@@ -1,0 +1,112 @@
+[
+  {
+    "schema": "public",
+    "name": "assign_expense_context",
+    "signature": "assign_expense_context(uuid,uuid,uuid,uuid,text,uuid,uuid)",
+    "bodySha256": "9ee385e987c7fd7ffee2489bd11545657c916451dc3c80fa94f0e3d2ce1144be",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "public",
+    "name": "establish_opening_balance",
+    "signature": "establish_opening_balance(uuid,uuid,bigint,date,text,text,text)",
+    "bodySha256": "64f7c6b54e0245f18acac6df4c37d897d1878ffed13f0051be28d0c895fa9393",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "private",
+    "name": "get_money_command_result",
+    "signature": "private.get_money_command_result(uuid,text,text,jsonb)",
+    "bodySha256": "8a19b8a1a34f2a946d88c9f65449148a5c2ab68f004f2955641011f4fb81d183",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  },
+  {
+    "schema": "private",
+    "name": "other_household_member",
+    "signature": "private.other_household_member(uuid,uuid)",
+    "bodySha256": "cd5ca9c3d57654f2ff7ed39d844fdc5e7db4f9ef3eaec558dc7131e7e806c0a0",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  },
+  {
+    "schema": "public",
+    "name": "post_contextual_expense",
+    "signature": "post_contextual_expense(uuid,text,bigint,uuid,jsonb,date,text,text,uuid,uuid,text,text,uuid)",
+    "bodySha256": "e8fa79188453dfb58e4b9f7b397b7a763915d2656fc8e144eb8d644ece4d307a",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "private",
+    "name": "post_financial_event",
+    "signature": "private.post_financial_event(uuid,uuid,text,uuid,text,bigint,jsonb,date,uuid,uuid,text,text,uuid,uuid,text)",
+    "bodySha256": "1de34def7775448d2d1439b9d321a2041e962d763e6d87832e88cb496de0d388",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  },
+  {
+    "schema": "public",
+    "name": "read_household_cost_context",
+    "signature": "read_household_cost_context(text,uuid,integer,date,uuid,uuid)",
+    "bodySha256": "093a48c7dd6f1138283025607210a621061486abe219a2c8ccfb3f89bba56f55",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": true
+  },
+  {
+    "schema": "private",
+    "name": "require_money_actor",
+    "signature": "private.require_money_actor(uuid)",
+    "bodySha256": "ba8dc055e4ddff84485b2bed55ad2adc960502e5582f32b8ab9b60cc7b3c207b",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  },
+  {
+    "schema": "private",
+    "name": "revise_expense_context_link",
+    "signature": "private.revise_expense_context_link()",
+    "bodySha256": "82be5d7ce3c586a1aa95b30e002f2ecaf8ce407dffc294ae57657d83c9c15814",
+    "securityDefiner": false,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  },
+  {
+    "schema": "private",
+    "name": "store_money_command_result",
+    "signature": "private.store_money_command_result(uuid,text,text,jsonb,jsonb)",
+    "bodySha256": "c7aba420b468a55e29ab1d720cb4a2129ae236f20df8f1156e5a271b4100c05c",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  },
+  {
+    "schema": "private",
+    "name": "validate_money_allocations",
+    "signature": "private.validate_money_allocations(uuid,bigint,jsonb)",
+    "bodySha256": "236fc3dcc4b3a1e6bfb5af0af13318522977ddc44aa42e6d0f605916beaf6187",
+    "securityDefiner": true,
+    "config": ["search_path=\"\""],
+    "anonymousExecute": false,
+    "authenticatedExecute": false
+  }
+]

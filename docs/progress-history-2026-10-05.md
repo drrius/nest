@@ -236,3 +236,15 @@ routine CI37284161367 passes source `c36b52b1`. Eighteen other public legacy
 entries/deeper helpers, concurrent leases/external writers and full M9 remain.
 [Evidence](../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
 No provider/worker/phone/beta/production/purchase/merge/automation action occurs.
+
+## Retained shopping authorization
+
+The full305-migration disposable chain passes133 new shopping-boundary cases
+(115 refusals,18 member flows). Both-member session ownership, foreign references,
+terminal states, exact retries and pending-draft-only purchase completion pass;
+complete original grocery/session/receipt/financial state is retained. Seven
+public definitions/two helpers match hosted read-only hashes/grants. Local
+PostgreSQL18.6 is distinct from hosted17.6; Auth/Storage remain simulated.
+[Evidence](../evidence/2026-10-05/legacy-shopping-boundaries/README.md).
+Twenty-three legacy entries/deeper helpers and broader M9 acceptance remain.
+No native, provider, worker, production, merge or release action occurred.
