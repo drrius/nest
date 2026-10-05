@@ -1,0 +1,156 @@
+{
+  "sourceApp": "039b62b066db6eab4aa546e430fe58fdf830c710",
+  "testedControls": [
+    "Read-only Calendar explanation",
+    "Full Access explanation",
+    "Allow calendar access button, not pressed"
+  ],
+  "configurations": [
+    {
+      "size": "extra-small",
+      "observedSize": "extra-Small",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 285.5, 343, 66],
+        [16, 351.5, 343, 60.5],
+        [16, 412, 343, 49]
+      ]
+    },
+    {
+      "size": "small",
+      "observedSize": "Small",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 290, 343, 68],
+        [16, 358, 343, 64],
+        [16, 422, 343, 50]
+      ]
+    },
+    {
+      "size": "medium",
+      "observedSize": "medium",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 293, 343, 70.5],
+        [16, 363.5, 343, 66],
+        [16, 429.5, 343, 51]
+      ]
+    },
+    {
+      "size": "large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 296.5, 343, 94.5],
+        [16, 391, 343, 68],
+        [16, 459, 343, 52]
+      ]
+    },
+    {
+      "size": "extra-large",
+      "observedSize": "extra-large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 303.5, 343, 101],
+        [16, 404.5, 343, 72.5],
+        [16, 477, 343, 54]
+      ]
+    },
+    {
+      "size": "extra-extra-large",
+      "observedSize": "extra-extra-large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 311, 343, 107.5],
+        [16, 418.5, 343, 77],
+        [16, 495.5, 343, 56]
+      ]
+    },
+    {
+      "size": "extra-extra-extra-large",
+      "observedSize": "extra-extra-extra-large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 344.5, 343, 115.5],
+        [16, 460, 343, 107.5],
+        [16, 497.5, 343, 59]
+      ]
+    },
+    {
+      "size": "accessibility-medium",
+      "observedSize": "accessibility-medium",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 402, 343, 165.5],
+        [16, 427.5, 343, 122],
+        [16, 479.5, 343, 63.5]
+      ]
+    },
+    {
+      "size": "accessibility-large",
+      "observedSize": "accessibility-large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 324, 343, 229.5],
+        [16, 343.5, 343, 174],
+        [16, 447.5, 343, 109.5]
+      ]
+    },
+    {
+      "size": "accessibility-extra-large",
+      "observedSize": "accessibility-extra-large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 212.5, 343, 318],
+        [16, 320.5, 343, 202],
+        [16, 452.5, 343, 126]
+      ]
+    },
+    {
+      "size": "accessibility-extra-extra-large",
+      "observedSize": "accessibility-extra-extra-large",
+      "appearance": "light",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 187.5, 343, 366.5],
+        [16, 274, 343, 280.5],
+        [16, 414.5, 343, 142.5]
+      ]
+    },
+    {
+      "size": "accessibility-extra-extra-extra-large",
+      "appearance": "dark",
+      "exitCode": 0,
+      "emptyJournals": 64,
+      "frames": [
+        [16, 104, 343, 465.5],
+        [16, 149.5, 343, 378.5],
+        [16, 318, 343, 217.5]
+      ]
+    }
+  ],
+  "minimumAccessTargetHeight": 49,
+  "monotonicHeightGrowth": true,
+  "matchedCompiledInputs": 639,
+  "scope": "Twelve text sizes. Ten intermediate/small configurations light; existing largest configuration dark. Not every light/dark pairing or a full audit pass."
+}

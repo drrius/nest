@@ -8,12 +8,8 @@ final class CalendarReadabilityTests: XCTestCase {
     }
 
     func testUnrequestedCalendarPermissionRemainsReadable() throws {
-        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
-        app.launch()
+        let app = openCalendar()
         let tabs = app.tabBars.firstMatch
-        XCTAssertTrue(tabs.waitForExistence(timeout: 30), "Requires an authorized test-member session")
-        tabs.buttons["Calendar"].tap()
-        XCTAssertTrue(app.staticTexts["Our household"].waitForExistence(timeout: 30))
         let explanation = app.staticTexts[
             "Nest reads the calendars you choose. It does not create, change or delete events."]
         let elements = [
@@ -40,6 +36,84 @@ final class CalendarReadabilityTests: XCTestCase {
         attachment.name = "Calendar permission text bounds"
         attachment.lifetime = .keepAlways
         add(attachment)
+    }
+
+    func testUnknownPartnerAvailabilityCanBeReadAcrossScrolling() throws {
+        let app = openCalendar()
+        let text = app.staticTexts[
+            "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day."
+        ]
+        revealBoundary(text, in: app, start: true)
+        let first = text.frame
+        let bar = app.tabBars.firstMatch.frame
+        XCTAssertGreaterThanOrEqual(first.minY, 40)
+        let beginning = XCTAttachment(screenshot: app.screenshot())
+        beginning.name = "Unknown availability beginning"
+        beginning.lifetime = .keepAlways
+        add(beginning)
+        revealBoundary(text, in: app, start: false)
+        let last = text.frame
+        XCTAssertLessThanOrEqual(last.maxY, bar.minY)
+        XCTAssertEqual(first.height, last.height, accuracy: 0.5)
+        let firstCovered = min(first.height, bar.minY - first.minY)
+        let lastCovered = min(last.height, last.maxY - 40)
+        XCTAssertGreaterThanOrEqual(firstCovered + lastCovered, first.height)
+        let ending = XCTAttachment(screenshot: app.screenshot())
+        ending.name = "Unknown availability ending"
+        ending.lifetime = .keepAlways
+        add(ending)
+        let data = try JSONSerialization.data(
+            withJSONObject: [
+                "first": [first.minX, first.minY, first.width, first.height],
+                "last": [last.minX, last.minY, last.width, last.height],
+                "usableViewport": [40, bar.minY],
+                "firstCovered": firstCovered, "lastCovered": lastCovered,
+            ], options: [.sortedKeys])
+        let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+        attachment.name = "Unknown availability reading bounds"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    private func openCalendar() -> XCUIApplication {
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        app.launch()
+        let tabs = app.tabBars.firstMatch
+        XCTAssertTrue(tabs.waitForExistence(timeout: 30), "Requires an authorized test-member session")
+        tabs.buttons["Calendar"].tap()
+        XCTAssertTrue(app.staticTexts["Our household"].waitForExistence(timeout: 30))
+        return app
+    }
+
+    private func revealBoundary(_ element: XCUIElement, in app: XCUIApplication, start: Bool) {
+        var observations: [[String: Any]] = []
+        for _ in 0..<40 {
+            let exists = element.exists
+            let frame = exists ? element.frame : .zero
+            let target = start ? CGFloat(55) : app.tabBars.firstMatch.frame.minY - 12
+            let position = start ? frame.minY : frame.maxY
+            observations.append([
+                "exists": exists, "frame": [frame.minX, frame.minY, frame.width, frame.height], "start": start,
+            ])
+            let settled =
+                start
+                ? position >= 40 && (position <= 110 || frame.maxY <= app.tabBars.firstMatch.frame.minY)
+                : position <= app.tabBars.firstMatch.frame.minY && (position >= target - 70 || frame.minY >= 40)
+            if exists && element.isHittable && settled { return }
+            let distance = exists ? max(-80, min(80, position - target)) : 80
+            let origin = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
+            let destination = app.coordinate(
+                withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65 - distance / app.frame.height))
+            origin.press(forDuration: 0.1, thenDragTo: destination, withVelocity: .slow, thenHoldForDuration: 0.2)
+        }
+        add(XCTAttachment(screenshot: app.screenshot()))
+        if let data = try? JSONSerialization.data(withJSONObject: observations, options: [.sortedKeys]) {
+            let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+            attachment.name = "Unknown availability scroll observations"
+            attachment.lifetime = .keepAlways
+            add(attachment)
+        }
+        XCTFail("Could not reveal the required boundary of the unknown-availability explanation")
     }
 
     private func reveal(_ element: XCUIElement, in app: XCUIApplication) {

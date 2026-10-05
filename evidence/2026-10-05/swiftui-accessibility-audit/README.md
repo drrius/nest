@@ -42,8 +42,11 @@ Actual normal/light and largest/dark permission-reading tests pass, exposing all
 three public permission controls above the bar and a minimum44pt access target.
 The explanation grows from94.5pt to465.5pt; the Full Access paragraph grows from
 68pt to378.5pt; the button grows from52pt to217.5pt. All full text was inspected in
-the actual screenshots. This proves these endpoints scale, not every intermediate
-size or a clean full audit. Bounds are recorded for both configurations.
+the actual screenshots. A subsequent signed run passes the other ten text categories, so all12 supported
+text sizes now have permission-reading evidence. The largest uses dark appearance;
+the other11 use light. All three controls grow monotonically and the minimum
+access-button height is49pt. This is not every light/dark pairing or a clean full
+audit. See `permission-size-matrix.json` for all measured frames.
 
 The first largest observer incorrectly waited for an offscreen lazy List row.
 The next observer overshot with fixed-distance scrolling. An adaptive, slower
@@ -68,3 +71,23 @@ This CI success does not run or certify the separate full accessibility audit.
 Safe public-permission screenshots: [normal](calendar-normal.png) and
 [largest/dark explanation](calendar-largest-explanation.png). No personal events,
 financial records or credentials appear in these two reviewed images.
+
+The intermediate-size batch reuses one exact-source prepared test build, with
+ten real executions against the authorized API. Its first preflight refused
+before testing because simctl reports mixed-case size names; case-insensitive
+readback verification corrected that observer. No app change was needed. Original
+large/light settings and all64 empty journals are restored.
+
+The unknown-availability paragraph separately passes actual normal/light and
+maximum/dark reading on the final UI-test source. Its height grows from94.5pt to
+651.5pt. Overlapping beginning/ending screenshots and measured viewport coverage
+prove all text can be read by scrolling at maximum size. The test observer's
+top-alignment, insufficient lazy-row scroll budget and extra-bottom-margin
+failures are retained in `reading-observer-corrections.json`; they are not app
+fixes. No accessibility warning was suppressed or cleared. All639 compiled
+inputs match, signature/test origins/push-disabled gates pass, and ordinary Today
+is restored with preserved session/data and64 empty journals.
+
+Repository lint (existing Effect advice remains warning-only), formatting and
+Swift limits pass. Current-test source CI is pending at this checkpoint. The full
+five-test audit still has20 unsuppressed reports and needs further investigation.

@@ -315,3 +315,10 @@ advisors add no notices. [Evidence](../../evidence/2026-10-05/legacy-notificatio
 The unique inventory now has54 bounded entries/6 pending. Broader helpers/races,
 external writers, actual APNs delivery/live AI/phones and full M9 remain open.
 Scoped checks and routine CI37291976625 pass `9e94b0f7`. Production, workers and the binary are unchanged.
+
+Calendar permission reading now passes all12 supported text sizes (11 light,
+maximum/dark), and the unknown-availability message passes normal/light and
+maximum/dark with continuous scrolling coverage. This is actual signed native
+execution with unchanged permissions/session/household data. The full audit's20
+unsuppressed reports, VoiceOver, all forms and both phones remain open.
+[Reading evidence](../../evidence/2026-10-05/swiftui-accessibility-audit/README.md).

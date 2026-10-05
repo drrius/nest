@@ -34,9 +34,15 @@ content, forms, VoiceOver navigation, haptics, both phones or full M1 acceptance
 
 `CalendarReadabilityTests` additionally scrolls the unrequested-permission copy
 above the tab bar and checks the access button's target size, without pressing it.
-Run that method separately under the simulator's normal and largest text settings;
+Run that method separately under the simulator's supported text settings;
 restore the original size and appearance afterwards. Its fixture specifically
 requires Calendar permission to be unrequested.
+
+The partner-availability reading method additionally checks overlapping beginning
+and ending viewports of the unknown-availability explanation. At maximum text the
+paragraph can be taller than the usable screen; the test requires both boundaries
+and continuous coverage through scrolling rather than demanding a single viewport.
+It requires the authorized fixture to have unknown partner availability.
 
 The 5 October full audit remains failing. See the [recorded findings](../../../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
 Do not use a successful focused reading check as approval of the full audit.

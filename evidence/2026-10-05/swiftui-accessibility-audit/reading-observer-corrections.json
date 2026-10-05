@@ -1,0 +1,24 @@
+{
+  "scope": "Test observer corrections only; no app behavior or accessibility audit filtering changed.",
+  "attempts": [
+    {
+      "attempt": "initial normal",
+      "result": "failed",
+      "evidence": "The complete paragraph was visible but could not reach the demanded top alignment at the list bottom.",
+      "correction": "Accept a wholly visible paragraph."
+    },
+    {
+      "attempt": "v2/v3 largest",
+      "result": "failed",
+      "evidence": "The lazy row first appears after 21 small drags; the 24-drag budget ends before its beginning is exposed.",
+      "correction": "Increase the bounded scroll budget to 40 drags; retain frame diagnostics."
+    },
+    {
+      "attempt": "v4 largest",
+      "result": "failed",
+      "evidence": "Beginning screenshot captured; final frame is [16,-69.5,343,651.5], ending at582pt above the584pt tab bar. The observer demanded572pt.",
+      "correction": "Use the actual usable viewport boundary rather than an additional12pt margin."
+    }
+  ],
+  "originalFullAudit": "Still failing with20 unsuppressed reports; these targeted tests do not clear it."
+}
