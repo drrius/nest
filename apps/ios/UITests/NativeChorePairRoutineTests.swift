@@ -29,7 +29,13 @@ final class NativeChorePairRoutineTests: XCTestCase {
         XCTAssertTrue(title.waitForExistence(timeout: 15))
         title.tap()
         title.typeText(fixture.title)
-        app.navigationBars["Add chore"].tap()
+        let dismissKeyboard = app.buttons["Dismiss keyboard"]
+        XCTAssertTrue(dismissKeyboard.waitForExistence(timeout: 15))
+        XCTAssertTrue(dismissKeyboard.isHittable)
+        dismissKeyboard.tap()
+        let keyboardHidden = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 15), .completed)
         choose("Repeat", value: "Every day", in: app, fixture: fixture)
         choose("Assignment", value: "Take turns", in: app, fixture: fixture)
         choose("First turn", value: "Test Alex", in: app, fixture: fixture)
@@ -43,6 +49,30 @@ final class NativeChorePairRoutineTests: XCTestCase {
         done.tap()
         XCTAssertTrue(app.navigationBars["Household chores"].waitForExistence(timeout: 15))
         fixture.finish(app, backs: 1)
+    }
+
+    func testEditTitleReturnDismissesKeyboardWithoutSaving() throws {
+        let fixture = try NativeChorePairFixture(action: "edit_keyboard")
+        let app = fixture.openRoutines()
+        let row = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", fixture.title)).firstMatch
+        fixture.reveal(row, in: app)
+        row.tap()
+        app.buttons["Edit chore"].tap()
+        XCTAssertTrue(app.navigationBars["Edit chore"].waitForExistence(timeout: 15))
+        let title = app.textFields["What needs doing?"]
+        XCTAssertTrue(title.waitForExistence(timeout: 15))
+        XCTAssertEqual(title.value as? String, fixture.title)
+        title.tap()
+        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15))
+        title.typeText("\n")
+        let keyboardHidden = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
+        XCTAssertEqual(XCTWaiter.wait(for: [keyboardHidden], timeout: 15), .completed)
+        XCTAssertEqual(title.value as? String, fixture.title)
+        XCTAssertFalse(app.buttons["Save changes"].isEnabled)
+        app.navigationBars["Edit chore"].buttons["Back"].tap()
+        XCTAssertTrue(app.navigationBars["Chore"].waitForExistence(timeout: 15))
+        fixture.finish(app, backs: 2)
     }
 
     func testArchiveOwnedChoreNormally() throws {

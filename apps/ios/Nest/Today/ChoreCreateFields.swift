@@ -41,12 +41,24 @@ struct ChoreCreateDraft: Equatable {
 
 struct ChoreCreateFields: View {
     @Binding var draft: ChoreCreateDraft
+    @FocusState private var titleFocused: Bool
     let members: [NestMember]
     private let weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
 
     var body: some View {
         Section("Chore") {
             TextField("What needs doing?", text: $draft.title)
+                .focused($titleFocused)
+                .submitLabel(.done)
+                .onSubmit { titleFocused = false }
+                .toolbar {
+                    ToolbarItemGroup(placement: .keyboard) {
+                        Spacer()
+                        Button("Done") { titleFocused = false }
+                            .frame(minHeight: 44)
+                            .accessibilityLabel("Dismiss keyboard")
+                    }
+                }
             Picker("Repeat", selection: $draft.kind) {
                 Text("Once").tag("one_off")
                 Text("Every day").tag("daily")

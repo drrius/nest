@@ -1,0 +1,102 @@
+[
+  {
+    "step": "original-absent",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedNativePairChoreTests/testOwnedNativeMemberReadsExactChoreAndHandover",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.955
+  },
+  {
+    "step": "partner-absent",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedNativePairChoreTests/testOwnedNativeMemberReadsExactChoreAndHandover",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.68
+  },
+  {
+    "step": "create-alternating-once",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeChorePairRoutineTests/testCreateOwnedAlternatingDailyChoreOnce",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 54.955
+  },
+  {
+    "step": "original-created",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedNativePairChoreTests/testOwnedNativeMemberReadsExactChoreAndHandover",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.709
+  },
+  {
+    "step": "partner-created",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedNativePairChoreTests/testOwnedNativeMemberReadsExactChoreAndHandover",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.185
+  },
+  {
+    "step": "original-native-routine",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeChorePairRoutineTests/testOwnedAlternatingRoutineIsReadable",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 15.562
+  },
+  {
+    "step": "partner-native-routine",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NativeChorePairRoutineTests/testOwnedAlternatingRoutineIsReadable",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 15.527
+  },
+  {
+    "step": "request-review-cancel",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeChorePairHandoverTests/testReviewRequestAndCancel",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 21.986
+  },
+  {
+    "step": "original-after-cancel",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedNativePairChoreTests/testOwnedNativeMemberReadsExactChoreAndHandover",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.639
+  },
+  {
+    "step": "partner-after-cancel",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedNativePairChoreTests/testOwnedNativeMemberReadsExactChoreAndHandover",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.632
+  }
+]

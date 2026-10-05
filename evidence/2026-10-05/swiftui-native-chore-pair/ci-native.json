@@ -1,0 +1,69 @@
+{
+  "conclusion": "success",
+  "headSha": "0cc30d88cebdb1cefb386cb15724cfdd59636f69",
+  "status": "completed",
+  "url": "https://github.com/drrius/nest/actions/runs/37344088419",
+  "steps": [
+    {
+      "name": "Set up job",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:52:12Z",
+      "completedAt": "2026-10-05T16:52:13Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:52:13Z",
+      "completedAt": "2026-10-05T16:52:51Z"
+    },
+    {
+      "name": "Verify Swift source limits",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:52:51Z",
+      "completedAt": "2026-10-05T16:52:52Z"
+    },
+    {
+      "name": "Test native push signing gates",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:52:52Z",
+      "completedAt": "2026-10-05T16:52:53Z"
+    },
+    {
+      "name": "Verify Swift formatting",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:52:53Z",
+      "completedAt": "2026-10-05T16:53:10Z"
+    },
+    {
+      "name": "Test Foundation domain and offline rules",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:53:10Z",
+      "completedAt": "2026-10-05T16:55:03Z"
+    },
+    {
+      "name": "Test iPhone session and account boundaries",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T16:55:03Z",
+      "completedAt": "2026-10-05T17:06:40Z"
+    },
+    {
+      "name": "Verify actual app push signing",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:06:40Z",
+      "completedAt": "2026-10-05T17:06:47Z"
+    },
+    {
+      "name": "Compile guarded native UI checks",
+      "conclusion": "success",
+      "startedAt": "2026-10-05T17:06:47Z",
+      "completedAt": "2026-10-05T17:07:10Z"
+    }
+  ],
+  "foundationCases": 496,
+  "foundationSkipped": 41,
+  "signedAppCases": 425,
+  "signedAppSkipped": 16,
+  "failures": 0,
+  "guardedUITargetBuildForTestingPassed": true,
+  "manualChorePairExecutedByCI": false
+}
