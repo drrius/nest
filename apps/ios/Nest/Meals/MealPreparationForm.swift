@@ -48,13 +48,15 @@ struct MealPreparationForm: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    QuietToolbarButton("Cancel", systemImage: "xmark") { discard = true }.disabled(saving)
+                    QuietToolbarButton("Cancel", systemImage: "xmark") {
+                        if hasChanges { discard = true } else { dismiss() }
+                    }.disabled(saving)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     QuietToolbarButton("Save", systemImage: "checkmark") { Task { await save() } }.disabled(!canSave)
                 }
             }
-            .interactiveDismissDisabled()
+            .interactiveDismissDisabled(saving || hasChanges)
             .confirmationDialog("Discard preparation changes?", isPresented: $discard, titleVisibility: .visible) {
                 Button("Discard changes", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
@@ -63,6 +65,8 @@ struct MealPreparationForm: View {
     }
 
     private var finished: Bool { context.baseline.preparation.map { $0.status != .open } ?? false }
+
+    private var hasChanges: Bool { draft != MealPreparationFormDraft(context.baseline) }
 
     private var canSave: Bool {
         !saving && model.mealPreparationRequest == nil && model.generation == context.generation

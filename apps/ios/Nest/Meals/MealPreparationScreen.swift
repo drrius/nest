@@ -54,7 +54,7 @@ struct MealPreparationScreen: View {
                     Text("Due \(MealWeekScreen.label(preparation.dueOn))")
                     Text(assignment(preparation.assignment))
                     if let instructions = preparation.instructions, !instructions.isEmpty { Text(instructions) }
-                    Text("\(preparation.status.rawValue.capitalized) · \(preparation.state.rawValue.capitalized)")
+                    Text(status(preparation))
                         .font(.caption).foregroundStyle(QuietPalette.muted)
                 }.padding(18).frame(maxWidth: .infinity, alignment: .leading)
                     .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 20))
@@ -73,6 +73,16 @@ struct MealPreparationScreen: View {
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
         } else {
             Text("This meal is no longer in this week.").foregroundStyle(QuietPalette.muted)
+        }
+    }
+
+    private func status(_ preparation: MealPreparation) -> String {
+        switch (preparation.status, preparation.state) {
+        case (.completed, _): "Completed"
+        case (.skipped, _): "Skipped"
+        case (.open, .active): "To do"
+        case (.open, .paused): "Paused"
+        case (.open, .archived): "Archived"
         }
     }
 

@@ -67,7 +67,9 @@ final class NativeManualPreparationTests: XCTestCase {
         week.reveal(instructions)
         XCTAssertTrue(instructions.isHittable)
         XCTAssertTrue(week.app.staticTexts[phase == "shared" ? "Shared" : "Assigned to Test Sam"].exists)
-        XCTAssertTrue(week.app.staticTexts[phase == "completed" ? "Completed · Active" : "Open · Active"].exists)
+        let status = week.app.staticTexts[phase == "completed" ? "Completed" : "To do"]
+        week.reveal(status)
+        XCTAssertTrue(status.isHittable)
         capture(week.fixture.name + " reads owned preparation", app: week.app)
         finish(week.app)
     }
