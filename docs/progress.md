@@ -357,25 +357,9 @@ Other timed financial consent rows need the same isolation/cancellation audit;
 hosted lost-reply/declined variants, VoiceOver/races/both phones/live AI stay open.
 Documentation checkpoint21550910 passes Nest37238842339. No beta/merge occurs; M7 remains open.
 
-## Financial consent row isolation
+## Earlier financial consent verification
 
-Eleven remaining private approval views now use44pt labels, separate timed-row
-buttons and explicit native Cancel. Legacy original-review guards remain intact.
-Source `a3440743` passes72 focused signed-native tests, all1,041 input hashes,
-strict format/limits/signing and both exact-source workflows: Nest37243651117,
-SwiftUI37243651071;491 Foundation/41 skips,409 native/11 skips,0 failures.
-Six real private expense/refund/correction/setup/cancellation/resumption fixtures
-pass normal/maximum-text intended-action corners, both Cancel branches, exactly
-one native Decline each and44pt terminal Done. Twelve real journal RLS probes pass.
-Original rules/pending inventories and both exact61-event histories/zero balances
-stay unchanged, as do full financial/allocation/ledger/claimed Storage metadata
-hashes. Stable test origins/ordinary Today/default text/light/empty64 journals and
-data/Keychain are restored. [Evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md).
-Image inspection then exposes clipped long maximum-text alert explanations;
-interaction success is not full readability. The separately verified compact
-fix below supersedes these messages and the Money entry search failure. Other rendered financial branches,
-lost replies/accessibility/both phones/live AI and M7 acceptance stay open.
-No financial/rule mutation, model, beta, production action, purchase or merge.
+The six-family isolation, explicit cancellation and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#financial-consent-row-isolation) and [source evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md). The later readability checks below supersede its clipped-message and navigation-observer findings.
 
 ## Readable financial confirmations
 
@@ -395,4 +379,20 @@ Both source CI workflows pass: Nest37246759952 and SwiftUI37246759982,
 with491 Foundation/41 skips and409 signed-native/11 skips,0 failures.
 [Evidence](../evidence/2026-10-05/swiftui-compact-financial-alerts/README.md) covers
 two rendered families; other branches/full accessibility/phones/live AI remain open.
+No financial/rule mutation, model, beta, production action, purchase or merge.
+
+## Final resumption title polish
+
+The compact decline image still put its question mark on a third title line.
+Source `8cdb60b2` changes only that title to "Decline change?". Eight focused native
+tests/1,041 committed input hashes/format/limits/signing pass. Actual normal/largest
+review and both Cancel branches, one native Decline/44pt Done, twelve journal RLS
+probes and restoration pass. Inspected largest images show whole short titles,
+messages/actions and no orphaned punctuation. Both exact61-event histories,
+zero balances/original rules/pending inventories and all retained metadata hashes
+remain unchanged; the one synthetic interrupted conversation is retained.
+Both source CI workflows pass: Nest37248045916/SwiftUI37248045819,
+491 Foundation/41 skips and409 native/11 skips,0 failures.
+[Evidence](../evidence/2026-10-05/swiftui-resumption-decline-title/README.md).
+Other branches/full accessibility/phones/live AI and M1/M7 acceptance stay open.
 No financial/rule mutation, model, beta, production action, purchase or merge.

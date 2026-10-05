@@ -1,0 +1,58 @@
+{
+  "result": {
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "approval": {
+      "reviewedOn": "2026-10-05",
+      "change": {
+        "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+        "expectedRevision": "28E419F4-236A-4A4D-80D3-7060E94A4C63",
+        "action": "resume",
+        "firstDueOn": "2026-11-05",
+        "expectedStatus": "paused",
+        "resumeFrom": "2026-11-05"
+      },
+      "operationId": "A5B2F121-A1D4-468E-9BBC-C9AD9E8D0BE9",
+      "id": "F78E91C6-FA9F-47FE-AB65-3583ABDDEF8D",
+      "status": "denied",
+      "expiresAt": "2026-10-05T00:50:11.671240Z"
+    },
+    "version": 1
+  },
+  "decision": {
+    "change": {
+      "resumeFrom": "2026-11-05",
+      "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+      "expectedStatus": "paused",
+      "action": "resume",
+      "firstDueOn": "2026-11-05",
+      "expectedRevision": "28E419F4-236A-4A4D-80D3-7060E94A4C63"
+    },
+    "operationId": "A5B2F121-A1D4-468E-9BBC-C9AD9E8D0BE9",
+    "approved": false,
+    "approvalId": "F78E91C6-FA9F-47FE-AB65-3583ABDDEF8D"
+  },
+  "reviewedRule": {
+    "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "configuration": {
+      "note": "Fictional private approval QA; no payment or actual transfer.",
+      "description": "Fictional private bill approval 3e7cd25c",
+      "amountCentimes": null,
+      "schedule": {
+        "dayOfMonth": 5,
+        "kind": "monthly"
+      },
+      "startDate": "2026-10-05",
+      "allocations": null,
+      "mode": "variable",
+      "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "categoryId": null
+    },
+    "status": "paused",
+    "revision": "28E419F4-236A-4A4D-80D3-7060E94A4C63",
+    "coveredThrough": "2026-10-31",
+    "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+    "authorizedAt": "2026-10-04T22:23:03.220877Z",
+    "nextDueOn": "2026-11-05"
+  }
+}

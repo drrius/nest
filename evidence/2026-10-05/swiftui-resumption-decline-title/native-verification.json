@@ -1,0 +1,25 @@
+{
+  "parentCommit": "dd26ab697a1224c7a72539199f50c94d0117dcd5",
+  "nativeInputs": 1041,
+  "changedFiles": ["apps/ios/Nest/Money/RecurringResumeApprovalScreen.swift"],
+  "allInputsMatch": true,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791160415.461961,
+  "testPid": 64766,
+  "testExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "installedCandidateSHA256": "598ddcf341259f7783e31477ad3c1ef6c0d3b16676563b33b3f5f9c316264c10",
+  "finished": 1791160436.818871,
+  "nativeTests": 8,
+  "skips": 0,
+  "failures": 0,
+  "summaries": [
+    "Executed 8 tests, with 0 failures (0 unexpected) in 1.807 (1.810) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 1.807 (1.811) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 1.807 (1.811) seconds"
+  ],
+  "sourceCommit": "8cdb60b2bdb9d04bf88fbe110739bc584e7d2b57",
+  "all1041CommittedInputsMatch": true
+}

@@ -37,6 +37,10 @@ resolving the observer search failure without a product change. Other rendered
 settlement/manual/legacy branches need eligible fixtures; full accessibility,
 uncertain replies/races/two clients/phones/live model/M7 acceptance remain open.
 [Readable alert evidence](../../evidence/2026-10-05/swiftui-compact-financial-alerts/README.md).
+Follow-up8cdb60b2 removes orphaned largest-text resumption-decline punctuation.
+Eight focused native methods, actual confirmation/cancellation/denial/Done and
+both exact-source workflows pass, with unchanged61-event finance/rules and real
+private journal RLS. [Title evidence](../../evidence/2026-10-05/swiftui-resumption-decline-title/README.md).
 
 Bounded daily/shared chore creation/completion now passes committed-reply/restart/exact replay and partner-first convergence. A real partner reschedule yields retained409/original terms and explicit maximum-text discard without another POST; fixtures are normally archived and ordinary app state restored. [Completion evidence](../../evidence/2026-10-04/swiftui-native-chore-completion/README.md), [reschedule evidence](../../evidence/2026-10-04/swiftui-chore-reschedule-conflict/README.md). Successive legacy reviews now include four direct financial entry points:52 full-chain cases, four exact hosted/compiled bodies and client grants, eight hosted refusals and unchanged58-event financial/Storage metadata digests. [Latest security evidence](../../evidence/2026-10-04/legacy-financial-boundaries/README.md). A subsequent [seven-command meal audit](../../evidence/2026-10-04/legacy-meal-boundaries/README.md) passes 130 full-chain cases, exact hosted bodies/grants and fourteen real outsider/anonymous refusals, preserving all hosted meals/groceries/routines and 58 financial events. Thirty other legacy public entries and deeper private paths remain. These bounded checks do not close a milestone or enable live AI.
 

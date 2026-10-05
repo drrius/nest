@@ -1,0 +1,80 @@
+{
+  "project": "https://tkjixmujjoustdiedfmw.supabase.co",
+  "knownConversations": 1,
+  "modelCalled": false,
+  "checks": [
+    {
+      "table": "nest_ai_conversations",
+      "actor": "member-a",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "table": "nest_ai_conversations",
+      "actor": "member-b",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "table": "nest_ai_conversations",
+      "actor": "outsider",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "table": "nest_ai_conversations",
+      "actor": "anonymous",
+      "status": 401,
+      "count": null
+    },
+    {
+      "table": "nest_ai_turns",
+      "actor": "member-a",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "table": "nest_ai_turns",
+      "actor": "member-b",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "table": "nest_ai_turns",
+      "actor": "outsider",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "table": "nest_ai_turns",
+      "actor": "anonymous",
+      "status": 401,
+      "count": null
+    },
+    {
+      "table": "nest_ai_commands",
+      "actor": "member-a",
+      "status": 200,
+      "count": 1
+    },
+    {
+      "table": "nest_ai_commands",
+      "actor": "member-b",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "table": "nest_ai_commands",
+      "actor": "outsider",
+      "status": 200,
+      "count": 0
+    },
+    {
+      "table": "nest_ai_commands",
+      "actor": "anonymous",
+      "status": 401,
+      "count": null
+    }
+  ],
+  "checkedAt": 1791160775.3303542
+}

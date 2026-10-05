@@ -1,0 +1,13 @@
+{
+  "previousSource": "05f1e94c9196be65f62130320281b1776702c61b",
+  "earlierLargestDeclineTitleWrappedQuestionMarkOnItsOwnLine": true,
+  "newTitle": "Decline change?",
+  "renderedScope": ["resume"],
+  "actualImageInspectionRequired": true,
+  "noAuthorizationOrDecisionBehaviorChange": true,
+  "actualImageInspectionCompleted": {
+    "largestApprove": "Complete title/message/actions",
+    "largestDecline": "Complete two-line title with punctuation/full message/actions",
+    "normalApprove": "Complete title/message/actions"
+  }
+}

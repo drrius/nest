@@ -49,6 +49,11 @@ Its top-right corner opens only the private approvals list. Actual image inspect
 or financial action is required. `entry-navigation/` retains this bounded proof.
 It does not establish full Money safe-area or accessibility acceptance.
 
+Later decline-image inspection found the resumption question mark alone on a
+third title line. The [one-line follow-up](../swiftui-resumption-decline-title/README.md)
+shortens that decline title with separate source/native/rendered/current-CI proof.
+This dossier retains the earlier image and source unchanged.
+
 ## Verification limits
 
 This rendered copy pass covers two representative families, not all nine alerts.

@@ -47,3 +47,23 @@ run is claimed for them. [Evidence](../evidence/2026-10-04/legacy-routine-bounda
 Forty-four other legacy public functions/deeper private paths remain; this is bounded
 M9 progress, not full semantic/phone/provider acceptance. No shipping SQL, production,
 notification, worker, beta, purchase or merge action occurred.
+
+## Financial consent row isolation
+
+Eleven remaining private approval views now use44pt labels, separate timed-row
+buttons and explicit native Cancel. Legacy original-review guards remain intact.
+Source `a3440743` passes72 focused signed-native tests, all1,041 input hashes,
+strict format/limits/signing and both exact-source workflows: Nest37243651117,
+SwiftUI37243651071;491 Foundation/41 skips,409 native/11 skips,0 failures.
+Six real private expense/refund/correction/setup/cancellation/resumption fixtures
+pass normal/maximum-text intended-action corners, both Cancel branches, exactly
+one native Decline each and44pt terminal Done. Twelve real journal RLS probes pass.
+Original rules/pending inventories and both exact61-event histories/zero balances
+stay unchanged, as do full financial/allocation/ledger/claimed Storage metadata
+hashes. Stable test origins/ordinary Today/default text/light/empty64 journals and
+data/Keychain are restored. [Evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md).
+Image inspection then exposes clipped long maximum-text alert explanations;
+interaction success is not full readability. The separately verified compact
+fix below supersedes these messages and the Money entry search failure. Other rendered financial branches,
+lost replies/accessibility/both phones/live AI and M7 acceptance stay open.
+No financial/rule mutation, model, beta, production action, purchase or merge.
