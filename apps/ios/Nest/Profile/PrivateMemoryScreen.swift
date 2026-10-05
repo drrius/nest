@@ -13,6 +13,7 @@ struct PrivateMemoryScreen: View {
     @State private var editor: MemoryEditorTarget?
     @State private var removal: PrivateMemory?
     @State private var confirmRemoval = false
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
     var body: some View {
         List {
@@ -70,22 +71,25 @@ struct PrivateMemoryScreen: View {
     }
 
     private func memoryRow(_ memory: PrivateMemory) -> some View {
-        VStack(alignment: .leading, spacing: 12) {
+        let layout =
+            dynamicTypeSize.isAccessibilitySize
+            ? AnyLayout(VStackLayout(alignment: .leading, spacing: 12)) : AnyLayout(HStackLayout(spacing: 12))
+        return VStack(alignment: .leading, spacing: 12) {
             Text(memory.content).textSelection(.enabled)
-            HStack {
+            layout {
                 Button {
                     editor = MemoryEditorTarget(memory: memory)
                 } label: {
-                    Text("Edit").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    QuietActionLabel("Edit")
                 }
                 Button(role: .destructive) {
                     removal = memory
                     confirmRemoval = true
                 } label: {
-                    Text("Remove").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    QuietActionLabel("Remove")
                 }
             }
-            .buttonStyle(.bordered)
+            .buttonStyle(.borderless)
             .disabled(model.saved != nil)
         }
     }
