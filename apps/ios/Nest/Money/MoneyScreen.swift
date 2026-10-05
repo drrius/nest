@@ -10,15 +10,12 @@ struct MoneyScreen: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
-                VStack(alignment: .leading, spacing: 24) {
-                    QuietTabHeader(
-                        title: "Money", subtitle: "All square, without the guesswork.",
-                        session: session, member: member)
-                    balanceCard
-                    MoneyQuickActions(session: session, member: member)
-                }
-                .padding(.top, 14)
+            VStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
+                QuietTabHeader(
+                    title: "Money", subtitle: "All square, without the guesswork.",
+                    session: session, member: member)
+                balanceCard
+                MoneyQuickActions(session: session, member: member)
                 MoneyHistorySection(session: session, member: member, previewCount: 5)
                 Section("Bills and approvals") {
                     NavigationLink {
@@ -67,7 +64,7 @@ struct MoneyScreen: View {
                     }.disabled(loading)
                 }
             }
-            .padding(.horizontal, 20)
+            .modifier(QuietTabContentInsets())
         }
         .buttonStyle(.plain)
         .foregroundStyle(QuietPalette.ink)

@@ -9,7 +9,7 @@ struct CalendarChoreSection: View {
     @State private var loading = false
 
     var body: some View {
-        Section {
+        QuietSectionCard(title: "Household chores") {
             if loading {
                 ProgressView("Loading chores…")
             } else if let notice {
@@ -28,8 +28,6 @@ struct CalendarChoreSection: View {
             Button("Refresh chores") { Task { await load() } }
             Text("Shown in Nest only. Manage and complete chores from Today.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
-        } header: {
-            QuietSectionHeader(title: "Household chores")
         }
         .task(id: day) { await load() }
     }

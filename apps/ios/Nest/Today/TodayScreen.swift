@@ -13,7 +13,7 @@ struct TodayScreen: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
                         TodayHeader(model: model, member: member, moment: moment)
-                        quickAdd.padding(.top, 20)
+                        quickAdd.padding(.top, QuietTabLayout.sectionSpacing)
                         TodayChoreFilter(everyone: $everyone).padding(.top, 24)
                         Text("Around the house")
                             .font(.headline)
@@ -83,8 +83,7 @@ struct TodayScreen: View {
                             QuietActionLabel("Your saved daily summary")
                         }.padding(.top, 12)
                     }
-                    .padding(.horizontal, 20)
-                    .padding(.top, 14)
+                    .modifier(QuietTabContentInsets())
                 }
                 .clipped()
                 .onChange(of: moment.day) { _, _ in

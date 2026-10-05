@@ -1,0 +1,34 @@
+{
+  "currentFiles": {
+    "Nest/Calendar/CalendarChoreSection.swift": "d6b7558ea191f0901b8e9dc34f112904b699d12a7e88e6105ad791daa5bf81fd",
+    "Nest/Calendar/CalendarDayPicker.swift": "708b75abdbabe8e7070e5fb066f9979e8dc983659705e1c37a0b501d8e23da30",
+    "Nest/Calendar/CalendarRenewalSection.swift": "60d6efe4c8bcd735da0e580e31a0496a173fb90c997b2fa897b375095b24ef67",
+    "Nest/Calendar/CalendarScreen.swift": "5638986674a107c5d28187475f11bdf6f68cbef219ac22526d0ea50c130f7883",
+    "Nest/Calendar/PartnerBusySection.swift": "639c798ffaf47de9c79d0643b0d9e93c2c0e4103d866761607561564694a22a9",
+    "Nest/Meals/MealWeekScreen.swift": "ff6537253656d93aa7cef2b58a201c925548f672d1a8c5027aae28413fbe76ca",
+    "Nest/Money/MoneyScreen.swift": "6b74ae550757a4466ee97bc12596f79bcebcdad5c4a3601ff577fde25c0ece8c",
+    "Nest/QuietSectionCard.swift": "9b6f0b211acfa5742e257afc2891645f50c7762e8447b5e687c8931987a622cf",
+    "Nest/QuietTabHeader.swift": "928a931abb3c0709b4688defe81ad2bccc20c3f5317dab0983a004115ed5247a",
+    "Nest/QuietTabLayout.swift": "3e1e3c3a941f95ba0ec76c6494fda917f15c15cb5279696343900708ac9c3f70",
+    "Nest/Today/TodayHeader.swift": "1d67ce3f58293d208bef7dab18481a65a7698d6c02547ecaa742150aa28260c2",
+    "Nest/Today/TodayScreen.swift": "94ca39b36535bd6d81d3bca16aa9379fb0086ba9156193ec8d37030d8b7b5f2a",
+    "UITests/RootLayoutConsistencyTests.swift": "af3b2aa3b7e1300079faa39d3395415adfe563bdf6c2b91286037c22823127b5"
+  },
+  "headerRunPrecedesOnlyModalDoneAndAddedPickerMethod": true,
+  "nativeSourceComparison": {
+    "headers": {
+      "comparedFiles": 13,
+      "differentFiles": [
+        "Nest/Calendar/CalendarDayPicker.swift",
+        "Nest/Calendar/CalendarScreen.swift",
+        "UITests/RootLayoutConsistencyTests.swift"
+      ],
+      "matchingFiles": 10
+    },
+    "pickers": {
+      "comparedFiles": 13,
+      "differentFiles": [],
+      "matchingFiles": 13
+    }
+  }
+}

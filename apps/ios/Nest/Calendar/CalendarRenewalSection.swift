@@ -10,7 +10,7 @@ struct CalendarRenewalSection: View {
     @State private var loading = false
 
     var body: some View {
-        Section {
+        QuietSectionCard(title: "Household renewals") {
             ForEach(rows) { row in
                 VStack(alignment: .leading, spacing: 4) {
                     Text(row.fields.title).font(.headline)
@@ -29,8 +29,6 @@ struct CalendarRenewalSection: View {
             }
             Text("Dates shown in Nest only. No calendar events or financial entries are created.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
-        } header: {
-            QuietSectionHeader(title: "Household renewals")
         }
         .task(id: day) { await load(more: false) }
     }

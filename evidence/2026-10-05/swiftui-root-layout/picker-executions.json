@@ -1,0 +1,71 @@
+{
+  "pickerCoverage": {
+    "maximum-dark-keep-discard": {
+      "calendarPermissionGranted": false,
+      "calendarSelectionPickerOpened": false,
+      "datePickerOpenedAndClosedWithoutDayChange": true
+    },
+    "normal-light-keep-discard": {
+      "calendarPermissionGranted": false,
+      "calendarSelectionPickerOpened": false,
+      "datePickerOpenedAndClosedWithoutDayChange": true
+    }
+  },
+  "restoration": {
+    "bothStableOrigins": true,
+    "noAddOrSavePressed": true,
+    "ordinaryTodaySelectedByAllPassingNativeMethods": true,
+    "original": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "emptyJournals": 64,
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da"
+    },
+    "partner": {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "emptyJournals": 64,
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da"
+    },
+    "settingsRestored": {
+      "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A": {
+        "appearance": "light",
+        "content_size": "large"
+      },
+      "CA0BCEDE-A297-493A-8921-9E31F8B65783": {
+        "appearance": "light",
+        "content_size": "large"
+      }
+    }
+  },
+  "results": [
+    {
+      "exitCode": 0,
+      "failed": 0,
+      "method": "RootLayoutConsistencyTests/testCalendarCardsKeepNativePickers",
+      "passed": 1,
+      "seconds": 15.503,
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "skipped": 0,
+      "step": "normal-light-keep-discard"
+    },
+    {
+      "exitCode": 0,
+      "failed": 0,
+      "method": "RootLayoutConsistencyTests/testCalendarCardsKeepNativePickers",
+      "passed": 1,
+      "seconds": 14.912,
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "skipped": 0,
+      "step": "maximum-dark-keep-discard"
+    }
+  ],
+  "sourceIdentity": {
+    "canonicalManifestSHA256": "e393bed134c13aa42a31d5bb6d4e6ecd866802948be8959c1a49146f70253e8a",
+    "guardedPreparationFilesAreNotClaimedExecuted": true,
+    "recordedInputCount": 807
+  },
+  "terminal": {
+    "inspectBeforeResuming": false,
+    "noPositiveCommands": "No recipe Save or positive meal/grocery command is pressed",
+    "success": true
+  }
+}

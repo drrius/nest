@@ -11,7 +11,7 @@ struct MealWeekScreen: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 24) {
+            VStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
                 if case .ready(let member) = model.status {
                     QuietTabHeader(
                         title: "Meals", subtitle: "Good food. One less daily decision.",
@@ -108,7 +108,7 @@ struct MealWeekScreen: View {
                 .buttonStyle(.plain)
                 .foregroundStyle(QuietPalette.accent)
             }
-            .padding(20)
+            .modifier(QuietTabContentInsets())
         }
         .background(QuietPalette.background)
         .navigationTitle("")

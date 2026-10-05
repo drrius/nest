@@ -22,45 +22,18 @@ struct CalendarScreen: View {
     }
 
     var body: some View {
-        List {
-            if let notice = model.notice { Section { Text(notice) } }
-            Section {
-                CalendarDayPicker(day: $day)
-                if model.access == .allowed {
-                    Button("Choose calendars", systemImage: "line.3.horizontal.decrease") { picking = true }
-                        .frame(minHeight: 44)
-                }
-            } header: {
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
                 if case .ready(let member) = session.status {
                     QuietTabHeader(
                         title: "Calendar", subtitle: "Your day, with room for everything.",
-                        session: session, member: member
-                    )
-                    .textCase(nil).padding(.bottom, 16)
+                        session: session, member: member)
                 }
+                content
             }
-            if model.access == .allowed {
-                Section {
-                    Text("Your calendar details stay on this device. Manage events in Apple Calendar.")
-                        .font(.subheadline).foregroundStyle(QuietPalette.muted)
-                }
-                agenda
-            } else {
-                permission
-            }
-            PartnerBusySection(session: session, day: day)
-            Section {
-                NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
-                Toggle("Show household chores", isOn: $showChores)
-                Toggle("Show household renewals", isOn: $showRenewals)
-            } header: {
-                QuietSectionHeader(title: "Calendars and layers")
-            }
-            if showChores { CalendarChoreSection(session: session, day: day) }
-            if showRenewals { CalendarRenewalSection(session: session, day: day) }
+            .modifier(QuietTabContentInsets())
         }
         .font(.body)
-        .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
         .navigationTitle("")
         .sheet(isPresented: $picking) { calendarPicker }
@@ -77,6 +50,36 @@ struct CalendarScreen: View {
         .refreshable { model.refresh(day: day) }
     }
 
+    @ViewBuilder
+    private var content: some View {
+        if let notice = model.notice { QuietSectionCard { Text(notice) } }
+        QuietSectionCard {
+            CalendarDayPicker(day: $day)
+            if model.access == .allowed {
+                Button("Choose calendars", systemImage: "line.3.horizontal.decrease") { picking = true }
+                    .frame(minHeight: 44)
+            }
+        }
+        if model.access == .allowed {
+            QuietSectionCard {
+                Text("Your calendar details stay on this device. Manage events in Apple Calendar.")
+                    .font(.subheadline).foregroundStyle(QuietPalette.muted)
+            }
+            agenda
+        } else {
+            permission
+        }
+        PartnerBusySection(session: session, day: day)
+        QuietSectionCard(title: "Calendars and layers") {
+            NavigationLink("Busy sharing") { CalendarSharingScreen(session: session).id(session.generation) }
+                .frame(minHeight: 44)
+            Toggle("Show household chores", isOn: $showChores)
+            Toggle("Show household renewals", isOn: $showRenewals)
+        }
+        if showChores { CalendarChoreSection(session: session, day: day) }
+        if showRenewals { CalendarRenewalSection(session: session, day: day) }
+    }
+
     private func saveLayers() {
         var layers: Set<String> = []
         if showChores { layers.insert("chores") }
@@ -85,7 +88,7 @@ struct CalendarScreen: View {
     }
 
     private var agenda: some View {
-        Section {
+        QuietSectionCard(title: "On your calendar") {
             if model.calendars.isEmpty {
                 Text("No calendars are available on this device. Check your calendar accounts in Settings.")
             } else if model.selected.isEmpty {
@@ -115,13 +118,11 @@ struct CalendarScreen: View {
                     .padding(.vertical, 6)
                 }
             }
-        } header: {
-            QuietSectionHeader(title: "On your calendar")
         }
     }
 
     private var permission: some View {
-        Section {
+        QuietSectionCard(title: "Your day, in one place") {
             Text("Nest reads the calendars you choose. It does not create, change or delete events.")
             switch model.access {
             case .notRequested:
@@ -140,8 +141,6 @@ struct CalendarScreen: View {
             case .allowed:
                 EmptyView()
             }
-        } header: {
-            QuietSectionHeader(title: "Your day, in one place")
         }
     }
 
@@ -167,7 +166,9 @@ struct CalendarScreen: View {
                 }
             }
             .navigationTitle("Your calendars")
-            .toolbar { Button("Done") { picking = false } }
+            .toolbar {
+                QuietToolbarButton("Done", systemImage: "checkmark") { picking = false }
+            }
         }
     }
 }

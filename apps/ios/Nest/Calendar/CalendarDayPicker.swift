@@ -24,7 +24,9 @@ struct CalendarDayPicker: View {
                     .datePickerStyle(.graphical).padding()
                     .navigationTitle("Choose day")
                     .navigationBarTitleDisplayMode(.inline)
-                    .toolbar { Button("Done") { presented = false } }
+                    .toolbar {
+                        QuietToolbarButton("Done", systemImage: "checkmark") { presented = false }
+                    }
             }
             .presentationDetents([.large])
         }
