@@ -391,7 +391,7 @@ wrong/expired leases, snapshot validation and exact replay/terminal retry behavi
 Original calendar/finance/native privacy state and fixture reconciliation remain
 exact. Six fresh hosted bodies/ACLs match compiled source; no hosted mutation or
 CalDAV credential/network execution is claimed. Scoped format/lint/limits pass;
-routine CI for the new diagnostic source is pending. Eighteen other public legacy
+routine CI37284161367 passes source `c36b52b1`. Eighteen other public legacy
 entries/deeper helpers, concurrent leases/external writers and full M9 remain.
 [Evidence](../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
 No provider/worker/phone/beta/production/purchase/merge/automation action occurs.

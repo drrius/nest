@@ -77,3 +77,7 @@ production migration, both-device Calendar privacy and full M9 remain unverified
 No advisor warning is suppressed. No hosted mutation, worker activation, model
 call, native build, beta, production action, purchase, merge or automation occurs.
 Shipping native source remains `f77d5846`, with routine/native CI already passing.
+
+Exact diagnostic source `c36b52b1` passes [routine CI37284161367](https://github.com/drrius/nest/actions/runs/37284161367).
+The92 full-chain cases have actual local evidence; no new deep or native run
+is claimed for the diagnostic-only change. No fresh local advisor run is claimed.

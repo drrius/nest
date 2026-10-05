@@ -176,7 +176,7 @@ simulated, and no hosted mutation or native journey is claimed.
 That shopping checkpoint left23 legacy entries. Five retained calendar-sync
 entries/private lease guard now pass92 rolled-back full-chain cases and six fresh
 hosted body/ACL matches with original calendar/finance/native privacy retained.
-Routine CI for the new diagnostic source is pending. Eighteen other public entries/
+Routine CI37284161367 passes diagnostic source `c36b52b1`. Eighteen other public entries/
 deeper helpers, concurrent leases/external writers and full M9 remain. No hosted
 mutation or CalDAV credential/network execution is claimed.
 [Calendar audit](../../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
