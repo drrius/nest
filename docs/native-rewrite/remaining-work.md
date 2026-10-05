@@ -132,7 +132,8 @@ now shows full final notes/cursor above the keyboard at normal and maximum text,
 with native Back/reopen restoring original preferences and64 empty journals.
 Three UIKit/input and five preference model methods pass; all seven hosted
 profile/receipt/full-finance aggregate hashes remain unchanged. Source `2ffc3504`
-passes routine CI37278013369; full native CI37278013379 is running.
+passes routine CI37278013369 and native CI37278013379 (418 native methods,
+11 explicit skips, zero failures, strict format/limits/actual signing).
 [Keyboard evidence](../../evidence/2026-10-05/swiftui-preference-keyboard-readability/README.md).
 [Evidence](../../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
 

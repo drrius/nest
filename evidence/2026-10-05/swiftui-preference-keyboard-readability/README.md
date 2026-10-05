@@ -67,7 +67,10 @@ decision references were read. Apply semantic Dynamic Type, native scrolling
 and44pt controls; keep domain rules outside views. Its audit reports zero
 checks, so nominal PASS is not SwiftUI proof.
 
-Source `2ffc3504` passes routine CI37278013369. SwiftUI37278013379 is still
-running its full native suite; it is not yet CI-verified. Hosted retention is verified. Full VoiceOver speech/
+Source `2ffc3504` passes routine CI37278013369 and SwiftUI37278013379. The
+full signed-native suite executes418 methods/11 explicit skips; Foundation
+executes496 methods/41 explicit skips. Both have zero failures; strict
+formatting/source limits and actual signing pass. Hosted
+retention is verified. Full VoiceOver speech/
 focus, other editors, both phones and M1–M9 acceptance remain open. This bounded
 simulator check does not establish phone, provider, release or full acceptance.

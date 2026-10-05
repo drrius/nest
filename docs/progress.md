@@ -391,7 +391,8 @@ Both Back/reopen checks restore original profiles/64 empty journals; Today/
 default text/light and data/Keychain are retained. All seven hosted aggregate
 hashes match, including61 events/102 allocations/122 ledger entries/receipts.
 [Evidence](../evidence/2026-10-05/swiftui-preference-keyboard-readability/README.md).
-Source `2ffc3504` passes Nest37278013369; SwiftUI37278013379 is still running.
+Source `2ffc3504` passes Nest37278013369/SwiftUI37278013379:418 native methods,
+11 explicit skips;496 Foundation/41 skips, zero failures, strict format/limits/signing.
 No Save, model call, beta, production mutation,
 purchase or merge occurred. Other editors/VoiceOver/two phones and full M1–M9
 acceptance/external gates remain open.
