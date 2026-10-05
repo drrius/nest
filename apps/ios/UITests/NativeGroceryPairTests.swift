@@ -62,6 +62,7 @@ final class NativeGroceryPairTests: XCTestCase {
                 object: app.buttons[fixture])
             XCTAssertEqual(XCTWaiter.wait(for: [moved], timeout: 30), .completed)
             if !app.buttons[fixture].exists { revealPickedUp(in: app) }
+            reveal(app.buttons[fixture], in: app)
         }
         let settled = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "value == %@", expected), object: app.buttons[fixture])
