@@ -39,16 +39,31 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
         do {
             let result = try await auth.client.signIn(email: credential.email, password: credential.password)
             guard result.user.id == expectedActor else { throw FixtureFailure.identity }
+            try requireSavedSession(result, configuration: configuration, stage: .persistenceAfterSignIn)
             let http = try NestHTTP(baseURL: configuration.apiURL)
             let member = try await MealAPI(http: http).verify(token: result.accessToken, expectedActor: expectedActor)
             guard member.householdId == household, member.displayName == name else { throw FixtureFailure.identity }
+            try requireSavedSession(result, configuration: configuration, stage: .persistenceAfterVerification)
             let restored = try NestAuth(configuration: configuration, offline: offline)
             let recovered = try await restored.session()
             XCTAssertEqual(recovered.userId, expectedActor)
-            XCTAssertEqual(recovered.accessToken, result.accessToken)
+            XCTAssertTrue(recovered.accessToken == result.accessToken, "Reopening must retain the verified session.")
+        } catch let failure as FixtureFailure {
+            throw failure
         } catch {
             throw FixtureFailure.signInOrPersistence
         }
+    }
+
+    private func requireSavedSession(
+        _ session: Session, configuration: NestConfiguration, stage: FixtureFailure
+    ) throws {
+        let scope = try NestEnvironmentScope(url: configuration.supabaseURL)
+        let storage = SecureAuthStorage(service: "ch.drrius.nest.auth.\(scope.fingerprint)")
+        guard let data = try storage.retrieve(key: "nest.auth.\(scope.fingerprint)"),
+            let saved = try? JSONDecoder().decode(Session.self, from: data),
+            saved.user.id == session.user.id, saved.accessToken == session.accessToken
+        else { throw stage }
     }
 
     private func requireFixture(_ role: String) throws -> NestConfiguration {
@@ -82,5 +97,6 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
 
     private enum FixtureFailure: Error {
         case environment, identity, nonFixtureSession, signInOrPersistence
+        case persistenceAfterSignIn, persistenceAfterVerification
     }
 }

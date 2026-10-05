@@ -70,3 +70,14 @@ in-app browser, checks its dismissal target and returns to the same expense and
 Today. Its screenshot needs independent inspection for actual PDF rendering; a
 WebView alone is not proof of loaded content. These methods create no expense,
 and the manual opt-ins are not enabled in routine CI.
+
+`FictionalAccountSignOutTests` requires explicit `NEST_QA_SIGN_OUT_FIXTURE=20261005`,
+`NEST_QA_SIGN_OUT_NAME=Test Alex` or `Test Sam`, and the owned SE3 simulator. The
+operator must independently verify the stable test origins, original fixture
+scope and64 empty journals before running. It verifies the visible fictional
+Profile before native sign-out; the separate partner-opening method checks Test
+Sam's fresh-launch identity and optional quick setup. Use normal native sign-out
+before the guarded SDK fixture changes accounts, then restore Test Alex normally.
+Never run against an owner's real phone/account. Hosted PDF byte checks accept
+`NEST_QA_RECEIPT_ACTOR` to require the exact expected fictional member and always
+require the isolated fixture household. These checks do not prove Apple sign-in.

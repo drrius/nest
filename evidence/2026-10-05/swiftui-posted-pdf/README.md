@@ -85,10 +85,65 @@ seconds, with normal Today/settings/journal restoration. Earlier JSON checkpoint
 flags for unverified browser rendering are superseded by this separate result.
 
 This moves the posted-receipt workflow forward but does not close M7. Partner
-native viewing, full accessibility,
-both phones and live AI receipt handoff remain open. Source1463a805 passes routine
-[Nest37319142790](https://github.com/drrius/nest/actions/runs/37319142790);
-[SwiftUI37319142748](https://github.com/drrius/nest/actions/runs/37319142748) passes. CI reports496 Foundation tests/41 skips and419 signed-native tests/12 skips,
-zero failures; the guarded hosted download is explicitly skipped. CI does not
-execute the opt-in hosted/UI methods. The dashboard fix and larger scroll budget
-are newer than that commit; their current-source CI remains pending.
+native viewing, full accessibility, both phones and live AI receipt handoff remain
+open at this checkpoint. Source `2def44b6` passes both required workflows:
+[Nest37324793105](https://github.com/drrius/nest/actions/runs/37324793105) and
+[SwiftUI37324793021](https://github.com/drrius/nest/actions/runs/37324793021).
+CI reports496 Foundation cases/41 explicit skips and419 signed-native cases/12
+explicit skips, zero failures, strict formatting/source limits and actual signing.
+The guarded hosted download and manual UI checks do not execute in routine CI;
+their actual local native evidence is recorded above. Earlier `dd9ac9bd` routine
+CI passed, but its SwiftUI workflow was cancelled by the next source push.
+
+## Partner receipt and account boundaries
+
+The later normal account sequence passes eight actual native methods, each with
+one pass and zero failures/skips. The app signs out Test Alex through Profile's
+confirmation, the guarded SDK fixture authenticates Test Sam, and a fresh app
+launch independently shows Test Sam's verified Profile. The normal SQLite scope
+matches the partner and the same household; all64 journals stay empty. Optional
+quick setup belongs only to that fictional partner. There is no shipping password
+sign-in feature or Apple authentication bypass.
+
+That partner opens the same expense/PDF in Apple's browser, returns to the same
+entry and Today, then downloads the exact640-byte application/pdf through the
+normal native API clients. The byte report independently binds the expected
+partner identity, household and SHA256. The [reviewed partner screenshot](partner-browser.png)
+shows the actual synthetic PDF text and only the public hostname, with no signed
+URL or credential. Native dismissal remains at least44pt. Test Sam signs out
+normally; the SDK restores Test Alex and the ordinary app reopens the same entry
+and returns to Today. Large/light, original scope and64 empty journals are restored.
+
+All787 captured app/app-test/manual-test/project inputs match Linux and Mac.
+Both scheme products pass actual signature, stable test-origin and push-disabled
+checks. Strict source limits and touched Swift formatting pass. No expense,
+Storage object or financial action is created by this account/read sequence;
+all six complete hosted fingerprints remain exact. The temporary0600 credential
+adapter is removed, with the original private fictional-login file retained.
+[Native verification](partner-native-verification.json), [fingerprints](partner-fingerprints.json).
+The new guarded fixture assertions are locally verified; their new-source CI is
+pending until the next pushed commit. This is one simulator and two real fictional
+Supabase identities, not both phones or real Apple sign-in.
+
+Earlier probes are retained honestly. Preparing two schemes into one derived
+folder pruned the SDK test product, producing zero executed tests; separate build
+folders correct that. The existing private fixture JSON initially lacked the
+operator helper's actor/household fields; a private adapter supplies metadata
+without weakening identity/origin checks. A direct SDK replacement while the
+original app host remained active reopened Test Alex instead of Test Sam.
+After adding direct Keychain checks immediately after sign-in and verification,
+both SDK methods passed, but the runner incorrectly required an active SQLite
+scope during a legitimate account transition. The scope observer now permits
+that transition only between SDK and UI steps; fresh-launch partner and final
+original-member identity/scope assertions remain strict. A new UI observer also
+initially used “Profile” instead of its actual “Profile and preferences” label;
+that nonmutating failure is corrected before the passing sequence.
+
+The earlier active-host SDK replacement mismatch is **not claimed fixed**. Pinned
+SDK reads perform storage migrations, and multiple clients were alive in that
+probe, but no deterministic race diagnosis establishes the cause. The passing
+sequence verifies normal native sign-out before each account switch, not an
+arbitrary replacement beneath a running app. Preserve the stricter persistence
+assertions; never resolve a future mismatch by dropping identity checks. A boolean
+token comparison now avoids logging live credentials on assertion failure.
+Full accessibility, live AI, physical account/receipt journeys and M1–M9 remain open.

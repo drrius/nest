@@ -385,16 +385,16 @@ The two-member guard and passing CI are in [dated history](progress-history-2026
 ## Native posted PDF expense
 
 One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact.
-The bounded Money stack fix passes real normal/light and maximum/dark history/detail
-navigation with64 empty journals and Today/large/light restoration. All786 captured
-inputs match. Native URLSession proves exact PDF bytes/hash; the actual browser
-renders and returns to the same entry; six hosted fingerprints stay exact. No second expense was posted. Current-source CI/partner/phones remain open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+The Money stack fix passes normal/light and maximum/dark history/detail; native bytes
+and Apple's browser rendering/dismissal pass. Source2def44b6 passes both required CI workflows (496 Foundation/41 skips,419 signed-native/12 skips, zero failures).
+The later eight-method normal sign-out/SDK login/partner Profile/PDF read/sign-out/original-member restoration passes with zero failures/skips and787 matching inputs.
+Both identities download exact bytes;64 journals and six hosted fingerprints stay exact. An earlier direct replacement beneath an active host reopened A: cause remains unproven;
+normal native account switching passes, not an arbitrary concurrent replacement fix. New fixture-source CI, full accessibility/live AI/phones stay open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
 
 ## Financial allocation consistency
 
-A balanced trusted write can omit allocations or contradict them. The additive
-expense/refund/replacement guard passes eight database tests,792 arithmetic cases,
-six concurrent exact retries and the310-migration retained-history rehearsal.
-Four manifest tests and scoped lint/format/limits pass. Nest-test20261005140239 retains52 consistent allocation-bearing events among62
-total; both bodies, private privileges/three deferred triggers and all six
-fingerprints match. Sourcefea47c1a passes Nest37321459416; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
+A balanced trusted write can omit allocations or contradict them. The additive guard
+passes eight DB tests,792 arithmetic cases,six concurrent retries and310-migration rehearsal.
+Nest-test20261005140239 retains52 consistent allocation-bearing events among62 total;
+bodies, private privileges/three deferred triggers and six fingerprints match. Manifest/lint/
+format/limits and sourcefea47c1a Nest37321459416 pass; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).

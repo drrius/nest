@@ -1,0 +1,135 @@
+{
+  "platform": "owned signed SE3 iOS26.3.1 simulator",
+  "tests": [
+    {
+      "step": "member-native-signout",
+      "method": "FictionalAccountSignOutTests/testSignOutVerifiedFictionalAccount",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 16.716,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/member-native-signout/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "partner-sdk-session",
+      "method": "FictionalAccountSessionFixtureTests/testInstallFictionalPartnerSession",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 3.702,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/partner-sdk-session/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "partner-native-identity",
+      "method": "FictionalAccountSignOutTests/testVerifiedFictionalPartnerOpensHousehold",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 12.851,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/partner-native-identity/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "partner-native-browser",
+      "method": "ReceiptPickerTests/testExistingPostedPDFBrowserOpensAndReturnsToEntry",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 26.29,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/partner-native-browser/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "partner-native-download",
+      "method": "HostedPDFReceiptTests/testExistingPostedPDFDownloadsExactFixtureBytes",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 6.481,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/partner-native-download/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "partner-native-signout",
+      "method": "FictionalAccountSignOutTests/testSignOutVerifiedFictionalAccount",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 16.825,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/partner-native-signout/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "member-sdk-restoration",
+      "method": "FictionalAccountSessionFixtureTests/testRestoreFictionalMemberSession",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 3.726,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/member-sdk-restoration/result.xcresult",
+      "emptyJournals": 64
+    },
+    {
+      "step": "member-native-restoration",
+      "method": "ReceiptPickerTests/testExistingPostedPDFExpenseRemainsReachable",
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "bundleSeconds": 19.352,
+      "resultBundle": "/private/tmp/nest-partner-pdf-v6-20261005/member-native-restoration/result.xcresult",
+      "emptyJournals": 64
+    }
+  ],
+  "sourceMatch": {
+    "inputs": 787,
+    "exact": true,
+    "sha256": "2503025d7f6868cdb5914120b667f9e1524937779f3f7c3f294208eb91b6a5b6"
+  },
+  "signatureVerifiedBothSchemes": true,
+  "stableTestOriginsVerifiedBothSchemes": true,
+  "pushEnabled": false,
+  "partnerNativeScope": {
+    "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+    "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "emptyJournals": 64
+  },
+  "partnerNativeDownload": {
+    "actorId": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+    "bytes": 640,
+    "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "mime": "application/pdf",
+    "nativeAuthenticatedDownload": true,
+    "sha256": "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9",
+    "status": 200
+  },
+  "pdfContentVisuallyVerified": true,
+  "reviewedScreenshot": "partner-browser.png",
+  "screenshotContainsCredentialsOrSignedURL": false,
+  "nativeDismissalTargetAtLeast44Points": true,
+  "sameEntryAfterDismissal": true,
+  "restoration": {
+    "original": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "restored": {
+      "contentSize": "large",
+      "appearance": "light"
+    },
+    "nativeScope": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "normalSDKMemberSessionRestored": true,
+    "todaySelectionAsserted": true
+  },
+  "financialAndStorageFingerprintsUnchanged": true,
+  "appleSignInVerified": false,
+  "physicalPhonesVerified": false,
+  "earlierActiveHostReplacementProbeResolved": false,
+  "temporaryCredentialAdapterRemoved": true,
+  "originalPrivateFixtureFileRetained": true
+}

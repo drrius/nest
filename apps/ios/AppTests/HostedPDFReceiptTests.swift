@@ -18,8 +18,17 @@ final class HostedPDFReceiptTests: XCTestCase {
         let store = try ChoreOfflineStore.application(environment: configuration.supabaseURL)
         let auth = try NestAuth(configuration: configuration, offline: store)
         let session = try await auth.session()
+        if let actor = ProcessInfo.processInfo.environment["NEST_QA_RECEIPT_ACTOR"] {
+            let allowed = ["791f7261-6c9d-4061-9c8a-57aa6e0b0200", "e5f80cfd-b69a-4aa0-a267-75784e943676"]
+            guard allowed.contains(actor), session.userId == UUID(uuidString: actor) else {
+                throw NestAPIFailure.forbidden
+            }
+        }
         let http = try NestHTTP(baseURL: configuration.apiURL)
         let member = try await ChoreAPI(http: http).verify(token: session.accessToken, expectedActor: session.userId)
+        guard member.householdId == UUID(uuidString: "be772ffd-3ab5-41d5-8438-647a79a553da") else {
+            throw NestAPIFailure.forbidden
+        }
         let money = MoneyAPI(http: http, storageOrigin: configuration.supabaseURL)
         let history = try await money.history(token: session.accessToken, member: member, before: nil)
         let matches = history.events.filter { $0.description == "Nest QA PDF posted 20261005" }
@@ -43,6 +52,8 @@ final class HostedPDFReceiptTests: XCTestCase {
             withJSONObject: [
                 "status": response.statusCode, "mime": response.mimeType ?? "", "bytes": bytes.count,
                 "sha256": hash, "nativeAuthenticatedDownload": true,
+                "actorId": member.userId.uuidString.lowercased(),
+                "householdId": member.householdId.uuidString.lowercased(),
             ], options: [.sortedKeys])
         let attachment = XCTAttachment(data: report, uniformTypeIdentifier: "public.json")
         attachment.name = "Exact synthetic posted PDF download"
