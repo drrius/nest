@@ -27,18 +27,7 @@ struct PrivateMemoryScreen: View {
                 Section("Saved memories") {
                     if model.memories.isEmpty { Text("No saved memories yet.") }
                     ForEach(model.memories) { memory in
-                        VStack(alignment: .leading, spacing: 12) {
-                            Text(memory.content).textSelection(.enabled)
-                            HStack {
-                                Button("Edit") { editor = MemoryEditorTarget(memory: memory) }
-                                Button("Remove", role: .destructive) {
-                                    removal = memory
-                                    confirmRemoval = true
-                                }
-                            }
-                            .buttonStyle(.bordered)
-                            .disabled(model.saved != nil)
-                        }
+                        memoryRow(memory)
                     }
                 }
             }
@@ -46,8 +35,10 @@ struct PrivateMemoryScreen: View {
             if let notice = model.notice {
                 Section {
                     Text(notice).foregroundStyle(QuietPalette.muted)
-                    Button("Reload") {
+                    Button {
                         Task { await model.load(session: session, member: member, approvalId: approvalId) }
+                    } label: {
+                        QuietActionLabel("Reload")
                     }
                 }
             }
@@ -57,20 +48,45 @@ struct PrivateMemoryScreen: View {
         .scrollContentBackground(.hidden)
         .background(QuietPalette.background)
         .toolbar {
-            Button("Add") { editor = MemoryEditorTarget(memory: nil) }
-                .disabled(model.busy || !model.loaded || model.saved != nil)
+            Button {
+                editor = MemoryEditorTarget(memory: nil)
+            } label: {
+                Text("Add").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+            }.buttonStyle(.plain).disabled(model.busy || !model.loaded || model.saved != nil)
         }
         .task(id: session.generation) { await model.load(session: session, member: member, approvalId: approvalId) }
         .refreshable { await model.load(session: session, member: member, approvalId: approvalId) }
         .sheet(item: $editor) { target in
             MemoryEditorScreen(model: model, session: session, member: member, memory: target.memory)
         }
-        .confirmationDialog("Remove this saved memory?", isPresented: $confirmRemoval) {
-            Button("Remove memory", role: .destructive) {
+        .alert("Remove memory?", isPresented: $confirmRemoval) {
+            Button("Remove", role: .destructive) {
                 if let removal { Task { await model.remove(removal, session: session, member: member) } }
             }
+            Button("Cancel", role: .cancel) {}
         } message: {
-            Text("\(removal?.content ?? "")\n\nYour separate conversation and approval history will remain.")
+            Text("History is kept.")
+        }
+    }
+
+    private func memoryRow(_ memory: PrivateMemory) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text(memory.content).textSelection(.enabled)
+            HStack {
+                Button {
+                    editor = MemoryEditorTarget(memory: memory)
+                } label: {
+                    Text("Edit").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }
+                Button(role: .destructive) {
+                    removal = memory
+                    confirmRemoval = true
+                } label: {
+                    Text("Remove").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }
+            }
+            .buttonStyle(.bordered)
+            .disabled(model.saved != nil)
         }
     }
 }

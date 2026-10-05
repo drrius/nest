@@ -12,12 +12,20 @@ struct MemoryRequestSection: View {
                 Text(
                     "This request was rejected. The memory or approval may have changed or expired. Reload before editing."
                 )
-                Button("Dismiss rejected request") { Task { await model.finish(session: session, member: member) } }
+                Button {
+                    Task { await model.finish(session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Dismiss rejected request")
+                }
             } else if let response = saved.response {
                 result(response)
             } else {
                 Text("The result is not confirmed. Retrying sends the same request.")
-                Button("Retry saved request") { Task { await model.retry(session: session, member: member) } }
+                Button {
+                    Task { await model.retry(session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Retry saved request")
+                }
             }
         }
     }
@@ -28,9 +36,15 @@ struct MemoryRequestSection: View {
             if [.pending, .approved].contains(envelope.approval.status) {
                 Text("Review the exact text before saving it to your private memory.")
                 Text(envelope.approval.change.content).textSelection(.enabled)
-                Button("Save this memory") { Task { await model.decide(true, session: session, member: member) } }
-                Button("Don’t save", role: .cancel) {
+                Button {
+                    Task { await model.decide(true, session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Save this memory")
+                }
+                Button(role: .cancel) {
                     Task { await model.decide(false, session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Don’t save")
                 }
             } else {
                 Text("This proposal has already been decided. Reload to see your current memory.")
@@ -46,6 +60,10 @@ struct MemoryRequestSection: View {
     }
 
     private var done: some View {
-        Button("Done") { Task { await model.finish(session: session, member: member) } }
+        Button {
+            Task { await model.finish(session: session, member: member) }
+        } label: {
+            QuietActionLabel("Done")
+        }
     }
 }
