@@ -1,0 +1,27 @@
+{
+  "run": 37367380893,
+  "headSha": "a3f7207858ede2134d78be5408bcee57c18098b8",
+  "attempt": 1,
+  "workflowConclusion": "failure",
+  "jobConclusion": "cancelled",
+  "runnerId": 0,
+  "executedSteps": 0,
+  "annotations": [
+    {
+      "title": "",
+      "message": "The job was not acquired by Runner of type hosted even after multiple attempts"
+    },
+    {
+      "title": "",
+      "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    },
+    {
+      "title": "",
+      "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    },
+    {
+      "title": "",
+      "message": "\"The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748\""
+    }
+  ]
+}

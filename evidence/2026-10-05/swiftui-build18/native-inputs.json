@@ -1,0 +1,7 @@
+{
+  "sourceCommit": "a3f7207858ede2134d78be5408bcee57c18098b8",
+  "inventory": "native-inputs-1.csv through native-inputs-3.csv",
+  "nativeShippingBaseline": "9d30941818d318a91e3c064a20d5d0487d4868be",
+  "archiveVerification": "All manifest inputs match the signed archive source mirror before archive and after export.",
+  "sourceFilesVerified": 1074
+}

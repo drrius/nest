@@ -57,5 +57,8 @@ Exact layout source9d309418 now passes SwiftUI37363877080:496 Foundation/41 skip
 compilation. [Native CI](native-ci.json). Nest37363877026 first failed before
 executing any steps: GitHub reported “The job was not acquired by Runner of type
 hosted even after multiple attempts.” Its same-source failed job is rerun as
-attempt2 and currently queued. This is not a routine-check pass. A new beta and
-physical-phone acceptance remain pending.
+attempt2 also fails before any step with runnerId0 and the same allocation error.
+[Second attempt](routine-attempt2.json). Descendant d2330171 passes both workflows
+with identical shipping Swift code; build18 reserves only the native version plus
+guarded test additions. Its signed package is ready, with exact-source CI and
+private submission pending. Physical-phone acceptance remains open.

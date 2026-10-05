@@ -6,9 +6,29 @@ It also includes the verified credential-refresh ordering, unsent chore draft an
 recipe fresh-write/44pt toolbar fixes since build17. Seven native dinner placements
 and both-account readback are separately verified; full M5 is still open.
 
-The supported Apple preflight confirms18 is absent and17 remains internally
-available. [Preflight](apple-preflight.json). No build18 upload or availability is
-claimed. Exact-source CI, local signed archive/export, final package audit and one
-private submission remain pending. Reuse existing credentials/test origins with
-push disabled; no EAS cloud build, purchase, production change, expanded invitation,
-public release or merge is authorized by this preparation.
+Sourcea3f72078 has a signed Mac archive/export:13,559,941 bytes, SHA256
+`7c70b2ff0a6a1a548df9f5528c0c0bf19007c48ecacb0ffe018e19df0f981a74`.
+All1,074 source inputs match before archive/after export; the copied IPA has the
+same hash. Apple sign-in, App Store signing/profile binding, version/bundle/test
+origins, privacy manifests, retained dSYM, arm64 and opaque1024px default icon pass.
+Push remains disabled. [Signed package](signed-package.json), [inventory](native-inputs.json).
+
+The cleanup helper initially refuses before touching credentials because its
+copied guard still expects17. The corrected guard checks the verified18 package;
+temporary signing keychain/certificate/password copies are removed on both hosts,
+original credentials/search list preserved. No archive/export is repeated.
+[Recovery](signing-recovery.json), [cleanup](signing-cleanup.json).
+
+The supported Apple preflight confirms18 absent and17 internally available.
+[Preflight](apple-preflight.json). Exact-source Nest37367380893 and
+SwiftUI37367380997 are tracked separately. Native CI passes496 Foundation/41
+skips and439 signed-app/17 skips with zero failures, strict format/source limits,
+actual signing and guarded UI compilation. [Receipt](native-ci.json),
+[actual totals](native-ci-excerpt.txt). The routine job fails before any step with
+runnerId0 and a runner-allocation annotation; its failed job is retried once on
+the same commit as attempt2, currently queued. [Failure](routine-attempt1.json),
+[GitHub incident](github-actions-incident.json).
+No build18 upload or availability is claimed. One private submission and Apple's
+availability check remain pending. No cloud build, purchase, production change,
+expanded invitation, public release or merge occurred. After availability, use
+the [short phone layout check](../../../docs/native-rewrite/build18-first-phone-pass.md).
