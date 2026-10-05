@@ -394,7 +394,7 @@ The final six entries pass130 full-chain cases:102 refusals and28 flows for both
 and complete-list area ordering preserve foreign rows and complete finance/Storage.
 Nine hosted read-only bodies/grants match the306-migration fixture. No application, migration or grant change was needed; plans/decisions/trips stay outside Nest.
 [Evidence](../evidence/2026-10-05/legacy-excluded-boundaries/README.md).
-Scoped formatting/lint/limits and four manifest tests pass. Current-source CI is pending. The unique60-entry authenticated legacy public-definer inventory now has60 bounded reviews; public invoker wrappers, private paths, direct table/Storage
+Scoped checks and routine CI37293541809 pass source `beef1eba`. The unique60-entry authenticated legacy public-definer inventory now has60 bounded reviews; public invoker wrappers, private paths, direct table/Storage
 policies, service writers/jobs and cutover acceptance remain outside that count.
 Live AI billing verification, worker/APNs, both phones and full M1–M9 stay open.
 No hosted write, new binary/release, model call, production, purchase or merge occurred.

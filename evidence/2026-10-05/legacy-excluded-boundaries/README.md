@@ -46,7 +46,11 @@ bounded evidence for60/60 entries. [Remaining scope](remaining-public-entries.js
 explicitly excludes public invoker wrappers, private paths, direct table/Storage
 policies, service-role writers and external jobs from that count. M9 is still open.
 Formatting/lint/source limits, manifest checks and four manifest tests pass; two
-pre-existing schema-probe Effect Node-import warnings remain. Current-source CI
-is pending. Live AI, native push/worker and both-phone acceptance remain open.
+pre-existing schema-probe Effect Node-import warnings remain. Routine CI37293541809
+passes exact source `beef1eba`. [CI metadata](ci-beef1eba.json).
+Live AI, native push/worker and both-phone acceptance remain open.
+
+The read-only [broader surface inventory](broader-surface-next-pass.md) names the
+two remaining public invoker targets and separates private helpers/service jobs.
 No new binary/beta, dispatcher, model call, production action, purchase, merge or
 automation occurred.
