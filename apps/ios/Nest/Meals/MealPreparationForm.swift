@@ -47,9 +47,11 @@ struct MealPreparationForm: View {
             .navigationTitle(context.baseline.preparation == nil ? "Add preparation" : "Edit preparation")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { discard = true }.disabled(saving) }
+                ToolbarItem(placement: .cancellationAction) {
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { discard = true }.disabled(saving)
+                }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { Task { await save() } }.disabled(!canSave)
+                    QuietToolbarButton("Save", systemImage: "checkmark") { Task { await save() } }.disabled(!canSave)
                 }
             }
             .interactiveDismissDisabled()
