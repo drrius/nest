@@ -34,11 +34,25 @@ struct NativeMealWeekFixture {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         tabs.buttons["Meals"].tap()
         let library = app.buttons["Saved meals"]
-        reveal(library, in: app)
+        revealLibrary(library, in: app)
         XCTAssertTrue(library.isHittable)
         library.tap()
         XCTAssertTrue(app.navigationBars["Saved meals"].waitForExistence(timeout: 15))
         return app
+    }
+
+    private func revealLibrary(_ library: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<60 {
+            if library.isHittable && library.frame.minY >= 80
+                && library.frame.maxY <= app.tabBars.firstMatch.frame.minY
+            {
+                return
+            }
+            let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.8))
+            let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.3))
+            start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
+        }
+        XCTFail("The bottom-of-week saved-meal library is not visible")
     }
 
     func reveal(_ element: XCUIElement, in app: XCUIApplication) {

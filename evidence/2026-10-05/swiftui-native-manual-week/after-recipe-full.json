@@ -1,0 +1,179 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "stage": "After one native recipe creation; no meal placement yet",
+  "checkpoint": {
+    "financial_events": {
+      "count": 62,
+      "sha256": "395e422fe37c6ee013525dd98ae630fbceca88182dee1f9b25039268aeca5828"
+    },
+    "financial_allocations": {
+      "count": 104,
+      "sha256": "25481ba79d5e7b57bdf8a95ccff164871cebba95aaa4ac2f64f6286f0747a1dc"
+    },
+    "ledger_entries": {
+      "count": 124,
+      "sha256": "c78b9066edfec31d9debf775da834b9ca2f2604e875fde98fb7b3453fb843bfe"
+    },
+    "activity_events": {
+      "count": 115,
+      "sha256": "64998b19cd81b528695503c186986ca8dd59b02f6b9c41ef292094165ab848f1"
+    },
+    "storage_objects": {
+      "count": 2,
+      "sha256": "b9a7f1546920307ce17e3b7395184b8fa812f339e5abf26640c21dcb309527c8"
+    },
+    "storage_buckets": {
+      "count": 1,
+      "sha256": "f2ef3da6180fa8563fbd74d664bd60504821069b9fed59faa66b08d4223dac34"
+    },
+    "routines": {
+      "count": 20,
+      "sha256": "c5c8fcb55c71c5705a330199dc8509f59440c06d28e7b957a5ae22cd3c95e339"
+    },
+    "occurrences": {
+      "count": 26,
+      "sha256": "1b6b0a85a2ede4356d76a9f37bc639cab164f338306d5e7d9901e17eec27756f"
+    },
+    "completions": {
+      "count": 6,
+      "sha256": "838db7539cfb7e69e25da99b54f407cb3b56fc2df51be32a8b6b3d96b0002ee8"
+    },
+    "transfers": {
+      "count": 6,
+      "sha256": "d5bf1bc8cdaaecf4425dd3633999ad00894c4256ae7499277fd9e95022697a82"
+    },
+    "meals": {
+      "definitions": {
+        "count": 8,
+        "sha256": "9ccb6cb616abf516a1e1f7cf7022e0f8ffecd5909b1f98b08ec0df7779e2761d",
+        "ids": [
+          "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+          "4d35dfb5-ddf2-4685-8b84-ab3ad6773e72",
+          "756c599a-f40a-4237-bdd6-eaf5a9a6471b",
+          "c8d771c3-9189-4112-94a7-0ac561750421",
+          "cb7c3569-f8b5-45d6-8530-9f9136a19f27",
+          "d2ad9354-d48c-40fc-9b1f-35ad3eefc4e3",
+          "f35434a0-93eb-4745-85f8-c8dd3ba032c0",
+          "fb73bd88-684a-4de6-b0e0-14c588b83630"
+        ]
+      },
+      "ingredients": {
+        "count": 13,
+        "sha256": "5bff27d52a2bcb45b82841d1ef24057a780ee12bc8874f78e282ea0e0edf3d40",
+        "ids": [
+          "0959eb42-f81a-4e45-a0a7-568c48f0354b",
+          "2c8f8702-5a56-479c-abf0-0c3001b4f729",
+          "2f8aceb7-8045-40e0-bd6e-81007937ccb7",
+          "3562f3a1-ba6c-4b47-afcf-f61ac93d8c33",
+          "5279c9f8-a9e5-4eb7-b140-61a7979a780c",
+          "921b13a8-2131-46ef-a946-8f8d108fad5e",
+          "980a0ef8-65e8-4fab-b6e2-8b9d39d91858",
+          "ac6b40b7-7ffb-4a9e-8bab-bbfe6a602774",
+          "ad5bc996-178d-4f4b-b85d-e60ae87765b1",
+          "c49e2275-e68a-4a95-b49c-247b8dddd7e4",
+          "c97571af-9089-4773-9f1d-311b314cff27",
+          "d89e0099-fd1b-4778-a301-bec4550178cb",
+          "ed0d1b7a-456e-477e-89ac-041574e5f20c"
+        ]
+      },
+      "entries": {
+        "count": 55,
+        "sha256": "5d03ab6663a3866e38b3e4bcd4a1310b38d8625c6d9ac6b9e48093d2f2c49e9e",
+        "ids": [
+          "05222c71-c033-4d13-b3fb-6f0ff96b6e78",
+          "06e3d6c1-8789-41c5-bb39-484e2e2730e7",
+          "06e4db65-d6ad-4e0a-9cf6-2498941c908b",
+          "0d2d3006-7747-4dc4-aa9e-c299d8fd801c",
+          "1538ed2a-e90a-4f42-a82d-77e23590f1ae",
+          "1bab218b-884e-43d6-8c64-874625868853",
+          "1fefb7a9-ab0a-4f41-94e7-966c961c17e6",
+          "269bacb8-9241-4ff4-81eb-354d50f4a399",
+          "2af905f2-822a-401e-bb1e-a0caa5f0aa83",
+          "2cd95953-5bfe-4e38-aadb-e98e8ec667bb",
+          "33a04d26-cdf0-4c09-9630-693761cba6c7",
+          "45c5f0a9-5659-423a-bc70-4178a0bb43e7",
+          "4d62d7ae-8054-4370-8fa1-68e3280d5b80",
+          "522008a3-75e1-48fa-890d-151e6213a7bc",
+          "5622139d-9326-4661-ad84-bbc2132858a4",
+          "62966c73-de76-4bf0-b6b6-f2aa88ef83d0",
+          "68b2b997-69c3-4eb4-89a3-d715971f6a4f",
+          "6c89fc76-c4e2-4c35-9756-679a52ae6bf5",
+          "748c3c01-8508-45bf-abdd-cd3b7620bf21",
+          "748d28f3-9c4d-4b0a-8874-f6a564493768",
+          "7723e83e-903b-4dbf-939f-7c6998ba99d8",
+          "7960767d-89a6-4305-9945-9ccbfc3ce175",
+          "79ac35ce-90b1-4095-a24b-2887b8447ff8",
+          "7b220865-2b0f-4fc7-a47a-5068226e50ac",
+          "813aca34-5264-4fe8-adec-cf8941072560",
+          "8ba2be31-58d9-462f-896a-350f6f50a272",
+          "8d0f57c1-1aae-43a9-9df9-df577419a1da",
+          "907eceaa-614b-4876-a263-1e4bed568283",
+          "a7b77bf1-543c-48ae-83d5-1cac6abb4157",
+          "abc0bb3d-3caf-45de-b3e0-b5dd084a24cb",
+          "b1363809-9ecd-4013-847c-be897bbbd290",
+          "b17a2e15-0580-4617-a291-4fbf166133c8",
+          "b5dec86f-d216-472a-86b4-ac2bf021a4da",
+          "bd591822-a2d6-4f5e-b911-c4d0a9ec9d21",
+          "c3f533a2-4f97-46f9-a9a6-be21b85bbbfa",
+          "c3f5cff6-a59e-41d7-9745-4f9af0189a54",
+          "cb1d4172-898a-448f-a982-b2d0f8746b72",
+          "cc14a8e6-ecb0-4fb7-beaf-ce3ecdee4ee1",
+          "cfba7b54-15b8-474c-b7d6-7b60ea194c8b",
+          "d0067682-675d-45bc-8078-649a91f2a6f2",
+          "d0754d6c-9c64-4520-8925-e2c69db58237",
+          "d15c995e-8883-40fd-90df-9fa688b19d6d",
+          "d66b878c-b96d-4a9b-abf4-2ec3bf0684f7",
+          "dbdf2cc9-cb92-4b8d-8a01-49bf60dfad1c",
+          "dc8b9921-6a4c-415e-b761-382315d21e25",
+          "dee5f44b-f600-4311-b362-377ef8678f30",
+          "e176f800-95b8-47a3-a90d-fe988b3aed71",
+          "e2db5c89-1b60-4579-b93b-5c17f61aa9ce",
+          "e5f1943e-22eb-4afb-a392-671ca32b3362",
+          "e82c794f-13cb-4bca-9bd9-5f4222579205",
+          "e8761c8a-6b4e-4359-9205-4acd93dcc300",
+          "eb300c3d-66e9-48c6-ac0f-ebb505a9745a",
+          "f01a77d3-6ebe-4736-856f-7a34e3a19a91",
+          "faa8fd3d-0429-48d9-8f26-da29a6010e14",
+          "fff08872-5a0f-4805-b412-cfab61ec563f"
+        ]
+      },
+      "snapshots": {
+        "count": 29,
+        "sha256": "cde1636354d7d6814be61e6ffd01d2e6ee6074a5e6a51e847c17e1206a0dc619",
+        "ids": [
+          "06e4db65-d6ad-4e0a-9cf6-2498941c908b",
+          "0d2d3006-7747-4dc4-aa9e-c299d8fd801c",
+          "1538ed2a-e90a-4f42-a82d-77e23590f1ae",
+          "1bab218b-884e-43d6-8c64-874625868853",
+          "269bacb8-9241-4ff4-81eb-354d50f4a399",
+          "522008a3-75e1-48fa-890d-151e6213a7bc",
+          "5622139d-9326-4661-ad84-bbc2132858a4",
+          "748c3c01-8508-45bf-abdd-cd3b7620bf21",
+          "748d28f3-9c4d-4b0a-8874-f6a564493768",
+          "7723e83e-903b-4dbf-939f-7c6998ba99d8",
+          "7960767d-89a6-4305-9945-9ccbfc3ce175",
+          "79ac35ce-90b1-4095-a24b-2887b8447ff8",
+          "813aca34-5264-4fe8-adec-cf8941072560",
+          "8ba2be31-58d9-462f-896a-350f6f50a272",
+          "907eceaa-614b-4876-a263-1e4bed568283",
+          "a7b77bf1-543c-48ae-83d5-1cac6abb4157",
+          "abc0bb3d-3caf-45de-b3e0-b5dd084a24cb",
+          "cb1d4172-898a-448f-a982-b2d0f8746b72",
+          "cc14a8e6-ecb0-4fb7-beaf-ce3ecdee4ee1",
+          "d0067682-675d-45bc-8078-649a91f2a6f2",
+          "d0754d6c-9c64-4520-8925-e2c69db58237",
+          "d66b878c-b96d-4a9b-abf4-2ec3bf0684f7",
+          "dbdf2cc9-cb92-4b8d-8a01-49bf60dfad1c",
+          "dc8b9921-6a4c-415e-b761-382315d21e25",
+          "dee5f44b-f600-4311-b362-377ef8678f30",
+          "e8761c8a-6b4e-4359-9205-4acd93dcc300",
+          "eb300c3d-66e9-48c6-ac0f-ebb505a9745a",
+          "f01a77d3-6ebe-4736-856f-7a34e3a19a91",
+          "faa8fd3d-0429-48d9-8f26-da29a6010e14"
+        ]
+      },
+      "reservedWeek": 0,
+      "reservedRecipe": 1
+    }
+  }
+}

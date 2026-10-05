@@ -11,6 +11,12 @@ final class RecipeDraftNavigationTests: XCTestCase {
         let fixture = try NativeMealWeekFixture(action: "read_only")
         let app = fixture.openLibrary()
         XCTAssertTrue(app.buttons["New recipe"].exists)
+        if ProcessInfo.processInfo.environment["NEST_QA_MANUAL_WEEK_EXPECT_RECIPE"] == "created" {
+            let recipe = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", fixture.title)).firstMatch
+            XCTAssertTrue(recipe.waitForExistence(timeout: 30))
+            fixture.reveal(recipe, in: app)
+            XCTAssertTrue(recipe.isHittable && recipe.label.contains("Serves 2"))
+        }
         fixture.finish(app)
     }
 

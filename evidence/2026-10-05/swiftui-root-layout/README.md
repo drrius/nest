@@ -40,8 +40,8 @@ test origins. The earlier failed observers and List cross-navigation case remain
 in native-executions.json; picker-executions.json records the precise branch coverage.
 Source-identity.json matches all13 changed Swift/UI-check files to the picker run.
 The header run precedes only the two modal Done changes and the added picker method;
-the shared header/insets/cards are identical. All807 recorded picker-run inputs
-remain unchanged on the Mac; inventory includes guarded preparations, not a claim
+the shared header/insets/cards are identical. Revalidation immediately after the
+picker run matched all807 recorded inputs; inventory includes guarded preparations, not a claim
 that every recorded file or pending meal fixture executed.
 This does not close the20-report accessibility audit or establish phone acceptance.
 No beta, production operation, purchase or merge is performed.
@@ -51,3 +51,11 @@ SwiftUI37361685407 (496 Foundation/41 skips,438 signed-app/16 skips, zero failur
 format/source limits/signing and guarded UI compilation). Those runs precede this
 root-layout change and are not its CI evidence. Focused native execution, strict
 Swift formatting and source-limit checks verify this change locally on the Mac.
+
+Exact layout source9d309418 now passes SwiftUI37363877080:496 Foundation/41 skips,
+438 signed-app/16 skips, zero failures, formatting/source limits/signing and UI
+compilation. [Native CI](native-ci.json). Nest37363877026 first failed before
+executing any steps: GitHub reported “The job was not acquired by Runner of type
+hosted even after multiple attempts.” Its same-source failed job is rerun as
+attempt2 and currently queued. This is not a routine-check pass. A new beta and
+physical-phone acceptance remain pending.
