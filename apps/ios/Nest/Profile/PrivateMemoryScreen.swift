@@ -51,7 +51,7 @@ struct PrivateMemoryScreen: View {
             Button {
                 editor = MemoryEditorTarget(memory: nil)
             } label: {
-                Text("Add").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                Text("Add").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
             }.buttonStyle(.plain).disabled(model.busy || !model.loaded || model.saved != nil)
         }
         .task(id: session.generation) { await model.load(session: session, member: member, approvalId: approvalId) }

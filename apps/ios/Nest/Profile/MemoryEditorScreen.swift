@@ -45,7 +45,7 @@ struct MemoryEditorScreen: View {
                     Button {
                         if content != (memory?.content ?? "") { discard = true } else { dismiss() }
                     } label: {
-                        Text("Cancel").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                        Text("Cancel").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
                     }.buttonStyle(.plain).disabled(model.busy)
                 }
                 ToolbarItemGroup(placement: .keyboard) {
@@ -53,7 +53,7 @@ struct MemoryEditorScreen: View {
                     Button {
                         Task { await review() }
                     } label: {
-                        Text("Review").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                        Text("Review").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
                     .accessibilityLabel("Review memory text")
