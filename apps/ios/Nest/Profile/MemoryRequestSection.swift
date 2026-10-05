@@ -5,6 +5,12 @@ struct MemoryRequestSection: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     let saved: SavedMemoryRequest
+    @State private var now = Date.now
+
+    private var expiresAt: String? {
+        if case .proposal(let envelope) = saved.response { return envelope.approval.expiresAt }
+        return nil
+    }
 
     var body: some View {
         Section("Your memory request") {
@@ -28,6 +34,7 @@ struct MemoryRequestSection: View {
                 }
             }
         }
+        .task(id: expiresAt) { await updateOnExpiry() }
     }
 
     @ViewBuilder private func result(_ response: MemoryResponse) -> some View {
@@ -36,7 +43,7 @@ struct MemoryRequestSection: View {
             if [.denied, .consumed].contains(envelope.approval.status) {
                 Text("This proposal has already been decided. Reload to see your current memory.")
                 done
-            } else if envelope.approval.isExpired() {
+            } else if envelope.approval.isExpired(at: now) {
                 Text("This proposal has expired. Discard it and reload your current memories.")
                 Text(envelope.approval.change.content).textSelection(.enabled)
                 Button {
@@ -73,5 +80,14 @@ struct MemoryRequestSection: View {
         } label: {
             QuietActionLabel("Done")
         }
+    }
+
+    private func updateOnExpiry() async {
+        now = .now
+        guard let expiresAt, let deadline = AssistantTimestamp.date(expiresAt) else { return }
+        let delay = deadline.timeIntervalSinceNow
+        guard delay > 0 else { return }
+        do { try await Task.sleep(for: .seconds(delay)) } catch { return }
+        now = .now
     }
 }

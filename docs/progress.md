@@ -390,6 +390,9 @@ Uncertain decisions retain their exact retry command and cannot be discarded.
 Eight focused Foundation and eight signed-native methods pass with zero failures
 and no skips; all1,043 native inputs, strict formatting/limits and signing match.
 These controlled tests preserve the meaningful lost-reply/account-switch cases.
-Current-source CI and the natural hosted expiry/rendering journey are still pending.
+Exact-source Nest37260096733/SwiftUI37260096762 pass:496 Foundation/41 skips,
+415 signed-native/11 skips, zero failures. Natural hosted expiry/rendering remains pending.
 Live Gateway eligibility, full accessibility/two clients/phones and M1–M9 acceptance
 remain open. No inference, beta, production action or merge occurred.
+
+A deadline-only follow-up now compiles/signs; held-open expiry and its own CI remain pending.
