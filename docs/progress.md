@@ -18,6 +18,18 @@ The three Calendar permission controls now pass actual reading tests at all12 su
 
 ## Milestone checklist
 
+### Retained schedule validation — 5 October
+
+Missing required schedule fields were confirmed to return SQL NULL/true from the
+retained database validator. A source fix now requires exact fields/types and
+revalidates the original table CHECK without modifying retained rows. Eight
+focused database tests and the308-migration disposable rehearsal pass, preserving
+chore/financial/receipt history; formatting/lint/limits and four manifest tests pass.
+[Evidence](../evidence/2026-10-05/routine-schedule-validation/README.md). Hosted
+inventory/deployment/after-checks are pending because automatic approval review's
+model is at capacity; no hosted query or migration executed in this pass. Source CI
+is pending. Native PDF cancellation remains failing (no upload;64 empty journals).
+
 Unchecked means complete acceptance is outstanding, even where implementation and bounded verification exist.
 
 - [x] **M0 — Decisions and native execution.** Approved ADRs/action inventory, source/build/environment identity, repeatable signed local Xcode/native CI execution and internally available build17 installation path are verified. Current source-matched clean signed-out cold launch and real scoped-session four-tab smoke pass. [Criterion-by-criterion audit](../evidence/2026-10-04/swiftui-m0-foundation/README.md). The plan explicitly separates physical permission/calendar/push acceptance; both-phone installation/sign-in remain M3/M6/M8/M9 gates. Full M1–M9 acceptance stays open.

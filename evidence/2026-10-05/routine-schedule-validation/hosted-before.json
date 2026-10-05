@@ -1,0 +1,11 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "recordedDate": "2026-10-05",
+  "scope": "Previously captured read-only probe; not a fresh inventory or migration check",
+  "probes": {
+    "missing_weekday": null,
+    "missing_month_day": null,
+    "missing_one_off_date": null,
+    "missing_completion_unit": true
+  }
+}

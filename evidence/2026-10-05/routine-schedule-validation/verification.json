@@ -1,0 +1,80 @@
+{
+  "complete": true,
+  "infrastructure": {
+    "simulated": ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
+    "schedulingVerified": false,
+    "storageBytesVerified": false
+  },
+  "skipped": [
+    {
+      "source": "legacy",
+      "name": "20260814153314_enable_pg_net.sql",
+      "sha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70"
+    }
+  ],
+  "routines": {
+    "passed": true,
+    "retainedRoutines": 1,
+    "retainedOccurrences": 4,
+    "retainedCompletions": 1
+  },
+  "reconciliation": {
+    "passed": true,
+    "financial": {
+      "passed": true,
+      "failures": []
+    },
+    "receipts": {
+      "passed": true,
+      "reason": null
+    },
+    "retainedEvents": 7,
+    "retainedAllocations": 8,
+    "retainedLedgerEntries": 14,
+    "retainedReceiptReferences": 1
+  },
+  "cutoverFinancialReconciliation": {
+    "passed": true,
+    "financial": {
+      "passed": true,
+      "failures": []
+    },
+    "receipts": {
+      "passed": true,
+      "reason": null
+    },
+    "retainedEvents": 7,
+    "retainedAllocations": 8,
+    "retainedLedgerEntries": 14,
+    "retainedReceiptReferences": 1
+  },
+  "securityAdvisors": {
+    "ran": false,
+    "reason": "NEST_TEST_SUPABASE_BIN not configured"
+  },
+  "appliedCount": 308,
+  "migration": {
+    "source": "native",
+    "name": "20261005121644_native_routine_schedule_validation.sql",
+    "sha256": "6c96e4f5ea5541a91665cc789ce7f8a92ccb291b00d495c37cc15a4abeb12566"
+  },
+  "fullRehearsalReportSha256": "7af252d7e7ec893fb527f11ca90ee009c5fd2ba708ef741640aff92e954d96fd",
+  "focusedTests": {
+    "passed": 8,
+    "failed": 0,
+    "skipped": 0,
+    "logSha256": "a1839fb4f893fbaa7424cc30b60fa4e6b966460f6fc85057589ab73df90f3396"
+  },
+  "hosted": {
+    "project": "tkjixmujjoustdiedfmw",
+    "applied": false,
+    "freshQueriesExecuted": false,
+    "blocker": "Automatic approval review model at capacity"
+  },
+  "commands": [
+    "NEST_TEST_PG_BIN=/tmp/nest-postgres-18-fixture/usr/bin node --test tests/database/routine-schedule-validation.test.mjs",
+    "NEST_TEST_PG_BIN=/tmp/nest-postgres-18-fixture/usr/bin node tools/migration/schema-probe.mjs /home/drrius/Work/household-os/supabase/migrations --without-pg-net",
+    "node --test tests/tooling/migration-manifest.test.mjs",
+    "pnpm lint"
+  ]
+}
