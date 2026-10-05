@@ -67,3 +67,39 @@ interaction success is not full readability. The separately verified compact
 fix below supersedes these messages and the Money entry search failure. Other rendered financial branches,
 lost replies/accessibility/both phones/live AI and M7 acceptance stay open.
 No financial/rule mutation, model, beta, production action, purchase or merge.
+
+## Readable financial confirmations
+
+Source `05f1e94c` shortens nine native alert titles/actions/messages while retaining
+full original review terms and unchanged authorization. All44 focused signed-native
+tests/1,041 committed input hashes/format/limits/signing pass. Actual expense and
+resumption normal/largest/dark images show complete titles/messages/actions;
+both Cancel branches stage nothing, one native Decline each records only denial,
+and44pt Done clears the terminal slot. Twelve journal RLS probes pass. Both exact
+61-event histories/zero balances/original rules/pending inventories and all financial/
+allocation/ledger/claimed Storage metadata hashes remain unchanged. Verifier expiry
+is recovered read-only without repeating the native decision or changing Keychain.
+An actual wholly exposed largest-text Money approvals corner now passes after
+supported scrolling; the old observer failure is retained, with no product change.
+Ordinary Today/display settings/empty64 journals/data/Keychain are restored.
+Both source CI workflows pass: Nest37246759952 and SwiftUI37246759982,
+with491 Foundation/41 skips and409 signed-native/11 skips,0 failures.
+[Evidence](../evidence/2026-10-05/swiftui-compact-financial-alerts/README.md) covers
+two rendered families; other branches/full accessibility/phones/live AI remain open.
+No financial/rule mutation, model, beta, production action, purchase or merge.
+
+## Final resumption title polish
+
+The compact decline image still put its question mark on a third title line.
+Source `8cdb60b2` changes only that title to "Decline change?". Eight focused native
+tests/1,041 committed input hashes/format/limits/signing pass. Actual normal/largest
+review and both Cancel branches, one native Decline/44pt Done, twelve journal RLS
+probes and restoration pass. Inspected largest images show whole short titles,
+messages/actions and no orphaned punctuation. Both exact61-event histories,
+zero balances/original rules/pending inventories and all retained metadata hashes
+remain unchanged; the one synthetic interrupted conversation is retained.
+Both source CI workflows pass: Nest37248045916/SwiftUI37248045819,
+491 Foundation/41 skips and409 native/11 skips,0 failures.
+[Evidence](../evidence/2026-10-05/swiftui-resumption-decline-title/README.md).
+Other branches/full accessibility/phones/live AI and M1/M7 acceptance stay open.
+No financial/rule mutation, model, beta, production action, purchase or merge.

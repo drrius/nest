@@ -1,0 +1,11 @@
+{
+  "label": "Reload current preferences",
+  "target": {
+    "x": 16,
+    "y": 301,
+    "height": 217.5,
+    "width": 343
+  },
+  "point": [356, 304],
+  "time": 1791164579.390431
+}

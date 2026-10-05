@@ -1,0 +1,32 @@
+{
+  "routine": {
+    "conclusion": "success",
+    "databaseId": 37251890365,
+    "headSha": "9adbc3eb5c82b2e2e877790efa8247351a701003",
+    "status": "completed",
+    "url": "https://github.com/drrius/nest/actions/runs/37251890365"
+  },
+  "native": {
+    "conclusion": "success",
+    "databaseId": 37251890375,
+    "headSha": "9adbc3eb5c82b2e2e877790efa8247351a701003",
+    "status": "completed",
+    "url": "https://github.com/drrius/nest/actions/runs/37251890375"
+  },
+  "foundation": {
+    "cases": 491,
+    "skipped": 41,
+    "failures": 0
+  },
+  "signedNative": {
+    "cases": 409,
+    "skipped": 11,
+    "failures": 0
+  },
+  "previousSourceNativeRun": {
+    "id": 37251101661,
+    "source": "b9652140",
+    "conclusion": "cancelled",
+    "superseded": true
+  }
+}

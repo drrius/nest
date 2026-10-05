@@ -1,0 +1,19 @@
+ref,type,label,value,rect,enabled,hittable
+"""e5""","""Key""","""1""",null,"{""height"": 54, ""x"": 1.5, ""y"": 453, ""width"": 124}",true,true
+"""e6""","""Key""","""2""",null,"{""height"": 54, ""x"": 125.5, ""y"": 453, ""width"": 124}",true,true
+"""e7""","""Key""","""3""",null,"{""height"": 54, ""x"": 249.5, ""y"": 453, ""width"": 124}",true,true
+"""e8""","""Key""","""4""",null,"{""height"": 54, ""x"": 1.5, ""y"": 507, ""width"": 124}",true,true
+"""e9""","""Key""","""5""",null,"{""height"": 54, ""x"": 125.5, ""y"": 507, ""width"": 124}",true,true
+"""e10""","""Key""","""6""",null,"{""height"": 54, ""x"": 249.5, ""y"": 507, ""width"": 124}",true,true
+"""e19""","""NavigationBar""","""Profile""",null,"{""height"": 54, ""x"": 0, ""y"": 20, ""width"": 375}",true,true
+"""e20""","""Button""","""Profile""",null,"{""height"": 44, ""x"": 16, ""y"": 20, ""width"": 44}",true,true
+"""e21""","""StaticText""","""Your food preferences""",null,"{""height"": 26, ""x"": 72, ""y"": 29, ""width"": 211.5}",true,true
+"""e28""","""Cell""","""Daily calories""",null,"{""height"": 189.5, ""x"": 16, ""y"": 0, ""width"": 343}",true,true
+"""e30""","""StaticText""","""Daily calories""",null,"{""height"": 63.5, ""x"": 32, ""y"": 13.547607421875, ""width"": 296.5}",true,true
+"""e31""","""TextField""","""Optional daily calorie goal""","""0""","{""height"": 65, ""x"": 32, ""y"": 109.5, ""width"": 311}",true,true
+"""e32""","""Cell""","""Used for meal estimates and portions, not calorie tracking. Leave blank to skip.""",null,"{""height"": 343, ""x"": 16, ""y"": 189.5, ""width"": 343}",true,true
+"""e34""","""StaticText""",null,null,"{""height"": 343, ""x"": 16, ""y"": 189.5, ""width"": 343}",true,true
+"""e42""","""Button""","""Today""",null,"{""height"": 54, ""x"": 25, ""y"": 588, ""width"": 88.25}",true,true
+"""e44""","""Button""","""Meals""",null,"{""height"": 54, ""x"": 103.91666666666667, ""y"": 588, ""width"": 88.25000000000001}",true,true
+"""e46""","""Button""","""Calendar""",null,"{""height"": 54, ""x"": 182.83333333333334, ""y"": 588, ""width"": 88.25000000000003}",true,true
+"""e48""","""Button""","""Money""",null,"{""height"": 54, ""x"": 261.75, ""y"": 588, ""width"": 88.25}",true,true

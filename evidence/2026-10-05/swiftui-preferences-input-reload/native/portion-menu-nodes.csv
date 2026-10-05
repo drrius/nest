@@ -1,0 +1,11 @@
+ref,type,label,value,rect,enabled,hittable
+"""e5""","""Cell""","""0.5""",null,"{""height"": 118.5, ""x"": 24, ""y"": 79, ""width"": 343}",true,true
+"""e6""","""Button""","""0.5""",null,"{""height"": 118.5, ""x"": 24, ""y"": 79, ""width"": 343}",true,true
+"""e7""","""Cell""","""1""",null,"{""height"": 118.5, ""x"": 24, ""y"": 197.5, ""width"": 343}",true,true
+"""e8""","""Button""","""1""",null,"{""height"": 118.5, ""x"": 24, ""y"": 197.5, ""width"": 343}",true,true
+"""e10""","""Cell""","""1.5""",null,"{""height"": 118.5, ""x"": 24, ""y"": 316, ""width"": 343}",true,true
+"""e11""","""Button""","""1.5""",null,"{""height"": 118.5, ""x"": 24, ""y"": 316, ""width"": 343}",true,true
+"""e12""","""Cell""","""2""",null,"{""height"": 118.5, ""x"": 24, ""y"": 434.5, ""width"": 343}",true,true
+"""e13""","""Button""","""2""",null,"{""height"": 118.5, ""x"": 24, ""y"": 434.5, ""width"": 343}",true,true
+"""e14""","""Cell""","""2.5""",null,"{""height"": 114, ""x"": 24, ""y"": 553, ""width"": 343}",true,true
+"""e15""","""Button""","""2.5""",null,"{""height"": 114, ""x"": 24, ""y"": 553, ""width"": 343}",true,true

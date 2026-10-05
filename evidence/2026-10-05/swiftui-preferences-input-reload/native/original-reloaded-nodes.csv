@@ -1,0 +1,14 @@
+ref,type,label,value,rect,enabled,hittable
+"""e4""","""NavigationBar""","""Profile""",null,"{""y"": 20, ""width"": 375, ""height"": 54, ""x"": 0}",true,true
+"""e5""","""Button""","""Profile""",null,"{""y"": 20, ""width"": 44, ""height"": 44, ""x"": 16}",true,true
+"""e6""","""StaticText""","""Your food preferences""",null,"{""y"": 29, ""width"": 211.5, ""height"": 26, ""x"": 72}",true,true
+"""e8""","""Button""","""Save""",null,"{""y"": 20, ""width"": 47, ""height"": 44, ""x"": 308}",true,true
+"""e11""","""Cell""","""Daily calories""",null,"{""y"": 0, ""width"": 343, ""height"": 169.5, ""x"": 16}",true,true
+"""e13""","""StaticText""","""Daily calories""",null,"{""y"": 0, ""width"": 296.5, ""height"": 57.047607421875, ""x"": 32}",true,true
+"""e14""","""TextField""","""Optional daily calorie goal""",null,"{""y"": 89.5, ""width"": 311, ""height"": 65, ""x"": 32}",true,true
+"""e17""","""Cell""","""Used for meal estimates and portions, not calorie tracking. Leave blank to skip.""",null,"{""y"": 169.5, ""width"": 343, ""height"": 343, ""x"": 16}",true,true
+"""e19""","""StaticText""",null,null,"{""y"": 169.5, ""width"": 343, ""height"": 343, ""x"": 16}",true,true
+"""e27""","""Button""","""Today""",null,"{""y"": 588, ""width"": 88.25, ""height"": 54, ""x"": 25}",true,true
+"""e29""","""Button""","""Meals""",null,"{""y"": 588, ""width"": 88.25000000000001, ""height"": 54, ""x"": 103.91666666666667}",true,true
+"""e31""","""Button""","""Calendar""",null,"{""y"": 588, ""width"": 88.25000000000003, ""height"": 54, ""x"": 182.83333333333334}",true,true
+"""e33""","""Button""","""Money""",null,"{""y"": 588, ""width"": 88.25, ""height"": 54, ""x"": 261.75}",true,true

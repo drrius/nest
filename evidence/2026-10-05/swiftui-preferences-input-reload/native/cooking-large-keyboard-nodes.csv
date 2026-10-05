@@ -1,0 +1,46 @@
+ref,type,label,value,rect,enabled,hittable
+"""e14""","""Key""","""Q""",null,"{""y"": 458, ""x"": 4.5, ""width"": 37, ""height"": 54}",true,true
+"""e15""","""Key""","""W""",null,"{""y"": 458, ""x"": 41.5, ""width"": 36.5, ""height"": 54}",true,true
+"""e16""","""Key""","""E""",null,"{""y"": 458, ""x"": 78, ""width"": 37, ""height"": 54}",true,true
+"""e17""","""Key""","""R""",null,"{""y"": 458, ""x"": 115, ""width"": 36.5, ""height"": 54}",true,true
+"""e18""","""Key""","""T""",null,"{""y"": 458, ""x"": 151.5, ""width"": 37, ""height"": 54}",true,true
+"""e19""","""Key""","""Y""",null,"{""y"": 458, ""x"": 188.5, ""width"": 37, ""height"": 54}",true,true
+"""e20""","""Key""","""U""",null,"{""y"": 458, ""x"": 225.5, ""width"": 36.5, ""height"": 54}",true,true
+"""e21""","""Key""","""I""",null,"{""y"": 458, ""x"": 262, ""width"": 37, ""height"": 54}",true,true
+"""e22""","""Key""","""O""",null,"{""y"": 458, ""x"": 299, ""width"": 36.5, ""height"": 54}",true,true
+"""e23""","""Key""","""P""",null,"{""y"": 458, ""x"": 335.5, ""width"": 37, ""height"": 54}",true,true
+"""e25""","""Key""","""A""",null,"{""y"": 512, ""x"": 23, ""width"": 36.5, ""height"": 54}",true,true
+"""e26""","""Key""","""S""",null,"{""y"": 512, ""x"": 59.5, ""width"": 37, ""height"": 54}",true,true
+"""e27""","""Key""","""D""",null,"{""y"": 512, ""x"": 96.5, ""width"": 37, ""height"": 54}",true,true
+"""e28""","""Key""","""F""",null,"{""y"": 512, ""x"": 133.5, ""width"": 36.5, ""height"": 54}",true,true
+"""e29""","""Key""","""G""",null,"{""y"": 512, ""x"": 170, ""width"": 37, ""height"": 54}",true,true
+"""e30""","""Key""","""H""",null,"{""y"": 512, ""x"": 207, ""width"": 36.5, ""height"": 54}",true,true
+"""e31""","""Key""","""J""",null,"{""y"": 512, ""x"": 243.5, ""width"": 37, ""height"": 54}",true,true
+"""e32""","""Key""","""K""",null,"{""y"": 512, ""x"": 280.5, ""width"": 37, ""height"": 54}",true,true
+"""e33""","""Key""","""L""",null,"{""y"": 512, ""x"": 317.5, ""width"": 36.5, ""height"": 54}",true,true
+"""e51""","""NavigationBar""","""Profile""",null,"{""y"": 20, ""x"": 0, ""width"": 375, ""height"": 54}",true,true
+"""e52""","""Button""","""Profile""",null,"{""y"": 20, ""x"": 16, ""width"": 44, ""height"": 44}",true,true
+"""e53""","""StaticText""","""Cooking preferences""",null,"{""y"": 31.5, ""x"": 104.5, ""width"": 166, ""height"": 21}",true,true
+"""e55""","""Button""","""Save""",null,"{""y"": 20, ""x"": 311, ""width"": 44, ""height"": 44}",true,true
+"""e60""","""Cell""","""Show in your week""",null,"{""y"": 13, ""x"": 16, ""width"": 343, ""height"": 40.5}",true,true
+"""e62""","""StaticText""","""Show in your week""",null,"{""y"": 13, ""x"": 16, ""width"": 343, ""height"": 40.5}",true,true
+"""e63""","""Cell""","""Breakfast""",null,"{""y"": 53.5, ""x"": 16, ""width"": 343, ""height"": 52}",true,true
+"""e66""","""StaticText""","""Breakfast""",null,"{""y"": 69.25, ""x"": 32, ""width"": 72.5, ""height"": 20.5}",true,true
+"""e68""","""Cell""","""Lunch""",null,"{""y"": 105.5, ""x"": 16, ""width"": 343, ""height"": 52}",true,true
+"""e71""","""StaticText""","""Lunch""",null,"{""y"": 121.25, ""x"": 32, ""width"": 47, ""height"": 20.5}",true,true
+"""e73""","""Cell""","""Dinner""",null,"{""y"": 157.5, ""x"": 16, ""width"": 343, ""height"": 52}",true,true
+"""e76""","""StaticText""","""Dinner""",null,"{""y"": 173.25, ""x"": 32, ""width"": 50, ""height"": 20.5}",true,true
+"""e78""","""Cell""","""Already-planned meals stay visible even when their slot is hidden.""",null,"{""y"": 209.5, ""x"": 16, ""width"": 343, ""height"": 64}",true,true
+"""e80""","""StaticText""",null,null,"{""y"": 209.5, ""x"": 16, ""width"": 343, ""height"": 64}",true,true
+"""e81""","""Cell""","""Cooking notes""",null,"{""y"": 291, ""x"": 16, ""width"": 343, ""height"": 40.5}",true,true
+"""e83""","""StaticText""","""Cooking notes""",null,"{""y"": 291, ""x"": 16, ""width"": 343, ""height"": 40.5}",true,true
+"""e84""","""Cell""","""Cooking notes""",null,"{""y"": 331.5, ""x"": 16, ""width"": 343, ""height"": 94.5}",true,true
+"""e86""","""TextField""","""Cooking notes""","""Fictional unsaved cooking check""","{""y"": 346.5, ""x"": 32, ""width"": 311, ""height"": 60.5}",true,true
+"""e90""","""Cell""","""Shared with your household and used for meal planning.""",null,"{""y"": 426, ""x"": 16, ""width"": 343, ""height"": 64}",true,true
+"""e92""","""StaticText""",null,null,"{""y"": 426, ""x"": 16, ""width"": 343, ""height"": 64}",true,true
+"""e93""","""Cell""","""Reload current preferences""",null,"{""y"": 525, ""x"": 16, ""width"": 343, ""height"": 74}",true,true
+"""e95""","""Button""",null,null,"{""y"": 525, ""x"": 16, ""width"": 343, ""height"": 74}",true,true
+"""e100""","""Button""","""Today""",null,"{""y"": 588, ""x"": 25, ""width"": 88.25, ""height"": 54}",true,true
+"""e102""","""Button""","""Meals""",null,"{""y"": 588, ""x"": 103.91666666666667, ""width"": 88.25000000000001, ""height"": 54}",true,true
+"""e104""","""Button""","""Calendar""",null,"{""y"": 588, ""x"": 182.83333333333334, ""width"": 88.25000000000003, ""height"": 54}",true,true
+"""e106""","""Button""","""Money""",null,"{""y"": 588, ""x"": 261.75, ""width"": 88.25, ""height"": 54}",true,true

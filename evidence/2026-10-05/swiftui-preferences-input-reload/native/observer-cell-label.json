@@ -1,0 +1,10 @@
+{
+  "semanticCellLabel": "Reload current preferences",
+  "matchingButtonBounds": {
+    "x": 16,
+    "y": 301,
+    "height": 217.5,
+    "width": 343
+  },
+  "noDuplicateTarget": true
+}

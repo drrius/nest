@@ -1,0 +1,26 @@
+{
+  "parentCommit": "89502e6ba7ee660539c0a6fa12cc1936edc3392e",
+  "nativeInputs": 1041,
+  "changedFiles": [
+    "apps/ios/Nest/Meals/FoodPreferenceFields.swift",
+    "apps/ios/Nest/Meals/FoodPreferencesScreen.swift",
+    "apps/ios/Nest/Meals/CookingPreferencesScreen.swift"
+  ],
+  "allInputsMatch": true,
+  "formatPassed": true,
+  "limitsPassed": true,
+  "started": 1791163163.002114,
+  "testPid": 75530,
+  "testExit": 0,
+  "actualSigningVerified": true,
+  "stableTestOriginsVerified": true,
+  "installedCandidateSHA256": "2d05fee7806b55b1ed4ede24277ab52f767e240676cb520792e7d3a78bf9760a",
+  "finished": 1791163184.662854,
+  "nativeTests": 8,
+  "skips": 0,
+  "failures": 0,
+  "summaries": [
+    "Executed 8 tests, with 0 failures (0 unexpected) in 0.810 (0.814) seconds",
+    "Executed 8 tests, with 0 failures (0 unexpected) in 0.810 (0.814) seconds"
+  ]
+}

@@ -59,7 +59,7 @@ Backend worker source `01467d62` passes isolated routine/deep checks:13 core,50 
 - **Worker credential transfer:** automatic approval review rejected exporting the test Supabase server key and scheduler token to Vercel because prior test-deployment authorization did not explicitly cover that transfer. A specific owner approval question is already pending. No transfer, alternate path, schedules or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID/team/configuration, worker activation and real hardware token/enrollment/six-kind delivery on both phones remain needed. App Store Connect signing credentials are not an APNs provider key. Push stays disabled.
 - **Phones:** both partners need the identified build16 installation, Apple sign-in and [phone checklist](native-rewrite/swiftui-phone-acceptance.md), followed by complete weekly/financial-approval/offline-conflict/calendar/privacy/accessibility acceptance. Actual partner tester access is still unverified. Pending phone-feedback questions should not be duplicated.
-- **Merge:** [PR85](https://github.com/drrius/nest/pull/85) was freshly read on3 October as OPEN/CLEAN and retains the specific recorded automatic-review exception. The Sol waiver does not erase it; no local/main merge bypass. New source is pushed on feature branches with CI.
+- **Merge:** [PR85](https://github.com/drrius/nest/pull/85) was freshly read on5 October as OPEN/CLEAN and retains the specific recorded automatic-review exception. The Sol waiver does not erase it; no local/main merge bypass. New source is pushed on feature branches with CI.
 - **Cutover:** existing-data/current-chain reconciliation and external-writer/old-intent drainage precede any production migration, retirement or public release. Safe fixtures and private testing do not authorize these actions.
 
 ## Latest handover completion check
@@ -361,38 +361,26 @@ Documentation checkpoint21550910 passes Nest37238842339. No beta/merge occurs; M
 
 The six-family isolation, explicit cancellation and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#financial-consent-row-isolation) and [source evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md). The later readability checks below supersede its clipped-message and navigation-observer findings.
 
-## Readable financial confirmations
+## Earlier financial readability verification
 
-Source `05f1e94c` shortens nine native alert titles/actions/messages while retaining
-full original review terms and unchanged authorization. All44 focused signed-native
-tests/1,041 committed input hashes/format/limits/signing pass. Actual expense and
-resumption normal/largest/dark images show complete titles/messages/actions;
-both Cancel branches stage nothing, one native Decline each records only denial,
-and44pt Done clears the terminal slot. Twelve journal RLS probes pass. Both exact
-61-event histories/zero balances/original rules/pending inventories and all financial/
-allocation/ledger/claimed Storage metadata hashes remain unchanged. Verifier expiry
-is recovered read-only without repeating the native decision or changing Keychain.
-An actual wholly exposed largest-text Money approvals corner now passes after
-supported scrolling; the old observer failure is retained, with no product change.
-Ordinary Today/display settings/empty64 journals/data/Keychain are restored.
-Both source CI workflows pass: Nest37246759952 and SwiftUI37246759982,
-with491 Foundation/41 skips and409 signed-native/11 skips,0 failures.
-[Evidence](../evidence/2026-10-05/swiftui-compact-financial-alerts/README.md) covers
-two rendered families; other branches/full accessibility/phones/live AI remain open.
-No financial/rule mutation, model, beta, production action, purchase or merge.
+The compact financial alerts and final resumption-title proof, exact source CI and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#readable-financial-confirmations). All original evidence remains linked there.
 
-## Final resumption title polish
+## Native preferences input and reload controls — 5 October
 
-The compact decline image still put its question mark on a third title line.
-Source `8cdb60b2` changes only that title to "Decline change?". Eight focused native
-tests/1,041 committed input hashes/format/limits/signing pass. Actual normal/largest
-review and both Cancel branches, one native Decline/44pt Done, twelve journal RLS
-probes and restoration pass. Inspected largest images show whole short titles,
-messages/actions and no orphaned punctuation. Both exact61-event histories,
-zero balances/original rules/pending inventories and all retained metadata hashes
-remain unchanged; the one synthetic interrupted conversation is retained.
-Both source CI workflows pass: Nest37248045916/SwiftUI37248045819,
-491 Foundation/41 skips and409 native/11 skips,0 failures.
-[Evidence](../evidence/2026-10-05/swiftui-resumption-decline-title/README.md).
-Other branches/full accessibility/phones/live AI and M1/M7 acceptance stay open.
-No financial/rule mutation, model, beta, production action, purchase or merge.
+Source `9adbc3eb` fixes a small portion target, calorie-field corner focus and
+maximum-text input layout, explicit reload cancellation and cooking semantic naming.
+Eight focused native preferences/preflight/recovery methods pass at the food/control
+source; final label source passes signed build/all1,041 committed hashes/format/limits.
+Both exact-source CI workflows pass: Nest37251890365/SwiftUI37251890375,
+491 Foundation/41 skips and409 signed-native/11 skips, zero failures.
+Actual normal/light and largest/dark calorie corner/keyboard validation, intended
+reload alerts/both Cancel branches and retained drafts pass without Save. One explicit
+reload per form restores original values; largest portion corner/current selection
+also passes. Both members' exact preference revisions/setup/full61-event finance
+and zero balances stay unchanged. Ordinary Today/display settings/64 empty journals,
+stable signed test origins/data/Keychain are restored. Observer scroll/label/launch
+failures and premature overlap are recorded; no already-selected action is repeated.
+[Evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
+Whole multiline cooking-keyboard readability, rejected recovery rendering, restriction/
+dislike corners, VoiceOver, broader onboarding/partner native/phones/live AI remain
+open. No preference Save, financial write, model, beta, production action or merge.

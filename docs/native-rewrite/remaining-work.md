@@ -121,6 +121,15 @@ Native handover decline now has a bounded owned-rendered/hosted check at normal 
 
 Native food/cooking Save and committed-reply/restart/exact retry now pass real test-API checks, including private populated-goal RLS, shared partner updates, stale refusal before staging and explicit confirmed reload. Original values and both setup states are restored with unchanged complete finance; stable app/empty journals/owned relay cleanup pass. This closes those bounded normal-text journeys. Maximum-text recovery, VoiceOver, B’s populated food forms, broader onboarding/private settings and phones remain. [Evidence](../../evidence/2026-10-04/swiftui-preferences-save-recovery/README.md).
 
+The later preference-control pass now verifies actual normal/largest calorie keyboard
+validation, intended reload alerts and explicit cancellation for both food/cooking,
+restored original values, largest portion corner and unchanged canonical profiles/
+setup/full61-event finance. The final semantic cooking label, all1,041 source hashes,
+format/limits/signing and both exact-source CI workflows pass at `9adbc3eb`.
+Whole multiline cooking-keyboard readability, restriction/dislike corners, rejected
+recovery rendering, VoiceOver, broader onboarding/partner native/phones/live AI remain.
+[Evidence](../../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
+
 ## 3. Prove live integrations
 
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual provider call returned403 `customer_verification_required`. Owner: check the existing valid card on [drrius-projects billing](https://vercel.com/drrius-projects/~/settings/billing) and finish any verification prompt, then report that eligibility changed. No credits purchase or upgrade is requested. Retry within the unchanged project-only USD1 cap after verification. Successful synthetic journal fixtures are not live AI proof.
