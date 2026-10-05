@@ -383,3 +383,15 @@ Ordinary Today/default text/light/64 empty journals/data/Keychain restoration pa
 VoiceOver/two clients/phones/live Gateway and M1–M9 acceptance remain open.
 Build16/PR85/provider gates are unchanged; no inference, beta, production action,
 source merge, purchase or automation occurred.
+
+## Retained shopping authorization
+
+The full305-migration disposable chain passes133 new shopping-boundary cases
+(115 refusals,18 member flows). Both-member session ownership, foreign references,
+terminal states, exact retries and pending-draft-only purchase completion pass;
+complete original grocery/session/receipt/financial state is retained. Seven
+public definitions/two helpers match hosted read-only hashes/grants. Local
+PostgreSQL18.6 is distinct from hosted17.6; Auth/Storage remain simulated.
+[Evidence](../evidence/2026-10-05/legacy-shopping-boundaries/README.md).
+Twenty-three legacy entries/deeper helpers and broader M9 acceptance remain.
+No native, provider, worker, production, merge or release action occurred.

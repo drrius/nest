@@ -150,6 +150,15 @@ The21 Nest warnings now have an actual delegated-guard review,34 compiled-chain 
 
 Continue independent native work while these inputs are unavailable. Do not purchase services or modify production to clear a test blocker.
 
+The retained shopping review now passes133 disposable full-chain cases covering
+seven session/item commands:115 refusals and18 successful member/retry flows.
+Pending expense drafts create no ledger entry. Original complete state is
+retained, and all seven public/two private definitions match hosted read-only
+hashes/grants. Local PostgreSQL18.6 differs from hosted17.6; Auth/Storage are
+simulated, and no hosted mutation or native journey is claimed.
+[Evidence](../../evidence/2026-10-05/legacy-shopping-boundaries/README.md).
+Twenty-three other legacy entry points/deeper helpers remain to review.
+
 ## 4. Deliver and accept a current private build
 
 - [x] Batch the verified changes into a current signed TestFlight candidate. Build16, exact source `5a228bef`, passes both CI workflows, native archive/export/package checks and supported internal Apple availability. Partner access and actual phone acceptance remain unverified.
