@@ -55,6 +55,7 @@ struct MemoryEditorScreen: View {
                     } label: {
                         Text("Review").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
                     }
+                    .buttonStyle(.plain)
                     .accessibilityLabel("Review memory text")
                     .disabled(!MemoryText.valid(content) || model.busy)
                 }
