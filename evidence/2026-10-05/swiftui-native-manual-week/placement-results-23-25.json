@@ -1,0 +1,172 @@
+[
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.768,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-before-23"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.442,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-before-23"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "NativeManualMealWeekTests/testPlaceOneOwnedDinnerOnce",
+    "passed": 1,
+    "seconds": 69.914,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "place-dinner-once-23"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 5.312,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-after-23"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.958,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-after-23"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.562,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-before-24"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.937,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-before-24"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "NativeManualMealWeekTests/testPlaceOneOwnedDinnerOnce",
+    "passed": 1,
+    "seconds": 71.839,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "place-dinner-once-24"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 5.24,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-after-24"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.484,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-after-24"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.904,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-before-25"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.678,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-before-25"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "NativeManualMealWeekTests/testPlaceOneOwnedDinnerOnce",
+    "passed": 1,
+    "seconds": 72.565,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "place-dinner-once-25"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 5.341,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-after-25"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "HostedManualMealWeekTests/testNormalMemberReadsOwnedRecipeAndExactWeek",
+    "passed": 1,
+    "seconds": 4.172,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-after-25"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "NativeManualMealWeekTests/testReadOwnedFullWeekWithoutChanges",
+    "passed": 1,
+    "seconds": 66.946,
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "skipped": 0,
+    "step": "original-full-board-read"
+  },
+  {
+    "exitCode": 0,
+    "failed": 0,
+    "method": "NativeManualMealWeekTests/testReadOwnedFullWeekWithoutChanges",
+    "passed": 1,
+    "seconds": 68.411,
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "skipped": 0,
+    "step": "partner-full-board-read"
+  }
+]

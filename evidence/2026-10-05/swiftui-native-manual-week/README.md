@@ -10,15 +10,18 @@ The actual native run is not repeated. [Native evidence](recipe-creation.json).
 The first placement attempt fails before Save: edge-gutter drags do not return
 the displayed Meals footer to the week controls. Its whole post-recipe checkpoint
 remains exact, with zero reserved-week entries and64 empty journals per client.
-The observer now uses the scroll view’s ordinary native swipe. The corrected
-pass is running as controller40972 in
-`nest-native-manual-week-placement-after2-20261005`. The first saved-recipe dinner
-on19 October passes actual native Save and matching canonical readback from both
-accounts; the other six dinners and full rendered-board checks remain in progress.
+The corrected observer uses the scroll view’s ordinary native swipe. Controller
+40972 finishes successfully: all37 placement/read checks pass with zero failures
+or skips. Each of the seven dinners has one native Save; both normal accounts
+independently read the exact recipe/week before and after each placement, and
+both rendered complete boards pass. This creates one saved-recipe dinner and six
+named one-off dinners in19–25 October. [First four days](placement-results-19-22.json),
+[remaining days and both boards](placement-results-23-25.json),
+[canonical week](placement-canonical-full.json), [restoration](placement-restoration.json).
 Moving/editing, preparation and ingredient confirmation remain outstanding.
 
-The isolated nest-test household has no retained entry in19–25 October2026 and
-no recipe named Nest native manual week20261005. The chosen fixture is separate
+Before creation, the isolated nest-test household had no retained entry in
+19–25 October2026 and no recipe named Nest native manual week20261005. The fixture is separate
 from the earlier removed12 October meal and other retained week histories.
 [Baseline](baseline.json) records full-row aggregate hashes for finance, ledger,
 activity, Storage, chores and original meals/ingredients/snapshots, with original
@@ -26,9 +29,7 @@ meal row identities so later append operations can be checked without hiding
 changed or removed original rows. Counts include archived/removed history.
 These SQL reads prove fixture availability and retention baselines only.
 
-The pending native journey creates one clearly named recipe, places one saved
-recipe and six named one-off dinners across the seven days, verifies both normal
-fictional clients, exercises editing/moving and separate ingredient review,
+The remaining journey exercises editing/moving and separate ingredient review,
 excludes a pantry ingredient and confirms the exact selected grocery once.
 Each positive action must be separately opted in and its canonical receipt/read
 inspected before a following step. Never rerun whole creation after interruption;
@@ -44,7 +45,17 @@ history. [Complete post-recipe checkpoint](after-recipe-full.json) and
 [original-row checkpoint](after-recipe-retained.json) distinguish new fixture rows
 from retained history. The recipe stays available for the owned full-week pass.
 
+After the week pass, both clients return to Today/large/light, original memberships,
+stable test origins and64 empty journals each. All ten unrelated fingerprints and
+all four original meal row sets remain exact. The week adds seven entries and one
+immutable recipe snapshot; no original archived or removed row is hidden by the
+comparison. [Full checkpoint](after-week-full.json), [retained rows](after-week-retained.json).
+All807 recorded native inputs are identified; guarded preparations are not claimed
+executed. No recipe or placement is rerun after observer/export failure.
+
 The authorized Mac is reachable. Fresh recipe-write checks separately pass both
-required CI workflows at606f77b5; these manual additions have not passed CI yet.
+required CI workflows at606f77b5. Recipe evidence source d2330171 passes routine
+CI37366435420; its native workflow37366435471 is still running. The final week
+test/evidence has strict Swift formatting/source-limit checks; its CI is pending.
 No recipe, meal or grocery was created by the read-only preflight. Full M5, live AI proposal/approval,
 phone, offline-radio and accessibility acceptance remain open.
