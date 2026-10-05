@@ -1,0 +1,14 @@
+{
+  "sourceCommit": "e7926c895f236c9f0f042d68c2e9123457649017",
+  "sourceFiles": 1080,
+  "inventoryParts": [
+    "native-inputs-1.csv",
+    "native-inputs-2.csv",
+    "native-inputs-3.csv",
+    "native-inputs-4.csv"
+  ],
+  "frozenSourceCreated": true,
+  "packageVerification": "passed: all1080 frozen inputs match before archive and after export",
+  "supersedesUnsubmittedCandidate": "a3f7207858ede2134d78be5408bcee57c18098b8",
+  "copiedIPAHashMatches": true
+}

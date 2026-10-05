@@ -1,0 +1,3 @@
+Test Case '-[NestAccessibilityTests.NativeIngredientGroceryReadTests testReadConfirmedRiceWithoutCheckingOrEditing]' started.
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeIngredientGroceryReadTests.swift:44: error: -[NestAccessibilityTests.NativeIngredientGroceryReadTests testReadConfirmedRiceWithoutCheckingOrEditing] : failed - The owned native grocery control is not fully visible
+Test Case '-[NestAccessibilityTests.NativeIngredientGroceryReadTests testReadConfirmedRiceWithoutCheckingOrEditing]' failed (107.902 seconds).

@@ -1,0 +1,73 @@
+{
+  "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "groceries": [
+    {
+      "checked": false,
+      "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D",
+      "legacyClaimed": false,
+      "mealSource": {
+        "date": "2026-10-19",
+        "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005"
+      },
+      "name": "QA rice",
+      "offlineEpoch": "FDE324AA-AAF8-4179-AAF3-2D31A918C8CB",
+      "quantity": "100",
+      "unit": "g",
+      "version": "1"
+    }
+  ],
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "ingredients": [
+    {
+      "date": "2026-10-19",
+      "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+      "groceryItemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D",
+      "ingredientId": "AD5BC996-178D-4F4B-B85D-E60AE87765B1",
+      "mealTitle": "Nest native manual week 20261005",
+      "name": "QA rice",
+      "quantity": "100",
+      "slot": "dinner",
+      "unit": "g"
+    },
+    {
+      "date": "2026-10-19",
+      "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+      "ingredientId": "C49E2275-E68A-4A95-B49C-247B8DDDD7E4",
+      "mealTitle": "Nest native manual week 20261005",
+      "name": "QA lentils",
+      "quantity": "200",
+      "slot": "dinner",
+      "unit": "g"
+    }
+  ],
+  "phase": "after",
+  "revision": "9",
+  "skipped": [
+    {
+      "entryId": "33C8059D-FC2E-42F2-BF6F-E13EC94884DA",
+      "reason": "no_recipe"
+    },
+    {
+      "entryId": "397D07C1-6C8D-49DD-A4DD-0751BC514BF3",
+      "reason": "no_recipe"
+    },
+    {
+      "entryId": "657A93AF-26E6-420E-B0B5-2897FDDA15AF",
+      "reason": "no_recipe"
+    },
+    {
+      "entryId": "78BBD620-C9E5-47BD-8BF8-322E8A3CCB8D",
+      "reason": "no_recipe"
+    },
+    {
+      "entryId": "B269521D-177A-47E0-94CD-0113A714667B",
+      "reason": "no_recipe"
+    },
+    {
+      "entryId": "EB96E6FA-F4AC-402D-9E75-AA43FE687A99",
+      "reason": "no_recipe"
+    }
+  ]
+}

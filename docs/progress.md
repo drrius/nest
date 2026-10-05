@@ -87,9 +87,13 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 ## Next work
 
-The four home tabs now share a20pt side/14pt top inset and one header; Calendar uses Quiet cards. Normal/light, normal/dark and maximum/dark pass12 native header captures/24 Profile and assistant links with matching anchors (≤0.5pt rounding), plus two unchanged-date picker checks. All12 images were reviewed; both clients return to Today/large/light/64 empty journals. The real interim Calendar List cross-navigation bug and earlier observer failures remain recorded. Calendar selection is compiled but not executed because these simulators have no access grant. Layout source9d309418 passes SwiftUI37363877080 (496 Foundation/41 skips,438 signed-app/16 skips, zero failures). Nest37363877026 failed before checks because GitHub could not allocate a hosted runner; same-source attempt2 also fails before any step with the same runner-allocation error. Descendant d2330171 passes both workflows with identical shipping Swift code. A new beta remains pending. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md). Full accessibility and phone acceptance stay open.
-Nine native recipe checks and37 native week-placement/read checks pass: one saved recipe/two ingredients, one saved dinner/six one-off dinners, identical canonical reads before/after each Save for both accounts and both complete rendered boards. Today/large/light/original actors/stable test origins/64 empty journals each are restored. Ten unrelated and four retained-meal row sets remain exact; seven entries/one snapshot are added. The first placement observer fails before Save with an unchanged whole checkpoint; ordinary native swipes fix navigation and no creation is repeated. Recipe evidence d2330171 passes Nest37366435420/SwiftUI37366435471 (496 Foundation/41 skips,439 signed-app/17 skips, zero failures). Final week evidence CI remains pending. Eight subsequent native checks verify Tuesday Dinner→Lunch→Dinner, both canonical member reads and only the intended slot/revision change, with all14 original row sets/recipe/snapshots retained and both restored clients. Its strict Mac format/limits pass; source de756e5d passes Nest37369824038/SwiftUI37369824123 (496 Foundation/41 skips,439 signed-app/17 skips, zero failures). Eight further native ingredient checks pass: rice selection persists across leaving/reopening, local Save adds nothing, one100g rice item is confirmed, pantry lentils stay excluded and both SDK accounts agree. All29 original groceries/five links and14 other row sets match;811 inputs, original memberships/large/light/64 empty journals each are retained. Three before-Save observer failures remain; complete saved-notice readability and an invalid-frame warning remain open. Editing/preparation remain outstanding for this fixture. [Ingredient evidence](../evidence/2026-10-05/swiftui-native-ingredient-review/README.md). [Meal evidence](../evidence/2026-10-05/swiftui-native-manual-week/README.md). Prepare the layout beta, continue complete native journeys/accessibility/both-phone acceptance and verify live AI/worker/APNs when prerequisites arrive; production stays gated.
-Private0.1.0/build18 is reserved for the verified layout/auth/draft/recipe fixes. Apple preflight confirms18 absent; the signed archive/export/package audit passes with1,074 matching inputs and temporary credentials removed. Exact-source native37367380997 passes (496 Foundation/41 skips,439 signed-app/17 skips, zero failures). Routine37367380893 fails before any step with runnerId0; attempt2 fails identically before any checks. The separate move-source routine then passes on the same runner configuration, justifying attempt3 on the unchanged release source; attempt3 also fails at20:52:20 UTC before any step/runnerId0. Back off until runner availability changes; do not bypass this release gate. One private submission remains pending. Build17 remains the installed candidate. [Preparation](../evidence/2026-10-05/swiftui-build18/README.md). The earlier checkpoint is retained in [dated history](progress-history-2026-10-05-late.md).
+The four home tabs share one header and20pt side/14pt top insets; Calendar uses Quiet cards. Twelve normal/light, normal/dark and maximum/dark native captures and24 Profile/assistant links match header anchors within0.5pt. All images were reviewed; two unchanged-date picker checks pass. Actual Calendar selection, full accessibility and phones remain open. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md).
+
+The manual seven-day week has nine recipe,37 placement/read and eight move/read native checks. Eight ingredient checks retain the saved rice-only choice across navigation and confirm one100g grocery; both members agree. Original groceries/links and14 other retained row sets remain exact. Ingredient source923f1db passes Nest37372405961/SwiftUI37372405933:496 Foundation/41 skips,440 signed-app/18 skips, zero failures, format/limits/signing/UI compilation. Editing/preparation for this fixture, saved-notice readability and the unsuppressed invalid-frame warning remain open. [Meal evidence](../evidence/2026-10-05/swiftui-native-manual-week/README.md), [ingredients](../evidence/2026-10-05/swiftui-native-ingredient-review/README.md).
+
+Both members pass six ordinary grocery-read methods. The maximum/dark check then reproduces an oversized Today grocery shortcut before any action. Accessibility text now gets full card width; decorative icons remain in the ordinary layout. Twelve post-fix native checks pass across normal/light and maximum/dark, with813 matching inputs, unchanged canonical groceries/history, Today/large/light/original actors and64 empty journals each. No grocery action is repeated. Sourcee7926c89 is pushed; Nest37374014717 and SwiftUI37374014748 both pass:496 Foundation/41 skips,440 signed-app/18 skips, zero failures, format/limits/signing/guarded UI compilation. [Readback and retained failure](../evidence/2026-10-05/swiftui-native-grocery-readback/README.md). These focused passes do not close the original20-report accessibility audit.
+
+Private0.1.0/build18 remains unpublished. The original signeda3 candidate/native CI pass are preserved; all four routine attempts fail before runner allocation. No further unchanged-source retry is requested. The still-unsubmitted candidate has been refreshed from exacte7926c89 to include the demonstrated accessibility fix;1,080 frozen source files match before archive/after export. Native signing/package/privacy/test origins/arm64/dSYM checks and copied IPA hash pass; owned temporary credentials are removed. Both current-source CI checks pass. Exactly one authorized submissionfcd756b6-fe07-4356-8346-521c2c6113da reports IN_PROGRESS; Apple availability is unverified. Build17 remains the installed candidate. [Updated preparation](../evidence/2026-10-05/swiftui-build18-layout/README.md), [original](../evidence/2026-10-05/swiftui-build18/README.md). Live AI, worker/APNs, both-phone acceptance and production cutover gates remain separate; no new beta availability is claimed.
 
 ## Native existing-expense cycle linkage
 
@@ -299,27 +303,8 @@ Whole cooking-keyboard readability and broader accessibility/phone/live-AI gates
 
 Original save/edit/decline/removal and approval/receipt RLS checkpoints remain in [the 5 October history](progress-history-2026-10-05.md).
 
-## Fresh private-memory consent and terminal recovery
-
-Source `d96b9678` fixes the demonstrated token-only consent defect: two native
-regression methods fail38 assertions before the fix. Eight focused Foundation
-and eight signed-native methods pass, retaining lost-reply/account-switch checks.
-New consent needs a fresh exact online approval; canonical reload changes only
-the same confirmed proposal. Explicit terminal/expired dismissal preserves
-uncertain decisions and their exact retry command. Follow-up `d6189131` also
-updates the open view at expiry without changing rows or sending a command.
-Both commits pass their own routine/native CI; latest Nest37261862852 and
-SwiftUI37261862814 pass:496 Foundation/41 skips,415 native/11 skips,0 failures,
-strict format/limits/signing. A real1000-character native Paste/Review matches
-the private test-API proposal. Keyboard watchdogs,512-character observer bounds
-and the obsolete pre-expiry Save search remain honestly recorded. Actual held-open
-expiry, cold restart and one largest-text44pt corner Discard preserve approval
-history, both empty memory lists and exact full61-event finances/zero balances.
-All1,043 final inputs match. [Evidence](../evidence/2026-10-05/swiftui-memory-consent-preflight/README.md).
-Ordinary Today/default text/light/64 empty journals/data/Keychain restoration passes.
-VoiceOver/two clients/phones/live Gateway and M1–M9 acceptance remain open.
-Build16/PR85/provider gates are unchanged; no inference, beta, production action,
-source merge, purchase or automation occurred.
+The fresh private-memory consent fix, expiry recovery, passing CI and restored native
+journeys are preserved in [the late history](progress-history-2026-10-05-late.md#fresh-private-memory-consent-and-terminal-recovery).
 
 The retained shopping audit is preserved in [the dated history](progress-history-2026-10-05.md#retained-shopping-authorization).
 

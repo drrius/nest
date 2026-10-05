@@ -60,5 +60,7 @@ hosted even after multiple attempts.” Its same-source failed job is rerun as
 attempt2 also fails before any step with runnerId0 and the same allocation error.
 [Second attempt](routine-attempt2.json). Descendant d2330171 passes both workflows
 with identical shipping Swift code; build18 reserves only the native version plus
-guarded test additions. Its signed package is ready, with exact-source CI and
-private submission pending. Physical-phone acceptance remains open.
+guarded test additions. The original unpublished package is preserved. The current build18 candidate
+also includes the demonstrated large-text grocery shortcut fix and is tracked
+in [updated preparation](../swiftui-build18-layout/README.md). Exact-source CI and
+private submission remain required. Physical-phone acceptance remains open.

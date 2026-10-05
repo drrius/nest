@@ -9,7 +9,9 @@ The tabs retain their different contents and actions.
 Check once in your normal appearance/text size, then in dark mode and your
 preferred larger text size. Titles and actions should remain readable and usable;
 at accessibility text sizes, all tabs place the actions on a separate row.
-Open Profile from each tab and return. Opening the assistant checks navigation
+Open Profile from each tab and return. On Today, scroll to Groceries: its title
+and summary should remain readable at your preferred text size. At accessibility
+sizes the text uses the full card width. Open it and return without changing items. Opening the assistant checks navigation
 only while live AI remains blocked by Gateway account verification.
 
 Please report any tab that still feels misaligned, with its text size and a

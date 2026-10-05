@@ -1,0 +1,65 @@
+{
+  "attempt": 1,
+  "conclusion": "success",
+  "headSha": "e7926c895f236c9f0f042d68c2e9123457649017",
+  "jobs": [
+    {
+      "completedAt": "2026-10-05T21:17:46Z",
+      "conclusion": "success",
+      "databaseId": 111977884222,
+      "name": "swiftui",
+      "startedAt": "2026-10-05T21:08:39Z",
+      "status": "completed",
+      "steps": [
+        {
+          "name": "Set up job",
+          "conclusion": "success"
+        },
+        {
+          "name": "Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify Swift source limits",
+          "conclusion": "success"
+        },
+        {
+          "name": "Test native push signing gates",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify Swift formatting",
+          "conclusion": "success"
+        },
+        {
+          "name": "Test Foundation domain and offline rules",
+          "conclusion": "success"
+        },
+        {
+          "name": "Test iPhone session and account boundaries",
+          "conclusion": "success"
+        },
+        {
+          "name": "Verify actual app push signing",
+          "conclusion": "success"
+        },
+        {
+          "name": "Compile guarded native UI checks",
+          "conclusion": "success"
+        },
+        {
+          "name": "Post Run actions/checkout@v4",
+          "conclusion": "success"
+        },
+        {
+          "name": "Complete job",
+          "conclusion": "success"
+        }
+      ],
+      "url": "https://github.com/drrius/nest/actions/runs/37374014748/job/111977884222"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/drrius/nest/actions/runs/37374014748",
+  "runId": "37374014748"
+}

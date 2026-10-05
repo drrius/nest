@@ -40,4 +40,7 @@ both-phone/grocery-screen reading, prep/editing and live AI acceptance remain op
 The earlier e3d644e5 passes Nest37371365801/SwiftUI37371365809:496 Foundation/41
 skips,440 signed-app/18 skips, zero failures, strict format/limits/signing and
 guarded UI compilation. [Receipts](initial-source-ci.json), [totals](initial-source-ci-excerpt.txt).
-It is separate from the final test-helper corrections; latest source CI is pending. No model call, beta upload, purchase, production or merge.
+The final helper source923f1dbe also passes Nest37372405961/SwiftUI37372405933
+with the same actual totals/gates. [Final receipts](final-source-ci.json),
+[final totals](final-source-ci-excerpt.txt). This CI compiles the guarded UI suite;
+the eight manual native executions remain separately identified. No model call, beta upload, purchase, production or merge.

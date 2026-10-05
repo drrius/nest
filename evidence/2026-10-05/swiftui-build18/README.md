@@ -33,6 +33,12 @@ with runnerId0; [receipt](routine-attempt3.json). Back off until availability ch
 The release gate is not bypassed. [First failure](routine-attempt1.json),
 [second failure](routine-attempt2.json),
 [GitHub incident](github-actions-incident.json).
+After the923f1db routine job actually acquires a runner and passes, the unchanged
+a3 source gets one attempt4. It also fails before checks; [receipt](routine-attempt4.json).
+No further unchanged-source rerun is requested. The unpublished candidate is now
+being refreshed frome7926c89 for the real grocery accessibility fix, with separate
+source/signing/current CI receipts in [updated preparation](../swiftui-build18-layout/README.md).
+The original source, IPA and receipts remain intact.
 No build18 upload or availability is claimed. One private submission and Apple's
 availability check remain pending. No cloud build, purchase, production change,
 expanded invitation, public release or merge occurred. After availability, use

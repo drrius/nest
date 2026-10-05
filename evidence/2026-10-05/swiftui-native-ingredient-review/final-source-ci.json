@@ -1,0 +1,234 @@
+[
+  {
+    "runId": "37372405961",
+    "attempt": 1,
+    "conclusion": "success",
+    "headSha": "923f1dbee99d3c8218786733ff1de510cadcd14f",
+    "jobs": [
+      {
+        "completedAt": "2026-10-05T20:56:16Z",
+        "conclusion": "success",
+        "databaseId": 111972545024,
+        "name": "foundation",
+        "startedAt": "2026-10-05T20:52:36Z",
+        "status": "completed",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm/action-setup@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm install --frozen-lockfile",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm format:check",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm lint",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm typecheck",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run denoland/setup-deno@v2",
+            "conclusion": "success"
+          },
+          {
+            "name": "Check pinned receipt Edge entry point",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:tooling",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:calendar",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:assistant",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:food",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:cooking",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:setup",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:routines",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:meals",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:money",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:notifications",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:memory",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:session",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:checklist",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:chores",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test:offline",
+            "conclusion": "success"
+          },
+          {
+            "name": "Install pinned PostgREST integration fixture",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test core native HTTP and database journeys",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test retained attention date handling",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test retained routine schedule validation",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test complete append-only ledger events",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test financial allocation consistency",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run pnpm test",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run denoland/setup-deno@v2",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/setup-node@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run pnpm/action-setup@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ],
+        "url": "https://github.com/drrius/nest/actions/runs/37372405961/job/111972545024"
+      }
+    ],
+    "status": "completed"
+  },
+  {
+    "runId": "37372405933",
+    "attempt": 1,
+    "conclusion": "success",
+    "headSha": "923f1dbee99d3c8218786733ff1de510cadcd14f",
+    "jobs": [
+      {
+        "completedAt": "2026-10-05T21:01:29Z",
+        "conclusion": "success",
+        "databaseId": 111972544822,
+        "name": "swiftui",
+        "startedAt": "2026-10-05T20:52:34Z",
+        "status": "completed",
+        "steps": [
+          {
+            "name": "Set up job",
+            "conclusion": "success"
+          },
+          {
+            "name": "Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify Swift source limits",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test native push signing gates",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify Swift formatting",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test Foundation domain and offline rules",
+            "conclusion": "success"
+          },
+          {
+            "name": "Test iPhone session and account boundaries",
+            "conclusion": "success"
+          },
+          {
+            "name": "Verify actual app push signing",
+            "conclusion": "success"
+          },
+          {
+            "name": "Compile guarded native UI checks",
+            "conclusion": "success"
+          },
+          {
+            "name": "Post Run actions/checkout@v4",
+            "conclusion": "success"
+          },
+          {
+            "name": "Complete job",
+            "conclusion": "success"
+          }
+        ],
+        "url": "https://github.com/drrius/nest/actions/runs/37372405933/job/111972544822"
+      }
+    ],
+    "status": "completed"
+  }
+]
