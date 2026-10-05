@@ -33,8 +33,13 @@ struct NativeOwnedMealWeek {
             let bottom = app.tabBars.firstMatch.frame.minY
             if element.isHittable && element.frame.minY >= 80 && element.frame.maxY <= bottom { return }
             let frame = element.exists ? element.frame : .zero
-            if frame.height > 0 && frame.minY < 80 {
-                app.swipeDown(velocity: .slow)
+            if frame.height > 0 {
+                let middle = (80 + bottom) / 2
+                let distance = max(-180, min(180, frame.midY - middle))
+                let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.65))
+                let end = app.coordinate(
+                    withNormalizedOffset: CGVector(dx: 0.96, dy: 0.65 - distance / app.frame.height))
+                start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
             } else {
                 app.swipeUp(velocity: .slow)
             }
