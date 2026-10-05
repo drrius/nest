@@ -165,6 +165,7 @@ final class NativePreparationCompletionTests: XCTestCase {
         instructions.typeText("x")
         XCTAssertNotEqual(instructions.value as? String, original)
         app.buttons["Done"].tap()
+        let edited = instructions.value as? String
         let cancel = app.navigationBars["Edit preparation"].buttons["Cancel"]
         XCTAssertTrue(cancel.isHittable)
         XCTAssertGreaterThanOrEqual(cancel.frame.height + 0.000_001, 44)
@@ -180,7 +181,6 @@ final class NativePreparationCompletionTests: XCTestCase {
             XCTAssertLessThanOrEqual(button.frame.maxY, app.frame.maxY - 8)
         }
         capture("Finished preparation discard choices", app: app)
-        let edited = instructions.value as? String
         app.buttons["Keep editing"].tap()
         let kept = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: heading)
         XCTAssertEqual(XCTWaiter.wait(for: [kept], timeout: 15), .completed)
