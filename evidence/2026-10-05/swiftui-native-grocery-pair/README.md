@@ -79,8 +79,9 @@ Earlier per-phase hashes remain recorded; only the manual UI test differs across
 those phases. Strict touched Swift formatting and source limits pass. Source
 1075f60c passes both CI workflows:496 Foundation/41 skips and423 signed-native/14
 skips, zero failures, including actual push-disabled signing. That routine run
-does not execute this manual fixture. The newer observer source is locally
-verified; its next CI gate remains pending at capture. [CI metadata](source-ci.json).
+does not execute this manual fixture. The newer observer is also CI-verified at
+head2267bfa4: Nest37341752813 and SwiftUI37341753014 both pass with the same counts, zero failures and all format,
+limit and signing checks. CI does not execute the hosted manual fixture. [CI metadata](source-ci.json).
 
 Physical radio loss, VoiceOver, maximum text/dark variants, both phones, broader
 chores/handovers and full M4 acceptance remain open. This adds guarded tests, not

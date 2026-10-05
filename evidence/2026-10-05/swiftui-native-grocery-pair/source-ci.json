@@ -30,7 +30,34 @@
     "manualPairFixtureExecutedByCI": false
   },
   "laterObserverSource": "2d0a2c6674872ce1c7b71226ec629fde4dd22ebc",
-  "laterObserverSourceCI": "not yet run at evidence capture",
+  "laterObserverSourceCI": {
+    "verifiedHead": "2267bfa47d23e881e3f13d4817f0df2f7cada769",
+    "workflows": [
+      {
+        "name": "Nest checks",
+        "databaseId": 37341752813,
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/drrius/nest/actions/runs/37341752813"
+      },
+      {
+        "name": "SwiftUI client checks",
+        "databaseId": 37341753014,
+        "status": "completed",
+        "conclusion": "success",
+        "url": "https://github.com/drrius/nest/actions/runs/37341753014"
+      }
+    ],
+    "foundationCases": 496,
+    "foundationSkipped": 41,
+    "signedAppCases": 423,
+    "signedAppSkipped": 14,
+    "failures": 0,
+    "strictFormattingPassed": true,
+    "sourceLimitsPassed": true,
+    "actualPushDisabledSigningPassed": true,
+    "manualPairFixtureExecutedByCI": false
+  },
   "manualObserverMethodPassed": true,
   "shippingAndSDKTestSourcesUnchangedFromPassingCI": true,
   "phoneAcceptance": false,
