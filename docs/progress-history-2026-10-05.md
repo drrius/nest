@@ -162,3 +162,26 @@ records real input/corner/format failures and source-specific execution. Full-le
 editor/review, VoiceOver, hosted lost-reply/conflict/expiry/account-switch rendering,
 two native clients/phones and live AI remain. No model, beta, production action or
 merge; M1–M9 remain open. Available build16 is unchanged and older than this source.
+
+## Native PDF receipt picker
+
+One actual Apple document-picker selection now uploads a synthetic660-byte PDF to
+private nest-test Storage. Picker cancellation leaves no intent; uploader-only
+exact-byte/API reads, partner/outsider/anonymous denials and complete52-event finance
+retention pass. Actual terminate/launch retains identical PDF bytes/reservation.
+One343×155.5pt maximum-text/dark native corner Remove deletes only this unposted PDF;
+fresh Storage absence, household410 Gone, unchanged pending inventories and the
+existing claimed receipt's exact bytes for both members pass. The known local PDF
+is removed, normal/light Today restored and all64 scoped journals empty, preserving
+data/Keychain. All1,041 native inputs, installed signature, retained executable and
+stable test origins match. [Evidence](../evidence/2026-10-04/swiftui-native-pdf-receipt/README.md).
+
+Shipping native source remains both-CI-green177d0a70; this is actual native/hosted
+verification, not a new build/unit run. PDF evidence checkpoint03bb1bec now passes
+exact-source routine37220894854. The preceding definition audit checkpoint
+a8928b51 passes routine37219093738. Other PDF providers/invalid input, newly posted
+attachments, partner native viewer, interruption/full accessibility, live AI and
+both phones remain open. The observed system-owned picker Cancel rectangle is
+36.5×36pt, with no44pt/full-accessibility claim. M7 and all other unchecked milestones
+remain incomplete. No expense, approval, beta, production action, purchase, worker
+activation or merge occurred.

@@ -1,0 +1,28 @@
+{
+  "parentCommit": "80447fed219bab0444f1d175cd8a87ab2b0499b3",
+  "nativeInputs": 1045,
+  "changedFiles": [
+    "apps/ios/Nest/Meals/CookingPreferencesScreen.swift",
+    "apps/ios/Nest/Meals/CookingNotesEditor.swift",
+    "apps/ios/AppTests/CookingNotesEditorTests.swift"
+  ],
+  "allInputsMatch": true,
+  "started": 1791184272.119596,
+  "formatPid": 61820,
+  "formatExit": 0,
+  "formatTotals": [],
+  "limitsPid": 61834,
+  "limitsExit": 0,
+  "limitsTotals": [],
+  "nativePid": 61835,
+  "nativeExit": 65,
+  "nativeTotals": [
+    "Executed 2 tests, with 1 failure (0 unexpected) in 0.193 (0.194) seconds",
+    "Executed 2 tests, with 1 failure (0 unexpected) in 0.193 (0.194) seconds",
+    "Executed 2 tests, with 1 failure (0 unexpected) in 0.193 (0.195) seconds"
+  ],
+  "signingPid": 62121,
+  "signingExit": 0,
+  "signingTotals": [],
+  "finished": 1791184305.798391
+}

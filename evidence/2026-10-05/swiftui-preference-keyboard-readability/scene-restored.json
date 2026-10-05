@@ -1,0 +1,97 @@
+{
+  "journals": {
+    "counts": {
+      "chore_operations": 0,
+      "grocery_checks": 0,
+      "grocery_adds": 0,
+      "grocery_edits": 0,
+      "grocery_removes": 0,
+      "meal_placements": 0,
+      "meal_removals": 0,
+      "meal_recipe_placements": 0,
+      "meal_replacements": 0,
+      "cooking_commands": 0,
+      "food_commands": 0,
+      "recipe_edits": 0,
+      "recipe_archives": 0,
+      "recipe_creations": 0,
+      "meal_leftovers": 0,
+      "receipt_uploads": 0,
+      "chore_transfers": 0,
+      "chore_changes": 0,
+      "routine_edits": 0,
+      "routine_state_commands": 0,
+      "routine_creations": 0,
+      "assistant_turns": 0,
+      "memory_requests": 0,
+      "notification_requests": 0,
+      "renewal_requests": 0,
+      "renewal_reminder_requests": 0,
+      "chore_reminder_requests": 0,
+      "meal_reminder_requests": 0,
+      "grocery_reminder_requests": 0,
+      "recurring_reminder_requests": 0,
+      "push_device_requests": 0,
+      "recurring_decisions": 0,
+      "correction_decisions": 0,
+      "settlement_decisions": 0,
+      "refund_decisions": 0,
+      "variable_cycle_commands": 0,
+      "expense_decisions": 0,
+      "recurring_commands": 0,
+      "recurring_resume_commands": 0,
+      "recurring_state_commands": 0,
+      "correction_commands": 0,
+      "refund_commands": 0,
+      "settlement_commands": 0,
+      "expense_commands": 0,
+      "calendar_consent_changes": 0,
+      "calendar_privacy_removals": 0,
+      "proposal_edits": 0,
+      "proposal_discards": 0,
+      "proposal_approvals": 0,
+      "proposal_generations": 0,
+      "meal_moves": 0,
+      "meal_preparations": 0,
+      "meal_recipe_replacements": 0,
+      "recurring_state_decisions": 0,
+      "recurring_resume_decisions": 0,
+      "variable_cycle_decisions": 0,
+      "manual_cycle_commands": 0,
+      "manual_cycle_decisions": 0,
+      "legacy_dismissal_commands": 0,
+      "legacy_dismissal_decisions": 0,
+      "legacy_confirmation_commands": 0,
+      "legacy_confirmation_decisions": 0,
+      "legacy_adoption_commands": 0,
+      "legacy_adoption_decisions": 0
+    },
+    "manual": null
+  },
+  "food": {
+    "version": 1,
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "profile": {
+      "revision": "5",
+      "preferences": {
+        "restrictions": ["Vegetarian"],
+        "portions": 1,
+        "calorieGoal": null,
+        "dislikes": []
+      }
+    }
+  },
+  "cooking": {
+    "profile": {
+      "revision": "6",
+      "preferences": {
+        "cookingNotes": "",
+        "mealSlots": ["breakfast", "lunch", "dinner"]
+      }
+    },
+    "version": 1,
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+  },
+  "time": 1791185248.993747
+}

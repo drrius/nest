@@ -1,0 +1,15 @@
+{
+  "nativeInputs": 1045,
+  "sevenHostedAggregatesIdentical": true,
+  "financialEventsRetained": 61,
+  "financialAllocationsRetained": 102,
+  "ledgerEntriesRetained": 122,
+  "bothExactNativeSuffixes": true,
+  "bothVisibleFinalLinesAndCursorsInspected": true,
+  "bothSaveTargetsAtLeast44Points": true,
+  "bothUnsavedDraftsDiscardedAndCanonicalReopened": true,
+  "originalProfilesAnd64EmptyJournalsRetained": true,
+  "manualFinancialIntent": null,
+  "ordinaryTodayLightDefaultTextRestored": true,
+  "initialVerifierCorrection": "Journal counts are nested under counts; initial flat-shape assertion failed without any app action."
+}

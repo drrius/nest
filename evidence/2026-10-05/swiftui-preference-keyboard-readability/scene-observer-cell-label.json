@@ -1,0 +1,10 @@
+{
+  "semanticCellLabel": "Household cooking preferences",
+  "matchingButtonBounds": {
+    "width": 343,
+    "x": 16,
+    "y": 379.5,
+    "height": 52
+  },
+  "noDuplicateTarget": true
+}

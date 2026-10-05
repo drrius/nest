@@ -1,0 +1,32 @@
+{
+  "parentCommit": "80447fed219bab0444f1d175cd8a87ab2b0499b3",
+  "nativeInputs": 1043,
+  "changedFiles": ["apps/ios/Nest/Meals/CookingPreferencesScreen.swift"],
+  "allInputsMatch": true,
+  "started": 1791182657.887297,
+  "formatPid": 54212,
+  "formatExit": 0,
+  "formatTotals": [],
+  "limitsPid": 54233,
+  "limitsExit": 0,
+  "limitsTotals": [],
+  "corePid": 54235,
+  "coreExit": 0,
+  "coreTotals": [
+    "Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds",
+    "Executed 2 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds",
+    "Executed 8 tests, with 2 tests skipped and 0 failures (0 unexpected) in 0.107 (0.108) seconds",
+    "Executed 8 tests, with 2 tests skipped and 0 failures (0 unexpected) in 0.107 (0.109) seconds"
+  ],
+  "nativePid": 54278,
+  "nativeExit": 0,
+  "nativeTotals": [
+    "Executed 4 tests, with 0 failures (0 unexpected) in 0.308 (0.310) seconds",
+    "Executed 5 tests, with 0 failures (0 unexpected) in 0.409 (0.411) seconds",
+    "Executed 5 tests, with 0 failures (0 unexpected) in 0.409 (0.412) seconds"
+  ],
+  "signingPid": 54429,
+  "signingExit": 0,
+  "signingTotals": [],
+  "finished": 1791182688.279178
+}

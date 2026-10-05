@@ -55,6 +55,8 @@ without system installation. Fixture attempts omitted explicit sort values and
 miscounted JSON null as an array; both harness issues were corrected before the
 passing run. No server permission was relaxed. Focused format/lint and file/
 function/complexity limits pass; existing Effect Node-import warnings remain.
+Exact diagnostic source80447fed passes [routine CI37271758517](https://github.com/drrius/nest/actions/runs/37271758517). No native source changes, so the last shipping
+SwiftUI checks remain the exact d6189131 runs.
 No fresh local advisor run is claimed: a Supabase CLI is not configured.
 
 ## Hosted read-only definitions and delegated guards

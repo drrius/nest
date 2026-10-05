@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CookingPreferencesScreen: View {
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var model: SessionModel
     @State private var context: CookingEditContext?
     @State private var notes = ""
@@ -106,7 +107,16 @@ struct CookingPreferencesScreen: View {
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
         }.disabled(!editable)
         Section("Cooking notes") {
-            TextField("What helps you cook?", text: $notes, axis: .vertical).lineLimit(3...8)
+            CookingNotesEditor(text: $notes)
+                .frame(height: dynamicTypeSize.isAccessibilitySize ? 240 : 180)
+                .overlay(alignment: .topLeading) {
+                    if notes.isEmpty {
+                        Text("What helps you cook?")
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 8).padding(.leading, 5)
+                            .allowsHitTesting(false).accessibilityHidden(true)
+                    }
+                }
                 .accessibilityLabel("Cooking notes")
             Text("Shared with your household and used for meal planning.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)

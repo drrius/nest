@@ -1,0 +1,17 @@
+{
+  "save": {
+    "x": 311,
+    "width": 44,
+    "y": 20,
+    "height": 44
+  },
+  "field": {
+    "width": 311,
+    "height": 180,
+    "y": 196,
+    "x": 32
+  },
+  "keyboardKeyTop": 458,
+  "noSavePressed": true,
+  "renderedCaretRequiresImageInspection": true
+}
