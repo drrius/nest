@@ -107,6 +107,7 @@ struct CookingPreferencesScreen: View {
         }.disabled(!editable)
         Section("Cooking notes") {
             TextField("What helps you cook?", text: $notes, axis: .vertical).lineLimit(3...8)
+                .accessibilityLabel("Cooking notes")
             Text("Shared with your household and used for meal planning.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
         }.disabled(!editable)
