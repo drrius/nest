@@ -1,0 +1,89 @@
+{
+  "queuedJournal": {
+    "operation": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+    "target": "61673c1e-992d-4bc9-9381-6e1248787728",
+    "status": "pending",
+    "bodySHA256": "d0a15050a11b6615684f8cfec0918e910baeb60b8585b66d838b482686ccb0bc",
+    "capturedChoreSHA256": "625832469afe2a668bdaff4289e6c92727ee458b5013492332b41df3a29a6e73"
+  },
+  "restartedJournal": {
+    "operation": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+    "target": "61673c1e-992d-4bc9-9381-6e1248787728",
+    "status": "pending",
+    "bodySHA256": "d0a15050a11b6615684f8cfec0918e910baeb60b8585b66d838b482686ccb0bc",
+    "capturedChoreSHA256": "625832469afe2a668bdaff4289e6c92727ee458b5013492332b41df3a29a6e73"
+  },
+  "commandAttempts": [
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "path": "/v1/chores/complete",
+      "write": true,
+      "operation": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+      "bodySHA256": "83f15acdb9ca0532af0dd1e7af7328d21377d00bbbed882fe941cc0586fc9eff",
+      "forwarded": false,
+      "status": 503
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "path": "/v1/chores/complete",
+      "write": true,
+      "operation": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+      "bodySHA256": "83f15acdb9ca0532af0dd1e7af7328d21377d00bbbed882fe941cc0586fc9eff",
+      "forwarded": false,
+      "status": 503
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "path": "/v1/chores/complete",
+      "write": true,
+      "operation": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+      "bodySHA256": "83f15acdb9ca0532af0dd1e7af7328d21377d00bbbed882fe941cc0586fc9eff",
+      "forwarded": true,
+      "status": 200,
+      "replyDropped": false,
+      "receipt": {
+        "operationId": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+        "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728",
+        "completedBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "completedOn": "2026-10-05",
+        "outcome": "already_completed",
+        "version": 1
+      }
+    }
+  ],
+  "initialTerminal": {
+    "success": false,
+    "inspectBeforeResuming": true,
+    "noAutomaticPositiveRepeats": true,
+    "relayStopped": true,
+    "privateKeyRemoved": true
+  },
+  "readOnlyResumeTerminal": {
+    "success": true,
+    "inspectBeforeResuming": false,
+    "noAutomaticPositiveRepeats": true,
+    "readOnlyResume": true
+  },
+  "finalRestoration": {
+    "original": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "partner": {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "bothStableOrigins": true,
+    "bothJournalSetsEmpty": true,
+    "ordinaryTodaySelectedByNativeMethods": true,
+    "positiveCommandsRepeated": 0
+  },
+  "teardown": {
+    "controllersTerminal": true,
+    "loopbackPortHasNoListener": true,
+    "relayPrivateKeysRemoved": true,
+    "temporaryRelayConfigurationsRemoved": true
+  }
+}

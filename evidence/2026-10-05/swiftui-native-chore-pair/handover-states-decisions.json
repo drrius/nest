@@ -1,0 +1,116 @@
+[
+  {
+    "checkpoint": "accepted",
+    "bothNormalSDKIdentitiesAgree": true,
+    "stage": "accepted",
+    "routines": [
+      {
+        "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+        "state": "active",
+        "version": "2026-10-05T17:15:27.394555Z"
+      }
+    ],
+    "chores": [
+      {
+        "assignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "due": "2026-10-05",
+        "id": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    ],
+    "transfers": []
+  },
+  {
+    "checkpoint": "after-original-retry",
+    "bothNormalSDKIdentitiesAgree": true,
+    "stage": "accepted",
+    "routines": [
+      {
+        "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+        "state": "active",
+        "version": "2026-10-05T17:15:27.394555Z"
+      }
+    ],
+    "chores": [
+      {
+        "assignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "due": "2026-10-05",
+        "id": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    ],
+    "transfers": []
+  },
+  {
+    "checkpoint": "pending-ba",
+    "bothNormalSDKIdentitiesAgree": true,
+    "stage": "pending_ba",
+    "routines": [
+      {
+        "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+        "state": "active",
+        "version": "2026-10-05T17:15:27.394555Z"
+      }
+    ],
+    "chores": [
+      {
+        "assignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "due": "2026-10-05",
+        "id": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    ],
+    "transfers": [
+      {
+        "from": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "id": "445d4ff5-0120-4b22-8005-5d50ca2d4735",
+        "occurrence": "61673c1e-992d-4bc9-9381-6e1248787728",
+        "to": "791f7261-6c9d-4061-9c8a-57aa6e0b0200"
+      }
+    ]
+  },
+  {
+    "checkpoint": "after-decline-cancel",
+    "bothNormalSDKIdentitiesAgree": true,
+    "stage": "pending_ba",
+    "routines": [
+      {
+        "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+        "state": "active",
+        "version": "2026-10-05T17:15:27.394555Z"
+      }
+    ],
+    "chores": [
+      {
+        "assignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "due": "2026-10-05",
+        "id": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    ],
+    "transfers": [
+      {
+        "from": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "id": "445d4ff5-0120-4b22-8005-5d50ca2d4735",
+        "occurrence": "61673c1e-992d-4bc9-9381-6e1248787728",
+        "to": "791f7261-6c9d-4061-9c8a-57aa6e0b0200"
+      }
+    ]
+  },
+  {
+    "checkpoint": "declined",
+    "bothNormalSDKIdentitiesAgree": true,
+    "stage": "declined",
+    "routines": [
+      {
+        "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+        "state": "active",
+        "version": "2026-10-05T17:15:27.394555Z"
+      }
+    ],
+    "chores": [
+      {
+        "assignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "due": "2026-10-05",
+        "id": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    ],
+    "transfers": []
+  }
+]

@@ -1,0 +1,81 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "mode": "Read-only hosted fingerprints after owned native archive",
+  "allOriginalChoreRowsUnchanged": true,
+  "allOriginalActivityRowsUnchanged": true,
+  "financialHistoryAndStorageUnchanged": true,
+  "wholeTableFinal": {
+    "financial_events": {
+      "count": 62,
+      "sha256": "395e422fe37c6ee013525dd98ae630fbceca88182dee1f9b25039268aeca5828"
+    },
+    "financial_allocations": {
+      "count": 104,
+      "sha256": "25481ba79d5e7b57bdf8a95ccff164871cebba95aaa4ac2f64f6286f0747a1dc"
+    },
+    "ledger_entries": {
+      "count": 124,
+      "sha256": "c78b9066edfec31d9debf775da834b9ca2f2604e875fde98fb7b3453fb843bfe"
+    },
+    "activity_events": {
+      "count": 115,
+      "sha256": "64998b19cd81b528695503c186986ca8dd59b02f6b9c41ef292094165ab848f1"
+    },
+    "storage_objects": {
+      "count": 2,
+      "sha256": "b9a7f1546920307ce17e3b7395184b8fa812f339e5abf26640c21dcb309527c8"
+    },
+    "storage_buckets": {
+      "count": 1,
+      "sha256": "f2ef3da6180fa8563fbd74d664bd60504821069b9fed59faa66b08d4223dac34"
+    }
+  },
+  "retainedOriginalRows": {
+    "routines": {
+      "count": 19,
+      "sha256": "8e1dacc9054cb5dcee0184f00c58102224b961d96479c92fbdc71e5690018902"
+    },
+    "occurrences": {
+      "count": 24,
+      "sha256": "a305f89c42d54182d456e71e8fc0b537e1eee28d1643361edb0d3ce22a7dcc58"
+    },
+    "completions": {
+      "count": 5,
+      "sha256": "12f751652186216a5b440dcdaf53511efb39d0768382836b777b2faadca82141"
+    },
+    "transfers": {
+      "count": 4,
+      "sha256": "71bc294b8669ad73100d1cf14038f91d4658c240d5cd56cbc8de004c59554040"
+    },
+    "activity": {
+      "count": 112,
+      "sha256": "3cf629501c11d0366cbdd37bf065592ac28ae6a35a076bba0702a3e5d2df7cd8"
+    }
+  },
+  "ownedNewActivity": {
+    "owned_new_activity_count": 3,
+    "kinds": ["occurrence_completed", "routine_archived", "routine_created"]
+  },
+  "archive": {
+    "routine": {
+      "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+      "archivedAt": "2026-10-05T17:34:35.244792+00:00",
+      "rotationAnchor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200"
+    },
+    "occurrences": [
+      {
+        "id": "61673c1e-992d-4bc9-9381-6e1248787728",
+        "status": "completed",
+        "role": null,
+        "due": "2026-10-05"
+      },
+      {
+        "id": "a423e696-da60-483e-acc9-141ca8c5ba97",
+        "status": "open",
+        "role": "current",
+        "due": "2026-10-06"
+      }
+    ],
+    "completionCount": 1
+  }
+}

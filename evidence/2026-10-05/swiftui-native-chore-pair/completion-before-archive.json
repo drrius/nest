@@ -1,0 +1,100 @@
+{
+  "mode": "Read-only hosted fixture audit after both actual native completions, before native archive",
+  "project": "tkjixmujjoustdiedfmw",
+  "routine": {
+    "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+    "assignmentPolicy": "alternating",
+    "rotationAnchor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "archivedAt": null,
+    "version": "2026-10-05T17:15:27.394555+00:00"
+  },
+  "occurrences": [
+    {
+      "id": "61673c1e-992d-4bc9-9381-6e1248787728",
+      "due": "2026-10-05",
+      "originalDue": "2026-10-05",
+      "status": "completed",
+      "role": null,
+      "plannedAssignee": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "acceptedAssignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "assignmentRevision": 2,
+      "closedAt": "2026-10-05T17:33:43.077856+00:00"
+    },
+    {
+      "id": "a423e696-da60-483e-acc9-141ca8c5ba97",
+      "due": "2026-10-06",
+      "originalDue": "2026-10-06",
+      "status": "open",
+      "role": "current",
+      "plannedAssignee": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "acceptedAssignee": null,
+      "assignmentRevision": 1,
+      "closedAt": null
+    },
+    {
+      "id": "adfbb57e-c7fa-4c6d-a62a-acba0889073a",
+      "due": "2026-10-07",
+      "originalDue": "2026-10-07",
+      "status": "open",
+      "role": "preview",
+      "plannedAssignee": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "acceptedAssignee": null,
+      "assignmentRevision": 0,
+      "closedAt": null
+    }
+  ],
+  "completions": [
+    {
+      "occurrence": "61673c1e-992d-4bc9-9381-6e1248787728",
+      "completedBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "completedOn": "2026-10-05"
+    }
+  ],
+  "transfers": [
+    {
+      "id": "ba812bc2-847a-42a7-88ac-e7f22fb506e1",
+      "from": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "to": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "state": "accepted"
+    },
+    {
+      "id": "445d4ff5-0120-4b22-8005-5d50ca2d4735",
+      "from": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "to": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "state": "declined"
+    }
+  ],
+  "completionReceipts": [
+    {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "operation": "a12918b3-5792-4319-a8e1-39b6cda7c96c",
+      "result": {
+        "outcome": "completed",
+        "version": 1,
+        "completedBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "completedOn": "2026-10-05",
+        "operationId": "a12918b3-5792-4319-a8e1-39b6cda7c96c",
+        "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    },
+    {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "operation": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+      "result": {
+        "outcome": "already_completed",
+        "version": 1,
+        "completedBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "completedOn": "2026-10-05",
+        "operationId": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+        "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728"
+      }
+    }
+  ],
+  "assertions": {
+    "oneCanonicalCompletion": true,
+    "partnerCanonicalCompleter": true,
+    "oneCurrentAndOnePreview": true,
+    "originalAlternatingAnchorRetained": true,
+    "twoOperationsOneCompletion": true
+  }
+}

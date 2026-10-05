@@ -54,7 +54,7 @@ final class HostedNativePairChoreTests: XCTestCase {
         _ stage: String, day: CivilDate, nextDay: CivilDate, routines: [HouseholdRoutine],
         chores: [NestChore], transfers: [PendingChoreTransfer]
     ) throws {
-        if stage == "absent" {
+        if ["absent", "archived"].contains(stage) {
             XCTAssertTrue(routines.isEmpty && chores.isEmpty && transfers.isEmpty)
             return
         }
@@ -62,11 +62,7 @@ final class HostedNativePairChoreTests: XCTestCase {
         let routine = try XCTUnwrap(routines.first)
         XCTAssertEqual(routine.definition.schedule, .daily)
         XCTAssertEqual(routine.definition.assignment, .alternating(actor))
-        XCTAssertEqual(routine.state, stage == "archived" ? .archived : .active)
-        if stage == "archived" {
-            XCTAssertTrue(chores.isEmpty && transfers.isEmpty)
-            return
-        }
+        XCTAssertEqual(routine.state, .active)
         XCTAssertEqual(chores.count, 1)
         let chore = try XCTUnwrap(chores.first)
         XCTAssertEqual(chore.dueDate, stage == "completed" ? nextDay : day)
