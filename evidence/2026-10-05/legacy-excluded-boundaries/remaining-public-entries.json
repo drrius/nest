@@ -1,0 +1,6 @@
+{
+  "totalAuthenticatedLegacyPublicDefiners": 60,
+  "boundedEvidenceEntries": 60,
+  "remainingEntries": [],
+  "scope": "This inventory excludes security-invoker public wrappers, private functions, direct table/Storage policies, service-role writers and external jobs. Their acceptance remains open."
+}

@@ -385,15 +385,16 @@ Its inventory count is superseded below; full acceptance remains open.
 
 The144-case retained recurring audit and passing CI are [in the dated history](progress-history-2026-10-05.md#retained-recurring-command-boundaries).
 
-## Retained notification privacy and device boundaries
+The retained notification privacy fix and127-case verification with passing source
+CI are [in the dated history](progress-history-2026-10-05.md#retained-notification-privacy-and-device-boundaries).
 
-Seven entries pass127 full-chain cases:92 refusals and35 member/RLS flows.
-The audit found legacy digest reads exposed partner settings. A policy-only
-migration now enforces owner reads in nest-test, preserving write policies/data.
-Both hosted members see only their temporary preference; an outsider sees none.
-Rollback restores the original zero-row digest; no new security notices appear.
-Seven hosted bodies/grants and all three policies match the306-migration fixture.
-[Evidence](../evidence/2026-10-05/legacy-notification-boundaries/README.md).
-Scoped checks and routine CI37291976625 pass source `9e94b0f7`; the unique60-entry inventory has54 bounded entries and6 pending. Broader helpers/races/hosted interfaces/old
-writers, M1–M9, live AI, native push and both-phone acceptance remain open.
-No dispatch, new binary/release, production change, purchase or merge occurred.
+## Retained excluded-feature command boundaries
+
+The final six entries pass130 full-chain cases:102 refusals and28 flows for both members. Task selections retain edits/archives/skips on retry; decision changes
+and complete-list area ordering preserve foreign rows and complete finance/Storage.
+Nine hosted read-only bodies/grants match the306-migration fixture. No application, migration or grant change was needed; plans/decisions/trips stay outside Nest.
+[Evidence](../evidence/2026-10-05/legacy-excluded-boundaries/README.md).
+Scoped formatting/lint/limits and four manifest tests pass. Current-source CI is pending. The unique60-entry authenticated legacy public-definer inventory now has60 bounded reviews; public invoker wrappers, private paths, direct table/Storage
+policies, service writers/jobs and cutover acceptance remain outside that count.
+Live AI billing verification, worker/APNs, both phones and full M1–M9 stay open.
+No hosted write, new binary/release, model call, production, purchase or merge occurred.

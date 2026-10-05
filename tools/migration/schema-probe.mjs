@@ -10,6 +10,7 @@ import { verifyLegacyShoppingBoundaries } from "./legacy-shopping-boundaries.mjs
 import { verifyLegacyContextBoundaries } from "./legacy-context-boundaries.mjs";
 import { verifyLegacyRecurringBoundaries } from "./legacy-recurring-boundaries.mjs";
 import { verifyLegacyNotificationBoundaries } from "./legacy-notification-boundaries.mjs";
+import { verifyLegacyExcludedBoundaries } from "./legacy-excluded-boundaries.mjs";
 import { verifyLegacyCalendarBoundaries } from "./legacy-calendar-boundaries.mjs";
 import { verifyPendingLegacyJobs } from "./pending-legacy-jobs-rehearsal.mjs";
 import { verifyOfflineEpochAi } from "./offline-epoch-ai-rehearsal.mjs";
@@ -148,6 +149,7 @@ try {
   report.legacyContextBoundaries = verifyLegacyContextBoundaries(db);
   report.legacyRecurringBoundaries = verifyLegacyRecurringBoundaries(db);
   report.legacyNotificationBoundaries = verifyLegacyNotificationBoundaries(db);
+  report.legacyExcludedBoundaries = verifyLegacyExcludedBoundaries(db);
   report.routineRepair = verifyRoutineRepair(db);
   report.legacyJobPause = verifyLegacyJobPause(db);
   report.pendingLegacyJobs = verifyPendingLegacyJobs(db);

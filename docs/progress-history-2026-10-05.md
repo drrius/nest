@@ -273,3 +273,16 @@ pass source `aa005b1e`.
 The unique60-entry inventory records47 bounded reviews and13 pending. Broader
 helpers/races/hosted interfaces/external writers and all M1–M9 acceptance remain.
 No migration, scheduled posting, live AI, production, release or merge occurred.
+
+## Retained notification privacy and device boundaries
+
+Seven entries pass127 full-chain cases:92 refusals and35 member/RLS flows.
+The audit found legacy digest reads exposed partner settings. A policy-only
+migration now enforces owner reads in nest-test, preserving write policies/data.
+Both hosted members see only their temporary preference; an outsider sees none.
+Rollback restores the original zero-row digest; no new security notices appear.
+Seven hosted bodies/grants and all three policies match the306-migration fixture.
+[Evidence](../evidence/2026-10-05/legacy-notification-boundaries/README.md).
+Scoped checks and routine CI37291976625 pass source `9e94b0f7`; the unique60-entry inventory has54 bounded entries and6 pending. Broader helpers/races/hosted interfaces/old
+writers, M1–M9, live AI, native push and both-phone acceptance remain open.
+No dispatch, new binary/release, production change, purchase or merge occurred.
