@@ -152,8 +152,9 @@ The assistant's native composer now has bounded normal/largest keyboard-safe
 typing/discard and largest2,001→2,000 validation evidence,13 signed-native passes,
 unchanged private chat/profile/61-event finance and restored64 empty journals.
 Long-text accessible readback stops512; full value equality is not claimed.
-Current-source CI, live model streaming/tools, full recovery/VoiceOver and both
-phones remain open. [Composer evidence](../../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
+Source `f77d5846` passes routine CI; native CI37282660851 is still running.
+Live model streaming/tools, full recovery/VoiceOver and both phones remain open.
+[Composer evidence](../../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
 
 - [ ] Resolve AI Gateway eligibility and verify real streaming/tools and approval handoffs. Last actual provider call returned403 `customer_verification_required`. Owner: check the existing valid card on [drrius-projects billing](https://vercel.com/drrius-projects/~/settings/billing) and finish any verification prompt, then report that eligibility changed. No credits purchase or upgrade is requested. Retry within the unchanged project-only USD1 cap after verification. Successful synthetic journal fixtures are not live AI proof.
 - [ ] Complete explicitly authorized test-worker credential configuration and activation. The compatible test API is deployed and passes read-only member/isolation checks. A specific worker server-secret transfer approval question remains pending; API deployment and worker activation are separate steps.

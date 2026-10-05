@@ -65,5 +65,7 @@ model, full recovery rendering, VoiceOver, motion or either physical phone.
 Gateway's last actual response remains403 `customer_verification_required`.
 TestFlight remains build16. No new beta, production action, credential change,
 worker activation, purchase, source merge or automation occurs here.
-M1–M9 full acceptance remains open; current-source CI is recorded separately
-after the source is committed and pushed.
+M1–M9 full acceptance remains open. Source `f77d5846` passes routine CI37282661041.
+Native CI37282660851 is still running at the recorded observation; it is not
+claimed passed. [Exact-source CI state](ci-f77d5846.json) is distinct from the
+13 focused Mac methods and the existing phone build16.

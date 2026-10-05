@@ -1,0 +1,24 @@
+{
+  "observedAtUnix": 1791188544.7949567,
+  "sourceCommit": "f77d5846f3f875d74ca4619ffa26ed8eb87a5464",
+  "runs": [
+    {
+      "runId": 37282661041,
+      "conclusion": "success",
+      "createdAt": "2026-10-05T08:16:56Z",
+      "headSha": "f77d5846f3f875d74ca4619ffa26ed8eb87a5464",
+      "status": "completed",
+      "updatedAt": "2026-10-05T08:20:15Z",
+      "url": "https://github.com/drrius/nest/actions/runs/37282661041"
+    },
+    {
+      "runId": 37282660851,
+      "conclusion": "",
+      "createdAt": "2026-10-05T08:16:56Z",
+      "headSha": "f77d5846f3f875d74ca4619ffa26ed8eb87a5464",
+      "status": "in_progress",
+      "updatedAt": "2026-10-05T08:17:05Z",
+      "url": "https://github.com/drrius/nest/actions/runs/37282660851"
+    }
+  ]
+}

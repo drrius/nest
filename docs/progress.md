@@ -392,6 +392,7 @@ Exact1,045 final input hashes, strict format/limits/signing,6 Foundation passes/
 2 hosted skips and13 signed-native methods pass. All ten complete hosted profile/
 receipt/chat/61-event-finance hashes/counts remain exact; original profiles/Today/
 light/default text/data/Keychain and64 empty journals are restored. Current-source
-CI is pending. [Evidence](../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
+CI: source `f77d5846` passes Nest37282661041; SwiftUI37282660851 is still running.
+[Evidence](../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
 No Send/model call/beta/worker/production/purchase/merge/automation occurs. Live
 provider, full recovery/accessibility/two-phone and M1–M9 acceptance remain open.
