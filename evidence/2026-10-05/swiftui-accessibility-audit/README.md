@@ -89,5 +89,8 @@ inputs match, signature/test origins/push-disabled gates pass, and ordinary Toda
 is restored with preserved session/data and64 empty journals.
 
 Repository lint (existing Effect advice remains warning-only), formatting and
-Swift limits pass. Current-test source CI is pending at this checkpoint. The full
+Swift limits pass. Current-test source `57e0d75f` passes
+[Nest37302536475](https://github.com/drrius/nest/actions/runs/37302536475) and
+[SwiftUI37302536531](https://github.com/drrius/nest/actions/runs/37302536531).
+Those workflows still do not run the manual live-session UI suite. The full
 five-test audit still has20 unsuppressed reports and needs further investigation.
