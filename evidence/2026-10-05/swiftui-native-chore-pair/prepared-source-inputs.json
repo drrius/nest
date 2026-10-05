@@ -1,0 +1,11 @@
+{
+  "sourceCommit": "0cc30d88cebdb1cefb386cb15724cfdd59636f69",
+  "scope": ["Nest", "AppTests", "UITests", "Nest.xcodeproj"],
+  "excluded": ["xcuserdata", "README.md"],
+  "inputCount": 798,
+  "sourceMapSHA256": "bf758fddcc45e05cdd09ad79852606e1c476be47154e8d375b002c8379c98ee2",
+  "digestEncoding": "sorted relative path, NUL, file SHA256, LF",
+  "macMatchVerified": false,
+  "manualChorePairExecuted": false,
+  "perFileMapRetainedLocally": "/tmp/nest-native-chore-pair-prepared-source-map.json"
+}

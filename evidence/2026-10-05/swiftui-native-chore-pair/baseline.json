@@ -1,0 +1,113 @@
+{
+  "capturedAt": "2026-10-05 16:54:49 UTC",
+  "project": "tkjixmujjoustdiedfmw",
+  "fictionalHousehold": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "fixtureTitle": "Nest native chore pair 20261005",
+  "exactNamedRoutines": [],
+  "retainedFinanceAndStorage": {
+    "financial_events": {
+      "count": 62,
+      "sha256": "395e422fe37c6ee013525dd98ae630fbceca88182dee1f9b25039268aeca5828"
+    },
+    "financial_allocations": {
+      "count": 104,
+      "sha256": "25481ba79d5e7b57bdf8a95ccff164871cebba95aaa4ac2f64f6286f0747a1dc"
+    },
+    "ledger_entries": {
+      "count": 124,
+      "sha256": "c78b9066edfec31d9debf775da834b9ca2f2604e875fde98fb7b3453fb843bfe"
+    },
+    "activity_events": {
+      "count": 112,
+      "sha256": "3cf629501c11d0366cbdd37bf065592ac28ae6a35a076bba0702a3e5d2df7cd8"
+    },
+    "storage_objects": {
+      "count": 2,
+      "sha256": "b9a7f1546920307ce17e3b7395184b8fa812f339e5abf26640c21dcb309527c8"
+    },
+    "storage_buckets": {
+      "count": 1,
+      "sha256": "f2ef3da6180fa8563fbd74d664bd60504821069b9fed59faa66b08d4223dac34"
+    }
+  },
+  "originalChoreTables": {
+    "routines": {
+      "ids": [
+        "038a7c26-40e6-4315-917b-ab6199666059",
+        "20b6722c-cec5-4e78-85f2-04513e6a0088",
+        "2dc595b0-1bbe-4b46-96ac-2765cf9e62c9",
+        "2fadaa76-2ac5-4161-9a15-68dff803e663",
+        "41d9f13f-ea91-46b0-afb5-1794db463aa4",
+        "493287a7-d07e-4167-9ac9-0d98529700ce",
+        "5c780927-b30a-4c19-8ed5-5861ad35be23",
+        "5c789395-eb17-4ec7-a27d-f808616d0b70",
+        "5df17e85-1c14-4d3b-87ad-f5d0e5d88cf3",
+        "6ec5e6bd-6104-4014-936d-8775c0ed7619",
+        "8d6d26b5-0849-4766-8155-8fafa0e523ce",
+        "98dfc513-bb4c-44e7-b7ac-024d3ff0f36e",
+        "b4106e0c-aa63-4f2d-9526-143394bbab27",
+        "c2933af8-4d82-482a-9ae0-07fb2b6d7ae0",
+        "c35e701d-d01f-4826-9151-fc71e98b9cbf",
+        "c7f724bc-2640-4530-9163-786b5de6e685",
+        "ee9aec25-f3b7-41fc-a1ba-df4139f42082",
+        "f3d3f6c9-3bfb-4a9c-a315-b83db716e055",
+        "f4f392a1-4f8c-4c2a-a538-f4332b809117"
+      ],
+      "count": 19,
+      "sha256": "8e1dacc9054cb5dcee0184f00c58102224b961d96479c92fbdc71e5690018902"
+    },
+    "occurrences": {
+      "ids": [
+        "290b3cad-8d01-43c6-b3ce-f29a2dec78ac",
+        "2e0e904f-d8e0-4e97-b44a-0919f95b5ce0",
+        "36b2d9d0-baa3-4b51-89d4-615c8c2eb0d4",
+        "392c0feb-1331-4de8-80c6-0c5287f943c3",
+        "39c7485c-c678-412f-b8f5-ec42924a9bad",
+        "4188c736-5e6f-4ec0-bcd4-d8c858cad3ba",
+        "434cdfb3-da56-491d-92d8-89ccc419caba",
+        "44d73c00-b482-4003-b4ab-8a1e1cbe2183",
+        "458c79a1-1561-4aab-a1cb-8c0a46cdab7f",
+        "4c60c400-90bf-40f4-b58b-08045cf528bd",
+        "77ec6dc8-a175-4e83-9603-bd8023b531a8",
+        "7a7c27cb-1718-4af4-b145-9e83d8dae6f3",
+        "7d4d37fc-5f48-4697-af3a-9aec86164b65",
+        "837ad7bb-514d-4144-8635-5f6587a598d5",
+        "8c36fe73-79a8-4b8c-af44-888896817b01",
+        "95aa50ee-0a0e-423b-89e9-7588d932bffb",
+        "9f04668f-4ef9-4027-b47f-4b0fc70023bc",
+        "9f1f243d-5ec1-4c63-97e0-02831c219732",
+        "b592632d-2d9c-42f1-b699-c0836ccf32e7",
+        "b618e2cf-a1fb-49c9-880e-95d9e7988f35",
+        "ce88cf42-4359-41d4-ab06-a7185c22306b",
+        "d43e4605-28dd-4938-8e39-1c3f825abd13",
+        "e57f9481-8667-48cf-b9b1-2c0a5400e677",
+        "f5a34ed3-682b-4acf-b615-efe263f87ff6"
+      ],
+      "count": 24,
+      "sha256": "a305f89c42d54182d456e71e8fc0b537e1eee28d1643361edb0d3ce22a7dcc58"
+    },
+    "completions": {
+      "ids": [
+        "4188c736-5e6f-4ec0-bcd4-d8c858cad3ba",
+        "7a7c27cb-1718-4af4-b145-9e83d8dae6f3",
+        "7d4d37fc-5f48-4697-af3a-9aec86164b65",
+        "9f04668f-4ef9-4027-b47f-4b0fc70023bc",
+        "b618e2cf-a1fb-49c9-880e-95d9e7988f35"
+      ],
+      "count": 5,
+      "sha256": "12f751652186216a5b440dcdaf53511efb39d0768382836b777b2faadca82141"
+    },
+    "transfers": {
+      "ids": [
+        "53734b04-e517-40fe-94d4-a6fae650fd1a",
+        "8efe6623-3e9a-4511-8b3f-b190da0b0c2b",
+        "a5be42fc-8004-4ad6-ac10-5afbe43a40d4",
+        "ddfa80c4-1e89-46b5-bbf5-48affd9d551e"
+      ],
+      "count": 4,
+      "sha256": "71bc294b8669ad73100d1cf14038f91d4658c240d5cd56cbc8de004c59554040"
+    }
+  },
+  "mode": "read-only; no schema or row mutation",
+  "macSetupResult": "unobserved while unreachable; do not restart PID95779 without inspection"
+}
