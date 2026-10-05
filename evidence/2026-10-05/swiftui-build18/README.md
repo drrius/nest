@@ -28,7 +28,9 @@ actual signing and guarded UI compilation. [Receipt](native-ci.json),
 runnerId0 and a runner-allocation annotation. Attempt2 fails identically before
 any step. The separate move-source routine run37369824038 then succeeds on the
 same runner configuration; this changed availability justifies one attempt3 on
-the unchanged release commit, currently queued. [First failure](routine-attempt1.json),
+the unchanged release commit. Attempt3 also fails before any step at20:52:20 UTC,
+with runnerId0; [receipt](routine-attempt3.json). Back off until availability changes.
+The release gate is not bypassed. [First failure](routine-attempt1.json),
 [second failure](routine-attempt2.json),
 [GitHub incident](github-actions-incident.json).
 No build18 upload or availability is claimed. One private submission and Apple's
