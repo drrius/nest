@@ -1,0 +1,19 @@
+{
+  "sourceCommit": "fad84b0bffdc8651ad2c9c7c5704cd39de2a55b6",
+  "version": "0.1.0",
+  "build": "17",
+  "backendSource": "83a5a015",
+  "environment": "nest-test",
+  "api": "https://nest-test-api-drrius-projects.vercel.app",
+  "supabaseProject": "tkjixmujjoustdiedfmw",
+  "cloudBuildRequested": false,
+  "productionTouched": false,
+  "pushEnabled": false,
+  "liveAIVerified": false,
+  "routineCI": 37284897061,
+  "nativeCI": 37284896959,
+  "singleSubmissionRequired": true,
+  "testFlightAvailability": "VALID / IN_BETA_TESTING internally",
+  "partnerTesterAccess": "unverified",
+  "submissionId": "12f9cf8d-a30f-4d3c-b3e0-82d834614d79"
+}

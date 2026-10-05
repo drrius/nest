@@ -1,0 +1,7 @@
+{
+  "sourceCommit": "fad84b0bffdc8651ad2c9c7c5704cd39de2a55b6",
+  "sourceFilesVerified": 1045,
+  "baselineNativeSource": "f77d5846f3f875d74ca4619ffa26ed8eb87a5464",
+  "changeFromBaseline": "Both native CURRENT_PROJECT_VERSION entries changed from 16 to 17; remaining inputs identical.",
+  "inventory": "native-inputs-1.csv through native-inputs-3.csv"
+}

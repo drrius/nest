@@ -223,3 +223,16 @@ CI: source `f77d5846` passes Nest37282661041 and SwiftUI37282660851;496 Foundati
 [Evidence](../evidence/2026-10-05/swiftui-assistant-composer-keyboard/README.md).
 No Send/model call/beta/worker/production/purchase/merge/automation occurs. Live
 provider, full recovery/accessibility/two-phone and M1–M9 acceptance remain open.
+
+## Retained calendar-sync authorization
+
+Five legacy sync entries/private lease guard pass92 rolled-back full-chain cases:
+82 refusals and10 both-member transitions, including foreign connections/events,
+wrong/expired leases, snapshot validation and exact replay/terminal retry behavior.
+Original calendar/finance/native privacy state and fixture reconciliation remain
+exact. Six fresh hosted bodies/ACLs match compiled source; no hosted mutation or
+CalDAV credential/network execution is claimed. Scoped format/lint/limits pass;
+routine CI37284161367 passes source `c36b52b1`. Eighteen other public legacy
+entries/deeper helpers, concurrent leases/external writers and full M9 remain.
+[Evidence](../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
+No provider/worker/phone/beta/production/purchase/merge/automation action occurs.
