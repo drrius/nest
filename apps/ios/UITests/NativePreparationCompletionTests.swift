@@ -79,6 +79,9 @@ final class NativePreparationCompletionTests: XCTestCase {
         let save = week.app.navigationBars["Edit preparation"].buttons["Save"]
         XCTAssertTrue(save.isEnabled)
         save.tap()
+        let dismissed = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == false"), object: week.app.navigationBars["Edit preparation"])
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
         XCTAssertTrue(week.app.navigationBars["Meal preparation"].waitForExistence(timeout: 30))
         XCTAssertTrue(week.app.staticTexts["Assigned to Test Sam"].waitForExistence(timeout: 30))
         finish(week.app)
