@@ -22,9 +22,9 @@ struct SavedRecipeScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
-                Button("Edit recipe", systemImage: "pencil") { editing = true }
+                QuietToolbarButton("Edit recipe", systemImage: "pencil") { editing = true }
                     .disabled(model.recipeEdit != nil || model.recipeArchive != nil || model.recipeCreation != nil)
-                Button("Archive recipe", systemImage: "archivebox") { archiving = true }
+                QuietToolbarButton("Archive recipe", systemImage: "archivebox") { archiving = true }
                     .disabled(model.recipeArchive != nil || model.recipeCreation != nil || model.recipeEdit != nil)
             }
         }

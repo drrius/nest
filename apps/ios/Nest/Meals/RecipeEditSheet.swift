@@ -24,7 +24,11 @@ struct RecipeEditSheet: View {
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .background(QuietPalette.background)
                 .navigationTitle("Edit recipe")
-                .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Cancel") { dismiss() } } }
+                .toolbar {
+                    ToolbarItem(placement: .cancellationAction) {
+                        QuietToolbarButton("Cancel", systemImage: "xmark") { dismiss() }
+                    }
+                }
                 .task { await load() }
             }
         }
@@ -106,10 +110,12 @@ struct RecipeEditForm: View {
             .navigationTitle("Edit recipe")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("Cancel") { discard = true }.disabled(saving) }
+                ToolbarItem(placement: .cancellationAction) {
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { discard = true }.disabled(saving)
+                }
                 ToolbarItem(placement: .primaryAction) { EditButton().disabled(saving) }
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Save") { Task { await save() } }.disabled(!canSave)
+                    QuietToolbarButton("Save", systemImage: "checkmark") { Task { await save() } }.disabled(!canSave)
                 }
             }
             .interactiveDismissDisabled()

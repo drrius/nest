@@ -38,7 +38,7 @@ final class NativeManualRecipeEditTests: XCTestCase {
         XCTAssertTrue(field.waitForExistence(timeout: 30))
         XCTAssertEqual(field.value as? String, before)
         field.tap()
-        field.press(forDuration: 1)
+        field.coordinate(withNormalizedOffset: CGVector(dx: 0.3, dy: 0.1)).press(forDuration: 1)
         let selectAll = app.buttons["Select All"]
         XCTAssertTrue(selectAll.waitForExistence(timeout: 10))
         selectAll.tap()
