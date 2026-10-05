@@ -384,17 +384,14 @@ The two-member guard and passing CI are in [dated history](progress-history-2026
 
 ## Native posted PDF expense
 
-One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact.
-The Money stack fix passes normal/light and maximum/dark history/detail; native bytes
-and Apple's browser rendering/dismissal pass. Source2def44b6 passes both required CI workflows (496 Foundation/41 skips,419 signed-native/12 skips, zero failures).
-The later eight-method normal sign-out/SDK login/partner Profile/PDF read/sign-out/original-member restoration passes with zero failures/skips and787 matching inputs.
-Both identities download exact bytes;64 journals and six hosted fingerprints stay exact. An earlier direct replacement beneath an active host reopened A: cause remains unproven;
-normal native account switching passes, not an arbitrary concurrent replacement fix. New fixture-source CI, full accessibility/live AI/phones stay open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact. The Money fix passes normal/light and maximum/dark history/detail; native bytes and Apple's browser rendering/dismissal pass. Source2def44b6 passes both required CI workflows (496 Foundation/41 skips,419 signed-native/12 skips, zero failures).
+Eight normal sign-out/SDK login/partner Profile/PDF read/sign-out/original-member restoration methods pass with zero failures/skips and787 matching inputs. Both identities download exact bytes;64 journals and six hosted fingerprints stay exact. The earlier replacement beneath an active host reopened A: its precise cause remains unproven. Source8b5d6787 passes Nest37328777598/SwiftUI37328777652; full accessibility/live AI/phones stay open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
 
 ## Financial allocation consistency
 
-A balanced trusted write can omit allocations or contradict them. The additive guard
-passes eight DB tests,792 arithmetic cases,six concurrent retries and310-migration rehearsal.
-Nest-test20261005140239 retains52 consistent allocation-bearing events among62 total;
-bodies, private privileges/three deferred triggers and six fingerprints match. Manifest/lint/
-format/limits and sourcefea47c1a Nest37321459416 pass; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
+The allocation guard passes eight DB tests,792 arithmetic cases,six concurrent retries and310-migration rehearsal. Nest-test20261005140239 retains52 consistent allocation-bearing events among62 total; bodies/private privileges/three deferred triggers/six fingerprints match. Sourcefea47c1a CI passes; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
+
+## Native credential refresh ordering
+
+Two controlled late-refresh cases resurrect old Keychain credentials after logout or replace a newly signed-in account. Both fail on old NestAuth; the serialized/request-time auth boundary passes those cases and15 existing native auth/session checks. Actual test-API PDF download/navigation also pass, with789 matching inputs, original actor/Today/large/light/64 empty journals restored and six retained fingerprints exact. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md).
+This fixes the reproduced single-client credential races, not proof of the earlier multi-client fixture's exact cause. New auth-source CI, real Apple/expired-session/phone journeys and complete M3 acceptance remain open. No production, model call, beta or merge occurred.

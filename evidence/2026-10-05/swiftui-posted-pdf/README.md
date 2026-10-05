@@ -121,8 +121,9 @@ Storage object or financial action is created by this account/read sequence;
 all six complete hosted fingerprints remain exact. The temporary0600 credential
 adapter is removed, with the original private fictional-login file retained.
 [Native verification](partner-native-verification.json), [fingerprints](partner-fingerprints.json).
-The new guarded fixture assertions are locally verified; their new-source CI is
-pending until the next pushed commit. This is one simulator and two real fictional
+Source `8b5d6787` passes both required workflows: Nest37328777598 and
+SwiftUI37328777652, with496 Foundation/41 explicit skips and419 signed-native/12
+explicit skips, zero failures. Routine CI still skips the hosted/operator fixtures. This is one simulator and two real fictional
 Supabase identities, not both phones or real Apple sign-in.
 
 Earlier probes are retained honestly. Preparing two schemes into one derived
@@ -147,3 +148,9 @@ arbitrary replacement beneath a running app. Preserve the stricter persistence
 assertions; never resolve a future mismatch by dropping identity checks. A boolean
 token comparison now avoids logging live credentials on assertion failure.
 Full accessibility, live AI, physical account/receipt journeys and M1–M9 remain open.
+
+A later [credential-ordering fix](../swiftui-auth-refresh-ordering/README.md)
+reproduces and fixes two concrete late-refresh races through the shipping auth
+boundary. That separate proof does not identify the precise cause of the earlier
+multiple-client operator mismatch. Its newer source has its own verification/CI
+checkpoint; the account/browser evidence above retains its original source scope.

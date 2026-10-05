@@ -7,6 +7,7 @@ struct NestAuth: NestAuthentication {
     private let storageKey: String
     private let pushCleanup: PushLogoutCleanup?
     private let pushEnabled: Bool
+    private let operations = AuthOperationQueue()
 
     init(configuration: NestConfiguration, offline: ChoreOfflineStore) throws {
         let scope = try NestEnvironmentScope(url: configuration.supabaseURL)
@@ -23,7 +24,8 @@ struct NestAuth: NestAuthentication {
             headers: ["apikey": configuration.publishableKey],
             storageKey: key,
             localStorage: localStorage,
-            autoRefreshToken: true
+            // Refresh through session() at request time, serialized with credential changes.
+            autoRefreshToken: false
         )
     }
 
@@ -39,15 +41,23 @@ struct NestAuth: NestAuthentication {
     }
 
     func session() async throws -> AuthenticatedSession {
+        try await operations.run { try await readSession() }
+    }
+
+    private func readSession() async throws -> AuthenticatedSession {
         let session = try await client.session
         if let pushCleanup, !(try await pushCleanup.store.pendingPushLogouts(actor: session.user.id)).isEmpty {
-            try await signOut()
+            try await finishSignOut()
             throw AuthError.sessionMissing
         }
         return AuthenticatedSession(userId: session.user.id, accessToken: session.accessToken)
     }
 
     func cachedSession() async -> AuthenticatedSession? {
+        try? await operations.run { await readCachedSession() }
+    }
+
+    private func readCachedSession() async -> AuthenticatedSession? {
         guard let session = client.currentSession else { return nil }
         if let pushCleanup {
             guard let pending = try? await pushCleanup.store.pendingPushLogouts(actor: session.user.id), pending.isEmpty
@@ -57,6 +67,10 @@ struct NestAuth: NestAuthentication {
     }
 
     func signIn(appleIDToken: String, nonce: String) async throws -> AuthenticatedSession {
+        try await operations.run { try await persistSignIn(appleIDToken: appleIDToken, nonce: nonce) }
+    }
+
+    private func persistSignIn(appleIDToken: String, nonce: String) async throws -> AuthenticatedSession {
         let session = try await client.signInWithIdToken(
             credentials: OpenIDConnectCredentials(provider: .apple, idToken: appleIDToken, nonce: nonce)
         )
@@ -69,6 +83,10 @@ struct NestAuth: NestAuthentication {
     }
 
     func signOut() async throws {
+        try await operations.run { try await finishSignOut() }
+    }
+
+    private func finishSignOut() async throws {
         var actor: UUID?
         if let pushCleanup, let cached = client.currentSession {
             let tracked = try await pushCleanup.store.trackedPushSessions(actor: cached.user.id)
@@ -116,7 +134,7 @@ struct NestAuth: NestAuthentication {
         let identity = try PushTokenIdentity(token: session.accessToken, expectedActor: session.user.id)
         for intent in pending {
             if intent.sessionId == identity.session {
-                try await signOut()
+                try await finishSignOut()
                 throw AuthError.sessionMissing
             }
             _ = try await pushCleanup.stop(
