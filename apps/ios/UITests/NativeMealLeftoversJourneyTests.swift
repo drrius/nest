@@ -28,7 +28,7 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
         try reading.requireTarget(next, bounds: app.frame)
         next.tap()
         XCTAssertTrue(app.staticTexts["Week of 26 Oct"].waitForExistence(timeout: 15))
-        let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Meal,")).firstMatch
+        let picker = app.buttons["meal-destination-slot-picker"]
         try reading.requireTarget(picker, bounds: app.frame)
         picker.tap()
         let lunch = app.buttons["Lunch"]

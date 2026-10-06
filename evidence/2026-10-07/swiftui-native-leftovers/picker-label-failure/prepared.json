@@ -1,0 +1,100 @@
+{
+  "source": "c3f1a8b99cdf23729285a48bb6ed6ac5da8e1dbc",
+  "prepared": true,
+  "before": {
+    "alex": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64,
+      "ownedReminderRequest": 0
+    },
+    "sam": {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64,
+      "ownedReminderRequest": 0
+    }
+  },
+  "settings": {
+    "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A": {
+      "appearance": "light",
+      "content_size": "large"
+    },
+    "CA0BCEDE-A297-493A-8921-9E31F8B65783": {
+      "appearance": "light",
+      "content_size": "large"
+    }
+  },
+  "local": {
+    "alex": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "privacyJournalRows": {
+        "calendar_privacy_removals": 0,
+        "calendar_consent_changes": 0
+      },
+      "ingredientReview": {
+        "sequence": 9,
+        "receipt": {
+          "weekStart": "2026-10-19",
+          "ingredients": [
+            {
+              "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+              "outcome": "added",
+              "ingredientId": "AD5BC996-178D-4F4B-B85D-E60AE87765B1",
+              "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D"
+            }
+          ],
+          "weekRevision": "9",
+          "version": 1,
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+          "operationId": "40891873-EB5A-40F3-9002-018BDCC6A63D"
+        },
+        "week": "2026-10-19",
+        "choices": [
+          {
+            "ingredient": {
+              "ingredientId": "AD5BC996-178D-4F4B-B85D-E60AE87765B1",
+              "unit": "g",
+              "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+              "quantity": "100"
+            },
+            "selected": true
+          },
+          {
+            "ingredient": {
+              "unit": "g",
+              "ingredientId": "C49E2275-E68A-4A95-B49C-247B8DDDD7E4",
+              "quantity": "200",
+              "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1"
+            },
+            "selected": false
+          }
+        ],
+        "revision": "9",
+        "conflicted": false
+      },
+      "deviceOnlyCalendarSelections": {
+        "display": [],
+        "sharing": [],
+        "layers": []
+      }
+    },
+    "sam": {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "privacyJournalRows": {
+        "calendar_privacy_removals": 0,
+        "calendar_consent_changes": 0
+      },
+      "ingredientReview": null,
+      "deviceOnlyCalendarSelections": {
+        "display": [],
+        "sharing": [],
+        "layers": []
+      }
+    }
+  },
+  "nativeAuditInvoked": false
+}

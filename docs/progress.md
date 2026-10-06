@@ -247,6 +247,12 @@ formatting and source limits pass; actual native picker verification is pending.
 The failed invocation and products are retained in
 [picker target evidence](../evidence/2026-10-07/swiftui-native-leftovers/picker-target-failure/).
 No Remove has run.
+The custom picker label does not enlarge the underlying menu button: the
+`c3f1a8b9` native run still measures 34.5 points and stops before saving. Fixture
+rows/receipts remain exact and restoration passes. Destination Day and Meal
+pickers now use Apple's navigation-link presentation, with a stable Meal-picker
+identifier for the native journey. Configured formatting/source limits pass;
+fresh execution is pending. The failed label attempt is retained separately.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
 clean and its CI is running.
