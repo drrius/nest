@@ -1,0 +1,158 @@
+{
+  "alert-removal-recorded/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "abcd720b509c3c33083b61cfeb440da0748697e1399544da0e384fc972319935"
+  },
+  "alert-removal-recorded/native-remove-once/5B7BEF92-837C-4484-8478-FBB885CAB3B9.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "229a1a2ecdb8641c8e905491246e6eee28438bc956d323c0dfe497668ee8c7a3"
+  },
+  "alert-removal-recorded/native-remove-once/A20C14D0-FF16-4F31-A555-375A49FF46BC.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "5a14f6b0bd874adeb5e7c12e3676b4b9092de716f0d4716419cedd618f5ab5a0"
+  },
+  "alert-removal-recorded/native-remove-once/AA3CFB6F-2448-479A-97DF-42A3F9CBDB66.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "8554c9dcc7dc30f3c2960ce43d27dce50853078b01e473be6ad723503079a8a5"
+  },
+  "alert-removal-recorded/native-remove-once/CAC642F9-C0AF-419C-9CBD-3E6091BD2A0B.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "5a14f6b0bd874adeb5e7c12e3676b4b9092de716f0d4716419cedd618f5ab5a0"
+  },
+  "alert-removal-recorded/native-remove-once/F616578B-C278-4250-A51D-39614DD1CA9E.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "4e015daf67aee42338a05b56bac0fe78b1e94e4909c7ca3d7dd62fa26964f60e"
+  },
+  "alert-removal-recorded/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "abcd720b509c3c33083b61cfeb440da0748697e1399544da0e384fc972319935"
+  },
+  "fresh-popover-cancel-failure/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "c7f40cf1a4b4b61a9133d96627bf5d9ba064d879c8a92f5e8223d84f617b04d7"
+  },
+  "fresh-popover-cancel-failure/native-remove-once/8131BCB8-3EAD-4FB5-ABC9-9213634E00AF.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "d3d325f2d07545e1d84e841079b6fd82e4388012c8cb753034ccf5b2cabc16d8"
+  },
+  "fresh-popover-cancel-failure/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "c7f40cf1a4b4b61a9133d96627bf5d9ba064d879c8a92f5e8223d84f617b04d7"
+  },
+  "host-placeholder-preparation-failure/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "3f88b31c7a2dbafa84c1c1e0189801f2494fa15907603eaead04f133890fee1a"
+  },
+  "host-placeholder-preparation-failure/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "3f88b31c7a2dbafa84c1c1e0189801f2494fa15907603eaead04f133890fee1a"
+  },
+  "removal-done/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "27e79f710b043450628bb5f706d381e38884bf8ba960c7a1aa866a4dcb38cbba"
+  },
+  "removal-done/restart-removal-done/310BA99C-BAE8-4068-B1A2-DEE94BF67362.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "20ca7c60034e0bda42c46c655a5160be8762c88826c892fe907a39c9732b83af"
+  },
+  "removal-done/restart-removal-done/5D629940-5DE6-4C36-A867-69ED2ACDE7EE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "67c5034b11f19c067235019238728c62ab46fbd99223bb0afaf81c005edce27f"
+  },
+  "removal-done/restart-removal-done/6DDC8E24-5B67-4A69-8984-E440C923716D.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "303be554ff0190413e41edbbd2b875cb282ba3f96755f0e1d9ea38345b49e88b"
+  },
+  "removal-done/restart-removal-done/C66BF2DB-9D81-447E-A2B5-384C5F775BC1.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "6e9f2d2c20aa9af7bf38d3b92e32388128efd4ce5191b2cd90ce6336a64b392a"
+  },
+  "removal-done/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "27e79f710b043450628bb5f706d381e38884bf8ba960c7a1aa866a4dcb38cbba"
+  },
+  "row-target-failure/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "d37345c4c53cdced0ae993855b1b4e599871fd662577a81c1dd2c97a8dd7aa37"
+  },
+  "row-target-failure/native-remove-once/DBA3B0E7-A215-4099-957F-7507EB81E113.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "7ac2fa48c5f661c034f631e9cf1a3bf15f2528a604134400c8d712cc63e0df94"
+  },
+  "row-target-failure/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "d37345c4c53cdced0ae993855b1b4e599871fd662577a81c1dd2c97a8dd7aa37"
+  },
+  "stale-incremental-runtime/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "79a0545d4d32039fc860cc92603a12b5a9a200c4040e2a6628b6796e8b98c21e"
+  },
+  "stale-incremental-runtime/native-remove-once/C1E8DE7A-E1BC-4A86-9AC9-B90D5F1CCB53.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "3249ab65e420c917d65c29716c67025c5a72c4de6a6848e819a20697b48065fa"
+  },
+  "stale-incremental-runtime/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "79a0545d4d32039fc860cc92603a12b5a9a200c4040e2a6628b6796e8b98c21e"
+  },
+  "unselected-runner-preparation-failure/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "c8d3bf12ce0e7f21f3e2e70399de525286300d33bff0097a37bc213a2360d866"
+  },
+  "unselected-runner-preparation-failure/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot inspected in three numbered contact sheets",
+    "sha256": "c8d3bf12ce0e7f21f3e2e70399de525286300d33bff0097a37bc213a2360d866"
+  }
+}

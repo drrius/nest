@@ -1,0 +1,88 @@
+{
+  "renewal": {
+    "removed": false,
+    "fields": {
+      "renewalOn": "2026-10-07",
+      "noticeDays": 0,
+      "recurringRuleId": null,
+      "responsibleId": null,
+      "title": "Nest QA reminder 0610-3f88"
+    },
+    "cancellationOn": "2026-10-07",
+    "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+    "revision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777"
+  },
+  "baseline": {
+    "version": 1,
+    "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+  },
+  "command": {
+    "expectedRenewalRevision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+    "operationId": "32102900-3D5A-4AA6-9D41-647DAB7CF63C",
+    "settings": {
+      "anchor": "renewal",
+      "delivery": {
+        "enabled": true,
+        "recipientIds": [
+          "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "E5F80CFD-B69A-4AA0-A267-75784E943676"
+        ],
+        "daysBefore": 1,
+        "localTime": "09:00"
+      }
+    },
+    "expectedRevision": null,
+    "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690"
+  },
+  "result": {
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "operationId": "32102900-3D5A-4AA6-9D41-647DAB7CF63C",
+    "receipt": {
+      "reminder": {
+        "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+        "updatedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "reviewedRenewalRevision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+        "revision": "30203C42-0138-4472-A03A-374B99BBB9D6",
+        "settings": {
+          "delivery": {
+            "localTime": "09:00",
+            "daysBefore": 1,
+            "enabled": true,
+            "recipientIds": [
+              "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            ]
+          },
+          "anchor": "renewal"
+        }
+      },
+      "operationId": "32102900-3D5A-4AA6-9D41-647DAB7CF63C",
+      "version": 1,
+      "command": {
+        "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+        "expectedRevision": null,
+        "expectedRenewalRevision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+        "operationId": "32102900-3D5A-4AA6-9D41-647DAB7CF63C",
+        "settings": {
+          "anchor": "renewal",
+          "delivery": {
+            "enabled": true,
+            "recipientIds": [
+              "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "E5F80CFD-B69A-4AA0-A267-75784E943676"
+            ],
+            "localTime": "09:00",
+            "daysBefore": 1
+          }
+        }
+      },
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    },
+    "version": 1,
+    "status": "recorded",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+  },
+  "cancellationRequested": false
+}

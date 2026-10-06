@@ -1,0 +1,80 @@
+{
+  "nativeMethodsPassed": 20,
+  "retainedNativeFailures": 3,
+  "controllerGuardFailures": 3,
+  "reviewedPNGs": 26,
+  "exportedPNGs": 26,
+  "RemovePOSTs": 1,
+  "RemoveReplays": 0,
+  "ReminderSaveReplays": 0,
+  "CreateReplays": 0,
+  "operationId": "be001379-8c88-479b-b551-066629e91725",
+  "batches": {
+    "row-target-failure": {
+      "preparedSourceCommit": "9d043941fb7695d2d31e76f58bdab3366598d474",
+      "controllerSha256": "de922c69fa27a204f925d059433f0bc5ecb28162d39852f33f3517c909405d99",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1,
+      "freshCompiledRuntimeAttested": false
+    },
+    "stale-incremental-runtime": {
+      "preparedSourceCommit": "87adfc6083175c1e70cd4bb28b5aaf01fdef2417",
+      "controllerSha256": "1a64a028daa01856c96fde61e710d5362a7a9315259fdf1fc5054de53f840a03",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1,
+      "freshCompiledRuntimeAttested": false
+    },
+    "unselected-runner-preparation-failure": {
+      "preparedSourceCommit": "87adfc6083175c1e70cd4bb28b5aaf01fdef2417",
+      "controllerSha256": "6d61c100453a181aa18f96ea0546ad92c99961405cc873dd399e10c7e67db9a8",
+      "methods": 0,
+      "passed": 0,
+      "failed": 0,
+      "freshCompiledRuntimeAttested": false
+    },
+    "host-placeholder-preparation-failure": {
+      "preparedSourceCommit": "87adfc6083175c1e70cd4bb28b5aaf01fdef2417",
+      "controllerSha256": "93d498afc8b34344db06b3e97e4b32fab08f77dc774f7986bb7749a7696846ed",
+      "methods": 0,
+      "passed": 0,
+      "failed": 0,
+      "freshCompiledRuntimeAttested": false
+    },
+    "fresh-popover-cancel-failure": {
+      "preparedSourceCommit": "87adfc6083175c1e70cd4bb28b5aaf01fdef2417",
+      "controllerSha256": "b413b42e278765302b5cd0d1bc960d29a5466ff1382f672e5f43e53917521c56",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1,
+      "freshCompiledRuntimeAttested": true
+    },
+    "alert-removal-recorded": {
+      "preparedSourceCommit": "114404f5c7e3a77b33e19b6cd1ecc13bfe4007f1",
+      "controllerSha256": "5c1110208f5f5731b813cea2189a10d5803ab480d784f0cdb159dba600ecf804",
+      "methods": 5,
+      "passed": 5,
+      "failed": 0,
+      "freshCompiledRuntimeAttested": true
+    },
+    "removal-done": {
+      "preparedSourceCommit": "114404f5c7e3a77b33e19b6cd1ecc13bfe4007f1",
+      "controllerSha256": "56a0d964a0fade4bf73edee7e1cb68469c887aeea5b7a3bbfe928c26f4af93ac",
+      "methods": 3,
+      "passed": 3,
+      "failed": 0,
+      "freshCompiledRuntimeAttested": true
+    }
+  },
+  "staleRuntimeScope": {
+    "preparedSource": "87adfc60",
+    "UIRuntimeEquivalentTo": "9d043941",
+    "exactBinarySourceNotAttested": true,
+    "evidence": "Failure line114 and no new Edit/Reminder choices lookups; new source expected119. Prepared-file hashes alone were insufficient."
+  },
+  "finalFixtureRemoved": true,
+  "reminderEnabledHistoryRetained": true,
+  "all64JournalsRestored": true,
+  "deliveryClaimed": false
+}

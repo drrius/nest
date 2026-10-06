@@ -1,0 +1,10 @@
+{
+  "nativeRemoveMethodPassed": true,
+  "restartDoneMethodPassed": false,
+  "bothFinalCanonicalReadsPassed": false,
+  "RemoveBudget": 1,
+  "removalRequestCaptured": true,
+  "CreateReplays": 0,
+  "ReminderSaveReplays": 0,
+  "deliveryClaimed": false
+}

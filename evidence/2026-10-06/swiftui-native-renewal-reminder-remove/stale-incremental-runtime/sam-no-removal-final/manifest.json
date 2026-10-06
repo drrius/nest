@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "F638ED56-0AFD-48C3-8AED-0630373EA5DD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Bounded native GET path status and time without tokens_0_E02321B6-5DE1-4846-9826-FC2A82981A84.json",
+        "timestamp": 1791292335.231
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "A65CEE28-953A-4D76-B1C3-FDA1D2F0A9E2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned renewal reminder shared canonical and private immutable receipt_0_BE80BC9C-A6D5-45EC-B9BF-B5BC6E18E97F.json",
+        "timestamp": 1791292335.222
+      }
+    ],
+    "testIdentifier": "HostedActiveRenewalReminderReceiptReadTests/testGETOnlySharedCanonicalAndPrivateImmutableOperation()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedActiveRenewalReminderReceiptReadTests/testGETOnlySharedCanonicalAndPrivateImmutableOperation"
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2669EB77-5C70-4020-BBC4-20CD7F142B06.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Removal terminal native screen accessibility tree_0_2E22E831-99E1-4CAF-A88C-91D946F067DB.txt",
+        "timestamp": 1791293354.477
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CAC642F9-C0AF-419C-9CBD-3E6091BD2A0B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Removal terminal native screen_0_D1624701-1435-48FA-A3A3-DAFADDC69BAD.png",
+        "timestamp": 1791293354.137
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1EFDE826-22DC-4248-ABE3-A27808C0A269.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "One owned removal recorded before scoped journal capture accessibility tree_0_D804F9C9-47CA-46F9-981B-938B1AF8CC87.txt",
+        "timestamp": 1791293354.047
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A20C14D0-FF16-4F31-A555-375A49FF46BC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "One owned removal recorded before scoped journal capture_0_F9502804-42A1-4257-AA29-DFDC0C93FD34.png",
+        "timestamp": 1791293353.696
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B7C3289C-5A51-4E87-A869-05CB54018A21.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact owned removal disclosure and full native Remove renewal target accessibility tree_0_9CB1F243-2A85-4668-A0F8-C5634CC71DD6.txt",
+        "timestamp": 1791293340.973
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5B7BEF92-837C-4484-8478-FBB885CAB3B9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact owned removal disclosure and full native Remove renewal target_0_B3BAE585-DCA2-4AB6-BEEC-326147159A57.png",
+        "timestamp": 1791293340.66
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AEDEE6AB-40D8-4D12-820E-A7297E1F203B.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Cancel leaves exact active renewal unchanged before any command accessibility tree_0_08C0EF88-750D-4390-AD86-1A0F3F3DE95A.txt",
+        "timestamp": 1791293336.899
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F616578B-C278-4250-A51D-39614DD1CA9E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Cancel leaves exact active renewal unchanged before any command_0_C5D28866-CB08-4D75-B535-3B36F07887A6.png",
+        "timestamp": 1791293336.662
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "10C5CA42-D6E2-46BD-9F4D-F184C649EFF5.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact owned removal disclosure and full native Cancel target accessibility tree_0_7500EC18-D77C-489B-906F-57A2CD10C9B4.txt",
+        "timestamp": 1791293335.835
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AA3CFB6F-2448-479A-97DF-42A3F9CBDB66.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact owned removal disclosure and full native Cancel target_0_9A12167F-713F-4A20-B09B-7B2A2E03D567.png",
+        "timestamp": 1791293335.534
+      }
+    ],
+    "testIdentifier": "NativeActiveRenewalReminderRemoveTests/testCancelThenOneOrdinaryOwnedRemoval()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRenewalReminderRemoveTests/testCancelThenOneOrdinaryOwnedRemoval"
+  }
+]

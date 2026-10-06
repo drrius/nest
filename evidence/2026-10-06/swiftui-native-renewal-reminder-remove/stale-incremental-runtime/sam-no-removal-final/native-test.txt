@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-reminder-remove-targets-20261006/sam-no-removal-final/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-reminder-remove-targets-20261006/sam-no-removal-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReceiptReadTests/testGETOnlySharedCanonicalAndPrivateImmutableOperation" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-reminder-remove-targets-20261006/sam-no-removal-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 15:12:07.941.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 15:12:07.941.
+Test Suite 'HostedActiveRenewalReminderReceiptReadTests' started at 2026-10-06 15:12:07.942.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReceiptReadTests testGETOnlySharedCanonicalAndPrivateImmutableOperation]' started.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReceiptReadTests testGETOnlySharedCanonicalAndPrivateImmutableOperation]' passed (7.290 seconds).
+Test Suite 'HostedActiveRenewalReminderReceiptReadTests' passed at 2026-10-06 15:12:15.232.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.290 (7.291) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 15:12:15.233.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.290 (7.291) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 15:12:15.233.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.290 (7.292) seconds
+2026-10-06 15:12:15.552 xcodebuild[89072:21319187] [MT] IDETestOperationsObserverDebug: 9.483 elapsed -- Testing started completed.
+2026-10-06 15:12:15.552 xcodebuild[89072:21319187] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 15:12:15.552 xcodebuild[89072:21319187] [MT] IDETestOperationsObserverDebug: 9.483 sec, +9.483 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-reminder-remove-targets-20261006/sam-no-removal-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

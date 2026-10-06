@@ -1,0 +1,238 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-reminder-remove-resolved-20261006/native-remove-once/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-reminder-remove-resolved-20261006/native-remove-once/result.xcresult "-only-testing:NestAccessibilityTests/NativeActiveRenewalReminderRemoveTests/testCancelThenOneOrdinaryOwnedRemoval" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-reminder-remove-resolved-20261006/native-remove-once/result.xcresult
+
+2026-10-06 15:22:06.540192+0200 NestAccessibilityTests-Runner[93017:21346148] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 15:22:07.117.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 15:22:07.118.
+Test Suite 'NativeActiveRenewalReminderRemoveTests' started at 2026-10-06 15:22:07.118.
+Test Case '-[NestAccessibilityTests.NativeActiveRenewalReminderRemoveTests testCancelThenOneOrdinaryOwnedRemoval]' started.
+    t =     0.00s Start Test at 2026-10-06 15:22:07.119
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.03s     Launch ch.drrius.nest
+2026-10-06 15:22:07.218 xcodebuild[93014:21345977] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 15:22:07.218 xcodebuild[93014:21345977] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.71s         Setting up automation session
+    t =     1.46s         Wait for ch.drrius.nest to idle
+    t =     2.69s Waiting 30.0s for TabBar (First Match) to exist
+    t =     3.73s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     3.73s         Checking existence of `TabBar (First Match)`
+    t =     3.77s Tap "Today" Button
+    t =     3.77s     Wait for ch.drrius.nest to idle
+    t =     3.78s     Find the "Today" Button
+    t =     3.81s     Check for interrupting elements affecting "Today" Button
+    t =     3.86s     Synthesize event
+    t =     4.15s     Wait for ch.drrius.nest to idle
+    t =     4.91s Tap "Profile and preferences" Button
+    t =     4.91s     Wait for ch.drrius.nest to idle
+    t =     5.60s     Find the "Profile and preferences" Button
+    t =     5.65s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     5.68s     Synthesize event
+    t =     5.97s     Wait for ch.drrius.nest to idle
+    t =     6.40s Waiting 15.0s for "Test Alex" StaticText to exist
+    t =     7.44s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Alex" StaticText`
+    t =     7.44s         Checking existence of `"Test Alex" StaticText`
+    t =     7.53s Tap Button (Element at index 0)
+    t =     7.53s     Wait for ch.drrius.nest to idle
+    t =     7.53s     Find the Button (Element at index 0)
+    t =     7.57s     Check for interrupting elements affecting "BackButton" Button
+    t =     7.61s     Synthesize event
+    t =     7.90s     Wait for ch.drrius.nest to idle
+    t =     8.75s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =     8.78s Find the TabBar (First Match)
+    t =     8.80s Checking existence of `"Manage renewals" Button`
+    t =     8.83s Find the "Manage renewals" Button
+    t =     8.86s Checking existence of `"Manage renewals" Button`
+    t =     8.89s Checking existence of `"Manage renewals" Button`
+    t =     8.92s Find the "Manage renewals" Button
+    t =     8.96s Find the Target Application 'ch.drrius.nest'
+    t =     8.98s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.28] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =     8.98s     Wait for ch.drrius.nest to idle
+    t =     8.98s     Find the Target Application 'ch.drrius.nest'
+    t =     9.00s     Check for interrupting elements affecting "Nest" Application
+    t =     9.03s     Synthesize event
+    t =     9.03s         Find the Target Application 'ch.drrius.nest'
+    t =     9.05s         Find the Target Application 'ch.drrius.nest'
+    t =     9.07s         Find the Target Application 'ch.drrius.nest'
+    t =     9.09s         Find the Target Application 'ch.drrius.nest'
+    t =     9.11s         Find the Target Application 'ch.drrius.nest'
+    t =    10.67s     Wait for ch.drrius.nest to idle
+    t =    10.68s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    10.72s Find the TabBar (First Match)
+    t =    10.74s Checking existence of `"Manage renewals" Button`
+    t =    10.77s Find the "Manage renewals" Button
+    t =    10.80s Checking existence of `"Manage renewals" Button`
+    t =    10.83s Checking existence of `"Manage renewals" Button`
+    t =    10.86s Find the "Manage renewals" Button
+    t =    10.89s Find the Target Application 'ch.drrius.nest'
+    t =    10.91s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.28] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    10.91s     Wait for ch.drrius.nest to idle
+    t =    10.92s     Find the Target Application 'ch.drrius.nest'
+    t =    10.94s     Check for interrupting elements affecting "Nest" Application
+    t =    10.96s     Synthesize event
+    t =    10.97s         Find the Target Application 'ch.drrius.nest'
+    t =    10.99s         Find the Target Application 'ch.drrius.nest'
+    t =    11.01s         Find the Target Application 'ch.drrius.nest'
+    t =    11.03s         Find the Target Application 'ch.drrius.nest'
+    t =    11.05s         Find the Target Application 'ch.drrius.nest'
+    t =    12.61s     Wait for ch.drrius.nest to idle
+    t =    12.62s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    12.64s Find the TabBar (First Match)
+    t =    12.65s Checking existence of `"Manage renewals" Button`
+    t =    12.68s Find the "Manage renewals" Button
+    t =    12.71s Checking existence of `"Manage renewals" Button`
+    t =    12.74s Checking existence of `"Manage renewals" Button`
+    t =    12.77s Find the "Manage renewals" Button
+    t =    12.81s Find the Target Application 'ch.drrius.nest'
+    t =    12.82s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    12.82s     Wait for ch.drrius.nest to idle
+    t =    12.83s     Find the Target Application 'ch.drrius.nest'
+    t =    12.85s     Check for interrupting elements affecting "Nest" Application
+    t =    12.88s     Synthesize event
+    t =    12.88s         Find the Target Application 'ch.drrius.nest'
+    t =    12.90s         Find the Target Application 'ch.drrius.nest'
+    t =    12.92s         Find the Target Application 'ch.drrius.nest'
+    t =    12.94s         Find the Target Application 'ch.drrius.nest'
+    t =    12.97s         Find the Target Application 'ch.drrius.nest'
+    t =    14.03s     Wait for ch.drrius.nest to idle
+    t =    14.04s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    14.06s Find the TabBar (First Match)
+    t =    14.08s Checking existence of `"Manage renewals" Button`
+    t =    14.11s Find the "Manage renewals" Button
+    t =    14.14s Checking existence of `"Manage renewals" Button`
+    t =    14.17s Checking existence of `"Manage renewals" Button`
+    t =    14.20s Find the "Manage renewals" Button
+    t =    14.24s Find the "Manage renewals" Button
+    t =    14.27s Find the "Manage renewals" Button
+    t =    14.31s Tap "Manage renewals" Button
+    t =    14.31s     Wait for ch.drrius.nest to idle
+    t =    14.32s     Find the "Manage renewals" Button
+    t =    14.35s     Check for interrupting elements affecting "Manage renewals" Button
+    t =    14.39s     Synthesize event
+    t =    14.68s     Wait for ch.drrius.nest to idle
+    t =    15.05s Waiting 15.0s for "Renewals" NavigationBar to exist
+    t =    16.09s     Checking `Expect predicate `existsNoRetry == 1` for object "Renewals" NavigationBar`
+    t =    16.09s         Checking existence of `"Renewals" NavigationBar`
+    t =    16.18s Checking existence of `"Your saved renewal request" StaticText`
+    t =    16.22s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    16.25s Find the NavigationBar (Element at index 0)
+    t =    16.31s Find the "Renewals" NavigationBar
+    t =    16.35s Find the TabBar (First Match)
+    t =    16.36s Checking existence of `"Nest QA reminder 0610-3f88" StaticText`
+    t =    16.42s Find the "Nest QA reminder 0610-3f88" StaticText
+    t =    16.49s Checking existence of `"Nest QA reminder 0610-3f88" StaticText`
+    t =    16.56s Checking existence of `"Nest QA reminder 0610-3f88" StaticText`
+    t =    16.62s Find the "Nest QA reminder 0610-3f88" StaticText
+    t =    16.70s Get number of matches for: Elements matching predicate '"Remove" IN identifiers'
+    t =    16.73s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    16.76s Find the NavigationBar (Element at index 0)
+    t =    16.81s Find the "Renewals" NavigationBar
+    t =    16.85s Find the TabBar (First Match)
+    t =    16.86s Checking existence of `"Edit" Button`
+    t =    16.89s Find the "Edit" Button
+    t =    16.93s Checking existence of `"Edit" Button`
+    t =    16.96s Checking existence of `"Edit" Button`
+    t =    17.00s Find the "Edit" Button
+    t =    17.04s Checking existence of `"Edit" Button`
+    t =    17.08s Find the "Edit" Button
+    t =    17.12s Find the "Edit" Button
+    t =    17.16s Find the Target Application 'ch.drrius.nest'
+    t =    17.19s Find the "Edit" Button
+    t =    17.24s Find the "Edit" Button
+    t =    17.28s Find the "Edit" Button
+    t =    17.32s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    17.35s Find the NavigationBar (Element at index 0)
+    t =    17.40s Find the "Renewals" NavigationBar
+    t =    17.44s Find the TabBar (First Match)
+    t =    17.45s Checking existence of `"Reminder choices" Button`
+    t =    17.49s Find the "Reminder choices" Button
+    t =    17.53s Checking existence of `"Reminder choices" Button`
+    t =    17.56s Checking existence of `"Reminder choices" Button`
+    t =    17.60s Find the "Reminder choices" Button
+    t =    17.64s Checking existence of `"Reminder choices" Button`
+    t =    17.68s Find the "Reminder choices" Button
+    t =    17.71s Find the "Reminder choices" Button
+    t =    17.76s Find the Target Application 'ch.drrius.nest'
+    t =    17.79s Find the "Reminder choices" Button
+    t =    17.83s Find the "Reminder choices" Button
+    t =    17.87s Find the "Reminder choices" Button
+    t =    17.91s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    17.94s Find the NavigationBar (Element at index 0)
+    t =    17.99s Find the "Renewals" NavigationBar
+    t =    18.02s Find the TabBar (First Match)
+    t =    18.04s Checking existence of `"Remove" Button`
+    t =    18.07s Find the "Remove" Button
+    t =    18.11s Checking existence of `"Remove" Button`
+    t =    18.15s Checking existence of `"Remove" Button`
+    t =    18.18s Find the "Remove" Button
+    t =    18.24s Checking existence of `"Remove" Button`
+    t =    18.28s Find the "Remove" Button
+    t =    18.32s Find the "Remove" Button
+    t =    18.36s Find the Target Application 'ch.drrius.nest'
+    t =    18.39s Find the "Remove" Button
+    t =    18.43s Find the "Remove" Button
+    t =    18.47s Find the "Remove" Button
+    t =    18.51s Tap "Remove" Button
+    t =    18.51s     Wait for ch.drrius.nest to idle
+    t =    18.51s     Find the "Remove" Button
+    t =    18.55s     Check for interrupting elements affecting "Remove" Button
+    t =    18.59s     Synthesize event
+    t =    18.88s     Wait for ch.drrius.nest to idle
+    t =    19.36s Waiting 15.0s for "Remove renewal" Button to exist
+    t =    20.41s     Checking `Expect predicate `existsNoRetry == 1` for object "Remove renewal" Button`
+    t =    20.41s         Checking existence of `"Remove renewal" Button`
+    t =    20.49s Checking existence of `"Remove this renewal from Nest?" StaticText`
+    t =    20.54s Find the Target Application 'ch.drrius.nest'
+    t =    20.57s Find the "Remove this renewal from Nest?" StaticText
+    t =    20.61s Get all elements bound by index for: Descendants matching type StaticText
+    t =    20.65s Find the StaticText (Element at index 0)
+    t =    20.69s Find the StaticText (Element at index 1)
+    t =    20.73s Find the "Nest QA reminder 0610-3f88
+
+This does not cancel the contract, change a linked recurring expense or erase financial history." StaticText
+    t =    20.78s Find the StaticText (Element at index 2)
+    t =    20.82s Find the StaticText (Element at index 3)
+    t =    20.86s Find the StaticText (Element at index 4)
+    t =    20.90s Find the StaticText (Element at index 5)
+    t =    20.94s Find the "Nest QA reminder 0610-3f88" StaticText
+    t =    20.98s Find the StaticText (Element at index 6)
+    t =    21.02s Find the StaticText (Element at index 7)
+    t =    21.06s Find the Target Application 'ch.drrius.nest'
+    t =    21.10s Find the "Nest QA reminder 0610-3f88
+
+This does not cancel the contract, change a linked recurring expense or erase financial history." StaticText
+    t =    21.14s Find the "Nest QA reminder 0610-3f88
+
+This does not cancel the contract, change a linked recurring expense or erase financial history." StaticText
+    t =    21.18s Checking existence of `"Cancel" Button`
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderRemoveTests.swift:116: error: -[NestAccessibilityTests.NativeActiveRenewalReminderRemoveTests testCancelThenOneOrdinaryOwnedRemoval] : XCTAssertTrue failed
+    t =    21.24s Tear Down
+    t =    21.24s     Find the Target Application 'ch.drrius.nest'
+    t =    21.32s     Added attachment named 'Removal terminal native screen'
+    t =    21.32s     Requesting snapshot of accessibility hierarchy for app with pid 93031
+    t =    21.57s     Requesting snapshot of accessibility hierarchy for app with pid 93031
+    t =    21.64s     Added attachment named 'Removal terminal native screen accessibility tree'
+Test Case '-[NestAccessibilityTests.NativeActiveRenewalReminderRemoveTests testCancelThenOneOrdinaryOwnedRemoval]' failed (21.899 seconds).
+Test Suite 'NativeActiveRenewalReminderRemoveTests' failed at 2026-10-06 15:22:29.018.
+	 Executed 1 test, with 1 failure (0 unexpected) in 21.899 (21.901) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 15:22:29.019.
+	 Executed 1 test, with 1 failure (0 unexpected) in 21.899 (21.901) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 15:22:29.019.
+	 Executed 1 test, with 1 failure (0 unexpected) in 21.899 (21.902) seconds
+2026-10-06 15:22:41.247 xcodebuild[93014:21345977] [MT] IDETestOperationsObserverDebug: 35.460 elapsed -- Testing started completed.
+2026-10-06 15:22:41.247 xcodebuild[93014:21345977] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 15:22:41.247 xcodebuild[93014:21345977] [MT] IDETestOperationsObserverDebug: 35.460 sec, +35.460 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-reminder-remove-resolved-20261006/native-remove-once/result.xcresult
+
+Failing tests:
+	NativeActiveRenewalReminderRemoveTests.testCancelThenOneOrdinaryOwnedRemoval()
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "23A43170-3C27-4D18-9D12-C7C91F69252C.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Removal terminal native screen accessibility tree_0_008D6BA6-FCC9-4E3F-BFCA-4D8A0683E2E9.txt",
+        "timestamp": 1791291923.182
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DBA3B0E7-A215-4099-957F-7507EB81E113.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Removal terminal native screen_0_A79EB254-341E-4103-A05B-646E7853723B.png",
+        "timestamp": 1791291922.961
+      }
+    ],
+    "testIdentifier": "NativeActiveRenewalReminderRemoveTests/testCancelThenOneOrdinaryOwnedRemoval()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRenewalReminderRemoveTests/testCancelThenOneOrdinaryOwnedRemoval"
+  }
+]

@@ -1,0 +1,19 @@
+{
+  "derivedData": "/private/tmp/nest-active-renewal-reminder-fresh-sdk-20261006",
+  "reusedFreshCompiledSDK": true,
+  "prepareLogSha256": "38d50879687b42e52279765b1b4bd3130af68f84a820e6ccf361d5f9ecaebe6d",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ GroceryReminderTestServer.swift,\\ GrocerySessionFakes.swift,\\ GrocerySessionModelTests.swift,\\ GroceryWritePreflightTests.swift,\\ HostedActiveRenewalReminderReadTests.swift,\\ HostedActiveRenewalReminderReceiptReadTests.swift,\\ HostedActiveRenewalReminderRemovalReadTests.swift,\\ HostedChoreReminderNavigationReadTests.swift,\\ HostedGroceryReminderReadTests.swift,\\ HostedGroceryReminderReceiptIsolationTests.swift,\\ HostedGroceryReminderReceiptReadTests.swift,\\ HostedManualIngredientReviewTests.swift,\\ HostedManualMealWeekTests.swift,\\ HostedManualPreparationReadTests.swift,\\ HostedManualRecipeEditReadTests.swift,\\ HostedMealReminderNavigationReadTests.swift,\\ HostedNativePairChoreAuthorizationTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/GroceryReminderTestServer.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/GrocerySessionFakes.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/GrocerySessionModelTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/GroceryWritePreflightTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedActiveRenewalReminderReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedActiveRenewalReminderReceiptReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedActiveRenewalReminderRemovalReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedChoreReminderNavigationReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedGroceryReminderReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedGroceryReminderReceiptIsolationTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedGroceryReminderReceiptReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedManualIngredientReviewTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedManualMealWeekTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedManualPreparationReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedManualRecipeEditReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedMealReminderNavigationReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedNativePairChoreAuthorizationTests.swift (in target 'NestAppTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedActiveRenewalReminderRemovalReadTests.swift (in target 'NestAppTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "6f699550540bcc387c9779845b06780358e65bc1466381aa0a0d05e2cc8177f4",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "e07b8a5acc9d2d343273a8f60d5201cad926ea56445e8c61e16856ecd17d1838",
+    "Build/Products/Debug-iphonesimulator/Nest.app/PlugIns/NestAppTests.xctest/NestAppTests": "1331177a9d0489da227b457d60b78e7096dbfb92cb10f1bef8f0aec76a0de96e"
+  },
+  "selectedProductPaths": {
+    "TestHostPath": "/private/tmp/nest-active-renewal-reminder-fresh-sdk-20261006/Build/Products/Debug-iphonesimulator/Nest.app",
+    "TestBundlePath": "/private/tmp/nest-active-renewal-reminder-fresh-sdk-20261006/Build/Products/Debug-iphonesimulator/Nest.app/PlugIns/NestAppTests.xctest"
+  },
+  "resolverSha256": "c24c8d5e00be43f2d9b80802046fff250b65167a27970c2ee76021ec4c5a0dab"
+}

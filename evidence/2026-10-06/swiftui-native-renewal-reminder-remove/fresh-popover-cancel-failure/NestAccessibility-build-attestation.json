@@ -1,0 +1,21 @@
+{
+  "derivedData": "/private/tmp/nest-active-renewal-reminder-fresh-ui-20261006",
+  "prepareLogSha256": "a452687655449460e425d5d8ea623501b96b0e7fc2e3c9bca7531e058e2b2436",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ NativeActiveRenewalReminderDraftTests.swift,\\ NativeActiveRenewalReminderRemoveTests.swift,\\ NativeActiveRenewalReminderSaveTests.swift,\\ NativeActiveRenewalReminderTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderDraftTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderRemoveTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderSaveTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderRemoveTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "23ca0ed47036c544a28192159b6b400f67a3b9f5b6ab53600c9443a59649c34e",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "b23ddfcfd367e86a65b3582072d90d9caa27c7853d858cf6c3cd401c67627174",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "293acd28cd6b5a896d06c8791f35d8038b4ed9a6207da7a0912f563ad6c2efc7"
+  },
+  "resolvedProductPaths": {
+    "NestAccessibilityTests": {
+      "TestHostPath": "/private/tmp/nest-active-renewal-reminder-fresh-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+      "TestBundlePath": "/private/tmp/nest-active-renewal-reminder-fresh-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+      "UITargetAppPath": "/private/tmp/nest-active-renewal-reminder-fresh-ui-20261006/Build/Products/Debug-iphonesimulator/Nest.app"
+    }
+  },
+  "freshDirectoryRequired": true
+}

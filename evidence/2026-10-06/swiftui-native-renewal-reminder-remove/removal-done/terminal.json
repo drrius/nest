@@ -1,0 +1,11 @@
+{
+  "restartDoneMethodPassed": true,
+  "bothFinalCanonicalReadsPassed": true,
+  "POSTs": 0,
+  "RemoveReplays": 0,
+  "ReminderSaveReplays": 0,
+  "CreateReplays": 0,
+  "recordedRequestCleared": true,
+  "ReminderEnabledHistoryRetained": true,
+  "deliveryClaimed": false
+}

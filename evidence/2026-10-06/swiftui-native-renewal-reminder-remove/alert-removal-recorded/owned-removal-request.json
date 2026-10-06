@@ -1,0 +1,53 @@
+{
+  "baseline": {
+    "removed": false,
+    "cancellationOn": "2026-10-07",
+    "fields": {
+      "title": "Nest QA reminder 0610-3f88",
+      "recurringRuleId": null,
+      "responsibleId": null,
+      "renewalOn": "2026-10-07",
+      "noticeDays": 0
+    },
+    "revision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+    "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690"
+  },
+  "cancellationRequested": false,
+  "result": {
+    "version": 1,
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "status": "recorded",
+    "operationId": "BE001379-8C88-479B-B551-066629E91725",
+    "receipt": {
+      "operationId": "BE001379-8C88-479B-B551-066629E91725",
+      "action": "removed",
+      "renewal": {
+        "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+        "revision": "CEFA0761-B6C4-487C-A630-81D62BAB84AD",
+        "cancellationOn": "2026-10-07",
+        "removed": true,
+        "fields": {
+          "noticeDays": 0,
+          "responsibleId": null,
+          "title": "Nest QA reminder 0610-3f88",
+          "recurringRuleId": null,
+          "renewalOn": "2026-10-07"
+        }
+      },
+      "version": 1,
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "command": {
+        "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+        "operationId": "BE001379-8C88-479B-B551-066629E91725",
+        "expectedRevision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777"
+      },
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+    },
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+  },
+  "command": {
+    "expectedRevision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+    "operationId": "BE001379-8C88-479B-B551-066629E91725",
+    "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "lastPhase": "\/v1\/renewal-reminders\/operation",
+  "responses": [
+    { "status": 200, "capturedAt": 1791292272.637978, "path": "\/v1\/session" },
+    { "status": 200, "capturedAt": 1791292273.204135, "path": "\/v1\/renewals" },
+    { "status": 200, "capturedAt": 1791292273.95684, "path": "\/v1\/routines\/roster" },
+    { "status": 200, "capturedAt": 1791292274.459495, "path": "\/v1\/money\/recurring\/rules" },
+    { "status": 200, "capturedAt": 1791292275.003705, "path": "\/v1\/money\/history" },
+    { "status": 200, "capturedAt": 1791292275.561432, "path": "\/v1\/money\/history" },
+    { "status": 200, "capturedAt": 1791292276.091854, "path": "\/v1\/money\/balance" },
+    { "status": 200, "capturedAt": 1791292276.614387, "path": "\/v1\/groceries" },
+    { "status": 200, "capturedAt": 1791292277.12882, "path": "\/v1\/renewals\/detail" },
+    { "status": 200, "capturedAt": 1791292277.761061, "path": "\/v1\/renewals\/detail" },
+    { "status": 200, "capturedAt": 1791292278.468261, "path": "\/v1\/renewal-reminders\/detail" },
+    { "status": 200, "capturedAt": 1791292278.984395, "path": "\/v1\/renewal-reminders\/operation" }
+  ]
+}
