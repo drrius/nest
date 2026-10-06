@@ -38,7 +38,9 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         openCreate(app)
         cancelPristine("New recipe", in: app)
         openCreate(app)
-        dirtyAndDiscard("New recipe", baseline: nil, in: app)
+        swipeSheet("New recipe", dirty: false, in: app)
+        openCreate(app)
+        dirtyAndDiscard("New recipe", baseline: "2", in: app)
         openCreate(app)
         XCTAssertEqual(app.textFields["Servings"].value as? String, "2")
         XCTAssertEqual(app.textFields["Name"].value as? String, "Name")
@@ -47,7 +49,9 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         openEdit(app, recipe: recipe)
         cancelPristine("Edit recipe", in: app)
         openEdit(app, recipe: recipe)
-        dirtyAndDiscard("Edit recipe", baseline: recipe.title, in: app)
+        swipeSheet("Edit recipe", dirty: false, in: app)
+        openEdit(app, recipe: recipe)
+        dirtyAndDiscard("Edit recipe", baseline: recipe.servings.map(String.init) ?? "", in: app)
         openEdit(app, recipe: recipe)
         verifyRecipe(recipe, in: app)
         capture(app, name: "Reopened exact current canonical recipe after local Discard")
@@ -104,18 +108,15 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
     }
 
     private func dirtyAndDiscard(_ title: String, baseline: String?, in app: XCUIApplication) {
-        let raw = "   "
-        let name = app.textFields["Name"]
+        let raw = "0"
+        let name = app.textFields["Servings"]
         reveal(name, in: app)
         name.tap()
-        XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15))
+        let keyboard = app.keyboards.firstMatch
+        XCTAssertTrue(keyboard.waitForExistence(timeout: 15))
         if let baseline {
-            XCTAssertEqual(name.value as? String, baseline)
-            name.press(forDuration: 1.2)
-            let all = app.descendants(matching: .any).matching(identifier: "Select All").firstMatch
-            XCTAssertTrue(all.waitForExistence(timeout: 15))
-            capture(app, name: "Native selection of current owned recipe name")
-            all.tap()
+            XCTAssertEqual(name.value as? String, baseline.isEmpty ? "Servings" : baseline)
+            for _ in baseline { keyboard.keys["delete"].tap() }
         }
         name.typeText(raw)
         XCTAssertEqual(name.value as? String, raw)
@@ -124,18 +125,46 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         done.tap()
         XCTAssertEqual(disappearance(app.keyboards.firstMatch, timeout: 15), .completed)
         XCTAssertFalse(app.navigationBars[title].buttons["Save"].isEnabled)
+        swipeSheet(title, dirty: true, in: app)
         let cancel = app.navigationBars[title].buttons["Cancel"]
         requireAction(cancel, in: app)
         cancel.tap()
         let alert = title == "New recipe" ? "Discard draft?" : "Discard changes?"
         let discard = title == "New recipe" ? "Discard draft" : "Discard changes"
-        choose("Keep editing", alert: alert, in: app, name: title + " keeps invalid raw whitespace")
+        choose("Keep editing", alert: alert, in: app, name: title + " keeps invalid zero servings")
         XCTAssertEqual(name.value as? String, raw)
         XCTAssertFalse(app.navigationBars[title].buttons["Save"].isEnabled)
-        capture(app, name: title + " retained invalid raw name after Keep editing")
+        capture(app, name: title + " retained invalid zero servings after Keep editing")
         cancel.tap()
         choose(discard, alert: alert, in: app, name: title + " explicitly discards local raw input")
         XCTAssertEqual(disappearance(app.navigationBars[title], timeout: 15), .completed)
+    }
+
+    private func swipeSheet(_ title: String, dirty: Bool, in app: XCUIApplication) {
+        let bar = app.navigationBars[title]
+        XCTAssertTrue(bar.exists && bar.isHittable)
+        let frame = bar.frame
+        let start = CGPoint(x: frame.midX, y: frame.minY + 8)
+        let end = CGPoint(x: frame.midX, y: app.frame.maxY - 45)
+        XCTAssertTrue(frame.contains(start) && app.frame.contains(end))
+        attach(
+            [
+                "navigationBar": rect(frame), "app": rect(app.frame), "dirty": dirty,
+                "gestureStart": [start.x, start.y], "gestureEnd": [end.x, end.y],
+            ], name: title + " measured sheet dismissal gesture")
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: start.x, dy: start.y))
+            .press(
+                forDuration: 0.1,
+                thenDragTo: app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: end.x, dy: end.y)),
+                withVelocity: .slow, thenHoldForDuration: 0.2)
+        capture(app, name: title + (dirty ? " dirty swipe retains raw servings" : " pristine swipe dismisses"))
+        if dirty {
+            XCTAssertTrue(bar.exists)
+            XCTAssertEqual(app.textFields["Servings"].value as? String, "0")
+            XCTAssertFalse(bar.buttons["Save"].isEnabled)
+        } else {
+            XCTAssertEqual(disappearance(bar, timeout: 10), .completed)
+        }
     }
 
     private func verifyRecipe(_ recipe: Recipe, in app: XCUIApplication) {
