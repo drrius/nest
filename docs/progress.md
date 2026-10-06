@@ -12,9 +12,7 @@ Build18 includes the shared four-tab header/20pt side/14pt top insets and Quiet 
 
 Detailed earlier slice checkpoints, including previous candidate numbers, remain in [the 4 October history](progress-history-2026-10-04.md). Later evidence below supersedes their pending states.
 
-## Calendar reading verification — 5 October
-
-The three Calendar permission controls now pass actual reading tests at all12 supported text sizes on the owned SE3:11 light configurations plus maximum/dark. Minimum access target is49pt; all three grow monotonically. The unknown-partner-availability paragraph separately passes normal/light and maximum/dark through overlapping scrolling viewports, growing from94.5pt to651.5pt. Test-observer failures and corrections are retained; no app behavior or audit filtering changed. All639 compiled inputs match; signature/test origins/push-disabled gates,64 empty command journals and restoration to ordinary Today/large/light pass. Lint/format/Swift limits pass; source `57e0d75f` passes routine37302536475/native37302536531 CI. The full five-test audit remains failing with20 unsuppressed reports; this is bounded native reading proof, not M1/M6/M9 acceptance, VoiceOver or both-phone proof. [Evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md). No model call, access grant, sharing/household/financial change, beta submission, merge or production action occurred.
+Earlier Calendar reading evidence is preserved in [6 October history](progress-history-2026-10-06.md).
 
 ## Milestone checklist
 
@@ -110,6 +108,10 @@ One actual native date Save moves only the owned task to6 October; a later navig
 ## Preparation readability and current audit
 
 Completed status is now plain; untouched Cancel closes directly and edited drafts use explicit native Discard/Keep editing. Fourteen maximum/dark and normal/light both-member native methods pass, all ten images are reviewed,447pt explanation coverage and44pt choices pass, Keep editing preserves local input and Discard saves nothing. All818 inputs, canonical SDK data, original retained rows/whole groceries and Today/large/light/original roles/64 empty journals match. Exact99ca6898 passes Nest37388478606/SwiftUI37388478424:496 Foundation/41 skips,442 signed-app/20 skips, zero failures and strict native gates. Four observer/choice failures remain preserved. [Evidence](../evidence/2026-10-06/swiftui-preparation-readable/README.md). The current five-method root audit fails with19 unsuppressed reports,11 contrast/eight Dynamic Type, replacing the older20 checkpoint; six SDK/restoration checks pass,818 inputs and canonical state match and all five images are reviewed. [Current audit](../evidence/2026-10-06/swiftui-current-accessibility/README.md). Bounded reading does not close these diagnostics, VoiceOver/phones or full M1–M9. No new beta, model call, worker, production operation, purchase or merge.
+
+## Live typography diagnosis
+
+Five native read-only methods pass. Three named Calendar controls grow with actual live system text changes, return to normal and match a cold maximum-size reference; the app PID stays unchanged during live samples. All819 inputs match, both roles/Today/large/light/64 empty journals are restored, and fresh owned/retained/grocery hashes remain exact. All three screenshots are inspected. This rules out fixed-size behavior for these controls, not the anonymous node or the19 unsuppressed audit reports. The census retains all findings: four bound contrast reports are near/cross/under the floating bar, seven are unbound. No shipping font/color change is justified by this test. [Evidence](../evidence/2026-10-06/swiftui-live-typography/README.md), [census](../evidence/2026-10-06/swiftui-current-accessibility/census.json). New guarded-test CI is pending; shipping99ca native CI and dc51 docs routine CI pass. Full accessibility/VoiceOver/phones/live AI and M1–M9 remain open. No household write, permission, beta, worker, purchase, production operation or merge.
 
 ## Native existing-expense cycle linkage
 
@@ -360,17 +362,7 @@ The full audit and twelve-size reading evidence are preserved in
 and [native evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
 The original full audit has20 unsuppressed reports; focused reading passes do not close it.
 
-## Focused Calendar contrast diagnostics
-
-Bottom-edge hiding, darker refresh ink and an explicitly visible Quiet tab-bar
-background all fail actual native contrast checks and are removed. The latest
-experiment retains the same three unsuppressed findings; it does not fix the
-original20-report audit. Restored permission reading and native detail/Today
-navigation pass;790 source inputs match, original actor/large/light/64 empty
-journals and six hosted fingerprints stay exact. [Evidence](../evidence/2026-10-05/swiftui-calendar-contrast/README.md#explicit-tab-bar-background-experiment).
-The shipping UI is unchanged. Full accessibility, VoiceOver and phones stay open.
-Preceding diagnostic ccde252b passes Nest37315433885/SwiftUI37315433660;
-routine CI does not execute or approve the failing manual suite.
+Earlier failed Calendar contrast experiments remain in [6 October history](progress-history-2026-10-06.md#focused-calendar-contrast-diagnostics).
 
 ## Native posted PDF expense
 

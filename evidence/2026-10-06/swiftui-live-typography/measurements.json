@@ -1,0 +1,50 @@
+[
+  {
+    "elements": [
+      {
+        "exists": true,
+        "frame": [40, 407.5, 295, 38],
+        "label": "iOS calls this Full Access. Nest uses it only to read your calendars."
+      },
+      { "exists": true, "frame": [40, 461.5, 295, 44], "label": "Allow calendar access" },
+      { "exists": true, "frame": [20, 550, 182, 18], "label": "Your partner’s availability" }
+    ],
+    "phase": 0
+  },
+  {
+    "elements": [
+      {
+        "exists": true,
+        "frame": [40, 181, 276.5, 348.5],
+        "label": "iOS calls this Full Access. Nest uses it only to read your calendars."
+      },
+      { "exists": true, "frame": [40, 255.5, 295, 187.5], "label": "Allow calendar access" },
+      { "exists": true, "frame": [20, 197.5, 315, 116.5], "label": "Your partner’s availability" }
+    ],
+    "phase": 1
+  },
+  {
+    "elements": [
+      {
+        "exists": true,
+        "frame": [40, 173.5, 295, 38],
+        "label": "iOS calls this Full Access. Nest uses it only to read your calendars."
+      },
+      { "exists": true, "frame": [40, 227.5, 295, 44], "label": "Allow calendar access" },
+      { "exists": true, "frame": [20, 316, 182, 18], "label": "Your partner’s availability" }
+    ],
+    "phase": 2
+  },
+  {
+    "elements": [
+      {
+        "exists": true,
+        "frame": [40, 181, 276.5, 348.5],
+        "label": "iOS calls this Full Access. Nest uses it only to read your calendars."
+      },
+      { "exists": true, "frame": [40, 255.5, 295, 187.5], "label": "Allow calendar access" },
+      { "exists": true, "frame": [20, 197.5, 315, 116.5], "label": "Your partner’s availability" }
+    ],
+    "phase": 3
+  }
+]

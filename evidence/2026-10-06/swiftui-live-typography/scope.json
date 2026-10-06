@@ -1,0 +1,9 @@
+{
+  "actualOperation": "read-only live system text-size test",
+  "householdWrites": 0,
+  "completionOrDateCommands": 0,
+  "controllerRestorationKeysAreInherited": [
+    "nativeCompletionAndFinishedControlsVerified",
+    "onlyOwnedDateAndOneCompletionRequested"
+  ]
+}

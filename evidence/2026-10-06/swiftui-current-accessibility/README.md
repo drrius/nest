@@ -28,3 +28,17 @@ compiles the optional UI scheme without running or approving this manual audit.
 No Save, OS permission, sharing change, inference, worker, beta, production action,
 purchase or merge occurs. Full M1/M6/M9 accessibility, VoiceOver and physical-phone
 acceptance stay open. The current available private candidate remains build18.
+
+## Finding census and changed premise
+
+The earlier color and tab-bar experiments assumed foreground/background choices
+explained the failures. The [rerunnable census](../../../scripts/census-native-accessibility.py)
+retains every report and groups them by tab/element and frame position.
+[Results](census.json) place all four bound contrast reports near, crossing or
+below the floating bar; seven contrast reports have no usable bounds. The64pt
+proximity band is a diagnostic classification, never an exemption.
+Four font reports are clearly above the bar, two are nearby and two are unbound.
+The [live system-size test](../swiftui-live-typography/README.md) confirms all
+three named Calendar controls resize without relaunch and match cold rendering.
+Further investigation must distinguish a real readability defect from audit
+classification. Anonymous findings remain unattributed; none is suppressed.
