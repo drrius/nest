@@ -1,0 +1,113 @@
+Attributes: Application, 0x30c7436d0, pid: 11335, label: 'Nest'
+Element subtree:
+ →Application, 0x30c7436d0, pid: 11335, label: 'Nest'
+    Window (Main), 0x30c73b8a0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x30c7454f0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x30c745610, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x30c7453a0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x30c7444e0, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x30c745730, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x30c745850, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x30c745970, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x30c745a90, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x30c745bb0, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x30c745cd0, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x30c745df0, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x30c745f10, {{0.0, 0.0}, {375.0, 667.0}}
+                            Other, 0x30c746030, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x30c746150, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x30c746270, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x30c746390, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x30c7464b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x30c7465d0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x30c7466f0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x30c746810, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x30c746930, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x30c746a50, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x30c746b70, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x30c746c90, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x30c746db0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x30c746ed0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x30c746ff0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x30c747110, {{0.0, 20.0}, {375.0, 4057.5}}
+                                        StaticText, 0x30c747230, {{20.0, 34.0}, {186.0, 102.5}}, label: 'Tuesday, October 6'
+                                        Button, 0x30c747350, {{193.5, 148.5}, {87.5, 66.5}}, identifier: 'tab-assistant-action', label: 'Private conversations'
+                                        Button, 0x30c747470, {{289.0, 150.0}, {66.0, 64.0}}, identifier: 'tab-profile-action', label: 'Profile and preferences'
+                                        StaticText, 0x30c747590, {{20.0, 219.0}, {161.0, 72.0}}, identifier: 'tab-header-today', label: 'Today'
+                                        StaticText, 0x30c7476b0, {{20.0, 295.0}, {298.0, 116.5}}, label: 'A good day to keep it simple.'
+                                        Button, 0x30c7477d0, {{20.0, 435.5}, {186.5, 58.5}}, label: 'Add to your household'
+                                          Button, 0x30c7478f0, {{20.0, 435.5}, {186.5, 58.5}}
+                                            Image, 0x30c747a10, {{44.0, 444.5}, {40.5, 40.5}}, identifier: 'plus', label: 'Add'
+                                            StaticText, 0x30c747b30, {{44.0, 435.5}, {144.5, 58.5}}, label: 'Add'
+                                        StaticText, 0x30c747c50, {{20.0, 518.0}, {237.0, 51.5}}, label: 'Show chores'
+                                        Button, 0x30c747d70, {{20.0, 577.5}, {335.0, 149.5}}, label: 'Me + shared', Selected
+                                          StaticText, 0x30c747e90, {{20.0, 577.5}, {335.0, 149.5}}, label: 'Me + shared'
+                                          Image, 0x30c747fb0, {{291.5, 630.0}, {45.0, 44.5}}, identifier: 'checkmark', label: 'Selected', Selected
+                                        Button, 0x30c7480d0, {{20.0, 735.0}, {335.0, 87.5}}, label: 'Everyone'
+                                          StaticText, 0x30c7481f0, {{20.0, 735.0}, {335.0, 87.5}}, label: 'Everyone'
+                                          Image, 0x30c748310, {{291.5, 756.5}, {45.0, 44.5}}, identifier: 'checkmark', label: 'Selected', Selected
+                                        StaticText, 0x30c748430, {{20.0, 852.5}, {234.0, 125.5}}, label: 'Around the house'
+                                        Button, 0x30c748550, {{20.0, 978.0}, {335.0, 406.0}}, label: 'Hosted smoke tidy kitchen', value: Overdue since Sep 28
+                                          Image, 0x30c748670, {{25.0, 1153.5}, {55.0, 55.0}}, identifier: 'circle', label: 'circle'
+                                          StaticText, 0x30c748790, {{99.0, 978.0}, {175.0, 249.5}}, label: 'Hosted smoke tidy kitchen'
+                                          StaticText, 0x30c7488b0, {{99.0, 1230.5}, {187.5, 153.5}}, label: 'Overdue since Sep 28'
+                                        Button, 0x30c7489d0, {{20.0, 1392.0}, {335.0, 125.5}}, label: 'Manage chores'
+                                        StaticText, 0x30c748af0, {{38.0, 1559.5}, {169.0, 125.5}}, label: 'On the menu'
+                                        StaticText, 0x30c748c10, {{38.0, 1699.0}, {262.5, 187.5}}, label: 'Nothing planned for today.'
+                                        Button, 0x30c748d30, {{38.0, 1900.5}, {299.0, 116.5}}, label: 'Open meal plan'
+                                        StaticText, 0x30c748e50, {{38.0, 2077.0}, {206.0, 125.5}}, label: 'On your calendar'
+                                        StaticText, 0x30c748f70, {{38.0, 2216.5}, {291.0, 497.5}}, label: 'Open Calendar to review access. Your personal details stay on this device.'
+                                        Button, 0x30c749090, {{38.0, 2728.0}, {299.0, 116.5}}, label: 'Open Calendar'
+                                        StaticText, 0x30c7491b0, {{38.0, 2904.5}, {203.5, 125.5}}, label: 'For your review'
+                                        StaticText, 0x30c7492d0, {{38.0, 3044.0}, {245.5, 153.5}}, label: 'Financial proposals · private to you'
+                                        StaticText, 0x30c7493f0, {{38.0, 3211.5}, {272.0, 125.5}}, label: 'No pending proposals.'
+                                        Button, 0x30c749510, {{38.0, 3351.0}, {299.0, 174.5}}, label: 'All proposals and saved decisions'
+                                        Button, 0x30c749630, {{20.0, 3543.5}, {335.0, 125.5}}, label: 'Manage renewals'
+                                        Button, 0x30c749750, {{20.0, 3697.0}, {335.0, 219.0}}, label: 'Groceries, 1 thing to pick up'
+                                          StaticText, 0x30c749870, {{38.0, 3715.0}, {229.5, 63.5}}, label: 'Groceries'
+                                          StaticText, 0x30c749990, {{38.0, 3781.5}, {200.0, 116.5}}, label: '1 thing to pick up'
+                                        Button, 0x30c749ab0, {{20.0, 3928.0}, {335.0, 125.5}}, label: 'Your saved daily summary'
+                                      Other, 0x30c749dd0, {{342.0, 20.0}, {30.0, 564.0}}, label: 'Vertical scroll bar, 8 pages', value: 0%
+                                        Other, 0x30c749ef0, {{369.0, 23.0}, {3.0, 83.5}}
+                                      Other, 0x30c74a010, {{342.0, 20.0}, {30.0, 564.0}}, label: 'Vertical scroll bar, 8 pages', value: 0%
+                                        Other, 0x30c74a130, {{369.0, 23.0}, {3.0, 83.5}}
+                            Other, 0x30c74a250, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x30c74a370, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x30c74a490, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x30c74a5b0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x30c74a6d0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x30c74a7f0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x30c74a910, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x30c74aa30, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x30c74ab50, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x30c74ac70, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x30c74ad90, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x30c74aeb0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x30c74afd0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x30c74b0f0, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x30c74b210, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x30c74b330, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x30c74b450, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x30c74b570, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x30c74b690, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x30c74b7b0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x30c74b8d0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x30c74b9f0, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x30c74bb10, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x30c74bc30, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x30c74bd50, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x30c74be70, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x30c74bf90, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x30c74c0b0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x30c74c1d0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x30c74c2f0, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x30c74c410, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x30c74c530, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x30c74c650, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x30c7436d0, pid: 11335, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x30c4a6530, pid: 11335, label: 'Nest'
+  }

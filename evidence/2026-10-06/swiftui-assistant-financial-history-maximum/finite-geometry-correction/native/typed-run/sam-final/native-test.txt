@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-assistant-financial-history-typed-20261006/sam-final/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-assistant-financial-history-typed-20261006/sam-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-assistant-financial-history-typed-20261006/sam-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 22:31:22.450.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 22:31:22.450.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 22:31:22.451.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (9.461 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 22:31:31.912.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.461 (9.462) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 22:31:31.913.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.461 (9.462) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 22:31:31.913.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.461 (9.463) seconds
+2026-10-06 22:31:32.224 xcodebuild[13018:22261567] [MT] IDETestOperationsObserverDebug: 11.561 elapsed -- Testing started completed.
+2026-10-06 22:31:32.224 xcodebuild[13018:22261567] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 22:31:32.224 xcodebuild[13018:22261567] [MT] IDETestOperationsObserverDebug: 11.561 sec, +11.561 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-assistant-financial-history-typed-20261006/sam-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

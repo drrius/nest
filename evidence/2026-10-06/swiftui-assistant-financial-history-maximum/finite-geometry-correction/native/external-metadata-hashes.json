@@ -1,0 +1,12 @@
+{
+  "fixture-metadata-before-345c82.json": "81cd61761072db5df868eed93f792668efb7f9dbc235fb22c0d0487445f84e3e",
+  "allocation-metadata-before-345c82.json": "ad85056c459749b472777d14d11788be2524f7897342ef9844c3f86f1cebf3e8",
+  "fixture-metadata-after-345c82.json": "ab73be0450f9864d8f18bc6efd096e71dc8a83820f0b36e97d61537cc1931be2",
+  "allocation-metadata-after-345c82.json": "867b0d601b2b2b83a30c68fe8ec165b422d84ed0ef1332bab66502feffc81ec3",
+  "root-execution-review-345c82.json": "fae74f10714a0a3a1ba857fcf2ff5c18893269a84299dd4a438ac49242afc595",
+  "source-ci-55d25.json": "f3f6f8816b7f1cf0131ce9762c98d6364a66129cf76a8df8551eae05f46aab89",
+  "type-boundary-correction/readiness.json": "fa9617f422ab5838e3729d3301a8d60786e6bcadcd52103080a8dcb6dc9b056a",
+  "type-boundary-correction/typecheck-attestation.json": "d4c2c9729162cea8cbe9b8fcdd19606ce5f09bac183053ef9586eb68f305aeee",
+  "root-review-345c82.json": "5c35778814dc9aff7d1e470ca3bab9a0839e16b63d75b5039a2c9fd6f33d4a98",
+  "source-ci-345c82.json": "0580bbd37df366ad4c5697f7aa13289c240b323739970b3d2dd375092951763f"
+}

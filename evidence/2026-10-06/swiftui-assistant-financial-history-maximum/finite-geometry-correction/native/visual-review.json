@@ -1,0 +1,50 @@
+{
+  "typed-run/sam-terminal-screen.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "549fe84b50f930422434f27940d37f39b29ecb9bbf3ab1969ee7f3d8d0fdeaad"
+  },
+  "typed-run/alex-terminal-screen.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "549fe84b50f930422434f27940d37f39b29ecb9bbf3ab1969ee7f3d8d0fdeaad"
+  },
+  "typed-run/financial-history-maximum/04E151F4-3CEF-45E4-AD60-C0370A44235F.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "04854953906dca07dc0cfbdee10b8563c69150fe1820c89f31b5264973df908b"
+  },
+  "typed-run/financial-history-maximum/B70AF0C7-8F97-4A0D-BC82-C51DA65F4A21.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "c5f135533c2e01fb47633e6a8719384dde73a8ab80b0672d4011a2be3d42330c"
+  },
+  "typed-run/financial-history-maximum/E830BD5D-9BFD-4EEC-B613-A86802C97F52.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "b7a2a7e5a740162bcfbeac12fb88fa5d4bbea6aff43f962041beee935f03dd17"
+  },
+  "typed-run/financial-history-maximum/EB9DEFF6-6721-466F-BC78-3F6D0ACD331F.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "83659fcf36bd759066460120ff6b78b1d966476ee341fc09d566dff939b9a2fa"
+  },
+  "typed-run/financial-history-maximum/5C6683DC-60EA-4D2D-AF41-595FD9394B8D.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "85312d87588fc83afb5aa0c63c3f676e2d03554c7d3d8560b24afd55cadec9d6"
+  },
+  "typed-run/financial-history-maximum/F49EC302-F15E-430E-B964-473F808BDC89.png": {
+    "reviewed": true,
+    "reviewer": "native execution worker",
+    "safeFictionalScope": true,
+    "sha256": "9a7e69e016988922133e3c4180f12f6ba9e946ddd2fa20c87c09d2a7527f5f6b"
+  }
+}

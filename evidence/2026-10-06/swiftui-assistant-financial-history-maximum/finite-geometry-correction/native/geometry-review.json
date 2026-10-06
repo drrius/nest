@@ -1,0 +1,524 @@
+{
+  "allPanGeometryValidated": true,
+  "panCount": 37,
+  "finiteKnownViewportScrollerAndEndpoints": true,
+  "allEndpointsOutsideScrollbarsAndLeftOfInteractiveRegions": true,
+  "unrealizedAbsentTargetPanCount": 12,
+  "rawNonfiniteDiagnosticCount": 0,
+  "rawNonfiniteDiagnostics": [],
+  "measuredTargetsAndFields": [
+    {
+      "attachment": "BACF9A7B-6213-49E0-A2FE-C9411DB70A33.json",
+      "wholeViewportAtSnapshot": true,
+      "restorationOnlySnapshot": false,
+      "enabled": true,
+      "exists": true,
+      "frame": {
+        "height": 262,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 470,
+        "midX": 187.5,
+        "midY": 339,
+        "minX": 16,
+        "minY": 208,
+        "usable": true,
+        "width": 343
+      },
+      "hittable": true,
+      "label": "Conversation, Oct 5, 2026 at 12:42\u202fAM",
+      "observedViewport": {
+        "height": 510,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 375,
+        "maxY": 584,
+        "midX": 187.5,
+        "midY": 329,
+        "minX": 0,
+        "minY": 74,
+        "usable": true,
+        "width": 375
+      }
+    },
+    {
+      "attachment": "BFC8C7A0-48DC-4FF5-B401-0E0B90D39F19.json",
+      "wholeViewportAtSnapshot": true,
+      "restorationOnlySnapshot": false,
+      "enabled": true,
+      "exists": true,
+      "frame": {
+        "height": 283,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 339,
+        "maxY": 548,
+        "midX": 187.5,
+        "midY": 406.5,
+        "minX": 36,
+        "minY": 265,
+        "usable": true,
+        "width": 303
+      },
+      "hittable": true,
+      "label": "Record recurring bill, Expires Oct 5, 2026 at 12:57\u202fAM",
+      "observedViewport": {
+        "height": 510,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 375,
+        "maxY": 584,
+        "midX": 187.5,
+        "midY": 329,
+        "minX": 0,
+        "minY": 74,
+        "usable": true,
+        "width": 375
+      }
+    },
+    {
+      "attachment": "D6942C0B-A15F-49CC-BF11-E8A18E99031E.json",
+      "wholeViewportAtSnapshot": true,
+      "restorationOnlySnapshot": false,
+      "enabled": true,
+      "exists": true,
+      "frame": {
+        "height": 187.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 334.5,
+        "maxY": 505.5,
+        "midX": 183.25,
+        "midY": 411.75,
+        "minX": 32,
+        "minY": 318,
+        "usable": true,
+        "width": 302.5
+      },
+      "hittable": true,
+      "label": "View recorded expense",
+      "observedViewport": {
+        "height": 510,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 375,
+        "maxY": 584,
+        "midX": 187.5,
+        "midY": 329,
+        "minX": 0,
+        "minY": 74,
+        "usable": true,
+        "width": 375
+      }
+    },
+    {
+      "attachment": "E9B4650A-70EA-46EF-B436-2A6CAC207168.json",
+      "wholeViewportAtSnapshot": false,
+      "restorationOnlySnapshot": true,
+      "enabled": true,
+      "exists": true,
+      "frame": {
+        "height": 149.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 727,
+        "midX": 187.5,
+        "midY": 652.25,
+        "minX": 20,
+        "minY": 577.5,
+        "usable": true,
+        "width": 335
+      },
+      "hittable": true,
+      "label": "Me + shared",
+      "observedViewport": {
+        "height": 584,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 375,
+        "maxY": 584,
+        "midX": 187.5,
+        "midY": 292,
+        "minX": 0,
+        "minY": 0,
+        "usable": true,
+        "width": 375
+      }
+    },
+    {
+      "attachment": "9085E836-288D-4B43-A76C-DF97B836716F.json",
+      "wholeViewportAtSnapshot": true,
+      "restorationOnlySnapshot": false,
+      "enabled": true,
+      "exists": true,
+      "frame": {
+        "height": 187.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 287,
+        "maxY": 433,
+        "midX": 159.5,
+        "midY": 339.25,
+        "minX": 32,
+        "minY": 245.5,
+        "usable": true,
+        "width": 255
+      },
+      "hittable": true,
+      "label": "Balance change: \u2212CHF 0.01",
+      "observedViewport": {
+        "height": 510,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 375,
+        "maxY": 584,
+        "midX": 187.5,
+        "midY": 329,
+        "minX": 0,
+        "minY": 74,
+        "usable": true,
+        "width": 375
+      }
+    },
+    {
+      "attachment": "23023D08-9B7D-4E2E-99A2-47356D076732.json",
+      "wholeViewportAtSnapshot": true,
+      "restorationOnlySnapshot": false,
+      "enabled": true,
+      "exists": true,
+      "frame": {
+        "height": 403.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 541,
+        "midX": 187.5,
+        "midY": 339.25,
+        "minX": 16,
+        "minY": 137.5,
+        "usable": true,
+        "width": 343
+      },
+      "hittable": true,
+      "label": "Fictional private approval QA; no payment or actual transfer.",
+      "observedViewport": {
+        "height": 510,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 375,
+        "maxY": 584,
+        "midX": 187.5,
+        "midY": 329,
+        "minX": 0,
+        "minY": 74,
+        "usable": true,
+        "width": 375
+      }
+    }
+  ],
+  "pans": [
+    {
+      "attachment": "0A285620-8D36-4617-B688-E40F5B161184.json",
+      "navigation": "Review bill",
+      "target": "Bill recorded. This cycle will not be recorded again by this decision.",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "3F7D3227-A8EE-46F3-804D-E4A2723AB9B5.json",
+      "navigation": "Entry details",
+      "target": "unrealized recorded target",
+      "attempt": 1,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "98F2216E-1C2C-4A7B-A829-A265563764E3.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 2,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "93158D34-14F7-400F-8BD9-8ED692B8E06D.json",
+      "navigation": "Entry details",
+      "target": "unrealized recorded target",
+      "attempt": 0,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "A47AD4C9-14D8-4022-BBDF-DA4B2766778E.json",
+      "navigation": "Review bill",
+      "target": "Your partner, CHF 0.01",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "D0213FA1-92BA-4983-B2E4-801F0097DAAD.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 3,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "08D9910E-C245-4B94-B569-62CBE7D37D22.json",
+      "navigation": "Entry details",
+      "target": "Fictional private approval QA; no payment or actual transfer.",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "05CC02DF-3FA7-4948-A4F5-443922759A0F.json",
+      "navigation": "Review bill",
+      "target": "Bill recorded. This cycle will not be recorded again by this decision.",
+      "attempt": 1,
+      "start": [24, 449],
+      "end": [24, 296.702392578125]
+    },
+    {
+      "attachment": "0C1D5DF6-A6B1-4CC4-A95A-412D1C8C484A.json",
+      "navigation": "Review bill",
+      "target": "Fictional private approval QA; no payment or actual transfer.",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "5B49651F-58ED-46C5-9A62-891FC7D472BE.json",
+      "navigation": "Conversation",
+      "target": "Record recurring bill, Expires Oct 5, 2026 at 12:57\u202fAM",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "907207B4-143D-4C94-8CD8-A16F46C54770.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 4,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "E1716F60-3CCB-4040-8223-D9E7B88D9A8F.json",
+      "navigation": "Private conversations",
+      "target": "Conversation, Oct 5, 2026 at 12:42\u202fAM",
+      "attempt": 10,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "10BD6B68-1BC5-40E0-B291-C77ED58D4942.json",
+      "navigation": "Review bill",
+      "target": "Fictional private approval QA; no payment or actual transfer.",
+      "attempt": 1,
+      "start": [24, 449],
+      "end": [24, 334.75]
+    },
+    {
+      "attachment": "CDFB24FD-8544-42FE-8AA6-7E4C6882BC06.json",
+      "navigation": "Entry details",
+      "target": "Allocated: CHF 0.01",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "DDDDD236-BC86-4636-AD81-B9C7480B75DA.json",
+      "navigation": "Review bill",
+      "target": "This records one expense. Nest does not pay the bill or change its recurring rule.",
+      "attempt": 1,
+      "start": [24, 449],
+      "end": [24, 331.5]
+    },
+    {
+      "attachment": "837B1AEB-BA05-4D6F-A5F4-0E9281DECE57.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 6,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "53FBE69A-0489-4813-BC09-245892F0D49A.json",
+      "navigation": "Entry details",
+      "target": "Recorded shares",
+      "attempt": 2,
+      "start": [12, 449],
+      "end": [12, 245.75]
+    },
+    {
+      "attachment": "8D57634E-9294-4FBC-B2D9-D589241D154A.json",
+      "navigation": "Review bill",
+      "target": "Cycle, 2026-10-01 to 2026-10-31",
+      "attempt": 1,
+      "start": [24, 449],
+      "end": [24, 292]
+    },
+    {
+      "attachment": "6CE26A15-A462-40DB-B417-C4C3272398A9.json",
+      "navigation": "Review bill",
+      "target": "This records one expense. Nest does not pay the bill or change its recurring rule.",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "D15B1744-D73B-42D9-BA4E-72C1996F1D41.json",
+      "navigation": "Entry details",
+      "target": "Allocated: CHF 0.02",
+      "attempt": 0,
+      "start": [12, 449],
+      "end": [12, 218.75]
+    },
+    {
+      "attachment": "D937CB93-B7BD-4469-B131-E312CE337CF1.json",
+      "navigation": "Entry details",
+      "target": "Balance change: +CHF 0.01",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 276.25]
+    },
+    {
+      "attachment": "F14CE3EF-A12E-4F68-92AC-FF3E1E58BD28.json",
+      "navigation": "Entry details",
+      "target": "Fictional private approval QA; no payment or actual transfer.",
+      "attempt": 1,
+      "start": [24, 449],
+      "end": [24, 381.25]
+    },
+    {
+      "attachment": "7050C217-FCC3-4518-B237-446CC175CA4B.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 8,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "A47E1ED5-7B73-425C-A4F7-BBE7795F52E4.json",
+      "navigation": "Entry details",
+      "target": "Expense",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "5A410C1F-C384-4541-94B2-5F858E98505F.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 9,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "8A896E5E-5814-4098-BDAD-907F946FAE40.json",
+      "navigation": "Entry details",
+      "target": "Balance change: \u2212CHF 0.01",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 260.25]
+    },
+    {
+      "attachment": "7746CBB9-6722-4D76-B3C3-7449D30FC2D9.json",
+      "navigation": "Review bill",
+      "target": "Cycle, 2026-10-01 to 2026-10-31",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "BCEEB780-637C-4107-8D0A-522A168A38BD.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 7,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "853E1A1A-8783-43FF-A558-CE2C30D5F0E8.json",
+      "navigation": "Private conversations",
+      "target": "Conversation, Oct 5, 2026 at 12:42\u202fAM",
+      "attempt": 11,
+      "start": [12, 449],
+      "end": [12, 226]
+    },
+    {
+      "attachment": "B44CE26B-2FDE-4509-BD18-C012C1AC07E1.json",
+      "navigation": "Review bill",
+      "target": "Amount, CHF 0.03",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 260.5]
+    },
+    {
+      "attachment": "75951B6B-6D3C-41C6-915B-3C19E578DE2D.json",
+      "navigation": "Conversation",
+      "target": "Record recurring bill, Expires Oct 5, 2026 at 12:57\u202fAM",
+      "attempt": 2,
+      "start": [24, 449],
+      "end": [24, 200.5]
+    },
+    {
+      "attachment": "97DCC67F-BE0C-4926-8DCA-2394980C7957.json",
+      "navigation": "Review bill",
+      "target": "View recorded expense",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "A46D3B16-58CD-4969-AC0D-2430A5BD391A.json",
+      "navigation": "Conversation",
+      "target": "Record recurring bill, Expires Oct 5, 2026 at 12:57\u202fAM",
+      "attempt": 1,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "9F892DA1-D8F8-4F74-8BB9-46A85739F20F.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "38C52394-9548-4D40-9EEA-0E588F56C7AB.json",
+      "navigation": "Review bill",
+      "target": "You, CHF 0.02",
+      "attempt": 0,
+      "start": [24, 449],
+      "end": [24, 199]
+    },
+    {
+      "attachment": "0467026C-CBE5-4079-85F1-F5C3AAC87D79.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 1,
+      "start": [12, 449],
+      "end": [12, 199]
+    },
+    {
+      "attachment": "19AD9383-49CE-40BF-B7A2-3C864C351285.json",
+      "navigation": "Private conversations",
+      "target": "unrealized recorded target",
+      "attempt": 5,
+      "start": [12, 449],
+      "end": [12, 199]
+    }
+  ],
+  "continuousTallStaticTextBranchObserved": false,
+  "staticTextFitCheckedIndividually": true,
+  "oldInfiniteComponentAttributionKnown": false,
+  "maximumReturnMeSharedSnapshotFullyVisible": false,
+  "finalLargeLightMeSharedVisible": true
+}

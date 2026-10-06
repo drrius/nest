@@ -76,7 +76,45 @@ typecheck omitted the platform's Swift XCTest overlay; its failure is retained
 separately from the corrected passing invocation. Root verifies the current
 helper hash and all seven serialization results. These checks do not establish
 a full app build or UI execution. Routine CI 37523640089 passes `55d25d94`;
-its native workflow remains running at this checkpoint.
+its native workflow later fails only at guarded UI compilation with the same
+three diagnostic expressions. Foundation runs 506 tests with 41 explicit skips;
+the signed app runs 469 with 37 explicit skips; four Swift Testing cases pass.
+All have zero test failures. Formatting, source limits and actual app signing
+pass. The overall native workflow remains failed; no unchanged-source rerun is
+requested. Corrected source `345c82e4` is committed and pushed, with both CI
+workflows running. Its fresh signed preparation passes all 1,127 source inputs,
+actual compilation of the new maximum-text method, corrected helper and shared
+financial row, selected products and three binary hashes, signing, test origins
+and build 19. Both original scopes, 64 empty journals and large/light settings
+remain unchanged. No SDK, API or UI check has run in this new phase yet.
+Root's fresh privileged read-only metadata confirms the existing conversation,
+consumed approval, all 15 original conversations, posted three-centime event,
+2/1-centime allocations and ±1-centime ledger entries unchanged. This is separate
+database evidence, not native authorization or SDK allocation proof. Root reviews
+the full execution controller and corrects its reporting so attempted UI calls,
+consumed budget and recorded summaries are distinct. The approved single
+execution completes on the exact prepared products: the new largest-text/dark
+method passes in 423.698 seconds. Fresh dated SDK reads pass for Alex and Sam
+in 14.038/14.153 seconds before, and 13.457/11.693 seconds after. One UI attempt,
+one consumed budget and a recorded summary are separately confirmed. Original
+scopes, 64 empty journals, settings and local state restore through ordinary
+foreground launch; selected private plans and scoped caffeinate are independently
+absent after terminal. Root's separate database comparison confirms the entire
+conversation/approval metadata and financial event/allocations/ledger unchanged
+from the fresh before records. No normal journey, old maximum method, fixture,
+model or financial decision is repeated. The immutable verifier passes 237
+artifacts with five native passes and zero failures. All eight PNG files are
+reviewed, with seven distinct images; identical final images do not prove actor
+identity. Root independently checks all 37 pans and three fully visible,
+enabled, hittable links of at least 44 points. The largest-text Today filter
+capture is below the viewport; it was not tapped. Final large/light captures
+show the filter fully. Static fields fit after individual reveals, so the tall
+text coverage branch was not exercised. The earlier infinite component remains
+unknown. Both exact-source CI workflows now pass with the test totals above.
+CI compiles this guarded journey; the separate owned Mac execution supplies its
+UI proof. Full accessibility and both-phone acceptance remain open.
+[Passing maximum-text evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/native/README.md).
+[Failed-source CI evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/source-ci-55d25.json).
 [Correction evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/type-boundary-correction/readiness.json).
 
 Next verification: investigate the named contrast findings with fully visible text, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.

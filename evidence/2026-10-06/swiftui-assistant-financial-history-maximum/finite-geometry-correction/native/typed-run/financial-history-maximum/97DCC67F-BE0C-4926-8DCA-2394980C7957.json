@@ -1,0 +1,77 @@
+{
+  "actionRegions": [
+    {
+      "height": 187.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 334.5,
+      "maxY": 745.5,
+      "midX": 183.25,
+      "midY": 651.75,
+      "minX": 32,
+      "minY": 558,
+      "usable": true,
+      "width": 302.5
+    }
+  ],
+  "attempt": 0,
+  "end": [24, 199],
+  "navigation": "Review bill",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 449],
+  "target": "View recorded expense",
+  "targetElementType": "XCUIElementType(rawValue: 9)",
+  "targetFrame": {
+    "height": 187.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 334.5,
+    "maxY": 745.5,
+    "midX": 183.25,
+    "midY": 651.75,
+    "minX": 32,
+    "minY": 558,
+    "usable": true,
+    "width": 302.5
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 187.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 287,
+    "maxY": 433,
+    "midX": 159.5,
+    "midY": 339.25,
+    "minX": 32,
+    "minY": 245.5,
+    "usable": true,
+    "width": 255
+  },
+  "hittable": true,
+  "label": "Balance change: −CHF 0.01",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

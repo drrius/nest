@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 262,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 359,
+    "maxY": 470,
+    "midX": 187.5,
+    "midY": 339,
+    "minX": 16,
+    "minY": 208,
+    "usable": true,
+    "width": 343
+  },
+  "hittable": true,
+  "label": "Conversation, Oct 5, 2026 at 12:42 AM",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

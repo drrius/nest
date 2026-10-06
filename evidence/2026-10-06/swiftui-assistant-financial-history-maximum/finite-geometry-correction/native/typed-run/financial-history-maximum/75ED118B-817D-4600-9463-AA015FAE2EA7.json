@@ -1,0 +1,116 @@
+{
+  "actions": [
+    {
+      "label": "Today",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 113.25,
+        "maxY": 642,
+        "midX": 69.125,
+        "midY": 615,
+        "minX": 25,
+        "minY": 588,
+        "usable": true,
+        "width": 88.25
+      }
+    },
+    {
+      "label": "Meals",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 192.16666666666669,
+        "maxY": 642,
+        "midX": 148.04166666666669,
+        "midY": 615,
+        "minX": 103.91666666666667,
+        "minY": 588,
+        "usable": true,
+        "width": 88.250000000000014
+      }
+    },
+    {
+      "label": "Calendar",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 271.08333333333337,
+        "maxY": 642,
+        "midX": 226.95833333333337,
+        "midY": 615,
+        "minX": 182.83333333333334,
+        "minY": 588,
+        "usable": true,
+        "width": 88.250000000000028
+      }
+    },
+    {
+      "label": "Money",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 350,
+        "maxY": 642,
+        "midX": 305.875,
+        "midY": 615,
+        "minX": 261.75,
+        "minY": 588,
+        "usable": true,
+        "width": 88.25
+      }
+    },
+    {
+      "label": "Back",
+      "rawFrame": {
+        "height": 44,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 60,
+        "maxY": 64,
+        "midX": 38,
+        "midY": 42,
+        "minX": 16,
+        "minY": 20,
+        "usable": true,
+        "width": 44
+      }
+    },
+    {
+      "label": "Ask Nest",
+      "rawFrame": {
+        "height": 93.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 463,
+        "midX": 187.5,
+        "midY": 416.25,
+        "minX": 16,
+        "minY": 369.5,
+        "usable": true,
+        "width": 343
+      }
+    },
+    {
+      "label": "Conversation, Oct 5, 2026 at 2:35 AM",
+      "rawFrame": {
+        "height": 262,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 725,
+        "midX": 187.5,
+        "midY": 594,
+        "minX": 16,
+        "minY": 463,
+        "usable": true,
+        "width": 343
+      }
+    }
+  ]
+}

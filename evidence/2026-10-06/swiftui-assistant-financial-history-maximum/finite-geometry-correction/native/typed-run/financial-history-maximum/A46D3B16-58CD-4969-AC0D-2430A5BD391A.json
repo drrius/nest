@@ -1,0 +1,63 @@
+{
+  "actionRegions": [],
+  "attempt": 1,
+  "end": [24, 199],
+  "navigation": "Conversation",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 449],
+  "target": "Record recurring bill, Expires Oct 5, 2026 at 12:57 AM",
+  "targetElementType": "XCUIElementType(rawValue: 9)",
+  "targetFrame": {
+    "height": 283,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 339,
+    "maxY": 959,
+    "midX": 187.5,
+    "midY": 817.5,
+    "minX": 36,
+    "minY": 676,
+    "usable": true,
+    "width": 303
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

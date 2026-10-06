@@ -1,0 +1,1502 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3054F599-3979-48D9-AF5D-65FAAC88D300.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history returned original Today accessibility tree_0_38345F1A-EF62-4B07-A6C6-3FB5A608278E.txt",
+        "timestamp": 1791318663.094
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E830BD5D-9BFD-4EEC-B613-A86802C97F52.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history returned original Today_0_04357E23-9FDE-4C12-81BD-386F528F12F0.png",
+        "timestamp": 1791318662.87
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E9B4650A-70EA-46EF-B436-2A6CAC207168.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history returned original Today_0_EF7C8BF4-9015-4307-BC04-ED61C7F1C019.json",
+        "timestamp": 1791318662.807
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8BCA5964-810D-4BEA-AC13-32D217ACD67B.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum immutable allocations accessibility tree_0_DE07DA2C-CA1E-4D71-881F-7FD07CE38D97.txt",
+        "timestamp": 1791318652.705
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5C6683DC-60EA-4D2D-AF41-595FD9394B8D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum immutable allocations_0_83BAC66C-ACB0-4560-A4E7-71EBFA35EE55.png",
+        "timestamp": 1791318652.484
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9085E836-288D-4B43-A76C-DF97B836716F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum immutable allocations_0_B290821B-BB15-4772-9E46-5FC9E3A11533.json",
+        "timestamp": 1791318652.412
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8A896E5E-5814-4098-BDAD-907F946FAE40.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_ACAF8EDD-F759-4096-BDB8-CD3E50706252.json",
+        "timestamp": 1791318648.98
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DF78130C-AE6D-42E6-997A-58A0162D29D0.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_DA5D2886-67D1-4705-A12D-6AADF1EA03FF.json",
+        "timestamp": 1791318648.548
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AFCE0369-BE14-4037-A0F9-1472D0708240.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_058E0D4E-2741-4436-9D7C-370366FB7164.json",
+        "timestamp": 1791318642.716
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2B3D0DD5-941E-4C8F-9F2F-9A6305CA1ED3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_B1DD8178-11E8-41B6-A4CF-B6920826AAD8.json",
+        "timestamp": 1791318642.372
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CDFB24FD-8544-42FE-8AA6-7E4C6882BC06.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_EBC94ABE-F660-4FC4-AE66-8DDF1239A5AC.json",
+        "timestamp": 1791318638.674
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "95D53702-3BF6-493C-8FAD-9386579C6EF2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_2BF90DFE-19FD-48E7-8AF5-5071DAF3C2B7.json",
+        "timestamp": 1791318638.236
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B2A25483-AF00-4763-AFB1-2B2D876EECC5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_462E5F21-13E4-4AE4-AEFA-5DCA8FFA0442.json",
+        "timestamp": 1791318632.593
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "93DA2DB7-021F-4C65-84D8-E77E6ED04B5A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_6B0C378A-8530-49C7-89C0-B31F6D93E1F8.json",
+        "timestamp": 1791318632.26
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D937CB93-B7BD-4469-B131-E312CE337CF1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_7E365AB2-3D42-45B1-A72A-E8324AE5ED20.json",
+        "timestamp": 1791318628.697
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0A29E8C8-35C1-4092-A490-DB1B5E313A0B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_D03AC3E7-061F-4D27-B213-AC580DD6AB2A.json",
+        "timestamp": 1791318628.248
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "51CDAA61-5240-43C0-861E-6F66F7679159.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_5D1F1769-5F5E-4101-A760-055E28A3BA13.json",
+        "timestamp": 1791318621.77
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6B691616-8D2E-49A4-8AB7-BCDBA43B2FD6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_AA4AA300-400C-4F3F-94E1-12A97AB35AFE.json",
+        "timestamp": 1791318621.375
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D15B1744-D73B-42D9-BA4E-72C1996F1D41.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_F7765374-F0ED-46CC-88CC-2E4C2B42BD2C.json",
+        "timestamp": 1791318617.766
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E1787ACE-C279-4FC6-9603-5BB16F2864D8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_310138D5-4C80-4344-AD34-30BCE14646B6.json",
+        "timestamp": 1791318617.312
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "72117D68-813C-4C09-8F61-3DC02636701C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_7AD2ECAB-9779-4709-8519-4FEE0F0BDB06.json",
+        "timestamp": 1791318610.754
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7B0AFEC4-F328-4063-ABC1-26BC6ABE70BF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_5DD7747B-D3FF-4732-AF61-607056F98282.json",
+        "timestamp": 1791318610.328
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "53FBE69A-0489-4813-BC09-245892F0D49A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_116550B9-A20A-4BBE-AD70-753993C9897E.json",
+        "timestamp": 1791318606.097
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "284173C9-2DA0-442F-B679-36E7035A3337.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_B15196B1-B2C3-44B4-AA5D-8F73E7A8D27A.json",
+        "timestamp": 1791318605.635
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "35BE284C-C2B3-41A1-8655-23BCB197B29B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_DB57F014-A9F1-440F-A61A-407DDE95DA69.json",
+        "timestamp": 1791318598.006
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D285340A-77EC-40CA-860A-8B28201BA707.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_5BD11D71-38DC-4899-8642-7D00EC4E2173.json",
+        "timestamp": 1791318597.551
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3F7D3227-A8EE-46F3-804D-E4A2723AB9B5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_AF5543E6-AE63-402B-91E7-71FC86D29A99.json",
+        "timestamp": 1791318593.505
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F0FE58B6-BF32-4D41-86D9-320BC1D0150C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_411286CB-18E1-499B-A510-D0CD056C8F48.json",
+        "timestamp": 1791318593.259
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EB6742A2-B02A-418C-87FE-9B5E29A6EF8A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_AFB68641-B527-48B3-9D55-4355DEC5951B.json",
+        "timestamp": 1791318587.64
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E1921F9C-E64A-4CA8-9C11-B71BCC7A37B2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_FED671C2-163D-4768-8132-221760366D48.json",
+        "timestamp": 1791318587.225
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "93158D34-14F7-400F-8BD9-8ED692B8E06D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_2A2F2043-6D47-4BF4-8637-75D188000265.json",
+        "timestamp": 1791318584.265
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "51EEBBFC-C6BE-4098-8CCB-2A52BE834102.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_BB601E63-625A-436B-BDF9-1431ACFCBF0D.json",
+        "timestamp": 1791318584.015
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5B85B7C3-9A23-49B1-B5D1-51FB9DDDDC91.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_068EB118-54A6-4463-8480-9E606CD04B29.json",
+        "timestamp": 1791318577.289
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "169CC0DC-D55C-4A8F-A5F4-907BDA9A2CB7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_E9307965-0CC3-4710-9C1F-41FF698299E7.json",
+        "timestamp": 1791318576.922
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5A3B9701-C5C2-4BBD-9D56-C2F1EBC34445.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded expense amount date and note accessibility tree_0_DAD8ED76-8060-4868-9E68-94063E1A63ED.txt",
+        "timestamp": 1791318576.013
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B70AF0C7-8F97-4A0D-BC82-C51DA65F4A21.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded expense amount date and note_0_E500FF58-3745-44B7-B67E-E4FBF5CB21C9.png",
+        "timestamp": 1791318575.767
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "23023D08-9B7D-4E2E-99A2-47356D076732.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded expense amount date and note_0_6FDC423E-D044-4A72-8B7B-F693866EA784.json",
+        "timestamp": 1791318575.696
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F14CE3EF-A12E-4F68-92AC-FF3E1E58BD28.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_2A87852B-BC23-46E6-A8B9-2EDB9FB94267.json",
+        "timestamp": 1791318572.933
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "78EF5C73-49A5-4F94-A17B-52BD0428EEF2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_9AB4775C-27BE-4466-957C-37BEF2F0FB34.json",
+        "timestamp": 1791318572.465
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "08F652F8-6732-4CC6-9A22-B12A9595008A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_FBB931BD-160D-4CB7-AF78-E2D11855576C.json",
+        "timestamp": 1791318565.151
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A57493CE-0865-470B-802C-D2E3BF4B59EF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_3739E892-A9F1-4B18-A621-7AC527A7371F.json",
+        "timestamp": 1791318564.776
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "08D9910E-C245-4B94-B569-62CBE7D37D22.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_5446A803-D4E1-4219-BCCA-2B1DF6F0B87B.json",
+        "timestamp": 1791318561.358
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7C0743E6-83DF-4DCB-A3F0-42B24F909350.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_6F0922FD-1718-472A-8FE8-911388EC1416.json",
+        "timestamp": 1791318560.892
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D23EA679-D51A-4371-A786-B297AFF6C5A1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_0EB9E74C-3D19-408A-8DBC-587DC5B2D2EF.json",
+        "timestamp": 1791318553.655
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C158B016-62DA-4307-BF6B-0B83F92A6936.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_7F7A02A3-DA3B-41A4-8D21-B2AA8AF94BAA.json",
+        "timestamp": 1791318553.322
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A47E1ED5-7B73-425C-A4F7-BBE7795F52E4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_70C7FCAE-BEE4-498E-893E-7481C64DA1B8.json",
+        "timestamp": 1791318549.564
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8F8B80F0-C6EC-4250-BDBA-AFCC85EECA0A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_BB0253DB-9C40-448F-AC7C-1BC7A2D83F66.json",
+        "timestamp": 1791318549.146
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "89DBB38F-C625-4285-BD60-66091EEBE423.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_714E9F47-52B5-4ABD-A6D1-B0CABD67745C.json",
+        "timestamp": 1791318544.033
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "287CC369-608C-43CF-97BB-EB9C74879059.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_18055ABF-AC69-4DDF-93D4-67F1570C9F26.json",
+        "timestamp": 1791318543.699
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D86A8806-EE17-427D-9C0C-69A6CD9AE1B2.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum canonical recorded expense link before tap accessibility tree_0_275B2ABF-0E5D-4528-ABF6-FEC8FA7D7032.txt",
+        "timestamp": 1791318539.17
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "04E151F4-3CEF-45E4-AD60-C0370A44235F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum canonical recorded expense link before tap_0_3599560B-3500-4F26-A4AB-9F7E959E55CB.png",
+        "timestamp": 1791318538.98
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D6942C0B-A15F-49CC-BF11-E8A18E99031E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum canonical recorded expense link before tap_0_F25C3F3B-CEDF-478A-BA63-DF312F8422EE.json",
+        "timestamp": 1791318538.912
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "97DCC67F-BE0C-4926-8DCA-2394980C7957.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_FF578534-ABC0-4EB3-BD39-FF7A51B0A1D4.json",
+        "timestamp": 1791318535.836
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1013D3CD-EF26-4BEF-B040-43F6B960B0A2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_DFB9B444-A25B-4A43-A05A-07D8340AB5F4.json",
+        "timestamp": 1791318535.605
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A54E50FD-E9BB-4AF5-9A5C-6ED6ACB45A20.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_C45A8A9C-03AF-4357-9319-26CB44F4C620.json",
+        "timestamp": 1791318530.734
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C22FE199-4F88-45E4-9E7C-EF32B5B9BAEF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_63126B1B-496A-4B76-B4AF-A6082DB5AD37.json",
+        "timestamp": 1791318530.397
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "05CC02DF-3FA7-4948-A4F5-443922759A0F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_BDE48062-90FD-4A57-ADF0-9B944A63727A.json",
+        "timestamp": 1791318527.107
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "742B34EF-CFB5-454C-BDB0-B7B06CBDCC03.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_550E5F99-0F9F-4100-A345-525AE28795DB.json",
+        "timestamp": 1791318526.711
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "30507BDB-7F7B-4156-9F51-7B20396BBE33.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_9E283AE9-592F-4757-84CB-8D80D76CB84B.json",
+        "timestamp": 1791318521.815
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5E838F4C-1115-460C-8EC0-94C5412210BB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_A6E08D3B-EAE5-4250-A9D4-D3AA1C75818B.json",
+        "timestamp": 1791318521.395
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0A285620-8D36-4617-B688-E40F5B161184.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_F4B84371-AFC5-4D97-B90C-4239BE2039F8.json",
+        "timestamp": 1791318518.135
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9E027327-AD82-42D2-9AF4-DE0FC6A1D742.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_0F263AF5-16C9-419C-9AEB-F667DB0368B1.json",
+        "timestamp": 1791318517.72
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A46801B6-7E20-4F0C-A502-CAC7459E3B59.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_5526638B-1050-4F18-8407-883B957AF1E8.json",
+        "timestamp": 1791318512.073
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "639345C1-763A-4A64-A03F-86EA315154C6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_E30D785A-F52B-4396-9E5D-7C3988D97D0C.json",
+        "timestamp": 1791318511.719
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DDDDD236-BC86-4636-AD81-B9C7480B75DA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_672BE0BF-B118-4F51-98B2-4054C6FF2D67.json",
+        "timestamp": 1791318508.819
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "50F89B3D-7688-4317-A402-807E93C61AAA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_26406A5C-5DAA-459D-8427-F5650AB972A9.json",
+        "timestamp": 1791318508.4
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CE6E6B78-017C-4EB1-858F-7FA1E0ED6305.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_648F0CCD-DE37-4FEA-99EA-090601D7F7A1.json",
+        "timestamp": 1791318502.634
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "272912D7-2547-4ADB-9094-975EDF3BFB0B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_7B9C653E-BD7A-446A-96FD-670C63390DBB.json",
+        "timestamp": 1791318502.285
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6CE26A15-A462-40DB-B417-C4C3272398A9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_021BF4EB-EDFC-4D3C-89D7-53D344780043.json",
+        "timestamp": 1791318499.183
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "09A319AF-B824-4E67-B44E-6459CCE01BE4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_90B18478-984B-4EF4-BB41-0AF58679EC7F.json",
+        "timestamp": 1791318498.759
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "01C58CFF-73E3-43B4-BBFB-F7601D232264.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_11F33F99-36DF-4941-A5E1-0A1D46E67D8C.json",
+        "timestamp": 1791318493.247
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "51236595-DC8E-4736-A140-50C159555DFC.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_119A02B4-A309-4871-BFB7-857B37C7D2E8.json",
+        "timestamp": 1791318492.872
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "10BD6B68-1BC5-40E0-B291-C77ED58D4942.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_FE8E4417-1F73-4487-BE3E-4DDD62714A13.json",
+        "timestamp": 1791318489.541
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "84F21F6C-F1FF-4FA2-905C-408A7B555593.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_E680292D-E3FF-4A05-B205-EAE1D541F475.json",
+        "timestamp": 1791318489.125
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1A18979D-B371-4EF8-902A-0EB25BDB5C0A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_447BAA4B-7517-45F4-97E4-E44EEE570FC2.json",
+        "timestamp": 1791318483.431
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FF7AE748-EF6B-4300-9615-4BC4657788B7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_629CED5A-DBE7-4C6F-A4B8-02B050AC8A8A.json",
+        "timestamp": 1791318483.118
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0C1D5DF6-A6B1-4CC4-A95A-412D1C8C484A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_5548BA5F-81C0-4FDF-8C39-F5E3E0BB1A62.json",
+        "timestamp": 1791318480.478
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0A542E7B-275C-4927-845C-0AFE0121D389.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_7EBD217E-20D4-4DFC-8DA3-C6C28C64B15C.json",
+        "timestamp": 1791318480
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E5AF8179-2BC3-4883-8831-F7BFEAEEE276.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_96B44980-D420-4D06-B618-375477D5CF09.json",
+        "timestamp": 1791318473.599
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FE3CF159-19B5-4368-BD98-ED8BA1217743.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_FCEF4F2B-266F-44D6-8A0C-385B931D2C70.json",
+        "timestamp": 1791318473.249
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8D57634E-9294-4FBC-B2D9-D589241D154A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_D563E944-D5E1-4C20-BC48-B1B3B322A970.json",
+        "timestamp": 1791318469.85
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C6637B31-02C4-402C-B5DE-B21EC8A789E8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_79C431F9-43DD-4237-AF69-BA5255CCC36B.json",
+        "timestamp": 1791318469.369
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D78E2EB8-93F8-41E3-8BF6-45B9DB422643.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_10F81365-4BFC-4F3D-84E0-6754AC3C98F6.json",
+        "timestamp": 1791318462.044
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "23B3A855-0BAA-49A1-8DEF-8C8DCEF1AC1D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_9CE82A9F-061C-49BB-8D9A-39FD33C5E419.json",
+        "timestamp": 1791318461.677
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7746CBB9-6722-4D76-B3C3-7449D30FC2D9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_964144E5-47BA-44F3-8B41-AE2960A32AFB.json",
+        "timestamp": 1791318458.371
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0740F371-CAAD-4315-AC2F-544F3FAB93B2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_585DBCDE-FB69-4AC0-A2B4-4C8825FB2B68.json",
+        "timestamp": 1791318457.858
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F40A9885-F1A1-4FA7-A518-E11FB94436EC.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_1095795D-5F20-4DC5-821A-268B797F62A6.json",
+        "timestamp": 1791318450.391
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "24C9F2EA-C952-4E4B-8190-79B6FB296C00.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_8BAF1FDE-0A40-4AE4-86D6-20809156522C.json",
+        "timestamp": 1791318450.052
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A47AD4C9-14D8-4022-BBDF-DA4B2766778E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_B26CF54A-761A-4376-964C-10108AB8ACA6.json",
+        "timestamp": 1791318445.694
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D18D32ED-AFE4-4C0F-8387-71FB1DB6702C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_FDF3E22A-5AA6-4E11-900C-9C24B51F25D9.json",
+        "timestamp": 1791318445.2
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8D3D6F9B-EE51-4CA4-A035-7E1BED65A00C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_79A3A5C1-8193-47B1-BC26-71700868042E.json",
+        "timestamp": 1791318436.854
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "129AD3A1-B66B-4E86-BCF4-613769B45372.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_7B64E394-BE2C-4C2F-8ADE-CBC09E79713C.json",
+        "timestamp": 1791318436.5
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "38C52394-9548-4D40-9EEA-0E588F56C7AB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_2BECFC3F-F88B-48A0-8DC0-F802122EA838.json",
+        "timestamp": 1791318433.02
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DCC021D6-375A-4E7C-9627-A55A639D15D0.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_1CDA5694-9229-4ABF-8FD6-5B55DF8EB4FC.json",
+        "timestamp": 1791318432.515
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "32270D83-F994-4EA6-9239-112CD6E550C9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_7C95821A-C896-451B-B4D6-1BBD86F869E6.json",
+        "timestamp": 1791318426.218
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F45B12AD-0CD0-4AAE-88BC-210BD7724370.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_D6F13BD3-9A8F-44EC-8DE1-6B0F1C5232C1.json",
+        "timestamp": 1791318425.878
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B44CE26B-2FDE-4509-BD18-C012C1AC07E1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_D82F31F4-65BA-4FAE-8033-A4CB33A9CC85.json",
+        "timestamp": 1791318421.566
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AC2090C0-4392-42DE-90D3-3F3E9E49165D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_D86B2534-FA47-4DA6-A660-73006E108BB2.json",
+        "timestamp": 1791318421.139
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "72F77AF3-8F75-434D-B841-CCFFF693A660.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_00BB6F15-39DD-4620-BA6B-21610C490EE8.json",
+        "timestamp": 1791318416.128
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D1C1E2F0-0157-429D-957A-D4AA5FB85AF0.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_14AFB640-1F54-4CFE-B669-688CDCE2FD47.json",
+        "timestamp": 1791318415.808
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "48880D0C-39F5-4222-9210-03F42476BD68.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum transcript recorded bill link before tap accessibility tree_0_61AFB99E-F40A-460D-A371-134338B9ADE7.txt",
+        "timestamp": 1791318411.629
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EB9DEFF6-6721-466F-BC78-3F6D0ACD331F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum transcript recorded bill link before tap_0_22AF0F02-EB21-4AF2-97EF-5D75E840D685.png",
+        "timestamp": 1791318411.439
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BFC8C7A0-48DC-4FF5-B401-0E0B90D39F19.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum transcript recorded bill link before tap_0_44378C75-E983-48F2-9E68-1F11D22E4CE2.json",
+        "timestamp": 1791318411.368
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "75951B6B-6D3C-41C6-915B-3C19E578DE2D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_9F1D99ED-21A3-4E06-909C-9890CBD1EA8D.json",
+        "timestamp": 1791318408.087
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "484BD653-3602-4772-9419-2336DB1D6AAE.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_6B55EBAB-204F-404A-AC47-D9E89D807E85.json",
+        "timestamp": 1791318407.732
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "705F4418-BB29-4F33-A4F2-24DDF17EC7AA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_269E1477-32E2-47F3-9EEC-FF97324CA5DD.json",
+        "timestamp": 1791318403.205
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A9C13B37-20F5-4300-9E7A-F1C6E256F02B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_AD5614CA-2F4D-47F8-906F-2DE52A22355A.json",
+        "timestamp": 1791318402.794
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A46D3B16-58CD-4969-AC0D-2430A5BD391A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_C39651B1-40DB-4A41-A638-1EE280E7DD4A.json",
+        "timestamp": 1791318399.223
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FC240C41-8E62-427D-A7A7-C23F8B03020C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_95B06314-A56B-4046-B9C5-C9DEE6BF0B52.json",
+        "timestamp": 1791318398.868
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AF6A9DBF-968C-4CB6-B9C2-7E944CDCBEBC.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_FD6661E2-4F41-4F66-B58F-C92FC26C6390.json",
+        "timestamp": 1791318394.164
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4F373E7A-FEE4-4748-BEE3-575A1D858FC3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_E5E6B4DD-E767-448F-8A75-681B1887FC18.json",
+        "timestamp": 1791318393.657
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5B49651F-58ED-46C5-9A62-891FC7D472BE.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_B0EE9F7D-D77E-4401-940C-D22C5C5B2349.json",
+        "timestamp": 1791318389.773
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FFCEE9F7-5BD8-48D4-A522-7BE8A2BE6831.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_9CA032F3-710E-424C-A2A7-9BFD1243F9D2.json",
+        "timestamp": 1791318389.41
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "53508CFD-5D18-438A-A499-0A241E0E9A77.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_F373200C-DAF7-47A0-93E3-5A7B5933642F.json",
+        "timestamp": 1791318385.795
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BCC2261F-3397-4271-9D14-1A195B3D2D47.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_6AA34594-CF36-4A52-BF6B-58C4B437D02E.json",
+        "timestamp": 1791318385.387
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9BD2754E-AA3B-4A6A-9387-2A4E6F8B5A13.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum exact interrupted conversation target accessibility tree_0_A69B948C-D163-411D-B3DB-181116A15020.txt",
+        "timestamp": 1791318381.321
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F49EC302-F15E-430E-B964-473F808BDC89.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum exact interrupted conversation target_0_CF9CD257-6A66-4B4B-857B-4F21D0E8BB27.png",
+        "timestamp": 1791318381.103
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BACF9A7B-6213-49E0-A2FE-C9411DB70A33.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum exact interrupted conversation target_0_30EA8AE8-46EF-437B-9C9A-44E940A99C1F.json",
+        "timestamp": 1791318381.03
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "853E1A1A-8783-43FF-A558-CE2C30D5F0E8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_6A71275B-2C11-4703-B574-A88DC5048961.json",
+        "timestamp": 1791318378.52
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7D827A5B-1E19-4E18-8013-57428A6FEF11.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_4848BA2D-C041-4C07-BAB4-FD045974952C.json",
+        "timestamp": 1791318378.256
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "031ED918-78F5-4513-A2D8-FAB3F47295A9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_F56E4C29-FFB8-4B9F-B7E6-F1DCF9E5D01E.json",
+        "timestamp": 1791318372.396
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "95341EAD-1DE2-457F-900A-BD3B4D9EBA81.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_DB8130A7-AC04-4D7D-B2B3-437D28D191EE.json",
+        "timestamp": 1791318371.944
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E1716F60-3CCB-4040-8223-D9E7B88D9A8F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_74A5DB8B-581D-4303-8F70-0660224AD81B.json",
+        "timestamp": 1791318368.228
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A85F8EE6-7A36-44BB-A87B-589A143F6130.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_FC5FA66E-3D7F-452E-837D-C806819EBFFC.json",
+        "timestamp": 1791318367.924
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "638A7437-0806-436B-B583-2235FDFEB7F3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_1777D854-5240-46DB-8D15-00AE9D4A611D.json",
+        "timestamp": 1791318361.001
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C72EDF35-4FF2-4AF0-BEE7-B87FE61BFDCA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_9CD2CD74-9C08-4851-94F9-17871F7389C9.json",
+        "timestamp": 1791318360.485
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5A410C1F-C384-4541-94B2-5F858E98505F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_EFB19687-4119-4DB5-A464-A2DAB3CF65E2.json",
+        "timestamp": 1791318356.793
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FEB975AF-D5D3-43E0-8AD9-5949C1D7969C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_32E8D590-9483-4D5E-BB82-FB5B9C71EF62.json",
+        "timestamp": 1791318356.627
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "83D889A5-D697-4B73-AD61-C9C67127C200.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_B3766955-8668-4A2C-844D-19912E5C21D2.json",
+        "timestamp": 1791318349.721
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "72BB6CB1-77D2-45A9-9ADA-D7AD0C43C809.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_46CB5483-AEFA-4AE3-B908-2EADE8C70CD5.json",
+        "timestamp": 1791318349.18
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7050C217-FCC3-4518-B237-446CC175CA4B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_6A2C2C21-18C9-4031-85BB-EE78B445C117.json",
+        "timestamp": 1791318345.682
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EB0A41DC-6E5C-4C08-9057-1F417709FD58.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_AEC9BFF0-8354-428B-AB6F-DCC7F5A706E5.json",
+        "timestamp": 1791318345.511
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4EACF779-0AC1-47F5-876C-6B5B36CDC826.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_D2DD90FA-3354-48CE-A9DE-4ABB2340B9FC.json",
+        "timestamp": 1791318338.489
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "754B6766-F117-4536-9F10-153A6B55755F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_F4F99DFE-9A09-416C-8F12-05CDF988A52E.json",
+        "timestamp": 1791318337.957
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BCEEB780-637C-4107-8D0A-522A168A38BD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_D58F9B4C-2819-42E6-A1F0-A073C26CB78B.json",
+        "timestamp": 1791318334.615
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6A9BC80F-11AC-44BC-984D-EB7AE1C2CD02.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_956F054D-8413-4148-A2E0-455FA6A46F17.json",
+        "timestamp": 1791318334.447
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E37BE718-DA32-4A02-8A67-F9575C64073C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_DDDCD738-4572-46AA-BC74-F66152075714.json",
+        "timestamp": 1791318327.361
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EC75CF02-2730-4A1D-9EF2-F450293790A6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_C2E39E27-DD47-4445-A854-628708813BEB.json",
+        "timestamp": 1791318326.843
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "837B1AEB-BA05-4D6F-A5F4-0E9281DECE57.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_819CC03F-49F0-47B4-8996-2257931BED2F.json",
+        "timestamp": 1791318323.879
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4C2C40F1-D69E-4735-8682-0856E105E797.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_9AD62E8A-71CC-4635-9D09-1A8752F44F61.json",
+        "timestamp": 1791318323.712
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8D954E3D-7DED-4B9E-803E-A0643A944CDF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_8EBC589A-5007-4BCD-A2E5-00D682650E54.json",
+        "timestamp": 1791318316.809
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FA27FCD2-E265-4ECA-9667-BDDB10715B76.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_220CC37D-4D3B-431A-AACE-303CCC724C6A.json",
+        "timestamp": 1791318316.3
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "19AD9383-49CE-40BF-B7A2-3C864C351285.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_5A271994-39CE-48B2-889F-CB8A35B2DE9F.json",
+        "timestamp": 1791318312.671
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2922698A-BB8F-4619-842B-E89F5867CC7A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_C4089AA9-43CD-4443-9471-5813ED51BD26.json",
+        "timestamp": 1791318312.5
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "55D94D1A-7A52-466E-A12B-C64F1EE1188F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_2FA2F0FA-4B72-4878-861C-801FACBBE2D2.json",
+        "timestamp": 1791318305.683
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E495A733-8539-45FA-B370-54C7F16E7B8F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_B109C288-88FB-420C-B625-42ED564F5488.json",
+        "timestamp": 1791318305.184
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "907207B4-143D-4C94-8CD8-A16F46C54770.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_6AF34C77-C57F-4E7A-A335-4DBFCD4DD36B.json",
+        "timestamp": 1791318301.427
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EE54A39E-F36A-4F22-BDA5-D25839BAD8A8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_99071574-1156-466A-BCB7-44B85F6899A5.json",
+        "timestamp": 1791318301.258
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0DD8B1C8-626A-4516-B881-390AF2734FB7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_B260B9CD-D60C-4ED1-9B7D-09CC9A324165.json",
+        "timestamp": 1791318294.423
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "29AB5E52-7B55-4001-ADEE-95B3146205FE.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_5A9B5D1A-6393-4A23-8FD2-155A221D44B3.json",
+        "timestamp": 1791318293.924
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D0213FA1-92BA-4983-B2E4-801F0097DAAD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_8BA075D1-A354-4C13-BE01-B106A60CEDF9.json",
+        "timestamp": 1791318290.187
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "99C0CDC0-2025-460E-8140-2BE5F5110E2E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_81068EE3-95F2-4F83-9782-D0BFAC7258B6.json",
+        "timestamp": 1791318290.032
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1F397397-4FCC-4785-BAC6-4AD024A7705E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_7F334D36-BAC4-44AC-9E82-CD1FE2E06008.json",
+        "timestamp": 1791318283.951
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "125C1D3F-11F4-45B8-BC0B-FB8A040EF9C0.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_7ADE0B79-69A9-4715-9EA9-30DEE71D8571.json",
+        "timestamp": 1791318283.512
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "98F2216E-1C2C-4A7B-A829-A265563764E3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_23974DFB-B54A-4EA9-8FDF-CB96AF7C7017.json",
+        "timestamp": 1791318280.2
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "ED091382-5CDF-427A-A7C6-64BE5EDAC3BF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_370B5F70-3235-480B-BB0B-F201D0FB2B9C.json",
+        "timestamp": 1791318280.029
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D28C4600-4484-4381-91C9-9D5836995BC1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_97604CD3-9A7C-4866-BEC1-608FB699D7FA.json",
+        "timestamp": 1791318273.199
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "814E089E-93CA-48A4-A60C-0B2C56387FCF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_9819A6B0-A098-465E-B836-B68A43F3DE70.json",
+        "timestamp": 1791318272.727
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0467026C-CBE5-4079-85F1-F5C3AAC87D79.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_31862165-51BE-4BCE-ABD5-345AB55554C9.json",
+        "timestamp": 1791318269.63
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7748E4A8-51C9-4600-ABC0-2FC6EF9D3CB4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_27AD1F13-879F-49C4-A935-7E0E7E59BCA8.json",
+        "timestamp": 1791318269.481
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "724E3F9D-CD2A-4E7A-9E98-A22C1F5A7ECB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_DB3359C0-72F7-4434-9B9F-FB545DE7016F.json",
+        "timestamp": 1791318263.477
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "75ED118B-817D-4600-9463-AA015FAE2EA7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_A427402D-0033-4177-911B-402CA91E7746.json",
+        "timestamp": 1791318263.062
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9F892DA1-D8F8-4F74-8BB9-46A85739F20F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_EFD5F95F-4E09-41E1-AACA-D41F5F320091.json",
+        "timestamp": 1791318259.301
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "979C9933-23B0-45DC-A9FE-6D9086D3A9D1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_ED3E25E2-3139-42AD-AE17-D63EC9D9CBEA.json",
+        "timestamp": 1791318259.166
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6ED6EFE2-49A1-43DB-A739-034C714E030C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_23D02F5D-BAF1-4E43-8BDB-62B782D5F926.json",
+        "timestamp": 1791318255.28
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "539FC2F1-2B7D-443B-A552-B9002849BD4A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_2604A5C7-5E3C-4668-ABA0-FC92CEF76232.json",
+        "timestamp": 1791318254.957
+      }
+    ],
+    "testIdentifier": "AssistantFinancialHistoryLinkTests/testMaximumRecordedBillNavigationWithFiniteGeometry()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/AssistantFinancialHistoryLinkTests/testMaximumRecordedBillNavigationWithFiniteGeometry"
+  }
+]

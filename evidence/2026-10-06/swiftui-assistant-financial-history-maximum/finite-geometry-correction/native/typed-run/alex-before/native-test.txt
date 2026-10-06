@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-assistant-financial-history-typed-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-assistant-financial-history-typed-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-assistant-financial-history-typed-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 22:23:17.598.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 22:23:17.598.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 22:23:17.598.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (11.648 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 22:23:29.247.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.648 (11.649) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 22:23:29.248.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.648 (11.649) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 22:23:29.248.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.648 (11.650) seconds
+2026-10-06 22:23:29.590 xcodebuild[10936:22244879] [MT] IDETestOperationsObserverDebug: 13.906 elapsed -- Testing started completed.
+2026-10-06 22:23:29.590 xcodebuild[10936:22244879] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 22:23:29.590 xcodebuild[10936:22244879] [MT] IDETestOperationsObserverDebug: 13.906 sec, +13.906 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-assistant-financial-history-typed-20261006/alex-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
