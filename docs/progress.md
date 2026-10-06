@@ -205,18 +205,18 @@ One native future variable rule now supplies eligibility, with one Create,
 private owner receipt/partner isolation, restart/Done and exact62-event/7-rule
 preservation. Original scopes/Today/64 empty journals are restored. The
 [immutable fixture evidence](../evidence/2026-10-06/swiftui-active-recurring-reminder-fixture/README.md)
-passes142 artifacts/1,118 inputs/ten native passes/one retained observer failure. Source69b42139 passes Nest37478285968/SwiftUI37478285865 with506 Foundation/41 skips,467 signed-app/35 skips, four Swift Testing cases, zero failures and strict native gates.
+passes142 artifacts/1,118 inputs/ten native passes/one retained observer failure. Source69b42139 passes Nest37478285968/SwiftUI37478285865; later checkpoint46e49325 passes Nest37480630108/SwiftUI37480630081. Both record506 Foundation/41 skips,467 signed-app/35 skips, four Swift Testing cases, zero failures and strict native gates.
 [Full chronology](progress-history-2026-10-06.md#active-recurring-reminder-eligibility-fixture).
 
-The first unsent draft run at `a5f1a945`/1,119 compiled UI inputs stops before any
-edit: normal58.914s summary/45.063s testcase fails a container hit-test assumption.
-Its full screenshot/tree contain the exact active rule, due date and real default
-controls. Four native GETs pass11.291s/9.227s/9.243s/8.083s, preserving the active
-rule/nil reminder/private receipt/full baseline. Largest text is not run.
-The test-only unique-container correction `ed97c198` retains exact rule/due,
-full-frame geometry and individual control hit guards. Controller54137 is live
-with fresh UI and separately attested unchanged c0 SDK products. No shipping
-change, command, reminder Save or production action occurs; POST budget is zero.
+The initial `a5f1a945`/1,119-input normal run remains FAIL58.914s summary/45.063s testcase before any edit; largest text was not run.
+Its full screenshot/tree prove the real exact form; the invalid assumption is container hit testing.
+Four GETs pass11.291s/9.227s/9.243s/8.083s with the active rule/nil reminder/private receipt/full baseline unchanged.
+Test-only `ed97c198` retains exact rule/due and all individual control/full-frame guards, with fresh UI and separately attested c0 SDK products.
+The complete normal/light journey now passes209.976s summary/208.066s testcase at that source.
+Actual Both/09:00/lead1, pristine Back, Back/Refresh Keep editing and both explicit Discard/reopen paths retain or restore the exact intended settings.
+Root reviews three normal representatives and the initial failed full form.
+Largest-text/dark at the same source fails145.464s summary/131.683s testcase before opening the owned rule:24 forward250pt drags stop at83% of a15-page retained list.
+Final GETs pass9.227s/8.418s with the full baseline/nil reminder exact. Rule-list-only330pt correction `b79c5766` is running MAX-only on controller19297; whole owned card, untouched Back and actual09:00/lead1/Back Keep prefixes pass, with whole journey pending; no shipping change, command, reminder Save or production action, POST0.
 
 ## Active renewal reminder verification
 
