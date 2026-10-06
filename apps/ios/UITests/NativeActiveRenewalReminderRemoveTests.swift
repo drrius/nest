@@ -17,6 +17,11 @@ final class NativeActiveRenewalReminderRemoveTests: XCTestCase {
         let titleText = app.staticTexts[title].firstMatch
         reveal(titleText, in: app)
         XCTAssertEqual(app.buttons.matching(identifier: "Remove").count, 1)
+        for label in ["Edit", "Reminder choices"] {
+            let target = app.buttons[label]
+            reveal(target, in: app)
+            requireTarget(target, in: app)
+        }
         let remove = app.buttons["Remove"]
         reveal(remove, in: app)
         requireTarget(remove, in: app)
