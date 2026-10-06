@@ -138,28 +138,21 @@ the dated saved-data message for each actor. All10 captures are reviewed,1,089 n
 inputs match, stable origins/Today/large/light/64 empty journals and original Keychains
 are restored. The GET-only loopback relay/owned keys are removed. This is renewal-only
 API unavailability with Auth/startup online, not airplane mode. [UI evidence](../evidence/2026-10-06/swiftui-renewal-offline-ui/README.md).
+Docs checkpointb3e76f6a passes Nest37415283087; guarded UI source5e3a7c0e has SwiftUI37415252709 still running.
 No new beta, hosted write, production action, purchase or merge occurs.
 
-## Native existing-expense cycle linkage
+## Contrast viewport diagnosis
 
-One actual native explicit link now covers4 October using an existing CHF1.01
-expense against a fictional CHF0.03 rule. Both members independently agree on
-one retained manual cycle and next due11 October; the exact expense, complete52-event
-histories/balances and all finance/attachment digests stay unchanged. The operation
-receipt remains private. Normal52pt confirmation, largest-text amount/period review,
-actual restart/exact recorded-receipt recovery, original-detail navigation and normal
-Finish recovery pass. The fictional rule is normally paused; its cycle/history remain.
-Ordinary Today/default text/light, empty journals, preserved data/Keychain and stable
-signed test origins are restored. All1,041 native/helper inputs match; the installed
-executable exactly matches the retained signed build. [Evidence](../evidence/2026-10-04/swiftui-native-manual-cycle-link/README.md)
-records observer corrections and Swift nil-field serialization reconciliation.
+One unfiltered normal/light Today contrast method fails with two retained findings.
+Measured placement puts Open meal plan150.5pt and On your calendar70pt above the
+native tab bar; neither original label recurs. Two different labels near/under the
+bar fail. All seven captures are reviewed and644 shipping inputs matchb3e76f6a.
+Original Today/top/filter/large/light/scope and64 empty journals are restored.
+[Evidence](../evidence/2026-10-06/swiftui-contrast-viewport/README.md) supports a viewport-dependent
+investigation, not an Apple exemption. All19 original reports remain open. No shipping
+color/layout change, hosted write, permission or unchanged full-audit rerun occurs.
 
-Shipping native source remains both-CI-green177d0a70; no new compile/unit run is
-claimed. The prior retained-lifecycle checkpoint97ea840a is now freshly confirmed
-Nest37213542541 SUCCESS. Lost replies, offline/concurrent/private-AI variants,
-maximum-text confirmation/finish tapping, full accessibility and both phones remain
-open; M7 acceptance is incomplete. No new expense, beta, production mutation,
-purchase, worker activation or merge occurred.
+The earlier native existing-expense cycle linkage is preserved in [dated history](progress-history-2026-10-06.md#native-existing-expense-cycle-linkage).
 
 The retained routine definition checkpoint is preserved in [the dated history](progress-history-2026-10-06.md#retained-routine-definition-boundaries).
 
