@@ -45,7 +45,7 @@ Earlier source-specific test totals and result-link checks are preserved in [the
 - **Worker credential transfer:** automatic approval review rejected exporting the test Supabase server key and scheduler token to Vercel because prior test-deployment authorization did not explicitly cover that transfer. A specific owner approval question is already pending. No transfer, alternate path, schedules or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID/team/configuration, worker activation and real hardware token/enrollment/six-kind delivery on both phones remain needed. App Store Connect signing credentials are not an APNs provider key. Push stays disabled.
 - **Phones:** both partners need the identified build19 installation, Apple sign-in and [phone checklist](native-rewrite/swiftui-phone-acceptance.md), followed by complete weekly/financial-approval/offline-conflict/calendar/privacy/accessibility acceptance. Actual partner tester access is still unverified. Pending phone-feedback questions should not be duplicated.
-- **Merge:** [PR85](https://github.com/drrius/nest/pull/85) was freshly read on5 October as OPEN/CLEAN and retains the specific recorded automatic-review exception. The Sol waiver does not erase it; no local/main merge bypass. New source is pushed on feature branches with CI.
+- **Merge:** [PR85](https://github.com/drrius/nest/pull/85) is freshly read6 October as OPEN/CLEAN at `1c00a089`, with all four checks successful and zero review conversations. The sole latest-commit Greptile response reports the50-credit trial limit, so it supplies no approval. The specific recorded automatic-review exception remains; the Sol waiver is respected and no local/main bypass, purchase or duplicate unchanged-commit request occurs. New source stays on feature branches with CI.
 - **Cutover:** existing-data/current-chain reconciliation and external-writer/old-intent drainage precede any production migration, retirement or public release. Safe fixtures and private testing do not authorize these actions.
 
 ## Earlier native and migration checkpoints
@@ -199,24 +199,24 @@ The later fictional renewal was created, saved and removed normally below.
 One future fictional variable rule is now active, as recorded below; reminder
 editing, delivery and phone acceptance remain open.
 
-## Active recurring-reminder eligibility fixture
+## Active recurring-reminder verification
 
-At fresh `c0cd3a8d`/1,118 compiled inputs, paired8.230s/7.777s reads and native
-variable-rule Save89.247s summary/75.102s testcase pass.
-Operation `5bdfcaeb-3f20-4fa3-9db9-0f0902eede8f` records rule
-`f854e3a3-ffda-4eb7-86e5-d3933d938444`, revision
-`528417a1-b97a-4be4-9e63-ad7c8c03c2be`, Confirm each bill, Alex payer,
-monthly day1, starts/next due1 November2026, no amount/split/category/note.
-Owner and partner reads pass9.741s/9.595s with private receipt isolation,
-all62 financial events/+1/−1 centime and seven old inactive rules exact.
-Restart/Done fails103.124s before tapping Done: restored Payer is honestly You,
-while the observer expects Test Alex. Exact stored/SDK payer remains Alex.
-The failed run retains its recorded request and passing final10.031s/8.684s reads.
-The corrected exact cold-payer observer at `486963a1` passes Done-only61.146s,
-with final8.480s/7.762s reads. Both clients restore original scopes, foreground
-Today, large/light and64 empty journals. Six representative images are reviewed.
-One Create/no replay, no fixed mandate, expense, worker, reminder Save or production action. Both `c0cd3a8d` CI workflows37475886509/37475886511 pass;
-The [fixture evidence](../evidence/2026-10-06/swiftui-active-recurring-reminder-fixture/README.md) verifier passes142 artifacts/1,118 inputs/ten native passes/one retained failure/29 inspected images. Observer/package CI remains pending.
+One native future variable rule now supplies eligibility, with one Create,
+private owner receipt/partner isolation, restart/Done and exact62-event/7-rule
+preservation. Original scopes/Today/64 empty journals are restored. The
+[immutable fixture evidence](../evidence/2026-10-06/swiftui-active-recurring-reminder-fixture/README.md)
+passes142 artifacts/1,118 inputs/ten native passes/one retained observer failure. Source69b42139 passes Nest37478285968/SwiftUI37478285865 with506 Foundation/41 skips,467 signed-app/35 skips, four Swift Testing cases, zero failures and strict native gates.
+[Full chronology](progress-history-2026-10-06.md#active-recurring-reminder-eligibility-fixture).
+
+The first unsent draft run at `a5f1a945`/1,119 compiled UI inputs stops before any
+edit: normal58.914s summary/45.063s testcase fails a container hit-test assumption.
+Its full screenshot/tree contain the exact active rule, due date and real default
+controls. Four native GETs pass11.291s/9.227s/9.243s/8.083s, preserving the active
+rule/nil reminder/private receipt/full baseline. Largest text is not run.
+The test-only unique-container correction `ed97c198` retains exact rule/due,
+full-frame geometry and individual control hit guards. Controller54137 is live
+with fresh UI and separately attested unchanged c0 SDK products. No shipping
+change, command, reminder Save or production action occurs; POST budget is zero.
 
 ## Active renewal reminder verification
 

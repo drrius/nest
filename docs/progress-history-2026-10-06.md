@@ -367,3 +367,22 @@ Broad hashes were rejected and abandoned; unrelated-row preservation is not clai
 CI catches 51 unformatted exported JSON files; formatting preserves their values
 and the verifier now checks the explicit artifact list. Source33ba6ae3 passes SwiftUI37410420566:496 Foundation/41 skips and444 signed-app/21 skips, zero failures and strict native gates. Corrected evidence7c149211 passes Nest37410702348.
 M8 and the full goal remain incomplete.
+
+## Active recurring-reminder eligibility fixture
+
+At fresh `c0cd3a8d`/1,118 compiled inputs, paired8.230s/7.777s reads and native
+variable-rule Save89.247s summary/75.102s testcase pass.
+Operation `5bdfcaeb-3f20-4fa3-9db9-0f0902eede8f` records rule
+`f854e3a3-ffda-4eb7-86e5-d3933d938444`, revision
+`528417a1-b97a-4be4-9e63-ad7c8c03c2be`, Confirm each bill, Alex payer,
+monthly day1, starts/next due1 November2026, no amount/split/category/note.
+Owner and partner reads pass9.741s/9.595s with private receipt isolation,
+all62 financial events/+1/−1 centime and seven old inactive rules exact.
+Restart/Done fails103.124s before tapping Done: restored Payer is honestly You,
+while the observer expects Test Alex. Exact stored/SDK payer remains Alex.
+The failed run retains its recorded request and passing final10.031s/8.684s reads.
+The corrected exact cold-payer observer at `486963a1` passes Done-only61.146s,
+with final8.480s/7.762s reads. Both clients restore original scopes, foreground
+Today, large/light and64 empty journals. Six representative images are reviewed.
+One Create/no replay, no fixed mandate, expense, worker, reminder Save or production action. Both `c0cd3a8d` CI workflows37475886509/37475886511 pass;
+The [fixture evidence](../evidence/2026-10-06/swiftui-active-recurring-reminder-fixture/README.md) verifier passes142 artifacts/1,118 inputs/ten native passes/one retained failure/29 inspected images. Observer/package CI remains pending.
