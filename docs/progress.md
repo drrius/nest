@@ -229,6 +229,7 @@ The larger-size modifier fails the same tap and is removed. A shared native
 minus/plus control with explicit 44-point labels passes all eight tested edges in
 normal/light and maximum/dark. Explicit discard/reopen restores zero and disabled
 choices; final real GETs agree. Four final methods pass with no server command.
+[The compact symbol refinement](../apps/ios/Nest/Reminders/ReminderLeadTimeControl.swift) also passes a fresh maximum-text whole method and two real GETs at `74d37d1a`. Normal-text proof precedes that icon-only change. Across variants, 11 methods pass and two failed edge probes remain recorded.
 [Evidence](../evidence/2026-10-06/swiftui-reminder-stepper-targets/README.md) retains both failed native variants and their unobserved-discard gaps. New CI and physical touch remain open.
 
 ## Earlier native settlement verification
