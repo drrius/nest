@@ -6,6 +6,8 @@ The current full native accessibility audit has19 unsuppressed reports,11 contra
 
 The later recipe cancellation check reproduces untouched Cancel prompting and small opening/keyboard targets. Complete normal and maximum New/Edit flows pass after fixes, with raw invalid-input protection, explicit discard and unchanged canonical data. A separate final compact-Done check resolves largest-text label truncation. Across variants23 native methods pass, five original methods remain failed and six focused Core cases pass separately. [Evidence](../../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md). These fixes are in19; the bounded simulator proof does not establish phone acceptance. No reminder delivery or live AI success is inferred.
 
+A saved private financial-result link now passes actual native navigation to its consumed bill receipt and recorded expense at7f079fad. The measured39pt transcript link is fixed to44pt; exact amounts/shares, Back/Today, both-member canonical reads and restored original clients pass without another financial action or live AI. [Evidence](../../evidence/2026-10-06/swiftui-assistant-financial-history-links/README.md) preserves both earlier failures. This fix is not in build19. Other result types, largest text, live generation and full M7 acceptance remain open.
+
 The request-time auth boundary now fixes two reproduced single-client credential
 races: late refresh restoring a signed-out account or replacing a new sign-in.
 Focused native regression tests and real separate-test provider refresh pass;
