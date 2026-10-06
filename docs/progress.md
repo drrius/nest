@@ -203,6 +203,14 @@ and 64 empty journals. CI for these new guarded acceptance sources is pending.
 configuration and receipt verification; retained disabled history is not a nil reset.
 No delivery, worker activation, financial or production action is claimed.
 
+## Grocery reminder receipt isolation
+
+Four disposable PostgreSQL/PostgREST HTTP cases pass with zero failures or skips.
+The partner can read the shared reminder but cannot recover the owner's receipt;
+outsider, wrong-household and anonymous reads fail without receipt identifiers.
+GETs create no operation rows. [Evidence](../evidence/2026-10-06/grocery-reminder-http-isolation/README.md).
+Routine CI coverage is added; its new run and separate native isolation check are pending.
+
 ## Earlier native settlement verification
 
 The partial/full settlement and stale-review evidence is preserved in [dated history](progress-history-2026-10-06.md#native-partialfull-settlement-and-stale-review). Its exact retained financial results do not close phone, private-approval or concurrency acceptance.
@@ -376,14 +384,9 @@ Eight normal sign-out/SDK login/partner Profile/PDF read/sign-out/original-membe
 
 The allocation guard passes eight DB tests,792 arithmetic cases,six concurrent retries and310-migration rehearsal. Nest-test20261005140239 retains52 consistent allocation-bearing events among62 total; bodies/private privileges/three deferred triggers/six fingerprints match. Sourcefea47c1a CI passes; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
 
-## Native credential refresh ordering
+## Earlier credential refresh verification
 
-Two controlled late-refresh cases resurrect old Keychain credentials after logout or replace a newly signed-in account. Both fail on old NestAuth; the serialized/request-time auth boundary passes those cases and15 existing native auth/session checks. Actual test-API PDF download/navigation also pass, with789 matching inputs, original actor/Today/large/light/64 empty journals restored and six retained fingerprints exact. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md).
-This fixes the reproduced single-client credential races, not proof of the earlier multi-client fixture's exact cause. Auth source81964951 passes Nest37330470647/SwiftUI37330470658 (496 Foundation/41 skips,421 signed-native/12 skips, zero failures). Real Apple/natural-expiry/phone journeys and complete M3 acceptance remain open. No production, model call, beta or merge occurred.
-
-### Actual test-provider refresh
-
-The guarded native SDK exchanges one real test-provider refresh (HTTP200), retains both fresh tokens/the same provider session and verifies original membership/reopened Keychain. Actual PDF download/navigation then pass;790 inputs,64 journals, Today/large/light and six retained fingerprints match. Only the copied cached lifetime is forced expired; natural JWT expiry is unverified. Source2f53c64d passes Nest37332265237/SwiftUI37332265139:496 Foundation/41 skips,422 signed-native/13 skips, zero failures. Phones/M3 acceptance stay open. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md#actual-test-provider-refresh).
+The reproduced credential races and real provider refresh are preserved in [dated history](progress-history-2026-10-06.md#native-credential-refresh-ordering). Natural expiry and phone acceptance remain open.
 
 ## Native unsent chore drafts
 

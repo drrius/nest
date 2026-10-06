@@ -1,6 +1,40 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect, Fetch } from "./grocery-reminder-fixture.mjs";
+test("shared grocery reminder reads do not expose another actor's operation receipt", async (t) => {
+  const f = await fixture(t);
+  const receipt = await run(f.native.save(f.command));
+  const partner = f.client(2, f.partnerBearer);
+  assert.deepEqual((await run(partner.detail(f.itemId))).reminder, receipt.reminder);
+  const hidden = await run(partner.recover(f.command));
+  assert.deepEqual(hidden, {
+    version: 1,
+    actorId: id(2),
+    householdId: id(10),
+    operationId: f.command.operationId,
+    status: "unresolved",
+    receipt: null,
+  });
+  assert.deepEqual((await run(f.native.recover(f.command))).receipt, receipt);
+  assert.equal(f.db.sql("select count(*) from private.nest_grocery_reminder_operations"), "1");
+  for (const [bearer, household, status] of [
+    [f.otherBearer, id(10), 403],
+    [f.bearer, id(20), 403],
+    [null, id(10), 401],
+  ]) {
+    const headers = { "x-nest-household": household };
+    if (bearer) headers.authorization = `Bearer ${bearer}`;
+    const response = await fetch(
+      `${f.url}/v1/grocery-reminders/operation?operationId=${f.command.operationId}`,
+      { headers },
+    );
+    assert.equal(response.status, status);
+    const body = await response.text();
+    assert.equal(body.includes(receipt.reminder.revision), false);
+    assert.equal(body.includes(f.command.operationId), false);
+  }
+  assert.equal(f.db.sql("select count(*) from private.nest_grocery_reminder_operations"), "1");
+});
 test("grocery reminder native HTTP recovers a lost committed response and refuses substituted intent", async (t) => {
   const f = await fixture(t),
     command = f.command;

@@ -139,3 +139,12 @@ strict formatting/limits and actual signing. Native interruption/cancellation/pr
 broader races/full accessibility/radio loss/two native clients/live AI/both phones
 remain open. M7 and other unchecked milestones remain incomplete. No beta, merge,
 production change, actual transfer, purchase or worker activation occurred.
+
+## Native credential refresh ordering
+
+Two controlled late-refresh cases resurrect old Keychain credentials after logout or replace a newly signed-in account. Both fail on old NestAuth; the serialized/request-time auth boundary passes those cases and15 existing native auth/session checks. Actual test-API PDF download/navigation also pass, with789 matching inputs, original actor/Today/large/light/64 empty journals restored and six retained fingerprints exact. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md).
+This fixes the reproduced single-client credential races, not proof of the earlier multi-client fixture's exact cause. Auth source81964951 passes Nest37330470647/SwiftUI37330470658 (496 Foundation/41 skips,421 signed-native/12 skips, zero failures). Real Apple/natural-expiry/phone journeys and complete M3 acceptance remain open. No production, model call, beta or merge occurred.
+
+### Actual test-provider refresh
+
+The guarded native SDK exchanges one real test-provider refresh (HTTP200), retains both fresh tokens/the same provider session and verifies original membership/reopened Keychain. Actual PDF download/navigation then pass;790 inputs,64 journals, Today/large/light and six retained fingerprints match. Only the copied cached lifetime is forced expired; natural JWT expiry is unverified. Source2f53c64d passes Nest37332265237/SwiftUI37332265139:496 Foundation/41 skips,422 signed-native/13 skips, zero failures. Phones/M3 acceptance stay open. [Evidence](../evidence/2026-10-05/swiftui-auth-refresh-ordering/README.md#actual-test-provider-refresh).

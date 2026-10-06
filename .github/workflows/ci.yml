@@ -51,6 +51,8 @@ jobs:
           "$fixture_dir/postgrest" --version
       - name: Test core native HTTP and database journeys
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:core
+      - name: Test grocery reminder receipt isolation
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/grocery-reminders.test.mjs
       - name: Test retained attention date handling
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/legacy-attention-dates.test.mjs
       - name: Test retained routine schedule validation
