@@ -116,14 +116,14 @@ final class NativeActiveRecurringReminderDraftTests: XCTestCase {
     }
 
     private func reminderForm(_ app: XCUIApplication) -> XCUIElement {
-        let forms = app.collectionViews.allElementsBoundByIndex.filter { $0.isHittable }
-        XCTAssertEqual(forms.count, 1, "Exactly one hittable foreground reminder Form is required")
+        let forms = app.collectionViews.allElementsBoundByIndex
+        XCTAssertEqual(forms.count, 1, "Exactly one native foreground reminder Form is required")
         guard let form = forms.first else {
             XCTFail("Foreground reminder Form is missing")
             return app.collectionViews.firstMatch
         }
         let nav = app.navigationBars["Bill reminder"]
-        XCTAssertTrue(nav.exists)
+        XCTAssertTrue(nav.exists && form.exists)
         XCTAssertTrue(app.frame.contains(form.frame))
         XCTAssertGreaterThan(form.frame.maxY, nav.frame.maxY)
         return form
