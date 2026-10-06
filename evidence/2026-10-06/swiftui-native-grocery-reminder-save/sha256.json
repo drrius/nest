@@ -1,5 +1,5 @@
 {
-  "README.md": "4286206bf2347baac56cac65d6d479a073c91feb5e0570dfeb0104215ccc92a9",
+  "README.md": "4a2472c51231dd743cca781279aa366ab864d8e3deaacb561b0cb8660cd382a8",
   "alex-before/ECDCA7D6-5BAA-4C37-9B56-9FEA1250CECA.json": "57f5adfba1d0efe287923ff302417d27ec66b7ee898a6aefdb4f9efb753e9533",
   "alex-before/manifest.json": "32ae39a4d35ceceb8c60247fe4a28dd9ccd97cb2c9887df12a61a5e77d27402d",
   "alex-before/native-read.json": "57f5adfba1d0efe287923ff302417d27ec66b7ee898a6aefdb4f9efb753e9533",
@@ -13,6 +13,8 @@
   "alex-final/private-attachments.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
   "alex-final/summary.json": "40d2816ccab42cae00a3d4652e955d0441c0f6b79d543f507ee724213461587b",
   "alex-restored-today.png": "e6d9c0db32f5e7cf9584b3baabed041d84b002453986155773368a0086f95a96",
+  "ci-totals.txt": "db4a9dc64d884074242d437e23a8205484c7cebdee7526be494172f5ae5b1653",
+  "ci.json": "0ad087a859b3a83d3745b57250c30b20fdc559f529af4d0cce227ec1d3039939",
   "command-budget.json": "209f9d3eb034f0f086acee4a2dd03811d31429c47a42ee8cfa70bec204590b34",
   "controller-provenance.json": "c253eaf791499ab0b07218619e897053de0f22556d5b927064dbd91e21f74669",
   "controllers/nest-native-grocery-reminder-save-20261006.py": "4e66b57862b007110a47930dd01b69c8bacc599de1703854002ab53cdecc9b21",

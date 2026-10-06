@@ -198,7 +198,7 @@ owner receipts agree. Both recipients, date/time and the unchanged grocery remai
 Ordinary Done clears each request. Twelve actual methods pass with zero failures:
 four native UI and eight SDK checks. Exactly two Saves occur, with no replay.
 Both original scopes return to Today/top/Me + shared/large-light/stable origins
-and 64 empty journals. CI for these new guarded acceptance sources is pending.
+and 64 empty journals. Source `a0a072c7` passes both workflows: 502 Foundation/41 skips, 456 signed-app/24 skips, four Swift Testing cases and zero failures.
 [Evidence](../evidence/2026-10-06/swiftui-native-grocery-reminder-save/README.md) records
 configuration and receipt verification; retained disabled history is not a nil reset.
 No delivery, worker activation, financial or production action is claimed.

@@ -35,3 +35,10 @@ Both original scopes returned to Today top, Me + shared selected, large text, li
 `verify_inventory.py` checks artifact hashes, tracked files, manifest references, reviewed screenshot hashes, unique operation/revision binding and canonical equality. Its default source reference is immutable acceptance-source commit `38f78e134458b13607ec364e26002f50c27daee4`; `--working-tree` additionally checks current native inputs against the executed source inventory. Complete exported JSON/Markdown formatting precedes checksums; native strict formatting and explicit 400-line, 80-code-line function and complexity-10 checks cover both added test files. Routine CI skips these dated hosted methods without their exact guards. This configuration proof does not establish physical-device behavior, reminder execution, push delivery or full M8 acceptance.
 
 The original executed private controller is identified by SHA-256 in `controller-provenance.json`. The public rerunnable copy is an **unexecuted packaging variant** that splits one read-only assertion conjunction into the same ordered assertions to meet complexity 10. The two executed native test sources and their inputs are unchanged; no native action was rerun for this packaging refactor.
+
+Both workflows pass at `a0a072c7`, whose native inputs are identical to acceptance
+source `38f78e13`. Native CI records 502 Foundation cases with 41 explicit skips,
+456 signed-app cases with 24 explicit skips, zero failures and four Swift Testing
+cases. Formatting, source limits, signing and guarded UI compilation pass.
+[CI metadata](ci.json) and [totals](ci-totals.txt) distinguish ordinary CI from
+the 12 actual hosted native methods above.
