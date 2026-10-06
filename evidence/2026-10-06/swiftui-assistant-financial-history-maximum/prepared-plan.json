@@ -1,0 +1,30 @@
+{
+  "previousNormalSource": "7f079fad22e7f4ec8b82651a9d54611bdd7078b5",
+  "previousNormalResult": "PASS",
+  "previousNormalSeconds": 63.254,
+  "newExecutionProfile": "maximum/dark",
+  "normalJourneyRepeated": false,
+  "conversationId": "c03d1ecf-b3f6-4145-936f-2122da2c02ff",
+  "consumedProposalId": "79c71d74-81bc-4b15-b292-d3cb28b18655",
+  "postedExpenseId": "96562f14-7500-4c47-80bf-487705ca02a2",
+  "amountCentimes": 3,
+  "allocationsCentimes": {
+    "alex": 2,
+    "sam": 1
+  },
+  "balanceChangesCentimes": {
+    "alex": 1,
+    "sam": -1
+  },
+  "maximumUIInvocations": 1,
+  "domainMutationBudget": 0,
+  "modelInvocationBudget": 0,
+  "fixtureCreationBudget": 0,
+  "approvalActions": 0,
+  "tappedTargetRequirements": "Enabled, hittable, full usable viewport, minimum44pt in both dimensions",
+  "longTextReading": "Only noninteractive static text may use continuous beginning/end viewport coverage with positive overlap",
+  "gestures": "Measured leading padding outside every actual scrollbar and interactive action region",
+  "executionPending": true,
+  "physicalDeviceVerified": false,
+  "fullMilestoneClosed": false
+}

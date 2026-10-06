@@ -69,6 +69,14 @@ one unfiltered contrast audit. No palette, shipping layout, permission or domain
 action changes; anonymous reports and the original19 reports remain open.
 [Prepared diagnosis](../evidence/2026-10-06/swiftui-today-calendar-contrast/prepared-diagnosis.json).
 
+Next independent journey: the existing private recorded-bill result and posted
+expense at maximum text/dark appearance. The normal/light journey already passes;
+the new method must expose the exact CHF0.03 expense,2/1-centime allocations and
+±1-centime balance changes without invoking another financial decision. Full
+action frames remain at least44pt; only long noninteractive text may use measured
+overlapping scroll coverage. No new fixture, model call or normal replay.
+[Prepared maximum-text plan](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/prepared-plan.json).
+
 ## Current integration gates
 
 Fresh `fe90e184`/1,126-input signed UI preparation passes. The maximum-only
@@ -123,7 +131,11 @@ clear targets, not the newly reported controls. The immutable verifier passes82
 artifacts/1,126 UI inputs/1,122 dated SDK inputs/four native passes/one retained
 UI failure/two unsuppressed reports. No prior finding is closed, repeated or
 suppressed. [Diagnostic evidence](../evidence/2026-10-06/swiftui-today-calendar-contrast/native/README.md).
-Routine CI37516621666 passes exactabc; native CI37516621960 is still running.
+Routine CI37516621666 and native CI37516621960 pass exactabc:506 Foundation/41
+skips,469 signed-app/37 skips, four Swift Testing cases, zero failures and strict
+native gates. The native input tree is identical at evidence checkpoint4bcd17a9.
+CI compiles the guarded diagnostic; the separate manual audit remainsFAIL.
+[CI source evidence](../evidence/2026-10-06/swiftui-today-calendar-contrast/source-ci.json).
 
 The required authorization/database deep gate passes at exact5b784a10: run37499602861, job112392899761. All23 core HTTP,50 terminal-conflict and1,269 isolated PostgreSQL/RLS cases pass with zero failures/skips, including both new internal-table RLS tests. The workflow uses checksum-pinned PostgREST16.3 and disposable database fixtures, without hosted credentials or production migration. Runtime/security/fixture source remains identical at7f079fad; its native identifier/test/target edits are outside that comparison. Routine37499334703 passes5b. [Deep evidence](../evidence/2026-10-06/deep-integration-current-backend/README.md). This does not close hosted Auth/Storage, external-writer, provider, phone or cutover acceptance.
 

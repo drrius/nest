@@ -51,6 +51,93 @@ final class AssistantFinancialHistoryLinkTests: XCTestCase {
         capture(app.buttons["Me + shared"], name: "Returned original Today and filter", in: app)
     }
 
+    func testMaximumPrivateBillResultRemainsReadableThroughRecordedExpense() throws {
+        try requireFixture()
+        XCTAssertEqual(
+            ProcessInfo.processInfo.environment["NEST_QA_ASSISTANT_BILL_HISTORY_MAXIMUM"],
+            "20261006-maximum-dark-one-journey")
+        XCTAssertEqual(
+            ProcessInfo.processInfo.environment["NEST_QA_ASSISTANT_BILL_HISTORY_ACTOR"],
+            "791f7261-6c9d-4061-9c8a-57aa6e0b0200")
+        XCTAssertEqual(
+            ProcessInfo.processInfo.environment["NEST_QA_ASSISTANT_BILL_HISTORY_HOUSEHOLD"],
+            "be772ffd-3ab5-41d5-8438-647a79a553da")
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        let reading = AssistantFinancialHistoryMaximumReading(app: app, test: self)
+        app.launch()
+        XCTAssertTrue(app.tabBars.firstMatch.waitForExistence(timeout: 30))
+        defer { reading.restoreToday() }
+        openMaximumOwnerHistory(reading)
+        let row = app.buttons["assistant-conversation-\(conversation)"]
+        reading.reveal(row)
+        reading.capture(row, name: "Maximum exact interrupted conversation target")
+        reading.requireTarget(row)
+        row.tap()
+        XCTAssertTrue(app.navigationBars["Conversation"].waitForExistence(timeout: 20))
+        reading.read("Private to you")
+        let proposals = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Record recurring bill"))
+        reading.reveal(proposals.firstMatch)
+        XCTAssertEqual(proposals.count, 1)
+        reading.capture(proposals.firstMatch, name: "Maximum transcript recorded bill link before tap")
+        reading.requireTarget(proposals.firstMatch)
+        proposals.firstMatch.tap()
+        XCTAssertTrue(app.navigationBars["Review bill"].waitForExistence(timeout: 20))
+        assertMaximumRecordedBill(reading)
+        let recorded = app.buttons["View recorded expense"]
+        reading.reveal(recorded)
+        reading.capture(recorded, name: "Maximum canonical recorded expense link before tap")
+        reading.requireTarget(recorded)
+        recorded.tap()
+        XCTAssertTrue(app.navigationBars["Entry details"].waitForExistence(timeout: 20))
+        assertMaximumRecordedEntry(reading)
+        reading.back(from: "Entry details", to: "Review bill")
+        reading.back(from: "Review bill", to: "Conversation")
+        reading.back(from: "Conversation", to: "Private conversations")
+    }
+
+    private func openMaximumOwnerHistory(_ reading: AssistantFinancialHistoryMaximumReading) {
+        let app = reading.app
+        let today = app.tabBars.firstMatch.buttons["Today"]
+        reading.requireTarget(today, bounds: app.tabBars.firstMatch.frame)
+        today.tap()
+        let profile = app.buttons["tab-profile-action"]
+        reading.requireTarget(profile)
+        profile.tap()
+        XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 20))
+        let close = app.navigationBars.firstMatch.buttons.element(boundBy: 0)
+        reading.requireTarget(close, bounds: app.navigationBars.firstMatch.frame)
+        close.tap()
+        let history = app.buttons["tab-assistant-action"]
+        reading.requireTarget(history)
+        history.tap()
+        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 20))
+    }
+
+    private func assertMaximumRecordedBill(_ reading: AssistantFinancialHistoryMaximumReading) {
+        for label in [
+            "Bill recorded", bill, "Amount, CHF 0.03", "Payer, You", "You, CHF 0.02",
+            "Your partner, CHF 0.01", "Due date, 2026-10-05", "Cycle, 2026-10-01 to 2026-10-31", note,
+            "This records one expense. Nest does not pay the bill or change its recurring rule.",
+            "Bill recorded. This cycle will not be recorded again by this decision.",
+        ] {
+            reading.read(label)
+        }
+        XCTAssertFalse(reading.app.buttons["Review confirmation"].exists)
+        XCTAssertFalse(reading.app.buttons["Decline proposal"].exists)
+    }
+
+    private func assertMaximumRecordedEntry(_ reading: AssistantFinancialHistoryMaximumReading) {
+        for label in [bill, "CHF 0.03", "2026-10-05", "Expense", note] { reading.read(label) }
+        reading.capture(reading.element(note), name: "Maximum recorded expense amount date and note")
+        for label in [
+            "Recorded shares", "You", "Allocated: CHF 0.02", "Balance change: +CHF 0.01",
+            "Your partner", "Allocated: CHF 0.01", "Balance change: −CHF 0.01",
+        ] {
+            reading.read(label)
+        }
+        reading.capture(reading.element("Balance change: −CHF 0.01"), name: "Maximum immutable allocations")
+    }
+
     private func requireFixture() throws {
         _ = try NativeMealWeekFixture(action: "assistant_bill_history_link")
         let values = ProcessInfo.processInfo.environment

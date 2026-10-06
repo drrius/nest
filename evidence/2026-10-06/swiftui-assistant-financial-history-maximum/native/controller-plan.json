@@ -1,0 +1,44 @@
+{
+  "phase": "source and controller plan only; no build/API/UI yet",
+  "plannedController": "/tmp/nest-assistant-financial-history-maximum-20261006.py",
+  "reusedControllerMechanisms": "AST-selected preparation/read/restoration functions from dated current Calendar-card controller; never import/execute old controller top-level",
+  "ownedFiles": [
+    "apps/ios/UITests/AssistantFinancialHistoryLinkTests.swift",
+    "apps/ios/UITests/AssistantFinancialHistoryMaximumReading.swift"
+  ],
+  "newMethod": "AssistantFinancialHistoryLinkTests/testMaximumPrivateBillResultRemainsReadableThroughRecordedExpense",
+  "oldNormalSourceUnchanged": true,
+  "fixture": {
+    "conversationId": "c03d1ecf-b3f6-4145-936f-2122da2c02ff",
+    "consumedProposalId": "79c71d74-81bc-4b15-b292-d3cb28b18655",
+    "expenseId": "96562f14-7500-4c47-80bf-487705ca02a2",
+    "amountCentimes": 3,
+    "allocationsCentimes": [2, 1],
+    "balanceChangesCentimes": [1, -1]
+  },
+  "sdkSource": "6997138485f3f8088fc03682432de74879e19659",
+  "sdkMethod": "HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations",
+  "sourcePin": "Required from root; expected1127 inputs with one added test-only helper verified from exact archive",
+  "futureStages": [
+    "Exclusive knownMac/owned2sims; fresh actual original scopes64/settings/semantic snapshots",
+    "Fresh unique signed source-pinned UI compile owned test/helper and changed row source; selected products/binaryhashes/origins/pushfalse",
+    "Independently validate dated699 products/maps and retained references; two fresh full canonical GET before; exact existing posted expense identity/amount/shares in the captured62-event baseline",
+    "Ordinary foreground and two settled original actor/HH64 samples; set actual MAX/dark and recheck input/product pins",
+    "Consume ONE MAX-only UI invocation marker; honest interrupted conversation\u2192canonical Bill recorded\u2192existing Entry details; all taps full relevant content/navigation/tabbar bounds and>=44/enabled/hittable",
+    "Measure every bounded pan on actual unique ScrollView/CollectionView; choose left padding outside all actual action and scrollbar regions; long static-text only continuous begin/end coverage with respective viewports/stableheight/positiveoverlap",
+    "Two final699 GETs even on UI failure; restore exact initial settings/semantic state/original scopes64/Today via ordinary path; independently confirm selectedplans/caffeinate absent"
+  ],
+  "budgets": {
+    "UIInvocations": 1,
+    "normalReplays": 0,
+    "fixtureActions": 0,
+    "modelInvocations": 0,
+    "domainMutationInvocations": 0,
+    "approvalDeclineRecordDoneReplyActions": 0,
+    "permissionActions": 0
+  },
+  "wirePOSTCountMeasured": false,
+  "SDKAuthSetupMayPOSTLogin": true,
+  "rootOwnsShippingDocsGit": true,
+  "physicalDeviceClaim": false
+}
