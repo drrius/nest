@@ -265,6 +265,12 @@ fingerprints. Thirteen isolated food-profile/database/PostgREST cases pass with
 zero failures/skips. Two guarded native test sources pass formatting/source
 limits; no Save, profile insertion or native invocation has run at preparation.
 [Portion preparation](../evidence/2026-10-07/swiftui-native-portions/prepared.json).
+Preparation at `293549f6` freezes 1,134 inputs and builds the guarded UI products,
+but the new SDK test fails compilation because it names a nonexistent SessionAPI.
+The existing MealAPI verifier replaces that type; configured Mac formatting and
+source limits pass. No native method, preference mutation or Save runs. The
+failed preparation logs/source map are preserved. Corrected native preparation
+remains pending.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

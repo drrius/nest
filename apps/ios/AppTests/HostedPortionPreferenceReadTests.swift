@@ -35,7 +35,7 @@ final class HostedPortionPreferenceReadTests: XCTestCase {
             return (data, response)
         }
         do {
-            let member = try await SessionAPI(http: http).verify(
+            let member = try await MealAPI(http: http).verify(
                 token: credentials.accessToken, expectedActor: actor)
             XCTAssertEqual(member.displayName, name)
             XCTAssertEqual(member.householdId.uuidString.lowercased(), "be772ffd-3ab5-41d5-8438-647a79a553da")
