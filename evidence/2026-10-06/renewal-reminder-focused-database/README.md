@@ -9,3 +9,5 @@ The first invocation lacks NEST_TEST_PG_BIN and the second uses a missing histor
 These fixtures simulate Auth/Storage and load focused migration dependencies. Hosted PostgreSQL17.6, the complete deployed chain, phone rendering and actual worker delivery remain separate checks. No hosted or production database is contacted.
 
 The evidence checkpoint at `3ebbc180` passes [routine CI](routine-ci.json). That workflow runs its configured focused checks; the eight renewal tests above were run locally and are not claimed as routine CI execution.
+
+Six focused pure-domain tests also pass at `a4d1949c`, including property checks for recipient privacy, collision-free reminder identities and civil cancellation dates, plus stale-item invalidation and invalid-input refusal. [Domain TAP](domain.tap), [exact sources](domain-result.json). These are local domain checks, not native execution or hosted delivery.

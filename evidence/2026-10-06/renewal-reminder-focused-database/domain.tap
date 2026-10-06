@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: recipient preferences override selections and personal reminders cannot reach a partner
+ok 1 - recipient preferences override selections and personal reminders cannot reach a partner
+  ---
+  duration_ms: 2.454308
+  type: 'test'
+  ...
+# Subtest: reminder identity is stable and separates every delivery dimension without delimiter collisions
+ok 2 - reminder identity is stable and separates every delivery dimension without delimiter collisions
+  ---
+  duration_ms: 11.476724
+  type: 'test'
+  ...
+# Subtest: completion, mute and revision changes invalidate pending reminders
+ok 3 - completion, mute and revision changes invalidate pending reminders
+  ---
+  duration_ms: 0.128215
+  type: 'test'
+  ...
+# Subtest: invalid rosters cannot produce reminder recipients
+ok 4 - invalid rosters cannot produce reminder recipients
+  ---
+  duration_ms: 0.084727
+  type: 'test'
+  ...
+# Subtest: cancellation deadlines preserve civil day distance across leap years and DST seasons
+ok 5 - cancellation deadlines preserve civil day distance across leap years and DST seasons
+  ---
+  duration_ms: 11.164755
+  type: 'test'
+  ...
+# Subtest: invalid and unrepresentable renewal deadlines are refused rather than shifted
+ok 6 - invalid and unrepresentable renewal deadlines are refused rather than shifted
+  ---
+  duration_ms: 0.161215
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 77.431908
