@@ -89,7 +89,7 @@ final class NativeActiveRecurringReminderDraftTests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Recurring expenses"].waitForExistence(timeout: 15))
         let row = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Nest QA reminder bill 0610-5d1a"))
             .firstMatch
-        reveal(row, in: app)
+        reveal(row, in: app, missingDistance: 330)
         XCTAssertTrue(row.isEnabled && row.isHittable)
         XCTAssertTrue(row.label.contains("Active"))
         attach(["frame": rect(row.frame), "label": row.label], name: "Whole exact active variable rule card")
@@ -299,7 +299,7 @@ final class NativeActiveRecurringReminderDraftTests: XCTestCase {
             }
             let delta =
                 frame.isEmpty ? missingDistance : (frame.minY < top ? frame.minY - top - 20 : frame.maxY - bottom + 20)
-            let distance = scrollTravel(delta)
+            let distance = scrollTravel(delta, maximum: max(250, missingDistance))
             let origin = app.coordinate(withNormalizedOffset: CGVector(dx: 0.04, dy: 0.65))
             let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.04, dy: 0.65 - distance / app.frame.height))
             origin.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
@@ -316,10 +316,10 @@ final class NativeActiveRecurringReminderDraftTests: XCTestCase {
         return lists.first(where: { $0.isHittable })?.frame ?? app.frame
     }
 
-    private func scrollTravel(_ delta: CGFloat) -> CGFloat {
+    private func scrollTravel(_ delta: CGFloat, maximum: CGFloat) -> CGFloat {
         let sign: CGFloat = delta < 0 ? -1 : 1
-        let maximum: CGFloat = delta < 0 ? 180 : 250
-        return sign * min(maximum, max(120, abs(delta)))
+        let limit: CGFloat = delta < 0 ? 180 : maximum
+        return sign * min(limit, max(120, abs(delta)))
     }
 
     private func motion(_ element: XCUIElement, distance: CGFloat) -> [String: Any] {
