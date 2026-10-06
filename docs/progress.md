@@ -243,6 +243,9 @@ blocked by missing eligible fixtures; no rule activation or renewal recreation o
 The separate paused-rule preflight at `8313d762` stops on HTTP401 at `/v1/session`,
 before roster/context/finance reads; the second actor and UI are not run. Two token
 refresh requests are observed, but causation is unproven and diagnosis remains open.
+One isolated diagnostic at `1e8a5869` verifies current native session HTTP200. Its
+unchanged cache is already fresh; no provider refresh, credential promotion or TTL
+change occurs. [Evidence](../evidence/2026-10-06/swiftui-native-natural-session-diagnostic/README.md) preserves the failed read and limited diagnostic; the earlier401 remains unexplained and a bounded read-only retry is pending.
 
 ## Earlier native settlement verification
 
