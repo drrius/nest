@@ -58,8 +58,10 @@ struct AssistantHistoryScreen: View {
         } else if let approval = PendingFinancialApproval.assistantLink(part, member: member) {
             FinancialApprovalRow(session: session, member: member, row: approval)
         } else if let id = AssistantMemoryLink.approvalId(part, member: member) {
-            NavigationLink("Review private memory proposal") {
+            NavigationLink {
                 PrivateMemoryScreen(session: session, member: member, approvalId: id).id(session.generation)
+            } label: {
+                QuietActionLabel("Review private memory proposal")
             }
         } else if let handoff = AssistantHandoff.read(part, member: member) {
             AssistantHandoffRow(session: session, member: member, handoff: handoff)
@@ -102,41 +104,51 @@ struct AssistantHistoryScreen: View {
     private func reminderActionPart(_ part: [String: AssistantJSON]) -> some View {
         if let receipt = AssistantMealPreparationLink.receipt(part, member: member) {
             Text("Meal preparation saved.")
-            NavigationLink("View current preparation") {
+            NavigationLink {
                 MealPreparationScreen(
                     model: session, target: PlannedRecipeTarget(start: receipt.weekStart, id: receipt.entryId)
                 )
                 .id(session.generation)
+            } label: {
+                QuietActionLabel("View current preparation")
             }
         } else if let result = AssistantRenewalLink.read(part, member: member) {
             AssistantRenewalRow(session: session, member: member, result: result)
         } else if let receipt = AssistantChoreReminderLink.receipt(part, member: member) {
             Text("Chore reminder choices saved. This does not confirm delivery.")
-            NavigationLink("View current chore reminder choices") {
+            NavigationLink {
                 ChoreReminderScreen(session: session, member: member, occurrenceId: receipt.reminder.occurrenceId)
                     .id(session.generation)
+            } label: {
+                QuietActionLabel("View current chore reminder choices")
             }
         } else if let summary = AssistantSummaryLink.read(part, member: member) {
             AssistantSummaryRow(session: session, member: member, summary: summary)
         } else if let receipt = AssistantMealReminderLink.receipt(part, member: member) {
             Text("Meal reminder choices saved. This does not confirm delivery.")
-            NavigationLink("View current meal reminder choices") {
+            NavigationLink {
                 MealReminderScreen(session: session, member: member, entryId: receipt.reminder.entryId)
                     .id(session.generation)
+            } label: {
+                QuietActionLabel("View current meal reminder choices")
             }
         } else if let notice = AssistantActionNotice.text(part) {
             Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
         } else if let receipt = AssistantGroceryReminderLink.receipt(part, member: member) {
             Text("Grocery reminder choices saved. This does not confirm delivery.")
-            NavigationLink("View current grocery reminder choices") {
+            NavigationLink {
                 GroceryReminderScreen(session: session, member: member, itemId: receipt.reminder.itemId)
                     .id(session.generation)
+            } label: {
+                QuietActionLabel("View current grocery reminder choices")
             }
         } else if let receipt = AssistantRecurringReminderLink.receipt(part, member: member) {
             Text("Bill reminder choices saved. This does not confirm delivery or approve the bill.")
-            NavigationLink("View current bill reminder choices") {
+            NavigationLink {
                 RecurringReminderScreen(session: session, member: member, ruleId: receipt.reminder.ruleId)
                     .id(session.generation)
+            } label: {
+                QuietActionLabel("View current bill reminder choices")
             }
         } else if part["type"] != .string("step-start") {
             Text("This message includes an action result that this view cannot display yet.")

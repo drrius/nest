@@ -10,12 +10,16 @@ struct AssistantLegacyRecurringRow: View {
             .font(.footnote).foregroundStyle(QuietPalette.muted)
         switch result {
         case .rules:
-            NavigationLink("View current retained recurring expenses") {
+            NavigationLink {
                 LegacyRecurringScreen(session: session, member: member).id(session.generation)
+            } label: {
+                QuietActionLabel("View current retained recurring expenses")
             }
         case .drafts(let ruleId):
-            NavigationLink("View retained drafts for this rule") {
+            NavigationLink {
                 LegacyDraftsScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
+            } label: {
+                QuietActionLabel("View retained drafts for this rule")
             }
         }
     }

@@ -9,9 +9,11 @@ struct AssistantSummaryRow: View {
         switch summary {
         case .none: Text("No daily summary has been saved for you yet.")
         case .saved(let snapshot):
-            NavigationLink("View saved summary for \(snapshot.summary.date.value)") {
+            NavigationLink {
                 DailySummaryScreen(session: session, member: member, summaryId: snapshot.summaryId)
                     .id(session.generation)
+            } label: {
+                QuietActionLabel("View saved summary for \(snapshot.summary.date.value)")
             }
         }
     }

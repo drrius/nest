@@ -9,35 +9,47 @@ struct AssistantHandoffRow: View {
         VStack(alignment: .leading, spacing: 8) {
             switch handoff {
             case .calendar:
-                NavigationLink("Open Calendar") {
+                NavigationLink {
                     CalendarScreen(member: member, session: session).id(session.generation)
+                } label: {
+                    QuietActionLabel("Open Calendar")
                 }
                 Text("Choose calendars on your iPhone. Personal event details stay on this device.")
             case .calendarSharing:
-                NavigationLink("Review busy sharing") {
+                NavigationLink {
                     CalendarSharingScreen(session: session).id(session.generation)
+                } label: {
+                    QuietActionLabel("Review busy sharing")
                 }
                 Text("Sharing has not changed. Review your choices before enabling it.")
             case .ingredients(let week):
-                NavigationLink("Review ingredients") {
+                NavigationLink {
                     IngredientReviewScreen(model: session, week: week).id(session.generation)
+                } label: {
+                    QuietActionLabel("Review ingredients")
                 }
                 Text("Nothing was added. Review the current meal week and choose what you need.")
             case .notifications:
-                NavigationLink("Review notifications") {
+                NavigationLink {
                     NotificationPreferencesScreen(session: session, member: member).id(session.generation)
+                } label: {
+                    QuietActionLabel("Review notifications")
                 }
                 Text(
                     "No choices or iPhone permissions changed. Open this iPhone’s connection to review device enrollment."
                 )
             case .setup:
-                NavigationLink("Review your setup") {
+                NavigationLink {
                     SetupScreen(session: session, member: member).id(session.generation)
+                } label: {
+                    QuietActionLabel("Review your setup")
                 }
                 Text("Nothing was saved. Review or skip each optional part on your iPhone.")
             case .settings:
-                NavigationLink("Open Profile") {
+                NavigationLink {
                     ProfileScreen(model: session, member: member).id(session.generation)
+                } label: {
+                    QuietActionLabel("Open Profile")
                 }
                 Text("Your account has not changed. Sign-out requires the explicit native control.")
             }
