@@ -29,7 +29,7 @@ final class NativeActiveRecurringReminderFixtureTests: XCTestCase {
         requireAction(review, in: app)
         capture(app, name: "Future variable draft before local Review rule")
         review.tap()
-        reviewedCopy(app)
+        reviewedCopy(app, payer: "Test Alex")
         let save = app.buttons["Save bill reminders"]
         reveal(save, in: app)
         requireAction(save, in: app)
@@ -46,7 +46,7 @@ final class NativeActiveRecurringReminderFixtureTests: XCTestCase {
         try authorized(action: "recorded_done")
         try knownRequest()
         let app = openNew()
-        reviewedCopy(app)
+        reviewedCopy(app, payer: "You")
         let recorded = app.staticTexts["Rule saved · active."]
         reveal(recorded, in: app)
         XCTAssertTrue(recorded.exists)
@@ -89,9 +89,9 @@ final class NativeActiveRecurringReminderFixtureTests: XCTestCase {
         return app
     }
 
-    private func reviewedCopy(_ app: XCUIApplication) {
+    private func reviewedCopy(_ app: XCUIApplication, payer: String) {
         let labels = [
-            title, "Confirm amount and split each cycle", "Payer, Test Alex", "Monthly, day 1", "Starts, 2026-11-01",
+            title, "Confirm amount and split each cycle", "Payer, " + payer, "Monthly, day 1", "Starts, 2026-11-01",
             "First due, 2026-11-01", "Existing history stays unchanged. Saving does not move money.",
         ]
         for label in labels {
