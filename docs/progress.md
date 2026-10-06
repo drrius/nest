@@ -196,8 +196,8 @@ The read-only eligibility census, bounded natural-session diagnosis and
 largest-text paused-rule fix remain in
 [dated history](progress-history-2026-10-06.md#remaining-reminder-eligibility).
 The later fictional renewal was created, saved and removed normally below.
-One future fictional variable rule is now active, as recorded below; reminder
-editing, delivery and phone acceptance remain open.
+One future fictional variable rule is now active, as recorded below; unsent reminder
+editing and one normal-text Save/recovery pass. Delivery and phone acceptance remain open.
 
 ## Active recurring-reminder verification
 
@@ -217,6 +217,14 @@ Actual Both/09:00/lead1, pristine44pt Back, Back/Refresh Keep editing and explic
 Final Alex10.554s/Sam9.353s GETs preserve the active rule/nil reminder/private receipt/full62 baseline; both scopes/Today/large-light/64 empty journals are restored.
 Root reviews eight representative images. The [immutable draft package](../evidence/2026-10-06/swiftui-active-recurring-reminder-drafts/README.md) at5ed4084e verifies433 artifacts, UI1,119/SDK1,118 inputs and47 inspected PNGs. Prior checkpoint655d647b passes Nest37483301023/SwiftUI37483301002; these are not CI results for the later evidence commit.
 Aggregate14 native passes/two retained failures, zero POST; no shipping change, reminder Save, delivery or production action. The subsequent evidence/docs checkpoint9a02f01b passes routine CI37485016558. Its native inputs match655d647b; no new native workflow or simulator execution is claimed. A one-Save/restart/receipt check is being prepared, with actual Save still unverified.
+
+Source21615255 adds guarded one-Save, cold recorded-request Done and paired GET-only receipt checks. Strict Mac formatting and source limits pass, and routine CI37487568293 passes. Native CI37487568399 fails test compilation because the new reader supplied a nonexistent recovery argument and compared a non-Equatable recovery DTO. No Save/API/UI run occurs.
+
+Test-only7cf0669b corrects the recovery signature and canonical JSON comparison. Routine CI37488630896 passes; native CI37488630954 is later cancelled/superseded, not a pass. Fresh local SDK preparation25989 fails before API/UI because the test calls validation on SaveRecurring instead of its rule. UI preparation never begins; the failed source/build is retained.
+
+Test-only69971384 corrects the rule-validation boundary. A focused scan checks all new API signatures/DTO members. Fresh preparation45804 passes at69971384/all1,122 inputs in new unique SDK/UI directories, with actual initial light/large settings captured and preserved. Both owned test sources compile; selected product paths, binary hashes, signing and test origins/pushfalse pass. No failed build directory is reused or API/UI invoked by preparation. Routine CI37489401005 passes; native CI37489401056 is running signed-app tests. The reviewed sequence is beginning with paired nil preflight; no Save result is claimed.
+
+Reviewed execution4584 passes paired nil preflight14.052s/12.286s and one native Save88.193s summary/86.385s testcase. It captures operationf23e5dfb-cc10-4199-a0f1-bc2cfcbd521c and reminder revisionf736854d-935a-4433-ba0c-13a4b5e51ac6 before navigation, with exact Both/09:00 Europe/Zurich/lead1 and reviewed parent528417a1-b97a-4be4-9e63-ad7c8c03c2be/due2026-11-01. Alex14.111s/Sam10.544s GETs pass shared canonical/private receipt isolation, original5bdf recovery, all eight rules/both removed renewal histories/full62 preservation. The Save invocation is permanently consumed; no positive replay or measured wire POST count is claimed. Known-request cold restart/Done passes66.557s, then final Alex10.767s/Sam10.831s reads pass the same canonical preservation and receipt isolation. Execution4584 terminates successfully with eight native passes/zero failures. Final restoration verifies both original actor/household scopes,64 empty journals each, measured initial/restored large/light settings and ordinary foreground Today. Root inspects four representative captures; all12 are reviewed. The [immutable Save package](../evidence/2026-10-06/swiftui-native-recurring-reminder-save/README.md) at4ffe5029 verifies151 tracked artifacts/all1,122 inputs/eight native passes/zero failures/12 reviewed PNGs. Current source69971384 routine CI passes; native CI remains pending. CI/native-source results stay separate from the hosted slice. Saved-copy singular grammar remains a minor UI issue. Delivery and physical-phone acceptance remain unverified; notification delivery stays disabled.
 
 ## Active renewal reminder verification
 
