@@ -1,0 +1,11 @@
+{
+  "BothUIProfilesPassed": false,
+  "NormalCaptureOnly": true,
+  "NoRepeatedNormalNavigation": true,
+  "BothFinalReadsPassed": true,
+  "UIDomainMutationBudget": 0,
+  "LiveModelInvocations": 0,
+  "SDKAuthSetupMayPOSTLogin": true,
+  "WirePOSTCountMeasured": false,
+  "NoRepeatedUI": true
+}

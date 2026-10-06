@@ -4,6 +4,7 @@ import XCTest
 final class AssistantHandoffLinkTests: XCTestCase {
     private let conversation = "4e809372-f12d-4004-afd3-9a502e98de23"
     private let correctedConversation = "4c528a2f-42a3-4e3d-a909-5a0ff7f106da"
+    private let scrollbarConversation = "10b77a97-1709-4799-9b17-8cb3a613d402"
     private let week = "2026-10-19"
     private let links = [
         "Open Calendar", "Review busy sharing", "Review ingredients",
@@ -55,6 +56,10 @@ final class AssistantHandoffLinkTests: XCTestCase {
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
         XCTAssertTrue(app.buttons["Me + shared"].isSelected)
+    }
+
+    func testMaximumHandoffTranscriptPansAvoidTheScrollIndicator() throws {
+        try journey(mode: "maximum_dark_left_padding", conversationId: scrollbarConversation)
     }
 
     private func journey(mode: String, conversationId: String? = nil) throws {
@@ -308,7 +313,10 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let startY = min(bounds.maxY - 12, max(bounds.minY + 12, bounds.midY + 120))
         let endY = min(bounds.maxY - 12, max(bounds.minY + 12, startY - distance))
         let point = app.coordinate(withNormalizedOffset: .zero)
-        let x = app.frame.maxX - 4
+        let x =
+            app.navigationBars.firstMatch.identifier == "Conversation"
+            ? AssistantTranscriptPanGeometry.x(in: app, labels: links, startY: startY, endY: endY, test: self)
+            : app.frame.maxX - 4
         XCTAssertTrue(bounds.contains(CGPoint(x: x, y: startY)))
         XCTAssertTrue(bounds.contains(CGPoint(x: x, y: endY)))
         attach(

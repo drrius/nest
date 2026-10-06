@@ -1,0 +1,20 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "conversationId": "4c528a2f-42a3-4e3d-a909-5a0ff7f106da",
+  "actorId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "fixtureInsertedAndVerified": true,
+  "modelTurnCreated": false,
+  "existingOwnerConsentDisabled": true,
+  "existingConsentFingerprint": "cbdde232d6ec441e0caa57ac6d4a1072",
+  "originalConversationsFingerprint": "7284c1c22df502cc7fb70a8b9ff0e903",
+  "originalConversations": 15,
+  "transcriptFingerprint": "fe0fd533c77e2985cd2634d4e2dd4574",
+  "nativeSource": "0f2035775172c41a8f094c121433ecfba43ebef7",
+  "nativeDomainMutationBudget": 0,
+  "fixtureCreationBudgetConsumed": 1,
+  "fixtureRemovalOutstanding": true,
+  "maximumInvocationPerProfile": 1,
+  "normalCaptureOnly": true,
+  "repeatNormalNavigation": false
+}

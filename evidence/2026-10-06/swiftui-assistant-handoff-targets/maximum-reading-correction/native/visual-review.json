@@ -1,0 +1,122 @@
+{
+  "native-run/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "e2760684990c38c5b555ba85d3494355f0947ac9688060894ab9ab03feb541e1"
+  },
+  "native-run/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "e2760684990c38c5b555ba85d3494355f0947ac9688060894ab9ab03feb541e1"
+  },
+  "native-run/normal-capture-only/F05D590F-75F0-4D71-AED7-062D0B8DEF51.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "d1aad32ea6c9664350059cf699f05a6f89b7fd7e8617ed30e7cd209d88a672af"
+  },
+  "native-run/normal-capture-only/8BE7447E-06E5-44E6-8C6D-9FC322C8EA30.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "d6298bebf5d7c3037880a9fc800472e28c1e7bbd66781bfb4ddc8105cb1f2512"
+  },
+  "native-run/normal-capture-only/CBDFC770-6D78-4850-B3F0-664C41C50E2B.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "54ce9147774dc7748a0f473ecadeec9037f85674e40c91b1293a7bbf2573610d"
+  },
+  "native-run/normal-capture-only/F3F18560-D08C-4492-A793-97EB2641410D.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "d1aad32ea6c9664350059cf699f05a6f89b7fd7e8617ed30e7cd209d88a672af"
+  },
+  "native-run/normal-capture-only/818E176D-563C-434A-85EE-4B8BFF35D889.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "54ce9147774dc7748a0f473ecadeec9037f85674e40c91b1293a7bbf2573610d"
+  },
+  "native-run/normal-capture-only/EE64E4BF-87C3-4B2E-9E4A-A39E0D189DEC.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "d6298bebf5d7c3037880a9fc800472e28c1e7bbd66781bfb4ddc8105cb1f2512"
+  },
+  "native-run/maximum-dark-corrected/58F89433-E337-41A5-BC9E-44E085AB3C68.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "11436b1136be490f2027a1c09d005d58cf8594d0f619aa3c726476fa0e3e6f15"
+  },
+  "native-run/maximum-dark-corrected/278B85B2-5328-4D93-9577-CE9F34A1D3A5.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "5043bc8eb9dd921cacf26579fe88c40f9e4109eb02c4eca7b79b663d8d2f1700"
+  },
+  "native-run/maximum-dark-corrected/0D72EA37-FF9F-429B-9E71-2F0B61F0981F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "c70359383703ed5cd03ac2ee51ab3a1796b296f3d4300aa447a6fc6fd3ebf05d"
+  },
+  "native-run/maximum-dark-corrected/2DE9D3ED-83C2-4069-ADF6-D28B87686F70.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "e42f77293f07bfa49683e0202a27d0c88744fb08e03fe0c7e66b95c67f72ec66"
+  },
+  "native-run/maximum-dark-corrected/2BE9C484-52D7-4DD8-A203-734563D1D06A.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "5c724f3fb6198ede52365c8cd112732f42f9855ed8e1a5ae58a139c7c9b91b77"
+  },
+  "native-run/maximum-dark-corrected/7D6A1BDF-F90B-42C3-AEEE-670756F8ACFE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "5be0e8d525518978b1fe831187971cce86442a81dcc181e1eb8b5db4e3d8f670"
+  },
+  "native-run/maximum-dark-corrected/071CD670-8B48-4F0A-8A0C-56E7FF9A79E0.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "b5560f7d2b6608156cb75105ab2a794a60cba104f4e2759495cfb04b1074c9f2"
+  },
+  "native-run/maximum-dark-corrected/8CC2F90B-18C3-4693-9E88-F26E22895596.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "52255f3314d52fffb70d6506e2b033801a38aed3f3f423de88ea5cf31dc81e24"
+  },
+  "native-run/maximum-dark-corrected/65CAE491-BDC6-49BC-9D89-0971A521C4DA.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "ea5de26e7561feb9136a65a879ee29ebe6dfa5e80a13ad44f5204d03551fea1b"
+  },
+  "native-run/maximum-dark-corrected/5A95A9FB-47E5-49C1-977E-B7CC79E25E21.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "11472b8f8648d8b748520ec757698f66cc4231c4dd344616cc4eaf4536fa57f9"
+  },
+  "native-run/maximum-dark-corrected/5D2D9189-E28E-4D08-B2C1-0821EDF37AF6.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "11436b1136be490f2027a1c09d005d58cf8594d0f619aa3c726476fa0e3e6f15"
+  },
+  "native-run/maximum-dark-corrected/A7C328C9-5C69-49E4-A74F-F8E451123033.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "execution worker; direct full-image inspection",
+    "sha256": "fd48245ff7939207029d51835fdc2e792b0a8d31f68a66b23f0c33ef53215e6c"
+  }
+}
