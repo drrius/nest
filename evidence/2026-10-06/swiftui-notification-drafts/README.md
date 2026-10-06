@@ -32,14 +32,17 @@ does not reveal the native List row. Its failure and live screenshot remain in
 maximum-text notification behavior.
 
 Observer62dd893f drags inside the List and retains the same full-visibility and
-touch assertions. Its normal checks pass; the maximum check is still running at
-this checkpoint. Inspect that existing controller before any restart. Current
+touch assertions. Its normal checks pass. At maximum size it now reaches Notifications, then
+fails to reveal the reminder switch. The controller is terminal with failure;
+this is not a maximum-text pass. Next inspect actual switch types/labels/frames
+before changing the reader again. [Result](after-switch-observer/results.json). Current
 source routine CI37393161511 passes; native CI37393161341 is in progress. The
 earlier f873210c source independently passes both required workflows.
 
 Before runs preserve original roles,64 empty journals and large/light settings.
 Interrupted after-runs restore those settings, but do not assert both Today
-selections or complete after-read comparison. Final canonical reads, complete
-source matching, maximum-text checks and hosted preference hashes remain pending.
+selections or complete after-read comparison. All820 current inputs match the final interrupted run. Preference and receipt
+hashes remain exact. Final canonical after-reads, maximum-text checks and physical
+phone acceptance remain pending.
 No hosted Save, permission, inference, worker, beta, production action, purchase
 or merge occurs. Available TestFlight build18 does not contain this later fix.
