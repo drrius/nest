@@ -1,5 +1,5 @@
 {
-  "README.md": "16b91dd20a2a650f7ecb6491e13ff55e70abcdd7f4de5c2c60f4ef836c74d915",
+  "README.md": "8ea44af2c7f73cefa7a0410cb12095cff9e61829247f33b5ae052e8d92b900ca",
   "alex-after/A69FD914-7CE1-423A-A90A-8DAD728C8966.json": "a0fb91b1268a29229846de7711d3b007308e86fe844120b70a114ee3decbd775",
   "alex-after/manifest.json": "51e1415b266b6d54926a24a7273215871b55a5b3192e98b8484ea0db1528e4a8",
   "alex-after/native-read.json": "6ce703ce57865d3d87fa0d4185091b5ad3695c38e13722612937e5841431b455",
@@ -13,6 +13,8 @@
   "alex-before/private-attachments.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
   "alex-before/summary.json": "8f2915d36020d1e46d7f781f9aafce6ee291f8868ef90e70ae941aebf2c81d4b",
   "alex-restored-today.png": "53e78a944ee1a217356bfb63709db292bb94a366fb2d92f629cf46e09236cc3e",
+  "ci-totals.txt": "1335d6a8fa0f6f881e0ee78bc434db416f6259583e92922ae7827f8fe572a5c9",
+  "ci.json": "fd23c7b6c7d15f52075b7dbba2b83a7699dfb1e8b639dafbfe45e9025d2af8c4",
   "controller-executed-hash.json": "4db86536999ae62b0eb4d1f3934206390a5cde46d767f29294f7912ffeb313ff",
   "controller.py": "e6c28238d6222f61cd1cc501aaed1ab3991f83e665df55ac415985d33d8479c1",
   "maximum_dark/00ABF36D-1561-40E6-9059-8F7E57F590E0.json": "fe6edad50f359eb15ac51362fc279edaa3ea8e409b7fc56252cfc51e716e4590",
