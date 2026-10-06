@@ -144,7 +144,8 @@ final class HostedActiveRecurringReminderReceiptReadTests: XCTestCase {
     private func originalRequest() throws -> SavedRecurring {
         let raw = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_QA_ACTIVE_BILL_ORIGINAL_REQUEST_JSON"])
         let saved = try JSONDecoder().decode(SavedRecurring.self, from: Data(raw.utf8))
-        _ = try saved.command.validated(member: .init(userId: alex, householdId: household, displayName: "Test Alex"))
+        _ = try saved.command.rule.validated(
+            member: .init(userId: alex, householdId: household, displayName: "Test Alex"))
         XCTAssertEqual(saved.command.operationId.uuidString.lowercased(), "5bdfcaeb-3f20-4fa3-9db9-0f0902eede8f")
         XCTAssertEqual(saved.command.rule.ruleId, ruleId)
         XCTAssertEqual(saved.result?.status, .recorded)
