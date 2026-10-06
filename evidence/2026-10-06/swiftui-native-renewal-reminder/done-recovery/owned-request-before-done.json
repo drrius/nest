@@ -1,0 +1,54 @@
+{
+  "result": {
+    "version": 1,
+    "status": "recorded",
+    "operationId": "BF8FF1AB-F27C-4481-9769-A41A9C96F652",
+    "receipt": {
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "renewal": {
+        "removed": false,
+        "revision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+        "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+        "fields": {
+          "renewalOn": "2026-10-07",
+          "noticeDays": 0,
+          "responsibleId": null,
+          "recurringRuleId": null,
+          "title": "Nest QA reminder 0610-3f88"
+        },
+        "cancellationOn": "2026-10-07"
+      },
+      "version": 1,
+      "operationId": "BF8FF1AB-F27C-4481-9769-A41A9C96F652",
+      "command": {
+        "operationId": "BF8FF1AB-F27C-4481-9769-A41A9C96F652",
+        "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+        "expectedRevision": null,
+        "fields": {
+          "title": "Nest QA reminder 0610-3f88",
+          "renewalOn": "2026-10-07",
+          "responsibleId": null,
+          "noticeDays": 0,
+          "recurringRuleId": null
+        }
+      },
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "action": "saved"
+    },
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+  },
+  "command": {
+    "operationId": "BF8FF1AB-F27C-4481-9769-A41A9C96F652",
+    "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+    "expectedRevision": null,
+    "fields": {
+      "title": "Nest QA reminder 0610-3f88",
+      "noticeDays": 0,
+      "recurringRuleId": null,
+      "responsibleId": null,
+      "renewalOn": "2026-10-07"
+    }
+  },
+  "cancellationRequested": false
+}

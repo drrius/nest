@@ -1,0 +1,215 @@
+{
+  "privateEvents": 760,
+  "safeTimeline": [
+    {
+      "timestamp": "2026-10-06 12:47:44.108708+0200",
+      "PID": 48407,
+      "paths": ["/auth/v1/token"],
+      "statuses": [],
+      "networkTasks": []
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.174190+0200",
+      "PID": 48407,
+      "paths": ["/auth/v1/token"],
+      "statuses": [],
+      "networkTasks": []
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.260244+0200",
+      "PID": 48407,
+      "paths": ["/auth/v1/token"],
+      "statuses": [],
+      "networkTasks": []
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.260283+0200",
+      "PID": 48407,
+      "paths": ["/auth/v1/token"],
+      "statuses": [],
+      "networkTasks": []
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.260797+0200",
+      "PID": 48407,
+      "paths": ["/auth/v1/token"],
+      "statuses": [],
+      "networkTasks": []
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.702830+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.712901+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.715857+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.716537+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:44.755219+0200",
+      "PID": 48407,
+      "paths": ["/v1/session"],
+      "statuses": [],
+      "networkTasks": []
+    },
+    {
+      "timestamp": "2026-10-06 12:47:46.876728+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["401"],
+      "networkTasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:46.879094+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["401"],
+      "networkTasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:47.070389+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:47.070652+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:47.828081+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["2C7D337C-B654-47D7-8B79-D500EF968789.5"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:47.829286+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["2C7D337C-B654-47D7-8B79-D500EF968789.5"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:48.845724+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["4EA358EB-46DF-4BE2-8735-9D613FB5BE15.6"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:48.848164+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["4EA358EB-46DF-4BE2-8735-9D613FB5BE15.6"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:49.778852+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["438C1F34-1A9B-4DDE-A9BE-9DB1A814797D.7"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:49.780496+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["438C1F34-1A9B-4DDE-A9BE-9DB1A814797D.7"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:50.581262+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["943CA119-1D7C-4851-8A04-BBE814D67F8A.8"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:50.584279+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["943CA119-1D7C-4851-8A04-BBE814D67F8A.8"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:51.478368+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["654F3089-6459-4037-A599-2F5DAAFC4C23.9"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:51.478922+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["654F3089-6459-4037-A599-2F5DAAFC4C23.9"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:52.359177+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["B93834C0-896C-4B58-810A-5AD7D28B238A.10"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:52.361730+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["B93834C0-896C-4B58-810A-5AD7D28B238A.10"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:53.298900+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["F3C05767-CAD6-4322-A358-B0300ABDACF8.11"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:53.300428+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["F3C05767-CAD6-4322-A358-B0300ABDACF8.11"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:53.986080+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["0CCB6E9E-AC3D-4E6A-9F1E-34F2EB400123.12"]
+    },
+    {
+      "timestamp": "2026-10-06 12:47:53.987384+0200",
+      "PID": 48407,
+      "paths": [],
+      "statuses": ["200"],
+      "networkTasks": ["0CCB6E9E-AC3D-4E6A-9F1E-34F2EB400123.12"]
+    }
+  ]
+}

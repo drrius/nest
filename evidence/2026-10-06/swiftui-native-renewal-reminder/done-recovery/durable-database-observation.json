@@ -1,0 +1,112 @@
+{
+  "before": {
+    "alex": {
+      "state": {
+        "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "emptyJournals": 63,
+        "ownedRenewalRequest": 1
+      },
+      "containerIdentity": "3653C13E-0F46-45B3-9947-91C57CC66DED",
+      "databaseName": "nest-offline-78659b1ac1fa8f76ef0aabdb77c195e6fc33ac72f249500e6ae4c97984fc8ba3.sqlite",
+      "inode": 145560313,
+      "device": 16777231,
+      "snapshotCounts": {
+        "chore_snapshots": 2,
+        "cooking_profiles": 1,
+        "food_profiles": 1,
+        "grocery_snapshots": 2,
+        "ingredient_reviews": 2,
+        "meal_preparation_snapshots": 3,
+        "meal_weeks": 5,
+        "money_read_snapshots": 3,
+        "planned_recipes": 7,
+        "recipe_read_snapshots": 0,
+        "renewal_read_snapshots": 2
+      },
+      "lease": "00512884-2fc5-4107-b557-6725f0663829"
+    },
+    "sam": {
+      "state": {
+        "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "emptyJournals": 64,
+        "ownedRenewalRequest": 0
+      },
+      "containerIdentity": "45DF4866-0E12-4F7F-9DC9-F4E125E1D642",
+      "databaseName": "nest-offline-78659b1ac1fa8f76ef0aabdb77c195e6fc33ac72f249500e6ae4c97984fc8ba3.sqlite",
+      "inode": 147258478,
+      "device": 16777231,
+      "snapshotCounts": {
+        "chore_snapshots": 1,
+        "cooking_profiles": 1,
+        "food_profiles": 1,
+        "grocery_snapshots": 1,
+        "ingredient_reviews": 0,
+        "meal_preparation_snapshots": 1,
+        "meal_weeks": 3,
+        "money_read_snapshots": 2,
+        "planned_recipes": 1,
+        "recipe_read_snapshots": 4,
+        "renewal_read_snapshots": 1
+      },
+      "lease": "2d89248d-0770-431f-83c7-a6c90597b749"
+    }
+  },
+  "after": {
+    "alex": {
+      "state": {
+        "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+        "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "emptyJournals": 64,
+        "ownedRenewalRequest": 0
+      },
+      "containerIdentity": "5FD18D32-60C5-4D81-94A7-E717679AA773",
+      "databaseName": "nest-offline-78659b1ac1fa8f76ef0aabdb77c195e6fc33ac72f249500e6ae4c97984fc8ba3.sqlite",
+      "inode": 145560313,
+      "device": 16777231,
+      "snapshotCounts": {
+        "chore_snapshots": 2,
+        "cooking_profiles": 1,
+        "food_profiles": 1,
+        "grocery_snapshots": 2,
+        "ingredient_reviews": 2,
+        "meal_preparation_snapshots": 3,
+        "meal_weeks": 5,
+        "money_read_snapshots": 3,
+        "planned_recipes": 7,
+        "recipe_read_snapshots": 0,
+        "renewal_read_snapshots": 2
+      },
+      "lease": "0b24f327-f550-4a3f-8a53-9da916a4eb48"
+    },
+    "sam": {
+      "state": {
+        "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+        "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+        "emptyJournals": 64,
+        "ownedRenewalRequest": 0
+      },
+      "containerIdentity": "36872EEC-4AB5-4384-BFC3-8F29B19753BF",
+      "databaseName": "nest-offline-78659b1ac1fa8f76ef0aabdb77c195e6fc33ac72f249500e6ae4c97984fc8ba3.sqlite",
+      "inode": 147258478,
+      "device": 16777231,
+      "snapshotCounts": {
+        "chore_snapshots": 1,
+        "cooking_profiles": 1,
+        "food_profiles": 1,
+        "grocery_snapshots": 1,
+        "ingredient_reviews": 0,
+        "meal_preparation_snapshots": 1,
+        "meal_weeks": 3,
+        "money_read_snapshots": 2,
+        "planned_recipes": 1,
+        "recipe_read_snapshots": 4,
+        "renewal_read_snapshots": 1
+      },
+      "lease": "87a14b0e-7aa4-4fea-96fc-f5bd528314c4"
+    }
+  },
+  "containerRelocationAllowed": true,
+  "ByteIdentityClaimed": false
+}

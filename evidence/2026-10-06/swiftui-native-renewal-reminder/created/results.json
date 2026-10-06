@@ -1,0 +1,62 @@
+[
+  {
+    "step": "alex-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 10.828
+  },
+  {
+    "step": "sam-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 8.088
+  },
+  {
+    "step": "create",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeActiveRenewalReminderTests/testCreateFreshFutureRenewalExactlyOnceAndRetainReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 62.561
+  },
+  {
+    "step": "alex-created",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 12.124
+  },
+  {
+    "step": "sam-created",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 8.962
+  },
+  {
+    "step": "done",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeActiveRenewalReminderTests/testFinishExactCreatedRenewalThroughNormalDone",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 59.724
+  }
+]

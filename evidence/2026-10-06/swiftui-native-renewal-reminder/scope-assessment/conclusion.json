@@ -1,0 +1,16 @@
+{
+  "hostPID": 48407,
+  "windowLocal": "2026-10-06 12:47:35\u201312:48:10 +0200",
+  "providerResponses200": 2,
+  "domainSessionResponses": [401, 200],
+  "instrumentedSDKResponses": 9,
+  "allInstrumentedSDKResponses200": true,
+  "nonSDKSession401": true,
+  "exact401CallerUnknown": true,
+  "causeUnknown": true,
+  "AlexScopeUnsetAfterSDKFailure": true,
+  "noCapturedCurrentCredentialMetadata": true,
+  "noManualSQLiteOrKeychainRepair": true,
+  "ordinaryAlexAndSamUIOnlyColdLaunchesVerifiedOriginalIdentities": true,
+  "shippingAuthPolicyChanged": false
+}

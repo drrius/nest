@@ -1,0 +1,407 @@
+[
+  {
+    "at": "2026-10-06 12:47:44.081415+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["resuming"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.106418+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.108708+0200",
+    "PID": 48407,
+    "tasks": [],
+    "paths": ["/auth/v1/token"],
+    "connections": ["C1"],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.110904+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.149099+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["resuming"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.150303+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.174190+0200",
+    "PID": 48407,
+    "tasks": [],
+    "paths": ["/auth/v1/token"],
+    "connections": ["C2"],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.253576+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.260244+0200",
+    "PID": 48407,
+    "tasks": [],
+    "paths": ["/auth/v1/token"],
+    "connections": ["C2"],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.260283+0200",
+    "PID": 48407,
+    "tasks": [],
+    "paths": ["/auth/v1/token"],
+    "connections": ["C2"],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.260797+0200",
+    "PID": 48407,
+    "tasks": [],
+    "paths": ["/auth/v1/token"],
+    "connections": ["C2"],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.264132+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.264210+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.264453+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.264490+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.702830+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": ["200"],
+    "markers": ["received response"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.703240+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.712601+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.712901+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": ["200"],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.714782+0200",
+    "PID": 48407,
+    "tasks": ["7911FF4B-3949-4458-BC08-67625CE0B13D.2"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["finished"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.715857+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": ["200"],
+    "markers": ["received response"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.715926+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.716334+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.716537+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": ["200"],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.716609+0200",
+    "PID": 48407,
+    "tasks": ["56EB05A6-783F-45B8-80D9-3ED3D48FFC65.1"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["finished"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.754051+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["resuming"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.754290+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["resuming"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.755142+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.755219+0200",
+    "PID": 48407,
+    "tasks": [],
+    "paths": ["/v1/session"],
+    "connections": ["C3"],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.757624+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.798057+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.804134+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.804172+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:44.804264+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:44.804278+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:46.876728+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": ["401"],
+    "markers": ["received response"]
+  },
+  {
+    "at": "2026-10-06 12:47:46.876869+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:46.878949+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:46.879094+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": ["401"],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:46.879260+0200",
+    "PID": 48407,
+    "tasks": ["E62784BD-C03E-49CF-8DAF-59820A837061.4"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["finished"]
+  },
+  {
+    "at": "2026-10-06 12:47:47.070389+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": ["200"],
+    "markers": ["received response"]
+  },
+  {
+    "at": "2026-10-06 12:47:47.070440+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["using connection"]
+  },
+  {
+    "at": "2026-10-06 12:47:47.070591+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:47.070652+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": ["200"],
+    "markers": []
+  },
+  {
+    "at": "2026-10-06 12:47:47.070687+0200",
+    "PID": 48407,
+    "tasks": ["A679FB07-A7BB-44DB-B1BA-AFB0ECFB9914.3"],
+    "paths": [],
+    "connections": [],
+    "codes": [],
+    "markers": ["finished"]
+  }
+]

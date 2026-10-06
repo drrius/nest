@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "86B5E765-E7B4-40CE-BB0C-EDD18B0AFBB5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Bounded native GET path status and time without tokens_0_F9E530A9-20BF-4E52-B42D-029CBBE12C70.json",
+        "timestamp": 1791285054.893
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "74E2F949-61B8-4B21-9693-0F6955AF0B84.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal fixture native canonical and preserved household baseline_0_550D69BD-806D-4B36-A9DD-72BEBF80C6E9.json",
+        "timestamp": 1791285054.884
+      }
+    ],
+    "testIdentifier": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt"
+  }
+]

@@ -1,0 +1,206 @@
+{
+  "alex-cold-launch/alex-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dd2ed67954486b80ab6f48201656f13699ac4863a5778b3dfe95f60d03cfa0b1",
+    "view": "SpringBoard teardown"
+  },
+  "alex-cold-launch/cold-launch/25D130F1-A6E5-41A2-BC73-68FFFC7BF508.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "42f084d13a51e79ae54d806bc9e7146144ab15599fe22be6880ef2cc79de548b",
+    "view": "native capture"
+  },
+  "alex-cold-launch/cold-launch/4143C56F-9263-449A-BE84-F98A750B2D58.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "c1e151d2dcaa1202b434d2ad5cb835fbbc7645439049ce9e2470ad50f6b10958",
+    "view": "native capture"
+  },
+  "alex-cold-launch/cold-launch/F14A2E58-1522-4FCC-AF61-497EBFCF8731.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "0d05c1ed70d9e1523cc5a0881fb9fb9906824da8826bf79d8219a9430036e32c",
+    "view": "native capture"
+  },
+  "compile-failure/alex-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "bdb7c177b5b40a5927922ce1479fe7698c0cf85852d679872b4a098acd572ff2",
+    "view": "native capture"
+  },
+  "compile-failure/sam-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "bdb7c177b5b40a5927922ce1479fe7698c0cf85852d679872b4a098acd572ff2",
+    "view": "native capture"
+  },
+  "created/alex-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "b76c9fe571246e7eeeee6aecd45a28a8eb56465868b13c3864a28a77d54c7f21",
+    "view": "SpringBoard teardown"
+  },
+  "created/create/7D9F2BE3-903F-4D04-9896-21C341EB4828.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "9218395bf5241a8359ad5d265f54e02777ec38c756753725fa9cacac261bb6da",
+    "view": "native capture"
+  },
+  "created/create/C6CF07C1-F4BB-4931-83A6-1727D9BD8D27.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "421c80b5733e58f6d394437a68da609333ef5e245b8a001ebcb5a6c256f8c0fb",
+    "view": "native capture"
+  },
+  "created/create/D603E05F-B754-4E76-9C30-D61B78B9F56A.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "7fce7167c36517d03b26c2f198f6426380c5e8a0680d9937658ffce9ff2c7eed",
+    "view": "native capture"
+  },
+  "created/create/E8A32D89-8FEA-4BA3-BE9F-85942D34E543.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "b12b43a5eb7523ace6945a79c503f22491b53d172b25f750f952db0318bbd855",
+    "view": "native capture"
+  },
+  "created/create/F739A9D8-D87D-4514-9DEC-25337814550C.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "c267d99b89fffa986d578cd890ea920676f2cc9719f27994132441d90d7e2445",
+    "view": "native capture"
+  },
+  "created/done/D7CEE51A-165E-40AB-A3F8-6B55C61CD770.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "57b16baa03c409a1c5473e84942c3ab9b28dfe55f7645082aa0fb5c660792cae",
+    "view": "native capture"
+  },
+  "created/sam-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "00c96e69b155b10026d367b0acde6d9a535447bad293523468b01b5823a254c5",
+    "view": "SpringBoard teardown"
+  },
+  "done-recovery/alex-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "d14ad6f80081f7aa0c47c4cd913259167ed0a09fa4db44d865fc965984b9b7a2",
+    "view": "SpringBoard teardown"
+  },
+  "done-recovery/done/0613259D-2B85-41EA-A243-6A69F854B2E5.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "5868b4a5b3d382f6d6f5c34d0662da2b470ef25caad2e74e7b91f1b961163c1f",
+    "view": "native capture"
+  },
+  "done-recovery/done/76E3DF93-1FAB-4F8B-A6B7-4039FF6D83EF.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "abc53c526c42f12f7ca25c3c0e2e920d2b424ea25228b63ba64298dc0b378ada",
+    "view": "native capture"
+  },
+  "done-recovery/done/AEEFC7FD-6E88-41B5-A99C-A04A59E7F808.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "0ce4cfcfd1b891bbd332c624d7d9da3aefa46c73d65e1c42577d859a653a4e93",
+    "view": "native capture"
+  },
+  "done-recovery/done/F24032FD-AABA-42F0-B232-9F4D6EA6E9B0.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "0ce4cfcfd1b891bbd332c624d7d9da3aefa46c73d65e1c42577d859a653a4e93",
+    "view": "native capture"
+  },
+  "done-recovery/sam-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "a60f2b8ebda7415fc807036a4b7927ab2ded25e988f478b64b43601ec1ffb3bd",
+    "view": "SpringBoard teardown"
+  },
+  "foreground-restoration/alex-today.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "3ea8fea8a18bc29b912838b8069a1707b1ad91393cc80eb1392660189b6a246b",
+    "view": "native capture"
+  },
+  "foreground-restoration/sam-today.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "3ea8fea8a18bc29b912838b8069a1707b1ad91393cc80eb1392660189b6a246b",
+    "view": "native capture"
+  },
+  "nil-json-failure/alex-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "4605a6b0b356f6a5bc455f572ada2e018a081fb656e769a2d0f28030c0f6b6b7",
+    "view": "SpringBoard teardown"
+  },
+  "nil-json-failure/sam-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "b7401e8d6c64d3e2d7937efdd66006409e65b2c03366c8e35598e7e58cdd0fbe",
+    "view": "Native Today, preexisting state"
+  },
+  "picker-observer-failure/alex-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "aa491d84b61a5236d4189dfcfaaf61157451c79675a985cd838f3acf5ebf5de4",
+    "view": "SpringBoard teardown"
+  },
+  "picker-observer-failure/create/0021E914-BDD3-4A7C-895D-AB75D5AF5B2A.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "bac484bc6fc325837f23c3e85cb6ffe1fddfcc8fd84b61e70a40cf0f7a2f378a",
+    "view": "native capture"
+  },
+  "picker-observer-failure/create/60A39FDC-0AE1-48D3-8779-C9DF581B7A6A.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "ddcc9b2176b8c9e1bf337323f0f1517eb5b9d2a1f59a6867f9b061ea26dec3e6",
+    "view": "native capture"
+  },
+  "picker-observer-failure/create/E14AA1BE-1567-4061-BAD8-8EE7C9985916.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "d21a97aaf429bb4c0886b023deda45682a0a3c68f47f7bbea30c7b89310eede6",
+    "view": "native capture"
+  },
+  "picker-observer-failure/create/E814AA40-739D-4096-AA0D-60687B535FCA.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "bac484bc6fc325837f23c3e85cb6ffe1fddfcc8fd84b61e70a40cf0f7a2f378a",
+    "view": "native capture"
+  },
+  "picker-observer-failure/sam-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "6ffe94a89d551817d5a286bea993045bbbcae26573970cd36a2551fd1028e441",
+    "view": "SpringBoard teardown"
+  },
+  "sam-cold-launch/cold-launch/6B176E3A-F132-4F74-83C7-545A0214363F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "3c9b43cb52d623a0b5ce092236ac925c8d83f01f823ef7b380c1b845be41b8ae",
+    "view": "native capture"
+  },
+  "sam-cold-launch/cold-launch/C1D971AD-09B1-497B-8700-DD4C30FF8A7F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "3c9b43cb52d623a0b5ce092236ac925c8d83f01f823ef7b380c1b845be41b8ae",
+    "view": "native capture"
+  },
+  "sam-cold-launch/cold-launch/D95D1DAA-D9CC-42F0-B7A3-4F124A9E4C91.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "6357ddfc7478b323948225c4a2334ab317a1c1f629dcdeb23f119f05e4d2c323",
+    "view": "native capture"
+  },
+  "sam-cold-launch/sam-terminal.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "99eeb498d860359eef9ebe3eaca5a090d88363d5d34034ecce13d3d4dd45c6f6",
+    "view": "SpringBoard teardown"
+  }
+}

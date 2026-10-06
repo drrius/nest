@@ -1,0 +1,11 @@
+{
+  "nativeUIResult": "PASS",
+  "nativeSeconds": 14.203,
+  "controllerResult": "FAIL",
+  "failedAssertion": "data container UUID unchanged",
+  "sourceLine": 113,
+  "databaseDeviceInodeNameAnd11CountsEqual": true,
+  "containerRelocationObserved": true,
+  "databaseByteIdentityClaimed": false,
+  "repeatedAlexRecovery": false
+}

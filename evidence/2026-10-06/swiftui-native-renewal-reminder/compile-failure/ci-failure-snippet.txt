@@ -1,0 +1,15 @@
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8356730Z /Users/runner/work/nest/nest/apps/ios/AppTests/HostedActiveRenewalReminderReadTests.swift:205:17: error: capture of 'self' with non-Sendable type 'HostedActiveRenewalReminderReadTests' in a '@Sendable' closure [#SendableClosureCaptures]
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8357540Z   5 |
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8357660Z   6 | @MainActor
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8357890Z   7 | final class HostedActiveRenewalReminderReadTests: XCTestCase {
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8358430Z     |             `- note: class 'HostedActiveRenewalReminderReadTests' does not conform to the 'Sendable' protocol
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8359200Z   8 |     private let alex = UUID(uuidString: "791f7261-6c9d-4061-9c8a-57aa6e0b0200")!
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8359670Z   9 |     private let sam = UUID(uuidString: "e5f80cfd-b69a-4aa0-a267-75784e943676")!
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8360030Z     :
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8360290Z 203 |                 attachment.name = "Bounded native GET path status and time without tokens"
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8360660Z 204 |                 attachment.lifetime = .keepAlways
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8360920Z 205 |                 self.add(attachment)
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8361540Z     |                 `- error: capture of 'self' with non-Sendable type 'HostedActiveRenewalReminderReadTests' in a '@Sendable' closure [#SendableClosureCaptures]
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8362080Z 206 |             }
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8362220Z 207 |         }
+swiftui	Test iPhone session and account boundaries	2026-10-06T10:45:46.8362310Z

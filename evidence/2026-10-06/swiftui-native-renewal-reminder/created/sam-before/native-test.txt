@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-phase1-selectors-20261006/sam-before/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-phase1-selectors-20261006/sam-before/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-phase1-selectors-20261006/sam-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 13:18:50.719.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 13:18:50.719.
+Test Suite 'HostedActiveRenewalReminderReadTests' started at 2026-10-06 13:18:50.719.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' started.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' passed (5.783 seconds).
+Test Suite 'HostedActiveRenewalReminderReadTests' passed at 2026-10-06 13:18:56.503.
+	 Executed 1 test, with 0 failures (0 unexpected) in 5.783 (5.784) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 13:18:56.504.
+	 Executed 1 test, with 0 failures (0 unexpected) in 5.783 (5.785) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 13:18:56.504.
+	 Executed 1 test, with 0 failures (0 unexpected) in 5.783 (5.785) seconds
+2026-10-06 13:18:56.815 xcodebuild[56701:21047930] [MT] IDETestOperationsObserverDebug: 7.960 elapsed -- Testing started completed.
+2026-10-06 13:18:56.815 xcodebuild[56701:21047930] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 13:18:56.815 xcodebuild[56701:21047930] [MT] IDETestOperationsObserverDebug: 7.960 sec, +7.960 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-phase1-selectors-20261006/sam-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

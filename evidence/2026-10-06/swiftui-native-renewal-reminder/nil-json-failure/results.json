@@ -1,0 +1,12 @@
+[
+  {
+    "step": "alex-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 24.853
+  }
+]

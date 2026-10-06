@@ -1,0 +1,125 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0021E914-BDD3-4A7C-895D-AB75D5AF5B2A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal phase-one terminal screen_0_92B3A09E-CD4B-4AA9-B87C-99F7B576ABEF.png",
+        "timestamp": 1791285185.91
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C5E49274-750C-45AE-AFDB-AC8F5904A5AB.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal control placement failure accessibility tree_0_D2AD824A-2EFB-4BB9-9B69-0669F4A01FBF.txt",
+        "timestamp": 1791285185.808
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E814AA40-739D-4096-AA0D-60687B535FCA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal control placement failure_0_78F20EE0-34C2-4FBC-8F20-598D1022C6EF.png",
+        "timestamp": 1791285185.356
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FF94F2B5-241A-4266-A641-C5989A4ADE2B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Failed active renewal control viewport_0_DCEE128C-5F56-4E92-97A1-2E5FA21CFFB3.json",
+        "timestamp": 1791285185.227
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9A61054E-E4C2-4B07-AAB5-3804D104E5F5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual active renewal control viewport_0_CC5453F9-1F25-4778-8944-A3CF6D165E05.json",
+        "timestamp": 1791285107.14
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A27BEAE4-4C1D-4E8B-9121-5486A6313C0D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual active renewal control viewport_0_F17555B4-4B92-4DB2-9071-26C5F38D1AC8.json",
+        "timestamp": 1791285106.411
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D7A3FD27-20B9-4051-A28C-DF712CE90751.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native renewal date selected as 2026-10-07 without Save accessibility tree_0_D3D941A6-6D27-4996-82EC-67419ABF4B40.txt",
+        "timestamp": 1791285105.748
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E14AA1BE-1567-4061-BAD8-8EE7C9985916.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native renewal date selected as 2026-10-07 without Save_0_92CF60BD-A6FB-4FFF-95B2-E6F245012992.png",
+        "timestamp": 1791285105.33
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7C4BB46F-7984-4DC5-9EA0-D097A0A72F46.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native renewal calendar before exact future date accessibility tree_0_77C92110-4122-470F-9280-4B6F728C6B79.txt",
+        "timestamp": 1791285101.595
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "60A39FDC-0AE1-48D3-8779-C9DF581B7A6A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native renewal calendar before exact future date_0_F31B2FBC-A7A2-4336-ABB0-6C6C18DA108A.png",
+        "timestamp": 1791285100.833
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4B917065-14A5-4F58-B9CF-9B9F8D58B00C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual active renewal control viewport_0_B5B15082-90A1-4339-86BF-EEEBB56C2F05.json",
+        "timestamp": 1791285099.033
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3966E033-C1FA-4F70-8EF7-A12A65C3320D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual active renewal control viewport_0_90722266-31AF-4E2D-88C1-2AF93903B2B2.json",
+        "timestamp": 1791285093.68
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "572268C6-48DE-4249-A5DB-A2CCC61A9606.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual active renewal control viewport_0_D796AC3A-9215-4634-9A4C-D2DABAC15220.json",
+        "timestamp": 1791285086.249
+      }
+    ],
+    "testIdentifier": "NativeActiveRenewalReminderTests/testCreateFreshFutureRenewalExactlyOnceAndRetainReceipt()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRenewalReminderTests/testCreateFreshFutureRenewalExactlyOnceAndRetainReceipt"
+  }
+]

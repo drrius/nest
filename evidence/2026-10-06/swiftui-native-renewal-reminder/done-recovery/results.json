@@ -1,0 +1,32 @@
+[
+  {
+    "step": "done",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeActiveRenewalReminderTests/testFinishExactCreatedRenewalThroughNormalDone",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 31.084
+  },
+  {
+    "step": "alex-after",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 10.117
+  },
+  {
+    "step": "sam-after",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 9.231
+  }
+]

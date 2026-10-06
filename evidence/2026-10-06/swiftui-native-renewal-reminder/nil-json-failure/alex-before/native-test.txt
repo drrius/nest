@@ -1,0 +1,31 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-phase1-fixed-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-phase1-fixed-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-phase1-fixed-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 12:47:44.061.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 12:47:44.061.
+Test Suite 'HostedActiveRenewalReminderReadTests' started at 2026-10-06 12:47:44.062.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' started.
+<unknown>:0: error: -[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt] : failed: caught error: "Error Domain=NSCocoaErrorDomain Code=3840 "JSON text did not start with array or object and option to allow fragments not set. around line 1, column 0." UserInfo={NSDebugDescription=JSON text did not start with array or object and option to allow fragments not set. around line 1, column 0., NSJSONSerializationErrorIndex=0}"
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' failed (10.040 seconds).
+Test Suite 'HostedActiveRenewalReminderReadTests' failed at 2026-10-06 12:47:54.102.
+	 Executed 1 test, with 1 failure (1 unexpected) in 10.040 (10.040) seconds
+Test Suite 'NestAppTests.xctest' failed at 2026-10-06 12:47:54.102.
+	 Executed 1 test, with 1 failure (1 unexpected) in 10.040 (10.041) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 12:47:54.102.
+	 Executed 1 test, with 1 failure (1 unexpected) in 10.040 (10.041) seconds
+2026-10-06 12:48:06.884 xcodebuild[48392:20972408] [MT] IDETestOperationsObserverDebug: 24.721 elapsed -- Testing started completed.
+2026-10-06 12:48:06.884 xcodebuild[48392:20972408] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 12:48:06.884 xcodebuild[48392:20972408] [MT] IDETestOperationsObserverDebug: 24.721 sec, +24.721 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-phase1-fixed-20261006/alex-before/result.xcresult
+
+Failing tests:
+	HostedActiveRenewalReminderReadTests.testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt()
+
+** TEST EXECUTE FAILED **
+
+Testing started
