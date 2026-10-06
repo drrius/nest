@@ -169,12 +169,20 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         let bar = app.navigationBars[title]
         XCTAssertTrue(bar.exists && bar.isHittable)
         let frame = bar.frame
-        let start = CGPoint(x: frame.midX, y: frame.minY + 8)
+        let form = app.collectionViews.firstMatch
+        XCTAssertTrue(form.exists)
+        let sheet = form.frame
+        let chrome = CGRect(x: sheet.minX, y: sheet.minY, width: sheet.width, height: frame.minY - sheet.minY)
+        XCTAssertGreaterThan(chrome.height, 0)
+        XCTAssertTrue(app.frame.contains(sheet) && sheet.contains(frame))
+        let start = CGPoint(x: chrome.midX, y: chrome.midY)
         let end = CGPoint(x: frame.midX, y: app.frame.maxY - 45)
-        XCTAssertTrue(frame.contains(start) && app.frame.contains(end))
+        XCTAssertTrue(chrome.contains(start) && sheet.contains(start) && !frame.contains(start))
+        XCTAssertTrue(app.frame.contains(start) && app.frame.contains(end))
         attach(
             [
                 "navigationBar": rect(frame), "app": rect(app.frame), "dirty": dirty,
+                "sheet": rect(sheet), "sheetTopStrip": rect(chrome),
                 "gestureStart": [start.x, start.y], "gestureEnd": [end.x, end.y],
             ], name: title + " measured sheet dismissal gesture")
         app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: start.x, dy: start.y))
