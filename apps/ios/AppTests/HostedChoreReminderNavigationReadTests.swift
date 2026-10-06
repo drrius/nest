@@ -1,0 +1,105 @@
+import Foundation
+import XCTest
+
+@testable import Nest
+
+@MainActor
+final class HostedChoreReminderNavigationReadTests: XCTestCase {
+    private let alex = UUID(uuidString: "791f7261-6c9d-4061-9c8a-57aa6e0b0200")!
+    private let sam = UUID(uuidString: "e5f80cfd-b69a-4aa0-a267-75784e943676")!
+    private let household = UUID(uuidString: "be772ffd-3ab5-41d5-8438-647a79a553da")!
+    private let title = "Hosted smoke tidy kitchen"
+
+    override func setUp() {
+        super.setUp()
+        continueAfterFailure = false
+    }
+
+    func testGETOnlyExactActiveChoreAndReminder() async throws {
+        let role = try authorized()
+        let (http, member, token) = try await authenticated(role)
+        let snapshot = try await ChoreAPI(http: http).snapshot(token: token, member: member)
+        XCTAssertEqual(Set(snapshot.members.map(\.actorId)), Set([alex, sam]))
+        XCTAssertEqual(snapshot.members.first(where: { $0.actorId == alex })?.displayName, "Test Alex")
+        XCTAssertEqual(snapshot.members.first(where: { $0.actorId == sam })?.displayName, "Test Sam")
+        let matches = snapshot.chores.filter { $0.title == title }
+        XCTAssertEqual(matches.count, 1, "Only the unique existing active original chore is authorized")
+        let target = try XCTUnwrap(matches.first)
+        let context = try await NotificationAPI(http: http).choreReminder(token: token, member: member, id: target.id)
+        XCTAssertEqual(context.chore.id, target.id)
+        XCTAssertEqual(context.chore.title, target.title)
+        XCTAssertEqual(context.chore.dueDate, target.dueDate)
+        XCTAssertEqual(context.chore.assigneeId, target.assigneeId)
+        XCTAssertNil(context.chore.offlineEpoch)
+        XCTAssertNotNil(target.offlineEpoch)
+        let env = ProcessInfo.processInfo.environment
+        if let expected = env["NEST_QA_CHORE_REMINDER_CONTEXT_JSON"] {
+            let baseline = try JSONDecoder().decode(ChoreReminderContext.self, from: Data(expected.utf8))
+            XCTAssertEqual(context, baseline)
+            XCTAssertEqual(target.id.uuidString.lowercased(), env["NEST_QA_CHORE_OCCURRENCE_ID"])
+        }
+        let settings =
+            context.reminder?.settings
+            ?? ReminderSettings(
+                enabled: false, recipientIds: [], localTime: "08:00", daysBefore: 0)
+        let record: [String: Any] = [
+            "actor": member.userId.uuidString.lowercased(), "household": household.uuidString.lowercased(),
+            "context": try json(context), "editorSettings": try json(settings),
+            "activeExactTitleMatches": matches.count,
+            "snapshotOfflineEpoch": try XCTUnwrap(target.offlineEpoch).uuidString.lowercased(),
+            "roster": try json(snapshot.members), "domainHTTPMethods": ["GET"], "hostedCommands": 0,
+        ]
+        let attachment = XCTAttachment(
+            data: try JSONSerialization.data(withJSONObject: record, options: [.sortedKeys]),
+            uniformTypeIdentifier: "public.json")
+        attachment.name = "Exact active original chore reminder read-only canonical context"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    private func authenticated(_ role: (UUID, String)) async throws -> (NestHTTP, VerifiedMember, String) {
+        let config = try NestConfiguration.fromBundle()
+        guard config.apiURL.absoluteString == "https://nest-test-api-drrius-projects.vercel.app",
+            config.supabaseURL.absoluteString == "https://tkjixmujjoustdiedfmw.supabase.co", !config.pushEnabled
+        else { throw ManualWeekReadFailure.configuration }
+        let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
+        try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        addTeardownBlock { [directory] in try FileManager.default.removeItem(at: directory) }
+        let store = try ChoreOfflineStore(url: directory.appendingPathComponent("chore-reminder-read.sqlite"))
+        let auth = try NestAuth(configuration: config, offline: store)
+        let credentials = try await auth.session()
+        guard credentials.userId == role.0 else { throw ManualWeekReadFailure.configuration }
+        let http = try NestHTTP(baseURL: config.apiURL) { request in
+            guard request.httpMethod == "GET", request.url?.host == "nest-test-api-drrius-projects.vercel.app"
+            else { throw NestAPIFailure.configuration }
+            return try await URLSession.shared.data(for: request, delegate: NoRedirects())
+        }
+        let member = try await ChoreAPI(http: http).verify(token: credentials.accessToken, expectedActor: role.0)
+        guard member.householdId == household, member.displayName == role.1 else {
+            throw ManualWeekReadFailure.configuration
+        }
+        return (http, member, credentials.accessToken)
+    }
+
+    private func json<T: Encodable>(_ value: T) throws -> Any {
+        try JSONSerialization.jsonObject(with: JSONEncoder().encode(value))
+    }
+
+    private func authorized() throws -> (UUID, String) {
+        #if targetEnvironment(simulator)
+            let env = ProcessInfo.processInfo.environment
+            guard env["NEST_QA_CHORE_REMINDER_READ"] == "20261006" else {
+                throw XCTSkip("Requires dated existing original chore reminder read-only preflight.")
+            }
+            let roles = [
+                "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A": (alex, "Test Alex"),
+                "CA0BCEDE-A297-493A-8921-9E31F8B65783": (sam, "Test Sam"),
+            ]
+            let role = try XCTUnwrap(roles[try XCTUnwrap(env["SIMULATOR_UDID"])])
+            XCTAssertEqual(env["NEST_QA_CHORE_REMINDER_NAME"], role.1)
+            return role
+        #else
+            throw XCTSkip("Fictional chore reminder reads are forbidden on physical phones.")
+        #endif
+    }
+}
