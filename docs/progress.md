@@ -225,7 +225,8 @@ Both canonical reads, original scopes and 64 empty journals remain unchanged.
 The first normal native 44-point edge probe fails: its whole probe area fits in
 the row and viewport, but Increment at centerY minus 21 leaves the value at zero.
 Real before/after GETs agree; journals and original scopes remain unchanged.
-The shared Stepper larger-size experiment is pending native verification.
+The larger-size modifier fails the same tap and is removed. A shared native
+minus/plus control with explicit 44-point labels now awaits native edge verification.
 Explicit draft discard was not observed in the failed run; physical touch remains open.
 
 ## Earlier native settlement verification
