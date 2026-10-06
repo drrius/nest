@@ -1,0 +1,54 @@
+{
+  "result": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "operationId": "086C2DE3-72C3-4866-8357-AA6AB1500994",
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "status": "recorded",
+    "receipt": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "version": 1,
+      "operationId": "086C2DE3-72C3-4866-8357-AA6AB1500994",
+      "action": "saved",
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "command": {
+        "fields": {
+          "title": "Nest native renewal 20261006",
+          "recurringRuleId": null,
+          "responsibleId": null,
+          "noticeDays": 0,
+          "renewalOn": "2026-10-06"
+        },
+        "expectedRevision": null,
+        "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+        "operationId": "086C2DE3-72C3-4866-8357-AA6AB1500994"
+      },
+      "renewal": {
+        "fields": {
+          "responsibleId": null,
+          "renewalOn": "2026-10-06",
+          "noticeDays": 0,
+          "title": "Nest native renewal 20261006",
+          "recurringRuleId": null
+        },
+        "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+        "cancellationOn": "2026-10-06",
+        "revision": "F172C8B6-3485-4175-876D-01859D47C895",
+        "removed": false
+      }
+    },
+    "version": 1
+  },
+  "cancellationRequested": false,
+  "command": {
+    "fields": {
+      "noticeDays": 0,
+      "responsibleId": null,
+      "recurringRuleId": null,
+      "title": "Nest native renewal 20261006",
+      "renewalOn": "2026-10-06"
+    },
+    "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+    "expectedRevision": null,
+    "operationId": "086C2DE3-72C3-4866-8357-AA6AB1500994"
+  }
+}

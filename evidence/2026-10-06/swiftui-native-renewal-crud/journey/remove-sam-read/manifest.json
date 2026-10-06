@@ -1,0 +1,17 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "507B6469-DFE4-491D-9E3C-A7E157F4C987.json",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Owned renewal canonical native SDK read_0_A93E36FA-E440-4AED-87A3-53548B4F2CF6.json",
+        "timestamp" : 1791257927.984
+      }
+    ],
+    "testIdentifier" : "HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState()",
+    "testIdentifierURL" : "test://com.apple.xcode/Nest/NestAppTests/HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState"
+  }
+]

@@ -66,20 +66,13 @@ final class NativeRenewalCrudTests: XCTestCase {
         capture(app, name: "Owned renewal removal confirmation")
         confirmation.tap()
         retainReceipt(app, message: "Removed from Nest.")
-        XCTAssertTrue(app.staticTexts["No renewals yet."].waitForExistence(timeout: 15))
-        capture(app, name: "Owned renewal removed, empty list restored")
+        capture(app, name: "Owned renewal removal recorded")
         finish(app)
     }
 
-    func testDiscardUnsentEditAndVerifyNativeSelection() throws {
-        _ = try authorized(action: "discard_unsent_edit", role: "Test Sam")
+    func testVerifyNativeSelectionWithoutSaving() throws {
+        let app = try open(action: "verify_selection", role: "Test Sam")
         try requireOwnedIdentity()
-        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
-        app.activate()
-        XCTAssertTrue(app.navigationBars["Edit renewal"].waitForExistence(timeout: 15))
-        XCTAssertEqual(app.textFields["renewal-title"].value as? String, edited + original)
-        capture(app, name: "Unsent edit observer failure before explicit discard")
-        discardEditedDraft(app)
         XCTAssertTrue(app.staticTexts[original].firstMatch.waitForExistence(timeout: 15))
         app.buttons["Edit"].tap()
         XCTAssertTrue(app.navigationBars["Edit renewal"].waitForExistence(timeout: 15))

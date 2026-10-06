@@ -1,0 +1,267 @@
+Attributes: Application, 0x105e42000, pid: 50397, label: 'Nest'
+Element subtree:
+ →Application, 0x105e42000, pid: 50397, label: 'Nest'
+    Window (Main), 0x105e14410, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x105e13960, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105e3a830, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x105e27c00, {{-375.0, -667.0}, {1125.0, 2001.0}}
+          Other, 0x105e27180, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x105e21ee0, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x105e47d20, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x105e440e0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105e43b30, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x105e22630, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x105e3d750, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x105e28d90, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x105e18890, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x105e170b0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x105e32200, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Renewals'
+                              Button, 0x105e24530, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Back'
+                              StaticText, 0x105e36c20, {{149.5, 31.5}, {76.0, 21.0}}, label: 'Renewals'
+                              Other, 0x105e42350, {{311.0, 24.0}, {44.0, 36.0}}, label: 'Add'
+                                Other, 0x105e0d800, {{311.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x105e10150, {{311.0, 20.0}, {44.0, 44.0}}, label: 'Add'
+                            Other, 0x105e15b10, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x105e9fb80, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x105e135b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x105e20970, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x105e1bd80, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x105e1b630, {{-16.0, -1260.0}, {407.0, 1481.0}}
+                                      Other, 0x105e108a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x105e15760, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x105e21b30, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x105e22280, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Cell, 0x105e1fed0, {{16.0, 109.0}, {343.0, 94.5}}
+                                        Other, 0x105e2eb10, {{16.0, 109.0}, {343.0, 94.5}}
+                                          Other, 0x105e1dce0, {{16.0, 109.0}, {343.0, 94.5}}
+                                        Other, 0x105e16cf0, {{16.0, 109.0}, {343.0, 94.5}}
+                                          Other, 0x105e490b0, {{16.0, 109.0}, {343.0, 94.5}}
+                                            Other, 0x105e11a70, {{16.0, 109.0}, {343.0, 94.5}}
+                                              StaticText, 0x105e0c740, {{16.0, 109.0}, {343.0, 94.5}}, label: 'Keep track of renewal dates and when to give notice. Nest does not cancel contracts or create calendar events.'
+                                      Other, 0x105e0e080, {{-16.0, 221.0}, {407.0, 234.5}}
+                                      Cell, 0x105e60290, {{16.0, 221.0}, {343.0, 40.5}}
+                                        Other, 0x105e9cd00, {{16.0, 221.0}, {343.0, 40.5}}
+                                        Other, 0x105e9d120, {{16.0, 221.0}, {343.0, 40.5}}
+                                          Other, 0x105e69060, {{16.0, 221.0}, {343.0, 40.5}}
+                                            Other, 0x105e14dd0, {{16.0, 221.0}, {343.0, 40.5}}
+                                              StaticText, 0x105e2f0f0, {{16.0, 221.0}, {343.0, 40.5}}, label: 'Household renewals'
+                                      Cell, 0x105e40970, {{16.0, 261.5}, {343.0, 176.5}}
+                                        Other, 0x105e36160, {{16.0, 261.5}, {343.0, 176.5}}
+                                          Other, 0x105e9bc80, {{16.0, 261.5}, {343.0, 176.5}}
+                                        Other, 0x105e698a0, {{16.0, 261.5}, {343.0, 176.5}}
+                                          Other, 0x105e149b0, {{16.0, 261.5}, {343.0, 176.5}}
+                                            Other, 0x105e25c00, {{16.0, 261.5}, {343.0, 176.5}}
+                                              StaticText, 0x105e0cb00, {{32.0, 282.5}, {243.5, 20.5}}, label: 'Nest native renewal 20261006'
+                                              StaticText, 0x105e69480, {{32.0, 311.0}, {158.0, 20.5}}, label: 'Renews 2026-10-06'
+                                              StaticText, 0x105e9d540, {{32.0, 339.5}, {173.5, 20.5}}, label: 'Cancel by 2026-10-06'
+                                              Button, 0x105e9c8e0, {{32.0, 368.0}, {29.5, 20.5}}, label: 'Edit'
+                                              Button, 0x105e25160, {{281.5, 368.0}, {61.5, 20.5}}, label: 'Remove'
+                                              Button, 0x105e184a0, {{32.0, 396.5}, {136.0, 20.5}}, label: 'Reminder choices'
+                                      Other, 0x105e3f760, {{-16.0, 455.5}, {407.0, 1423.5}}
+                                      Cell, 0x105ea9670, {{16.0, 473.0}, {343.0, 52.0}}
+                                        Other, 0x105ea9790, {{16.0, 473.0}, {343.0, 52.0}}
+                                          Other, 0x105ea98b0, {{16.0, 473.0}, {343.0, 52.0}}
+                                        Other, 0x105ea99d0, {{16.0, 473.0}, {343.0, 52.0}}
+                                          Other, 0x105ea9af0, {{16.0, 473.0}, {343.0, 52.0}}
+                                            Other, 0x105ea9c10, {{16.0, 473.0}, {343.0, 52.0}}
+                                              Button, 0x105ea9d30, {{16.0, 473.0}, {343.0, 52.0}}, label: 'Refresh'
+                                      Other, 0x105ea9e50, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x105ea9f70, {{369.0, 116.0}, {3.0, 465.0}}
+                                      Other, 0x105eaa090, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x105eaa1b0, {{369.0, 116.0}, {3.0, 465.0}}
+                            Other, 0x105eaa2d0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x105eaa3f0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105eaa510, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x105eaa630, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x105eaa750, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x105eaa870, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x105eaa990, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x105eaaab0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x105eaabd0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x105eaacf0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x105eaae10, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x105eaaf30, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x105eab050, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x105eab170, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x105eab290, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x105eab3b0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x105eab4d0, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x105eab5f0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x105eab710, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x105eab830, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x105eab950, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x105eaba70, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x105eabb90, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x105eabcb0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x105eabdd0, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x105eabef0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x105eac010, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x105eac130, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x105eac250, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x105eac370, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x105eac490, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x105eac5b0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105eac6d0, {{-375.0, -667.0}, {1125.0, 2001.0}}
+        Other, 0x105eac7f0, {{0.0, 30.0}, {375.0, 637.0}}
+          Other, 0x105eac910, {{0.0, 30.0}, {375.0, 637.0}}
+            Other, 0x105eaca30, {{0.0, 30.0}, {375.0, 637.0}}
+              Other, 0x105eacb50, {{0.0, 30.0}, {375.0, 637.0}}
+                Other, 0x105eacc70, {{0.0, 30.0}, {375.0, 637.0}}
+                  Other, 0x105eacd90, {{0.0, 30.0}, {375.0, 637.0}}
+                    NavigationBar, 0x105eaceb0, {{0.0, 46.0}, {375.0, 106.0}}, identifier: 'Edit renewal'
+                      Other, 0x105eacfd0, {{20.0, 50.0}, {44.0, 36.0}}, identifier: 'xmark', label: 'Cancel'
+                        Other, 0x105ead0f0, {{20.0, 50.0}, {44.0, 36.0}}
+                          Button, 0x105ead210, {{20.0, 46.0}, {44.0, 44.0}}, identifier: 'xmark', label: 'Cancel'
+                      StaticText, 0x105ead330, {{16.0, 103.5}, {193.5, 41.0}}, label: 'Edit renewal'
+                    Other, 0x105ead450, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x105ead570, {{0.0, 30.0}, {375.0, 637.0}}
+                        Other, 0x105ead690, {{0.0, 30.0}, {375.0, 637.0}}
+                          Other, 0x105ead7b0, {{0.0, 30.0}, {375.0, 637.0}}
+                            CollectionView, 0x105ead8d0, {{0.0, 30.0}, {375.0, 637.0}}
+                              Other, 0x105ead9f0, {{-16.0, -1122.0}, {407.0, 1595.0}}
+                              Other, 0x105eadb10, {{0.0, 30.0}, {375.0, 637.0}}
+                                Other, 0x105eadc30, {{0.0, 30.0}, {375.0, 124.8}}
+                              Other, 0x105eadd50, {{0.0, 30.0}, {375.0, 637.0}}
+                              Cell, 0x105eade70, {{16.0, 152.0}, {343.0, 40.5}}
+                                Other, 0x105eadf90, {{16.0, 152.0}, {343.0, 40.5}}
+                                Other, 0x105eae0b0, {{16.0, 152.0}, {343.0, 40.5}}
+                                  Other, 0x105eae1d0, {{16.0, 152.0}, {343.0, 40.5}}
+                                    Other, 0x105eae2f0, {{16.0, 152.0}, {343.0, 40.5}}
+                                      StaticText, 0x105eae410, {{16.0, 152.0}, {343.0, 40.5}}, label: 'Renewal'
+                              Cell, 0x105eae530, {{16.0, 192.5}, {343.0, 94.5}}
+                                Other, 0x105eae650, {{16.0, 192.5}, {343.0, 94.5}}
+                                  Other, 0x105eae770, {{16.0, 192.5}, {343.0, 94.5}}
+                                Other, 0x105eae890, {{16.0, 192.5}, {343.0, 94.5}}
+                                  Other, 0x105eae9b0, {{16.0, 192.5}, {343.0, 94.5}}
+                                    Other, 0x105eaead0, {{16.0, 192.5}, {343.0, 94.5}}
+                                      StaticText, 0x105eaebf0, {{32.0, 207.5}, {25.0, 14.5}}, label: 'Title'
+                                      TextField, 0x105eaed10, {{32.0, 239.0}, {311.0, 22.0}}, identifier: 'renewal-title', label: 'Renewal title', value: Nest native renewa...
+                                        Other, 0x105eaee30, {{32.0, 239.0}, {311.0, 22.0}}, identifier: '_UITextSelectionRangeAdjustmentContainerView'
+                                          Other, 0x105eaef50, {{32.0, 238.0}, {16.5, 23.5}}, identifier: 'com.apple.text.grabber.leading'
+                                            Other, 0x105eaf070, {{24.8, 224.5}, {16.5, 16.5}}
+                                            Other, 0x105eaf190, {{32.0, 238.0}, {2.0, 23.5}}
+                                          Other, 0x105eaf2b0, {{263.0, 238.0}, {16.5, 23.5}}, identifier: 'com.apple.text.grabber.trailing'
+                                            Other, 0x105eaf3d0, {{263.0, 238.0}, {2.0, 23.5}}
+                                            Other, 0x105eaf4f0, {{255.8, 258.5}, {16.5, 16.5}}
+                                        Other, 0x105eaf610, {{32.0, 247.0}, {311.0, 11.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x105eaf730, {{35.0, 255.0}, {305.0, 3.0}}
+                              Cell, 0x105eaf850, {{16.0, 287.0}, {343.0, 64.5}}
+                                Other, 0x105eaf970, {{16.0, 287.0}, {343.0, 64.5}}
+                                  Other, 0x105eafa90, {{16.0, 287.0}, {343.0, 64.5}}
+                                Other, 0x105eafbb0, {{16.0, 287.0}, {343.0, 64.5}}
+                                  Other, 0x105eafcd0, {{16.0, 287.0}, {343.0, 64.5}}
+                                    Other, 0x105eafdf0, {{16.0, 287.0}, {343.0, 64.5}}
+                                      StaticText, 0x105eaff10, {{32.0, 309.0}, {102.0, 20.5}}, label: 'Renewal date'
+                                      DatePicker, 0x105eb0030, {{227.5, 302.0}, {115.5, 34.5}}
+                                        Button, 0x105eb0150, {{227.5, 302.0}, {115.5, 34.5}}, label: 'Date Picker', value: Oct 6, 2026
+                              Other, 0x105eb0270, {{32.0, 286.0}, {311.0, 1.0}}
+                              Cell, 0x105eb0390, {{16.0, 351.5}, {343.0, 52.0}}
+                                Other, 0x105eb04b0, {{16.0, 351.5}, {343.0, 52.0}}
+                                  Other, 0x105eb05d0, {{16.0, 351.5}, {343.0, 52.0}}
+                                Other, 0x105eb06f0, {{16.0, 351.5}, {343.0, 52.0}}
+                                  Other, 0x105eb0810, {{16.0, 351.5}, {343.0, 52.0}}
+                                    Other, 0x105eb0930, {{16.0, 351.5}, {343.0, 52.0}}
+                                      StaticText, 0x105eb0a50, {{32.0, 367.2}, {109.0, 20.5}}, label: 'Notice: 0 days'
+                                      Stepper, 0x105eb0b70, {{32.0, 361.5}, {311.0, 32.0}}, label: 'Notice: 0 days', value: 0
+                                        Button, 0x105eb0c90, {{249.0, 361.5}, {47.0, 32.0}}, identifier: 'Decrement', label: 'Notice: 0 days, Decrement', value: 0
+                                        Button, 0x105eb0db0, {{296.0, 361.5}, {47.0, 32.0}}, identifier: 'Increment', label: 'Notice: 0 days, Increment', value: 0
+                              Other, 0x105eb0ed0, {{32.0, 350.5}, {311.0, 1.0}}
+                              Cell, 0x105eb0ff0, {{16.0, 403.5}, {343.0, 52.0}}
+                                Other, 0x105eb1110, {{16.0, 403.5}, {343.0, 52.0}}
+                                  Other, 0x105eb1230, {{16.0, 403.5}, {343.0, 52.0}}
+                                Other, 0x105eb1350, {{16.0, 403.5}, {343.0, 52.0}}
+                                  Other, 0x105eb1470, {{16.0, 403.5}, {343.0, 52.0}}
+                                    Other, 0x105eb1590, {{16.0, 403.5}, {343.0, 52.0}}
+                                      StaticText, 0x105eb16b0, {{16.0, 403.5}, {343.0, 52.0}}, label: 'Cancel by 2026-10-06'
+                              Other, 0x105eb17d0, {{32.0, 402.5}, {311.0, 1.0}}
+                              Other, 0x105eb18f0, {{-16.0, 473.0}, {407.0, 162.0}}
+                              Cell, 0x105eb1a10, {{16.0, 473.0}, {343.0, 40.5}}
+                                Other, 0x105eb1b30, {{16.0, 473.0}, {343.0, 40.5}}
+                                Other, 0x105eb1c50, {{16.0, 473.0}, {343.0, 40.5}}
+                                  Other, 0x105eb1d70, {{16.0, 473.0}, {343.0, 40.5}}
+                                    Other, 0x105eb1e90, {{16.0, 473.0}, {343.0, 40.5}}
+                                      StaticText, 0x105eb1fb0, {{16.0, 473.0}, {343.0, 40.5}}, label: 'Household'
+                              Cell, 0x105eb20d0, {{16.0, 513.5}, {343.0, 52.0}}
+                                Other, 0x105eb21f0, {{16.0, 513.5}, {343.0, 52.0}}
+                                  Other, 0x105eb2310, {{16.0, 513.5}, {343.0, 52.0}}
+                                Other, 0x105eb2430, {{16.0, 513.5}, {343.0, 52.0}}
+                                  Other, 0x105eb2550, {{16.0, 513.5}, {343.0, 52.0}}
+                                    Other, 0x105eb2670, {{16.0, 513.5}, {343.0, 52.0}}
+                                      StaticText, 0x105eb2790, {{32.0, 529.2}, {93.0, 20.5}}, label: 'Responsible'
+                                      Button, 0x105eb28b0, {{32.0, 522.5}, {311.0, 34.5}}, label: 'Responsible, Unassigned'
+                                        StaticText, 0x105eb29d0, {{237.0, 529.5}, {90.0, 20.5}}, label: 'Unassigned'
+                              Cell, 0x105eb2af0, {{16.0, 565.5}, {343.0, 52.0}}
+                                Other, 0x105eb2c10, {{16.0, 565.5}, {343.0, 52.0}}
+                                  Other, 0x105eb2d30, {{16.0, 565.5}, {343.0, 52.0}}
+                                Other, 0x105eb2e50, {{16.0, 565.5}, {343.0, 52.0}}
+                                  Other, 0x105eb2f70, {{16.0, 565.5}, {343.0, 52.0}}
+                                    Other, 0x105eb3090, {{16.0, 565.5}, {343.0, 52.0}}
+                                      StaticText, 0x105eb31b0, {{32.0, 581.2}, {192.0, 20.5}}, label: 'Linked recurring expense'
+                                      Button, 0x105eb32d0, {{32.0, 574.5}, {311.0, 34.5}}, label: 'Linked recurring expense, None'
+                                        StaticText, 0x105eb33f0, {{286.0, 581.5}, {41.0, 20.5}}, label: 'None'
+                              Other, 0x105eb3510, {{32.0, 564.5}, {311.0, 1.0}}
+                              Other, 0x105eb3630, {{-16.0, 635.0}, {407.0, 1445.5}}
+                              Cell, 0x105eb3750, {{16.0, 652.5}, {343.0, 82.0}}
+                                Other, 0x105eb3870, {{16.0, 652.5}, {343.0, 82.0}}
+                                  Other, 0x105eb3990, {{16.0, 652.5}, {343.0, 82.0}}
+                                Other, 0x105eb3ab0, {{16.0, 652.5}, {343.0, 82.0}}
+                                  Other, 0x105eb3bd0, {{16.0, 652.5}, {343.0, 82.0}}
+                                    Other, 0x105eb3cf0, {{16.0, 652.5}, {343.0, 82.0}}
+                                      StaticText, 0x105eb3e10, {{16.0, 652.5}, {343.0, 82.0}}, label: 'Saving tracks the dates in Nest. It does not cancel your contract, change the linked recurring expense or enable reminders.'
+                              Other, 0x105eb3f30, {{342.0, 84.0}, {30.0, 583.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                Other, 0x105eb4050, {{369.0, 87.0}, {3.0, 473.5}}
+                              Other, 0x105eb4170, {{342.0, 84.0}, {30.0, 583.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                Other, 0x105eb4290, {{369.0, 87.0}, {3.0, 473.5}}
+                    Other, 0x105eb43b0, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x105eb44d0, {{0.0, 30.0}, {375.0, 637.0}}
+      Other, 0x105eb45f0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105eb4710, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105eb4830, {{0.0, 0.0}, {375.0, 667.0}}
+        Alert, 0x105eb4950, {{27.5, 252.5}, {320.0, 182.0}}, label: 'Discard edits?'
+          Other, 0x105eb4a70, {{27.5, 252.5}, {320.0, 182.0}}
+            Other, 0x105eb4b90, {{27.5, 252.5}, {320.0, 182.0}}
+              Other, 0x105eb4cb0, {{27.5, 252.5}, {320.0, 182.0}}
+              Other, 0x105eb4dd0, {{27.5, 252.5}, {320.0, 182.0}}
+                ScrollView, 0x105eb4ef0, {{27.5, 252.5}, {320.0, 46.0}}
+                  Other, 0x105eb5010, {{27.5, 252.5}, {320.0, 46.0}}
+                    StaticText, 0x105eb5130, {{57.5, 274.5}, {260.0, 20.5}}, label: 'Discard edits?'
+                  Other, 0x105eb5250, {{27.5, 296.5}, {320.0, 2.0}}
+                  Other, 0x105eb5370, {{314.5, 252.5}, {30.0, 46.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                    Other, 0x105eb5490, {{341.5, 213.5}, {3.0, 36.0}}
+                  Other, 0x105eb55b0, {{27.5, 272.5}, {320.0, 23.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x105eb7f90, {{-11.5, 292.5}, {36.0, 3.0}}
+                  Other, 0x105eb80b0, {{314.5, 252.5}, {30.0, 46.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                    Other, 0x105eb81d0, {{341.5, 213.5}, {3.0, 36.0}}
+                  Other, 0x105eb82f0, {{27.5, 272.5}, {320.0, 23.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x105eb8410, {{-11.5, 292.5}, {36.0, 3.0}}
+                ScrollView, 0x105eb8530, {{27.5, 298.5}, {320.0, 136.0}}
+                  Other, 0x105eb8650, {{27.5, 298.5}, {320.0, 136.0}}
+                    Other, 0x105eb8770, {{43.5, 314.5}, {288.0, 104.0}}
+                      Button, 0x105eb8890, {{43.5, 314.5}, {288.0, 48.0}}, label: 'Discard changes'
+                      Button, 0x105eb89b0, {{43.5, 370.5}, {288.0, 48.0}}, label: 'Keep editing'
+                  Other, 0x105eb8ad0, {{314.5, 298.5}, {30.0, 136.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x105eb8bf0, {{341.5, 388.5}, {3.0, 7.0}}
+                  Other, 0x105eb8d10, {{27.5, 401.5}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x105eb8e30, {{117.5, 428.5}, {7.0, 3.0}}
+                  Other, 0x105eb8f50, {{314.5, 298.5}, {30.0, 136.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x105eb9070, {{341.5, 388.5}, {3.0, 7.0}}
+                  Other, 0x105eb9190, {{27.5, 401.5}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x105eb92b0, {{117.5, 428.5}, {7.0, 3.0}}
+          Other, 0x105eb93d0, {{27.5, 252.5}, {320.0, 182.0}}
+            Other, 0x105eb94f0, {{27.5, 252.5}, {320.0, 182.0}}
+              Other, 0x105eb9610, {{27.5, 252.5}, {320.0, 182.0}}
+                Other, 0x105eb9730, {{27.5, 252.5}, {320.0, 182.0}}
+                  Other, 0x105eb9850, {{27.5, 252.5}, {320.0, 182.0}}
+                    Other, 0x105eb9970, {{27.5, 252.5}, {375.0, 667.0}}
+                Other, 0x105eb9a90, {{27.5, 252.5}, {320.0, 182.0}}
+                  Other, 0x105eb9bb0, {{27.5, 252.5}, {375.0, 667.0}}
+    Window, 0x105eb9cd0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x105eb9df0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105eb9f10, {{0.0, 0.0}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x105e42000, pid: 50397, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x105eba030, pid: 50397, label: 'Nest'
+  }

@@ -1,0 +1,89 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "FE90533B-A7BA-4CFA-B348-DC3F4DCFCDAB.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Renewal terminal native screen_0_D1C3806B-65F1-4E91-B867-9D6339D4B8A9.png",
+        "timestamp" : 1791257723.656
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "8375612C-E2A2-4AF0-BB37-0C9E2CD932FC.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Owned renewal edited by partner accessibility tree_0_5A00770F-6074-40B9-97E5-15DD2092ABE5.txt",
+        "timestamp" : 1791257721.182
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "7D9626AC-3E61-4C83-B013-794BA6FDDA83.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Owned renewal edited by partner_0_B224782B-0E3A-4D92-8DEE-21738DAAB9DC.png",
+        "timestamp" : 1791257720.874
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "E4BC37F5-39CE-49CB-9205-0E90B2D02423.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Renewal saved. recorded receipt accessibility tree_0_2DB55D5F-C200-4106-A301-ACC501CC0BE2.txt",
+        "timestamp" : 1791257719.572
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "16FBA2FF-B2D7-4538-80AA-D14593DEEB4C.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Renewal saved. recorded receipt_0_B260CADA-D8D9-4A11-BEB9-3C9F6B596B91.png",
+        "timestamp" : 1791257719.254
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "AE5A3FF5-AC46-48F1-A8A9-F15E68D96F73.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Edit owned renewal before Save accessibility tree_0_49569F5A-E879-449E-8A9A-AC04BA9B434E.txt",
+        "timestamp" : 1791257712.274
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "83BF6859-80F1-4478-8C3F-287B8D73C1A7.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Edit owned renewal before Save_0_615137E7-6793-401A-92BB-302D979952D5.png",
+        "timestamp" : 1791257711.795
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "313E2B56-95C8-4EF9-9A17-FC2C150A1496.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Native renewal title selection menu accessibility tree_0_B1CE8226-97E7-48AC-83C4-5BD7D645003F.txt",
+        "timestamp" : 1791257702.489
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName" : "Nest partner QA 20261005",
+        "exportedFileName" : "123D6728-99C0-4FD8-A347-2BBE0C62A72A.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Native renewal title selection menu_0_4313CA05-E001-4984-8D85-3C791EAB262E.png",
+        "timestamp" : 1791257701.699
+      }
+    ],
+    "testIdentifier" : "NativeRenewalCrudTests/testEditOwnedRenewalOnce()",
+    "testIdentifierURL" : "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRenewalCrudTests/testEditOwnedRenewalOnce"
+  }
+]
