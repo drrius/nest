@@ -119,9 +119,9 @@ source is identical to the tested commit and the default tracked verifier passes
 [Failed-source CI evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/source-ci-55d25.json).
 [Correction evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/type-boundary-correction/readiness.json).
 
-## Next work
+## Recorded chore result navigation
 
-The next bounded native check is the existing `already_completed` chore result.
+The bounded native check of the existing `already_completed` chore result now passes.
 Current read-only nest-test metadata matches Alex's original operation
 `90d2eb88-3f35-4a0b-b380-7e9c4db25a7c`, the single occurrence/completion by Sam
 on 5 October and its subsequently archived routine. No original assistant
@@ -129,9 +129,9 @@ conversation exists for this receipt. A clearly synthetic private-history entry
 is prepared from the exact native request/result, explicitly stating that no
 model ran and no new completion occurred. Strict fixture setup/removal SQL checks
 the fictional household, all 15 original conversations, original receipt and
-ten chore/financial table fingerprints. Nothing has been inserted or removed.
-One guarded normal/light navigation test is being prepared; no app build, hosted
-test or native invocation is authorized until its source and controller checks.
+ten chore/financial table fingerprints. At preparation, nothing was inserted or
+removed. The guarded normal/light test went through source and controller checks
+before the subsequent build and native execution recorded below.
 Source review catches a missing provenance declaration and mismatched synthetic
 paragraph before compilation or execution. The corrected 205-line test matches
 both exact prepared paragraphs and passes actual Swift 6/iOS simulator typechecking
@@ -207,9 +207,20 @@ CI 37533838086; shipping native source is unchanged from the tested commits.
 [Passing chore-result navigation](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/ui-only-4740/README.md).
 [Preserved failure diagnosis](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/baseline-failure-9410/diagnosis.json).
 [Diagnostic source readiness](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-source/readiness.json).
-This will verify native result navigation, not live AI execution. Both-phone,
+This verifies native result navigation, not live AI execution. Both-phone,
 full accessibility, provider, worker/APNs and cutover gates remain open.
 [Prepared receipt provenance](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/receipt-provenance-prepared.json).
+
+## Next work
+
+Continue the remaining native journeys and investigate the existing 19
+accessibility findings with source-specific evidence. Do not repeat the passing
+header comparison or the recorded financial/chore navigation just to obtain
+another pass. The milestone checklist identifies the remaining settings,
+meal-plan, financial-variant and conflict coverage. Live AI eligibility, worker
+credentials/APNs and physical-device acceptance remain separate external gates.
+Private build 19 already contains the four-tab header and padding correction;
+owner confirmation on the phone remains outstanding.
 
 ## Retained verification chronology
 
