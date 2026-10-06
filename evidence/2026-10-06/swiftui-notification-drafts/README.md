@@ -61,13 +61,33 @@ fail after the connection-screen round trip. The activity log confirms the
 connection was opened before the failure. Returning retains the lower scroll
 position; the reader searched downward for an earlier, virtualized row.
 The new reader searches upward on return and after Reload, while retaining
-full visibility and44pt choices. That directed interaction run is in progress.
+full visibility and44pt choices. The directed interaction run now passes all
+eight methods: four real both-member SDK reads and four native normal/light and
+maximum/dark interaction checks. [Results](directed-success/results.json).
 Earlier measured failure and locator/motion observations are preserved separately.
 The shipping model/screens remainf83ac658; only guarded UI diagnostics change.
 
 Source62dd893f now passes Nest37393161511 and SwiftUI37393161341:496 Foundation
 tests/41 skips,443 signed-app tests/20 skips, zero failures, strict format/limits,
 signing and guarded UI compilation. Docs sourceef75d2ac passes Nest37394005548.
-The new observer still needs its own CI and completed native verification.
+Exact observer98629e89 passes Nest37396636862 and SwiftUI37396637155.
+
+## Completed bounded native check
+
+Connection navigation preserves the unsent toggle on both tested configurations.
+Back and Reload require explicit discard; Keep editing retains the value, Reload
+restores saved choices and Back discard/reopen leaves the server value unchanged.
+All eight modal images were inspected. Complete headings and both choices remain
+inside the native alert bounds, with targets at least44pt at maximum size too.
+The app returns to Today after each interaction. Both original fictional roles,
+64 empty journals per client and large/light settings are restored. All820 inputs
+match source98629e89. Canonical recipe/week/preparation SDK before/after reads
+agree. Fresh notification, owned preparation, original retained and whole grocery
+hashes match the prior checkpoints exactly.
+
+This verifies local unsent draft behavior against actual test-provider reads;
+it does not send a preference Save, prove APNs delivery, close the19-report root
+audit or replace VoiceOver/physical-phone acceptance. Build18 remains the latest
+available private candidate and does not contain the later notification fix.
 No hosted Save, permission, inference, worker, beta, production action, purchase
 or merge occurs. Available TestFlight build18 does not contain this later fix.

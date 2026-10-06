@@ -1,0 +1,52 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.648
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.633
+  },
+  {
+    "step": "normal-connection",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NotificationDraftNavigationTests/testDeviceConnectionRoundTripPreservesUnsentChoices",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 41.914
+  },
+  {
+    "step": "normal-discard",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NotificationDraftNavigationTests/testBackAndReloadRequireExplicitDiscard",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 59.743
+  },
+  {
+    "step": "maximum-connection",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NotificationDraftNavigationTests/testDeviceConnectionRoundTripPreservesUnsentChoices",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 190.009
+  }
+]

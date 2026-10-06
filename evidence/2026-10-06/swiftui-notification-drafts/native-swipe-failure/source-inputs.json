@@ -1,0 +1,7 @@
+{
+  "count": 820,
+  "inventoryParts": ["source-inputs-1.csv", "source-inputs-2.csv", "source-inputs-3.csv"],
+  "shippingSourceCommit": "f83ac658",
+  "allInputsMatchCurrentSource": false,
+  "sourceCommit": null
+}
