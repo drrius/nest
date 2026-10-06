@@ -78,9 +78,21 @@ exported screenshots are reviewed by the worker; root directly reviews eight
 and independently verifies every target and pan. The immutable verifier passes179
 artifacts/1,126 UI inputs/1,122 dated SDK inputs and5 native passes/zero failures.
 [Native evidence](../evidence/2026-10-06/swiftui-assistant-handoff-targets/maximum-scrollbar-correction/native/README.md). Routine
-CI37514014901 passes exactfe90; native CI37514014664 remains running. Build19
+CI37514014901 and native CI37514014664 pass exactfe90:506 Foundation/41 skips,
+469 signed-app/37 skips, four Swift Testing cases, zero failures and strict
+native gates. CI compiles the guarded journey; actual execution is the separate
+Mac evidence above. Build19
 does not include the later assistant label changes; full audit/phones/live AI
 remain separate gates.
+
+Evidence checkpoint `e8f5d881` retains the passing default tracked verifier.
+Routine CI37515788238 fails only Oxfmt on root-owned `root-review.json`:
+its four-number scrollbar array needs inline formatting. The scoped artifact
+check omitted this external supporting record. The formatting-only correction
+preserves its parsed data and every executed native artifact. Refreshed supporting
+hashes pass the default179-artifact verifier; global Oxfmt passes8,413 files and
+root independently compares identical parsed review data before/after formatting.
+No native journey or fixture creation is repeated.
 
 The required authorization/database deep gate passes at exact5b784a10: run37499602861, job112392899761. All23 core HTTP,50 terminal-conflict and1,269 isolated PostgreSQL/RLS cases pass with zero failures/skips, including both new internal-table RLS tests. The workflow uses checksum-pinned PostgREST16.3 and disposable database fixtures, without hosted credentials or production migration. Runtime/security/fixture source remains identical at7f079fad; its native identifier/test/target edits are outside that comparison. Routine37499334703 passes5b. [Deep evidence](../evidence/2026-10-06/deep-integration-current-backend/README.md). This does not close hosted Auth/Storage, external-writer, provider, phone or cutover acceptance.
 

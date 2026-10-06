@@ -12,12 +12,7 @@
   ],
   "rootReviewedMeasuredPanSamples": 13,
   "panX": 24,
-  "observedScrollBar": [
-    342,
-    74,
-    30,
-    510
-  ],
+  "observedScrollBar": [342, 74, 30, 510],
   "actionsMinimumHeight": 44,
   "observedProfileTargetHeight": 67,
   "observedOtherHandoffTargetHeight": 119,
