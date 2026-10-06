@@ -213,6 +213,13 @@ Two real native SDK checks also pass with zero failures: Alex recovers both orig
 receipts; Sam receives unresolved results with no receipt. Both canonical reads and
 64 empty journals remain exact. [Native evidence](../evidence/2026-10-06/swiftui-grocery-reminder-receipt-isolation/README.md). Source `a5ce9ec7` passes both workflows: 502 Foundation/41 skips, 457 signed-app/25 skips, four Swift Testing cases, zero failures. No delivery or phone claim.
 
+## Native chore reminder drafts
+
+Six native methods pass; two observer failures remain recorded. Normal navigation
+passes end to end; maximum-text coverage combines its prefix with a corrected suffix.
+Both canonical reads, original scopes and 64 empty journals remain unchanged.
+[Evidence](../evidence/2026-10-06/swiftui-chore-reminder-navigation/README.md). Stepper touch area, phones and full M8 remain open; no Save occurs.
+
 ## Earlier native settlement verification
 
 The partial/full settlement and stale-review evidence is preserved in [dated history](progress-history-2026-10-06.md#native-partialfull-settlement-and-stale-review). Its exact retained financial results do not close phone, private-approval or concurrency acceptance.
