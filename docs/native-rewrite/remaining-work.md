@@ -198,7 +198,7 @@ deeper helpers, concurrent leases/external writers and full M9 remain. No hosted
 mutation or CalDAV credential/network execution is claimed.
 [Calendar audit](../../evidence/2026-10-05/legacy-calendar-boundaries/README.md).
 
-The ten unexposed internal tables now have a prepared deny-all RLS migration with two focused behavior tests and a full-chain real-schema catalog/compatibility check. No grants or policies are added, and financial/receipt history remains exact. It has not been applied to hosted nest-test or production, so the old hosted RLS inventory remains its dated observation. [Prepared evidence](../../evidence/2026-10-06/internal-table-rls/README.md).
+The ten unexposed internal tables now have a prepared deny-all RLS migration with two focused behavior tests and a full-chain real-schema catalog/compatibility check. No grants or policies are added, and financial/receipt history remains exact. It is now applied only to nest-test after exact identity/owner/grant checks. Fresh metadata confirms the ten enabled flags, zero private tables without RLS and identical15 relation fingerprints. Two existing native SDK GET-only reads preserve both members' privacy/shared-setting/full-history behavior. Hosted advisors retain their existing definer/password warnings and71 deny-all/no-policy INFO findings; production and broader service-writer/cutover acceptance remain unverified. [Prepared evidence](../../evidence/2026-10-06/internal-table-rls/README.md).
 
 ## 4. Deliver and accept a current private build
 

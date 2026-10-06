@@ -1,0 +1,390 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "projectName": "nest-test",
+  "lastObservedDatabaseVersion": "17.6.1.166",
+  "productionTouched": false,
+  "sourceMigration": "20261006160244_native_internal_rls.sql",
+  "sourceMigrationSHA256": "d11eb83a72d4ca159853b7f9a7961ff4b89c977fbb2b88293cf6497dfeaf4db6",
+  "hostedMigration": {
+    "version": "20261006161050",
+    "name": "native_internal_rls"
+  },
+  "submittedSQLMatchesSourceAfterTrailingWhitespaceNormalization": true,
+  "beforeCatalog": [
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_legacy_adoption_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_legacy_confirmation_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_legacy_draft_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_legacy_job_control",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_legacy_recurring_adoptions",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_recurring_execution_control",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_recurring_job_receipts",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_recurring_runs",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_recurring_sweep",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": false,
+      "owner": "postgres",
+      "table": "nest_renewal_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    }
+  ],
+  "afterCatalog": [
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_legacy_adoption_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_legacy_confirmation_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_legacy_draft_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_legacy_job_control",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_legacy_recurring_adoptions",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_recurring_execution_control",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_recurring_job_receipts",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_recurring_runs",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_recurring_sweep",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    },
+    {
+      "rls": true,
+      "owner": "postgres",
+      "table": "nest_renewal_operations",
+      "forced": false,
+      "policies": 0,
+      "anonymous": false,
+      "authenticated": false
+    }
+  ],
+  "beforeFingerprints": [
+    {
+      "relation": "private.nest_recurring_job_receipts",
+      "rows": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.nest_legacy_draft_operations",
+      "rows": 1,
+      "row_fingerprint": "c087f7f6466f6b751e1465e46e824fd1"
+    },
+    {
+      "relation": "private.nest_legacy_confirmation_operations",
+      "rows": 1,
+      "row_fingerprint": "3469fcbec7f6c1b8b6c1cc4fedf23e33"
+    },
+    {
+      "relation": "private.nest_legacy_recurring_adoptions",
+      "rows": 1,
+      "row_fingerprint": "e7c52d0985d9dc3c6da7016a1845975d"
+    },
+    {
+      "relation": "private.nest_legacy_adoption_operations",
+      "rows": 1,
+      "row_fingerprint": "0560620b47c3c24290a6402c21d814b3"
+    },
+    {
+      "relation": "private.nest_renewal_operations",
+      "rows": 12,
+      "row_fingerprint": "a63090f6b29bdaf76760a913219024ad"
+    },
+    {
+      "relation": "private.nest_recurring_sweep",
+      "rows": 1,
+      "row_fingerprint": "a5fa102cde775f9b2570c87673a10a4c"
+    },
+    {
+      "relation": "private.nest_recurring_runs",
+      "rows": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.nest_recurring_execution_control",
+      "rows": 1,
+      "row_fingerprint": "e89e41e9f8c0feb982f858294ee5c769"
+    },
+    {
+      "relation": "private.nest_legacy_job_control",
+      "rows": 8,
+      "row_fingerprint": "f8681dba15974897e36bd117b00c91f7"
+    },
+    {
+      "relation": "public.financial_events",
+      "rows": 62,
+      "row_fingerprint": "5d485834ac5782a0f95f2a74c24a7211"
+    },
+    {
+      "relation": "public.financial_allocations",
+      "rows": 104,
+      "row_fingerprint": "4b07d26ea4c105beb1390191e140c113"
+    },
+    {
+      "relation": "public.ledger_entries",
+      "rows": 124,
+      "row_fingerprint": "1800713ec950198c18c302405fc1e0c7"
+    },
+    {
+      "relation": "public.nest_recurring_rules",
+      "rows": 8,
+      "row_fingerprint": "31172a8b39f2dfc1fc135401e45cba2f"
+    },
+    {
+      "relation": "private.nest_recurring_execution",
+      "rows": 8,
+      "row_fingerprint": "8c3cafcea5cf4a2628eaecd9bc8ee1d1"
+    }
+  ],
+  "afterFingerprints": [
+    {
+      "relation": "private.nest_recurring_job_receipts",
+      "rows": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.nest_legacy_draft_operations",
+      "rows": 1,
+      "row_fingerprint": "c087f7f6466f6b751e1465e46e824fd1"
+    },
+    {
+      "relation": "private.nest_legacy_confirmation_operations",
+      "rows": 1,
+      "row_fingerprint": "3469fcbec7f6c1b8b6c1cc4fedf23e33"
+    },
+    {
+      "relation": "private.nest_legacy_recurring_adoptions",
+      "rows": 1,
+      "row_fingerprint": "e7c52d0985d9dc3c6da7016a1845975d"
+    },
+    {
+      "relation": "private.nest_legacy_adoption_operations",
+      "rows": 1,
+      "row_fingerprint": "0560620b47c3c24290a6402c21d814b3"
+    },
+    {
+      "relation": "private.nest_renewal_operations",
+      "rows": 12,
+      "row_fingerprint": "a63090f6b29bdaf76760a913219024ad"
+    },
+    {
+      "relation": "private.nest_recurring_sweep",
+      "rows": 1,
+      "row_fingerprint": "a5fa102cde775f9b2570c87673a10a4c"
+    },
+    {
+      "relation": "private.nest_recurring_runs",
+      "rows": 0,
+      "row_fingerprint": "d41d8cd98f00b204e9800998ecf8427e"
+    },
+    {
+      "relation": "private.nest_recurring_execution_control",
+      "rows": 1,
+      "row_fingerprint": "e89e41e9f8c0feb982f858294ee5c769"
+    },
+    {
+      "relation": "private.nest_legacy_job_control",
+      "rows": 8,
+      "row_fingerprint": "f8681dba15974897e36bd117b00c91f7"
+    },
+    {
+      "relation": "public.financial_events",
+      "rows": 62,
+      "row_fingerprint": "5d485834ac5782a0f95f2a74c24a7211"
+    },
+    {
+      "relation": "public.financial_allocations",
+      "rows": 104,
+      "row_fingerprint": "4b07d26ea4c105beb1390191e140c113"
+    },
+    {
+      "relation": "public.ledger_entries",
+      "rows": 124,
+      "row_fingerprint": "1800713ec950198c18c302405fc1e0c7"
+    },
+    {
+      "relation": "public.nest_recurring_rules",
+      "rows": 8,
+      "row_fingerprint": "31172a8b39f2dfc1fc135401e45cba2f"
+    },
+    {
+      "relation": "private.nest_recurring_execution",
+      "rows": 8,
+      "row_fingerprint": "8c3cafcea5cf4a2628eaecd9bc8ee1d1"
+    }
+  ],
+  "fifteenRowFingerprintsIdentical": true,
+  "privateTablesWithoutRLSAfter": 0,
+  "securityAdvisors": [
+    {
+      "name": "rls_enabled_no_policy",
+      "level": "INFO",
+      "count": 71,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+    },
+    {
+      "name": "authenticated_security_definer_function_executable",
+      "level": "WARN",
+      "count": 81,
+      "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable"
+    },
+    {
+      "name": "auth_leaked_password_protection",
+      "level": "WARN",
+      "count": 1,
+      "remediation": "https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection"
+    }
+  ],
+  "advisorFindingsSuppressed": false,
+  "nativeReceiptReads": {
+    "sdkSource": "6997138485f3f8088fc03682432de74879e19659",
+    "nativeInputs": 1122,
+    "methodsPassed": 2,
+    "failures": 0,
+    "alexSeconds": 15.445,
+    "samSeconds": 12.294,
+    "controllerHandle": 37166,
+    "GETOnly": true,
+    "saveOrDoneRepeated": false,
+    "evidenceCommit": "b3e4b529",
+    "evidenceArtifacts": 30,
+    "evidenceDirectory": "evidence/2026-10-06/native-post-rls-receipt-reads"
+  },
+  "secretTransfer": false,
+  "workerActivated": false
+}
