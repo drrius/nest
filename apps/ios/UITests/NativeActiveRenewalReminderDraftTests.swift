@@ -259,8 +259,7 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
     ) {
         var frames: [[String: Any]] = []
         for _ in 0..<24 {
-            let lists = app.collectionViews.allElementsBoundByIndex + app.scrollViews.allElementsBoundByIndex
-            let bounds = lists.first(where: { $0.isHittable })?.frame ?? app.frame
+            let bounds = scrollBounds(app)
             let nav = app.navigationBars.allElementsBoundByIndex.first(where: { $0.isHittable })
             let top = nav?.frame.maxY ?? 80
             let bottom = app.tabBars.firstMatch.isHittable ? app.tabBars.firstMatch.frame.minY - 8 : bounds.maxY - 8
@@ -279,14 +278,32 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
             }
             let delta =
                 frame.isEmpty ? missingDistance : (frame.minY < top ? frame.minY - top - 20 : frame.maxY - bottom + 20)
-            let distance = max(-180, min(250, delta))
+            let distance = scrollTravel(delta)
             let origin = app.coordinate(withNormalizedOffset: CGVector(dx: 0.04, dy: 0.65))
             let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.04, dy: 0.65 - distance / app.frame.height))
             origin.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
+            frames[frames.count - 1].merge(motion(element, distance: distance)) { _, next in next }
         }
         attach(frames, name: "Failed renewal reminder control viewport")
         capture(app, name: "Renewal reminder control placement failure")
         XCTFail("Required control must be fully visible")
+    }
+
+    private func scrollBounds(_ app: XCUIApplication) -> CGRect {
+        if app.navigationBars["Renewal reminder"].exists { return reminderForm(app).frame }
+        let lists = app.collectionViews.allElementsBoundByIndex + app.scrollViews.allElementsBoundByIndex
+        return lists.first(where: { $0.isHittable })?.frame ?? app.frame
+    }
+
+    private func scrollTravel(_ delta: CGFloat) -> CGFloat {
+        let sign: CGFloat = delta < 0 ? -1 : 1
+        let maximum: CGFloat = delta < 0 ? 180 : 250
+        return sign * min(maximum, max(120, abs(delta)))
+    }
+
+    private func motion(_ element: XCUIElement, distance: CGFloat) -> [String: Any] {
+        let exists = element.exists
+        return ["distance": distance, "afterExists": exists, "afterFrame": rect(exists ? element.frame : .zero)]
     }
 
     private func authorized() throws -> Baseline {
