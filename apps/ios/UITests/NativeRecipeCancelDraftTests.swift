@@ -116,7 +116,10 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         XCTAssertTrue(keyboard.waitForExistence(timeout: 15))
         if let baseline {
             XCTAssertEqual(name.value as? String, baseline.isEmpty ? "Servings" : baseline)
-            for _ in baseline { keyboard.keys["delete"].tap() }
+            let deletion = keyboard.keys["Delete"]
+            XCTAssertTrue(deletion.exists && deletion.isEnabled && deletion.isHittable)
+            capture(app, name: "Actual number-pad Delete key before local numeric draft")
+            for _ in baseline { deletion.tap() }
         }
         name.typeText(raw)
         XCTAssertEqual(name.value as? String, raw)
