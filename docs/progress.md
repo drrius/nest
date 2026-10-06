@@ -256,6 +256,16 @@ and four Swift Testing cases, zero failures. Strict formatting/limits, signing
 and guarded UI compilation pass. This source-specific result is separate from
 the candidate's pending CI and the actual hosted/native leftovers journey.
 
+Next M3/M5 native pass is both members' unsaved portion selection, Keep editing
+and explicit Discard, with native GET-only profile reads before/after. Fresh
+hosted metadata confirms Alex revision 5/portion 1/Vegetarian/no calorie goal;
+Sam's profile is absent and must stay absent. Shared cooking revision 6 and all
+food/cooking receipts are captured, alongside eight protected household/financial
+fingerprints. Thirteen isolated food-profile/database/PostgREST cases pass with
+zero failures/skips. Two guarded native test sources pass formatting/source
+limits; no Save, profile insertion or native invocation has run at preparation.
+[Portion preparation](../evidence/2026-10-07/swiftui-native-portions/prepared.json).
+
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
 and two repeated partner-heading font reports), down from the dated 19-report
