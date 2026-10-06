@@ -1,5 +1,5 @@
 {
-  "sourceCommit": "f85a7f7273d7e451a72ce989913bf856a75f6b06",
+  "sourceCommit": "f98a26589801cd7bfb2f1e0030c296d4b7ff1d10",
   "availablePrivateBuild": "0.1.0 (18)",
   "buildSource": "e7926c895f236c9f0f042d68c2e9123457649017",
   "files": [
@@ -46,5 +46,7 @@
   ],
   "newNativeExecution": false,
   "usesExistingTwelveCaptureEvidence": true,
-  "phoneAcceptanceVerified": false
+  "phoneAcceptanceVerified": false,
+  "recheckedAtUTC": "2026-10-06T01:51:55Z",
+  "normalDarkScreenshotsReinspected": 4
 }
