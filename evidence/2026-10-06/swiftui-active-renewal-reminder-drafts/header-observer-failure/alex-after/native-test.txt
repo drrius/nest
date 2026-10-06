@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-drafts-20261006/alex-after/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-drafts-20261006/alex-after/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-drafts-20261006/alex-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 13:42:01.611.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 13:42:01.611.
+Test Suite 'HostedActiveRenewalReminderReadTests' started at 2026-10-06 13:42:01.611.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' started.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' passed (9.552 seconds).
+Test Suite 'HostedActiveRenewalReminderReadTests' passed at 2026-10-06 13:42:11.164.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.552 (9.553) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 13:42:11.164.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.552 (9.554) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 13:42:11.165.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.552 (9.554) seconds
+2026-10-06 13:42:11.487 xcodebuild[63072:21101363] [MT] IDETestOperationsObserverDebug: 11.756 elapsed -- Testing started completed.
+2026-10-06 13:42:11.488 xcodebuild[63072:21101363] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 13:42:11.488 xcodebuild[63072:21101363] [MT] IDETestOperationsObserverDebug: 11.756 sec, +11.756 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-drafts-20261006/alex-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

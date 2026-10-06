@@ -1,0 +1,78 @@
+{
+  "nativeMethodsPassed": 34,
+  "retainedNativeFailures": 7,
+  "SDKPasses": 32,
+  "wholeNormalPassed": true,
+  "wholeMaximumPassed": true,
+  "sameSourceBothProfilesClaimed": false,
+  "POSTs": 0,
+  "reminderSaves": 0,
+  "removes": 0,
+  "createReplays": 0,
+  "fixtureActiveReminderNil": true,
+  "all64JournalsRestored": true,
+  "exportedPNGs": 66,
+  "reviewedPNGs": 66,
+  "batches": {
+    "header-observer-failure": {
+      "sourceCommit": "2805a1c457884adc3547f34bb1d2717ccb3fc49e",
+      "controllerSha256": "849ee414a95d1fe3c5c4466f761ae1748b1ca16a3b1e823cf80b5726869ec061",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "viewport-observer-failure": {
+      "sourceCommit": "434a4e17821f0d1863f3ad374d79dbc77a62e2a8",
+      "controllerSha256": "275b7b3858026f5b963b18caa94c7f0221a5dcff0c9d097667f230d738cf13b0",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "wheel-value-observer-failure": {
+      "sourceCommit": "d34e7af6f4ea3606d0b8323b604ace5f20088170",
+      "controllerSha256": "0f4b108f2bf4cb0a762aea506ee4fb4970f59df735f4ffac25b0b2545810f6aa",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "wheel-selection-observer-failure": {
+      "sourceCommit": "50ebd713355aa5c8cbdcb8268467ca3d893ed60b",
+      "controllerSha256": "5844c41a011f54802594cf5058f8c21258637f63cc89ce8d449ecf90a6d23e9f",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "normal-passed-max-list-failure": {
+      "sourceCommit": "3bc0388e919e35d25317d1588644aaac191bb087",
+      "controllerSha256": "2784a04749c978521d7b678e37a265f3f53283f5d637390214a2f7e7d2ce8e2e",
+      "methods": 6,
+      "passed": 5,
+      "failed": 1
+    },
+    "max-form-observer-failure": {
+      "sourceCommit": "d4b944e4c1a44e9c4efff66623a7ecdbe52c012c",
+      "controllerSha256": "088607108fe030d5c9bcc1493aca7f128d1a0ddaf4748ab9205f475fb3e741a0",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "max-direction-observer-failure": {
+      "sourceCommit": "1eb128555b8c2ba933062f914a974126e9fb6ea7",
+      "controllerSha256": "2cf26ef2e84c74284e79304354185ba14fa7bedfc0d12cf57576d02dcda8498b",
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "maximum-ordered-traversal": {
+      "sourceCommit": "678cd33eda1f20fb3c5142719517920449f81a98",
+      "controllerSha256": "ebb7f703c268bb72724244945b453bc808e1a0ccbeb8182aaf38fd8902fcfbbc",
+      "methods": 5,
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "separatePreparationFailure": {
+    "source": "434a4e17821f0d1863f3ad374d79dbc77a62e2a8",
+    "reason": "Remote script launch raced incomplete transfer; file absent; no script/Auth/API/UI executed."
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "maximumProfilePassed": true,
+  "normalReplayed": false,
+  "UIProfilesPassed": 1,
+  "bothFinalCanonicalReadsPassed": true,
+  "POSTs": 0,
+  "ReminderSaves": 0,
+  "Removes": 0,
+  "CreateReplays": 0,
+  "StopAtFirstUIFailure": false,
+  "fixtureStillActive": true,
+  "reminderStillNil": true
+}

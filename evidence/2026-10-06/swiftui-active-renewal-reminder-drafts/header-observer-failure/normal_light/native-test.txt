@@ -1,0 +1,288 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-drafts-20261006/normal_light/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-drafts-20261006/normal_light/result.xcresult "-only-testing:NestAccessibilityTests/NativeActiveRenewalReminderDraftTests/testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-drafts-20261006/normal_light/result.xcresult
+
+2026-10-06 13:41:21.281054+0200 NestAccessibilityTests-Runner[62916:21099847] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 13:41:21.879.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 13:41:21.879.
+Test Suite 'NativeActiveRenewalReminderDraftTests' started at 2026-10-06 13:41:21.879.
+Test Case '-[NestAccessibilityTests.NativeActiveRenewalReminderDraftTests testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts]' started.
+    t =     0.00s Start Test at 2026-10-06 13:41:21.880
+    t =     0.02s Set Up
+    t =     0.03s Open ch.drrius.nest
+    t =     0.03s     Launch ch.drrius.nest
+2026-10-06 13:41:21.971 xcodebuild[62913:21099649] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 13:41:21.971 xcodebuild[62913:21099649] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.70s         Setting up automation session
+    t =     1.43s         Wait for ch.drrius.nest to idle
+    t =     2.67s Waiting 30.0s for TabBar (First Match) to exist
+    t =     3.70s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     3.70s         Checking existence of `TabBar (First Match)`
+    t =     3.74s Tap "Today" Button
+    t =     3.74s     Wait for ch.drrius.nest to idle
+    t =     3.75s     Find the "Today" Button
+    t =     3.78s     Check for interrupting elements affecting "Today" Button
+    t =     3.83s     Synthesize event
+    t =     4.13s     Wait for ch.drrius.nest to idle
+    t =     4.90s Tap "Profile and preferences" Button
+    t =     4.90s     Wait for ch.drrius.nest to idle
+    t =     4.91s     Find the "Profile and preferences" Button
+    t =     4.95s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     4.99s     Synthesize event
+    t =     5.30s     Wait for ch.drrius.nest to idle
+    t =     5.75s Waiting 15.0s for "Test Alex" StaticText to exist
+    t =     6.79s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Alex" StaticText`
+    t =     6.79s         Checking existence of `"Test Alex" StaticText`
+    t =     6.88s Tap Button (Element at index 0)
+    t =     6.88s     Wait for ch.drrius.nest to idle
+    t =     6.88s     Find the Button (Element at index 0)
+    t =     6.92s     Check for interrupting elements affecting "BackButton" Button
+    t =     6.96s     Synthesize event
+    t =     7.26s     Wait for ch.drrius.nest to idle
+    t =     8.09s Get all elements bound by index for: Descendants matching type CollectionView
+    t =     8.13s Get all elements bound by index for: Descendants matching type ScrollView
+    t =     8.18s Find the ScrollView (Element at index 0)
+    t =     8.23s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =     8.26s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =     8.30s Find the TabBar (First Match)
+    t =     8.32s Find the TabBar (First Match)
+    t =     8.33s Find the Target Application 'ch.drrius.nest'
+    t =     8.35s Find the Target Application 'ch.drrius.nest'
+    t =     8.38s Checking existence of `"Manage renewals" Button`
+    t =     8.41s Find the "Manage renewals" Button
+    t =     8.45s Find the "Manage renewals" Button
+    t =     8.49s Find the Target Application 'ch.drrius.nest'
+    t =     8.51s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.28] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =     8.51s     Wait for ch.drrius.nest to idle
+    t =     8.51s     Find the Target Application 'ch.drrius.nest'
+    t =     8.54s     Check for interrupting elements affecting "Nest" Application
+    t =     8.56s     Synthesize event
+    t =     8.57s         Find the Target Application 'ch.drrius.nest'
+    t =     8.59s         Find the Target Application 'ch.drrius.nest'
+    t =     8.61s         Find the Target Application 'ch.drrius.nest'
+    t =     8.63s         Find the Target Application 'ch.drrius.nest'
+    t =     8.66s         Find the Target Application 'ch.drrius.nest'
+    t =    10.22s     Wait for ch.drrius.nest to idle
+    t =    10.23s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    10.28s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    10.31s Find the ScrollView (Element at index 0)
+    t =    10.34s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    10.37s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    10.39s Find the TabBar (First Match)
+    t =    10.41s Find the TabBar (First Match)
+    t =    10.42s Find the Target Application 'ch.drrius.nest'
+    t =    10.44s Find the Target Application 'ch.drrius.nest'
+    t =    10.46s Checking existence of `"Manage renewals" Button`
+    t =    10.49s Find the "Manage renewals" Button
+    t =    10.52s Find the "Manage renewals" Button
+    t =    10.57s Find the Target Application 'ch.drrius.nest'
+    t =    10.59s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.28] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    10.59s     Wait for ch.drrius.nest to idle
+    t =    10.59s     Find the Target Application 'ch.drrius.nest'
+    t =    10.62s     Check for interrupting elements affecting "Nest" Application
+    t =    10.65s     Synthesize event
+    t =    10.65s         Find the Target Application 'ch.drrius.nest'
+    t =    10.67s         Find the Target Application 'ch.drrius.nest'
+    t =    10.69s         Find the Target Application 'ch.drrius.nest'
+    t =    10.71s         Find the Target Application 'ch.drrius.nest'
+    t =    10.73s         Find the Target Application 'ch.drrius.nest'
+    t =    12.30s     Wait for ch.drrius.nest to idle
+    t =    12.30s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    12.35s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    12.37s Find the ScrollView (Element at index 0)
+    t =    12.41s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    12.43s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    12.45s Find the TabBar (First Match)
+    t =    12.47s Find the TabBar (First Match)
+    t =    12.48s Find the Target Application 'ch.drrius.nest'
+    t =    12.50s Find the Target Application 'ch.drrius.nest'
+    t =    12.52s Checking existence of `"Manage renewals" Button`
+    t =    12.55s Find the "Manage renewals" Button
+    t =    12.58s Find the "Manage renewals" Button
+    t =    12.62s Find the Target Application 'ch.drrius.nest'
+    t =    12.64s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.61] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    12.64s     Wait for ch.drrius.nest to idle
+    t =    12.64s     Find the Target Application 'ch.drrius.nest'
+    t =    12.66s     Check for interrupting elements affecting "Nest" Application
+    t =    12.69s     Synthesize event
+    t =    12.69s         Find the Target Application 'ch.drrius.nest'
+    t =    12.71s         Find the Target Application 'ch.drrius.nest'
+    t =    12.73s         Find the Target Application 'ch.drrius.nest'
+    t =    12.75s         Find the Target Application 'ch.drrius.nest'
+    t =    12.78s         Find the Target Application 'ch.drrius.nest'
+    t =    13.45s     Wait for ch.drrius.nest to idle
+    t =    13.46s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    13.50s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    13.53s Find the ScrollView (Element at index 0)
+    t =    13.57s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    13.59s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    13.62s Find the TabBar (First Match)
+    t =    13.63s Find the TabBar (First Match)
+    t =    13.65s Find the Target Application 'ch.drrius.nest'
+    t =    13.67s Find the Target Application 'ch.drrius.nest'
+    t =    13.69s Checking existence of `"Manage renewals" Button`
+    t =    13.72s Find the "Manage renewals" Button
+    t =    13.75s Find the "Manage renewals" Button
+    t =    13.79s Added attachment named 'Measured actual renewal reminder control viewport'
+    t =    13.79s Find the "Manage renewals" Button
+    t =    13.82s Find the "Manage renewals" Button
+    t =    13.86s Tap "Manage renewals" Button
+    t =    13.86s     Wait for ch.drrius.nest to idle
+    t =    13.87s     Find the "Manage renewals" Button
+    t =    13.90s     Check for interrupting elements affecting "Manage renewals" Button
+    t =    13.93s     Synthesize event
+    t =    14.22s     Wait for ch.drrius.nest to idle
+    t =    14.60s Waiting 15.0s for "Renewals" NavigationBar to exist
+    t =    15.64s     Checking `Expect predicate `existsNoRetry == 1` for object "Renewals" NavigationBar`
+    t =    15.64s         Checking existence of `"Renewals" NavigationBar`
+    t =    15.71s Waiting 30.0s for "Nest QA reminder 0610-3f88" StaticText to exist
+    t =    16.73s     Checking `Expect predicate `existsNoRetry == 1` for object "Nest QA reminder 0610-3f88" StaticText`
+    t =    16.73s         Checking existence of `"Nest QA reminder 0610-3f88" StaticText`
+    t =    16.80s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    16.84s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    16.87s Find the CollectionView (Element at index 0)
+    t =    16.93s Find the Target Application 'ch.drrius.nest'
+    t =    16.96s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    16.99s Find the NavigationBar (Element at index 0)
+    t =    17.05s Find the "Renewals" NavigationBar
+    t =    17.08s Find the TabBar (First Match)
+    t =    17.10s Find the TabBar (First Match)
+    t =    17.11s Find the Target Application 'ch.drrius.nest'
+    t =    17.14s Find the Target Application 'ch.drrius.nest'
+    t =    17.17s Checking existence of `"Nest QA reminder 0610-3f88" StaticText`
+    t =    17.23s Find the "Nest QA reminder 0610-3f88" StaticText
+    t =    17.29s Added attachment named 'Measured actual renewal reminder control viewport'
+    t =    17.29s Get number of matches for: Elements matching predicate '"Reminder choices" IN identifiers'
+    t =    17.33s Checking existence of `"Your saved renewal request" StaticText`
+    t =    17.36s Checking existence of `"Renewal reminder" NavigationBar`
+    t =    17.39s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    17.42s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    17.45s Find the CollectionView (Element at index 0)
+    t =    17.51s Find the Target Application 'ch.drrius.nest'
+    t =    17.53s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    17.56s Find the NavigationBar (Element at index 0)
+    t =    17.61s Find the "Renewals" NavigationBar
+    t =    17.65s Find the TabBar (First Match)
+    t =    17.67s Find the TabBar (First Match)
+    t =    17.68s Find the Target Application 'ch.drrius.nest'
+    t =    17.71s Find the Target Application 'ch.drrius.nest'
+    t =    17.74s Checking existence of `"Reminder choices" Button`
+    t =    17.77s Find the "Reminder choices" Button
+    t =    17.81s Find the "Reminder choices" Button
+    t =    17.85s Added attachment named 'Measured actual renewal reminder control viewport'
+    t =    17.85s Find the "Reminder choices" Button
+    t =    17.89s Find the "Reminder choices" Button
+    t =    17.93s Tap "Reminder choices" Button
+    t =    17.93s     Wait for ch.drrius.nest to idle
+    t =    17.94s     Find the "Reminder choices" Button
+    t =    17.98s     Check for interrupting elements affecting "Reminder choices" Button
+    t =    18.02s     Synthesize event
+    t =    18.31s     Wait for ch.drrius.nest to idle
+    t =    18.77s Waiting 15.0s for "Renewal reminder" NavigationBar to exist
+    t =    19.81s     Checking `Expect predicate `existsNoRetry == 1` for object "Renewal reminder" NavigationBar`
+    t =    19.81s         Checking existence of `"Renewal reminder" NavigationBar`
+    t =    20.93s Checking `Expect predicate `enabled == 1` for object "Back" Button`
+    t =    20.93s     Find the "Back" Button
+    t =    21.01s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    21.07s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    21.13s Find the CollectionView (Element at index 0)
+    t =    21.22s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    21.28s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    21.34s Find the NavigationBar (Element at index 0)
+    t =    21.42s Find the "Renewal reminder" NavigationBar
+    t =    21.49s Find the TabBar (First Match)
+    t =    21.53s Find the Target Application 'ch.drrius.nest'
+    t =    21.58s Find the Target Application 'ch.drrius.nest'
+    t =    21.63s Checking existence of `"Nest QA reminder 0610-3f88" StaticText`
+    t =    21.71s Find the "Nest QA reminder 0610-3f88" StaticText
+    t =    21.78s     Collecting debug information to assist test failure triage
+    t =    21.78s         Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    21.88s     Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    21.97s     Find: Descendants matching type StaticText
+    t =    21.97s     Find: Elements matching predicate '"Nest QA reminder 0610-3f88" IN identifiers'
+    t =    22.03s     Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    22.12s     Find: Descendants matching type StaticText
+    t =    22.12s     Find: Elements matching predicate '"Nest QA reminder 0610-3f88" IN identifiers'
+    t =    22.13s     Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    22.22s     Find: Descendants matching type StaticText
+    t =    22.22s     Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    22.38s     Requesting snapshot of accessibility hierarchy for app with pid 62931
+<unknown>:0: error: -[NestAccessibilityTests.NativeActiveRenewalReminderDraftTests testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts] : Failed to get matching snapshot: Find single matching element. Multiple matching elements found for <XCUIElementQuery: 0x60000210ce60>.
+Sparse tree of matches:
+→Application, pid: 62931, label: 'Nest'
+  ↳Window (Main)
+    ↳Other
+    ⋅ ↳Other
+    ⋅   ↳Other
+    ⋅     ↳Other
+    ⋅       ↳Other
+    ⋅         ↳Other
+    ⋅           ↳Other
+    ⋅             ↳Other
+    ⋅               ↳Other
+    ⋅                 ↳Other
+    ⋅                   ↳Other
+    ⋅                     ↳CollectionView
+    ⋅                       ↳Cell
+    ⋅                         ↳Other
+    ⋅                           ↳Other
+    ⋅                             ↳Other
+    ⋅                               ↳StaticText, label: 'Nest QA reminder 0610-3f88'
+    ↳Other
+      ↳Other
+        ↳Other
+          ↳Other
+            ↳Other
+              ↳Other
+                ↳Other
+                  ↳Other
+                    ↳Other
+                      ↳Other
+                        ↳Other
+                          ↳Other
+                            ↳Other
+                              ↳Other
+                                ↳Other
+                                  ↳CollectionView
+                                    ↳Cell
+                                      ↳Other
+                                        ↳Other
+                                          ↳Other
+                                            ↳StaticText, label: 'Nest QA reminder 0610-3f88'
+Possibly caused by runtime issues:
+Automation type mismatch: computed Other from legacy attributes vs StaticText from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 48;
+    "XC_kAXXCAttributeElementBaseType" = UILabel;
+    "XC_kAXXCAttributeElementType" = UILabel;
+    "XC_kAXXCAttributeTraits" = 8590000128;
+}
+See test report attachments for more detail.
+    t =    22.50s Tear Down
+    t =    22.50s         Find the Target Application 'ch.drrius.nest'
+    t =    22.59s     Added attachment named 'Active renewal unsent terminal screen'
+    t =    22.59s         Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    22.93s         Requesting snapshot of accessibility hierarchy for app with pid 62931
+    t =    23.03s     Added attachment named 'Active renewal unsent terminal screen accessibility tree'
+Test Case '-[NestAccessibilityTests.NativeActiveRenewalReminderDraftTests testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts]' failed (23.290 seconds).
+Test Suite 'NativeActiveRenewalReminderDraftTests' failed at 2026-10-06 13:41:45.170.
+	 Executed 1 test, with 1 failure (0 unexpected) in 23.290 (23.291) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 13:41:45.171.
+	 Executed 1 test, with 1 failure (0 unexpected) in 23.290 (23.292) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 13:41:45.171.
+	 Executed 1 test, with 1 failure (0 unexpected) in 23.290 (23.293) seconds
+2026-10-06 13:41:57.937 xcodebuild[62913:21099649] [MT] IDETestOperationsObserverDebug: 37.431 elapsed -- Testing started completed.
+2026-10-06 13:41:57.937 xcodebuild[62913:21099649] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 13:41:57.937 xcodebuild[62913:21099649] [MT] IDETestOperationsObserverDebug: 37.431 sec, +37.431 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-drafts-20261006/normal_light/result.xcresult
+
+Failing tests:
+	NativeActiveRenewalReminderDraftTests.testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts()
+
+** TEST EXECUTE FAILED **
+
+Testing started

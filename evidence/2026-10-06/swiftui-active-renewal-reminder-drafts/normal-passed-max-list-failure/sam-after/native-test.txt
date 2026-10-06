@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-drafts-wheel-select-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-drafts-wheel-select-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-drafts-wheel-select-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 14:09:37.023.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 14:09:37.024.
+Test Suite 'HostedActiveRenewalReminderReadTests' started at 2026-10-06 14:09:37.024.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' started.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' passed (7.468 seconds).
+Test Suite 'HostedActiveRenewalReminderReadTests' passed at 2026-10-06 14:09:44.493.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.468 (7.469) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 14:09:44.493.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.468 (7.470) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 14:09:44.494.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.468 (7.470) seconds
+2026-10-06 14:09:44.813 xcodebuild[71423:21173652] [MT] IDETestOperationsObserverDebug: 9.577 elapsed -- Testing started completed.
+2026-10-06 14:09:44.814 xcodebuild[71423:21173652] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 14:09:44.814 xcodebuild[71423:21173652] [MT] IDETestOperationsObserverDebug: 9.578 sec, +9.578 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-drafts-wheel-select-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

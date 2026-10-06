@@ -1,0 +1,21 @@
+[
+  {
+    "afterExists": true,
+    "afterFrame": [16, 173, 343, 217.5],
+    "bottom": 659,
+    "distance": -120,
+    "exists": true,
+    "frame": [16, 63.5, 343, 217.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "bottom": 659,
+    "exists": true,
+    "frame": [16, 173, 343, 217.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 173
+  }
+]

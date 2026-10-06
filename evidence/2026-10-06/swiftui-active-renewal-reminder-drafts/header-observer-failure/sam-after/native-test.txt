@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-drafts-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-drafts-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-drafts-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 13:42:14.561.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 13:42:14.562.
+Test Suite 'HostedActiveRenewalReminderReadTests' started at 2026-10-06 13:42:14.562.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' started.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' passed (8.534 seconds).
+Test Suite 'HostedActiveRenewalReminderReadTests' passed at 2026-10-06 13:42:23.097.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.534 (8.535) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 13:42:23.097.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.534 (8.536) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 13:42:23.097.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.534 (8.536) seconds
+2026-10-06 13:42:23.431 xcodebuild[63108:21102130] [MT] IDETestOperationsObserverDebug: 10.815 elapsed -- Testing started completed.
+2026-10-06 13:42:23.431 xcodebuild[63108:21102130] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 13:42:23.431 xcodebuild[63108:21102130] [MT] IDETestOperationsObserverDebug: 10.815 sec, +10.815 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-drafts-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

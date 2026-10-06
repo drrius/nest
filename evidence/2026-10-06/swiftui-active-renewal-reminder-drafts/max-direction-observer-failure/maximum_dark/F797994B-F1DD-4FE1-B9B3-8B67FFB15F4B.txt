@@ -1,0 +1,180 @@
+Attributes: Application, 0x11eeda000, pid: 74468, label: 'Nest'
+Element subtree:
+ →Application, 0x11eeda000, pid: 74468, label: 'Nest'
+    Window (Main), 0x11eedd630, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11ee71840, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11eeb4d30, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11eeddbe0, {{-375.0, -667.0}, {1125.0, 2001.0}}
+          Other, 0x11eedf2a0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11eeb6eb0, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11eed4aa0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11eeb5150, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11eeb8770, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11eedd210, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11eedcdf0, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11eebfb90, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11eedf680, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11eedf7a0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11eedf8c0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Renewals'
+                              Button, 0x11eedf9e0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Back'
+                              StaticText, 0x11eedfb00, {{141.5, 29.0}, {92.0, 26.0}}, label: 'Renewals'
+                              Other, 0x11eedfc20, {{311.0, 24.0}, {44.0, 36.0}}, label: 'Add'
+                                Other, 0x11eedfd40, {{311.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x11eedfe60, {{311.0, 20.0}, {44.0, 44.0}}, label: 'Add'
+                            Other, 0x11eedff80, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11eee00a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11eee01c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11eee02e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11eee0400, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11eee0520, {{-16.0, -260.0}, {407.0, 864.5}}
+                                      Cell, 0x11eee0640, {{16.0, -114.5}, {343.0, 701.5}}
+                                        Other, 0x11eee0760, {{16.0, -114.5}, {343.0, 701.5}}
+                                          Other, 0x11eee0880, {{16.0, -114.5}, {343.0, 701.5}}
+                                        Other, 0x11eee09a0, {{16.0, -114.5}, {343.0, 701.5}}
+                                          Other, 0x11eee0ac0, {{16.0, -114.5}, {343.0, 701.5}}
+                                            Other, 0x11eee0be0, {{16.0, -114.5}, {343.0, 701.5}}
+                                              StaticText, 0x11eee0d00, {{32.0, -93.5}, {269.5, 187.5}}, label: 'Nest QA reminder 0610-3f88'
+                                              StaticText, 0x11eee0e20, {{32.0, 102.0}, {287.5, 125.5}}, label: 'Renews 2026-10-07'
+                                              StaticText, 0x11eee0f40, {{32.0, 235.5}, {287.5, 125.5}}, label: 'Cancel by 2026-10-07'
+                                              Button, 0x11eee1060, {{32.0, 369.0}, {87.0, 63.5}}, label: 'Edit'
+                                              Button, 0x11eee1180, {{160.5, 369.0}, {182.5, 63.5}}, label: 'Remove'
+                                              Button, 0x11eee12a0, {{32.0, 440.5}, {227.0, 125.5}}, label: 'Reminder choices'
+                                      Other, 0x11eee13c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11eee14e0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11eee1600, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11eee1720, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11eee1840, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x11eee1960, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11eee1a80, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x11eee1ba0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11eee1cc0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11eee1de0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11eee1f00, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11eee2020, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11eee2140, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11eee2260, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11eee2380, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x11eee24a0, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11eee25c0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11eee26e0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x11eee2800, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11eee2920, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11eee2a40, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11eee2b60, {{-16.0, 604.5}, {407.0, 1465.0}}
+                                      Cell, 0x11eee2c80, {{16.0, 622.0}, {343.0, 93.5}}
+                                        Other, 0x11eee2da0, {{16.0, 622.0}, {343.0, 93.5}}
+                                          Other, 0x11eee2ec0, {{16.0, 622.0}, {343.0, 93.5}}
+                                        Other, 0x11eee2fe0, {{16.0, 622.0}, {343.0, 93.5}}
+                                          Other, 0x11eee3100, {{16.0, 622.0}, {343.0, 93.5}}
+                                            Other, 0x11eee3220, {{16.0, 622.0}, {343.0, 93.5}}
+                                              Button, 0x11eee3340, {{16.0, 622.0}, {343.0, 93.5}}, label: 'Refresh'
+                                      Other, 0x11eee3460, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 4 pages', value: 87%
+                                        Other, 0x11eee3580, {{369.0, 359.0}, {3.0, 181.0}}
+                                      Other, 0x11eee36a0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 4 pages', value: 87%
+                                        Other, 0x11eee37c0, {{369.0, 359.0}, {3.0, 181.0}}
+                            Other, 0x11eee38e0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11eee3a00, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11eee3b20, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11eee3c40, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11eee3d60, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11eee3e80, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11eee3fa0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11eee40c0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11eee41e0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x11eee4300, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11eee4420, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11eee4540, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11eee4660, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11eee4780, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11eee48a0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x11eee49c0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11eee4ae0, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x11eee4c00, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x11eee4d20, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x11eee4e40, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x11eee4f60, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x11eee5080, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11eee51a0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x11eee52c0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x11eee53e0, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x11eee5500, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11eee5620, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11eee5740, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11eee5860, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11eee5980, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11eee5aa0, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x11eee5bc0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11eee5ce0, {{-375.0, -667.0}, {1125.0, 2001.0}}
+        Other, 0x11eee5e00, {{0.0, 30.0}, {375.0, 637.0}}
+          Other, 0x11eee5f20, {{0.0, 30.0}, {375.0, 637.0}}
+            Other, 0x11eee6040, {{0.0, 30.0}, {375.0, 637.0}}
+              Other, 0x11eee6160, {{0.0, 30.0}, {375.0, 637.0}}
+                Other, 0x11eee6280, {{0.0, 30.0}, {375.0, 637.0}}
+                  Other, 0x11eee63a0, {{0.0, 30.0}, {375.0, 637.0}}
+                    NavigationBar, 0x11eee64c0, {{0.0, 46.0}, {375.0, 54.0}}, identifier: 'Renewal reminder'
+                      Other, 0x11eee65e0, {{20.0, 50.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                        Other, 0x11eee6700, {{20.0, 50.0}, {44.0, 36.0}}
+                          Button, 0x11eee6820, {{20.0, 46.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                      StaticText, 0x11eee6940, {{101.0, 55.0}, {172.5, 26.0}}, label: 'Renewal reminder'
+                    Other, 0x11eee6a60, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x11eee6b80, {{0.0, 30.0}, {375.0, 637.0}}
+                        Other, 0x11eee6ca0, {{0.0, 30.0}, {375.0, 637.0}}
+                          Other, 0x11eee6dc0, {{0.0, 30.0}, {375.0, 637.0}}
+                            CollectionView, 0x11eee6ee0, {{0.0, 30.0}, {375.0, 637.0}}
+                              Other, 0x11eee7000, {{-16.0, -1210.5}, {407.0, 1820.0}}
+                              Other, 0x11eee7120, {{0.0, 30.0}, {375.0, 637.0}}
+                                Other, 0x11eee7240, {{0.0, 30.0}, {375.0, 124.8}}
+                              Other, 0x11eee7360, {{0.0, 30.0}, {375.0, 637.0}}
+                                Other, 0x11eee7480, {{0.0, 30.0}, {375.0, 124.8}}
+                                  Image, 0x11eee75a0, {{-120.0, -90.0}, {615.0, 240.0}}, identifier: 'AdditionalDimmingOverlay'
+                                  Other, 0x11eee76c0, {{0.0, 30.0}, {375.0, 60.0}}
+                                  Other, 0x11eee77e0, {{0.0, 30.0}, {375.0, 124.8}}
+                                    Other, 0x11eee7900, {{0.0, 30.0}, {375.0, 124.8}}
+                                  Other, 0x11eee7a20, {{0.0, 30.0}, {375.0, 124.8}}
+                                    Other, 0x11eee7b40, {{0.0, 30.0}, {375.0, 124.8}}
+                                  Other, 0x11eee7c60, {{0.0, 30.0}, {375.0, 124.8}}
+                                    Other, 0x11eee7d80, {{0.0, 30.0}, {375.0, 124.8}}
+                                    Other, 0x11eee7ea0, {{0.0, 30.0}, {375.0, 124.8}}
+                              Cell, 0x11eee7fc0, {{16.0, 63.5}, {343.0, 217.5}}
+                                Other, 0x11eee80e0, {{16.0, 63.5}, {343.0, 217.5}}
+                                  Other, 0x11eee8200, {{16.0, 63.5}, {343.0, 217.5}}
+                                Other, 0x11eee8320, {{16.0, 63.5}, {343.0, 217.5}}
+                                  Other, 0x11eee8440, {{16.0, 63.5}, {343.0, 217.5}}
+                                    Other, 0x11eee8560, {{16.0, 63.5}, {343.0, 217.5}}
+                                      StaticText, 0x11eee8680, {{16.0, 63.5}, {343.0, 217.5}}, label: 'Nest QA reminder 0610-3f88'
+                              Cell, 0x11eee87a0, {{16.0, 281.0}, {343.0, 155.5}}
+                                Other, 0x11eee88c0, {{16.0, 281.0}, {343.0, 155.5}}
+                                  Other, 0x11eee89e0, {{16.0, 281.0}, {343.0, 155.5}}
+                                Other, 0x11eee8b00, {{16.0, 281.0}, {343.0, 155.5}}
+                                  Other, 0x11eee8c20, {{16.0, 281.0}, {343.0, 155.5}}
+                                    Other, 0x11eee8d40, {{16.0, 281.0}, {343.0, 155.5}}
+                                      StaticText, 0x11eee8e60, {{16.0, 281.0}, {343.0, 155.5}}, label: 'Renews 2026-10-07'
+                              Other, 0x11eee8f80, {{32.0, 280.0}, {311.0, 1.0}}
+                              Cell, 0x11eee90a0, {{16.0, 436.5}, {343.0, 155.5}}
+                                Other, 0x11eee91c0, {{16.0, 436.5}, {343.0, 155.5}}
+                                  Other, 0x11eee92e0, {{16.0, 436.5}, {343.0, 155.5}}
+                                Other, 0x11eee9400, {{16.0, 436.5}, {343.0, 155.5}}
+                                  Other, 0x11eee9520, {{16.0, 436.5}, {343.0, 155.5}}
+                                    Other, 0x11eee9640, {{16.0, 436.5}, {343.0, 155.5}}
+                                      StaticText, 0x11eee9760, {{16.0, 436.5}, {343.0, 155.5}}, label: 'Cancel by 2026-10-07'
+                              Other, 0x11eee9880, {{32.0, 435.5}, {311.0, 1.0}}
+                              Other, 0x11eee99a0, {{-16.0, 609.5}, {407.0, 1259.0}}
+                              Cell, 0x11eee9ac0, {{16.0, 609.5}, {343.0, 83.5}}
+                                Other, 0x11eee9be0, {{16.0, 609.5}, {343.0, 83.5}}
+                                Other, 0x11eee9d00, {{16.0, 609.5}, {343.0, 83.5}}
+                                  Other, 0x11eee9e20, {{16.0, 609.5}, {343.0, 83.5}}
+                                    Other, 0x11eee9f40, {{16.0, 609.5}, {343.0, 83.5}}
+                                      StaticText, 0x11eeea060, {{16.0, 609.5}, {343.0, 83.5}}, label: 'Reminder'
+                              Other, 0x11eeea180, {{342.0, 84.0}, {30.0, 583.0}}, label: 'Vertical scroll bar, 5 pages', value: 2%
+                                Other, 0x11eeea2a0, {{369.0, 95.0}, {3.0, 143.0}}
+                              Other, 0x11eeea3c0, {{342.0, 84.0}, {30.0, 583.0}}, label: 'Vertical scroll bar, 5 pages', value: 2%
+                                Other, 0x11eeea4e0, {{369.0, 95.0}, {3.0, 143.0}}
+                    Other, 0x11eeea600, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x11eeea720, {{0.0, 30.0}, {375.0, 637.0}}
+Path to element:
+ →Application, 0x11eeda000, pid: 74468, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11ef523f0, pid: 74468, label: 'Nest'
+  }

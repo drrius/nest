@@ -1,0 +1,98 @@
+[
+  {
+    "afterExists": false,
+    "afterFrame": [0, 0, 0, 0],
+    "bottom": 659,
+    "distance": -180,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": false,
+    "afterFrame": [0, 0, 0, 0],
+    "bottom": 659,
+    "distance": -180,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": false,
+    "afterFrame": [0, 0, 0, 0],
+    "bottom": 659,
+    "distance": -180,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": false,
+    "afterFrame": [0, 0, 0, 0],
+    "bottom": 659,
+    "distance": -180,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": false,
+    "afterFrame": [0, 0, 0, 0],
+    "bottom": 659,
+    "distance": -180,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [16, -121, 343, 217.5],
+    "bottom": 659,
+    "distance": -180,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [16, 49, 343, 217.5],
+    "bottom": 659,
+    "distance": -180,
+    "exists": true,
+    "frame": [16, -121, 343, 217.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [16, 159, 343, 217.5],
+    "bottom": 659,
+    "distance": -120,
+    "exists": true,
+    "frame": [16, 49, 343, 217.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 100
+  },
+  {
+    "bottom": 659,
+    "exists": true,
+    "frame": [16, 159, 343, 217.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": -180,
+    "top": 159
+  }
+]

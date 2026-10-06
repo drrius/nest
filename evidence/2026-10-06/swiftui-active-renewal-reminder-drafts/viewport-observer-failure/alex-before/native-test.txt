@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-renewal-drafts-form-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-renewal-drafts-form-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedActiveRenewalReminderReadTests/testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-renewal-drafts-form-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 13:46:37.886.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 13:46:37.887.
+Test Suite 'HostedActiveRenewalReminderReadTests' started at 2026-10-06 13:46:37.887.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' started.
+Test Case '-[NestAppTests.HostedActiveRenewalReminderReadTests testGETOnlyFreshRenewalBaselineAndExactCreatedReceipt]' passed (7.964 seconds).
+Test Suite 'HostedActiveRenewalReminderReadTests' passed at 2026-10-06 13:46:45.851.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.964 (7.965) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 13:46:45.852.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.964 (7.965) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 13:46:45.852.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.964 (7.966) seconds
+2026-10-06 13:46:46.186 xcodebuild[64354:21112303] [MT] IDETestOperationsObserverDebug: 10.214 elapsed -- Testing started completed.
+2026-10-06 13:46:46.186 xcodebuild[64354:21112303] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 13:46:46.186 xcodebuild[64354:21112303] [MT] IDETestOperationsObserverDebug: 10.214 sec, +10.214 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-renewal-drafts-form-20261006/alex-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

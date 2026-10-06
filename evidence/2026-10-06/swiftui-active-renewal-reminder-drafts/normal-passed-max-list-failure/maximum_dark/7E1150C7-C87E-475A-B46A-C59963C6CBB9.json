@@ -1,0 +1,153 @@
+[
+  {
+    "afterExists": true,
+    "afterFrame": [20, 3303.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 3543.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 3063.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 3303.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 2823.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 3063.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 2583.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 2823.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 2343.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 2583.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 2103.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 2343.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 1863.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 2103.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 1623.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 1863.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 1383.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 1623.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 1143.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 1383.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 903.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 1143.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 663.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 250,
+    "exists": true,
+    "frame": [20, 903.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [20, 440.5, 335, 125.5],
+    "bottom": 576,
+    "distance": 233,
+    "exists": true,
+    "frame": [20, 663.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [20, 440.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  }
+]

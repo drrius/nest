@@ -1,0 +1,16 @@
+{
+  "responses": [
+    { "path": "\/v1\/session", "capturedAt": 1791287782.5204868, "status": 200 },
+    { "path": "\/v1\/renewals", "capturedAt": 1791287783.3518639, "status": 200 },
+    { "path": "\/v1\/routines\/roster", "capturedAt": 1791287784.045902, "status": 200 },
+    { "path": "\/v1\/money\/recurring\/rules", "capturedAt": 1791287784.6137772, "status": 200 },
+    { "path": "\/v1\/money\/history", "capturedAt": 1791287785.171535, "status": 200 },
+    { "path": "\/v1\/money\/history", "capturedAt": 1791287785.71763, "status": 200 },
+    { "path": "\/v1\/money\/balance", "capturedAt": 1791287786.393252, "status": 200 },
+    { "path": "\/v1\/groceries", "capturedAt": 1791287786.936615, "status": 200 },
+    { "path": "\/v1\/renewals\/detail", "capturedAt": 1791287787.436991, "status": 200 },
+    { "path": "\/v1\/renewals\/detail", "capturedAt": 1791287787.9953341, "status": 200 },
+    { "path": "\/v1\/renewal-reminders\/detail", "capturedAt": 1791287788.487376, "status": 200 }
+  ],
+  "lastPhase": "\/v1\/renewal-reminders\/detail"
+}

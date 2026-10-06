@@ -1,0 +1,79 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C22351F7-725B-4995-B94B-F04AEC10DEE6.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal unsent terminal screen accessibility tree_0_E2334578-E8EF-4930-8AC7-A48743E55947.txt",
+        "timestamp": 1791286904.905
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AB0AB193-794D-4B73-BBC2-DE148DC3D82C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal unsent terminal screen_0_455002D3-EC28-4A13-90CE-6068000E3E37.png",
+        "timestamp": 1791286904.473
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "96B61835-17A2-42C7-A019-5E1E68DA162F.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_F1BBC8D0-2B14-4651-ACE3-22B67DA39200.nest",
+        "timestamp": 1791286903.748
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "63083E82-245C-400D-A98D-238422793657.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual renewal reminder control viewport_0_1FCB0135-EE72-4918-A451-6DFC70CB14DC.json",
+        "timestamp": 1791286899.73
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C568E747-ADC6-41EA-80BA-4EEC9BA88ADA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual renewal reminder control viewport_0_EDE5C805-6B70-4065-B891-4D206421A559.json",
+        "timestamp": 1791286899.171
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F1F5CE55-9236-482A-8E90-98D19DE0CAE5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual renewal reminder control viewport_0_D9182F1A-3555-4C7D-98F0-380F1CD35029.json",
+        "timestamp": 1791286895.671
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D6F3D2CA-B17C-4FC4-911D-E9B7E277617C.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "Complete Issue Description.txt"
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A5EFD058-B564-493A-BABB-DE8C57CECFC2.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_889B37FE-6B94-4EED-AF12-2D1A6F762999.nest",
+        "timestamp": 1791286904.348
+      }
+    ],
+    "testIdentifier": "NativeActiveRenewalReminderDraftTests/testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRenewalReminderDraftTests/testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts"
+  }
+]

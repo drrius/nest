@@ -1,0 +1,32 @@
+[
+  {
+    "afterExists": true,
+    "afterFrame": [32, 581, 311, 145],
+    "bottom": 659,
+    "distance": 250,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 173
+  },
+  {
+    "afterExists": true,
+    "afterFrame": [32, 471, 311, 145],
+    "bottom": 659,
+    "distance": 120,
+    "exists": true,
+    "frame": [32, 581, 311, 145],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 100
+  },
+  {
+    "bottom": 659,
+    "exists": true,
+    "frame": [32, 471, 311, 145],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 100
+  }
+]

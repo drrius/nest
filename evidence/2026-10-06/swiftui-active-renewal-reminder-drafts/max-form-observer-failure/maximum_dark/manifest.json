@@ -1,0 +1,53 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E4E02F2F-EE0D-43D9-A8C9-D70B3A177A47.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal unsent terminal screen accessibility tree_0_9190E866-6BCF-4631-A097-2E4B384DE0D8.txt",
+        "timestamp": 1791288839.58
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "029F4A8F-9E9E-41E2-BB47-DAD569EB8860.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active renewal unsent terminal screen_0_EF93ACB3-44C1-4D49-9B18-B0E9D1289023.png",
+        "timestamp": 1791288839.265
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BBDAC80B-6DD0-4F32-A830-45660CE8E7BB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual renewal reminder control viewport_0_E03916A3-8D85-49BB-BD5E-8F9F743EC40A.json",
+        "timestamp": 1791288835.688
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "68AD61D4-14CE-4BD6-80D8-D263A7E9E32F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual renewal reminder control viewport_0_16A76CD1-9B58-48EE-BE53-A43796FA003B.json",
+        "timestamp": 1791288828.185
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FCD4540F-655A-4AAA-A293-F7A80E5AA360.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual renewal reminder control viewport_0_50E61C03-FBBB-44E0-8F9C-F50B2A12878F.json",
+        "timestamp": 1791288817.019
+      }
+    ],
+    "testIdentifier": "NativeActiveRenewalReminderDraftTests/testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRenewalReminderDraftTests/testExactOwnedActiveRenewalUnsentChoicesAndReadableAlerts"
+  }
+]
