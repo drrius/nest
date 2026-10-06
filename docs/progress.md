@@ -252,8 +252,9 @@ The explicit-Cancel shipping source now passes SwiftUI37472377978 at `ce0f0766`:
 zero failures and strict native gates. Nest37472717035 passes `1f6a7e92`, with
 identical shipping code plus the evidence/phone-guide update. The earlier routine
 run37472378014 was superseded/cancelled. The new guarded Meals diagnostic at
-`971553a6` passes Nest37473580382; SwiftUI37473580828 remains pending. Its
-single native diagnostic fails as recorded below.
+`971553a6` passes Nest37473580382/SwiftUI37473580828 with the same506/466
+totals and strict gates. Nest37474499489 passes docs/evidence checkpoint `0d179c3c`.
+The single native diagnostic still fails as recorded below; CI only compiles it.
 Maximum-text removal, delivery and phone acceptance remain open. Build19 does not
 contain the later renewal fix.
 
