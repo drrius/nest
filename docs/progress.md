@@ -186,27 +186,12 @@ receipts; Sam receives unresolved results with no receipt. Both canonical reads 
 
 The original combined normal/MAX draft proof and retained observer failures remain in [dated history](progress-history-2026-10-06.md#native-chore-reminder-drafts). Later touch-target evidence follows below.
 
-## Reminder Stepper touch area
+## Earlier reminder touch controls and meal drafts
 
-The first normal native 44-point edge probe fails: its whole probe area fits in
-the row and viewport, but Increment at centerY minus 21 leaves the value at zero.
-Real before/after GETs agree; journals and original scopes remain unchanged.
-The larger-size modifier fails the same tap and is removed. A shared native
-minus/plus control with explicit 44-point labels passes all eight tested edges in
-normal/light and maximum/dark. Explicit discard/reopen restores zero and disabled
-choices; final real GETs agree. Four final methods pass with no server command.
-[The compact symbol refinement](../apps/ios/Nest/Reminders/ReminderLeadTimeControl.swift) also passes a fresh maximum-text whole method and two real GETs at `74d37d1a`. Normal-text proof precedes that icon-only change. Across variants, 11 methods pass and two failed edge probes remain recorded.
-[Evidence](../evidence/2026-10-06/swiftui-reminder-stepper-targets/README.md) retains both failed native variants and their unobserved-discard gaps. Both CI workflows pass at `a43fb73e`: 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures. Physical touch remains open.
-
-## Native meal reminder drafts
-
-Six actual methods pass at `204d13d0`: four authenticated reads and two complete
-normal/light or maximum/dark UI journeys. Untouched Back, Keep editing on Back
-and Refresh, explicit Refresh discard/reload and Back discard work with full
-44-point choices. Both members' entire reminder context, week revision 9 and
-captured recipe remain exact; no server command occurs. Today, original roles,
-large/light settings and 64 empty journals per client are restored.
-[Evidence](../evidence/2026-10-06/swiftui-meal-reminder-navigation/README.md). Both workflows pass at `f675ae76`: 502 Foundation/41 skips, 459 signed-app/27 skips, four Swift Testing cases, zero failures. Physical accessibility, delivery and full M8 remain open. Build18 has no later reminder fix.
+The native Stepper edge tests,44-point control fix and meal reminder draft checks
+remain in [dated history](progress-history-2026-10-06.md#reminder-stepper-touch-area).
+Their exact CI, failed attempts and restored state are preserved. Physical touch,
+full accessibility, delivery and M8 acceptance remain open.
 
 ## Recipe draft cancellation and build19
 
@@ -244,9 +229,31 @@ Twelve native methods pass; three earlier methods remain failed. A compile failu
 
 Strict Mac format/limits and actual Create in 62.561s/Done in 31.084s pass. Final Done UI source is `cc81310a`, unchanged signed SDK source `68b7632d`; all 1,110 inputs are pinned per variant. Both workflows pass at `e1a6b2d9` and identical-native-input `549dfec9`; `aecb4b60` also passes Nest37456264766/Swift37456264410:506 Foundation/41 skips,464 signed-app/32 skips, four Swift Testing cases, zero failures and strict format/limits/signing/UI compilation. The [phase-one evidence](../evidence/2026-10-06/swiftui-native-renewal-reminder/README.md) verifier passes 253 tracked artifacts, 34 reviewed screenshots and all source-specific outcomes; exactly one Create and zero replays are recorded. The complete unsent reminder flow passes normal/light175.485s at `3bc0388e` and maximum/dark537.329s at `678cd33e`: actual09:00/Both/renewal-date/lead1 choices, untouched44pt Back, Back/Refresh Keep editing and explicit Discard restoring disabled/none/cancellation08:00/lead0. Eight representative images are visually reviewed across the two sources. Fresh final paired reads preserve all62 history entries, Alex+1/Sam−1 centime, original records and nil reminder. Both clients restore foreground Today/normal-light/original scopes/64 empty journals. Earlier failures remain in [observer history](progress-history-2026-10-06.md#active-renewal-maximum-draft-verification); the bounded traversal fix addresses a wrong search direction, not a shipping defect. The [phase-two evidence](../evidence/2026-10-06/swiftui-active-renewal-reminder-drafts/README.md) verifier passes755 artifacts,34 native passes/seven retained failures,1,111 UI inputs per variant/1,110 SDK inputs and66 screenshots inspected by the execution owner; root independently reviews eight representatives. One native Save/restart/owner recovery/partner isolation/Done check is now authorized on the same fixture; Save, removal and delivery are not yet verified. Both `45700bce` workflows pass; both `4c0a1bc6` workflows pass: routine37464075699/native37464075594,506 Foundation/41 skips,464 signed-app/32 skips and four Swift Testing cases, zero failures and strict native gates.
 
-## Active renewal reminder save and recovery
+## Active renewal reminder save and removal
 
-Guarded single-Save and immutable owner/partner receipt tests are implemented at `848fcd7c` and pass strict Mac formatting/source limits; encoded renewal identity is corrected. At exact `848fcd7c`/1,113 inputs, both fresh baseline reads pass12.915s/9.212s. One native Save records operation `32102900-3d5a-4aa6-9d41-647dab7cf63c`, reminder revision `30203c42-0138-4472-a03a-374b99bbb9d6`, Both/renewal09:00/lead1. The UI method fails147.526s summary/133.361s testcase after the tap waiting for its recorded-message label; the captured scoped request is recorded. The Save budget is consumed and cannot repeat. GET-only continuation passes Alex11.523s/Sam9.608s: exact owner receipt, partner unresolved/nil private receipt, shared canonical reminder and complete62-entry baseline. Alex retains the sole known request; Sam has64 empty journals. The first Done-only controller stops before UI/GET because the SDK host is already exited and simctl terminate returns3. This separate preparation failure preserves the exact request; an explicit not-running-only idempotent termination correction is authorized. The corrected Done-only controller passes61.258s summary/59.458s testcase at unchanged `848fcd7c`: recorded choices survive cold restart, readable44pt Done clears the exact request and saved controls remain Both/renewal09:00/lead1. Final Alex10.461s/Sam10.135s reads preserve immutable owner receipt/partner isolation/shared reminder/full62 baseline. Three representative receipt/Done captures are reviewed; both clients restore Today/normal-light/original scopes/64 empty journals. The [save evidence](../evidence/2026-10-06/swiftui-native-renewal-reminder-save/README.md) verifier passes210 artifacts/1,113 immutable inputs/seven native passes/one retained UI failure/one preparation failure/19 reviewed screenshots, exactly one Save and zero replays. Both `58995bf2` workflows pass: routine37465772012/native37465772227,506 Foundation/41 skips,465 signed-app/33 skips and four Swift Testing cases, zero failures, strict format/limits/signing and guarded UI compilation. Hosted opt-in reads remain separate from ordinary CI. Removal checks at `9d043941` stop before any command on a20.5pt Remove label. Shipping `3a162b46` gives all three row actions44pt targets, with strict Mac format/limits passing. A later incremental rerun executes old test code, so corrected runtime identity is unproven. Fresh builds and the tested selected-product resolver at `2ea30673` address the build boundary; two preparation failures remain recorded, with no Auth/API/UI in those attempts. [History](progress-history-2026-10-06.md#renewal-removal-targets-and-compiled-build-preparation), [build contract](native-rewrite/native-build-verification.md). The same active fixture and saved reminder remain; no Remove has executed. Both `d0c90740` workflows pass: routine37467865855/native37467865833,506 Foundation/41 skips,466 signed-app/34 skips and four Swift Testing cases, zero failures and strict native gates. The fresh compiled app then verifies all three row actions44pt, but the confirmation popover exposes Remove only and no Cancel; native35.58s summary/21.899s testcase fails before any command. Four fresh SDK reads pass and history/reminder remain exact. Shipping `114404f5` uses a native alert with explicit Cancel and unchanged disclosure. Fresh SDK/UI compilation, selected-product paths and binary hashes pass. Both baseline reads pass11.510s/10.609s; native Cancel→one Remove passes43.078s, recording operation `be001379-8c88-479b-b551-066629e91725` and removed revision `cefa0761-b6c4-487c-a630-81d62bab84ad`. Owner/partner removed reads pass10.860s/10.445s with empty active lists, retained enabled reminder/history, private receipts and full62 baseline. Three alert/receipt captures are reviewed. Restart preparation stops before Done on exit3 “found nothing to terminate”; the known request is retained. This measured absent-app diagnostic is authorized for Done-only continuation. No removal replay occurs; Done, final restoration and delivery remain open.
+The owned fictional renewal now passes one native Create, one reminder Save and
+one removal, with no repeated mutations. Reminder settings remain Both, renewal
+anchor,09:00 Europe/Zurich and lead1 in retained history. The removed record has
+revision `cefa0761-b6c4-487c-a630-81d62bab84ad`; both active lists are empty.
+Operation `be001379-8c88-479b-b551-066629e91725` remains private to Alex, as does
+Save operation `32102900-3d5a-4aa6-9d41-647dab7cf63c`. Both final authenticated
+reads preserve all62 financial entries and Alex+1/Sam−1 centime.
+Shipping `114404f5` gives Edit, Remove and Reminder choices44-point targets and
+an explicit-Cancel native alert. Fresh SDK/UI builds, selected compiled-product
+paths and binary hashes verify the executed source. Cancel followed by one Remove
+passes43.078s; cold restart and ordinary Done pass32.090s. Final paired reads pass
+10.654s/9.558s. Both clients restore foreground Today, original scopes, large/light
+and64 empty journals. Five representative removal screenshots were reviewed.
+The original small-target, stale incremental-runtime and missing-Cancel failures,
+plus separate preparation failures, remain in
+[dated history](progress-history-2026-10-06.md#active-renewal-reminder-save-and-removal-chronology).
+[Save evidence](../evidence/2026-10-06/swiftui-native-renewal-reminder-save/README.md)
+retains its post-Save observer failure and passing restart/Done continuation.
+Latest completed CI at `2ea30673` passes Nest37470058962/SwiftUI37470058991:
+506 Foundation/41 skips,466 signed-app/34 skips, four Swift Testing cases,
+zero failures and strict native gates. That CI precedes the explicit-Cancel fix;
+current-head CI remains pending. Removal at maximum text, delivery and physical
+phone acceptance remain open. Build19 does not contain this later renewal fix.
 
 Eight focused existing local database tests pass on disposable PostgreSQL18.6, including tenant/receipt isolation, immutable retries/cancellation races and removed-item invalidation. Six focused local domain tests also pass at `a4d1949c`, covering recipient privacy, reminder identities/invalidation and civil renewal dates; exact source hashes and TAP are recorded. Both configuration failures are retained; hosted17.6/full-chain/worker delivery are separate. [Database evidence](../evidence/2026-10-06/renewal-reminder-focused-database/README.md).
 
@@ -344,20 +351,14 @@ Other timed financial consent rows need the same isolation/cancellation audit;
 hosted lost-reply/declined variants, VoiceOver/races/both phones/live AI stay open.
 Documentation checkpoint21550910 passes Nest37238842339. No beta/merge occurs; M7 remains open.
 
-## Earlier financial consent verification
-
 The six-family isolation, explicit cancellation and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#financial-consent-row-isolation) and [source evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md). The later readability checks below supersede its clipped-message and navigation-observer findings.
-
-## Earlier financial readability verification
 
 The compact financial alerts and final resumption-title proof, exact source CI and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#readable-financial-confirmations). All original evidence remains linked there.
 
-## Native preferences input and reload controls — 5 October
-
-The verified preference controls and exact CI evidence are retained in the
+Earlier native preference input/reload controls remain in the
 [5 October archive](progress-history-2026-10-05.md#native-preferences-input-and-reload-controls--5-october)
 and [native evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
-Whole cooking-keyboard readability and broader accessibility/phone/live-AI gates stay open.
+Broader accessibility, phone and live-AI acceptance remain open.
 
 ## Earlier consent and keyboard checkpoints
 
