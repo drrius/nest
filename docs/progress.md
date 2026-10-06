@@ -209,7 +209,9 @@ Four disposable PostgreSQL/PostgREST HTTP cases pass with zero failures or skips
 The partner can read the shared reminder but cannot recover the owner's receipt;
 outsider, wrong-household and anonymous reads fail without receipt identifiers.
 GETs create no operation rows. [Evidence](../evidence/2026-10-06/grocery-reminder-http-isolation/README.md).
-Routine CI coverage is added; its new run and separate native isolation check are pending.
+Two real native SDK checks also pass with zero failures: Alex recovers both original
+receipts; Sam receives unresolved results with no receipt. Both canonical reads and
+64 empty journals remain exact. [Native evidence](../evidence/2026-10-06/swiftui-grocery-reminder-receipt-isolation/README.md). New CI is pending; no delivery or phone claim.
 
 ## Earlier native settlement verification
 
