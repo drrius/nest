@@ -1,0 +1,51 @@
+{
+  "project": "nest-test",
+  "projectId": "tkjixmujjoustdiedfmw",
+  "checkedAtUTC": "2026-10-06T03:09:18.590Z",
+  "groups": [
+    {
+      "kind": "renewals",
+      "unchanged": true
+    },
+    {
+      "kind": "preferences",
+      "unchanged": true
+    },
+    {
+      "kind": "owned",
+      "unchanged": true
+    },
+    {
+      "kind": "retained",
+      "unchanged": true
+    },
+    {
+      "kind": "groceries",
+      "unchanged": true
+    }
+  ],
+  "renewalRows": [
+    {
+      "kind": "public.nest_renewals",
+      "count": 3,
+      "sha256": "ee3f36e9248c96af80e6b54ee85a721a2ca39988fa1ccb63e461e656a70da1a3"
+    },
+    {
+      "kind": "private.nest_renewal_operations",
+      "count": 7,
+      "sha256": "115f306cdc7310e4f8c7e79adae5d6219e6d84bd21216e15767f545081ac7bef"
+    },
+    {
+      "kind": "public.nest_renewal_reminders",
+      "count": 1,
+      "sha256": "57aeebbdda5e233752623e8553909828c4c384d3a31997d989f759e260a5904c"
+    },
+    {
+      "kind": "private.nest_renewal_reminder_operations",
+      "count": 2,
+      "sha256": "fc4ae7b5a5f8d9859e41de30ba74b75aa572e4fd96b04e125fe37dbd404a49e7"
+    }
+  ],
+  "noSave": true,
+  "noProductionOperation": true
+}

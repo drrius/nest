@@ -1,63 +1,64 @@
 # Renewal navigation and cancellation
 
-The normal native baseline fails because Renewals Add is36×36pt. Its captured
-bounds and screenshot precede opening any form. The maximum baseline separately
-stops while querying a below-fold Refresh button. That is an observer failure,
-not a renewal load failure. Both clients restore Today, large/light settings,
-their original fictional roles and64 empty journals. Canonical both-member
-recipe/week/preparation reads remain unchanged. No renewal Save is pressed.
+All eight final native methods pass at source dea7682d: four both-member SDK reads
+and four normal/light or maximum/dark untouched/typed cancellation checks. There
+are zero failures or skips in this final run. All823 recorded inputs match current
+source and both canonical before/after member reads agree.
 
-Shipping source190c059d gives Add, Cancel and keyboard Done44pt labels. Edited
-Cancel uses an explicit native Discard changes/Keep editing alert. Untouched
-Cancel still dismisses directly. Commands, authorization, stored fields and
-retry identities are unchanged. The observer now reveals Refresh before waiting
-for it and handles the modal form's viewport separately from the tab root.
+Add, Cancel and keyboard Done have44pt targets. Cancel uses the native close symbol
+with the semantic label Cancel. The title has an explicit Renewal title label,
+a stable identifier and an enclosing44pt focus region. The test taps±21pt edges
+around its native text center and requires real keyboard focus at both points.
+The22pt text accessibility rectangle is not misrepresented as a44pt rectangle.
 
-The first post-fix normal check captures Add44×44pt and Cancel44pt. It stops at
-a comparison of43.99999999999999 against44. The observer now allows1e-9pt of
-floating-point representation error; it does not permit a shorter rendered
-pixel target or change the app's44pt requirement. The interrupted run remains
-in rounding-observer, with its actual measurements and failure.
+Untouched Cancel closes directly. Typed local input survives Keep editing; explicit
+discard and reopen restore the empty saved value. The test waits for Save to be
+enabled after actual authorized choices load but never presses it. All passing UI
+methods finish on Today. Both original fictional roles, large/light settings,
+stable test origins and64 empty journals per client are restored.
 
-The corrected normal check then stops while positioning disabled Save renewal.
-Its interrupted result is retained in scroll-observer. Five read-only modal census methods pass. Save ends at647pt inside the actual
-667pt collection viewport; the observer instead imposed643pt. It now measures
-the visible scroll container. The corrected normal untouched-Cancel method passes. The edited check stops
-before typing at its title-field lookup; the interrupted result remains in
-input-observer. Five read-only input-census methods pass. The actual title field has type49,
-a blank accessibility label and22pt height. The form now labels Renewal title,
-provides a stable identifier and a44pt enclosing row focus target. Padding does
-not enlarge the22pt native text accessibility rectangle. The next observer
-tests actual keyboard focus at±21pt edges rather than equating text bounds with
-the touch region. Corrected interactions run on controller43863; edited/maximum
-and edge-focus results remain pending.
-No post-fix journey, phone pass, renewal mutation or notification delivery pass
-is claimed at this checkpoint. The earlier baseline controller's successful
-terminal state means its read-only diagnostic/restoration completed; its two
-failing methods remain failing and allRequestedChecksPassed is false.
+All eight retained screenshots were inspected. The close symbol and Done are
+readable; native alert headings and both measured44pt-or-larger choices fit.
+At maximum text the native navigation title still ellipsizes. That remaining
+visual issue is recorded, not treated as full visual/accessibility acceptance.
 
-This uses only the two explicitly authorized fictional-member simulators and
-stable nest-test origins, with push disabled. Private configs, credentials,
-xctestrun files and raw diagnostic archives are excluded from public evidence.
-Build18 does not contain this later change. Full accessibility/VoiceOver,
-renewal create/edit/remove, worker/APNs, live AI, both phones and M1–M9 remain open.
-No permission, inference, beta, purchase, production operation or merge occurs.
+Fresh read-only hosted checks show unchanged renewals, renewal operations,
+reminders and reminder receipts, food/cooking preferences and receipts, owned
+preparation, original retained financial/Storage/history and all groceries/links.
+The after folder records exact row counts/hashes and comparison results.
 
-Shipping190c059d passes Nest37404715659/SwiftUI37404715636, with496 Foundation/41
-explicit skips and443 signed-app/20 explicit skips, zero failures, strict
-format/source limits/signing and guarded UI compilation. These CI results do not
-execute the hosted opt-in interactions. Both diagnostics and interrupted readers
-remain retained. The census finishes on Today with canonical reads, roles/settings
-and64 empty journals restored. Its screenshot was inspected. It shows Cancel wrapping as Can-cel at ordinary
-text size. Cancel and Done now preserve intrinsic text width within their44pt
-targets; this visual correction has formatting/source-limit verification, with
-rendered confirmation and CI still pending.
+The retained earlier failures explain the corrections:
 
-The input-census screenshot was inspected. Intrinsic text sizing keeps Cancel on
-one line but the compact toolbar still clips it. The toolbar census records the
-two failed text premises and the affected actor; its script reruns the bound-data
-comparison. Cancel now uses the standard close symbol with its semantic label and
-44pt target. No artwork is introduced. The title-frame-observer retains the22pt
-native text-bound failure; it is not used to claim a failed or passed touch region.
-The explicit row-focus change and edge tests have source-limit/format verification;
-actual final interaction and latest-source CI remain pending.
+- The normal baseline proves a36×36pt Add target. The maximum baseline instead
+  stops at a below-fold Refresh lookup. Neither is reported as a passing test.
+- The first post-fix normal check measures44pt Cancel but rejects floating-point
+  representation43.99999999999999. A1e-9pt numerical tolerance preserves the real
+  44pt requirement without accepting a shorter pixel target.
+- The next reader imposes643pt as a modal bottom while Save ends at647pt inside
+  the actual667pt collection viewport. The census establishes the real boundary.
+- The title lookup expects placeholder text; the input census instead finds a
+  type49 field with a blank label and22pt native text bounds. The app now names
+  the field. The next test wrongly equates text bounds with the touch region;
+  explicit row focus and real edge taps establish the usable target.
+- Text in the compact Cancel toolbar first wraps and then clips. The rerunnable
+  toolbar census records the premise and actors. The standard close symbol keeps
+  the semantic action and removes the need to fit that word in the compact shape.
+
+Census runs are diagnostics, not a substitute for the final interaction checks.
+Before's successful controller terminal state means its read-only diagnostic and
+restoration completed; allRequestedChecksPassed remains false for its two failures.
+All interrupted readers and source inventories remain retained. SDK reads reuse
+unchanged domain/read code; the UI target is built from the named current source.
+Private credentials/configs, xctestrun files and raw archives are excluded.
+
+Shipping190c059d passes Nest37404715659/SwiftUI37404715636:496 Foundation/41 explicit
+skips and443 signed-app/20 explicit skips, zero failures, strict formatting/source
+limits/signing and guarded UI compilation. Currentdea7682d passes routine
+Nest37406837865; native37406837892 is still running. CI compiling guarded tests is
+separate from the actual hosted simulator methods above.
+
+Build18 does not contain these changes. Full renewal create/edit/remove/reminder
+acceptance, the19-report root audit, VoiceOver, worker/APNs, live AI, both phones
+and M1–M9 remain open. No Save, permission, inference, beta, purchase, production
+operation or merge occurs. The attack-the-premise skill guided the toolbar census
+and semantic close-symbol correction; no independent review agent was used.
