@@ -97,9 +97,19 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
     }
 
     private func reminderForm(_ app: XCUIApplication) -> XCUIElement {
-        let forms = app.collectionViews.containing(.switch, identifier: "Reminder enabled")
-        XCTAssertEqual(forms.count, 1, "Exactly one foreground reminder Form is required")
-        return forms.firstMatch
+        let forms = app.collectionViews.allElementsBoundByIndex.filter { $0.isHittable }
+        XCTAssertEqual(forms.count, 1, "Exactly one hittable foreground reminder Form is required")
+        guard let form = forms.first else {
+            XCTFail("Foreground reminder Form is missing")
+            return app.collectionViews.firstMatch
+        }
+        let nav = app.navigationBars["Renewal reminder"]
+        XCTAssertTrue(nav.exists)
+        XCTAssertTrue(app.frame.contains(form.frame))
+        XCTAssertGreaterThan(form.frame.minY, app.frame.minY)
+        XCTAssertLessThanOrEqual(form.frame.minY, nav.frame.minY)
+        XCTAssertGreaterThan(form.frame.maxY, nav.frame.maxY)
+        return form
     }
 
     private func waitReady(_ app: XCUIApplication) {
