@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-grocery-reminder-receipt-isolation-20261006/alex/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-grocery-reminder-receipt-isolation-20261006/alex/result.xcresult "-only-testing:NestAppTests/HostedGroceryReminderReceiptIsolationTests/testGETOnlyOwnerReceiptsAndPartnerIsolation" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-grocery-reminder-receipt-isolation-20261006/alex/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 08:38:28.083.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 08:38:28.084.
+Test Suite 'HostedGroceryReminderReceiptIsolationTests' started at 2026-10-06 08:38:28.084.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptIsolationTests testGETOnlyOwnerReceiptsAndPartnerIsolation]' started.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptIsolationTests testGETOnlyOwnerReceiptsAndPartnerIsolation]' passed (4.391 seconds).
+Test Suite 'HostedGroceryReminderReceiptIsolationTests' passed at 2026-10-06 08:38:32.476.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.391 (4.392) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 08:38:32.477.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.391 (4.393) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 08:38:32.477.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.391 (4.394) seconds
+2026-10-06 08:38:32.802 xcodebuild[82357:20416432] [MT] IDETestOperationsObserverDebug: 6.674 elapsed -- Testing started completed.
+2026-10-06 08:38:32.802 xcodebuild[82357:20416432] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 08:38:32.802 xcodebuild[82357:20416432] [MT] IDETestOperationsObserverDebug: 6.674 sec, +6.674 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-grocery-reminder-receipt-isolation-20261006/alex/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

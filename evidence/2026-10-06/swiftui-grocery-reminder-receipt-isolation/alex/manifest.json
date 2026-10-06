@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BE0B7776-3F58-4A8D-9498-D03EE33C9F8C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Real native GET-only owner and partner reminder receipt isolation_0_F8171B85-F81B-4D43-819D-016C3F678494.json",
+        "timestamp": 1791268712.472
+      }
+    ],
+    "testIdentifier": "HostedGroceryReminderReceiptIsolationTests/testGETOnlyOwnerReceiptsAndPartnerIsolation()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedGroceryReminderReceiptIsolationTests/testGETOnlyOwnerReceiptsAndPartnerIsolation"
+  }
+]

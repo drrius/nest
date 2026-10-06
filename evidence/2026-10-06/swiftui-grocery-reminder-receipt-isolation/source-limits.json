@@ -1,0 +1,6 @@
+{
+  "path": "apps/ios/AppTests/HostedGroceryReminderReceiptIsolationTests.swift",
+  "lines": 135,
+  "maximumFunctionCodeLines": 38,
+  "maximumComplexity": 6
+}

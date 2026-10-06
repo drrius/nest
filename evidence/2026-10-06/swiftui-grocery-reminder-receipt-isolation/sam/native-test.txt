@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-grocery-reminder-receipt-isolation-20261006/sam/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-grocery-reminder-receipt-isolation-20261006/sam/result.xcresult "-only-testing:NestAppTests/HostedGroceryReminderReceiptIsolationTests/testGETOnlyOwnerReceiptsAndPartnerIsolation" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-grocery-reminder-receipt-isolation-20261006/sam/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 08:38:35.807.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 08:38:35.807.
+Test Suite 'HostedGroceryReminderReceiptIsolationTests' started at 2026-10-06 08:38:35.807.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptIsolationTests testGETOnlyOwnerReceiptsAndPartnerIsolation]' started.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptIsolationTests testGETOnlyOwnerReceiptsAndPartnerIsolation]' passed (2.438 seconds).
+Test Suite 'HostedGroceryReminderReceiptIsolationTests' passed at 2026-10-06 08:38:38.246.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.438 (2.439) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 08:38:38.247.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.438 (2.440) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 08:38:38.247.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.438 (2.441) seconds
+2026-10-06 08:38:38.579 xcodebuild[82398:20417230] [MT] IDETestOperationsObserverDebug: 4.673 elapsed -- Testing started completed.
+2026-10-06 08:38:38.579 xcodebuild[82398:20417230] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 08:38:38.579 xcodebuild[82398:20417230] [MT] IDETestOperationsObserverDebug: 4.673 sec, +4.673 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-grocery-reminder-receipt-isolation-20261006/sam/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
