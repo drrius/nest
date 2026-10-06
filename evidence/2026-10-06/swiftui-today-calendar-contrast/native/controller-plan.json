@@ -1,0 +1,41 @@
+{
+  "phase": "preparation plan only; no source pin/build/API/UI yet",
+  "plannedController": "/tmp/nest-today-calendar-contrast-20261006.py",
+  "reusedMechanisms": "Scoped preparation/read/restoration functions from /tmp/nest-assistant-handoff-scrollbar-20261006.py; no imported or executed controller top-level",
+  "ownedSource": "apps/ios/UITests/NativeContrastViewportTests.swift",
+  "newMethod": "NativeContrastViewportTests/testTodayCalendarAccessCardContrastClearOfNavigationAndTabBar",
+  "sourcePin": "Required from root before any preparation; expected unchanged1126 input count verified from exact archive",
+  "sdkSource": "6997138485f3f8088fc03682432de74879e19659",
+  "sdkMethod": "HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations",
+  "geometry": [
+    "Exact On your calendar heading, Calendar access explanation and Open Calendar action fully inside actual app/navigation bounds with bottom at least80pt above actualtabbar",
+    "Open Calendar action enabled/hittable and actualwidth/height>=44",
+    "24 measured pans maximum; actual unique Today ScrollView; leftpadding chosen left of visibleaction regions and outside actualscrollbarframes; everypan recorded"
+  ],
+  "guardEnvironment": {
+    "NEST_QA_CONTRAST_VIEWPORT": "20261006",
+    "NEST_QA_TODAY_CALENDAR_CARD_CONTRAST": "20261006-one-unfiltered-audit"
+  },
+  "futureStages": [
+    "Exclusive knownMac/fcntl and existing owned2sims; verifyconfig/testorigins/pushfalse/build19",
+    "Capture actualinitialsettings/originalactorHH64journalstate, rootfixtureabsence retained",
+    "Freshunique signed UIbuild at exactrootpin; compileownedfile and attestselectedproductpaths/binaryhashes/origins/allnativeinputs",
+    "Revalidateimmutable699 SDK inputs/products; freshpairedcanonicalGETbefore; ordinaryforeground/twosettledscope64 samples",
+    "ConsumeUI invocation marker beforeONE normal/light method; no secondauditvariant; no Calendarlinktap",
+    "Retainall unsuppressedissues/categories/anonymouscrops/geometry; finalpairedGETs regardlessauditfailure; ordinaryforeground/Today/scopes64/settings restoration; ownedplan/caffeinate cleanup"
+  ],
+  "budgets": {
+    "newUIInvocations": 1,
+    "unfilteredContrastAudits": 1,
+    "domainMutationInvocations": 0,
+    "modelInvocations": 0,
+    "calendarActionTaps": 0,
+    "permissionActions": 0,
+    "fixtureActions": 0
+  },
+  "wirePOSTCountMeasured": false,
+  "sdkAuthSetupMayPOSTLogin": true,
+  "rootOwnsShippingDocsGit": true,
+  "priorAuditsPreserved": true,
+  "closureOrSuppressionClaim": false
+}

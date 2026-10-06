@@ -60,6 +60,15 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 Next verification: investigate the named contrast findings with fully visible text, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
 
+The19-report census rerun exactly matches its retained output. The prior Today
+viewport test positioned the meal link and Calendar heading, leaving the actual
+newly failing access explanation13.5pt above the bar and Open Calendar overlapping
+it. A new guarded diagnostic will require all three Calendar-card targets fully
+inside the measured navigation/tab-bar viewport, with80pt bar clearance, before
+one unfiltered contrast audit. No palette, shipping layout, permission or domain
+action changes; anonymous reports and the original19 reports remain open.
+[Prepared diagnosis](../evidence/2026-10-06/swiftui-today-calendar-contrast/prepared-diagnosis.json).
+
 ## Current integration gates
 
 Fresh `fe90e184`/1,126-input signed UI preparation passes. The maximum-only
