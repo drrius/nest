@@ -12,6 +12,6 @@ eas submit:status --platform ios --profile testflight --json --non-interactive
 eas submit --platform ios --profile testflight --path /path/to/Nest.ipa --non-interactive
 ```
 
-The read-only commands resolve existing project `aca37c4f-1bcd-4e9a-a695-37e794f97933` and App Store Connect app `6814119349`. On 5 October, supported submission status confirms SwiftUI0.1.0/build18 is valid and internally available. Its exact source is `e7926c89`; [archive/CI/availability evidence](../../evidence/2026-10-05/swiftui-build18-layout/README.md) records the single private submission. Changing metadata does not upload a build or install an app.
+The read-only commands resolve existing project `aca37c4f-1bcd-4e9a-a695-37e794f97933` and App Store Connect app `6814119349`. On 6 October, supported submission status confirms SwiftUI0.1.0/build19 is valid and internally available. Its exact source is `484e5feb`; [archive/CI/availability evidence](../../evidence/2026-10-06/swiftui-build19/README.md) records the single private submission. Changing metadata does not upload a build or install an app.
 
 Existing private signing files were moved here byte-for-byte and remain ignored with restrictive permissions. The archived `.env.legacy-client` is ignored and is not loaded by these commands. Do not commit credentials, session tokens, signing keys or passwords. This entire directory is excluded from backend deployment uploads. A private beta does not authorize production migration, purchases or public release; those gates stay separate.

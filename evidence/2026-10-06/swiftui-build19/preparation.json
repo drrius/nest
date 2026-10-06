@@ -8,7 +8,7 @@
   "macSourceHashesVerified": true,
   "existingProfilePresent": true,
   "signingStarted": true,
-  "uploaded": false,
+  "uploaded": true,
   "pendingChecks": [],
   "scope": "private nest-test beta; no production migration or public release",
   "routineCheckPassed": 37439103691,
@@ -16,5 +16,6 @@
   "archiveExportPackagePassed": true,
   "temporarySigningMaterialRemoved": true,
   "submissionId": "80654dba-1d01-4568-b6b1-af0a72d2af8e",
-  "submissionStatus": "IN_PROGRESS"
+  "submissionStatus": "FINISHED",
+  "internalAvailabilityVerified": true
 }
