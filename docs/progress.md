@@ -213,6 +213,13 @@ full accessibility, provider, worker/APNs and cutover gates remain open.
 
 ## Next work
 
+One focused accessibility candidate replaces only `QuietSectionCard`'s nested
+lazy stack with a regular stack. The page stays lazy. The previous outer-stack
+comparison left the access button and Full Access explanation font reports;
+these both belong to the card's inner stack. Strict Mac formatting and source
+limits pass. This is a hypothesis under native comparison, not a verified fix
+or closure of the 19 reports. No new fixture or domain action is planned.
+
 Continue the remaining native journeys and investigate the existing 19
 accessibility findings with source-specific evidence. Do not repeat the passing
 header comparison or the recorded financial/chore navigation just to obtain

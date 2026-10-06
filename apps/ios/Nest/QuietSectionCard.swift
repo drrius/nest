@@ -7,7 +7,7 @@ struct QuietSectionCard<Content: View>: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             if let title { QuietSectionHeader(title: title) }
-            LazyVStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 16) {
                 content
             }
             .frame(maxWidth: .infinity, alignment: .leading)
