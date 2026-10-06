@@ -53,6 +53,10 @@ value once. Discard the draft through Back; do not Save during this touch check.
 Report missed or double taps. Simulator bounds and automation do not establish
 physical-phone touch or VoiceOver acceptance.
 
+The explicit 44-point reminder adjustment buttons are later than build18. That
+candidate still has the older Stepper; record the installed build when reporting
+this check, and do not treat newer-source simulator results as a phone result.
+
 ## Separate unfinished gates
 
 Live AI is disabled while Gateway eligibility requires a valid card; no purchase is authorized. Notification delivery is disabled pending APNs provider setup and physical delivery verification. A successful permission screen or simulated notification does not satisfy that gate. Complete both-member weekly/approval/offline-conflict/calendar journeys, exact migration reconciliation and owner design acceptance remain required. No result here authorizes production cutover or an App Store release.

@@ -226,8 +226,10 @@ The first normal native 44-point edge probe fails: its whole probe area fits in
 the row and viewport, but Increment at centerY minus 21 leaves the value at zero.
 Real before/after GETs agree; journals and original scopes remain unchanged.
 The larger-size modifier fails the same tap and is removed. A shared native
-minus/plus control with explicit 44-point labels now awaits native edge verification.
-Explicit draft discard was not observed in the failed run; physical touch remains open.
+minus/plus control with explicit 44-point labels passes all eight tested edges in
+normal/light and maximum/dark. Explicit discard/reopen restores zero and disabled
+choices; final real GETs agree. Four final methods pass with no server command.
+[Evidence](../evidence/2026-10-06/swiftui-reminder-stepper-targets/README.md) retains both failed native variants and their unobserved-discard gaps. New CI and physical touch remain open.
 
 ## Earlier native settlement verification
 
