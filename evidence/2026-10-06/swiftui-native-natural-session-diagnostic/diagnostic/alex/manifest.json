@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1A4B3102-4F76-4CAD-864F-482B93C304E3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "One isolated natural Auth attempt and native session status, safe metadata only_0_61A47D43-0D41-4410-860C-AC8ED48EDA0D.json",
+        "timestamp": 1791280109.105
+      }
+    ],
+    "testIdentifier": "HostedNaturalSessionDiagnosticTests/testOneIsolatedNaturalSessionAttemptReportsProviderAndNativeVerification()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedNaturalSessionDiagnosticTests/testOneIsolatedNaturalSessionAttemptReportsProviderAndNativeVerification"
+  }
+]

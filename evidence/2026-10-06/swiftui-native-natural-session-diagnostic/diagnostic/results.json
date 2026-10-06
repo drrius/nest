@@ -1,0 +1,12 @@
+[
+  {
+    "step": "alex",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedNaturalSessionDiagnosticTests/testOneIsolatedNaturalSessionAttemptReportsProviderAndNativeVerification",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.89
+  }
+]

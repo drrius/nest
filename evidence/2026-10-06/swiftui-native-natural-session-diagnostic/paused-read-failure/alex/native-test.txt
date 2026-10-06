@@ -1,0 +1,33 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-paused-recurring-reminder-preflight-20261006/alex/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-paused-recurring-reminder-preflight-20261006/alex/result.xcresult "-only-testing:NestAppTests/HostedPausedRecurringReminderReadTests/testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-paused-recurring-reminder-preflight-20261006/alex/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 11:30:51.386.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 11:30:51.386.
+Test Suite 'HostedPausedRecurringReminderReadTests' started at 2026-10-06 11:30:51.386.
+Test Case '-[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline]' started.
+2026-10-06 11:30:51.546295+0200 Nest[28965:20808454] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+2026-10-06 11:30:51.546440+0200 Nest[28965:20808454] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+<unknown>:0: error: -[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline] : failed: caught error: "signedOut"
+Test Case '-[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline]' failed (1.416 seconds).
+Test Suite 'HostedPausedRecurringReminderReadTests' failed at 2026-10-06 11:30:52.803.
+	 Executed 1 test, with 1 failure (1 unexpected) in 1.416 (1.417) seconds
+Test Suite 'NestAppTests.xctest' failed at 2026-10-06 11:30:52.803.
+	 Executed 1 test, with 1 failure (1 unexpected) in 1.416 (1.417) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 11:30:52.803.
+	 Executed 1 test, with 1 failure (1 unexpected) in 1.416 (1.418) seconds
+2026-10-06 11:31:05.615 xcodebuild[28964:20808090] [MT] IDETestOperationsObserverDebug: 16.056 elapsed -- Testing started completed.
+2026-10-06 11:31:05.615 xcodebuild[28964:20808090] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 11:31:05.615 xcodebuild[28964:20808090] [MT] IDETestOperationsObserverDebug: 16.056 sec, +16.056 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-paused-recurring-reminder-preflight-20261006/alex/result.xcresult
+
+Failing tests:
+	HostedPausedRecurringReminderReadTests.testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline()
+
+** TEST EXECUTE FAILED **
+
+Testing started
