@@ -26,6 +26,12 @@ Run `python3 evidence/2026-10-06/swiftui-chore-reminder-navigation/verify_invent
 
 ## Boundaries and cleanup
 
+Both CI workflows pass at `9c2b7f25`: 502 Foundation cases with 41 skips,
+458 signed-app cases with 26 skips, four Swift Testing cases and zero failures.
+Strict formatting, limits, signing and guarded UI compilation pass.
+[Metadata](ci.json), [totals](ci-totals.txt). CI compiles the final observer and
+updated test helpers; it does not replace the recorded composite native runs.
+
 Only the two approved iOS simulators, original Test Alex/Test Sam sessions, stable fictional test API and Supabase origins were used, with push disabled. Native logs and plans stayed private; only sanitized logs, records, trees, frames and reviewed fictional screenshots are exported. MP4 and binary attachments remain private and are listed in each `private-attachments.json`. No broad census, unrelated table reads, physical-device or delivery claims are made.
 
 The exclusive native lock was held during execution. Scoped caffeinate and selected private test plans were removed in finally. Both original scopes and all 64 intent journals remained unchanged and empty; both simulators returned to Today, large text and light appearance. No original Keychain, signing configuration, database or authentication file was removed.

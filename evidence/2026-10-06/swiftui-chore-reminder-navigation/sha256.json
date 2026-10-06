@@ -1,5 +1,5 @@
 {
-  "README.md": "a743dbc27432a6288a54594429c202951970684eb0045488b260dfa600a51b0e",
+  "README.md": "99e49bc5d424da64c1903f9c793c118e572d1364c252b282f860a107f28e9500",
   "before/alex/0EF6730B-48D5-41E4-A5D6-6DD0D9901370.json": "19a429c656639a38376ad9d28f5dce00eaa71e4cb34fd36448873a4a1ecc175a",
   "before/alex/manifest.json": "c74bf9055860882ae6d38d5e5d62a5c99dd92485621590340a33f1be1bece3d9",
   "before/alex/native-read.json": "4c1582486c459d72df37b089e78a6108f8014e8d3b20e8daf0c33174205d6b0c",
@@ -16,6 +16,8 @@
   "before/sam/summary.json": "2fc431c6d8a80b6182c5152ba072a2828daddead1ed518d292b91cc4e9fd7954",
   "before/source-input-hashes.json": "8af09b691ebdd5e2dff6311d4adb7d6974f5ec1eb7cd797da347c592aadbca2d",
   "before/terminal.json": "c94d85f33c959a3619f6cd5957836acd88fb4c6ea7d1913b7917e9b2b27e6a95",
+  "ci-totals.txt": "5e646061080695f951ca54fbda72068f6abe043a48e66d0905189ddfa10b1f18",
+  "ci.json": "1e98b2fd574d20e7930041f818527dce5c0934fcf1fcb4314392b7e2cd62ba9d",
   "controller-hashes.json": "bf7000d88960082fc183551519593d438191b1f1608dd73b569298998d736e62",
   "controllers/nest-chore-reminder-maximum-suffix-20261006.py": "54dc66f8ac2ea52e0e581e5473c4c07967395a06f7cf2666d3a5016b1a75f792",
   "controllers/nest-chore-reminder-navigation-20261006.py": "6927e23eb8442460900e0de08f518b5812887f24f3aa1660059f86b2f0f84333",

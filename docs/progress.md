@@ -217,7 +217,7 @@ receipts; Sam receives unresolved results with no receipt. Both canonical reads 
 
 Six native methods pass; two observer failures remain recorded. Normal navigation
 passes end to end; maximum-text coverage combines its prefix with a corrected suffix.
-Both canonical reads, original scopes and 64 empty journals remain unchanged.
+Both canonical reads, original scopes and 64 empty journals remain unchanged. Both CI workflows pass at `9c2b7f25`: 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.
 [Evidence](../evidence/2026-10-06/swiftui-chore-reminder-navigation/README.md). Stepper touch area, phones and full M8 remain open; no Save occurs.
 
 ## Reminder Stepper touch area
