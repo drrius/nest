@@ -223,6 +223,17 @@ captured recipe remain exact; no server command occurs. Today, original roles,
 large/light settings and 64 empty journals per client are restored.
 [Evidence](../evidence/2026-10-06/swiftui-meal-reminder-navigation/README.md). Both workflows pass at `f675ae76`: 502 Foundation/41 skips, 459 signed-app/27 skips, four Swift Testing cases, zero failures. Physical accessibility, delivery and full M8 remain open. Build18 has no later reminder fix.
 
+## Recipe draft cancellation
+
+An actual untouched New recipe Cancel leaves the modal open and asks to discard.
+The earlier toolbar lookup failure and measured 36-point opening control are retained.
+Source `4d4ccde5` uses the 44-point toolbar control and closes untouched forms directly.
+Edited forms compare raw input, preserving discard protection even for invalid values.
+Six focused Foundation draft cases pass with zero failures, including four new cases;
+strict Mac formatting and all Swift source limits pass. Corrected native UI and CI
+remain pending. Build19 metadata is reserved after a fresh Apple read confirms18 is latest;
+no recipe Save, new beta upload or production action occurs.
+
 ## Earlier native settlement verification
 
 The partial/full settlement and stale-review evidence is preserved in [dated history](progress-history-2026-10-06.md#native-partialfull-settlement-and-stale-review). Its exact retained financial results do not close phone, private-approval or concurrency acceptance.
