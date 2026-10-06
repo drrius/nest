@@ -1,0 +1,1303 @@
+{
+  "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "canonical": {
+    "allRulePages": [
+      {
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "rules": [
+          {
+            "authorizedAt": "2026-10-04T15:48:28.359515Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": [
+                { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+                { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+              ],
+              "amountCentimes": "3",
+              "categoryId": null,
+              "description": "Synthetic native manual-link QA",
+              "mode": "fixed",
+              "note": "Fictional native linkage check; pause after verification.",
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "kind": "weekly", "weekday": 7 },
+              "startDate": "2026-10-04"
+            },
+            "coveredThrough": "2026-10-04",
+            "nextDueOn": "2026-10-11",
+            "revision": "CD7F8771-AD48-42CC-A4DA-0EBFCBB215BF",
+            "ruleId": "06146B4A-95E5-4227-A562-5AEBACCEEA6D",
+            "status": "paused"
+          },
+          {
+            "authorizedAt": "2026-10-04T21:23:21.368462Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": null,
+              "amountCentimes": null,
+              "categoryId": null,
+              "description": "Fictional native variable bill 894747fa",
+              "mode": "variable",
+              "note": "Fictional native bill QA; no payment or actual transfer.",
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "dayOfMonth": 4, "kind": "monthly" },
+              "startDate": "2026-10-04"
+            },
+            "coveredThrough": "2026-10-31",
+            "nextDueOn": "2026-11-04",
+            "revision": "62399AB4-C545-4D4E-9A14-40CBBA708E5B",
+            "ruleId": "10EAAC3C-8445-49A9-B894-A18272EF3325",
+            "status": "paused"
+          },
+          {
+            "authorizedAt": "2026-09-29T21:48:57.594295Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": null,
+              "amountCentimes": null,
+              "categoryId": null,
+              "description": "Test Swift reminder D70F5345-1B62-454B-A8EA-A15DBA695F04",
+              "mode": "variable",
+              "note": "Future variable reminder fixture; no posting",
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+              "startDate": "2099-01-01"
+            },
+            "nextDueOn": "2099-01-01",
+            "revision": "7F0D3129-C4FD-403B-9219-5FB9FA246DD7",
+            "ruleId": "3EC03A31-228F-4418-972E-FD7214E5482E",
+            "status": "cancelled"
+          },
+          {
+            "authorizedAt": "2026-10-04T04:37:50.631410Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": [
+                { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+                { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+              ],
+              "amountCentimes": "3",
+              "categoryId": null,
+              "description": "Synthetic retained adopted rule",
+              "mode": "fixed",
+              "note": null,
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "kind": "weekly", "weekday": 1 },
+              "startDate": "2030-01-07"
+            },
+            "coveredThrough": "2026-10-31",
+            "nextDueOn": "2030-01-07",
+            "revision": "856BF47A-69FC-45AC-BC5D-F425C8B02124",
+            "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+            "status": "paused"
+          },
+          {
+            "authorizedAt": "2026-09-28T06:07:43.399696Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": null,
+              "amountCentimes": null,
+              "categoryId": null,
+              "description": "Native recurring fixture 2F7FBFE5-B228-49F0-9E26-8C173B9FAC37",
+              "mode": "variable",
+              "note": "Edited isolated variable fixture",
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+              "startDate": "2099-01-01"
+            },
+            "nextDueOn": "2099-01-01",
+            "revision": "F78209DD-BD2D-4D62-AB18-8A4E12C9A9AF",
+            "ruleId": "A25B5DB8-2CC9-4FFC-9837-E1094695016B",
+            "status": "cancelled"
+          },
+          {
+            "authorizedAt": "2026-09-28T06:22:51.676739Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": null,
+              "amountCentimes": null,
+              "categoryId": null,
+              "description": "Native bill fixture 60EA3D29-7562-43DC-AB4B-36706C64CEB4",
+              "mode": "variable",
+              "note": "Isolated variable bill",
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "dayOfMonth": 28, "kind": "monthly" },
+              "startDate": "2026-09-28"
+            },
+            "coveredThrough": "2026-09-30",
+            "nextDueOn": "2026-10-28",
+            "revision": "EFB23385-2336-4253-B818-6510D2208AC1",
+            "ruleId": "BAD4A3BB-D0CE-4799-A284-BDBCDB1F6DD0",
+            "status": "cancelled"
+          },
+          {
+            "authorizedAt": "2026-10-04T22:23:03.220877Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": null,
+              "amountCentimes": null,
+              "categoryId": null,
+              "description": "Fictional private bill approval 3e7cd25c",
+              "mode": "variable",
+              "note": "Fictional private approval QA; no payment or actual transfer.",
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "dayOfMonth": 5, "kind": "monthly" },
+              "startDate": "2026-10-05"
+            },
+            "coveredThrough": "2026-10-31",
+            "nextDueOn": "2026-11-05",
+            "revision": "28E419F4-236A-4A4D-80D3-7060E94A4C63",
+            "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+            "status": "paused"
+          },
+          {
+            "authorizedAt": "2026-10-06T14:08:04.651459Z",
+            "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "configuration": {
+              "allocations": null,
+              "amountCentimes": null,
+              "categoryId": null,
+              "description": "Nest QA reminder bill 0610-5d1a",
+              "mode": "variable",
+              "note": null,
+              "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+              "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+              "startDate": "2026-11-01"
+            },
+            "nextDueOn": "2026-11-01",
+            "revision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+            "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+            "status": "active"
+          }
+        ],
+        "today": "2026-10-06",
+        "version": 1
+      }
+    ],
+    "balance": {
+      "eventCount": "62",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "members": [
+        {
+          "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "centimes": "1",
+          "displayName": "Test Alex"
+        },
+        {
+          "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+          "centimes": "-1",
+          "displayName": "Test Sam"
+        }
+      ],
+      "openingEstablished": false,
+      "version": 1
+    },
+    "historyPages": [
+      {
+        "events": [
+          {
+            "amountCentimes": "2",
+            "createdAt": "2026-10-05T13:34:04.670541Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791207244670541",
+            "description": "Nest QA PDF posted 20261005",
+            "eventId": "1EC7156D-277A-4501-8231-C1A12A52B8EF",
+            "hasReceipt": true,
+            "kind": "expense",
+            "occurredOn": "2026-10-05",
+            "occurredOrder": "9774",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-04T22:50:54.321743Z",
+            "createdBy": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+            "createdOrder": "1791154254321743",
+            "description": "Fictional private bill QA balance restoration",
+            "eventId": "01B429E0-DD19-43ED-8060-1B693B67BD10",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-10-05",
+            "occurredOrder": "9774",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "3",
+            "createdAt": "2026-10-04T22:48:40.318309Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791154120318309",
+            "description": "Fictional private bill approval 3e7cd25c",
+            "eventId": "96562F14-7500-4C47-80BF-487705CA02A2",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-10-05",
+            "occurredOrder": "9774",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "3",
+            "createdAt": "2026-10-04T21:38:20.482110Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791149900482110",
+            "description": "Fictional native variable bill 894747fa",
+            "eventId": "CCF21DB1-49C8-4327-AE5F-E65A4A643EAD",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "3",
+            "createdAt": "2026-10-04T20:06:36.189728Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791144396189728",
+            "description": "Reversal: Nest money recovery recorded-cancel c3e6461f",
+            "eventId": "BA90BF91-42F0-42D2-861A-C98A178D7781",
+            "hasReceipt": false,
+            "kind": "reversal",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "relatedEventId": "76E8EFD4-D6D8-490C-A703-58790523609D"
+          },
+          {
+            "amountCentimes": "5",
+            "createdAt": "2026-10-04T20:06:36.189728Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791144396189728",
+            "description": "Fictional native corrected expense",
+            "eventId": "70F6A136-97D3-488C-BDD6-85E20115AC84",
+            "hasReceipt": false,
+            "kind": "replacement",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "relatedEventId": "76E8EFD4-D6D8-490C-A703-58790523609D"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-04T19:39:40.898594Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791142780898594",
+            "description": "Fictional native refund QA",
+            "eventId": "D95F3EF7-B4EF-479E-82C5-D3E0C67EB7BC",
+            "hasReceipt": false,
+            "kind": "refund",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "relatedEventId": "5366793D-CDB8-4E5A-8E8A-7C5EE5946466"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-10-04T18:17:55.173511Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791137875173511",
+            "description": "Settlement",
+            "eventId": "490D3EA5-9EEC-40A9-9D19-5AEC64184793",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-04T18:09:09.921158Z",
+            "createdBy": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+            "createdOrder": "1791137349921158",
+            "description": "Fictional settlement race",
+            "eventId": "C59430F2-16C7-4C30-848B-F4BE0C4D85D6",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-04T18:02:44.310726Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791136964310726",
+            "description": "Settlement",
+            "eventId": "E2FC6CD1-4A95-4F62-972A-AAFFD51C5317",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "3",
+            "createdAt": "2026-10-04T02:58:44.642098Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791082724642098",
+            "description": "Synthetic retained expense",
+            "eventId": "5366793D-CDB8-4E5A-8E8A-7C5EE5946466",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "3",
+            "createdAt": "2026-10-03T23:13:26.963054Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791069206963054",
+            "description": "Nest money recovery recorded-cancel c3e6461f",
+            "eventId": "76E8EFD4-D6D8-490C-A703-58790523609D",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "3",
+            "createdAt": "2026-10-03T22:58:26.176279Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791068306176279",
+            "description": "Nest money recovery retry 38857a0c",
+            "eventId": "47D8B202-29D3-41ED-9FB8-CE1F97AEA1FB",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-10-04",
+            "occurredOrder": "9773",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-10-03T19:38:57.526406Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791056337526406",
+            "description": "Nest B14 native smoke 95ed1476",
+            "eventId": "BFFA007B-5C00-4B63-941E-DB7BDAD45A30",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-10-03",
+            "occurredOrder": "9772",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-28T07:59:13.926168Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790582353926168",
+            "description": "Test hosted approval record",
+            "eventId": "AF8D7233-D9FD-4DC1-B711-E50A45CE444D",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-28T06:22:52.172431Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790576572172431",
+            "description": "Native bill fixture 60EA3D29-7562-43DC-AB4B-36706C64CEB4",
+            "eventId": "02A3D199-2CB7-4A1A-959C-F3BE4A02EC1A",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "103",
+            "createdAt": "2026-09-28T05:38:43.810967Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790573923810967",
+            "description": "Reversal: Native correction fixture C8FD385D-7315-4FD5-BD87-22126D0D4340",
+            "eventId": "D91DA77F-DB6A-4916-AE70-54E1CF2DDDD2",
+            "hasReceipt": false,
+            "kind": "reversal",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "relatedEventId": "609D9AA2-3749-4341-9F53-2212CE741B4D"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-28T05:38:41.016092Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790573921016092",
+            "description": "Reversal: Native correction fixture C8FD385D-7315-4FD5-BD87-22126D0D4340",
+            "eventId": "632A297F-5AC3-4CF9-90D6-3ECCF11E6559",
+            "hasReceipt": false,
+            "kind": "reversal",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "relatedEventId": "D50A6C7C-4FE7-4F28-AEEF-A8B3EAD05A32"
+          },
+          {
+            "amountCentimes": "103",
+            "createdAt": "2026-09-28T05:38:41.016092Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790573921016092",
+            "description": "Native correction fixture C8FD385D-7315-4FD5-BD87-22126D0D4340",
+            "eventId": "609D9AA2-3749-4341-9F53-2212CE741B4D",
+            "hasReceipt": false,
+            "kind": "replacement",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "relatedEventId": "D50A6C7C-4FE7-4F28-AEEF-A8B3EAD05A32"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-28T05:38:39.544624Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790573919544624",
+            "description": "Native correction fixture C8FD385D-7315-4FD5-BD87-22126D0D4340",
+            "eventId": "D50A6C7C-4FE7-4F28-AEEF-A8B3EAD05A32",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-28T05:22:56.567451Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790572976567451",
+            "description": "Native fictional refund verification",
+            "eventId": "8564461D-FD50-4163-B6D4-C73E487D5E69",
+            "hasReceipt": false,
+            "kind": "refund",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "relatedEventId": "9CD2BDF1-4895-427D-8494-CA164A3488EC"
+          },
+          {
+            "amountCentimes": "49",
+            "createdAt": "2026-09-28T05:12:04.337730Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790572324337730",
+            "description": "Settlement",
+            "eventId": "DB167A17-DD69-4505-8553-969A7F202103",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-09-28T05:12:00.508074Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790572320508074",
+            "description": "Settlement",
+            "eventId": "52079B26-87DE-4C13-98AC-0D8D13F6E929",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-28T04:28:33.616863Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790569713616863",
+            "description": "Native verification fixture A0E42397-EFC4-448D-8750-B2C6A960F295",
+            "eventId": "9CD2BDF1-4895-427D-8494-CA164A3488EC",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-09-28",
+            "occurredOrder": "9767",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-27T18:29:29.679284Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790533769679284",
+            "description": "Synthetic native settlement QA",
+            "eventId": "E89D42BF-F9CF-453B-A5C6-D49E208BB019",
+            "hasReceipt": false,
+            "kind": "settlement",
+            "occurredOn": "2026-09-27",
+            "occurredOrder": "9766",
+            "payerId": "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          },
+          {
+            "amountCentimes": "103",
+            "createdAt": "2026-09-27T14:20:08.712795Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790518808712795",
+            "description": "Synthetic native expense check",
+            "eventId": "7117AAB8-9CD7-4F4B-A812-1408B11FB001",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2026-09-27",
+            "occurredOrder": "9766",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "101",
+            "createdAt": "2026-09-26T10:47:18.573173Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1790419638573173",
+            "description": "Synthetic receipt acceptance",
+            "eventId": "A9F0F7F7-3D97-4DAA-9515-84AF6339BDEC",
+            "hasReceipt": true,
+            "kind": "expense",
+            "occurredOn": "2026-09-26",
+            "occurredOrder": "9765",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:53.471831Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070793471831",
+            "description": "Nest history page 663d51ef 35",
+            "eventId": "9DDF82B2-546C-4754-A11A-E7E33655F60D",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:52.316183Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070792316183",
+            "description": "Nest history page 663d51ef 34",
+            "eventId": "B5D86A91-5CD9-4669-8667-B7F6BEE0E398",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:51.161346Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070791161346",
+            "description": "Nest history page 663d51ef 33",
+            "eventId": "2760F8D1-1970-44EF-AB7E-1246EBE4BEC1",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:50.023388Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070790023388",
+            "description": "Nest history page 663d51ef 32",
+            "eventId": "EDDD4630-B985-498A-A0A4-828E288EFBA1",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:48.856052Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070788856052",
+            "description": "Nest history page 663d51ef 31",
+            "eventId": "413C48C6-933F-4123-9C69-D57DBB84D4CF",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:46.616139Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070786616139",
+            "description": "Nest history page 663d51ef 30",
+            "eventId": "F653E1EA-CA48-4BDC-8DD6-98BE378B8FD7",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:45.665965Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070785665965",
+            "description": "Nest history page 663d51ef 29",
+            "eventId": "B02722E5-AC31-41A2-8F64-678A76B19B88",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:44.718144Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070784718144",
+            "description": "Nest history page 663d51ef 28",
+            "eventId": "6E86E492-9E89-4AE3-9FEF-8FD002382C5B",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:43.753097Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070783753097",
+            "description": "Nest history page 663d51ef 27",
+            "eventId": "A440D492-62C8-4368-A755-2513D452A795",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:42.615451Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070782615451",
+            "description": "Nest history page 663d51ef 26",
+            "eventId": "BD7004F8-0A11-4298-807F-2C68DC028317",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:41.662730Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070781662730",
+            "description": "Nest history page 663d51ef 25",
+            "eventId": "68EE2190-DC7E-4CB6-953F-86367C158C46",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:40.721099Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070780721099",
+            "description": "Nest history page 663d51ef 24",
+            "eventId": "8FD90275-FA0A-4117-B9C4-58C31C3B907A",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:39.761071Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070779761071",
+            "description": "Nest history page 663d51ef 23",
+            "eventId": "A1D81456-8C78-4141-980A-58252E0F28BC",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:38.772638Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070778772638",
+            "description": "Nest history page 663d51ef 22",
+            "eventId": "E6FA603E-8E8C-4E3F-9F83-1409CFC2DDB5",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:37.744801Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070777744801",
+            "description": "Nest history page 663d51ef 21",
+            "eventId": "60F28058-86E3-435A-AF5E-5F5F05B8E67E",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:36.779949Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070776779949",
+            "description": "Nest history page 663d51ef 20",
+            "eventId": "9596826B-AB94-4020-BDD9-C3D0977079B6",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:35.826149Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070775826149",
+            "description": "Nest history page 663d51ef 19",
+            "eventId": "C737CF00-9135-490A-A6BC-68DCAA745BD9",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:34.845815Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070774845815",
+            "description": "Nest history page 663d51ef 18",
+            "eventId": "81EE5EE2-0947-42B0-9B18-3E683300929D",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:33.703237Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070773703237",
+            "description": "Nest history page 663d51ef 17",
+            "eventId": "AD2B8185-95C0-422E-9404-EA3F6D174417",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:32.736629Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070772736629",
+            "description": "Nest history page 663d51ef 16",
+            "eventId": "63B964FA-EB69-48EA-8B31-62A487CC1E14",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:31.772144Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070771772144",
+            "description": "Nest history page 663d51ef 15",
+            "eventId": "BA45B200-9FA2-4372-B377-3B66C6D2C986",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:30.511179Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070770511179",
+            "description": "Nest history page 663d51ef 14",
+            "eventId": "8118A979-A0E0-4C8E-86FC-AD21253A818C",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:29.532271Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070769532271",
+            "description": "Nest history page 663d51ef 13",
+            "eventId": "BC347738-990C-4DBA-9975-8AF1A619BDB9",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          }
+        ],
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "next": "BC347738-990C-4DBA-9975-8AF1A619BDB9",
+        "version": 1
+      },
+      {
+        "before": "BC347738-990C-4DBA-9975-8AF1A619BDB9",
+        "events": [
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:28.542968Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070768542968",
+            "description": "Nest history page 663d51ef 12",
+            "eventId": "F16DE4F1-1FD7-463C-B150-AA5108ECE1B4",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:27.540953Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070767540953",
+            "description": "Nest history page 663d51ef 11",
+            "eventId": "9BAC5A1B-0EAF-42A8-86B6-B1D0286BF124",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:26.569045Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070766569045",
+            "description": "Nest history page 663d51ef 10",
+            "eventId": "A2DDAA51-0686-431B-8B08-25A62A3E5237",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:25.590492Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070765590492",
+            "description": "Nest history page 663d51ef 09",
+            "eventId": "9104CFB1-88C5-41C3-A215-7ACC90D89E33",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:24.626652Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070764626652",
+            "description": "Nest history page 663d51ef 08",
+            "eventId": "61184CCD-E3CA-4FB4-8D53-4850B8DC3BAE",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:23.332082Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070763332082",
+            "description": "Nest history page 663d51ef 07",
+            "eventId": "941E92D4-1B6E-47F5-8719-D8E1A3895EFD",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:22.364565Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070762364565",
+            "description": "Nest history page 663d51ef 06",
+            "eventId": "A4D0FAE8-690E-434D-B798-69CDA5CE1C33",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:21.214880Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070761214880",
+            "description": "Nest history page 663d51ef 05",
+            "eventId": "04ED281A-E8FF-4A27-AB7A-1135225EC252",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:20.069768Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070760069768",
+            "description": "Nest history page 663d51ef 04",
+            "eventId": "21C7B6F2-3291-4EAC-A9DF-9837A5C7F986",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:18.724580Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070758724580",
+            "description": "Nest history page 663d51ef 03",
+            "eventId": "E5C204B2-FCC6-497F-92B7-C12DE4A90CED",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:17.568469Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070757568469",
+            "description": "Nest history page 663d51ef 02",
+            "eventId": "64DE5F63-36B4-47AB-A76F-05A9DAA7CAA7",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          },
+          {
+            "amountCentimes": "1",
+            "createdAt": "2026-10-03T23:39:16.475062Z",
+            "createdBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "createdOrder": "1791070756475062",
+            "description": "Nest history page 663d51ef 01",
+            "eventId": "8A7566E9-C391-4896-9DA8-74E83DB377BD",
+            "hasReceipt": false,
+            "kind": "expense",
+            "occurredOn": "2000-01-01",
+            "occurredOrder": "0",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+          }
+        ],
+        "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+        "version": 1
+      }
+    ],
+    "knownRemovedRenewalHistory": [
+      {
+        "reminder": null,
+        "renewal": {
+          "cancellationOn": "2026-10-06",
+          "fields": {
+            "noticeDays": 0,
+            "recurringRuleId": null,
+            "renewalOn": "2026-10-06",
+            "responsibleId": null,
+            "title": "Nest native renewal edited 20261006"
+          },
+          "removed": true,
+          "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+          "revision": "2BD612C0-3CE2-408C-8735-7B32E3EA6357"
+        }
+      },
+      {
+        "reminder": {
+          "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+          "reviewedRenewalRevision": "6610131C-D4D9-42FC-89F2-42FFE0A7B777",
+          "revision": "30203C42-0138-4472-A03A-374B99BBB9D6",
+          "settings": {
+            "anchor": "renewal",
+            "delivery": {
+              "daysBefore": 1,
+              "enabled": true,
+              "localTime": "09:00",
+              "recipientIds": [
+                "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+                "E5F80CFD-B69A-4AA0-A267-75784E943676"
+              ]
+            }
+          },
+          "updatedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+        },
+        "renewal": {
+          "cancellationOn": "2026-10-07",
+          "fields": {
+            "noticeDays": 0,
+            "recurringRuleId": null,
+            "renewalOn": "2026-10-07",
+            "responsibleId": null,
+            "title": "Nest QA reminder 0610-3f88"
+          },
+          "removed": true,
+          "renewalId": "23435FE5-5B08-48CD-B0FB-03F0E2D49690",
+          "revision": "CEFA0761-B6C4-487C-A630-81D62BAB84AD"
+        }
+      }
+    ],
+    "originalRules": [
+      {
+        "authorizedAt": "2026-10-04T15:48:28.359515Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": [
+            { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+            { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+          ],
+          "amountCentimes": "3",
+          "categoryId": null,
+          "description": "Synthetic native manual-link QA",
+          "mode": "fixed",
+          "note": "Fictional native linkage check; pause after verification.",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "kind": "weekly", "weekday": 7 },
+          "startDate": "2026-10-04"
+        },
+        "coveredThrough": "2026-10-04",
+        "nextDueOn": "2026-10-11",
+        "revision": "CD7F8771-AD48-42CC-A4DA-0EBFCBB215BF",
+        "ruleId": "06146B4A-95E5-4227-A562-5AEBACCEEA6D",
+        "status": "paused"
+      },
+      {
+        "authorizedAt": "2026-10-04T21:23:21.368462Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": null,
+          "amountCentimes": null,
+          "categoryId": null,
+          "description": "Fictional native variable bill 894747fa",
+          "mode": "variable",
+          "note": "Fictional native bill QA; no payment or actual transfer.",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "dayOfMonth": 4, "kind": "monthly" },
+          "startDate": "2026-10-04"
+        },
+        "coveredThrough": "2026-10-31",
+        "nextDueOn": "2026-11-04",
+        "revision": "62399AB4-C545-4D4E-9A14-40CBBA708E5B",
+        "ruleId": "10EAAC3C-8445-49A9-B894-A18272EF3325",
+        "status": "paused"
+      },
+      {
+        "authorizedAt": "2026-09-29T21:48:57.594295Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": null,
+          "amountCentimes": null,
+          "categoryId": null,
+          "description": "Test Swift reminder D70F5345-1B62-454B-A8EA-A15DBA695F04",
+          "mode": "variable",
+          "note": "Future variable reminder fixture; no posting",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+          "startDate": "2099-01-01"
+        },
+        "nextDueOn": "2099-01-01",
+        "revision": "7F0D3129-C4FD-403B-9219-5FB9FA246DD7",
+        "ruleId": "3EC03A31-228F-4418-972E-FD7214E5482E",
+        "status": "cancelled"
+      },
+      {
+        "authorizedAt": "2026-10-04T04:37:50.631410Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": [
+            { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+            { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+          ],
+          "amountCentimes": "3",
+          "categoryId": null,
+          "description": "Synthetic retained adopted rule",
+          "mode": "fixed",
+          "note": null,
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "kind": "weekly", "weekday": 1 },
+          "startDate": "2030-01-07"
+        },
+        "coveredThrough": "2026-10-31",
+        "nextDueOn": "2030-01-07",
+        "revision": "856BF47A-69FC-45AC-BC5D-F425C8B02124",
+        "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+        "status": "paused"
+      },
+      {
+        "authorizedAt": "2026-09-28T06:07:43.399696Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": null,
+          "amountCentimes": null,
+          "categoryId": null,
+          "description": "Native recurring fixture 2F7FBFE5-B228-49F0-9E26-8C173B9FAC37",
+          "mode": "variable",
+          "note": "Edited isolated variable fixture",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+          "startDate": "2099-01-01"
+        },
+        "nextDueOn": "2099-01-01",
+        "revision": "F78209DD-BD2D-4D62-AB18-8A4E12C9A9AF",
+        "ruleId": "A25B5DB8-2CC9-4FFC-9837-E1094695016B",
+        "status": "cancelled"
+      },
+      {
+        "authorizedAt": "2026-09-28T06:22:51.676739Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": null,
+          "amountCentimes": null,
+          "categoryId": null,
+          "description": "Native bill fixture 60EA3D29-7562-43DC-AB4B-36706C64CEB4",
+          "mode": "variable",
+          "note": "Isolated variable bill",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "dayOfMonth": 28, "kind": "monthly" },
+          "startDate": "2026-09-28"
+        },
+        "coveredThrough": "2026-09-30",
+        "nextDueOn": "2026-10-28",
+        "revision": "EFB23385-2336-4253-B818-6510D2208AC1",
+        "ruleId": "BAD4A3BB-D0CE-4799-A284-BDBCDB1F6DD0",
+        "status": "cancelled"
+      },
+      {
+        "authorizedAt": "2026-10-04T22:23:03.220877Z",
+        "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "configuration": {
+          "allocations": null,
+          "amountCentimes": null,
+          "categoryId": null,
+          "description": "Fictional private bill approval 3e7cd25c",
+          "mode": "variable",
+          "note": "Fictional private approval QA; no payment or actual transfer.",
+          "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "schedule": { "dayOfMonth": 5, "kind": "monthly" },
+          "startDate": "2026-10-05"
+        },
+        "coveredThrough": "2026-10-31",
+        "nextDueOn": "2026-11-05",
+        "revision": "28E419F4-236A-4A4D-80D3-7060E94A4C63",
+        "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+        "status": "paused"
+      }
+    ],
+    "roster": {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "members": [
+        { "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200", "displayName": "Test Alex" },
+        { "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676", "displayName": "Test Sam" }
+      ],
+      "version": 1
+    }
+  },
+  "historyComplete": true,
+  "historyEventCount": 62,
+  "hostedCommands": 0,
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "originalRuleRecovery": {
+    "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "operationId": "5BDFCAEB-3F20-4FA3-9DB9-0F0902EEDE8F",
+    "status": "unresolved",
+    "version": 1
+  },
+  "phase": "saved",
+  "reminder": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "reminder": {
+      "reviewedDueOn": "2026-11-01",
+      "reviewedRuleRevision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+      "revision": "F736854D-935A-4433-BA0C-13A4B5E51AC6",
+      "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+      "settings": {
+        "daysBefore": 1,
+        "enabled": true,
+        "localTime": "09:00",
+        "recipientIds": [
+          "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "E5F80CFD-B69A-4AA0-A267-75784E943676"
+        ]
+      },
+      "updatedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    },
+    "rule": {
+      "authorizedAt": "2026-10-06T14:08:04.651459Z",
+      "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "configuration": {
+        "allocations": null,
+        "amountCentimes": null,
+        "categoryId": null,
+        "description": "Nest QA reminder bill 0610-5d1a",
+        "mode": "variable",
+        "note": null,
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+        "startDate": "2026-11-01"
+      },
+      "nextDueOn": "2026-11-01",
+      "revision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+      "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+      "status": "active"
+    },
+    "version": 1
+  },
+  "reminderOperationRecovery": {
+    "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "operationId": "F23E5DFB-CC10-4199-A0F1-BC2CFCBD521C",
+    "status": "unresolved",
+    "version": 1
+  },
+  "rule": {
+    "authorizedAt": "2026-10-06T14:08:04.651459Z",
+    "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "configuration": {
+      "allocations": null,
+      "amountCentimes": null,
+      "categoryId": null,
+      "description": "Nest QA reminder bill 0610-5d1a",
+      "mode": "variable",
+      "note": null,
+      "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+      "startDate": "2026-11-01"
+    },
+    "nextDueOn": "2026-11-01",
+    "revision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+    "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+    "status": "active"
+  }
+}
