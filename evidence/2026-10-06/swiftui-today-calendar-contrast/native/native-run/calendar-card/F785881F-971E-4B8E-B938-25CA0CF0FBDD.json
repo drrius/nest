@@ -1,0 +1,8 @@
+{
+  "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+  "frame": [20, 595.5, 335, 44],
+  "label": "Manage renewals",
+  "summary": "Contrast failed",
+  "tabBarFrame": [0, 584, 375, 83],
+  "type": "Optional(__C.XCUIElementType)"
+}

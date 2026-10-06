@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "195C8AEB-79B7-4729-87C7-E0D54E382A68.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active bill reminder canonical baseline and both private immutable operations_0_9C5D9E4E-4577-4F4A-AB0C-C5C663DD7C16.json",
+        "timestamp": 1791313949.692
+      }
+    ],
+    "testIdentifier": "HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations"
+  }
+]

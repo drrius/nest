@@ -1,0 +1,55 @@
+{
+  "nativeSource": "abc39697678bddd92a5c8ec1f16355826acab902",
+  "rootDirectScreenshotReviews": 8,
+  "rootIndependentlyCheckedPans": [
+    "CD17A1D8-87C4-42BE-9DB1-CECA5DF3F755.json",
+    "E888097B-385F-4D8B-A6BC-830DDB1A0C6B.json",
+    "2754BCB0-D78E-42F0-9208-A7E20FE51D24.json"
+  ],
+  "rootIndependentlyCheckedTargets": [
+    {
+      "exists": true,
+      "frame": [38, 241, 136, 20.5],
+      "hittable": true,
+      "label": "On your calendar"
+    },
+    {
+      "exists": true,
+      "frame": [38, 275.5, 293, 42.5],
+      "hittable": true,
+      "label": "Open Calendar to review access. Your personal details stay on this device."
+    },
+    {
+      "exists": true,
+      "frame": [38, 332, 299, 44],
+      "hittable": true,
+      "label": "Open Calendar"
+    }
+  ],
+  "actualTabBar": [0, 584, 375, 83],
+  "unsuppressedIssues": [
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [20, 595.5, 335, 44],
+      "label": "Manage renewals",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    },
+    {
+      "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+      "frame": [38, 533.5, 299, 44],
+      "label": "All proposals and saved decisions",
+      "summary": "Contrast failed",
+      "tabBarFrame": [0, 584, 375, 83],
+      "type": "Optional(__C.XCUIElementType)"
+    }
+  ],
+  "calendarCardContrastReportedInThisRun": false,
+  "auditResult": "FAIL",
+  "namedContrastRatiosVerifiedInSeparatePixelRecord": true,
+  "fullAuditClosed": false,
+  "originalReportsClosed": false,
+  "sourcePaletteOrLayoutChange": false,
+  "deviceAcceptanceVerified": false
+}

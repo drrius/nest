@@ -1,6 +1,12 @@
 # Native verification record
 
-## Current verification status — 27 September 2026
+This is the historical Expo client verification record through 27 September 2026.
+[ADR 0002](../adr/0002-swiftui-client.md) supersedes that client. Current SwiftUI
+builds, actual native verification, milestone acceptance and blockers are recorded
+in [the progress checklist](../progress.md). Earlier results below remain tied
+to their original source/build; they do not verify the SwiftUI app.
+
+## Historical verification status — 27 September 2026
 
 The owner installed Nest0.1.0/build3, completed Apple sign-in and entered Today after verified membership linkage in a separate nest-test phone household. The owner rejected the UI as inconsistent with Quiet; several hosted reads also failed. Build3 is not visually accepted.
 

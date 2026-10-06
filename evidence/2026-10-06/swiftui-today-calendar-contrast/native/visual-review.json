@@ -1,0 +1,58 @@
+{
+  "native-run/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dfbe3b54893a042482cacee52f25f39175ec5cb385668a4d925d69ace58b9038",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/calendar-card/0FBD90A7-7F0F-49DE-8328-E4B4555ECDFE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "8092241f912265081985e353f01647df7b8cd68730c436f3fc29d7c5096ae885",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/calendar-card/2B4237C7-823C-48D3-A1C7-F128583C00BC.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "2645c820f6846735b7c7b7a237b36aee2bd1f46c0a82bf73f80e05ebb669221a",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/calendar-card/691ABAD7-E29B-4F93-8DC2-9DAF0357218E.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "bc468c552bb7aa3e9312fc05aa0951c2742a07066621d93d99176a8ccac7df9f",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/calendar-card/A6C0D08E-FA23-4B8E-B671-FE6DB47B707C.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "11e327434d71e0b5fd2c16781c08d9dc64becc466d7cc99faa1d0178c9531479",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/calendar-card/BEBAA3BC-36EF-4045-9964-9C35D8130C8F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "2645c820f6846735b7c7b7a237b36aee2bd1f46c0a82bf73f80e05ebb669221a",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/calendar-card/FFDC69F0-7254-4B0D-8E40-88C2C6D06A77.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "cb7192e100b9a2bf66c76ce200c94c85498df56b32c701a97dbc490f0c95d1c1",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  },
+  "native-run/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dfbe3b54893a042482cacee52f25f39175ec5cb385668a4d925d69ace58b9038",
+    "method": "Direct full-resolution inspection",
+    "observations": "Full measured Calendar card and exact diagnostic boundary crops retained; both final screenshots show Today/Me+shared/large-light"
+  }
+}
