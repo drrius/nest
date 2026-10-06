@@ -7,3 +7,5 @@ The storage test preserves saved reminder settings after ordinary renewal remova
 The first invocation lacks NEST_TEST_PG_BIN and the second uses a missing historical binary path. Both fail all eight tests before database behavioral assertions run. [Missing configuration](missing-configuration.txt) and [stale path](stale-path.txt) remain recorded. The corrected invocation uses the existing local18.6 fixture binaries; no service or package is purchased or installed.
 
 These fixtures simulate Auth/Storage and load focused migration dependencies. Hosted PostgreSQL17.6, the complete deployed chain, phone rendering and actual worker delivery remain separate checks. No hosted or production database is contacted.
+
+The evidence checkpoint at `3ebbc180` passes [routine CI](routine-ci.json). That workflow runs its configured focused checks; the eight renewal tests above were run locally and are not claimed as routine CI execution.
