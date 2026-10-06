@@ -1,0 +1,21 @@
+{
+  "conclusion": "success",
+  "databaseId": 37415252709,
+  "headSha": "5e3a7c0ee44b83018d5f4e420214b43f8c8a279b",
+  "status": "completed",
+  "url": "https://github.com/drrius/nest/actions/runs/37415252709",
+  "foundation": {
+    "executed": 502,
+    "skipped": 41,
+    "failed": 0
+  },
+  "signedApp": {
+    "executed": 454,
+    "skipped": 22,
+    "failed": 0
+  },
+  "swiftTesting": {
+    "passed": 4
+  },
+  "manualHostedUITestExecutedInCI": false
+}

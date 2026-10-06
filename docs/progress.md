@@ -138,7 +138,7 @@ the dated saved-data message for each actor. All10 captures are reviewed,1,089 n
 inputs match, stable origins/Today/large/light/64 empty journals and original Keychains
 are restored. The GET-only loopback relay/owned keys are removed. This is renewal-only
 API unavailability with Auth/startup online, not airplane mode. [UI evidence](../evidence/2026-10-06/swiftui-renewal-offline-ui/README.md).
-Docs checkpointb3e76f6a passes Nest37415283087; guarded UI source5e3a7c0e has SwiftUI37415252709 still running.
+Docs checkpointb3e76f6a passes Nest37415283087; guarded UI source5e3a7c0e passes SwiftUI37415252709 with502 Foundation/41 skips,454 signed-app/22 skips, four Swift Testing cases and zero failures.
 No new beta, hosted write, production action, purchase or merge occurs.
 
 ## Contrast viewport diagnosis

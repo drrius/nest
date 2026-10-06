@@ -43,3 +43,5 @@ private signing configuration and full native result stores remain on the Mac.
 Run `python3 verify_inventory.py` here for tracked artifact checks, or add
 `--working-tree` to compare the current native inputs with the prepared snapshot.
 The ordinary CI guard skips this manual relay method.
+
+Guarded UI source5e3a7c0e passes [SwiftUI37415252709](https://github.com/drrius/nest/actions/runs/37415252709):502 Foundation cases/41 skips,454 signed-app cases/22 skips, zero failures, plus four Swift Testing cases and strict format/limits/signing/UI compilation. This CI result compiles this opt-in manual UI test; the two actual hosted UI executions above remain separate evidence. [Metadata](ci.json) and [totals](ci-totals.txt) preserve the distinction.
