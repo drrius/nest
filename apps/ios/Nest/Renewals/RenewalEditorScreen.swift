@@ -64,16 +64,24 @@ struct RenewalEditorScreen: View {
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
-                Button("Done") { titleFocused = false }
+                Button {
+                    titleFocused = false
+                } label: {
+                    Text("Done").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain)
             }
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel") { if draft == initial { dismiss() } else { discarding = true } }
-                    .disabled(model.busy)
+                Button {
+                    if draft == initial { dismiss() } else { discarding = true }
+                } label: {
+                    Text("Cancel").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(model.busy)
             }
         }
         .interactiveDismissDisabled(model.busy || draft != initial)
-        .confirmationDialog("Discard your unsaved changes?", isPresented: $discarding, titleVisibility: .visible) {
+        .alert("Discard edits?", isPresented: $discarding) {
             Button("Discard changes", role: .destructive) { dismiss() }
+            Button("Keep editing", role: .cancel) {}
         }
         .task { await choices.load(session: session, member: member) }
     }

@@ -1,0 +1,82 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 8.555
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 7.179
+  },
+  {
+    "step": "normal-renewal",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "RenewalNavigationTests/testUntouchedRenewalCancelRemainsReadable",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 37.118
+  },
+  {
+    "step": "normal-restore-today",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativePreparationCompletionTests/testCompletedPreparationDoesNotReappearAfterRestart",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 17.646
+  },
+  {
+    "step": "maximum-renewal",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "RenewalNavigationTests/testUntouchedRenewalCancelRemainsReadable",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 99.284
+  },
+  {
+    "step": "maximum-restore-today",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "NativePreparationCompletionTests/testCompletedPreparationDoesNotReappearAfterRestart",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 18.112
+  },
+  {
+    "step": "original-after",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.346
+  },
+  {
+    "step": "partner-after",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.466
+  }
+]

@@ -1,0 +1,5 @@
+    t =    21.43s Find the "Add" Button
+    t =    21.46s Find the "Add" Button
+/tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift:46: error: -[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable] : XCTAssertGreaterThanOrEqual failed: ("36.0") is less than ("44.0")
+    t =    21.52s Tear Down
+Test Case '-[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable]' failed (21.778 seconds).

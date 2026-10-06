@@ -66,5 +66,6 @@ finishes on Today. All822 inputs match5694a7ab, both canonical before/after read
 match, and roles/settings/64 empty journals are restored. Eight modal images are
 retained; four representative normal/maximum images were visually inspected.
 Their complete headings and choices fit; all eight alert instances have measured
-hittable44pt-or-larger controls. Fresh hosted comparisons remain exact. Routine CI
-passes at5694a7ab; its native run37402429424 is still in progress at this checkpoint.
+hittable44pt-or-larger controls. Fresh hosted comparisons remain exact. Both CI workflows pass at5694a7ab, Nest37402429332/SwiftUI37402429424. Native
+CI records496 Foundation/41 skips and443 signed-app/20 skips, zero failures,
+strict formatting/source limits/signing and guarded UI compilation.

@@ -1,0 +1,5 @@
+    t =    86.29s     Find the "Refresh" Button
+    t =    86.32s     Capturing element debug description
+/tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift:39: error: -[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)")
+    t =    86.35s Tear Down
+Test Case '-[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable]' failed (86.619 seconds).

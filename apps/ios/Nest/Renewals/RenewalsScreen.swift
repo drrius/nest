@@ -48,7 +48,14 @@ struct RenewalsScreen: View {
         }
         .navigationTitle("Renewals")
         .scrollContentBackground(.hidden).background(QuietPalette.background)
-        .toolbar { Button("Add", systemImage: "plus") { adding = true }.disabled(model.busy || model.saved != nil) }
+        .toolbar {
+            Button {
+                adding = true
+            } label: {
+                Label("Add", systemImage: "plus")
+                    .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+            }.buttonStyle(.plain).disabled(model.busy || model.saved != nil)
+        }
         .sheet(isPresented: $adding) {
             NavigationStack {
                 RenewalEditorScreen(model: model, session: session, member: member, baseline: nil)

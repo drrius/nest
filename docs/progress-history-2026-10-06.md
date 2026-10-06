@@ -17,3 +17,7 @@ journals and six hosted fingerprints stay exact. [Evidence](../evidence/2026-10-
 The shipping UI is unchanged. Full accessibility, VoiceOver and phones stay open.
 Preceding diagnostic ccde252b passes Nest37315433885/SwiftUI37315433660;
 routine CI does not execute or approve the failing manual suite.
+
+## Live typography diagnosis
+
+Five native read-only methods pass. Three named Calendar controls grow with actual live system text changes, return to normal and match a cold maximum-size reference; the app PID stays unchanged during live samples. All819 inputs match, both roles/Today/large/light/64 empty journals are restored, and fresh owned/retained/grocery hashes remain exact. All three screenshots are inspected. This rules out fixed-size behavior for these controls, not the anonymous node or the19 unsuppressed audit reports. The census retains all findings: four bound contrast reports are near/cross/under the floating bar, seven are unbound. No shipping font/color change is justified by this test. [Evidence](../evidence/2026-10-06/swiftui-live-typography/README.md), [census](../evidence/2026-10-06/swiftui-current-accessibility/census.json). Guarded-test sourcef873210c passes Nest37391677002/SwiftUI37391677040; shipping behavior remains99ca. Full accessibility/VoiceOver/phones/live AI and M1–M9 remain open. No household write, permission, beta, worker, purchase, production operation or merge.
