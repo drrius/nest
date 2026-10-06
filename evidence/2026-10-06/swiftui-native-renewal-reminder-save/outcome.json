@@ -1,0 +1,49 @@
+{
+  "nativeMethodsPassed": 7,
+  "retainedNativeFailures": 1,
+  "separatePreparationFailures": 1,
+  "reviewedPNGs": 19,
+  "reminderSavePOSTs": 1,
+  "SaveReplays": 0,
+  "CreateReplays": 0,
+  "Removes": 0,
+  "ownedRenewalId": "23435fe5-5b08-48cd-b0fb-03f0e2d49690",
+  "ownedOperationId": "32102900-3d5a-4aa6-9d41-647dab7cf63c",
+  "reminderRevision": "30203c42-0138-4472-a03a-374b99bbb9d6",
+  "savedSettingsRetained": true,
+  "ownerImmutableReceiptVerified": true,
+  "partnerPrivateReceiptAbsent": true,
+  "restartRecordedCopyAndOrdinaryDonePassed": true,
+  "bothOriginalScopes64Restored": true,
+  "deliveryClaimed": false,
+  "batches": {
+    "save-observer-failure": {
+      "sourceCommit": "848fcd7cbfc217bb05d566cec2beb0b5f24477f5",
+      "controllerSha256": "22267034b1c473069b4ba71ce4a07e47dbd62a7abe6c920d95aa6def22bc761d",
+      "methods": 3,
+      "passed": 2,
+      "failed": 1
+    },
+    "recorded-private-isolation": {
+      "sourceCommit": "848fcd7cbfc217bb05d566cec2beb0b5f24477f5",
+      "controllerSha256": "a006719446a289fe815dcc059a460723555e991ab24f721b5c38aa6a43b6fb05",
+      "methods": 2,
+      "passed": 2,
+      "failed": 0
+    },
+    "cold-stop-preparation-failure": {
+      "sourceCommit": "848fcd7cbfc217bb05d566cec2beb0b5f24477f5",
+      "controllerSha256": "52122e169965721c142cd964f8f39e2d26ffbb7f00e1c53d49118ed3b792b049",
+      "methods": 0,
+      "passed": 0,
+      "failed": 0
+    },
+    "cold-restart-done": {
+      "sourceCommit": "848fcd7cbfc217bb05d566cec2beb0b5f24477f5",
+      "controllerSha256": "2457d2f6a1316350288c95e0c34aa444cbdf78e925c3ebb37142fa1b3be09afb",
+      "methods": 3,
+      "passed": 3,
+      "failed": 0
+    }
+  }
+}
