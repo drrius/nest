@@ -243,9 +243,11 @@ an explicit-Cancel native alert. Fresh SDK/UI builds, selected compiled-product
 paths and binary hashes verify the executed source. Cancel followed by one Remove
 passes43.078s; cold restart and ordinary Done pass32.090s. Final paired reads pass
 10.654s/9.558s. Both clients restore foreground Today, original scopes, large/light
-and64 empty journals. Five representative removal screenshots were reviewed.
-The original small-target, stale incremental-runtime and missing-Cancel failures,
-plus separate preparation failures, remain in
+and64 empty journals. Five representative removal screenshots were reviewed. The immutable
+[removal evidence](../evidence/2026-10-06/swiftui-native-renewal-reminder-remove/README.md)
+verifier passes255 artifacts,20 native passes/three retained failures, three
+controller guard failures and26 inspected screenshots, with one Remove/no replay.
+Original native and preparation failures remain in
 [dated history](progress-history-2026-10-06.md#active-renewal-reminder-save-and-removal-chronology).
 [Save evidence](../evidence/2026-10-06/swiftui-native-renewal-reminder-save/README.md)
 retains its post-Save observer failure and passing restart/Done continuation.
