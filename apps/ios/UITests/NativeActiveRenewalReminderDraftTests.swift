@@ -88,11 +88,18 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
         choices.tap()
         XCTAssertTrue(app.navigationBars["Renewal reminder"].waitForExistence(timeout: 15))
         waitReady(app)
-        reveal(app.staticTexts["Nest QA reminder 0610-3f88"], in: app, permitsDisabled: true)
-        reveal(app.staticTexts["Renews 2026-10-07"], in: app, permitsDisabled: true)
-        reveal(app.staticTexts["Cancel by 2026-10-07"], in: app, permitsDisabled: true)
+        let form = reminderForm(app)
+        reveal(form.staticTexts["Nest QA reminder 0610-3f88"], in: app, permitsDisabled: true)
+        reveal(form.staticTexts["Renews 2026-10-07"], in: app, permitsDisabled: true)
+        reveal(form.staticTexts["Cancel by 2026-10-07"], in: app, permitsDisabled: true)
         XCTAssertFalse(app.staticTexts["Could not load reminder choices. Connect and try again."].exists)
         capture(app, name: "Exact active renewal and real reminder choices loaded")
+    }
+
+    private func reminderForm(_ app: XCUIApplication) -> XCUIElement {
+        let forms = app.collectionViews.containing(.switch, identifier: "Reminder enabled")
+        XCTAssertEqual(forms.count, 1, "Exactly one foreground reminder Form is required")
+        return forms.firstMatch
     }
 
     private func waitReady(_ app: XCUIApplication) {
