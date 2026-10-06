@@ -263,6 +263,11 @@ transition and Lunch selected; the explanation is below the small-screen fold.
 The observer now waits for the selected Lunch picker to be hittable and uses the
 measured reader to reveal the explanation. No app behavior changes in this
 correction. Fresh execution is pending; no mutation is counted as verified.
+The label-only return observer times out at `65642712`; no Add is tapped and
+fixture/receipts remain exact. Native pickers can expose selection as their
+accessibility value; the observer now accepts Lunch in either label or value,
+still requires a hittable returned picker, and retains its full native tree.
+Configured formatting and source limits pass. Fresh execution remains pending.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
 clean and its CI is running.

@@ -1,0 +1,84 @@
+Attributes: Button, 0x1062aa290, {{16.0, 371.0}, {343.0, 52.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+Element subtree:
+ →Button, 0x1062aa290, {{16.0, 371.0}, {343.0, 52.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+Path to element:
+ →Application, 0x1062a8df0, pid: 59417, label: 'Nest'
+  ↳Window (Main), 0x1062a8f10, {{0.0, 0.0}, {375.0, 667.0}}
+   ↳Other, 0x1062a9030, {{0.0, 0.0}, {375.0, 667.0}}
+    ↳Other, 0x1062a93f0, {{0.0, 30.0}, {375.0, 637.0}}
+     ↳Other, 0x1062a9510, {{0.0, 30.0}, {375.0, 637.0}}
+      ↳Other, 0x1062a9630, {{0.0, 30.0}, {375.0, 637.0}}
+       ↳Other, 0x1062a9150, {{0.0, 30.0}, {375.0, 637.0}}
+        ↳Other, 0x1062a9270, {{0.0, 30.0}, {375.0, 637.0}}
+         ↳Other, 0x1062a9bd0, {{0.0, 30.0}, {375.0, 637.0}}
+          ↳Other, 0x1062a9750, {{0.0, 30.0}, {375.0, 637.0}}
+           ↳Other, 0x1062a9870, {{0.0, 30.0}, {375.0, 637.0}}
+            ↳Other, 0x1062a9990, {{0.0, 30.0}, {375.0, 637.0}}
+             ↳Other, 0x1062a9ab0, {{0.0, 30.0}, {375.0, 637.0}}
+              ↳CollectionView, 0x1062a9cf0, {{0.0, 30.0}, {375.0, 637.0}}
+               ↳Cell, 0x1062a9e10, {{16.0, 371.0}, {343.0, 52.0}}
+                ↳Other, 0x1062a9f30, {{16.0, 371.0}, {343.0, 52.0}}
+                 ↳Other, 0x1062aa050, {{16.0, 371.0}, {343.0, 52.0}}
+                  ↳Other, 0x1062aa170, {{16.0, 371.0}, {343.0, 52.0}}
+                   ↳Button, 0x1062aa290, {{16.0, 371.0}, {343.0, 52.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x1062e0130, pid: 59417, label: 'Nest'
+  }
+  ↪︎Find: Descendants matching type Button
+    Output: {
+      Button, 0x1064d3c30, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+      Button, 0x1064d3e70, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals', Selected
+      Button, 0x1064d40b0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+      Button, 0x1064d42f0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+      Button, 0x1064d6270, {{20.0, 46.0}, {44.0, 44.0}}, identifier: 'xmark', label: 'Cancel'
+      Button, 0x1064d66f0, {{311.0, 46.0}, {44.0, 44.0}}, identifier: 'checkmark', label: 'Add', Selected
+      Button, 0x1064d88b0, {{32.0, 260.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Previous destination week'
+      Button, 0x1064d8af0, {{299.0, 260.0}, {44.0, 44.0}}, identifier: 'chevron.right', label: 'Next destination week'
+      Button, 0x1064d92d0, {{16.0, 319.0}, {343.0, 52.0}}, label: 'Day', value: 26 Oct
+      Button, 0x1064d9e10, {{16.0, 371.0}, {343.0, 52.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+      Button, 0x1064e6040, {{16.0, 649.0}, {343.0, 52.0}}, label: 'Refresh availability'
+      Button, 0x1064c9240, {{259.0, 34.0}, {44.0, 44.0}}, identifier: 'tab-assistant-action', label: 'Private conversations'
+      Button, 0x1064c9360, {{311.0, 34.0}, {44.0, 44.0}}, identifier: 'tab-profile-action', label: 'Profile and preferences'
+      Button, 0x1064c96c0, {{20.0, 169.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Previous week'
+      Button, 0x1064c9900, {{311.0, 169.0}, {44.0, 44.0}}, identifier: 'chevron.right', label: 'Next week'
+      Button, 0x1064c9a20, {{20.0, 237.0}, {335.0, 52.0}}, label: 'Plan the week with AI'
+      Button, 0x1064c9ea0, {{36.0, 347.0}, {303.0, 60.0}}, label: '2026-10-19, Breakfast: Add meal'
+      Button, 0x1064ca320, {{36.0, 407.5}, {303.0, 60.0}}, label: '2026-10-19, Lunch: Add meal'
+      Button, 0x1064ca7a0, {{36.0, 468.0}, {210.0, 61.0}}, label: '2026-10-19, Dinner: Nest native manual week 20261005, recipe details'
+      Button, 0x1064cac20, {{258.0, 476.5}, {81.0, 44.0}}, label: '2026-10-19, Dinner: More options for Nest native manual week 20261005'
+      Button, 0x1064cb0a0, {{36.0, 587.0}, {303.0, 60.0}}, label: '2026-10-20, Breakfast: Add meal'
+      Button, 0x1064cb520, {{36.0, 647.5}, {303.0, 60.0}}, label: '2026-10-20, Lunch: Add meal'
+      Button, 0x1064cb9a0, {{36.0, 708.0}, {210.0, 83.0}}, label: '2026-10-20, Dinner: Nest native manual week 20261005 · 2026-10-20, recipe details'
+      Button, 0x1064cbe20, {{258.0, 727.5}, {81.0, 44.0}}, label: '2026-10-20, Dinner: More options for Nest native manual week 20261005 · 2026-10-20'
+      Button, 0x1064cc2a0, {{36.0, 849.0}, {303.0, 60.0}}, label: '2026-10-21, Breakfast: Add meal'
+      Button, 0x1064cc720, {{36.0, 909.5}, {303.0, 60.0}}, label: '2026-10-21, Lunch: Add meal'
+      Button, 0x1064ccba0, {{36.0, 970.0}, {210.0, 83.0}}, label: '2026-10-21, Dinner: Nest native manual week 20261005 · 2026-10-21, recipe details'
+      Button, 0x1064cd020, {{258.0, 989.5}, {81.0, 44.0}}, label: '2026-10-21, Dinner: More options for Nest native manual week 20261005 · 2026-10-21'
+      Button, 0x1064cd4a0, {{36.0, 1111.0}, {303.0, 60.0}}, label: '2026-10-22, Breakfast: Add meal'
+      Button, 0x1064cd920, {{36.0, 1171.5}, {303.0, 60.0}}, label: '2026-10-22, Lunch: Add meal'
+      Button, 0x1064cdef0, {{36.0, 1232.0}, {210.0, 83.0}}, label: '2026-10-22, Dinner: Nest native manual week 20261005 · 2026-10-22, recipe details'
+      Button, 0x1064ce370, {{258.0, 1251.5}, {81.0, 44.0}}, label: '2026-10-22, Dinner: More options for Nest native manual week 20261005 · 2026-10-22'
+      Button, 0x1064ce7f0, {{36.0, 1373.0}, {303.0, 60.0}}, label: '2026-10-23, Breakfast: Add meal'
+      Button, 0x1064cec70, {{36.0, 1433.5}, {303.0, 60.0}}, label: '2026-10-23, Lunch: Add meal'
+      Button, 0x1064cf0f0, {{36.0, 1494.0}, {210.0, 83.0}}, label: '2026-10-23, Dinner: Nest native manual week 20261005 · 2026-10-23, recipe details'
+      Button, 0x1064cf570, {{258.0, 1513.5}, {81.0, 44.0}}, label: '2026-10-23, Dinner: More options for Nest native manual week 20261005 · 2026-10-23'
+      Button, 0x1064cf9f0, {{36.0, 1635.0}, {303.0, 60.0}}, label: '2026-10-24, Breakfast: Add meal'
+      Button, 0x1064cfe70, {{36.0, 1695.5}, {303.0, 60.0}}, label: '2026-10-24, Lunch: Add meal'
+      Button, 0x1064d02f0, {{36.0, 1756.0}, {210.0, 83.0}}, label: '2026-10-24, Dinner: Nest native manual week 20261005 · 2026-10-24, recipe details'
+      Button, 0x1064d0770, {{258.0, 1775.5}, {81.0, 44.0}}, label: '2026-10-24, Dinner: More options for Nest native manual week 20261005 · 2026-10-24'
+      Button, 0x1064d0bf0, {{36.0, 1897.0}, {303.0, 60.0}}, label: '2026-10-25, Breakfast: Add meal'
+      Button, 0x1064d1070, {{36.0, 1957.5}, {303.0, 60.0}}, label: '2026-10-25, Lunch: Add meal'
+      Button, 0x1064d14f0, {{36.0, 2018.0}, {210.0, 83.0}}, label: '2026-10-25, Dinner: Nest native manual week 20261005 · 2026-10-25, recipe details'
+      Button, 0x1064cdda0, {{258.0, 2037.5}, {81.0, 44.0}}, label: '2026-10-25, Dinner: More options for Nest native manual week 20261005 · 2026-10-25'
+      Button, 0x1064d1dd0, {{22.0, 2140.8}, {172.5, 20.5}}, label: 'Review ingredients'
+      Button, 0x1064d2130, {{21.5, 2216.8}, {195.5, 20.5}}, label: 'Your food preferences'
+      Button, 0x1064d2490, {{22.0, 2292.8}, {185.5, 20.5}}, label: 'Cooking preferences'
+      Button, 0x1064d27f0, {{22.0, 2368.8}, {120.5, 20.5}}, label: 'Saved meals'
+      Button, 0x1064d2b50, {{22.0, 2445.0}, {103.5, 20.5}}, label: 'Groceries'
+    }
+    ↪︎Find: Elements matching predicate '"meal-destination-slot-picker" IN identifiers'
+      Output: {
+        Button, 0x1062dc7d0, {{16.0, 371.0}, {343.0, 52.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+      }

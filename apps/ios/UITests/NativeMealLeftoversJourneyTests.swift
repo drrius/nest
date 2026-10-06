@@ -35,8 +35,14 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
         XCTAssertTrue(lunch.waitForExistence(timeout: 10))
         try reading.requireTarget(lunch, bounds: app.frame)
         lunch.tap()
+        let selectedState = XCTAttachment(string: app.debugDescription)
+        selectedState.name = "Destination picker after selecting Lunch"
+        selectedState.lifetime = .keepAlways
+        add(selectedState)
         let returned = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "exists == true AND hittable == true AND label CONTAINS %@", "Lunch"),
+            predicate: NSPredicate(
+                format: "exists == true AND hittable == true AND (label CONTAINS %@ OR value CONTAINS %@)",
+                "Lunch", "Lunch"),
             object: picker)
         XCTAssertEqual(XCTWaiter.wait(for: [returned], timeout: 15), .completed)
         let explanation = "The original meal stays in your plan. Its recipe is copied to the leftovers."

@@ -1,0 +1,27 @@
+Attributes: Button, 0x10629a7f0, {{inf, inf}, {0.0, 0.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+Element subtree:
+ →Button, 0x10629a7f0, {{inf, inf}, {0.0, 0.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+Path to element:
+ →Application, 0x1062a1b90, pid: 59417, label: 'Nest'
+  ↳Window (Main), 0x106296050, {{inf, inf}, {0.0, 0.0}}
+   ↳Other, 0x1062a3590, {{inf, inf}, {0.0, 0.0}}
+    ↳Other, 0x10621f950, {{inf, inf}, {0.0, 0.0}}
+     ↳Other, 0x1062a6940, {{inf, inf}, {0.0, 0.0}}
+      ↳Other, 0x106230060, {{inf, inf}, {0.0, 0.0}}
+       ↳Other, 0x106230180, {{inf, inf}, {0.0, 0.0}}
+        ↳Other, 0x1062a3170, {{inf, inf}, {0.0, 0.0}}
+         ↳Other, 0x10621cf90, {{inf, inf}, {0.0, 0.0}}
+          ↳Other, 0x10621c2b0, {{inf, inf}, {0.0, 0.0}}
+           ↳Other, 0x10621c3d0, {{inf, inf}, {0.0, 0.0}}
+            ↳Other, 0x10629a010, {{inf, inf}, {0.0, 0.0}}
+             ↳Other, 0x10629a130, {{inf, inf}, {0.0, 0.0}}
+              ↳CollectionView, 0x10629a250, {{inf, inf}, {0.0, 0.0}}
+               ↳Cell, 0x10629a370, {{inf, inf}, {0.0, 0.0}}
+                ↳Other, 0x10629a490, {{inf, inf}, {0.0, 0.0}}
+                 ↳Other, 0x10629a5b0, {{inf, inf}, {0.0, 0.0}}
+                  ↳Other, 0x10629a6d0, {{inf, inf}, {0.0, 0.0}}
+                   ↳Button, 0x10629a7f0, {{inf, inf}, {0.0, 0.0}}, identifier: 'meal-destination-slot-picker', label: 'Meal', value: Lunch
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  ↪︎Find: Descendants matching type Button
+    ↪︎Find: Elements matching predicate '"meal-destination-slot-picker" IN identifiers'
