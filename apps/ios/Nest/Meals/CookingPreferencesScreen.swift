@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct CookingPreferencesScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     @ObservedObject var model: SessionModel
     @State private var context: CookingEditContext?
@@ -9,6 +10,7 @@ struct CookingPreferencesScreen: View {
     @State private var loading = false
     @State private var submitting = false
     @State private var confirmReload = false
+    @State private var leaving = false
 
     var body: some View {
         Form {
@@ -60,6 +62,7 @@ struct CookingPreferencesScreen: View {
             }
             if context != nil && model.cookingPending == nil {
                 Button {
+                    leaving = false
                     confirmReload = true
                 } label: {
                     QuietActionLabel("Reload current preferences")
@@ -72,6 +75,12 @@ struct CookingPreferencesScreen: View {
         .background(QuietPalette.background)
         .navigationTitle("Cooking preferences")
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(
+            QuietDraftBack(hasChanges: hasUnsavedChanges, busy: loading || submitting || model.cookingSaving) {
+                leaving = true
+                confirmReload = true
+            }
+        )
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
@@ -82,12 +91,12 @@ struct CookingPreferencesScreen: View {
                 }.buttonStyle(.plain).disabled(!editable || !valid)
             }
         }
-        .task(id: model.generation) { await reload() }
+        .task(id: model.generation) { if !hasUnsavedChanges { await reload() } }
         .alert("Discard edits?", isPresented: $confirmReload) {
-            Button("Reload", role: .destructive) { Task { await reload() } }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("Use saved values.")
+            Button("Discard edits", role: .destructive) {
+                if leaving { dismiss() } else { Task { await reload() } }
+            }
+            Button("Keep editing", role: .cancel) {}
         }
     }
 
@@ -129,6 +138,14 @@ struct CookingPreferencesScreen: View {
         guard let context else { return false }
         return !loading && !submitting && !model.cookingSaving && model.cookingPending == nil
             && model.generation == context.generation && model.status == .ready(context.member)
+    }
+
+    private var hasUnsavedChanges: Bool {
+        guard let context, model.cookingPending == nil, context.generation == model.generation,
+            model.status == .ready(context.member)
+        else { return false }
+        let baseline = context.profile.profile?.preferences
+        return notes != (baseline?.cookingNotes ?? "") || slots != Set(baseline?.mealSlots ?? MealSlot.allCases)
     }
 
     private var valid: Bool {

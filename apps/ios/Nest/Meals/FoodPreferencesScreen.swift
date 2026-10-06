@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct FoodPreferencesScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var model: SessionModel
     @State private var context: FoodEditContext?
     @State private var preferences = FoodPreferences(restrictions: [], dislikes: [], calorieGoal: nil, portions: 1)
@@ -9,6 +10,7 @@ struct FoodPreferencesScreen: View {
     @State private var notice: String?
     @State private var discard = false
     @State private var reload = false
+    @State private var leaving = false
     @State private var request = UUID()
 
     var body: some View {
@@ -40,6 +42,7 @@ struct FoodPreferencesScreen: View {
             }
             if !busy && context?.profile != nil && context?.pending == nil {
                 Button {
+                    leaving = false
                     reload = true
                 } label: {
                     QuietActionLabel("Reload current preferences")
@@ -52,6 +55,12 @@ struct FoodPreferencesScreen: View {
         .tint(QuietPalette.accent)
         .navigationTitle("Your food preferences")
         .navigationBarTitleDisplayMode(.inline)
+        .modifier(
+            QuietDraftBack(hasChanges: hasUnsavedChanges, busy: busy) {
+                leaving = true
+                reload = true
+            }
+        )
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
                 Button {
@@ -61,16 +70,16 @@ struct FoodPreferencesScreen: View {
                 }.buttonStyle(.plain).disabled(!editable || draft == nil)
             }
         }
-        .task(id: model.generation) { await load() }
+        .task(id: model.generation) { if !hasUnsavedChanges { await load() } }
         .alert("Discard request?", isPresented: $discard) {
             Button("Discard", role: .destructive) { Task { await recover() } }
             Button("Cancel", role: .cancel) {}
         }
         .alert("Discard edits?", isPresented: $reload) {
-            Button("Reload", role: .destructive) { Task { await load() } }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("Use saved values.")
+            Button("Discard edits", role: .destructive) {
+                if leaving { dismiss() } else { Task { await load() } }
+            }
+            Button("Keep editing", role: .cancel) {}
         }
     }
 
@@ -108,6 +117,16 @@ struct FoodPreferencesScreen: View {
         guard let context else { return false }
         return !busy && context.profile != nil && context.pending == nil
             && model.generation == context.generation && model.status == .ready(context.member)
+    }
+
+    private var hasUnsavedChanges: Bool {
+        guard let context, context.profile != nil, context.pending == nil,
+            model.generation == context.generation, model.status == .ready(context.member)
+        else { return false }
+        let baseline =
+            context.profile?.profile?.preferences
+            ?? FoodPreferences(restrictions: [], dislikes: [], calorieGoal: nil, portions: 1)
+        return preferences != baseline || calorieGoal != (baseline.calorieGoal.map(String.init) ?? "")
     }
 
     private var draft: FoodPreferences? {
