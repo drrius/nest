@@ -233,6 +233,10 @@ receipts and all eight protected fingerprints remain exact. Original scopes,
 settings and local state restore. Meal options now use a native confirmation
 dialog instead of the compact menu, keeping the same actions and record context.
 The 44-point requirement is retained; fresh native verification is pending.
+The first dialog attempt also stops before a command: the symbol-labelled action
+has duplicate parent/child buttons in the native accessibility tree. Plain-text
+native dialog actions replace those symbol labels. Source/target and receipts
+remain exact, original scopes/settings restore, and the failure is retained.
 No Remove has run.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally

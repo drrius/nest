@@ -40,12 +40,12 @@ struct MealDayView<Detail: View>: View {
         .confirmationDialog(
             "Meal options", isPresented: $choosingAction, titleVisibility: .visible, presenting: selectedMeal
         ) { meal in
-            Button("Replace", systemImage: "arrow.triangle.2.circlepath") { replace(meal) }
+            Button("Replace") { replace(meal) }
             if meal.leftoverSourceId == nil {
-                Button("Plan leftovers", systemImage: "arrow.turn.down.right") { leftovers(meal) }
+                Button("Plan leftovers") { leftovers(meal) }
             }
-            Button("Move", systemImage: "arrow.right.arrow.left") { move(meal) }
-            Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
+            Button("Move") { move(meal) }
+            Button("Remove", role: .destructive) { remove(meal) }
         } message: { meal in
             Text("\(meal.title) · \(MealWeekScreen.label(meal.date)) · \(meal.slot.label)")
         }
