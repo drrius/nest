@@ -199,10 +199,12 @@ final class HostedActiveRenewalReminderReadTests: XCTestCase {
         addTeardownBlock { [log] in
             let data = try JSONEncoder().encode(await log.snapshot())
             await MainActor.run {
-                let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
-                attachment.name = "Bounded native GET path status and time without tokens"
-                attachment.lifetime = .keepAlways
-                self.add(attachment)
+                XCTContext.runActivity(named: "Bounded native GET status observation") { activity in
+                    let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+                    attachment.name = "Bounded native GET path status and time without tokens"
+                    attachment.lifetime = .keepAlways
+                    activity.add(attachment)
+                }
             }
         }
     }
