@@ -219,6 +219,12 @@ comparison left the access button and Full Access explanation font reports;
 these both belong to the card's inner stack. Strict Mac formatting and source
 limits pass. This is a hypothesis under native comparison, not a verified fix
 or closure of the 19 reports. No new fixture or domain action is planned.
+Its fresh source-pinned signed build passes with all 1,129 inputs and actual
+card/audit compilation. One unfiltered five-method root audit is now running;
+the earlier dated baseline remains preserved. No unrelated SDK reader runs.
+Routine CI 37535583085 catches eleven exported chore-evidence JSON formatting
+issues. Oxfmt corrects them with every JSON value verified unchanged against Git;
+raw logs/screenshots and the original native outcomes remain unchanged.
 
 Continue the remaining native journeys and investigate the existing 19
 accessibility findings with source-specific evidence. Do not repeat the passing

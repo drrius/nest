@@ -1,1 +1,32 @@
-{"enabled":true,"exists":true,"frame":{"height":44,"isInfinite":false,"isNull":false,"maxX":339,"maxY":525,"midX":187.5,"midY":503,"minX":36,"minY":481,"usable":true,"width":303},"hittable":true,"label":"View current scheduled chores","observedViewport":{"height":510,"isInfinite":false,"isNull":false,"maxX":375,"maxY":584,"midX":187.5,"midY":329,"minX":0,"minY":74,"usable":true,"width":375}}
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 44,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 339,
+    "maxY": 525,
+    "midX": 187.5,
+    "midY": 503,
+    "minX": 36,
+    "minY": 481,
+    "usable": true,
+    "width": 303
+  },
+  "hittable": true,
+  "label": "View current scheduled chores",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

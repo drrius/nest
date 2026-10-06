@@ -30,3 +30,8 @@ raw-log hash, reviewed controller, measurements and captures are retained here.
 
 This proves the bounded native result-navigation journey. It does not prove a
 live AI turn, phone acceptance or full accessibility acceptance.
+
+Routine CI subsequently catches formatting in eleven exported JSON files. Their
+values are unchanged after Oxfmt; the original bytes remain in commit `bf39e8df`.
+Raw logs and screenshots are unchanged. The manifest is regenerated after
+formatting; no native action is replayed. [Formatting comparison](format-correction.json).
