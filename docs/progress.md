@@ -280,6 +280,12 @@ now accepts either exact selection representation; no shipping control changes.
 Fresh hosted comparison confirms profiles, shared cooking and all receipts exact;
 original scopes/64 journals/settings/local semantics restore. Both native reads
 and the failure are retained. Corrected UI execution remains pending.
+At fresh UI source `331a7405`, the control and exact selection-label checks pass,
+then the 1.5 menu choice measures 42 points. The method stops before selection;
+food/cooking profiles and all receipts remain exact, and restoration passes.
+The shipping portion selector now uses a native navigation-link picker, retaining
+the same eight allowed values and validation. The 44-point requirement is kept.
+Configured formatting/source limits pass; fresh native execution is pending.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

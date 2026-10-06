@@ -31,6 +31,7 @@ struct FoodPreferenceFields: View {
             } label: {
                 QuietActionLabel("Your portion")
             }
+            .pickerStyle(.navigationLink)
         }
         Section("Optional calorie goal") {
             if dynamicTypeSize.isAccessibilitySize {
