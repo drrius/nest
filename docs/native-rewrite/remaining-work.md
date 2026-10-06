@@ -33,7 +33,7 @@ pass c5469baf (23 core,50 conflicts,1,235 database/RLS, zero failures/skips).
 Forty-nine other legacy public functions/deeper private paths remained at that checkpoint.
 [Evidence](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
 
-Current reminder fixture reads find seven inactive recurring rules and no active native renewals. Normal-text inactive reminder refusal passes; largest-text verification is still pending. Active recurring/renewal reminder editing and delivery remain unverified. The current complete financial API baseline is62 entries, Alex+1/Sam−1 centime, including the previously documented CHF0.02 PDF expense. Historical61-entry/zero-balance checkpoints below retain their dated scope.
+Current reminder fixture reads find seven inactive recurring rules and no active native renewals. Normal-text inactive reminder refusal passes. The largest-text check exposed an oversized recurring-rule navigation row; the adaptive row fix passes actual title/status/metadata and inactive-reminder controls at `f7094205`, with exact before/after state. It is not in build19 yet. Active recurring/renewal reminder editing and delivery remain unverified. The current complete financial API baseline is62 entries, Alex+1/Sam−1 centime, including the previously documented CHF0.02 PDF expense. Historical61-entry/zero-balance checkpoints below retain their dated scope.
 
 Updated 6 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
 
