@@ -4,6 +4,7 @@ import XCTest
 struct AssistantFinancialHistoryMaximumReading {
     let app: XCUIApplication
     let test: XCTestCase
+    var minimumContentY: CGFloat = 0
 
     func element(_ label: String) -> XCUIElement {
         app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", label)).firstMatch
@@ -53,7 +54,7 @@ struct AssistantFinancialHistoryMaximumReading {
         let bar = app.tabBars.firstMatch
         guard usable(screen) && bar.exists && usable(bar.frame) else { return nil }
         let navigation = app.navigationBars.firstMatch
-        var top = screen.minY
+        var top = max(screen.minY, minimumContentY)
         if navigation.exists {
             guard usable(navigation.frame) else { return nil }
             top = max(top, navigation.frame.maxY)

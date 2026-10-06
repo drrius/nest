@@ -231,7 +231,11 @@ the existing measured overlapping-text reader and still requires the entire
 44-point access button visible. Source limits and strict Mac formatting pass;
 its first native invocation fails before a pan because the reused diagnostic
 accesses an absent native navigation bar. The helper now records absence safely;
-a corrected reading invocation is pending. No permission is granted or font shrunk.
+the corrected invocation passes in 58.831 seconds, but its root viewport starts
+at y0 and includes the status bar. It supplies no overlap record, so continuous
+reading is not verified. The owned 375×667 fixture now excludes the top 40 points
+(the captured status region ends at y20) and captures both paragraphs explicitly.
+One stricter reading is pending. No permission is granted or font shrunk.
 
 Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
 Oxfmt corrects them with every value unchanged against Git. Corrected evidence

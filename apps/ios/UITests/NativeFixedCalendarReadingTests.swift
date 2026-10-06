@@ -10,10 +10,11 @@ final class NativeFixedCalendarReadingTests: XCTestCase {
     func testLargestPermissionTextHasContinuousCoverageAndVisibleAccessTarget() throws {
         try requireFixture()
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
-        let reading = AssistantFinancialHistoryMaximumReading(app: app, test: self)
+        let reading = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
         app.launch()
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
+        XCTAssertEqual(app.frame, CGRect(x: 0, y: 0, width: 375, height: 667))
         defer {
             let today = tabs.buttons["Today"]
             if today.exists && today.isHittable {
@@ -28,7 +29,9 @@ final class NativeFixedCalendarReadingTests: XCTestCase {
         let terminology = "iOS calls this Full Access. Nest uses it only to read your calendars."
         XCTAssertTrue(reading.element(explanation).waitForExistence(timeout: 20))
         try reading.read(explanation)
+        reading.capture(reading.element(explanation), name: "Largest Calendar explanation after complete reading")
         try reading.read(terminology)
+        reading.capture(reading.element(terminology), name: "Largest Calendar terminology fully readable")
         let access = app.buttons["Allow calendar access"]
         try reading.reveal(access)
         try reading.requireTarget(access)
