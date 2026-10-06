@@ -1,1 +1,46 @@
-{"actor":"791f7261-6c9d-4061-9c8a-57aa6e0b0200","displayName":"Test Alex","household":"be772ffd-3ab5-41d5-8438-647a79a553da","phase":"removed","receipt":{"action":"removed","actorId":"791F7261-6C9D-4061-9C8A-57AA6E0B0200","command":{"expectedRevision":"0EB34E58-2D36-46F3-901C-6FCF86C75DDD","operationId":"513A4D4B-8D09-492D-AFF6-3875DB3DF9E6","renewalId":"17919246-D8EC-4402-B301-DA1149D1CC35"},"householdId":"BE772FFD-3AB5-41D5-8438-647A79A553DA","operationId":"513A4D4B-8D09-492D-AFF6-3875DB3DF9E6","renewal":{"cancellationOn":"2026-10-06","fields":{"noticeDays":0,"recurringRuleId":null,"renewalOn":"2026-10-06","responsibleId":null,"title":"Nest native renewal edited 20261006"},"removed":true,"renewalId":"17919246-D8EC-4402-B301-DA1149D1CC35","revision":"2BD612C0-3CE2-408C-8735-7B32E3EA6357"},"version":1},"renewal":{"cancellationOn":"2026-10-06","fields":{"noticeDays":0,"recurringRuleId":null,"renewalOn":"2026-10-06","responsibleId":null,"title":"Nest native renewal edited 20261006"},"removed":true,"renewalId":"17919246-D8EC-4402-B301-DA1149D1CC35","revision":"2BD612C0-3CE2-408C-8735-7B32E3EA6357"},"renewals":[],"retainedHistoryVisibleInList":false}
+{
+  "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "displayName": "Test Alex",
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "phase": "removed",
+  "receipt": {
+    "action": "removed",
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "command": {
+      "expectedRevision": "0EB34E58-2D36-46F3-901C-6FCF86C75DDD",
+      "operationId": "513A4D4B-8D09-492D-AFF6-3875DB3DF9E6",
+      "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35"
+    },
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "operationId": "513A4D4B-8D09-492D-AFF6-3875DB3DF9E6",
+    "renewal": {
+      "cancellationOn": "2026-10-06",
+      "fields": {
+        "noticeDays": 0,
+        "recurringRuleId": null,
+        "renewalOn": "2026-10-06",
+        "responsibleId": null,
+        "title": "Nest native renewal edited 20261006"
+      },
+      "removed": true,
+      "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+      "revision": "2BD612C0-3CE2-408C-8735-7B32E3EA6357"
+    },
+    "version": 1
+  },
+  "renewal": {
+    "cancellationOn": "2026-10-06",
+    "fields": {
+      "noticeDays": 0,
+      "recurringRuleId": null,
+      "renewalOn": "2026-10-06",
+      "responsibleId": null,
+      "title": "Nest native renewal edited 20261006"
+    },
+    "removed": true,
+    "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+    "revision": "2BD612C0-3CE2-408C-8735-7B32E3EA6357"
+  },
+  "renewals": [],
+  "retainedHistoryVisibleInList": false
+}

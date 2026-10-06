@@ -1,35 +1,35 @@
 [
   {
-    "attachments" : [
+    "attachments": [
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
-        "deviceName" : "Nest partner QA 20261005",
-        "exportedFileName" : "16626FF4-02C2-43AD-A165-175513A2F3A0.png",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Renewal terminal native screen_0_5AA19DEF-E0E8-4E86-8317-7F0255D21D16.png",
-        "timestamp" : 1791258023.695
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "16626FF4-02C2-43AD-A165-175513A2F3A0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal terminal native screen_0_5AA19DEF-E0E8-4E86-8317-7F0255D21D16.png",
+        "timestamp": 1791258023.695
       },
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
-        "deviceName" : "Nest partner QA 20261005",
-        "exportedFileName" : "D3A751AB-9858-48EF-8FAB-5AB208CA2265.txt",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Renewal baseline empty list accessibility tree_0_1D1546B7-E445-44E7-8D7A-06EB5DC44354.txt",
-        "timestamp" : 1791258021.242
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "D3A751AB-9858-48EF-8FAB-5AB208CA2265.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal baseline empty list accessibility tree_0_1D1546B7-E445-44E7-8D7A-06EB5DC44354.txt",
+        "timestamp": 1791258021.242
       },
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "CA0BCEDE-A297-493A-8921-9E31F8B65783",
-        "deviceName" : "Nest partner QA 20261005",
-        "exportedFileName" : "985A8E8E-A78A-4A1E-BEF3-56CCB980A548.png",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Renewal baseline empty list_0_A676E573-0C4D-42F6-BAEE-458DAD410A2B.png",
-        "timestamp" : 1791258021.033
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "985A8E8E-A78A-4A1E-BEF3-56CCB980A548.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal baseline empty list_0_A676E573-0C4D-42F6-BAEE-458DAD410A2B.png",
+        "timestamp": 1791258021.033
       }
     ],
-    "testIdentifier" : "NativeRenewalCrudTests/testReadBaselineRenewalList()",
-    "testIdentifierURL" : "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRenewalCrudTests/testReadBaselineRenewalList"
+    "testIdentifier": "NativeRenewalCrudTests/testReadBaselineRenewalList()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRenewalCrudTests/testReadBaselineRenewalList"
   }
 ]

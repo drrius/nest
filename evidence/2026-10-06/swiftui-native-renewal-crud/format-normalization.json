@@ -1,0 +1,263 @@
+{
+  "cause": "CI format check caught unformatted exported JSON",
+  "jsonValuesUnchanged": true,
+  "nativeRerun": false,
+  "rawResultsRetainedOnMac": true,
+  "changedFiles": [
+    {
+      "path": "baseline/alex-sdk-baseline/F09AA27C-D61B-4092-B6E7-973B192C4EE2.json",
+      "beforeSha256": "ac2feb9dd84828e716c31771fed767a3fb0ce4b6621b35c95918b5e5a130a670",
+      "afterSha256": "eccfc6dfc45a83192763a0f59e0d8962d92cbd8088d0232ad6e66dc4a8af51b4"
+    },
+    {
+      "path": "baseline/alex-sdk-baseline/manifest.json",
+      "beforeSha256": "f20a6af66da585db2b08c7fc94b2c8e3f4e3f80c958b39652b94899c468b8ad1",
+      "afterSha256": "58036bfacee9bd388eec7c67bb3aba56b3af0d026932086a60fb0b5160a78fde"
+    },
+    {
+      "path": "baseline/alex-ui-baseline/manifest.json",
+      "beforeSha256": "172fbcf67e3ea615cabc5798495e80e8374c97da1946d9005324015f8632314d",
+      "afterSha256": "caabe2dd658479fca332bebc24870e43568273cdb860efa9a98934470e728013"
+    },
+    {
+      "path": "baseline/sam-sdk-baseline/EDC2EE7A-13D6-4501-A367-8A82FAF26128.json",
+      "beforeSha256": "c408a0be71ebbaf73df227de924d67353c3adde518aa3b259ed08477df4885bd",
+      "afterSha256": "ffba54b5016214f0cc075546095028a28d95f419e9c03ab735aca82e50b2432b"
+    },
+    {
+      "path": "baseline/sam-sdk-baseline/manifest.json",
+      "beforeSha256": "9ad28592bc449aa3df0986b638de9dc2d51fdc3833167df81f265fde9bfa8868",
+      "afterSha256": "8ed2de0e97d46183db2a1fe20185b4c2db55adbbbff4331710b6acb72682e0ee"
+    },
+    {
+      "path": "baseline/sam-ui-baseline/manifest.json",
+      "beforeSha256": "f1650c1f10a10d77081d1b4636e48c353bbb00307fffada9fcca671151f96ed6",
+      "afterSha256": "df442c877aedf895ef910475b24807563af74bbb1652d450f6040c518a204810"
+    },
+    {
+      "path": "baseline/source-input-hashes.json",
+      "beforeSha256": "5881b20fbeecdff7b858069c4f533aaba94ef6e8c4c8f3175b5fbb1fa4d92e09",
+      "afterSha256": "9b8ecd9536a02ecda7cc63dc81036498d75bbe4665873e8c76f65050c799a9f7"
+    },
+    {
+      "path": "journey/alex-restored-ui/manifest.json",
+      "beforeSha256": "7c6322bc1446560c78afcc4804ecf00d8edcb85c4eb60d534f5d8c9efc3492c3",
+      "afterSha256": "24538fae99ac477997063ba95f4395a1e40643e63329b7bb5e1cdc8ac23469e3"
+    },
+    {
+      "path": "journey/cold-selection-preparation-started.json",
+      "beforeSha256": "540a9d226e022b8aa3eec5ae501632d7bed8d1bb01c7ff5b554e68295a346aa4",
+      "afterSha256": "75aa5ee9577b7f3f69dd667087745a76f8b678cc92ffdc30ba4231bce107e7a7"
+    },
+    {
+      "path": "journey/cold-selection-recovery-started.json",
+      "beforeSha256": "6ceaf46fbe614d660ece03383a68d4ebc1c306ec09b7110145f4432796c47cf7",
+      "afterSha256": "f0fac77c5c7c203a30914f39ddcf3f2519ebd94304b07e3e3287579a4fb887c6"
+    },
+    {
+      "path": "journey/cold-selection-source-inputs.json",
+      "beforeSha256": "59b202c064e6a3fdb5081e49c4ce26d3f92a24150dc634758e4b65cdc105633d",
+      "afterSha256": "3d49adeff6c86543f2e098c00cb54db8f0ff04b76e9e326ae3f0fef4cfdc6e1e"
+    },
+    {
+      "path": "journey/create-alex-read/A53809B7-418E-4367-ACC9-7B89E0F7BE25.json",
+      "beforeSha256": "cbcdc3bdcfc2fe8a165ca7ddeb9ad79186af00727b9a902e69915e3962709406",
+      "afterSha256": "4bc95e16ceac2d97d5e5b9e5f474b849eb430774d84f9d238381523782e1db54"
+    },
+    {
+      "path": "journey/create-alex-read/manifest.json",
+      "beforeSha256": "284d0aa1e60e048a52f01e0ea06c592a77252105da58ddbe1c40a3bba4f07371",
+      "afterSha256": "0a0312f18a3d690eda35969a05a108b1a3c3e75bfbffcf75bc2222826768035c"
+    },
+    {
+      "path": "journey/create-alex-recovery-read/CE57B262-92BE-47C9-A29E-E6CB669DB2FC.json",
+      "beforeSha256": "cbcdc3bdcfc2fe8a165ca7ddeb9ad79186af00727b9a902e69915e3962709406",
+      "afterSha256": "4bc95e16ceac2d97d5e5b9e5f474b849eb430774d84f9d238381523782e1db54"
+    },
+    {
+      "path": "journey/create-alex-recovery-read/manifest.json",
+      "beforeSha256": "6e565eb1d9e43c59defd20d7d30f293ef16a5fdeb5780dc0db77826c623085fa",
+      "afterSha256": "45d462d27fd082ac8ac8bbb5509085c6a3f900157399c7c6cecb4cdc26057c87"
+    },
+    {
+      "path": "journey/create-command-started.json",
+      "beforeSha256": "2b63d41aaf415d76dcc6930c30e6fca6eda7702575acb940f62aec9c8145c93d",
+      "afterSha256": "594558602ac1e0a371820bdf904162aded897c5821036785ffb1113f8395c056"
+    },
+    {
+      "path": "journey/create-done-ui/manifest.json",
+      "beforeSha256": "b945721c274bfd5c65cbccddf3da5e1570958e34664322e308acd9b5292a38cc",
+      "afterSha256": "06f723f558169ddc3d1b702b8033721739b8908a0f40dc4242ce0c10a3ed0dd1"
+    },
+    {
+      "path": "journey/create-sam-read/86E26FDE-A9E9-4A69-B900-FBAE750EEAD7.json",
+      "beforeSha256": "9c63034f56c5eab7c223a880839c8226039040d0c43e6aff4ae03f5f7c3f5b32",
+      "afterSha256": "6c95c817d74b27a28d455e44e66aeb675637eabb4839ec95ed22fb18ad398f35"
+    },
+    {
+      "path": "journey/create-sam-read/manifest.json",
+      "beforeSha256": "bd46cf99aabc5caf37a860be97924144241ae037a34cec75e974dfb6a74b0527",
+      "afterSha256": "01dac413a434b74850d76daf437e2885ae9b4df66950eac2c87d5613ee01585c"
+    },
+    {
+      "path": "journey/create-ui/manifest.json",
+      "beforeSha256": "d5c785ebfbd5ea1345539a40c0cf1e4958e27a68ab5f735ab842b7495ef9ea17",
+      "afterSha256": "e26774d8ec0cb2dfcc8f1d59f2b08f283c70a04bab95919e79719c27c0327a60"
+    },
+    {
+      "path": "journey/edit-alex-read/C13FD2A0-2FED-473F-8C8D-10906C521C1C.json",
+      "beforeSha256": "c7368d7ff3c681a98b48d9872ff31c08d71b45598c1dde5110554d1b759c2669",
+      "afterSha256": "7cf8fa0124a42ddd69a333236aff685f9aaf6eda0576b674412e5cf34939df36"
+    },
+    {
+      "path": "journey/edit-alex-read/manifest.json",
+      "beforeSha256": "9b3971ce2f7eb84bbc4a088e02704e27b1ecdc56013a1e2039cc24127239327c",
+      "afterSha256": "8fb0a42c43164c3fb6317024ad5b0f0d4efd58af79008b9d61eacaf0b21e899a"
+    },
+    {
+      "path": "journey/edit-cold-selection-probe-ui/manifest.json",
+      "beforeSha256": "4ee81428ab974abc2cd01518a4704e47d55ad6f6febf72291f8d3974ccd8453e",
+      "afterSha256": "4794a8ce9c89c19f1d9f4092fd984bb29e6b257c75117b0de7c5fad324204f3d"
+    },
+    {
+      "path": "journey/edit-command-started.json",
+      "beforeSha256": "384c0333becda1dafe97f882360a465f095a427779d45f888822846d952e8725",
+      "afterSha256": "f4a6ebe2d368ef101f13e4c99d32d3dc32f50a6a4f95424d18bb6ef7ff3a11d4"
+    },
+    {
+      "path": "journey/edit-corrected-command-started.json",
+      "beforeSha256": "5d331ba3a5343f6614a03c40c0d6bfb4e26eb95e85dc10b641f7001e116a96fc",
+      "afterSha256": "e0e77f7b3e412637da8fe09bae40a75e102feef53c6205927e6a181e377137fc"
+    },
+    {
+      "path": "journey/edit-corrected-ui/manifest.json",
+      "beforeSha256": "8217af6c1401041ef24e83c3c436187a091ad331400ba43e947301a09bcfcb8e",
+      "afterSha256": "4a2b05a5162556f4992b3374eabf6504fa828450a0b0dc8ea09be76162c202fe"
+    },
+    {
+      "path": "journey/edit-done-ui/manifest.json",
+      "beforeSha256": "ac2aa9fe4876b62cfca6f19593b94bd43f862565f8fb48b706f359983d416c88",
+      "afterSha256": "3c9b769677c98e10d8777936e8d22093363d3691a6f176d06707a5be8de1071c"
+    },
+    {
+      "path": "journey/edit-local-selection-probe-ui/manifest.json",
+      "beforeSha256": "64126ce66ceed09cda1eef6b548e53ef05184ea6b9b6ca1d536e88abe8dda971",
+      "afterSha256": "191540975dea302ee4cba3f92eb6d3d65db9033624c0d6cb812f4c765a7b3724"
+    },
+    {
+      "path": "journey/edit-preflight-alex-read/B441B828-7FCE-483F-950B-68B6DAE7C502.json",
+      "beforeSha256": "cbcdc3bdcfc2fe8a165ca7ddeb9ad79186af00727b9a902e69915e3962709406",
+      "afterSha256": "4bc95e16ceac2d97d5e5b9e5f474b849eb430774d84f9d238381523782e1db54"
+    },
+    {
+      "path": "journey/edit-preflight-alex-read/manifest.json",
+      "beforeSha256": "1fe29dc392420c75a31551f87cb95651b1a1c55e20804f6944e52feb8ac94ec7",
+      "afterSha256": "f37b4022b31bc193905d801f31b66b87a04272f6785e064a15defe0c8d800e95"
+    },
+    {
+      "path": "journey/edit-preflight-sam-read/7D6897C5-A8C5-4E79-9427-B70A64345431.json",
+      "beforeSha256": "9c63034f56c5eab7c223a880839c8226039040d0c43e6aff4ae03f5f7c3f5b32",
+      "afterSha256": "6c95c817d74b27a28d455e44e66aeb675637eabb4839ec95ed22fb18ad398f35"
+    },
+    {
+      "path": "journey/edit-preflight-sam-read/manifest.json",
+      "beforeSha256": "79b838c338bc27565b43c5c87daf26241bb1caf87ef8dc8570b7b6c47d4ff207",
+      "afterSha256": "9c4ac95b68cf3d396b4c8479f7f43a21eb8a8a70d411524d936f4966768d0b9d"
+    },
+    {
+      "path": "journey/edit-sam-read/F600DAFB-CC9F-466F-9DA0-E1DF18515092.json",
+      "beforeSha256": "5b7a6bb23885bb8dd98c90cf65f7f6c837f00bba544afc02aae7a3e82c60ddde",
+      "afterSha256": "b0c9e07ba7e50c35e49516189d185975737e80401b442e2f267f926070ef42f1"
+    },
+    {
+      "path": "journey/edit-sam-read/manifest.json",
+      "beforeSha256": "a113d993b7cb5047e409c38a27eff01603f1644c71757f644924a6580c929d05",
+      "afterSha256": "8a5354c856c1f6a11d7bc57cb79a55ee62efd7e318256fc5f98264b7afff97ef"
+    },
+    {
+      "path": "journey/edit-ui/manifest.json",
+      "beforeSha256": "2e05262d5bfb30f770e958a7bc88d21c4c5b31f4bbb404afbe2da4a9048d0da4",
+      "afterSha256": "93f1f4e4df97683539fa7c496e8ef134bf97c1c5f5066961392d7dcd2db5ac7e"
+    },
+    {
+      "path": "journey/execution-started.json",
+      "beforeSha256": "15eee76c9324d678aa1adeb2aee400811671078c78273bcd0f08f93d01b50b8f",
+      "afterSha256": "da67cef10b6713064b19160e45eaf8b7e9cad52a5d387389e4460162bd6a6f09"
+    },
+    {
+      "path": "journey/final-source-inputs.json",
+      "beforeSha256": "980ea3723bda27ebc4a829e99742ac59ceb70ac813f601caf8f18a05fdecaa16",
+      "afterSha256": "a5e90c738c2dc189c0dda363777f39afebc66f7b1492e2cc77d41328791a279b"
+    },
+    {
+      "path": "journey/recovery-started.json",
+      "beforeSha256": "6fce2f1b00691e2afa4dd0a0b3afea14344f13b3d5043f2aeb14240dd87da65d",
+      "afterSha256": "b7e487248061c1dfb2c072b0b66641d9e83001a879c7115b39e99ea94e4b6b86"
+    },
+    {
+      "path": "journey/removal-cleanup-started.json",
+      "beforeSha256": "3d33d1c029f9b5b5a507c3c1791d49571cc918323f9e5120dddc2e10e84302f0",
+      "afterSha256": "158799fd639e50ef1a9804bd0984927372e0729ef01e06ebbb5154829a26e74d"
+    },
+    {
+      "path": "journey/remove-alex-read/69882599-7A37-4EBF-8A0A-CFF8C88A3FCA.json",
+      "beforeSha256": "2437ba1eaf6de71052166bc11d944899347d8ca9eeb1d5b95ac10d8410ce6d1c",
+      "afterSha256": "02e944ff8a7c2183be2f68ed3b65dfff4268c56e8d3adbac777e8aeba4b2b91c"
+    },
+    {
+      "path": "journey/remove-alex-read/manifest.json",
+      "beforeSha256": "dcffb9342bdbb7b0732e10b135f6c1795c843f7a42e2df271a84bcdf1974715d",
+      "afterSha256": "defc67b9987a3eb16799b1b32b6e3786e6719b5e020d51699d8f8facdb3952c6"
+    },
+    {
+      "path": "journey/remove-command-started.json",
+      "beforeSha256": "ffe235c17e26e5d9020b9cb5f300dd57e7d8adb4e81c2fa9faa65d4e4a913df0",
+      "afterSha256": "a23bee96aa254c16b48e0f18d39e9b4aa99dd246ebca438b52ee0acc34834987"
+    },
+    {
+      "path": "journey/remove-done-ui/manifest.json",
+      "beforeSha256": "55d0fe6f1a28b75cb02c77e88ad6438ff8fa7f7e7fe2e79d04583d17610d52ec",
+      "afterSha256": "d48514ecd30150bb76ce23e51f8231147da949bc358410e0018e4bb4de99715d"
+    },
+    {
+      "path": "journey/remove-sam-read/507B6469-DFE4-491D-9E3C-A7E157F4C987.json",
+      "beforeSha256": "8fae03843c70ff2690ed1f07516d37c145eee03a32db4613f912f93094e25598",
+      "afterSha256": "142f24a3f276daea9e264466134b37abe8dbcd36926f31c82ba646495aa85928"
+    },
+    {
+      "path": "journey/remove-sam-read/manifest.json",
+      "beforeSha256": "f836af5071ef379a873a87a98c9d63a8bdde1cb2487b8d4f2ce8b05f8a557bf9",
+      "afterSha256": "6cd044e6290520d545b83c13269b8b563a2d3d8ac26c14856f0ecc6029e2915e"
+    },
+    {
+      "path": "journey/remove-ui/manifest.json",
+      "beforeSha256": "ffde82f8e692478db4e26ec313efd0e6cc51d5641ef9a5e543b3b6c0d7a6b51c",
+      "afterSha256": "3f4fe665d69b1a60e06c7e251ed16a5f27d645329f16d34ecd7099a24eed32d0"
+    },
+    {
+      "path": "journey/sam-restored-ui/manifest.json",
+      "beforeSha256": "64ac75a68b20df8f9b72d772dbddaf2522f1343309cc9001f548f37e00c80498",
+      "afterSha256": "6d400eaf0376692a2278a1eb4d864d8bd70b3c48c28266fbabb871cf899ac1aa"
+    },
+    {
+      "path": "journey/selection-preparation-started.json",
+      "beforeSha256": "540a9d226e022b8aa3eec5ae501632d7bed8d1bb01c7ff5b554e68295a346aa4",
+      "afterSha256": "75aa5ee9577b7f3f69dd667087745a76f8b678cc92ffdc30ba4231bce107e7a7"
+    },
+    {
+      "path": "journey/selection-recovery-started.json",
+      "beforeSha256": "6ceaf46fbe614d660ece03383a68d4ebc1c306ec09b7110145f4432796c47cf7",
+      "afterSha256": "f0fac77c5c7c203a30914f39ddcf3f2519ebd94304b07e3e3287579a4fb887c6"
+    },
+    {
+      "path": "journey/selection-source-inputs.json",
+      "beforeSha256": "d00df60fd80004898a8d6e0499dfdb0c46f2b3013a843b0e6e0152b07f89b94a",
+      "afterSha256": "d3837cfc418196fac677dda211efe04ffcdd6467aad4080f6e26089e1195c83c"
+    },
+    {
+      "path": "journey/source-input-hashes.json",
+      "beforeSha256": "76f5101369cdcce658f5b5d8cf0792443239b501fff04447f8c945078cb78731",
+      "afterSha256": "e769ffa7d6aa9dea37defd3cb7eb6c74b5595225124c8651d0633fd82972431f"
+    }
+  ]
+}

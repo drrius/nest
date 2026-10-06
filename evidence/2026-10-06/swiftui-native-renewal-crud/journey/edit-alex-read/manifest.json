@@ -1,17 +1,17 @@
 [
   {
-    "attachments" : [
+    "attachments": [
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-        "deviceName" : "Nest Smallest QA 20260930",
-        "exportedFileName" : "C13FD2A0-2FED-473F-8C8D-10906C521C1C.json",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Owned renewal canonical native SDK read_0_96BA56A0-8D6C-4EEE-93B6-BED6700D0021.json",
-        "timestamp" : 1791257741.923
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C13FD2A0-2FED-473F-8C8D-10906C521C1C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned renewal canonical native SDK read_0_96BA56A0-8D6C-4EEE-93B6-BED6700D0021.json",
+        "timestamp": 1791257741.923
       }
     ],
-    "testIdentifier" : "HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState()",
-    "testIdentifierURL" : "test://com.apple.xcode/Nest/NestAppTests/HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState"
+    "testIdentifier": "HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState"
   }
 ]

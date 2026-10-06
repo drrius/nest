@@ -1,53 +1,53 @@
 [
   {
-    "attachments" : [
+    "attachments": [
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-        "deviceName" : "Nest Smallest QA 20260930",
-        "exportedFileName" : "B6163DFF-E9E8-41B1-85C7-4DEE1FE3074D.png",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Renewal terminal native screen_0_47FE4E97-1633-479B-A019-EE17317ABB64.png",
-        "timestamp" : 1791257972.103
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B6163DFF-E9E8-41B1-85C7-4DEE1FE3074D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal terminal native screen_0_47FE4E97-1633-479B-A019-EE17317ABB64.png",
+        "timestamp": 1791257972.103
       },
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-        "deviceName" : "Nest Smallest QA 20260930",
-        "exportedFileName" : "B62A0B41-946A-44B4-B8AC-C2EC5FFBBC3D.txt",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Recorded owned request cleared through Done accessibility tree_0_082BF97E-FB4A-424C-8554-DFF0BCE1B4AB.txt",
-        "timestamp" : 1791257969.652
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B62A0B41-946A-44B4-B8AC-C2EC5FFBBC3D.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Recorded owned request cleared through Done accessibility tree_0_082BF97E-FB4A-424C-8554-DFF0BCE1B4AB.txt",
+        "timestamp": 1791257969.652
       },
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-        "deviceName" : "Nest Smallest QA 20260930",
-        "exportedFileName" : "D07D32FC-E12C-4C59-B95A-8B582CEB1268.png",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Recorded owned request cleared through Done_0_73A23538-D9C1-4BA6-81DF-4F755DC50954.png",
-        "timestamp" : 1791257969.44
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D07D32FC-E12C-4C59-B95A-8B582CEB1268.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Recorded owned request cleared through Done_0_73A23538-D9C1-4BA6-81DF-4F755DC50954.png",
+        "timestamp": 1791257969.44
       },
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-        "deviceName" : "Nest Smallest QA 20260930",
-        "exportedFileName" : "5A18EB8B-F0F2-4035-BF2D-5474857A9C66.txt",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Removed from Nest. recorded receipt accessibility tree_0_310010A9-659C-4A61-83A7-027112B5C3A8.txt",
-        "timestamp" : 1791257965.951
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5A18EB8B-F0F2-4035-BF2D-5474857A9C66.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Removed from Nest. recorded receipt accessibility tree_0_310010A9-659C-4A61-83A7-027112B5C3A8.txt",
+        "timestamp": 1791257965.951
       },
       {
-        "configurationName" : "Test Scheme Action",
-        "deviceId" : "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-        "deviceName" : "Nest Smallest QA 20260930",
-        "exportedFileName" : "738FF9A6-1580-402F-AADA-6E7253294629.png",
-        "isAssociatedWithFailure" : false,
-        "suggestedHumanReadableName" : "Removed from Nest. recorded receipt_0_3E482F10-A2C4-477C-9730-9B4EC83BBA7E.png",
-        "timestamp" : 1791257965.626
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "738FF9A6-1580-402F-AADA-6E7253294629.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Removed from Nest. recorded receipt_0_3E482F10-A2C4-477C-9730-9B4EC83BBA7E.png",
+        "timestamp": 1791257965.626
       }
     ],
-    "testIdentifier" : "NativeRenewalCrudTests/testClearOnlyRecordedOwnedRequest()",
-    "testIdentifierURL" : "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRenewalCrudTests/testClearOnlyRecordedOwnedRequest"
+    "testIdentifier": "NativeRenewalCrudTests/testClearOnlyRecordedOwnedRequest()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRenewalCrudTests/testClearOnlyRecordedOwnedRequest"
   }
 ]

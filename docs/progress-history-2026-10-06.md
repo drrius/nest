@@ -25,3 +25,26 @@ Five native read-only methods pass. Three named Calendar controls grow with actu
 ## Renewal navigation diagnosis
 
 The phone checklist now identifies the available build18, its exact release evidence and the later preparation/notification/food/cooking fixes excluded from that candidate. The preceding keyboard source5694a7ab passes both CI workflows; its496 Foundation/41 skips and443 signed-app/20 skips have zero failures and strict native gates, and docs716c33fb also pass routine CI37403106566. The normal renewal baseline proves a36×36pt Add target; the maximum baseline instead stops at a below-fold Refresh lookup. Both clients restore Today/settings/scopes/64 empty journals and canonical data. Add/Cancel/keyboard Done now have44pt targets, with explicit edited-draft Discard/Keep editing. The reader reveals Refresh first. The first post-fix normal check measures44pt Add/Cancel, then rejects43.99999999999999 as below44; only a1e-9pt observer tolerance is added. The corrected normal check then stops while positioning disabled Save renewal. Five read-only census methods pass: Save ends at647pt inside the actual667pt scroll viewport; the reader incorrectly used643pt. It now measures the visible scroll container. The corrected normal untouched-Cancel check passes; the edited check stops before typing at its title-field lookup. Screenshot review also shows Cancel wrapping as Can-cel, so Cancel/Done preserve intrinsic text width while retaining44pt targets. Five input-census methods pass. The real title field has type49, a blank label and22pt native text bounds. It now labels Renewal title and has a stable identifier; the enclosing row has a44pt focus target. The subsequent observer still measures22pt text bounds, so the next check tests actual keyboard focus at±21pt edges instead. Cancel text remains clipped after intrinsic sizing; a retained toolbar census replaces it with the standard close symbol and semantic Cancel label. Corrected interactions run on controller43863; edited/maximum and edge-focus results remain pending. Shipping190c059d passes Nest37404715659/SwiftUI37404715636 with496 Foundation/41 skips and443 signed-app/20 skips, zero failures and strict native gates; the newer observer is pending CI. [Evidence](../evidence/2026-10-06/swiftui-renewal-navigation/README.md) retains both baseline failures and the interrupted rounding check. No renewal Save or mutation is attempted. Existing full accessibility/live AI/worker/APNs/phones/M1–M9 gates remain open.
+
+## Retained schedule validation — 5 October
+
+Missing required schedule fields were confirmed to return SQL NULL/true from the
+retained database validator. A source fix now requires exact fields/types and
+revalidates the original table CHECK without modifying retained rows. Eight
+focused database tests and the308-migration disposable rehearsal pass, preserving
+chore/financial/receipt history; formatting/lint/limits and four manifest tests pass.
+[Evidence](../evidence/2026-10-05/routine-schedule-validation/README.md). Approval
+review recovered; nest-test20261005124055 now has all six exact source bodies and
+a validated CHECK, ten passing probes,19 valid retained definitions and unchanged
+fingerprints across nine chore/finance/Storage tables (61 financial events).
+Existing advisor notice names remain; no validator notice. Routine CI37309163039
+passes source `b035e9e2`, including all eight tests. Production is untouched.
+Native PDF browsing/cancellation now passes strict picker-gone/form-hittable and
+Today-selection checks,641 matching inputs and64 empty journals. A subsequent
+real PDF selection/upload/removal now passes: one matching640-byte intent is
+deleted, no object/pending intent remains and all nine fingerprints stay exact.
+The existing receipt and61 financial events are preserved; Today/large/light and
+64 empty journals are restored. [PDF evidence](../evidence/2026-10-05/swiftui-pdf-receipt/README.md).
+Independent downloaded bytes, new posted receipts, partner viewing and phones stay open.
+Cancellation source `4195090a` passes Nest37312018896/SwiftUI37312018914;
+upload source b48e6160 passes Nest37313762429/SwiftUI37313762258.
