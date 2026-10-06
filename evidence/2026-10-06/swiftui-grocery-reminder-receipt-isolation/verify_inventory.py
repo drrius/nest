@@ -11,7 +11,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 HERE = Path(__file__).resolve().parent
-SOURCE_REF = 'HEAD'
+SOURCE_REF = 'f57094f3d3bee1d1aa945fe2fbb59398c42c19e4'
 
 
 def digest(path):

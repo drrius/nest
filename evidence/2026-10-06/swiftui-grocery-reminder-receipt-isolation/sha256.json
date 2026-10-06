@@ -1,5 +1,5 @@
 {
-  "README.md": "be79f7c57bc104c972349525a926232d3ec3b524e7b8e6d08c64de78cbde3a4c",
+  "README.md": "0a743b5e115cd5580bd4a9f29d058da52cb30368369d79298cefc26818494520",
   "alex/BE0B7776-3F58-4A8D-9498-D03EE33C9F8C.json": "9ebc7d7c5d34df08558be39e532af71437273798ee3bd04c4453587d1fc5ffd2",
   "alex/manifest.json": "cf424a402f9d7a0807c5da24e68a620300f190feed0c576f582802ad839ca0f5",
   "alex/native-read.json": "9ebc7d7c5d34df08558be39e532af71437273798ee3bd04c4453587d1fc5ffd2",
@@ -21,5 +21,5 @@
   "source-input-hashes.json": "69114d277f8fdea1f4e155a91410d1ae781b525a9e58f3faed3613a14ef8653e",
   "source-limits.json": "adc61874085d04292dcedfe5a8889c01e22e9fb8a2832c4d8a3ccac5bbc19115",
   "terminal.json": "9700eda00474b97eb1f428627231fb29f99451c9b387072ec123741e83ffdc87",
-  "verify_inventory.py": "9c714342437b1513725654b4d1bff7fec7627b154c8b0c7d58151e4f902fa94a"
+  "verify_inventory.py": "fbda4a8556bf9ba5c25bf95b4b550abb4ba4907a663a9c25e4fa145c9647aa36"
 }
