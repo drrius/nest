@@ -21,6 +21,13 @@ For the new control, complete button frames measured 44×44pt, with all probe ar
 
 ## Fixture and cleanup boundaries
 
+Both workflows pass at `a43fb73e`, with native inputs identical to final source
+`74d37d1a`. CI records 502 Foundation cases with 41 skips, 458 signed-app cases
+with 26 skips, four Swift Testing cases and zero failures. Strict formatting,
+limits, signing and guarded UI compilation pass. [Metadata](ci.json),
+[totals](ci-totals.txt). Hosted native methods remain explicit skips in CI;
+their real executions are recorded separately above.
+
 The exact original **Hosted smoke tidy kitchen** occurrence `ce88cf42-4359-41d4-ab06-a7185c22306b`, due 2026-09-28, was accessed through Manage chores → Scheduled chores → the exact occurrence → Reminder choices. Its Today completion button was never tapped. All eight real authenticated Alex GETs returned the same nil reminder and item revision `3dbe564332651b162e8208fd9192c8482459e293feeae4e07e2cb9722bd4c061`, with the exact original chore and roster. No recipient selection was needed to enable the local adjustment controls.
 
 Ordinary Back/Discard was observed in every passing UI method. It was not observed in the two failed methods: `continueAfterFailure=false` aborted before Swift defer cleanup, and the subsequent SDK host restart reset the unsent view. Those failures do not establish draft preservation across restart. Every run's final screenshots show Today at large/light, and both original actor/household scopes and all 64 intent journals remained unchanged and empty.
