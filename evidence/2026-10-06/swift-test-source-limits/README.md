@@ -24,3 +24,7 @@ The 15 Swift files were formatted with the repository configuration in a separat
 Mac directory. Global Swift source limits pass without a test exemption. Native
 compilation and the affected financial, session and offline behavior tests remain
 pending; scanner results do not substitute for them.
+
+`verify-source.py` checks all 15 recorded hashes and limits against immutable
+source `a982e879`, including removal of the exemption. It passes independently
+of later native test changes.
