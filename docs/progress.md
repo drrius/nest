@@ -239,7 +239,10 @@ the native renewal list is empty. Both lists reach a terminal cursor and scopes/
 64 empty journals remain unchanged. No target context or financial history was read
 because no active target exists. Active recurring/renewal editor acceptance remains
 blocked by missing eligible fixtures; no rule activation or renewal recreation occurs.
-[Evidence](../evidence/2026-10-06/swiftui-remaining-reminder-eligibility/README.md) verifies 23 tracked artifacts and 1,105 frozen native inputs; corresponding CI remains pending.
+[Evidence](../evidence/2026-10-06/swiftui-remaining-reminder-eligibility/README.md) verifies 25 tracked artifacts and 1,105 frozen native inputs. Both workflows pass at `f176b2a9`: 506 Foundation/41 skips, 461 signed-app/29 skips, four Swift Testing cases, zero failures.
+The separate paused-rule preflight at `8313d762` stops on HTTP401 at `/v1/session`,
+before roster/context/finance reads; the second actor and UI are not run. Two token
+refresh requests are observed, but causation is unproven and diagnosis remains open.
 
 ## Earlier native settlement verification
 
