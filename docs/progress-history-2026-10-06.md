@@ -225,3 +225,12 @@ and strict native gates. The shorter-title follow-up at `f1e60870` also passes
 Nest37422663603/SwiftUI37422663602 with those totals and gates. Real save/disable
 verification below passes; delivery and M8 remain open.
 The fix is later than build18; no new candidate or production action occurs.
+
+## Swift test source-limit gap
+
+A focused regression reproduces the test-directory function-limit exemption:
+one case passes, two fail. The exemption is removed and 15 over-complex fixture
+functions are split without changing guards or assertions. All Swift limits and
+three regression cases pass; all 14 tooling cases pass with zero failures.
+[Evidence](../evidence/2026-10-06/swift-test-source-limits/README.md). Native compilation
+and affected behavior checks now pass at `a982e879`: both CI workflows, 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.

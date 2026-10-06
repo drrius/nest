@@ -232,12 +232,18 @@ Edited forms compare raw input, preserving discard protection even for invalid v
 Six focused Foundation draft cases pass with zero failures, including four new cases;
 strict Mac formatting and all Swift source limits pass. Both CI workflows pass at `5e65c73c`:
 506 Foundation/41 skips, 460 signed-app/28 skips, four Swift Testing cases, zero failures.
-The corrected normal method proves pristine Cancel/swipe, then fails before Done:
-its label measures36pt inside44pt. The shared label now gets the full44pt target;
-an actual edge tap and complete normal/maximum journeys remain pending. Earlier
-number-pad lookup failures and exact unchanged canonical reads remain recorded.
-Build19 metadata is reserved after a fresh Apple read confirms18 is latest;
-no recipe Save, new beta upload or production action occurs.
+The initial Done label measures36pt inside44pt. Its corrected full44pt label passes
+complete normal and maximum-text New/Edit flows, actual edge taps, pristine/dirty
+swipes and explicit Keep/Discard; the failed title-magnification gesture is retained.
+Both members' complete saved data and 64 journals remain exact after restoration.
+MAX screenshots then reveal “Do…” text truncation. Source `09057a93` uses a compact
+checkmark with semantic Done; five final focused methods pass at `a432974d`, with
+both members' saved data unchanged and clients restored. Across recorded variants,
+23 native methods pass and five remain failed; six Core cases pass separately.
+All81 PNGs are reviewed. Current routine CI passes; final native CI remains pending.
+Earlier numeric-key lookup failures remain recorded; no failure is relabeled passed.
+[Evidence](../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md) verifies all immutable source maps and 422 tracked artifacts.
+Build19 is reserved;18 remains latest. No recipe Save, beta upload or production action occurs.
 
 ## Earlier native settlement verification
 
@@ -385,11 +391,8 @@ Posted PDF, allocation consistency, credential refresh, chore drafts and recipe
 preflight evidence is preserved in [dated history](progress-history-2026-10-06.md).
 These bounded checks do not close full phone, accessibility or M1–M9 acceptance.
 
-## Swift test source-limit gap
+## Swift test source limits
 
-A focused regression reproduces the test-directory function-limit exemption:
-one case passes, two fail. The exemption is removed and 15 over-complex fixture
-functions are split without changing guards or assertions. All Swift limits and
-three regression cases pass; all 14 tooling cases pass with zero failures.
-[Evidence](../evidence/2026-10-06/swift-test-source-limits/README.md). Native compilation
-and affected behavior checks now pass at `a982e879`: both CI workflows, 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.
+The removed test exemption, 15 fixture refactors, meaningful regression cases and
+exact CI evidence remain in [dated history](progress-history-2026-10-06.md#swift-test-source-limit-gap).
+All Swift source roles enforce the same 400-line, 80-code-line and complexity-10 limits.
