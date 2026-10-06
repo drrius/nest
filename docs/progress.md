@@ -390,4 +390,4 @@ one case passes, two fail. The exemption is removed and 15 over-complex fixture
 functions are split without changing guards or assertions. All Swift limits and
 three regression cases pass; all 14 tooling cases pass with zero failures.
 [Evidence](../evidence/2026-10-06/swift-test-source-limits/README.md). Native compilation
-and affected behavior checks remain pending; scanner results do not prove them.
+and affected behavior checks now pass at `a982e879`: both CI workflows, 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.

@@ -21,9 +21,12 @@ suite passes 14 cases with zero failures or skips.
 [Regression](after-tests.txt), [tooling](tooling-tests.txt).
 
 The 15 Swift files were formatted with the repository configuration in a separate
-Mac directory. Global Swift source limits pass without a test exemption. Native
-compilation and the affected financial, session and offline behavior tests remain
-pending; scanner results do not substitute for them.
+Mac directory. Global Swift source limits pass without a test exemption. Both CI
+workflows now pass at `a982e879`. Native CI compiles the changed fixtures and passes
+502 Foundation cases with 41 skips, 458 signed-app cases with 26 skips and four
+Swift Testing cases, with zero failures. Strict format, limits, signing and guarded
+UI compilation pass. [CI metadata](ci.json), [totals](ci-totals.txt). Dated hosted
+methods are explicit skips; these results do not establish physical-device behavior.
 
 `verify-source.py` checks all 15 recorded hashes and limits against immutable
 source `a982e879`, including removal of the exemption. It passes independently
