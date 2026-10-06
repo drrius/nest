@@ -25,6 +25,8 @@ final class NativeActiveRenewalReminderSaveTests: XCTestCase {
         let save = app.buttons["Save reminder"]
         reveal(save, in: app)
         XCTAssertTrue(save.isEnabled && save.isHittable)
+        XCTAssertGreaterThanOrEqual(save.frame.width, 44 - 0.001)
+        XCTAssertGreaterThanOrEqual(save.frame.height, 44 - 0.001)
         capture(app, name: "Both renewal nine AM one-day choices before the only Save")
         attach(
             ["SaveTapBudget": 1, "renewalId": "23435fe5-5b08-48cd-b0fb-03f0e2d49690"],
@@ -38,6 +40,7 @@ final class NativeActiveRenewalReminderSaveTests: XCTestCase {
 
     func testColdRestartRecordedChoicesAndOrdinaryDone() throws {
         _ = try authorized(action: "recorded_done")
+        try requireRecordedIdentity()
         let app = openRenewals()
         openReminder(app)
         for label in [
@@ -53,14 +56,39 @@ final class NativeActiveRenewalReminderSaveTests: XCTestCase {
         let done = app.buttons["Done"]
         reveal(done, in: app)
         XCTAssertTrue(done.isEnabled && done.isHittable)
+        XCTAssertGreaterThanOrEqual(done.frame.width, 44 - 0.001)
+        XCTAssertGreaterThanOrEqual(done.frame.height, 44 - 0.001)
         capture(app, name: "Ordinary Done before clearing the exact recorded request")
         done.tap()
         let cleared = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: done)
         XCTAssertEqual(XCTWaiter.wait(for: [cleared], timeout: 30), .completed)
         XCTAssertFalse(app.staticTexts["Your saved reminder request"].exists)
+        let saved = Baseline(
+            enabled: true,
+            recipientIds: ["791f7261-6c9d-4061-9c8a-57aa6e0b0200", "e5f80cfd-b69a-4aa0-a267-75784e943676"],
+            localTime: "09:00", anchor: "Renewal date", daysBefore: 1)
+        assertSettings(app, baseline: saved, enabled: true, fromLowerSection: true)
         app.navigationBars["Renewal reminder"].buttons["Back"].tap()
         XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
         restoreToday(app)
+    }
+
+    private func requireRecordedIdentity() throws {
+        let env = ProcessInfo.processInfo.environment
+        let operation = try XCTUnwrap(UUID(uuidString: try XCTUnwrap(env["NEST_QA_RENEWAL_REMINDER_OPERATION_ID"])))
+        let raw = try XCTUnwrap(env["NEST_QA_RENEWAL_REMINDER_REQUEST_JSON"])
+        let request = try XCTUnwrap(try JSONSerialization.jsonObject(with: Data(raw.utf8)) as? [String: Any])
+        let command = try XCTUnwrap(request["command"] as? [String: Any])
+        let renewal = try XCTUnwrap(request["renewal"] as? [String: Any])
+        let result = try XCTUnwrap(request["result"] as? [String: Any])
+        XCTAssertEqual(UUID(uuidString: try XCTUnwrap(command["operationId"] as? String)), operation)
+        XCTAssertEqual((command["renewalId"] as? String)?.lowercased(), env["NEST_QA_RENEWAL_ID"])
+        XCTAssertEqual((renewal["id"] as? String)?.lowercased(), env["NEST_QA_RENEWAL_ID"])
+        XCTAssertEqual(result["status"] as? String, "recorded")
+        XCTAssertEqual(request["cancellationRequested"] as? Bool, false)
+        attach(
+            ["operationId": operation.uuidString, "recordedRequestValidated": true],
+            name: "Exact original recorded Done identity")
     }
 
     private func openRenewals() -> XCUIApplication {

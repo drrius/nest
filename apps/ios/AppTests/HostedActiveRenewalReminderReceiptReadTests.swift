@@ -33,7 +33,9 @@ final class HostedActiveRenewalReminderReceiptReadTests: XCTestCase {
         XCTAssertEqual(rows, [saved.renewal])
         let api = NotificationAPI(http: http)
         let envelope = try await api.renewalReminder(token: token, member: member, id: saved.renewal.id)
-        XCTAssertEqual(envelope.reminder, saved.result?.receipt?.reminder)
+        let reminder = try XCTUnwrap(envelope.reminder)
+        let receipt = try XCTUnwrap(saved.result?.receipt)
+        XCTAssertEqual(reminder, receipt.reminder)
         let recovery = try await api.recoverRenewalReminder(
             token: token, member: member, command: saved.command, cancel: false)
         XCTAssertEqual(recovery.actorId, role.0)
@@ -92,7 +94,7 @@ final class HostedActiveRenewalReminderReceiptReadTests: XCTestCase {
     }
 
     private func compareBaseline(_ canonical: [String: Any]) throws {
-        guard let raw = ProcessInfo.processInfo.environment["NEST_QA_ACTIVE_RENEWAL_BASELINE_JSON"] else { return }
+        let raw = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_QA_ACTIVE_RENEWAL_BASELINE_JSON"])
         let expected = try XCTUnwrap(try JSONSerialization.jsonObject(with: Data(raw.utf8)) as? [String: Any])
         XCTAssertTrue(NSDictionary(dictionary: canonical).isEqual(to: expected), "Original household baseline changed")
     }
