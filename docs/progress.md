@@ -60,7 +60,7 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 Next verification: investigate the named contrast findings with fully visible text, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
 
-The four home tabs share one header and20pt side/14pt top insets; Calendar uses Quiet cards. Twelve normal/light, normal/dark and maximum/dark native captures and24 Profile/assistant links match header anchors within0.5pt. All images were reviewed; two unchanged-date picker checks pass. All eight shared-header/root-layout source files match both the reviewed layout and available build19 at484e5feb; the four normal/dark images were rechecked on6October. [Build19 source comparison](../evidence/2026-10-05/swiftui-root-layout/build19-layout-revalidation.json). No new simulator run or release is claimed. Actual Calendar selection, full accessibility and phones remain open. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md).
+The four home tabs share one header and20pt side/14pt top insets; Calendar uses Quiet cards. Twelve normal/light, normal/dark and maximum/dark native captures and24 Profile/assistant links match header anchors within0.5pt. All images were reviewed; two unchanged-date picker checks pass. All eight shared-header/root-layout source files match both the reviewed layout and available build19 at484e5feb; the four normal/dark images were rechecked on6October. [Build19 source comparison](../evidence/2026-10-05/swiftui-root-layout/build19-layout-revalidation.json). The same eight files still match at5ed4084e after the latest phone-layout report; all four retained normal/dark captures were inspected again. No new simulator run or release is claimed. Actual Calendar selection, full accessibility and phones remain open. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md).
 
 The manual seven-day week has nine recipe,37 placement/read and eight move/read native checks. Eight ingredient checks retain the saved rice-only choice across navigation and confirm one100g grocery; both members agree. Original groceries/links and14 other retained row sets remain exact. Ingredient source923f1db passes Nest37372405961/SwiftUI37372405933:496 Foundation/41 skips,440 signed-app/18 skips, zero failures, format/limits/signing/UI compilation. The later edit/preparation evidence below supersedes those earlier pending checks; saved-notice readability and the unsuppressed invalid-frame warning remain open. [Meal evidence](../evidence/2026-10-05/swiftui-native-manual-week/README.md), [ingredients](../evidence/2026-10-05/swiftui-native-ingredient-review/README.md).
 
@@ -208,15 +208,15 @@ preservation. Original scopes/Today/64 empty journals are restored. The
 passes142 artifacts/1,118 inputs/ten native passes/one retained observer failure. Source69b42139 passes Nest37478285968/SwiftUI37478285865; later checkpoint46e49325 passes Nest37480630108/SwiftUI37480630081. Both record506 Foundation/41 skips,467 signed-app/35 skips, four Swift Testing cases, zero failures and strict native gates.
 [Full chronology](progress-history-2026-10-06.md#active-recurring-reminder-eligibility-fixture).
 
-The initial `a5f1a945`/1,119-input normal run remains FAIL58.914s summary/45.063s testcase before any edit; largest text was not run.
-Its full screenshot/tree prove the real exact form; the invalid assumption is container hit testing.
-Four GETs pass11.291s/9.227s/9.243s/8.083s with the active rule/nil reminder/private receipt/full baseline unchanged.
-Test-only `ed97c198` retains exact rule/due and all individual control/full-frame guards, with fresh UI and separately attested c0 SDK products.
-The complete normal/light journey now passes209.976s summary/208.066s testcase at that source.
-Actual Both/09:00/lead1, pristine Back, Back/Refresh Keep editing and both explicit Discard/reopen paths retain or restore the exact intended settings.
-Root reviews three normal representatives and the initial failed full form.
-Largest-text/dark at the same source fails145.464s summary/131.683s testcase before opening the owned rule:24 forward250pt drags stop at83% of a15-page retained list.
-Final GETs pass9.227s/8.418s with the full baseline/nil reminder exact. Rule-list-only330pt correction `b79c5766` is running MAX-only on controller19297; whole owned card, untouched Back and actual09:00/lead1/Back Keep prefixes pass, with whole journey pending; no shipping change, command, reminder Save or production action, POST0.
+The initial `a5f1a945` normal run remains FAIL58.914s summary/45.063s testcase before edits; largest text was not run.
+The exact form was rendered; the invalid assumption was container hit testing. Four GETs preserved all canonical data.
+Test-only `ed97c198` passes the complete normal/light journey209.976s summary/208.066s testcase.
+Its MAX run remains FAIL145.464s/131.683s before rule entry:24×250pt travel stopped at83% of the15-page retained list.
+A rule-list-only330pt correction at `b79c5766` passes the whole MAX/dark journey612.956s summary/611.112s testcase.
+Actual Both/09:00/lead1, pristine44pt Back, Back/Refresh Keep editing and explicit Discard/reopen pass across source-separated variants.
+Final Alex10.554s/Sam9.353s GETs preserve the active rule/nil reminder/private receipt/full62 baseline; both scopes/Today/large-light/64 empty journals are restored.
+Root reviews eight representative images. The [immutable draft package](../evidence/2026-10-06/swiftui-active-recurring-reminder-drafts/README.md) at5ed4084e verifies433 artifacts, UI1,119/SDK1,118 inputs and47 inspected PNGs. Prior checkpoint655d647b passes Nest37483301023/SwiftUI37483301002; these are not CI results for the later evidence commit.
+Aggregate14 native passes/two retained failures, zero POST; no shipping change, reminder Save, delivery or production action.
 
 ## Active renewal reminder verification
 
