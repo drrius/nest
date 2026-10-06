@@ -60,8 +60,8 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 The latest header and padding report is addressed by the shared four-tab layout
 already available in private build 19. Root rechecks all eight current layout
-files against the reviewed layout and build 19, and directly inspects the retained
-Calendar and Meals dark captures. The header, 20-point horizontal and 14-point top
+files against the reviewed layout and build 19, and directly inspects all four
+retained normal-dark root captures together. The header, 20-point horizontal and 14-point top
 insets, and 24-point section spacing match. This recheck compares source and existing images,
 not a new simulator run or phone acceptance.
 [Current layout comparison](../evidence/2026-10-05/swiftui-root-layout/current-layout-revalidation-20261006.json).
@@ -165,7 +165,26 @@ membership verification, with one same-token Supabase user GET permitted only
 after a captured membership 401. Membership success and diagnostic completion
 are separate. It never exports credentials or performs a domain/UI/fixture
 action; normal SDK session refresh may persist existing test credentials.
-No diagnostic has run yet, and fixture creation remains held.
+The single source-pinned diagnostic at `587a2349` now passes in 4.954 seconds.
+Its one traced `GET /v1/session` returns 200 application/json and verifies Alex's
+expected household membership. The conditional Supabase user GET is not invoked.
+This establishes current access; it does not explain the earlier untraced failure.
+Both original scopes, 64 empty journals, settings and local state are restored;
+independent checks find no selected private plans or scoped caffeinate. Both
+normal/light Today captures are visually reviewed. Root's independent read-only
+comparison confirms all ten chore/financial fingerprints and the original
+receipt/completion unchanged. Both CI workflows pass at `587a2349`: 506
+Foundation tests with 41 explicit skips, 470 signed-app tests with 38 explicit
+skips and four Swift Testing cases, all with zero failures. Formatting, source
+limits, signing and guarded UI compilation pass. The hosted diagnostic is a
+separate owned-Mac execution; CI skips its opt-in method.
+The sealed 28-artifact diagnostic verifier passes, including source identity,
+the actual safe trace, raw-log hash and restoration records.
+[Passing membership diagnostic](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-71629/README.md).
+The next execution uses the verified current membership and those focused
+receipt/domain comparisons. Repeating the unrelated full recurring-bill reader
+is unnecessary for this read-only chore navigation. Its earlier failure remains
+preserved. Fixture creation stays held until the exact UI controller is reviewed.
 [Preserved failure diagnosis](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/baseline-failure-9410/diagnosis.json).
 [Diagnostic source readiness](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-source/readiness.json).
 This will verify native result navigation, not live AI execution. Both-phone,

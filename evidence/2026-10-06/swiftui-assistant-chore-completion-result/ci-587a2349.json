@@ -1,0 +1,18 @@
+{
+  "runs": [
+    {
+      "run": 37532195798,
+      "name": "Nest",
+      "conclusion": "success",
+      "source": "587a2349de1ed7c1ddf4d8c619c51dd8db683529"
+    },
+    {
+      "run": 37532195816,
+      "name": "SwiftUI",
+      "conclusion": "success",
+      "source": "587a2349de1ed7c1ddf4d8c619c51dd8db683529"
+    }
+  ],
+  "hostedDiagnosticSeparate": true,
+  "ciDoesNotExecuteHostedFixture": true
+}
