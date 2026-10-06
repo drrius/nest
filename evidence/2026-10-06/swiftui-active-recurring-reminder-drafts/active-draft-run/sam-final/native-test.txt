@@ -1,0 +1,29 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-bill-drafts-20261006/sam-final/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-bill-drafts-20261006/sam-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderFixtureReadTests/testGETOnlyCompleteBaselineOrExactCreatedVariableRule" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-bill-drafts-20261006/sam-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 16:28:36.689.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 16:28:36.690.
+Test Suite 'HostedActiveRecurringReminderFixtureReadTests' started at 2026-10-06 16:28:36.690.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderFixtureReadTests testGETOnlyCompleteBaselineOrExactCreatedVariableRule]' started.
+2026-10-06 16:28:36.834546+0200 Nest[13465:21502403] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+2026-10-06 16:28:36.834694+0200 Nest[13465:21502403] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+Test Case '-[NestAppTests.HostedActiveRecurringReminderFixtureReadTests testGETOnlyCompleteBaselineOrExactCreatedVariableRule]' passed (5.879 seconds).
+Test Suite 'HostedActiveRecurringReminderFixtureReadTests' passed at 2026-10-06 16:28:42.570.
+	 Executed 1 test, with 0 failures (0 unexpected) in 5.879 (5.880) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 16:28:42.570.
+	 Executed 1 test, with 0 failures (0 unexpected) in 5.879 (5.881) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 16:28:42.571.
+	 Executed 1 test, with 0 failures (0 unexpected) in 5.879 (5.882) seconds
+2026-10-06 16:28:42.899 xcodebuild[13461:21502091] [MT] IDETestOperationsObserverDebug: 7.950 elapsed -- Testing started completed.
+2026-10-06 16:28:42.899 xcodebuild[13461:21502091] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 16:28:42.899 xcodebuild[13461:21502091] [MT] IDETestOperationsObserverDebug: 7.950 sec, +7.950 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-bill-drafts-20261006/sam-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

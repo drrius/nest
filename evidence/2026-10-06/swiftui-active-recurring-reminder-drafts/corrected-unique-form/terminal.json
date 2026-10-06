@@ -1,0 +1,15 @@
+{
+  "UIProfiles": [
+    {
+      "profile": "normal_light",
+      "wholeMethodPassed": true
+    },
+    {
+      "profile": "maximum_dark",
+      "wholeMethodPassed": false
+    }
+  ],
+  "bothFinalCanonicalReadsPassed": true,
+  "POSTs": 0,
+  "NoPositiveReplay": true
+}

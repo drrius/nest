@@ -1,0 +1,155 @@
+Attributes: Application, 0x17c3c3b40, pid: 19879, label: 'Nest'
+Element subtree:
+ →Application, 0x17c3c3b40, pid: 19879, label: 'Nest'
+    Window (Main), 0x17c3c4ce0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x17c3c1290, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x17c3c59a0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x17c3c17f0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x17c3c2210, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x17c3c2c80, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x17c3b8bd0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x17c3c3f20, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x17c3c7520, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x17c3c7640, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x17c3c7760, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x17c3c7880, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x17c3c79a0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x17c3c7ac0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Bill reminder'
+                              Other, 0x17c3c7be0, {{20.0, 24.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                                Other, 0x17c3c7d00, {{20.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x17c3c7e20, {{20.0, 20.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                              StaticText, 0x17c3c7f40, {{127.5, 29.0}, {120.0, 26.0}}, label: 'Bill reminder'
+                            Other, 0x17c3c8060, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x17c3c8180, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x17c3c82a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x17c3c83c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x17c3c84e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x17c3c8600, {{-16.0, -471.5}, {407.0, 2472.5}}
+                                      Other, 0x17c3c8720, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x17c3c8840, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x17c3c8960, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x17c3c8a80, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x17c3c8ba0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x17c3c8cc0, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x17c3c8de0, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x17c3c8f00, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x17c3c9020, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x17c3c9140, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x17c3c9260, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x17c3c9380, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x17c3c94a0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x17c3c95c0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x17c3c96e0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x17c3c9800, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x17c3c9920, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x17c3c9a40, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x17c3c9b60, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x17c3c9c80, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x17c3c9da0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Cell, 0x17c3c9ec0, {{16.0, -7.0}, {343.0, 343.0}}
+                                        Other, 0x17c3c9fe0, {{16.0, -7.0}, {343.0, 343.0}}
+                                          Other, 0x17c3ca100, {{16.0, -7.0}, {343.0, 343.0}}
+                                        Other, 0x17c3ca220, {{16.0, -7.0}, {343.0, 343.0}}
+                                          Other, 0x17c3ca340, {{16.0, -7.0}, {343.0, 343.0}}
+                                            Other, 0x17c3ca460, {{16.0, -7.0}, {343.0, 343.0}}
+                                              StaticText, 0x17c3ca580, {{16.0, -7.0}, {343.0, 343.0}}, label: 'Reminder choices do not approve a bill, change its rule or record an expense.'
+                                      Cell, 0x17c3ca6a0, {{16.0, 336.0}, {343.0, 155.5}}
+                                        Other, 0x17c3ca7c0, {{16.0, 336.0}, {343.0, 155.5}}
+                                          Other, 0x17c3ca8e0, {{16.0, 336.0}, {343.0, 155.5}}
+                                        Other, 0x17c3caa00, {{16.0, 336.0}, {343.0, 155.5}}
+                                          Other, 0x17c3cab20, {{16.0, 336.0}, {343.0, 155.5}}
+                                            Other, 0x17c3cac40, {{16.0, 336.0}, {343.0, 155.5}}
+                                              Button, 0x17c3cad60, {{16.0, 336.0}, {343.0, 155.5}}, label: 'Save reminder'
+                                      Other, 0x17c3cae80, {{32.0, 335.0}, {311.0, 1.0}}
+                                      Cell, 0x17c3cafa0, {{16.0, 491.5}, {343.0, 155.5}}
+                                        Other, 0x17c3cb0c0, {{16.0, 491.5}, {343.0, 155.5}}
+                                          Other, 0x17c3cb1e0, {{16.0, 491.5}, {343.0, 155.5}}
+                                        Other, 0x17c3cb300, {{16.0, 491.5}, {343.0, 155.5}}
+                                          Other, 0x17c3cb420, {{16.0, 491.5}, {343.0, 155.5}}
+                                            Other, 0x17c3cb540, {{16.0, 491.5}, {343.0, 155.5}}
+                                              Button, 0x17c3cb660, {{16.0, 491.5}, {343.0, 155.5}}, label: 'Refresh choices'
+                                      Other, 0x17c3cb780, {{32.0, 490.5}, {311.0, 1.0}}
+                                      Other, 0x17c3cb8a0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 6 pages', value: 96%
+                                        Other, 0x17c3cb9c0, {{369.0, 443.0}, {3.0, 122.5}}
+                                      Other, 0x17c3cbae0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 6 pages', value: 96%
+                                        Other, 0x17c3cbc00, {{369.0, 443.0}, {3.0, 122.5}}
+                            Other, 0x17c3cbd20, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x17c3cbe40, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x17c3cbf60, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x17c3cc080, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x17c3cc1a0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x17c3cc2c0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x17c3cc3e0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x17c3cc500, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x17c3cc620, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x17c3c4680, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x17c3c47a0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x17c3c48c0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x17c3bbcf0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x17c3bbe10, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x17c3bbf30, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x17c3bc050, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x17c3bc170, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x17c3bc290, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x17c3bc3b0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x17c3bc4d0, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x17c3bc5f0, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x17c3bc710, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x17c3bc830, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x17c3bc950, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x17c3bca70, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x17c3bcb90, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x17c3bccb0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x17c3bcdd0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x17c3bcef0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x17c3cf290, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x17c3cf3b0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x17c3cf4d0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x17c3cf5f0, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x17c3cf710, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x17c3cf830, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x17c3cf950, {{0.0, 0.0}, {375.0, 667.0}}
+        Alert, 0x17c3cfa70, {{18.0, 34.0}, {339.0, 619.0}}, label: 'Discard changes?'
+          Other, 0x17c3cfb90, {{18.0, 34.0}, {339.0, 619.0}}
+            Other, 0x17c3cfcb0, {{18.0, 34.0}, {339.0, 619.0}}
+              Other, 0x17c3cfdd0, {{18.0, 34.0}, {339.0, 619.0}}
+              Other, 0x17c3cfef0, {{18.0, 34.0}, {339.0, 619.0}}
+                ScrollView, 0x17c3d0010, {{18.0, 34.0}, {339.0, 204.0}}
+                  Other, 0x17c3d0130, {{18.0, 34.0}, {339.0, 204.0}}
+                    StaticText, 0x17c3d0250, {{48.0, 103.0}, {279.0, 125.5}}, label: 'Discard changes?'
+                  Other, 0x17c3d0370, {{324.0, 34.0}, {30.0, 204.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d0490, {{351.0, -5.0}, {3.0, 36.0}}
+                  Other, 0x17c3d05f0, {{18.0, 205.0}, {339.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d0710, {{-21.0, 232.0}, {36.0, 3.0}}
+                  Other, 0x17c3d0830, {{324.0, 34.0}, {30.0, 204.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d0950, {{351.0, -5.0}, {3.0, 36.0}}
+                  Other, 0x17c3d0a70, {{18.0, 205.0}, {339.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d0b90, {{-21.0, 232.0}, {36.0, 3.0}}
+                ScrollView, 0x17c3d0cb0, {{18.0, 238.0}, {339.0, 415.0}}
+                  Other, 0x17c3d0dd0, {{18.0, 238.0}, {339.0, 415.0}}
+                    Other, 0x17c3d0ef0, {{34.0, 254.0}, {307.0, 383.0}}
+                      Button, 0x17c3d1010, {{34.0, 254.0}, {307.0, 187.5}}, label: 'Discard choices'
+                      Button, 0x17c3d1130, {{34.0, 449.5}, {307.0, 187.5}}, label: 'Keep editing'
+                  Other, 0x17c3d1250, {{324.0, 238.0}, {30.0, 415.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d1370, {{351.0, 328.0}, {3.0, 7.0}}
+                  Other, 0x17c3d1490, {{18.0, 620.0}, {339.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d15b0, {{108.0, 647.0}, {7.0, 3.0}}
+                  Other, 0x17c3d16d0, {{324.0, 238.0}, {30.0, 415.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d17f0, {{351.0, 328.0}, {3.0, 7.0}}
+                  Other, 0x17c3d1910, {{18.0, 620.0}, {339.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x17c3d1a30, {{108.0, 647.0}, {7.0, 3.0}}
+          Other, 0x17c3d1b50, {{18.0, 34.0}, {339.0, 619.0}}
+            Other, 0x17c3d1c70, {{18.0, 34.0}, {339.0, 619.0}}
+              Other, 0x17c3d1d90, {{18.0, 34.0}, {339.0, 619.0}}
+                Other, 0x17c3d1eb0, {{18.0, 34.0}, {339.0, 619.0}}
+                  Other, 0x17c3d1fd0, {{18.0, 34.0}, {339.0, 619.0}}
+                    Other, 0x17c3d20f0, {{18.0, 34.0}, {375.0, 667.0}}
+                Other, 0x17c3d2210, {{18.0, 34.0}, {339.0, 619.0}}
+                  Other, 0x17c3d2330, {{18.0, 34.0}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x17c3c3b40, pid: 19879, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x13bd88470, pid: 19879, label: 'Nest'
+  }

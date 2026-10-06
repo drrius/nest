@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-bill-drafts-max-travel-20261006/sam-final/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-bill-drafts-max-travel-20261006/sam-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderFixtureReadTests/testGETOnlyCompleteBaselineOrExactCreatedVariableRule" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-bill-drafts-max-travel-20261006/sam-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 17:00:24.007.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 17:00:24.007.
+Test Suite 'HostedActiveRecurringReminderFixtureReadTests' started at 2026-10-06 17:00:24.007.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderFixtureReadTests testGETOnlyCompleteBaselineOrExactCreatedVariableRule]' started.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderFixtureReadTests testGETOnlyCompleteBaselineOrExactCreatedVariableRule]' passed (7.129 seconds).
+Test Suite 'HostedActiveRecurringReminderFixtureReadTests' passed at 2026-10-06 17:00:31.137.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.129 (7.130) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 17:00:31.137.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.129 (7.130) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 17:00:31.138.
+	 Executed 1 test, with 0 failures (0 unexpected) in 7.129 (7.131) seconds
+2026-10-06 17:00:31.462 xcodebuild[22153:21570450] [MT] IDETestOperationsObserverDebug: 9.222 elapsed -- Testing started completed.
+2026-10-06 17:00:31.463 xcodebuild[22153:21570450] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 17:00:31.463 xcodebuild[22153:21570450] [MT] IDETestOperationsObserverDebug: 9.222 sec, +9.222 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-bill-drafts-max-travel-20261006/sam-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

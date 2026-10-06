@@ -1,0 +1,21 @@
+{
+  "derivedData": "/private/tmp/nest-active-bill-drafts-max-travel-ui-20261006",
+  "prepareLogSha256": "babf736c5d750f2eea304c9a2619f027f7ed865c3d865b28c7b2577ed01204a2",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ CalendarReadabilityTests.swift,\\ ChoreCreateNavigationTests.swift,\\ FictionalAccountSignOutTests.swift,\\ MealPreferenceDraftTests.swift,\\ NativeActiveRecurringReminderDraftTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/CalendarReadabilityTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/ChoreCreateNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/FictionalAccountSignOutTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/MealPreferenceDraftTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderDraftTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderDraftTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "26aa6770477baddfd0bb3f84e55c765ec0b9c9136fd5ba62fd6e8428ad3ccb1d",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "421f278cf19d75f5446f7da514f012d419c79ea1d983012cac1693172a1eaad8",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "7d0da1aee60ace540b2a82edb00889ad922e457fb735e2e997ac585643092cec"
+  },
+  "resolvedProductPaths": {
+    "NestAccessibilityTests": {
+      "TestHostPath": "/private/tmp/nest-active-bill-drafts-max-travel-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+      "TestBundlePath": "/private/tmp/nest-active-bill-drafts-max-travel-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+      "UITargetAppPath": "/private/tmp/nest-active-bill-drafts-max-travel-ui-20261006/Build/Products/Debug-iphonesimulator/Nest.app"
+    }
+  },
+  "freshDirectoryRequired": true
+}

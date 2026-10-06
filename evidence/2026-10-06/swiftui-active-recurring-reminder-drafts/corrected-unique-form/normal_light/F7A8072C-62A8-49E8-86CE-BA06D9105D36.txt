@@ -1,0 +1,142 @@
+Attributes: Application, 0x11f9afd70, pid: 15513, label: 'Nest'
+Element subtree:
+ →Application, 0x11f9afd70, pid: 15513, label: 'Nest'
+    Window (Main), 0x11f982c70, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11f9b1300, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11f9b1420, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11f9b19c0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11f9b1060, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11f9b1180, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11f9b1540, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11f9b1660, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11f9b1780, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11f9b18a0, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11f9b1b80, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11f9b1ca0, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11f9b1dc0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11f9b1ee0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Recurring expenses'
+                              Button, 0x11f9b2000, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Back'
+                              StaticText, 0x11f9b2120, {{108.5, 31.5}, {157.5, 21.0}}, label: 'Recurring expenses'
+                            Other, 0x11f9b2240, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11f9b2360, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11f9b2480, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11f9b25a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11f9b26c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11f9b27e0, {{-16.0, -695.5}, {407.0, 2613.5}}
+                                      Cell, 0x11f9b2900, {{16.0, -94.0}, {343.0, 151.5}}
+                                        Other, 0x11f9b2a20, {{16.0, -94.0}, {343.0, 151.5}}
+                                          Other, 0x11f9b2b40, {{16.0, -94.0}, {343.0, 151.5}}
+                                        Other, 0x11f9b2c60, {{16.0, -94.0}, {343.0, 151.5}}
+                                          Other, 0x11f9b2d80, {{16.0, -94.0}, {343.0, 151.5}}
+                                            Other, 0x11f9b2ea0, {{16.0, -94.0}, {343.0, 151.5}}
+                                              Button, 0x11f9b2fc0, {{16.0, -94.0}, {343.0, 151.5}}, label: 'Native recurring fixture 2F7FBFE5-B228-49F0-9E26-8C173B9FAC37, Confirm each bill, Cancelled, Next due 2099-01-01'
+                                                StaticText, 0x11f9b30e0, {{32.0, -75.0}, {276.0, 42.5}}, label: 'Native recurring fixture 2F7FBFE5-B228-49F0-9E26-8C173B9FAC37'
+                                                StaticText, 0x11f9b3200, {{32.0, -26.5}, {128.0, 20.5}}, label: 'Confirm each bill'
+                                                StaticText, 0x11f9b3320, {{32.0, 0.0}, {56.5, 14.5}}, label: 'Cancelled'
+                                                StaticText, 0x11f9b3440, {{32.0, 20.5}, {148.0, 18.0}}, label: 'Next due 2099-01-01'
+                                                Image, 0x11f9b3560, {{333.5, -24.0}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x11f9b3680, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11f9b37a0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11f9b38c0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11f9b39e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11f9b3b00, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x11f9b3c20, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11f9b3d40, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x11f9b3e60, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11f9b3f80, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11f9b40a0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11f9b41c0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11f9b42e0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11f9b4400, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11f9b4520, {{0.0, 0.0}, {375.0, 128.8}}
+                                      Cell, 0x11f9b4640, {{16.0, 57.5}, {343.0, 173.5}}
+                                        Other, 0x11f9b4760, {{16.0, 57.5}, {343.0, 173.5}}
+                                          Other, 0x11f9b4880, {{16.0, 57.5}, {343.0, 173.5}}
+                                        Other, 0x11f9b49a0, {{16.0, 57.5}, {343.0, 173.5}}
+                                          Other, 0x11f9b4ac0, {{16.0, 57.5}, {343.0, 173.5}}
+                                            Other, 0x11f9b4be0, {{16.0, 57.5}, {343.0, 173.5}}
+                                              Button, 0x11f9b4d00, {{16.0, 57.5}, {343.0, 173.5}}, label: 'Native bill fixture 60EA3D29-7562-43DC-AB4B-36706C64CEB4, Confirm each bill, Cancelled, Next due 2026-10-28'
+                                                StaticText, 0x11f9b4e20, {{32.0, 76.5}, {197.5, 64.5}}, label: 'Native bill fixture 60EA3D29-7562-43DC-AB4B-36706C64CEB4'
+                                                StaticText, 0x11f9b4f40, {{32.0, 147.0}, {128.0, 20.5}}, label: 'Confirm each bill'
+                                                StaticText, 0x11f9b5060, {{32.0, 173.5}, {56.5, 14.5}}, label: 'Cancelled'
+                                                StaticText, 0x11f9b5180, {{32.0, 194.0}, {150.0, 18.0}}, label: 'Next due 2026-10-28'
+                                                Image, 0x11f9b52a0, {{333.5, 138.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x11f9b53c0, {{32.0, 56.5}, {311.0, 1.0}}
+                                      Cell, 0x11f9b54e0, {{16.0, 231.0}, {343.0, 151.5}}
+                                        Other, 0x11f9b5600, {{16.0, 231.0}, {343.0, 151.5}}
+                                          Other, 0x11f9b5720, {{16.0, 231.0}, {343.0, 151.5}}
+                                        Other, 0x11f9b5840, {{16.0, 231.0}, {343.0, 151.5}}
+                                          Other, 0x11f9b5960, {{16.0, 231.0}, {343.0, 151.5}}
+                                            Other, 0x11f9b5a80, {{16.0, 231.0}, {343.0, 151.5}}
+                                              Button, 0x11f9b5ba0, {{16.0, 231.0}, {343.0, 151.5}}, label: 'Fictional private bill approval 3e7cd25c, Confirm each bill, Paused, Next due 2026-11-05'
+                                                StaticText, 0x11f9b5cc0, {{32.0, 250.0}, {158.5, 42.5}}, label: 'Fictional private bill approval 3e7cd25c'
+                                                StaticText, 0x11f9b5de0, {{32.0, 298.5}, {128.0, 20.5}}, label: 'Confirm each bill'
+                                                StaticText, 0x11f9b5f00, {{32.0, 325.0}, {42.0, 14.5}}, label: 'Paused'
+                                                StaticText, 0x11f9b6020, {{32.0, 345.5}, {147.5, 18.0}}, label: 'Next due 2026-11-05'
+                                                Image, 0x11f9b6140, {{333.5, 301.0}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x11f9b6260, {{32.0, 230.0}, {311.0, 1.0}}
+                                      Cell, 0x11f9b6380, {{16.0, 382.5}, {343.0, 129.5}}
+                                        Other, 0x11f9b64a0, {{16.0, 382.5}, {343.0, 129.5}}
+                                          Other, 0x11f9b65c0, {{16.0, 382.5}, {343.0, 129.5}}
+                                        Other, 0x11f9b66e0, {{16.0, 382.5}, {343.0, 129.5}}
+                                          Other, 0x11f9b6800, {{16.0, 382.5}, {343.0, 129.5}}
+                                            Other, 0x11f9b6920, {{16.0, 382.5}, {343.0, 129.5}}
+                                              Button, 0x11f9b6a40, {{16.0, 382.5}, {343.0, 129.5}}, label: 'Nest QA reminder bill 0610-5d1a, Confirm each bill, Active, Next due 2026-11-01'
+                                                StaticText, 0x11f9b6b60, {{32.0, 401.5}, {259.5, 20.5}}, label: 'Nest QA reminder bill 0610-5d1a'
+                                                StaticText, 0x11f9b6c80, {{32.0, 428.0}, {128.0, 20.5}}, label: 'Confirm each bill'
+                                                StaticText, 0x11f9b6da0, {{32.0, 454.5}, {35.5, 14.5}}, label: 'Active'
+                                                StaticText, 0x11f9b6ec0, {{32.0, 475.0}, {145.0, 18.0}}, label: 'Next due 2026-11-01'
+                                                Image, 0x11f9b6fe0, {{333.5, 441.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x11f9b7100, {{32.0, 381.5}, {311.0, 1.0}}
+                                      Cell, 0x11f9b7220, {{16.0, 512.0}, {343.0, 52.0}}
+                                        Other, 0x11f9b7340, {{16.0, 512.0}, {343.0, 52.0}}
+                                          Other, 0x11f9b7460, {{16.0, 512.0}, {343.0, 52.0}}
+                                        Other, 0x11f9b7580, {{16.0, 512.0}, {343.0, 52.0}}
+                                          Other, 0x11f9b76a0, {{16.0, 512.0}, {343.0, 52.0}}
+                                            Other, 0x11f9b77c0, {{16.0, 512.0}, {343.0, 52.0}}
+                                              Button, 0x11f9b78e0, {{16.0, 512.0}, {343.0, 52.0}}, label: 'Refresh'
+                                      Other, 0x11f9b7a00, {{32.0, 511.0}, {311.0, 1.0}}
+                                      Other, 0x11f9b7b20, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 4 pages', value: 100%
+                                        Other, 0x11f9b7c40, {{369.0, 386.0}, {3.0, 195.0}}
+                                      Other, 0x11f9b7d60, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 4 pages', value: 100%
+                                        Other, 0x11f9b7e80, {{369.0, 386.0}, {3.0, 195.0}}
+                            Other, 0x11f9b7fa0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11f9b80c0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11f9b81e0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11f9b8300, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11f9b8420, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11f9b8540, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11f9b8660, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11f9b8780, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11f9b88a0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x11f9b89c0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11f9b8ae0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11f9b8c00, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11f9b8d20, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11f9b8e40, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11f9b8f60, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x11f9b9080, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11f9b91a0, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x11f9b92c0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11f9b93e0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11f9b9500, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11f9b9620, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11f9b9740, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11f9b9860, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11f9b9980, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11f9b9aa0, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x11f9b9bc0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11f9b9ce0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11f9b9e00, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11f9b9f20, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11f9ba040, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11f9ba160, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11f9ba280, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11f9ba3a0, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x11f9afd70, pid: 15513, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x103c27730, pid: 15513, label: 'Nest'
+  }

@@ -1,0 +1,115 @@
+Attributes: Application, 0x13bf9a020, pid: 19879, label: 'Nest'
+Element subtree:
+ →Application, 0x13bf9a020, pid: 19879, label: 'Nest'
+    Window (Main), 0x13bf9c800, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x13bf9ffa0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x13bfa00c0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x13bf9fd00, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x13bf9fe20, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x13bfa01e0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x13bfa0300, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13bfa0420, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x13bfa0540, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x13bfa0660, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x13bfa0780, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x13bfa08a0, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x13bfa09c0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x13bfa0ae0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Bill reminder'
+                              Other, 0x13bfa0c00, {{20.0, 24.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                                Other, 0x13bfa0d20, {{20.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x13bfa0e40, {{20.0, 20.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                              StaticText, 0x13bfa0f60, {{127.5, 29.0}, {120.0, 26.0}}, label: 'Bill reminder'
+                            Other, 0x13bfa1080, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13bfa11a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x13bfa12c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x13bfa13e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x13bfa1500, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x13bfa1620, {{-16.0, -471.5}, {407.0, 2472.5}}
+                                      Other, 0x13bfa1740, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13bfa1860, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x13bfa1980, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x13bfa1aa0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13bfa1bc0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x13bfa1ce0, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x13bfa1e00, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x13bfa1f20, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13bfa2040, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x13bfa2160, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13bfa2280, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x13bfa23a0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13bfa24c0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13bfa25e0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x13bfa2700, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x13bfa2820, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x13bfa2940, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13bfa2a60, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x13bfa2b80, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13bfa2ca0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13bfa2dc0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Cell, 0x13bfa2ee0, {{16.0, -7.0}, {343.0, 343.0}}
+                                        Other, 0x13bfa3000, {{16.0, -7.0}, {343.0, 343.0}}
+                                          Other, 0x13bfa3120, {{16.0, -7.0}, {343.0, 343.0}}
+                                        Other, 0x13bfa3240, {{16.0, -7.0}, {343.0, 343.0}}
+                                          Other, 0x13bfa3360, {{16.0, -7.0}, {343.0, 343.0}}
+                                            Other, 0x13bfa3480, {{16.0, -7.0}, {343.0, 343.0}}
+                                              StaticText, 0x13bfa35a0, {{16.0, -7.0}, {343.0, 343.0}}, label: 'Reminder choices do not approve a bill, change its rule or record an expense.'
+                                      Cell, 0x13bfa36c0, {{16.0, 336.0}, {343.0, 155.5}}
+                                        Other, 0x13bfa37e0, {{16.0, 336.0}, {343.0, 155.5}}
+                                          Other, 0x13bfa3900, {{16.0, 336.0}, {343.0, 155.5}}
+                                        Other, 0x13bfa3a20, {{16.0, 336.0}, {343.0, 155.5}}
+                                          Other, 0x13bfa3b40, {{16.0, 336.0}, {343.0, 155.5}}
+                                            Other, 0x13bfa3c60, {{16.0, 336.0}, {343.0, 155.5}}
+                                              Button, 0x13bfa3d80, {{16.0, 336.0}, {343.0, 155.5}}, label: 'Save reminder'
+                                      Other, 0x13bfa3ea0, {{32.0, 335.0}, {311.0, 1.0}}
+                                      Cell, 0x13bfa3fc0, {{16.0, 491.5}, {343.0, 155.5}}
+                                        Other, 0x13bfa40e0, {{16.0, 491.5}, {343.0, 155.5}}
+                                          Other, 0x13bfa4200, {{16.0, 491.5}, {343.0, 155.5}}
+                                        Other, 0x13bfa4320, {{16.0, 491.5}, {343.0, 155.5}}
+                                          Other, 0x13bfa4440, {{16.0, 491.5}, {343.0, 155.5}}
+                                            Other, 0x13bfa4560, {{16.0, 491.5}, {343.0, 155.5}}
+                                              Button, 0x13bfa4680, {{16.0, 491.5}, {343.0, 155.5}}, label: 'Refresh choices'
+                                      Other, 0x13bfa47a0, {{32.0, 490.5}, {311.0, 1.0}}
+                                      Other, 0x13bfa48c0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 6 pages', value: 96%
+                                        Other, 0x13bfa49e0, {{369.0, 443.0}, {3.0, 122.5}}
+                                      Other, 0x13bfa4b00, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 6 pages', value: 96%
+                                        Other, 0x13bfa4c20, {{369.0, 443.0}, {3.0, 122.5}}
+                            Other, 0x13bfa4d40, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13bfa4e60, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13bfa4f80, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x13bfa50a0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x13bfa51c0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x13bfa52e0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x13bfa5400, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x13bfa5520, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x13bfa5640, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x13bfa5760, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x13bfa5880, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x13bfa59a0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x13bfa5ac0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x13bfa5be0, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x13bfa5d00, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x13bfa5e20, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x13bfa5f40, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x13bfa6060, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x13bfa6180, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x13bfa62a0, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x13bfa63c0, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x13bfa64e0, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x13bfa6600, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x13bfa6720, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x13bfa6840, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x13bfa6960, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x13bfa6a80, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x13bfa6ba0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13bfa6cc0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13bfa6de0, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x13bfa6f00, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13bfa7020, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13bfa7140, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x13bf9a020, pid: 19879, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x13bfa8340, pid: 19879, label: 'Nest'
+  }

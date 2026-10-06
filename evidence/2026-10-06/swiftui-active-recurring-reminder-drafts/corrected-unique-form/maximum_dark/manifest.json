@@ -1,0 +1,44 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D33FEC5C-9D4E-4D40-A7A6-0E7A1B011428.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Bill reminder control placement failure accessibility tree_0_77361FE1-B16D-4246-A53D-D9B0DEAE2531.txt",
+        "timestamp": 1791297641.821
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "99D0819C-D612-4206-9BAC-028306918A55.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Bill reminder control placement failure_0_886793B5-E303-4CC2-A298-F44C95B852EC.png",
+        "timestamp": 1791297641.593
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B6CC0313-8E04-4061-A4C1-1987B259C361.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Failed bill reminder control viewport_0_9FECABF0-27E6-42DA-ACF9-01D76CED0431.json",
+        "timestamp": 1791297641.519
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "391E29DB-5EF0-4478-8D8B-2C979D4D0235.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual bill reminder control viewport_0_80BC35CC-6486-4095-9581-78C9AA93207E.json",
+        "timestamp": 1791297568.973
+      }
+    ],
+    "testIdentifier": "NativeActiveRecurringReminderDraftTests/testMaximumDarkOwnedActiveBillUnsentDraft()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRecurringReminderDraftTests/testMaximumDarkOwnedActiveBillUnsentDraft"
+  }
+]
