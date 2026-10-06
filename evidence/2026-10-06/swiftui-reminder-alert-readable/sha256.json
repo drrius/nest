@@ -1,5 +1,5 @@
 {
-  "README.md": "844bab00b73a6c8b71ff835bfa201e09f28082db06b0505b116fe62937b86c16",
+  "README.md": "20f4a222d29339ae71a9ea3d0d33506f84d370cdabcbdab9e822fffba50e800a",
   "after/alex-after/5410CBB9-79F3-49A2-8492-D70ACFB46D34.json": "8e5728efe547238206e9e7af0bcedf99dca9270ddafd95a69eaeaf1afc38eef7",
   "after/alex-after/manifest.json": "7f589a5915b5cb548591ada0b88a20c9316c86a904efb84e6f4d02af53632ed6",
   "after/alex-after/native-read.json": "8e5728efe547238206e9e7af0bcedf99dca9270ddafd95a69eaeaf1afc38eef7",
@@ -55,5 +55,5 @@
   "outcome.json": "c87590e6c15e39aa65e3e2de9197c28f705bd24ae636eb3f67cafeb0afe28f35",
   "reviewed-screenshots.json": "1fa487664208239113851b1f48129a52e403143b027c0c97c8b15eaf3fd255d8",
   "source-limits.json": "28b566677ada29653e5ac2ca165b5998b93ee32495386ed36712a9d5a1dd7669",
-  "verify_inventory.py": "13890a8db78c3eee9f9d802ade5f00d6b43fbd4551f214658797a99e16fea607"
+  "verify_inventory.py": "6c64f605b06925eeba29f9de26887fbeeeb0e8d04329ad394e96a47786a338d9"
 }

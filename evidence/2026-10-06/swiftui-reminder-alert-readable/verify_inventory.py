@@ -2,9 +2,11 @@
 """Check exported reminder readability evidence without private native payloads."""
 import argparse
 import hashlib
+import io
 import json
 import re
 import subprocess
+import tarfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -42,13 +44,23 @@ def verify_attachments():
     return count
 
 
-def verify_sources(working_tree):
+def verify_sources(working_tree, source_ref):
     source = json.loads((HERE / 'after/source-input-hashes.json').read_text())
     sdk = json.loads((HERE / 'after/sdk-source-input-hashes.json').read_text())
     assert source == sdk, 'Both rebuilt targets use the same source snapshot'
     if working_tree:
         for key, expected in source.items():
             assert digest(ROOT / 'apps/ios' / key) == expected, key
+    else:
+        source_ref = subprocess.check_output(
+            ['git', 'rev-parse', '--verify', source_ref + '^{commit}'], cwd=ROOT, text=True
+        ).strip()
+        archived = subprocess.check_output(['git', 'archive', source_ref, 'apps/ios'], cwd=ROOT)
+        with tarfile.open(fileobj=io.BytesIO(archived)) as archive:
+            for key, expected in source.items():
+                member = archive.extractfile('apps/ios/' + key)
+                assert member is not None, key
+                assert hashlib.sha256(member.read()).hexdigest() == expected, key
     return len(source)
 
 
@@ -61,11 +73,13 @@ def verify_review(inventory, actual):
 
 def verify():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--working-tree', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--working-tree', action='store_true')
+    mode.add_argument('--source-ref', default='db6023fe17893ec7c75b1a0815160ccbf4c7ff9f')
     args = parser.parse_args()
     inventory, actual = verify_files()
     references = verify_attachments()
-    inputs = verify_sources(args.working_tree)
+    inputs = verify_sources(args.working_tree, args.source_ref)
     reviewed = verify_review(inventory, actual)
     print(json.dumps({'files': len(actual) + 1, 'attachmentReferences': references, 'nativeInputs': inputs, 'PNGReviewed': reviewed, 'workingTreeChecked': args.working_tree, 'passed': True}))
 
