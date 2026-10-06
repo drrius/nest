@@ -1,0 +1,19 @@
+{
+  "conclusion": "success",
+  "databaseId": 37410420566,
+  "headSha": "33ba6ae3099fba746738249463729cabc8c96570",
+  "name": "SwiftUI client checks",
+  "status": "completed",
+  "url": "https://github.com/drrius/nest/actions/runs/37410420566",
+  "foundation": {
+    "executed": 496,
+    "skipped": 41,
+    "failures": 0
+  },
+  "signedApp": {
+    "executed": 444,
+    "skipped": 21,
+    "failures": 0
+  },
+  "hostedCrudExecutedByCI": false
+}

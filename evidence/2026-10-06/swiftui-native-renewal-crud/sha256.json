@@ -1,5 +1,5 @@
 {
-  "README.md": "ecd48c8a94e6c31a44dd2c8963f10597520af2143260ff2a3264f9c11db921f6",
+  "README.md": "b3322d3a779f424d3eca01b325dfe99921e4596fc2bbf2506a0785aedcf1d44a",
   "baseline/alex-sdk-baseline/F09AA27C-D61B-4092-B6E7-973B192C4EE2.json": "eccfc6dfc45a83192763a0f59e0d8962d92cbd8088d0232ad6e66dc4a8af51b4",
   "baseline/alex-sdk-baseline/manifest.json": "58036bfacee9bd388eec7c67bb3aba56b3af0d026932086a60fb0b5160a78fde",
   "baseline/alex-sdk-baseline/native-read.json": "eccfc6dfc45a83192763a0f59e0d8962d92cbd8088d0232ad6e66dc4a8af51b4",
@@ -239,7 +239,9 @@
   "journey/temporary-private-cleanup.json": "b965d076cc88a3c03a27e0a84e52a5fddc4c571d7f41b3e2b2f59ead35a535ec",
   "journey/terminal.json": "a58df7ad530218aa1acf99b7e30c03a9ce9d14dd7b30eac5fab6f4542724dbb5",
   "journey/zero-edit-journal-evidence.json": "7b1c6458c5f8bf6c9ba08812c964eed13454f36aa5453e0a38604f1825a2c09f",
+  "native-ci.json": "c9eda59e8998622a2680cfeb78b7d82a8d47584ea44486fba6c39f4b87007f5c",
   "outcome.json": "a992c46babeda8d03fcdf83bc18c146df1d9892ee09d7991c6b7b9fce0d9b2cb",
-  "verify_inventory.py": "6d34584feb41fb8724ec1e2427f1baa5f37507f9a52ec60b9dbacaf52299d178",
+  "routine-ci.json": "2cf911a0ba4af865d67c464091aabee24d70c1b6811d8bda00bcffa3697d9d26",
+  "verify_inventory.py": "92f6adc096aa2b198db0d9441930014ff31c84f0674b8eff77dfd4995b57cf23",
   "visual-review.json": "7ced89d630619ecf3001dcf3074b47951f19e3634b0d38ff9a51213325cd0839"
 }

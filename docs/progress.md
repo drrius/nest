@@ -64,6 +64,8 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 ## Next work
 
+Next implementation: preserve previously loaded renewal lists and details offline. Current view reads are network-only; the new slice must retain account isolation, honest stale guidance and online-only mutation preflights.
+
 The four home tabs share one header and20pt side/14pt top insets; Calendar uses Quiet cards. Twelve normal/light, normal/dark and maximum/dark native captures and24 Profile/assistant links match header anchors within0.5pt. All images were reviewed; two unchanged-date picker checks pass. All eight shared-header/root-layout source files still match the available build18 atf98a2658; the four normal/dark images were rechecked on6October. No new simulator run or release is claimed. Actual Calendar selection, full accessibility and phones remain open. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md).
 
 The manual seven-day week has nine recipe,37 placement/read and eight move/read native checks. Eight ingredient checks retain the saved rice-only choice across navigation and confirm one100g grocery; both members agree. Original groceries/links and14 other retained row sets remain exact. Ingredient source923f1db passes Nest37372405961/SwiftUI37372405933:496 Foundation/41 skips,440 signed-app/18 skips, zero failures, format/limits/signing/UI compilation. The later edit/preparation evidence below supersedes those earlier pending checks; saved-notice readability and the unsuppressed invalid-frame warning remain open. [Meal evidence](../evidence/2026-10-05/swiftui-native-manual-week/README.md), [ingredients](../evidence/2026-10-05/swiftui-native-ingredient-review/README.md).
@@ -114,8 +116,7 @@ journals each. The inventory verifies 825 native inputs and tracked evidence.
 No shipping change, reminder, linked rule, production action, beta or merge occurs.
 Broad hashes were rejected and abandoned; unrelated-row preservation is not claimed.
 CI catches 51 unformatted exported JSON files; formatting preserves their values
-and the verifier now checks the explicit artifact list. Source33ba6ae3 native CI
-37410420566 is pending; corrected evidence needs its new routine CI result.
+and the verifier now checks the explicit artifact list. Source33ba6ae3 passes SwiftUI37410420566:496 Foundation/41 skips and444 signed-app/21 skips, zero failures and strict native gates. Corrected evidence7c149211 passes Nest37410702348.
 M8 and the full goal remain incomplete.
 
 ## Native existing-expense cycle linkage
