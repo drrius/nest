@@ -1,0 +1,115 @@
+Attributes: Application, 0x13e262f30, pid: 84855, label: 'Nest'
+Element subtree:
+ →Application, 0x13e262f30, pid: 84855, label: 'Nest'
+    Window (Main), 0x13e263350, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x13e2666c0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x13e2667e0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x13e266570, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x13e262630, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x13e266900, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x13e266a20, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13e266b40, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x13e266c60, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x13e266d80, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x13e266ea0, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x13e266fc0, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x13e2670e0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x13e267200, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Your setup'
+                              Button, 0x13e267320, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Conversation'
+                              StaticText, 0x13e267440, {{136.0, 29.0}, {103.0, 26.0}}, label: 'Your setup'
+                            Other, 0x13e267560, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13e267680, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x13e2677a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x13e2678c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x13e2679e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x13e267b00, {{-16.0, -1980.0}, {407.0, 2423.0}}
+                                      Cell, 0x13e267c20, {{16.0, -21.5}, {343.0, 447.0}}
+                                        Other, 0x13e267d40, {{16.0, -21.5}, {343.0, 447.0}}
+                                          Other, 0x13e267e60, {{16.0, -21.5}, {343.0, 447.0}}
+                                        Other, 0x13e267f80, {{16.0, -21.5}, {343.0, 447.0}}
+                                          Other, 0x13e2680a0, {{16.0, -21.5}, {343.0, 447.0}}
+                                            Other, 0x13e2681c0, {{16.0, -21.5}, {343.0, 447.0}}
+                                              StaticText, 0x13e2682e0, {{16.0, -21.5}, {343.0, 447.0}}, label: 'You and your partner have separate personal preferences. Cooking choices are shared.'
+                                      Other, 0x13e268400, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13e268520, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x13e268640, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x13e268760, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13e268880, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x13e2689a0, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x13e268ac0, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x13e268be0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13e268d00, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x13e268e20, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13e268f40, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x13e269060, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13e269180, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x13e2692a0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x13e2693c0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x13e2694e0, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x13e269600, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13e269720, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x13e269840, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13e269960, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13e269a80, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x13e269ba0, {{-16.0, 443.0}, {407.0, 962.0}}
+                                      Cell, 0x13e269cc0, {{16.0, 443.0}, {343.0, 83.5}}
+                                        Other, 0x13e269de0, {{16.0, 443.0}, {343.0, 83.5}}
+                                        Other, 0x13e269f00, {{16.0, 443.0}, {343.0, 83.5}}
+                                          Other, 0x13e26a020, {{16.0, 443.0}, {343.0, 83.5}}
+                                            Other, 0x13e26a140, {{16.0, 443.0}, {343.0, 83.5}}
+                                              StaticText, 0x13e26a260, {{16.0, 443.0}, {343.0, 83.5}}, label: 'Your meals'
+                                      Cell, 0x13e26a380, {{16.0, 526.5}, {343.0, 861.0}}
+                                        Other, 0x13e26a4a0, {{16.0, 526.5}, {343.0, 861.0}}
+                                          Other, 0x13e26a5c0, {{16.0, 526.5}, {343.0, 861.0}}
+                                        Other, 0x13e26a6e0, {{16.0, 526.5}, {343.0, 861.0}}
+                                          Other, 0x13e26a800, {{16.0, 526.5}, {343.0, 861.0}}
+                                            Other, 0x13e26a920, {{16.0, 526.5}, {343.0, 861.0}}
+                                              Button, 0x13e26aa40, {{16.0, 526.5}, {343.0, 861.0}}, label: 'Your food preferences, Choices saved, Dietary restrictions and dislikes help household planning. Your calorie goal is optional and private.'
+                                                StaticText, 0x13e26ab60, {{32.0, 545.5}, {224.0, 187.5}}, label: 'Your food preferences'
+                                                StaticText, 0x13e26ac80, {{32.0, 739.0}, {164.0, 102.5}}, label: 'Choices saved'
+                                                StaticText, 0x13e26ada0, {{32.0, 847.5}, {240.0, 521.0}}, label: 'Dietary restrictions and dislikes help household planning. Your calorie goal is optional and private.'
+                                                Image, 0x13e26aec0, {{312.5, 938.5}, {22.0, 37.5}}, identifier: 'chevron.forward'
+                                      Other, 0x13e26afe0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 7 pages', value: 27%
+                                        Other, 0x13e26b100, {{369.0, 186.5}, {3.0, 101.5}}
+                                      Other, 0x13e26b220, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 7 pages', value: 27%
+                                        Other, 0x13e26b340, {{369.0, 186.5}, {3.0, 101.5}}
+                            Other, 0x13e26b460, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13e26b580, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13e26b6a0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x13e26b7c0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x13e26b8e0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x13e26ba00, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x13e26bb20, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x13e26bc40, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x13e26bd60, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x13e26be80, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x13e26bfa0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x13e26c0c0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x13e26c1e0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x13e26c300, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x13e26c420, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x13e26c540, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x13e26c660, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x13e26c780, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x13e26c8a0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x13e26c9c0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x13e26cae0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x13e26cc00, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x13e26cd20, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x13e26ce40, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x13e26cf60, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x13e26d080, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x13e26d1a0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x13e26d2c0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13e26d3e0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13e26d500, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x13e26d620, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13e26d740, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13e26d860, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x13e262f30, pid: 84855, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x13e26e840, pid: 84855, label: 'Nest'
+  }

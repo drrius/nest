@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": [20, 577.5, 335, 149.5],
+  "hittable": true,
+  "label": "Me + shared",
+  "viewport": [0, 0, 375, 584]
+}

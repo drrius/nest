@@ -1,0 +1,90 @@
+{
+  "baseline": {
+    "version": 1,
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "rule": {
+      "authorizedAt": "2026-10-06T14:08:04.651459Z",
+      "revision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+      "status": "active",
+      "nextDueOn": "2026-11-01",
+      "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+      "configuration": {
+        "mode": "variable",
+        "amountCentimes": null,
+        "allocations": null,
+        "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "description": "Nest QA reminder bill 0610-5d1a",
+        "schedule": {
+          "dayOfMonth": 1,
+          "kind": "monthly"
+        },
+        "categoryId": null,
+        "note": null,
+        "startDate": "2026-11-01"
+      },
+      "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+    }
+  },
+  "result": {
+    "version": 1,
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "operationId": "F23E5DFB-CC10-4199-A0F1-BC2CFCBD521C",
+    "receipt": {
+      "reminder": {
+        "reviewedRuleRevision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+        "reviewedDueOn": "2026-11-01",
+        "updatedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "settings": {
+          "enabled": true,
+          "recipientIds": [
+            "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          ],
+          "daysBefore": 1,
+          "localTime": "09:00"
+        },
+        "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+        "revision": "F736854D-935A-4433-BA0C-13A4B5E51AC6"
+      },
+      "version": 1,
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "command": {
+        "operationId": "F23E5DFB-CC10-4199-A0F1-BC2CFCBD521C",
+        "expectedDueOn": "2026-11-01",
+        "expectedRevision": null,
+        "expectedRuleRevision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+        "settings": {
+          "recipientIds": [
+            "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          ],
+          "daysBefore": 1,
+          "localTime": "09:00",
+          "enabled": true
+        },
+        "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444"
+      },
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "operationId": "F23E5DFB-CC10-4199-A0F1-BC2CFCBD521C"
+    },
+    "status": "recorded"
+  },
+  "command": {
+    "expectedRevision": null,
+    "operationId": "F23E5DFB-CC10-4199-A0F1-BC2CFCBD521C",
+    "ruleId": "F854E3A3-FFDA-4EB7-86E5-D3933D938444",
+    "expectedRuleRevision": "528417A1-B97A-4BE4-9E63-AD7C8C03C2BE",
+    "settings": {
+      "localTime": "09:00",
+      "recipientIds": [
+        "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "E5F80CFD-B69A-4AA0-A267-75784E943676"
+      ],
+      "enabled": true,
+      "daysBefore": 1
+    },
+    "expectedDueOn": "2026-11-01"
+  },
+  "cancellationRequested": false
+}

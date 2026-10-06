@@ -1,0 +1,20 @@
+{
+  "fixtureId": "10b77a97-1709-4799-9b17-8cb3a613d402",
+  "removed_fixture_rows": 1,
+  "remaining_fixture_rows": 0,
+  "original_conversations": 15,
+  "original_conversations_md5": "7284c1c22df502cc7fb70a8b9ff0e903",
+  "consent": [
+    {
+      "enabled": false,
+      "version": "10",
+      "actor_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "generation": "17",
+      "consent_md5": "cbdde232d6ec441e0caa57ac6d4a1072"
+    }
+  ],
+  "busy_snapshot_rows": 0,
+  "busy_snapshots_md5": "d751713988987e9331980363e24189ce",
+  "privilegedFixtureCleanup": true,
+  "authorizationProof": false
+}
