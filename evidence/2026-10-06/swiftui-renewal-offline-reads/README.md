@@ -31,3 +31,16 @@ Strict Mac Swift formatting, the repository source limits and Git whitespace che
 All six original exported PNGs were inspected. They show the fictional Today screen, the actual empty renewal lists and the final restored Today screens. Both owned simulators are left with their original actors/household, large/light settings and 64 empty intent journals. `renewal_read_snapshots` is a read cache and is excluded from intent counts. See [restoration](restoration.json). The integration's ephemeral stores were removed by normal test teardown.
 
 `sha256.json` inventories the exported evidence. Native source hashes are recorded under `integration/source-input-hashes.json` and `online-ui/source-input-hashes.json`. Historical controllers in `controllers` are an audit trail, not a request to replay hosted actions. No SQL census, server mutation, model call, purchase, release or main merge was performed. The full native release goal remains incomplete.
+
+Native source `4ca7089e2ca17519866986338bd0308afa1b5d91` now passes
+[SwiftUI CI37414362787](https://github.com/drrius/nest/actions/runs/37414362787).
+It executes 502 Foundation cases with41 explicit skips and454 signed-app cases
+with22 explicit skips, zero failures, plus four Swift Testing cases. Formatting,
+source limits, actual signing and guarded UI compilation pass. The hosted opt-in
+journeys remain skipped in CI; their explicit local executions are recorded above.
+Routine CI37414362829 is superseded and cancelled by the documentation checkpoint;
+[Nest37414479462](https://github.com/drrius/nest/actions/runs/37414479462) passes
+at62ec2723 with identical shipping native code. [CI metadata](ci.json) and
+[actual totals](ci-totals.txt) preserve this distinction. The inventory verifier
+uses the immutable4ca7089e source by default; `--working-tree` is an optional
+comparison, not a reason to rerun a previously verified hosted journey.

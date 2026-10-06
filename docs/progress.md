@@ -64,7 +64,7 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 ## Next work
 
-Next verification: finish CI for the renewal cache slice, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
+Next verification: investigate the named contrast findings with fully visible text, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
 
 The four home tabs share one header and20pt side/14pt top insets; Calendar uses Quiet cards. Twelve normal/light, normal/dark and maximum/dark native captures and24 Profile/assistant links match header anchors within0.5pt. All images were reviewed; two unchanged-date picker checks pass. All eight shared-header/root-layout source files still match the available build18 atf98a2658; the four normal/dark images were rechecked on6October. No new simulator run or release is claimed. Actual Calendar selection, full accessibility and phones remain open. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md).
 
@@ -129,11 +129,16 @@ Foundation/signed model checks, two real authenticated API/SQLite reopen checks 
 two online SwiftUI smoke checks pass, zero final failures. The two original missing-
 cache regressions remain recorded. Both apps return to Today/original accounts,
 large/light and 64 empty intent journals; six screenshots are inspected. All48
-tracked artifacts and1,088 native inputs match. Format/limits pass. No hosted write.
+original tracked artifacts and1,088 native inputs match. CI metadata is added below. Format/limits pass. No hosted write.
 [Evidence](../evidence/2026-10-06/swiftui-renewal-offline-reads/README.md).
-Native37414362787 and Nest37414362829 are running on4ca7089e. Full authentication
-restart, physical radio loss/offline UI, phones and M8 remain unverified; build18
-lacks this slice. No new beta, production action, purchase or merge occurs.
+Native37414362787 passes4ca7089e:502 Foundation/41 skips,454 signed-app/22 skips, zero failures, plus four Swift Testing cases and strict native gates. Nest37414362829 is cancelled by docs62ec2723; Nest37414479462 passes with identical shipping code. Full authentication
+restart, physical radio loss, phones and M8 remain unverified; build18 lacks this slice.
+Two actual SwiftUI tests now pass real200 list →503 refresh →503 cold reopen, preserving
+the dated saved-data message for each actor. All10 captures are reviewed,1,089 native
+inputs match, stable origins/Today/large/light/64 empty journals and original Keychains
+are restored. The GET-only loopback relay/owned keys are removed. This is renewal-only
+API unavailability with Auth/startup online, not airplane mode. [UI evidence](../evidence/2026-10-06/swiftui-renewal-offline-ui/README.md).
+No new beta, hosted write, production action, purchase or merge occurs.
 
 ## Native existing-expense cycle linkage
 

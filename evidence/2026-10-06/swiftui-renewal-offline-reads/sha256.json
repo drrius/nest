@@ -1,5 +1,5 @@
 {
-  "README.md": "63dd384f9228c901b66d1bd7e43b5c286daaa43720c857e6ce0981b7ddfaae3b",
+  "README.md": "1b66c6b791ab988a2bd8e4af44260920fe26846d0227602433f37e104543a89f",
   "alex-restored-today.png": "df729f04175333bfdb1538bdb0b2776289f00683932040d3a525d5c8736e9361",
   "cleanup.json": "222642dcb6fb25268b4cd0ff48e1a2e74cbd6f1dc88473c5b6237f4decdba0fd",
   "controllers/nest-renewal-offline-focused-with-races-20261006.py": "db6eb1a00a9ccb939e158b5faf23c9e8aa5e71b1c8273653ce2849c25c75eb6d",
@@ -45,6 +45,8 @@
   "reproduction/summary.json": "f48825342cfff9a26868af6f4a6d606331cf04b2957e7c66de43544c8ff65099",
   "restoration.json": "ed5701f08efe158072cd244131c0721231130f922e69e6b32c7fc90408043c39",
   "sam-restored-today.png": "df729f04175333bfdb1538bdb0b2776289f00683932040d3a525d5c8736e9361",
-  "verify_inventory.py": "74fb3f52f3f1f20c77730902c55072edb602650ab3154617ec42f5413fcaf895",
-  "visual-review.json": "ff4e14a007338fb03c2b8638772c31800f64ea2c7d6c0a52bbc5bb0072f5078c"
+  "verify_inventory.py": "995949fd89382dd185c02489ea2a495dde62228c56d96a1e0c6554f5327638c5",
+  "visual-review.json": "ff4e14a007338fb03c2b8638772c31800f64ea2c7d6c0a52bbc5bb0072f5078c",
+  "ci.json": "7d4d835ec80f0e0c1f0b2f5e0cdd58a20a1a3dac0363e8795c1173098e9e28ba",
+  "ci-totals.txt": "9f70612b7d0eda3552fd2ca8be0b33901a204642434f0a804871b576ac457bdd"
 }
