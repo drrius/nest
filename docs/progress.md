@@ -222,7 +222,21 @@ financial fingerprints are captured. Eleven isolated PostgreSQL/PostgREST cases
 pass with no failures/skips; the first invocation lacked fixture-binary env vars
 and is not counted as a code failure. Guarded native UI and GET-only readback
 sources are prepared with strict formatting/source-limit checks. No Add/Remove,
-native baseline or fixture mutation has run yet.
+native baseline or fixture mutation had run at source preparation. Fresh signed
+SDK/UI products now compile all 1,132 source inputs at `2bf22747`, including the
+owned tests and shipping leftovers path. Alex's actual GET-only preflight passes
+and restores original scopes/settings/local state; Sam's preflight also passes.
+A fresh separate hosted comparison confirms all fixture and protected-row values
+unchanged. The first Alex Add method fails before tapping Plan leftovers: its
+native menu row measures 42 points. No command is submitted; source/target,
+receipts and all eight protected fingerprints remain exact. Original scopes,
+settings and local state restore. Meal options now use a native confirmation
+dialog instead of the compact menu, keeping the same actions and record context.
+The 44-point requirement is retained; fresh native verification is pending.
+No Remove has run.
+Initial preparation source `55baa7c5` fails routine CI
+37540272006 only on metadata formatting; the formatted successor is locally
+clean and its CI is running.
 [Prepared leftovers checkpoint](../evidence/2026-10-07/swiftui-native-leftovers/prepared.json).
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular

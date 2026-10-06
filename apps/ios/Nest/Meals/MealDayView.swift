@@ -2,6 +2,8 @@ import SwiftUI
 
 struct MealDayView<Detail: View>: View {
     @Environment(\.dynamicTypeSize) private var textSize
+    @State private var selectedMeal: PlannedMeal?
+    @State private var choosingAction = false
     let date: CivilDate
     let meals: [PlannedMeal]
     let slots: [MealSlot]
@@ -34,6 +36,18 @@ struct MealDayView<Detail: View>: View {
             .foregroundStyle(QuietPalette.accent)
             .padding(.horizontal, 16)
             .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
+        }
+        .confirmationDialog(
+            "Meal options", isPresented: $choosingAction, titleVisibility: .visible, presenting: selectedMeal
+        ) { meal in
+            Button("Replace", systemImage: "arrow.triangle.2.circlepath") { replace(meal) }
+            if meal.leftoverSourceId == nil {
+                Button("Plan leftovers", systemImage: "arrow.turn.down.right") { leftovers(meal) }
+            }
+            Button("Move", systemImage: "arrow.right.arrow.left") { move(meal) }
+            Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
+        } message: { meal in
+            Text("\(meal.title) · \(MealWeekScreen.label(meal.date)) · \(meal.slot.label)")
         }
     }
 
@@ -102,13 +116,9 @@ struct MealDayView<Detail: View>: View {
             }
             .buttonStyle(.plain)
             .accessibilityLabel("\(date.value), \(slot.label): \(meal.title), recipe details")
-            Menu {
-                Button("Replace", systemImage: "arrow.triangle.2.circlepath") { replace(meal) }
-                if meal.leftoverSourceId == nil {
-                    Button("Plan leftovers", systemImage: "arrow.turn.down.right") { leftovers(meal) }
-                }
-                Button("Move", systemImage: "arrow.right.arrow.left") { move(meal) }
-                Button("Remove", systemImage: "trash", role: .destructive) { remove(meal) }
+            Button {
+                selectedMeal = meal
+                choosingAction = true
             } label: {
                 HStack(spacing: 12) {
                     Text(textSize.isAccessibilitySize ? "Meal options" : "Options")

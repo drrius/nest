@@ -1,0 +1,110 @@
+{
+  "stage": "after first native Add-method failure",
+  "failure": "Native Plan leftovers menu action visual frame was 42 points; failed before tapping it",
+  "positiveAddSubmitted": false,
+  "metadataUnchanged": true,
+  "protectedRowsUnchanged": true,
+  "fixture": [
+    {
+      "fixture": {
+        "weeks": [
+          {
+            "revision": 9,
+            "week_start": "2026-10-19",
+            "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da"
+          }
+        ],
+        "source": {
+          "id": "f040105f-89b5-4370-aa2f-636c7c284be1",
+          "date": "2026-10-19",
+          "slot": "dinner",
+          "notes": null,
+          "created_at": "2026-10-05T19:49:07.643231+00:00",
+          "removed_at": null,
+          "updated_at": "2026-10-05T19:49:07.643231+00:00",
+          "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+          "title_snapshot": "Nest native manual week 20261005",
+          "meal_definition_id": "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+          "recipe_url_snapshot": null,
+          "leftover_of_entry_id": null,
+          "groceries_materialized_at": null
+        },
+        "receipts": [],
+        "targetEntries": [],
+        "priorLeftovers": [],
+        "sourceSnapshot": {
+          "recipe": {
+            "notes": null,
+            "title": "Nest native manual week 20261005",
+            "servings": 2,
+            "recipeUrl": null,
+            "ingredients": [
+              {
+                "name": "QA lentils",
+                "note": null,
+                "unit": "g",
+                "order": 0,
+                "quantity": "200",
+                "categoryId": null,
+                "ingredientId": "c49e2275-e68a-4a95-b49c-247b8dddd7e4"
+              },
+              {
+                "name": "QA rice",
+                "note": null,
+                "unit": "g",
+                "order": 1,
+                "quantity": "100",
+                "categoryId": null,
+                "ingredientId": "ad5bc996-178d-4f4b-b85d-e60ae87765b1"
+              }
+            ],
+            "definitionId": "1f5b84c0-8ecb-4f5d-ad33-0a60088b239b",
+            "instructions": "Simmer the fictional ingredients."
+          },
+          "entry_id": "f040105f-89b5-4370-aa2f-636c7c284be1",
+          "created_at": "2026-10-05T19:49:07.712511+00:00",
+          "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+          "library_revision": 37
+        }
+      }
+    }
+  ],
+  "protectedRows": [
+    {
+      "protected_rows": {
+        "ledger": {
+          "md5": "1a5226df5b754743fd4aedc6c2dc6760",
+          "count": 124
+        },
+        "additions": {
+          "md5": "d644d5f8f123183b2b6beb45f74355aa",
+          "count": 6
+        },
+        "groceries": {
+          "md5": "e8062796fcffe016eb46dc58d1662f97",
+          "count": 30
+        },
+        "templates": {
+          "md5": "5d73d9806575e36a7359a5c3649b39d9",
+          "count": 13
+        },
+        "sourceWeek": {
+          "md5": "a7a4d32eb07bae8f788b63bd086819c0",
+          "count": 7
+        },
+        "allocations": {
+          "md5": "a54f487eb8e29f3b51ca34a9198d0d71",
+          "count": 104
+        },
+        "definitions": {
+          "md5": "da20b79e069dc6f29640563e721d5c56",
+          "count": 8
+        },
+        "financialEvents": {
+          "md5": "ad230373d9e4773aa38fc781b4194054",
+          "count": 62
+        }
+      }
+    }
+  ]
+}
