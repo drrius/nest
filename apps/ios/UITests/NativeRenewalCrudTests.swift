@@ -71,6 +71,34 @@ final class NativeRenewalCrudTests: XCTestCase {
         finish(app)
     }
 
+    func testDiscardUnsentEditAndVerifyNativeSelection() throws {
+        _ = try authorized(action: "discard_unsent_edit", role: "Test Sam")
+        try requireOwnedIdentity()
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        app.activate()
+        XCTAssertTrue(app.navigationBars["Edit renewal"].waitForExistence(timeout: 15))
+        XCTAssertEqual(app.textFields["renewal-title"].value as? String, edited + original)
+        capture(app, name: "Unsent edit observer failure before explicit discard")
+        discardEditedDraft(app)
+        XCTAssertTrue(app.staticTexts[original].firstMatch.waitForExistence(timeout: 15))
+        app.buttons["Edit"].tap()
+        XCTAssertTrue(app.navigationBars["Edit renewal"].waitForExistence(timeout: 15))
+        enter(edited, replacing: original, in: app)
+        capture(app, name: "Native Select All replaces the owned title, unsent")
+        discardEditedDraft(app)
+        XCTAssertTrue(app.staticTexts[original].firstMatch.waitForExistence(timeout: 15))
+        finish(app)
+    }
+
+    private func discardEditedDraft(_ app: XCUIApplication) {
+        app.navigationBars["Edit renewal"].buttons["Cancel"].tap()
+        let alert = app.alerts["Discard edits?"]
+        XCTAssertTrue(alert.waitForExistence(timeout: 15))
+        capture(app, name: "Explicitly discard unsent owned edit")
+        alert.buttons["Discard changes"].tap()
+        XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
+    }
+
     func testClearOnlyRecordedOwnedRequest() throws {
         let app = try open(action: "clear_recorded")
         try requireOwnedIdentity()
@@ -141,7 +169,11 @@ final class NativeRenewalCrudTests: XCTestCase {
         XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15))
         if let baseline {
             XCTAssertEqual(title.value as? String, baseline)
-            title.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: baseline.count))
+            title.press(forDuration: 1.2)
+            let selectAll = app.descendants(matching: .any).matching(identifier: "Select All").firstMatch
+            XCTAssertTrue(selectAll.waitForExistence(timeout: 15))
+            capture(app, name: "Native renewal title selection menu")
+            selectAll.tap()
         }
         title.typeText(value)
         XCTAssertEqual(title.value as? String, value)
