@@ -35,8 +35,15 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
         XCTAssertTrue(lunch.waitForExistence(timeout: 10))
         try reading.requireTarget(lunch, bounds: app.frame)
         lunch.tap()
+        let selection = app.navigationBars["Meal"]
+        XCTAssertTrue(selection.exists)
+        let back = selection.buttons.element(boundBy: 0)
+        try reading.requireTarget(back, bounds: app.frame)
+        back.tap()
+        XCTAssertTrue(navigation.waitForExistence(timeout: 10))
+        XCTAssertTrue(picker.label.contains("Lunch"))
         let explanation = "The original meal stays in your plan. Its recipe is copied to the leftovers."
-        XCTAssertTrue(app.staticTexts[explanation].exists)
+        XCTAssertTrue(app.staticTexts[explanation].waitForExistence(timeout: 10))
         let add = navigation.buttons["Add"]
         let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: add)
         XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 30), .completed)

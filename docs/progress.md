@@ -253,6 +253,13 @@ rows/receipts remain exact and restoration passes. Destination Day and Meal
 pickers now use Apple's navigation-link presentation, with a stable Meal-picker
 identifier for the native journey. Configured formatting/source limits pass;
 fresh execution is pending. The failed label attempt is retained separately.
+At `40c37740`, the native destination picker and Lunch row both pass the 44-point
+checks. The method stops after selecting Lunch because it still expects the
+sheet's explanation without navigating back. No Add is tapped, fixture rows and
+receipts remain exact, and restoration passes. The corrected observer explicitly
+checks the Meal navigation page, uses its native Back control, and verifies the
+selected Lunch value before Add. Fresh execution is pending; no mutation is
+counted as verified.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
 clean and its CI is running.
