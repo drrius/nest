@@ -140,6 +140,34 @@ limits. Root independently checks both source hashes and the 1,128-input native
 tree. The fixture guards pass in a real read-only PostgreSQL transaction, rolled
 back with zero fixture rows; the prepared transcript fingerprint is recorded.
 This is source and fixture preflight proof, not native app execution.
+Source `a085a871` is committed and pushed. Its fresh signed preparation passes
+all 1,128 inputs, actual compilation of the test/helper/result row/recorded
+section/current-work screen, selected products and three executable hashes,
+signing, test origins and build 19. Both original scopes, 64 empty journals and
+large/light settings remain unchanged. No SDK baseline, UI method or fixture
+insertion had run at preparation. Root reviews the separate baseline controller
+and authorizes two read-only SDK checks. The first Alex check then fails after
+17.182 seconds with `signedOut`; Sam and the UI are not invoked, no full baseline
+is accepted, and no fixture is created. Ordinary restoration passes for both
+original actors/household, 64 empty journals, settings and local state. Private
+plans and scoped caffeinate are independently absent afterward. The failure is
+preserved and held for diagnosis; no unchanged retry or credential repair is
+attempted. Both CI workflows pass at `a085a871`: 506 Foundation tests with 41 explicit skips,
+469 signed-app tests with 37 explicit skips, four Swift Testing cases and zero
+failures; formatting, source limits, signing and guarded UI compilation pass.
+This does not turn the failed hosted baseline into a pass.
+The retained failure has no path/status/stack/expiry trace. The direct reader
+does not use SessionModel lease checks; its HTTP client maps 401 to `signedOut`,
+but the exact endpoint and credential cause remain unproven. A guarded test-only
+authentication diagnostic is implemented and typechecked against real Nest/Auth
+modules. It records safe stage/path/status/media-type metadata for session and
+membership verification, with one same-token Supabase user GET permitted only
+after a captured membership 401. Membership success and diagnostic completion
+are separate. It never exports credentials or performs a domain/UI/fixture
+action; normal SDK session refresh may persist existing test credentials.
+No diagnostic has run yet, and fixture creation remains held.
+[Preserved failure diagnosis](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/baseline-failure-9410/diagnosis.json).
+[Diagnostic source readiness](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-source/readiness.json).
 This will verify native result navigation, not live AI execution. Both-phone,
 full accessibility, provider, worker/APNs and cutover gates remain open.
 [Prepared receipt provenance](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/receipt-provenance-prepared.json).
