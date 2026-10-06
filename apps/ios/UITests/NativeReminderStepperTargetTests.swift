@@ -24,17 +24,33 @@ final class NativeReminderStepperTargetTests: XCTestCase {
         ] {
             probe(app, action: action, offset: offset, initial: initial, expected: expected)
         }
-        capture(app, name: "All four Stepper edges changed unsent values and returned to zero")
+        capture(app, name: "All four adjustment edges changed unsent values and returned to zero")
+        app.navigationBars["Chore reminder"].buttons["Back"].tap()
+        choose("Discard choices", in: app, name: "Explicit Back Discard after successful edges")
+        requireDismissed(app)
+        openReminder(app)
+        reveal(toggle, in: app)
+        XCTAssertEqual(toggle.value as? String, "0")
+        let lead = app.staticTexts["reminder-lead-value"]
+        reveal(lead, in: app, permitsDisabled: true)
+        XCTAssertEqual(lead.label, "Days before: 0")
+        XCTAssertFalse(app.buttons["Decrease days before"].isEnabled)
+        XCTAssertFalse(app.buttons["Increase days before"].isEnabled)
+        capture(app, name: "Reopened canonical disabled reminder with zero lead time")
+        app.navigationBars["Chore reminder"].buttons["Back"].tap()
+        requireDismissed(app)
+        XCTAssertFalse(app.alerts["Discard changes?"].exists)
+        restoreToday(app)
     }
 
     private func probe(_ app: XCUIApplication, action: String, offset: Double, initial: Int, expected: Int) {
-        let lead = app.steppers["Days before: \(initial)"]
+        let lead = app.staticTexts["reminder-lead-value"]
         reveal(lead, in: app, permitsDisabled: true)
-        XCTAssertEqual(lead.value as? String, "\(initial)")
-        XCTAssertTrue(lead.isEnabled)
-        let button = lead.buttons.matching(NSPredicate(format: "label ENDSWITH %@", ", " + action)).firstMatch
+        XCTAssertEqual(lead.label, "Days before: \(initial)")
+        let button = app.buttons[action == "Increment" ? "Increase days before" : "Decrease days before"]
         XCTAssertTrue(button.exists && button.isEnabled && button.isHittable)
-        let row = app.collectionViews.cells.containing(.stepper, identifier: "Days before: \(initial)").firstMatch
+        XCTAssertEqual(button.value as? String, "\(initial) days")
+        let row = app.collectionViews.cells.containing(.staticText, identifier: "reminder-lead-value").firstMatch
         XCTAssertTrue(row.exists)
         let frame = button.frame
         let point = CGPoint(x: frame.midX, y: frame.midY + offset)
@@ -53,13 +69,17 @@ final class NativeReminderStepperTargetTests: XCTestCase {
         XCTAssertTrue(row.frame.contains(area), "Probe must stay within the actual native Form row")
         app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
         let changed = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "value == %@", "\(expected)"), object: app.steppers.firstMatch)
+            predicate: NSPredicate(format: "label == %@", "Days before: \(expected)"), object: lead)
         let result = XCTWaiter.wait(for: [changed], timeout: 5)
         capture(app, name: "Stepper \(action) \(offset)pt actual edge result")
         attach(
-            ["changed": result == .completed, "actualValue": app.steppers.firstMatch.value as? String ?? "missing"],
+            [
+                "changed": result == .completed, "actualValue": lead.label,
+                "buttonValue": button.value as? String ?? "missing",
+            ],
             name: "Exact Stepper edge observed value")
         XCTAssertEqual(result, .completed, "Stop at the first edge that does not change the unsent value")
+        XCTAssertEqual(button.value as? String, "\(expected) days")
     }
 
     private func discardAndRestore(_ app: XCUIApplication) {
