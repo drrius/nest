@@ -1,0 +1,90 @@
+{
+  "result": {
+    "status": "recorded",
+    "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "version": 1,
+    "receipt": {
+      "reminder": {
+        "updatedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "settings": {
+          "recipientIds": [
+            "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          ],
+          "localTime": "08:00",
+          "enabled": false,
+          "localDate": "2026-10-07"
+        },
+        "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D",
+        "reviewedItemVersion": "1",
+        "revision": "0238A099-9DD1-4AB7-8050-B4738DBF4B10"
+      },
+      "operationId": "E1596AA1-1812-4396-840D-2E9282BAEC73",
+      "version": 1,
+      "command": {
+        "expectedRevision": "3D473B6B-3A60-4857-8524-201B6241BB1D",
+        "operationId": "E1596AA1-1812-4396-840D-2E9282BAEC73",
+        "expectedItemVersion": "1",
+        "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D",
+        "settings": {
+          "enabled": false,
+          "localDate": "2026-10-07",
+          "localTime": "08:00",
+          "recipientIds": [
+            "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "E5F80CFD-B69A-4AA0-A267-75784E943676"
+          ]
+        }
+      },
+      "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+    },
+    "operationId": "E1596AA1-1812-4396-840D-2E9282BAEC73"
+  },
+  "command": {
+    "expectedRevision": "3D473B6B-3A60-4857-8524-201B6241BB1D",
+    "settings": {
+      "recipientIds": [
+        "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "E5F80CFD-B69A-4AA0-A267-75784E943676"
+      ],
+      "localDate": "2026-10-07",
+      "localTime": "08:00",
+      "enabled": false
+    },
+    "expectedItemVersion": "1",
+    "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D",
+    "operationId": "E1596AA1-1812-4396-840D-2E9282BAEC73"
+  },
+  "cancellationRequested": false,
+  "baseline": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "version": 1,
+    "itemVersion": "1",
+    "grocery": {
+      "name": "QA rice",
+      "legacyClaimed": false,
+      "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D",
+      "quantity": "100",
+      "unit": "g",
+      "version": "1",
+      "checked": false
+    },
+    "reminder": {
+      "revision": "3D473B6B-3A60-4857-8524-201B6241BB1D",
+      "updatedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+      "reviewedItemVersion": "1",
+      "settings": {
+        "localDate": "2026-10-07",
+        "localTime": "08:00",
+        "enabled": true,
+        "recipientIds": [
+          "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "E5F80CFD-B69A-4AA0-A267-75784E943676"
+        ]
+      },
+      "itemId": "D24CC35D-A6AE-44C6-9780-E28F8723D44D"
+    }
+  }
+}

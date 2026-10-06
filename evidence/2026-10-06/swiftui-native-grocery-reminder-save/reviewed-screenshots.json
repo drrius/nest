@@ -1,0 +1,66 @@
+{
+  "alex-restored-today.png": {
+    "sha256": "e6d9c0db32f5e7cf9584b3baabed041d84b002453986155773368a0086f95a96",
+    "safeFictionalScope": true
+  },
+  "disabled-done/36D43458-1970-4DB5-AED5-B1DBD06415FD.png": {
+    "sha256": "15294cea0b8994f018adf168acdd1a86d464373f65b1ee5c114d618ca9c896b9",
+    "safeFictionalScope": true
+  },
+  "disabled-done/B2EF3313-7295-46B6-9BDA-4E8B5D23C6E6.png": {
+    "sha256": "2e4642dbd7a463da0c3fe0629dca24b8c337891829d085c3ad641d837c2b11b8",
+    "safeFictionalScope": true
+  },
+  "disabled-done/EA19BEFB-D8DD-4DFF-86FB-D11565A1A12C.png": {
+    "sha256": "f41fa1a316d52d74f72c3ff18f6ddfbb899f6247a2de256db43d672cd801bde7",
+    "safeFictionalScope": true
+  },
+  "disabled-save/28BB2206-ADBC-4BA3-B251-90BE8785CA02.png": {
+    "sha256": "c9210e11d148a253d94aef576991d6cf2492a5780e0ad2482f1210e03aac3744",
+    "safeFictionalScope": true
+  },
+  "disabled-save/A852D458-17A5-4644-8300-A36542C77BAA.png": {
+    "sha256": "f871e88619a817857d46d46448b909f123a7d4dc3a7f4af1ebcca4256bdb199c",
+    "safeFictionalScope": true
+  },
+  "disabled-save/D453B0C2-4713-4C31-935B-C610F9B99B75.png": {
+    "sha256": "a48b68bb6a491feb4feab4bbafe497b7d1327443fc327eec998e7dfa6cb722cc",
+    "safeFictionalScope": true
+  },
+  "enabled-done/57C7C8B1-56A5-4126-898C-B2114C42474A.png": {
+    "sha256": "446dd143c8cc9d7a9cce3799a5eda3171107c3209e0f266b91e62190de123a5d",
+    "safeFictionalScope": true
+  },
+  "enabled-done/8FBF69EC-B8E6-447C-82FC-6E27B957D09E.png": {
+    "sha256": "a4fbe27bcd90da1bead71f32d3e9809cc1dccc4207324e1570163722dc9695ea",
+    "safeFictionalScope": true
+  },
+  "enabled-done/9DF659D8-F440-45A5-982B-24FFFEFC9D67.png": {
+    "sha256": "e72e9c7e46baf7d2d1841295a0244b4c15f3a077263831a69962900b41e7f78d",
+    "safeFictionalScope": true
+  },
+  "enabled-save/0333FA83-BBC8-4329-977F-6C7390FDB5BF.png": {
+    "sha256": "14a12b4b2d9fb07f5d3ef3108ad1409e893dde77d4050a9c21155505e8c116b8",
+    "safeFictionalScope": true
+  },
+  "enabled-save/AE3894B0-4AEC-428D-8A7E-ADE61C1ADE42.png": {
+    "sha256": "9a0d24830a48cb1996ba3e0748906935f757ad0803b0cae53a8cb6d0b431d4b3",
+    "safeFictionalScope": true
+  },
+  "enabled-save/BCE7B892-CED5-4FDF-8F73-C2F39D652456.png": {
+    "sha256": "f9469423311d1bb9215f6001d2bea0c30ddc063f6a61463baff0b4a10282bf47",
+    "safeFictionalScope": true
+  },
+  "enabled-save/D038AB32-05EE-4406-AEF4-495207B4624A.png": {
+    "sha256": "63fb8e53d8bc7ea7afaad11b87e45e99ff1f76d0e2aac46788a4aa2744039145",
+    "safeFictionalScope": true
+  },
+  "enabled-save/DF6055D3-C50F-4752-84E5-70D532207C08.png": {
+    "sha256": "4c8edc9edc18252a8d5f4c4a8d7ec131655ef949579614c0f2c0a4295961e401",
+    "safeFictionalScope": true
+  },
+  "sam-restored-today.png": {
+    "sha256": "e6d9c0db32f5e7cf9584b3baabed041d84b002453986155773368a0086f95a96",
+    "safeFictionalScope": true
+  }
+}

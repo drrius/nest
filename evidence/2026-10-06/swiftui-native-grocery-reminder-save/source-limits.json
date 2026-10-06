@@ -1,0 +1,14 @@
+[
+  {
+    "path": "apps/ios/UITests/NativeGroceryReminderSaveTests.swift",
+    "lines": 246,
+    "maximumFunctionCodeLines": 32,
+    "maximumComplexity": 9
+  },
+  {
+    "path": "apps/ios/AppTests/HostedGroceryReminderReceiptReadTests.swift",
+    "lines": 141,
+    "maximumFunctionCodeLines": 46,
+    "maximumComplexity": 7
+  }
+]

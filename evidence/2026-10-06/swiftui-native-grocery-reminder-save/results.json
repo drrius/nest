@@ -1,0 +1,122 @@
+[
+  {
+    "step": "alex-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.214
+  },
+  {
+    "step": "sam-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.482
+  },
+  {
+    "step": "enabled-save",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeGroceryReminderSaveTests/testEnableBothRecipientsOnceAndLeaveRecordedRequest",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 74.447
+  },
+  {
+    "step": "enabled-alex",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.532
+  },
+  {
+    "step": "enabled-sam",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.086
+  },
+  {
+    "step": "enabled-done",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeGroceryReminderSaveTests/testFinishExactRecordedRequestThroughDone",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 49.303
+  },
+  {
+    "step": "disabled-save",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeGroceryReminderSaveTests/testDisableOwnedReminderOnceAndLeaveRecordedRequest",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 57.113
+  },
+  {
+    "step": "disabled-alex",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.671
+  },
+  {
+    "step": "disabled-sam",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.001
+  },
+  {
+    "step": "disabled-done",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeGroceryReminderSaveTests/testFinishExactRecordedRequestThroughDone",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 50.736
+  },
+  {
+    "step": "alex-final",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.084
+  },
+  {
+    "step": "sam-final",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.663
+  }
+]

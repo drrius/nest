@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "68933207-6059-479F-ACC6-2683806E8878.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned grocery reminder canonical and owner immutable receipts_0_BA77395D-DF2E-4687-926F-ACB22EF6D236.json",
+        "timestamp": 1791267725.618
+      }
+    ],
+    "testIdentifier": "HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts"
+  }
+]

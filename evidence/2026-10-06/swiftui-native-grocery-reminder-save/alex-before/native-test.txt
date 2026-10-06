@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-native-grocery-reminder-save-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-native-grocery-reminder-save-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-native-grocery-reminder-save-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 08:20:27.386.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 08:20:27.386.
+Test Suite 'HostedGroceryReminderReceiptReadTests' started at 2026-10-06 08:20:27.386.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptReadTests testReadOwnedCanonicalAndOwnerImmutableReceipts]' started.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptReadTests testReadOwnedCanonicalAndOwnerImmutableReceipts]' passed (3.886 seconds).
+Test Suite 'HostedGroceryReminderReceiptReadTests' passed at 2026-10-06 08:20:31.274.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.886 (3.887) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 08:20:31.274.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.886 (3.888) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 08:20:31.274.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.886 (3.888) seconds
+2026-10-06 08:20:31.599 xcodebuild[79734:20390896] [MT] IDETestOperationsObserverDebug: 6.086 elapsed -- Testing started completed.
+2026-10-06 08:20:31.599 xcodebuild[79734:20390896] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 08:20:31.599 xcodebuild[79734:20390896] [MT] IDETestOperationsObserverDebug: 6.086 sec, +6.086 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-native-grocery-reminder-save-20261006/alex-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

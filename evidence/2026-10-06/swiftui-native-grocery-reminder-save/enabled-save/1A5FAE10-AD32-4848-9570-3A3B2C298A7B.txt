@@ -1,0 +1,236 @@
+Attributes: Application, 0x103dd83e0, pid: 79820, label: 'Nest'
+Element subtree:
+ →Application, 0x103dd83e0, pid: 79820, label: 'Nest'
+    Window (Main), 0x103dd7da0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x103dcd560, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x103dce420, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x103dce840, {{-375.0, -667.0}, {1125.0, 2001.0}}
+          Other, 0x103dce000, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x103dd8a20, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x103dd8b40, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x103dd8cc0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x103dd8de0, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x103dd8f00, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x103dd9020, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x103dd9140, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x103dd9260, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x103dd9380, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x103dd94a0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Groceries'
+                              Button, 0x103dd95c0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Back'
+                              StaticText, 0x103dd96e0, {{148.5, 31.5}, {77.5, 21.0}}, label: 'Groceries'
+                              Button, 0x103dd9800, {{319.0, 24.0}, {36.0, 36.0}}, label: 'Add grocery'
+                            Other, 0x103dd9920, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x103dd9a40, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x103dd9b60, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x103dd9c80, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x103dd9da0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x103dd9ec0, {{0.0, -1260.0}, {375.0, 1386.0}}
+                                      Other, 0x103dd9fe0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x103dda100, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x103dda220, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x103dda340, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Cell, 0x103dda460, {{0.0, 74.0}, {375.0, 52.0}}
+                                        Other, 0x103dda580, {{0.0, 74.0}, {375.0, 52.0}}
+                                          Other, 0x103dda6a0, {{0.0, 74.0}, {375.0, 52.0}}
+                                            Other, 0x103dda7c0, {{0.0, 74.0}, {375.0, 52.0}}
+                                        Other, 0x103dda8e0, {{0.0, 74.0}, {375.0, 52.0}}
+                                          Other, 0x103ddaa00, {{0.0, 74.0}, {375.0, 52.0}}
+                                            Other, 0x103ddab20, {{0.0, 74.0}, {375.0, 52.0}}
+                                              StaticText, 0x103ddac40, {{0.0, 74.0}, {375.0, 52.0}}, label: 'Things to pick up, all in one place.'
+                                      Other, 0x103ddad60, {{0.0, 126.0}, {375.0, 74.0}}
+                                      Cell, 0x103ddae80, {{0.0, 126.0}, {375.0, 74.0}}
+                                        Other, 0x103ddafa0, {{0.0, 126.0}, {375.0, 74.0}}
+                                          Other, 0x103ddb0c0, {{0.0, 126.0}, {375.0, 74.0}}
+                                            Other, 0x103ddb1e0, {{0.0, 126.0}, {375.0, 74.0}}
+                                        Other, 0x103ddb300, {{0.0, 126.0}, {375.0, 74.0}}
+                                          Other, 0x103ddb420, {{0.0, 126.0}, {375.0, 74.0}}
+                                            Other, 0x103ddb540, {{0.0, 126.0}, {375.0, 74.0}}
+                                              Button, 0x103ddb660, {{0.0, 126.0}, {375.0, 74.0}}, label: 'Record grocery expense'
+                                                Image, 0x103ddb780, {{15.5, 154.0}, {25.0, 18.5}}, identifier: 'creditcard', label: 'Card'
+                                                StaticText, 0x103ddb8a0, {{15.5, 152.8}, {226.0, 20.5}}, label: 'Record grocery expense'
+                                                Image, 0x103ddb9c0, {{349.5, 157.0}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x103ddbae0, {{0.0, 200.0}, {375.0, 148.5}}
+                                      Other, 0x103ddbc00, {{56.0, 199.0}, {303.0, 1.0}}
+                                      Cell, 0x103ddbd20, {{0.0, 222.0}, {375.0, 40.5}}
+                                        Other, 0x103ddbe40, {{0.0, 222.0}, {375.0, 40.5}}
+                                        Other, 0x103ddbf60, {{0.0, 222.0}, {375.0, 40.5}}
+                                          Other, 0x103ddc080, {{0.0, 222.0}, {375.0, 40.5}}
+                                            Other, 0x103ddc1a0, {{0.0, 222.0}, {375.0, 40.5}}
+                                              StaticText, 0x103ddc2c0, {{0.0, 222.0}, {375.0, 40.5}}, label: 'To pick up'
+                                      Cell, 0x103ddc3e0, {{0.0, 262.5}, {375.0, 86.0}}
+                                        Other, 0x103ddc500, {{0.0, 262.5}, {375.0, 86.0}}
+                                          Other, 0x103ddc620, {{0.0, 262.5}, {375.0, 86.0}}
+                                            Other, 0x103ddc740, {{0.0, 262.5}, {375.0, 86.0}}
+                                        Other, 0x103ddc860, {{0.0, 262.5}, {375.0, 86.0}}
+                                          Other, 0x103ddc980, {{0.0, 262.5}, {375.0, 86.0}}
+                                            Other, 0x103ddcaa0, {{0.0, 262.5}, {375.0, 86.0}}
+                                              Button, 0x103ddcbc0, {{16.0, 277.5}, {291.0, 56.0}}, label: 'QA rice', value: To pick up
+                                                Image, 0x103ddcce0, {{17.5, 295.5}, {20.0, 20.0}}, identifier: 'circle', label: 'circle'
+                                                StaticText, 0x103ddce00, {{53.0, 286.5}, {56.0, 20.5}}, label: 'QA rice'
+                                                StaticText, 0x103ddcf20, {{53.0, 310.0}, {31.5, 14.5}}, label: '100 g'
+                                              Button, 0x103ddd040, {{315.0, 283.5}, {44.0, 44.0}}, label: 'More options for QA rice'
+                                                Button, 0x103ddd160, {{315.0, 283.5}, {44.0, 44.0}}
+                                                  Image, 0x103ddd280, {{329.5, 304.0}, {15.5, 3.5}}, identifier: 'ellipsis', label: 'More'
+                                      Cell, 0x103ddd3a0, {{0.0, 348.5}, {375.0, 52.0}}
+                                        Other, 0x103ddd4c0, {{0.0, 348.5}, {375.0, 52.0}}
+                                          Other, 0x103ddd5e0, {{0.0, 348.5}, {375.0, 52.0}}
+                                            Other, 0x103ddd700, {{0.0, 348.5}, {375.0, 52.0}}
+                                        Other, 0x103ddd820, {{0.0, 348.5}, {375.0, 52.0}}
+                                          Other, 0x103ddd940, {{0.0, 348.5}, {375.0, 52.0}}
+                                            Other, 0x103ddda60, {{0.0, 348.5}, {375.0, 52.0}}
+                                              Button, 0x103dddb80, {{0.0, 348.5}, {375.0, 52.0}}, label: 'Picked up · 5'
+                                                StaticText, 0x103dddca0, {{16.0, 364.2}, {98.5, 20.5}}, label: 'Picked up · 5'
+                                                Button, 0x103ddddc0, {{348.5, 367.5}, {10.5, 14.0}}
+                                                  Image, 0x103dddee0, {{348.5, 367.5}, {10.5, 14.0}}, identifier: 'collapsed'
+                                      Other, 0x103dde000, {{0.0, 348.5}, {375.0, 1386.0}}
+                                      Other, 0x103dde120, {{53.0, 347.5}, {306.0, 1.0}}
+                                      Other, 0x103dde240, {{16.0, 399.5}, {343.0, 1.0}}
+                                      Other, 0x103dde360, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x103dde480, {{369.0, 260.5}, {3.0, 320.5}}
+                                      Other, 0x103dde5a0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x103dde6c0, {{369.0, 260.5}, {3.0, 320.5}}
+                            Other, 0x103dde7e0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x103dde900, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x103ddea20, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x103ddeb40, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x103ddec60, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x103dded80, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x103ddeea0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x103ddefc0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x103ddf0e0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x103ddf200, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x103ddf320, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x103ddf440, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x103ddf560, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x103ddf680, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x103ddf7a0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x103ddf8c0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x103ddf9e0, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x103ddfb00, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x103ddfc20, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x103ddfd40, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x103ddfe60, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x103ddff80, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x103de00a0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x103de01c0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x103de02e0, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x103de0400, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x103de0520, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x103de0640, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x103de0760, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x103de0880, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x103de09a0, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x103de0ac0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x103de0be0, {{-375.0, -667.0}, {1125.0, 2001.0}}
+        Other, 0x103de0d00, {{0.0, 30.0}, {375.0, 637.0}}
+          Other, 0x103de0e20, {{0.0, 30.0}, {375.0, 637.0}}
+            Other, 0x103de0f40, {{0.0, 30.0}, {375.0, 637.0}}
+              Other, 0x103de1060, {{0.0, 30.0}, {375.0, 637.0}}
+                Other, 0x103de1180, {{0.0, 30.0}, {375.0, 637.0}}
+                  Other, 0x103de12a0, {{0.0, 30.0}, {375.0, 637.0}}
+                    NavigationBar, 0x103de13c0, {{0.0, 46.0}, {375.0, 106.0}}, identifier: 'Grocery reminder'
+                      Other, 0x103de14e0, {{20.0, 50.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                        Other, 0x103de1600, {{20.0, 50.0}, {44.0, 36.0}}
+                          Button, 0x103de1720, {{20.0, 46.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                      StaticText, 0x103de1840, {{16.0, 103.5}, {277.0, 41.0}}, label: 'Grocery reminder'
+                    Other, 0x103de1960, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x103de1a80, {{0.0, 30.0}, {375.0, 637.0}}
+                        Other, 0x103de1ba0, {{0.0, 30.0}, {375.0, 637.0}}
+                          Other, 0x103de1cc0, {{0.0, 30.0}, {375.0, 637.0}}
+                            CollectionView, 0x103de1de0, {{0.0, 30.0}, {375.0, 637.0}}
+                              Other, 0x103de1f00, {{-16.0, -1122.0}, {407.0, 1416.0}}
+                              Other, 0x103de2020, {{0.0, 30.0}, {375.0, 637.0}}
+                                Other, 0x103de2140, {{0.0, 30.0}, {375.0, 124.8}}
+                              Other, 0x103de2260, {{0.0, 30.0}, {375.0, 637.0}}
+                              Cell, 0x103de2380, {{16.0, 152.0}, {343.0, 52.0}}
+                                Other, 0x103de24a0, {{16.0, 152.0}, {343.0, 52.0}}
+                                  Other, 0x103de25c0, {{16.0, 152.0}, {343.0, 52.0}}
+                                Other, 0x103de26e0, {{16.0, 152.0}, {343.0, 52.0}}
+                                  Other, 0x103de2800, {{16.0, 152.0}, {343.0, 52.0}}
+                                    Other, 0x103de2920, {{16.0, 152.0}, {343.0, 52.0}}
+                                      StaticText, 0x103de2a40, {{16.0, 152.0}, {343.0, 52.0}}, label: 'QA rice'
+                              Cell, 0x103de2b60, {{16.0, 204.0}, {343.0, 72.5}}
+                                Other, 0x103de2c80, {{16.0, 204.0}, {343.0, 72.5}}
+                                  Other, 0x103de2da0, {{16.0, 204.0}, {343.0, 72.5}}
+                                Other, 0x103de2ec0, {{16.0, 204.0}, {343.0, 72.5}}
+                                  Other, 0x103de2fe0, {{16.0, 204.0}, {343.0, 72.5}}
+                                    Other, 0x103de3100, {{16.0, 204.0}, {343.0, 72.5}}
+                                      StaticText, 0x103de3220, {{16.0, 204.0}, {343.0, 72.5}}, label: 'Choose the date and time to be reminded about this item.'
+                              Other, 0x103de3340, {{32.0, 203.0}, {311.0, 1.0}}
+                              Other, 0x103de3460, {{-16.0, 294.0}, {407.0, 344.5}}
+                              Cell, 0x103de3580, {{16.0, 294.0}, {343.0, 40.5}}
+                                Other, 0x103de36a0, {{16.0, 294.0}, {343.0, 40.5}}
+                                Other, 0x103de37c0, {{16.0, 294.0}, {343.0, 40.5}}
+                                  Other, 0x103de38e0, {{16.0, 294.0}, {343.0, 40.5}}
+                                    Other, 0x103de3a00, {{16.0, 294.0}, {343.0, 40.5}}
+                                      StaticText, 0x103de3b20, {{16.0, 294.0}, {343.0, 40.5}}, label: 'Reminder'
+                              Cell, 0x103de3c40, {{16.0, 334.5}, {343.0, 64.5}}
+                                Other, 0x103de3d60, {{16.0, 334.5}, {343.0, 64.5}}
+                                  Other, 0x103de3e80, {{16.0, 334.5}, {343.0, 64.5}}
+                                Other, 0x103de3fa0, {{16.0, 334.5}, {343.0, 64.5}}
+                                  Other, 0x103de40c0, {{16.0, 334.5}, {343.0, 64.5}}
+                                    Other, 0x103de41e0, {{16.0, 334.5}, {343.0, 64.5}}
+                                      StaticText, 0x103de4300, {{32.0, 356.5}, {111.0, 20.5}}, label: 'Reminder date'
+                                      DatePicker, 0x103de4420, {{230.0, 349.5}, {113.0, 34.5}}
+                                        Button, 0x103de4540, {{230.0, 349.5}, {113.0, 34.5}}, label: 'Date Picker', value: Oct 7, 2026
+                              Cell, 0x103de4660, {{16.0, 399.0}, {343.0, 52.0}}
+                                Other, 0x103de4780, {{16.0, 399.0}, {343.0, 52.0}}
+                                  Other, 0x103de48a0, {{16.0, 399.0}, {343.0, 52.0}}
+                                Other, 0x103de49c0, {{16.0, 399.0}, {343.0, 52.0}}
+                                  Other, 0x103de4ae0, {{16.0, 399.0}, {343.0, 52.0}}
+                                    Other, 0x103de4c00, {{16.0, 399.0}, {343.0, 52.0}}
+                                      Switch, 0x103de4d20, {{16.0, 399.0}, {343.0, 52.0}}, label: 'Reminder enabled', value: 0
+                                        StaticText, 0x103de4e40, {{32.0, 414.8}, {138.0, 20.5}}, label: 'Reminder enabled'
+                                        Switch, 0x103de4f60, {{282.0, 411.0}, {63.0, 28.0}}, value: 0
+                              Other, 0x103de5080, {{32.0, 398.0}, {311.0, 1.0}}
+                              Cell, 0x103de51a0, {{16.0, 451.0}, {343.0, 52.0}}
+                                Other, 0x103de52c0, {{16.0, 451.0}, {343.0, 52.0}}
+                                  Other, 0x103de53e0, {{16.0, 451.0}, {343.0, 52.0}}
+                                Other, 0x103de5500, {{16.0, 451.0}, {343.0, 52.0}}
+                                  Other, 0x103de5620, {{16.0, 451.0}, {343.0, 52.0}}
+                                    Other, 0x103de5740, {{16.0, 451.0}, {343.0, 52.0}}
+                                      Switch, 0x103de5860, {{16.0, 451.0}, {343.0, 52.0}}, label: 'Remind me', value: 0, Disabled
+                                        StaticText, 0x103de5980, {{32.0, 466.8}, {85.5, 20.5}}, label: 'Remind me', Disabled
+                                        Switch, 0x103de5aa0, {{282.0, 463.0}, {63.0, 28.0}}, value: 0, Disabled
+                              Other, 0x103de5bc0, {{32.0, 450.0}, {311.0, 1.0}}
+                              Cell, 0x103de5ce0, {{16.0, 503.0}, {343.0, 52.0}}
+                                Other, 0x103de5e00, {{16.0, 503.0}, {343.0, 52.0}}
+                                  Other, 0x103de5f20, {{16.0, 503.0}, {343.0, 52.0}}
+                                Other, 0x103de6040, {{16.0, 503.0}, {343.0, 52.0}}
+                                  Other, 0x103de6160, {{16.0, 503.0}, {343.0, 52.0}}
+                                    Other, 0x103de6280, {{16.0, 503.0}, {343.0, 52.0}}
+                                      Switch, 0x103de63a0, {{16.0, 503.0}, {343.0, 52.0}}, label: 'Remind Test Sam', value: 0, Disabled
+                                        StaticText, 0x103de64c0, {{32.0, 518.8}, {132.0, 20.5}}, label: 'Remind Test Sam', Disabled
+                                        Switch, 0x103de65e0, {{282.0, 515.0}, {63.0, 28.0}}, value: 0, Disabled
+                              Other, 0x103de6700, {{32.0, 502.0}, {311.0, 1.0}}
+                              Cell, 0x103de6820, {{16.0, 555.0}, {343.0, 66.0}}
+                                Other, 0x103de6940, {{16.0, 555.0}, {343.0, 66.0}}
+                                  Other, 0x103de6a60, {{16.0, 555.0}, {343.0, 66.0}}
+                                Other, 0x103de6b80, {{16.0, 555.0}, {343.0, 66.0}}
+                                  Other, 0x103de6ca0, {{16.0, 555.0}, {343.0, 66.0}}
+                                    Other, 0x103de6dc0, {{16.0, 555.0}, {343.0, 66.0}}
+                                      StaticText, 0x103de6ee0, {{32.0, 577.8}, {158.5, 20.5}}, label: 'Time · Europe/Zurich', Disabled
+                                      DatePicker, 0x103de7000, {{256.0, 570.0}, {87.0, 36.0}}, Disabled
+                                        Button, 0x103de7120, {{256.0, 570.0}, {87.0, 36.0}}, label: 'Time Picker', value: 8:00 AM, Disabled
+                              Other, 0x103de7240, {{32.0, 554.0}, {311.0, 1.0}}
+                              Other, 0x103de7360, {{-16.0, 638.5}, {407.0, 1497.5}}
+                              Cell, 0x103de7480, {{16.0, 656.0}, {343.0, 82.0}}
+                                Other, 0x103de75a0, {{16.0, 656.0}, {343.0, 82.0}}
+                                  Other, 0x103de76c0, {{16.0, 656.0}, {343.0, 82.0}}
+                                Other, 0x103de77e0, {{16.0, 656.0}, {343.0, 82.0}}
+                                  Other, 0x103de7900, {{16.0, 656.0}, {343.0, 82.0}}
+                                    Other, 0x103de7a20, {{16.0, 656.0}, {343.0, 82.0}}
+                                      StaticText, 0x103de7b40, {{16.0, 656.0}, {343.0, 82.0}}, label: 'Each person can mute item reminders in their notification choices. Push delivery is not available in this build yet.'
+                              Other, 0x103de7c60, {{342.0, 152.0}, {30.0, 515.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                Other, 0x103de7d80, {{369.0, 155.0}, {3.0, 389.5}}
+                              Other, 0x103de7ea0, {{342.0, 152.0}, {30.0, 515.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                Other, 0x103de7fc0, {{369.0, 155.0}, {3.0, 389.5}}
+                    Other, 0x103de80e0, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x103de8200, {{0.0, 30.0}, {375.0, 637.0}}
+Path to element:
+ →Application, 0x103dd83e0, pid: 79820, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x103dd7520, pid: 79820, label: 'Nest'
+  }

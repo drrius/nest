@@ -1,0 +1,321 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-native-grocery-reminder-save-20261006/disabled-done/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-native-grocery-reminder-save-20261006/disabled-done/result.xcresult "-only-testing:NestAccessibilityTests/NativeGroceryReminderSaveTests/testFinishExactRecordedRequestThroughDone" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-native-grocery-reminder-save-20261006/disabled-done/result.xcresult
+
+2026-10-06 08:24:10.443988+0200 NestAccessibilityTests-Runner[80869:20402604] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 08:24:11.034.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 08:24:11.034.
+Test Suite 'NativeGroceryReminderSaveTests' started at 2026-10-06 08:24:11.034.
+Test Case '-[NestAccessibilityTests.NativeGroceryReminderSaveTests testFinishExactRecordedRequestThroughDone]' started.
+    t =     0.00s Start Test at 2026-10-06 08:24:11.035
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.03s     Launch ch.drrius.nest
+2026-10-06 08:24:11.128 xcodebuild[80868:20402434] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 08:24:11.128 xcodebuild[80868:20402434] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.70s         Setting up automation session
+    t =     1.48s         Wait for ch.drrius.nest to idle
+    t =     2.69s Waiting 30.0s for TabBar (First Match) to exist
+    t =     3.74s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     3.75s         Checking existence of `TabBar (First Match)`
+    t =     3.78s Tap "Today" Button
+    t =     3.78s     Wait for ch.drrius.nest to idle
+    t =     3.79s     Find the "Today" Button
+    t =     3.83s     Check for interrupting elements affecting "Today" Button
+    t =     3.87s     Synthesize event
+    t =     4.16s     Wait for ch.drrius.nest to idle
+    t =     4.94s Tap "Profile and preferences" Button
+    t =     4.94s     Wait for ch.drrius.nest to idle
+    t =     4.95s     Find the "Profile and preferences" Button
+    t =     5.00s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     5.03s     Synthesize event
+    t =     5.33s     Wait for ch.drrius.nest to idle
+    t =     5.75s Waiting 15.0s for "Test Alex" StaticText to exist
+    t =     6.82s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Alex" StaticText`
+    t =     6.82s         Checking existence of `"Test Alex" StaticText`
+    t =     6.91s Tap Button (Element at index 0)
+    t =     6.91s     Wait for ch.drrius.nest to idle
+    t =     6.91s     Find the Button (Element at index 0)
+    t =     6.95s     Check for interrupting elements affecting "BackButton" Button
+    t =     7.00s     Synthesize event
+    t =     7.29s     Wait for ch.drrius.nest to idle
+    t =     8.12s Checking existence of `"Grocery reminder" NavigationBar`
+    t =     8.16s Get all elements bound by index for: Descendants matching type CollectionView
+    t =     8.19s Get all elements bound by index for: Descendants matching type ScrollView
+    t =     8.21s Find the ScrollView (Element at index 0)
+    t =     8.25s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =     8.27s Find the TabBar (First Match)
+    t =     8.29s Find the Target Application 'ch.drrius.nest'
+    t =     8.31s Find the Target Application 'ch.drrius.nest'
+    t =     8.32s Checking existence of `Button (First Match)`
+    t =     8.37s Find the Button (First Match)
+    t =     8.42s Find the "Groceries, 1 thing to pick up" Button
+    t =     8.47s Find the Target Application 'ch.drrius.nest'
+    t =     8.49s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.28] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =     8.49s     Wait for ch.drrius.nest to idle
+    t =     8.49s     Find the Target Application 'ch.drrius.nest'
+    t =     8.51s     Check for interrupting elements affecting "Nest" Application
+    t =     8.54s     Synthesize event
+    t =     8.54s         Find the Target Application 'ch.drrius.nest'
+    t =     8.56s         Find the Target Application 'ch.drrius.nest'
+    t =     8.58s         Find the Target Application 'ch.drrius.nest'
+    t =     8.60s         Find the Target Application 'ch.drrius.nest'
+    t =     8.62s         Find the Target Application 'ch.drrius.nest'
+    t =    10.18s     Wait for ch.drrius.nest to idle
+    t =    10.18s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    10.22s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    10.24s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    10.27s Find the ScrollView (Element at index 0)
+    t =    10.31s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    10.33s Find the TabBar (First Match)
+    t =    10.34s Find the Target Application 'ch.drrius.nest'
+    t =    10.36s Find the Target Application 'ch.drrius.nest'
+    t =    10.39s Checking existence of `"Groceries, 1 thing to pick up" Button`
+    t =    10.43s Find the "Groceries, 1 thing to pick up" Button
+    t =    10.48s Find the "Groceries, 1 thing to pick up" Button
+    t =    10.53s Find the Target Application 'ch.drrius.nest'
+    t =    10.55s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.28] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    10.55s     Wait for ch.drrius.nest to idle
+    t =    10.55s     Find the Target Application 'ch.drrius.nest'
+    t =    10.57s     Check for interrupting elements affecting "Nest" Application
+    t =    10.60s     Synthesize event
+    t =    10.60s         Find the Target Application 'ch.drrius.nest'
+    t =    10.62s         Find the Target Application 'ch.drrius.nest'
+    t =    10.64s         Find the Target Application 'ch.drrius.nest'
+    t =    10.66s         Find the Target Application 'ch.drrius.nest'
+    t =    10.68s         Find the Target Application 'ch.drrius.nest'
+    t =    12.24s     Wait for ch.drrius.nest to idle
+    t =    12.25s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    12.29s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    12.32s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    12.34s Find the ScrollView (Element at index 0)
+    t =    12.37s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    12.40s Find the TabBar (First Match)
+    t =    12.41s Find the Target Application 'ch.drrius.nest'
+    t =    12.43s Find the Target Application 'ch.drrius.nest'
+    t =    12.45s Checking existence of `"Groceries, 1 thing to pick up" Button`
+    t =    12.49s Find the "Groceries, 1 thing to pick up" Button
+    t =    12.54s Find the "Groceries, 1 thing to pick up" Button
+    t =    12.60s Find the Target Application 'ch.drrius.nest'
+    t =    12.62s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.45] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    12.62s     Wait for ch.drrius.nest to idle
+    t =    12.62s     Find the Target Application 'ch.drrius.nest'
+    t =    12.64s     Check for interrupting elements affecting "Nest" Application
+    t =    12.67s     Synthesize event
+    t =    12.67s         Find the Target Application 'ch.drrius.nest'
+    t =    12.69s         Find the Target Application 'ch.drrius.nest'
+    t =    12.71s         Find the Target Application 'ch.drrius.nest'
+    t =    12.73s         Find the Target Application 'ch.drrius.nest'
+    t =    12.75s         Find the Target Application 'ch.drrius.nest'
+    t =    13.86s     Wait for ch.drrius.nest to idle
+    t =    13.86s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    13.90s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    13.92s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    13.94s Find the ScrollView (Element at index 0)
+    t =    13.98s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    14.00s Find the TabBar (First Match)
+    t =    14.02s Find the Target Application 'ch.drrius.nest'
+    t =    14.03s Find the Target Application 'ch.drrius.nest'
+    t =    14.06s Checking existence of `"Groceries, 1 thing to pick up" Button`
+    t =    14.11s Find the "Groceries, 1 thing to pick up" Button
+    t =    14.16s Find the "Groceries, 1 thing to pick up" Button
+    t =    14.21s Added attachment named 'Measured native reminder control viewport'
+    t =    14.21s Tap "Groceries, 1 thing to pick up" Button
+    t =    14.21s     Wait for ch.drrius.nest to idle
+    t =    14.21s     Find the "Groceries, 1 thing to pick up" Button
+    t =    14.26s     Check for interrupting elements affecting "Groceries, 1 thing to pick up" Button
+    t =    14.29s     Synthesize event
+    t =    14.58s     Wait for ch.drrius.nest to idle
+    t =    14.98s Waiting 15.0s for "Groceries" NavigationBar to exist
+    t =    16.05s     Checking `Expect predicate `existsNoRetry == 1` for object "Groceries" NavigationBar`
+    t =    16.05s         Checking existence of `"Groceries" NavigationBar`
+    t =    16.13s Get number of matches for: Elements matching predicate '"QA rice" IN identifiers'
+    t =    16.17s Find the "QA rice" Button
+    t =    16.21s Tap "More options for QA rice" Button
+    t =    16.21s     Wait for ch.drrius.nest to idle
+    t =    16.21s     Find the "More options for QA rice" Button
+    t =    16.25s     Check for interrupting elements affecting "More options for QA rice" Button
+    t =    16.29s     Synthesize event
+<unknown>:0: warning: -[NestAccessibilityTests.NativeGroceryReminderSaveTests testFinishExactRecordedRequestThroughDone] : Adding '_UIReparentingView' as a subview of UIHostingController.view is not supported and may result in a broken view hierarchy. Add your view above UIHostingController.view in a common superview or insert it into your SwiftUI content in a UIViewRepresentable instead.
+    t =    16.58s     Wait for ch.drrius.nest to idle
+    t =    17.69s Waiting 15.0s for "Reminder choices" Button to exist
+    t =    18.77s     Checking `Expect predicate `existsNoRetry == 1` for object "Reminder choices" Button`
+    t =    18.77s         Checking existence of `"Reminder choices" Button`
+    t =    18.84s Tap "Reminder choices" Button
+    t =    18.84s     Wait for ch.drrius.nest to idle
+    t =    18.85s     Find the "Reminder choices" Button
+    t =    18.89s     Check for interrupting elements affecting "bell" Button
+    t =    18.94s     Synthesize event
+    t =    19.23s     Wait for ch.drrius.nest to idle
+    t =    21.69s Checking `Expect predicate `enabled == 1` for object "Back" Button`
+    t =    21.70s     Find the "Back" Button
+    t =    21.79s Checking existence of `"Could not load reminder choices. Connect and try again." StaticText`
+    t =    21.86s Waiting 30.0s for "Reminder choices saved. This does not confirm delivery." StaticText to exist
+    t =    22.93s     Checking `Expect predicate `existsNoRetry == 1` for object "Reminder choices saved. This does not confirm delivery." StaticText`
+    t =    22.94s         Checking existence of `"Reminder choices saved. This does not confirm delivery." StaticText`
+    t =    23.04s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    23.12s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    23.17s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    23.23s Find the CollectionView (Element at index 0)
+    t =    23.31s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    23.36s Find the "Grocery reminder" NavigationBar
+    t =    23.43s Find the Target Application 'ch.drrius.nest'
+    t =    23.48s Find the Target Application 'ch.drrius.nest'
+    t =    23.52s Checking existence of `"Reminder choices saved. This does not confirm delivery." StaticText`
+    t =    23.59s Find the "Reminder choices saved. This does not confirm delivery." StaticText
+    t =    23.65s Find the "Reminder choices saved. This does not confirm delivery." StaticText
+    t =    23.72s Added attachment named 'Measured native reminder control viewport'
+    t =    23.73s Checking existence of `"2026-10-07 · 08:00 Europe/Zurich" StaticText`
+    t =    23.79s Checking existence of `"For you" StaticText`
+    t =    23.85s Checking existence of `"For Test Sam" StaticText`
+    t =    23.91s Checking existence of `"Done" Button`
+    t =    23.97s Find the Target Application 'ch.drrius.nest'
+    t =    24.06s Added attachment named 'Exact recorded local request before normal Done'
+    t =    24.06s Requesting snapshot of accessibility hierarchy for app with pid 80882
+    t =    24.43s Requesting snapshot of accessibility hierarchy for app with pid 80882
+    t =    24.52s Added attachment named 'Exact recorded local request before normal Done accessibility tree'
+    t =    24.52s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    24.58s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    24.63s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    24.69s Find the CollectionView (Element at index 0)
+    t =    24.77s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    24.82s Find the "Grocery reminder" NavigationBar
+    t =    24.89s Find the Target Application 'ch.drrius.nest'
+    t =    24.94s Find the Target Application 'ch.drrius.nest'
+    t =    24.98s Checking existence of `"Done" Button`
+    t =    25.04s Find the "Done" Button
+    t =    25.11s Find the "Done" Button
+    t =    25.18s Added attachment named 'Measured native reminder control viewport'
+    t =    25.18s Find the "Done" Button
+    t =    25.24s Find the "Done" Button
+    t =    25.31s Tap "Done" Button
+    t =    25.31s     Wait for ch.drrius.nest to idle
+    t =    25.31s     Find the "Done" Button
+    t =    25.38s     Check for interrupting elements affecting "Done" Button
+    t =    25.44s     Synthesize event
+    t =    25.73s     Wait for ch.drrius.nest to idle
+    t =    27.07s Checking `Expect predicate `exists == 0` for object "Done" Button`
+    t =    27.07s     Checking existence of `"Done" Button`
+    t =    27.17s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    27.23s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    27.28s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    27.34s Find the CollectionView (Element at index 0)
+    t =    27.42s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    27.47s Find the "Grocery reminder" NavigationBar
+    t =    27.54s Find the Target Application 'ch.drrius.nest'
+    t =    27.58s Find the Target Application 'ch.drrius.nest'
+    t =    27.63s Checking existence of `"Reminder enabled" Switch`
+    t =    27.69s Find the "Reminder enabled" Switch
+    t =    27.75s Find the "Reminder enabled" Switch
+    t =    27.83s Added attachment named 'Measured native reminder control viewport'
+    t =    27.83s Find the "Reminder enabled" Switch
+    t =    27.89s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    27.95s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    28.00s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    28.06s Find the CollectionView (Element at index 0)
+    t =    28.13s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    28.19s Find the "Grocery reminder" NavigationBar
+    t =    28.26s Find the Target Application 'ch.drrius.nest'
+    t =    28.30s Find the Target Application 'ch.drrius.nest'
+    t =    28.35s Checking existence of `"Remind me" Switch`
+    t =    28.41s Find the "Remind me" Switch
+    t =    28.47s Find the "Remind me" Switch
+    t =    28.54s Added attachment named 'Measured native reminder control viewport'
+    t =    28.55s Find the "Remind me" Switch
+    t =    28.61s Find the "Remind me" Switch
+    t =    28.67s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    28.73s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    28.79s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    28.84s Find the CollectionView (Element at index 0)
+    t =    28.92s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    28.98s Find the "Grocery reminder" NavigationBar
+    t =    29.04s Find the Target Application 'ch.drrius.nest'
+    t =    29.09s Find the Target Application 'ch.drrius.nest'
+    t =    29.13s Checking existence of `"Remind Test Sam" Switch`
+    t =    29.19s Find the "Remind Test Sam" Switch
+    t =    29.26s Find the "Remind Test Sam" Switch
+    t =    29.33s Added attachment named 'Measured native reminder control viewport'
+    t =    29.33s Find the "Remind Test Sam" Switch
+    t =    29.39s Find the "Remind Test Sam" Switch
+    t =    29.45s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    29.51s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    29.57s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    29.62s Find the CollectionView (Element at index 0)
+    t =    29.70s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    29.76s Find the "Grocery reminder" NavigationBar
+    t =    29.82s Find the Target Application 'ch.drrius.nest'
+    t =    29.87s Find the Target Application 'ch.drrius.nest'
+    t =    29.91s Checking existence of `"Date Picker" Button`
+    t =    30.00s Find the "Date Picker" Button
+    t =    30.10s Find the "Date Picker" Button
+    t =    30.20s Added attachment named 'Measured native reminder control viewport'
+    t =    30.20s Find the "Date Picker" Button
+    t =    30.30s Checking existence of `"Grocery reminder" NavigationBar`
+    t =    30.36s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    30.42s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    30.49s Find the CollectionView (Element at index 0)
+    t =    30.57s Find the CollectionView at {{0.0, 30.0}, {375.0, 637.0}}
+    t =    30.63s Find the "Grocery reminder" NavigationBar
+    t =    30.70s Find the Target Application 'ch.drrius.nest'
+    t =    30.75s Find the Target Application 'ch.drrius.nest'
+    t =    30.79s Checking existence of `"Time Picker" Button`
+    t =    30.85s Find the "Time Picker" Button
+    t =    30.92s Find the "Time Picker" Button
+    t =    30.99s Added attachment named 'Measured native reminder control viewport'
+    t =    30.99s Find the "Time Picker" Button
+    t =    31.05s Find the Target Application 'ch.drrius.nest'
+    t =    31.14s Added attachment named 'Done clears the exact local request and reloads retained canonical reminder'
+    t =    31.14s Requesting snapshot of accessibility hierarchy for app with pid 80882
+    t =    31.50s Requesting snapshot of accessibility hierarchy for app with pid 80882
+    t =    31.59s Added attachment named 'Done clears the exact local request and reloads retained canonical reminder accessibility tree'
+    t =    31.59s Tap "Back" Button
+    t =    31.59s     Wait for ch.drrius.nest to idle
+    t =    31.60s     Find the "Back" Button
+    t =    31.66s     Check for interrupting elements affecting "chevron.left" Button
+    t =    31.72s     Synthesize event
+    t =    32.02s     Wait for ch.drrius.nest to idle
+    t =    32.84s Waiting 15.0s for "Groceries" NavigationBar to exist
+    t =    33.90s     Checking `Expect predicate `existsNoRetry == 1` for object "Groceries" NavigationBar`
+    t =    33.90s         Checking existence of `"Groceries" NavigationBar`
+    t =    33.97s Find the "QA rice" Button
+    t =    34.01s Tap Button (Element at index 0)
+    t =    34.01s     Wait for ch.drrius.nest to idle
+    t =    34.02s     Find the Button (Element at index 0)
+    t =    34.05s     Check for interrupting elements affecting "BackButton" Button
+    t =    34.09s     Synthesize event
+    t =    34.40s     Wait for ch.drrius.nest to idle
+    t =    35.24s Tap "Today" Button
+    t =    35.24s     Wait for ch.drrius.nest to idle
+    t =    35.25s     Find the "Today" Button
+    t =    35.29s     Check for interrupting elements affecting "house" Button
+    t =    35.32s     Synthesize event
+    t =    35.63s     Wait for ch.drrius.nest to idle
+    t =    36.41s Find the "Today" StaticText
+    t =    36.47s Find the "Today" StaticText
+    t =    36.50s Find the "Me + shared" Button
+    t =    36.53s Find the Target Application 'ch.drrius.nest'
+    t =    36.59s Added attachment named 'Restored Today top original filter after normal Done'
+    t =    36.59s Requesting snapshot of accessibility hierarchy for app with pid 80882
+    t =    36.75s Requesting snapshot of accessibility hierarchy for app with pid 80882
+    t =    36.79s Added attachment named 'Restored Today top original filter after normal Done accessibility tree'
+    t =    36.79s Tear Down
+Test Case '-[NestAccessibilityTests.NativeGroceryReminderSaveTests testFinishExactRecordedRequestThroughDone]' passed (37.077 seconds).
+Test Suite 'NativeGroceryReminderSaveTests' passed at 2026-10-06 08:24:48.113.
+	 Executed 1 test, with 0 failures (0 unexpected) in 37.077 (37.078) seconds
+Test Suite 'NestAccessibilityTests.xctest' passed at 2026-10-06 08:24:48.114.
+	 Executed 1 test, with 0 failures (0 unexpected) in 37.077 (37.079) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 08:24:48.114.
+	 Executed 1 test, with 0 failures (0 unexpected) in 37.077 (37.080) seconds
+2026-10-06 08:25:00.312 xcodebuild[80868:20402434] [MT] IDETestOperationsObserverDebug: 50.611 elapsed -- Testing started completed.
+2026-10-06 08:25:00.312 xcodebuild[80868:20402434] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 08:25:00.313 xcodebuild[80868:20402434] [MT] IDETestOperationsObserverDebug: 50.611 sec, +50.611 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-native-grocery-reminder-save-20261006/disabled-done/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

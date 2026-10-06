@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-native-grocery-reminder-save-20261006/disabled-sam/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-native-grocery-reminder-save-20261006/disabled-sam/result.xcresult "-only-testing:NestAppTests/HostedGroceryReminderReceiptReadTests/testReadOwnedCanonicalAndOwnerImmutableReceipts" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-native-grocery-reminder-save-20261006/disabled-sam/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 08:24:06.510.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 08:24:06.510.
+Test Suite 'HostedGroceryReminderReceiptReadTests' started at 2026-10-06 08:24:06.510.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptReadTests testReadOwnedCanonicalAndOwnerImmutableReceipts]' started.
+Test Case '-[NestAppTests.HostedGroceryReminderReceiptReadTests testReadOwnedCanonicalAndOwnerImmutableReceipts]' passed (1.804 seconds).
+Test Suite 'HostedGroceryReminderReceiptReadTests' passed at 2026-10-06 08:24:08.315.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.804 (1.805) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 08:24:08.315.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.804 (1.805) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 08:24:08.315.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.804 (1.806) seconds
+2026-10-06 08:24:08.642 xcodebuild[80857:20402079] [MT] IDETestOperationsObserverDebug: 3.871 elapsed -- Testing started completed.
+2026-10-06 08:24:08.642 xcodebuild[80857:20402079] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 08:24:08.642 xcodebuild[80857:20402079] [MT] IDETestOperationsObserverDebug: 3.871 sec, +3.871 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-native-grocery-reminder-save-20261006/disabled-sam/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

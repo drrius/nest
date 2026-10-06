@@ -1,0 +1,9 @@
+{
+  "maximumSavePOSTs": 2,
+  "saveMethodInvocations": ["enabled", "disabled"],
+  "recordedOperations": [
+    "E47D19D1-9C1B-47FD-BBA3-A81AF12114FC",
+    "E1596AA1-1812-4396-840D-2E9282BAEC73"
+  ],
+  "automaticReplays": 0
+}
