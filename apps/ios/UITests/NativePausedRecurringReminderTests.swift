@@ -51,8 +51,8 @@ final class NativePausedRecurringReminderTests: XCTestCase {
         recurring.tap()
         XCTAssertTrue(app.navigationBars["Recurring expenses"].waitForExistence(timeout: 15))
         let row = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", title)).firstMatch
-        XCTAssertTrue(row.waitForExistence(timeout: 30))
         reveal(row, in: app)
+        XCTAssertTrue(row.waitForExistence(timeout: 30))
         XCTAssertTrue(row.isEnabled && row.isHittable)
         row.tap()
         XCTAssertTrue(app.navigationBars["Recurring expense"].waitForExistence(timeout: 15))
