@@ -14,3 +14,14 @@ struct QuietTabContentInsets: ViewModifier {
             .padding(.bottom, QuietTabLayout.sectionSpacing)
     }
 }
+
+struct QuietTabScrollEdges: ViewModifier {
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 26, *) {
+            content.scrollEdgeEffectHidden(true, for: .bottom)
+        } else {
+            content
+        }
+    }
+}

@@ -233,6 +233,15 @@ native CI 37543536999 remains running. No new TestFlight build, inference,
 production action, financial write or merge occurs. M5 remains open for its broader
 portion/partner/live-plan/phone criteria.
 
+A fresh unfiltered Calendar baseline on retained `a4739172` UI products reproduces
+the two exact contrast findings and frames, with no font report. Both original
+scopes, 64 empty journals, settings and local semantics restore. The new candidate
+uses Apple's distinct `scrollEdgeEffectHidden` API on the four root scroll views,
+guarded to iOS 26; it removes the bottom effect entirely instead of changing its
+style. Palette, native tabs, header/content spacing and audit handling are
+unchanged. Configured Mac formatting and source limits pass. Fresh candidate
+compilation/execution is pending; no contrast finding is closed.
+
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
 and two repeated partner-heading font reports), down from the dated 19-report

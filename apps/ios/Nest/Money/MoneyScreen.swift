@@ -70,6 +70,7 @@ struct MoneyScreen: View {
         .foregroundStyle(QuietPalette.ink)
         .navigationTitle("")
         .background(QuietPalette.background)
+        .modifier(QuietTabScrollEdges())
         .task { await load() }
         .refreshable { await load() }
     }

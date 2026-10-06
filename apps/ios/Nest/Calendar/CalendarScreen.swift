@@ -35,6 +35,7 @@ struct CalendarScreen: View {
         }
         .font(.body)
         .background(QuietPalette.background)
+        .modifier(QuietTabScrollEdges())
         .navigationTitle("")
         .sheet(isPresented: $picking) { calendarPicker }
         .task { model.refresh(day: day) }

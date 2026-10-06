@@ -81,6 +81,7 @@ struct TodayScreen: View {
             }
         }
         .background(QuietPalette.background)
+        .modifier(QuietTabScrollEdges())
         .refreshable {
             todayRefresh = UUID()
             await model.refreshToday()

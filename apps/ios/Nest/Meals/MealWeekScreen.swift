@@ -111,6 +111,7 @@ struct MealWeekScreen: View {
             .modifier(QuietTabContentInsets())
         }
         .background(QuietPalette.background)
+        .modifier(QuietTabScrollEdges())
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
         .sheet(item: $addTarget) { target in
