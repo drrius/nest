@@ -33,7 +33,6 @@ struct CalendarScreen: View {
             }
             .modifier(QuietTabContentInsets())
         }
-        .modifier(QuietTabScrollEdges())
         .font(.body)
         .background(QuietPalette.background)
         .navigationTitle("")

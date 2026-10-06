@@ -232,7 +232,7 @@ CLI-created migration20261006160244 enables deny-all RLS on ten internal receipt
 
 ## Bottom scroll-edge contrast experiment
 
-Earlier color/tab-background attempts assumed palette choices caused the failures. The retained census and Today/Meals viewport moves instead associate bound reports with the bottom transition. A shared iOS26+ hard bottom scroll edge is now prepared across the four tab roots, with the existing iOS18 fallback. It follows the native scroll-edge API; colors, padding, fonts and audit filters are unchanged. Strict Mac formatting and source limits pass. A same-state baseline/candidate unfiltered Today audit is planned; compilation, rendered results and accessibility improvement remain unproven. The19 original findings, including font/unbound cases, remain open.
+The iOS26 hard-bottom-edge experiment at e528ab32 compiles in a fresh signed simulator build but does not improve the unfiltered Today audit. Baseline69971384 fails in23.761s and candidatee528ab32 fails in21.396s with the same two bound contrast findings, Open meal plan and On your calendar; neither has anonymous or noncontrast findings in this bounded viewport. No conditional header test runs. All four paired authenticated reads pass and preserve the complete62-entry history/eight rules/immutable receipts; original scopes,64 empty journals, initial large/light settings and foreground Today are restored. The five experimental shipping edits are reverted. The previously verified shared header/20pt side/14pt top spacing remains in build19. This experiment does not close the full19-finding audit or phone acceptance. [Comparison evidence](../evidence/2026-10-06/bottom-scroll-edge-comparison/README.md).
 
 ## Saved reminder wording
 

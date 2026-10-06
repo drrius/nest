@@ -80,7 +80,6 @@ struct TodayScreen: View {
                 ContentUnavailableView("Could not read today's date", systemImage: "calendar")
             }
         }
-        .modifier(QuietTabScrollEdges())
         .background(QuietPalette.background)
         .refreshable {
             todayRefresh = UUID()
