@@ -169,3 +169,33 @@ New-chore Back now protects edited unsent drafts with a native Discard draft?/Ke
 ## Fresh recipe write checks
 
 New recipe, edit and archive now require a fresh authorized library revision before staging; edit/archive also compare the exact displayed recipe. New-recipe refresh preserves typed input after refusal, and its discard uses the short native alert. Thirteen new native model cases cover unavailable/stale reads, exact content changes, account switches during reads and fresh-context recovery; nine existing lost-reply/account/conflict cases remain. Edit Refresh preserves typed changes when the recipe itself is unchanged and refuses automatic rebasing over a changed recipe. Source limits/diff checks pass; initial29ee1515 Swift format/Foundation and routine CI pass; its native step was cancelled by the source update, so it proves no native pass/failure. Exact8e711d65 passes Nest37357189945/SwiftUI37357190102; recipe-toolbar source606f77b5 also passes Nest37361685211/SwiftUI37361685407:496 Foundation/41 skips,438 signed-app/16 skips, zero failures, format/limits/signing and UI compilation. The Mac is reachable. Actual library navigation passes; edited-draft checks expose36pt toolbar controls, then floating-point and offscreen-field observer failures. The shipping toolbar is now44pt. Corrected normal/max preservation/discard checks pass (six typed fields/default servings, visible complete alerts, Today,64 empty journals and restored settings); all four earlier target/observer failures remain recorded. Rendered refusal/refresh remains unverified; the later recipe/placement/move/ingredient evidence above verifies the bounded manual week. The original read-only [manual-week baseline](../evidence/2026-10-05/swiftui-native-manual-week/README.md) reserved an empty19 October week before owned creation and retained original row hashes/identities. No hosted write, model call, beta, purchase, production or merge occurred at that preflight checkpoint. [Verification scope](../evidence/2026-10-05/swiftui-recipe-write-preflight/README.md).
+
+## Earlier private-memory consent
+
+Original save/edit/decline/removal and approval/receipt RLS checkpoints remain in [the 5 October history](progress-history-2026-10-05.md).
+
+The fresh private-memory consent fix, expiry recovery, passing CI and restored native
+journeys are preserved in [the late history](progress-history-2026-10-05-late.md#fresh-private-memory-consent-and-terminal-recovery).
+
+The retained shopping audit is preserved in [the dated history](progress-history-2026-10-05.md#retained-shopping-authorization).
+
+The bounded cooking-editor keyboard fix and complete native/routine CI are
+preserved in [the dated history](progress-history-2026-10-05.md#cooking-notes-keyboard-readability).
+
+The keyboard-safe private composer and exact full native/routine CI are preserved
+in [the dated history](progress-history-2026-10-05.md#private-composer-keyboard).
+
+The92-case retained calendar-sync audit, hosted read-only matches and passing
+routine CI are preserved in [the dated history](progress-history-2026-10-05.md#retained-calendar-sync-authorization).
+The older count is superseded by the unique inventory below; broader M9 stays open.
+
+The98-case retained financial-context/opening audit and passing source CI are
+preserved in [the dated history](progress-history-2026-10-05.md#retained-financial-context-and-opening-balances).
+Its inventory count is superseded below; full acceptance remains open.
+
+The144-case retained recurring audit and passing CI are [in the dated history](progress-history-2026-10-05.md#retained-recurring-command-boundaries).
+
+The retained notification privacy fix and127-case verification with passing source CI are [in the dated history](progress-history-2026-10-05.md#retained-notification-privacy-and-device-boundaries).
+
+The130-case retained excluded-feature check and passing source CI are
+[in the dated history](progress-history-2026-10-05.md#retained-excluded-feature-command-boundaries).

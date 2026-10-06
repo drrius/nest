@@ -43,6 +43,16 @@ These native readers are in **build18**. On build18, open Money → Recurring ex
 
 For those fixtures, each partner should see the same retained rules and original drafts. A later rule edit must not replace the draft's original amount, payer, split or date. Pending, posted and dismissed states stay distinct; a linked entry opens authorized financial history. Unsupported values or status/entry discrepancies should show review messages. Opening, returning, refreshing and reading later pages must create no expense or automatic mandate. Disconnect and retry online; failed reads must not appear as a successful empty history. Record actual build/result. On build18 with safe populated fixtures, review one pending recurring unlinked draft for dismissal. Merely opening or refreshing must change nothing; explicit dismissal must retain the history, create no expense/payment, leave balances unchanged and not pause/cancel the old rule. Review a private dismissal proposal separately; only its owner may open it. A changed or expired proposal may be declined but cannot confirm changed terms. If interrupted, recover the exact receipt or explicitly cancel/withdraw; do not delete uncertain intent. A previously recorded dismissal wins over later cancellation. These implemented dismissal paths still need actual rendered/two-phone results. Confirmation, opt-in and their private decisions now have implementation and bounded verification, with hosted/phone acceptance still required.
 
+## Reminder touch controls
+
+On the identified candidate, open an existing chore through Manage chores and
+Scheduled chores, then Reminder choices. In an unsaved draft, enable the reminder
+and try incrementing and decrementing Days before near the top and bottom edges
+of the controls. Check normal and larger text sizes. Each tap should change the
+value once. Discard the draft through Back; do not Save during this touch check.
+Report missed or double taps. Simulator bounds and automation do not establish
+physical-phone touch or VoiceOver acceptance.
+
 ## Separate unfinished gates
 
 Live AI is disabled while Gateway eligibility requires a valid card; no purchase is authorized. Notification delivery is disabled pending APNs provider setup and physical delivery verification. A successful permission screen or simulated notification does not satisfy that gate. Complete both-member weekly/approval/offline-conflict/calendar journeys, exact migration reconciliation and owner design acceptance remain required. No result here authorizes production cutover or an App Store release.

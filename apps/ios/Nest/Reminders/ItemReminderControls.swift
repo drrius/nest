@@ -29,6 +29,7 @@ struct ItemReminderControls: View {
             .environment(\.timeZone, ReminderClock.zone)
             if showsLeadTime {
                 Stepper("Days before: \(settings.daysBefore)", value: $settings.daysBefore, in: 0...730)
+                    .controlSize(.large)
             }
         }.disabled(!settings.enabled)
         if settings.enabled && settings.recipientIds.isEmpty {

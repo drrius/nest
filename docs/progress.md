@@ -220,6 +220,14 @@ passes end to end; maximum-text coverage combines its prefix with a corrected su
 Both canonical reads, original scopes and 64 empty journals remain unchanged.
 [Evidence](../evidence/2026-10-06/swiftui-chore-reminder-navigation/README.md). Stepper touch area, phones and full M8 remain open; no Save occurs.
 
+## Reminder Stepper touch area
+
+The first normal native 44-point edge probe fails: its whole probe area fits in
+the row and viewport, but Increment at centerY minus 21 leaves the value at zero.
+Real before/after GETs agree; journals and original scopes remain unchanged.
+The shared Stepper larger-size experiment is pending native verification.
+Explicit draft discard was not observed in the failed run; physical touch remains open.
+
 ## Earlier native settlement verification
 
 The partial/full settlement and stale-review evidence is preserved in [dated history](progress-history-2026-10-06.md#native-partialfull-settlement-and-stale-review). Its exact retained financial results do not close phone, private-approval or concurrency acceptance.
@@ -337,35 +345,11 @@ The verified preference controls and exact CI evidence are retained in the
 and [native evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
 Whole cooking-keyboard readability and broader accessibility/phone/live-AI gates stay open.
 
-## Earlier private-memory consent
+## Earlier consent and keyboard checkpoints
 
-Original save/edit/decline/removal and approval/receipt RLS checkpoints remain in [the 5 October history](progress-history-2026-10-05.md).
-
-The fresh private-memory consent fix, expiry recovery, passing CI and restored native
-journeys are preserved in [the late history](progress-history-2026-10-05-late.md#fresh-private-memory-consent-and-terminal-recovery).
-
-The retained shopping audit is preserved in [the dated history](progress-history-2026-10-05.md#retained-shopping-authorization).
-
-The bounded cooking-editor keyboard fix and complete native/routine CI are
-preserved in [the dated history](progress-history-2026-10-05.md#cooking-notes-keyboard-readability).
-
-The keyboard-safe private composer and exact full native/routine CI are preserved
-in [the dated history](progress-history-2026-10-05.md#private-composer-keyboard).
-
-The92-case retained calendar-sync audit, hosted read-only matches and passing
-routine CI are preserved in [the dated history](progress-history-2026-10-05.md#retained-calendar-sync-authorization).
-The older count is superseded by the unique inventory below; broader M9 stays open.
-
-The98-case retained financial-context/opening audit and passing source CI are
-preserved in [the dated history](progress-history-2026-10-05.md#retained-financial-context-and-opening-balances).
-Its inventory count is superseded below; full acceptance remains open.
-
-The144-case retained recurring audit and passing CI are [in the dated history](progress-history-2026-10-05.md#retained-recurring-command-boundaries).
-
-The retained notification privacy fix and127-case verification with passing source CI are [in the dated history](progress-history-2026-10-05.md#retained-notification-privacy-and-device-boundaries).
-
-The130-case retained excluded-feature check and passing source CI are
-[in the dated history](progress-history-2026-10-05.md#retained-excluded-feature-command-boundaries).
+Private-memory, shopping authorization, cooking-keyboard and hosted meal/setup
+checkpoints remain in [dated history](progress-history-2026-10-06.md#earlier-private-memory-consent).
+Their exact privacy and native evidence does not close full phone or live-AI acceptance.
 
 ## Retained public invoker reads and option revisions
 
