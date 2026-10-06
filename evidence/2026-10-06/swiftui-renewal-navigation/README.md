@@ -22,8 +22,10 @@ in rounding-observer, with its actual measurements and failure.
 The corrected normal check then stops while positioning disabled Save renewal.
 Its interrupted result is retained in scroll-observer. Five read-only modal census methods pass. Save ends at647pt inside the actual
 667pt collection viewport; the observer instead imposed643pt. It now measures
-the visible scroll container. Corrected interactions run on controller40064;
-their result and newer observer CI are pending. No extra UI/layout change is made.
+the visible scroll container. The corrected normal untouched-Cancel method passes. The edited check stops
+before typing at its title-field lookup; the interrupted result remains in
+input-observer. A read-only input-type census runs on controller41783. Edited
+and maximum-size acceptance are not yet claimed.
 No post-fix journey, phone pass, renewal mutation or notification delivery pass
 is claimed at this checkpoint. The earlier baseline controller's successful
 terminal state means its read-only diagnostic/restoration completed; its two
@@ -41,4 +43,7 @@ explicit skips and443 signed-app/20 explicit skips, zero failures, strict
 format/source limits/signing and guarded UI compilation. These CI results do not
 execute the hosted opt-in interactions. Both diagnostics and interrupted readers
 remain retained. The census finishes on Today with canonical reads, roles/settings
-and64 empty journals restored. Its screenshot is retained but not yet inspected.
+and64 empty journals restored. Its screenshot was inspected. It shows Cancel wrapping as Can-cel at ordinary
+text size. Cancel and Done now preserve intrinsic text width within their44pt
+targets; this visual correction has formatting/source-limit verification, with
+rendered confirmation and CI still pending.

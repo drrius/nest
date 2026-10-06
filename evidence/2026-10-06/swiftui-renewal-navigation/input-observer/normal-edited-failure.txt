@@ -1,0 +1,5 @@
+    t =   186.09s     Synthesize event
+    t =   186.58s     Wait for ch.drrius.nest to idle
+/tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift:175: error: -[NestAccessibilityTests.RenewalNavigationTests testEditedRenewalCancelPreservesOrDiscardsOnlyLocalInput] : failed - Renewal navigation control is not fully visible
+    t =   187.04s Tear Down
+Test Case '-[NestAccessibilityTests.RenewalNavigationTests testEditedRenewalCancelPreservesOrDiscardsOnlyLocalInput]' failed (187.375 seconds).

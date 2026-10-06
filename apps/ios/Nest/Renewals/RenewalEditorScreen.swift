@@ -67,14 +67,14 @@ struct RenewalEditorScreen: View {
                 Button {
                     titleFocused = false
                 } label: {
-                    Text("Done").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    Text("Done").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
                 }.buttonStyle(.plain)
             }
             ToolbarItem(placement: .cancellationAction) {
                 Button {
                     if draft == initial { dismiss() } else { discarding = true }
                 } label: {
-                    Text("Cancel").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                    Text("Cancel").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
                 }.buttonStyle(.plain).disabled(model.busy)
             }
         }

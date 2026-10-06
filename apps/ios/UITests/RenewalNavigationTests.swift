@@ -88,6 +88,7 @@ final class RenewalNavigationTests: XCTestCase {
             let elements =
                 app.scrollViews.allElementsBoundByIndex + app.collectionViews.allElementsBoundByIndex
                 + app.buttons.matching(identifier: "Save renewal").allElementsBoundByIndex
+                + app.textFields.allElementsBoundByIndex + app.textViews.allElementsBoundByIndex
             let rows = elements.map { element in
                 let frame = element.frame
                 return [
