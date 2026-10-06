@@ -1,0 +1,39 @@
+{
+  "nativePassed": 2,
+  "nativeFailed": 0,
+  "nativeSkipped": 0,
+  "realRenewalListReads": 2,
+  "controlledUnavailableRenewalReads": 4,
+  "hostedMutations": 0,
+  "coldRestartRenewalCacheUIVerified": true,
+  "startupAndAuthenticationOnline": true,
+  "physicalRadioLossVerified": false,
+  "fullNetworkLossAuthRestorationVerified": false,
+  "preparedNativeInputs": 1089,
+  "captureDateObservations": {
+    "alex": {
+      "coldRestart": {
+        "notice": "Saved information from Oct 6, 2026 at 6:42\u202fAM. Refresh when online.",
+        "accessibilityFrame": "{{16.0, 238.5}, {343.0, 72.5}}",
+        "tree": "alex/E987FE3B-C76E-46AB-B1D7-9BB257E1907C.txt"
+      },
+      "unavailableRefresh": {
+        "notice": "Saved information from Oct 6, 2026 at 6:42\u202fAM. Refresh when online.",
+        "accessibilityFrame": "{{16.0, 238.5}, {343.0, 72.5}}",
+        "tree": "alex/093C214E-1401-42AB-8425-7B43D8497264.txt"
+      }
+    },
+    "sam": {
+      "coldRestart": {
+        "notice": "Saved information from Oct 6, 2026 at 6:43\u202fAM. Refresh when online.",
+        "accessibilityFrame": "{{16.0, 238.5}, {343.0, 72.5}}",
+        "tree": "sam/310246E7-01F4-4FCE-89F4-C6D2915571C1.txt"
+      },
+      "unavailableRefresh": {
+        "notice": "Saved information from Oct 6, 2026 at 6:43\u202fAM. Refresh when online.",
+        "accessibilityFrame": "{{16.0, 238.5}, {343.0, 72.5}}",
+        "tree": "sam/D658055E-6DFC-4B4A-B7C0-160C564BDFCC.txt"
+      }
+    }
+  }
+}
