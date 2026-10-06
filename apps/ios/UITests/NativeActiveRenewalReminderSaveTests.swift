@@ -83,7 +83,7 @@ final class NativeActiveRenewalReminderSaveTests: XCTestCase {
         let result = try XCTUnwrap(request["result"] as? [String: Any])
         XCTAssertEqual(UUID(uuidString: try XCTUnwrap(command["operationId"] as? String)), operation)
         XCTAssertEqual((command["renewalId"] as? String)?.lowercased(), env["NEST_QA_RENEWAL_ID"])
-        XCTAssertEqual((renewal["id"] as? String)?.lowercased(), env["NEST_QA_RENEWAL_ID"])
+        XCTAssertEqual((renewal["renewalId"] as? String)?.lowercased(), env["NEST_QA_RENEWAL_ID"])
         XCTAssertEqual(result["status"] as? String, "recorded")
         XCTAssertEqual(request["cancellationRequested"] as? Bool, false)
         attach(
