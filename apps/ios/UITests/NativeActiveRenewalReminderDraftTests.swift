@@ -174,10 +174,11 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
         var draft = baseline
         let title = reminderForm(app).staticTexts["Nest QA reminder 0610-3f88"]
         reveal(title, in: app, permitsDisabled: true, missingDistance: -180)
+        let titleFrame = rect(title.frame)
         let basedOn = app.buttons["Based on, " + baseline.anchor]
         reveal(basedOn, in: app)
         attach(
-            ["title": rect(title.frame), "basedOn": rect(basedOn.frame)],
+            ["titleBeforeScroll": titleFrame, "basedOn": rect(basedOn.frame)],
             name: "Known foreground section before ordered draft traversal")
         for label in ["Reminder enabled", "Remind me", "Remind Test Sam"] {
             let toggle = app.switches[label]
