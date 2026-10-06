@@ -85,11 +85,12 @@ struct RenewalsScreen: View {
                     .id(session.generation)
             }
         }
-        .confirmationDialog(
+        .alert(
             "Remove this renewal from Nest?",
             isPresented: Binding(
-                get: { removing != nil }, set: { if !$0 { removing = nil } }), titleVisibility: .visible
+                get: { removing != nil }, set: { if !$0 { removing = nil } })
         ) {
+            Button("Cancel", role: .cancel) { removing = nil }
             if let renewal = removing {
                 Button("Remove renewal", role: .destructive) {
                     Task { await model.remove(renewal, session: session, member: member) }
