@@ -64,6 +64,7 @@ struct RenewalEditorScreen: View {
             }
         }
         .navigationTitle(baseline == nil ? "New renewal" : "Edit renewal")
+        .navigationBarTitleDisplayMode(.inline)
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .scrollDismissesKeyboard(.interactively)
         .navigationBarBackButtonHidden()
