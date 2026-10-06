@@ -171,7 +171,7 @@ coverage combines recorded successful Back steps from a failed method with a pas
 Refresh recovery suffix; the original method remains failed. Both final authenticated
 reads match the exact owned grocery/reminder baseline. No Save, Retry or Remove occurs.
 Original scopes,64 empty journals, Today and large/light settings are restored.
-Other four editors have source consistency and compilation, not runtime acceptance.
+At this checkpoint the other four editors had compilation only; later chore and meal checks are recorded below.
 The opening MAX alert clipped Keep editing at742.5pt beyond alert653/app667 bounds.
 A title-only Discard changes? follow-up now passes one actual MAX UI check and two
 canonical SDK reads: both full choice buttons fit, Keep ends637pt within653/667pt,
@@ -231,6 +231,16 @@ normal/light and maximum/dark. Explicit discard/reopen restores zero and disable
 choices; final real GETs agree. Four final methods pass with no server command.
 [The compact symbol refinement](../apps/ios/Nest/Reminders/ReminderLeadTimeControl.swift) also passes a fresh maximum-text whole method and two real GETs at `74d37d1a`. Normal-text proof precedes that icon-only change. Across variants, 11 methods pass and two failed edge probes remain recorded.
 [Evidence](../evidence/2026-10-06/swiftui-reminder-stepper-targets/README.md) retains both failed native variants and their unobserved-discard gaps. Both CI workflows pass at `a43fb73e`: 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures. Physical touch remains open.
+
+## Native meal reminder drafts
+
+Six actual methods pass at `204d13d0`: four authenticated reads and two complete
+normal/light or maximum/dark UI journeys. Untouched Back, Keep editing on Back
+and Refresh, explicit Refresh discard/reload and Back discard work with full
+44-point choices. Both members' entire reminder context, week revision 9 and
+captured recipe remain exact; no server command occurs. Today, original roles,
+large/light settings and 64 empty journals per client are restored.
+[Evidence](../evidence/2026-10-06/swiftui-meal-reminder-navigation/README.md). Current-source CI is pending; physical accessibility, delivery and full M8 remain open. Build18 has no later reminder fix.
 
 ## Earlier native settlement verification
 
