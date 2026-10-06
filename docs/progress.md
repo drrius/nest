@@ -28,7 +28,7 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 - [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation and replacement have bounded real native/two-member evidence with normal cleanup. Varied portions/partner constraints, live generation/replacement and full phone/UI acceptance remain.
 - [ ] **M6 — Read-only Calendar.** EventKit, permission/selection, agenda/layers and explicit numeric-only busy sharing exist. Selected real timed/all-day/DST, both-member sharing, outsider denial and online cleanup pass; durable offline removal and races have focused tests. Hardware offline/reconnection, long background periods, complex calendars and full accessibility/privacy journeys remain. Personal event text stays on-device.
 - [ ] **M7 — Money.** Native balance/history/detail, financial commands/private approvals, receipt storage, recurring controls/variable bills and exact recovery exist over append-only CHF-centime history. Selected arithmetic/isolation/lost-response/hosted checks pass. Pause/cancel proposal review and exact recovery pass focused native CI; resumption proposal review/recovery passes current-source native CI; variable-cycle proposal review/decision/recovery is implemented with local wire/database checks and exact-source Foundation/native/routine CI passing; manual-cycle selection/review/command recovery passes local checks and exact-source Foundation/native/routine CI; private manual-cycle approvals and retained legacy inventory/draft history pass exact-source native/routine CI. Direct legacy dismissal passes local checks and exact-source native/routine CI; its original-term review/navigation/alert cancellation now pass owned rendering. Private dismissal approval/withdrawal passes local and exact-source native/routine CI; original-term review/navigation/alert cancellation now pass owned rendering. Actual rendered recovery states and full phone journeys remain pending. Direct draft-to-expense confirmation now has native source and focused Mac/database verification; both required workflows and actual fictional keyboard/review/cancel rendering pass at direct-confirmation source `4759e124`. Private confirmation review/recovery now has native source with focused Mac/backend and actual fictional alert verification; both focused native offline discovery/isolation checks pass; exact-source CI passes at `886773cc` (463 Foundation/41 explicit skips and344 signed-native/nine explicit skips, zero failures). Direct rule adoption source `e3e6b1ef` now has explicit fresh terms, prospective coverage/member/day preflight and exact recovery; focused Mac/backend and actual fictional variable-form checks pass. Nest37142967731 passes and SwiftUI37142967820 also passes:468 Foundation/41 explicit skips and357 signed-native/10 explicit skips, zero failures, strict formatting/source limits and actual signing. Private adoption now has source and focused Mac/backend/fictional-form verification; native CI at `1151caad` and corrected routine CI at `83a5a015` pass; hosted/provider/phone acceptance and recovery rendering remain pending. [Source coverage](native-rewrite/action-inventory.md#swiftui-financial-approval-coverage-1-october-2026) records the exact gaps. Ordinary expense/settlement and refund/correction staging now require fresh scoped domain reads before new intent; both slices pass exact-source Foundation/native and routine CI. Recurring create/edit/state/resume/variable staging now has fresh membership/revision/server-day/uncovered-cycle checks,23 focused local integration cases passing and exact-source Foundation/native/routine CI passing. Expense/refund/correction/settlement/rule approval staging now has fresh exact private pending/unexpired reads, with all six new native cases and ten existing exact-recovery cases passing current-source CI; existing account checks and later online retries do not prove that offline initiation is blocked. All approval/recurring variants, full history reconciliation and native/two-phone acceptance remain. Production posting is inactive.
-- [ ] **M8 — Renewals, reminders and push.** Renewal CRUD, recipient reminder editors, saved summaries, direct APNs transport, registration/outcomes, bounded worker and protected routes exist with fixture/native/selected hosted evidence. One fictional renewal now completes Alex create, Sam edit and Alex remove through the native UI, with matching canonical reads and retained removal history for both members. See the bounded CRUD checkpoint below. Wider linked/pagination/conflict cases, populated summaries, provider credentials, worker activation, real hardware enrollment and all six delivery kinds on both phones remain. Push is disabled in the current build18.
+- [ ] **M8 — Renewals, reminders and push.** Renewal CRUD, recipient reminder editors, saved summaries, direct APNs transport, registration/outcomes, bounded worker and protected routes exist with fixture/native/selected hosted evidence. One fictional renewal now completes Alex create, Sam edit and Alex remove through the native UI, with matching canonical reads and retained removal history for both members. See the bounded CRUD checkpoint below. Read-only list/detail snapshots now persist across offline store restart, with separate controlled-failure integration evidence. Wider linked/pagination/conflict cases, populated summaries, provider credentials, worker activation, real hardware enrollment and all six delivery kinds on both phones remain. Push is disabled in the current build18.
 - [ ] **M9 — Migration and release rehearsal.** Safe synthetic reconciliation/recovery exists; the latest54-legacy/251-native fixture passes with explicit infrastructure exclusions. Local signed binary/internal TestFlight packaging passes. Hosted current-chain reconciliation, external-writer/old-intent drainage, final release source and both-member usability remain. Production cutover, old-app retirement, purchases and public release are separately gated.
 
 ## Latest native receipt recovery
@@ -64,7 +64,7 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 ## Next work
 
-Next implementation: preserve previously loaded renewal lists and details offline. Current view reads are network-only; the new slice must retain account isolation, honest stale guidance and online-only mutation preflights.
+Next verification: finish CI for the renewal cache slice, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
 
 The four home tabs share one header and20pt side/14pt top insets; Calendar uses Quiet cards. Twelve normal/light, normal/dark and maximum/dark native captures and24 Profile/assistant links match header anchors within0.5pt. All images were reviewed; two unchanged-date picker checks pass. All eight shared-header/root-layout source files still match the available build18 atf98a2658; the four normal/dark images were rechecked on6October. No new simulator run or release is claimed. Actual Calendar selection, full accessibility and phones remain open. [Layout evidence](../evidence/2026-10-05/swiftui-root-layout/README.md).
 
@@ -119,6 +119,22 @@ CI catches 51 unformatted exported JSON files; formatting preserves their values
 and the verifier now checks the explicit artifact list. Source33ba6ae3 passes SwiftUI37410420566:496 Foundation/41 skips and444 signed-app/21 skips, zero failures and strict native gates. Corrected evidence7c149211 passes Nest37410702348.
 M8 and the full goal remain incomplete.
 
+## Persisted renewal views
+
+Source4ca7089e persists actor/household-bound list pages and visited details with
+capture-date guidance. Writes and reminder/editor preflights remain network-only.
+Fresh page collections and confirmed receipts prevent obsolete replies reviving
+removed data; denial and account changes block cached access. Thirty-five focused
+Foundation/signed model checks, two real authenticated API/SQLite reopen checks and
+two online SwiftUI smoke checks pass, zero final failures. The two original missing-
+cache regressions remain recorded. Both apps return to Today/original accounts,
+large/light and 64 empty intent journals; six screenshots are inspected. All48
+tracked artifacts and1,088 native inputs match. Format/limits pass. No hosted write.
+[Evidence](../evidence/2026-10-06/swiftui-renewal-offline-reads/README.md).
+Native37414362787 and Nest37414362829 are running on4ca7089e. Full authentication
+restart, physical radio loss/offline UI, phones and M8 remain unverified; build18
+lacks this slice. No new beta, production action, purchase or merge occurs.
+
 ## Native existing-expense cycle linkage
 
 One actual native explicit link now covers4 October using an existing CHF1.01
@@ -140,26 +156,7 @@ maximum-text confirmation/finish tapping, full accessibility and both phones rem
 open; M7 acceptance is incomplete. No new expense, beta, production mutation,
 purchase, worker activation or merge occurred.
 
-## Retained routine definition boundaries
-
-Three further legacy public warning entries now have a bounded source/guard trace,
-52 actual rolled-back full-chain database checks and nine real hosted Auth/PostgREST
-denials. Foreign/absent membership, foreign tenant references, patch injection,
-revoked unversioned update, exact creation/edit replay, changed creation identity,
-instruction clearing and stale edits pass. Four fresh hosted bodies and client
-grants match the compiled305-migration chain. All original local/hosted routine,
-completion, receipt, full financial and attachment rows/digests remain unchanged.
-No defect requiring a shipping SQL change was found in these tested paths.
-[Evidence](../evidence/2026-10-04/legacy-routine-definition-boundaries/README.md).
-
-The52 new cases have local execution evidence; exact-source routine CI37219093738
-passes at a8928b51, and no new deep/native run is claimed. Native manual-link evidence source
-6d53901e now passes Nest37217179614; shipping native source remains177d0a70.
-Fresh hosted advisor counts remain61INFO/81 privileged WARN/one leaked-password
-WARN. Forty-one other public legacy entries plus deeper private paths, full safe
-cutover and live/provider/phone acceptance remain. This is bounded M9 progress;
-all previously unchecked milestones stay open. No successful hosted mutation,
-production action, beta, purchase, worker activation or merge occurred.
+The retained routine definition checkpoint is preserved in [the dated history](progress-history-2026-10-06.md#retained-routine-definition-boundaries).
 
 ## Native PDF receipt picker
 
