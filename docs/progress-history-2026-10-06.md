@@ -350,3 +350,20 @@ The justified paired retry passes both native reads with the existing paused rul
 and complete62-entry API history, Alex+1/Sam−1 centime. Local comparison preserves
 all61 earlier semantic entries and identifies the known CHF0.02 posted-PDF append;
 UUID-case/optional-null normalization is explicit. The normal-text paused-state UI passes disabled controls/Save, untouched Back and read-only Refresh; four fresh SDK reads retain all62 entries and balances. The largest-text attempt stops before reminder entry because its rule row is below the virtualized list viewport. That failure remains recorded. The corrected observer at `dacea8fa` retains a second failure: the compound rule link is599pt tall in a502pt usable viewport. All four fresh SDK reads and ordinary-client restoration pass. Shipping `2465acb2` splits title/status navigation from mode/amount/due rows at accessibility sizes, retaining normal layout and unrestricted native text. Strict Mac formatting and all Swift limits pass. At `f7094205`, the corrected maximum-text method and four fresh SDK reads pass: whole title/status, amount/due rows, inactive explanation, disabled defaults/Save, untouched44pt Back and Refresh retain all62 events/balances/context. All four representative captures were reviewed; both clients restore Today/large/light/original scopes/64 empty journals. Aggregate14 native passes/two retained failures remain source-separated. Both exact-source workflows pass: Nest37449245699/Swift37449245100,506 Foundation/41 skips,463 signed-app/31 skips and four Swift Testing cases, zero failures, strict format/limits/signing/UI compilation. The [immutable evidence](../evidence/2026-10-06/swiftui-paused-recurring-reminder/README.md) verifier passes286 tracked artifacts, three source variants and35 reviewed screenshots; this layout fix is not in build19. Both original failures remain recorded. No hosted mutation occurs; active-rule editing/delivery acceptance remains open.
+
+## Native renewal CRUD verification
+
+One fictional renewal completes Alex create, Sam edit and Alex remove through the
+signed native app. Three command identities record without positive replay; both
+SDK readers agree after every action, retain the removed record and finish with
+empty active lists. Normal Done clears each request. Twenty native methods pass;
+four observer failures remain failures, including Remove after confirmed removal.
+Only read-only recovery/Done checks follow that failure. All 37 exported images
+are reviewed. Both apps return to Today, original scopes, large/light and 64 empty
+journals each. The inventory verifies 825 native inputs and tracked evidence.
+[Evidence and limitations](../evidence/2026-10-06/swiftui-native-renewal-crud/README.md).
+No shipping change, reminder, linked rule, production action, beta or merge occurs.
+Broad hashes were rejected and abandoned; unrelated-row preservation is not claimed.
+CI catches 51 unformatted exported JSON files; formatting preserves their values
+and the verifier now checks the explicit artifact list. Source33ba6ae3 passes SwiftUI37410420566:496 Foundation/41 skips and444 signed-app/21 skips, zero failures and strict native gates. Corrected evidence7c149211 passes Nest37410702348.
+M8 and the full goal remain incomplete.

@@ -96,22 +96,9 @@ Food and cooking Back dropped local edits without warning; both original native 
 
 Renewal Add/Cancel/keyboard Done have44pt targets; Cancel uses a semantic close symbol. The title has an explicit label/stable identifier and a44pt enclosing focus row, with actual keyboard focus verified at±21pt edges. All eight final native methods pass: four both-member SDK reads plus normal/light and maximum/dark untouched/typed cancellation. Keep editing retains text, explicit discard/reopen restores the empty value, and pristine Cancel closes directly. All eight screenshots are inspected; alert headings/choices fit. The maximum native navigation title still ellipsizes, so full visual/accessibility acceptance remains open. All823 inputs matchdea7682d, canonical reads agree and original roles/Today/large/light/64 empty journals are restored. Fresh renewal/reminder/receipt, preference, owned, retained financial/Storage and grocery hashes stay exact. No Save is pressed. [Evidence](../evidence/2026-10-06/swiftui-renewal-navigation/README.md) retains the36pt baseline, lookup/rounding/viewport/native-text-bound failures and both censuses. Shipping190c059d passes both CI workflows; Current source dea7682d passes Nest37406837865 and SwiftUI37406837892:496 Foundation tests/41 skips and443 signed-app tests/20 skips, zero failures, strict formatting/source limits/signing and guarded UI compilation. Documentation checkpoint b4bad2b9 also passes Nest37407841918. Build18 lacks these later fixes; the phone checklist now identifies18 and its exact exclusions. Full renewal CRUD/reminders, live AI, worker/APNs, VoiceOver/phones and M1–M9 remain open; no permission, beta, purchase, production operation or merge.
 
-## Native renewal CRUD verification
-
-One fictional renewal completes Alex create, Sam edit and Alex remove through the
-signed native app. Three command identities record without positive replay; both
-SDK readers agree after every action, retain the removed record and finish with
-empty active lists. Normal Done clears each request. Twenty native methods pass;
-four observer failures remain failures, including Remove after confirmed removal.
-Only read-only recovery/Done checks follow that failure. All 37 exported images
-are reviewed. Both apps return to Today, original scopes, large/light and 64 empty
-journals each. The inventory verifies 825 native inputs and tracked evidence.
-[Evidence and limitations](../evidence/2026-10-06/swiftui-native-renewal-crud/README.md).
-No shipping change, reminder, linked rule, production action, beta or merge occurs.
-Broad hashes were rejected and abandoned; unrelated-row preservation is not claimed.
-CI catches 51 unformatted exported JSON files; formatting preserves their values
-and the verifier now checks the explicit artifact list. Source33ba6ae3 passes SwiftUI37410420566:496 Foundation/41 skips and444 signed-app/21 skips, zero failures and strict native gates. Corrected evidence7c149211 passes Nest37410702348.
-M8 and the full goal remain incomplete.
+Earlier native renewal CRUD checkpoints are retained in
+[dated history](progress-history-2026-10-06.md#native-renewal-crud-verification).
+Their bounded evidence does not close full reminder, delivery or phone acceptance.
 
 ## Persisted renewal views
 
@@ -192,8 +179,6 @@ receipts; Sam receives unresolved results with no receipt. Both canonical reads 
 
 The original combined normal/MAX draft proof and retained observer failures remain in [dated history](progress-history-2026-10-06.md#native-chore-reminder-drafts). Later touch-target evidence follows below.
 
-## Earlier reminder touch controls and meal drafts
-
 The native Stepper edge tests,44-point control fix and meal reminder draft checks
 remain in [dated history](progress-history-2026-10-06.md#reminder-stepper-touch-area).
 Their exact CI, failed attempts and restored state are preserved. Physical touch,
@@ -207,15 +192,30 @@ native checks. Build19 is internally available with matching source/CI/package e
 The complete23-pass/five-failure/six-Core history and release records remain in
 [dated history](progress-history-2026-10-06.md#recipe-draft-cancellation). Phones and full accessibility remain open.
 
-## Earlier reminder eligibility and inactive-rule checks
-
 The read-only eligibility census, bounded natural-session diagnosis and
 largest-text paused-rule fix remain in
 [dated history](progress-history-2026-10-06.md#remaining-reminder-eligibility).
 The later fictional renewal was created, saved and removed normally below.
-One future fictional confirm-each-bill rule is the next eligibility fixture.
-Its guarded creation/recovery is being prepared; reminder editing, delivery and
-phone acceptance remain open.
+One future fictional variable rule is now active, as recorded below; reminder
+editing, delivery and phone acceptance remain open.
+
+## Active recurring-reminder eligibility fixture
+
+At fresh compiled `c0cd3a8d`/1,118 inputs, both baselines pass8.230s/7.777s.
+One native future variable-rule Save passes89.247s summary/75.102s testcase.
+Operation `5bdfcaeb-3f20-4fa3-9db9-0f0902eede8f` records rule
+`f854e3a3-ffda-4eb7-86e5-d3933d938444`, revision
+`528417a1-b97a-4be4-9e63-ad7c8c03c2be`, Confirm each bill, Alex payer,
+monthly day1, starts/next due1 November2026, no amount/split/category/note.
+Owner and partner reads pass9.741s/9.595s with private receipt isolation,
+all62 financial events/+1/−1 centime and seven old inactive rules exact.
+Restart/Done fails103.124s before tapping Done: restored Payer is honestly You,
+while the observer expects Test Alex. Exact stored/SDK payer remains Alex.
+Final reads pass10.031s/8.684s; Sam has64 empty slots and Alex retains only this
+known recorded request. A test-only label correction/Done-only continuation is
+being prepared. The single Create budget is consumed; no replay, automatic fixed
+mandate, expense, worker, permission, reminder Save or production action occurs.
+Routine37475886509 passes this source; native CI remains pending.
 
 ## Active renewal reminder verification
 
