@@ -30,12 +30,23 @@ struct RenewalsScreen: View {
                         Text("Cancel by \(row.cancellationOn.value)")
                             .foregroundStyle(QuietPalette.muted)
                         HStack {
-                            Button("Edit") { editing = row }
+                            Button {
+                                editing = row
+                            } label: {
+                                Text("Edit").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                            }
                             Spacer()
-                            Button("Remove", role: .destructive) { removing = row }
+                            Button(role: .destructive) {
+                                removing = row
+                            } label: {
+                                Text("Remove").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                            }
                         }.buttonStyle(.borderless).disabled(model.busy || model.saved != nil)
-                        Button("Reminder choices") { reminding = row }
-                            .buttonStyle(.borderless)
+                        Button {
+                            reminding = row
+                        } label: {
+                            Text("Reminder choices").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                        }.buttonStyle(.borderless)
                     }.padding(.vertical, 6)
                 }
                 if model.loaded && model.rows.isEmpty { Text("No renewals yet.") }
