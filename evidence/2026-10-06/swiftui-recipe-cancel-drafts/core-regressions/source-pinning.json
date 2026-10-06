@@ -1,0 +1,13 @@
+{
+  "sourceCommit": "4d4ccde59477e73d91ec332b7d841f7a6d10996d",
+  "focusedFiles": {
+    "apps/ios/Nest/Meals/RecipeCreateSheet.swift": "8a3d4a6434a3cc50b78e221fee9dc5fb52043ec65b2b6aba1024300b417d9276",
+    "apps/ios/Nest/Meals/RecipeEditSheet.swift": "bfbaf19d26596329a68116ef9f01ae30ea6667563c8482b21d95f6ee2256bd77",
+    "apps/ios/Nest/Meals/MealLibraryScreen.swift": "2acac5a13c7387a9c741665cc8639add4c8919e1a0d8198c3217e074261642b4",
+    "apps/ios/Nest/Core/RecipeEditDraft.swift": "7fafa5ae1bbe546fa438492f348db71a4483f057ed15d39dec63b4077aa3f3b0",
+    "apps/ios/Tests/Core/RecipeEditDraftTests.swift": "ed66f7321c373a961b752d92da2414bde0ef6c7195c1ea27718801bfb9ec5c23"
+  },
+  "testsPassed": 6,
+  "nativeSDKOrUICount": false,
+  "actualIsolatedCandidateMatchesCommittedFiles": true
+}

@@ -1,0 +1,51 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "NestAccessibility \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791274984.967,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [
+    {
+      "issueType": "Runtime Warning",
+      "message": "Invalid frame dimension (negative or non-finite)."
+    }
+  ],
+  "skippedTests": 0,
+  "startTime": 1791274906.096,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertGreaterThanOrEqual failed: (\"36.0\") is less than (\"43.999\")",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "NativeRecipeCancelDraftTests/testAfterFixPristineAndInvalidRawRecipeDraftCancellation()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRecipeCancelDraftTests/testAfterFixPristineAndInvalidRawRecipeDraftCancellation",
+      "testName": "testAfterFixPristineAndInvalidRawRecipeDraftCancellation()"
+    }
+  ],
+  "title": "Test - NestAccessibility",
+  "topInsights": [],
+  "totalTestCount": 1
+}

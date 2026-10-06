@@ -1,0 +1,171 @@
+Attributes: Application, 0x103785fe0, pid: 6343, label: 'Nest'
+Element subtree:
+ →Application, 0x103785fe0, pid: 6343, label: 'Nest'
+    Window (Main), 0x103789940, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x103792f30, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x103793050, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x103792de0, {{-375.0, -667.0}, {1125.0, 2001.0}}
+          Other, 0x103789520, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x103793170, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x103793290, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x1037933b0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x1037934d0, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x1037935f0, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x103793710, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x103793830, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x103793950, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x103793a70, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x103793b90, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Saved meals'
+                              Button, 0x103793cb0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Back'
+                              StaticText, 0x103793dd0, {{137.0, 31.5}, {100.5, 21.0}}, label: 'Saved meals'
+                              Button, 0x103793ef0, {{319.0, 24.0}, {36.0, 36.0}}, label: 'New recipe'
+                            Other, 0x103794010, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x103794130, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x103794250, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x103794370, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x103794490, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x1037945b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x1037946d0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x1037947f0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x103794910, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x103794a30, {{0.0, 74.0}, {375.0, 210.5}}
+                                        StaticText, 0x103794b50, {{20.0, 94.0}, {218.0, 18.0}}, label: 'Meals you keep for another day.'
+                                        Button, 0x103794c70, {{36.0, 130.2}, {302.0, 63.5}}, label: 'Nest native manual week 20261005, Serves 2'
+                                          StaticText, 0x103794d90, {{36.0, 130.2}, {156.0, 42.5}}, label: 'Nest native manual week 20261005'
+                                          StaticText, 0x103794eb0, {{36.0, 175.8}, {60.0, 18.0}}, label: 'Serves 2'
+                                          Image, 0x103794fd0, {{329.5, 155.0}, {8.5, 14.5}}, identifier: 'chevron.right', label: 'Forward'
+                                        Button, 0x1037950f0, {{36.0, 209.8}, {302.0, 41.5}}, label: 'Synthetic lentil bowl, Serves 2'
+                                          StaticText, 0x103795210, {{36.0, 209.8}, {161.0, 20.5}}, label: 'Synthetic lentil bowl'
+                                          StaticText, 0x103795330, {{36.0, 233.2}, {60.0, 18.0}}, label: 'Serves 2'
+                                          Image, 0x103795450, {{329.5, 223.5}, {8.5, 14.5}}, identifier: 'chevron.right', label: 'Forward'
+                                      Other, 0x103795570, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x103795690, {{369.0, 393.0}, {3.0, 188.0}}
+                                      Other, 0x1037957b0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x1037958d0, {{369.0, 393.0}, {3.0, 188.0}}
+                            Other, 0x1037959f0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x103795b10, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x103795c30, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x103795d50, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x103795e70, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x103795f90, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x1037960b0, {{21.0, 584.0}, {88.3, 54.0}}
+                        Other, 0x1037961d0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x1037962f0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x103796410, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x103796530, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals', Selected
+                            Image, 0x103796650, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x103796770, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x103796890, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x1037969b0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x103796ad0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x103796bf0, {{103.9, 588.0}, {88.2, 54.0}}
+                          Other, 0x103796d10, {{103.9, 588.0}, {88.0, 54.0}}
+                            Other, 0x103796e30, {{103.9, 588.0}, {88.0, 54.0}}
+                            Other, 0x103796f50, {{103.9, 588.0}, {88.0, 54.0}}
+                              Other, 0x103797070, {{103.9, 588.0}, {88.0, 54.0}}
+                                Other, 0x103797190, {{103.9, 588.0}, {88.0, 54.0}}
+                                  Other, 0x1037972b0, {{103.9, 588.0}, {88.0, 54.0}}
+                                Other, 0x1037973d0, {{103.9, 588.0}, {88.0, 54.0}}
+                              Other, 0x1037974f0, {{103.9, 588.0}, {88.0, 54.0}}
+                  Other, 0x103797610, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x103797730, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x103797850, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x103797970, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x103797a90, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x103797bb0, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x103797cd0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x103797df0, {{-375.0, -667.0}, {1125.0, 2001.0}}
+        Other, 0x103797f10, {{0.0, 30.0}, {375.0, 637.0}}
+          Other, 0x103798030, {{0.0, 30.0}, {375.0, 637.0}}
+            Other, 0x103798150, {{0.0, 30.0}, {375.0, 637.0}}
+              Other, 0x103798270, {{0.0, 30.0}, {375.0, 637.0}}
+                Other, 0x103798390, {{0.0, 30.0}, {375.0, 637.0}}
+                  Other, 0x1037984b0, {{0.0, 30.0}, {375.0, 637.0}}
+                    NavigationBar, 0x1037985d0, {{0.0, 46.0}, {375.0, 54.0}}, identifier: 'New recipe'
+                      Other, 0x1037986f0, {{20.0, 50.0}, {44.0, 36.0}}, identifier: 'xmark', label: 'Cancel'
+                        Other, 0x103798810, {{20.0, 50.0}, {44.0, 36.0}}
+                          Button, 0x103798930, {{20.0, 46.0}, {44.0, 44.0}}, identifier: 'xmark', label: 'Cancel'
+                      StaticText, 0x103798a50, {{142.5, 57.5}, {89.5, 21.0}}, label: 'New recipe'
+                      Other, 0x103798b70, {{311.0, 50.0}, {44.0, 36.0}}, identifier: 'checkmark', label: 'Save'
+                        Other, 0x103798c90, {{311.0, 50.0}, {44.0, 36.0}}
+                          Button, 0x103798db0, {{311.0, 46.0}, {44.0, 44.0}}, identifier: 'checkmark', label: 'Save', Selected, Disabled
+                    Other, 0x103798ed0, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x103798ff0, {{0.0, 30.0}, {375.0, 637.0}}
+                        Other, 0x103799110, {{0.0, 30.0}, {375.0, 637.0}}
+                          Other, 0x103799230, {{0.0, 30.0}, {375.0, 637.0}}
+                            CollectionView, 0x103799350, {{0.0, 30.0}, {375.0, 637.0}}
+                              Other, 0x103799470, {{-16.0, -1174.0}, {407.0, 1616.0}}
+                              Other, 0x103799590, {{0.0, 30.0}, {375.0, 637.0}}
+                                Other, 0x1037996b0, {{0.0, 30.0}, {375.0, 124.8}}
+                              Other, 0x1037997d0, {{0.0, 30.0}, {375.0, 637.0}}
+                              Cell, 0x1037998f0, {{16.0, 100.0}, {343.0, 40.5}}
+                                Other, 0x103799a10, {{16.0, 100.0}, {343.0, 40.5}}
+                                Other, 0x103799b30, {{16.0, 100.0}, {343.0, 40.5}}
+                                  Other, 0x103799c50, {{16.0, 100.0}, {343.0, 40.5}}
+                                    Other, 0x103799d70, {{16.0, 100.0}, {343.0, 40.5}}
+                                      StaticText, 0x103799e90, {{16.0, 100.0}, {343.0, 40.5}}, label: 'Recipe'
+                              Cell, 0x103799fb0, {{16.0, 140.5}, {343.0, 80.5}}
+                                Other, 0x10379a0d0, {{16.0, 140.5}, {343.0, 80.5}}
+                                  Other, 0x10379a1f0, {{16.0, 140.5}, {343.0, 80.5}}
+                                Other, 0x10379a310, {{16.0, 140.5}, {343.0, 80.5}}
+                                  Other, 0x10379a430, {{16.0, 140.5}, {343.0, 80.5}}
+                                    Other, 0x10379a550, {{16.0, 140.5}, {343.0, 80.5}}
+                                      StaticText, 0x10379a670, {{32.0, 159.5}, {33.0, 14.5}}, label: 'Name'
+                                      TextField, 0x10379a790, {{32.0, 180.0}, {311.0, 22.0}}, label: 'Name', placeholderValue: 'Name'
+                              Cell, 0x10379a8b0, {{16.0, 221.0}, {343.0, 80.5}}
+                                Other, 0x10379a9d0, {{16.0, 221.0}, {343.0, 80.5}}
+                                  Other, 0x10379aaf0, {{16.0, 221.0}, {343.0, 80.5}}
+                                Other, 0x10379ac10, {{16.0, 221.0}, {343.0, 80.5}}
+                                  Other, 0x10379ad30, {{16.0, 221.0}, {343.0, 80.5}}
+                                    Other, 0x10379ae50, {{16.0, 221.0}, {343.0, 80.5}}
+                                      StaticText, 0x10379af70, {{32.0, 240.0}, {49.5, 14.5}}, label: 'Servings'
+                                      TextField, 0x10379b090, {{32.0, 260.5}, {311.0, 22.0}}, label: 'Servings', placeholderValue: 'Servings', value: 2
+                              Other, 0x10379b1b0, {{32.0, 220.0}, {311.0, 1.0}}
+                              Cell, 0x10379b2d0, {{16.0, 301.5}, {343.0, 123.0}}
+                                Other, 0x10379b3f0, {{16.0, 301.5}, {343.0, 123.0}}
+                                  Other, 0x10379b510, {{16.0, 301.5}, {343.0, 123.0}}
+                                Other, 0x10379b630, {{16.0, 301.5}, {343.0, 123.0}}
+                                  Other, 0x10379b750, {{16.0, 301.5}, {343.0, 123.0}}
+                                    Other, 0x10379b870, {{16.0, 301.5}, {343.0, 123.0}}
+                                      StaticText, 0x10379b990, {{32.0, 320.6}, {117.0, 14.5}}, label: 'Cooking instructions'
+                                      TextField, 0x10379bab0, {{32.0, 341.0}, {311.0, 64.5}}, label: 'Cooking instructions', placeholderValue: 'Cooking instructions'
+                                        Other, 0x10379bbd0, {{39.0, 372.5}, {297.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x10379bcf0, {{42.0, 399.5}, {291.0, 3.0}}
+                              Other, 0x10379be10, {{32.0, 300.5}, {311.0, 1.0}}
+                              Other, 0x10379bf30, {{-16.0, 442.0}, {407.0, 450.0}}
+                              Cell, 0x10379c050, {{16.0, 442.0}, {343.0, 40.5}}
+                                Other, 0x10379c170, {{16.0, 442.0}, {343.0, 40.5}}
+                                Other, 0x10379c290, {{16.0, 442.0}, {343.0, 40.5}}
+                                  Other, 0x10379c3b0, {{16.0, 442.0}, {343.0, 40.5}}
+                                    Other, 0x10379c4d0, {{16.0, 442.0}, {343.0, 40.5}}
+                                      StaticText, 0x10379c5f0, {{16.0, 442.0}, {343.0, 40.5}}, label: 'Ingredients'
+                              Cell, 0x10379c710, {{16.0, 482.5}, {343.0, 340.0}}
+                                Other, 0x10379c830, {{16.0, 482.5}, {343.0, 340.0}}
+                                  Other, 0x10379c950, {{16.0, 482.5}, {343.0, 340.0}}
+                                Other, 0x10379ca70, {{16.0, 482.5}, {343.0, 340.0}}
+                                  Other, 0x10379cb90, {{16.0, 482.5}, {343.0, 340.0}}
+                                    Other, 0x10379ccb0, {{16.0, 482.5}, {343.0, 340.0}}
+                                      StaticText, 0x10379cdd0, {{32.0, 509.5}, {101.0, 14.5}}, label: 'Ingredient 1 name'
+                                      TextField, 0x10379cef0, {{32.0, 530.0}, {311.0, 22.0}}, label: 'Ingredient 1 name', placeholderValue: 'Ingredient 1 name'
+                                      StaticText, 0x10379d010, {{32.0, 572.0}, {174.0, 14.5}}, label: 'Ingredient 1 quantity (optional)'
+                                      TextField, 0x10379d130, {{32.0, 592.5}, {311.0, 22.0}}, label: 'Ingredient 1 quantity (optional)', placeholderValue: 'Ingredient 1 quantity (optional)'
+                                      StaticText, 0x10379d250, {{32.0, 634.5}, {149.0, 14.5}}, label: 'Ingredient 1 unit (optional)'
+                                      TextField, 0x10379d370, {{32.0, 655.0}, {311.0, 22.0}}, label: 'Ingredient 1 unit (optional)', placeholderValue: 'Ingredient 1 unit (optional)'
+                                      StaticText, 0x10379d490, {{32.0, 697.0}, {153.0, 14.5}}, label: 'Ingredient 1 note (optional)'
+                                      TextField, 0x10379d5b0, {{32.0, 717.5}, {311.0, 22.0}}, label: 'Ingredient 1 note (optional)', placeholderValue: 'Ingredient 1 note (optional)'
+                                        Other, 0x10379d6d0, {{32.0, 725.5}, {311.0, 11.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                          Other, 0x10379d7f0, {{35.0, 733.5}, {305.0, 3.0}}
+                                      Button, 0x10379d910, {{32.0, 755.5}, {311.0, 44.0}}, label: 'Remove ingredient 1: unnamed'
+                              Other, 0x10379da30, {{342.0, 100.0}, {30.0, 567.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                Other, 0x10379db50, {{369.0, 637.0}, {3.0, 7.0}}
+                              Other, 0x10379dc70, {{342.0, 100.0}, {30.0, 567.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                Other, 0x10379dd90, {{369.0, 637.0}, {3.0, 7.0}}
+                    Other, 0x10379deb0, {{0.0, 30.0}, {375.0, 637.0}}
+                      Other, 0x10379dfd0, {{0.0, 30.0}, {375.0, 637.0}}
+Path to element:
+ →Application, 0x103785fe0, pid: 6343, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11c8042a0, pid: 6343, label: 'Nest'
+  }

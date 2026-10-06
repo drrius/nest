@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-recipe-cancel-after-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-recipe-cancel-after-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedRecipeCancelDraftReadTests/testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-recipe-cancel-after-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 10:15:00.185.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 10:15:00.186.
+Test Suite 'HostedRecipeCancelDraftReadTests' started at 2026-10-06 10:15:00.186.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' started.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' passed (4.788 seconds).
+Test Suite 'HostedRecipeCancelDraftReadTests' passed at 2026-10-06 10:15:04.976.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.788 (4.790) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 10:15:04.976.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.788 (4.790) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 10:15:04.976.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.788 (4.791) seconds
+2026-10-06 10:15:05.301 xcodebuild[8665:20636497] [MT] IDETestOperationsObserverDebug: 7.078 elapsed -- Testing started completed.
+2026-10-06 10:15:05.301 xcodebuild[8665:20636497] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 10:15:05.301 xcodebuild[8665:20636497] [MT] IDETestOperationsObserverDebug: 7.078 sec, +7.078 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-recipe-cancel-after-20261006/alex-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

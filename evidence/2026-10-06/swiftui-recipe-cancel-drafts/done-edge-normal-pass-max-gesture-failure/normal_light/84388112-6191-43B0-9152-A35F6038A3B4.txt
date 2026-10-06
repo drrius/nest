@@ -1,0 +1,89 @@
+Attributes: Application, 0x117a885c0, pid: 13347, label: 'Nest'
+Element subtree:
+ →Application, 0x117a885c0, pid: 13347, label: 'Nest'
+    Window (Main), 0x117a8f2a0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x117a90ab0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x117a90bd0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x117a90960, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x117a8cc80, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x117a90cf0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x117a90e10, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x117a90f30, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x117a91050, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x117a8fb00, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x117a8fc20, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x117a8fd40, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x117a8fe60, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x117a8ff80, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Recipe'
+                              Button, 0x117a900a0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Saved meals'
+                              StaticText, 0x117a901c0, {{160.5, 31.5}, {54.0, 21.0}}, label: 'Recipe'
+                              Other, 0x117a902e0, {{251.0, 24.0}, {44.0, 36.0}}, identifier: 'pencil', label: 'Edit recipe'
+                                Other, 0x117a90400, {{251.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x117a90520, {{251.0, 20.0}, {44.0, 44.0}}, identifier: 'pencil', label: 'Edit recipe'
+                              Other, 0x117a913a0, {{311.0, 24.0}, {44.0, 36.0}}, identifier: 'archivebox', label: 'Archive recipe'
+                                Other, 0x117a914c0, {{311.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x117a915e0, {{311.0, 20.0}, {44.0, 44.0}}, identifier: 'archivebox', label: 'Archive recipe'
+                            Other, 0x117a91700, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x117a91820, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x117a91940, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x117a91a60, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x117a91b80, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x117a91ca0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x117a91dc0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x117a91ee0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x117a92000, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x117a92120, {{0.0, 74.0}, {375.0, 351.5}}
+                                        StaticText, 0x117a92240, {{20.0, 94.0}, {300.5, 82.0}}, label: 'Nest native manual week 20261005'
+                                        StaticText, 0x117a92360, {{20.0, 198.0}, {60.0, 18.0}}, label: 'Serves 2'
+                                        StaticText, 0x117a92480, {{20.0, 238.0}, {104.0, 24.0}}, label: 'Ingredients'
+                                        StaticText, 0x117a925a0, {{20.0, 274.0}, {121.0, 20.5}}, label: '200 g QA lentils'
+                                        StaticText, 0x117a926c0, {{20.0, 306.5}, {102.5, 20.5}}, label: '100 g QA rice'
+                                        StaticText, 0x117a927e0, {{20.0, 349.0}, {135.5, 24.0}}, label: 'How to make it'
+                                        StaticText, 0x117a92900, {{20.0, 385.0}, {245.5, 20.5}}, label: 'Simmer the fictional ingredients.'
+                                      Other, 0x117a92a20, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x117a92b40, {{369.0, 503.0}, {3.0, 78.0}}
+                                      Other, 0x117a92c60, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x117a92d80, {{369.0, 503.0}, {3.0, 78.0}}
+                            Other, 0x117a92ea0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x117a92fc0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x117a930e0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x117a93200, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x117a93320, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x117a93440, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x117a93560, {{21.0, 584.0}, {88.3, 54.0}}
+                        Other, 0x117a93680, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x117a937a0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x117a938c0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x117a939e0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals', Selected
+                            Image, 0x117a93b00, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x117a93c20, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x117a93d40, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x117a93e60, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x117a93f80, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x117a940a0, {{103.9, 588.0}, {88.2, 54.0}}
+                          Other, 0x117a941c0, {{103.9, 588.0}, {88.0, 54.0}}
+                            Other, 0x117a942e0, {{103.9, 588.0}, {88.0, 54.0}}
+                            Other, 0x117a94400, {{103.9, 588.0}, {88.0, 54.0}}
+                              Other, 0x117a94520, {{103.9, 588.0}, {88.0, 54.0}}
+                                Other, 0x117a94640, {{103.9, 588.0}, {88.0, 54.0}}
+                                  Other, 0x117a94760, {{103.9, 588.0}, {88.0, 54.0}}
+                                Other, 0x117a94880, {{103.9, 588.0}, {88.0, 54.0}}
+                              Other, 0x117a949a0, {{103.9, 588.0}, {88.0, 54.0}}
+                  Other, 0x117a94ac0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x117a94be0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x117a94d00, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x117a94e20, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x117a94f40, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x117a95060, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x117a95180, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x117a952a0, {{0.0, 584.0}, {375.0, 83.0}}
+    Window, 0x117a953c0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x117a954e0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x117a95600, {{0.0, 0.0}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x117a885c0, pid: 13347, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x117a95f80, pid: 13347, label: 'Nest'
+  }

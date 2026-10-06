@@ -1,0 +1,6 @@
+{
+  "button": [311, 20, 44, 44],
+  "diagnosticBeforeOnly": false,
+  "minimumTargetContractMet": true,
+  "navigationBar": [0, 20, 375, 54]
+}

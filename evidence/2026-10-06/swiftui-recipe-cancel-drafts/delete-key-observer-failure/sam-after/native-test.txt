@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-recipe-cancel-after-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-recipe-cancel-after-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedRecipeCancelDraftReadTests/testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-recipe-cancel-after-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 10:16:59.866.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 10:16:59.867.
+Test Suite 'HostedRecipeCancelDraftReadTests' started at 2026-10-06 10:16:59.867.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' started.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' passed (3.782 seconds).
+Test Suite 'HostedRecipeCancelDraftReadTests' passed at 2026-10-06 10:17:03.649.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.782 (3.783) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 10:17:03.649.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.782 (3.783) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 10:17:03.650.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.782 (3.784) seconds
+2026-10-06 10:17:03.988 xcodebuild[9284:20642866] [MT] IDETestOperationsObserverDebug: 5.878 elapsed -- Testing started completed.
+2026-10-06 10:17:03.989 xcodebuild[9284:20642866] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 10:17:03.989 xcodebuild[9284:20642866] [MT] IDETestOperationsObserverDebug: 5.878 sec, +5.878 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-recipe-cancel-after-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

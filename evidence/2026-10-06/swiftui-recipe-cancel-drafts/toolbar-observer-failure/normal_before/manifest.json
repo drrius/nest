@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "18BB2B86-0EF2-4FF2-80C3-FF5EC6F80DA5.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Recipe form target placement failure accessibility tree_0_CAD86B6B-7067-4CD1-83D8-7BE5A1692C87.txt",
+        "timestamp": 1791273791.509
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A7960815-0ECB-4ADB-8D84-42D97BA89024.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Recipe form target placement failure_0_588255FC-732F-4DF6-A9CD-1D6B3376F653.png",
+        "timestamp": 1791273791.329
+      }
+    ],
+    "testIdentifier": "NativeRecipeCancelDraftTests/testBeforeFixUntouchedNewRecipeCancelClosesDirectly()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRecipeCancelDraftTests/testBeforeFixUntouchedNewRecipeCancelClosesDirectly"
+  }
+]

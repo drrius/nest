@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-recipe-cancel-sheet-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-recipe-cancel-sheet-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedRecipeCancelDraftReadTests/testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-recipe-cancel-sheet-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 10:43:21.002.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 10:43:21.003.
+Test Suite 'HostedRecipeCancelDraftReadTests' started at 2026-10-06 10:43:21.003.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' started.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' passed (3.238 seconds).
+Test Suite 'HostedRecipeCancelDraftReadTests' passed at 2026-10-06 10:43:24.242.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.238 (3.239) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 10:43:24.242.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.238 (3.240) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 10:43:24.242.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.238 (3.240) seconds
+2026-10-06 10:43:24.576 xcodebuild[17102:20705921] [MT] IDETestOperationsObserverDebug: 5.432 elapsed -- Testing started completed.
+2026-10-06 10:43:24.576 xcodebuild[17102:20705921] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 10:43:24.576 xcodebuild[17102:20705921] [MT] IDETestOperationsObserverDebug: 5.432 sec, +5.432 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-recipe-cancel-sheet-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

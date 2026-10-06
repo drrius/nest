@@ -1,0 +1,10 @@
+{
+  "BaseCommit": "6b64e0af560e096e473b97fa896baa69f9a90ff7",
+  "UIOverrideCommit": "6de1460e4adde6b9fdc8bc00325ec4823fd57356",
+  "UIOverridePath": "UITests/NativeRecipeCancelDraftTests.swift",
+  "CompositeSource": true,
+  "AllNativeInputs": 1104,
+  "UIRebuilt": true,
+  "SDKBeforeBinaryUnchanged": true,
+  "ParentQualityRefactorsIncluded": true
+}

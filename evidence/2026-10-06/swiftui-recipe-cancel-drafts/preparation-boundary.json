@@ -1,0 +1,6 @@
+{
+  "executionHandle": 7456,
+  "nativeMethodsStarted": 0,
+  "reason": "Strict HEAD equality failed after a parent docs-only descendant. A missing controller prevented execution; no build, UI or hosted command ran. The following successful preparation archived the explicit cf10 native source commit.",
+  "countsAsNativeFailure": false
+}

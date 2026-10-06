@@ -1,0 +1,8 @@
+{
+  "privateOriginalAttachment": "FF7436B8-CFEE-4D49-B7F2-36AAF1C31050.mp4",
+  "sha256": "de7b142029818a6a3733c215cc0dfffc6749dc99f67982e66c354dabf3de4f49",
+  "frameSeconds": 126.5,
+  "frameFile": "gesture-title-preview-video-frame.png",
+  "methodSourceCommit": "a4afc4a029c7b1fa35a6a83f1bc33d7ce6d1c3a4",
+  "interpretation": "Native navigation title magnification appeared; sheet dismissal gesture was not established."
+}

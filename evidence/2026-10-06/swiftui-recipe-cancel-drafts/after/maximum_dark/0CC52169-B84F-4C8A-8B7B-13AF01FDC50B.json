@@ -1,0 +1,9 @@
+{
+  "app": [0, 0, 375, 667],
+  "dirty": false,
+  "gestureEnd": [187.5, 622],
+  "gestureStart": [187.5, 38],
+  "navigationBar": [0, 46, 375, 54],
+  "sheet": [0, 30, 375, 637],
+  "sheetTopStrip": [0, 30, 375, 16]
+}

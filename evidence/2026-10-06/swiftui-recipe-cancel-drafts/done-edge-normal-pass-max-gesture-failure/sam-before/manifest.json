@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "350C23D4-00A3-4D54-B855-393C7F57D3D7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Current owned recipe library and retained planned snapshot_0_61ED327B-CB93-4C47-8051-D32BAF65FF32.json",
+        "timestamp": 1791275416.55
+      }
+    ],
+    "testIdentifier": "HostedRecipeCancelDraftReadTests/testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedRecipeCancelDraftReadTests/testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek"
+  }
+]

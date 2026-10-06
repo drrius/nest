@@ -1,0 +1,8 @@
+{
+  "actions": [
+    { "frame": [34, 449.5, 307, 187.5], "label": "Keep editing" },
+    { "frame": [34, 254, 307, 187.5], "label": "Discard changes" }
+  ],
+  "alert": [18, 34, 339, 619],
+  "app": [0, 0, 375, 667]
+}

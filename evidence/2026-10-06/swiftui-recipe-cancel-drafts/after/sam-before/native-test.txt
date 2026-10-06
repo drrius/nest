@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-recipe-cancel-sheet-20261006/sam-before/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-recipe-cancel-sheet-20261006/sam-before/result.xcresult "-only-testing:NestAppTests/HostedRecipeCancelDraftReadTests/testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-recipe-cancel-sheet-20261006/sam-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 10:39:18.785.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 10:39:18.786.
+Test Suite 'HostedRecipeCancelDraftReadTests' started at 2026-10-06 10:39:18.786.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' started.
+Test Case '-[NestAppTests.HostedRecipeCancelDraftReadTests testGETOnlyCurrentOwnedRecipeLibraryAndCapturedWeek]' passed (2.723 seconds).
+Test Suite 'HostedRecipeCancelDraftReadTests' passed at 2026-10-06 10:39:21.510.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.723 (2.724) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 10:39:21.510.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.723 (2.725) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 10:39:21.510.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.723 (2.725) seconds
+2026-10-06 10:39:21.825 xcodebuild[15689:20695678] [MT] IDETestOperationsObserverDebug: 4.813 elapsed -- Testing started completed.
+2026-10-06 10:39:21.825 xcodebuild[15689:20695678] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 10:39:21.825 xcodebuild[15689:20695678] [MT] IDETestOperationsObserverDebug: 4.813 sec, +4.813 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-recipe-cancel-sheet-20261006/sam-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

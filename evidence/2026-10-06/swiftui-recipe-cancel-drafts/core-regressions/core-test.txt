@@ -1,0 +1,127 @@
+Building for debugging...
+[Pre-planning 1 / 125]
+[Planning deferred tasks]
+[41 / 67] NestCore_NestCoreTests
+[42 / 67]
+[43 / 68] NestCore
+[52 / 120]
+[56 / 120]
+[62 / 120]
+[64 / 120]
+[68 / 120]
+[71 / 120]
+[77 / 120]
+[79 / 120]
+[80 / 120]
+[92 / 120] NestCore
+[93 / 120] NestCore
+[96 / 120] NestCore
+[103 / 120] NestCore
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Nest/Core/MealLibrary.swift:11:63: warning: trailing closure in this context is confusable with the body of the statement; pass as a parenthesized argument to silence this warning
+  9 |
+ 10 |     func validated() throws -> Self {
+ 11 |         guard MealLibraryText.validTitle(title), servings.map { $0 > 0 } ?? true
+    |                                                               `- warning: trailing closure in this context is confusable with the body of the statement; pass as a parenthesized argument to silence this warning
+ 12 |         else { throw MealLibraryError.invalidResponse }
+ 13 |         return self
+[105 / 120] NestCore
+[110 / 121] NestCoreTests-product
+[126 / 164]
+[129 / 164]
+[133 / 164]
+[136 / 164]
+[137 / 164]
+[138 / 164]
+[141 / 164]
+[142 / 164]
+[153 / 164] NestCoreTests-product
+[154 / 164] NestCoreTests-product
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Tests/Core/RecipeEditDraftTests.swift:67:22: warning: expression implicitly coerced from 'String??' to 'Any?'
+ 65 |         let command = try draft.command(operation: UUID(), revision: "5")
+ 66 |         XCTAssertEqual(command.patch.title, "New title")
+ 67 |         XCTAssertNil(command.patch.recipeUrl)
+    |                      |             |- note: provide a default value to avoid this warning
+    |                      |             |- note: force-unwrap the value to avoid this warning
+    |                      |             `- note: explicitly cast to 'Any?' with 'as Any?' to silence this warning
+    |                      `- warning: expression implicitly coerced from 'String??' to 'Any?'
+ 68 |         XCTAssertNil(command.patch.instructions)
+ 69 |         XCTAssertNil(command.ingredients)
+
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Tests/Core/RecipeEditDraftTests.swift:68:22: warning: expression implicitly coerced from 'String??' to 'Any?'
+ 66 |         XCTAssertEqual(command.patch.title, "New title")
+ 67 |         XCTAssertNil(command.patch.recipeUrl)
+ 68 |         XCTAssertNil(command.patch.instructions)
+    |                      |             |- note: provide a default value to avoid this warning
+    |                      |             |- note: force-unwrap the value to avoid this warning
+    |                      |             `- note: explicitly cast to 'Any?' with 'as Any?' to silence this warning
+    |                      `- warning: expression implicitly coerced from 'String??' to 'Any?'
+ 69 |         XCTAssertNil(command.ingredients)
+ 70 |     }
+
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Tests/Core/RecipeEditDraftTests.swift:81:25: warning: expression implicitly coerced from 'String??' to 'Any?'
+ 79 |         draft.ingredients.reverse()
+ 80 |         let command = try draft.command(operation: UUID(), revision: "5")
+ 81 |         XCTAssertNotNil(command.patch.notes)
+    |                         |             |- note: provide a default value to avoid this warning
+    |                         |             |- note: force-unwrap the value to avoid this warning
+    |                         |             `- note: explicitly cast to 'Any?' with 'as Any?' to silence this warning
+    |                         `- warning: expression implicitly coerced from 'String??' to 'Any?'
+ 82 |         XCTAssertNil(command.patch.notes!)
+ 83 |         guard let ingredients = command.ingredients, case .existing(let id, let patch) = ingredients[1] else {
+
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Tests/Core/RecipeEditDraftTests.swift:87:25: warning: expression implicitly coerced from 'String??' to 'Any?'
+ 85 |         }
+ 86 |         XCTAssertEqual(id, baseline.ingredients[0].id)
+ 87 |         XCTAssertNotNil(patch.quantity)
+    |                         |     |- note: provide a default value to avoid this warning
+    |                         |     |- note: force-unwrap the value to avoid this warning
+    |                         |     `- note: explicitly cast to 'Any?' with 'as Any?' to silence this warning
+    |                         `- warning: expression implicitly coerced from 'String??' to 'Any?'
+ 88 |         XCTAssertNil(patch.quantity!)
+ 89 |         XCTAssertNil(patch.categoryId)
+
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Tests/Core/RecipeEditDraftTests.swift:89:22: warning: expression implicitly coerced from 'UUID??' to 'Any?'
+ 87 |         XCTAssertNotNil(patch.quantity)
+ 88 |         XCTAssertNil(patch.quantity!)
+ 89 |         XCTAssertNil(patch.categoryId)
+    |                      |     |- note: provide a default value to avoid this warning
+    |                      |     |- note: force-unwrap the value to avoid this warning
+    |                      |     `- note: explicitly cast to 'Any?' with 'as Any?' to silence this warning
+    |                      `- warning: expression implicitly coerced from 'UUID??' to 'Any?'
+ 90 |     }
+ 91 |
+/private/tmp/nest-recipe-cancel-candidate-20261006/apps/ios/Tests/Core/RecurringDecisionStoreTests.swift:11:13: warning: initialization of immutable value 'shares' was never used; consider replacing with assignment to '_' or removing it [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/no-usage\NoUsage]8;;\]
+ 9 |         defer { try? FileManager.default.removeItem(at: url) }
+10 |         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+11 |         let shares = try ExpenseSplit.equal(Centimes("101"), payer: member.userId, other: UUID())
+   |             `- warning: initialization of immutable value 'shares' was never used; consider replacing with assignment to '_' or removing it [#]8;;https://docs.swift.org/compiler/documentation/diagnostics/no-usage\NoUsage]8;;\]
+12 |         let rule = RecurringInput(
+13 |             ruleId: UUID(), expectedRevision: nil,
+
+[#NoUsage]: <https://docs.swift.org/compiler/documentation/diagnostics/no-usage>
+[155 / 164] NestCoreTests-product
+[158 / 164] NestCoreTests-product
+[160 / 164] NestCoreTests-product
+[162 / 164] NestCoreTests-product
+Build complete! (20.47 sec)
+Test Suite 'Selected tests' started at 2026-10-06 10:09:46.552.
+Test Suite 'NestCoreTests.xctest' started at 2026-10-06 10:09:46.553.
+Test Suite 'RecipeEditDraftTests' started at 2026-10-06 10:09:46.553.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testClearAndReorderRetainIdentityAndCategory]' started.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testClearAndReorderRetainIdentityAndCategory]' passed (0.002 seconds).
+Test Case '-[NestCoreTests.RecipeEditDraftTests testIngredientRemovalAndUnfilledAdditionNeedDiscard]' started.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testIngredientRemovalAndUnfilledAdditionNeedDiscard]' passed (0.000 seconds).
+Test Case '-[NestCoreTests.RecipeEditDraftTests testIngredientReorderingNeedsDiscardUntilRestored]' started.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testIngredientReorderingNeedsDiscardUntilRestored]' passed (0.000 seconds).
+Test Case '-[NestCoreTests.RecipeEditDraftTests testInvalidRawDraftStillNeedsDiscard]' started.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testInvalidRawDraftStillNeedsDiscard]' passed (0.000 seconds).
+Test Case '-[NestCoreTests.RecipeEditDraftTests testUnchangedLegacyValuesAreOmitted]' started.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testUnchangedLegacyValuesAreOmitted]' passed (0.000 seconds).
+Test Case '-[NestCoreTests.RecipeEditDraftTests testUntouchedAndRestoredRawDraftDoesNotNeedDiscard]' started.
+Test Case '-[NestCoreTests.RecipeEditDraftTests testUntouchedAndRestoredRawDraftDoesNotNeedDiscard]' passed (0.000 seconds).
+Test Suite 'RecipeEditDraftTests' passed at 2026-10-06 10:09:46.555.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'NestCoreTests.xctest' passed at 2026-10-06 10:09:46.555.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 10:09:46.555.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.002 (0.004) seconds
