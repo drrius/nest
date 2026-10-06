@@ -34,7 +34,7 @@ final class MealPreferenceDraftTests: XCTestCase {
         reload.tap()
         choicesAlert(app).buttons["Discard edits"].tap()
         waitForSave("Your food preferences", in: app)
-        reveal(add, in: app, earlier: true)
+        reveal(add, in: app)
         XCTAssertEqual(app.textFields.matching(identifier: "Dislike").count, before)
         add.tap()
         app.navigationBars["Your food preferences"].buttons["Back"].tap()
