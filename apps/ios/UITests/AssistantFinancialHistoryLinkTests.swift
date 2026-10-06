@@ -151,7 +151,8 @@ final class AssistantFinancialHistoryLinkTests: XCTestCase {
             XCTAssertTrue(bounds.contains(CGPoint(x: x, y: endY)))
             attach(
                 [
-                    "attempt": attempt, "target": target.identifier, "exists": target.exists,
+                    "attempt": attempt, "target": target.exists ? target.identifier : "unrealized existing target",
+                    "exists": target.exists,
                     "frame": values(frame), "viewport": values(bounds), "start": [x, startY], "end": [x, endY],
                 ],
                 name: "Measured read-only history reveal")
