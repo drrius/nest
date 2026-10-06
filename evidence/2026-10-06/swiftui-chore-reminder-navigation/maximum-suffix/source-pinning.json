@@ -1,0 +1,9 @@
+{
+  "UIBaseCommit": "13e4fb9a96ba53455a72640702cb71212bb9fca0",
+  "UIOverrideCommit": "94ea7aef310b03215c3b6a82b68ac59ac878eadb",
+  "UIOverridePath": "UITests/NativeChoreReminderNavigationTests.swift",
+  "CompositeSource": true,
+  "SDKBinaryReusedFromSemanticPreflight": true,
+  "SDKInputsDifference": "SDK preflight 1097 unchanged inputs; UI-only base addition plus recorded override; parent Linux fake refactors not uploaded",
+  "LinuxWorkingTreeNeededAfterFreeze": false
+}

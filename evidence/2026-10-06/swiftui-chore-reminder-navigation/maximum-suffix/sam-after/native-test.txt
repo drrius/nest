@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-chore-reminder-maximum-suffix-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-chore-reminder-maximum-suffix-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-chore-reminder-maximum-suffix-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 09:09:03.449.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 09:09:03.450.
+Test Suite 'HostedChoreReminderNavigationReadTests' started at 2026-10-06 09:09:03.450.
+Test Case '-[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder]' started.
+Test Case '-[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder]' passed (2.345 seconds).
+Test Suite 'HostedChoreReminderNavigationReadTests' passed at 2026-10-06 09:09:05.796.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.345 (2.346) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 09:09:05.797.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.345 (2.347) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 09:09:05.797.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.345 (2.347) seconds
+2026-10-06 09:09:06.110 xcodebuild[89398:20480586] [MT] IDETestOperationsObserverDebug: 4.592 elapsed -- Testing started completed.
+2026-10-06 09:09:06.110 xcodebuild[89398:20480586] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 09:09:06.110 xcodebuild[89398:20480586] [MT] IDETestOperationsObserverDebug: 4.592 sec, +4.592 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-chore-reminder-maximum-suffix-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

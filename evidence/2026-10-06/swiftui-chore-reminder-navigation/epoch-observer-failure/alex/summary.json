@@ -1,0 +1,46 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791269230.861,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791269210.722,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"NestChore(occurrenceId: CE88CF42-4359-41D4-AB06-A7185C22306B, title: \"Hosted smoke tidy kitchen\", dueDate: Nest.CivilDate(value: \"2026-09-28\"), assigneeId: nil, offlineEpoch: nil)\") is not equal to (\"NestChore(occurrenceId: CE88CF42-4359-41D4-AB06-A7185C22306B, title: \"Hosted smoke tidy kitchen\", dueDate: Nest.CivilDate(value: \"2026-09-28\"), assigneeId: nil, offlineEpoch: Optional(FDE324AA-AAF8-4179-AAF3-2D31A918C8CB))\")",
+      "targetName": "NestAppTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder",
+      "testName": "testGETOnlyExactActiveChoreAndReminder()"
+    }
+  ],
+  "title": "Test - Nest",
+  "topInsights": [],
+  "totalTestCount": 1
+}

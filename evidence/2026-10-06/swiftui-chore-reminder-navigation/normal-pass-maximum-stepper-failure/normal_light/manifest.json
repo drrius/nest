@@ -1,0 +1,494 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3317B03C-DF8C-4822-928E-DACEFCD6C256.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Restored original Today top and filter accessibility tree_0_393D53F1-97A2-418D-B340-BDFF62B08099.txt",
+        "timestamp": 1791269793.029
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F5C9BDA0-6926-48E7-B071-2948954B7E3A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Restored original Today top and filter_0_997F8651-F816-4BBD-AF14-93D07EE9BB40.png",
+        "timestamp": 1791269792.819
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FDE0FBB6-8F5F-4FF8-BBC9-455B5FD4790C.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back Discard returned to unchanged scheduled chore accessibility tree_0_32978601-0CE7-4B0C-BBA7-6B4EADB7A07F.txt",
+        "timestamp": 1791269788.353
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C8B941FC-34F5-4622-9DC1-2DC2373B16A8.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back Discard returned to unchanged scheduled chore_0_001397A8-52E3-4316-AE52-6AE96F8F4F89.png",
+        "timestamp": 1791269787.949
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6037934F-0A84-4948-9208-D38608E5CBF9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back explicit Discard choices exits unsent draft complete frames_0_70AB4485-A92A-43FC-8F47-4A797A331E1E.json",
+        "timestamp": 1791269783.33
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D7648595-E8DD-458C-8718-6DCA1FB9E73F.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back explicit Discard choices exits unsent draft accessibility tree_0_7081E298-A5AA-48ED-BF85-C66E4CF7FF03.txt",
+        "timestamp": 1791269782.959
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "57C02E20-1CFA-43B9-9BA2-7A288E1D451D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back explicit Discard choices exits unsent draft_0_81D8289C-4330-4745-9642-53C22192FAD5.png",
+        "timestamp": 1791269782.574
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "47DBD7A1-CED7-4B3F-A581-600098A535A9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_95936160-D918-4430-9914-9155D5B19769.json",
+        "timestamp": 1791269777.052
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A1B9475E-6A90-41BF-BAB6-E382E6679C7A.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Explicit Discard reload restores exact canonical chore reminder settings accessibility tree_0_A6DBB77E-868B-4F15-A3DE-B49A51DE7C0A.txt",
+        "timestamp": 1791269776.427
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "52B85232-41AA-46B4-B642-B75438B8F8A7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Explicit Discard reload restores exact canonical chore reminder settings_0_B1A27139-0F7C-4006-BAF7-09F33418FEA2.png",
+        "timestamp": 1791269776.113
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "99B0B3F3-5F94-416D-A1A3-9924276BA4A3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_B19604F4-F1D0-489F-BE31-555A64F2428D.json",
+        "timestamp": 1791269775.988
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8CA4AE81-0C95-44EC-9FF4-D3FAD5D1EFF2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_2CDB7709-3A7A-46F3-9CAA-0DEAF8A05CB6.json",
+        "timestamp": 1791269775.289
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "43C66036-42A0-497E-9B08-4265E8F23817.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_B77FAF7D-349F-47B3-AB48-BDB310E44E18.json",
+        "timestamp": 1791269774.539
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C6AAA638-8ACD-4DD4-8EF7-C59074791B99.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_9EC12CCF-0C01-4678-BE29-4EB973519CA6.json",
+        "timestamp": 1791269773.816
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CF4B8EA2-6D2A-42A8-BF0E-2D1D620CEDA9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_5D380859-06FD-4194-8262-8768F95BD3CC.json",
+        "timestamp": 1791269773.109
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C4AA4728-332E-4EE6-9F2A-B7857E4A4E94.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh explicit Discard choices before reload complete frames_0_4136DD6A-8AAB-43CA-8E9A-0F512B5D8DC3.json",
+        "timestamp": 1791269767.939
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F35B68DF-8E22-41DE-A472-C3970DD581FA.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh explicit Discard choices before reload accessibility tree_0_C3663D22-2545-422F-9FE0-BC6A9F68CB18.txt",
+        "timestamp": 1791269767.503
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9EF753F1-1BFB-4BAC-B383-6AF1705A8CFC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh explicit Discard choices before reload_0_9575AC0A-1C43-4908-A1CA-5C96CAD666B1.png",
+        "timestamp": 1791269767.094
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7481D53A-3C49-4AD2-9EBD-537008CE5880.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_DD667FDA-279F-47C4-B7B9-A66DB8D2B71E.json",
+        "timestamp": 1791269765.008
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "33E96BB8-9848-4B03-9757-4A50EDBC47DF.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh Keep editing retains all unsent settings accessibility tree_0_4D03A776-3EA9-4387-A3F6-E12A3570B283.txt",
+        "timestamp": 1791269762.186
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6901D1E8-E16D-4AB9-9D0C-F9750E350B93.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh Keep editing retains all unsent settings_0_9B1E1C64-367D-4CC4-A6E7-176212572A4A.png",
+        "timestamp": 1791269761.797
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AE99EFFC-4652-4E9D-A26F-2507B87CFFD2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_E8C59D21-97AB-4616-8665-E6F1BF35CD15.json",
+        "timestamp": 1791269761.647
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FFE52CB4-6156-4132-BD90-07F291E1E240.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_BC4DF97C-D8EA-43E1-80D0-7FF83BF9F7AA.json",
+        "timestamp": 1791269760.882
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0B8696DB-0682-4CF7-845B-EFEF07370968.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_E5F553FF-9AAB-4834-8A7F-4059687C5980.json",
+        "timestamp": 1791269760.061
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6C5C16CA-205C-4FAE-9B71-22303F30E832.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_A82A2AA8-2C2E-40AC-A925-816A1593EA3D.json",
+        "timestamp": 1791269759.235
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B404BF6C-D62B-429E-A906-2B760699DD00.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_A04B7016-A0D8-4EC6-9446-B536993E6C47.json",
+        "timestamp": 1791269758.537
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2FDB4C59-A05C-4D8D-9564-0F004A290000.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh offers full Keep editing and Discard choices complete frames_0_24B0B252-6B60-4A14-8E12-B2AF7B52119D.json",
+        "timestamp": 1791269754.303
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BF347F28-D90F-438D-A8DB-06EC9B145A01.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh offers full Keep editing and Discard choices accessibility tree_0_1317FAC4-51BC-4BBC-B649-4E721CA103CA.txt",
+        "timestamp": 1791269753.865
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F00E29A4-8AF3-48E4-9FE4-B0FF82DD6F2E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh offers full Keep editing and Discard choices_0_E1B19154-BE7C-452F-981C-B898C2D47543.png",
+        "timestamp": 1791269753.451
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C6370FAB-81A4-4D4F-8613-8CD8A0F92145.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_4F01A61E-06EB-4B31-95EB-0B5774799EC6.json",
+        "timestamp": 1791269751.588
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8DBAC6DC-2444-4618-B5C7-95821AA94EA4.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back Keep editing retains all unsent chore reminder settings accessibility tree_0_E6DCE414-71CB-4FA5-A50D-4572F0C95965.txt",
+        "timestamp": 1791269746.531
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D624DD21-4A03-47A5-B87E-BBC92976A1BB.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back Keep editing retains all unsent chore reminder settings_0_41981721-000B-495E-BBAB-0AB9AEE4F4D6.png",
+        "timestamp": 1791269746.225
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4A623941-DB8B-46D4-AF3B-18D97A567FFF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_B6DEF842-E175-434B-BAC0-1670ADBB7E0C.json",
+        "timestamp": 1791269746.108
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5F2B9798-D350-48E8-BD4F-6164EAA6E51A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_57FC2C3D-C1ED-4AAC-B9F9-160E21842C8E.json",
+        "timestamp": 1791269745.377
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5609400B-964B-4BE5-904A-8D7CCC30F558.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_A8E7A56A-3283-4A5E-B181-10166CDE899C.json",
+        "timestamp": 1791269744.529
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "406DAEB4-BF79-4D39-B270-5DF7BDAAFE1F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_DBF16CF6-D084-4609-ADC2-DE0B6FA2C8F2.json",
+        "timestamp": 1791269743.831
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "40C6C639-D51C-490E-BC44-124181FB66B4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_CA34B1FB-1ACE-4A64-94ED-E007CDDC9B94.json",
+        "timestamp": 1791269743.22
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "91764A82-1DF2-44D5-A8F4-87CD87D1B275.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back offers full Keep editing and Discard choices complete frames_0_9EBC449B-2268-46D6-B5AA-2D37DCEACDB8.json",
+        "timestamp": 1791269741.183
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EBB030C6-77FA-4E43-9017-75F089AE7536.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back offers full Keep editing and Discard choices accessibility tree_0_42DC9CFA-1107-4810-8EC8-77CA80AFE9B6.txt",
+        "timestamp": 1791269740.598
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6BDACA4E-DCFB-4667-951E-EDB7E0C27E9C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back offers full Keep editing and Discard choices_0_A08445E5-5013-4457-836D-FD7153D6B086.png",
+        "timestamp": 1791269740.155
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D2D37933-73A2-484E-91F0-6C6F288850FB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_8A08D3CF-0DA4-405D-B172-58C1DCFB447D.json",
+        "timestamp": 1791269734.556
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "23FA0EB4-79F9-4F2E-B9DE-6ABCB0738D2C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_2AF524CD-01E2-444B-A6E9-53C149733177.json",
+        "timestamp": 1791269730.487
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7A14E6C7-8950-49A0-8EE3-A8E67B9D63BE.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Untouched original canonical chore reminder accessibility tree_0_AD65017E-8C0E-4FF9-8D58-96F5AE6CFD1E.txt",
+        "timestamp": 1791269727.396
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "58ED100C-9EC0-4E20-AF6D-29DADAA2B4C5.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Untouched original canonical chore reminder_0_85051C54-0DD9-4768-BB9D-326799C20C36.png",
+        "timestamp": 1791269727.086
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4573BFDB-EB8B-4761-9435-D64B2D6459AA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Chore reminder untouched Back target_0_87B09732-533E-4A20-9213-0F37710E30C7.json",
+        "timestamp": 1791269727.003
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "07B0DDD9-D0CE-4C3D-BC34-7A00C08B4814.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_A549121F-BD2F-492D-96D5-DD9DBF856E2E.json",
+        "timestamp": 1791269726.695
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E3BDE005-6F83-42FA-8CC5-86F02C3024BD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_5404EE48-0B5C-4400-94D6-83CE2ACE95FC.json",
+        "timestamp": 1791269726.131
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EE93EC11-D1E2-4411-B733-D211D464E819.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_445DC825-E34E-420B-90A2-80B4F7250482.json",
+        "timestamp": 1791269725.518
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8E4DFD6D-7029-4677-B88C-B40B7B391FD7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_56D071F8-9189-468C-BB4F-24165E605F77.json",
+        "timestamp": 1791269724.911
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "621C7F4E-2A40-4F58-ACE1-9435B1FDAE3E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_E63E0CA3-4D47-49CA-ADDE-EBFF273C34F5.json",
+        "timestamp": 1791269724.265
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8654EB68-9DBE-4B23-AFAF-7EFD966C0360.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_4A1444E0-E055-4822-BD75-93EC0D49835A.json",
+        "timestamp": 1791269720.089
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B6297F9E-3E54-45A2-9CD4-0BFD2BA87061.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_0C1F5FB9-B17D-4FAD-A1A0-0C2142B267A9.json",
+        "timestamp": 1791269714.419
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2356EE1B-40F5-49CD-AAE6-C1734868DD7A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_83967E18-0FC4-4B9D-AE51-449B3FA0A584.json",
+        "timestamp": 1791269711.866
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "58E0D12D-C201-48D5-9E22-9D3D3A72B183.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual chore reminder control viewport_0_5E208504-7EDC-4F69-BD82-4FBB2E06FAA8.json",
+        "timestamp": 1791269709.256
+      }
+    ],
+    "testIdentifier": "NativeChoreReminderNavigationTests/testOriginalChoreUnsentReminderNavigationAndReadableChoices()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeChoreReminderNavigationTests/testOriginalChoreUnsentReminderNavigationAndReadableChoices"
+  }
+]

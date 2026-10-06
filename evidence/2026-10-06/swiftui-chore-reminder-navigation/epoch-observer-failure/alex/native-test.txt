@@ -1,0 +1,36 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-chore-reminder-preflight-20261006/alex/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-chore-reminder-preflight-20261006/alex/result.xcresult "-only-testing:NestAppTests/HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-chore-reminder-preflight-20261006/alex/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 08:46:52.785.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 08:46:52.785.
+Test Suite 'HostedChoreReminderNavigationReadTests' started at 2026-10-06 08:46:52.785.
+Test Case '-[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder]' started.
+/tmp/nest-current-qa-82a/apps/ios/AppTests/HostedChoreReminderNavigationReadTests.swift:29: error: -[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder] : XCTAssertEqual failed: ("NestChore(occurrenceId: CE88CF42-4359-41D4-AB06-A7185C22306B, title: "Hosted smoke tidy kitchen", dueDate: Nest.CivilDate(value: "2026-09-28"), assigneeId: nil, offlineEpoch: nil)") is not equal to ("NestChore(occurrenceId: CE88CF42-4359-41D4-AB06-A7185C22306B, title: "Hosted smoke tidy kitchen", dueDate: Nest.CivilDate(value: "2026-09-28"), assigneeId: nil, offlineEpoch: Optional(FDE324AA-AAF8-4179-AAF3-2D31A918C8CB))")
+Test Case '-[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder]' failed (2.770 seconds).
+2026-10-06 08:46:55.556528+0200 Nest[83333:20426816] [Default] Flushing outgoing messages to the IDE with timeout 600.00s
+2026-10-06 08:46:55.557894+0200 Nest[83333:20426890] [Default] Received confirmation that IDE processed remaining outgoing messages
+
+Restarting after unexpected exit, crash, or test timeout; summary will include totals from previous launches.
+
+Test Suite 'Selected tests' started at 2026-10-06 08:46:57.219.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 08:46:57.219.
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 08:46:57.220.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.000) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 08:46:57.220.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.001) seconds
+2026-10-06 08:47:10.860 xcodebuild[83320:20426502] [MT] IDETestOperationsObserverDebug: 20.004 elapsed -- Testing started completed.
+2026-10-06 08:47:10.860 xcodebuild[83320:20426502] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 08:47:10.860 xcodebuild[83320:20426502] [MT] IDETestOperationsObserverDebug: 20.004 sec, +20.004 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-chore-reminder-preflight-20261006/alex/result.xcresult
+
+Failing tests:
+	HostedChoreReminderNavigationReadTests.testGETOnlyExactActiveChoreAndReminder()
+
+** TEST EXECUTE FAILED **
+
+Testing started

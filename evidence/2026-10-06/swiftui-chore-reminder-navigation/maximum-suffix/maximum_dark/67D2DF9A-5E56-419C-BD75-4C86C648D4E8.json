@@ -1,0 +1,42 @@
+[
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [20, 1392, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [20, 1152, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [20, 912, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [20, 672, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [20, 440.5, 335, 125.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 80
+  }
+]

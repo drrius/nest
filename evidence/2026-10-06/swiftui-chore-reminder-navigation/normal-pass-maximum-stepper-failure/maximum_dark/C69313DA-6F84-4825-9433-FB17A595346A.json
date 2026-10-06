@@ -1,0 +1,26 @@
+[
+  {
+    "bottom": 576,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 74
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [16, 481.5, 343, 155.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 74
+  },
+  {
+    "bottom": 576,
+    "exists": true,
+    "frame": [16, 410.5, 343, 155.5],
+    "gestureStart": [15, 433.55000000000001],
+    "missingDirection": 250,
+    "top": 74
+  }
+]

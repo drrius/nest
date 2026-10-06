@@ -1,0 +1,16 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "215140C8-2724-44D8-9CA9-7942D8D3644F.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "Complete Issue Description.txt"
+      }
+    ],
+    "testIdentifier": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder"
+  }
+]
