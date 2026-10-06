@@ -1,0 +1,72 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 7.721
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 7.054
+  },
+  {
+    "step": "model-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NotificationPreferencesModelTests/testReturningToChoicesPreservesAnUnsentDraftWithoutSaving",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 15.298
+  },
+  {
+    "step": "navigation-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NotificationDraftNavigationTests/testDeviceConnectionRoundTripPreservesUnsentChoices",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 37.921
+  },
+  {
+    "step": "restore-today",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativePreparationCompletionTests/testCompletedPreparationDoesNotReappearAfterRestart",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 17.889
+  },
+  {
+    "step": "original-after",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.452
+  },
+  {
+    "step": "partner-after",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.269
+  }
+]

@@ -1,0 +1,1 @@
+818:/tmp/nest-current-qa-82a/apps/ios/UITests/NativeMealWeekFixture.swift:75: error: -[NestAccessibilityTests.NotificationDraftNavigationTests testDeviceConnectionRoundTripPreservesUnsentChoices] : failed - Required native meal control is not visible

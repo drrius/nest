@@ -1,0 +1,1 @@
+164:/tmp/nest-current-qa-82a/apps/ios/UITests/NotificationDraftNavigationTests.swift:25: error: -[NestAccessibilityTests.NotificationDraftNavigationTests testDeviceConnectionRoundTripPreservesUnsentChoices] : XCTAssertEqual failed: ("Optional("0")") is not equal to ("Optional("1")")

@@ -1,0 +1,5 @@
+{
+  "success": true,
+  "inspectBeforeResuming": false,
+  "expectedRegressionFailures": 1
+}
