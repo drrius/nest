@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-paused-reminder-max-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-paused-reminder-max-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedPausedRecurringReminderReadTests/testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-paused-reminder-max-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 12:17:52.784.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 12:17:52.785.
+Test Suite 'HostedPausedRecurringReminderReadTests' started at 2026-10-06 12:17:52.785.
+Test Case '-[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline]' started.
+Test Case '-[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline]' passed (4.636 seconds).
+Test Suite 'HostedPausedRecurringReminderReadTests' passed at 2026-10-06 12:17:57.421.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.636 (4.636) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 12:17:57.421.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.636 (4.637) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 12:17:57.422.
+	 Executed 1 test, with 0 failures (0 unexpected) in 4.636 (4.637) seconds
+2026-10-06 12:17:57.728 xcodebuild[40725:20907656] [MT] IDETestOperationsObserverDebug: 6.764 elapsed -- Testing started completed.
+2026-10-06 12:17:57.728 xcodebuild[40725:20907656] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 12:17:57.728 xcodebuild[40725:20907656] [MT] IDETestOperationsObserverDebug: 6.764 sec, +6.764 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-paused-reminder-max-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

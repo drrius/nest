@@ -1,0 +1,44 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "43B54885-7D7B-4445-A941-3E4BABA949EB.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Meal reminder control placement failure accessibility tree_0_B5480FBA-630C-42DA-BF74-D234D08C9FF3.txt",
+        "timestamp": 1791281847.293
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8E419948-0E40-4D04-86C6-CD9051CBC7DE.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Meal reminder control placement failure_0_DCA2F9AC-9410-40FF-8956-28BC8FDF97AB.png",
+        "timestamp": 1791281847.095
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "18B6C726-1C05-451D-B85E-E7880AD5FC3A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Failed paused bill reminder control viewport_0_115FC6CF-C64C-43CA-9BD1-B5D7318FEA79.json",
+        "timestamp": 1791281846.995
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6C437B21-2077-4385-A296-54DC612E6968.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual paused bill reminder control viewport_0_4B56D048-0EC6-4971-8720-4900838CDC8E.json",
+        "timestamp": 1791281782.97
+      }
+    ],
+    "testIdentifier": "NativePausedRecurringReminderTests/testOriginalPausedRuleTruthfulReadOnlyReminderRefusal()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativePausedRecurringReminderTests/testOriginalPausedRuleTruthfulReadOnlyReminderRefusal"
+  }
+]

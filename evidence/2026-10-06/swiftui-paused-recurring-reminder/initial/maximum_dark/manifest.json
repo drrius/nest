@@ -1,0 +1,296 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F4292C36-7713-4309-B4E1-C391B36F0440.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_2C37F9DC-7F3A-47CE-AD0E-FF4630641876.nest",
+        "timestamp": 1791281532.662
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "14A33DAD-6A29-4937-A5E6-37C8CE700586.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_7007F9DD-E756-4DE1-993F-D964EE032E22.txt",
+        "timestamp": 1791281532.573
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DE4A55B3-880C-4137-8687-C007D5F33B92.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_8C0FA2FF-3ED4-4014-B171-6BA068E8BFA8.txt",
+        "timestamp": 1791281531.643
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6C6C516D-5A03-4A1D-848B-FF2880B51C97.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_D00E5EC8-6475-4579-97C5-C0A526049402.txt",
+        "timestamp": 1791281530.629
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "89AF9CF9-4CDE-4B66-9DBD-92D4C8B9CDCD.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_B2FE289B-18FE-4BB3-A4BD-79F901415412.txt",
+        "timestamp": 1791281529.628
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6F2107C5-7AB9-490A-AB53-55B6E97F0AC3.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_38042BBC-4A67-4AD0-9975-7C777A1A604D.txt",
+        "timestamp": 1791281528.641
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6B422494-FDEB-4CC5-84AC-EF8FD9BAA4C9.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_C734C162-E24B-4F1C-BDB5-99105A2E58D5.txt",
+        "timestamp": 1791281527.646
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0D09FC15-5640-4EDF-AE69-7C645A8FBF42.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_7C83BC03-8D4C-45AC-BC4F-4AA00BFF9B74.txt",
+        "timestamp": 1791281526.618
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B565B925-0CFD-4520-81F6-842F6BFEF872.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_D6BD212A-B0BE-46A4-A183-A6AF1588E42E.txt",
+        "timestamp": 1791281525.646
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A6730912-8574-4E92-B6C7-3E315C5B3F6F.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_67A4A1C3-F3CB-4110-A4D5-7C18E00F9A68.txt",
+        "timestamp": 1791281524.656
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2D5FDB9F-456C-4A9D-829D-7B8663365A2C.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_54FDE6E8-FF8A-4852-A93F-49D0EBD606E1.txt",
+        "timestamp": 1791281523.648
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "89858660-8439-4D55-A48B-9301BF606E4D.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_2B632542-CBDE-4743-8F8C-F2FCDE1C4E16.txt",
+        "timestamp": 1791281522.643
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0F148B2F-3A92-47CC-AB15-50CB1E72FB03.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_28BF5AC7-93F9-422E-8D86-C789D1347405.txt",
+        "timestamp": 1791281521.651
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "71E7EF82-F924-48C2-8485-1C213269AC30.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_86A4713D-4819-423F-B0F9-ACC5B61D3BA7.txt",
+        "timestamp": 1791281520.655
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "183D4C13-B193-4BB2-9FC7-3BB2457AB205.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_B67BCF8B-4554-4233-BDDC-8D5CF96E90F1.txt",
+        "timestamp": 1791281519.653
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6887C107-6CE5-4F31-8B4F-FA95B2BB2382.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_39FE414D-31C1-452E-8EB5-6E9961A230A0.txt",
+        "timestamp": 1791281518.661
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2A063A0F-A287-4927-B4C2-585A12846C9F.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_423F40D5-85F8-4646-A9FC-BDA721DC9807.txt",
+        "timestamp": 1791281517.629
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6DFC325C-BF35-4144-9BA2-B56EE9CEC56E.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_F805BDB6-2FF0-4C19-ADFD-91A760866EE1.txt",
+        "timestamp": 1791281516.624
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A4FB133D-A0D9-4D2C-8C91-AF025B613A27.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_0777428C-03D8-452E-AFF0-E3C55C38427E.txt",
+        "timestamp": 1791281515.645
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CBB7B2DD-4905-4442-9E5F-8757F4FC2AB5.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_CBC14923-58D1-40B3-9D68-A1C3B69BB219.txt",
+        "timestamp": 1791281514.628
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0E74FC72-5EAD-480F-AA85-1F5A3F49AC1B.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_042E0A80-AA15-4F36-B79F-BCE1706D2047.txt",
+        "timestamp": 1791281513.632
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B590EDCE-30F0-4634-B7C7-6214D178FAAB.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_F355A1EC-E268-49E9-AA57-33E58BBA01EE.txt",
+        "timestamp": 1791281512.642
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F369931C-2504-4ABB-8E57-F2FBA741BA69.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_47604191-0B27-4B81-8AEE-85014D0DCFC3.txt",
+        "timestamp": 1791281511.627
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "21AFC958-DFAC-42F3-AF80-1ECD57904EF5.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_8E491FBF-1353-4E1E-995A-F22C5B3B24A5.txt",
+        "timestamp": 1791281510.622
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2750DEC3-654C-494D-B847-3A5867F940AD.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_77569214-CF39-4099-816C-10649C30B56B.txt",
+        "timestamp": 1791281509.618
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B97A5AE2-1211-4D99-806C-5D4B8E20C3D3.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_42F1CA3D-2E30-4406-B2AD-F06B51E2B64B.txt",
+        "timestamp": 1791281508.62
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A2AEC136-7845-4BE9-82FF-F3A4BE12D992.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_7B9E43CE-C6CA-4102-974F-5A8FDAD1DCAE.txt",
+        "timestamp": 1791281507.619
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FC8C90AD-9456-408F-8B42-30D06C4B79E0.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_C0B0F036-D71A-4F81-B4DD-98189BE58236.txt",
+        "timestamp": 1791281506.71
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "45EC4D01-B7EF-46E2-8B8F-618414AAD6CD.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_C5825E9D-E5D2-477B-896D-F7D415ADA383.txt",
+        "timestamp": 1791281505.612
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C7839AD6-CB28-40BE-9AED-26B32C6FFE0A.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_B1FD365C-036B-4911-9F00-608733A995A3.txt",
+        "timestamp": 1791281504.606
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3F9CEF05-D186-4036-9AAE-27C0EE08E840.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `Button (First Match)`_0_60225E6A-B3A5-4819-B7E7-4FB2663CF83A.txt",
+        "timestamp": 1791281503.604
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DCEBFC5D-5FDC-4277-AC33-6CEBF8CB6A80.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured actual paused bill reminder control viewport_0_FDBBD46C-BA1F-41FE-B27A-C33F6B727737.json",
+        "timestamp": 1791281500.135
+      }
+    ],
+    "testIdentifier": "NativePausedRecurringReminderTests/testOriginalPausedRuleTruthfulReadOnlyReminderRefusal()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativePausedRecurringReminderTests/testOriginalPausedRuleTruthfulReadOnlyReminderRefusal"
+  }
+]

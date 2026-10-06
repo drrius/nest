@@ -1,0 +1,5 @@
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  ↪︎Find: Descendants matching type Button
+    ↪︎Find: Elements matching predicate 'label BEGINSWITH "Synthetic native manual-link QA"'
+      ↪︎Find: First Match

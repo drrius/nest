@@ -1,0 +1,45 @@
+{
+  "oldCount": 61,
+  "currentCount": 62,
+  "missingOriginalIds": [],
+  "changedOriginalRows": [],
+  "extraEvents": [
+    {
+      "amountCentimes": "2",
+      "createdAt": "2026-10-05T13:34:04.670541Z",
+      "createdBy": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "createdOrder": "1791207244670541",
+      "description": "Nest QA PDF posted 20261005",
+      "eventId": "1ec7156d-277a-4501-8231-c1a12a52b8ef",
+      "hasReceipt": true,
+      "kind": "expense",
+      "occurredOn": "2026-10-05",
+      "occurredOrder": "9774",
+      "payerId": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "relatedEventId": null
+    }
+  ],
+  "normalization": [
+    "UUID casing in eventId/createdBy/payerId/relatedEventId",
+    "known optional payerId/relatedEventId omitted by Swift Codable treated as null"
+  ],
+  "original61SemanticallyExact": true,
+  "currentBalance": {
+    "eventCount": "62",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "members": [
+      {
+        "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+        "centimes": "1",
+        "displayName": "Test Alex"
+      },
+      {
+        "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+        "centimes": "-1",
+        "displayName": "Test Sam"
+      }
+    ],
+    "openingEstablished": false,
+    "version": 1
+  }
+}

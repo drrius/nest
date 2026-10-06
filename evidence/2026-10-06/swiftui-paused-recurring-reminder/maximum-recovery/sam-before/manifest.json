@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "43E95E47-A4D3-4896-80B0-ED46D4AFF096.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original paused rule reminder and complete native money read baseline_0_E3157640-AC8F-49BE-939A-55CB78BFB354.json",
+        "timestamp": 1791281702.363
+      }
+    ],
+    "testIdentifier": "HostedPausedRecurringReminderReadTests/testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedPausedRecurringReminderReadTests/testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline"
+  }
+]

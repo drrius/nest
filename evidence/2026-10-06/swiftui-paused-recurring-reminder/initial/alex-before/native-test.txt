@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-paused-reminder-ui-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-paused-reminder-ui-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedPausedRecurringReminderReadTests/testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-paused-reminder-ui-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 12:08:40.543.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 12:08:40.543.
+Test Suite 'HostedPausedRecurringReminderReadTests' started at 2026-10-06 12:08:40.543.
+Test Case '-[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline]' started.
+Test Case '-[NestAppTests.HostedPausedRecurringReminderReadTests testGETOnlyOriginalPausedReminderAndCompleteFinancialBaseline]' passed (6.240 seconds).
+Test Suite 'HostedPausedRecurringReminderReadTests' passed at 2026-10-06 12:08:46.784.
+	 Executed 1 test, with 0 failures (0 unexpected) in 6.240 (6.241) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 12:08:46.785.
+	 Executed 1 test, with 0 failures (0 unexpected) in 6.240 (6.242) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 12:08:46.785.
+	 Executed 1 test, with 0 failures (0 unexpected) in 6.240 (6.242) seconds
+2026-10-06 12:08:47.121 xcodebuild[37621:20881623] [MT] IDETestOperationsObserverDebug: 8.332 elapsed -- Testing started completed.
+2026-10-06 12:08:47.121 xcodebuild[37621:20881623] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 12:08:47.121 xcodebuild[37621:20881623] [MT] IDETestOperationsObserverDebug: 8.332 sec, +8.332 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-paused-reminder-ui-20261006/alex-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

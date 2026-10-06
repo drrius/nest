@@ -1,0 +1,44 @@
+{
+  "passedNativeMethods": 14,
+  "retainedFailedNativeMethods": 2,
+  "SDKGETMethodsPassed": 12,
+  "normalLightWholeUI": "PASS",
+  "maximumDarkReminderUI": "PASS on fixed f709 source; two earlier FAIL retained",
+  "batches": {
+    "initial": {
+      "methods": 6,
+      "passed": 5,
+      "failed": 1
+    },
+    "maximum-recovery": {
+      "methods": 5,
+      "passed": 4,
+      "failed": 1
+    },
+    "fixed-maximum": {
+      "methods": 5,
+      "passed": 5,
+      "failed": 0
+    }
+  },
+  "UIExecutedSourceCommits": {
+    "initial": "e3b5b5929f86118be8f7aac13bafd0dca6026d17",
+    "maximum-recovery": "dacea8fa1e83a7887ff1d4282a927cad4d551d85",
+    "fixed-maximum": "f7094205df23cb2d1908fd5e36e69326837e1cc6"
+  },
+  "SDKBinarySourceCommit": "1e8a5869d818dd1824d6c7c8bc01a2b998a026b9",
+  "initialControllerSha256": "563753ae74a987d09e3647889a46a7bea88be80dc295016b978fc85513726f66",
+  "maximumControllerSha256": "9b589f488efb5ec905e2ea048107506d34bdb633ac6f6c7d8464a782cdd9866d",
+  "reviewedPNGs": 35,
+  "hostedCommands": 0,
+  "financialBaselineEvents": 62,
+  "original61APISummariesSemanticallyPreserved": true,
+  "activeEditorDraftCoverage": false,
+  "physicalDeviceCoverage": false,
+  "pushEnabled": false,
+  "shippingChangeByChild": false,
+  "fixedMaximumControllerSha256": "28a328b86335172bd63767ebeafbd44386c23a0de7d52b6ec731ca3dc382cdb5",
+  "workersActivationRequested": false,
+  "publishedBeta19IncludesLayoutFix": false,
+  "FixedSDKAndUIRebuiltFrom": "f7094205df23cb2d1908fd5e36e69326837e1cc6"
+}
