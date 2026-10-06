@@ -1,0 +1,16 @@
+{
+  "actionRegions": [
+    [16, 129.5, 343, 93.5],
+    [16, 223, 343, 262],
+    [16, 485, 343, 262]
+  ],
+  "attempt": 2,
+  "end": [12, 199],
+  "navigation": "Private conversations",
+  "scrollBars": [[342, 74, 30, 510]],
+  "scrollers": [[0, 0, 375, 667]],
+  "start": [12, 449],
+  "target": "unrealized recorded target",
+  "targetFrame": [],
+  "viewport": [0, 74, 375, 510]
+}

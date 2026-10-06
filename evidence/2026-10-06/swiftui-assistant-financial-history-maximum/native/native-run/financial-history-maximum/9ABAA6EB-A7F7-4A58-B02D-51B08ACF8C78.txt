@@ -1,0 +1,99 @@
+failed: caught "NSInvalidArgumentException", "Invalid number value (infinite) in JSON write"
+(
+	0   CoreFoundation                      0x00000001804f7348 __exceptionPreprocess + 172
+	1   libobjc.A.dylib                     0x000000018009c094 objc_exception_throw + 72
+	2   Foundation                          0x0000000181186b00 _writeJSONObject + 0
+	3   Foundation                          0x0000000181187a10 ___writeJSONArray_block_invoke + 268
+	4   CoreFoundation                      0x000000018045a6c4 __NSARRAY_IS_CALLING_OUT_TO_A_BLOCK__ + 16
+	5   CoreFoundation                      0x000000018045adec __NSArrayEnumerate + 360
+	6   Foundation                          0x0000000181187154 _writeJSONArray + 300
+	7   Foundation                          0x0000000181187a10 ___writeJSONArray_block_invoke + 268
+	8   CoreFoundation                      0x000000018045a6c4 __NSARRAY_IS_CALLING_OUT_TO_A_BLOCK__ + 16
+	9   CoreFoundation                      0x000000018045adec __NSArrayEnumerate + 360
+	10  Foundation                          0x0000000181187154 _writeJSONArray + 300
+	11  Foundation                          0x0000000181187728 ___writeJSONObject_block_invoke + 408
+	12  Foundation                          0x0000000181186e38 _writeJSONObject + 824
+	13  Foundation                          0x00000001811834d0 -[_NSJSONWriter dataWithRootObject:options:] + 100
+	14  Foundation                          0x0000000181186204 +[NSJSONSerialization dataWithJSONObject:options:error:] + 108
+	15  NestAccessibilityTests              0x000000011a42e888 $s22NestAccessibilityTests39AssistantFinancialHistoryMaximumReadingV6attach33_DCC9896192D1ED4EECC3E5FCCA755B58LL_4nameySDySSypG_SStF + 300
+	16  NestAccessibilityTests              0x000000011a42cf88 $s22NestAccessibilityTests39AssistantFinancialHistoryMaximumReadingV3pan33_DCC9896192D1ED4EECC3E5FCCA755B58LL_8distance7attemptySo11XCUIElementC_12CoreGraphics7CGFloatVSitF + 4712
+	17  NestAccessibilityTests              0x000000011a429e3c $s22NestAccessibilityTests39AssistantFinancialHistoryMaximumReadingV6reveal_15permitsTallTextySo11XCUIElementC_SbtF + 1268
+	18  NestAccessibilityTests              0x000000011a429698 $s22NestAccessibilityTests39AssistantFinancialHistoryMaximumReadingV4readyySSF + 128
+	19  NestAccessibilityTests              0x000000011a42416c $s22NestAccessibilityTests029AssistantFinancialHistoryLinkC0C25assertMaximumRecordedBill33_8AFCAF74F967E02932211474FE6D4086LLyyAA0defI7ReadingVF + 756
+	20  NestAccessibilityTests              0x000000011a422bb4 $s22NestAccessibilityTests029AssistantFinancialHistoryLinkC0C65testMaximumPrivateBillResultRemainsReadableThroughRecordedExpenseyyKF + 2508
+	21  NestAccessibilityTests              0x000000011a424a14 $s22NestAccessibilityTests029AssistantFinancialHistoryLinkC0C65testMaximumPrivateBillResultRemainsReadableThroughRecordedExpenseyyKFTo + 144
+	22  CoreFoundation                      0x00000001804fdd10 __invoking___ + 144
+	23  CoreFoundation                      0x00000001804faebc -[NSInvocation invoke] + 276
+	24  XCTestCore                          0x00000001018cbb94 +[XCTFailableInvocation invokeErrorConventionInvocation:completion:] + 84
+	25  XCTestCore                          0x00000001018cbb38 __90+[XCTFailableInvocation invokeInvocation:withTestMethodConvention:lastObservedErrorIssue:]_block_invoke + 24
+	26  XCTestCore                          0x00000001018cb610 __81+[XCTFailableInvocation invokeWithAsynchronousWait:lastObservedErrorIssue:block:]_block_invoke + 292
+	27  XCTestCore                          0x00000001018bcfa8 __49+[XCTSwiftErrorObservation observeErrorsInBlock:]_block_invoke + 28
+	28  XCTestCore                          0x000000010192e43c $sSo24XCTSwiftErrorObservationC10XCTestCoreE14_observeErrors33_4641E344ACA55A25D2B1EC985574C54DLL2inSo0abC6ResultCSgyyXE_tFZ12$sIyB_Ieg_TRIyB_Tf1cn_n + 172
+	29  XCTestCore                          0x000000010192e490 $sSo24XCTSwiftErrorObservationC10XCTestCoreE14_observeErrors33_4641E344ACA55A25D2B1EC985574C54DLL2inSo0abC6ResultCSgyyXE_tFZTo + 28
+	30  XCTestCore                          0x00000001018bcecc +[XCTSwiftErrorObservation observeErrorsInBlock:] + 156
+	31  XCTestCore                          0x00000001018cb414 +[XCTFailableInvocation invokeWithAsynchronousWait:lastObservedErrorIssue:block:] + 176
+	32  XCTestCore                          0x00000001018cb9bc +[XCTFailableInvocation invokeInvocation:withTestMethodConvention:lastObservedErrorIssue:] + 140
+	33  XCTestCore                          0x00000001018cbe04 +[XCTFailableInvocation invokeInvocation:lastObservedErrorIssue:] + 64
+	34  XCTestCore                          0x00000001018de4fc -[XCTestCase invokeTestMethod:] + 56
+	35  XCTestCore                          0x00000001018dead8 __24-[XCTestCase invokeTest]_block_invoke.98 + 60
+	36  XCTestCore                          0x00000001018e3d80 -[XCTestCase(XCTIssueHandling) _caughtUnhandledDeveloperExceptionPermittingControlFlowInterruptions:caughtInterruptionException:whileExecutingBlock:] + 144
+	37  XCTestCore                          0x00000001018de708 -[XCTestCase invokeTest] + 476
+	38  XCTestCore                          0x00000001018dfe74 __45-[XCTestCase _invokeTestIfSupportedOSVersion]_block_invoke + 32
+	39  XCTestCore                          0x00000001018e3d80 -[XCTestCase(XCTIssueHandling) _caughtUnhandledDeveloperExceptionPermittingControlFlowInterruptions:caughtInterruptionException:whileExecutingBlock:] + 144
+	40  XCTestCore                          0x00000001018dfd4c -[XCTestCase _invokeTestIfSupportedOSVersion] + 156
+	41  XCTestCore                          0x00000001018df844 __26-[XCTestCase performTest:]_block_invoke.125 + 324
+	42  XCTestCore                          0x00000001018ba434 +[XCTContext _runInChildOfContext:forTestCase:markAsReportingBase:block:] + 152
+	43  XCTestCore                          0x00000001018ba358 +[XCTContext runInContextForTestCase:markAsReportingBase:block:] + 88
+	44  XCTestCore                          0x00000001018df444 -[XCTestCase performTest:] + 236
+	45  XCTestCore                          0x00000001018dbb5c -[XCTest runTest] + 44
+	46  XCTestCore                          0x00000001018e9ae4 -[XCTestSuite runTestBasedOnRepetitionPolicy:testRun:] + 60
+	47  XCTestCore                          0x00000001018e991c __27-[XCTestSuite performTest:]_block_invoke + 172
+	48  XCTestCore                          0x00000001018e9024 __59-[XCTestSuite _performProtectedSectionForTest:testSection:]_block_invoke + 40
+	49  XCTestCore                          0x00000001018ba434 +[XCTContext _runInChildOfContext:forTestCase:markAsReportingBase:block:] + 152
+	50  XCTestCore                          0x00000001018ba358 +[XCTContext runInContextForTestCase:markAsReportingBase:block:] + 88
+	51  XCTestCore                          0x00000001018e8fa4 -[XCTestSuite _performProtectedSectionForTest:testSection:] + 140
+	52  XCTestCore                          0x00000001018e945c -[XCTestSuite performTest:] + 208
+	53  XCTestCore                          0x00000001018dbb5c -[XCTest runTest] + 44
+	54  XCTestCore                          0x00000001018e9ae4 -[XCTestSuite runTestBasedOnRepetitionPolicy:testRun:] + 60
+	55  XCTestCore                          0x00000001018e991c __27-[XCTestSuite performTest:]_block_invoke + 172
+	56  XCTestCore                          0x00000001018e9024 __59-[XCTestSuite _performProtectedSectionForTest:testSection:]_block_invoke + 40
+	57  XCTestCore                          0x00000001018ba434 +[XCTContext _runInChildOfContext:forTestCase:markAsReportingBase:block:] + 152
+	58  XCTestCore                          0x00000001018ba358 +[XCTContext runInContextForTestCase:markAsReportingBase:block:] + 88
+	59  XCTestCore                          0x00000001018e8fa4 -[XCTestSuite _performProtectedSectionForTest:testSection:] + 140
+	60  XCTestCore                          0x00000001018e945c -[XCTestSuite performTest:] + 208
+	61  XCTestCore                          0x00000001018dbb5c -[XCTest runTest] + 44
+	62  XCTestCore                          0x00000001018e9ae4 -[XCTestSuite runTestBasedOnRepetitionPolicy:testRun:] + 60
+	63  XCTestCore                          0x00000001018e991c __27-[XCTestSuite performTest:]_block_invoke + 172
+	64  XCTestCore                          0x00000001018e9024 __59-[XCTestSuite _performProtectedSectionForTest:testSection:]_block_invoke + 40
+	65  XCTestCore                          0x00000001018ba434 +[XCTContext _runInChildOfContext:forTestCase:markAsReportingBase:block:] + 152
+	66  XCTestCore                          0x00000001018ba358 +[XCTContext runInContextForTestCase:markAsReportingBase:block:] + 88
+	67  XCTestCore                          0x00000001018e8fa4 -[XCTestSuite _performProtectedSectionForTest:testSection:] + 140
+	68  XCTestCore                          0x00000001018e945c -[XCTestSuite performTest:] + 208
+	69  XCTestCore                          0x00000001018dbb5c -[XCTest runTest] + 44
+	70  XCTestCore                          0x00000001019035fc __89-[XCTTestRunSession executeTestsWithIdentifiers:skippingTestsWithIdentifiers:completion:]_block_invoke + 100
+	71  XCTestCore                          0x00000001018ba434 +[XCTContext _runInChildOfContext:forTestCase:markAsReportingBase:block:] + 152
+	72  XCTestCore                          0x00000001018ba358 +[XCTContext runInContextForTestCase:markAsReportingBase:block:] + 88
+	73  XCTestCore                          0x00000001019034bc -[XCTTestRunSession executeTestsWithIdentifiers:skippingTestsWithIdentifiers:completion:] + 288
+	74  XCTestCore                          0x00000001018fa288 __72-[XCTExecutionWorker enqueueTestIdentifiersToRun:testIdentifiersToSkip:]_block_invoke_2 + 116
+	75  XCTestCore                          0x00000001018fb098 __XCTAsyncEnumerateWithWaiter_block_invoke + 212
+	76  XCTestCore                          0x00000001018fb204 __XCTAsyncEnumerate_block_invoke.99 + 52
+	77  XCTestCore                          0x00000001018fa120 XCTAsyncEnumerateWithWaiter + 464
+	78  XCTestCore                          0x00000001018f9f04 __72-[XCTExecutionWorker enqueueTestIdentifiersToRun:testIdentifiersToSkip:]_block_invoke + 108
+	79  XCTestCore                          0x00000001018fa398 -[XCTExecutionWorker runWithError:] + 68
+	80  XCTestCore                          0x00000001018f83ec __25-[XCTestDriver _runTests]_block_invoke.324 + 52
+	81  XCTestCore                          0x00000001019080d0 -[XCTestObservationCenter _observeTestExecutionForTestBundle:inBlock:] + 92
+	82  XCTestCore                          0x00000001018f7f28 -[XCTestDriver _runTests] + 932
+	83  XCTestCore                          0x00000001018f9c1c _XCTestMain + 84
+	84  NestAccessibilityTests-Runner       0x0000000100985e6c _XCTRunnerRunTests + 372
+	85  NestAccessibilityTests-Runner       0x0000000100985cf8 _XCTRunnerRunTests + 0
+	86  CoreFoundation                      0x0000000180456240 __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__ + 20
+	87  CoreFoundation                      0x00000001804559c8 __CFRunLoopDoBlocks + 340
+	88  CoreFoundation                      0x0000000180454d0c __CFRunLoopRun + 744
+	89  CoreFoundation                      0x000000018044fdbc _CFRunLoopRunSpecificWithOptions + 496
+	90  GraphicsServices                    0x0000000192b809bc GSEventRunModal + 116
+	91  UIKitCore                           0x000000018640a204 -[UIApplication _run] + 772
+	92  UIKitCore                           0x000000018640e42c UIApplicationMain + 124
+	93  NestAccessibilityTests-Runner       0x0000000100986190 main + 160
+	94  dyld                                0x0000000100bb53d0 start_sim + 20
+	95  ???                                 0x0000000100a7c4e4 0x0 + 4305962212
+)

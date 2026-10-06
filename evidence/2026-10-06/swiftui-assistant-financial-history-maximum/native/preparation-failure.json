@@ -1,0 +1,16 @@
+{
+  "session": 41996,
+  "stage": "Before any compilation/API/UI",
+  "source": "0b670a538d66239a43a69a890b3e6abfa664c0c2",
+  "expectedFrozenInputs": 1127,
+  "inheritedRuntimeExpectedInputs": 1126,
+  "failingControllerLine": 110,
+  "failure": "verify_ui_inputs assert current==frozen and len(current)==1126",
+  "compiledNativeBuilds": 0,
+  "nativeSDKMethods": 0,
+  "nativeUIMethods": 0,
+  "preservedController": "controllers/nest-assistant-financial-history-maximum-20261006.py",
+  "correctedPreparationSession": 58400,
+  "correctedFreshPreparationPassed": true,
+  "correctedDistinctProducts": true
+}

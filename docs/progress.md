@@ -77,6 +77,40 @@ action frames remain at least44pt; only long noninteractive text may use measure
 overlapping scroll coverage. No new fixture, model call or normal replay.
 [Prepared maximum-text plan](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/prepared-plan.json).
 
+Financial maximum-test source `0b670a53` is committed/pushed after strict Mac
+formatting, all Swift limits and scoped formatting/diff checks. Its first
+preparation fails before compilation/API/UI because an inherited controller
+guard still expects1,126 inputs; the new bounded helper makes1,127. The original
+failed controller/output are retained. The distinct fresh preparation passes
+all1,127 inputs, actual maximum-test/helper/FinancialApprovalRow compilation,
+selected products/binary hashes/signing/test origins/build19 and unchanged
+original accounts/64 empty journals/large-light settings. It corrects only the
+count and output paths; no native method or financial action is replayed.
+The reviewed single maximum execution is now running. Its exact fixture guard
+follows the real Centimes wire contract (`"3"` string), rather than coercing it
+to an integer; the separate current database metadata remains integer3 and
+independently confirms2/1 allocations and±1 ledger deltas. Both metadata proofs
+are privileged read-only observations, not authorization evidence. Actual
+The before reads pass15.238s/12.303s; the maximum method fails188.795s after
+opening the exact conversation and its recorded-bill result. Their full targets
+measure343×262pt and303×283pt. Review bill navigation appears, then the test
+helper's attach→pan→reveal→read stack raises an infinite-value JSON serialization
+exception. Which frame component was infinite was not captured; no product-defect
+or full bill-field/Entry-details acceptance is claimed. Both final reads pass
+13.011s/12.759s, original accounts/64 journals/local choices/large-light/Today
+restore, and plans/caffeinate are independently absent after terminal. Root
+reviews all four images and both target frames; independent metadata before/after
+preserves the conversation, consumed approval, all15 conversations, posted event,
+2/1 allocations and±1 ledger deltas exactly. The failed run is retained before
+any observer correction. Routine37519428398/native37519428409 pass exact0b:
+506 Foundation/41 skips,469 signed-app/37 skips, four Swift Testing cases,
+zero failures and strict native gates. CI does not run the optional hosted journey.
+The immutable verifier passes90 artifacts/1,127 UI inputs/1,122 dated SDK inputs,
+four native passes and one retained failure; the prebuild count failure stays
+separate. [Maximum-text evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/native/README.md).
+Root read-only metadata independently confirms the existing owner-private
+conversation, consumed approval and all15 original conversations unchanged.
+
 ## Current integration gates
 
 Fresh `fe90e184`/1,126-input signed UI preparation passes. The maximum-only

@@ -1,0 +1,23 @@
+{
+  "DiagnosticControllerComplete": true,
+  "UIResult": {
+    "step": "financial-history-maximum",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "AssistantFinancialHistoryLinkTests/testMaximumPrivateBillResultRemainsReadableThroughRecordedExpense",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 188.795
+  },
+  "BothFinalReadsPassed": true,
+  "UIInvocations": 1,
+  "MaximumOnly": true,
+  "NormalReplayed": false,
+  "NoRepeatedUI": true,
+  "UIDomainMutationBudget": 0,
+  "LiveModelInvocations": 0,
+  "SDKAuthSetupMayPOSTLogin": true,
+  "WirePOSTCountMeasured": false,
+  "LiveModelResponseClaim": false
+}

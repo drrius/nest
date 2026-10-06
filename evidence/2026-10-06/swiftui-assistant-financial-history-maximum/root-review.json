@@ -1,0 +1,36 @@
+{
+  "nativeSource": "0b670a538d66239a43a69a890b3e6abfa664c0c2",
+  "rootDirectScreenshotReviews": 4,
+  "verifiedTargets": [
+    {
+      "frame": [16, 208, 343, 262],
+      "kind": "Exact existing private conversation",
+      "fullViewport": [0, 74, 375, 510],
+      "enabled": true,
+      "hittable": true
+    },
+    {
+      "frame": [36, 265, 303, 283],
+      "kind": "Recorded bill result link",
+      "fullViewport": [0, 74, 375, 510],
+      "enabled": true,
+      "hittable": true
+    }
+  ],
+  "reachedReviewBillNavigation": true,
+  "canonicalBillFieldsVerified": false,
+  "entryDetailsVisited": false,
+  "wholeMaximumJourneyPassed": false,
+  "observerException": "NSInvalidArgumentException: Invalid number value (infinite) in JSON write",
+  "stackConfirmed": [
+    "AssistantFinancialHistoryMaximumReading.attach",
+    "pan",
+    "reveal",
+    "read",
+    "assertMaximumRecordedBill"
+  ],
+  "exactInfiniteFrameComponentKnown": false,
+  "metadataBeforeAfterIdentical": true,
+  "financialDecisionOrModelInvoked": false,
+  "normalJourneyRepeated": false
+}
