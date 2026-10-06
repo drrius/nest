@@ -1,6 +1,6 @@
 # Build18 phone layout check
 
-After0.1.0/build18 becomes available, update Nest in TestFlight and open Today,
+SwiftUI0.1.0/build18 is available to internal testers. Update Nest in TestFlight and open Today,
 Meals, Calendar and Money from the bottom tabs. Each should have the same left
 and right margins, title height, context label spacing and Profile/assistant
 placement. Calendar should use the same Quiet card treatment as the other tabs.

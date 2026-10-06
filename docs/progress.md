@@ -182,8 +182,26 @@ the original clipped frames. Physical/VoiceOver and other-editor runtime accepta
 observers and exact source variants:10 passes,12 failures,59 reviewed PNGs and644
 matching shipping inputs. Source1c0cb054 passes Nest37421150123/SwiftUI37421149542:
 502 Foundation/41 skips,455 signed-app/23 skips, four Swift Testing cases, zero failures
-and strict native gates. The shorter-title follow-up needs separate CI. Real saves/delivery and M8 remain open.
+and strict native gates. The shorter-title follow-up at `f1e60870` also passes
+Nest37422663603/SwiftUI37422663602 with those totals and gates. Real save/disable
+verification below passes; delivery and M8 remain open.
 The fix is later than build18; no new candidate or production action occurs.
+
+## Native grocery reminder save
+
+One native Save enables Both recipients for 7 October at 08:00 against owned
+QA rice/version 1. Operation `e47d19d1-9c1b-47fd-bba3-a81af12114fc` records revision
+`3d473b6b-3a60-4857-8524-201b6241bb1d`. One ordinary disable Save, bound to that
+revision, records operation `e1596aa1-1812-4396-840d-2e9282baec73` and revision
+`0238a099-9dd1-4ab7-8050-b4738dbf4b10`. Both members' canonical reads and both
+owner receipts agree. Both recipients, date/time and the unchanged grocery remain.
+Ordinary Done clears each request. Twelve actual methods pass with zero failures:
+four native UI and eight SDK checks. Exactly two Saves occur, with no replay.
+Both original scopes return to Today/top/Me + shared/large-light/stable origins
+and 64 empty journals. CI for these new guarded acceptance sources is pending.
+[Evidence](../evidence/2026-10-06/swiftui-native-grocery-reminder-save/README.md) records
+configuration and receipt verification; retained disabled history is not a nil reset.
+No delivery, worker activation, financial or production action is claimed.
 
 ## Earlier native settlement verification
 
