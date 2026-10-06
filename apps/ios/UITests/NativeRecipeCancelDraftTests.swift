@@ -16,7 +16,7 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
     func testBeforeFixUntouchedNewRecipeCancelClosesDirectly() throws {
         _ = try authorized(phase: "before")
         let app = try openLibrary()
-        openCreate(app)
+        openCreate(app, diagnostic: true)
         let cancel = app.navigationBars["New recipe"].buttons["Cancel"]
         requireAction(cancel, in: app)
         capture(app, name: "Before untouched New recipe Cancel")
@@ -61,11 +61,23 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         return fixture.openLibrary()
     }
 
-    private func openCreate(_ app: XCUIApplication) {
-        let button = app.buttons["New recipe"]
-        reveal(button, in: app)
-        requireAction(button, in: app)
-        button.tap()
+    private func openCreate(_ app: XCUIApplication, diagnostic: Bool = false) {
+        let bar = app.navigationBars["Saved meals"]
+        let button = bar.buttons["New recipe"]
+        XCTAssertTrue(button.exists && button.isEnabled && button.isHittable)
+        XCTAssertTrue(bar.frame.contains(button.frame) && app.frame.contains(button.frame))
+        attach(
+            [
+                "navigationBar": rect(bar.frame), "button": rect(button.frame), "diagnosticBeforeOnly": diagnostic,
+                "minimumTargetContractMet": button.frame.width >= 44 && button.frame.height >= 44,
+            ], name: "Actual New recipe toolbar entry target")
+        if diagnostic {
+            capture(app, name: "Before diagnostic undersized New recipe entry is not a44pt acceptance pass")
+            button.tap()
+        } else {
+            requireAction(button, in: app)
+            button.coordinate(withNormalizedOffset: CGVector(dx: 0, dy: 0.5)).withOffset(CGVector(dx: 2, dy: 0)).tap()
+        }
         XCTAssertTrue(app.navigationBars["New recipe"].waitForExistence(timeout: 15))
         XCTAssertTrue(app.textFields["Name"].waitForExistence(timeout: 15))
         XCTAssertFalse(app.navigationBars["New recipe"].buttons["Save"].isEnabled)
