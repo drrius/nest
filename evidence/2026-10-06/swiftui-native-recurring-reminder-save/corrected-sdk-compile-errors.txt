@@ -1,0 +1,2 @@
+/tmp/nest-current-qa-82a/apps/ios/AppTests/HostedActiveRecurringReminderReceiptReadTests.swift:147:31: error: value of type 'SaveRecurring' has no member 'validated'
+    |                               `- error: value of type 'SaveRecurring' has no member 'validated'

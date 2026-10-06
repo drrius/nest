@@ -1,0 +1,10 @@
+{
+  "nativeSaveMethodPassed": true,
+  "knownDoneMethodPassed": true,
+  "bothFinalCanonicalReadsPassed": true,
+  "SaveInvocationConsumed": true,
+  "NoPositiveReplay": true,
+  "RuleChanges": 0,
+  "Expenses": 0,
+  "WorkersActivated": 0
+}

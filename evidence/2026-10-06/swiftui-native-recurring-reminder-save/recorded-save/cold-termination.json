@@ -1,0 +1,4 @@
+{
+  "status": 3,
+  "diagnostic": "An error was encountered processing the command (domain=NSPOSIXErrorDomain, code=3):\nSimulator device failed to terminate ch.drrius.nest.\nfound nothing to terminate\nUnderlying error (domain=NSPOSIXErrorDomain, code=3):\n\tThe request to terminate \"ch.drrius.nest\" failed. found nothing to terminate\n\tfound nothing to terminate\n"
+}

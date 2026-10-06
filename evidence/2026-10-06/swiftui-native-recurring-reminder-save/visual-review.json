@@ -1,0 +1,78 @@
+{
+  "recorded-save/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "539ad47f6082f8cd93a4c11193df1eb5911a49c0646df3d8d7db80f09ffb9282",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots",
+    "rootDirectlyReviewed": true
+  },
+  "recorded-save/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "539ad47f6082f8cd93a4c11193df1eb5911a49c0646df3d8d7db80f09ffb9282",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots",
+    "rootDirectlyReviewed": true
+  },
+  "recorded-save/native-cold-recorded-done/5457CE6B-219B-4A09-B2AA-FC68893C7F36.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "1d6e86b5bdcb01783faa15a51a3d51817cff82250d530a917c7afa2d78640e59",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-cold-recorded-done/4B2A56A7-F8E3-4170-8CDF-A70BF69EF3EA.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "3705fa5eabb19531390af984d91624515cfe6780b59bfc2ae405af66caaf19ca",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-cold-recorded-done/791157A5-33F6-4936-9D6D-34E2023756F3.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "853d8b89797b40c39bc17a264cc1e05b32766daec427830f66ce8867c687e497",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-cold-recorded-done/56ABE68B-CE7F-44FE-871D-9AB4FD92E1C6.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "853d8b89797b40c39bc17a264cc1e05b32766daec427830f66ce8867c687e497",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots",
+    "rootDirectlyReviewed": true
+  },
+  "recorded-save/native-save-once/808F21CB-5260-4057-AE84-A75ECFC58B96.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "41a5e7a3851cda8c5b017b6502763ffaaee87f9c58eeae3dfd3396e859125e53",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-save-once/1261E330-F2D8-4729-9B7D-E4F85281298B.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "6223d0faa40e9133e56c4ad9e3939a6e2baca981d22af1a3f9aa2e9a6e118c7a",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-save-once/DA772D96-DF9A-453F-84DA-035BC94714F8.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e51c45fb80ca7c342d972be314539c591c455f19c6f4a161319ab88e7506ffe0",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-save-once/B260FDF2-0C55-4D06-8456-4F4E8883DEB1.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "b5a3842e11f7306a9654efd645ff7ceb34fe0cdceae20a486d4620b5550ed223",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  },
+  "recorded-save/native-save-once/3DA6742B-E298-44C6-A29C-2FA4E3562479.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "52909a1a22cf1df2d65d07f43a65dc61e3a0c7f0144ee77791585972e8d80c22",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots",
+    "rootDirectlyReviewed": true
+  },
+  "recorded-save/native-save-once/1C700508-3F6B-41B5-9DCD-8702CADA36CE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e51c45fb80ca7c342d972be314539c591c455f19c6f4a161319ab88e7506ffe0",
+    "method": "Direct rendered contact-sheet review; twelve distinct screenshots"
+  }
+}

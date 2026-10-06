@@ -1,0 +1,12 @@
+{
+  "source": "216152554759c18d2a9c827dbbef9e11efc7147b",
+  "nativeCI": 37487568399,
+  "outcome": "compile failure",
+  "localPreparationExecuted": false,
+  "nativeAPIOrUIExecuted": false,
+  "errors": [
+    "extra argument cancel in MoneyAPI.recoverRecurring",
+    "RecurringRecovery is not Equatable; use complete JSON comparison"
+  ],
+  "fixedSource": "7cf0669b5de0b92388ab95766678e4c55da3158a"
+}

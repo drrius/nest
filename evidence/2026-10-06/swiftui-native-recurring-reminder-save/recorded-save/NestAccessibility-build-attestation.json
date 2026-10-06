@@ -1,0 +1,21 @@
+{
+  "derivedData": "/private/tmp/nest-active-bill-reminder-save-validated-ui-20261006",
+  "prepareLogSha256": "a7e24fa8caf8661739a3308bfb3d9cf1e188ad413e00580552b89e45983b2473",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ NativeActiveRecurringReminderFixtureTests.swift,\\ NativeActiveRecurringReminderSavedIdentity.swift,\\ NativeActiveRecurringReminderSaveTests.swift,\\ NativeActiveRenewalReminderDraftTests.swift,\\ NativeActiveRenewalReminderRemoveTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderFixtureTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderSavedIdentity.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderSaveTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderDraftTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRenewalReminderRemoveTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderSaveTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "2db199804fa992601ad1eceee295cdbf6d018417164748750fa398faa4ee7683",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "86265042759b9f8b7152224a76b2a88d5a4961e9aa318bb5345d2015fb71b4d1",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "497e4dbedee3f6ab7e024faa2265e8ceac69319e962f145f461a2a5079891c4c"
+  },
+  "resolvedProductPaths": {
+    "NestAccessibilityTests": {
+      "TestHostPath": "/private/tmp/nest-active-bill-reminder-save-validated-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+      "TestBundlePath": "/private/tmp/nest-active-bill-reminder-save-validated-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+      "UITargetAppPath": "/private/tmp/nest-active-bill-reminder-save-validated-ui-20261006/Build/Products/Debug-iphonesimulator/Nest.app"
+    }
+  },
+  "freshDirectoryRequired": true
+}

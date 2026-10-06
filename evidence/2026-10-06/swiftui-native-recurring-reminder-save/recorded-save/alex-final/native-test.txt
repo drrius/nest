@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-active-bill-reminder-save-validated-20261006/alex-final/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-active-bill-reminder-save-validated-20261006/alex-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-active-bill-reminder-save-validated-20261006/alex-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 17:49:48.295.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 17:49:48.295.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 17:49:48.295.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (8.453 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 17:49:56.750.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.453 (8.454) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 17:49:56.750.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.453 (8.455) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 17:49:56.751.
+	 Executed 1 test, with 0 failures (0 unexpected) in 8.453 (8.456) seconds
+2026-10-06 17:49:57.083 xcodebuild[34867:21669756] [MT] IDETestOperationsObserverDebug: 10.632 elapsed -- Testing started completed.
+2026-10-06 17:49:57.083 xcodebuild[34867:21669756] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 17:49:57.083 xcodebuild[34867:21669756] [MT] IDETestOperationsObserverDebug: 10.632 sec, +10.632 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-active-bill-reminder-save-validated-20261006/alex-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
