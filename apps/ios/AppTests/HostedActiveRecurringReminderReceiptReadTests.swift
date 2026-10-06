@@ -51,12 +51,15 @@ final class HostedActiveRecurringReminderReceiptReadTests: XCTestCase {
             reminderRecovery = recovered
         }
         let originalRecovery = try await money.recoverRecurring(
-            token: token, member: member, command: original.command, cancel: false)
+            token: token, member: member, command: original.command)
         XCTAssertEqual(originalRecovery.actorId, role.0)
         XCTAssertEqual(originalRecovery.householdId, household)
         XCTAssertEqual(originalRecovery.operationId, original.command.operationId)
         if role.0 == alex {
-            XCTAssertEqual(originalRecovery, original.result)
+            let actualRecovery = try XCTUnwrap(try json(originalRecovery) as? [String: Any])
+            let expectedRecovery = try XCTUnwrap(try json(try XCTUnwrap(original.result)) as? [String: Any])
+            XCTAssertTrue(NSDictionary(dictionary: actualRecovery).isEqual(to: expectedRecovery))
+            XCTAssertEqual(originalRecovery.status, .recorded)
         } else {
             XCTAssertEqual(originalRecovery.status, .unresolved)
             XCTAssertNil(originalRecovery.receipt)
