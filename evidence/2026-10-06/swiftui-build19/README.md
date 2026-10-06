@@ -6,6 +6,6 @@ The source-only archive contains1,111 tracked native/signing-script files. Every
 
 The local archive/export/signing helpers are prepared from the audited build18 procedure with build19 paths and version assertions. Source extraction first stopped because the Mac's Python lacks the newer tar filter argument. No member was extracted; the guarded retry required an empty owned directory and verified every archive member as a regular file or directory with no absolute or traversal path. All hashes then passed.
 
-Signing, archive compilation, export, package audit and upload have **not started**. Native CI37438352328 and current-head routine CI37439103691 are live at preparation time. Native source is identical across the source and documentation checkpoint. Final successful CI, exact package identity and a fresh Apple absence check remain required before one authorized private submission.
+Signing, archive compilation, export, package audit and upload have **not started**. Native CI37438352328 remains live; candidate-source routine CI37439103691 passed. Native source is identical across the source and documentation checkpoint. Final successful CI, exact package identity and a fresh Apple absence check remain required before one authorized private submission.
 
 Build18 remains the latest verified internally available candidate. This preparation does not establish Apple acceptance, tester access, phone usability or completion of M1–M9. No cloud build, purchase, production migration, public release or new tester invitation occurs.

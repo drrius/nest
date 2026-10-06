@@ -9,6 +9,7 @@
   "existingProfilePresent": true,
   "signingStarted": false,
   "uploaded": false,
-  "pendingChecks": [37438352328, 37439103691],
-  "scope": "private nest-test beta; no production migration or public release"
+  "pendingChecks": [37438352328],
+  "scope": "private nest-test beta; no production migration or public release",
+  "routineCheckPassed": 37439103691
 }
