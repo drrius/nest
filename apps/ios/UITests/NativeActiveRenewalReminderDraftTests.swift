@@ -172,9 +172,17 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
     private func makeDraft(_ app: XCUIApplication, baseline: Baseline) -> Baseline {
         XCTAssertFalse(baseline.enabled)
         var draft = baseline
+        let title = reminderForm(app).staticTexts["Nest QA reminder 0610-3f88"]
+        reveal(title, in: app, permitsDisabled: true, missingDistance: -180)
+        let basedOn = app.buttons["Based on, " + baseline.anchor]
+        reveal(basedOn, in: app)
+        attach(
+            ["title": rect(title.frame), "basedOn": rect(basedOn.frame)],
+            name: "Known foreground section before ordered draft traversal")
         for label in ["Reminder enabled", "Remind me", "Remind Test Sam"] {
             let toggle = app.switches[label]
-            reveal(toggle, in: app, missingDistance: label == "Reminder enabled" ? -180 : 250)
+            attach(["target": label, "direction": "downward from known header"], name: "Ordered draft target")
+            reveal(toggle, in: app, missingDistance: 250)
             XCTAssertEqual(toggle.value as? String, "0")
             XCTAssertTrue(toggle.isEnabled && toggle.isHittable)
             toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.93, dy: 0.5)).tap()
