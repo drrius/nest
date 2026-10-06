@@ -1,5 +1,5 @@
 {
-  "README.md": "ca6786de69e771618f9d1fd548f93942fb1d947b896abccdc1e74db1381a7c4d",
+  "README.md": "7a11d1fc30cf761c564c7dbd6a73c5275e49e95c8e891318c56f3885514bda51",
   "alex-cold-launch/alex-terminal.png": "dd2ed67954486b80ab6f48201656f13699ac4863a5778b3dfe95f60d03cfa0b1",
   "alex-cold-launch/cold-launch/23555E24-B06A-44E7-856C-AD42BE9397A2.txt": "aba509fb6643bf6ba2e6db06c9bc21543fa46940d11a6567d688e197d66da7bf",
   "alex-cold-launch/cold-launch/25D130F1-A6E5-41A2-BC73-68FFFC7BF508.png": "42f084d13a51e79ae54d806bc9e7146144ab15599fe22be6880ef2cc79de548b",
@@ -169,6 +169,7 @@
   "foreground-restoration/executed-controller.py": "1824630f4aaecabd4d45527ad97120d00975a3a0def70a0fe9c778494ab18de0",
   "foreground-restoration/restoration.json": "3aa0907c23088ea4c013e0caf109c05f6f18d88fa5dce603ee31a4f6347a687d",
   "foreground-restoration/sam-today.png": "3ea8fea8a18bc29b912838b8069a1707b1ad91393cc80eb1392660189b6a246b",
+  "native-ci.json": "93be25bbed32efa055832654f89c7fb81bda8c22eacca3ca654dbd567fecc74a",
   "nil-json-failure/alex-before/243089F3-90FB-4672-9A08-FF8E32BD4505.txt": "1d989b588f3ab53628ffc589d78d07d17d7cd2603e8bd49172120818ec59f4b1",
   "nil-json-failure/alex-before/8934B88B-B463-4B1D-AFE7-2BD6DC57AFD4.json": "2eb8eecd1c9adaf3d8b93302b151e96c46a14c600b532519038536fb1f60a730",
   "nil-json-failure/alex-before/manifest.json": "aa7dc9c1fc5501a24d122dd1bd0cbe741629292f6d5752b26c3de959d0820d39",
@@ -226,6 +227,7 @@
   "picker-observer-failure/source-input-hashes.json": "591f06f59994cb6fbb00987ecb44e5e53d3e42eb5b38efd19ba8ae2491987b33",
   "picker-observer-failure/source-pinning.json": "d488ca8adf1d2152874b3f8233f3784a2b3c5c232c13d7cd8e95045050fd60d5",
   "picker-observer-failure/terminal.json": "8e1ef9c4600f30f3a73e6816d9e8517a99ea39dbd2bb24ad43e93e087f766fa7",
+  "routine-ci.json": "ffd284bc774b64aa0c050d4ce5b9a22d7c84c9d261e9f848a2049bc07264fd15",
   "sam-cold-launch/cold-launch/0BFA27F8-5D23-44B5-8DBE-2C2E5CEC34F3.txt": "4995b99bc81cc9c697873749470519cd77d058507c3101f5148bb011669af6db",
   "sam-cold-launch/cold-launch/6B176E3A-F132-4F74-83C7-545A0214363F.png": "3c9b43cb52d623a0b5ce092236ac925c8d83f01f823ef7b380c1b845be41b8ae",
   "sam-cold-launch/cold-launch/791C2F0A-E609-4DF5-9F76-BFE1EA3217FF.txt": "c3037bb41575b4df84a80d409dd01ba184e5c96834624f73d932d6fadfc47dbf",

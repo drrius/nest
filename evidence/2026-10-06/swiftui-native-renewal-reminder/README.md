@@ -62,3 +62,5 @@ python3 evidence/2026-10-06/swiftui-native-renewal-reminder/verify_inventory.py
 ```
 
 It verifies Git-tracked artifact hashes, every attachment reference and PNG review, the frozen source maps against their immutable Git objects, per-batch results, whole canonical preservation, exact receipt binding and final scopes/journals. Optional `--working-tree` checks the final UI map against current native inputs. JSON/Markdown formatting covers the complete exported file list before checksums. Native tests and controller executions are not rerun by the verifier.
+
+Source `aecb4b60` passes [routine CI](routine-ci.json) and [native CI](native-ci.json): 506 Foundation tests/41 skips, 464 signed-app tests/32 skips, four Swift Testing cases, zero failures. Strict formatting, source limits, signing and guarded UI compilation pass. Hosted opt-in and real UI methods above are separate executions, not CI runtime coverage.
