@@ -1,0 +1,80 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "87D32EBD-CC07-4227-8A86-F9B88379A215.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Variable fixture terminal native screen accessibility tree_0_47D34D8A-F988-452F-930F-C62308A11EBC.txt",
+        "timestamp": 1791295816.477
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2DA508FD-6EEA-46C3-9110-A1EFB0F787E2.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Variable fixture terminal native screen_0_A11A3B91-2722-45A7-9C9F-90C50638EE11.png",
+        "timestamp": 1791295816.175
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9DD70BC0-2830-406B-8A65-A5F7A5175CF8.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Variable fixture control placement failure accessibility tree_0_4B16DB38-4D3E-4448-8E16-926AF654C7D4.txt",
+        "timestamp": 1791295816.076
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CB6BB03C-585A-4C67-8570-49960DCF0D33.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Variable fixture control placement failure_0_400B6409-1BBC-4D4F-964C-C18B82B5623B.png",
+        "timestamp": 1791295815.77
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2423B754-C7F6-46ED-8B18-03AA8B016165.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native variable review Confirm amount and split each cycle accessibility tree_0_F2E3CB36-C6EE-48F3-A646-4F74945CC156.txt",
+        "timestamp": 1791295753.534
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E15EA656-9E67-45D9-A1B7-ADCA6567386A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native variable review Confirm amount and split each cycle_0_4EBBA3FB-63B2-42AE-BF6A-646DC4C87D17.png",
+        "timestamp": 1791295753.204
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "12BDAE7E-0FE0-4B51-9EE4-AEE8A6C6195A.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native variable review Nest QA reminder bill 0610-5d1a accessibility tree_0_40F94D2C-766D-4B7E-995C-B7737C6BE109.txt",
+        "timestamp": 1791295752.102
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "058DCE49-DD4F-42AF-A8B3-A4D41F23C116.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native variable review Nest QA reminder bill 0610-5d1a_0_A67F2A46-65C0-4D6D-A8AF-463541A25257.png",
+        "timestamp": 1791295751.781
+      }
+    ],
+    "testIdentifier": "NativeActiveRecurringReminderFixtureTests/testKnownRecordedVariableRuleOrdinaryDone()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeActiveRecurringReminderFixtureTests/testKnownRecordedVariableRuleOrdinaryDone"
+  }
+]

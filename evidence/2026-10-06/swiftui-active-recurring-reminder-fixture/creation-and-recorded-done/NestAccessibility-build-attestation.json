@@ -1,0 +1,21 @@
+{
+  "derivedData": "/private/tmp/nest-variable-reminder-fixture-ui-20261006",
+  "prepareLogSha256": "c028d6a0113f47747dcdb442cc3dab6a85c5fe031aed4cee53cd8088859407ff",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ CalendarReadabilityTests.swift,\\ ChoreCreateNavigationTests.swift,\\ FictionalAccountSignOutTests.swift,\\ MealPreferenceDraftTests.swift,\\ NativeActiveRecurringReminderFixtureTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/CalendarReadabilityTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/ChoreCreateNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/FictionalAccountSignOutTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/MealPreferenceDraftTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderFixtureTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/NativeActiveRecurringReminderFixtureTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "a79fd5acd46c94e7b7a8f99cafb588b7d8ed8ad7349a870ebf4a6b732ecead7f",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "d54f9684215a547da30e4736c312ca575124b9ca5907a6fae7b9c3dd0f8fbb41",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "fd5edd4f06c7a79e0299ef8af08265fa8cbb8036891ddcb9c415baa8fa9e960f"
+  },
+  "resolvedProductPaths": {
+    "NestAccessibilityTests": {
+      "TestHostPath": "/private/tmp/nest-variable-reminder-fixture-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+      "TestBundlePath": "/private/tmp/nest-variable-reminder-fixture-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+      "UITargetAppPath": "/private/tmp/nest-variable-reminder-fixture-ui-20261006/Build/Products/Debug-iphonesimulator/Nest.app"
+    }
+  },
+  "freshDirectoryRequired": true
+}

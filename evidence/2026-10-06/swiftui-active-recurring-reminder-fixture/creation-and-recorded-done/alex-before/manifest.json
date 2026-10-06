@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7EE72F32-BD52-47D3-B723-5C781CFDFD54.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Active variable fixture native baseline and immutable receipt_0_AA2BDF2D-A292-4CDF-9BA1-03A46071B4A4.json",
+        "timestamp": 1791295600.866
+      }
+    ],
+    "testIdentifier": "HostedActiveRecurringReminderFixtureReadTests/testGETOnlyCompleteBaselineOrExactCreatedVariableRule()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedActiveRecurringReminderFixtureReadTests/testGETOnlyCompleteBaselineOrExactCreatedVariableRule"
+  }
+]

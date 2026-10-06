@@ -1,0 +1,11 @@
+{
+  "nativeCreateMethodPassed": true,
+  "knownDoneMethodPassed": false,
+  "bothFinalCanonicalReadsPassed": true,
+  "POSTBudget": 1,
+  "recordedRequestCaptured": true,
+  "FixedMandates": 0,
+  "Expenses": 0,
+  "ReminderSaves": 0,
+  "NoPositiveReplay": true
+}

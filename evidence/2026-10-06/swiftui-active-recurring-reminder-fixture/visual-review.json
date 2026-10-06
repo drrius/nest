@@ -1,0 +1,176 @@
+{
+  "creation-and-recorded-done/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "2b898f6b2415cb5829584911d73fccb23f5289c7b5fa1e657bfe3c4960024971",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "2b898f6b2415cb5829584911d73fccb23f5289c7b5fa1e657bfe3c4960024971",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "cf651374f22337897d97dcc6719acfd4a50883677b8de3e2f5bbb02c22a402bc",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "cf651374f22337897d97dcc6719acfd4a50883677b8de3e2f5bbb02c22a402bc",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/D612CFA1-59AE-4484-9DB9-3884A298CA0F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/7DB4DF76-B086-4B5D-B7A7-73088D23DB93.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/01D54512-F223-47FC-9611-617C656073EA.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dbe4708beca887666dedfe907828eabd6eb3941f73c55f71e31e14fa55c807c4",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/17AC9D1F-299F-44E0-A1D9-EB40944E4DD6.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/364DC91E-59B0-4640-99C4-F883EDDC781E.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/FDCB7A6A-7F7E-49CC-B57B-D5DBE99EBFDD.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/AB1236DE-4B44-4665-973F-9CB6098EAB4B.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dbe4708beca887666dedfe907828eabd6eb3941f73c55f71e31e14fa55c807c4",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/CD7C4B6F-3946-4FA5-9E54-4D19DB580EE7.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "f7a6faf085a1fc3642e952dd137732c43c48d8d3e42b11693e253969186ea4de",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/A837DCC1-7FB6-4823-9D49-DFB34DA101FA.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "known-done-only/native-recorded-done/C12BAE58-CDAF-439C-AFB6-3585E7F26DA0.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e71cbef43ad14e6843e584c0d2cf31456ffa44cadc43f28320c4c2cf2e6b810b",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-recorded-done/E15EA656-9E67-45D9-A1B7-ADCA6567386A.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "63fd2de4fd71d6a9c7607983870119b98664f9f2c7c3c5e3009aea4d86d822f5",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-recorded-done/058DCE49-DD4F-42AF-A8B3-A4D41F23C116.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "63fd2de4fd71d6a9c7607983870119b98664f9f2c7c3c5e3009aea4d86d822f5",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-recorded-done/CB6BB03C-585A-4C67-8570-49960DCF0D33.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "949478e7cb32f9c0fb19687b854df4dac2099fbd75ec3e764f4f81e1e065a979",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-recorded-done/2DA508FD-6EEA-46C3-9110-A1EFB0F787E2.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "4f6f926455563fa540e0fad8cce4120d3fed00a065fa695363b4037078e455d1",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/35D78410-CE85-4153-B073-4D1FACFEAD4D.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/8F3FA0B7-DFF4-4685-B76A-2B5F4004068C.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/DC9333FF-6C02-42A1-9D96-9D1F35E01083.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dae02b889ffffa4ffd35ff188d69b75eb2d692bb8e3415ba3c849adcd5f184e9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/ACE562A7-8DF6-4225-9CCA-F1A668AACBDF.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/53171110-594A-4D57-8B63-F1BE8DD9B177.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/EA84D0F6-ED47-453A-AB0E-3D24BB43374B.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/1A5299BB-5BC6-43F8-88B9-B4294DAEE73F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "58aef4911c5c2a53704a5cf507aefb1a596275f3451e08cdb261c2cdcd02caa8",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/70CA4CF4-E976-43E5-9301-DEDDCB8BA9C3.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "f30f5fa6c3280da82c569f2f4a83a2127b55f50ad23fde33f1d8cf5ece14d580",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/89DD3F46-773F-4020-BF33-5CB7E66E6331.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "dae02b889ffffa4ffd35ff188d69b75eb2d692bb8e3415ba3c849adcd5f184e9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/647F0A4C-D08C-48A8-A50E-BC41724AA851.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  },
+  "creation-and-recorded-done/native-create-once/F30310CD-9BF7-46F3-8A6D-D40F73529DA8.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "10e2ef571f11d7618b598ccd59ec8df4a34ea279b227af42ddf93ca2b988d7c9",
+    "reviewMethod": "Actual rendered contact-sheet inspection; failed cold receipt also inspected at full size"
+  }
+}
