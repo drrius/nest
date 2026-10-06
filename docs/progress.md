@@ -213,6 +213,18 @@ full accessibility, provider, worker/APNs and cutover gates remain open.
 
 ## Next work
 
+Next native journey: copy the existing fictional saved-recipe meal from 19 October
+to Lunch on 26 October, read the retained recipe through both accounts, then
+remove only that new leftover through Sam's normal UI. Fresh hosted read-only
+preflight confirms source revision 9, an empty destination, no prior descendant
+or receipt, and exact source snapshot. Eight protected source/library/grocery/
+financial fingerprints are captured. Eleven isolated PostgreSQL/PostgREST cases
+pass with no failures/skips; the first invocation lacked fixture-binary env vars
+and is not counted as a code failure. Guarded native UI and GET-only readback
+sources are prepared with strict formatting/source-limit checks. No Add/Remove,
+native baseline or fixture mutation has run yet.
+[Prepared leftovers checkpoint](../evidence/2026-10-07/swiftui-native-leftovers/prepared.json).
+
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
 and two repeated partner-heading font reports), down from the dated 19-report
