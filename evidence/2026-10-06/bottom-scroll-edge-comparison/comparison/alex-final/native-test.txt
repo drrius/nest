@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-bottom-scroll-edge-comparison-20261006/alex-final/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-bottom-scroll-edge-comparison-20261006/alex-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-bottom-scroll-edge-comparison-20261006/alex-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 18:28:40.711.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 18:28:40.711.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 18:28:40.711.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (10.822 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 18:28:51.535.
+	 Executed 1 test, with 0 failures (0 unexpected) in 10.822 (10.823) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 18:28:51.535.
+	 Executed 1 test, with 0 failures (0 unexpected) in 10.822 (10.824) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 18:28:51.536.
+	 Executed 1 test, with 0 failures (0 unexpected) in 10.822 (10.825) seconds
+2026-10-06 18:28:51.885 xcodebuild[44793:21746456] [MT] IDETestOperationsObserverDebug: 12.993 elapsed -- Testing started completed.
+2026-10-06 18:28:51.885 xcodebuild[44793:21746456] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 18:28:51.885 xcodebuild[44793:21746456] [MT] IDETestOperationsObserverDebug: 12.993 sec, +12.993 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-bottom-scroll-edge-comparison-20261006/alex-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

@@ -1,0 +1,16 @@
+{
+  "headerPixelSample": {
+    "pixelRectangle": [0, 80, 750, 420],
+    "purpose": "Compare rendered header/content anchors excluding changing status-bar clock",
+    "rgbaSha256": [
+      "81d0710d16127619091274041db0e30d6b1fbdaa57699e093d0beba11b0a8ca6",
+      "81d0710d16127619091274041db0e30d6b1fbdaa57699e093d0beba11b0a8ca6"
+    ],
+    "equal": true
+  },
+  "issueFramesEqualByExactLabel": true,
+  "tabBarFrameBoth": [0, 584, 375, 83],
+  "headerAXFramesAvailable": false,
+  "conditionalHeaderAcceptanceRun": false,
+  "allAuditCategoriesPreserved": true
+}

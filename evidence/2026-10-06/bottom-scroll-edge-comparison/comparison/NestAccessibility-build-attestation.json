@@ -1,0 +1,21 @@
+{
+  "derivedData": "/private/tmp/nest-bottom-scroll-edge-candidate-ui-20261006",
+  "prepareLogSha256": "aecf4ed9e6f607c21b8d367f3349bb7678e7e63e658f6a748e749200fa8e0416",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ RecipeDraftNavigationTests.swift,\\ RenewalNavigationTests.swift,\\ RootAccessibilityTests.swift,\\ RootLayoutConsistencyTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RecipeDraftNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RootAccessibilityTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RootLayoutConsistencyTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/RootAccessibilityTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "f65c35c2d694d258133bf1a0fffbe309672969392e36f74763c1908e53084065",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "f777a25c43f75163a9d2320fd2c36faba84f4655a6b9f97b20af1059cc4ddcd1",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "a6167f63040707039c2d42df348921979fd02924f4975f4df190441449246e63"
+  },
+  "resolvedProductPaths": {
+    "NestAccessibilityTests": {
+      "TestHostPath": "/private/tmp/nest-bottom-scroll-edge-candidate-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+      "TestBundlePath": "/private/tmp/nest-bottom-scroll-edge-candidate-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+      "UITargetAppPath": "/private/tmp/nest-bottom-scroll-edge-candidate-ui-20261006/Build/Products/Debug-iphonesimulator/Nest.app"
+    }
+  },
+  "freshDirectoryRequired": true
+}

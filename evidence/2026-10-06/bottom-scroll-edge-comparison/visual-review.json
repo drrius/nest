@@ -1,0 +1,78 @@
+{
+  "comparison/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "9b4549a45c401f787727fdd7302e91e6388482f5572d1d5823b3c9c2ba63a187",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "a23985092e7ed38529a7e6883569403f9ac4a410e7ed53034e05aefa32eb3648",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/baseline-today/EDEF6CD8-90E5-4224-AA24-22A3DD3A9EBC.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "6373746dde9958d741c68e4c48c8eef5467a143c447ded8bb6fbfd811ad4acd1",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/baseline-today/9892675D-67C5-4DFC-A3A4-FDB1F2122112.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e44a2c90b949d914c0dc015487f1f042818d1402b37862f7804a33033109ec62",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/baseline-today/961C8385-FEF1-4157-9D6F-71A8EE5EF413.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "6373746dde9958d741c68e4c48c8eef5467a143c447ded8bb6fbfd811ad4acd1",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/baseline-today/551031B1-635E-42B1-BDFC-63F736AF684F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "43720795484568106a30106847089864b52171665b4c5190d92e4390ff206510",
+    "method": "Direct rendered review of all12distinct screenshots/crops",
+    "rootDirectlyReviewed": true
+  },
+  "comparison/baseline-today/AD8B2279-4E2C-4DF0-BE53-84C7E5DF4236.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "28c44c1bf77a8e837e2eb283b6ced9c9a5bd33ed154ffc0a9584f5a9d8c19627",
+    "method": "Direct rendered review of all12distinct screenshots/crops",
+    "rootDirectlyReviewed": true
+  },
+  "comparison/candidate-today/28EB7875-B612-4248-AFC7-795B33924B59.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "e44a2c90b949d914c0dc015487f1f042818d1402b37862f7804a33033109ec62",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/candidate-today/14AEE777-FA10-4840-8728-4C5CEBA0C447.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "836950dd819912225ac19993d50c56b7bf6e7a1c42c63d21558aac823634a9b6",
+    "method": "Direct rendered review of all12distinct screenshots/crops",
+    "rootDirectlyReviewed": true
+  },
+  "comparison/candidate-today/45E18C17-558B-44B7-9945-2DB5A2AE4CFE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "a547d04e1735d9c4c8d265c7306b14068faec1b7b07d0dfbba20085d0e6488e7",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/candidate-today/C566B4A4-6483-4EFF-A9AB-AC93F646CB49.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "a547d04e1735d9c4c8d265c7306b14068faec1b7b07d0dfbba20085d0e6488e7",
+    "method": "Direct rendered review of all12distinct screenshots/crops"
+  },
+  "comparison/candidate-today/C62AF8BE-1CF6-446D-8701-A3896B500C3E.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "sha256": "a547d04e1735d9c4c8d265c7306b14068faec1b7b07d0dfbba20085d0e6488e7",
+    "method": "Direct rendered review of all12distinct screenshots/crops",
+    "rootDirectlyReviewed": true
+  }
+}
