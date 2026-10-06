@@ -45,13 +45,15 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
                 "Lunch", "Lunch"),
             object: picker)
         XCTAssertEqual(XCTWaiter.wait(for: [returned], timeout: 15), .completed)
+        let sheetReading = AssistantFinancialHistoryMaximumReading(
+            app: app, test: self, minimumContentY: 40, contentIdentifier: "meal-destination-form")
         let explanation = "The original meal stays in your plan. Its recipe is copied to the leftovers."
-        try reading.read(explanation)
+        try sheetReading.read(explanation)
         let add = navigation.buttons["Add"]
         let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: add)
         XCTAssertEqual(XCTWaiter.wait(for: [enabled], timeout: 30), .completed)
         try reading.requireTarget(add, bounds: app.frame)
-        reading.capture(add, name: "Exact cross-week leftovers Add before one tap")
+        sheetReading.capture(add, name: "Exact cross-week leftovers Add before one tap")
         add.tap()
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: navigation)
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)

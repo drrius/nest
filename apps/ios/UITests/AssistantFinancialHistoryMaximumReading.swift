@@ -5,6 +5,7 @@ struct AssistantFinancialHistoryMaximumReading {
     let app: XCUIApplication
     let test: XCTestCase
     var minimumContentY: CGFloat = 0
+    var contentIdentifier: String?
 
     func element(_ label: String) -> XCUIElement {
         app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", label)).firstMatch
@@ -50,6 +51,7 @@ struct AssistantFinancialHistoryMaximumReading {
     }
 
     private func observedViewport() -> CGRect? {
+        if contentIdentifier != nil { return scopedViewport() }
         let screen = app.frame
         let bar = app.tabBars.firstMatch
         guard usable(screen) && bar.exists && usable(bar.frame) else { return nil }
@@ -62,6 +64,18 @@ struct AssistantFinancialHistoryMaximumReading {
         let bottom = bar.frame.minY
         guard bottom.isFinite && top.isFinite && bottom > top else { return nil }
         return CGRect(x: screen.minX, y: top, width: screen.width, height: bottom - top)
+    }
+
+    private func scopedViewport() -> CGRect? {
+        let screen = app.frame
+        let candidates = scrollCandidates()
+        guard usable(screen), candidates.count == 1, usable(candidates[0].frame) else { return nil }
+        let content = candidates[0].frame.intersection(screen)
+        let navigation = app.navigationBars.firstMatch
+        guard usable(content), navigation.exists, usable(navigation.frame) else { return nil }
+        let top = max(content.minY, minimumContentY, navigation.frame.maxY)
+        guard top.isFinite, content.maxY > top else { return nil }
+        return CGRect(x: content.minX, y: top, width: content.width, height: content.maxY - top)
     }
 
     func viewport() throws -> CGRect {
@@ -204,7 +218,7 @@ struct AssistantFinancialHistoryMaximumReading {
 
     private func measuredScroller(start: CGPoint, end: CGPoint) throws -> CGRect {
         for attempt in 0..<12 {
-            let candidates = app.scrollViews.allElementsBoundByIndex + app.collectionViews.allElementsBoundByIndex
+            let candidates = scrollCandidates()
             let frames = candidates.filter { $0.exists }.map(\.frame)
             let scrollers = frames.filter {
                 usable($0) && $0.contains(start) && $0.contains(end)
@@ -219,6 +233,12 @@ struct AssistantFinancialHistoryMaximumReading {
         }
         XCTFail("Require one finite known foreground scroller; no gesture was injected")
         throw GeometryFailure.scrollerUnavailable
+    }
+
+    private func scrollCandidates() -> [XCUIElement] {
+        let candidates = app.scrollViews.allElementsBoundByIndex + app.collectionViews.allElementsBoundByIndex
+        guard let contentIdentifier else { return candidates }
+        return candidates.filter { $0.exists && $0.identifier == contentIdentifier }
     }
 
     func back(from: String, to: String) throws {

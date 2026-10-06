@@ -268,6 +268,13 @@ fixture/receipts remain exact. Native pickers can expose selection as their
 accessibility value; the observer now accepts Lunch in either label or value,
 still requires a hittable returned picker, and retains its full native tree.
 Configured formatting and source limits pass. Fresh execution remains pending.
+At `2f90aca4`, Lunch selection passes through the native accessibility value.
+The reader then sees two finite scrollers, the modal collection and obscured
+Meals root, and correctly refuses to inject a pan. No Add is tapped, the fixture
+and receipts remain exact, and restoration passes. The destination Form now has
+a stable identifier; the reader can explicitly scope its viewport/scroller to
+that form. Default root reading is unchanged. All source limits and configured
+Mac formatting pass; fresh native execution is pending.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
 clean and its CI is running.

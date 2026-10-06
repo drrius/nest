@@ -89,6 +89,7 @@ struct MealMoveSheet: View {
                     }
                 }
             }
+            .accessibilityIdentifier("meal-destination-form")
             .scrollContentBackground(.hidden)
             .background(QuietPalette.background)
             .navigationTitle(leftovers ? "Plan leftovers" : "Move meal")
