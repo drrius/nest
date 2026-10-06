@@ -1,0 +1,163 @@
+Attributes: Application, 0x105d962c0, pid: 28422, label: 'Nest'
+Element subtree:
+ →Application, 0x105d962c0, pid: 28422, label: 'Nest'
+    Window (Main), 0x105d2f660, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x105d31200, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105d31560, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x105d30e60, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x105d30420, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x105d300b0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x105d30af0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105d318e0, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x105d39d30, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x105d399b0, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x105d3a0c0, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x105d3a440, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x105d3a7b0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x105d3ab30, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Private conversations'
+                              Button, 0x105d3aeb0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Back'
+                              StaticText, 0x105d3b220, {{101.5, 31.5}, {171.5, 21.0}}, label: 'Private conversations'
+                            Other, 0x105d3bca0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x105d3c000, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x105d3c380, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x105d3c6f0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x105d3ca50, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x105d3cdc0, {{-16.0, -1260.0}, {407.0, 1459.0}}
+                                      Other, 0x105d3d110, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x105d3d490, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x105d3d800, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x105d59030, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x105d6bce0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x105d520f0, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x105d87590, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x105d83a70, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x105d6c710, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x105d8a030, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x105d81610, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Cell, 0x105d95c80, {{16.0, 109.0}, {343.0, 72.5}}
+                                        Other, 0x105d93c10, {{16.0, 109.0}, {343.0, 72.5}}
+                                          Other, 0x105d65200, {{16.0, 109.0}, {343.0, 72.5}}
+                                        Other, 0x105d97910, {{16.0, 109.0}, {343.0, 72.5}}
+                                          Other, 0x105d97a30, {{16.0, 109.0}, {343.0, 72.5}}
+                                            Other, 0x105d97b50, {{16.0, 109.0}, {343.0, 72.5}}
+                                              StaticText, 0x105d97c70, {{16.0, 109.0}, {343.0, 72.5}}, label: 'Your conversations are private. Your partner cannot read them.'
+                                      Other, 0x105d97db0, {{-16.0, 199.0}, {407.0, 2283.5}}
+                                      Cell, 0x105d97ed0, {{16.0, 216.5}, {343.0, 52.0}}
+                                        Other, 0x105d97ff0, {{16.0, 216.5}, {343.0, 52.0}}
+                                          Other, 0x105d98110, {{16.0, 216.5}, {343.0, 52.0}}
+                                        Other, 0x105d98230, {{16.0, 216.5}, {343.0, 52.0}}
+                                          Other, 0x105d98350, {{16.0, 216.5}, {343.0, 52.0}}
+                                            Other, 0x105d98470, {{16.0, 216.5}, {343.0, 52.0}}
+                                              Button, 0x105d98590, {{16.0, 216.5}, {343.0, 52.0}}, label: 'Ask Nest'
+                                                StaticText, 0x105d986b0, {{32.0, 232.2}, {68.5, 20.5}}, label: 'Ask Nest'
+                                                Image, 0x105d987d0, {{333.5, 236.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Cell, 0x105d988f0, {{16.0, 268.5}, {343.0, 74.0}}
+                                        Other, 0x105d98a10, {{16.0, 268.5}, {343.0, 74.0}}
+                                          Other, 0x105d98b30, {{16.0, 268.5}, {343.0, 74.0}}
+                                        Other, 0x105d98c50, {{16.0, 268.5}, {343.0, 74.0}}
+                                          Other, 0x105d98d70, {{16.0, 268.5}, {343.0, 74.0}}
+                                            Other, 0x105d98e90, {{16.0, 268.5}, {343.0, 74.0}}
+                                              Button, 0x105d98fb0, {{16.0, 268.5}, {343.0, 74.0}}, identifier: 'assistant-conversation-24a1602a-8ec7-4ff9-a22d-ef6c3ab1a567', label: 'Conversation, Oct 6, 2026 at 11:27 PM'
+                                                StaticText, 0x105d990d0, {{32.0, 286.0}, {100.5, 20.5}}, label: 'Conversation'
+                                                StaticText, 0x105d991f0, {{32.0, 310.5}, {134.5, 14.5}}, label: 'Oct 6, 2026 at 11:27 PM'
+                                                Image, 0x105d99310, {{333.5, 299.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x105d99430, {{32.0, 267.5}, {311.0, 1.0}}
+                                      Cell, 0x105d99550, {{16.0, 342.5}, {343.0, 74.0}}
+                                        Other, 0x105d99670, {{16.0, 342.5}, {343.0, 74.0}}
+                                          Other, 0x105d99790, {{16.0, 342.5}, {343.0, 74.0}}
+                                        Other, 0x105d998b0, {{16.0, 342.5}, {343.0, 74.0}}
+                                          Other, 0x105d999d0, {{16.0, 342.5}, {343.0, 74.0}}
+                                            Other, 0x105d99af0, {{16.0, 342.5}, {343.0, 74.0}}
+                                              Button, 0x105d99c10, {{16.0, 342.5}, {343.0, 74.0}}, identifier: 'assistant-conversation-4628bd3f-2d64-4c71-afb7-259cca9694cd', label: 'Conversation, Oct 5, 2026 at 2:35 AM'
+                                                StaticText, 0x105d99d30, {{32.0, 360.0}, {100.5, 20.5}}, label: 'Conversation'
+                                                StaticText, 0x105d99e50, {{32.0, 384.5}, {131.5, 14.5}}, label: 'Oct 5, 2026 at 2:35 AM'
+                                                Image, 0x105d99f70, {{333.5, 373.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x105d9a090, {{32.0, 341.5}, {311.0, 1.0}}
+                                      Cell, 0x105d9a1b0, {{16.0, 416.5}, {343.0, 74.0}}
+                                        Other, 0x105d9a2d0, {{16.0, 416.5}, {343.0, 74.0}}
+                                          Other, 0x105d9a3f0, {{16.0, 416.5}, {343.0, 74.0}}
+                                        Other, 0x105d9a510, {{16.0, 416.5}, {343.0, 74.0}}
+                                          Other, 0x105d9a630, {{16.0, 416.5}, {343.0, 74.0}}
+                                            Other, 0x105d9a750, {{16.0, 416.5}, {343.0, 74.0}}
+                                              Button, 0x105d9a870, {{16.0, 416.5}, {343.0, 74.0}}, identifier: 'assistant-conversation-9b0fd291-94b9-4645-9106-1b1383fffbe5', label: 'Conversation, Oct 5, 2026 at 2:14 AM'
+                                                StaticText, 0x105d9a990, {{32.0, 434.0}, {100.5, 20.5}}, label: 'Conversation'
+                                                StaticText, 0x105d9aab0, {{32.0, 458.5}, {130.0, 14.5}}, label: 'Oct 5, 2026 at 2:14 AM'
+                                                Image, 0x105d9abd0, {{333.5, 447.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x105d9acf0, {{32.0, 415.5}, {311.0, 1.0}}
+                                      Cell, 0x105d9ae10, {{16.0, 490.5}, {343.0, 74.0}}
+                                        Other, 0x105d9af30, {{16.0, 490.5}, {343.0, 74.0}}
+                                          Other, 0x105d9b050, {{16.0, 490.5}, {343.0, 74.0}}
+                                        Other, 0x105d9b170, {{16.0, 490.5}, {343.0, 74.0}}
+                                          Other, 0x105d9b290, {{16.0, 490.5}, {343.0, 74.0}}
+                                            Other, 0x105d9b3b0, {{16.0, 490.5}, {343.0, 74.0}}
+                                              Button, 0x105d9b4d0, {{16.0, 490.5}, {343.0, 74.0}}, identifier: 'assistant-conversation-3ef4918b-e31e-4001-af67-c4c03552b81d', label: 'Conversation, Oct 5, 2026 at 2:08 AM'
+                                                StaticText, 0x105d9b5f0, {{32.0, 508.0}, {100.5, 20.5}}, label: 'Conversation'
+                                                StaticText, 0x105d9b710, {{32.0, 532.5}, {131.5, 14.5}}, label: 'Oct 5, 2026 at 2:08 AM'
+                                                Image, 0x105d9b830, {{333.5, 521.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x105d9b950, {{32.0, 489.5}, {311.0, 1.0}}
+                                      Cell, 0x105d9ba70, {{16.0, 564.5}, {343.0, 74.0}}
+                                        Other, 0x105d9bb90, {{16.0, 564.5}, {343.0, 74.0}}
+                                          Other, 0x105d9bcb0, {{16.0, 564.5}, {343.0, 74.0}}
+                                        Other, 0x105d9bdd0, {{16.0, 564.5}, {343.0, 74.0}}
+                                          Other, 0x105d9bef0, {{16.0, 564.5}, {343.0, 74.0}}
+                                            Other, 0x105d9c010, {{16.0, 564.5}, {343.0, 74.0}}
+                                              Button, 0x105d9c130, {{16.0, 564.5}, {343.0, 74.0}}, identifier: 'assistant-conversation-cb1a57a8-b75d-465c-82af-ec9a059b3f63', label: 'Conversation, Oct 5, 2026 at 1:47 AM'
+                                                StaticText, 0x105d9c250, {{32.0, 582.0}, {100.5, 20.5}}, label: 'Conversation'
+                                                StaticText, 0x105d9c370, {{32.0, 606.5}, {129.5, 14.5}}, label: 'Oct 5, 2026 at 1:47 AM'
+                                                Image, 0x105d9c490, {{333.5, 595.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x105d9c5b0, {{32.0, 563.5}, {311.0, 1.0}}
+                                      Cell, 0x105d9c6d0, {{16.0, 638.5}, {343.0, 74.0}}
+                                        Other, 0x105d9c7f0, {{16.0, 638.5}, {343.0, 74.0}}
+                                          Other, 0x105d9c910, {{16.0, 638.5}, {343.0, 74.0}}
+                                        Other, 0x105d9ca30, {{16.0, 638.5}, {343.0, 74.0}}
+                                          Other, 0x105d9cb50, {{16.0, 638.5}, {343.0, 74.0}}
+                                            Other, 0x105d9cc70, {{16.0, 638.5}, {343.0, 74.0}}
+                                              Button, 0x105d9cd90, {{16.0, 638.5}, {343.0, 74.0}}, identifier: 'assistant-conversation-5f24bd3b-7462-460e-b083-c29941e0cb15', label: 'Conversation, Oct 5, 2026 at 1:43 AM'
+                                                StaticText, 0x105d9ceb0, {{32.0, 656.0}, {100.5, 20.5}}, label: 'Conversation'
+                                                StaticText, 0x105d9cfd0, {{32.0, 680.5}, {130.0, 14.5}}, label: 'Oct 5, 2026 at 1:43 AM'
+                                                Image, 0x105d9d0f0, {{333.5, 669.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x105d9d210, {{32.0, 637.5}, {311.0, 1.0}}
+                                      Other, 0x105d9d330, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                        Other, 0x105d9d450, {{369.0, 574.0}, {3.0, 7.0}}
+                                      Other, 0x105d9d570, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 3 pages', value: 0%
+                                        Other, 0x105d9d690, {{369.0, 574.0}, {3.0, 7.0}}
+                            Other, 0x105d9d7b0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x105d9d8d0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105d9d9f0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x105d9db10, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x105d9dc30, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x105d9dd50, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x105d9de70, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x105d9df90, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x105d9e0b0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x105d9e1d0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x105d9e2f0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x105d9e410, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x105d9e530, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x105d9e650, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x105d9e770, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x105d9e890, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x105d9e9b0, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x105d9ead0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x105d9ebf0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x105d9ed10, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x105d9ee30, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x105d9ef50, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x105d9f070, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x105d9f190, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x105d9f2b0, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x105d9f3d0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x105d9f4f0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x105d9f610, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x105d9f730, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x105d9f850, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x105d9f970, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x105d9fa90, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x105d9fbb0, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x105d962c0, pid: 28422, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x105777e40, pid: 28422, label: 'Nest'
+  }

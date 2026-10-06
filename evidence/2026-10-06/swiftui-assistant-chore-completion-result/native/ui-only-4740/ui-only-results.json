@@ -1,0 +1,9 @@
+{
+  "method": "AssistantChoreHistoryLinkTests/testImportedPartnerCompletionOpensCurrentScheduledWorkWithoutReplaying",
+  "UIBuiltSource": "a085a8710d1ff34fb138f10141d5628702bdded2",
+  "exitCode": 0,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "seconds": 51.398
+}

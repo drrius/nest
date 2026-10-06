@@ -184,7 +184,27 @@ the actual safe trace, raw-log hash and restoration records.
 The next execution uses the verified current membership and those focused
 receipt/domain comparisons. Repeating the unrelated full recurring-bill reader
 is unnecessary for this read-only chore navigation. Its earlier failure remains
-preserved. Fixture creation stays held until the exact UI controller is reviewed.
+preserved. Root reviews the complete 202-line UI-only execution controller,
+preserving the dated `a085a871` prepared products and separate diagnostic source.
+Exactly one clearly synthetic history fixture is then inserted into nest-test.
+A separate read verifies its exact transcript, two messages, no model turns or
+save children, and unchanged original 15 conversations and all ten domain
+fingerprints. The one normal/light UI method passes in 51.398 seconds on those
+exact prepared products; one invocation, consumed budget and summary are recorded
+separately. Both original scopes, 64 empty journals, settings and local semantics
+restore; selected plans and scoped caffeinate are independently absent. Root then
+removes exactly the synthetic fixture. Fresh read-only comparisons verify zero
+fixture rows, all 15 original conversations unchanged, and every chore/financial
+fingerprint and original receipt/completion unchanged. All eight captured PNGs
+are directly reviewed. Root checks the fully visible, enabled/hittable 44-point
+result link and the measured refresh gesture outside action and scroll-bar
+bounds. The original Sam/date acknowledgment and current work remain visible
+after refresh; the gesture capture does not prove a wire GET. An early
+acknowledgment image precedes tab-bar appearance; later current-work and restored
+Today images contain it. No financial SDK reader, diagnostic replay, domain
+command or model invocation occurs. Evidence checkpoint `50f120ed` passes routine
+CI 37533838086; shipping native source is unchanged from the tested commits.
+[Passing chore-result navigation](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/ui-only-4740/README.md).
 [Preserved failure diagnosis](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/baseline-failure-9410/diagnosis.json).
 [Diagnostic source readiness](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-source/readiness.json).
 This will verify native result navigation, not live AI execution. Both-phone,
