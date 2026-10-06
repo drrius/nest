@@ -31,7 +31,7 @@ final class NativePortionPreferenceDraftTests: XCTestCase {
         let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Your portion")).firstMatch
         try reading.reveal(picker)
         try reading.requireTarget(picker)
-        XCTAssertEqual(picker.value as? String, 1.formatted())
+        XCTAssertTrue(hasSelection(picker, value: 1.formatted()))
         reading.capture(picker, name: "Original owned portion before unsent change")
         picker.tap()
         let proposed = (name == "Test Alex" ? 1.5 : 0.5).formatted()
@@ -40,7 +40,9 @@ final class NativePortionPreferenceDraftTests: XCTestCase {
         try reading.requireTarget(option, bounds: app.frame)
         option.tap()
         let selected = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "hittable == true AND value == %@", proposed), object: picker)
+            predicate: NSPredicate(
+                format: "hittable == true AND (value == %@ OR label == %@)", proposed, "Your portion, \(proposed)"),
+            object: picker)
         XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 15), .completed)
         let back = navigation.buttons["Back"]
         try reading.requireTarget(back, bounds: app.frame)
@@ -50,7 +52,7 @@ final class NativePortionPreferenceDraftTests: XCTestCase {
         let keep = alert.buttons["Keep editing"]
         try reading.requireTarget(keep, bounds: app.frame)
         keep.tap()
-        XCTAssertEqual(picker.value as? String, proposed)
+        XCTAssertTrue(hasSelection(picker, value: proposed))
         reading.capture(picker, name: "Owned unsent portion retained after Keep editing")
         back.tap()
         XCTAssertTrue(alert.waitForExistence(timeout: 10))
@@ -63,13 +65,17 @@ final class NativePortionPreferenceDraftTests: XCTestCase {
         let reloaded = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: save)
         XCTAssertEqual(XCTWaiter.wait(for: [reloaded], timeout: 30), .completed)
         try reading.reveal(picker)
-        XCTAssertEqual(picker.value as? String, 1.formatted())
+        XCTAssertTrue(hasSelection(picker, value: 1.formatted()))
         reading.capture(picker, name: "Original portion restored after explicit unsent discard")
         back.tap()
         XCTAssertFalse(alert.exists)
         app.navigationBars["Profile"].buttons.element(boundBy: 0).tap()
         tabs.buttons["Today"].tap()
         XCTAssertTrue(tabs.buttons["Today"].isSelected)
+    }
+
+    private func hasSelection(_ picker: XCUIElement, value: String) -> Bool {
+        picker.value as? String == value || picker.label == "Your portion, \(value)"
     }
 
     private func requireFixture() throws -> String {

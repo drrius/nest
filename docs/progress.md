@@ -271,6 +271,15 @@ The existing MealAPI verifier replaces that type; configured Mac formatting and
 source limits pass. No native method, preference mutation or Save runs. The
 failed preparation logs/source map are preserved. Corrected native preparation
 remains pending.
+Corrected fresh SDK products at `e7b1ad87` and retained UI products at `293549f6`
+are source/product/signing verified; only the read-test file differs. Both actual
+GET-only native reads pass, including Sam's absent profile. The first Alex UI
+method passes the portion control's 44-point checks, then stops before editing:
+the native button's value is empty and its label is “Your portion, 1”. The observer
+now accepts either exact selection representation; no shipping control changes.
+Fresh hosted comparison confirms profiles, shared cooking and all receipts exact;
+original scopes/64 journals/settings/local semantics restore. Both native reads
+and the failure are retained. Corrected UI execution remains pending.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

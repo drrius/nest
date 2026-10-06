@@ -1,0 +1,8 @@
+{
+  "source": "e7b1ad870204b3959df2d6318515c4ec63e26d31",
+  "testBuiltSource": "293549f6e293d8655392777ad94ceb8e5ae8980c",
+  "actor": "alex",
+  "step": "normal",
+  "method": "NativePortionPreferenceDraftTests/testOwnedUnsentPortionSurvivesKeepEditingAndDiscard",
+  "positiveBudget": 0
+}

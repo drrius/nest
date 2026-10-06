@@ -1,0 +1,17 @@
+{
+  "source": "293549f6e293d8655392777ad94ceb8e5ae8980c",
+  "inputs": 1134,
+  "binarySHA256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "20f76cce43ce860077f64fa2de395cbb9324e3d0af0e96e954f9e56e81ffcedc",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "e8632f8b0ed08aad74cf763148e03fb668478abd29ff95085497c2b519d74a01",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "146cea07c941fe0b098ea3dc10372142fe4b43a5b0224ab6ebf774ce46f993f9"
+  },
+  "selectedProducts": {
+    "TestHostPath": "/private/tmp/nest-native-portions-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+    "TestBundlePath": "/private/tmp/nest-native-portions-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+    "UITargetAppPath": "/private/tmp/nest-native-portions-ui-20261007/Build/Products/Debug-iphonesimulator/Nest.app"
+  },
+  "originsVerified": true,
+  "pushEnabled": false,
+  "version": "19"
+}

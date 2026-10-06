@@ -1,0 +1,16 @@
+{
+  "source": "e7b1ad870204b3959df2d6318515c4ec63e26d31",
+  "selectedProducts": {
+    "TestHostPath": "/private/tmp/nest-native-portions-fixed-sdk-20261007/Build/Products/Debug-iphonesimulator/Nest.app",
+    "TestBundlePath": "/private/tmp/nest-native-portions-fixed-sdk-20261007/Build/Products/Debug-iphonesimulator/Nest.app/PlugIns/NestAppTests.xctest"
+  },
+  "binarySHA256": {
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "b069d3d75cdece12d82fb9fec9928a887fa42d140114fb282ba071d07657f2c9",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "6cfcdc9a5b7b1af2bf45fc0083feba5091d1f818fbd7c3691efb3dda68a4cecb",
+    "Build/Products/Debug-iphonesimulator/Nest.app/PlugIns/NestAppTests.xctest/NestAppTests": "cca1bc90658efba4a24858f08b6da1395d42e41b95d0de410d72f2c0d19b4e2a"
+  },
+  "compileLines": [
+    "SwiftCompile normal arm64 Compiling\\ HostedNativePairChoreAuthorizationTests.swift,\\ HostedNativePairChoreTests.swift,\\ HostedNativePairGroceryTests.swift,\\ HostedNativeRenewalReadTests.swift,\\ HostedNaturalSessionDiagnosticTests.swift,\\ HostedPausedRecurringReminderReadTests.swift,\\ HostedPDFReceiptTests.swift,\\ HostedPortionPreferenceReadTests.swift,\\ HostedRecipeCancelDraftReadTests.swift,\\ HostedRemainingReminderEligibilityTests.swift,\\ HostedRenewalOfflineReadTests.swift,\\ HostedSessionRefreshTests.swift,\\ IngredientChoiceBindingTests.swift,\\ IngredientReviewModelTests.swift,\\ LateAuthRefreshTests.swift,\\ LegacyAdoptionApprovalModelTests.swift,\\ LegacyAdoptionApprovalTestFixture.swift,\\ LegacyAdoptionApprovalTestServer.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedNativePairChoreAuthorizationTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedNativePairChoreTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedNativePairGroceryTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedNativeRenewalReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedNaturalSessionDiagnosticTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedPausedRecurringReminderReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedPDFReceiptTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedPortionPreferenceReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedRecipeCancelDraftReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedRemainingReminderEligibilityTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedRenewalOfflineReadTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedSessionRefreshTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/IngredientChoiceBindingTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/IngredientReviewModelTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/LateAuthRefreshTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/LegacyAdoptionApprovalModelTests.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/LegacyAdoptionApprovalTestFixture.swift /tmp/nest-current-qa-82a/apps/ios/AppTests/LegacyAdoptionApprovalTestServer.swift (in target 'NestAppTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/AppTests/HostedPortionPreferenceReadTests.swift (in target 'NestAppTests' from project 'Nest')"
+  ]
+}
