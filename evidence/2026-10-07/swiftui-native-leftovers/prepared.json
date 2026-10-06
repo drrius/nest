@@ -102,11 +102,7 @@
   "plannedDate": "2026-10-26",
   "plannedSlot": "lunch",
   "sourceWeekMustRemainRevision": "9",
-  "expectedTargetRevisionSequence": [
-    "0",
-    "1",
-    "2"
-  ],
+  "expectedTargetRevisionSequence": ["0", "1", "2"],
   "noGroceriesOrFinanceWrites": true,
   "metadataIsNotNativeAuthorizationProof": true
 }
