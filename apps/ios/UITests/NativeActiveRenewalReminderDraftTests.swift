@@ -73,8 +73,8 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
         link.tap()
         XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
         let title = app.staticTexts["Nest QA reminder 0610-3f88"].firstMatch
-        XCTAssertTrue(title.waitForExistence(timeout: 30))
         reveal(title, in: app, permitsDisabled: true)
+        XCTAssertTrue(title.waitForExistence(timeout: 30))
         XCTAssertEqual(app.buttons.matching(identifier: "Reminder choices").count, 1)
         XCTAssertFalse(app.staticTexts["Your saved renewal request"].exists)
         return app
