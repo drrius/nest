@@ -1,17 +1,10 @@
 # What remains before Nest is finished
 
-Current private candidate: **0.1.0/build18**, source `e7926c89`, Apple VALID/IN_BETA_TESTING internally and unexpired after one finished private submission. Both exact-source CI workflows and Mac signing/package checks pass. Build18 includes the consistent shared header/insets for all four tabs and Quiet Calendar cards. [Evidence](../../evidence/2026-10-05/swiftui-build18-layout/README.md), [phone layout pass](build18-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
+Current private candidate: **0.1.0/build19**, source `484e5feb`, Apple VALID/IN_BETA_TESTING internally and unexpired after one finished private submission. Candidate routine CI, identical-native-input CI and Mac signing/package checks pass. Build19 retains the consistent four-tab headers/insets and Quiet Calendar cards, and adds the later draft/reminder/recipe/renewal fixes. [Evidence](../../evidence/2026-10-06/swiftui-build19/README.md), [short phone pass](build19-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
 
-The later [native accessibility diagnostic pass](../../evidence/2026-10-05/swiftui-accessibility-audit/README.md)
-adds an optional XCUITest scheme and stronger Calendar headings. Actual normal and
-largest/dark permission reading pass, with preserved settings and64 empty journals.
-The full five-test audit still fails with20 reports (some duplicated), including
-Calendar font/clipping warnings and contrast near/beneath the native floating bar.
-All12 supported text sizes have bounded permission-reading proof, including
-largest/dark; this is not every light/dark pairing. Three further visual experiments
-fail and are removed, most recently the explicit tab-bar background retaining the
-same three contrast findings. Nothing is suppressed. Full accessibility, VoiceOver
-and phone acceptance remain open. This creates no new TestFlight build.
+The current full native accessibility audit has19 unsuppressed reports,11 contrast and eight Dynamic Type findings. [Current evidence](../../evidence/2026-10-06/swiftui-current-accessibility/README.md) supersedes the older20-report checkpoint. Bounded twelve-size Calendar reading and live typography checks do not close the full diagnostic. Source/numeric capture checks and later form fixes retain exact data and ordinary restored clients. Full accessibility, VoiceOver and both-phone acceptance remain open.
+
+The later recipe cancellation check reproduces untouched Cancel prompting and small opening/keyboard targets. Complete normal and maximum New/Edit flows pass after fixes, with raw invalid-input protection, explicit discard and unchanged canonical data. A separate final compact-Done check resolves largest-text label truncation. Across variants23 native methods pass, five original methods remain failed and six focused Core cases pass separately. [Evidence](../../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md). These fixes are in19; the bounded simulator proof does not establish phone acceptance. No reminder delivery or live AI success is inferred.
 
 The request-time auth boundary now fixes two reproduced single-client credential
 races: late refresh restoring a signed-out account or replacing a new sign-in.
@@ -40,7 +33,7 @@ pass c5469baf (23 core,50 conflicts,1,235 database/RLS, zero failures/skips).
 Forty-nine other legacy public functions/deeper private paths remained at that checkpoint.
 [Evidence](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
 
-Updated 5 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
+Updated 6 October 2026. SwiftUI is the selected client. Most everyday surfaces exist. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open. This list groups remaining work by outcome rather than commit or test count. Detailed evidence and exact blockers stay in [progress](../progress.md).
 
 Private variable-bill consent now passes actual normal/largest/dark intended-branch cancellation, one native approval, restart/recovery/detail/Done and known-operation replay. Both members independently agree on one3-cent bill and an ordinary1-cent settlement restoring zero balances, with all61 append-only events retained. Original59 financial/Storage metadata hashes remain exact; private proposal/journal RLS, unchanged other rules/pending inventories and64 empty native journals pass. Actual rendering exposed small controls and shared Form-row action cross-triggering, now fixed with separate borderless buttons and an explicit-Cancel native alert. Seven focused native methods, strict format/limits and signing pass; both exact-source CI workflows pass. The authenticated proposal fixture is synthetic, not live model proof. Later consent and readability evidence below supersedes the remaining timed-row audit; hosted interrupted/lost-reply variants, full accessibility/races/two clients/both phones/live AI remain open. [Evidence](../../evidence/2026-10-05/swiftui-private-variable-bill/README.md).
 
@@ -205,7 +198,7 @@ mutation or CalDAV credential/network execution is claimed.
 
 ## 4. Deliver and accept a current private build
 
-- [x] Batch the verified changes into a current signed TestFlight candidate. Build17, exact source `fad84b0b`, passes both CI workflows, native archive/export/package checks and supported internal Apple availability. Partner access and actual phone acceptance remain unverified.
+- [x] Batch verified changes into a current signed TestFlight candidate. Build19, exact source `484e5feb`, passes candidate CI, identical-native-input CI, local signed archive/export/package checks and supported internal Apple availability. Partner access and actual phone acceptance remain unverified.
 - [ ] Verify installation/sign-in and complete the [phone checklist](swiftui-phone-acceptance.md) with both partners; resolve findings.
 - [ ] Complete migration and old pending-intent drainage safely. Current54-legacy/248-Nest populated reconciliation and pending reminder/draft/outbox pause probes pass locally; hosted Auth/Storage, live external writers and full old-client intent drainage remain. [Evidence](../../evidence/2026-10-04/current-chain-pending-job-rehearsal/README.md).
 - [ ] Complete the [cutover review package](cutover-review-package.md). The initial evidence map, transition sequence and history-preserving recovery rules are prepared; live inventory, client intent outcomes, representative hosted rehearsal and final acceptance are still required. Production migration, retirement and public release remain separate owner decisions.
