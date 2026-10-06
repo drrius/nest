@@ -29,7 +29,13 @@ struct RenewalEditorScreen: View {
                     Text("Title").font(.caption).foregroundStyle(QuietPalette.muted)
                     TextField("e.g. Home insurance", text: $draft.title, axis: .vertical)
                         .focused($titleFocused)
+                        .accessibilityLabel("Renewal title")
+                        .accessibilityIdentifier("renewal-title")
+                        .frame(minHeight: 44).contentShape(Rectangle())
                 }
+                .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                .contentShape(Rectangle())
+                .onTapGesture { titleFocused = true }
                 DatePicker("Renewal date", selection: $draft.date, displayedComponents: .date)
                     .environment(\.calendar, Calendar(identifier: .gregorian))
                 Stepper(
@@ -74,8 +80,9 @@ struct RenewalEditorScreen: View {
                 Button {
                     if draft == initial { dismiss() } else { discarding = true }
                 } label: {
-                    Text("Cancel").fixedSize().frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
-                }.buttonStyle(.plain).disabled(model.busy)
+                    Image(systemName: "xmark")
+                        .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).accessibilityLabel("Cancel").disabled(model.busy)
             }
         }
         .interactiveDismissDisabled(model.busy || draft != initial)

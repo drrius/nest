@@ -24,8 +24,13 @@ Its interrupted result is retained in scroll-observer. Five read-only modal cens
 667pt collection viewport; the observer instead imposed643pt. It now measures
 the visible scroll container. The corrected normal untouched-Cancel method passes. The edited check stops
 before typing at its title-field lookup; the interrupted result remains in
-input-observer. A read-only input-type census runs on controller41783. Edited
-and maximum-size acceptance are not yet claimed.
+input-observer. Five read-only input-census methods pass. The actual title field has type49,
+a blank accessibility label and22pt height. The form now labels Renewal title,
+provides a stable identifier and a44pt enclosing row focus target. Padding does
+not enlarge the22pt native text accessibility rectangle. The next observer
+tests actual keyboard focus at±21pt edges rather than equating text bounds with
+the touch region. Corrected interactions run on controller43863; edited/maximum
+and edge-focus results remain pending.
 No post-fix journey, phone pass, renewal mutation or notification delivery pass
 is claimed at this checkpoint. The earlier baseline controller's successful
 terminal state means its read-only diagnostic/restoration completed; its two
@@ -47,3 +52,12 @@ and64 empty journals restored. Its screenshot was inspected. It shows Cancel wra
 text size. Cancel and Done now preserve intrinsic text width within their44pt
 targets; this visual correction has formatting/source-limit verification, with
 rendered confirmation and CI still pending.
+
+The input-census screenshot was inspected. Intrinsic text sizing keeps Cancel on
+one line but the compact toolbar still clips it. The toolbar census records the
+two failed text premises and the affected actor; its script reruns the bound-data
+comparison. Cancel now uses the standard close symbol with its semantic label and
+44pt target. No artwork is introduced. The title-frame-observer retains the22pt
+native text-bound failure; it is not used to claim a failed or passed touch region.
+The explicit row-focus change and edge tests have source-limit/format verification;
+actual final interaction and latest-source CI remain pending.

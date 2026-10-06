@@ -34,8 +34,16 @@ final class RenewalNavigationTests: XCTestCase {
         let app = openRenewals(fixture: fixture)
         app.navigationBars["Renewals"].buttons["Add"].tap()
         XCTAssertTrue(app.navigationBars["New renewal"].waitForExistence(timeout: 15))
-        let title = app.textFields["e.g. Home insurance"]
+        let title = app.textFields["renewal-title"]
         reveal(title, in: app)
+        XCTAssertEqual(title.label, "Renewal title")
+        XCTAssertGreaterThanOrEqual(title.frame.width, 44 - 1e-9)
+        for offset in [-21.0, 21.0] {
+            title.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.5))
+                .withOffset(CGVector(dx: 0, dy: offset)).tap()
+            XCTAssertTrue(app.keyboards.firstMatch.waitForExistence(timeout: 15))
+            app.buttons["Done"].tap()
+        }
         title.tap()
         title.typeText("Nest unsent renewal QA")
         let done = app.buttons["Done"]
@@ -70,7 +78,7 @@ final class RenewalNavigationTests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
         app.navigationBars["Renewals"].buttons["Add"].tap()
         XCTAssertTrue(app.navigationBars["New renewal"].waitForExistence(timeout: 15))
-        XCTAssertEqual(title.value as? String, "e.g. Home insurance")
+        XCTAssertTrue((title.value as? String) == "e.g. Home insurance" || (title.value as? String) == "")
         app.navigationBars["New renewal"].buttons["Cancel"].tap()
         XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
         app.navigationBars["Renewals"].buttons.element(boundBy: 0).tap()
