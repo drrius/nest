@@ -123,10 +123,7 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         }
         name.typeText(raw)
         XCTAssertEqual(name.value as? String, raw)
-        let done = app.buttons["Done"]
-        requireAction(done, in: app)
-        done.tap()
-        XCTAssertEqual(disappearance(app.keyboards.firstMatch, timeout: 15), .completed)
+        dismissKeyboardAtEdge(app, field: name)
         XCTAssertFalse(app.navigationBars[title].buttons["Save"].isEnabled)
         swipeSheet(title, dirty: true, in: app)
         let cancel = app.navigationBars[title].buttons["Cancel"]
@@ -141,6 +138,31 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         cancel.tap()
         choose(discard, alert: alert, in: app, name: title + " explicitly discards local raw input")
         XCTAssertEqual(disappearance(app.navigationBars[title], timeout: 15), .completed)
+    }
+
+    private func dismissKeyboardAtEdge(_ app: XCUIApplication, field: XCUIElement) {
+        let keyboard = app.keyboards.firstMatch
+        let done = app.buttons["Done"]
+        requireAction(done, in: app)
+        let frame = done.frame
+        let keyboardFrame = keyboard.frame
+        let toolbar = CGRect(
+            x: keyboardFrame.minX, y: keyboardFrame.minY - 64,
+            width: keyboardFrame.width, height: 64)
+        let point = CGPoint(x: frame.midX, y: frame.midY - 21)
+        attach(
+            [
+                "button": rect(frame), "keyboard": rect(keyboardFrame), "keyboardToolbarBand": rect(toolbar),
+                "point": [point.x, point.y], "verticalOffset": -21,
+            ], name: "Measured recipe keyboard Done top edge")
+        capture(app, name: "Actual44pt Done before measured edge dismissal")
+        XCTAssertTrue(frame.contains(point) && app.frame.contains(point))
+        XCTAssertTrue(toolbar.contains(frame), "The44pt button must fit the toolbar band above the real keyboard")
+        XCTAssertLessThanOrEqual(frame.maxY, keyboardFrame.minY)
+        app.coordinate(withNormalizedOffset: .zero).withOffset(CGVector(dx: point.x, dy: point.y)).tap()
+        XCTAssertEqual(disappearance(keyboard, timeout: 15), .completed)
+        XCTAssertEqual(field.value as? String, "0")
+        capture(app, name: "Done edge dismissed keyboard and retained invalid0")
     }
 
     private func swipeSheet(_ title: String, dirty: Bool, in app: XCUIApplication) {
