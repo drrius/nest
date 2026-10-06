@@ -7,9 +7,14 @@
   "nativeInputsMatchedToProof": 1104,
   "macSourceHashesVerified": true,
   "existingProfilePresent": true,
-  "signingStarted": false,
+  "signingStarted": true,
   "uploaded": false,
-  "pendingChecks": [37438352328],
+  "pendingChecks": [],
   "scope": "private nest-test beta; no production migration or public release",
-  "routineCheckPassed": 37439103691
+  "routineCheckPassed": 37439103691,
+  "nativeCheckPassed": 37438352328,
+  "archiveExportPackagePassed": true,
+  "temporarySigningMaterialRemoved": true,
+  "submissionId": "80654dba-1d01-4568-b6b1-af0a72d2af8e",
+  "submissionStatus": "IN_PROGRESS"
 }

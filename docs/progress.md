@@ -240,11 +240,11 @@ MAX screenshots then reveal “Do…” text truncation. Source `09057a93` uses 
 checkmark with semantic Done; five final focused methods pass at `a432974d`, with
 both members' saved data unchanged and clients restored. Across recorded variants,
 23 native methods pass and five remain failed; six Core cases pass separately.
-All81 PNGs are reviewed. Current routine CI passes; final native CI remains pending.
+All81 PNGs are reviewed. Final routine/native CI pass at their source pins, with zero failures.
 Earlier numeric-key lookup failures remain recorded; no failure is relabeled passed.
 [Evidence](../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md) verifies all immutable source maps and 422 tracked artifacts.
-Build19 is reserved;18 remains latest. No recipe Save, beta upload or production action occurs.
-[Build19 preparation](../evidence/2026-10-06/swiftui-build19/README.md) freezes 1,111 files and matches all 1,104 native inputs on both hosts. Signing/export/upload await final CI; no archive or submission exists yet.
+No recipe Save or production action occurs. Build18 remains latest while19 processes.
+[Build19](../evidence/2026-10-06/swiftui-build19/README.md) passes exact 1,111-file source, CI, signed archive/export/package and copied IPA hash checks. Temporary credentials are removed. One private submission `80654dba-1d01-4568-b6b1-af0a72d2af8e` is in progress; Apple availability remains pending.
 
 ## Earlier native settlement verification
 
