@@ -1,0 +1,165 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-contrast-viewport-20261006/alex/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-contrast-viewport-20261006/alex/result.xcresult "-only-testing:NestAccessibilityTests/NativeContrastViewportTests/testTodayContrastWithBothBoundTargetsAboveTabBar" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-contrast-viewport-20261006/alex/result.xcresult
+
+2026-10-06 06:47:45.466319+0200 NestAccessibilityTests-Runner[60496:20225756] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 06:47:46.078.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 06:47:46.078.
+Test Suite 'NativeContrastViewportTests' started at 2026-10-06 06:47:46.079.
+Test Case '-[NestAccessibilityTests.NativeContrastViewportTests testTodayContrastWithBothBoundTargetsAboveTabBar]' started.
+    t =     0.00s Start Test at 2026-10-06 06:47:46.079
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.02s     Launch ch.drrius.nest
+    t =     0.02s         Terminate ch.drrius.nest:59961
+2026-10-06 06:47:47.198 xcodebuild[60494:20225257] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 06:47:47.198 xcodebuild[60494:20225257] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.54s         Setting up automation session
+    t =     2.41s         Wait for ch.drrius.nest to idle
+    t =     3.66s Waiting 30.0s for TabBar (First Match) to exist
+    t =     4.72s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     4.72s         Checking existence of `TabBar (First Match)`
+    t =     4.76s Tap "Today" Button
+    t =     4.76s     Wait for ch.drrius.nest to idle
+    t =     4.77s     Find the "Today" Button
+    t =     4.81s     Check for interrupting elements affecting "Today" Button
+    t =     4.87s     Synthesize event
+    t =     5.16s     Wait for ch.drrius.nest to idle
+    t =     6.63s Tap "Profile and preferences" Button
+    t =     6.63s     Wait for ch.drrius.nest to idle
+    t =     6.63s     Find the "Profile and preferences" Button
+    t =     6.68s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     6.71s     Synthesize event
+    t =     7.01s     Wait for ch.drrius.nest to idle
+    t =     7.44s Waiting 15.0s for "Test Alex" StaticText to exist
+    t =     8.51s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Alex" StaticText`
+    t =     8.51s         Checking existence of `"Test Alex" StaticText`
+    t =     8.57s Tap Button (Element at index 0)
+    t =     8.57s     Wait for ch.drrius.nest to idle
+    t =     8.58s     Find the Button (Element at index 0)
+    t =     8.62s     Check for interrupting elements affecting "BackButton" Button
+    t =     8.66s     Synthesize event
+    t =     8.96s     Wait for ch.drrius.nest to idle
+    t =     9.78s Waiting 30.0s for "Open meal plan" Button to exist
+    t =    10.86s     Checking `Expect predicate `existsNoRetry == 1` for object "Open meal plan" Button`
+    t =    10.86s         Checking existence of `"Open meal plan" Button`
+    t =    10.91s Waiting 30.0s for "On your calendar" StaticText to exist
+    t =    11.97s     Checking `Expect predicate `existsNoRetry == 1` for object "On your calendar" StaticText`
+    t =    11.97s         Checking existence of `"On your calendar" StaticText`
+    t =    12.01s Find the TabBar (First Match)
+    t =    12.03s Find the "Open meal plan" Button
+    t =    12.07s Find the "On your calendar" StaticText
+    t =    12.10s Find the "Open meal plan" Button
+    t =    12.15s Find the "On your calendar" StaticText
+    t =    12.20s Find the "Open meal plan" Button
+    t =    12.25s Find the "On your calendar" StaticText
+    t =    12.30s Find the Target Application 'ch.drrius.nest'
+    t =    12.32s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.50] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    12.32s     Wait for ch.drrius.nest to idle
+    t =    12.32s     Find the Target Application 'ch.drrius.nest'
+    t =    12.35s     Check for interrupting elements affecting "Nest" Application
+    t =    12.38s     Synthesize event
+    t =    12.38s         Find the Target Application 'ch.drrius.nest'
+    t =    12.40s         Find the Target Application 'ch.drrius.nest'
+    t =    12.42s         Find the Target Application 'ch.drrius.nest'
+    t =    12.44s         Find the Target Application 'ch.drrius.nest'
+    t =    12.47s         Find the Target Application 'ch.drrius.nest'
+    t =    13.43s     Wait for ch.drrius.nest to idle
+    t =    13.44s Find the TabBar (First Match)
+    t =    13.45s Find the "Open meal plan" Button
+    t =    13.49s Find the "On your calendar" StaticText
+    t =    13.53s Find the "Open meal plan" Button
+    t =    13.57s Find the "On your calendar" StaticText
+    t =    13.61s Find the "Open meal plan" Button
+    t =    13.65s Find the "On your calendar" StaticText
+    t =    13.69s Find the Target Application 'ch.drrius.nest'
+    t =    13.71s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.52] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    13.71s     Wait for ch.drrius.nest to idle
+    t =    13.72s     Find the Target Application 'ch.drrius.nest'
+    t =    13.74s     Check for interrupting elements affecting "Nest" Application
+    t =    13.77s     Synthesize event
+    t =    13.77s         Find the Target Application 'ch.drrius.nest'
+    t =    13.79s         Find the Target Application 'ch.drrius.nest'
+    t =    13.81s         Find the Target Application 'ch.drrius.nest'
+    t =    13.84s         Find the Target Application 'ch.drrius.nest'
+    t =    13.86s         Find the Target Application 'ch.drrius.nest'
+    t =    14.78s     Wait for ch.drrius.nest to idle
+    t =    14.79s Find the TabBar (First Match)
+    t =    14.80s Find the "Open meal plan" Button
+    t =    14.84s Find the "On your calendar" StaticText
+    t =    14.88s Find the "Open meal plan" Button
+    t =    14.92s Find the "On your calendar" StaticText
+    t =    14.96s Find the "Open meal plan" Button
+    t =    15.01s Find the "On your calendar" StaticText
+    t =    15.05s Added attachment named 'Measured two-target viewport placement'
+    t =    15.05s Find the Target Application 'ch.drrius.nest'
+    t =    15.11s Added attachment named 'Both original contrast targets clear of tab bar'
+    t =    15.11s Requesting snapshot of accessibility hierarchy for app with pid 60520
+    t =    15.27s Requesting snapshot of accessibility hierarchy for app with pid 60520
+    t =    15.31s Added attachment named 'Both original contrast targets clear of tab bar accessibility tree'
+    t =    15.52s Find the Any (Descendant with identity binding to AX element pid: 60520, elementOrHash.elementID: 4314701312.78)
+    t =    15.55s Find the "Open Calendar to review access. Your personal details stay on this device." StaticText
+    t =    15.58s Find the "Open Calendar to review access. Your personal details stay on this device." StaticText
+    t =    15.61s Find the "Open Calendar to review access. Your personal details stay on this device." StaticText
+    t =    15.64s Find the TabBar (First Match)
+    t =    15.67s Find the "Tab Bar" TabBar
+    t =    15.68s Find the "Tab Bar" TabBar
+    t =    15.70s Find the "Tab Bar" TabBar
+    t =    15.71s Added attachment named 'Accessibility issue'
+    t =    15.71s Find the Any (Descendant with identity binding to AX element pid: 60520, elementOrHash.elementID: 4314701312.78)
+    t =    15.74s Checking existence of `"Open Calendar to review access. Your personal details stay on this device." StaticText`
+    t =    15.76s Find the "Open Calendar to review access. Your personal details stay on this device." StaticText
+<unknown>:0: error: -[NestAccessibilityTests.NativeContrastViewportTests testTodayContrastWithBothBoundTargetsAboveTabBar] : Contrast failed
+    t =    15.82s Find the Any (Descendant with identity binding to AX element pid: 60520, elementOrHash.elementID: 4314424656.79)
+    t =    15.85s Find the "Open Calendar" Button
+    t =    15.88s Find the "Open Calendar" Button
+    t =    15.91s Find the "Open Calendar" Button
+    t =    15.95s Find the "Tab Bar" TabBar
+    t =    15.96s Find the "Tab Bar" TabBar
+    t =    15.98s Find the "Tab Bar" TabBar
+    t =    16.00s Find the "Tab Bar" TabBar
+    t =    16.01s Added attachment named 'Accessibility issue'
+    t =    16.01s Find the Any (Descendant with identity binding to AX element pid: 60520, elementOrHash.elementID: 4314424656.79)
+    t =    16.04s Checking existence of `"Open Calendar" Button`
+    t =    16.06s Find the "Open Calendar" Button
+<unknown>:0: error: -[NestAccessibilityTests.NativeContrastViewportTests testTodayContrastWithBothBoundTargetsAboveTabBar] : Contrast failed
+    t =    16.10s Tap "Today" Button
+    t =    16.10s     Wait for ch.drrius.nest to idle
+    t =    16.11s     Find the "Today" Button
+    t =    16.12s     Check for interrupting elements affecting "house" Button
+    t =    16.15s     Synthesize event
+    t =    16.46s     Wait for ch.drrius.nest to idle
+    t =    17.22s Find the "Around the house" StaticText
+    t =    17.28s Find the "Today" StaticText
+    t =    17.32s Find the "Me + shared" Button
+    t =    17.36s Find the "Today" StaticText
+    t =    17.40s Find the "Today" Button
+    t =    17.42s Find the Target Application 'ch.drrius.nest'
+    t =    17.48s Added attachment named 'Restored Today top and original filter'
+    t =    17.48s Requesting snapshot of accessibility hierarchy for app with pid 60520
+    t =    17.66s Requesting snapshot of accessibility hierarchy for app with pid 60520
+    t =    17.70s Added attachment named 'Restored Today top and original filter accessibility tree'
+    t =    17.70s Tear Down
+Test Case '-[NestAccessibilityTests.NativeContrastViewportTests testTodayContrastWithBothBoundTargetsAboveTabBar]' failed (17.954 seconds).
+Test Suite 'NativeContrastViewportTests' failed at 2026-10-06 06:48:04.034.
+	 Executed 1 test, with 2 failures (0 unexpected) in 17.954 (17.955) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 06:48:04.034.
+	 Executed 1 test, with 2 failures (0 unexpected) in 17.954 (17.956) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 06:48:04.035.
+	 Executed 1 test, with 2 failures (0 unexpected) in 17.954 (17.957) seconds
+2026-10-06 06:48:17.198 xcodebuild[60494:20225257] [MT] IDETestOperationsObserverDebug: 32.527 elapsed -- Testing started completed.
+2026-10-06 06:48:17.198 xcodebuild[60494:20225257] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 06:48:17.198 xcodebuild[60494:20225257] [MT] IDETestOperationsObserverDebug: 32.527 sec, +32.527 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-contrast-viewport-20261006/alex/result.xcresult
+
+Failing tests:
+	NativeContrastViewportTests.testTodayContrastWithBothBoundTargetsAboveTabBar()
+
+** TEST EXECUTE FAILED **
+
+Testing started

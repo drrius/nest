@@ -1,0 +1,23 @@
+[
+  {
+    "calendar": [38, 663, 136, 20.5],
+    "calendarHittable": false,
+    "meal": [38, 559, 299, 44],
+    "mealHittable": true,
+    "tabBar": [0, 584, 375, 83]
+  },
+  {
+    "calendar": [38, 573, 136, 20.5],
+    "calendarHittable": true,
+    "meal": [38, 469, 299, 44],
+    "mealHittable": true,
+    "tabBar": [0, 584, 375, 83]
+  },
+  {
+    "calendar": [38, 493.5, 136, 20.5],
+    "calendarHittable": true,
+    "meal": [38, 389.5, 299, 44],
+    "mealHittable": true,
+    "tabBar": [0, 584, 375, 83]
+  }
+]
