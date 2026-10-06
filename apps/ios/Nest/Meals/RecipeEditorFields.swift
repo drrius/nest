@@ -32,11 +32,13 @@ struct RecipeEditorKeyboard: ViewModifier {
                 Button {
                     focus.wrappedValue = nil
                 } label: {
-                    Text("Done")
-                        .frame(minWidth: 44, minHeight: 44)
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 18, weight: .semibold))
+                        .frame(width: 44, height: 44)
                         .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Done")
             }
         }
     }
