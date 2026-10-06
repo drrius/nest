@@ -180,7 +180,9 @@ Keep retains local choices and Discard exits. All eight new images are reviewed.
 the original clipped frames. Physical/VoiceOver and other-editor runtime acceptance stay open.
 [Evidence](../evidence/2026-10-06/swiftui-grocery-reminder-navigation/README.md) preserves failed
 observers and exact source variants:10 passes,12 failures,59 reviewed PNGs and644
-matching shipping inputs. Source1c0cb054 CI is running. Real saves/delivery and M8 remain open.
+matching shipping inputs. Source1c0cb054 passes Nest37421150123/SwiftUI37421149542:
+502 Foundation/41 skips,455 signed-app/23 skips, four Swift Testing cases, zero failures
+and strict native gates. The shorter-title follow-up needs separate CI. Real saves/delivery and M8 remain open.
 The fix is later than build18; no new candidate or production action occurs.
 
 ## Earlier native settlement verification
