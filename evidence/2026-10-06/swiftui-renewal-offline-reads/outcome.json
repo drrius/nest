@@ -1,0 +1,15 @@
+{
+  "implementation": "Validated actor/household renewal read snapshots with date guidance, coherent pagination, online preflights and atomic receipt invalidation/detail persistence.",
+  "fakeTransportFoundationPassed": 23,
+  "fakeTransportSignedAppPassed": 12,
+  "realNativeReadIntegrationPassed": 2,
+  "onlineNativeUISmokePassed": 2,
+  "finalFailures": 0,
+  "behavioralReproductionFailuresBeforeImplementation": 2,
+  "ownedExistingRenewalId": "17919246-d8ec-4402-b301-da1149d1cc35",
+  "ownedRecordStillRemoved": true,
+  "ownedRecordRevision": "2bd612c0-3ce2-408c-8735-7b32e3ea6357",
+  "hostedMutations": 0,
+  "physicalRadioLossUIVerified": false,
+  "fullNativeReleaseGoalComplete": false
+}

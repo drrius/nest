@@ -10,33 +10,42 @@ final class RenewalsModel: ObservableObject {
     @Published private(set) var busy = false
     @Published private(set) var loaded = false
     @Published private(set) var notice: String?
+    private var account: VerifiedMember?
+    private var collectionId: UUID?
 
     func load(session: SessionModel, member: VerifiedMember, more: Bool = false) async {
-        guard !busy else { return }
+        guard !busy, !more || next != nil else { return }
+        if account != nil && account != member { clear() }
         busy = true
         notice = nil
-        if !more {
-            rows = []
-            next = nil
-            loaded = false
-            saved = nil
-        }
         defer { busy = false }
         do {
             let context = try context(session, member)
             saved = try await session.savedRenewalRequest(context)
-            if !more { members = try await session.renewalRoster(context).members }
-            let page = try await session.readRenewals(context, after: more ? next : nil)
-            guard page.renewals.allSatisfy({ row in !rows.contains(where: { $0.id == row.id }) }) else {
+            let read = try await session.loadRenewals(
+                context, after: more ? next : nil, collection: more ? collectionId : nil)
+            let page = read.value
+            if more && !page.renewals.allSatisfy({ row in !rows.contains(where: { $0.id == row.id }) }) {
                 throw NestAPIFailure.contract
             }
-            rows += page.renewals
+            if !more { members = try await session.renewalDisplayMembers(context) }
+            try session.requireRenewalAccount(context)
+            rows = more ? rows + page.renewals : page.renewals
             next = page.next
+            collectionId = read.collectionId
+            account = member
             loaded = true
-        } catch {
-            if session.status != .ready(member) { clear() }
-            notice = "Could not load renewals. Connect and try again."
-        }
+            notice = read.notice
+        } catch { failedLoad(error, session: session, member: member) }
+    }
+
+    private func failedLoad(_ error: Error, session: SessionModel, member: VerifiedMember) {
+        let unavailable = (error as? NestAPIFailure) == .unavailable || error is URLError
+        if !unavailable || session.status != .ready(member) { clear() }
+        notice =
+            loaded
+            ? "Showing previously loaded renewals. Connect and refresh for updates."
+            : "Could not load renewals. Connect and try again."
     }
 
     func save(
@@ -81,6 +90,8 @@ final class RenewalsModel: ObservableObject {
         next = nil
         saved = nil
         loaded = false
+        account = nil
+        collectionId = nil
     }
 
     private func context(_ session: SessionModel, _ member: VerifiedMember) throws -> RenewalContext {
@@ -109,10 +120,13 @@ final class RenewalsModel: ObservableObject {
                 next = nil
                 loaded = false
                 do {
-                    let page = try await session.readRenewals(context, after: nil)
-                    rows = page.renewals
-                    next = page.next
+                    let read = try await session.loadRenewals(context, after: nil)
+                    rows = read.value.renewals
+                    next = read.value.next
+                    collectionId = read.collectionId
+                    account = member
                     loaded = true
+                    if let stale = read.notice { notice = stale }
                 } catch {
                     try session.requireRenewalAccount(context)
                     notice = "Your change is confirmed, but the renewal list could not reload. Try again online."

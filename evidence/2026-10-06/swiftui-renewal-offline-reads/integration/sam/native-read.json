@@ -1,0 +1,44 @@
+{
+  "activeRenewalCount": 0,
+  "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "detailNotice": "Saved information from Oct 6, 2026 at 6:18\u202fAM. Refresh when online.",
+  "hostedMutations": 0,
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "listNotice": "Saved information from Oct 6, 2026 at 6:18\u202fAM. Refresh when online.",
+  "persisted": {
+    "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676",
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "savedAt": 812953112.057885,
+    "value": {
+      "cancellationOn": "2026-10-06",
+      "fields": {
+        "noticeDays": 0,
+        "recurringRuleId": null,
+        "renewalOn": "2026-10-06",
+        "responsibleId": null,
+        "title": "Nest native renewal edited 20261006"
+      },
+      "removed": true,
+      "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+      "revision": "2BD612C0-3CE2-408C-8735-7B32E3EA6357"
+    },
+    "version": 1
+  },
+  "physicalRadioLossVerified": false,
+  "renewal": {
+    "cancellationOn": "2026-10-06",
+    "fields": {
+      "noticeDays": 0,
+      "recurringRuleId": null,
+      "renewalOn": "2026-10-06",
+      "responsibleId": null,
+      "title": "Nest native renewal edited 20261006"
+    },
+    "removed": true,
+    "renewalId": "17919246-D8EC-4402-B301-DA1149D1CC35",
+    "revision": "2BD612C0-3CE2-408C-8735-7B32E3EA6357"
+  },
+  "renewalTransportUnavailable": true,
+  "reopenedSQLite": true,
+  "sessionBootstrap": "Real authentication and API membership; test-visible ready state and lease."
+}

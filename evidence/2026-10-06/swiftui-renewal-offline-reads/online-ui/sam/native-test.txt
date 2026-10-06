@@ -1,0 +1,200 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-renewal-offline-online-ui-20261006/sam/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-renewal-offline-online-ui-20261006/sam/result.xcresult "-only-testing:NestAccessibilityTests/NativeRenewalCrudTests/testReadBaselineRenewalList" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-renewal-offline-online-ui-20261006/sam/result.xcresult
+
+2026-10-06 06:20:51.293649+0200 NestAccessibilityTests-Runner[57069:20193986] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 06:20:51.883.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 06:20:51.884.
+Test Suite 'NativeRenewalCrudTests' started at 2026-10-06 06:20:51.884.
+Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testReadBaselineRenewalList]' started.
+    t =     0.00s Start Test at 2026-10-06 06:20:51.885
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.02s     Launch ch.drrius.nest
+2026-10-06 06:20:51.967 xcodebuild[57059:20193742] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 06:20:51.967 xcodebuild[57059:20193742] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.70s         Setting up automation session
+    t =     1.41s         Wait for ch.drrius.nest to idle
+    t =     2.68s Waiting 30.0s for TabBar (First Match) to exist
+    t =     3.75s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     3.75s         Checking existence of `TabBar (First Match)`
+    t =     3.79s Tap "Today" Button
+    t =     3.79s     Wait for ch.drrius.nest to idle
+    t =     3.80s     Find the "Today" Button
+    t =     3.83s     Check for interrupting elements affecting "Today" Button
+    t =     3.88s     Synthesize event
+    t =     4.19s     Wait for ch.drrius.nest to idle
+    t =     4.94s Tap "Profile and preferences" Button
+    t =     4.94s     Wait for ch.drrius.nest to idle
+    t =     5.64s     Find the "Profile and preferences" Button
+    t =     5.68s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     5.71s     Synthesize event
+    t =     6.01s     Wait for ch.drrius.nest to idle
+    t =     6.46s Waiting 15.0s for "Test Sam" StaticText to exist
+    t =     7.53s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Sam" StaticText`
+    t =     7.53s         Checking existence of `"Test Sam" StaticText`
+    t =     7.62s Tap Button (Element at index 0)
+    t =     7.62s     Wait for ch.drrius.nest to idle
+    t =     7.62s     Find the Button (Element at index 0)
+    t =     7.66s     Check for interrupting elements affecting "BackButton" Button
+    t =     7.70s     Synthesize event
+    t =     8.00s     Wait for ch.drrius.nest to idle
+    t =     8.84s Checking existence of `"Manage renewals" Button`
+    t =     8.89s Find the "Manage renewals" Button
+    t =     8.94s Checking existence of `"New renewal" NavigationBar`
+    t =     8.98s Checking existence of `"Edit renewal" NavigationBar`
+    t =     9.01s Find the TabBar (First Match)
+    t =     9.05s Find the "Manage renewals" Button
+    t =     9.09s Find the Target Application 'ch.drrius.nest'
+    t =     9.11s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =     9.11s     Wait for ch.drrius.nest to idle
+    t =     9.11s     Find the Target Application 'ch.drrius.nest'
+    t =     9.13s     Check for interrupting elements affecting "Nest" Application
+    t =     9.16s     Synthesize event
+    t =     9.17s         Find the Target Application 'ch.drrius.nest'
+    t =     9.20s         Find the Target Application 'ch.drrius.nest'
+    t =     9.23s         Find the Target Application 'ch.drrius.nest'
+    t =     9.25s         Find the Target Application 'ch.drrius.nest'
+    t =     9.29s         Find the Target Application 'ch.drrius.nest'
+    t =    10.34s     Wait for ch.drrius.nest to idle
+    t =    10.36s Checking existence of `"Manage renewals" Button`
+    t =    10.40s Find the "Manage renewals" Button
+    t =    10.43s Checking existence of `"New renewal" NavigationBar`
+    t =    10.46s Checking existence of `"Edit renewal" NavigationBar`
+    t =    10.49s Find the TabBar (First Match)
+    t =    10.50s Find the "Manage renewals" Button
+    t =    10.54s Find the Target Application 'ch.drrius.nest'
+    t =    10.56s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    10.56s     Wait for ch.drrius.nest to idle
+    t =    10.56s     Find the Target Application 'ch.drrius.nest'
+    t =    10.58s     Check for interrupting elements affecting "Nest" Application
+    t =    10.60s     Synthesize event
+    t =    10.61s         Find the Target Application 'ch.drrius.nest'
+    t =    10.63s         Find the Target Application 'ch.drrius.nest'
+    t =    10.65s         Find the Target Application 'ch.drrius.nest'
+    t =    10.66s         Find the Target Application 'ch.drrius.nest'
+    t =    10.69s         Find the Target Application 'ch.drrius.nest'
+    t =    11.75s     Wait for ch.drrius.nest to idle
+    t =    11.76s Checking existence of `"Manage renewals" Button`
+    t =    11.80s Find the "Manage renewals" Button
+    t =    11.84s Checking existence of `"New renewal" NavigationBar`
+    t =    11.89s Checking existence of `"Edit renewal" NavigationBar`
+    t =    11.91s Find the TabBar (First Match)
+    t =    11.93s Find the "Manage renewals" Button
+    t =    11.97s Find the Target Application 'ch.drrius.nest'
+    t =    11.99s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    11.99s     Wait for ch.drrius.nest to idle
+    t =    11.99s     Find the Target Application 'ch.drrius.nest'
+    t =    12.01s     Check for interrupting elements affecting "Nest" Application
+    t =    12.04s     Synthesize event
+    t =    12.04s         Find the Target Application 'ch.drrius.nest'
+    t =    12.06s         Find the Target Application 'ch.drrius.nest'
+    t =    12.09s         Find the Target Application 'ch.drrius.nest'
+    t =    12.10s         Find the Target Application 'ch.drrius.nest'
+    t =    12.13s         Find the Target Application 'ch.drrius.nest'
+    t =    13.18s     Wait for ch.drrius.nest to idle
+    t =    13.20s Checking existence of `"Manage renewals" Button`
+    t =    13.25s Find the "Manage renewals" Button
+    t =    13.29s Checking existence of `"New renewal" NavigationBar`
+    t =    13.33s Checking existence of `"Edit renewal" NavigationBar`
+    t =    13.38s Find the TabBar (First Match)
+    t =    13.40s Find the "Manage renewals" Button
+    t =    13.43s Find the Target Application 'ch.drrius.nest'
+    t =    13.45s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    13.45s     Wait for ch.drrius.nest to idle
+    t =    13.45s     Find the Target Application 'ch.drrius.nest'
+    t =    13.47s     Check for interrupting elements affecting "Nest" Application
+    t =    13.50s     Synthesize event
+    t =    13.50s         Find the Target Application 'ch.drrius.nest'
+    t =    13.52s         Find the Target Application 'ch.drrius.nest'
+    t =    13.54s         Find the Target Application 'ch.drrius.nest'
+    t =    13.56s         Find the Target Application 'ch.drrius.nest'
+    t =    13.58s         Find the Target Application 'ch.drrius.nest'
+    t =    14.65s     Wait for ch.drrius.nest to idle
+    t =    14.66s Checking existence of `"Manage renewals" Button`
+    t =    14.70s Find the "Manage renewals" Button
+    t =    14.74s Checking existence of `"New renewal" NavigationBar`
+    t =    14.76s Checking existence of `"Edit renewal" NavigationBar`
+    t =    14.79s Find the TabBar (First Match)
+    t =    14.81s Find the "Manage renewals" Button
+    t =    14.84s Find the Target Application 'ch.drrius.nest'
+    t =    14.86s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.56] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    14.86s     Wait for ch.drrius.nest to idle
+    t =    14.86s     Find the Target Application 'ch.drrius.nest'
+    t =    14.89s     Check for interrupting elements affecting "Nest" Application
+    t =    14.91s     Synthesize event
+    t =    14.91s         Find the Target Application 'ch.drrius.nest'
+    t =    14.94s         Find the Target Application 'ch.drrius.nest'
+    t =    14.96s         Find the Target Application 'ch.drrius.nest'
+    t =    14.98s         Find the Target Application 'ch.drrius.nest'
+    t =    15.00s         Find the Target Application 'ch.drrius.nest'
+    t =    15.82s     Wait for ch.drrius.nest to idle
+    t =    15.83s Checking existence of `"Manage renewals" Button`
+    t =    15.88s Find the "Manage renewals" Button
+    t =    15.91s Checking existence of `"New renewal" NavigationBar`
+    t =    15.94s Checking existence of `"Edit renewal" NavigationBar`
+    t =    15.96s Find the TabBar (First Match)
+    t =    15.98s Find the "Manage renewals" Button
+    t =    16.01s Tap "Manage renewals" Button
+    t =    16.01s     Wait for ch.drrius.nest to idle
+    t =    16.02s     Find the "Manage renewals" Button
+    t =    16.04s     Check for interrupting elements affecting "Manage renewals" Button
+    t =    16.08s     Synthesize event
+    t =    16.38s     Wait for ch.drrius.nest to idle
+    t =    16.75s Waiting 15.0s for "Renewals" NavigationBar to exist
+    t =    17.81s     Checking `Expect predicate `existsNoRetry == 1` for object "Renewals" NavigationBar`
+    t =    17.81s         Checking existence of `"Renewals" NavigationBar`
+    t =    17.88s Checking existence of `"Refresh" Button`
+    t =    17.91s Find the "Refresh" Button
+    t =    17.95s Checking existence of `"New renewal" NavigationBar`
+    t =    17.99s Checking existence of `"Edit renewal" NavigationBar`
+    t =    18.02s Find the TabBar (First Match)
+    t =    18.04s Find the "Refresh" Button
+    t =    19.16s Checking `Expect predicate `enabled == 1` for object "Refresh" Button`
+    t =    19.16s     Find the "Refresh" Button
+    t =    19.20s Waiting 15.0s for "No renewals yet." StaticText to exist
+    t =    20.28s     Checking `Expect predicate `existsNoRetry == 1` for object "No renewals yet." StaticText`
+    t =    20.28s         Checking existence of `"No renewals yet." StaticText`
+    t =    20.33s Checking existence of `"Nest native renewal 20261006" StaticText`
+    t =    20.40s Checking existence of `"Nest native renewal edited 20261006" StaticText`
+    t =    20.46s Find the Target Application 'ch.drrius.nest'
+    t =    20.53s Added attachment named 'Renewal baseline empty list'
+    t =    20.53s Requesting snapshot of accessibility hierarchy for app with pid 57073
+    t =    20.70s Requesting snapshot of accessibility hierarchy for app with pid 57073
+    t =    20.75s Added attachment named 'Renewal baseline empty list accessibility tree'
+    t =    20.75s Tap Button (Element at index 0)
+    t =    20.75s     Wait for ch.drrius.nest to idle
+    t =    20.75s     Find the Button (Element at index 0)
+    t =    20.79s     Check for interrupting elements affecting "BackButton" Button
+    t =    20.82s     Synthesize event
+    t =    21.13s     Wait for ch.drrius.nest to idle
+    t =    21.96s Tap "Today" Button
+    t =    21.96s     Wait for ch.drrius.nest to idle
+    t =    21.97s     Find the "Today" Button
+    t =    22.01s     Check for interrupting elements affecting "house" Button
+    t =    22.05s     Synthesize event
+    t =    22.35s     Wait for ch.drrius.nest to idle
+    t =    23.11s Find the "Today" Button
+    t =    23.15s Tear Down
+    t =    23.15s     Find the Target Application 'ch.drrius.nest'
+    t =    23.22s     Added attachment named 'Renewal terminal native screen'
+Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testReadBaselineRenewalList]' passed (23.501 seconds).
+Test Suite 'NativeRenewalCrudTests' passed at 2026-10-06 06:21:15.387.
+	 Executed 1 test, with 0 failures (0 unexpected) in 23.501 (23.503) seconds
+Test Suite 'NestAccessibilityTests.xctest' passed at 2026-10-06 06:21:15.388.
+	 Executed 1 test, with 0 failures (0 unexpected) in 23.501 (23.504) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 06:21:15.388.
+	 Executed 1 test, with 0 failures (0 unexpected) in 23.501 (23.505) seconds
+2026-10-06 06:21:15.727 xcodebuild[57059:20193742] [MT] IDETestOperationsObserverDebug: 25.397 elapsed -- Testing started completed.
+2026-10-06 06:21:15.727 xcodebuild[57059:20193742] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 06:21:15.727 xcodebuild[57059:20193742] [MT] IDETestOperationsObserverDebug: 25.397 sec, +25.397 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-renewal-offline-online-ui-20261006/sam/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

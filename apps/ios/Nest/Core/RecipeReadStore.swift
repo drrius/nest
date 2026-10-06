@@ -50,6 +50,7 @@ extension ChoreOfflineStore {
     static func createReadTables(_ db: SQLiteConnection) throws {
         try createMoneyReadTable(db)
         try createRecipeReadTable(db)
+        try createRenewalReadTable(db)
     }
 
     static func createRecipeReadTable(_ db: SQLiteConnection) throws {

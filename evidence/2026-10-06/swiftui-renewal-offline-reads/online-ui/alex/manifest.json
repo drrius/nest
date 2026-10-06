@@ -1,0 +1,35 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F1A3D822-9425-4CBE-87B2-A5724992A2B3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal terminal native screen_0_FFE8D3A8-D9B7-423E-BB88-75FB2539680F.png",
+        "timestamp": 1791260448.64
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "10F745AC-D6DD-4244-91DF-BA5563569B60.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal baseline empty list accessibility tree_0_28FEFCA9-F112-4B6C-ABDE-EA1869293F43.txt",
+        "timestamp": 1791260446.183
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "519AE57F-7B92-4A36-8D25-8D494A92140B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Renewal baseline empty list_0_904D66E6-E3AE-4D8E-869A-B97F5289DBC9.png",
+        "timestamp": 1791260445.962
+      }
+    ],
+    "testIdentifier": "NativeRenewalCrudTests/testReadBaselineRenewalList()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRenewalCrudTests/testReadBaselineRenewalList"
+  }
+]

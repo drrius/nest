@@ -49,15 +49,21 @@ struct RenewalDetailScreen: View {
     private func load() async {
         guard !busy else { return }
         busy = true
-        renewal = nil
         notice = nil
         defer { busy = false }
         do {
             let context = try session.renewalContext()
             guard context.member == member else { throw NestAPIFailure.signedOut }
-            renewal = try await session.readRenewal(context, id: renewalId)
+            let read = try await session.loadRenewal(context, id: renewalId)
+            try session.requireRenewalAccount(context)
+            renewal = read.value
+            notice = read.notice
         } catch {
-            notice = "Could not load this renewal. Connect and try again."
+            if (error as? NestAPIFailure) != .unavailable || session.status != .ready(member) { renewal = nil }
+            notice =
+                renewal == nil
+                ? "Could not load this renewal. Connect and try again."
+                : "Showing previously loaded renewal information. Connect and refresh for updates."
         }
     }
 }

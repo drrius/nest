@@ -69,7 +69,7 @@ struct RenewalRecovery: Codable, Equatable, Sendable {
     }
 }
 
-struct RenewalList: Decodable, Sendable {
+struct RenewalList: Codable, Sendable {
     let version: Int
     let householdId: UUID
     let after: UUID?

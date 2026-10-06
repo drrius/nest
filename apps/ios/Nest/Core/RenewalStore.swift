@@ -53,9 +53,13 @@ extension ChoreOfflineStore {
         guard var saved = try readRenewalRequest(lease: lease) else { throw OfflineFailure.invalidOperation }
         if let previous = saved.result, previous.status != .unresolved {
             guard previous == result else { throw OfflineFailure.invalidOperation }
+            return
         }
         saved.result = result
-        try writeRenewalRequest(saved, lease: lease)
+        try db.transaction {
+            try writeRenewalRequest(saved, lease: lease)
+            if let receipt = result.receipt { try applyConfirmedRenewalRead(receipt, lease: lease) }
+        }
     }
 
     func requestRenewalCancellation(lease: OfflineLease) throws {

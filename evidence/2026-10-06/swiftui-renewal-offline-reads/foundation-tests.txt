@@ -1,0 +1,70 @@
+Building for debugging...
+[1 / 4] NestCoreTests-product
+Build complete! (0.41 sec)
+Test Suite 'Selected tests' started at 2026-10-06 06:17:14.644.
+Test Suite 'NestCoreTests.xctest' started at 2026-10-06 06:17:14.645.
+Test Suite 'MoneyReadStoreTests' started at 2026-10-06 06:17:14.645.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testCacheRevocationPreservesUncertainExpenseAndCannotBeRepopulatedByOldRead]' started.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testCacheRevocationPreservesUncertainExpenseAndCannotBeRepopulatedByOldRead]' passed (0.058 seconds).
+Test Case '-[NestCoreTests.MoneyReadStoreTests testGeneratedCentimeSnapshotsPreserveZeroSumAndExactWireRange]' started.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testGeneratedCentimeSnapshotsPreserveZeroSumAndExactWireRange]' passed (0.058 seconds).
+Test Case '-[NestCoreTests.MoneyReadStoreTests testHistoryCursorAndDetailTargetStaySeparateAcrossRestart]' started.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testHistoryCursorAndDetailTargetStaySeparateAcrossRestart]' passed (0.062 seconds).
+Test Case '-[NestCoreTests.MoneyReadStoreTests testInvalidStoredBalanceAndWrongDetailAreRejected]' started.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testInvalidStoredBalanceAndWrongDetailAreRejected]' passed (0.080 seconds).
+Test Case '-[NestCoreTests.MoneyReadStoreTests testNewestRequestWinsEvenWhenOlderResponseArrivesLast]' started.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testNewestRequestWinsEvenWhenOlderResponseArrivesLast]' passed (0.059 seconds).
+Test Case '-[NestCoreTests.MoneyReadStoreTests testRestartRetainsExactCentimesAndActorHouseholdIsolation]' started.
+Test Case '-[NestCoreTests.MoneyReadStoreTests testRestartRetainsExactCentimesAndActorHouseholdIsolation]' passed (0.091 seconds).
+Test Suite 'MoneyReadStoreTests' passed at 2026-10-06 06:17:15.053.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.408 (0.409) seconds
+Test Suite 'RecipeReadStoreTests' started at 2026-10-06 06:17:15.053.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testCopiedForeignBodyCannotMasqueradeAsCurrentAccountCache]' started.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testCopiedForeignBodyCannotMasqueradeAsCurrentAccountCache]' passed (0.050 seconds).
+Test Case '-[NestCoreTests.RecipeReadStoreTests testCorruptionFailsClosedAndMembershipRevocationPurgesBothReadCaches]' started.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testCorruptionFailsClosedAndMembershipRevocationPurgesBothReadCaches]' passed (0.069 seconds).
+Test Case '-[NestCoreTests.RecipeReadStoreTests testLatestRequestWinsAndRecordedAbsenceReplacesRecipe]' started.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testLatestRequestWinsAndRecordedAbsenceReplacesRecipe]' passed (0.040 seconds).
+Test Case '-[NestCoreTests.RecipeReadStoreTests testRestartRetainsVisitedPagesAndRevisionBoundRecipeWithoutCrossingScope]' started.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testRestartRetainsVisitedPagesAndRevisionBoundRecipeWithoutCrossingScope]' passed (0.046 seconds).
+Test Case '-[NestCoreTests.RecipeReadStoreTests testSameRevisionRefreshRetainsVisitedPagesButNewRevisionDoesNot]' started.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testSameRevisionRefreshRetainsVisitedPagesButNewRevisionDoesNot]' passed (0.001 seconds).
+Test Case '-[NestCoreTests.RecipeReadStoreTests testWrongRecipeAndMalformedListingCannotEnterCache]' started.
+Test Case '-[NestCoreTests.RecipeReadStoreTests testWrongRecipeAndMalformedListingCannotEnterCache]' passed (0.040 seconds).
+Test Suite 'RecipeReadStoreTests' passed at 2026-10-06 06:17:15.300.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.246 (0.247) seconds
+Test Suite 'RenewalContractTests' started at 2026-10-06 06:17:15.300.
+Test Case '-[NestCoreTests.RenewalContractTests testCivilDeadlineAndExactUnicodeTitleMatchServerBoundaries]' started.
+Test Case '-[NestCoreTests.RenewalContractTests testCivilDeadlineAndExactUnicodeTitleMatchServerBoundaries]' passed (0.001 seconds).
+Test Case '-[NestCoreTests.RenewalContractTests testListScopeOrderingRemovedStateAndTerminalRecovery]' started.
+Test Case '-[NestCoreTests.RenewalContractTests testListScopeOrderingRemovedStateAndTerminalRecovery]' passed (0.000 seconds).
+Test Case '-[NestCoreTests.RenewalContractTests testNullWireFieldsAndExactReceiptBinding]' started.
+Test Case '-[NestCoreTests.RenewalContractTests testNullWireFieldsAndExactReceiptBinding]' passed (0.000 seconds).
+Test Suite 'RenewalContractTests' passed at 2026-10-06 06:17:15.302.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'RenewalReadStoreTests' started at 2026-10-06 06:17:15.302.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testForeignActorHouseholdAndObsoleteLeasesCannotAccessOrWriteSnapshots]' started.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testForeignActorHouseholdAndObsoleteLeasesCannotAccessOrWriteSnapshots]' passed (0.043 seconds).
+Test Case '-[NestCoreTests.RenewalReadStoreTests testFreshFirstPageInvalidatesOlderPagesAndLatePageCannotRepopulateThem]' started.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testFreshFirstPageInvalidatesOlderPagesAndLatePageCannotRepopulateThem]' passed (0.043 seconds).
+Test Case '-[NestCoreTests.RenewalReadStoreTests testIdenticalRecordedReceiptDoesNotInvalidateNewerReadOrOtherDetail]' started.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testIdenticalRecordedReceiptDoesNotInvalidateNewerReadOrOtherDetail]' passed (0.042 seconds).
+Test Case '-[NestCoreTests.RenewalReadStoreTests testLatestRequestWinsAndMalformedSnapshotCannotEnterOrMasqueradeAsCache]' started.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testLatestRequestWinsAndMalformedSnapshotCannotEnterOrMasqueradeAsCache]' passed (0.038 seconds).
+Test Case '-[NestCoreTests.RenewalReadStoreTests testMembershipRevocationPurgesRenewalReadsBeforeOfflineReactivation]' started.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testMembershipRevocationPurgesRenewalReadsBeforeOfflineReactivation]' passed (0.043 seconds).
+Test Case '-[NestCoreTests.RenewalReadStoreTests testRestartRetainsValidatedPagesAndRemovedDetailWithinOriginalScope]' started.
+Test Case '-[NestCoreTests.RenewalReadStoreTests testRestartRetainsValidatedPagesAndRemovedDetailWithinOriginalScope]' passed (0.064 seconds).
+Test Suite 'RenewalReadStoreTests' passed at 2026-10-06 06:17:15.573.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.271 (0.271) seconds
+Test Suite 'RenewalRecoveryTests' started at 2026-10-06 06:17:15.573.
+Test Case '-[NestCoreTests.RenewalRecoveryTests testOwnerIsolationAndRemovalCannotChangeRetainedFields]' started.
+Test Case '-[NestCoreTests.RenewalRecoveryTests testOwnerIsolationAndRemovalCannotChangeRetainedFields]' passed (0.047 seconds).
+Test Case '-[NestCoreTests.RenewalRecoveryTests testRestartCancellationIntentAndTerminalReceiptAreImmutable]' started.
+Test Case '-[NestCoreTests.RenewalRecoveryTests testRestartCancellationIntentAndTerminalReceiptAreImmutable]' passed (0.039 seconds).
+Test Suite 'RenewalRecoveryTests' passed at 2026-10-06 06:17:15.660.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.086 (0.087) seconds
+Test Suite 'NestCoreTests.xctest' passed at 2026-10-06 06:17:15.660.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 1.014 (1.015) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 06:17:15.660.
+	 Executed 23 tests, with 0 failures (0 unexpected) in 1.014 (1.016) seconds
