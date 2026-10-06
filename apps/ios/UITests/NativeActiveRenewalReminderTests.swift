@@ -11,6 +11,7 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
 
     func testColdLaunchOriginalIdentityAndTodayWithoutCommands() throws {
         try authorized("read_original_identity_scope")
+        let name = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_QA_ACTIVE_RENEWAL_NAME"])
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.terminate()
         app.launch()
@@ -21,11 +22,13 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         }
         app.tabBars.firstMatch.buttons["Today"].tap()
         app.buttons["Profile and preferences"].tap()
-        XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 15))
-        capture(app, name: "Shipping cold launch verified original Test Alex profile")
+        XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 15))
+        capture(app, name: "Shipping cold launch verified original " + name + " profile")
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.buttons["Me + shared"].isSelected)
+        let offline = app.staticTexts.matching(NSPredicate(format: "label CONTAINS[c] %@", "saved chores")).firstMatch
+        XCTAssertFalse(offline.exists)
         capture(app, name: "Shipping cold launch restored original Today and shared filter")
     }
 
@@ -167,8 +170,13 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
             guard env["NEST_QA_ACTIVE_RENEWAL_UI"] == "20261006",
                 env["NEST_QA_ACTIVE_RENEWAL_ACTION"] == action
             else { throw XCTSkip("Requires the exact authorized phase-one renewal action.") }
-            XCTAssertEqual(env["SIMULATOR_UDID"], "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A")
-            XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_NAME"], "Test Alex")
+            let roles = [
+                "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A": "Test Alex",
+                "CA0BCEDE-A297-493A-8921-9E31F8B65783": "Test Sam",
+            ]
+            let name = try XCTUnwrap(roles[try XCTUnwrap(env["SIMULATOR_UDID"])])
+            XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_NAME"], name)
+            if action != "read_original_identity_scope" { XCTAssertEqual(name, "Test Alex") }
             XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_TITLE"], title)
             let budget = action == "read_original_identity_scope" ? "read_only_scope_recovery" : "one_create_only"
             XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_PHASE_ONE_BUDGET"], budget)
