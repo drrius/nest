@@ -1,0 +1,34 @@
+{
+  "after/alex-restored-today.png": {
+    "sha256": "e33d416a0a271d5b7ecd7f5d5204caaac107566d492370c0127fd9f13dc98811",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/4CDCE156-CEAA-47F9-973F-8FDF303BE777.png": {
+    "sha256": "98664dd1db127d99c40777e49f4c0001e482b47da4efb941a063df40ba53ff9c",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/5A6FC157-1C15-45BA-8C6D-5A311DE59284.png": {
+    "sha256": "98664dd1db127d99c40777e49f4c0001e482b47da4efb941a063df40ba53ff9c",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/84DD13B6-0B40-4876-A705-2140EF75B411.png": {
+    "sha256": "cbb3a494cf7767b9359af74a2121d59c52e48ac2ddfb866d22b1ba452567b2ab",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/E05AB469-C454-4DD1-83CC-D683E4199A52.png": {
+    "sha256": "abeee869c1972cdef28b826ba11ced7b926aa8f7e0eb65e17c704307a6f06d26",
+    "safeFictionalScope": true
+  },
+  "after/sam-restored-today.png": {
+    "sha256": "e33d416a0a271d5b7ecd7f5d5204caaac107566d492370c0127fd9f13dc98811",
+    "safeFictionalScope": true
+  },
+  "before/later-opening-still-clipped.png": {
+    "sha256": "0af2904d534da73cabdda2cd91b6e55d6bca8982afe9e9e3cc02c7d66e54e4fa",
+    "safeFictionalScope": true
+  },
+  "before/opening-clipped.png": {
+    "sha256": "922d1d3ce3ba25c5491bb8b930ced8d9afe8eadaf5bd6156757edffbf9238862",
+    "safeFictionalScope": true
+  }
+}

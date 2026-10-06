@@ -1,0 +1,11 @@
+[
+  {
+    "bottom": 659,
+    "container": [0, 30, 375, 637],
+    "exists": true,
+    "frame": [16, 493.5, 343, 155.5],
+    "gestureStart": [15, 433.55000000000001],
+    "hittable": true,
+    "top": 108
+  }
+]

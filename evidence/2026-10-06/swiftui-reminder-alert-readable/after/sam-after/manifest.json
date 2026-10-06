@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "5FCF63CE-A699-4F13-A018-6D5498B2CE69.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Real owned grocery reminder read-only context_0_0CC3DD18-6A55-42C1-AA44-C4864BF0A16E.json",
+        "timestamp": 1791266642.962
+      }
+    ],
+    "testIdentifier": "HostedGroceryReminderReadTests/testReadOnlyOwnedRiceReminderContext()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedGroceryReminderReadTests/testReadOnlyOwnedRiceReminderContext"
+  }
+]

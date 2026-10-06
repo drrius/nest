@@ -1,0 +1,79 @@
+{
+  "date": "2026-10-06",
+  "passedMethods": 3,
+  "failedMethods": 0,
+  "actualUIMethods": 1,
+  "actualSDKReadMethods": 2,
+  "hostedCommands": 0,
+  "minimumTarget": 44,
+  "oldKeepBottom": 742.5,
+  "oldAlertBottom": 653,
+  "oldAppBottom": 667,
+  "newKeepFrame": [34, 449.5, 307, 187.5],
+  "newKeepBottom": 637,
+  "newDiscardFrame": [34, 254, 307, 187.5],
+  "newAlertBottom": 653,
+  "newAppBottom": 667,
+  "bothCompleteRenderedLabelsVisuallyVerified": true,
+  "openingAndReopenedFullFramesPassed": true,
+  "KeepEditingRetainedUnsentChoices": true,
+  "DiscardExited": true,
+  "bothCanonicalBaselineExactlyEqual": true,
+  "itemId": "d24cc35d-a6ae-44c6-9780-e28f8723d44d",
+  "householdId": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "baselineItemVersion": "1",
+  "baselineChecked": false,
+  "baselineReminderExists": false,
+  "actualUIEditors": ["Grocery"],
+  "otherFourEditorsCompiledOnly": true,
+  "newBaselineNativeRunPerformed": false,
+  "normalJourneyRerun": false,
+  "restoration": {
+    "alex": {
+      "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "sam": {
+      "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+      "emptyJournals": 64
+    },
+    "hostedCommands": 0,
+    "appearance": "light",
+    "contentSize": "large",
+    "stableAPI": true
+  },
+  "results": [
+    {
+      "step": "maximum_dark",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "NativeReminderAlertReadabilityTests/testMaximumOwnedGroceryAlertOpensWithBothReadableChoices",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 115.761
+    },
+    {
+      "step": "alex-after",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedGroceryReminderReadTests/testReadOnlyOwnedRiceReminderContext",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 3.848
+    },
+    {
+      "step": "sam-after",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedGroceryReminderReadTests/testReadOnlyOwnedRiceReminderContext",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 3.622
+    }
+  ]
+}

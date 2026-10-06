@@ -58,7 +58,7 @@ struct MealReminderScreen: View {
                 }.disabled(model.busy)
             }
         }
-        .alert("Discard your unsaved reminder choices?", isPresented: $discarding) {
+        .alert("Discard changes?", isPresented: $discarding) {
             Button("Keep editing", role: .cancel) {}
             Button("Discard choices", role: .destructive) {
                 if leaving {

@@ -231,7 +231,7 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
     private func choose(_ title: String, in app: XCUIApplication, name: String) {
         capture(app, name: name)
         XCTAssertTrue(app.buttons[title].waitForExistence(timeout: 15))
-        XCTAssertTrue(app.staticTexts["Discard your unsaved reminder choices?"].exists)
+        XCTAssertTrue(app.staticTexts["Discard changes?"].exists)
         app.buttons[title].tap()
         XCTAssertFalse(app.buttons["Discard choices"].exists)
     }
