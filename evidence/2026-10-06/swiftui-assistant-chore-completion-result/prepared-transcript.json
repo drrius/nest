@@ -1,0 +1,43 @@
+[
+  {
+    "id": "25d15136-040c-4895-a551-7d9573e6bfa0",
+    "role": "user",
+    "parts": [
+      {
+        "type": "text",
+        "text": "Synthetic private-history navigation fixture importing an already-recorded native chore acknowledgment. No model was called and no completion was performed for this fixture."
+      }
+    ]
+  },
+  {
+    "id": "b1dac723-a15a-4c77-9c52-88e72079c2b6",
+    "role": "assistant",
+    "parts": [
+      {
+        "type": "text",
+        "text": "This test card imports the existing native acknowledgment. It is not a newly executed AI tool or a completed model turn."
+      },
+      {
+        "type": "tool-completeChore",
+        "toolCallId": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+        "state": "output-available",
+        "input": {
+          "completedOn": "2026-10-05",
+          "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728",
+          "expectedDueDate": "2026-10-05"
+        },
+        "output": {
+          "ok": true,
+          "value": {
+            "outcome": "already_completed",
+            "version": 1,
+            "completedBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+            "completedOn": "2026-10-05",
+            "operationId": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+            "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728"
+          }
+        }
+      }
+    ]
+  }
+]

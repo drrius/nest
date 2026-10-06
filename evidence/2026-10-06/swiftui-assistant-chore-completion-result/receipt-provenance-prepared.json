@@ -1,0 +1,83 @@
+{
+  "projectId": "tkjixmujjoustdiedfmw",
+  "readOnlyPrivilegedMetadata": true,
+  "authorizationProof": false,
+  "checkedAtUTC": "2026-10-06T20:45:57.072Z",
+  "receiptOccurrenceCompletion": {
+    "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "actor_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "operation_id": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+    "request": {
+      "completedOn": "2026-10-05",
+      "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728",
+      "expectedDueDate": "2026-10-05"
+    },
+    "result": {
+      "outcome": "already_completed",
+      "version": 1,
+      "completedBy": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "completedOn": "2026-10-05",
+      "operationId": "90d2eb88-3f35-4a0b-b380-7e9c4db25a7c",
+      "occurrenceId": "61673c1e-992d-4bc9-9381-6e1248787728"
+    },
+    "receipt_md5": "757c7adb8c8f41ad2e13eecf0b454bd5",
+    "occurrence_household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "occurrence_status": "completed",
+    "occurrence_due_date": "2026-10-05",
+    "routine_id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+    "completed_by_member_id": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+    "completed_on": "2026-10-05",
+    "occurrence_md5": "6c4740a8f2abc3aee8498c4ea4a03bf2",
+    "completion_md5": "e70f802add504a5f937dd7aa4fed43be"
+  },
+  "routine": {
+    "id": "3b65487c-b8ff-495a-ad83-4a5c4693e1f2",
+    "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+    "archived_at": "2026-10-05 17:34:35.244792+00",
+    "routine_md5": "3f267e9b364353091b359573610c0dfc"
+  },
+  "fingerprints": {
+    "routines": {
+      "md5": "e7ab7e9339ae362b97a17d0b9eac1615",
+      "count": 21
+    },
+    "ledger_entries": {
+      "md5": "1a5226df5b754743fd4aedc6c2dc6760",
+      "count": 124
+    },
+    "financial_events": {
+      "md5": "ad230373d9e4773aa38fc781b4194054",
+      "count": 62
+    },
+    "nest_chore_receipts": {
+      "md5": "42802cbb3e63214383e559eb608c1ec5",
+      "count": 9
+    },
+    "routine_completions": {
+      "md5": "2031a5686f1c8b71cc944b1e0c0d0f7c",
+      "count": 7
+    },
+    "routine_occurrences": {
+      "md5": "b0fc6bfcc1ed0949703777890ed1531b",
+      "count": 27
+    },
+    "nest_chore_transfers": {
+      "md5": "a2659f642ad61a21de891eacc27398e5",
+      "count": 6
+    },
+    "financial_allocations": {
+      "md5": "a54f487eb8e29f3b51ca34a9198d0d71",
+      "count": 104
+    },
+    "nest_chore_change_receipts": {
+      "md5": "9cb07b392cc3ffd4d08997f51ab327f9",
+      "count": 4
+    },
+    "nest_chore_transfer_receipts": {
+      "md5": "89fa23ebcd87e6c6c5d75a3f39b209f1",
+      "count": 12
+    }
+  },
+  "newFixtureCreated": false,
+  "nativeExecuted": false
+}

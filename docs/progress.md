@@ -56,7 +56,7 @@ Handover, offline reads, retained confirmations, preferences and manual-meal che
 
 Fresh hosted reads and a disposable302-migration compilation now match all221 authenticated privileged function bodies (81 public/140 private), plus the delegated calendar-lease helper:222 exact-signature body matches. This is provenance, not a semantic safety claim. Seven legacy public access paths now have an actual guard trace,36 two-tenant/unauthorized/lease/rollback SQL checks in the populated rehearsal and eight actual hosted read-only probes. Search and Storage metadata usage remain tenant bound; known connections/tokens do not authorize another household; expired/mismatched/reentrant leases and foreign event IDs are rejected. Authorized partner calls succeed in rolled-back fixtures. Original calendar/Storage metadata/tenancy and full financial/receipt reconciliation remain unchanged. Fixture reservation/output errors were corrected without bypassing the real trigger; only the final complete run counts. [Evidence](../evidence/2026-10-04/legacy-privileged-boundaries/README.md). Focused formatting/lint and exact-head Nest37198811574 pass at `c73117e3`; native shipping source is unchanged. The remaining53 legacy public functions, deeper private semantics, real hosted Auth/Storage migration, workers/APNs, signup/provider decisions, external writers and complete M9 remain open. No hosted calendar/Storage/schema mutation, secret transfer, inference, beta, purchase, production action or merge occurred.
 
-## Next work
+## Current native verification
 
 The latest header and padding report is addressed by the shared four-tab layout
 already available in private build 19. Root rechecks all eight current layout
@@ -81,12 +81,12 @@ three diagnostic expressions. Foundation runs 506 tests with 41 explicit skips;
 the signed app runs 469 with 37 explicit skips; four Swift Testing cases pass.
 All have zero test failures. Formatting, source limits and actual app signing
 pass. The overall native workflow remains failed; no unchanged-source rerun is
-requested. Corrected source `345c82e4` is committed and pushed, with both CI
-workflows running. Its fresh signed preparation passes all 1,127 source inputs,
+requested. Corrected source `345c82e4` is committed and pushed. Its fresh signed
+preparation passes all 1,127 source inputs,
 actual compilation of the new maximum-text method, corrected helper and shared
 financial row, selected products and three binary hashes, signing, test origins
 and build 19. Both original scopes, 64 empty journals and large/light settings
-remain unchanged. No SDK, API or UI check has run in this new phase yet.
+remain unchanged. Preparation itself invokes no SDK, API or UI check.
 Root's fresh privileged read-only metadata confirms the existing conversation,
 consumed approval, all 15 original conversations, posted three-centime event,
 2/1-centime allocations and ±1-centime ledger entries unchanged. This is separate
@@ -113,9 +113,42 @@ text coverage branch was not exercised. The earlier infinite component remains
 unknown. Both exact-source CI workflows now pass with the test totals above.
 CI compiles this guarded journey; the separate owned Mac execution supplies its
 UI proof. Full accessibility and both-phone acceptance remain open.
+Evidence checkpoint `053edd86` also passes routine CI 37528059941; its native
+source is identical to the tested commit and the default tracked verifier passes.
 [Passing maximum-text evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/native/README.md).
 [Failed-source CI evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/source-ci-55d25.json).
 [Correction evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/type-boundary-correction/readiness.json).
+
+## Next work
+
+The next bounded native check is the existing `already_completed` chore result.
+Current read-only nest-test metadata matches Alex's original operation
+`90d2eb88-3f35-4a0b-b380-7e9c4db25a7c`, the single occurrence/completion by Sam
+on 5 October and its subsequently archived routine. No original assistant
+conversation exists for this receipt. A clearly synthetic private-history entry
+is prepared from the exact native request/result, explicitly stating that no
+model ran and no new completion occurred. Strict fixture setup/removal SQL checks
+the fictional household, all 15 original conversations, original receipt and
+ten chore/financial table fingerprints. Nothing has been inserted or removed.
+One guarded normal/light navigation test is being prepared; no app build, hosted
+test or native invocation is authorized until its source and controller checks.
+Source review catches a missing provenance declaration and mismatched synthetic
+paragraph before compilation or execution. The corrected 205-line test matches
+both exact prepared paragraphs and passes actual Swift 6/iOS simulator typechecking
+with the platform's Swift XCTest overlay, strict formatting and all Swift source
+limits. Root independently checks both source hashes and the 1,128-input native
+tree. The fixture guards pass in a real read-only PostgreSQL transaction, rolled
+back with zero fixture rows; the prepared transcript fingerprint is recorded.
+This is source and fixture preflight proof, not native app execution.
+This will verify native result navigation, not live AI execution. Both-phone,
+full accessibility, provider, worker/APNs and cutover gates remain open.
+[Prepared receipt provenance](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/receipt-provenance-prepared.json).
+
+## Retained verification chronology
+
+The plans below describe earlier preparations. Their later outcomes are recorded
+in the current verification section and integration gates; they are not new
+execution instructions or current pending work.
 
 Next verification: investigate the named contrast findings with fully visible text, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
 
