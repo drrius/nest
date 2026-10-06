@@ -12,8 +12,9 @@ final class NativeReminderStepperTargetTests: XCTestCase {
         let app = openScheduledChore()
         defer { discardAndRestore(app) }
         openReminder(app)
+        assertDisabledCanonicalChoices(app)
         let toggle = app.switches["Reminder enabled"]
-        reveal(toggle, in: app)
+        reveal(toggle, in: app, missingDistance: -180)
         XCTAssertEqual(toggle.value as? String, "0")
         toggle.coordinate(withNormalizedOffset: CGVector(dx: 0.93, dy: 0.5)).tap()
         let enabled = XCTNSPredicateExpectation(predicate: NSPredicate(format: "value == '1'"), object: toggle)
@@ -29,18 +30,32 @@ final class NativeReminderStepperTargetTests: XCTestCase {
         choose("Discard choices", in: app, name: "Explicit Back Discard after successful edges")
         requireDismissed(app)
         openReminder(app)
-        reveal(toggle, in: app)
-        XCTAssertEqual(toggle.value as? String, "0")
-        let lead = app.staticTexts["reminder-lead-value"]
-        reveal(lead, in: app, permitsDisabled: true)
-        XCTAssertEqual(lead.label, "Days before: 0")
-        XCTAssertFalse(app.buttons["Decrease days before"].isEnabled)
-        XCTAssertFalse(app.buttons["Increase days before"].isEnabled)
+        assertDisabledCanonicalChoices(app)
         capture(app, name: "Reopened canonical disabled reminder with zero lead time")
         app.navigationBars["Chore reminder"].buttons["Back"].tap()
         requireDismissed(app)
         XCTAssertFalse(app.alerts["Discard changes?"].exists)
         restoreToday(app)
+    }
+
+    private func assertDisabledCanonicalChoices(_ app: XCUIApplication) {
+        let toggle = app.switches["Reminder enabled"]
+        reveal(toggle, in: app)
+        XCTAssertEqual(toggle.value as? String, "0")
+        for name in ["Remind me", "Remind Test Sam"] {
+            let person = app.switches[name]
+            reveal(person, in: app, permitsDisabled: true)
+            XCTAssertTrue(person.exists)
+            XCTAssertFalse(person.isEnabled)
+            XCTAssertEqual(person.value as? String, "0")
+        }
+        let lead = app.staticTexts["reminder-lead-value"]
+        reveal(lead, in: app, permitsDisabled: true)
+        XCTAssertEqual(lead.label, "Days before: 0")
+        for name in ["Decrease days before", "Increase days before"] {
+            XCTAssertTrue(app.buttons[name].exists)
+            XCTAssertFalse(app.buttons[name].isEnabled)
+        }
     }
 
     private func probe(_ app: XCUIApplication, action: String, offset: Double, initial: Int, expected: Int) {
