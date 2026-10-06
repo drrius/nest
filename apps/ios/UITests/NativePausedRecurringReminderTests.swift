@@ -54,10 +54,27 @@ final class NativePausedRecurringReminderTests: XCTestCase {
         reveal(row, in: app)
         XCTAssertTrue(row.waitForExistence(timeout: 30))
         XCTAssertTrue(row.isEnabled && row.isHittable)
+        if ProcessInfo.processInfo.environment["NEST_QA_PAUSED_RECURRING_PROFILE"] == "maximum_dark" {
+            assertReadableRuleMetadata(app, row: row)
+        }
         row.tap()
         XCTAssertTrue(app.navigationBars["Recurring expense"].waitForExistence(timeout: 15))
         XCTAssertTrue(app.staticTexts["Paused"].waitForExistence(timeout: 30))
         return app
+    }
+
+    private func assertReadableRuleMetadata(_ app: XCUIApplication, row: XCUIElement) {
+        attach(["frame": rect(row.frame), "label": row.label], name: "Complete paused title and status target")
+        capture(app, name: "Whole maximum paused title and status navigation target")
+        for label in ["Automatic · CHF 0.03", "Next due 2026-10-11"] {
+            let detail = app.staticTexts[label].firstMatch
+            reveal(detail, in: app, permitsDisabled: true)
+            XCTAssertEqual(detail.label, label)
+            attach(["frame": rect(detail.frame), "label": detail.label], name: "Complete paused rule metadata row")
+            capture(app, name: "Whole maximum paused rule metadata " + label)
+        }
+        reveal(row, in: app, missingDistance: -180)
+        XCTAssertTrue(row.isEnabled && row.isHittable)
     }
 
     private func openReminder(_ app: XCUIApplication) {
