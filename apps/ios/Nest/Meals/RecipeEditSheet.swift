@@ -111,14 +111,14 @@ struct RecipeEditForm: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    QuietToolbarButton("Cancel", systemImage: "xmark") { discard = true }.disabled(saving)
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { cancel() }.disabled(saving)
                 }
                 ToolbarItem(placement: .primaryAction) { EditButton().disabled(saving) }
                 ToolbarItem(placement: .confirmationAction) {
                     QuietToolbarButton("Save", systemImage: "checkmark") { Task { await save() } }.disabled(!canSave)
                 }
             }
-            .interactiveDismissDisabled()
+            .interactiveDismissDisabled(draft.dirty || saving)
             .alert("Discard changes?", isPresented: $discard) {
                 Button("Discard changes", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
@@ -129,6 +129,15 @@ struct RecipeEditForm: View {
     private var canSave: Bool {
         !saving && model.recipeEdit == nil && model.recipeCreation == nil && model.recipeArchive == nil
             && (try? draft.command(operation: UUID(), revision: context.revision)) != nil
+    }
+
+    private func cancel() {
+        if draft.dirty {
+            discard = true
+        } else {
+            focusedField = nil
+            dismiss()
+        }
     }
 
     private func save() async {

@@ -1,6 +1,6 @@
 import Foundation
 
-struct RecipeEditDraft {
+struct RecipeEditDraft: Equatable {
     let baseline: SavedRecipe
     var title: String
     var servings: String
@@ -18,6 +18,8 @@ struct RecipeEditDraft {
         notes = recipe.notes ?? ""
         ingredients = recipe.ingredients.map(RecipeEditIngredient.init)
     }
+
+    var dirty: Bool { self != Self(baseline) }
 
     func command(operation: UUID, revision: String) throws -> EditRecipe {
         let servingsValue = servings.isEmpty ? nil : Int(servings)
@@ -42,7 +44,7 @@ struct RecipeEditDraft {
     }
 }
 
-struct RecipeEditIngredient: Identifiable {
+struct RecipeEditIngredient: Identifiable, Equatable {
     let id: UUID
     let original: SavedIngredient?
     var name: String

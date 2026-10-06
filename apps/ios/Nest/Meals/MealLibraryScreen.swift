@@ -32,7 +32,7 @@ struct MealLibraryScreen: View {
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .primaryAction) {
-                Button("New recipe", systemImage: "plus") { creatingRecipe = true }
+                QuietToolbarButton("New recipe", systemImage: "plus") { creatingRecipe = true }
                     .disabled(model.recipeCreation != nil || model.recipeArchive != nil || model.recipeEdit != nil)
             }
         }

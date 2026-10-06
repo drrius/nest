@@ -66,7 +66,7 @@ struct RecipeCreateSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    QuietToolbarButton("Cancel", systemImage: "xmark") { confirmingDiscard = true }.disabled(saving)
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { cancel() }.disabled(saving)
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     QuietToolbarButton(saving ? "Saving…" : "Save", systemImage: "checkmark") {
@@ -75,7 +75,7 @@ struct RecipeCreateSheet: View {
                     .disabled(saving || context == nil || draft == nil || model.recipeCreation != nil)
                 }
             }
-            .interactiveDismissDisabled()
+            .interactiveDismissDisabled(dirty || saving)
             .alert("Discard draft?", isPresented: $confirmingDiscard) {
                 Button("Discard draft", role: .destructive) { dismiss() }
                 Button("Keep editing", role: .cancel) {}
@@ -91,6 +91,20 @@ struct RecipeCreateSheet: View {
             recipeUrl: link.isEmpty ? nil : link, notes: notes.isEmpty ? nil : notes,
             ingredients: ingredients.map(\.draft)
         ).validated()
+    }
+
+    private var dirty: Bool {
+        ![title, instructions, link, notes].allSatisfy(\.isEmpty) || servings != "2"
+            || ingredients.count != 1 || ingredients.contains { !$0.isEmpty }
+    }
+
+    private func cancel() {
+        if dirty {
+            confirmingDiscard = true
+        } else {
+            focusedField = nil
+            dismiss()
+        }
     }
 
     private func load() async {
@@ -122,6 +136,7 @@ struct RecipeIngredientFields: Identifiable {
     var quantity = ""
     var unit = ""
     var note = ""
+    var isEmpty: Bool { [name, quantity, unit, note].allSatisfy(\.isEmpty) }
     var draft: RecipeIngredientDraft {
         RecipeIngredientDraft(
             name: name, quantity: quantity.isEmpty ? nil : quantity,

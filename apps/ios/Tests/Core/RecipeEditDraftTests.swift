@@ -4,6 +4,59 @@ import XCTest
 @testable import NestCore
 
 final class RecipeEditDraftTests: XCTestCase {
+    func testUntouchedAndRestoredRawDraftDoesNotNeedDiscard() {
+        let baseline = recipe()
+        var draft = RecipeEditDraft(baseline)
+        XCTAssertFalse(draft.dirty)
+        draft.notes = ""
+        XCTAssertTrue(draft.dirty)
+        draft.notes = baseline.notes ?? ""
+        XCTAssertFalse(draft.dirty)
+        draft.title += " "
+        XCTAssertTrue(draft.dirty)
+        draft.title = baseline.title
+        XCTAssertFalse(draft.dirty)
+    }
+
+    func testInvalidRawDraftStillNeedsDiscard() {
+        var draft = RecipeEditDraft(recipe())
+        draft.servings = "not a number"
+        XCTAssertTrue(draft.dirty)
+        XCTAssertThrowsError(try draft.command(operation: UUID(), revision: "5"))
+        draft = RecipeEditDraft(draft.baseline)
+        draft.ingredients[0].name = ""
+        XCTAssertTrue(draft.dirty)
+        XCTAssertThrowsError(try draft.command(operation: UUID(), revision: "5"))
+    }
+
+    func testIngredientRemovalAndUnfilledAdditionNeedDiscard() {
+        var draft = RecipeEditDraft(recipe())
+        draft.ingredients.removeAll()
+        XCTAssertTrue(draft.dirty)
+        draft = RecipeEditDraft(draft.baseline)
+        draft.ingredients.append(RecipeEditIngredient())
+        XCTAssertTrue(draft.dirty)
+        draft.ingredients.removeLast()
+        XCTAssertFalse(draft.dirty)
+    }
+
+    func testIngredientReorderingNeedsDiscardUntilRestored() {
+        let original = recipe()
+        let baseline = SavedRecipe(
+            definitionId: original.id, title: original.title, servings: original.servings,
+            recipeUrl: original.recipeUrl, notes: original.notes, instructions: original.instructions,
+            ingredients: original.ingredients + [
+                SavedIngredient(
+                    ingredientId: UUID(), name: "Salt", quantity: nil, unit: nil,
+                    categoryId: nil, note: nil, order: 5)
+            ])
+        var draft = RecipeEditDraft(baseline)
+        draft.ingredients.reverse()
+        XCTAssertTrue(draft.dirty)
+        draft.ingredients.reverse()
+        XCTAssertFalse(draft.dirty)
+    }
+
     func testUnchangedLegacyValuesAreOmitted() throws {
         let baseline = recipe()
         var draft = RecipeEditDraft(baseline)
