@@ -1,0 +1,84 @@
+Attributes: Application, 0x103e9e480, pid: 60943, label: 'Nest'
+Element subtree:
+ →Application, 0x103e9e480, pid: 60943, label: 'Nest'
+    Window (Main), 0x103e9ec60, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x103e6bcf0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x103ea3e10, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x103ea4170, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x103e9d180, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x103ea0c70, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x103ea3f30, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x103ea4050, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x103ea44d0, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x103ea45f0, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x103ea4710, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x103ea4830, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x103ea4950, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x103ea4a70, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Conversation'
+                              Button, 0x103ea4b90, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Private conversations'
+                              StaticText, 0x103ea4cb0, {{134.5, 31.5}, {105.5, 21.0}}, label: 'Conversation'
+                              Other, 0x103ea4dd0, {{300.5, 24.0}, {54.5, 36.0}}, label: 'Reply'
+                                Other, 0x103ea4ef0, {{300.5, 24.0}, {54.5, 36.0}}
+                                  Button, 0x103ea5010, {{300.5, 24.0}, {54.5, 36.0}}, label: 'Reply'
+                            Other, 0x103ea5130, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x103ea5250, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x103ea5370, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x103ea5490, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x103ea55b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x103ea56d0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x103ea57f0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x103ea5910, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x103ea5a30, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x103ea5b50, {{0.0, 74.0}, {375.0, 311.0}}
+                                        Other, 0x103ea5c70, {{20.0, 94.0}, {319.0, 255.0}}
+                                          StaticText, 0x103ea5d90, {{20.0, 94.0}, {78.0, 14.5}}, label: 'Private to you'
+                                          StaticText, 0x103ea5eb0, {{36.0, 144.5}, {22.0, 14.5}}, label: 'You'
+                                          StaticText, 0x103ea5fd0, {{36.0, 169.0}, {303.0, 64.5}}, label: 'Synthetic consent QA fixture. Propose only the named fictional variable bill; no live model generation.'
+                                          StaticText, 0x103ea60f0, {{36.0, 285.5}, {27.5, 14.5}}, label: 'Nest'
+                                          Button, 0x103ea6210, {{36.0, 310.0}, {181.0, 39.0}}, label: 'Record recurring bill, Expires Oct 5, 2026 at 12:57 AM'
+                                            StaticText, 0x103ea6330, {{36.0, 310.0}, {153.5, 20.5}}, label: 'Record recurring bill'
+                                            StaticText, 0x103ea6450, {{36.0, 334.5}, {181.0, 14.5}}, label: 'Expires Oct 5, 2026 at 12:57 AM'
+                                      Other, 0x103ea6570, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x103ea6690, {{369.0, 465.0}, {3.0, 116.0}}
+                                      Other, 0x103ea67b0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x103ea68d0, {{369.0, 465.0}, {3.0, 116.0}}
+                            Other, 0x103ea69f0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x103ea6b10, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x103ea6c30, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x103ea6d50, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x103ea6e70, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x103ea6f90, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x103ea70b0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x103ea71d0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x103ea72f0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x103ea7410, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x103ea7530, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x103ea7650, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x103ea7770, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x103ea7890, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x103ea79b0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x103ea7ad0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x103ea7bf0, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x103ea7d10, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x103ea7e30, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x103ea7f50, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x103ea8070, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x103ea8190, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x103ea82b0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x103ea83d0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x103ea84f0, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x103ea8610, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x103ea8730, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x103ea8850, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x103ea8970, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x103ea8a90, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x103ea8bb0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x103ea8cd0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x103ea8df0, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x103e9e480, pid: 60943, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x103be20f0, pid: 60943, label: 'Nest'
+  }

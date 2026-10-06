@@ -1,0 +1,29 @@
+{
+  "Source": "8150e09506fb950ec6354ece1c75390a361e4a9a",
+  "SDKSource": "6997138485f3f8088fc03682432de74879e19659",
+  "originalController": "/private/tmp/nest-assistant-financial-history-guarded-link-20261006",
+  "rows": [
+    {
+      "step": "alex-before",
+      "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+      "method": "HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 14.963
+    },
+    {
+      "step": "sam-before",
+      "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+      "method": "HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations",
+      "exitCode": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 13.37
+    }
+  ],
+  "FreshBeforeSDKNotRepeated": true,
+  "CanonicalJSONRevalidated": true
+}

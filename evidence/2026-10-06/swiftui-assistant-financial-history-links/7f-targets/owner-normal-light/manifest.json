@@ -1,0 +1,215 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E84BAEAD-AD0D-46B6-B061-067E02B59542.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Returned original Today and filter accessibility tree_0_90B160CB-9B6C-4067-939E-533C1361F1FD.txt",
+        "timestamp": 1791308404.897
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "58CDB549-81F2-471D-BFE4-8DB73BB7BE37.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Returned original Today and filter_0_5B4A9087-3D7B-4239-893F-706E55018302.png",
+        "timestamp": 1791308404.693
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DD859D57-5119-487B-9371-374EF1F21111.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Returned original Today and filter_0_B9810CB0-DF45-47A8-9036-E8247B286F0B.json",
+        "timestamp": 1791308404.63
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D2FE7547-F087-4C87-A190-B50203C36EE7.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Immutable recorded expense shares accessibility tree_0_552C71DF-5FD5-4DAB-B52B-C844974CAF0D.txt",
+        "timestamp": 1791308394.869
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0284CD4F-602C-4C22-9212-AC07ADD57212.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Immutable recorded expense shares_0_BDCAC693-559F-436A-8028-905547E0589E.png",
+        "timestamp": 1791308394.606
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2C7190B8-AF6D-4364-825A-F17E013A2027.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Immutable recorded expense shares_0_6D747601-BC55-445C-B765-5D0FD9EB262E.json",
+        "timestamp": 1791308394.532
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3B6FF232-8E53-41D0-A2AE-F482825FEC1A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured read-only history reveal_0_59544D0C-01F5-44CE-ADA1-0CDC6700AED0.json",
+        "timestamp": 1791308391.075
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "031966E9-3907-4009-9F45-9A24EABB6252.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured read-only history reveal_0_EB3D62C1-6974-4A07-9480-55C86BA33519.json",
+        "timestamp": 1791308384.54
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4F0B726E-F15D-4A0F-825C-E3348ADF754C.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Correct recorded expense title amount date and note accessibility tree_0_704A1D25-374B-405F-AFD2-14D7766EDA4B.txt",
+        "timestamp": 1791308383.93
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6BB0E9C8-F804-4A9C-BB81-7C4F09C781CA.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Correct recorded expense title amount date and note_0_C2330832-6335-4EEB-B684-00D4A9285618.png",
+        "timestamp": 1791308383.65
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E867DFDB-A39E-4B8F-B5CB-C4B6BA50D464.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Correct recorded expense title amount date and note_0_739BF2FB-5380-4D63-B1CC-E2F0B255660F.json",
+        "timestamp": 1791308383.577
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "236367CF-DC4D-49DF-8446-C193D6D9BB78.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Canonical consumed proposal recorded-expense target accessibility tree_0_B72AB646-6AD3-4CA7-9E33-A5DA6D73FD4B.txt",
+        "timestamp": 1791308377.736
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D51B5960-13AE-40D9-89E4-FEE1AFDDF990.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Canonical consumed proposal recorded-expense target_0_832E80AC-897C-4C12-91B8-EED7DEAA9B06.png",
+        "timestamp": 1791308377.447
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7AA3A5D3-23AD-4F82-ADDF-B33AFF0B6C11.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Canonical consumed proposal recorded-expense target_0_AA55CF2F-739D-4B4A-9918-6DBBDD049D81.json",
+        "timestamp": 1791308377.37
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "31B3BA47-838F-4DA4-B0D9-3E67574C911A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured read-only history reveal_0_E7C60E4D-9C06-46CB-82AB-BD262620A1E9.json",
+        "timestamp": 1791308373.493
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F8504AAA-0E99-41F1-9C2F-4BA1D8E4E775.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Transcript bill proposal target before navigation accessibility tree_0_D770E98F-C111-496C-A5AB-60526C6651EF.txt",
+        "timestamp": 1791308364.916
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "36BE5C69-1F1D-40E4-A5FD-361B13505264.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Transcript bill proposal target before navigation_0_0C688FCC-AB6D-4C18-92B1-AC3419AE6CD5.png",
+        "timestamp": 1791308364.739
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F9E59B32-C527-4799-B431-46A4D567E24E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Transcript bill proposal target before navigation_0_890045B5-F6CA-4F20-B755-F20039ABCEE7.json",
+        "timestamp": 1791308364.671
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F6B085A1-C504-4BF9-B276-A7BF1095104E.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact interrupted private conversation target accessibility tree_0_F8660DA1-F53B-4A5B-9BCB-8189A7AA1A8B.txt",
+        "timestamp": 1791308360.7
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5FA6CFEE-E36B-4AAB-A43B-FE6DF458FE0F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact interrupted private conversation target_0_D603E3FB-6C36-4A79-ABF1-F176F4277403.png",
+        "timestamp": 1791308360.336
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4F0C6376-25C3-455A-9F48-4BBB2DA05193.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact interrupted private conversation target_0_A54E5E6C-F7AC-42B6-8C18-1965D679BE28.json",
+        "timestamp": 1791308360.253
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "226FA225-B6DB-42FE-8A64-8D3732283F7A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured read-only history reveal_0_2F68BE3A-F777-40C1-A71E-27837FD6CE55.json",
+        "timestamp": 1791308357.554
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D7700312-16DA-440E-81F3-C36301CA5281.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured read-only history reveal_0_71BA78AE-590E-400B-886C-F3A7A1B15CEB.json",
+        "timestamp": 1791308355.415
+      }
+    ],
+    "testIdentifier": "AssistantFinancialHistoryLinkTests/testExistingPrivateBillResultOpensItsRecordedExpense()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/AssistantFinancialHistoryLinkTests/testExistingPrivateBillResultOpensItsRecordedExpense"
+  }
+]

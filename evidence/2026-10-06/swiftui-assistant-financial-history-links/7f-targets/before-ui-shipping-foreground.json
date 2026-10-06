@@ -1,0 +1,5 @@
+{
+  "OrdinaryShippingForegroundLaunch": true,
+  "AfterAuthenticatedSDKSetup": true,
+  "NoManualScopeOrCredentialRepair": true
+}

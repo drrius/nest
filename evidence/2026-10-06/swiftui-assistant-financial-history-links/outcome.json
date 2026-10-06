@@ -1,0 +1,19 @@
+{
+  "UIExecutedSource": "7f079fad22e7f4ec8b82651a9d54611bdd7078b5",
+  "UIInputs": 1124,
+  "SDKExecutedSource": "6997138485f3f8088fc03682432de74879e19659",
+  "SDKInputs": 1122,
+  "nativeMethodsPassed": 9,
+  "nativeMethodsFailed": 1,
+  "SDKMethodsPassed": 8,
+  "UIWholeMethodsPassed": 1,
+  "UIWholeMethodsFailed": 1,
+  "retainedControllerScopeFailure": 1,
+  "unused8aPreparationOnly": true,
+  "domainMutationInvocations": 0,
+  "liveModelInvocations": 0,
+  "wirePOSTCountMeasured": false,
+  "all14PNGsReviewed": true,
+  "originalScopes64Restored": true,
+  "normalLightOwnerResultNavigationOnly": true
+}

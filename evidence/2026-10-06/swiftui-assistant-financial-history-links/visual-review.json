@@ -1,0 +1,86 @@
+{
+  "815-ui-only/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "49fd7fe4964fb6eb3f13b1e14e53947f2d95956a46b499610916aac212a67526"
+  },
+  "815-ui-only/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "49fd7fe4964fb6eb3f13b1e14e53947f2d95956a46b499610916aac212a67526"
+  },
+  "guarded-815-run/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "4d94d9c501806d61c2146bf43f36aea849dd1139b007ec57db873f29e18075c9"
+  },
+  "guarded-815-run/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "4d94d9c501806d61c2146bf43f36aea849dd1139b007ec57db873f29e18075c9"
+  },
+  "7f-targets/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "47b07a9006db41b67500e3691f51e25a0eb72b08261fb99a51a019f664706eb0"
+  },
+  "7f-targets/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "47b07a9006db41b67500e3691f51e25a0eb72b08261fb99a51a019f664706eb0"
+  },
+  "7f-targets/owner-normal-light/0284CD4F-602C-4C22-9212-AC07ADD57212.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "5a991bbf3c4e9d56b1c5b606d08e7e9a49e3b77a671d3712d716effa59bd4212"
+  },
+  "7f-targets/owner-normal-light/6BB0E9C8-F804-4A9C-BB81-7C4F09C781CA.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "ad0e26723f168087f7e18b33eadf9fee38db704e95bd112cfeb7cd6f4643f1e4"
+  },
+  "7f-targets/owner-normal-light/58CDB549-81F2-471D-BFE4-8DB73BB7BE37.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "57635cd02748b72281319affed5518bac68202abfa7608095b76e5003c82aed0"
+  },
+  "7f-targets/owner-normal-light/5FA6CFEE-E36B-4AAB-A43B-FE6DF458FE0F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "33c558921d360b7c71ae532779289e279ee4f5d1bf47caee1a067558c0137a09"
+  },
+  "7f-targets/owner-normal-light/D51B5960-13AE-40D9-89E4-FEE1AFDDF990.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "1621d008e2f824b0e1724877704cfd1e2d183bd9938f765c32dd485d00116333"
+  },
+  "7f-targets/owner-normal-light/36BE5C69-1F1D-40E4-A5FD-361B13505264.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "28651fae911266fa5d83c4fa1d40148cb9ceacdab6749e88a0aebf838bc96886"
+  },
+  "815-ui-only/owner-normal-light/1BF44AE8-B900-4D93-903A-ACE3ADF1863B.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "64a61d1bb3d367b444abd435b789a249f75da9da2203220fb8e72b110b225b6d"
+  },
+  "815-ui-only/owner-normal-light/420BCDF6-AE1D-40A7-8895-17FE83D6AE47.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "reviewer": "native execution worker; direct full-image inspection",
+    "sha256": "06f7dc2ac3ea0419a4247e741e2b416f72b114bb90e0f4394bc2edc2c007280c"
+  }
+}
