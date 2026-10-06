@@ -1,0 +1,42 @@
+{
+  "nodes": [
+    {
+      "frame": [16, 373, 343, 145.5],
+      "hittable": true,
+      "label": "Item reminders",
+      "type": 48,
+      "value": ""
+    },
+    {
+      "frame": [16, 518.5, 343, 217.5],
+      "hittable": true,
+      "label": "Receive item reminders",
+      "type": 40,
+      "value": "0"
+    },
+    {
+      "frame": [32, 533.5, 224, 187.5],
+      "hittable": true,
+      "label": "Receive item reminders",
+      "type": 48,
+      "value": ""
+    }
+  ],
+  "stage": 2,
+  "switches": [
+    {
+      "frame": [16, 518.5, 343, 217.5],
+      "hittable": true,
+      "label": "Receive item reminders",
+      "type": 40,
+      "value": "0"
+    },
+    {
+      "frame": [282, 613.5, 63, 28],
+      "hittable": false,
+      "label": "",
+      "type": 40,
+      "value": "0"
+    }
+  ]
+}

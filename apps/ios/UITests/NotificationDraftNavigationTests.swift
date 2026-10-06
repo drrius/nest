@@ -7,6 +7,58 @@ final class NotificationDraftNavigationTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    func testRecordLargeTextNotificationControlsWithoutEditing() throws {
+        let fixture = try NativeMealWeekFixture(action: "notification_draft")
+        let app = openChoices(fixture)
+        var observations: [[String: Any]] = []
+        for stage in 0..<5 {
+            let nodes = app.descendants(matching: .any).matching(
+                NSPredicate(format: "label CONTAINS[c] %@", "reminder")
+            ).allElementsBoundByIndex
+            observations.append([
+                "stage": stage, "nodes": nodes.prefix(16).map { geometry($0) },
+                "switches": app.switches.allElementsBoundByIndex.prefix(8).map { geometry($0) },
+                "namedExists": app.switches["Receive item reminders"].exists,
+                "predicateExists": app.switches.matching(
+                    NSPredicate(format: "label == %@", "Receive item reminders")
+                ).firstMatch.exists,
+            ])
+            let capture = XCTAttachment(screenshot: app.screenshot())
+            capture.name = "Notification control census stage \(stage)"
+            capture.lifetime = .keepAlways
+            add(capture)
+            if stage == 2 {
+                let reminder = app.switches.matching(
+                    NSPredicate(format: "label == %@", "Receive item reminders")
+                ).firstMatch
+                XCTAssertTrue(reminder.exists)
+                let distance = scrollDistance(reminder.frame, bottom: app.tabBars.firstMatch.frame.minY)
+                let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
+                let end = app.coordinate(
+                    withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65 - distance / app.frame.height))
+                start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
+            } else if stage < 4 {
+                app.swipeUp()
+            }
+        }
+        let report = XCTAttachment(
+            data: try JSONSerialization.data(withJSONObject: observations, options: [.sortedKeys]),
+            uniformTypeIdentifier: "public.json")
+        report.name = "Notification control geometry census"
+        report.lifetime = .keepAlways
+        add(report)
+        finish(app)
+    }
+
+    private func geometry(_ element: XCUIElement) -> [String: Any] {
+        let frame = element.frame
+        return [
+            "label": element.label, "type": element.elementType.rawValue,
+            "value": element.value as? String ?? "", "hittable": element.isHittable,
+            "frame": [frame.minX, frame.minY, frame.width, frame.height],
+        ]
+    }
+
     func testDeviceConnectionRoundTripPreservesUnsentChoices() throws {
         let fixture = try NativeMealWeekFixture(action: "notification_draft")
         let app = openChoices(fixture)
@@ -21,7 +73,7 @@ final class NotificationDraftNavigationTests: XCTestCase {
         XCTAssertTrue(app.navigationBars["This iPhone"].waitForExistence(timeout: 15))
         app.navigationBars["This iPhone"].buttons.element(boundBy: 0).tap()
         XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 15))
-        reveal(reminders, in: app)
+        reveal(reminders, in: app, earlier: true)
         XCTAssertEqual(reminders.value as? String, edited)
         XCTAssertEqual(flip(reminders, from: edited), initial)
         finish(app)
@@ -45,9 +97,13 @@ final class NotificationDraftNavigationTests: XCTestCase {
         reveal(reload, in: app)
         reload.tap()
         choicesAlert(app).buttons["Keep editing"].tap()
+        reveal(reminders, in: app, earlier: true)
         XCTAssertEqual(reminders.value as? String, edited)
+        reveal(reload, in: app)
         reload.tap()
         choicesAlert(app).buttons["Discard edits"].tap()
+        waitForChoices(app)
+        reveal(reminders, in: app, earlier: true)
         let restored = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "value == %@", initial), object: reminders)
         XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed)
@@ -60,6 +116,7 @@ final class NotificationDraftNavigationTests: XCTestCase {
         reveal(choices, in: app)
         choices.tap()
         XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 15))
+        waitForChoices(app)
         reveal(reminders, in: app)
         XCTAssertEqual(reminders.value as? String, initial)
         finish(app)
@@ -100,10 +157,14 @@ final class NotificationDraftNavigationTests: XCTestCase {
         reveal(choices, in: app)
         choices.tap()
         XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 15))
+        waitForChoices(app)
+        return app
+    }
+
+    private func waitForChoices(_ app: XCUIApplication) {
         let save = app.navigationBars["Notifications"].buttons["Save"]
         let loaded = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: save)
         XCTAssertEqual(XCTWaiter.wait(for: [loaded], timeout: 30), .completed)
-        return app
     }
 
     private func finish(_ app: XCUIApplication) {
@@ -114,15 +175,30 @@ final class NotificationDraftNavigationTests: XCTestCase {
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
 
-    private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
+    private func reveal(_ element: XCUIElement, in app: XCUIApplication, earlier: Bool = false) {
         for _ in 0..<30 {
             let frame = element.exists ? element.frame : .zero
-            if element.isHittable && frame.minY >= 80 && frame.maxY <= app.tabBars.firstMatch.frame.minY { return }
-            let distance = element.exists ? max(-300, min(300, frame.minY - 130)) : 250
+            let bottom = app.tabBars.firstMatch.frame.minY
+            if element.isHittable && frame.minY >= 80 && frame.maxY <= bottom { return }
+            if frame.isEmpty {
+                if earlier { app.swipeDown(velocity: .slow) } else { app.swipeUp(velocity: .slow) }
+                continue
+            }
+            let distance = scrollDistance(frame, bottom: bottom)
             let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
             let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65 - distance / app.frame.height))
             start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
         }
+        let capture = XCTAttachment(screenshot: app.screenshot())
+        capture.name = "Notification reveal failure"
+        capture.lifetime = .keepAlways
+        add(capture)
         XCTFail("Required notification control is not fully visible")
+    }
+
+    private func scrollDistance(_ frame: CGRect, bottom: CGFloat) -> CGFloat {
+        guard !frame.isEmpty else { return 180 }
+        let delta = frame.minY < 80 ? frame.minY - 100 : frame.maxY - bottom + 24
+        return max(-120, min(120, delta))
     }
 }

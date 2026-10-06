@@ -1,0 +1,20 @@
+{
+  "nodes": [],
+  "stage": 1,
+  "switches": [
+    {
+      "frame": [16, 414, 343, 155.5],
+      "hittable": true,
+      "label": "One daily summary",
+      "type": 40,
+      "value": "0"
+    },
+    {
+      "frame": [282, 478, 63, 28],
+      "hittable": true,
+      "label": "",
+      "type": 40,
+      "value": "0"
+    }
+  ]
+}

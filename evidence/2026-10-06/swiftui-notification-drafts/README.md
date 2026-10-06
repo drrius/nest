@@ -44,5 +44,30 @@ Interrupted after-runs restore those settings, but do not assert both Today
 selections or complete after-read comparison. All820 current inputs match the final interrupted run. Preference and receipt
 hashes remain exact. Final canonical after-reads, maximum-text checks and physical
 phone acceptance remain pending.
+
+## Control and motion diagnosis
+
+The five-stage census preserves expected labels and switch type40. At maximum
+size the reminder row is217.5pt tall; a visible row can extend beneath the bar.
+Named and predicate lookups both work. A direct120pt drag moves the row110pt,
+making its inner switch hittable. All five original images were inspected.
+[Census](control-census/stage-2.json), [motion](motion-probe/stage-3.json).
+Each diagnostic controller finishes with four canonical SDK reads agreeing and
+restored roles/64 empty journals/large/light. These diagnostics do not verify
+discard or draft preservation.
+
+The measured and native-swipe attempts both pass normal interaction checks but
+fail after the connection-screen round trip. The activity log confirms the
+connection was opened before the failure. Returning retains the lower scroll
+position; the reader searched downward for an earlier, virtualized row.
+The new reader searches upward on return and after Reload, while retaining
+full visibility and44pt choices. That directed interaction run is in progress.
+Earlier measured failure and locator/motion observations are preserved separately.
+The shipping model/screens remainf83ac658; only guarded UI diagnostics change.
+
+Source62dd893f now passes Nest37393161511 and SwiftUI37393161341:496 Foundation
+tests/41 skips,443 signed-app tests/20 skips, zero failures, strict format/limits,
+signing and guarded UI compilation. Docs sourceef75d2ac passes Nest37394005548.
+The new observer still needs its own CI and completed native verification.
 No hosted Save, permission, inference, worker, beta, production action, purchase
 or merge occurs. Available TestFlight build18 does not contain this later fix.
