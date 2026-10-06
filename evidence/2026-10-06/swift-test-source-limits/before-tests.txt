@@ -1,0 +1,49 @@
+✔ Swift shipping and test files enforce the 400-line limit (60.025323ms)
+✖ Swift shipping and test functions enforce the 80-code-line limit (33.309779ms)
+✖ Swift shipping and test functions enforce complexity 10 (29.443521ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 1
+ℹ fail 2
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 156.515358
+
+✖ failing tests:
+
+test at tests/tooling/swift-source-limits.test.mjs:36:1
+✖ Swift shipping and test functions enforce the 80-code-line limit (33.309779ms)
+  AssertionError [ERR_ASSERTION]: Tests
+      at TestContext.<anonymous> (file:///home/drrius/Work/nest/tests/tooling/swift-source-limits.test.mjs:39:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+
+test at tests/tooling/swift-source-limits.test.mjs:43:1
+✖ Swift shipping and test functions enforce complexity 10 (29.443521ms)
+  AssertionError [ERR_ASSERTION]: Tests
+      at TestContext.<anonymous> (file:///home/drrius/Work/nest/tests/tooling/swift-source-limits.test.mjs:46:12)
+      at Test.runInAsyncScope (node:async_hooks:226:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: false,
+    code: 'ERR_ASSERTION',
+    actual: false,
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }

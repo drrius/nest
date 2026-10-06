@@ -132,39 +132,18 @@ actor ManualCycleTestServer {
         case "/v1/money/history": data = try JSONEncoder().encode(history(request))
         case "/v1/money/detail": data = try JSONEncoder().encode(currentSource())
         case "/v1/money/recurring/manual/receipt":
-            guard let operation = operation(request) else { throw NestAPIFailure.contract }
-            data = try JSONEncoder().encode(recovery(operation))
+            data = try receiptData(request)
         case "/v1/money/recurring/manual/save":
-            guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
-            let command = try JSONDecoder().decode(SaveManualCycle.self, from: XCTUnwrap(request.httpBody))
-            try command.input.validated(member: member, balance: balance(), target: target(), source: currentSource())
-            guard cancelledOperation != command.operationId else { throw NestAPIFailure.conflict }
-            writes += 1
-            receipt = .init(
-                version: 1, actorId: member.userId, householdId: member.householdId,
-                operationId: command.operationId, approvalId: nil, source: "manual", eventId: source.event.id,
-                input: command.input,
-                cycle: try RecurringDates.cycle(schedule: rule.configuration.schedule, dueOn: command.input.dueOn),
-                configuration: rule.configuration, linkedExpense: source)
-            if loseReply {
-                loseReply = false
-                throw URLError(.networkConnectionLost)
-            }
-            data = try JSONEncoder().encode(receipt)
+            data = try saveData(request)
         case "/v1/money/recurring/manual/cancel-save":
-            let body = try JSONSerialization.jsonObject(with: XCTUnwrap(request.httpBody)) as? [String: String]
-            guard let operation = body?["operationId"].flatMap(UUID.init(uuidString:)) else {
-                throw NestAPIFailure.contract
-            }
-            cancellations += 1
-            if receipt == nil { cancelledOperation = operation }
-            if loseCancellation {
-                loseCancellation = false
-                throw URLError(.networkConnectionLost)
-            }
-            data = try JSONEncoder().encode(recovery(operation))
+            data = try cancelData(request)
         default: throw NestAPIFailure.contract
         }
+        await pauseRead(request)
+        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func pauseRead(_ request: URLRequest) async {
         if pause && request.httpMethod == "GET" {
             pause = false
             waiting = true
@@ -172,7 +151,44 @@ actor ManualCycleTestServer {
             began = nil
             await withCheckedContinuation { resume = $0 }
         }
-        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func receiptData(_ request: URLRequest) throws -> Data {
+        guard let operation = operation(request) else { throw NestAPIFailure.contract }
+        return try JSONEncoder().encode(recovery(operation))
+    }
+
+    private func cancelData(_ request: URLRequest) throws -> Data {
+        let body = try JSONSerialization.jsonObject(with: XCTUnwrap(request.httpBody)) as? [String: String]
+        guard let operation = body?["operationId"].flatMap(UUID.init(uuidString:)) else {
+            throw NestAPIFailure.contract
+        }
+        cancellations += 1
+        if receipt == nil { cancelledOperation = operation }
+        if loseCancellation {
+            loseCancellation = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(recovery(operation))
+    }
+
+    private func saveData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
+        let command = try JSONDecoder().decode(SaveManualCycle.self, from: XCTUnwrap(request.httpBody))
+        try command.input.validated(member: member, balance: balance(), target: target(), source: currentSource())
+        guard cancelledOperation != command.operationId else { throw NestAPIFailure.conflict }
+        writes += 1
+        receipt = .init(
+            version: 1, actorId: member.userId, householdId: member.householdId,
+            operationId: command.operationId, approvalId: nil, source: "manual", eventId: source.event.id,
+            input: command.input,
+            cycle: try RecurringDates.cycle(schedule: rule.configuration.schedule, dueOn: command.input.dueOn),
+            configuration: rule.configuration, linkedExpense: source)
+        if loseReply {
+            loseReply = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(receipt)
     }
 
     private func operation(_ request: URLRequest) -> UUID? {

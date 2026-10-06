@@ -16,7 +16,9 @@ The other three passing cases preserve coverage of lost-response recovery,
 exact retries, substituted intent, stale writes, cancellation, query injection
 and forged receipts. Protocol adapters in these local tests are test fixtures,
 not evidence of native execution. The separate signed-native test is tracked
-independently. Routine CI now includes this four-case file; its new run is pending.
+independently. Routine CI includes this four-case file and passes all four cases
+at `a5ce9ec7`. [Actual CI output](ci-tests.txt),
+[run](https://github.com/drrius/nest/actions/runs/37425278435).
 
 PostgREST archive SHA256 matches the CI pin:
 `4eb414eb948c8800863cc8c9896a17b611b2dccf9ff581f4d57f42ec9ccee40d`.

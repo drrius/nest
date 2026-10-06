@@ -5,20 +5,7 @@ import XCTest
 
 final class HostedReceiptTests: XCTestCase {
     func testFictionalUploadReplayRecoveryAndCleanup() async throws {
-        let env = ProcessInfo.processInfo.environment
-        guard env["NEST_TEST_ALLOW_RECEIPT_WRITE"] == "1",
-            env["NEST_TEST_API_URL"] == "https://nest-test-api-drrius-projects.vercel.app",
-            env["NEST_TEST_STORAGE_URL"] == "https://tkjixmujjoustdiedfmw.supabase.co",
-            let key = env["NEST_TEST_PUBLISHABLE_KEY"],
-            let actor = env["NEST_TEST_ACTOR_ID"].flatMap(UUID.init(uuidString:)),
-            let path = env["NEST_TEST_MEMBER_TOKEN_FILE"]
-        else { throw XCTSkip("Explicit isolated receipt test configuration is required") }
-        let token = try String(contentsOfFile: path, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
-        let http = try NestHTTP(baseURL: URL(string: env["NEST_TEST_API_URL"]!)!)
-        let member = try await MealAPI(http: http).verify(token: token, expectedActor: actor)
-        guard member.displayName.hasPrefix("Test ") else { throw XCTSkip("Fictional member required") }
-        let api = MoneyAPI(http: http)
-        let transport = try ReceiptTransport(origin: URL(string: env["NEST_TEST_STORAGE_URL"]!)!, publishableKey: key)
+        let (api, transport, member, token, env) = try await configuredUpload()
         let bytes = Data(
             "%PDF-1.4\n% Nest fictional upload verification\n1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n2 0 obj\n<< /Type /Pages /Kids [] /Count 0 >>\nendobj\ntrailer\n<< /Root 1 0 R >>\n%%EOF\n"
                 .utf8)
@@ -62,4 +49,25 @@ final class HostedReceiptTests: XCTestCase {
             XCTFail("Recreated a deleted upload")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .conflict) }
     }
+
+    private func configuredUpload() async throws -> (
+        MoneyAPI, ReceiptTransport, VerifiedMember, String, [String: String]
+    ) {
+        let env = ProcessInfo.processInfo.environment
+        guard env["NEST_TEST_ALLOW_RECEIPT_WRITE"] == "1",
+            env["NEST_TEST_API_URL"] == "https://nest-test-api-drrius-projects.vercel.app",
+            env["NEST_TEST_STORAGE_URL"] == "https://tkjixmujjoustdiedfmw.supabase.co",
+            let key = env["NEST_TEST_PUBLISHABLE_KEY"],
+            let actor = env["NEST_TEST_ACTOR_ID"].flatMap(UUID.init(uuidString:)),
+            let path = env["NEST_TEST_MEMBER_TOKEN_FILE"]
+        else { throw XCTSkip("Explicit isolated receipt test configuration is required") }
+        let token = try String(contentsOfFile: path, encoding: .utf8).trimmingCharacters(in: .whitespacesAndNewlines)
+        let http = try NestHTTP(baseURL: URL(string: env["NEST_TEST_API_URL"]!)!)
+        let member = try await MealAPI(http: http).verify(token: token, expectedActor: actor)
+        guard member.displayName.hasPrefix("Test ") else { throw XCTSkip("Fictional member required") }
+        let api = MoneyAPI(http: http)
+        let transport = try ReceiptTransport(origin: URL(string: env["NEST_TEST_STORAGE_URL"]!)!, publishableKey: key)
+        return (api, transport, member, token, env)
+    }
+
 }

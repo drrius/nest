@@ -53,38 +53,11 @@ actor LegacyRecurringTestServer {
     }
 
     func respond(_ request: URLRequest) async throws -> (Data, URLResponse) {
-        guard request.httpMethod == "GET" else {
-            writes += 1
-            throw NestAPIFailure.contract
-        }
-        guard let bearer = request.value(forHTTPHeaderField: "Authorization"),
-            ["Bearer token-A", "Bearer token-B"].contains(bearer),
-            request.value(forHTTPHeaderField: "x-nest-household") == member.householdId.uuidString.lowercased()
-        else { throw NestAPIFailure.forbidden }
+        try authorize(request)
         reads += 1
         if fault == "offline" { throw URLError(.notConnectedToInternet) }
         let url = try XCTUnwrap(request.url)
-        let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
-        let after = query.first(where: { $0.name == "after" })?.value
-        let isDraft = url.path == "/v1/money/recurring/legacy-drafts"
-        guard isDraft || url.path == "/v1/money/recurring/legacy" else { throw NestAPIFailure.contract }
-        let allowed = isDraft ? ["ruleId", "after"] : ["after"]
-        guard query.allSatisfy({ allowed.contains($0.name) }), Set(query.map(\.name)).count == query.count,
-            !isDraft || query.first(where: { $0.name == "ruleId" })?.value == ruleId.uuidString.lowercased()
-        else { throw NestAPIFailure.contract }
-        let start = after == nil ? 0 : 20
-        let ids = (start..<(after == nil ? 20 : 21)).map { Self.id((isDraft ? 900 : 800) + $0) }
-        let rows = ids.map { isDraft ? draft($0) : rule($0) }
-        var page: [String: Any] = [
-            "version": 1, "householdId": member.householdId.uuidString.lowercased(),
-            "after": after as Any? ?? NSNull(),
-            "next": after == nil ? ids.last!.uuidString.lowercased() as Any : NSNull(),
-            isDraft ? "drafts" : "rules": rows,
-        ]
-        if isDraft { page["ruleId"] = ruleId.uuidString.lowercased() }
-        if fault == "scope" { page["householdId"] = UUID().uuidString.lowercased() }
-        if fault == "cursor" { page["after"] = UUID().uuidString.lowercased() }
-        if fault == "order" { page[isDraft ? "drafts" : "rules"] = [rows[0], rows[0]] }
+        let page = try responsePage(url)
         let data = try JSONSerialization.data(withJSONObject: page)
         if pause {
             pause = false
@@ -133,4 +106,45 @@ actor LegacyRecurringTestServer {
     private static func id(_ value: Int) -> UUID {
         UUID(uuidString: String(format: "00000000-0000-4000-8000-%012d", value))!
     }
+
+    private func authorize(_ request: URLRequest) throws {
+        guard request.httpMethod == "GET" else {
+            writes += 1
+            throw NestAPIFailure.contract
+        }
+        guard let bearer = request.value(forHTTPHeaderField: "Authorization"),
+            ["Bearer token-A", "Bearer token-B"].contains(bearer),
+            request.value(forHTTPHeaderField: "x-nest-household") == member.householdId.uuidString.lowercased()
+        else { throw NestAPIFailure.forbidden }
+    }
+
+    private func responsePage(_ url: URL) throws -> [String: Any] {
+        let query = URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems ?? []
+        let after = query.first(where: { $0.name == "after" })?.value
+        let isDraft = url.path == "/v1/money/recurring/legacy-drafts"
+        guard isDraft || url.path == "/v1/money/recurring/legacy" else { throw NestAPIFailure.contract }
+        let allowed = isDraft ? ["ruleId", "after"] : ["after"]
+        guard query.allSatisfy({ allowed.contains($0.name) }), Set(query.map(\.name)).count == query.count,
+            !isDraft || query.first(where: { $0.name == "ruleId" })?.value == ruleId.uuidString.lowercased()
+        else { throw NestAPIFailure.contract }
+        let start = after == nil ? 0 : 20
+        let ids = (start..<(after == nil ? 20 : 21)).map { Self.id((isDraft ? 900 : 800) + $0) }
+        let rows = ids.map { isDraft ? draft($0) : rule($0) }
+        var page: [String: Any] = [
+            "version": 1, "householdId": member.householdId.uuidString.lowercased(),
+            "after": after as Any? ?? NSNull(),
+            "next": after == nil ? ids.last!.uuidString.lowercased() as Any : NSNull(),
+            isDraft ? "drafts" : "rules": rows,
+        ]
+        if isDraft { page["ruleId"] = ruleId.uuidString.lowercased() }
+        applyFault(&page, rows: rows, isDraft: isDraft)
+        return page
+    }
+
+    private func applyFault(_ page: inout [String: Any], rows: [[String: Any]], isDraft: Bool) {
+        if fault == "scope" { page["householdId"] = UUID().uuidString.lowercased() }
+        if fault == "cursor" { page["after"] = UUID().uuidString.lowercased() }
+        if fault == "order" { page[isDraft ? "drafts" : "rules"] = [rows[0], rows[0]] }
+    }
+
 }

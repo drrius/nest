@@ -66,8 +66,6 @@ def check(path: Path) -> list[str]:
     lines = len(content.splitlines())
     if lines > 400:
         findings.append(f"{relative}: {lines} lines exceeds 400")
-    if TESTS in path.parents or APP_TESTS in path.parents:
-        return findings
     for match, body in function_bodies(mask(content)):
         location = content[:match.start()].count("\n") + 1
         code_lines = sum(bool(line.strip()) for line in body.splitlines())

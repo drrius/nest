@@ -44,15 +44,7 @@ final class VariableCycleApprovalTests: XCTestCase {
             missing = part
             missing["state"] = .string("input-available")
             XCTAssertNil(PendingFinancialApproval.assistantLink(missing, member: member))
-            if case .array(var shares) = input["allocations"], case .object(var first) = shares.first {
-                first["operationId"] = .string(UUID().uuidString)
-                shares[0] = .object(first)
-                var fields = input
-                fields["allocations"] = .array(shares)
-                var changed = part
-                changed["input"] = .object(fields)
-                XCTAssertNil(PendingFinancialApproval.assistantLink(changed, member: member))
-            }
+            assertSubstitutedAllocation(part, input: input)
         }
     }
 
@@ -248,6 +240,18 @@ final class VariableCycleApprovalTests: XCTestCase {
             authorizedBy: member.userId, authorizedAt: "2026-10-01T00:00:00.000000Z",
             coveredThrough: nil, nextDueOn: input.dueOn)
         return .init(version: 1, householdId: member.householdId, today: input.dueOn, rule: rule)
+    }
+
+    private func assertSubstitutedAllocation(_ part: [String: AssistantJSON], input: [String: AssistantJSON]) {
+        if case .array(var shares) = input["allocations"], case .object(var first) = shares.first {
+            first["operationId"] = .string(UUID().uuidString)
+            shares[0] = .object(first)
+            var fields = input
+            fields["allocations"] = .array(shares)
+            var changed = part
+            changed["input"] = .object(fields)
+            XCTAssertNil(PendingFinancialApproval.assistantLink(changed, member: member))
+        }
     }
 
 }

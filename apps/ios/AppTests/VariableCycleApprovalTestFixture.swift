@@ -131,53 +131,59 @@ actor VariableCycleApprovalTestServer {
         let data: Data
         switch request.url!.path {
         case "/v1/money/recurring/variable/approval":
-            guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
-            approvalReads += 1
-            if approvalReads == 2 && failFencedRead {
-                failFencedRead = false
-                throw URLError(.networkConnectionLost)
-            }
-            if approvalReads == 2 && consumeDuringFence { try record(decision) }
-            data = try JSONEncoder().encode(envelope())
+            data = try approvalData(request)
         case "/v1/money/balance":
-            guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
-            let members = try decision.input.allocations.map {
-                MoneyBalance.Member(
-                    actorId: foreignMember && $0.memberId != member.userId ? UUID() : $0.memberId,
-                    displayName: $0.memberId == member.userId ? "Alex" : "Sam", centimes: try Centimes("0"))
-            }
-            data = try JSONEncoder().encode(
-                MoneyBalance(
-                    version: 1, householdId: member.householdId, eventCount: "0", openingEstablished: false,
-                    members: members))
+            data = try balanceData(request)
         case "/v1/money/recurring/rule":
             guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
             let detail = RecurringDetail(
                 version: 1, householdId: member.householdId, today: try CivilDate("2026-10-01"), rule: rule)
             data = try JSONEncoder().encode(detail)
         case "/v1/money/approval-expiry":
-            guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
-            if consumeDuringExpiry { try record(decision) }
-            let expiry = FinancialApprovalExpiry(
-                version: 1, actorId: member.userId, householdId: member.householdId,
-                approvalId: decision.approvalId, operationId: decision.operationId, command: .recordCycle,
-                expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z")
-            data = try JSONEncoder().encode(expiry)
+            data = try expiryData(request)
         case "/v1/money/recurring/variable/approval/decide":
-            guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
-            let input = try JSONDecoder().decode(VariableCycleDecision.self, from: XCTUnwrap(request.httpBody))
-            guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
-                input.input == decision.input
-            else { throw NestAPIFailure.contract }
-            writes += 1
-            try record(input)
-            if loseReply {
-                loseReply = false
-                throw URLError(.networkConnectionLost)
-            }
-            data = try JSONEncoder().encode(envelope())
+            data = try decisionData(request)
         default: throw NestAPIFailure.contract
         }
+        await pauseRead(request)
+        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func expiryData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
+        if consumeDuringExpiry { try record(decision) }
+        let expiry = FinancialApprovalExpiry(
+            version: 1, actorId: member.userId, householdId: member.householdId,
+            approvalId: decision.approvalId, operationId: decision.operationId, command: .recordCycle,
+            expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z")
+        return try JSONEncoder().encode(expiry)
+    }
+
+    private func balanceData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
+        let members = try decision.input.allocations.map {
+            MoneyBalance.Member(
+                actorId: foreignMember && $0.memberId != member.userId ? UUID() : $0.memberId,
+                displayName: $0.memberId == member.userId ? "Alex" : "Sam", centimes: try Centimes("0"))
+        }
+        return try JSONEncoder().encode(
+            MoneyBalance(
+                version: 1, householdId: member.householdId, eventCount: "0", openingEstablished: false,
+                members: members))
+    }
+
+    private func approvalData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
+        approvalReads += 1
+        if approvalReads == 2 && failFencedRead {
+            failFencedRead = false
+            throw URLError(.networkConnectionLost)
+        }
+        if approvalReads == 2 && consumeDuringFence { try record(decision) }
+        return try JSONEncoder().encode(envelope())
+    }
+
+    private func pauseRead(_ request: URLRequest) async {
         if pause && request.httpMethod == "GET" {
             pause = false
             waiting = true
@@ -185,7 +191,21 @@ actor VariableCycleApprovalTestServer {
             began = nil
             await withCheckedContinuation { resume = $0 }
         }
-        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func decisionData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
+        let input = try JSONDecoder().decode(VariableCycleDecision.self, from: XCTUnwrap(request.httpBody))
+        guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
+            input.input == decision.input
+        else { throw NestAPIFailure.contract }
+        writes += 1
+        try record(input)
+        if loseReply {
+            loseReply = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(envelope())
     }
 
     private func record(_ input: VariableCycleDecision) throws {

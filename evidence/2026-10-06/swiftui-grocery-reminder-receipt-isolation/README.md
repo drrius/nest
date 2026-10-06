@@ -17,4 +17,11 @@ The SDK/app target was built once with the new source, strict test origins and p
 
 Anonymous and wrong-household checks were not added to this native slice. NestHTTP rejects an empty token before transport, and this slice uses only the two authenticated owned household sessions. The parent's separate disposable HTTP/database privacy tests are separate verification and are not counted among these two native passes. Live server operation-row counts were not queried; no new-row claim is inferred from an unresolved result alone.
 
+Both workflows pass at `a5ce9ec7`, with native source identical to `f57094f3`.
+CI records 502 Foundation cases with 41 skips, 457 signed-app cases with 25 skips,
+four Swift Testing cases and zero failures. Strict formatting, limits, signing
+and guarded UI compilation pass. [Metadata](ci.json), [totals](ci-totals.txt).
+These CI checks compile and skip the dated hosted method; the two actual native
+passes above establish its observed behavior.
+
 Complete JSON/Markdown formatting precedes artifact hashes. The inventory verifier checks tracked artifacts, source against immutable commit `f57094f3d3bee1d1aa945fe2fbb59398c42c19e4`, owner/partner semantics and canonical equality. `--working-tree` optionally checks current native inputs. Explicit native limits cover the AppTest's function sizes and complexity as well as the global Swift check. Routine CI skips the hosted method unless its exact dated guards are supplied. This receipt-read proof does not establish delivery, physical-device behavior or full M8 acceptance.

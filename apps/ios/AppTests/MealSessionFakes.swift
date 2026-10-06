@@ -93,29 +93,10 @@ actor FakeMealServer {
             return answer(request, body: "{\"error\":{\"code\":\"forbidden\"}}", status: 403)
         }
         if request.url?.path == "/v1/session" {
-            if actor == actorA && pauseMembershipRead {
-                pauseMembershipRead = false
-                await suspendActorA()
-            }
-            let body =
-                "{\"version\":1,\"member\":{\"userId\":\"\(actor)\",\"householdId\":\"\(household)\",\"displayName\":\"Test\"}}"
-            return answer(request, body: body)
+            return await sessionResponse(request, actor: actor)
         }
-        let capturedRecipe = request.url?.path == "/v1/meals/recipe" ? recipe(for: actor) : nil
-        if actor == actorA && pauseA && (pausedPath == nil || request.url?.path == pausedPath) {
-            await suspendActorA()
-        }
-        if request.url?.path == "/v1/meals/library" {
-            return answer(request, body: try library(for: actor, request: request))
-        }
-        if let capturedRecipe {
-            return answer(request, body: capturedRecipe)
-        }
-        if weekFailure == .forbidden {
-            return answer(request, body: "{\"error\":{\"code\":\"forbidden\"}}", status: 403)
-        }
-        if let weekFailure { throw weekFailure }
-        return answer(request, body: week(for: actor))
+        return try await readResponse(request, actor: actor)
+
     }
 
     private func suspendActorA() async {
@@ -271,4 +252,37 @@ actor FakeMealServer {
             url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!
         return (Data(body.utf8), response)
     }
+
+    private func sessionResponse(_ request: URLRequest, actor: UUID) async -> (Data, URLResponse) {
+        if actor == actorA && pauseMembershipRead {
+            pauseMembershipRead = false
+            await suspendActorA()
+        }
+        let body =
+            "{\"version\":1,\"member\":{\"userId\":\"\(actor)\",\"householdId\":\"\(household)\",\"displayName\":\"Test\"}}"
+        return answer(request, body: body)
+    }
+
+    private func readResponse(_ request: URLRequest, actor: UUID) async throws -> (Data, URLResponse) {
+        let capturedRecipe = request.url?.path == "/v1/meals/recipe" ? recipe(for: actor) : nil
+        await pauseRequest(request, actor: actor)
+        if request.url?.path == "/v1/meals/library" {
+            return answer(request, body: try library(for: actor, request: request))
+        }
+        if let capturedRecipe {
+            return answer(request, body: capturedRecipe)
+        }
+        if weekFailure == .forbidden {
+            return answer(request, body: "{\"error\":{\"code\":\"forbidden\"}}", status: 403)
+        }
+        if let weekFailure { throw weekFailure }
+        return answer(request, body: week(for: actor))
+    }
+
+    private func pauseRequest(_ request: URLRequest, actor: UUID) async {
+        if actor == actorA && pauseA && (pausedPath == nil || request.url?.path == pausedPath) {
+            await suspendActorA()
+        }
+    }
+
 }

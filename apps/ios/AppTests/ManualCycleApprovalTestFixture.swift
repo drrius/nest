@@ -118,13 +118,7 @@ actor ManualCycleApprovalTestServer {
         let data: Data
         switch request.url!.path {
         case "/v1/money/recurring/manual/approval":
-            approvalReads += 1
-            if approvalReads == 2 && failFencedRead {
-                failFencedRead = false
-                throw URLError(.networkConnectionLost)
-            }
-            if approvalReads == 2 && consumeDuringFence { try record(decision) }
-            data = try JSONEncoder().encode(envelope())
+            data = try approvalData(request)
         case "/v1/money/recurring/manual/approval/context":
             let target = try await api.recurringRule(token: "token-A", member: member, ruleId: decision.input.ruleId)
             let detail = try await api.detail(token: "token-A", member: member, eventId: decision.input.sourceEventId)
@@ -141,20 +135,24 @@ actor ManualCycleApprovalTestServer {
                     approvalId: decision.approvalId, operationId: decision.operationId, command: .linkCycle,
                     expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z"))
         case "/v1/money/recurring/manual/approval/decide":
-            guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
-            let input = try JSONDecoder().decode(ManualCycleDecision.self, from: XCTUnwrap(request.httpBody))
-            guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
-                input.input == decision.input
-            else { throw NestAPIFailure.contract }
-            writes += 1
-            try record(input)
-            if loseReply {
-                loseReply = false
-                throw URLError(.networkConnectionLost)
-            }
-            data = try JSONEncoder().encode(envelope())
+            data = try decisionData(request)
         default: return try await base.respond(request)
         }
+        await pauseRead(request)
+        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func approvalData(_ request: URLRequest) throws -> Data {
+        approvalReads += 1
+        if approvalReads == 2 && failFencedRead {
+            failFencedRead = false
+            throw URLError(.networkConnectionLost)
+        }
+        if approvalReads == 2 && consumeDuringFence { try record(decision) }
+        return try JSONEncoder().encode(envelope())
+    }
+
+    private func pauseRead(_ request: URLRequest) async {
         if pause && request.httpMethod == "GET" {
             pause = false
             waiting = true
@@ -162,7 +160,21 @@ actor ManualCycleApprovalTestServer {
             began = nil
             await withCheckedContinuation { resume = $0 }
         }
-        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func decisionData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
+        let input = try JSONDecoder().decode(ManualCycleDecision.self, from: XCTUnwrap(request.httpBody))
+        guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
+            input.input == decision.input
+        else { throw NestAPIFailure.contract }
+        writes += 1
+        try record(input)
+        if loseReply {
+            loseReply = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(envelope())
     }
 
     private func record(_ input: ManualCycleDecision) throws {

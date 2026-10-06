@@ -211,7 +211,7 @@ outsider, wrong-household and anonymous reads fail without receipt identifiers.
 GETs create no operation rows. [Evidence](../evidence/2026-10-06/grocery-reminder-http-isolation/README.md).
 Two real native SDK checks also pass with zero failures: Alex recovers both original
 receipts; Sam receives unresolved results with no receipt. Both canonical reads and
-64 empty journals remain exact. [Native evidence](../evidence/2026-10-06/swiftui-grocery-reminder-receipt-isolation/README.md). New CI is pending; no delivery or phone claim.
+64 empty journals remain exact. [Native evidence](../evidence/2026-10-06/swiftui-grocery-reminder-receipt-isolation/README.md). Source `a5ce9ec7` passes both workflows: 502 Foundation/41 skips, 457 signed-app/25 skips, four Swift Testing cases, zero failures. No delivery or phone claim.
 
 ## Earlier native settlement verification
 
@@ -377,23 +377,17 @@ The original full audit has20 unsuppressed reports; focused reading passes do no
 
 Earlier failed Calendar contrast experiments remain in [6 October history](progress-history-2026-10-06.md#focused-calendar-contrast-diagnostics).
 
-## Native posted PDF expense
+## Earlier money, auth and draft checkpoints
 
-One CHF0.02 synthetic expense has a claimed640-byte PDF; original61 hashes stay exact. The Money fix passes normal/light and maximum/dark history/detail; native bytes and Apple's browser rendering/dismissal pass. Source2def44b6 passes both required CI workflows (496 Foundation/41 skips,419 signed-native/12 skips, zero failures).
-Eight normal sign-out/SDK login/partner Profile/PDF read/sign-out/original-member restoration methods pass with zero failures/skips and787 matching inputs. Both identities download exact bytes;64 journals and six hosted fingerprints stay exact. The earlier replacement beneath an active host reopened A: its precise cause remains unproven. Source8b5d6787 passes Nest37328777598/SwiftUI37328777652; full accessibility/live AI/phones stay open. [Evidence](../evidence/2026-10-05/swiftui-posted-pdf/README.md).
+Posted PDF, allocation consistency, credential refresh, chore drafts and recipe
+preflight evidence is preserved in [dated history](progress-history-2026-10-06.md).
+These bounded checks do not close full phone, accessibility or M1–M9 acceptance.
 
-## Financial allocation consistency
+## Swift test source-limit gap
 
-The allocation guard passes eight DB tests,792 arithmetic cases,six concurrent retries and310-migration rehearsal. Nest-test20261005140239 retains52 consistent allocation-bearing events among62 total; bodies/private privileges/three deferred triggers/six fingerprints match. Sourcefea47c1a CI passes; native acceptance stays open. [Evidence](../evidence/2026-10-05/financial-allocation-consistency/README.md).
-
-## Earlier credential refresh verification
-
-The reproduced credential races and real provider refresh are preserved in [dated history](progress-history-2026-10-06.md#native-credential-refresh-ordering). Natural expiry and phone acceptance remain open.
-
-## Native unsent chore drafts
-
-New-chore Back now protects edited unsent drafts with a native Discard draft?/Keep editing alert; untouched forms retain normal navigation and durable-request recovery remains separate. The real before-fix loss is retained. Six preceding alert cases pass; after a copy-only reduction, two final normal/light and maximum/dark edited-draft cases pass with visible alert/heading/button bounds,44pt targets and intact input. Both final images show the complete choices; earlier functional passes with clipped rendering remain failed visual evidence. All799 compiled inputs match, both clients return to Today/large/light/64 empty journals, and ten hosted fingerprints stay exact. Strict Swift format/limits pass. Exact fa5c29a4 passes Nest37354314093/SwiftUI37354314167:496 Foundation/41 skips,425 signed-native/16 skips, zero failures; CI compiles the guarded UI target while manual journeys remain separate. [Evidence](../evidence/2026-10-05/swiftui-chore-draft-navigation/README.md). Full20-report accessibility, other forms, VoiceOver and phones stay open; no model call, beta, production operation, purchase or merge.
-
-## Fresh recipe write checks
-
-New recipe, edit and archive now require a fresh authorized library revision before staging; edit/archive also compare the exact displayed recipe. New-recipe refresh preserves typed input after refusal, and its discard uses the short native alert. Thirteen new native model cases cover unavailable/stale reads, exact content changes, account switches during reads and fresh-context recovery; nine existing lost-reply/account/conflict cases remain. Edit Refresh preserves typed changes when the recipe itself is unchanged and refuses automatic rebasing over a changed recipe. Source limits/diff checks pass; initial29ee1515 Swift format/Foundation and routine CI pass; its native step was cancelled by the source update, so it proves no native pass/failure. Exact8e711d65 passes Nest37357189945/SwiftUI37357190102; recipe-toolbar source606f77b5 also passes Nest37361685211/SwiftUI37361685407:496 Foundation/41 skips,438 signed-app/16 skips, zero failures, format/limits/signing and UI compilation. The Mac is reachable. Actual library navigation passes; edited-draft checks expose36pt toolbar controls, then floating-point and offscreen-field observer failures. The shipping toolbar is now44pt. Corrected normal/max preservation/discard checks pass (six typed fields/default servings, visible complete alerts, Today,64 empty journals and restored settings); all four earlier target/observer failures remain recorded. Rendered refusal/refresh remains unverified; the later recipe/placement/move/ingredient evidence above verifies the bounded manual week. The original read-only [manual-week baseline](../evidence/2026-10-05/swiftui-native-manual-week/README.md) reserved an empty19 October week before owned creation and retained original row hashes/identities. No hosted write, model call, beta, purchase, production or merge occurred at that preflight checkpoint. [Verification scope](../evidence/2026-10-05/swiftui-recipe-write-preflight/README.md).
+A focused regression reproduces the test-directory function-limit exemption:
+one case passes, two fail. The exemption is removed and 15 over-complex fixture
+functions are split without changing guards or assertions. All Swift limits and
+three regression cases pass; all 14 tooling cases pass with zero failures.
+[Evidence](../evidence/2026-10-06/swift-test-source-limits/README.md). Native compilation
+and affected behavior checks remain pending; scanner results do not prove them.

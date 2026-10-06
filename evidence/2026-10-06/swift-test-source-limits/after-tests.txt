@@ -1,0 +1,11 @@
+✔ Swift shipping and test files enforce the 400-line limit (87.970078ms)
+✔ Swift shipping and test functions enforce the 80-code-line limit (32.289985ms)
+✔ Swift shipping and test functions enforce complexity 10 (28.481474ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 182.623289

@@ -77,40 +77,16 @@ actor FakeGroceryServer {
         let token = request.value(forHTTPHeaderField: "Authorization") ?? ""
         let actor = token == "Bearer token-A" ? actorA : actorB
         if request.url?.path == "/v1/session" {
-            if membershipDenied {
-                return answer(request, data: Data("{\"error\":{\"code\":\"not_a_member\"}}".utf8), status: 403)
-            }
-            let name = actor == actorA ? "Alex" : "Sam"
-            let body = """
-                {"version":1,"member":{"userId":"\(actor)","householdId":"\(household)","displayName":"\(name)"}}
-                """
-            return answer(request, data: Data(body.utf8))
+            return sessionResponse(request, actor: actor)
         }
         if request.url?.path == "/v1/groceries/check" { return try check(request, actor: actor) }
         if request.url?.path == "/v1/groceries/add" { return try add(request) }
         if request.url?.path == "/v1/groceries/edit" { return try edit(request) }
         if request.url?.path == "/v1/groceries/remove" { return try remove(request) }
-        if request.url?.path == "/v1/groceries", added != nil, failNextAddedList {
-            failNextAddedList = false
-            throw URLError(.networkConnectionLost)
-        }
-        if request.url?.path == "/v1/groceries", edited != nil, failNextEditedList {
-            failNextEditedList = false
-            throw URLError(.networkConnectionLost)
-        }
-        if actor == actorA && pauseA {
-            aWaiting = true
-            aStarted?.resume()
-            aStarted = nil
-            await withCheckedContinuation { aResume = $0 }
-        }
-        let body: String
-        if request.url?.path == "/v1/groceries/categories" {
-            body = categories(for: actor)
-        } else {
-            body = try list(for: actor)
-        }
-        return answer(request, data: Data(body.utf8))
+        try checkListFailure(request)
+        await pauseResponse(actor: actor)
+        return try readResponse(request, actor: actor)
+
     }
 
     private func add(_ request: URLRequest) throws -> (Data, URLResponse) {
@@ -221,4 +197,46 @@ actor FakeGroceryServer {
         let response = HTTPURLResponse(url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!
         return (data, response)
     }
+
+    private func sessionResponse(_ request: URLRequest, actor: UUID) -> (Data, URLResponse) {
+        if membershipDenied {
+            return answer(request, data: Data("{\"error\":{\"code\":\"not_a_member\"}}".utf8), status: 403)
+        }
+        let name = actor == actorA ? "Alex" : "Sam"
+        let body = """
+            {"version":1,"member":{"userId":"\(actor)","householdId":"\(household)","displayName":"\(name)"}}
+            """
+        return answer(request, data: Data(body.utf8))
+    }
+
+    private func checkListFailure(_ request: URLRequest) throws {
+        if request.url?.path == "/v1/groceries", added != nil, failNextAddedList {
+            failNextAddedList = false
+            throw URLError(.networkConnectionLost)
+        }
+        if request.url?.path == "/v1/groceries", edited != nil, failNextEditedList {
+            failNextEditedList = false
+            throw URLError(.networkConnectionLost)
+        }
+    }
+
+    private func pauseResponse(actor: UUID) async {
+        if actor == actorA && pauseA {
+            aWaiting = true
+            aStarted?.resume()
+            aStarted = nil
+            await withCheckedContinuation { aResume = $0 }
+        }
+    }
+
+    private func readResponse(_ request: URLRequest, actor: UUID) throws -> (Data, URLResponse) {
+        let body: String
+        if request.url?.path == "/v1/groceries/categories" {
+            body = categories(for: actor)
+        } else {
+            body = try list(for: actor)
+        }
+        return answer(request, data: Data(body.utf8))
+    }
+
 }

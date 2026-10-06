@@ -1,0 +1,107 @@
+[
+  {
+    "path": "apps/ios/Tests/Core/HostedMoneyReadTests.swift",
+    "fileLines": 61,
+    "maxFunctionCodeLines": 28,
+    "maxComplexity": 9,
+    "sha256": "31b103c12843d079307a60884e785bd578a9426173db0d7bbaca3f1c1b9e1d4d"
+  },
+  {
+    "path": "apps/ios/Tests/Core/HostedReceiptTests.swift",
+    "fileLines": 73,
+    "maxFunctionCodeLines": 44,
+    "maxComplexity": 9,
+    "sha256": "57c2ddfb7259fb1ffefcd02591e87e5daf0bb9b0a25d12c4db8a013b692a9fcf"
+  },
+  {
+    "path": "apps/ios/Tests/Core/VariableCycleApprovalTests.swift",
+    "fileLines": 257,
+    "maxFunctionCodeLines": 69,
+    "maxComplexity": 8,
+    "sha256": "da3976cfef532b214ad6c78ac54a2f89a71a5a4aac59a027456b30a7ac168e98"
+  },
+  {
+    "path": "apps/ios/AppTests/SessionModelFakes.swift",
+    "fileLines": 240,
+    "maxFunctionCodeLines": 17,
+    "maxComplexity": 8,
+    "sha256": "370cf4e681e8bfad98afb3eaa71329cae9d3789f82d09c9b4239d7f35f5fac4f"
+  },
+  {
+    "path": "apps/ios/AppTests/GrocerySessionFakes.swift",
+    "fileLines": 242,
+    "maxFunctionCodeLines": 23,
+    "maxComplexity": 8,
+    "sha256": "4a89a57f290a09836b6fe1d3e2b8564e274bb49c40494946a15f21d68770cc03"
+  },
+  {
+    "path": "apps/ios/AppTests/MealSessionFakes.swift",
+    "fileLines": 288,
+    "maxFunctionCodeLines": 22,
+    "maxComplexity": 9,
+    "sha256": "b95919dbe1b31f17e1395f3cc11534f62d8851e49d880efbacf5398e276545d3"
+  },
+  {
+    "path": "apps/ios/AppTests/RecurringStateApprovalTestFixture.swift",
+    "fileLines": 186,
+    "maxFunctionCodeLines": 27,
+    "maxComplexity": 9,
+    "sha256": "7bf302a84befc9fd4f41b1b83af3351e334425e2a94143734300b0b370120eba"
+  },
+  {
+    "path": "apps/ios/AppTests/RecurringResumeApprovalTestFixture.swift",
+    "fileLines": 198,
+    "maxFunctionCodeLines": 29,
+    "maxComplexity": 9,
+    "sha256": "ab9f5bc9e0cdf5450d665a3369538b77e07d0debb44868516e397b054273f6aa"
+  },
+  {
+    "path": "apps/ios/AppTests/VariableCycleApprovalTestFixture.swift",
+    "fileLines": 235,
+    "maxFunctionCodeLines": 28,
+    "maxComplexity": 9,
+    "sha256": "bd1134a7ec034a243727004757fc08aa358330e0f7f438de747259ee3d469188"
+  },
+  {
+    "path": "apps/ios/AppTests/ManualCycleTestFixture.swift",
+    "fileLines": 251,
+    "maxFunctionCodeLines": 37,
+    "maxComplexity": 10,
+    "sha256": "066a9b4b1d8730f41b23d29a8c3ab1bfe6707220f7a57ff4cb2e44ac9c491a1d"
+  },
+  {
+    "path": "apps/ios/AppTests/ManualCycleApprovalTestFixture.swift",
+    "fileLines": 200,
+    "maxFunctionCodeLines": 30,
+    "maxComplexity": 8,
+    "sha256": "2d782c74829c562d31c8d13eba04862e02fa24dcc88b0465cf3cb7de77d3e5b7"
+  },
+  {
+    "path": "apps/ios/AppTests/LegacyRecurringTestFixture.swift",
+    "fileLines": 150,
+    "maxFunctionCodeLines": 22,
+    "maxComplexity": 8,
+    "sha256": "3d92c770b044500d39a942b4f8b389bd534c91b2824cb2bc1bc311eb2ad782fb"
+  },
+  {
+    "path": "apps/ios/AppTests/LegacyDismissalTestFixture.swift",
+    "fileLines": 217,
+    "maxFunctionCodeLines": 27,
+    "maxComplexity": 9,
+    "sha256": "b5d8281a6501e439ff17234277170b8351f60b2757676eab61d170909b053d07"
+  },
+  {
+    "path": "apps/ios/AppTests/LegacyConfirmationTestFixture.swift",
+    "fileLines": 250,
+    "maxFunctionCodeLines": 29,
+    "maxComplexity": 10,
+    "sha256": "3432bb52f0a863540fafa11dfb2022a3512142170ec981173b5d2fddc622b840"
+  },
+  {
+    "path": "apps/ios/AppTests/LegacyAdoptionTestServer.swift",
+    "fileLines": 204,
+    "maxFunctionCodeLines": 28,
+    "maxComplexity": 10,
+    "sha256": "8e8b376d19f9cce04c8f6cb7b6f0bc00605dfc686c33b11da816037f52588da4"
+  }
+]

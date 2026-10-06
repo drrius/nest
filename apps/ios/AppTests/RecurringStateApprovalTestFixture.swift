@@ -122,28 +122,26 @@ actor RecurringStateApprovalTestServer {
                 version: 1, householdId: member.householdId, today: try CivilDate("2026-10-01"), rule: rule)
             data = try JSONEncoder().encode(detail)
         case "/v1/money/approval-expiry":
-            guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
-            if consumeDuringExpiry { record(decision) }
-            let expiry = FinancialApprovalExpiry(
-                version: 1, actorId: member.userId, householdId: member.householdId,
-                approvalId: decision.approvalId, operationId: decision.operationId, command: decision.change.command,
-                expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z")
-            data = try JSONEncoder().encode(expiry)
+            data = try expiryData(request)
         case "/v1/money/recurring/state/approval/decide":
-            guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
-            let input = try JSONDecoder().decode(RecurringStateDecision.self, from: XCTUnwrap(request.httpBody))
-            guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
-                input.change == decision.change
-            else { throw NestAPIFailure.contract }
-            writes += 1
-            record(input)
-            if loseReply {
-                loseReply = false
-                throw URLError(.networkConnectionLost)
-            }
-            data = try JSONEncoder().encode(envelope())
+            data = try decisionData(request)
         default: throw NestAPIFailure.contract
         }
+        await pauseRead(request)
+        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func expiryData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "GET" else { throw NestAPIFailure.contract }
+        if consumeDuringExpiry { record(decision) }
+        let expiry = FinancialApprovalExpiry(
+            version: 1, actorId: member.userId, householdId: member.householdId,
+            approvalId: decision.approvalId, operationId: decision.operationId, command: decision.change.command,
+            expiredUnused: expired && status == .pending, checkedAt: "2099-01-01T00:00:00.000000Z")
+        return try JSONEncoder().encode(expiry)
+    }
+
+    private func pauseRead(_ request: URLRequest) async {
         if pause && request.httpMethod == "GET" {
             pause = false
             waiting = true
@@ -151,7 +149,21 @@ actor RecurringStateApprovalTestServer {
             began = nil
             await withCheckedContinuation { resume = $0 }
         }
-        return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func decisionData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
+        let input = try JSONDecoder().decode(RecurringStateDecision.self, from: XCTUnwrap(request.httpBody))
+        guard input.operationId == decision.operationId, input.approvalId == decision.approvalId,
+            input.change == decision.change
+        else { throw NestAPIFailure.contract }
+        writes += 1
+        record(input)
+        if loseReply {
+            loseReply = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(envelope())
     }
 
     private func record(_ input: RecurringStateDecision) {

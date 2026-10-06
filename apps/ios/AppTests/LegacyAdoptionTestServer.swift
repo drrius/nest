@@ -43,29 +43,16 @@ actor LegacyAdoptionTestServer {
 
     func respond(_ request: URLRequest) async throws -> (Data, URLResponse) {
         guard fault != "offline" else { throw URLError(.notConnectedToInternet) }
-        let owner: VerifiedMember
-        switch request.value(forHTTPHeaderField: "Authorization") {
-        case "Bearer token-A": owner = member
-        case "Bearer token-B": owner = partner
-        default: throw NestAPIFailure.forbidden
-        }
-        guard request.value(forHTTPHeaderField: "x-nest-household") == owner.householdId.uuidString.lowercased()
-        else { throw NestAPIFailure.forbidden }
+        let owner = try requestOwner(request)
         let url = try XCTUnwrap(request.url)
         let data: Data
         switch url.lastPathComponent {
         case "rules":
-            data = try JSONEncoder().encode(
-                RecurringList(
-                    version: 1, householdId: owner.householdId,
-                    today: CivilDate(fault == "day" ? "2026-10-04" : "2026-10-03"), after: nil, next: nil, rules: []))
+            data = try rulesData(request, owner: owner)
         case "balance":
             data = try JSONEncoder().encode(balance(owner: owner))
         case "context":
-            guard request.httpMethod == "GET", query(request, key: "ruleId") == ruleId else {
-                throw NestAPIFailure.contract
-            }
-            data = try JSONEncoder().encode(current())
+            data = try contextData(request)
         case "receipt":
             guard request.httpMethod == "GET", let operation = query(request, key: "operationId") else {
                 throw NestAPIFailure.contract
@@ -76,20 +63,33 @@ actor LegacyAdoptionTestServer {
             let command = try JSONDecoder().decode(SaveLegacyAdoption.self, from: XCTUnwrap(request.httpBody))
             data = try save(command, owner: owner)
         case "cancel-save":
-            guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
-            let body = try JSONSerialization.jsonObject(with: XCTUnwrap(request.httpBody)) as? [String: String]
-            guard body?.count == 1, let operation = body?["operationId"].flatMap(UUID.init(uuidString:)) else {
-                throw NestAPIFailure.contract
-            }
-            cancellationWrites += 1
-            if receipts[operation] == nil { cancellations[operation] = owner.userId }
-            if lostCancellation {
-                lostCancellation = false
-                throw URLError(.networkConnectionLost)
-            }
-            data = try JSONEncoder().encode(recovery(operation, owner: owner))
+            data = try cancelData(request, owner: owner)
         default: throw NestAPIFailure.contract
         }
+        await pauseRead(request)
+        return (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func rulesData(_ request: URLRequest, owner: VerifiedMember) throws -> Data {
+        return try JSONEncoder().encode(
+            RecurringList(
+                version: 1, householdId: owner.householdId,
+                today: CivilDate(fault == "day" ? "2026-10-04" : "2026-10-03"), after: nil, next: nil, rules: []))
+    }
+
+    private func requestOwner(_ request: URLRequest) throws -> VerifiedMember {
+        let owner: VerifiedMember
+        switch request.value(forHTTPHeaderField: "Authorization") {
+        case "Bearer token-A": owner = member
+        case "Bearer token-B": owner = partner
+        default: throw NestAPIFailure.forbidden
+        }
+        guard request.value(forHTTPHeaderField: "x-nest-household") == owner.householdId.uuidString.lowercased()
+        else { throw NestAPIFailure.forbidden }
+        return owner
+    }
+
+    private func pauseRead(_ request: URLRequest) async {
         if pause && request.httpMethod == "GET" {
             pause = false
             waiting = true
@@ -97,7 +97,21 @@ actor LegacyAdoptionTestServer {
             began = nil
             await withCheckedContinuation { resume = $0 }
         }
-        return (data, HTTPURLResponse(url: url, statusCode: 200, httpVersion: nil, headerFields: nil)!)
+    }
+
+    private func cancelData(_ request: URLRequest, owner: VerifiedMember) throws -> Data {
+        guard request.httpMethod == "POST" else { throw NestAPIFailure.contract }
+        let body = try JSONSerialization.jsonObject(with: XCTUnwrap(request.httpBody)) as? [String: String]
+        guard body?.count == 1, let operation = body?["operationId"].flatMap(UUID.init(uuidString:)) else {
+            throw NestAPIFailure.contract
+        }
+        cancellationWrites += 1
+        if receipts[operation] == nil { cancellations[operation] = owner.userId }
+        if lostCancellation {
+            lostCancellation = false
+            throw URLError(.networkConnectionLost)
+        }
+        return try JSONEncoder().encode(recovery(operation, owner: owner))
     }
 
     private func save(_ command: SaveLegacyAdoption, owner: VerifiedMember) throws -> Data {
@@ -179,4 +193,12 @@ actor LegacyAdoptionTestServer {
         URLComponents(url: request.url!, resolvingAgainstBaseURL: false)?.queryItems?
             .first(where: { $0.name == key })?.value.flatMap(UUID.init(uuidString:))
     }
+
+    private func contextData(_ request: URLRequest) throws -> Data {
+        guard request.httpMethod == "GET", query(request, key: "ruleId") == ruleId else {
+            throw NestAPIFailure.contract
+        }
+        return try JSONEncoder().encode(current())
+    }
+
 }
