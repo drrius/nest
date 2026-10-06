@@ -286,6 +286,12 @@ food/cooking profiles and all receipts remain exact, and restoration passes.
 The shipping portion selector now uses a native navigation-link picker, retaining
 the same eight allowed values and validation. The 44-point requirement is kept.
 Configured formatting/source limits pass; fresh native execution is pending.
+At `6052e1ea`, Alex's normal native run verifies the 1.5 choice, Keep editing,
+explicit Discard and reopening portion 1. It fails only at the final exit because
+an unchanged form uses the native Profile BackButton rather than the draft Back
+label. The final observer now selects/measures that native back control. Fresh
+hosted profiles/cooking/receipts remain exact and restoration passes. The failed
+method is retained and not counted as a full pass; corrected execution is pending.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
