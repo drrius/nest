@@ -1,0 +1,98 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1AFA81F5-6C4B-4E33-9F6F-06ADC947E56B.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_906CD55E-4241-4CB2-A919-D086A52D992C.nest",
+        "timestamp": 1791324427.203
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DFE6E2A0-5754-4C95-8D82-0AF41D1EE553",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 12.07.07 AM",
+        "timestamp": 1791324427.203
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E70E3E33-4A38-4199-AFBF-0FB80259AE92.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_DD192C48-BCF9-4983-A966-0C3CCE24C5FD.json",
+        "timestamp": 1791324424.577
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F263A233-CB95-4B91-B1C3-28B2C961B73D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_76C2D1B8-ACF0-4F04-80FF-D4A9F61156CA.json",
+        "timestamp": 1791324421.669
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8BAA6E7C-AFFA-4F2F-B96D-0E8DFC73B84D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_447B19AF-AD2E-4202-9823-0CCF90185D7E.json",
+        "timestamp": 1791324421.248
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4AA672A5-B360-449D-A828-92879EAC44D8",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 12.06.57 AM",
+        "timestamp": 1791324417.332
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1FAD488E-45F2-4662-B50F-C794AFBFE89E",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 12.06.57 AM",
+        "timestamp": 1791324417.622
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4C8D4598-32C4-43D4-99D9-34A9B05AADAA.mp4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Screen Recording 2026-10-07 at 12.06.49 AM.mp4",
+        "timestamp": 1791324409.882
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6CE9F76F-49A3-41D3-8864-05A0309B23A6.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_E1251E9B-99B0-4245-8276-7DE156848918.nest",
+        "timestamp": 1791324427.268
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2418B47F-402B-4CD1-96ED-A581EB72DB23",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 12.07.07 AM",
+        "timestamp": 1791324427.268
+      }
+    ],
+    "testIdentifier": "NativeFixedCalendarReadingTests/testLargestPermissionTextHasContinuousCoverageAndVisibleAccessTarget()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeFixedCalendarReadingTests/testLargestPermissionTextHasContinuousCoverageAndVisibleAccessTarget"
+  }
+]

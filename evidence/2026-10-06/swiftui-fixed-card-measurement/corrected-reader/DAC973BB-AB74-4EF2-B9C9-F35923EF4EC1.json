@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 187.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 335,
+    "maxY": 439.5,
+    "midX": 187.5,
+    "midY": 345.75,
+    "minX": 40,
+    "minY": 252,
+    "usable": true,
+    "width": 295
+  },
+  "hittable": true,
+  "label": "Allow calendar access",
+  "observedViewport": {
+    "height": 584,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 292,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  }
+}

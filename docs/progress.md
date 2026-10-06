@@ -235,7 +235,12 @@ the corrected invocation passes in 58.831 seconds, but its root viewport starts
 at y0 and includes the status bar. It supplies no overlap record, so continuous
 reading is not verified. The owned 375×667 fixture now excludes the top 40 points
 (the captured status region ends at y20) and captures both paragraphs explicitly.
-One stricter reading is pending. No permission is granted or font shrunk.
+The stricter source-pinned reading passes in 69.325 seconds: 504.5 points of
+overlap cover the entire 559.5-point paragraph; the other paragraph and
+295×187.5-point access button are fully visible. Eight measured pans avoid
+actions and scroll bars. All seven images are directly reviewed. Both original
+scopes, 64 empty journals, settings and local semantics restore. No permission
+is granted or font shrunk. [Native evidence](../evidence/2026-10-06/swiftui-fixed-card-measurement/README.md).
 
 Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
 Oxfmt corrects them with every value unchanged against Git. Corrected evidence

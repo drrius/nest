@@ -1,0 +1,11 @@
+{
+  "source": "ef30a9c6b85cc25bc25f6f9a3a75bdb0bb10c33e",
+  "readingInvocationAttempted": true,
+  "summaryRecorded": true,
+  "restorationPassed": true,
+  "domainCommands": 0,
+  "liveModelInvoked": false,
+  "permissionGranted": false,
+  "auditReplayed": false,
+  "wireAuthRequestsMeasured": false
+}

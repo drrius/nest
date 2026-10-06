@@ -1,0 +1,12 @@
+{
+  "source": "79de03f90874705321b5fd789aaf2541718560d1",
+  "suiteInvocationAttempted": true,
+  "summaryRecorded": true,
+  "restorationPassed": true,
+  "largestReadingAttempted": true,
+  "largestReadingSummaryRecorded": true,
+  "domainCommands": 0,
+  "liveModelInvoked": false,
+  "findingsSuppressed": 0,
+  "wireAuthRequestsMeasured": false
+}

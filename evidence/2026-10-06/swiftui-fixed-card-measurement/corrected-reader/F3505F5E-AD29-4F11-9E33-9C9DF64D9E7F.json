@@ -1,0 +1,77 @@
+{
+  "actionRegions": [
+    {
+      "height": 249.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 335,
+      "maxY": 42.5,
+      "midX": 187.5,
+      "midY": -82.25,
+      "minX": 40,
+      "minY": -207,
+      "usable": true,
+      "width": 295
+    }
+  ],
+  "attempt": 3,
+  "end": [24, 189.25],
+  "navigation": "absent",
+  "scrollBars": [
+    {
+      "height": 564,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 302,
+      "minX": 342,
+      "minY": 20,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 412],
+  "target": "Nest reads the calendars you choose. It does not create, change or delete events.",
+  "targetElementType": "XCUIElementType(rawValue: 48)",
+  "targetFrame": {
+    "height": 559.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 318.5,
+    "maxY": 794.5,
+    "midX": 179.25,
+    "midY": 514.75,
+    "minX": 40,
+    "minY": 235,
+    "usable": true,
+    "width": 278.5
+  },
+  "viewport": {
+    "height": 584,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 292,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 1,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "NestAccessibility \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791323728.401,
+  "passedTests": 1,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791323693.691,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "Contrast failed",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "RootAccessibilityTests/testCalendarAccessibility()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootAccessibilityTests/testCalendarAccessibility",
+      "testName": "testCalendarAccessibility()"
+    }
+  ],
+  "title": "Test - NestAccessibility",
+  "topInsights": [
+    {
+      "category": "Common Failures",
+      "impact": "100% of failures",
+      "text": "2 runs of 1 test failed with Contrast failed"
+    }
+  ],
+  "totalTestCount": 2
+}

@@ -1,0 +1,56 @@
+{
+  "cardOnly": {
+    "source": "ffc76186f43f89f7c31ef4cbffe749854a9479c9",
+    "fullAuditMethods": 5,
+    "passed": 0,
+    "failed": 5,
+    "contrastReports": 11,
+    "fontReports": 2,
+    "imagesReviewed": 7,
+    "controllerRestorationFailed": true,
+    "independentRestorationPassed": true
+  },
+  "combined": {
+    "source": "79de03f90874705321b5fd789aaf2541718560d1",
+    "auditMethods": 2,
+    "passed": 1,
+    "failed": 1,
+    "contrastReports": 2,
+    "fontReports": 0,
+    "imagesReviewed": 5,
+    "restorationPassed": true,
+    "oldLargestObserverFailed": true
+  },
+  "correctedReaderPending": false,
+  "fullAccessibilityAccepted": false,
+  "deviceVerified": false,
+  "reportsSuppressed": 0,
+  "correctedReader": {
+    "source": "ef30a9c6b85cc25bc25f6f9a3a75bdb0bb10c33e",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 58.831,
+    "viewportIncludesStatusArea": true,
+    "continuousCoverageRecords": 0,
+    "imagesReviewed": 3,
+    "restorationPassed": true
+  },
+  "boundedReaderPending": false,
+  "boundedReader": {
+    "sourceInputsVerified": 1130,
+    "nativePassed": 1,
+    "nativeFailed": 0,
+    "nativeSkipped": 0,
+    "seconds": 69.325,
+    "continuousCoverageOverlap": 504.5,
+    "paragraphHeight": 559.5,
+    "viewport": [0, 40, 375, 544],
+    "accessButton": [40, 272.5, 295, 187.5],
+    "safeFinitePans": 8,
+    "directlyReviewedPNGs": 7,
+    "originalScopesSettingsLocalSemanticsRestored": true,
+    "permissionGranted": false,
+    "fontShrunk": false
+  }
+}

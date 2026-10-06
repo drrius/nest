@@ -1,0 +1,132 @@
+[
+  {
+    "case": "RootAccessibilityTests/testCalendarAccessibility()",
+    "artifact": "BF3BD301-B4DD-407D-BE6A-7E24908FA538.json",
+    "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+    "frame": [20, 549.5, 182, 18],
+    "label": "Your partner\u2019s availability",
+    "summary": "Dynamic Type font sizes are partially unsupported",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  },
+  {
+    "case": "RootAccessibilityTests/testCalendarAccessibility()",
+    "artifact": "36D75AA4-F531-46F5-BB86-646E3F2B1D62.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testCalendarAccessibility()",
+    "artifact": "6DC35AF4-4B0C-400E-9D23-9D73E0DCC4B9.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [20, 549.5, 182, 18],
+    "label": "Your partner\u2019s availability",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  },
+  {
+    "case": "RootAccessibilityTests/testCalendarDynamicTypeAndControls()",
+    "artifact": "67701090-977D-4748-9A64-AFAA30242AFC.json",
+    "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+    "frame": [20, 549.5, 182, 18],
+    "label": "Your partner\u2019s availability",
+    "summary": "Dynamic Type font sizes are partially unsupported",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  },
+  {
+    "case": "RootAccessibilityTests/testMealsAccessibility()",
+    "artifact": "61C6C1E6-C51A-4206-AAA3-B877D2CC5815.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testMealsAccessibility()",
+    "artifact": "D4037682-8C30-4CF9-A9A3-D8EA0617660B.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testMealsAccessibility()",
+    "artifact": "B6B9DD13-CCC7-4EE8-A26A-FC9F73FF2683.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [20, 552, 143, 24],
+    "label": "Tuesday \u00b7 6 Oct",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  },
+  {
+    "case": "RootAccessibilityTests/testMoneyAccessibility()",
+    "artifact": "AEBC2B1A-98BF-472A-AE36-8E9139C3D318.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testMoneyAccessibility()",
+    "artifact": "91DC8F36-2502-4186-9FE2-2B0D980D48EA.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testMoneyAccessibility()",
+    "artifact": "D697EFB8-4DED-4F8B-8654-66C9023EB8B0.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testMoneyAccessibility()",
+    "artifact": "3644C7FC-6EA6-47A7-A987-D8F628E56C59.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil"
+  },
+  {
+    "case": "RootAccessibilityTests/testTodayAccessibility()",
+    "artifact": "E3D7B6B0-1E80-4D85-A2B9-4B831CC37111.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [38, 663, 136, 20.5],
+    "label": "On your calendar",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  },
+  {
+    "case": "RootAccessibilityTests/testTodayAccessibility()",
+    "artifact": "53BA4DFD-C06A-4418-90D5-76307394298A.json",
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [38, 559, 299, 44],
+    "label": "Open meal plan",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  }
+]

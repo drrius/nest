@@ -1,0 +1,103 @@
+{
+  "actionRegions": [
+    {
+      "height": 66.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 281,
+      "maxY": 214.5,
+      "midX": 237.25,
+      "midY": 181.25,
+      "minX": 193.5,
+      "minY": 148,
+      "usable": true,
+      "width": 87.5
+    },
+    {
+      "height": 64,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 355,
+      "maxY": 213.5,
+      "midX": 322,
+      "midY": 181.5,
+      "minX": 289,
+      "minY": 149.5,
+      "usable": true,
+      "width": 66
+    },
+    {
+      "height": 249.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 335,
+      "maxY": 762.5,
+      "midX": 187.5,
+      "midY": 637.75,
+      "minX": 40,
+      "minY": 513,
+      "usable": true,
+      "width": 295
+    }
+  ],
+  "attempt": 0,
+  "end": [24, 162],
+  "navigation": "absent",
+  "scrollBars": [
+    {
+      "height": 564,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 302,
+      "minX": 342,
+      "minY": 20,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 412],
+  "target": "Nest reads the calendars you choose. It does not create, change or delete events.",
+  "targetElementType": "XCUIElementType(rawValue: 48)",
+  "targetFrame": {
+    "height": 559.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 318.5,
+    "maxY": 1514.5,
+    "midX": 179.25,
+    "midY": 1234.75,
+    "minX": 40,
+    "minY": 955,
+    "usable": true,
+    "width": 278.5
+  },
+  "viewport": {
+    "height": 584,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 292,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  }
+}

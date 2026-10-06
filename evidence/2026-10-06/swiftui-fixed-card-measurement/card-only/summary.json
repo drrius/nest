@@ -1,0 +1,89 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 5,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "NestAccessibility \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 5,
+  "finishTime": 1791323143.202,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791323076.737,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "Contrast failed",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "RootAccessibilityTests/testCalendarAccessibility()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootAccessibilityTests/testCalendarAccessibility",
+      "testName": "testCalendarAccessibility()"
+    },
+    {
+      "failureText": "Dynamic Type font sizes are partially unsupported",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 2,
+      "testIdentifierString": "RootAccessibilityTests/testCalendarDynamicTypeAndControls()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootAccessibilityTests/testCalendarDynamicTypeAndControls",
+      "testName": "testCalendarDynamicTypeAndControls()"
+    },
+    {
+      "failureText": "Contrast failed",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 3,
+      "testIdentifierString": "RootAccessibilityTests/testMealsAccessibility()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootAccessibilityTests/testMealsAccessibility",
+      "testName": "testMealsAccessibility()"
+    },
+    {
+      "failureText": "Contrast failed",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 4,
+      "testIdentifierString": "RootAccessibilityTests/testMoneyAccessibility()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootAccessibilityTests/testMoneyAccessibility",
+      "testName": "testMoneyAccessibility()"
+    },
+    {
+      "failureText": "Contrast failed",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 5,
+      "testIdentifierString": "RootAccessibilityTests/testTodayAccessibility()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootAccessibilityTests/testTodayAccessibility",
+      "testName": "testTodayAccessibility()"
+    }
+  ],
+  "title": "Test - NestAccessibility",
+  "topInsights": [
+    {
+      "category": "Common Failures",
+      "impact": "80% of failures",
+      "text": "11 runs of 4 tests failed with Contrast failed"
+    },
+    {
+      "category": "Common Failures",
+      "impact": "40% of failures",
+      "text": "2 runs of 2 tests failed with Dynamic Type font sizes are partially unsupported"
+    }
+  ],
+  "totalTestCount": 5
+}
