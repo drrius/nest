@@ -29,7 +29,14 @@ struct RecipeEditorKeyboard: ViewModifier {
         content.scrollDismissesKeyboard(.interactively).toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
-                Button("Done") { focus.wrappedValue = nil }.frame(minHeight: 44)
+                Button {
+                    focus.wrappedValue = nil
+                } label: {
+                    Text("Done")
+                        .frame(minWidth: 44, minHeight: 44)
+                        .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
             }
         }
     }

@@ -230,8 +230,13 @@ The earlier toolbar lookup failure and measured 36-point opening control are ret
 Source `4d4ccde5` uses the 44-point toolbar control and closes untouched forms directly.
 Edited forms compare raw input, preserving discard protection even for invalid values.
 Six focused Foundation draft cases pass with zero failures, including four new cases;
-strict Mac formatting and all Swift source limits pass. Corrected native UI and CI
-remain pending. Build19 metadata is reserved after a fresh Apple read confirms18 is latest;
+strict Mac formatting and all Swift source limits pass. Both CI workflows pass at `5e65c73c`:
+506 Foundation/41 skips, 460 signed-app/28 skips, four Swift Testing cases, zero failures.
+The corrected normal method proves pristine Cancel/swipe, then fails before Done:
+its label measures36pt inside44pt. The shared label now gets the full44pt target;
+an actual edge tap and complete normal/maximum journeys remain pending. Earlier
+number-pad lookup failures and exact unchanged canonical reads remain recorded.
+Build19 metadata is reserved after a fresh Apple read confirms18 is latest;
 no recipe Save, new beta upload or production action occurs.
 
 ## Earlier native settlement verification
