@@ -1,0 +1,34 @@
+{
+  "event_id": "96562f14-7500-4c47-80bf-487705ca02a2",
+  "household_id": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "type": "expense",
+  "amount_cents": 3,
+  "payer_member_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "event_md5": "81444000a566fc2f6911ec42514b6a69",
+  "allocations": [
+    {
+      "member_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "allocated_cents": 2
+    },
+    {
+      "member_id": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "allocated_cents": 1
+    }
+  ],
+  "ledger": [
+    {
+      "member_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "receivable_delta_cents": 1
+    },
+    {
+      "member_id": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "receivable_delta_cents": -1
+    }
+  ],
+  "projectId": "tkjixmujjoustdiedfmw",
+  "readOnlyPrivilegedMetadata": true,
+  "authorizationProof": false,
+  "sourceCommit": "55d25d946f5e633a0843da19ac3231a3bb62bd25",
+  "checkedAtUTC": "2026-10-06T20:07:11.424Z",
+  "notPartOfSDKHistoryDTO": true
+}

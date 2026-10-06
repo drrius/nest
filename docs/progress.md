@@ -58,6 +58,27 @@ Fresh hosted reads and a disposable302-migration compilation now match all221 au
 
 ## Next work
 
+The latest header and padding report is addressed by the shared four-tab layout
+already available in private build 19. Root rechecks all eight current layout
+files against the reviewed layout and build 19, and directly inspects the retained
+Calendar and Meals dark captures. The header, 20-point horizontal and 14-point top
+insets, and 24-point section spacing match. This recheck compares source and existing images,
+not a new simulator run or phone acceptance.
+[Current layout comparison](../evidence/2026-10-05/swiftui-root-layout/current-layout-revalidation-20261006.json).
+
+The fresh preparation at `55d25d94` fails during Swift compilation of
+three diagnostic dictionaries before any SDK, API or UI execution. The 1,127-input
+source map matches. Its controller, log and output remain preserved. The localized
+correction uses explicitly typed frame and viewport diagnostics. Strict Mac
+formatting, source limits, the actual Swift 6/iOS 18 simulator XCTest helper
+typecheck and seven exact-body serialization cases pass. The first focused
+typecheck omitted the platform's Swift XCTest overlay; its failure is retained
+separately from the corrected passing invocation. Root verifies the current
+helper hash and all seven serialization results. These checks do not establish
+a full app build or UI execution. Routine CI 37523640089 passes `55d25d94`;
+its native workflow remains running at this checkpoint.
+[Correction evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/type-boundary-correction/readiness.json).
+
 Next verification: investigate the named contrast findings with fully visible text, then continue the remaining native journeys and accessibility findings. Physical offline UI/authentication, provider eligibility, worker/APNs and both-phone acceptance remain separate gates.
 
 The19-report census rerun exactly matches its retained output. The prior Today

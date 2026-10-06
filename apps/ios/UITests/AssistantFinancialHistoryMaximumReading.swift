@@ -69,10 +69,8 @@ struct AssistantFinancialHistoryMaximumReading {
             attach(
                 [
                     "attempt": attempt, "appFrame": diagnostic(app.frame),
-                    "navigation": app.navigationBars.firstMatch.exists
-                        ? diagnostic(app.navigationBars.firstMatch.frame) : ["state": "absent"],
-                    "tabBar": app.tabBars.firstMatch.exists
-                        ? diagnostic(app.tabBars.firstMatch.frame) : ["state": "absent"],
+                    "navigation": frameObservation(app.navigationBars.firstMatch),
+                    "tabBar": frameObservation(app.tabBars.firstMatch),
                 ],
                 name: "Waiting for finite recorded-history viewport")
             Thread.sleep(forTimeInterval: 0.1)
@@ -170,7 +168,7 @@ struct AssistantFinancialHistoryMaximumReading {
             [
                 "attempt": attempt, "target": target.exists ? target.label : "unrealized recorded target",
                 "targetElementType": target.exists ? String(describing: target.elementType) : "absent",
-                "targetFrame": target.exists ? diagnostic(target.frame) : ["state": "absent"],
+                "targetFrame": frameObservation(target),
                 "viewport": diagnostic(bounds), "start": [x, startY], "end": [x, endY],
                 "scroller": diagnostic(scrollerFrame), "scrollBars": bars.map(diagnostic),
                 "actionRegions": regions.map(diagnostic), "navigation": app.navigationBars.firstMatch.identifier,
@@ -248,11 +246,21 @@ struct AssistantFinancialHistoryMaximumReading {
         attach(
             [
                 "label": target.exists ? target.label : "", "exists": target.exists,
-                "frame": target.exists ? diagnostic(target.frame) : ["state": "absent"],
+                "frame": frameObservation(target),
                 "enabled": target.exists && target.isEnabled, "hittable": target.exists && target.isHittable,
-                "observedViewport": observedViewport().map(diagnostic) ?? ["state": "unknown"],
+                "observedViewport": viewportObservation(),
             ], name: name)
         captureView(name: name)
+    }
+
+    private func frameObservation(_ element: XCUIElement) -> [String: Any] {
+        guard element.exists else { return ["state": "absent"] }
+        return diagnostic(element.frame)
+    }
+
+    private func viewportObservation() -> [String: Any] {
+        guard let frame = observedViewport() else { return ["state": "unknown"] }
+        return diagnostic(frame)
     }
 
     private func captureView(name: String) {
