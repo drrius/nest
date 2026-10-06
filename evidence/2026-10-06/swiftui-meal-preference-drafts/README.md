@@ -45,8 +45,7 @@ records496 Foundation/41 explicit skips and443 signed-app/20 explicit skips,
 zero failures, strict source limits/formatting, signing and guarded UI compilation.
 This is separate from the actual hosted simulator interaction evidence above.
 
-Build18 does not contain this later fix. Raw calorie-goal keyboard input, cooking
-notes editing, broader setup entry paths, full19-report root accessibility,
+Build18 does not contain this later fix. Broader text edits and setup entry paths, full19-report root accessibility,
 VoiceOver, both phones, live AI and M1–M9 acceptance remain open. No permission,
 inference, worker activation, beta, purchase, production operation or merge.
 
@@ -55,5 +54,17 @@ absent. Five read-only diagnostic methods pass. The actual text field has type49
 and label "Daily calories, Optional daily calorie goal", rather than the queried
 suffix alone. The normal-size LabeledContent supplies that combined label. The
 corrected lookup scopes to text fields containing the explicit goal label; the
-normal/maximum keyboard run is pending on controller32714. This diagnostic does
-not prove typing, and its source precedes the corrected lookup.
+normal/maximum keyboard run passes all eight methods with zero failures/skips:
+four both-member SDK reads plus calorie/cooking-notes interactions. The diagnostic
+source precedes the corrected lookup and does not itself prove typing.
+
+The final keyboard checks type20001, require Save to be disabled, and verify
+cancelled Back preserves that input. Cooking notes typed with the native keyboard
+also survive cancelled Back. Explicit Back discard, reopen and an ordinary pristine
+Back restore the original empty values without another discard alert. Each method
+finishes on Today. All822 inputs match5694a7ab, both canonical before/after reads
+match, and roles/settings/64 empty journals are restored. Eight modal images are
+retained; four representative normal/maximum images were visually inspected.
+Their complete headings and choices fit; all eight alert instances have measured
+hittable44pt-or-larger controls. Fresh hosted comparisons remain exact. Routine CI
+passes at5694a7ab; its native run37402429424 is still in progress at this checkpoint.
