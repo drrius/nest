@@ -9,6 +9,26 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         continueAfterFailure = false
     }
 
+    func testColdLaunchOriginalIdentityAndTodayWithoutCommands() throws {
+        try authorized("read_original_identity_scope")
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        app.terminate()
+        app.launch()
+        addTeardownBlock { [app] in self.capture(app, name: "Original identity cold-launch terminal screen") }
+        XCTAssertTrue(app.tabBars.firstMatch.waitForExistence(timeout: 30))
+        for name in ["Today", "Meals", "Calendar", "Money"] {
+            XCTAssertTrue(app.tabBars.firstMatch.buttons[name].exists)
+        }
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        app.buttons["Profile and preferences"].tap()
+        XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 15))
+        capture(app, name: "Shipping cold launch verified original Test Alex profile")
+        app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        XCTAssertTrue(app.buttons["Me + shared"].isSelected)
+        capture(app, name: "Shipping cold launch restored original Today and shared filter")
+    }
+
     func testCreateFreshFutureRenewalExactlyOnceAndRetainReceipt() throws {
         try authorized("create_once")
         XCTAssertEqual(ProcessInfo.processInfo.environment["NEST_QA_ACTIVE_RENEWAL_PREFLIGHT"], "exact_absent_baseline")
@@ -150,7 +170,8 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
             XCTAssertEqual(env["SIMULATOR_UDID"], "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A")
             XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_NAME"], "Test Alex")
             XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_TITLE"], title)
-            XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_PHASE_ONE_BUDGET"], "one_create_only")
+            let budget = action == "read_original_identity_scope" ? "read_only_scope_recovery" : "one_create_only"
+            XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_PHASE_ONE_BUDGET"], budget)
             XCTAssertEqual(env["NEST_QA_API_ORIGIN"], "https://nest-test-api-drrius-projects.vercel.app")
             XCTAssertEqual(env["NEST_QA_SUPABASE_ORIGIN"], "https://tkjixmujjoustdiedfmw.supabase.co")
             XCTAssertEqual(env["NEST_QA_PUSH_ENABLED"], "false")

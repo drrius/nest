@@ -210,7 +210,7 @@ final class HostedActiveRenewalReminderReadTests: XCTestCase {
     }
 
     private func json<T: Encodable>(_ value: T) throws -> Any {
-        try JSONSerialization.jsonObject(with: JSONEncoder().encode(value))
+        try JSONSerialization.jsonObject(with: JSONEncoder().encode(value), options: [.fragmentsAllowed])
     }
 
     private func authorized() throws -> ((UUID, String), String) {
