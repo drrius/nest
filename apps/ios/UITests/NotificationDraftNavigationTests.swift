@@ -11,17 +11,17 @@ final class NotificationDraftNavigationTests: XCTestCase {
         let fixture = try NativeMealWeekFixture(action: "notification_draft")
         let app = openChoices(fixture)
         let reminders = app.switches["Receive item reminders"]
-        fixture.reveal(reminders, in: app)
+        reveal(reminders, in: app)
         let initial = try XCTUnwrap(reminders.value as? String)
         let edited = flip(reminders, from: initial)
         XCTAssertNotEqual(edited, initial)
         let connection = app.buttons["This iPhone’s connection"]
-        fixture.reveal(connection, in: app)
+        reveal(connection, in: app)
         connection.tap()
         XCTAssertTrue(app.navigationBars["This iPhone"].waitForExistence(timeout: 15))
         app.navigationBars["This iPhone"].buttons.element(boundBy: 0).tap()
         XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 15))
-        fixture.reveal(reminders, in: app)
+        reveal(reminders, in: app)
         XCTAssertEqual(reminders.value as? String, edited)
         XCTAssertEqual(flip(reminders, from: edited), initial)
         finish(app)
@@ -31,7 +31,7 @@ final class NotificationDraftNavigationTests: XCTestCase {
         let fixture = try NativeMealWeekFixture(action: "notification_draft")
         let app = openChoices(fixture)
         let reminders = app.switches["Receive item reminders"]
-        fixture.reveal(reminders, in: app)
+        reveal(reminders, in: app)
         let initial = try XCTUnwrap(reminders.value as? String)
         let edited = flip(reminders, from: initial)
         let back = app.navigationBars["Notifications"].buttons["Back"]
@@ -42,7 +42,7 @@ final class NotificationDraftNavigationTests: XCTestCase {
         alert.buttons["Keep editing"].tap()
         XCTAssertEqual(reminders.value as? String, edited)
         let reload = app.buttons["Reload choices"]
-        fixture.reveal(reload, in: app)
+        reveal(reload, in: app)
         reload.tap()
         choicesAlert(app).buttons["Keep editing"].tap()
         XCTAssertEqual(reminders.value as? String, edited)
@@ -51,16 +51,16 @@ final class NotificationDraftNavigationTests: XCTestCase {
         let restored = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "value == %@", initial), object: reminders)
         XCTAssertEqual(XCTWaiter.wait(for: [restored], timeout: 30), .completed)
-        fixture.reveal(reminders, in: app)
+        reveal(reminders, in: app)
         XCTAssertEqual(flip(reminders, from: initial), edited)
         app.navigationBars["Notifications"].buttons["Back"].tap()
         choicesAlert(app).buttons["Discard edits"].tap()
         XCTAssertTrue(app.navigationBars["Profile"].waitForExistence(timeout: 15))
         let choices = app.buttons["Your notification choices"]
-        fixture.reveal(choices, in: app)
+        reveal(choices, in: app)
         choices.tap()
         XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 15))
-        fixture.reveal(reminders, in: app)
+        reveal(reminders, in: app)
         XCTAssertEqual(reminders.value as? String, initial)
         finish(app)
     }
@@ -97,7 +97,7 @@ final class NotificationDraftNavigationTests: XCTestCase {
         app.tabBars.firstMatch.buttons["Today"].tap()
         app.buttons["Profile and preferences"].tap()
         let choices = app.buttons["Your notification choices"]
-        fixture.reveal(choices, in: app)
+        reveal(choices, in: app)
         choices.tap()
         XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 15))
         let save = app.navigationBars["Notifications"].buttons["Save"]
@@ -112,5 +112,17 @@ final class NotificationDraftNavigationTests: XCTestCase {
         app.navigationBars["Profile"].buttons.element(boundBy: 0).tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
+    private func reveal(_ element: XCUIElement, in app: XCUIApplication) {
+        for _ in 0..<30 {
+            let frame = element.exists ? element.frame : .zero
+            if element.isHittable && frame.minY >= 80 && frame.maxY <= app.tabBars.firstMatch.frame.minY { return }
+            let distance = element.exists ? max(-300, min(300, frame.minY - 130)) : 250
+            let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65))
+            let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.5, dy: 0.65 - distance / app.frame.height))
+            start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
+        }
+        XCTFail("Required notification control is not fully visible")
     }
 }
