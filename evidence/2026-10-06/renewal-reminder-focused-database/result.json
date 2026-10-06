@@ -1,0 +1,31 @@
+{
+  "sourceCommit": "fc87f18d67c704bb8e91458c714e37de0c7b3a0f",
+  "command": "NEST_TEST_PG_BIN=/tmp/nest-postgres-18-fixture/usr/bin node --test --test-concurrency=1 --test-reporter=tap tests/database/renewal-reminder-storage.test.mjs tests/database/renewal-reminder-due.test.mjs",
+  "postgresVersion": "18.6",
+  "tests": 8,
+  "passed": 8,
+  "failed": 0,
+  "skipped": 0,
+  "testSourceSha256": {
+    "tests/database/renewal-reminder-storage.test.mjs": "7b68dba5d756272e67809967dc367e94180ed42581431f70dbdb757ccd3da04c",
+    "tests/database/renewal-reminder-due.test.mjs": "f9b32fa5cdcead627e7f6f2457420c90f2cbc26dc4e985c88ac02cf189293dfc"
+  },
+  "initialAttempts": [
+    {
+      "log": "missing-configuration.txt",
+      "exitCode": 1,
+      "testsPassed": 0,
+      "testsFailed": 8,
+      "cause": "NEST_TEST_PG_BIN missing; no database behavioral assertions executed"
+    },
+    {
+      "log": "stale-path.txt",
+      "exitCode": 1,
+      "testsPassed": 0,
+      "testsFailed": 8,
+      "cause": "historical binary path missing; no database behavioral assertions executed"
+    }
+  ],
+  "hostedExecution": false,
+  "productionTouched": false
+}
