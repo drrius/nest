@@ -257,3 +257,26 @@ and 64 empty journals. Source `a0a072c7` passes both workflows: 502 Foundation/4
 [Evidence](../evidence/2026-10-06/swiftui-native-grocery-reminder-save/README.md) records
 configuration and receipt verification; retained disabled history is not a nil reset.
 No delivery, worker activation, financial or production action is claimed.
+
+## Recipe draft cancellation
+
+An actual untouched New recipe Cancel leaves the modal open and asks to discard.
+The earlier toolbar lookup failure and measured 36-point opening control are retained.
+Source `4d4ccde5` uses the 44-point toolbar control and closes untouched forms directly.
+Edited forms compare raw input, preserving discard protection even for invalid values.
+Six focused Foundation draft cases pass with zero failures, including four new cases;
+strict Mac formatting and all Swift source limits pass. Both CI workflows pass at `5e65c73c`:
+506 Foundation/41 skips, 460 signed-app/28 skips, four Swift Testing cases, zero failures.
+The initial Done label measures36pt inside44pt. Its corrected full44pt label passes
+complete normal and maximum-text New/Edit flows, actual edge taps, pristine/dirty
+swipes and explicit Keep/Discard; the failed title-magnification gesture is retained.
+Both members' complete saved data and 64 journals remain exact after restoration.
+MAX screenshots then reveal “Do…” text truncation. Source `09057a93` uses a compact
+checkmark with semantic Done; five final focused methods pass at `a432974d`, with
+both members' saved data unchanged and clients restored. Across recorded variants,
+23 native methods pass and five remain failed; six Core cases pass separately.
+All81 PNGs are reviewed. Final routine/native CI pass at their source pins, with zero failures.
+Earlier numeric-key lookup failures remain recorded; no failure is relabeled passed.
+[Evidence](../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md) verifies all immutable source maps and 422 tracked artifacts.
+No recipe Save or production action occurs. Build19 is internally available; both-phone acceptance remains open.
+[Build19](../evidence/2026-10-06/swiftui-build19/README.md) passes exact 1,111-file source, CI, signed archive/export/package and copied IPA hash checks. Temporary credentials are removed. One private submission `80654dba-1d01-4568-b6b1-af0a72d2af8e` finished; Apple verifies19 VALID/IN_BETA_TESTING/unexpired.
