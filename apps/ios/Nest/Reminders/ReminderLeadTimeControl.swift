@@ -23,6 +23,7 @@ struct ReminderLeadTimeControl: View {
             days = min(730, max(0, days + change))
         } label: {
             Image(systemName: symbol)
+                .font(.system(size: 18, weight: .semibold))
                 .frame(width: 44, height: 44)
                 .contentShape(Rectangle())
                 .background(QuietPalette.soft, in: RoundedRectangle(cornerRadius: 10))
