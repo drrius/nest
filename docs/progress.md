@@ -161,6 +161,28 @@ The retained routine definition checkpoint is preserved in [the dated history](p
 
 The bounded native PDF picker/upload recovery checkpoint and its verification limits are preserved in [the dated history](progress-history-2026-10-05.md#native-pdf-receipt-picker).
 
+## Native reminder navigation
+
+The ordinary grocery reminder Back target measured36pt. Five reminder editors now
+reuse the44pt Quiet toolbar control. Native confirmation popovers omitted the cancel
+choice; native alerts now show explicit Keep editing and Discard choices.
+The grocery normal/light Back/Refresh keep/discard journey passes. Maximum/dark
+coverage combines recorded successful Back steps from a failed method with a passing
+Refresh recovery suffix; the original method remains failed. Both final authenticated
+reads match the exact owned grocery/reminder baseline. No Save, Retry or Remove occurs.
+Original scopes,64 empty journals, Today and large/light settings are restored.
+Other four editors have source consistency and compilation, not runtime acceptance.
+The opening MAX alert clipped Keep editing at742.5pt beyond alert653/app667 bounds.
+A title-only Discard changes? follow-up now passes one actual MAX UI check and two
+canonical SDK reads: both full choice buttons fit, Keep ends637pt within653/667pt,
+Keep retains local choices and Discard exits. All eight new images are reviewed.
+[Readability evidence](../evidence/2026-10-06/swiftui-reminder-alert-readable/README.md) retains
+the original clipped frames. Physical/VoiceOver and other-editor runtime acceptance stay open.
+[Evidence](../evidence/2026-10-06/swiftui-grocery-reminder-navigation/README.md) preserves failed
+observers and exact source variants:10 passes,12 failures,59 reviewed PNGs and644
+matching shipping inputs. Source1c0cb054 CI is running. Real saves/delivery and M8 remain open.
+The fix is later than build18; no new candidate or production action occurs.
+
 ## Earlier native settlement verification
 
 The partial/full settlement and stale-review evidence is preserved in [dated history](progress-history-2026-10-06.md#native-partialfull-settlement-and-stale-review). Its exact retained financial results do not close phone, private-approval or concurrency acceptance.

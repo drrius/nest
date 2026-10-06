@@ -4,7 +4,7 @@ The available private candidate is **0.1.0/build18**, source `e7926c895f236c9f0f
 
 Build18 includes the shared four-tab headers and insets, Quiet Calendar cards and the large-text Today grocery shortcut correction. It retains the existing recipe, preparation, Money, preference and recovery flows. Start with the [short layout pass](build18-first-phone-pass.md), then complete this checklist. Check [progress](../progress.md) before judging a flow complete. Live AI, scheduled bill posting/reminders and push delivery remain inactive while provider/worker setup is incomplete.
 
-Subsequent recipe-toolbar, preparation-readability, unsent notification/food/cooking-draft and renewal-editor controls are verified in current source but are **not in build18**. Persisted renewal list/detail snapshots and the renewal-only unavailable-refresh/restart UI check are also later changes. These require a later candidate. Source/CI results must not be treated as results for the app installed on either phone.
+Subsequent recipe-toolbar, preparation-readability, unsent notification/food/cooking-draft and renewal-editor controls are verified in current source but are **not in build18**. Persisted renewal list/detail snapshots, the renewal-only unavailable-refresh/restart UI check and the shared reminder Back/explicit-discard alerts are also later changes. These require a later candidate. Source/CI results must not be treated as results for the app installed on either phone.
 
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 

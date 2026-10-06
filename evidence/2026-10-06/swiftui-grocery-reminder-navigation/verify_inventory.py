@@ -2,9 +2,11 @@
 """Verify bounded exported reminder evidence without reading private bundles."""
 import argparse
 import hashlib
+import io
 import json
 import re
 import subprocess
+import tarfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -42,7 +44,7 @@ def verify_attachments():
     return references
 
 
-def verify_sources(working_tree):
+def verify_sources(working_tree, source_ref):
     pins = json.loads((HERE / 'source-pinning.json').read_text())
     final = json.loads((HERE / pins['finalUI']).read_text())
     shipping = {k: v for k, v in final.items() if k.startswith('Nest/') or k.startswith('Nest.xcodeproj/')}
@@ -56,6 +58,16 @@ def verify_sources(working_tree):
     if working_tree:
         for key, value in final.items():
             assert digest(ROOT / 'apps/ios' / key) == value, key
+    else:
+        source_ref = subprocess.check_output(
+            ['git', 'rev-parse', '--verify', source_ref + '^{commit}'], cwd=ROOT, text=True
+        ).strip()
+        archived = subprocess.check_output(['git', 'archive', source_ref, 'apps/ios'], cwd=ROOT)
+        with tarfile.open(fileobj=io.BytesIO(archived)) as archive:
+            for key, value in final.items():
+                member = archive.extractfile('apps/ios/' + key)
+                assert member is not None, key
+                assert hashlib.sha256(member.read()).hexdigest() == value, key
     return len(shipping)
 
 
@@ -68,11 +80,13 @@ def verify_review(inventory, actual):
 
 def verify():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--working-tree', action='store_true')
+    mode = parser.add_mutually_exclusive_group()
+    mode.add_argument('--working-tree', action='store_true')
+    mode.add_argument('--source-ref', default='1c0cb05460f8b74f3191f5751f413523cbbf69c7')
     args = parser.parse_args()
     inventory, actual = verify_files()
     references = verify_attachments()
-    shipping = verify_sources(args.working_tree)
+    shipping = verify_sources(args.working_tree, args.source_ref)
     reviewed = verify_review(inventory, actual)
     print(json.dumps({'files': len(actual) + 1, 'attachmentReferences': references, 'shippingInputs': shipping, 'PNGReviewed': reviewed, 'workingTreeChecked': args.working_tree, 'passed': True}))
 

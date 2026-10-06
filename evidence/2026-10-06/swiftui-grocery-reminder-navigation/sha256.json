@@ -1,5 +1,5 @@
 {
-  "README.md": "4f867265c3336c45eb3c6d792d126d4f4f0746a36317232f351cbda10a0d5164",
+  "README.md": "e61d8068a97262f689a74d6fe93feb9916a301edd32350bf378a99554b0a5308",
   "after/alex-after/3487F362-680B-4307-B72C-357F692A74A9.json": "8e5728efe547238206e9e7af0bcedf99dca9270ddafd95a69eaeaf1afc38eef7",
   "after/alex-after/manifest.json": "fad458eacfafb4bef255f9613ce82f11b53c44a57aedfb22922359197e41b6cc",
   "after/alex-after/native-read.json": "8e5728efe547238206e9e7af0bcedf99dca9270ddafd95a69eaeaf1afc38eef7",
@@ -427,5 +427,5 @@
   "switch-observer-failure/sdk-frozen-source-input-hashes.json": "48c31ae8be015be788b3c29e384f0e09d76a904b0aa0ebc45c236bfb9cb77cb2",
   "switch-observer-failure/source-input-hashes.json": "60c628d55d80e7c81ba0b4a91ec70faa79c4004ae6b93348c48169b3cf0fc3e1",
   "switch-observer-failure/terminal.json": "1e65d79068649eac136a9a7dc90ec015e3d5ae05366ff1680f0e21799b0ce4bb",
-  "verify_inventory.py": "a1c22829241c9851ff58172f86836355e881e064d2111bf666c07267060b492b"
+  "verify_inventory.py": "86a2b6f56da652ac3a8b412b35842a4929a42b7cf14733e5125e44c187df0d20"
 }
