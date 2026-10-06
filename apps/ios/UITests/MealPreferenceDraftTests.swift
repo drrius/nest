@@ -79,6 +79,89 @@ final class MealPreferenceDraftTests: XCTestCase {
         finish(app)
     }
 
+    func testInvalidCalorieKeyboardInputSurvivesCancelledBack() throws {
+        let fixture = try NativeMealWeekFixture(action: "meal_preference_draft")
+        let title = "Your food preferences"
+        let app = open("Your food preferences", title: title, fixture: fixture)
+        let field = calorieField(in: app)
+        reveal(field, in: app)
+        let original = try XCTUnwrap(field.value as? String)
+        XCTAssertTrue(original == "Not set" || original.isEmpty, "Requires the fictional empty-goal fixture")
+        field.tap()
+        field.typeText("20001")
+        XCTAssertEqual(field.value as? String, "20001")
+        XCTAssertFalse(app.navigationBars[title].buttons["Save"].isEnabled)
+        app.navigationBars[title].buttons["Back"].tap()
+        choicesAlert(app).buttons["Keep editing"].tap()
+        XCTAssertEqual(field.value as? String, "20001")
+        app.navigationBars[title].buttons["Back"].tap()
+        choicesAlert(app).buttons["Discard edits"].tap()
+        finish(app)
+        let reopened = open("Your food preferences", title: title, fixture: fixture)
+        let restored = calorieField(in: reopened)
+        reveal(restored, in: reopened)
+        XCTAssertEqual(restored.value as? String, original)
+        reopened.navigationBars[title].buttons.element(boundBy: 0).tap()
+        XCTAssertFalse(reopened.alerts["Discard edits?"].exists)
+        finish(reopened)
+    }
+
+    func testCookingNotesKeyboardInputSurvivesCancelledBack() throws {
+        let fixture = try NativeMealWeekFixture(action: "meal_preference_draft")
+        let title = "Cooking preferences"
+        let app = open("Household cooking preferences", title: title, fixture: fixture)
+        let field = app.textViews["Cooking notes"]
+        reveal(field, in: app)
+        XCTAssertEqual(field.value as? String, "", "Requires the fictional empty-notes fixture")
+        field.tap()
+        field.typeText("Nest draft QA")
+        XCTAssertEqual(field.value as? String, "Nest draft QA")
+        app.navigationBars[title].buttons["Back"].tap()
+        choicesAlert(app).buttons["Keep editing"].tap()
+        XCTAssertEqual(field.value as? String, "Nest draft QA")
+        app.navigationBars[title].buttons["Back"].tap()
+        choicesAlert(app).buttons["Discard edits"].tap()
+        finish(app)
+        let reopened = open("Household cooking preferences", title: title, fixture: fixture)
+        let restored = reopened.textViews["Cooking notes"]
+        reveal(restored, in: reopened)
+        XCTAssertEqual(restored.value as? String, "")
+        reopened.navigationBars[title].buttons.element(boundBy: 0).tap()
+        XCTAssertFalse(reopened.alerts["Discard edits?"].exists)
+        finish(reopened)
+    }
+
+    func testCalorieFieldAccessibilityCensus() throws {
+        let fixture = try NativeMealWeekFixture(action: "meal_preference_draft")
+        let app = open("Your food preferences", title: "Your food preferences", fixture: fixture)
+        var samples: [[String: Any]] = []
+        for step in 0..<5 {
+            let controls = app.descendants(matching: .any).matching(
+                NSPredicate(format: "label CONTAINS[c] 'calorie' OR value == 'Not set'"))
+            let rows = controls.allElementsBoundByIndex.map { element in
+                let frame = element.frame
+                return [
+                    "label": element.label, "identifier": element.identifier,
+                    "type": element.elementType.rawValue,
+                    "frame": [frame.minX, frame.minY, frame.width, frame.height],
+                ] as [String: Any]
+            }
+            samples.append(["step": step, "controls": rows])
+            app.swipeUp(velocity: .slow)
+        }
+        let data = try JSONSerialization.data(withJSONObject: samples, options: [.sortedKeys])
+        let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+        attachment.name = "Calorie field census"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        app.navigationBars["Your food preferences"].buttons.element(boundBy: 0).tap()
+        finish(app)
+    }
+
+    private func calorieField(in app: XCUIApplication) -> XCUIElement {
+        app.textFields.matching(NSPredicate(format: "label CONTAINS %@", "Optional daily calorie goal")).firstMatch
+    }
+
     private func choicesAlert(_ app: XCUIApplication) -> XCUIElement {
         let alert = app.alerts["Discard edits?"]
         XCTAssertTrue(alert.waitForExistence(timeout: 15))

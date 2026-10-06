@@ -23,8 +23,8 @@ six methods with zero failures/skips: both-member SDK reads before/after and
 maximum-food/maximum-cooking UI checks. The expanded normal checks were not
 repeated. Their shipping code is identical; the food observer differs by that
 one line. `normal-reload` and `reload-observer` record the same interrupted batch,
-not two independent runs. The final maximum inventory matches all822 current
-native inputs, and canonical before/after member reads agree.
+not two independent runs. The final maximum inventory matches all822
+native inputs atf98a2658, and canonical before/after member reads agree.
 
 Back and Reload show explicit choices. Keep editing retains the local input;
 Reload discard restores the saved baseline; Back discard returns to Profile.
@@ -40,12 +40,20 @@ groceries/links. Financial history and Storage remain exact. The hosted check
 records only preference row counts/hashes and comparison results. No Save is
 pressed and no production data is accessed.
 
-Both shipping-source CI workflows pass at38cfed7b. Routine CI also passes at
-f98a2658; native CI for that observer commit is still running at this checkpoint.
-Its source limits/formatting and Foundation step already pass. This is separate
-from the actual hosted simulator interaction evidence above.
+Both CI workflows pass at shipping38cfed7b and observerf98a2658. Native CI
+records496 Foundation/41 explicit skips and443 signed-app/20 explicit skips,
+zero failures, strict source limits/formatting, signing and guarded UI compilation.
+This is separate from the actual hosted simulator interaction evidence above.
 
 Build18 does not contain this later fix. Raw calorie-goal keyboard input, cooking
 notes editing, broader setup entry paths, full19-report root accessibility,
 VoiceOver, both phones, live AI and M1–M9 acceptance remain open. No permission,
 inference, worker activation, beta, purchase, production operation or merge.
+
+The first keyboard check stops before typing: its exact calorie-field label is
+absent. Five read-only diagnostic methods pass. The actual text field has type49
+and label "Daily calories, Optional daily calorie goal", rather than the queried
+suffix alone. The normal-size LabeledContent supplies that combined label. The
+corrected lookup scopes to text fields containing the explicit goal label; the
+normal/maximum keyboard run is pending on controller32714. This diagnostic does
+not prove typing, and its source precedes the corrected lookup.

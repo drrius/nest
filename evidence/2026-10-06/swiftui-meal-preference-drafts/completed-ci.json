@@ -22,5 +22,13 @@
     "name": "Nest checks",
     "status": "completed",
     "url": "https://github.com/drrius/nest/actions/runs/37400910333"
+  },
+  {
+    "conclusion": "success",
+    "databaseId": 37400910248,
+    "headSha": "f98a26589801cd7bfb2f1e0030c296d4b7ff1d10",
+    "name": "SwiftUI client checks",
+    "status": "completed",
+    "url": "https://github.com/drrius/nest/actions/runs/37400910248"
   }
 ]
