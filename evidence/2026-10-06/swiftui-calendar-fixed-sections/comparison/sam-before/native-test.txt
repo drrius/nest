@@ -1,0 +1,29 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-calendar-fixed-sections-comparison-20261006/sam-before/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-calendar-fixed-sections-comparison-20261006/sam-before/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-calendar-fixed-sections-comparison-20261006/sam-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 18:46:25.091.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 18:46:25.092.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 18:46:25.092.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+2026-10-06 18:46:25.162231+0200 Nest[50222:21789446] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+2026-10-06 18:46:25.162469+0200 Nest[50222:21789446] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (9.785 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 18:46:34.877.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.785 (9.786) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 18:46:34.878.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.785 (9.786) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 18:46:34.878.
+	 Executed 1 test, with 0 failures (0 unexpected) in 9.785 (9.787) seconds
+2026-10-06 18:46:35.212 xcodebuild[50221:21789093] [MT] IDETestOperationsObserverDebug: 11.955 elapsed -- Testing started completed.
+2026-10-06 18:46:35.212 xcodebuild[50221:21789093] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 18:46:35.212 xcodebuild[50221:21789093] [MT] IDETestOperationsObserverDebug: 11.955 sec, +11.955 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-calendar-fixed-sections-comparison-20261006/sam-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

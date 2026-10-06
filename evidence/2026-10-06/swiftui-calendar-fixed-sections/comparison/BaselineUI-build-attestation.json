@@ -1,0 +1,21 @@
+{
+  "derivedData": "/private/tmp/nest-renewal-inline-title-ui-20261006",
+  "prepareLogSha256": "0206f04d5db6d17d9019db09177268f19f29a16d88766cf21a5f8498dfae6681",
+  "ownedSourceCompileLines": [
+    "SwiftCompile normal arm64 Compiling\\ RecipeDraftNavigationTests.swift,\\ RenewalNavigationTests.swift,\\ RootAccessibilityTests.swift,\\ RootLayoutConsistencyTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RecipeDraftNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RootAccessibilityTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/RootLayoutConsistencyTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ],
+  "binarySha256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "cf02016d7dd932558f9b8777bee431f091f1120e61b85d35f84774f838a29d9b",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "b1c9a1da96c73756f5dc103d44bd7c09b18777b725f1bedef7fa7885db68d6be",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "b5543a4310f3297b8503eaa745a2bf0f5c0d1ebf742878f4fba88df5e059f4a5"
+  },
+  "resolvedProductPaths": {
+    "NestAccessibilityTests": {
+      "TestHostPath": "/private/tmp/nest-renewal-inline-title-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+      "TestBundlePath": "/private/tmp/nest-renewal-inline-title-ui-20261006/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+      "UITargetAppPath": "/private/tmp/nest-renewal-inline-title-ui-20261006/Build/Products/Debug-iphonesimulator/Nest.app"
+    }
+  },
+  "freshDirectoryRequired": true
+}

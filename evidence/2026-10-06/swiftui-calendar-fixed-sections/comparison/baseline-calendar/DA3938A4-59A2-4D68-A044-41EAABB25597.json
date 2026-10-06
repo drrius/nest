@@ -1,0 +1,8 @@
+{
+  "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+  "frame": [40, 461.5, 295, 44],
+  "label": "Allow calendar access",
+  "summary": "Dynamic Type font sizes are partially unsupported",
+  "tabBarFrame": [0, 584, 375, 83],
+  "type": "Optional(__C.XCUIElementType)"
+}

@@ -1,0 +1,8 @@
+{
+  "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
+  "frame": [40, 407.5, 295, 38],
+  "label": "iOS calls this Full Access. Nest uses it only to read your calendars.",
+  "summary": "Dynamic Type font sizes are partially unsupported",
+  "tabBarFrame": [0, 584, 375, 83],
+  "type": "Optional(__C.XCUIElementType)"
+}

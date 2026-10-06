@@ -1,0 +1,11 @@
+{
+  "CandidateSource": "42bd044b060b006698b41726094fb6c49902a150",
+  "CandidateInputs": 1123,
+  "BaselineUISource": "310524b183cf48810e1447196fa7dab38509a6bc",
+  "SDKSource": "6997138485f3f8088fc03682432de74879e19659",
+  "BaselineUIInputs": 1123,
+  "SDKInputs": 1122,
+  "UnfilteredAuditInvocations": 2,
+  "NoAuditFilters": true,
+  "SaveInvocations": 0
+}

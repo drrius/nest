@@ -1,0 +1,121 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-calendar-fixed-sections-comparison-20261006/baseline-calendar/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-calendar-fixed-sections-comparison-20261006/baseline-calendar/result.xcresult "-only-testing:NestAccessibilityTests/RootAccessibilityTests/testCalendarAccessibility" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-calendar-fixed-sections-comparison-20261006/baseline-calendar/result.xcresult
+
+2026-10-06 18:46:37.007470+0200 NestAccessibilityTests-Runner[50269:21789998] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 18:46:37.579.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 18:46:37.579.
+Test Suite 'RootAccessibilityTests' started at 2026-10-06 18:46:37.580.
+Test Case '-[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility]' started.
+    t =     0.00s Start Test at 2026-10-06 18:46:37.580
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.03s     Launch ch.drrius.nest
+2026-10-06 18:46:37.678 xcodebuild[50265:21789792] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 18:46:37.678 xcodebuild[50265:21789792] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.71s         Setting up automation session
+    t =     1.46s         Wait for ch.drrius.nest to idle
+    t =     2.68s Waiting 30.0s for TabBar (First Match) to exist
+    t =     3.71s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     3.72s         Checking existence of `TabBar (First Match)`
+    t =     3.78s Find the "Calendar" Button
+    t =     3.83s Tap "Calendar" Button
+    t =     3.83s     Wait for ch.drrius.nest to idle
+    t =     3.83s     Find the "Calendar" Button
+    t =     3.86s     Check for interrupting elements affecting "Calendar" Button
+    t =     3.90s     Synthesize event
+    t =     4.19s     Wait for ch.drrius.nest to idle
+    t =     5.89s Waiting 30.0s for Any (First Match) to exist
+    t =     6.91s     Checking `Expect predicate `existsNoRetry == 1` for object Any (First Match)`
+    t =     6.91s         Checking existence of `Any (First Match)`
+    t =     7.04s Find the Target Application 'ch.drrius.nest'
+    t =     7.12s Added attachment named 'Calendar initial viewport'
+    t =     8.98s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313563744.137)
+    t =     9.00s Find the "Your partner’s availability" StaticText
+    t =     9.03s Find the "Your partner’s availability" StaticText
+    t =     9.06s Find the "Your partner’s availability" StaticText
+    t =     9.09s Find the TabBar (First Match)
+    t =     9.11s Find the "Tab Bar" TabBar
+    t =     9.12s Find the "Tab Bar" TabBar
+    t =     9.14s Find the "Tab Bar" TabBar
+    t =     9.15s Added attachment named 'Accessibility issue'
+    t =     9.15s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313563744.137)
+    t =     9.17s Checking existence of `"Your partner’s availability" StaticText`
+    t =     9.19s Find the "Your partner’s availability" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Contrast failed
+    t =     9.24s Find the "Tab Bar" TabBar
+    t =     9.26s Find the "Tab Bar" TabBar
+    t =     9.28s Find the "Tab Bar" TabBar
+    t =     9.29s Find the "Tab Bar" TabBar
+    t =     9.30s Added attachment named 'Accessibility issue'
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Contrast failed
+    t =     9.30s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313224848.147)
+    t =     9.33s Find the "Allow calendar access" Button
+    t =     9.35s Find the "Allow calendar access" Button
+    t =     9.37s Find the "Allow calendar access" Button
+    t =     9.40s Find the "Tab Bar" TabBar
+    t =     9.42s Find the "Tab Bar" TabBar
+    t =     9.43s Find the "Tab Bar" TabBar
+    t =     9.45s Find the "Tab Bar" TabBar
+    t =     9.46s Added attachment named 'Accessibility issue'
+    t =     9.46s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313224848.147)
+    t =     9.48s Checking existence of `"Allow calendar access" Button`
+    t =     9.50s Find the "Allow calendar access" Button
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =     9.53s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313563744.137)
+    t =     9.55s Find the "Your partner’s availability" StaticText
+    t =     9.58s Find the "Your partner’s availability" StaticText
+    t =     9.60s Find the "Your partner’s availability" StaticText
+    t =     9.62s Find the "Tab Bar" TabBar
+    t =     9.64s Find the "Tab Bar" TabBar
+    t =     9.65s Find the "Tab Bar" TabBar
+    t =     9.67s Find the "Tab Bar" TabBar
+    t =     9.68s Added attachment named 'Accessibility issue'
+    t =     9.68s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313563744.137)
+    t =     9.70s Checking existence of `"Your partner’s availability" StaticText`
+    t =     9.72s Find the "Your partner’s availability" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =     9.76s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313705360.146)
+    t =     9.78s Find the "iOS calls this Full Access. Nest uses it only to read your calendars." StaticText
+    t =     9.80s Find the "iOS calls this Full Access. Nest uses it only to read your calendars." StaticText
+    t =     9.82s Find the "iOS calls this Full Access. Nest uses it only to read your calendars." StaticText
+    t =     9.85s Find the "Tab Bar" TabBar
+    t =     9.86s Find the "Tab Bar" TabBar
+    t =     9.88s Find the "Tab Bar" TabBar
+    t =     9.90s Find the "Tab Bar" TabBar
+    t =     9.91s Added attachment named 'Accessibility issue'
+    t =     9.91s Find the Any (Descendant with identity binding to AX element pid: 50279, elementOrHash.elementID: 4313705360.146)
+    t =     9.93s Checking existence of `"iOS calls this Full Access. Nest uses it only to read your calendars." StaticText`
+    t =     9.95s Find the "iOS calls this Full Access. Nest uses it only to read your calendars." StaticText
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =     9.99s Find the "Tab Bar" TabBar
+    t =    10.00s Find the "Tab Bar" TabBar
+    t =    10.02s Find the "Tab Bar" TabBar
+    t =    10.04s Find the "Tab Bar" TabBar
+    t =    10.05s Added attachment named 'Accessibility issue'
+<unknown>:0: error: -[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility] : Dynamic Type font sizes are partially unsupported
+    t =    10.05s Tear Down
+Test Case '-[NestAccessibilityTests.RootAccessibilityTests testCalendarAccessibility]' failed (10.293 seconds).
+Test Suite 'RootAccessibilityTests' failed at 2026-10-06 18:46:47.874.
+	 Executed 1 test, with 6 failures (0 unexpected) in 10.293 (10.294) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 18:46:47.874.
+	 Executed 1 test, with 6 failures (0 unexpected) in 10.293 (10.295) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 18:46:47.875.
+	 Executed 1 test, with 6 failures (0 unexpected) in 10.293 (10.296) seconds
+2026-10-06 18:47:00.317 xcodebuild[50265:21789792] [MT] IDETestOperationsObserverDebug: 24.046 elapsed -- Testing started completed.
+2026-10-06 18:47:00.317 xcodebuild[50265:21789792] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 18:47:00.317 xcodebuild[50265:21789792] [MT] IDETestOperationsObserverDebug: 24.046 sec, +24.046 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-calendar-fixed-sections-comparison-20261006/baseline-calendar/result.xcresult
+
+Failing tests:
+	RootAccessibilityTests.testCalendarAccessibility()
+	RootAccessibilityTests.testCalendarAccessibility()
+
+** TEST EXECUTE FAILED **
+
+Testing started
