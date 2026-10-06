@@ -54,7 +54,7 @@ Private credentials/configs, xctestrun files and raw archives are excluded.
 Shipping190c059d passes Nest37404715659/SwiftUI37404715636:496 Foundation/41 explicit
 skips and443 signed-app/20 explicit skips, zero failures, strict formatting/source
 limits/signing and guarded UI compilation. Currentdea7682d passes routine
-Nest37406837865; native37406837892 is still running. CI compiling guarded tests is
+Nest37406837865 and SwiftUI37406837892:496 Foundation tests/41 skips and443 signed-app tests/20 skips, zero failures, strict formatting/source limits/signing and guarded UI compilation. CI compiling guarded tests is
 separate from the actual hosted simulator methods above.
 
 Build18 does not contain these changes. Full renewal create/edit/remove/reminder
