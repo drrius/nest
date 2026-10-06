@@ -110,6 +110,7 @@ struct MealWeekScreen: View {
             }
             .modifier(QuietTabContentInsets())
         }
+        .modifier(QuietTabScrollEdges())
         .background(QuietPalette.background)
         .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
