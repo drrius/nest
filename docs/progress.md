@@ -108,6 +108,19 @@ zero failures and strict native gates. CI does not run the optional hosted journ
 The immutable verifier passes90 artifacts/1,127 UI inputs/1,122 dated SDK inputs,
 four native passes and one retained failure; the prebuild count failure stays
 separate. [Maximum-text evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/native/README.md).
+
+The next observer correction tags non-finite diagnostic coordinates explicitly
+and validates JSON before serialization. Viewport, scroller, pan endpoints and
+every tapped target still require known finite geometry; unrealized targets can
+only use bounded revealing, never a visibility exemption or fake coordinates.
+Normal-test bytes and the failed90-artifact checkpoint remain unchanged. A new
+dated maximum-only method uses the same financial journey. Formatting/source
+checks pass for the304-line helper/294-line test. An actual Mac Swift/Foundation
+probe executes the exact extracted usable/diagnostic bodies for seven finite,
+zero, null, infinite, NaN and computed-overflow cases; every diagnostic validates
+and serializes, while only finite valid geometry is usable. Root independently
+checks the current source hash and seven outcomes. This is serialization proof,
+not native UI execution. No new app build, hosted read or UI invocation yet.
 Root read-only metadata independently confirms the existing owner-private
 conversation, consumed approval and all15 original conversations unchanged.
 

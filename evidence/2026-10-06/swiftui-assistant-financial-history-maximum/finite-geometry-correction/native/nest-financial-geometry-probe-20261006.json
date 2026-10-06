@@ -1,0 +1,211 @@
+{
+  "cases": [
+    {
+      "actualSerializationBytes": 143,
+      "case": "finite",
+      "diagnostic": {
+        "height": 119,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 219,
+        "midX": 187.5,
+        "midY": 159.5,
+        "minX": 16,
+        "minY": 100,
+        "usable": true,
+        "width": 343
+      },
+      "expectedUsable": true,
+      "usable": true,
+      "validJSONObject": true
+    },
+    {
+      "actualSerializationBytes": 125,
+      "case": "zero",
+      "diagnostic": {
+        "height": 0,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 0,
+        "maxY": 0,
+        "midX": 0,
+        "midY": 0,
+        "minX": 0,
+        "minY": 0,
+        "usable": false,
+        "width": 0
+      },
+      "expectedUsable": false,
+      "usable": false,
+      "validJSONObject": true
+    },
+    {
+      "actualSerializationBytes": 502,
+      "case": "null",
+      "diagnostic": {
+        "height": 0,
+        "isInfinite": false,
+        "isNull": true,
+        "maxX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "maxY": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "midX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "midY": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "minX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "minY": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "usable": false,
+        "width": 0
+      },
+      "expectedUsable": false,
+      "usable": false,
+      "validJSONObject": true
+    },
+    {
+      "actualSerializationBytes": 258,
+      "case": "infinite-rect",
+      "diagnostic": {
+        "height": 1.7976931348623157e308,
+        "isInfinite": true,
+        "isNull": false,
+        "maxX": 8.9884656743115785e307,
+        "maxY": 8.9884656743115785e307,
+        "midX": 0,
+        "midY": 0,
+        "minX": -8.9884656743115785e307,
+        "minY": -8.9884656743115785e307,
+        "usable": false,
+        "width": 1.7976931348623157e308
+      },
+      "expectedUsable": false,
+      "usable": false,
+      "validJSONObject": true
+    },
+    {
+      "actualSerializationBytes": 318,
+      "case": "explicit-infinity",
+      "diagnostic": {
+        "height": 20,
+        "isInfinite": false,
+        "isNull": true,
+        "maxX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "maxY": 30,
+        "midX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "midY": 20,
+        "minX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "minY": 10,
+        "usable": false,
+        "width": 20
+      },
+      "expectedUsable": false,
+      "usable": false,
+      "validJSONObject": true
+    },
+    {
+      "actualSerializationBytes": 319,
+      "case": "NaN",
+      "diagnostic": {
+        "height": 20,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": {
+          "rawType": "CGFloat",
+          "representation": "nan",
+          "state": "nonfinite"
+        },
+        "maxY": 30,
+        "midX": {
+          "rawType": "CGFloat",
+          "representation": "nan",
+          "state": "nonfinite"
+        },
+        "midY": 20,
+        "minX": {
+          "rawType": "CGFloat",
+          "representation": "nan",
+          "state": "nonfinite"
+        },
+        "minY": 10,
+        "usable": false,
+        "width": 20
+      },
+      "expectedUsable": false,
+      "usable": false,
+      "validJSONObject": true
+    },
+    {
+      "actualSerializationBytes": 299,
+      "case": "computed-edge-overflow",
+      "diagnostic": {
+        "height": 20,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "maxY": 30,
+        "midX": {
+          "rawType": "CGFloat",
+          "representation": "inf",
+          "state": "nonfinite"
+        },
+        "midY": 20,
+        "minX": 1.7976931348623157e308,
+        "minY": 10,
+        "usable": false,
+        "width": 1.7976931348623157e308
+      },
+      "expectedUsable": false,
+      "usable": false,
+      "validJSONObject": true
+    }
+  ],
+  "metadata": {
+    "exactExtractedMethodsSha256": "977523f550c0fff9597f0b180166f5ba60957df481187b4a730d354813c7c8b4",
+    "methodBodiesCopiedWithoutReimplementation": true,
+    "nativeUIExecuted": false,
+    "SDKOrAPIExecuted": false,
+    "source": "apps\/ios\/UITests\/AssistantFinancialHistoryMaximumReading.swift",
+    "sourceSha256": "333fd55a41fb9893554b1a8670801358cf4ff1a9b1c42dbefedbf7cb1bc4510d"
+  },
+  "nativeAcceptanceClaim": false,
+  "passed": true,
+  "probeCount": 7
+}
