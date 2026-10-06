@@ -171,7 +171,10 @@ struct AssistantFinancialHistoryMaximumReading {
                 "targetFrame": frameObservation(target),
                 "viewport": diagnostic(bounds), "start": [x, startY], "end": [x, endY],
                 "scroller": diagnostic(scrollerFrame), "scrollBars": bars.map(diagnostic),
-                "actionRegions": regions.map(diagnostic), "navigation": app.navigationBars.firstMatch.identifier,
+                "actionRegions": regions.map(diagnostic),
+                "navigation":
+                    app.navigationBars.firstMatch.exists
+                    ? app.navigationBars.firstMatch.identifier : "absent",
             ],
             name: "Maximum recorded history finite left-padding pan")
         let origin = app.coordinate(withNormalizedOffset: .zero)
