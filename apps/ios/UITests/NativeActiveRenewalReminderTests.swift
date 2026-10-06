@@ -75,7 +75,7 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         XCTAssertNotNil(UUID(uuidString: try XCTUnwrap(env["NEST_QA_ACTIVE_RENEWAL_ID"])))
         XCTAssertNotNil(UUID(uuidString: try XCTUnwrap(env["NEST_QA_ACTIVE_RENEWAL_OPERATION"])))
         XCTAssertEqual(env["NEST_QA_ACTIVE_RENEWAL_PREFLIGHT"], "exact_recorded_request")
-        let app = openRenewals()
+        let app = openRenewals(recordedRequest: true)
         let recorded = app.staticTexts["Renewal saved."]
         XCTAssertTrue(recorded.waitForExistence(timeout: 30))
         reveal(recorded, in: app, permitsDisabled: true)
@@ -102,7 +102,7 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         capture(app, name: "Restored Today and original filter after creation Done")
     }
 
-    private func openRenewals() -> XCUIApplication {
+    private func openRenewals(recordedRequest: Bool = false) -> XCUIApplication {
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.launch()
         addTeardownBlock { [app] in
@@ -121,9 +121,14 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         XCTAssertTrue(renewals.isEnabled && renewals.isHittable)
         renewals.tap()
         XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
-        let ready = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "enabled == true"), object: app.buttons["Refresh"])
-        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
+        if recordedRequest {
+            XCTAssertTrue(app.staticTexts["Renewal saved."].waitForExistence(timeout: 30))
+            XCTAssertTrue(app.staticTexts[title].firstMatch.exists)
+        } else {
+            let ready = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "enabled == true"), object: app.buttons["Refresh"])
+            XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
+        }
         return app
     }
 
