@@ -1,0 +1,238 @@
+{
+  "after/alex-restored-today.png": {
+    "sha256": "015c1ff75f72e1ecd36b1e2a6fbbfa427149a55c0e2b731ffb7e1794f8960645",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/124808F3-7FE0-4A6F-805A-83353C064BFA.png": {
+    "sha256": "922d1d3ce3ba25c5491bb8b930ced8d9afe8eadaf5bd6156757edffbf9238862",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/3DAC8C58-A3D8-41BD-AEBA-04BA25952275.png": {
+    "sha256": "5c6c24499f17994ba3ff180af7b9fefc012208b67c436d4b79608227b61fcb4f",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/421014D5-69DA-4120-BE43-6BEDD499C30F.png": {
+    "sha256": "0af2904d534da73cabdda2cd91b6e55d6bca8982afe9e9e3cc02c7d66e54e4fa",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/6B95DBFF-4146-461A-9719-9E9F9EE015E2.png": {
+    "sha256": "4116ae4b1aeb109ec0632c7f21a1105d2fbe646df87f595d5e1e718c39050758",
+    "safeFictionalScope": true
+  },
+  "after/maximum_dark/F883B50C-B04E-4D88-A5BE-483F04F21BB2.png": {
+    "sha256": "26cbcd7edc344014efba46c4929f4cad916d64ec2013adfa6c722dc9e1d93d8f",
+    "safeFictionalScope": true
+  },
+  "after/sam-restored-today.png": {
+    "sha256": "015c1ff75f72e1ecd36b1e2a6fbbfa427149a55c0e2b731ffb7e1794f8960645",
+    "safeFictionalScope": true
+  },
+  "before/alex-restored-today.png": {
+    "sha256": "9b7528933193b9449e93bc68c0e6633c77614a559ee8348ed40767b25c224c15",
+    "safeFictionalScope": true
+  },
+  "before/alex-ui/7BA5DD5C-2561-4143-850D-56AF1A4B3C3D.png": {
+    "sha256": "65a28e07c32b79c990dbfdba6b88f2423f4e7d6f08ee07bf3788c15043a50f9d",
+    "safeFictionalScope": true
+  },
+  "before/alex-ui/D3B8F4E7-B7B8-4594-9C06-8C7BD35250CE.png": {
+    "sha256": "d4f010eeef931b3d5e8f411843468dae8b7866cf1f07aa1f9b655246075e5c62",
+    "safeFictionalScope": true
+  },
+  "before/alex-ui/F0E266DF-004A-463A-82D0-BED1CAD34302.png": {
+    "sha256": "60c4a5e825fadd0089fce7873e1d70f2f2366f550db1ca2e6f8f5877a9922d14",
+    "safeFictionalScope": true
+  },
+  "before/sam-restored-today.png": {
+    "sha256": "9b7528933193b9449e93bc68c0e6633c77614a559ee8348ed40767b25c224c15",
+    "safeFictionalScope": true
+  },
+  "corner-observer-failure/alex-restored-today.png": {
+    "sha256": "801e29ddccb564e898ceda4b8c1c227bba4a4c0d78285cc2935405d7209c6589",
+    "safeFictionalScope": true
+  },
+  "corner-observer-failure/normal-corner-observation.png": {
+    "sha256": "e67d3c40f2974efe0ce9d409ac2343b85865e832b2488d2cb607e678992479e0",
+    "safeFictionalScope": true
+  },
+  "corner-observer-failure/normal_light/898D73DF-57C3-4A20-B45D-08BF4DD024F1.png": {
+    "sha256": "a4da879b3f5d6233b9811f1c88fd95ebacb3785659d86f0af019bcef88668ab7",
+    "safeFictionalScope": true
+  },
+  "corner-observer-failure/normal_light/8D807C1A-6722-45D5-B353-0E3607F2CECD.png": {
+    "sha256": "2767d2c24b605efe4925aa73be1cb3bc85b6ad71782b079b5b8cc340b85e6e77",
+    "safeFictionalScope": true
+  },
+  "corner-observer-failure/sam-restored-today.png": {
+    "sha256": "801e29ddccb564e898ceda4b8c1c227bba4a4c0d78285cc2935405d7209c6589",
+    "safeFictionalScope": true
+  },
+  "datepicker-drag-observer-failure/alex-restored-today.png": {
+    "sha256": "9c2eea3edbc766f826c8275bf7d130944156a8f9cd3bf19ebe7fd4e6f33bafb7",
+    "safeFictionalScope": true
+  },
+  "datepicker-drag-observer-failure/maximum_dark/F4D01A70-C87A-4AE6-8172-0D99194ECA66.png": {
+    "sha256": "75c5f3f5c1e65cbfe0185511683918c5b4b3a0d3a2ec65d2ec9622baf3fa48dc",
+    "safeFictionalScope": true
+  },
+  "datepicker-drag-observer-failure/sam-restored-today.png": {
+    "sha256": "9c2eea3edbc766f826c8275bf7d130944156a8f9cd3bf19ebe7fd4e6f33bafb7",
+    "safeFictionalScope": true
+  },
+  "frame-observer-failure/alex-restored-today.png": {
+    "sha256": "6dd0fdc6dfda16dea1a9bd845566e31b92ebf4fe068a80fbd10704fe6c8bfb5e",
+    "safeFictionalScope": true
+  },
+  "frame-observer-failure/sam-restored-today.png": {
+    "sha256": "6dd0fdc6dfda16dea1a9bd845566e31b92ebf4fe068a80fbd10704fe6c8bfb5e",
+    "safeFictionalScope": true
+  },
+  "initial-direction-observer-failure/alex-restored-today.png": {
+    "sha256": "a6801c0e5e8ce9f8ed79bf8f462d75118c680f0c6c793ad25b72eced72fd55f4",
+    "safeFictionalScope": true
+  },
+  "initial-direction-observer-failure/maximum_dark/11D9D406-9A35-4625-B265-A0C2E27EEFDD.png": {
+    "sha256": "1f8a99148557acd5cbdd06ee3412729f3322e02c44669f46f2fda0ce40e39d23",
+    "safeFictionalScope": true
+  },
+  "initial-direction-observer-failure/sam-restored-today.png": {
+    "sha256": "a6801c0e5e8ce9f8ed79bf8f462d75118c680f0c6c793ad25b72eced72fd55f4",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/alex-restored-today.png": {
+    "sha256": "907c8e4c9ddc0edd7331d98f1c518f4c41b8aaf502242fee66d62e47ac89d85b",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/1C1FCDA0-EF97-464D-BBA5-9ED3623F4908.png": {
+    "sha256": "6f2ba5b1dee821b40c966629ed80669fac21089f5daaeabf97ed5302d2ff3854",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/329F2B14-D7C4-4322-AF18-A533E57698F0.png": {
+    "sha256": "5345ac9b43b6b33f6e7441d14097f3adc667c75a1e5dc1f92e0a1589978c20bc",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/60ECC13B-CEB3-4AB4-86EE-4379EBBD8B2D.png": {
+    "sha256": "5345ac9b43b6b33f6e7441d14097f3adc667c75a1e5dc1f92e0a1589978c20bc",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/A30FFB42-8B37-4DF7-91F8-76A80B2876D0.png": {
+    "sha256": "4a7360d5191554f04175db6291ffad0918eb84d4fb0d3cfd897d7e263b2deb51",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/C9DB3430-5CF4-48ED-A93E-199625F62A9D.png": {
+    "sha256": "e42cdd6798e4aaacfea6ffd2f14354e153b90c513626381b383d8be43535fcd5",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/E4F259A2-0AB5-4386-A290-1FACB9631E2F.png": {
+    "sha256": "f79341eae5027ffa9dc1e82074053bf90e8e2a4cb488f6eb3ba1a8073ed7bd7f",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/maximum_dark/F4C8A3C3-9CF5-4D07-B299-C2AA80476247.png": {
+    "sha256": "374239cee29fbd3574cf4afe6ffe2a75cb81d1ed5e06b9254b0a4e216bb181cc",
+    "safeFictionalScope": true
+  },
+  "lazy-direction-observer-failure/sam-restored-today.png": {
+    "sha256": "907c8e4c9ddc0edd7331d98f1c518f4c41b8aaf502242fee66d62e47ac89d85b",
+    "safeFictionalScope": true
+  },
+  "lazy-observer-failure/alex-restored-today.png": {
+    "sha256": "7fc2c81be40514bc5b852b703c6ed2bf906e8e7bd9669aff0398f76f625ba56f",
+    "safeFictionalScope": true
+  },
+  "lazy-observer-failure/sam-restored-today.png": {
+    "sha256": "7fc2c81be40514bc5b852b703c6ed2bf906e8e7bd9669aff0398f76f625ba56f",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/alex-restored-today.png": {
+    "sha256": "69b43dd7c6d1c0fc6922a3a6082aa5e72e20b3fec6c09cafb81a38a5b52340b8",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/maximum_dark/144057CC-C2C3-4E2B-93B2-9F1A3949F9D3.png": {
+    "sha256": "ab38833ea89d19830dda656fd51823461103215fcaa57ed7fba285c41f1347d5",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/0A7AC169-1152-432C-9A3F-64E612592EE0.png": {
+    "sha256": "a0b1d4933d37c7dbcc5445455f9cf2973925f4df9ef54893af3e3efd72d3ee07",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/57327C64-ED75-4023-8CAE-6D026A176D2F.png": {
+    "sha256": "5fa1adf785b7aba8a907eaa8bcc101a1b841c989c15aea315d395202c4f10857",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/58027A58-99A1-4E0D-BB89-583809D7B84E.png": {
+    "sha256": "27c57a73e6bf452fc15826bd3fc90de5cecf5b37eba549e4d4aac9c6c1cadee6",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/5A16BE2C-EF39-4571-9962-4BBCAE2652CC.png": {
+    "sha256": "cfa6d95862373b24c2bbf4f38665bdedeb54c44521b3d977d86be87fdcd8a1a4",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/5B88E430-91A4-4DA0-91B0-2B74BBFF65FB.png": {
+    "sha256": "5599bfc2c4012171e2f3146c4508d00da719e1a95adef9b475176cb2e2069ab7",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/7F6E44E2-3FCF-4FF6-A75F-0BE0E5F562D2.png": {
+    "sha256": "5fa1adf785b7aba8a907eaa8bcc101a1b841c989c15aea315d395202c4f10857",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/BA0E784F-80C9-42F6-B3F3-65389F08F0B6.png": {
+    "sha256": "f970d810f2fc5c8ef98f08d658029d7af290b4339d0e272f628b88a7f60c67d2",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/D1059D8B-46FD-49C7-8CEB-B41A4BC407B2.png": {
+    "sha256": "392a1e25b29ec1d4a4043735c961c48415956b4716dfcd1ebe702a77a0e90a7a",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/E15BE096-9E2E-4986-83B2-83C8439DDC15.png": {
+    "sha256": "709207fb28d81cec20a9b6fbcb509394ef969051008478f17b58bc55109400ea",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/normal_light/EBFC66B5-0B89-4BB2-8363-A00926277002.png": {
+    "sha256": "410198718622b0affd6346602bbdee24153b3dfb42f583ef6f250af99a882a8e",
+    "safeFictionalScope": true
+  },
+  "normal-pass-maximum-observer-failure/sam-restored-today.png": {
+    "sha256": "69b43dd7c6d1c0fc6922a3a6082aa5e72e20b3fec6c09cafb81a38a5b52340b8",
+    "safeFictionalScope": true
+  },
+  "popover-failure/alex-restored-today.png": {
+    "sha256": "237c395f15712a5f36a78b4ee9a1a4ed5541b872715d03ea9a89ece5de2e55d6",
+    "safeFictionalScope": true
+  },
+  "popover-failure/dialog-at-46s.png": {
+    "sha256": "f8ae5f876566409fd559723ea83d60b0c504c78b2a60472a3d068e77cb8fa507",
+    "safeFictionalScope": true
+  },
+  "popover-failure/normal_light/662EDE02-2C2D-4742-BDF7-0D0009E4FBDE.png": {
+    "sha256": "55534f61900f1b1cf0b4ea2f1431d65fb103d98f4c9d4be8b760f829bd5e6799",
+    "safeFictionalScope": true
+  },
+  "popover-failure/sam-restored-today.png": {
+    "sha256": "237c395f15712a5f36a78b4ee9a1a4ed5541b872715d03ea9a89ece5de2e55d6",
+    "safeFictionalScope": true
+  },
+  "short-travel-observer-failure/alex-restored-today.png": {
+    "sha256": "37843f1a8e74dfed1144bcfc471173876acae1c03de742061e7e974520c9e65d",
+    "safeFictionalScope": true
+  },
+  "short-travel-observer-failure/maximum_dark/14583E8E-A7D1-4D82-84CB-D0CE5F9301A7.png": {
+    "sha256": "e1ff54dd13317dbf6bd5fe07998715878c11a29abbea9e87831fea5f470c1ea0",
+    "safeFictionalScope": true
+  },
+  "short-travel-observer-failure/sam-restored-today.png": {
+    "sha256": "37843f1a8e74dfed1144bcfc471173876acae1c03de742061e7e974520c9e65d",
+    "safeFictionalScope": true
+  },
+  "switch-observer-failure/alex-restored-today.png": {
+    "sha256": "0c073ccd09343d8c50f1faab6132d2eac0da31e121b6d2b360f1171d78a03f1c",
+    "safeFictionalScope": true
+  },
+  "switch-observer-failure/normal_light/80D278F7-BFA2-48DE-8358-868DF8CAB074.png": {
+    "sha256": "9e105597bcf5d5c48206f82f09cf4c3f591c0a29975d83938fd78a79057985f6",
+    "safeFictionalScope": true
+  },
+  "switch-observer-failure/sam-restored-today.png": {
+    "sha256": "0c073ccd09343d8c50f1faab6132d2eac0da31e121b6d2b360f1171d78a03f1c",
+    "safeFictionalScope": true
+  }
+}

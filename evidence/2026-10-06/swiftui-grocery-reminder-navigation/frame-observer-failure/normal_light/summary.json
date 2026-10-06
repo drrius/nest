@@ -1,0 +1,51 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "NestAccessibility \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791262870.086,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [
+    {
+      "issueType": "Runtime Warning",
+      "message": "Adding '_UIReparentingView' as a subview of UIHostingController.view is not supported and may result in a broken view hierarchy. Add your view above UIHostingController.view in a common superview or insert it into your SwiftUI content in a UIViewRepresentable instead."
+    }
+  ],
+  "skippedTests": 0,
+  "startTime": 1791262825.985,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertGreaterThanOrEqual failed: (\"43.99999999999999\") is less than (\"44.0\")",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "NativeGroceryReminderNavigationTests/testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeGroceryReminderNavigationTests/testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix",
+      "testName": "testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix()"
+    }
+  ],
+  "title": "Test - NestAccessibility",
+  "topInsights": [],
+  "totalTestCount": 1
+}

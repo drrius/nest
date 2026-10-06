@@ -1,0 +1,18 @@
+[
+  {
+    "bottom": 659,
+    "enabled": false,
+    "exists": false,
+    "frame": [0, 0, 0, 0],
+    "hittable": false,
+    "top": 181
+  },
+  {
+    "bottom": 659,
+    "enabled": true,
+    "exists": true,
+    "frame": [16, 470, 343, 155.5],
+    "hittable": true,
+    "top": 108
+  }
+]

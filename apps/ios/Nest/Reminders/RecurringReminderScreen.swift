@@ -58,7 +58,7 @@ struct RecurringReminderScreen: View {
         .interactiveDismissDisabled(model.dirty || model.busy)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) {
-                Button("Back") {
+                QuietToolbarButton("Back", systemImage: "chevron.left") {
                     if model.dirty {
                         leaving = true
                         discarding = true
@@ -68,9 +68,8 @@ struct RecurringReminderScreen: View {
                 }.disabled(model.busy)
             }
         }
-        .confirmationDialog(
-            "Discard your unsaved reminder choices?", isPresented: $discarding, titleVisibility: .visible
-        ) {
+        .alert("Discard your unsaved reminder choices?", isPresented: $discarding) {
+            Button("Keep editing", role: .cancel) {}
             Button("Discard choices", role: .destructive) {
                 if leaving {
                     dismiss()

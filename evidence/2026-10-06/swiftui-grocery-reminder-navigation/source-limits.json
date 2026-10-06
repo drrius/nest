@@ -1,0 +1,44 @@
+[
+  {
+    "path": "apps/ios/UITests/NativeGroceryReminderNavigationTests.swift",
+    "lines": 354,
+    "maximumFunctionCodeLines": 71,
+    "maximumComplexity": 10
+  },
+  {
+    "path": "apps/ios/AppTests/HostedGroceryReminderReadTests.swift",
+    "lines": 73,
+    "maximumFunctionCodeLines": 38,
+    "maximumComplexity": 4
+  },
+  {
+    "path": "apps/ios/Nest/Reminders/RenewalReminderScreen.swift",
+    "lines": 90,
+    "maximumFunctionCodeLines": 8,
+    "maximumComplexity": 2
+  },
+  {
+    "path": "apps/ios/Nest/Reminders/ChoreReminderScreen.swift",
+    "lines": 84,
+    "maximumFunctionCodeLines": 8,
+    "maximumComplexity": 2
+  },
+  {
+    "path": "apps/ios/Nest/Reminders/MealReminderScreen.swift",
+    "lines": 84,
+    "maximumFunctionCodeLines": 8,
+    "maximumComplexity": 2
+  },
+  {
+    "path": "apps/ios/Nest/Reminders/GroceryReminderScreen.swift",
+    "lines": 98,
+    "maximumFunctionCodeLines": 8,
+    "maximumComplexity": 2
+  },
+  {
+    "path": "apps/ios/Nest/Reminders/RecurringReminderScreen.swift",
+    "lines": 94,
+    "maximumFunctionCodeLines": 8,
+    "maximumComplexity": 2
+  }
+]

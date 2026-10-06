@@ -1,0 +1,122 @@
+[
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 3697, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 3457, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 3217, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 2977, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 2737, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 2497, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 2257, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 2017, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 1777, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 1537, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 1297, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 1057, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 817, 335, 219],
+    "hittable": false,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 577, 335, 219],
+    "hittable": true,
+    "top": 80
+  },
+  {
+    "bottom": 576,
+    "enabled": true,
+    "exists": true,
+    "frame": [20, 347, 335, 219],
+    "hittable": true,
+    "top": 80
+  }
+]

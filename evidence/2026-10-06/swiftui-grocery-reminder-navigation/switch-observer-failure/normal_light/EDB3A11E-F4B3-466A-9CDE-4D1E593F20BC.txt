@@ -1,0 +1,41 @@
+Attributes: Switch, 0x1059f6910, {{16.0, 399.0}, {343.0, 52.0}}, label: 'Reminder enabled', value: 0
+Element subtree:
+ →Switch, 0x1059f6910, {{16.0, 399.0}, {343.0, 52.0}}, label: 'Reminder enabled', value: 0
+Path to element:
+ →Application, 0x1059f4290, pid: 65142, label: 'Nest'
+  ↳Window (Main), 0x1059f5590, {{0.0, 0.0}, {375.0, 667.0}}
+   ↳Other, 0x1059f56b0, {{0.0, 0.0}, {375.0, 667.0}}
+    ↳Other, 0x1059f5a70, {{0.0, 30.0}, {375.0, 637.0}}
+     ↳Other, 0x1059f5b90, {{0.0, 30.0}, {375.0, 637.0}}
+      ↳Other, 0x1059f5cb0, {{0.0, 30.0}, {375.0, 637.0}}
+       ↳Other, 0x1059f57d0, {{0.0, 30.0}, {375.0, 637.0}}
+        ↳Other, 0x1059f58f0, {{0.0, 30.0}, {375.0, 637.0}}
+         ↳Other, 0x1059f6250, {{0.0, 30.0}, {375.0, 637.0}}
+          ↳Other, 0x1059f5dd0, {{0.0, 30.0}, {375.0, 637.0}}
+           ↳Other, 0x1059f5ef0, {{0.0, 30.0}, {375.0, 637.0}}
+            ↳Other, 0x1059f6010, {{0.0, 30.0}, {375.0, 637.0}}
+             ↳Other, 0x1059f6130, {{0.0, 30.0}, {375.0, 637.0}}
+              ↳CollectionView, 0x1059f6370, {{0.0, 30.0}, {375.0, 637.0}}
+               ↳Cell, 0x1059f6490, {{16.0, 399.0}, {343.0, 52.0}}
+                ↳Other, 0x1059f65b0, {{16.0, 399.0}, {343.0, 52.0}}
+                 ↳Other, 0x1059f66d0, {{16.0, 399.0}, {343.0, 52.0}}
+                  ↳Other, 0x1059f67f0, {{16.0, 399.0}, {343.0, 52.0}}
+                   ↳Switch, 0x1059f6910, {{16.0, 399.0}, {343.0, 52.0}}, label: 'Reminder enabled', value: 0
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x1177bcd60, pid: 65142, label: 'Nest'
+  }
+  ↪︎Find: Descendants matching type Switch
+    Output: {
+      Switch, 0x1177b9760, {{16.0, 399.0}, {343.0, 52.0}}, label: 'Reminder enabled', value: 0
+      Switch, 0x1177ba2a0, {{16.0, 451.0}, {343.0, 52.0}}, label: 'Remind me', value: 0, Disabled
+      Switch, 0x1177bade0, {{16.0, 503.0}, {343.0, 52.0}}, label: 'Remind Test Sam', value: 0, Disabled
+      Switch, 0x1177b99a0, {{282.0, 411.0}, {63.0, 28.0}}, value: 0
+      Switch, 0x1177ba4e0, {{282.0, 463.0}, {63.0, 28.0}}, value: 0, Disabled
+      Switch, 0x1177bb020, {{282.0, 515.0}, {63.0, 28.0}}, value: 0, Disabled
+    }
+    ↪︎Find: Elements matching predicate '"Reminder enabled" IN identifiers'
+      Output: {
+        Switch, 0x1177aa7c0, {{16.0, 399.0}, {343.0, 52.0}}, label: 'Reminder enabled', value: 0
+      }

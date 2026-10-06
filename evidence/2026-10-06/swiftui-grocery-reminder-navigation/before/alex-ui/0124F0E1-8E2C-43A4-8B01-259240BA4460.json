@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "frame": [20, 50.000000000000007, 62, 35.999999999999993],
+  "hittable": true,
+  "label": "Back",
+  "minimumTarget": 44
+}

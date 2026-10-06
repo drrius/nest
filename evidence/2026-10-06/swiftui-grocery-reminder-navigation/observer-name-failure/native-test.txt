@@ -1,0 +1,31 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-grocery-reminder-baseline-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-grocery-reminder-baseline-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedGroceryReminderReadTests/testReadOnlyOwnedRiceReminderContext" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-grocery-reminder-baseline-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 06:54:35.720.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 06:54:35.721.
+Test Suite 'HostedGroceryReminderReadTests' started at 2026-10-06 06:54:35.721.
+Test Case '-[NestAppTests.HostedGroceryReminderReadTests testReadOnlyOwnedRiceReminderContext]' started.
+/tmp/nest-current-qa-82a/apps/ios/AppTests/HostedGroceryReminderReadTests.swift:32: error: -[NestAppTests.HostedGroceryReminderReadTests testReadOnlyOwnedRiceReminderContext] : XCTAssertEqual failed: ("QA rice") is not equal to ("Rice")
+Test Case '-[NestAppTests.HostedGroceryReminderReadTests testReadOnlyOwnedRiceReminderContext]' failed (1.981 seconds).
+Test Suite 'HostedGroceryReminderReadTests' failed at 2026-10-06 06:54:37.703.
+	 Executed 1 test, with 1 failure (0 unexpected) in 1.981 (1.982) seconds
+Test Suite 'NestAppTests.xctest' failed at 2026-10-06 06:54:37.703.
+	 Executed 1 test, with 1 failure (0 unexpected) in 1.981 (1.983) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 06:54:37.703.
+	 Executed 1 test, with 1 failure (0 unexpected) in 1.981 (1.983) seconds
+2026-10-06 06:54:49.443 xcodebuild[61272:20233213] [MT] IDETestOperationsObserverDebug: 15.595 elapsed -- Testing started completed.
+2026-10-06 06:54:49.444 xcodebuild[61272:20233213] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 06:54:49.444 xcodebuild[61272:20233213] [MT] IDETestOperationsObserverDebug: 15.595 sec, +15.595 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-grocery-reminder-baseline-20261006/alex-before/result.xcresult
+
+Failing tests:
+	HostedGroceryReminderReadTests.testReadOnlyOwnedRiceReminderContext()
+
+** TEST EXECUTE FAILED **
+
+Testing started

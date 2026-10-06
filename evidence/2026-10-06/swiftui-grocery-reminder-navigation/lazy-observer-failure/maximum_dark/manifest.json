@@ -1,0 +1,52 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AD6A4D2B-C1FC-446B-B1F8-62D341371DFF.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_9635BD68-9669-4364-B6B2-62FD5AC59A4B.nest",
+        "timestamp": 1791264743.565
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5FBA87CF-758F-4BC6-9D60-CF6654E79700.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_CA797CD4-7D7C-4273-8C37-83A92A8939B5.json",
+        "timestamp": 1791264731.635
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7F37D794-EA20-4F4D-AD36-002F624F95A7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_6F498171-1067-4105-90BD-45D0A69E90E4.json",
+        "timestamp": 1791264726.358
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "98A9F531-76E1-4497-9E98-E7E78BDFC7E6.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "App UI hierarchy for ch.drrius_0_DB7CEE2D-2E3A-4CED-99DB-6DBBB84018CD.nest",
+        "timestamp": 1791264743.745
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DA0EEB3F-4192-4035-91DA-FBFC4E736519.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "Complete Issue Description.txt"
+      }
+    ],
+    "testIdentifier": "NativeGroceryReminderNavigationTests/testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeGroceryReminderNavigationTests/testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix"
+  }
+]

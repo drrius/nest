@@ -1,0 +1,367 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "08F51EB1-7CD2-443D-9812-B983820EDAD4.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Required reminder control placement failed accessibility tree_0_77315192-05A7-4E2B-B456-51F728B2715F.txt",
+        "timestamp": 1791265439.23
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A30FFB42-8B37-4DF7-91F8-76A80B2876D0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Required reminder control placement failed_0_F83666C0-E7C9-468F-9932-66DBBA9C25C3.png",
+        "timestamp": 1791265438.844
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "ED64FEA1-1C1A-4EEC-8756-A0A3781BB2D6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured unsuccessful reminder control placement_0_305BA137-F178-4BBB-BEE6-45374EE0D410.json",
+        "timestamp": 1791265438.719
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5BBFE5C5-9BF1-45F5-A1CF-6A623F2EAF0C.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh offers explicit Keep editing accessibility tree_0_2E77DA94-BF27-45F4-BD3A-83F9E2CB37B4.txt",
+        "timestamp": 1791265383.237
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F4C8A3C3-9CF5-4D07-B299-C2AA80476247.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Refresh offers explicit Keep editing_0_FAD31936-CD09-4B20-8019-B9BE2679DDFD.png",
+        "timestamp": 1791265382.786
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4A0271EC-0B8E-481B-B52E-5DFA14247121.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_9B75E0BA-0058-44B2-8BCD-017BAD6412B7.json",
+        "timestamp": 1791265381.709
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "500D17C7-F6F0-4B60-A5AA-756C1924BC7C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_FD5EBDC9-9919-41FC-B745-B62616C40C1D.json",
+        "timestamp": 1791265371.659
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6C0DD838-0D67-4AEA-BD08-434039E4C0E1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_13AE6896-7501-4B51-9C49-3E468A7511F5.json",
+        "timestamp": 1791265369.579
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3EDA8DE1-BB74-4B7D-811F-1F69AD96C649.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native reminder switch thumb target_0_883D16FB-20EB-4B70-8DFA-7A0E36903438.json",
+        "timestamp": 1791265365.633
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E5D681C5-1053-4525-8B4A-BA4935742B94.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_1E7238E6-08C5-4CA9-A874-0A94E80DB669.json",
+        "timestamp": 1791265365.129
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C5A53730-E091-4BA6-8CE2-FB64C44DBFE7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native reminder switch thumb target_0_35F8F8ED-36A6-4145-A3D7-7B5A9EC77DF8.json",
+        "timestamp": 1791265361.182
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "EF7AD207-D95C-4DCB-B60F-09027E2ABC2A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_82FA255C-DAAB-4D66-9BA0-C995C910B2B7.json",
+        "timestamp": 1791265360.676
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0F7318D4-FDB8-41E0-9930-54C142FDBAFE.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Reopened editor matches unchanged canonical baseline accessibility tree_0_D74B6F51-3775-458C-9A4F-3AB78891B9CC.txt",
+        "timestamp": 1791265359.698
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E4F259A2-0AB5-4386-A290-1FACB9631E2F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Reopened editor matches unchanged canonical baseline_0_687DA5C8-AB77-4C20-B7F5-DCEDE7EC8185.png",
+        "timestamp": 1791265359.264
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "BCC92A25-3700-490A-9B45-A1925B9D5AA8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_D3EDE6B5-48BC-4532-96B4-05FA2D629514.json",
+        "timestamp": 1791265359.047
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CF4C72D3-E1AF-4F09-AADB-3B1C3E2BBC86.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_5DD15C62-E217-476E-AA5E-D0BFB6298710.json",
+        "timestamp": 1791265354.25
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "CB256CF9-F0F3-4A1B-A5C5-01BAF9B17EEF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_C004E4D9-8F53-4F8B-8697-4D9C777450F1.json",
+        "timestamp": 1791265343.218
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E314CE65-4786-4683-A472-6D134C3C8D83.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back explicitly discards unsent choices accessibility tree_0_5F6BF3A6-344C-495F-9861-62CF20C12AA2.txt",
+        "timestamp": 1791265338.394
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "329F2B14-D7C4-4322-AF18-A533E57698F0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back explicitly discards unsent choices_0_A346BB15-C62A-4092-8061-BA8E99667304.png",
+        "timestamp": 1791265337.887
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "59DB58AD-11A3-4450-9296-BE91D9498879.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back Keep editing retains local choices accessibility tree_0_2D5E3CF0-10DC-4147-AD93-2158BC903F88.txt",
+        "timestamp": 1791265336.506
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1C1FCDA0-EF97-464D-BBA5-9ED3623F4908.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back Keep editing retains local choices_0_8ACF584B-F7B4-49D4-A9D8-93AF9087AD4D.png",
+        "timestamp": 1791265336.064
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DDCFDA4A-65EF-43D3-B705-A463AD3BC4CC.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_0D3ED5A9-84A6-45E9-A870-4F8F1907C1E5.json",
+        "timestamp": 1791265335.846
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8981F5E0-7109-4D44-AA4B-C517D3EF367C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_F242AF71-9327-4E06-B2DA-E936382B7B51.json",
+        "timestamp": 1791265333.689
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FB403263-2D02-488C-A2AC-30771DEFCA1E.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back offers explicit Keep editing accessibility tree_0_893F8D86-9194-44BE-B4FF-57AB678455E2.txt",
+        "timestamp": 1791265330.731
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "60ECC13B-CEB3-4AB4-86EE-4379EBBD8B2D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Back offers explicit Keep editing_0_33D91A5A-A750-4B10-A98F-0F55EC155E8F.png",
+        "timestamp": 1791265330.224
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D2589EBD-893F-46B4-93C5-A8CBCC76CFD5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_1C62EBDF-5E26-4EF1-A924-3C0BF38898C6.json",
+        "timestamp": 1791265328.725
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "06012D60-57F2-4EBE-BEFA-4D714D131656.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_189C5C42-4BCB-48F4-ABDD-8C41DC90C222.json",
+        "timestamp": 1791265326.539
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F753FC7E-C040-4EE2-BE05-9A1AA180496B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native reminder switch thumb target_0_08C22FB3-5DF7-451C-84F8-6770705EFDA7.json",
+        "timestamp": 1791265322.576
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "42A2293B-4F8F-4E80-98E5-F224BA6AB2F1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_45598A41-8A32-454F-AD99-220242196970.json",
+        "timestamp": 1791265322.072
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "128CE86B-CCFB-4F9B-A8A7-F53DE390AF11.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native reminder switch thumb target_0_71EB910E-EC62-461B-AE47-5197C75C95B1.json",
+        "timestamp": 1791265315.774
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C38FF845-1CA1-4A35-99AF-04422541EEA2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_7BD414B2-EBB9-4CA1-AC31-807966940405.json",
+        "timestamp": 1791265315.289
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "E4BB5762-95C7-47FA-A9EA-9F153676ED37.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_B746FCD6-80C7-4DD3-B1CD-61AD8FC2C053.json",
+        "timestamp": 1791265300.098
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F376D924-ADD0-4DCF-A47A-1852644EA235.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Fixed Back and untouched canonical reminder choices accessibility tree_0_D79E7F9C-BA95-4D80-8D21-5E0DF9BA0F7D.txt",
+        "timestamp": 1791265295.712
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C9DB3430-5CF4-48ED-A93E-199625F62A9D.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Fixed Back and untouched canonical reminder choices_0_5F8B0A30-5B48-414B-BF3E-7BC483974BB9.png",
+        "timestamp": 1791265295.276
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "ED1C215C-87F2-4622-BCD5-B828BD48ABEB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Fixed Back frame and visible left edge tap_0_8AC9B33B-F8DC-4108-A657-D40E2141C894.json",
+        "timestamp": 1791265295.179
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "32F135BD-6F6A-46E2-A42F-BE4A2359DBB6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_D574C254-B7AB-419E-9E35-3E1E16BF3A65.json",
+        "timestamp": 1791265294.654
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1436B000-0243-4245-B8A3-02E14CAB22A7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_35FC6A4D-0D7D-4AC8-8AC6-A78A47666922.json",
+        "timestamp": 1791265289.328
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C2F26BEC-B802-46DE-BDB7-0C442A70CF38.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_2243E293-9D99-4ABA-97B2-CDCF9C7C311B.json",
+        "timestamp": 1791265277.762
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5128274E-62C7-4291-81F2-9106E0023A4A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured reminder control full viewport_0_76B77C38-F0DF-4EE9-83E2-3449B2CAAB05.json",
+        "timestamp": 1791265271.619
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8BF53F1C-E5C8-41B3-B86F-8F531ABB9E76.txt",
+        "isAssociatedWithFailure": true,
+        "suggestedHumanReadableName": "Complete Issue Description.txt"
+      }
+    ],
+    "testIdentifier": "NativeGroceryReminderNavigationTests/testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeGroceryReminderNavigationTests/testUnsentChoicesKeepEditingDiscardAndRefreshAfterBackFix"
+  }
+]

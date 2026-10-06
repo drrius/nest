@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-grocery-reminder-baseline-after-name-observation-20261006/alex-after/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-grocery-reminder-baseline-after-name-observation-20261006/alex-after/result.xcresult "-only-testing:NestAppTests/HostedGroceryReminderReadTests/testReadOnlyOwnedRiceReminderContext" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-grocery-reminder-baseline-after-name-observation-20261006/alex-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 06:56:51.934.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 06:56:51.934.
+Test Suite 'HostedGroceryReminderReadTests' started at 2026-10-06 06:56:51.935.
+Test Case '-[NestAppTests.HostedGroceryReminderReadTests testReadOnlyOwnedRiceReminderContext]' started.
+Test Case '-[NestAppTests.HostedGroceryReminderReadTests testReadOnlyOwnedRiceReminderContext]' passed (1.453 seconds).
+Test Suite 'HostedGroceryReminderReadTests' passed at 2026-10-06 06:56:53.388.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.453 (1.454) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 06:56:53.388.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.453 (1.454) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 06:56:53.389.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.453 (1.455) seconds
+2026-10-06 06:56:53.712 xcodebuild[62169:20241150] [MT] IDETestOperationsObserverDebug: 3.611 elapsed -- Testing started completed.
+2026-10-06 06:56:53.712 xcodebuild[62169:20241150] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 06:56:53.712 xcodebuild[62169:20241150] [MT] IDETestOperationsObserverDebug: 3.611 sec, +3.611 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-grocery-reminder-baseline-after-name-observation-20261006/alex-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
