@@ -70,3 +70,42 @@ Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
 clean and its CI is running.
 [Prepared leftovers checkpoint](../evidence/2026-10-07/swiftui-native-leftovers/prepared.json).
+
+## Portion draft preparation and failure history
+
+Next M3/M5 native pass is both members' unsaved portion selection, Keep editing
+and explicit Discard, with native GET-only profile reads before/after. Fresh
+hosted metadata confirms Alex revision 5/portion 1/Vegetarian/no calorie goal;
+Sam's profile is absent and must stay absent. Shared cooking revision 6 and all
+food/cooking receipts are captured, alongside eight protected household/financial
+fingerprints. Thirteen isolated food-profile/database/PostgREST cases pass with
+zero failures/skips. Two guarded native test sources pass formatting/source
+limits; no Save, profile insertion or native invocation has run at preparation.
+[Portion preparation](../evidence/2026-10-07/swiftui-native-portions/prepared.json).
+Preparation at `293549f6` freezes 1,134 inputs and builds the guarded UI products,
+but the new SDK test fails compilation because it names a nonexistent SessionAPI.
+The existing MealAPI verifier replaces that type; configured Mac formatting and
+source limits pass. No native method, preference mutation or Save runs. The
+failed preparation logs/source map are preserved. Corrected native preparation
+remains pending.
+Corrected fresh SDK products at `e7b1ad87` and retained UI products at `293549f6`
+are source/product/signing verified; only the read-test file differs. Both actual
+GET-only native reads pass, including Sam's absent profile. The first Alex UI
+method passes the portion control's 44-point checks, then stops before editing:
+the native button's value is empty and its label is “Your portion, 1”. The observer
+now accepts either exact selection representation; no shipping control changes.
+Fresh hosted comparison confirms profiles, shared cooking and all receipts exact;
+original scopes/64 journals/settings/local semantics restore. Both native reads
+and the failure are retained. Corrected UI execution remains pending.
+At fresh UI source `331a7405`, the control and exact selection-label checks pass,
+then the 1.5 menu choice measures 42 points. The method stops before selection;
+food/cooking profiles and all receipts remain exact, and restoration passes.
+The shipping portion selector now uses a native navigation-link picker, retaining
+the same eight allowed values and validation. The 44-point requirement is kept.
+Configured formatting/source limits pass; fresh native execution is pending.
+At `6052e1ea`, Alex's normal native run verifies the 1.5 choice, Keep editing,
+explicit Discard and reopening portion 1. It fails only at the final exit because
+an unchanged form uses the native Profile BackButton rather than the draft Back
+label. The final observer now selects/measures that native back control. Fresh
+hosted profiles/cooking/receipts remain exact and restoration passes. The failed
+method is retained and not counted as a full pass; corrected execution is pending.

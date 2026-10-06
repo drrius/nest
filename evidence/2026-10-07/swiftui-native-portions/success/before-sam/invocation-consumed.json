@@ -1,0 +1,8 @@
+{
+  "source": "e7b1ad870204b3959df2d6318515c4ec63e26d31",
+  "testBuiltSource": "e7b1ad870204b3959df2d6318515c4ec63e26d31",
+  "actor": "sam",
+  "step": "before",
+  "method": "HostedPortionPreferenceReadTests/testOwnedFoodProfileReadOnly",
+  "positiveBudget": 0
+}

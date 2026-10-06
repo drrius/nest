@@ -1,0 +1,14 @@
+{
+  "profile": {
+    "revision": "5",
+    "preferences": {
+      "calorieGoal": null,
+      "portions": 1,
+      "dislikes": [],
+      "restrictions": ["Vegetarian"]
+    }
+  },
+  "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+  "version": 1,
+  "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200"
+}

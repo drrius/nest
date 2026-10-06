@@ -1,0 +1,179 @@
+Attributes: Application, 0x11d5c6fb0, pid: 80808, label: 'Nest'
+Element subtree:
+ →Application, 0x11d5c6fb0, pid: 80808, label: 'Nest'
+    Window (Main), 0x11d5d3cc0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11d5a9600, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11d5baac0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11d5c7f50, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11d5bc1c0, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11d5be550, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11d5c1b50, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11d5b1370, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11d5d1900, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11d5bb300, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11d5b6fd0, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11d5c2ac0, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11d5b9840, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11d5c4500, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Your food preferences'
+                              Button, 0x11d5d35a0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Profile'
+                              StaticText, 0x11d5d36c0, {{99.0, 31.5}, {176.5, 21.0}}, label: 'Your food preferences'
+                              Other, 0x11d5d64e0, {{311.0, 24.0}, {44.0, 36.0}}, label: 'Save'
+                                Other, 0x11d5d6600, {{311.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x11d5d6720, {{311.0, 20.0}, {44.0, 44.0}}, label: 'Save'
+                            Other, 0x11d5d6840, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11d5d6960, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11d5d6b50, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11d5d6c70, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11d5d6d90, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11d5d6eb0, {{-16.0, -19.0}, {407.0, 184.0}}
+                                      Cell, 0x11d5d6fd0, {{16.0, -19.0}, {343.0, 40.5}}
+                                        Other, 0x11d5d70f0, {{16.0, -19.0}, {343.0, 40.5}}
+                                        Other, 0x11d5d7210, {{16.0, -19.0}, {343.0, 40.5}}
+                                          Other, 0x11d5d7330, {{16.0, -19.0}, {343.0, 40.5}}
+                                            Other, 0x11d5d7450, {{16.0, -19.0}, {343.0, 40.5}}
+                                              StaticText, 0x11d5d7570, {{16.0, -19.0}, {343.0, 40.5}}, label: 'Dietary restrictions'
+                                      Other, 0x11d5d7690, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11d5d77b0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11d5d78d0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11d5d79f0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11d5d7b10, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x11d5d7c30, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11d5d7d50, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x11d5d7e70, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11d5d7f90, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11d5d80b0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11d5d81d0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11d5d82f0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11d5d8410, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11d5d8530, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11d5d8650, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x11d5d8770, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11d5d8890, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11d5d89b0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x11d5d8ad0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11d5d8bf0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11d5d8d10, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Cell, 0x11d5d8e30, {{16.0, 21.5}, {343.0, 74.0}}
+                                        Other, 0x11d5d8f50, {{16.0, 21.5}, {343.0, 74.0}}
+                                          Other, 0x11d5d9070, {{16.0, 21.5}, {343.0, 74.0}}
+                                        Other, 0x11d5d9190, {{16.0, 21.5}, {343.0, 74.0}}
+                                          Other, 0x11d5d92b0, {{16.0, 21.5}, {343.0, 74.0}}
+                                            Other, 0x11d5d93d0, {{16.0, 21.5}, {343.0, 74.0}}
+                                              TextField, 0x11d5d94f0, {{32.0, 36.5}, {311.0, 44.0}}, placeholderValue: 'Restriction', value: Vegetarian
+                                      Cell, 0x11d5d9610, {{16.0, 95.5}, {343.0, 52.0}}
+                                        Other, 0x11d5d9730, {{16.0, 95.5}, {343.0, 52.0}}
+                                          Other, 0x11d5d9850, {{16.0, 95.5}, {343.0, 52.0}}
+                                        Other, 0x11d5d9970, {{16.0, 95.5}, {343.0, 52.0}}
+                                          Other, 0x11d5d9a90, {{16.0, 95.5}, {343.0, 52.0}}
+                                            Other, 0x11d5d9bb0, {{16.0, 95.5}, {343.0, 52.0}}
+                                              Button, 0x11d5d9cd0, {{16.0, 95.5}, {343.0, 52.0}}, label: 'Add restriction'
+                                                Image, 0x11d5d9df0, {{35.5, 113.0}, {17.5, 17.5}}, identifier: 'plus', label: 'Add'
+                                                StaticText, 0x11d5d9f10, {{35.5, 111.2}, {148.5, 20.5}}, label: 'Add restriction'
+                                      Other, 0x11d5da030, {{32.0, 94.5}, {311.0, 1.0}}
+                                      Other, 0x11d5da150, {{-16.0, 165.0}, {407.0, 110.0}}
+                                      Cell, 0x11d5da270, {{16.0, 165.0}, {343.0, 40.5}}
+                                        Other, 0x11d5da390, {{16.0, 165.0}, {343.0, 40.5}}
+                                        Other, 0x11d5da4b0, {{16.0, 165.0}, {343.0, 40.5}}
+                                          Other, 0x11d5da5d0, {{16.0, 165.0}, {343.0, 40.5}}
+                                            Other, 0x11d5da6f0, {{16.0, 165.0}, {343.0, 40.5}}
+                                              StaticText, 0x11d5da810, {{16.0, 165.0}, {343.0, 40.5}}, label: 'Dislikes'
+                                      Cell, 0x11d5da930, {{16.0, 205.5}, {343.0, 52.0}}
+                                        Other, 0x11d5daa50, {{16.0, 205.5}, {343.0, 52.0}}
+                                          Other, 0x11d5dab70, {{16.0, 205.5}, {343.0, 52.0}}
+                                        Other, 0x11d5dac90, {{16.0, 205.5}, {343.0, 52.0}}
+                                          Other, 0x11d5dadb0, {{16.0, 205.5}, {343.0, 52.0}}
+                                            Other, 0x11d5daed0, {{16.0, 205.5}, {343.0, 52.0}}
+                                              Button, 0x11d5daff0, {{16.0, 205.5}, {343.0, 52.0}}, label: 'Add dislike'
+                                                Image, 0x11d5db110, {{35.5, 223.0}, {17.5, 17.5}}, identifier: 'plus', label: 'Add'
+                                                StaticText, 0x11d5db230, {{35.5, 221.2}, {119.0, 20.5}}, label: 'Add dislike'
+                                      Other, 0x11d5db350, {{-16.0, 275.0}, {407.0, 132.0}}
+                                      Cell, 0x11d5db470, {{16.0, 275.0}, {343.0, 40.5}}
+                                        Other, 0x11d5db590, {{16.0, 275.0}, {343.0, 40.5}}
+                                        Other, 0x11d5db6b0, {{16.0, 275.0}, {343.0, 40.5}}
+                                          Other, 0x11d5db7d0, {{16.0, 275.0}, {343.0, 40.5}}
+                                            Other, 0x11d5db8f0, {{16.0, 275.0}, {343.0, 40.5}}
+                                              StaticText, 0x11d5dba10, {{16.0, 275.0}, {343.0, 40.5}}, label: 'Portions'
+                                      Cell, 0x11d5dbb30, {{16.0, 315.5}, {343.0, 74.0}}
+                                        Other, 0x11d5dbc50, {{16.0, 315.5}, {343.0, 74.0}}
+                                          Other, 0x11d5dbd70, {{16.0, 315.5}, {343.0, 74.0}}
+                                        Other, 0x11d5dbe90, {{16.0, 315.5}, {343.0, 74.0}}
+                                          Other, 0x11d5dbfb0, {{16.0, 315.5}, {343.0, 74.0}}
+                                            Other, 0x11d5dc0d0, {{16.0, 315.5}, {343.0, 74.0}}
+                                              Button, 0x11d5dc1f0, {{16.0, 315.5}, {343.0, 74.0}}, label: 'Your portion', value: 1
+                                                StaticText, 0x11d5dc310, {{32.0, 330.5}, {289.0, 44.0}}, label: 'Your portion'
+                                                Image, 0x11d5dc430, {{333.5, 346.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x11d5dc550, {{-16.0, 407.0}, {407.0, 196.0}}
+                                      Cell, 0x11d5dc670, {{16.0, 407.0}, {343.0, 40.5}}
+                                        Other, 0x11d5dc790, {{16.0, 407.0}, {343.0, 40.5}}
+                                        Other, 0x11d5dc8b0, {{16.0, 407.0}, {343.0, 40.5}}
+                                          Other, 0x11d5dc9d0, {{16.0, 407.0}, {343.0, 40.5}}
+                                            Other, 0x11d5dcaf0, {{16.0, 407.0}, {343.0, 40.5}}
+                                              StaticText, 0x11d5dcc10, {{16.0, 407.0}, {343.0, 40.5}}, label: 'Optional calorie goal'
+                                      Cell, 0x11d5dcd30, {{16.0, 447.5}, {343.0, 74.0}}
+                                        Other, 0x11d5dce50, {{16.0, 447.5}, {343.0, 74.0}}
+                                          Other, 0x11d5dcf70, {{16.0, 447.5}, {343.0, 74.0}}
+                                        Other, 0x11d5dd090, {{16.0, 447.5}, {343.0, 74.0}}
+                                          Other, 0x11d5dd1b0, {{16.0, 447.5}, {343.0, 74.0}}
+                                            Other, 0x11d5dd2d0, {{16.0, 447.5}, {343.0, 74.0}}
+                                              StaticText, 0x11d5dd3f0, {{32.0, 474.5}, {101.0, 20.5}}, label: 'Daily calories'
+                                              TextField, 0x11d5dd510, {{32.0, 462.5}, {311.0, 44.0}}, label: 'Daily calories, Optional daily calorie goal', placeholderValue: 'Not set'
+                                      Cell, 0x11d5dd630, {{16.0, 521.5}, {343.0, 64.0}}
+                                        Other, 0x11d5dd750, {{16.0, 521.5}, {343.0, 64.0}}
+                                          Other, 0x11d5dd870, {{16.0, 521.5}, {343.0, 64.0}}
+                                        Other, 0x11d5dd990, {{16.0, 521.5}, {343.0, 64.0}}
+                                          Other, 0x11d5ddab0, {{16.0, 521.5}, {343.0, 64.0}}
+                                            Other, 0x11d5ddbd0, {{16.0, 521.5}, {343.0, 64.0}}
+                                              StaticText, 0x11d5ddcf0, {{16.0, 521.5}, {343.0, 64.0}}, label: 'Used for meal estimates and portions, not calorie tracking. Leave blank to skip.'
+                                      Other, 0x11d5dde10, {{32.0, 520.5}, {311.0, 1.0}}
+                                      Other, 0x11d5ddf30, {{-16.0, 603.0}, {407.0, 1445.5}}
+                                      Cell, 0x11d5de050, {{16.0, 620.5}, {343.0, 74.0}}
+                                        Other, 0x11d5de170, {{16.0, 620.5}, {343.0, 74.0}}
+                                          Other, 0x11d5de290, {{16.0, 620.5}, {343.0, 74.0}}
+                                        Other, 0x11d5de3b0, {{16.0, 620.5}, {343.0, 74.0}}
+                                          Other, 0x11d5de4d0, {{16.0, 620.5}, {343.0, 74.0}}
+                                            Other, 0x11d5de5f0, {{16.0, 620.5}, {343.0, 74.0}}
+                                              Button, 0x11d5de710, {{16.0, 620.5}, {343.0, 74.0}}, label: 'Reload current preferences'
+                                      Other, 0x11d5de830, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 65%
+                                        Other, 0x11d5de950, {{369.0, 193.5}, {3.0, 324.0}}
+                                      Other, 0x11d5dea70, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 65%
+                                        Other, 0x11d5deb90, {{369.0, 193.5}, {3.0, 324.0}}
+                            Other, 0x11d5decb0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11d5dedd0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11d5deef0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11d5df010, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11d5df130, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11d5df250, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11d5df370, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11d5df490, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11d5df5b0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x11d5df6d0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11d5df7f0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11d5df910, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11d5dfa30, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11d5dfb50, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11d5dfc70, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x11d5dfd90, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11d5dfeb0, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x11d5dffd0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x11d5e00f0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x11d5e0210, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x11d5e0330, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x11d5e0450, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11d5e0570, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x11d5e0690, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x11d5e07b0, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x11d5e08d0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11d5e09f0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11d5e0b10, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11d5e0c30, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11d5e0d50, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11d5e0e70, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11d5e0f90, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11d5e10b0, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x11d5c6fb0, pid: 80808, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11d5e28f0, pid: 80808, label: 'Nest'
+  }

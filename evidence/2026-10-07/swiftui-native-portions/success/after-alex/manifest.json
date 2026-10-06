@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FC97FF58-6037-4718-9154-EE03F24109DA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Safe portion GET status trace_0_5E1C6AE9-2066-418E-9095-35581C113331.json",
+        "timestamp": 1791330555.341
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "15288EAB-9D34-4950-8566-65251377307C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned native portion profile canonical read_0_81C64266-32D2-4EBC-AE46-316D69C0FC44.json",
+        "timestamp": 1791330555.336
+      }
+    ],
+    "testIdentifier": "HostedPortionPreferenceReadTests/testOwnedFoodProfileReadOnly()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedPortionPreferenceReadTests/testOwnedFoodProfileReadOnly"
+  }
+]

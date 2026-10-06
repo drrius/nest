@@ -17,9 +17,9 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 - [x] **M0 — Decisions and native execution.** Approved ADRs/action inventory, source/build/environment identity, repeatable signed local Xcode/native CI execution and internally available build18 installation path are verified. Current source-matched clean signed-out cold launch and real scoped-session four-tab smoke pass. [Criterion-by-criterion audit](../evidence/2026-10-04/swiftui-m0-foundation/README.md). The plan explicitly separates physical permission/calendar/push acceptance; both-phone installation/sign-in remain M3/M6/M8/M9 gates. Full M1–M9 acceptance stays open.
 - [ ] **M1 — Quiet native interactions.** Four SwiftUI tabs and real-data surfaces exist, with selected rendered and large-text simulator evidence. The [artwork inventory](native-rewrite/artwork-inventory.md) now audits the single generated-icon source, native symbols and build13 packaging. Full populated/error/keyboard/VoiceOver/Reduce Motion review and owner design acceptance remain.
 - [ ] **M2 — Authenticated offline/AI slice.** Keychain, verified sessions, scoped SQLite and limited exact replay are implemented and tested. Private chat, streaming/interruption/cancellation and honest handoffs exist. Live AI still fails Gateway eligibility403; successful live tool/stream behavior and both-member phone/offline acceptance remain.
-- [ ] **M3 — Identity, onboarding and settings.** Quick/comprehensive setup, progressive entry, food/cooking/notification preferences and private-memory consent/recovery exist. New online preflight, canonical settings-result links and account/read fences pass CI. Normal-text owned native saves/lost-reply recovery/stale-form refusal and hosted populated-goal privacy pass. Private-memory pending restart, explicit save/edit/decline/removal, populated RLS and non-resurrecting old-consent replay now pass; both-member forms, broader setup/private settings, accessibility and hardware enrollment remain.
+- [ ] **M3 — Identity, onboarding and settings.** Quick/comprehensive setup, progressive entry, food/cooking/notification preferences and private-memory consent/recovery exist. New online preflight, canonical settings-result links and account/read fences pass CI. Normal-text owned native saves/lost-reply recovery/stale-form refusal and hosted populated-goal privacy pass. Private-memory pending restart, explicit save/edit/decline/removal, populated RLS and non-resurrecting old-consent replay now pass; Both-member unsaved portion forms now pass normal/maximal text with exact saved-profile isolation; broader setup/private settings, saved variants, accessibility and hardware enrollment remain.
 - [ ] **M4 — Today, chores and groceries.** Today filters, ordinary/alternating chore commands, handovers, grocery CRUD/checking, exact scoped SQLite retry/conflicts and corresponding AI commands exist. Source/native/property/RLS checks and selected hosted/owned flows pass. Current grocery edit preflight, retained fields, explicit latest-item reload, committed lost-response restart/update/exact retry, precise removed-intent copy/discard and normal/large-text touch targets now pass owned test-API execution with normal cleanup and unchanged money. Earlier checkbox compatibility/opposing-intent cases and grocery→expense switch/back also pass. Both required grocery-source CI workflows pass. Two independent fictional native clients now verify compatible queue/restart/replay, opposing intent/explicit discard and committed lost-reply/exact retry, then normal removal/Today/stable-origin restoration with64 empty journals and six unchanged hosted fingerprints. The49 executions retain46 passes/three observer failures/zero skips; corrected row observation passes, while whole Add is not rerun. The final observer passes Nest37341752813/SwiftUI37341753014 at head2267bfa4:496 Foundation/41 skips,423 signed-native/14 skips, zero failures; CI does not run the hosted pair fixture. [Pair evidence](../evidence/2026-10-05/swiftui-native-grocery-pair/README.md). The later two-native-client chore pass verifies handover accept/decline, lost reply/exact retry, offline/partner completion convergence and normal archive with retained history; broader membership/schedule conflicts, settings/navigation, VoiceOver/haptics/radio loss, both phones and complete daily-use acceptance remain open; full M4 is not closed.
-- [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation, replacement and cross-week leftovers copy/read/removal have bounded real native/two-member evidence with normal cleanup. Varied portions/partner constraints, live generation/replacement and full phone/UI acceptance remain.
+- [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation, replacement and cross-week leftovers copy/read/removal have bounded real native/two-member evidence with normal cleanup. Both-member unsaved varied portions/discard pass normal/maximal text; saved varied portions/partner planning, live generation/replacement and full phone/UI acceptance remain.
 - [ ] **M6 — Read-only Calendar.** EventKit, permission/selection, agenda/layers and explicit numeric-only busy sharing exist. Selected real timed/all-day/DST, both-member sharing, outsider denial and online cleanup pass; durable offline removal and races have focused tests. Hardware offline/reconnection, long background periods, complex calendars and full accessibility/privacy journeys remain. Personal event text stays on-device.
 - [ ] **M7 — Money.** Native balance/history/detail, financial commands/private approvals, receipt storage, recurring controls/variable bills and exact recovery exist over append-only CHF-centime history. Selected arithmetic/isolation/lost-response/hosted checks pass. Pause/cancel proposal review and exact recovery pass focused native CI; resumption proposal review/recovery passes current-source native CI; variable-cycle proposal review/decision/recovery is implemented with local wire/database checks and exact-source Foundation/native/routine CI passing; manual-cycle selection/review/command recovery passes local checks and exact-source Foundation/native/routine CI; private manual-cycle approvals and retained legacy inventory/draft history pass exact-source native/routine CI. Direct legacy dismissal passes local checks and exact-source native/routine CI; its original-term review/navigation/alert cancellation now pass owned rendering. Private dismissal approval/withdrawal passes local and exact-source native/routine CI; original-term review/navigation/alert cancellation now pass owned rendering. Actual rendered recovery states and full phone journeys remain pending. Direct draft-to-expense confirmation now has native source and focused Mac/database verification; both required workflows and actual fictional keyboard/review/cancel rendering pass at direct-confirmation source `4759e124`. Private confirmation review/recovery now has native source with focused Mac/backend and actual fictional alert verification; both focused native offline discovery/isolation checks pass; exact-source CI passes at `886773cc` (463 Foundation/41 explicit skips and344 signed-native/nine explicit skips, zero failures). Direct rule adoption source `e3e6b1ef` now has explicit fresh terms, prospective coverage/member/day preflight and exact recovery; focused Mac/backend and actual fictional variable-form checks pass. Nest37142967731 passes and SwiftUI37142967820 also passes:468 Foundation/41 explicit skips and357 signed-native/10 explicit skips, zero failures, strict formatting/source limits and actual signing. Private adoption now has source and focused Mac/backend/fictional-form verification; native CI at `1151caad` and corrected routine CI at `83a5a015` pass; hosted/provider/phone acceptance and recovery rendering remain pending. [Source coverage](native-rewrite/action-inventory.md#swiftui-financial-approval-coverage-1-october-2026) records the exact gaps. Ordinary expense/settlement and refund/correction staging now require fresh scoped domain reads before new intent; both slices pass exact-source Foundation/native and routine CI. Recurring create/edit/state/resume/variable staging now has fresh membership/revision/server-day/uncovered-cycle checks,23 focused local integration cases passing and exact-source Foundation/native/routine CI passing. Expense/refund/correction/settlement/rule approval staging now has fresh exact private pending/unexpired reads, with all six new native cases and ten existing exact-recovery cases passing current-source CI; existing account checks and later online retries do not prove that offline initiation is blocked. All approval/recurring variants, full history reconciliation and native/two-phone acceptance remain. Production posting is inactive.
 - [ ] **M8 — Renewals, reminders and push.** Renewal CRUD, recipient reminder editors, saved summaries, direct APNs transport, registration/outcomes, bounded worker and protected routes exist with fixture/native/selected hosted evidence. One fictional renewal now completes Alex create, Sam edit and Alex remove through the native UI, with matching canonical reads and retained removal history for both members. See the bounded CRUD checkpoint below. Read-only list/detail snapshots now persist across offline store restart, with separate controlled-failure integration evidence. Wider linked/pagination/conflict cases, populated summaries, provider credentials, worker activation, real hardware enrollment and all six delivery kinds on both phones remain. Push is disabled in the current build18.
@@ -256,42 +256,24 @@ and four Swift Testing cases, zero failures. Strict formatting/limits, signing
 and guarded UI compilation pass. This source-specific result is separate from
 the candidate's pending CI and the actual hosted/native leftovers journey.
 
-Next M3/M5 native pass is both members' unsaved portion selection, Keep editing
-and explicit Discard, with native GET-only profile reads before/after. Fresh
-hosted metadata confirms Alex revision 5/portion 1/Vegetarian/no calorie goal;
-Sam's profile is absent and must stay absent. Shared cooking revision 6 and all
-food/cooking receipts are captured, alongside eight protected household/financial
-fingerprints. Thirteen isolated food-profile/database/PostgREST cases pass with
-zero failures/skips. Two guarded native test sources pass formatting/source
-limits; no Save, profile insertion or native invocation has run at preparation.
-[Portion preparation](../evidence/2026-10-07/swiftui-native-portions/prepared.json).
-Preparation at `293549f6` freezes 1,134 inputs and builds the guarded UI products,
-but the new SDK test fails compilation because it names a nonexistent SessionAPI.
-The existing MealAPI verifier replaces that type; configured Mac formatting and
-source limits pass. No native method, preference mutation or Save runs. The
-failed preparation logs/source map are preserved. Corrected native preparation
-remains pending.
-Corrected fresh SDK products at `e7b1ad87` and retained UI products at `293549f6`
-are source/product/signing verified; only the read-test file differs. Both actual
-GET-only native reads pass, including Sam's absent profile. The first Alex UI
-method passes the portion control's 44-point checks, then stops before editing:
-the native button's value is empty and its label is “Your portion, 1”. The observer
-now accepts either exact selection representation; no shipping control changes.
-Fresh hosted comparison confirms profiles, shared cooking and all receipts exact;
-original scopes/64 journals/settings/local semantics restore. Both native reads
-and the failure are retained. Corrected UI execution remains pending.
-At fresh UI source `331a7405`, the control and exact selection-label checks pass,
-then the 1.5 menu choice measures 42 points. The method stops before selection;
-food/cooking profiles and all receipts remain exact, and restoration passes.
-The shipping portion selector now uses a native navigation-link picker, retaining
-the same eight allowed values and validation. The 44-point requirement is kept.
-Configured formatting/source limits pass; fresh native execution is pending.
-At `6052e1ea`, Alex's normal native run verifies the 1.5 choice, Keep editing,
-explicit Discard and reopening portion 1. It fails only at the final exit because
-an unchanged form uses the native Profile BackButton rather than the draft Back
-label. The final observer now selects/measures that native back control. Fresh
-hosted profiles/cooking/receipts remain exact and restoration passes. The failed
-method is retained and not counted as a full pass; corrected execution is pending.
+Both members now pass normal/light and largest-text/dark unsaved portion
+selection, Keep editing, explicit Discard, reopen and return to Today at
+`edad88b9`. Eight native methods pass with zero skips, including each member's
+GET-only profile before/after. Twelve action images are directly reviewed;
+original scopes/64 journals/settings/local semantics restore. The actual UI and
+retained SDK sources/products are recorded separately. Alex stays revision 5,
+Vegetarian, portion 1/no goal; Sam's profile stays absent. Cooking revision 6,
+all preference receipts and eight protected source/library/grocery/financial
+fingerprints are exact. The 42-point menu choice is replaced by a native
+navigation picker. Thirteen isolated food-profile/PostgREST cases pass. Failed
+compilation/three UI methods remain preserved; no Save or model call occurs.
+[Portion evidence](../evidence/2026-10-07/swiftui-native-portions/README.md).
+Both source-specific CI workflows pass: routine 37547556252/native 37547556372,
+506 Foundation tests/41 explicit skips, 472 signed-app tests/40 explicit skips,
+four Swift Testing cases and zero failures. Strict format/limits/signing and
+guarded UI compilation pass. Saved
+portion variation/shared planning, broader settings, full accessibility/live AI
+and both phones remain open. No new beta, production action or merge occurs.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

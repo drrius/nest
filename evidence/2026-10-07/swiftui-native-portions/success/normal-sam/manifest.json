@@ -1,0 +1,89 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "594E5BF3-F005-4711-8B00-18D622289EED.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original portion restored after explicit unsent discard accessibility tree_0_D79630CC-36CE-4D91-A773-D1761F0D4950.txt",
+        "timestamp": 1791330095.837
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "C03B6AE8-19C4-4FAD-98FC-A4D083E50D8C.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original portion restored after explicit unsent discard_0_E59D6A16-145E-41A2-8346-5829AA50F345.png",
+        "timestamp": 1791330095.545
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "B294CB09-B07D-4F68-A6C4-DCA44A574F8F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original portion restored after explicit unsent discard_0_E54CFABE-F4E6-40DC-AB41-3E34D78C77B6.json",
+        "timestamp": 1791330095.467
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "E5D23C6A-8FAA-4355-A6CC-C901114D8000.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned unsent portion retained after Keep editing accessibility tree_0_933C3920-A4A0-410E-8F62-508595341C38.txt",
+        "timestamp": 1791330085.569
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "7AC741D3-99DD-4D43-A4D5-F42AC66E4104.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned unsent portion retained after Keep editing_0_CC5C7D8A-1A6D-4AA5-8251-1CA0DB553F0E.png",
+        "timestamp": 1791330085.271
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "D25E1205-71F8-4263-A986-3F87B61966E6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned unsent portion retained after Keep editing_0_0AED6979-1DA7-4D88-9485-A4174BE07493.json",
+        "timestamp": 1791330085.193
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "5812887D-DAD7-4C16-9A31-46E3D50366DE.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original owned portion before unsent change accessibility tree_0_FF05E3F5-1F9B-49BF-8A28-0B982E30A85F.txt",
+        "timestamp": 1791330076.186
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "3A129A21-D8EA-425D-8573-8D09A5FFD650.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original owned portion before unsent change_0_AF3133F2-3730-4649-A9C9-8A4285FB39B2.png",
+        "timestamp": 1791330075.888
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "420C13FA-D115-404A-887D-06AE1A81B00D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original owned portion before unsent change_0_8732865D-AC96-4003-ACDD-E4FE22327D08.json",
+        "timestamp": 1791330075.807
+      }
+    ],
+    "testIdentifier": "NativePortionPreferenceDraftTests/testOwnedUnsentPortionSurvivesKeepEditingAndDiscard()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativePortionPreferenceDraftTests/testOwnedUnsentPortionSurvivesKeepEditingAndDiscard"
+  }
+]
