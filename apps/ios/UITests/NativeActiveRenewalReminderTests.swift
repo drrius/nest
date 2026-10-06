@@ -150,9 +150,9 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         let cancellation = app.staticTexts["Cancel by 2026-10-07"]
         reveal(cancellation, in: app, permitsDisabled: true)
         for (label, value) in [("Responsible", "Unassigned"), ("Linked recurring expense", "None")] {
-            let choice = app.buttons[label]
+            let choice = app.buttons[label + ", " + value]
             reveal(choice, in: app)
-            XCTAssertEqual(choice.value as? String, value)
+            XCTAssertEqual(choice.label, label + ", " + value)
         }
         XCTAssertFalse(app.staticTexts["Could not load household choices. Connect and try again."].exists)
     }
