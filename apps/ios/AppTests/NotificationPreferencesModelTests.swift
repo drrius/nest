@@ -5,6 +5,39 @@ import XCTest
 
 @MainActor
 final class NotificationPreferencesModelTests: XCTestCase {
+    func testReturningToChoicesPreservesAnUnsentDraftWithoutSaving() async throws {
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
+        let auth = FakeAuthentication(active: .init(userId: member.userId, accessToken: "token-A"))
+        let chores = FakeChoreServer(actorA: member.userId, actorB: UUID(), household: member.householdId)
+        let choreHTTP = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await chores.respond($0) }
+        let server = NotificationTestServer(member: member)
+        let http = try NestHTTP(baseURL: URL(string: "https://nest.example")!) { try await server.respond($0) }
+        let url = FileManager.default.temporaryDirectory.appending(path: "notification-draft-\(UUID()).sqlite")
+        addTeardownBlock { try? FileManager.default.removeItem(at: url) }
+        let session = SessionModel(
+            auth: auth, chores: ChoreAPI(http: choreHTTP), offline: try ChoreOfflineStore(url: url),
+            notificationAPI: NotificationAPI(http: http))
+        await session.restore()
+        let model = NotificationPreferencesModel()
+        await model.load(session: session, member: member)
+        model.preferences.itemRemindersEnabled = true
+        model.preferences.dailySummaryTime = "07:30"
+        let edited = model.preferences
+        await model.load(session: session, member: member)
+        XCTAssertEqual(model.preferences, edited, "Returning to the form must not silently reload saved choices")
+        XCTAssertNil(model.saved)
+        let saves = await server.saves
+        XCTAssertEqual(saves, 0)
+        await model.load(session: session, member: member, discardDraft: true)
+        XCTAssertFalse(model.preferences.itemRemindersEnabled)
+        XCTAssertEqual(model.preferences.dailySummaryTime, "08:00")
+        model.preferences.itemRemindersEnabled = true
+        await session.signOut()
+        await model.load(session: session, member: member)
+        XCTAssertNil(model.baseline)
+        XCTAssertFalse(model.preferences.itemRemindersEnabled)
+    }
+
     func testLostResponseReopensExactSaveWithoutImplicitOptIn() async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Alex")
         let auth = FakeAuthentication(active: .init(userId: member.userId, accessToken: "token-A"))

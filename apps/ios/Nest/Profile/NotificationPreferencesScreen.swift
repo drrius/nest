@@ -5,6 +5,9 @@ struct NotificationPreferencesScreen: View {
     let member: VerifiedMember
     @StateObject private var model = NotificationPreferencesModel()
     @State private var discard = false
+    @State private var discardEdits = false
+    @State private var reloading = false
+    @Environment(\.dismiss) private var dismiss
 
     var body: some View {
         Form {
@@ -33,22 +36,47 @@ struct NotificationPreferencesScreen: View {
             if model.busy { ProgressView("Checking choices…") }
             Section {
                 NavigationLink("This iPhone’s connection") { PushDeviceScreen(session: session, member: member) }
-                Button("Reload choices") { Task { await model.load(session: session, member: member) } }
-                    .disabled(model.busy)
+                Button {
+                    reloading = true
+                    if model.hasUnsavedChanges { discardEdits = true } else { reload() }
+                } label: {
+                    QuietActionLabel("Reload choices")
+                }
+                .disabled(model.busy)
                 Text("Notification delivery is not available in this build yet.")
                     .font(.footnote).foregroundStyle(QuietPalette.muted)
             }
         }
         .navigationTitle("Notifications")
         .navigationBarTitleDisplayMode(.inline)
+        .navigationBarBackButtonHidden(model.hasUnsavedChanges || model.busy)
+        .interactiveDismissDisabled(model.hasUnsavedChanges || model.busy)
         .scrollContentBackground(.hidden).background(QuietPalette.background).tint(QuietPalette.accent)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button("Save") { Task { await model.save(session: session, member: member) } }.disabled(!editable)
+                Button {
+                    Task { await model.save(session: session, member: member) }
+                } label: {
+                    Text("Save").frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(!editable)
+            }
+            if model.hasUnsavedChanges {
+                ToolbarItem(placement: .topBarLeading) {
+                    QuietToolbarButton("Back", systemImage: "chevron.left") {
+                        reloading = false
+                        discardEdits = true
+                    }.disabled(model.busy)
+                }
             }
         }
         .task { await model.load(session: session, member: member) }
-        .onDisappear { model.clear() }
+        .onChange(of: session.generation) { model.clear() }
+        .alert("Discard edits?", isPresented: $discardEdits) {
+            Button("Discard edits", role: .destructive) {
+                if reloading { reload() } else { dismiss() }
+            }
+            Button("Keep editing", role: .cancel) {}
+        }
         .confirmationDialog("Discard this rejected save?", isPresented: $discard) {
             Button("Discard rejected request", role: .destructive) {
                 Task { await model.finish(session: session, member: member) }
@@ -60,6 +88,10 @@ struct NotificationPreferencesScreen: View {
 
     private var current: Bool { session.status == .ready(member) }
     private var editable: Bool { current && !model.busy && model.baseline != nil && model.saved == nil }
+
+    private func reload() {
+        Task { await model.load(session: session, member: member, discardDraft: true) }
+    }
 
     private var summaryTime: Binding<Date> {
         Binding(

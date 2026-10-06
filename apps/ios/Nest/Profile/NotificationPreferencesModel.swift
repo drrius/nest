@@ -9,9 +9,18 @@ final class NotificationPreferencesModel: ObservableObject {
     @Published private(set) var saved: SavedNotificationPreference?
     @Published private(set) var busy = false
     @Published private(set) var notice: String?
+    private var generation: Int?
 
-    func load(session: SessionModel, member: VerifiedMember) async {
-        guard !busy else { return }
+    var hasUnsavedChanges: Bool {
+        saved == nil && baseline != nil
+            && preferences != (baseline?.profile?.preferences ?? Self.defaults)
+    }
+
+    private static let defaults = NotificationPreferences(
+        dailySummaryEnabled: false, dailySummaryTime: "08:00", itemRemindersEnabled: false)
+
+    func load(session: SessionModel, member: VerifiedMember, discardDraft: Bool = false) async {
+        guard prepareLoad(session: session, member: member, discardDraft: discardDraft) else { return }
         busy = true
         baseline = nil
         saved = nil
@@ -30,7 +39,7 @@ final class NotificationPreferencesModel: ObservableObject {
                         dailySummaryEnabled: false, dailySummaryTime: "08:00", itemRemindersEnabled: false)
             }
         } catch {
-            if session.status != .ready(member) { clear() }
+            if session.status != .ready(member) || generation != session.generation { clear() }
             notice = "Could not load notification choices. Connect and try again."
         }
     }
@@ -50,14 +59,27 @@ final class NotificationPreferencesModel: ObservableObject {
 
     func finish(session: SessionModel, member: VerifiedMember) async {
         await perform(session: session, member: member) { try await session.finishNotificationRequest($0) }
-        if saved == nil { await load(session: session, member: member) }
+        if saved == nil { await load(session: session, member: member, discardDraft: true) }
     }
 
     func clear() {
+        generation = nil
         baseline = nil
         saved = nil
-        preferences = NotificationPreferences(
-            dailySummaryEnabled: false, dailySummaryTime: "08:00", itemRemindersEnabled: false)
+        preferences = Self.defaults
+    }
+
+    private func prepareLoad(session: SessionModel, member: VerifiedMember, discardDraft: Bool) -> Bool {
+        guard !busy else { return false }
+        guard session.status == .ready(member) else {
+            clear()
+            notice = "Sign in to access your notification choices."
+            return false
+        }
+        if generation != session.generation { clear() }
+        if hasUnsavedChanges && !discardDraft { return false }
+        generation = session.generation
+        return true
     }
 
     private func context(_ session: SessionModel, _ member: VerifiedMember) throws -> NotificationContext {
