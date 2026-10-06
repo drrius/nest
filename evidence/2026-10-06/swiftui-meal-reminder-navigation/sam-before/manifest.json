@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "C5E859B6-3912-49A8-9A45-87173577DFAC.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact owned planned meal reminder canonical and retained week_0_9E017C89-46A7-4103-9D51-99D32BC9A382.json",
+        "timestamp": 1791272619.692
+      }
+    ],
+    "testIdentifier": "HostedMealReminderNavigationReadTests/testGETOnlyExactOwnedPlannedMealReminderAndRetainedWeek()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedMealReminderNavigationReadTests/testGETOnlyExactOwnedPlannedMealReminderAndRetainedWeek"
+  }
+]

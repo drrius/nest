@@ -1,0 +1,112 @@
+{
+  "actor": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+  "context": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "itemRevision": "43b93c4b30861eb6080983e8eb88ae73c2a1a9d3924092299eb4a1750578a9e9",
+    "meal": {
+      "date": "2026-10-19",
+      "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+      "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+      "slot": "dinner",
+      "title": "Nest native manual week 20261005"
+    },
+    "version": 1
+  },
+  "domainHTTPMethods": ["GET"],
+  "editorSettings": { "daysBefore": 0, "enabled": false, "localTime": "08:00", "recipientIds": [] },
+  "hostedCommands": 0,
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "planned": {
+    "entry": {
+      "date": "2026-10-19",
+      "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+      "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+      "slot": "dinner",
+      "title": "Nest native manual week 20261005"
+    },
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "revision": "9",
+    "snapshot": {
+      "libraryRevision": "37",
+      "recipe": {
+        "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+        "ingredients": [
+          {
+            "ingredientId": "C49E2275-E68A-4A95-B49C-247B8DDDD7E4",
+            "name": "QA lentils",
+            "order": 0,
+            "quantity": "200",
+            "unit": "g"
+          },
+          {
+            "ingredientId": "AD5BC996-178D-4F4B-B85D-E60AE87765B1",
+            "name": "QA rice",
+            "order": 1,
+            "quantity": "100",
+            "unit": "g"
+          }
+        ],
+        "instructions": "Simmer the fictional ingredients.",
+        "servings": 2,
+        "title": "Nest native manual week 20261005"
+      }
+    },
+    "version": 1,
+    "weekStart": "2026-10-19"
+  },
+  "roster": [
+    { "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200", "displayName": "Test Alex" },
+    { "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676", "displayName": "Test Sam" }
+  ],
+  "week": {
+    "entries": [
+      {
+        "date": "2026-10-19",
+        "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+        "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005"
+      },
+      {
+        "date": "2026-10-20",
+        "entryId": "397D07C1-6C8D-49DD-A4DD-0751BC514BF3",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005 · 2026-10-20"
+      },
+      {
+        "date": "2026-10-21",
+        "entryId": "EB96E6FA-F4AC-402D-9E75-AA43FE687A99",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005 · 2026-10-21"
+      },
+      {
+        "date": "2026-10-22",
+        "entryId": "657A93AF-26E6-420E-B0B5-2897FDDA15AF",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005 · 2026-10-22"
+      },
+      {
+        "date": "2026-10-23",
+        "entryId": "78BBD620-C9E5-47BD-8BF8-322E8A3CCB8D",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005 · 2026-10-23"
+      },
+      {
+        "date": "2026-10-24",
+        "entryId": "33C8059D-FC2E-42F2-BF6F-E13EC94884DA",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005 · 2026-10-24"
+      },
+      {
+        "date": "2026-10-25",
+        "entryId": "B269521D-177A-47E0-94CD-0113A714667B",
+        "slot": "dinner",
+        "title": "Nest native manual week 20261005 · 2026-10-25"
+      }
+    ],
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "revision": "9",
+    "version": 1,
+    "weekStart": "2026-10-19"
+  }
+}

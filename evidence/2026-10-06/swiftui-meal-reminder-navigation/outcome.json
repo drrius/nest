@@ -1,0 +1,18 @@
+{
+  "nativePasses": 6,
+  "nativeFailures": 0,
+  "SDKPasses": 4,
+  "UIPasses": 2,
+  "UIProfiles": ["normal_light", "maximum_dark"],
+  "hostedCommands": 0,
+  "canonicalBeforeAfterEqual": true,
+  "capturedWholeWeekUnchanged": true,
+  "retainedPlannedRecipeUnchanged": true,
+  "fixtureEntryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+  "reminder": null,
+  "itemRevision": "43b93c4b30861eb6080983e8eb88ae73c2a1a9d3924092299eb4a1750578a9e9",
+  "weekRevision": "9",
+  "screenshotsReviewed": 24,
+  "sourceCommit": "204d13d0f65da677b905477d913d737ffcf2c028",
+  "nativeInputs": 1102
+}

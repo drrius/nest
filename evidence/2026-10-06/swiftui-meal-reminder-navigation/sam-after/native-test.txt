@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-meal-reminder-navigation-20261006/sam-after/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-meal-reminder-navigation-20261006/sam-after/result.xcresult "-only-testing:NestAppTests/HostedMealReminderNavigationReadTests/testGETOnlyExactOwnedPlannedMealReminderAndRetainedWeek" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-meal-reminder-navigation-20261006/sam-after/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 09:49:38.185.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 09:49:38.185.
+Test Suite 'HostedMealReminderNavigationReadTests' started at 2026-10-06 09:49:38.186.
+Test Case '-[NestAppTests.HostedMealReminderNavigationReadTests testGETOnlyExactOwnedPlannedMealReminderAndRetainedWeek]' started.
+Test Case '-[NestAppTests.HostedMealReminderNavigationReadTests testGETOnlyExactOwnedPlannedMealReminderAndRetainedWeek]' passed (3.111 seconds).
+Test Suite 'HostedMealReminderNavigationReadTests' passed at 2026-10-06 09:49:41.297.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.111 (3.112) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 09:49:41.298.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.111 (3.112) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 09:49:41.298.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.111 (3.113) seconds
+2026-10-06 09:49:41.607 xcodebuild[1557:20578409] [MT] IDETestOperationsObserverDebug: 5.159 elapsed -- Testing started completed.
+2026-10-06 09:49:41.607 xcodebuild[1557:20578409] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 09:49:41.607 xcodebuild[1557:20578409] [MT] IDETestOperationsObserverDebug: 5.159 sec, +5.159 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-meal-reminder-navigation-20261006/sam-after/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started
