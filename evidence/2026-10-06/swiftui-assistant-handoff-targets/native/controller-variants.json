@@ -1,0 +1,8 @@
+{
+  "preparationAndBaselineController": "controllers/nest-assistant-device-handoffs-20261006.py",
+  "executionController": "controllers/nest-assistant-device-handoffs-execution-20261006.py",
+  "baselineTraceStageKeyShadow": "retained content_size-scope files; values valid, filename diagnostic bug",
+  "executionStageKeyShadowFixed": true,
+  "rootExistingDisabledConsentFlagAddedBeforeUI": true,
+  "UIAndSDKProductsUnchangedBetweenBaselineAndUI": true
+}

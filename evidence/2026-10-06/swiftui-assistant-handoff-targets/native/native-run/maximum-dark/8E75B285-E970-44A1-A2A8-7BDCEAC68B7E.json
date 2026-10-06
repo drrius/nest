@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": [16, 44, 343, 589.5],
+  "hittable": true,
+  "label": "Choose what you need. Leave pantry items unchecked. Quantities stay separate for each meal.",
+  "viewport": [0, 74, 375, 510]
+}

@@ -1,0 +1,9 @@
+{
+  "attempt": 3,
+  "end": [371, 461.25],
+  "exists": true,
+  "frame": [16, 22, 343, 589.5],
+  "label": "Choose what you need. Leave pantry items unchecked. Quantities stay separate for each meal.",
+  "start": [371, 449],
+  "viewport": [0, 74, 375, 510]
+}

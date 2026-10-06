@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-assistant-device-handoffs-20261006/alex-final/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-assistant-device-handoffs-20261006/alex-final/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-assistant-device-handoffs-20261006/alex-final/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 20:08:07.841.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 20:08:07.841.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 20:08:07.842.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (11.629 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 20:08:19.471.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.629 (11.630) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 20:08:19.472.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.629 (11.630) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 20:08:19.472.
+	 Executed 1 test, with 0 failures (0 unexpected) in 11.629 (11.631) seconds
+2026-10-06 20:08:19.806 xcodebuild[72241:21961155] [MT] IDETestOperationsObserverDebug: 13.815 elapsed -- Testing started completed.
+2026-10-06 20:08:19.806 xcodebuild[72241:21961155] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 20:08:19.806 xcodebuild[72241:21961155] [MT] IDETestOperationsObserverDebug: 13.815 sec, +13.815 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-assistant-device-handoffs-20261006/alex-final/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

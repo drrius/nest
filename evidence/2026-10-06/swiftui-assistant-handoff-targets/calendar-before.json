@@ -1,0 +1,17 @@
+{
+  "consent": [
+    {
+      "actor_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "enabled": false,
+      "version": "10",
+      "generation": "17",
+      "consent_md5": "cbdde232d6ec441e0caa57ac6d4a1072"
+    }
+  ],
+  "busy": [
+    {
+      "busy_snapshot_rows": 0,
+      "busy_snapshots_md5": "d751713988987e9331980363e24189ce"
+    }
+  ]
+}

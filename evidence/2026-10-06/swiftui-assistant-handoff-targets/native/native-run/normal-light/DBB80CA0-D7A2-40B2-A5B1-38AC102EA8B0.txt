@@ -1,0 +1,100 @@
+Attributes: Application, 0x105ffe9a0, pid: 71344, label: 'Nest'
+Element subtree:
+ →Application, 0x105ffe9a0, pid: 71344, label: 'Nest'
+    Window (Main), 0x105fff7e0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x116f0a2f0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105fde2c0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x105fffba0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x116f0ab30, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x105fd9ad0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x105fe8bc0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105fde6e0, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x105fe20c0, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x105fe1640, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x105fdf810, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x105ffed60, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x116f05440, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x116f05020, {{0.0, 20.0}, {375.0, 54.0}}, identifier: '_TtGC7SwiftUI32NavigationStackHosting'
+                              Button, 0x116f07530, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Conversation'
+                            Other, 0x116f046e0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x116f04800, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x116f04920, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x116f04a40, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x116f0af30, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x116f0b050, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x116f0b170, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x116f0b290, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x116f0b3b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x116f0b4d0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x116f0b5f0, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x116f0b710, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x116f0cf50, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x116f0d070, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x116f0d190, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x116f0d2b0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x116f0d3d0, {{0.0, 74.0}, {375.0, 983.0}}
+                                        Other, 0x116f0d4f0, {{20.0, 88.0}, {335.0, 753.0}}
+                                          StaticText, 0x116f0d610, {{20.0, 102.8}, {83.5, 14.5}}, label: 'Our household'
+                                          Button, 0x116f0d730, {{259.0, 88.0}, {44.0, 44.0}}, identifier: 'tab-assistant-action', label: 'Private conversations'
+                                          Button, 0x116f0d850, {{311.0, 88.0}, {44.0, 44.0}}, identifier: 'tab-profile-action', label: 'Profile and preferences'
+                                          StaticText, 0x116f0d970, {{20.0, 136.0}, {139.5, 41.0}}, identifier: 'tab-header-calendar', label: 'Calendar'
+                                          StaticText, 0x116f0da90, {{20.0, 181.0}, {238.5, 18.0}}, label: 'Your day, with room for everything.'
+                                          Other, 0x116f0dbb0, {{40.0, 243.0}, {295.0, 44.0}}
+                                            Button, 0x116f0dcd0, {{40.0, 243.0}, {295.0, 44.0}}, label: 'Choose day', value: Tuesday, October 6...
+                                              StaticText, 0x116f0ddf0, {{40.0, 254.8}, {29.5, 20.5}}, label: 'Day'
+                                              StaticText, 0x116f0df10, {{210.5, 254.8}, {91.5, 20.5}}, label: 'Oct 6, 2026'
+                                              Image, 0x116f0e030, {{316.0, 257.5}, {17.0, 15.5}}, identifier: 'calendar', label: 'Calendar'
+                                          StaticText, 0x116f0e150, {{20.0, 331.0}, {155.5, 18.0}}, label: 'Your day, in one place'
+                                          Other, 0x116f0e270, {{40.0, 381.0}, {295.0, 178.5}}
+                                            StaticText, 0x116f0e390, {{40.0, 381.0}, {291.0, 64.5}}, label: 'Nest reads the calendars you choose. It does not create, change or delete events.'
+                                            StaticText, 0x116f0e4b0, {{40.0, 461.5}, {295.0, 38.0}}, label: 'iOS calls this Full Access. Nest uses it only to read your calendars.'
+                                            Button, 0x116f0e5d0, {{40.0, 515.5}, {295.0, 44.0}}, label: 'Allow calendar access'
+                                          StaticText, 0x116f0e6f0, {{20.0, 604.0}, {182.0, 18.0}}, label: 'Your partner’s availability'
+                                          Other, 0x116f0e810, {{40.0, 654.0}, {287.5, 64.5}}
+                                            StaticText, 0x116f0e930, {{40.0, 654.0}, {287.5, 64.5}}, label: 'Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day.'
+                                          StaticText, 0x116f0ea50, {{20.0, 823.0}, {149.5, 18.0}}, label: 'Calendars and layers'
+                                          Other, 0x116f0eb70, {{0.0, 0.0}, {0.0, 0.0}}
+                                      Other, 0x116f0ec90, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                        Other, 0x116f0edb0, {{369.0, 77.0}, {3.0, 295.0}}
+                                      Other, 0x116f0eed0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                        Other, 0x116f0eff0, {{369.0, 77.0}, {3.0, 295.0}}
+                            Other, 0x116f0f110, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x116f0f230, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x116f0f350, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x116f0f470, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x116f0f590, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x116f0f6b0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x116f0f7d0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x116f0f8f0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x116f0fa10, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x116f0fb30, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x116f0fc50, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x116f0fd70, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x116f0fe90, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x116f0ffb0, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x116f100d0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x116f101f0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x116f10310, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x116f10430, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x116f10550, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x116f10670, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x116f10790, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x116f108b0, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x116f109d0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x116f10af0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x116f10c10, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x116f10d30, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x116f10e50, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x116f10f70, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x116f11090, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x116f111b0, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x116f112d0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x116f113f0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x116f11510, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x105ffe9a0, pid: 71344, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x116f11a70, pid: 71344, label: 'Nest'
+  }

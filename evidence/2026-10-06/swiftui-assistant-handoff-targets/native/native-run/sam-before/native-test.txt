@@ -1,0 +1,29 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-assistant-device-handoffs-20261006/sam-before/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-assistant-device-handoffs-20261006/sam-before/result.xcresult "-only-testing:NestAppTests/HostedActiveRecurringReminderReceiptReadTests/testGETOnlyRecordedReminderAndBothImmutableOperations" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-assistant-device-handoffs-20261006/sam-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 19:58:39.317.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 19:58:39.317.
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' started at 2026-10-06 19:58:39.318.
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' started.
+2026-10-06 19:58:39.454357+0200 Nest[69714:21942268] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+2026-10-06 19:58:39.454519+0200 Nest[69714:21942268] [connection] nw_connection_copy_connected_local_endpoint_block_invoke [C1] Connection has no local endpoint
+Test Case '-[NestAppTests.HostedActiveRecurringReminderReceiptReadTests testGETOnlyRecordedReminderAndBothImmutableOperations]' passed (10.090 seconds).
+Test Suite 'HostedActiveRecurringReminderReceiptReadTests' passed at 2026-10-06 19:58:49.408.
+	 Executed 1 test, with 0 failures (0 unexpected) in 10.090 (10.091) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 19:58:49.409.
+	 Executed 1 test, with 0 failures (0 unexpected) in 10.090 (10.091) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 19:58:49.409.
+	 Executed 1 test, with 0 failures (0 unexpected) in 10.090 (10.092) seconds
+2026-10-06 19:58:49.717 xcodebuild[69706:21941936] [MT] IDETestOperationsObserverDebug: 12.236 elapsed -- Testing started completed.
+2026-10-06 19:58:49.717 xcodebuild[69706:21941936] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 19:58:49.717 xcodebuild[69706:21941936] [MT] IDETestOperationsObserverDebug: 12.236 sec, +12.236 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-assistant-device-handoffs-20261006/sam-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

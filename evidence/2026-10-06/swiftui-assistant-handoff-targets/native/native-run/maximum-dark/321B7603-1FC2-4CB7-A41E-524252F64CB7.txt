@@ -1,0 +1,109 @@
+Attributes: Application, 0x11fd9ed40, pid: 71751, label: 'Nest'
+Element subtree:
+ →Application, 0x11fd9ed40, pid: 71751, label: 'Nest'
+    Window (Main), 0x11fd98690, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11fda1d90, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fda1eb0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11fda1c40, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11fda1600, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11fda1fd0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11fda20f0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11fda2210, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11fda2330, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11fda2450, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11fda2570, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11fda2690, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11fda27b0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11fda28d0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Conversation'
+                              Button, 0x11fda29f0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Private conversations'
+                              StaticText, 0x11fda2b10, {{123.5, 29.0}, {127.5, 26.0}}, label: 'Conversation'
+                              Other, 0x11fda2c30, {{291.5, 24.0}, {63.5, 36.0}}, label: 'Reply'
+                                Other, 0x11fda2d50, {{291.5, 24.0}, {63.5, 36.0}}
+                                  Button, 0x11fda2e70, {{291.5, 24.0}, {63.5, 36.0}}, label: 'Reply'
+                            Other, 0x11fda2f90, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fda30b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11fda31d0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11fda32f0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x11fda3410, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11fda3530, {{0.0, -1366.0}, {375.0, 3640.0}}
+                                        Other, 0x11fda3650, {{36.0, -1258.5}, {303.0, 3496.5}}
+                                          StaticText, 0x11fda3770, {{36.0, -1258.5}, {72.5, 51.5}}, label: 'You'
+                                          StaticText, 0x11fda3890, {{36.0, -1197.0}, {303.0, 683.5}}, label: 'Synthetic native handoff-link sizing fixture. No model was called and no household or financial action was performed.'
+                                          StaticText, 0x11fda39b0, {{36.0, -461.5}, {91.0, 51.5}}, label: 'Nest'
+                                          Button, 0x11fda3ad0, {{36.0, -400.0}, {303.0, 119.0}}, label: 'Open Calendar'
+                                          StaticText, 0x11fda3bf0, {{36.0, -273.0}, {283.5, 313.0}}, label: 'Choose calendars on your iPhone. Personal event details stay on this device.'
+                                          Button, 0x11fda3d10, {{36.0, 50.0}, {303.0, 119.0}}, label: 'Review busy sharing'
+                                          StaticText, 0x11fda3e30, {{36.0, 177.0}, {301.0, 261.0}}, label: 'Sharing has not changed. Review your choices before enabling it.'
+                                          Button, 0x11fda3f50, {{36.0, 448.0}, {303.0, 119.0}}, label: 'Review ingredients'
+                                          StaticText, 0x11fda4070, {{36.0, 575.0}, {303.0, 313.0}}, label: 'Nothing was added. Review the current meal week and choose what you need.'
+                                          Button, 0x11fda4190, {{36.0, 898.0}, {303.0, 119.0}}, label: 'Review notifications'
+                                          StaticText, 0x11fda42b0, {{36.0, 1025.0}, {295.0, 417.0}}, label: 'No choices or iPhone permissions changed. Open this iPhone’s connection to review device enrollment.'
+                                          Button, 0x11fda43d0, {{36.0, 1452.0}, {303.0, 119.0}}, label: 'Review your setup'
+                                          StaticText, 0x11fda44f0, {{36.0, 1579.0}, {301.5, 261.0}}, label: 'Nothing was saved. Review or skip each optional part on your iPhone.'
+                                          Button, 0x11fda4610, {{36.0, 1850.0}, {303.0, 67.0}}, label: 'Open Profile'
+                                          StaticText, 0x11fda4730, {{36.0, 1925.0}, {299.5, 313.0}}, label: 'Your account has not changed. Sign-out requires the explicit native control.'
+                                      Other, 0x11fda4850, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11fda4970, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11fda4a90, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11fda4bb0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11fda4cd0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x11fda4df0, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11fda4f10, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x11fda5030, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fda5150, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11fda5270, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fda5390, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11fda54b0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fda55d0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fda56f0, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11fda5810, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x11fda5930, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11fda5a50, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11fda5b70, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x11fda5c90, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11fda5db0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x11fda5ed0, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11fda5ff0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 8 pages', value: 46%
+                                        Other, 0x11fda6110, {{369.0, 268.0}, {3.0, 88.5}}
+                                      Other, 0x11fda6230, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 8 pages', value: 46%
+                                        Other, 0x11fda6350, {{369.0, 268.0}, {3.0, 88.5}}
+                            Other, 0x11fda6470, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fda6590, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11fda66b0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11fda67d0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11fda68f0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11fda6a10, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11fda6b30, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11fda6c50, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11fda6d70, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x11fda6e90, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11fda6fb0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11fda70d0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11fda71f0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11fda7310, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11fda7430, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x11fda7550, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11fda7670, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x11fda7790, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x11fda78b0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x11fda79d0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x11fda7af0, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x11fda7c10, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11fda7d30, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x11fda7e50, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x11fda7f70, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x11fda8090, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11fda81b0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11fda82d0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11fda83f0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11fda8510, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11fda8630, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11fda8750, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11fda8870, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x11fd9ed40, pid: 71751, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11fda93f0, pid: 71751, label: 'Nest'
+  }

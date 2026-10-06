@@ -1,0 +1,8 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": [36, 332, 303, 58],
+  "hittable": true,
+  "label": "Open Calendar",
+  "viewport": [0, 74, 375, 510]
+}

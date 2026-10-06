@@ -1,0 +1,14 @@
+-- Delete only the unchanged, childless synthetic fixture; preserve all original rows.
+begin;
+set local lock_timeout='5s';
+set local statement_timeout='10s';
+with removed as (
+  delete from public.nest_ai_conversations c
+  where c.id='4c528a2f-42a3-4e3d-a909-5a0ff7f106da'::uuid and c.actor_id='791f7261-6c9d-4061-9c8a-57aa6e0b0200'::uuid
+    and c.household_id='be772ffd-3ab5-41d5-8438-647a79a553da'::uuid and c.schema_version=1 and c.revision=1
+    and c.transcript='[{"id":"2e844030-b2bd-441c-80ee-df404d097431","role":"user","parts":[{"type":"text","text":"Synthetic corrected handoff-label and maximum-text fixture. No model was called and no household or financial action was performed."}]},{"id":"29500b25-743e-4356-8b67-c1e5a951b926","role":"assistant","parts":[{"type":"tool-openCalendarAgenda","toolCallId":"5130d565-5445-4d78-b63d-115199b1775f","state":"output-available","input":{},"output":{"ok":true,"value":{"kind":"device_handoff","screen":"calendar"}}},{"type":"tool-openCalendarSettings","toolCallId":"a24b12ab-2a91-40a5-a081-6571c22b2e58","state":"output-available","input":{},"output":{"ok":true,"value":{"kind":"device_handoff","screen":"calendar-sharing"}}},{"type":"tool-openMealIngredientReview","toolCallId":"3a13e107-6e08-41bb-866f-427e21b7971a","state":"output-available","input":{"weekStart":"2026-10-19"},"output":{"ok":true,"value":{"kind":"device_handoff","screen":"meal-ingredients","householdId":"be772ffd-3ab5-41d5-8438-647a79a553da","weekStart":"2026-10-19","revision":"9"}}},{"type":"tool-openNotificationSetup","toolCallId":"ef92b573-3802-4604-a75c-8a4261fa7a0f","state":"output-available","input":{},"output":{"ok":true,"value":{"kind":"device_handoff","screen":"notification-preferences"}}},{"type":"tool-openSetup","toolCallId":"f848192a-e068-4b72-a925-6da4320bfa7f","state":"output-available","input":{},"output":{"ok":true,"value":{"kind":"device_handoff","screen":"setup"}}},{"type":"tool-openAccountSettings","toolCallId":"54ea478d-90a3-469b-8151-ef094816062e","state":"output-available","input":{},"output":{"ok":true,"value":{"kind":"device_handoff","screen":"settings"}}}]}]'::jsonb
+    and not exists(select 1 from public.nest_ai_turns t where t.conversation_id=c.id)
+    and not exists(select 1 from public.nest_ai_conversation_saves s where s.conversation_id=c.id)
+  returning id
+) select count(*)::integer as removed_fixture_rows from removed;
+commit;

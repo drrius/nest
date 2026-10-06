@@ -1,0 +1,521 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C9DABD17-C90D-4A9B-9094-A95A663CFF36.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original Today after six read-only handoffs accessibility tree_0_310F4FCE-1273-4047-907F-C9ED33F30A10.txt",
+        "timestamp": 1791309969.204
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0C4AA747-AB5D-4BB9-8A8A-6860189EB2D4.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original Today after six read-only handoffs_0_06BF94F6-8311-4FCF-9341-94E52FB84407.png",
+        "timestamp": 1791309969.005
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "83FA0E5E-C0D7-4FB2-B511-33A5B58D25F7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Original Today after six read-only handoffs_0_F3A1A984-DBBD-481D-9943-496B2B6C8877.json",
+        "timestamp": 1791309968.943
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C271FE35-012B-4C63-BB60-BC18F793F634.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Returned unchanged synthetic handoff transcript accessibility tree_0_C96C75D8-EFCC-44FB-B8A3-ED9D5E01995F.txt",
+        "timestamp": 1791309964.261
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "1179FF42-3842-475B-87CA-91F3CFFA1365.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Returned unchanged synthetic handoff transcript_0_D35DE912-2294-46E2-8873-FA214EDEA995.png",
+        "timestamp": 1791309964.058
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8E40564C-3854-46B2-8948-94E67EE4ADE2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Returned unchanged synthetic handoff transcript_0_3D16ED13-E832-4D1F-9BFD-F3DCDE2D5E47.json",
+        "timestamp": 1791309963.987
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DD6A0BB9-C386-41CB-907F-46B36BE1DB69.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native handoff opened_0_98183489-A60B-4DC2-82AD-8079CFC02A6B.json",
+        "timestamp": 1791309961.112
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "72E885F9-CC1F-4DFA-B4AE-1E25C4041D81.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Open Profile accessibility tree_0_63C8E81C-9CDB-4C2B-927B-47A9CC625F44.txt",
+        "timestamp": 1791309961.112
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "656AE1FF-AE76-47A8-970E-4C0394FBE1B3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Open Profile_0_82E0FA04-A4DE-4D69-9B66-ECD6793BC336.png",
+        "timestamp": 1791309960.806
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3C9AD2A4-A3AF-4703-AB2F-56729F704DD1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Open Profile_0_0466D700-7F07-4CE8-A915-51E384673F3B.json",
+        "timestamp": 1791309960.73
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "20E68EE3-9612-405A-9055-977ADF63FF6D.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Open Profile accessibility tree_0_DCC25AD6-A29D-4612-9947-0E3305B153EF.txt",
+        "timestamp": 1791309956.813
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "44313C16-0100-4F71-AD31-9EA477C0DFA7.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Open Profile_0_24F1A528-B7B3-4310-A4E4-70F75A58AF30.png",
+        "timestamp": 1791309956.608
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "527DDE94-B213-4ECA-B883-298C192158B4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Open Profile_0_6A7E6058-FD32-4133-9AA9-37E97C79F2AC.json",
+        "timestamp": 1791309956.534
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8CFA86BA-DBEF-4B4C-9CEE-5097B3E970A2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured handoff reveal_0_E4CDE56D-CADF-4715-BD80-94079607DB06.json",
+        "timestamp": 1791309953.594
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "91A95B55-6490-4773-B774-91E5A1EDCC96.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured handoff reveal_0_1556EDD2-C0DA-47E3-8F6A-85E57C8FE37E.json",
+        "timestamp": 1791309951.312
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "50F2D821-A15C-40BD-B901-14A24C9C2074.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native handoff opened_0_60189DDB-1398-4CB5-A268-50FE9FF8F844.json",
+        "timestamp": 1791309948.404
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D926D62A-B57A-486D-9779-6813B83127F3.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review your setup accessibility tree_0_4F1A0744-2E9D-4384-94C9-429F6C69EFEA.txt",
+        "timestamp": 1791309948.404
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4573C62E-5512-4A94-8D05-9653C40CC823.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review your setup_0_26C3C7ED-EA27-4A96-ABF3-0EFFA2CC5BCD.png",
+        "timestamp": 1791309948.136
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3CEEBB4E-6188-4AC0-A113-5C6A49A50604.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review your setup_0_654A8AA9-83F4-4AF4-BF7A-30E985A5964B.json",
+        "timestamp": 1791309948.051
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B00A7E21-D278-4694-B2F9-2EC21976234A.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review your setup accessibility tree_0_0869D2C9-3449-4702-B253-72BF5347B153.txt",
+        "timestamp": 1791309944.776
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F4E3E45D-121E-4ABB-B0D9-934AC9A78E80.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review your setup_0_A451C192-663F-418E-B667-86C3CCC85FFA.png",
+        "timestamp": 1791309944.573
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9224C55A-399B-46B0-B3E2-C1D7318DB1EE.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review your setup_0_AB58CCA7-6296-43B4-9A14-2CBC5292D0A7.json",
+        "timestamp": 1791309944.503
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "AFC7FC22-C578-4A3F-980F-5B2CCEA96284.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured handoff reveal_0_070035BC-669E-4FA0-8244-2078C31EFB25.json",
+        "timestamp": 1791309941.574
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2F8F6B52-6E45-4529-8E00-450BF070A3B7.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured handoff reveal_0_68D4C179-484F-4A54-A84B-18EDF55D660A.json",
+        "timestamp": 1791309939.33
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F0D02532-9DAB-4FC3-924B-939DB3EA94D5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native handoff opened_0_521147F7-D687-494C-8832-6A98AFC8676D.json",
+        "timestamp": 1791309936.59
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A566FC68-DB8B-40C0-A18B-5D9A7DAE9FCF.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review notifications accessibility tree_0_9432DA3A-8ADE-44B6-A02C-F7C3E0DC01A1.txt",
+        "timestamp": 1791309936.589
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4826F330-E975-4080-9A67-83738306649E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review notifications_0_979FE578-3259-496C-9BC5-92A7987050CC.png",
+        "timestamp": 1791309936.289
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6AB99A62-0CED-4EEB-901C-119EE1471540.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review notifications_0_E0E3DE42-1A31-42EA-B086-B5A891747F51.json",
+        "timestamp": 1791309936.208
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "75C426F3-4323-4B36-8F55-9AC2539EDDB7.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review notifications accessibility tree_0_AA3BE555-3E33-4CF3-AE60-DD9C42FF1A60.txt",
+        "timestamp": 1791309932.202
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A666536F-6666-4DE9-B15B-92D80F946C6B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review notifications_0_C9C716B0-A95A-4C52-A6D0-92D0E7A2BE9D.png",
+        "timestamp": 1791309931.982
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C8E6A52C-C4C8-4F39-9BDC-D1C5A9DDE14C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review notifications_0_4B35455C-5077-41BA-ADDF-74BC855B78B1.json",
+        "timestamp": 1791309931.907
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "11AF6C9F-C683-4AA0-A3BD-49C33E9B62F6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured handoff reveal_0_49C54061-720C-469B-A505-0849AEFE1EB2.json",
+        "timestamp": 1791309929.277
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DC567EB1-4064-4FB4-91A1-84BEC3376C03.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native handoff opened_0_A339ACE1-D9B9-4897-B8E0-710C46C8202F.json",
+        "timestamp": 1791309926.398
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "11484540-4CCF-46E9-935A-0EE6EA1C74EB.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review ingredients accessibility tree_0_D1D03847-E02F-4600-B5C1-18DA17964A4C.txt",
+        "timestamp": 1791309926.398
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8EFF9504-4BA6-4AB2-8187-D6758E8C31FF.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review ingredients_0_395F930A-5A68-457C-9CC9-EC9C995773C0.png",
+        "timestamp": 1791309926.171
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B6082AB6-E9E6-42CA-A1B7-965643973248.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review ingredients_0_45750752-5CB9-40C8-AD5D-981AB6E8CD62.json",
+        "timestamp": 1791309926.105
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6BA1020B-6FD9-4DE9-A035-E6D7E7F3A25E.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review ingredients accessibility tree_0_E9A010F5-C6AD-4E6F-B9C2-4CF20858DDF0.txt",
+        "timestamp": 1791309922.452
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "FC201EFD-A113-40B8-98E7-1AE3E2BCF64E.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review ingredients_0_CEA4C7CC-5F3F-4B1A-BAE6-9E53471DA654.png",
+        "timestamp": 1791309922.231
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "72B20B78-B304-4253-8052-5A11126744CD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review ingredients_0_B4A81574-E1F5-46A1-89B0-A0F9C6C68C0A.json",
+        "timestamp": 1791309922.157
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DF148E45-0EAF-4FC7-9425-DF874417CF75.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Measured handoff reveal_0_131EC7FC-C7F3-424C-AEA6-8DE071C48C90.json",
+        "timestamp": 1791309919.553
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A0C6E9CE-4361-4B6E-A742-52BB6DD53EAA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native handoff opened_0_6796E0BF-FDB7-42CC-BA54-DF4E085DF1E7.json",
+        "timestamp": 1791309916.672
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C92F71C1-A6DB-41B4-A542-35E5AC4E23A2.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review busy sharing accessibility tree_0_F527A4CF-4366-401F-BE24-B12577304538.txt",
+        "timestamp": 1791309916.672
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "80B1D63C-09FE-4668-9E1B-E99AB8EA95AB.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review busy sharing_0_52F0D8D5-1015-455D-BEAB-C8FA311BFF78.png",
+        "timestamp": 1791309916.427
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "36E35A51-9287-4E21-A3DD-8BF4C0FD8DF9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Review busy sharing_0_69B7CFBA-6DB5-4F79-913D-9B6F3A7F9E01.json",
+        "timestamp": 1791309916.356
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8AF15728-052D-4B94-A444-0C5E8094BE54.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review busy sharing accessibility tree_0_4979847A-ADC8-46F2-A941-1443F094E76A.txt",
+        "timestamp": 1791309912.572
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "52D9DB27-179C-4F2C-B894-6ACDD998406A.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review busy sharing_0_64246364-309A-4C8A-B00D-FBC45E15316E.png",
+        "timestamp": 1791309912.363
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "199B58B8-6BE9-4431-A842-5F199FDDDBE4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Review busy sharing_0_C8C3CAEC-784F-4C13-978E-36D016EA034E.json",
+        "timestamp": 1791309912.292
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "DBB80CA0-D7A2-40B2-A5B1-38AC102EA8B0.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Unrequested calendar permission remains unchanged accessibility tree_0_3A266621-A914-414E-878D-84584F5B5B28.txt",
+        "timestamp": 1791309908.959
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "C7AA1D80-AD96-4380-AC4E-79A6FA90D1C0.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Unrequested calendar permission remains unchanged_0_9D0C8867-5DB6-45CC-8CAB-6531B9640C6E.png",
+        "timestamp": 1791309908.772
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3AD4EFFD-555F-4E30-ABCB-A0D08EBD9675.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Unrequested calendar permission remains unchanged_0_85D52737-4CE6-47A5-9543-72C371563795.json",
+        "timestamp": 1791309908.708
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "68BD5385-ED06-4161-804E-3681A232BF6D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Native handoff opened_0_C803D0F2-277B-4EE4-B868-8EC7355FD0D9.json",
+        "timestamp": 1791309908.157
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "6DF1C766-7CAF-4544-BF0A-54A20F20A524.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Open Calendar accessibility tree_0_0DCBB957-2067-411D-9EC6-2DA5FA0FA6BC.txt",
+        "timestamp": 1791309908.156
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "300CCF05-67B7-44AB-8088-27DEE9B2B639.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Open Calendar_0_5743A80E-B076-448A-A442-2AAD2504F011.png",
+        "timestamp": 1791309907.971
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "98160105-C75B-48B5-ACE8-A31698771E5B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Opened real native destination Open Calendar_0_BA36923F-3C57-44B8-B487-3A97370C443F.json",
+        "timestamp": 1791309907.906
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A0EDF809-68E1-40B4-94FA-17C3AECD1A10.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Open Calendar accessibility tree_0_E6E5EC0E-0875-4F8C-8FDB-A3777EF1C500.txt",
+        "timestamp": 1791309905.437
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8BF155BA-AA10-466F-863C-F59A8EDC8570.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Open Calendar_0_7B8694E2-5689-47A8-87CE-A7708B812CB0.png",
+        "timestamp": 1791309905.219
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "30C8BB07-C23E-4C15-8D24-E78581B38006.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Honest handoff target Open Calendar_0_1F61C8B1-5640-415E-B5A4-9EACD1D1F1BF.json",
+        "timestamp": 1791309905.142
+      }
+    ],
+    "testIdentifier": "AssistantHandoffLinkTests/testNormalHonestDeviceHandoffsOpenTheirNativeDestinations()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/AssistantHandoffLinkTests/testNormalHonestDeviceHandoffsOpenTheirNativeDestinations"
+  }
+]

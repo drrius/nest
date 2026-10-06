@@ -1,0 +1,166 @@
+Attributes: Application, 0x13b4a26a0, pid: 71344, label: 'Nest'
+Element subtree:
+ →Application, 0x13b4a26a0, pid: 71344, label: 'Nest'
+    Window (Main), 0x13b4a27c0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x13b4a2b80, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x13b4a2ca0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x13b4a28e0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x13b4a2a00, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x13b4a2dc0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x13b4a2ee0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13b4a3000, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x13b4a3120, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x13b4a3240, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x13b4a3360, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x13b4a3480, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x13b4a35a0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x13b4a36c0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Profile'
+                              Button, 0x13b4a37e0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Conversation'
+                              StaticText, 0x13b4a3900, {{161.5, 31.5}, {51.5, 21.0}}, label: 'Profile'
+                            Other, 0x13b4a3a20, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13b4a3b40, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x13b4a3c60, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x13b4a3d80, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x13b4a3ea0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x13b4a3fc0, {{-16.0, -1260.0}, {407.0, 1547.0}}
+                                      Other, 0x13b4a40e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13b4a4200, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x13b4a4320, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x13b4a4440, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13b4a4560, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x13b4a4680, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x13b4a47a0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13b4a48c0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x13b4a49e0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13b4a4b00, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13b4a4c20, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Cell, 0x13b4a4d40, {{16.0, 109.0}, {343.0, 56.5}}
+                                        Other, 0x13b4a4e60, {{16.0, 109.0}, {343.0, 56.5}}
+                                          Other, 0x13b4a4f80, {{16.0, 109.0}, {343.0, 56.5}}
+                                        Other, 0x13b4a50a0, {{16.0, 109.0}, {343.0, 56.5}}
+                                          Other, 0x13b4a51c0, {{16.0, 109.0}, {343.0, 56.5}}
+                                            Other, 0x13b4a52e0, {{16.0, 109.0}, {343.0, 56.5}}
+                                              Image, 0x13b4a5400, {{29.5, 123.0}, {29.0, 29.0}}, identifier: 'person.crop.circle', label: 'Account'
+                                              StaticText, 0x13b4a5520, {{16.0, 109.0}, {343.0, 56.5}}, label: 'Test Alex'
+                                      Cell, 0x13b4a5640, {{16.0, 165.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a5760, {{16.0, 165.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a5880, {{16.0, 165.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a59a0, {{16.0, 165.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a5ac0, {{16.0, 165.5}, {343.0, 52.0}}
+                                            Other, 0x13b4a5be0, {{16.0, 165.5}, {343.0, 52.0}}
+                                              StaticText, 0x13b4a5d00, {{16.0, 165.5}, {343.0, 52.0}}, label: 'Your verified household account'
+                                      Other, 0x13b4a5e20, {{72.0, 164.5}, {271.0, 1.0}}
+                                      Cell, 0x13b4a5f40, {{16.0, 217.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a6060, {{16.0, 217.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a6180, {{16.0, 217.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a62a0, {{16.0, 217.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a63c0, {{16.0, 217.5}, {343.0, 52.0}}
+                                            Other, 0x13b4a64e0, {{16.0, 217.5}, {343.0, 52.0}}
+                                              Button, 0x13b4a6600, {{16.0, 217.5}, {343.0, 52.0}}, label: 'Your setup'
+                                                StaticText, 0x13b4a6720, {{32.0, 233.2}, {82.0, 20.5}}, label: 'Your setup'
+                                                Image, 0x13b4a6840, {{333.5, 237.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x13b4a6960, {{32.0, 216.5}, {311.0, 1.0}}
+                                      Other, 0x13b4a6a80, {{-16.0, 287.0}, {407.0, 162.0}}
+                                      Cell, 0x13b4a6ba0, {{16.0, 287.0}, {343.0, 40.5}}
+                                        Other, 0x13b4a6cc0, {{16.0, 287.0}, {343.0, 40.5}}
+                                        Other, 0x13b4a6de0, {{16.0, 287.0}, {343.0, 40.5}}
+                                          Other, 0x13b4a6f00, {{16.0, 287.0}, {343.0, 40.5}}
+                                            Other, 0x13b4a7020, {{16.0, 287.0}, {343.0, 40.5}}
+                                              StaticText, 0x13b4a7140, {{16.0, 287.0}, {343.0, 40.5}}, label: 'Meals'
+                                      Cell, 0x13b4a7260, {{16.0, 327.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a7380, {{16.0, 327.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a74a0, {{16.0, 327.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a75c0, {{16.0, 327.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a76e0, {{16.0, 327.5}, {343.0, 52.0}}
+                                            Other, 0x13b4a7800, {{16.0, 327.5}, {343.0, 52.0}}
+                                              Button, 0x13b4a7920, {{16.0, 327.5}, {343.0, 52.0}}, label: 'Your food preferences'
+                                                StaticText, 0x13b4a7a40, {{32.0, 343.2}, {169.0, 20.5}}, label: 'Your food preferences'
+                                                Image, 0x13b4a7b60, {{333.5, 347.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Cell, 0x13b4a7c80, {{16.0, 379.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a7da0, {{16.0, 379.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a7ec0, {{16.0, 379.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a7fe0, {{16.0, 379.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a8100, {{16.0, 379.5}, {343.0, 52.0}}
+                                            Other, 0x13b4a8220, {{16.0, 379.5}, {343.0, 52.0}}
+                                              Button, 0x13b4a8340, {{16.0, 379.5}, {343.0, 52.0}}, label: 'Household cooking preferences'
+                                                StaticText, 0x13b4a8460, {{32.0, 395.2}, {242.5, 20.5}}, label: 'Household cooking preferences'
+                                                Image, 0x13b4a8580, {{333.5, 399.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x13b4a86a0, {{32.0, 378.5}, {311.0, 1.0}}
+                                      Other, 0x13b4a87c0, {{-16.0, 449.0}, {407.0, 226.0}}
+                                      Cell, 0x13b4a88e0, {{16.0, 449.0}, {343.0, 40.5}}
+                                        Other, 0x13b4a8a00, {{16.0, 449.0}, {343.0, 40.5}}
+                                        Other, 0x13b4a8b20, {{16.0, 449.0}, {343.0, 40.5}}
+                                          Other, 0x13b4a8c40, {{16.0, 449.0}, {343.0, 40.5}}
+                                            Other, 0x13b4a8d60, {{16.0, 449.0}, {343.0, 40.5}}
+                                              StaticText, 0x13b4a8e80, {{16.0, 449.0}, {343.0, 40.5}}, label: 'Privacy'
+                                      Cell, 0x13b4a8fa0, {{16.0, 489.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a90c0, {{16.0, 489.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a91e0, {{16.0, 489.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a9300, {{16.0, 489.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a9420, {{16.0, 489.5}, {343.0, 52.0}}
+                                            Other, 0x13b4a9540, {{16.0, 489.5}, {343.0, 52.0}}
+                                              Button, 0x13b4a9660, {{16.0, 489.5}, {343.0, 52.0}}, label: 'Private memory'
+                                                StaticText, 0x13b4a9780, {{32.0, 505.2}, {119.5, 20.5}}, label: 'Private memory'
+                                                Image, 0x13b4a98a0, {{333.5, 509.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Cell, 0x13b4a99c0, {{16.0, 541.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a9ae0, {{16.0, 541.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a9c00, {{16.0, 541.5}, {343.0, 52.0}}
+                                        Other, 0x13b4a9d20, {{16.0, 541.5}, {343.0, 52.0}}
+                                          Other, 0x13b4a9e40, {{16.0, 541.5}, {343.0, 52.0}}
+                                            Other, 0x13b4a9f60, {{16.0, 541.5}, {343.0, 52.0}}
+                                              Button, 0x13b4aa080, {{16.0, 541.5}, {343.0, 52.0}}, label: 'Calendar busy sharing'
+                                                StaticText, 0x13b4aa1a0, {{32.0, 557.2}, {170.0, 20.5}}, label: 'Calendar busy sharing'
+                                                Image, 0x13b4aa2c0, {{333.5, 561.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Other, 0x13b4aa3e0, {{32.0, 540.5}, {311.0, 1.0}}
+                                      Cell, 0x13b4aa500, {{16.0, 593.5}, {343.0, 64.0}}
+                                        Other, 0x13b4aa620, {{16.0, 593.5}, {343.0, 64.0}}
+                                          Other, 0x13b4aa740, {{16.0, 593.5}, {343.0, 64.0}}
+                                        Other, 0x13b4aa860, {{16.0, 593.5}, {343.0, 64.0}}
+                                          Other, 0x13b4aa980, {{16.0, 593.5}, {343.0, 64.0}}
+                                            Other, 0x13b4aaaa0, {{16.0, 593.5}, {343.0, 64.0}}
+                                              StaticText, 0x13b4aabc0, {{16.0, 593.5}, {343.0, 64.0}}, label: 'Personal calendar details stay on this device. Busy sharing is optional.'
+                                      Other, 0x13b4aace0, {{32.0, 592.5}, {311.0, 1.0}}
+                                      Other, 0x13b4aae00, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                        Other, 0x13b4aaf20, {{369.0, 574.0}, {3.0, 7.0}}
+                                      Other, 0x13b4ab040, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                                        Other, 0x13b4ab160, {{369.0, 574.0}, {3.0, 7.0}}
+                            Other, 0x13b4ab280, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13b4ab3a0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13b4ab4c0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x13b4ab5e0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x13b4ab700, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x13b4ab820, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x13b4ab940, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x13b4aba60, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x13b4abb80, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today', Selected
+                            Image, 0x13b4abca0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x13b4abdc0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x13b4abee0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x13b4ac000, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x13b4ac120, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x13b4ac240, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x13b4ac360, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x13b4ac480, {{25.0, 588.0}, {88.2, 54.0}}
+                          Other, 0x13b4ac5a0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x13b4ac6c0, {{25.0, 588.0}, {88.0, 54.0}}
+                            Other, 0x13b4ac7e0, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x13b4ac900, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x13b4aca20, {{25.0, 588.0}, {88.0, 54.0}}
+                                  Other, 0x13b4acb40, {{25.0, 588.0}, {88.0, 54.0}}
+                                Other, 0x13b4acc60, {{25.0, 588.0}, {88.0, 54.0}}
+                              Other, 0x13b4acd80, {{25.0, 588.0}, {88.0, 54.0}}
+                  Other, 0x13b4acea0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x13b4acfc0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x13b4ad0e0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13b4ad200, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13b4ad320, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x13b4ad440, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13b4ad560, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13b4ad680, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x13b4a26a0, pid: 71344, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x13b0b9040, pid: 71344, label: 'Nest'
+  }
