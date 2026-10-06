@@ -1,0 +1,91 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-native-renewal-crud-20261006/edit-local-selection-probe-ui/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-native-renewal-crud-20261006/edit-local-selection-probe-ui/result.xcresult "-only-testing:NestAccessibilityTests/NativeRenewalCrudTests/testDiscardUnsentEditAndVerifyNativeSelection" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-native-renewal-crud-20261006/edit-local-selection-probe-ui/result.xcresult
+
+2026-10-06 05:32:05.775419+0200 NestAccessibilityTests-Runner[49822:20120409] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 05:32:06.346.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 05:32:06.347.
+Test Suite 'NativeRenewalCrudTests' started at 2026-10-06 05:32:06.347.
+Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testDiscardUnsentEditAndVerifyNativeSelection]' started.
+    t =     0.00s Start Test at 2026-10-06 05:32:06.348
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.03s     Launch ch.drrius.nest
+2026-10-06 05:32:06.442 xcodebuild[49820:20119981] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 05:32:06.443 xcodebuild[49820:20119981] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.50s         Setting up automation session
+    t =     1.41s         Wait for ch.drrius.nest to idle
+    t =     2.70s Waiting 15.0s for "Edit renewal" NavigationBar to exist
+    t =     3.74s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     3.74s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     3.85s         Capturing element debug description
+    t =     4.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     4.78s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     4.83s         Capturing element debug description
+    t =     5.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     5.78s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     5.83s         Capturing element debug description
+    t =     6.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     6.80s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     6.82s         Capturing element debug description
+    t =     7.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     7.78s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     7.83s         Capturing element debug description
+    t =     8.80s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     8.80s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     8.85s         Capturing element debug description
+    t =     9.71s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =     9.72s         Checking existence of `"Edit renewal" NavigationBar`
+    t =     9.77s         Capturing element debug description
+    t =    10.73s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    10.73s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    10.79s         Capturing element debug description
+    t =    11.75s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    11.75s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    11.80s         Capturing element debug description
+    t =    12.76s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    12.77s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    12.82s         Capturing element debug description
+    t =    13.78s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    13.78s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    13.84s         Capturing element debug description
+    t =    14.79s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    14.79s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    14.85s         Capturing element debug description
+    t =    15.71s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    15.71s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    15.76s         Capturing element debug description
+    t =    16.72s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    16.72s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    16.75s         Capturing element debug description
+    t =    17.71s     Checking `Expect predicate `existsNoRetry == 1` for object "Edit renewal" NavigationBar`
+    t =    17.71s         Checking existence of `"Edit renewal" NavigationBar`
+    t =    17.76s         Capturing element debug description
+    t =    17.76s     Checking existence of `"Edit renewal" NavigationBar`
+    t =    17.80s Collecting debug information to assist test failure triage
+    t =    17.80s     Requesting snapshot of accessibility hierarchy for app with pid 49827
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeRenewalCrudTests.swift:79: error: -[NestAccessibilityTests.NativeRenewalCrudTests testDiscardUnsentEditAndVerifyNativeSelection] : XCTAssertTrue failed
+    t =    17.86s Tear Down
+Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testDiscardUnsentEditAndVerifyNativeSelection]' failed (18.116 seconds).
+Test Suite 'NativeRenewalCrudTests' failed at 2026-10-06 05:32:24.464.
+	 Executed 1 test, with 1 failure (0 unexpected) in 18.116 (18.117) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 05:32:24.465.
+	 Executed 1 test, with 1 failure (0 unexpected) in 18.116 (18.118) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 05:32:24.465.
+	 Executed 1 test, with 1 failure (0 unexpected) in 18.116 (18.119) seconds
+2026-10-06 05:32:37.018 xcodebuild[49820:20119981] [MT] IDETestOperationsObserverDebug: 32.088 elapsed -- Testing started completed.
+2026-10-06 05:32:37.019 xcodebuild[49820:20119981] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 05:32:37.019 xcodebuild[49820:20119981] [MT] IDETestOperationsObserverDebug: 32.088 sec, +32.088 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-native-renewal-crud-20261006/edit-local-selection-probe-ui/result.xcresult
+
+Failing tests:
+	NativeRenewalCrudTests.testDiscardUnsentEditAndVerifyNativeSelection()
+
+** TEST EXECUTE FAILED **
+
+Testing started

@@ -29,7 +29,7 @@ for source in SOURCES:
         log=(case/'test.log').read_text()
         assert not re.search(r'eyJ[A-Za-z0-9_-]{20,}\.[A-Za-z0-9_-]+\.',log)
         assert not re.search(r'Bearer\s+[A-Za-z0-9_.-]+',log,re.I)
-        (caseout/'native-test.log').write_text(log)
+        (caseout/'native-test.txt').write_text(log)
 manifest={str(f.relative_to(OUT)):hashlib.sha256(f.read_bytes()).hexdigest() for f in OUT.rglob('*') if f.is_file()}
 (OUT/'sha256.json').write_text(json.dumps(manifest,indent=2,sort_keys=True)+'\n')
 print(json.dumps({'exportedFiles':len(manifest),'output':str(OUT)}))

@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-native-renewal-crud-20261006/edit-preflight-sam-read/selected.xctestrun -destination "platform=iOS Simulator,id=CA0BCEDE-A297-493A-8921-9E31F8B65783" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-native-renewal-crud-20261006/edit-preflight-sam-read/result.xcresult "-only-testing:NestAppTests/HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-native-renewal-crud-20261006/edit-preflight-sam-read/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 05:34:29.642.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 05:34:29.643.
+Test Suite 'HostedNativeRenewalReadTests' started at 2026-10-06 05:34:29.643.
+Test Case '-[NestAppTests.HostedNativeRenewalReadTests testBothMembersReadOwnedRenewalCanonicalState]' started.
+Test Case '-[NestAppTests.HostedNativeRenewalReadTests testBothMembersReadOwnedRenewalCanonicalState]' passed (1.788 seconds).
+Test Suite 'HostedNativeRenewalReadTests' passed at 2026-10-06 05:34:31.432.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.788 (1.789) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 05:34:31.432.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.788 (1.790) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 05:34:31.433.
+	 Executed 1 test, with 0 failures (0 unexpected) in 1.788 (1.790) seconds
+2026-10-06 05:34:31.749 xcodebuild[50674:20127862] [MT] IDETestOperationsObserverDebug: 4.087 elapsed -- Testing started completed.
+2026-10-06 05:34:31.749 xcodebuild[50674:20127862] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 05:34:31.749 xcodebuild[50674:20127862] [MT] IDETestOperationsObserverDebug: 4.087 sec, +4.087 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-native-renewal-crud-20261006/edit-preflight-sam-read/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

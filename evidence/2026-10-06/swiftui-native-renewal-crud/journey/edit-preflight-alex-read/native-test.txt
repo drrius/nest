@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-native-renewal-crud-20261006/edit-preflight-alex-read/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-native-renewal-crud-20261006/edit-preflight-alex-read/result.xcresult "-only-testing:NestAppTests/HostedNativeRenewalReadTests/testBothMembersReadOwnedRenewalCanonicalState" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-native-renewal-crud-20261006/edit-preflight-alex-read/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 05:31:06.486.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 05:31:06.487.
+Test Suite 'HostedNativeRenewalReadTests' started at 2026-10-06 05:31:06.487.
+Test Case '-[NestAppTests.HostedNativeRenewalReadTests testBothMembersReadOwnedRenewalCanonicalState]' started.
+Test Case '-[NestAppTests.HostedNativeRenewalReadTests testBothMembersReadOwnedRenewalCanonicalState]' passed (3.742 seconds).
+Test Suite 'HostedNativeRenewalReadTests' passed at 2026-10-06 05:31:10.230.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.742 (3.743) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 05:31:10.230.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.742 (3.744) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 05:31:10.231.
+	 Executed 1 test, with 0 failures (0 unexpected) in 3.742 (3.745) seconds
+2026-10-06 05:31:10.582 xcodebuild[49552:20117133] [MT] IDETestOperationsObserverDebug: 6.379 elapsed -- Testing started completed.
+2026-10-06 05:31:10.582 xcodebuild[49552:20117133] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 05:31:10.582 xcodebuild[49552:20117133] [MT] IDETestOperationsObserverDebug: 6.379 sec, +6.379 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-native-renewal-crud-20261006/edit-preflight-alex-read/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

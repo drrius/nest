@@ -1,12 +1,15 @@
 """Verify saved evidence and the final native source inputs without hosted actions."""
 import hashlib
 import json
+import subprocess
 from pathlib import Path
 
 EVIDENCE = Path(__file__).resolve().parent
 ROOT = EVIDENCE.parents[2]
 manifest = json.loads((EVIDENCE / "sha256.json").read_text())
+tracked = set(subprocess.check_output(["git", "ls-files", "--", str(EVIDENCE)], cwd=ROOT, text=True).splitlines())
 for name, expected in manifest.items():
+    assert str((EVIDENCE / name).relative_to(ROOT)) in tracked, f"Untracked evidence: {name}"
     path = EVIDENCE / name
     assert path.is_file(), f"Missing evidence: {name}"
     assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, f"Changed evidence: {name}"
