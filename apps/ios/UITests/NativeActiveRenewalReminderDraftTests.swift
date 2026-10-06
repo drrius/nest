@@ -206,7 +206,7 @@ final class NativeActiveRenewalReminderDraftTests: XCTestCase {
         XCTAssertEqual(app.pickerWheels.element(boundBy: 1).value as? String, "00 minutes")
         XCTAssertEqual(app.pickerWheels.element(boundBy: 2).value as? String, "AM")
         XCTAssertTrue(hour.isEnabled && hour.isHittable)
-        hour.adjust(toPickerWheelValue: "9 o’clock")
+        hour.adjust(toPickerWheelValue: "9")
         XCTAssertEqual(hour.value as? String, "9 o’clock")
         XCTAssertEqual(app.pickerWheels.element(boundBy: 1).value as? String, "00 minutes")
         XCTAssertEqual(app.pickerWheels.element(boundBy: 2).value as? String, "AM")
