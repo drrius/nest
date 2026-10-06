@@ -1,0 +1,8 @@
+{
+  "action": "removed",
+  "actor": "sam",
+  "source": "a4739172c6491b514ed8cdb84d340c84f763cdc0",
+  "method": "HostedMealLeftoversJourneyReadTests/testOwnedSourceAndCrossWeekLeftoverReadOnly",
+  "testBuiltSource": "2bf22747eddaa9df62bd365ebb2dc799648ce97f",
+  "positiveBudget": 0
+}

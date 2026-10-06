@@ -1,0 +1,35 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "31ECFCF4-7CB4-4AFC-AC12-24761CF119C0.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Leftover retained recipe instructions accessibility tree_0_923651DD-B711-49F5-A1AE-83372E68024C.txt",
+        "timestamp": 1791327589.367
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8941520B-8D32-424B-88B2-8AFD3D7D8AE6.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Leftover retained recipe instructions_0_61F2AB48-5D80-4229-8A3A-35C58C6BA587.png",
+        "timestamp": 1791327589.19
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "34896AB4-8C88-449E-BA1B-54D24786EA42.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Leftover retained recipe instructions_0_3C7F880F-ED71-49CA-9490-2866B65AB5D8.json",
+        "timestamp": 1791327589.121
+      }
+    ],
+    "testIdentifier": "NativeMealLeftoversJourneyTests/testReadOwnedLeftoverRecipe()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeMealLeftoversJourneyTests/testReadOwnedLeftoverRecipe"
+  }
+]

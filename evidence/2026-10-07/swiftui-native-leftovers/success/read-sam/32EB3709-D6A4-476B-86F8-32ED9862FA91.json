@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 20.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 265.5,
+    "maxY": 508,
+    "midX": 142.75,
+    "midY": 497.75,
+    "minX": 20,
+    "minY": 487.5,
+    "usable": true,
+    "width": 245.5
+  },
+  "hittable": true,
+  "label": "Simmer the fictional ingredients.",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

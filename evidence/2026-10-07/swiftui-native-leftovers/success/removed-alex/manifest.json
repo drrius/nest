@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8A851F82-1B13-4995-AA34-C5A23182FBAF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Safe leftovers GET status trace_0_4409A33D-8AB5-483D-9BF8-8AE8B7FCA997.json",
+        "timestamp": 1791327758.946
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "2272E915-21F4-4DFA-92C1-5B5730A08BDB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned source and cross-week leftover canonical read_0_24011774-4BE3-4F94-90BD-8CE72CEA29DE.json",
+        "timestamp": 1791327758.942
+      }
+    ],
+    "testIdentifier": "HostedMealLeftoversJourneyReadTests/testOwnedSourceAndCrossWeekLeftoverReadOnly()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedMealLeftoversJourneyReadTests/testOwnedSourceAndCrossWeekLeftoverReadOnly"
+  }
+]

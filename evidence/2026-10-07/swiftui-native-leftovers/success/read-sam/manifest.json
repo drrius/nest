@@ -1,0 +1,71 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "A62B0A09-6833-415B-A364-1BE4F1D307BA.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Leftover retained recipe instructions accessibility tree_0_B1F05BA8-45B0-4DBB-903E-C62F9A8B0251.txt",
+        "timestamp": 1791327647.328
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "3F9273FC-7F22-4304-BC0B-09E35293D0C2.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Leftover retained recipe instructions_0_4825FA41-C306-4BD2-B209-357B941BB259.png",
+        "timestamp": 1791327647.144
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "32EB3709-D6A4-476B-86F8-32ED9862FA91.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Leftover retained recipe instructions_0_F0D3D067-2B68-4428-81C7-93851509C5E2.json",
+        "timestamp": 1791327647.075
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "E8AB0CF5-15FF-429F-AF01-A434C6FA2096.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_0AC84A51-58CD-4F41-B5CE-E09301CB0B6B.json",
+        "timestamp": 1791327642.425
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "7B8446A8-871E-4594-913F-B4BFD6C40E37.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_AB7351E2-3840-42EC-AE26-A4FAA5E295BC.json",
+        "timestamp": 1791327642.065
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "7FBA35D5-C319-4143-A3CD-0C029F451494.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_8FD82C1F-B77F-42F5-ACAD-EB66F0D90C0A.json",
+        "timestamp": 1791327638.84
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "36D9275C-FC8C-46FE-889C-24745AE7B0C9.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_9B8A9DFD-13BE-498C-88E0-585162F53622.json",
+        "timestamp": 1791327638.442
+      }
+    ],
+    "testIdentifier": "NativeMealLeftoversJourneyTests/testReadOwnedLeftoverRecipe()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeMealLeftoversJourneyTests/testReadOwnedLeftoverRecipe"
+  }
+]

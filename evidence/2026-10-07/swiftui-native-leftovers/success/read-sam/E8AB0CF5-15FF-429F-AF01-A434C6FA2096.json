@@ -1,0 +1,90 @@
+{
+  "actionRegions": [
+    {
+      "height": 44,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 355,
+      "maxY": 138,
+      "midX": 187.5,
+      "midY": 116,
+      "minX": 20,
+      "minY": 94,
+      "usable": true,
+      "width": 335
+    },
+    {
+      "height": 20.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 156,
+      "maxY": 192.5,
+      "midX": 88,
+      "midY": 182.25,
+      "minX": 20,
+      "minY": 172,
+      "usable": true,
+      "width": 136
+    }
+  ],
+  "attempt": 0,
+  "end": [16, 199],
+  "navigation": "Planned meal",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [16, 449],
+  "target": "Simmer the fictional ingredients.",
+  "targetElementType": "XCUIElementType(rawValue: 48)",
+  "targetFrame": {
+    "height": 20.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 265.5,
+    "maxY": 577.5,
+    "midX": 142.75,
+    "midY": 567.25,
+    "minX": 20,
+    "minY": 557,
+    "usable": true,
+    "width": 245.5
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

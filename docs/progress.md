@@ -19,7 +19,7 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 - [ ] **M2 — Authenticated offline/AI slice.** Keychain, verified sessions, scoped SQLite and limited exact replay are implemented and tested. Private chat, streaming/interruption/cancellation and honest handoffs exist. Live AI still fails Gateway eligibility403; successful live tool/stream behavior and both-member phone/offline acceptance remain.
 - [ ] **M3 — Identity, onboarding and settings.** Quick/comprehensive setup, progressive entry, food/cooking/notification preferences and private-memory consent/recovery exist. New online preflight, canonical settings-result links and account/read fences pass CI. Normal-text owned native saves/lost-reply recovery/stale-form refusal and hosted populated-goal privacy pass. Private-memory pending restart, explicit save/edit/decline/removal, populated RLS and non-resurrecting old-consent replay now pass; both-member forms, broader setup/private settings, accessibility and hardware enrollment remain.
 - [ ] **M4 — Today, chores and groceries.** Today filters, ordinary/alternating chore commands, handovers, grocery CRUD/checking, exact scoped SQLite retry/conflicts and corresponding AI commands exist. Source/native/property/RLS checks and selected hosted/owned flows pass. Current grocery edit preflight, retained fields, explicit latest-item reload, committed lost-response restart/update/exact retry, precise removed-intent copy/discard and normal/large-text touch targets now pass owned test-API execution with normal cleanup and unchanged money. Earlier checkbox compatibility/opposing-intent cases and grocery→expense switch/back also pass. Both required grocery-source CI workflows pass. Two independent fictional native clients now verify compatible queue/restart/replay, opposing intent/explicit discard and committed lost-reply/exact retry, then normal removal/Today/stable-origin restoration with64 empty journals and six unchanged hosted fingerprints. The49 executions retain46 passes/three observer failures/zero skips; corrected row observation passes, while whole Add is not rerun. The final observer passes Nest37341752813/SwiftUI37341753014 at head2267bfa4:496 Foundation/41 skips,423 signed-native/14 skips, zero failures; CI does not run the hosted pair fixture. [Pair evidence](../evidence/2026-10-05/swiftui-native-grocery-pair/README.md). The later two-native-client chore pass verifies handover accept/decline, lost reply/exact retry, offline/partner completion convergence and normal archive with retained history; broader membership/schedule conflicts, settings/navigation, VoiceOver/haptics/radio loss, both phones and complete daily-use acceptance remain open; full M4 is not closed.
-- [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation and replacement have bounded real native/two-member evidence with normal cleanup. Varied portions/partner constraints, live generation/replacement and full phone/UI acceptance remain.
+- [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation, replacement and cross-week leftovers copy/read/removal have bounded real native/two-member evidence with normal cleanup. Varied portions/partner constraints, live generation/replacement and full phone/UI acceptance remain.
 - [ ] **M6 — Read-only Calendar.** EventKit, permission/selection, agenda/layers and explicit numeric-only busy sharing exist. Selected real timed/all-day/DST, both-member sharing, outsider denial and online cleanup pass; durable offline removal and races have focused tests. Hardware offline/reconnection, long background periods, complex calendars and full accessibility/privacy journeys remain. Personal event text stays on-device.
 - [ ] **M7 — Money.** Native balance/history/detail, financial commands/private approvals, receipt storage, recurring controls/variable bills and exact recovery exist over append-only CHF-centime history. Selected arithmetic/isolation/lost-response/hosted checks pass. Pause/cancel proposal review and exact recovery pass focused native CI; resumption proposal review/recovery passes current-source native CI; variable-cycle proposal review/decision/recovery is implemented with local wire/database checks and exact-source Foundation/native/routine CI passing; manual-cycle selection/review/command recovery passes local checks and exact-source Foundation/native/routine CI; private manual-cycle approvals and retained legacy inventory/draft history pass exact-source native/routine CI. Direct legacy dismissal passes local checks and exact-source native/routine CI; its original-term review/navigation/alert cancellation now pass owned rendering. Private dismissal approval/withdrawal passes local and exact-source native/routine CI; original-term review/navigation/alert cancellation now pass owned rendering. Actual rendered recovery states and full phone journeys remain pending. Direct draft-to-expense confirmation now has native source and focused Mac/database verification; both required workflows and actual fictional keyboard/review/cancel rendering pass at direct-confirmation source `4759e124`. Private confirmation review/recovery now has native source with focused Mac/backend and actual fictional alert verification; both focused native offline discovery/isolation checks pass; exact-source CI passes at `886773cc` (463 Foundation/41 explicit skips and344 signed-native/nine explicit skips, zero failures). Direct rule adoption source `e3e6b1ef` now has explicit fresh terms, prospective coverage/member/day preflight and exact recovery; focused Mac/backend and actual fictional variable-form checks pass. Nest37142967731 passes and SwiftUI37142967820 also passes:468 Foundation/41 explicit skips and357 signed-native/10 explicit skips, zero failures, strict formatting/source limits and actual signing. Private adoption now has source and focused Mac/backend/fictional-form verification; native CI at `1151caad` and corrected routine CI at `83a5a015` pass; hosted/provider/phone acceptance and recovery rendering remain pending. [Source coverage](native-rewrite/action-inventory.md#swiftui-financial-approval-coverage-1-october-2026) records the exact gaps. Ordinary expense/settlement and refund/correction staging now require fresh scoped domain reads before new intent; both slices pass exact-source Foundation/native and routine CI. Recurring create/edit/state/resume/variable staging now has fresh membership/revision/server-day/uncovered-cycle checks,23 focused local integration cases passing and exact-source Foundation/native/routine CI passing. Expense/refund/correction/settlement/rule approval staging now has fresh exact private pending/unexpired reads, with all six new native cases and ten existing exact-recovery cases passing current-source CI; existing account checks and later online retries do not prove that offline initiation is blocked. All approval/recurring variants, full history reconciliation and native/two-phone acceptance remain. Production posting is inactive.
 - [ ] **M8 — Renewals, reminders and push.** Renewal CRUD, recipient reminder editors, saved summaries, direct APNs transport, registration/outcomes, bounded worker and protected routes exist with fixture/native/selected hosted evidence. One fictional renewal now completes Alex create, Sam edit and Alex remove through the native UI, with matching canonical reads and retained removal history for both members. See the bounded CRUD checkpoint below. Read-only list/detail snapshots now persist across offline store restart, with separate controlled-failure integration evidence. Wider linked/pagination/conflict cases, populated summaries, provider credentials, worker activation, real hardware enrollment and all six delivery kinds on both phones remain. Push is disabled in the current build18.
@@ -213,72 +213,25 @@ full accessibility, provider, worker/APNs and cutover gates remain open.
 
 ## Next work
 
-Next native journey: copy the existing fictional saved-recipe meal from 19 October
-to Lunch on 26 October, read the retained recipe through both accounts, then
-remove only that new leftover through Sam's normal UI. Fresh hosted read-only
-preflight confirms source revision 9, an empty destination, no prior descendant
-or receipt, and exact source snapshot. Eight protected source/library/grocery/
-financial fingerprints are captured. Eleven isolated PostgreSQL/PostgREST cases
-pass with no failures/skips; the first invocation lacked fixture-binary env vars
-and is not counted as a code failure. Guarded native UI and GET-only readback
-sources are prepared with strict formatting/source-limit checks. No Add/Remove,
-native baseline or fixture mutation had run at source preparation. Fresh signed
-SDK/UI products now compile all 1,132 source inputs at `2bf22747`, including the
-owned tests and shipping leftovers path. Alex's actual GET-only preflight passes
-and restores original scopes/settings/local state; Sam's preflight also passes.
-A fresh separate hosted comparison confirms all fixture and protected-row values
-unchanged. The first Alex Add method fails before tapping Plan leftovers: its
-native menu row measures 42 points. No command is submitted; source/target,
-receipts and all eight protected fingerprints remain exact. Original scopes,
-settings and local state restore. Meal options now use a native confirmation
-dialog instead of the compact menu, keeping the same actions and record context.
-The 44-point requirement is retained; fresh native verification is pending.
-The first dialog attempt also stops before a command: the symbol-labelled action
-has duplicate parent/child buttons in the native accessibility tree. Plain-text
-native dialog actions replace those symbol labels. Source/target and receipts
-remain exact, original scopes/settings restore, and the failure is retained.
-The plain-text dialog passes its target checks on `f54145f6`; the next check
-stops at the destination Meal picker, whose native target is only 34.5 points
-high. No Add or Remove is submitted. A fresh independent hosted comparison
-confirms the original source, target, receipts and all eight protected
-fingerprints unchanged; scopes/settings/local state restore. Both destination
-picker labels now request a 44-point minimum height. Strict configured Mac
-formatting and source limits pass; actual native picker verification is pending.
-The failed invocation and products are retained in
-[picker target evidence](../evidence/2026-10-07/swiftui-native-leftovers/picker-target-failure/).
-No Remove has run.
-The custom picker label does not enlarge the underlying menu button: the
-`c3f1a8b9` native run still measures 34.5 points and stops before saving. Fixture
-rows/receipts remain exact and restoration passes. Destination Day and Meal
-pickers now use Apple's navigation-link presentation, with a stable Meal-picker
-identifier for the native journey. Configured formatting/source limits pass;
-fresh execution is pending. The failed label attempt is retained separately.
-At `40c37740`, the native destination picker and Lunch row both pass the 44-point
-checks. The method stops after selecting Lunch because it still expects the
-sheet's explanation immediately after selection. No Add is tapped, fixture rows
-and receipts remain exact, and restoration passes. The first observer correction
-incorrectly assumes a persistent Meal navigation page and fails at `8ea6ac84`.
-Direct inspection of the recorded final frame shows the native automatic return
-transition and Lunch selected; the explanation is below the small-screen fold.
-The observer now waits for the selected Lunch picker to be hittable and uses the
-measured reader to reveal the explanation. No app behavior changes in this
-correction. Fresh execution is pending; no mutation is counted as verified.
-The label-only return observer times out at `65642712`; no Add is tapped and
-fixture/receipts remain exact. Native pickers can expose selection as their
-accessibility value; the observer now accepts Lunch in either label or value,
-still requires a hittable returned picker, and retains its full native tree.
-Configured formatting and source limits pass. Fresh execution remains pending.
-At `2f90aca4`, Lunch selection passes through the native accessibility value.
-The reader then sees two finite scrollers, the modal collection and obscured
-Meals root, and correctly refuses to inject a pan. No Add is tapped, the fixture
-and receipts remain exact, and restoration passes. The destination Form now has
-a stable identifier; the reader can explicitly scope its viewport/scroller to
-that form. Default root reading is unchanged. All source limits and configured
-Mac formatting pass; fresh native execution is pending.
-Initial preparation source `55baa7c5` fails routine CI
-37540272006 only on metadata formatting; the formatted successor is locally
-clean and its CI is running.
-[Prepared leftovers checkpoint](../evidence/2026-10-07/swiftui-native-leftovers/prepared.json).
+The native cross-week leftovers journey now passes at `a4739172`: Alex adds one
+leftover from the existing 19 October dinner to 26 October Lunch; both members'
+authorized native reads and rendered recipe details preserve the exact original
+snapshot. Sam removes only the new entry through normal confirmation. Both final
+native reads see an empty target week. Source revision stays 9; target revisions
+are 0/1/2. Removed history, copied recipe and both receipts remain. Eight protected
+source/library/grocery/financial fingerprints are unchanged. Ten native methods
+pass with zero skips, including the two retained SDK preflight reads. Eleven
+isolated PostgreSQL/PostgREST cases pass. Actual products/source, six directly
+reviewed action images, raw-log hashes, canonical pair equality and restored
+original scopes/64 journals/settings/local semantics are retained in
+[the leftovers evidence](../evidence/2026-10-07/swiftui-native-leftovers/README.md).
+Plain native meal action dialogs and navigation-link destination pickers fix the
+observed undersized targets. Eight pre-save native failures and three tooling
+errors are preserved; no committed Add is repeated. Their dated sequence is in
+[7 October history](progress-history-2026-10-07.md). Routine CI 37543537027 passes;
+native CI 37543536999 remains running. No new TestFlight build, inference,
+production action, financial write or merge occurs. M5 remains open for its broader
+portion/partner/live-plan/phone criteria.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

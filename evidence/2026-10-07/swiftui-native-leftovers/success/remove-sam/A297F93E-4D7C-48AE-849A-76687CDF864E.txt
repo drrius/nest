@@ -1,0 +1,196 @@
+Attributes: Application, 0x105cdb770, pid: 65086, label: 'Nest'
+Element subtree:
+ →Application, 0x105cdb770, pid: 65086, label: 'Nest'
+    Window (Main), 0x105cca700, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x105ccc9a0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105cdceb0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x105cdaf30, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x105cdb350, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x105cdcfd0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x105cdd0f0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105cdd210, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x105cdd330, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x105cdd450, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x105cdd570, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x105cdd690, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x105cdd7b0, {{0.0, 0.0}, {375.0, 667.0}}
+                            Other, 0x105cdd8d0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x105cdd9f0, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x105cddb10, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x105cddc30, {{0.0, 0.0}, {375.0, 667.0}}
+                                    ScrollView, 0x105cddd50, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x105cdde70, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x105cddf90, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x105cde0b0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x105cde1d0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x105cde2f0, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x105cde410, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x105cde530, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x105cde650, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x105cde770, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x105cde890, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x105cde9b0, {{0.0, 20.0}, {375.0, 2346.0}}
+                                        StaticText, 0x105cdead0, {{20.0, 48.8}, {83.5, 14.5}}, label: 'Our household'
+                                        Button, 0x105cdebf0, {{259.0, 34.0}, {44.0, 44.0}}, identifier: 'tab-assistant-action', label: 'Private conversations'
+                                        Button, 0x105cded10, {{311.0, 34.0}, {44.0, 44.0}}, identifier: 'tab-profile-action', label: 'Profile and preferences'
+                                        StaticText, 0x105cdee30, {{20.0, 82.0}, {92.0, 41.0}}, identifier: 'tab-header-meals', label: 'Meals'
+                                        StaticText, 0x105cdef50, {{20.0, 127.0}, {241.0, 18.0}}, label: 'Good food. One less daily decision.'
+                                        Button, 0x105cdf070, {{20.0, 169.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Previous week'
+                                        StaticText, 0x105cdf190, {{129.8, 180.8}, {115.5, 20.5}}, label: '26 Oct – 1 Nov'
+                                        Button, 0x105cdf2b0, {{311.0, 169.0}, {44.0, 44.0}}, identifier: 'chevron.right', label: 'Next week'
+                                        Button, 0x105cdf3d0, {{20.0, 237.0}, {335.0, 52.0}}, label: 'Plan the week with AI'
+                                          Image, 0x105cdf4f0, {{100.5, 254.5}, {14.0, 17.0}}, identifier: 'sparkles', label: 'Sparkle'
+                                          StaticText, 0x105cdf610, {{20.0, 237.0}, {335.0, 52.0}}, label: 'Plan the week with AI'
+                                        StaticText, 0x105cdf730, {{20.0, 313.0}, {151.0, 24.0}}, label: 'Monday · 26 Oct'
+                                        Button, 0x105cdf850, {{36.0, 347.0}, {303.0, 60.0}}, label: '2026-10-26, Breakfast: Add meal'
+                                          StaticText, 0x105cdf970, {{36.0, 368.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105cdfa90, {{138.0, 371.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105cdfbb0, {{138.0, 368.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105cdfcd0, {{36.0, 407.5}, {303.0, 60.0}}, label: '2026-10-26, Lunch: Add meal'
+                                          StaticText, 0x105cdfdf0, {{36.0, 428.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105cdff10, {{138.0, 431.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce0030, {{138.0, 428.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce0150, {{36.0, 468.0}, {303.0, 60.0}}, label: '2026-10-26, Dinner: Add meal'
+                                          StaticText, 0x105ce0270, {{36.0, 489.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce0390, {{138.0, 492.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce04b0, {{138.0, 489.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        StaticText, 0x105ce05d0, {{20.0, 552.0}, {153.5, 24.0}}, label: 'Tuesday · 27 Oct'
+                                        Button, 0x105ce06f0, {{36.0, 586.0}, {303.0, 60.0}}, label: '2026-10-27, Breakfast: Add meal'
+                                          StaticText, 0x105ce0810, {{36.0, 607.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105ce0930, {{138.0, 610.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce0a50, {{138.0, 607.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce0b70, {{36.0, 646.5}, {303.0, 60.0}}, label: '2026-10-27, Lunch: Add meal'
+                                          StaticText, 0x105ce0c90, {{36.0, 667.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105ce0db0, {{138.0, 670.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce0ed0, {{138.0, 667.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce0ff0, {{36.0, 707.0}, {303.0, 60.0}}, label: '2026-10-27, Dinner: Add meal'
+                                          StaticText, 0x105ce1110, {{36.0, 728.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce1230, {{138.0, 731.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce1350, {{138.0, 728.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        StaticText, 0x105ce1470, {{20.0, 791.0}, {185.0, 24.0}}, label: 'Wednesday · 28 Oct'
+                                        Button, 0x105ce1590, {{36.0, 825.0}, {303.0, 60.0}}, label: '2026-10-28, Breakfast: Add meal'
+                                          StaticText, 0x105ce16b0, {{36.0, 846.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105ce17d0, {{138.0, 849.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce18f0, {{138.0, 846.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce1a10, {{36.0, 885.5}, {303.0, 60.0}}, label: '2026-10-28, Lunch: Add meal'
+                                          StaticText, 0x105ce1b30, {{36.0, 906.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105ce1c50, {{138.0, 909.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce1d70, {{138.0, 906.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce1e90, {{36.0, 946.0}, {303.0, 60.0}}, label: '2026-10-28, Dinner: Add meal'
+                                          StaticText, 0x105ce1fb0, {{36.0, 967.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce20d0, {{138.0, 970.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce21f0, {{138.0, 967.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        StaticText, 0x105ce2310, {{20.0, 1030.0}, {164.0, 24.0}}, label: 'Thursday · 29 Oct'
+                                        Button, 0x105ce2430, {{36.0, 1064.0}, {303.0, 60.0}}, label: '2026-10-29, Breakfast: Add meal'
+                                          StaticText, 0x105ce2550, {{36.0, 1085.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105ce2670, {{138.0, 1088.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce2790, {{138.0, 1085.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce28b0, {{36.0, 1124.5}, {303.0, 60.0}}, label: '2026-10-29, Lunch: Add meal'
+                                          StaticText, 0x105ce29d0, {{36.0, 1145.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105ce2af0, {{138.0, 1148.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce2c10, {{138.0, 1145.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce2d30, {{36.0, 1185.0}, {303.0, 60.0}}, label: '2026-10-29, Dinner: Add meal'
+                                          StaticText, 0x105ce2e50, {{36.0, 1206.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce2f70, {{138.0, 1209.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce3090, {{138.0, 1206.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        StaticText, 0x105ce31b0, {{20.0, 1269.0}, {134.5, 24.0}}, label: 'Friday · 30 Oct'
+                                        Button, 0x105ce32d0, {{36.0, 1303.0}, {303.0, 60.0}}, label: '2026-10-30, Breakfast: Add meal'
+                                          StaticText, 0x105ce33f0, {{36.0, 1324.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105ce3510, {{138.0, 1327.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce3630, {{138.0, 1324.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce38a0, {{36.0, 1363.5}, {303.0, 60.0}}, label: '2026-10-30, Lunch: Add meal'
+                                          StaticText, 0x105ce39c0, {{36.0, 1384.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105ce3ae0, {{138.0, 1387.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce3c00, {{138.0, 1384.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce3d20, {{36.0, 1424.0}, {303.0, 60.0}}, label: '2026-10-30, Dinner: Add meal'
+                                          StaticText, 0x105ce3e40, {{36.0, 1445.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce3f60, {{138.0, 1448.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce4080, {{138.0, 1445.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        StaticText, 0x105ce41a0, {{20.0, 1508.0}, {157.0, 24.0}}, label: 'Saturday · 31 Oct'
+                                        Button, 0x105ce42c0, {{36.0, 1542.0}, {303.0, 60.0}}, label: '2026-10-31, Breakfast: Add meal'
+                                          StaticText, 0x105ce43e0, {{36.0, 1563.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105ce4500, {{138.0, 1566.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce4620, {{138.0, 1563.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce4740, {{36.0, 1602.5}, {303.0, 60.0}}, label: '2026-10-31, Lunch: Add meal'
+                                          StaticText, 0x105ce4860, {{36.0, 1623.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105ce4980, {{138.0, 1626.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce4aa0, {{138.0, 1623.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce4bc0, {{36.0, 1663.0}, {303.0, 60.0}}, label: '2026-10-31, Dinner: Add meal'
+                                          StaticText, 0x105ce4ce0, {{36.0, 1684.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce4e00, {{138.0, 1687.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce4f20, {{138.0, 1684.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        StaticText, 0x105ce5040, {{20.0, 1747.0}, {134.0, 24.0}}, label: 'Sunday · 1 Nov'
+                                        Button, 0x105ce5160, {{36.0, 1781.0}, {303.0, 60.0}}, label: '2026-11-01, Breakfast: Add meal'
+                                          StaticText, 0x105ce5280, {{36.0, 1802.0}, {65.0, 18.0}}, label: 'Breakfast'
+                                          Image, 0x105ce53a0, {{138.0, 1805.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce54c0, {{138.0, 1802.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce55e0, {{36.0, 1841.5}, {303.0, 60.0}}, label: '2026-11-01, Lunch: Add meal'
+                                          StaticText, 0x105ce5700, {{36.0, 1862.5}, {42.5, 18.0}}, label: 'Lunch'
+                                          Image, 0x105ce5820, {{138.0, 1865.5}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce5940, {{138.0, 1862.5}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce5a60, {{36.0, 1902.0}, {303.0, 60.0}}, label: '2026-11-01, Dinner: Add meal'
+                                          StaticText, 0x105ce5b80, {{36.0, 1923.0}, {45.0, 18.0}}, label: 'Dinner'
+                                          Image, 0x105ce5ca0, {{138.0, 1926.0}, {12.5, 12.5}}, identifier: 'plus', label: 'Add'
+                                          StaticText, 0x105ce5dc0, {{138.0, 1923.0}, {87.0, 18.0}}, label: 'Add meal'
+                                        Button, 0x105ce5ee0, {{22.0, 2001.8}, {172.5, 20.5}}, label: 'Review ingredients'
+                                          Image, 0x105ce6000, {{22.0, 2003.5}, {19.0, 17.0}}, identifier: 'checklist', label: 'checklist'
+                                          StaticText, 0x105ce6120, {{22.0, 2001.8}, {172.5, 20.5}}, label: 'Review ingredients'
+                                        Button, 0x105ce6240, {{21.5, 2077.8}, {195.5, 20.5}}, label: 'Your food preferences'
+                                          Image, 0x105ce6360, {{21.5, 2079.5}, {17.0, 17.0}}, identifier: 'person.crop.circle', label: 'Account'
+                                          StaticText, 0x105ce6480, {{21.5, 2077.8}, {195.5, 20.5}}, label: 'Your food preferences'
+                                        Button, 0x105ce65a0, {{22.0, 2153.8}, {185.5, 20.5}}, label: 'Cooking preferences'
+                                          Image, 0x105ce66c0, {{22.0, 2156.5}, {17.0, 14.5}}, identifier: 'slider.horizontal.3', label: 'Edit'
+                                          StaticText, 0x105ce67e0, {{22.0, 2153.8}, {185.5, 20.5}}, label: 'Cooking preferences'
+                                        Button, 0x105ce6900, {{22.0, 2229.8}, {120.5, 20.5}}, label: 'Saved meals'
+                                          Image, 0x105ce6a20, {{22.0, 2231.0}, {14.0, 18.0}}, identifier: 'book.closed', label: 'book.closed'
+                                          StaticText, 0x105ce6b40, {{22.0, 2229.8}, {120.5, 20.5}}, label: 'Saved meals'
+                                        Button, 0x105ce6c60, {{22.0, 2306.0}, {103.5, 20.5}}, label: 'Groceries'
+                                          Image, 0x105ce6d80, {{22.0, 2306.5}, {19.5, 18.0}}, identifier: 'basket', label: 'basket'
+                                          StaticText, 0x105ce6ea0, {{22.0, 2306.0}, {103.5, 20.5}}, label: 'Groceries'
+                                      Other, 0x105ce71c0, {{342.0, 20.0}, {30.0, 564.0}}, label: 'Vertical scroll bar, 5 pages', value: 0%
+                                        Other, 0x105ce72e0, {{369.0, 23.0}, {3.0, 484.5}}
+                                      Other, 0x105ce7400, {{342.0, 20.0}, {30.0, 564.0}}, label: 'Vertical scroll bar, 5 pages', value: 0%
+                                        Other, 0x105ce7520, {{369.0, 23.0}, {3.0, 484.5}}
+                            Other, 0x105ce7640, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x105ce7760, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x105ce7880, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x105ce79a0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x105ce7ac0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x105ce7be0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x105ce7d00, {{21.0, 584.0}, {88.3, 54.0}}
+                        Other, 0x105ce7e20, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x105ce7f40, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x105ce8060, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x105ce8180, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals', Selected
+                            Image, 0x105ce82a0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x105ce83c0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x105ce84e0, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x105ce8600, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money'
+                            Image, 0x105ce8720, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x105ce8840, {{103.9, 588.0}, {88.2, 54.0}}
+                          Other, 0x105ce8960, {{103.9, 588.0}, {88.0, 54.0}}
+                            Other, 0x105ce8a80, {{103.9, 588.0}, {88.0, 54.0}}
+                            Other, 0x105ce8ba0, {{103.9, 588.0}, {88.0, 54.0}}
+                              Other, 0x105ce8cc0, {{103.9, 588.0}, {88.0, 54.0}}
+                                Other, 0x105ce8de0, {{103.9, 588.0}, {88.0, 54.0}}
+                                  Other, 0x105ce8f00, {{103.9, 588.0}, {88.0, 54.0}}
+                                Other, 0x105ce9020, {{103.9, 588.0}, {88.0, 54.0}}
+                              Other, 0x105ce9140, {{103.9, 588.0}, {88.0, 54.0}}
+                  Other, 0x105ce9260, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x105ce9380, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x105ce94a0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x105ce95c0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x105ce96e0, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x105ce9800, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x105ce9920, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x105ce9a40, {{0.0, 584.0}, {375.0, 83.0}}
+    Window, 0x105ce9b60, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x105ce9c80, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x105ce9da0, {{0.0, 0.0}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x105cdb770, pid: 65086, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x105cdbfd0, pid: 65086, label: 'Nest'
+  }

@@ -1,0 +1,149 @@
+{
+  "source": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "weekStart": "2026-10-19",
+    "entries": [
+      {
+        "title": "Nest native manual week 20261005",
+        "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+        "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+        "date": "2026-10-19",
+        "slot": "dinner"
+      },
+      {
+        "title": "Nest native manual week 20261005 · 2026-10-20",
+        "entryId": "397D07C1-6C8D-49DD-A4DD-0751BC514BF3",
+        "date": "2026-10-20",
+        "slot": "dinner"
+      },
+      {
+        "title": "Nest native manual week 20261005 · 2026-10-21",
+        "entryId": "EB96E6FA-F4AC-402D-9E75-AA43FE687A99",
+        "date": "2026-10-21",
+        "slot": "dinner"
+      },
+      {
+        "title": "Nest native manual week 20261005 · 2026-10-22",
+        "entryId": "657A93AF-26E6-420E-B0B5-2897FDDA15AF",
+        "date": "2026-10-22",
+        "slot": "dinner"
+      },
+      {
+        "title": "Nest native manual week 20261005 · 2026-10-23",
+        "entryId": "78BBD620-C9E5-47BD-8BF8-322E8A3CCB8D",
+        "date": "2026-10-23",
+        "slot": "dinner"
+      },
+      {
+        "title": "Nest native manual week 20261005 · 2026-10-24",
+        "entryId": "33C8059D-FC2E-42F2-BF6F-E13EC94884DA",
+        "date": "2026-10-24",
+        "slot": "dinner"
+      },
+      {
+        "title": "Nest native manual week 20261005 · 2026-10-25",
+        "entryId": "B269521D-177A-47E0-94CD-0113A714667B",
+        "date": "2026-10-25",
+        "slot": "dinner"
+      }
+    ],
+    "revision": "9",
+    "version": 1
+  },
+  "recipe": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "weekStart": "2026-10-19",
+    "revision": "9",
+    "entry": {
+      "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+      "slot": "dinner",
+      "entryId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+      "date": "2026-10-19",
+      "title": "Nest native manual week 20261005"
+    },
+    "version": 1,
+    "snapshot": {
+      "libraryRevision": "37",
+      "recipe": {
+        "ingredients": [
+          {
+            "ingredientId": "C49E2275-E68A-4A95-B49C-247B8DDDD7E4",
+            "name": "QA lentils",
+            "order": 0,
+            "unit": "g",
+            "quantity": "200"
+          },
+          {
+            "ingredientId": "AD5BC996-178D-4F4B-B85D-E60AE87765B1",
+            "name": "QA rice",
+            "order": 1,
+            "unit": "g",
+            "quantity": "100"
+          }
+        ],
+        "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+        "servings": 2,
+        "title": "Nest native manual week 20261005",
+        "instructions": "Simmer the fictional ingredients."
+      }
+    }
+  },
+  "phase": "placed",
+  "target": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "weekStart": "2026-10-26",
+    "entries": [
+      {
+        "entryId": "A2160402-0DA4-42DE-A90C-BCFDC2E32665",
+        "slot": "lunch",
+        "title": "Nest native manual week 20261005",
+        "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+        "leftoverSourceId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+        "date": "2026-10-26"
+      }
+    ],
+    "revision": "1",
+    "version": 1
+  },
+  "copied": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "weekStart": "2026-10-26",
+    "revision": "1",
+    "entry": {
+      "entryId": "A2160402-0DA4-42DE-A90C-BCFDC2E32665",
+      "leftoverSourceId": "F040105F-89B5-4370-AA2F-636C7C284BE1",
+      "slot": "lunch",
+      "date": "2026-10-26",
+      "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+      "title": "Nest native manual week 20261005"
+    },
+    "version": 1,
+    "snapshot": {
+      "recipe": {
+        "definitionId": "1F5B84C0-8ECB-4F5D-AD33-0A60088B239B",
+        "title": "Nest native manual week 20261005",
+        "servings": 2,
+        "instructions": "Simmer the fictional ingredients.",
+        "ingredients": [
+          {
+            "name": "QA lentils",
+            "quantity": "200",
+            "unit": "g",
+            "ingredientId": "C49E2275-E68A-4A95-B49C-247B8DDDD7E4",
+            "order": 0
+          },
+          {
+            "name": "QA rice",
+            "quantity": "100",
+            "unit": "g",
+            "ingredientId": "AD5BC996-178D-4F4B-B85D-E60AE87765B1",
+            "order": 1
+          }
+        ]
+      },
+      "libraryRevision": "37"
+    }
+  },
+  "actor": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+  "household": "BE772FFD-3AB5-41D5-8438-647A79A553DA"
+}

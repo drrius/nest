@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 61,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 246,
+    "maxY": 529,
+    "midX": 141,
+    "midY": 498.5,
+    "minX": 36,
+    "minY": 468,
+    "usable": true,
+    "width": 210
+  },
+  "hittable": true,
+  "label": "2026-10-19, Dinner: Nest native manual week 20261005, recipe details",
+  "observedViewport": {
+    "height": 544,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 312,
+    "minX": 0,
+    "minY": 40,
+    "usable": true,
+    "width": 375
+  }
+}
