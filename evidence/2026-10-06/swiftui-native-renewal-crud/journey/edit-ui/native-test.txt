@@ -49,7 +49,7 @@ Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testEditOwnedRenewalO
     t =     8.34s Find the TabBar (First Match)
     t =     8.35s Find the "Manage renewals" Button
     t =     8.39s Find the Target Application 'ch.drrius.nest'
-    t =     8.41s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds 
+    t =     8.41s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
     t =     8.41s     Wait for ch.drrius.nest to idle
     t =     8.42s     Find the Target Application 'ch.drrius.nest'
     t =     8.44s     Check for interrupting elements affecting "Nest" Application
@@ -67,7 +67,7 @@ Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testEditOwnedRenewalO
     t =     9.77s Find the TabBar (First Match)
     t =     9.78s Find the "Manage renewals" Button
     t =     9.82s Find the Target Application 'ch.drrius.nest'
-    t =     9.84s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds 
+    t =     9.84s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
     t =     9.84s     Wait for ch.drrius.nest to idle
     t =     9.84s     Find the Target Application 'ch.drrius.nest'
     t =     9.86s     Check for interrupting elements affecting "Nest" Application
@@ -85,7 +85,7 @@ Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testEditOwnedRenewalO
     t =    11.15s Find the TabBar (First Match)
     t =    11.17s Find the "Manage renewals" Button
     t =    11.20s Find the Target Application 'ch.drrius.nest'
-    t =    11.22s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds 
+    t =    11.22s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
     t =    11.22s     Wait for ch.drrius.nest to idle
     t =    11.23s     Find the Target Application 'ch.drrius.nest'
     t =    11.26s     Check for interrupting elements affecting "Nest" Application
@@ -103,7 +103,7 @@ Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testEditOwnedRenewalO
     t =    12.59s Find the TabBar (First Match)
     t =    12.61s Find the "Manage renewals" Button
     t =    12.64s Find the Target Application 'ch.drrius.nest'
-    t =    12.66s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds 
+    t =    12.66s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.47] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
     t =    12.66s     Wait for ch.drrius.nest to idle
     t =    12.67s     Find the Target Application 'ch.drrius.nest'
     t =    12.69s     Check for interrupting elements affecting "Nest" Application
@@ -121,7 +121,7 @@ Test Case '-[NestAccessibilityTests.NativeRenewalCrudTests testEditOwnedRenewalO
     t =    14.02s Find the TabBar (First Match)
     t =    14.03s Find the "Manage renewals" Button
     t =    14.07s Find the Target Application 'ch.drrius.nest'
-    t =    14.09s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.56] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds 
+    t =    14.09s Press Target Application 'ch.drrius.nest'[0.50, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.50, 0.56] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
     t =    14.09s     Wait for ch.drrius.nest to idle
     t =    14.09s     Find the Target Application 'ch.drrius.nest'
     t =    14.11s     Check for interrupting elements affecting "Nest" Application
