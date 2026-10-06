@@ -57,6 +57,34 @@ final class NativeChoreReminderNavigationTests: XCTestCase {
         capture(app, name: "Back Discard returned to unchanged scheduled chore")
     }
 
+    func testMaximumChoreReminderUnfinishedRefreshAndDiscardSuffix() throws {
+        let baseline = try authorized()
+        XCTAssertEqual(ProcessInfo.processInfo.environment["NEST_QA_CHORE_REMINDER_PROFILE"], "maximum_dark")
+        let app = openScheduledChore()
+        defer { restoreToday(app) }
+        openReminder(app)
+        assertSettings(app, baseline: baseline, enabled: baseline.enabled)
+        flipEnabled(app, initial: baseline.enabled)
+        let refresh = app.buttons["Refresh choices"]
+        reveal(refresh, in: app)
+        refresh.tap()
+        choose("Keep editing", in: app, name: "Maximum suffix Refresh full Keep editing and Discard choices")
+        assertSettings(app, baseline: baseline, enabled: !baseline.enabled, fromLowerSection: true)
+        capture(app, name: "Maximum suffix Refresh Keep editing retains all unsent settings")
+        reveal(refresh, in: app)
+        refresh.tap()
+        choose("Discard choices", in: app, name: "Maximum suffix Refresh explicit Discard before reload")
+        waitReady(app)
+        assertSettings(app, baseline: baseline, enabled: baseline.enabled)
+        capture(app, name: "Maximum suffix Discard reload restores canonical settings")
+        flipEnabled(app, initial: baseline.enabled)
+        app.navigationBars["Chore reminder"].buttons["Back"].tap()
+        choose("Discard choices", in: app, name: "Maximum suffix Back explicit Discard exits draft")
+        requireDismissed(app)
+        XCTAssertTrue(app.navigationBars["Scheduled chore"].waitForExistence(timeout: 15))
+        capture(app, name: "Maximum suffix returned to unchanged scheduled chore")
+    }
+
     private func openScheduledChore() -> XCUIApplication {
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.launch()
@@ -133,7 +161,8 @@ final class NativeChoreReminderNavigationTests: XCTestCase {
         XCTAssertEqual(actual, expected)
         XCTAssertEqual(time.isEnabled, enabled)
         let lead = app.steppers["Days before: \(baseline.daysBefore)"]
-        reveal(lead, in: app, permitsDisabled: !enabled)
+        reveal(lead, in: app, permitsDisabled: true)
+        XCTAssertEqual(lead.value as? String, "\(baseline.daysBefore)")
         XCTAssertEqual(lead.isEnabled, enabled)
     }
 
