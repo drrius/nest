@@ -16,6 +16,8 @@ struct FinancialApprovalRow: View {
                         .font(.caption).foregroundStyle(QuietPalette.muted)
                 }
             }
+            .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+            .contentShape(Rectangle())
         }
     }
 
