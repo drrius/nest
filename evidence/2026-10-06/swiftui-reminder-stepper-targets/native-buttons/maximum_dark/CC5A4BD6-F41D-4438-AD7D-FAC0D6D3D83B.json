@@ -1,0 +1,12 @@
+{
+  "action": "Decrement",
+  "button": [247, 456.5, 44, 44],
+  "effectiveAreaToProbe": [247, 456.5, 44, 44],
+  "expected": 1,
+  "initial": 2,
+  "offsetFromCenterY": -21,
+  "point": [269, 457.5],
+  "row": [16, 369.5, 343, 217.5],
+  "stepper": [32, 384.5, 165.5, 187.5],
+  "viewport": [0, 74, 375, 502]
+}

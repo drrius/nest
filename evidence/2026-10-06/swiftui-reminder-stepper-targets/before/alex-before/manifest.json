@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "4C519AD5-5334-44DF-B072-078E79554BF1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Exact active original chore reminder read-only canonical context_0_07B9AB5A-2BF4-4AC8-945E-EAF5CDDFCBF7.json",
+        "timestamp": 1791270812.518
+      }
+    ],
+    "testIdentifier": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder"
+  }
+]

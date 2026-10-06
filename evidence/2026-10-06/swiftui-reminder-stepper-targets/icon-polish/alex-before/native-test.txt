@@ -1,0 +1,27 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-reminder-stepper-polish-20261006/alex-before/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-reminder-stepper-polish-20261006/alex-before/result.xcresult "-only-testing:NestAppTests/HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-reminder-stepper-polish-20261006/alex-before/result.xcresult
+
+Test Suite 'Selected tests' started at 2026-10-06 09:30:59.540.
+Test Suite 'NestAppTests.xctest' started at 2026-10-06 09:30:59.541.
+Test Suite 'HostedChoreReminderNavigationReadTests' started at 2026-10-06 09:30:59.541.
+Test Case '-[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder]' started.
+Test Case '-[NestAppTests.HostedChoreReminderNavigationReadTests testGETOnlyExactActiveChoreAndReminder]' passed (2.850 seconds).
+Test Suite 'HostedChoreReminderNavigationReadTests' passed at 2026-10-06 09:31:02.392.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.850 (2.851) seconds
+Test Suite 'NestAppTests.xctest' passed at 2026-10-06 09:31:02.392.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.850 (2.851) seconds
+Test Suite 'Selected tests' passed at 2026-10-06 09:31:02.393.
+	 Executed 1 test, with 0 failures (0 unexpected) in 2.850 (2.852) seconds
+2026-10-06 09:31:02.732 xcodebuild[96363:20537050] [MT] IDETestOperationsObserverDebug: 5.136 elapsed -- Testing started completed.
+2026-10-06 09:31:02.732 xcodebuild[96363:20537050] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 09:31:02.732 xcodebuild[96363:20537050] [MT] IDETestOperationsObserverDebug: 5.136 sec, +5.136 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-reminder-stepper-polish-20261006/alex-before/result.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

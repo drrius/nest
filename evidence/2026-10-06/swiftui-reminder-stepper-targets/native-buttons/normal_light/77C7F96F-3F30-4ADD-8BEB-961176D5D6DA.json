@@ -1,0 +1,12 @@
+{
+  "action": "Increment",
+  "button": [299, 508, 44, 44],
+  "effectiveAreaToProbe": [299, 508, 44, 44],
+  "expected": 1,
+  "initial": 0,
+  "offsetFromCenterY": -21,
+  "point": [321, 509],
+  "row": [16, 493, 343, 74],
+  "stepper": [32, 519.75, 110.5, 20.5],
+  "viewport": [0, 74, 375, 502]
+}

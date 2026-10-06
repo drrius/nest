@@ -1,0 +1,32 @@
+[
+  {
+    "step": "alex-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 8.457
+  },
+  {
+    "step": "normal_light",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeReminderStepperTargetTests/testOriginalChoreStepperEffectiveFortyFourPointEdges",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 47.916
+  },
+  {
+    "step": "alex-after",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.688
+  }
+]

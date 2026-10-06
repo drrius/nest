@@ -1,0 +1,40 @@
+Attributes: Stepper, 0x11d453230, {{32.0, 503.0}, {311.0, 32.0}}, label: 'Days before: 0', value: 0
+Element subtree:
+ →Stepper, 0x11d453230, {{32.0, 503.0}, {311.0, 32.0}}, label: 'Days before: 0', value: 0
+Path to element:
+ →Application, 0x11d44eed0, pid: 91218, label: 'Nest'
+  ↳Window, 0x11d44eab0, {{0.0, 0.0}, {375.0, 667.0}}
+   ↳Other, 0x11d43c6b0, {{0.0, 0.0}, {375.0, 667.0}}
+    ↳Other, 0x11d443a30, {{0.0, 0.0}, {375.0, 667.0}}
+     ↳Other, 0x11d451910, {{0.0, 0.0}, {375.0, 667.0}}
+      ↳Other, 0x11d451a30, {{0.0, 0.0}, {375.0, 667.0}}
+       ↳Other, 0x11d451b50, {{0.0, 0.0}, {375.0, 667.0}}
+        ↳Other, 0x11d451c70, {{0.0, 0.0}, {375.0, 667.0}}
+         ↳Other, 0x11d451d90, {{0.0, 0.0}, {375.0, 667.0}}
+          ↳Other, 0x11d452150, {{0.0, 0.0}, {375.0, 667.0}}
+           ↳Other, 0x11d452270, {{0.0, 0.0}, {375.0, 667.0}}
+            ↳Other, 0x11d452390, {{0.0, 0.0}, {375.0, 667.0}}
+             ↳Other, 0x11d4524b0, {{0.0, 0.0}, {375.0, 667.0}}
+              ↳Other, 0x11d4525d0, {{0.0, 0.0}, {375.0, 667.0}}
+               ↳Other, 0x11d4526f0, {{0.0, 0.0}, {375.0, 667.0}}
+                ↳Other, 0x11d451eb0, {{0.0, 0.0}, {375.0, 667.0}}
+                 ↳Other, 0x11d451fd0, {{0.0, 0.0}, {375.0, 667.0}}
+                  ↳CollectionView, 0x11d452c90, {{0.0, 0.0}, {375.0, 667.0}}
+                   ↳Cell, 0x11d452db0, {{16.0, 493.0}, {343.0, 52.0}}
+                    ↳Other, 0x11d452ed0, {{16.0, 493.0}, {343.0, 52.0}}
+                     ↳Other, 0x11d452ff0, {{16.0, 493.0}, {343.0, 52.0}}
+                      ↳Other, 0x11d453110, {{16.0, 493.0}, {343.0, 52.0}}
+                       ↳Stepper, 0x11d453230, {{32.0, 503.0}, {311.0, 32.0}}, label: 'Days before: 0', value: 0
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11d53fa30, pid: 91218, label: 'Nest'
+  }
+  ↪︎Find: Descendants matching type Stepper
+    Output: {
+      Stepper, 0x101750ce0, {{32.0, 503.0}, {311.0, 32.0}}, label: 'Days before: 0', value: 0
+    }
+    ↪︎Find: First Match
+      Output: {
+        Stepper, 0x11d481a40, {{32.0, 503.0}, {311.0, 32.0}}, label: 'Days before: 0', value: 0
+      }

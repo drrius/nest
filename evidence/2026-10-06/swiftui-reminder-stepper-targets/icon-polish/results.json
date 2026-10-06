@@ -1,0 +1,32 @@
+[
+  {
+    "step": "alex-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.296
+  },
+  {
+    "step": "maximum_dark",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "NativeReminderStepperTargetTests/testOriginalChoreStepperEffectiveFortyFourPointEdges",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 154.806
+  },
+  {
+    "step": "alex-after",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedChoreReminderNavigationReadTests/testGETOnlyExactActiveChoreAndReminder",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.607
+  }
+]

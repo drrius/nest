@@ -1,0 +1,306 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-reminder-stepper-targets-20261006/normal_light/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-reminder-stepper-targets-20261006/normal_light/result.xcresult "-only-testing:NestAccessibilityTests/NativeReminderStepperTargetTests/testOriginalChoreStepperEffectiveFortyFourPointEdges" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-reminder-stepper-targets-20261006/normal_light/result.xcresult
+
+2026-10-06 09:13:53.353860+0200 NestAccessibilityTests-Runner[91212:20493691] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 09:13:53.925.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 09:13:53.926.
+Test Suite 'NativeReminderStepperTargetTests' started at 2026-10-06 09:13:53.926.
+Test Case '-[NestAccessibilityTests.NativeReminderStepperTargetTests testOriginalChoreStepperEffectiveFortyFourPointEdges]' started.
+    t =     0.00s Start Test at 2026-10-06 09:13:53.927
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.02s     Launch ch.drrius.nest
+2026-10-06 09:13:54.022 xcodebuild[91199:20493495] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 09:13:54.026 xcodebuild[91199:20493495] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     0.71s         Setting up automation session
+    t =     1.45s         Wait for ch.drrius.nest to idle
+    t =     2.69s Waiting 30.0s for TabBar (First Match) to exist
+    t =     3.72s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     3.72s         Checking existence of `TabBar (First Match)`
+    t =     3.77s Tap "Today" Button
+    t =     3.78s     Wait for ch.drrius.nest to idle
+    t =     3.78s     Find the "Today" Button
+    t =     3.82s     Check for interrupting elements affecting "Today" Button
+    t =     3.87s     Synthesize event
+    t =     4.16s     Wait for ch.drrius.nest to idle
+    t =     4.94s Tap "Profile and preferences" Button
+    t =     4.94s     Wait for ch.drrius.nest to idle
+    t =     4.94s     Find the "Profile and preferences" Button
+    t =     5.00s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     5.04s     Synthesize event
+    t =     5.33s     Wait for ch.drrius.nest to idle
+    t =     5.76s Waiting 15.0s for "Test Alex" StaticText to exist
+    t =     6.79s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Alex" StaticText`
+    t =     6.79s         Checking existence of `"Test Alex" StaticText`
+    t =     6.88s Tap Button (Element at index 0)
+    t =     6.88s     Wait for ch.drrius.nest to idle
+    t =     6.89s     Find the Button (Element at index 0)
+    t =     6.93s     Check for interrupting elements affecting "BackButton" Button
+    t =     6.97s     Synthesize event
+    t =     7.26s     Wait for ch.drrius.nest to idle
+    t =     8.10s Get all elements bound by index for: Descendants matching type CollectionView
+    t =     8.15s Get all elements bound by index for: Descendants matching type ScrollView
+    t =     8.18s Find the ScrollView (Element at index 0)
+    t =     8.22s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =     8.24s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =     8.27s Find the TabBar (First Match)
+    t =     8.29s Find the TabBar (First Match)
+    t =     8.30s Find the Target Application 'ch.drrius.nest'
+    t =     8.32s Find the Target Application 'ch.drrius.nest'
+    t =     8.34s Checking existence of `"Manage chores" Button`
+    t =     8.37s Find the "Manage chores" Button
+    t =     8.41s Find the "Manage chores" Button
+    t =     8.45s Added attachment named 'Measured actual chore reminder control viewport'
+    t =     8.45s Tap "Manage chores" Button
+    t =     8.45s     Wait for ch.drrius.nest to idle
+    t =     8.45s     Find the "Manage chores" Button
+    t =     8.49s     Check for interrupting elements affecting "Manage chores" Button
+    t =     8.52s     Synthesize event
+    t =     8.81s     Wait for ch.drrius.nest to idle
+    t =     9.18s Waiting 15.0s for "Household chores" NavigationBar to exist
+    t =    10.21s     Checking `Expect predicate `existsNoRetry == 1` for object "Household chores" NavigationBar`
+    t =    10.21s         Checking existence of `"Household chores" NavigationBar`
+    t =    10.29s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    10.34s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    10.37s Find the CollectionView (Element at index 0)
+    t =    10.45s Find the Target Application 'ch.drrius.nest'
+    t =    10.49s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    10.54s Find the NavigationBar (Element at index 0)
+    t =    10.60s Find the "Household chores" NavigationBar
+    t =    10.64s Find the TabBar (First Match)
+    t =    10.67s Find the TabBar (First Match)
+    t =    10.69s Find the Target Application 'ch.drrius.nest'
+    t =    10.72s Find the Target Application 'ch.drrius.nest'
+    t =    10.76s Checking existence of `"Scheduled chores" Button`
+    t =    10.82s Find the "Scheduled chores" Button
+    t =    10.88s Find the "Scheduled chores" Button
+    t =    10.93s Added attachment named 'Measured actual chore reminder control viewport'
+    t =    10.94s Tap "Scheduled chores" Button
+    t =    10.94s     Wait for ch.drrius.nest to idle
+    t =    10.94s     Find the "Scheduled chores" Button
+    t =    10.99s     Check for interrupting elements affecting "Scheduled chores" Button
+    t =    11.03s     Synthesize event
+    t =    11.33s     Wait for ch.drrius.nest to idle
+    t =    11.66s Waiting 15.0s for "Scheduled chores" NavigationBar to exist
+    t =    12.70s     Checking `Expect predicate `existsNoRetry == 1` for object "Scheduled chores" NavigationBar`
+    t =    12.70s         Checking existence of `"Scheduled chores" NavigationBar`
+    t =    12.76s Get number of matches for: Elements matching predicate 'label BEGINSWITH "Hosted smoke tidy kitchen"'
+    t =    12.78s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    12.80s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    12.82s Find the CollectionView (Element at index 0)
+    t =    12.86s Find the Target Application 'ch.drrius.nest'
+    t =    12.88s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    12.90s Find the NavigationBar (Element at index 0)
+    t =    12.94s Find the "Scheduled chores" NavigationBar
+    t =    12.97s Find the TabBar (First Match)
+    t =    12.98s Find the TabBar (First Match)
+    t =    13.00s Find the Target Application 'ch.drrius.nest'
+    t =    13.01s Find the Target Application 'ch.drrius.nest'
+    t =    13.03s Checking existence of `Button (First Match)`
+    t =    13.08s Find the Button (First Match)
+    t =    13.13s Find the "Hosted smoke tidy kitchen, Due 2026-09-28" Button
+    t =    13.18s Added attachment named 'Measured actual chore reminder control viewport'
+    t =    13.18s Tap "Hosted smoke tidy kitchen, Due 2026-09-28" Button
+    t =    13.18s     Wait for ch.drrius.nest to idle
+    t =    13.19s     Find the "Hosted smoke tidy kitchen, Due 2026-09-28" Button
+    t =    13.24s     Check for interrupting elements affecting "Hosted smoke tidy kitchen, Due 2026-09-28" Button
+    t =    13.26s     Synthesize event
+    t =    13.55s     Wait for ch.drrius.nest to idle
+    t =    14.34s Waiting 15.0s for "Scheduled chore" NavigationBar to exist
+    t =    15.37s     Checking `Expect predicate `existsNoRetry == 1` for object "Scheduled chore" NavigationBar`
+    t =    15.37s         Checking existence of `"Scheduled chore" NavigationBar`
+    t =    15.44s Checking existence of `"Currently due 2026-09-28" StaticText`
+    t =    15.49s Checking existence of `"Chore reminder" NavigationBar`
+    t =    15.53s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    15.57s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    15.61s Find the CollectionView (Element at index 0)
+    t =    15.66s Find the Target Application 'ch.drrius.nest'
+    t =    15.69s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    15.73s Find the NavigationBar (Element at index 0)
+    t =    15.78s Find the "Scheduled chore" NavigationBar
+    t =    15.82s Find the TabBar (First Match)
+    t =    15.84s Find the TabBar (First Match)
+    t =    15.85s Find the Target Application 'ch.drrius.nest'
+    t =    15.88s Find the Target Application 'ch.drrius.nest'
+    t =    15.91s Checking existence of `"Reminder choices" Button`
+    t =    15.95s Find the "Reminder choices" Button
+    t =    15.99s Find the "Reminder choices" Button
+    t =    16.04s Find the Target Application 'ch.drrius.nest'
+    t =    16.07s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.51] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    16.07s     Wait for ch.drrius.nest to idle
+    t =    16.08s     Find the Target Application 'ch.drrius.nest'
+    t =    16.11s     Check for interrupting elements affecting "Nest" Application
+    t =    16.15s     Synthesize event
+    t =    16.15s         Find the Target Application 'ch.drrius.nest'
+    t =    16.18s         Find the Target Application 'ch.drrius.nest'
+    t =    16.22s         Find the Target Application 'ch.drrius.nest'
+    t =    16.24s         Find the Target Application 'ch.drrius.nest'
+    t =    16.28s         Find the Target Application 'ch.drrius.nest'
+    t =    17.23s     Wait for ch.drrius.nest to idle
+    t =    18.01s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    18.07s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    18.12s Find the CollectionView (Element at index 0)
+    t =    18.18s Find the Target Application 'ch.drrius.nest'
+    t =    18.21s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    18.25s Find the NavigationBar (Element at index 0)
+    t =    18.30s Find the "Scheduled chore" NavigationBar
+    t =    18.34s Find the TabBar (First Match)
+    t =    18.36s Find the TabBar (First Match)
+    t =    18.37s Find the Target Application 'ch.drrius.nest'
+    t =    18.41s Find the Target Application 'ch.drrius.nest'
+    t =    18.44s Checking existence of `"Reminder choices" Button`
+    t =    18.49s Find the "Reminder choices" Button
+    t =    18.54s Find the "Reminder choices" Button
+    t =    18.59s Added attachment named 'Measured actual chore reminder control viewport'
+    t =    18.60s Find the "Reminder choices" Button
+    t =    18.64s Find the "Reminder choices" Button
+    t =    18.70s Tap "Reminder choices" Button
+    t =    18.70s     Wait for ch.drrius.nest to idle
+    t =    18.70s     Find the "Reminder choices" Button
+    t =    18.75s     Check for interrupting elements affecting "Reminder choices" Button
+    t =    18.80s     Synthesize event
+    t =    19.09s     Wait for ch.drrius.nest to idle
+    t =    19.60s Waiting 15.0s for "Chore reminder" NavigationBar to exist
+    t =    20.64s     Checking `Expect predicate `existsNoRetry == 1` for object "Chore reminder" NavigationBar`
+    t =    20.64s         Checking existence of `"Chore reminder" NavigationBar`
+    t =    21.74s Checking `Expect predicate `enabled == 1` for object "Back" Button`
+    t =    21.74s     Find the "Back" Button
+    t =    21.81s Checking existence of `"Hosted smoke tidy kitchen" StaticText`
+    t =    21.86s Checking existence of `"Due 2026-09-28" StaticText`
+    t =    21.90s Checking existence of `"Could not load reminder choices. Connect and try again." StaticText`
+    t =    21.94s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    21.97s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    22.01s Find the CollectionView (Element at index 0)
+    t =    22.07s Find the Target Application 'ch.drrius.nest'
+    t =    22.10s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    22.13s Find the NavigationBar (Element at index 0)
+    t =    22.18s Find the "Chore reminder" NavigationBar
+    t =    22.22s Find the TabBar (First Match)
+    t =    22.25s Find the TabBar (First Match)
+    t =    22.26s Find the Target Application 'ch.drrius.nest'
+    t =    22.29s Find the Target Application 'ch.drrius.nest'
+    t =    22.32s Checking existence of `"Reminder enabled" Switch`
+    t =    22.36s Find the "Reminder enabled" Switch
+    t =    22.40s Find the "Reminder enabled" Switch
+    t =    22.45s Added attachment named 'Measured actual chore reminder control viewport'
+    t =    22.45s Find the "Reminder enabled" Switch
+    t =    22.50s Tap "Reminder enabled" Switch[0.93, 0.50]
+    t =    22.50s     Wait for ch.drrius.nest to idle
+    t =    22.50s     Find the "Reminder enabled" Switch
+    t =    22.54s     Check for interrupting elements affecting "Reminder enabled" Switch
+    t =    22.59s     Synthesize event
+    t =    22.59s         Find the "Reminder enabled" Switch
+    t =    22.64s         Find the "Reminder enabled" Switch
+    t =    22.69s         Find the "Reminder enabled" Switch
+    t =    23.02s     Wait for ch.drrius.nest to idle
+    t =    25.37s Checking `Expect predicate `value == "1"` for object "Reminder enabled" Switch`
+    t =    25.37s     Find the "Reminder enabled" Switch
+    t =    25.42s Get all elements bound by index for: Descendants matching type CollectionView
+    t =    25.46s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    25.51s Find the CollectionView (Element at index 0)
+    t =    25.57s Find the Target Application 'ch.drrius.nest'
+    t =    25.60s Get all elements bound by index for: Descendants matching type NavigationBar
+    t =    25.64s Find the NavigationBar (Element at index 0)
+    t =    25.69s Find the "Chore reminder" NavigationBar
+    t =    25.73s Find the TabBar (First Match)
+    t =    25.75s Find the TabBar (First Match)
+    t =    25.76s Find the Target Application 'ch.drrius.nest'
+    t =    25.79s Find the Target Application 'ch.drrius.nest'
+    t =    25.82s Checking existence of `"Days before: 0" Stepper`
+    t =    25.86s Find the "Days before: 0" Stepper
+    t =    25.90s Added attachment named 'Measured actual chore reminder control viewport'
+    t =    25.90s Find the "Days before: 0" Stepper
+    t =    25.94s Find the "Days before: 0" Stepper
+    t =    25.99s Checking existence of `Button (First Match)`
+    t =    26.08s Find the Button (First Match)
+    t =    26.16s Find the "Increment" Button
+    t =    26.26s Checking existence of `Cell (First Match)`
+    t =    26.33s Find the "Increment" Button
+    t =    26.41s Find the "Chore reminder" NavigationBar
+    t =    26.46s Find the TabBar (First Match)
+    t =    26.47s Find the Target Application 'ch.drrius.nest'
+    t =    26.50s Find the Cell (First Match)
+    t =    26.57s Find the "Days before: 0" Stepper
+    t =    26.62s Added attachment named 'Exact Stepper edge before tap'
+    t =    26.62s Find the Target Application 'ch.drrius.nest'
+    t =    26.69s Added attachment named 'Stepper Increment -21.0pt before edge tap'
+    t =    26.70s Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    26.95s Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    27.01s Added attachment named 'Stepper Increment -21.0pt before edge tap accessibility tree'
+    t =    27.01s Find the Cell at {{16.0, 493.0}, {343.0, 52.0}}
+    t =    27.09s Tap Target Application 'ch.drrius.nest'[0.00, 0.00] -> (319.5, 498.0)
+    t =    27.09s     Wait for ch.drrius.nest to idle
+    t =    27.09s     Find the Target Application 'ch.drrius.nest'
+    t =    27.12s     Check for interrupting elements affecting "Nest" Application
+    t =    27.16s     Synthesize event
+    t =    27.16s         Find the Target Application 'ch.drrius.nest'
+    t =    27.19s         Find the Target Application 'ch.drrius.nest'
+    t =    27.22s         Find the Target Application 'ch.drrius.nest'
+    t =    27.54s     Wait for ch.drrius.nest to idle
+    t =    28.58s Checking `Expect predicate `value == "1"` for object Stepper (First Match)`
+    t =    28.58s     Find the Stepper (First Match)
+    t =    28.69s     Capturing element debug description
+    t =    28.85s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    28.92s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    28.97s         Find: Descendants matching type Stepper
+    t =    28.98s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    29.56s Checking `Expect predicate `value == "1"` for object Stepper (First Match)`
+    t =    29.56s     Find the "Days before: 0" Stepper
+    t =    29.64s     Capturing element debug description
+    t =    29.81s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    29.87s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    29.92s         Find: Descendants matching type Stepper
+    t =    29.93s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    30.62s Checking `Expect predicate `value == "1"` for object Stepper (First Match)`
+    t =    30.62s     Find the "Days before: 0" Stepper
+    t =    30.74s     Capturing element debug description
+    t =    30.90s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    30.96s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    31.02s         Find: Descendants matching type Stepper
+    t =    31.02s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    31.60s Checking `Expect predicate `value == "1"` for object Stepper (First Match)`
+    t =    31.60s     Find the "Days before: 0" Stepper
+    t =    31.71s     Capturing element debug description
+    t =    31.87s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    31.93s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    31.98s         Find: Descendants matching type Stepper
+    t =    31.99s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    32.55s Checking `Expect predicate `value == "1"` for object Stepper (First Match)`
+    t =    32.55s     Find the "Days before: 0" Stepper
+    t =    32.67s     Capturing element debug description
+    t =    32.82s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    32.82s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    32.82s         Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    32.83s Find the Target Application 'ch.drrius.nest'
+    t =    33.04s Added attachment named 'Stepper Increment -21.0pt actual edge result'
+    t =    33.04s Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    33.29s Requesting snapshot of accessibility hierarchy for app with pid 91218
+    t =    33.35s Added attachment named 'Stepper Increment -21.0pt actual edge result accessibility tree'
+    t =    33.35s Find the Stepper (First Match)
+    t =    33.43s Added attachment named 'Exact Stepper edge observed value'
+/tmp/nest-current-qa-82a/apps/ios/UITests/NativeReminderStepperTargetTests.swift:62: error: -[NestAccessibilityTests.NativeReminderStepperTargetTests testOriginalChoreStepperEffectiveFortyFourPointEdges] : XCTAssertEqual failed: ("XCTWaiterResult(rawValue: 2)") is not equal to ("XCTWaiterResult(rawValue: 1)") - Stop at the first edge that does not change the unsent value
+    t =    33.45s Tear Down
+Test Case '-[NestAccessibilityTests.NativeReminderStepperTargetTests testOriginalChoreStepperEffectiveFortyFourPointEdges]' failed (33.696 seconds).
+Test Suite 'NativeReminderStepperTargetTests' failed at 2026-10-06 09:14:27.623.
+	 Executed 1 test, with 1 failure (0 unexpected) in 33.696 (33.697) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 09:14:27.624.
+	 Executed 1 test, with 1 failure (0 unexpected) in 33.696 (33.698) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 09:14:27.625.
+	 Executed 1 test, with 1 failure (0 unexpected) in 33.696 (33.699) seconds
+2026-10-06 09:14:40.333 xcodebuild[91199:20493495] [MT] IDETestOperationsObserverDebug: 47.778 elapsed -- Testing started completed.
+2026-10-06 09:14:40.333 xcodebuild[91199:20493495] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 09:14:40.333 xcodebuild[91199:20493495] [MT] IDETestOperationsObserverDebug: 47.778 sec, +47.778 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-reminder-stepper-targets-20261006/normal_light/result.xcresult
+
+Failing tests:
+	NativeReminderStepperTargetTests.testOriginalChoreStepperEffectiveFortyFourPointEdges()
+
+** TEST EXECUTE FAILED **
+
+Testing started
