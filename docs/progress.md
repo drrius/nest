@@ -1,6 +1,6 @@
 # Nest progress
 
-Updated 6 October 2026. **The goal is active and incomplete. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open.** [ADR0002](adr/0002-swiftui-client.md) makes SwiftUI authoritative; Expo/RN client code and dependencies are removed. The Effect v4/Vercel AI SDK backend, financial/privacy rules and approved Quiet design remain in force.
+Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open.** [ADR0002](adr/0002-swiftui-client.md) makes SwiftUI authoritative; Expo/RN client code and dependencies are removed. The Effect v4/Vercel AI SDK backend, financial/privacy rules and approved Quiet design remain in force.
 
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
@@ -213,26 +213,28 @@ full accessibility, provider, worker/APNs and cutover gates remain open.
 
 ## Next work
 
-One focused accessibility candidate replaces only `QuietSectionCard`'s nested
-lazy stack with a regular stack. The page stays lazy. The previous outer-stack
-comparison left the access button and Full Access explanation font reports;
-these both belong to the card's inner stack. Strict Mac formatting and source
-limits pass. This is a hypothesis under native comparison, not a verified fix
-or closure of the 19 reports. No new fixture or domain action is planned.
-Its fresh source-pinned signed build passes with all 1,129 inputs and actual
-card/audit compilation. One unfiltered five-method root audit is now running;
-the earlier dated baseline remains preserved. No unrelated SDK reader runs.
-That audit finishes in 66.465 seconds with five failed methods and 13
-unsuppressed reports: eleven contrast and two font reports. Access-button and
-Full Access font warnings do not recur; both remaining font reports identify
-the partner-availability heading. The controller's termination guard fails
-during restoration; separate ordinary foreground restoration then verifies both
-original scopes, 64 empty journals, settings and local semantics. The suite is
-not replayed. Calendar's fixed outer sections now also use a regular stack;
-focused audit and largest-text reading are pending on that combined candidate.
-Routine CI 37535583085 catches eleven exported chore-evidence JSON formatting
-issues. Oxfmt corrects them with every JSON value verified unchanged against Git;
-raw logs/screenshots and the original native outcomes remain unchanged.
+The inner Quiet card stack and Calendar's fixed outer sections now use regular
+stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
+and two repeated partner-heading font reports), down from the dated 19-report
+checkpoint. On the combined layout, Calendar's Dynamic Type/control audit passes;
+the full Calendar audit retains two contrast reports, with no font report. Its
+two methods finish in 34.710 seconds. No report is suppressed and the wider
+contrast/phone acceptance gates remain open.
+
+The initial card-only controller fails during process termination in restoration;
+separate ordinary foreground restoration verifies both original scopes, 64 empty
+journals, settings and local semantics. The combined controller restores those
+states normally. Its largest-text reading method fails after 20 observations:
+the paragraph is 559.5 points tall, exceeding the 510-point measured viewport.
+The old observer demands simultaneous full visibility. A guarded new method uses
+the existing measured overlapping-text reader and still requires the entire
+44-point access button visible. Source limits and strict Mac formatting pass;
+its actual native invocation is pending. No permission is granted or font shrunk.
+
+Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
+Oxfmt corrects them with every value unchanged against Git. Corrected evidence
+source `70ec041e` passes routine CI 37536050729. Combined layout source `79de03f9`
+passes routine CI 37536789330; its native CI is still running.
 
 Continue the remaining native journeys and investigate the existing 19
 accessibility findings with source-specific evidence. Do not repeat the passing
