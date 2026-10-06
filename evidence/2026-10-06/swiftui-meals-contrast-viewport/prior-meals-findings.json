@@ -1,0 +1,29 @@
+[
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil",
+    "case": "meals"
+  },
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [0, 0, 0, 0],
+    "label": "",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "nil",
+    "case": "meals"
+  },
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [20, 552, 143, 24],
+    "label": "Tuesday \u00b7 6 Oct",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)",
+    "case": "meals"
+  }
+]

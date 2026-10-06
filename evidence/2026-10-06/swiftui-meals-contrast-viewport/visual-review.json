@@ -1,0 +1,74 @@
+{
+  "audit/alex-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "26f09af14c08e2adb061f2e945f7ea6d8a130f033e34015d88a534ebbbd7459c"
+  },
+  "audit/meals-contrast/44C0725A-907C-411D-BA8D-D4214CEDA7FF.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "6b18d43ff739c34ef5845768a8b5d25bcc0cd55a5445a5a6187ca6ddae5228fc"
+  },
+  "audit/meals-contrast/46DBDFBB-2219-4759-A8F6-13151F72803F.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "917e3b65f9300696115fa8818f3eba9d3b81805abd2cd0c7361e7c0f0cb6978b"
+  },
+  "audit/meals-contrast/5FFE75ED-1622-4554-B168-B336F4F8D074.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "4039600380c791a7abfa7827a382c978c00d8a1d178a27f106dc6f518fb0cbaf"
+  },
+  "audit/meals-contrast/6431AB7B-6518-4BF7-A61C-B4A2E30B4702.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "67cfbacf9b9c8c2482f2aafae65f297f1c55357be0ef4c836c29ee253fc93087"
+  },
+  "audit/meals-contrast/99B2A098-63F1-4140-A429-45D4C0D92EAE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "82f0e3d0778e35516f9139ced7b6ff8bf2ee9670d7781686de5f69d48566deec"
+  },
+  "audit/meals-contrast/9D43C31C-4348-40CF-AC8B-7B7F1D7E27DF.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "6b18d43ff739c34ef5845768a8b5d25bcc0cd55a5445a5a6187ca6ddae5228fc"
+  },
+  "audit/meals-contrast/C0508951-5E5B-442B-98AA-07ACE6F05FCF.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "6b18d43ff739c34ef5845768a8b5d25bcc0cd55a5445a5a6187ca6ddae5228fc"
+  },
+  "audit/meals-contrast/C676FD63-FC1A-4368-B9EA-B5C78A16FBD9.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "3f6c89b9dda663343e535147a2b9585a07397de8c034d2957e8b0674041469a1"
+  },
+  "audit/meals-contrast/CFB1F58E-B2A6-4A62-BDC2-CB5FBDF96977.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "6b18d43ff739c34ef5845768a8b5d25bcc0cd55a5445a5a6187ca6ddae5228fc"
+  },
+  "audit/meals-contrast/F0C94E27-A7E2-457F-A322-CBF73BDE17EE.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "2d2371c19d9bb4d7f67c0b8a0f7509005737e821a21335afdb2851006c3a6978"
+  },
+  "audit/sam-terminal-screen.png": {
+    "reviewed": true,
+    "safeFictionalScope": true,
+    "method": "Individual screenshot/crop inspected in numbered contact sheet",
+    "sha256": "26f09af14c08e2adb061f2e945f7ea6d8a130f033e34015d88a534ebbbd7459c"
+  }
+}

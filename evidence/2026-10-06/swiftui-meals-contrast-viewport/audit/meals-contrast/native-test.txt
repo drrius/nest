@@ -1,0 +1,195 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -xctestrun /private/tmp/nest-meals-contrast-viewport-20261006/meals-contrast/selected.xctestrun -destination "platform=iOS Simulator,id=C3ABC0D4-CFD4-4F23-8CC3-0E542014803A" -parallel-testing-enabled NO -resultBundlePath /private/tmp/nest-meals-contrast-viewport-20261006/meals-contrast/result.xcresult "-only-testing:NestAccessibilityTests/NativeMealsContrastViewportTests/testMealsTuesdayContrastWithHeadingAboveTabBar" test-without-building
+
+Writing result bundle at path:
+	/private/tmp/nest-meals-contrast-viewport-20261006/meals-contrast/result.xcresult
+
+2026-10-06 15:47:17.731064+0200 NestAccessibilityTests-Runner[928:21407754] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-06 15:47:18.302.
+Test Suite 'NestAccessibilityTests.xctest' started at 2026-10-06 15:47:18.302.
+Test Suite 'NativeMealsContrastViewportTests' started at 2026-10-06 15:47:18.303.
+Test Case '-[NestAccessibilityTests.NativeMealsContrastViewportTests testMealsTuesdayContrastWithHeadingAboveTabBar]' started.
+    t =     0.00s Start Test at 2026-10-06 15:47:18.303
+    t =     0.02s Set Up
+    t =     0.02s Open ch.drrius.nest
+    t =     0.03s     Launch ch.drrius.nest
+    t =     0.03s         Terminate ch.drrius.nest:97226
+2026-10-06 15:47:19.437 xcodebuild[918:21407510] [MT] IDELaunchParametersSnapshot: debugger version lookup failed for path '<nil>': noURL
+2026-10-06 15:47:19.437 xcodebuild[918:21407510] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     1.75s         Setting up automation session
+    t =     2.48s         Wait for ch.drrius.nest to idle
+    t =     3.75s Waiting 30.0s for TabBar (First Match) to exist
+    t =     4.79s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     4.79s         Checking existence of `TabBar (First Match)`
+    t =     4.87s         Capturing element debug description
+    t =     5.80s     Checking `Expect predicate `existsNoRetry == 1` for object TabBar (First Match)`
+    t =     5.80s         Checking existence of `TabBar (First Match)`
+    t =     5.82s Tap "Today" Button
+    t =     5.82s     Wait for ch.drrius.nest to idle
+    t =     5.82s     Find the "Today" Button
+    t =     5.85s     Check for interrupting elements affecting "house" Button
+    t =     5.91s     Synthesize event
+    t =     6.20s     Wait for ch.drrius.nest to idle
+    t =     7.82s Tap "Profile and preferences" Button
+    t =     7.82s     Wait for ch.drrius.nest to idle
+    t =     7.83s     Find the "Profile and preferences" Button
+    t =     7.89s     Check for interrupting elements affecting "tab-profile-action" Button
+    t =     7.92s     Synthesize event
+    t =     8.24s     Wait for ch.drrius.nest to idle
+    t =     8.68s Waiting 15.0s for "Test Alex" StaticText to exist
+    t =     9.71s     Checking `Expect predicate `existsNoRetry == 1` for object "Test Alex" StaticText`
+    t =     9.71s         Checking existence of `"Test Alex" StaticText`
+    t =     9.80s Tap Button (Element at index 0)
+    t =     9.80s     Wait for ch.drrius.nest to idle
+    t =     9.80s     Find the Button (Element at index 0)
+    t =     9.85s     Check for interrupting elements affecting "BackButton" Button
+    t =     9.91s     Synthesize event
+    t =    10.21s     Wait for ch.drrius.nest to idle
+    t =    11.05s Tap "Meals" Button
+    t =    11.05s     Wait for ch.drrius.nest to idle
+    t =    11.06s     Find the "Meals" Button
+    t =    11.09s     Check for interrupting elements affecting "fork.knife" Button
+    t =    11.13s     Synthesize event
+    t =    11.42s     Wait for ch.drrius.nest to idle
+    t =    12.69s Waiting 30.0s for "5 Oct – 11 Oct" StaticText to exist
+    t =    13.73s     Checking `Expect predicate `existsNoRetry == 1` for object "5 Oct – 11 Oct" StaticText`
+    t =    13.73s         Checking existence of `"5 Oct – 11 Oct" StaticText`
+    t =    13.82s Find the TabBar (First Match)
+    t =    13.83s Checking existence of `"Tuesday · 6 Oct" StaticText`
+    t =    13.89s Find the "Tuesday · 6 Oct" StaticText
+    t =    13.94s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    13.98s Find the ScrollView (Element at index 0)
+    t =    14.03s Find the Target Application 'ch.drrius.nest'
+    t =    14.06s Find the Target Application 'ch.drrius.nest'
+    t =    14.10s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    14.14s Checking existence of `"Tuesday · 6 Oct" StaticText`
+    t =    14.19s Find the "Tuesday · 6 Oct" StaticText
+    t =    14.26s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    14.31s Checking existence of `"Tuesday · 6 Oct" StaticText`
+    t =    14.36s Find the "Tuesday · 6 Oct" StaticText
+    t =    14.43s Find the Target Application 'ch.drrius.nest'
+    t =    14.46s Find the Target Application 'ch.drrius.nest'
+    t =    14.49s Press Target Application 'ch.drrius.nest'[0.04, 0.65] for 0.1 seconds, then drag to Target Application 'ch.drrius.nest'[0.04, 0.51] with velocity of 250.00 pixels per second, and then hold for 0.2 seconds
+    t =    14.49s     Wait for ch.drrius.nest to idle
+    t =    14.49s     Find the Target Application 'ch.drrius.nest'
+    t =    14.53s     Check for interrupting elements affecting "Nest" Application
+    t =    14.57s     Synthesize event
+    t =    14.57s         Find the Target Application 'ch.drrius.nest'
+    t =    14.60s         Find the Target Application 'ch.drrius.nest'
+    t =    14.64s         Find the Target Application 'ch.drrius.nest'
+    t =    14.67s         Find the Target Application 'ch.drrius.nest'
+    t =    14.71s         Find the Target Application 'ch.drrius.nest'
+    t =    15.66s     Wait for ch.drrius.nest to idle
+    t =    15.67s Find the TabBar (First Match)
+    t =    15.70s Checking existence of `"Tuesday · 6 Oct" StaticText`
+    t =    15.76s Find the "Tuesday · 6 Oct" StaticText
+    t =    15.81s Get all elements bound by index for: Descendants matching type ScrollView
+    t =    15.86s Find the ScrollView (Element at index 0)
+    t =    15.90s Find the Target Application 'ch.drrius.nest'
+    t =    15.94s Find the Target Application 'ch.drrius.nest'
+    t =    15.98s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    16.02s Checking existence of `"Tuesday · 6 Oct" StaticText`
+    t =    16.08s Find the "Tuesday · 6 Oct" StaticText
+    t =    16.15s Find the ScrollView at {{0.0, 0.0}, {375.0, 667.0}}
+    t =    16.19s Checking existence of `"Tuesday · 6 Oct" StaticText`
+    t =    16.25s Find the "Tuesday · 6 Oct" StaticText
+    t =    16.31s Find the Target Application 'ch.drrius.nest'
+    t =    16.35s Added attachment named 'Measured Tuesday viewport placement'
+    t =    16.35s Get number of matches for: Elements matching predicate '"Tuesday · 6 Oct" IN identifiers'
+    t =    16.40s Find the "Tuesday · 6 Oct" StaticText
+    t =    16.47s Find the Target Application 'ch.drrius.nest'
+    t =    16.56s Added attachment named 'Exact Tuesday heading fully visible eighty points above tab bar'
+    t =    16.56s Requesting snapshot of accessibility hierarchy for app with pid 932
+    t =    16.87s Requesting snapshot of accessibility hierarchy for app with pid 932
+    t =    16.94s Added attachment named 'Exact Tuesday heading fully visible eighty points above tab bar accessibility tree'
+    t =    16.94s Added attachment named 'One unfiltered Meals contrast audit'
+    t =    17.16s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349460976.311)
+    t =    17.21s Find the "Lunch" StaticText
+    t =    17.25s Find the "Lunch" StaticText
+    t =    17.29s Find the "Lunch" StaticText
+    t =    17.34s Find the TabBar (First Match)
+    t =    17.36s Find the "Tab Bar" TabBar
+    t =    17.38s Find the "Tab Bar" TabBar
+    t =    17.40s Find the "Tab Bar" TabBar
+    t =    17.41s Added attachment named 'Accessibility issue'
+    t =    17.41s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349460976.311)
+    t =    17.45s Checking existence of `"Lunch" StaticText`
+    t =    17.49s Find the "Lunch" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.NativeMealsContrastViewportTests testMealsTuesdayContrastWithHeadingAboveTabBar] : Contrast failed
+    t =    17.56s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349462512.313)
+    t =    17.61s Find the "Add meal" StaticText
+    t =    17.65s Find the "Add meal" StaticText
+    t =    17.71s Find the "Add meal" StaticText
+    t =    17.76s Find the "Tab Bar" TabBar
+    t =    17.78s Find the "Tab Bar" TabBar
+    t =    17.79s Find the "Tab Bar" TabBar
+    t =    17.81s Find the "Tab Bar" TabBar
+    t =    17.82s Added attachment named 'Accessibility issue'
+    t =    17.82s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349462512.313)
+    t =    17.86s Checking existence of `"Add meal" StaticText`
+    t =    17.90s Find the "Add meal" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.NativeMealsContrastViewportTests testMealsTuesdayContrastWithHeadingAboveTabBar] : Contrast failed
+    t =    17.95s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349465840.314)
+    t =    17.99s Find the "Dinner" StaticText
+    t =    18.04s Find the "Dinner" StaticText
+    t =    18.08s Find the "Dinner" StaticText
+    t =    18.13s Find the "Tab Bar" TabBar
+    t =    18.14s Find the "Tab Bar" TabBar
+    t =    18.16s Find the "Tab Bar" TabBar
+    t =    18.18s Find the "Tab Bar" TabBar
+    t =    18.19s Added attachment named 'Accessibility issue'
+    t =    18.19s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349465840.314)
+    t =    18.23s Checking existence of `"Dinner" StaticText`
+    t =    18.27s Find the "Dinner" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.NativeMealsContrastViewportTests testMealsTuesdayContrastWithHeadingAboveTabBar] : Contrast failed
+    t =    18.32s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349467376.316)
+    t =    18.37s Find the "Add meal" StaticText
+    t =    18.44s Find the "Add meal" StaticText
+    t =    18.49s Find the "Add meal" StaticText
+    t =    18.54s Find the "Tab Bar" TabBar
+    t =    18.56s Find the "Tab Bar" TabBar
+    t =    18.58s Find the "Tab Bar" TabBar
+    t =    18.60s Find the "Tab Bar" TabBar
+    t =    18.61s Added attachment named 'Accessibility issue'
+    t =    18.61s Find the Any (Descendant with identity binding to AX element pid: 932, elementOrHash.elementID: 4349467376.316)
+    t =    18.65s Checking existence of `"Add meal" StaticText`
+    t =    18.69s Find the "Add meal" StaticText
+<unknown>:0: error: -[NestAccessibilityTests.NativeMealsContrastViewportTests testMealsTuesdayContrastWithHeadingAboveTabBar] : Contrast failed
+    t =    18.76s Tap "Today" Button
+    t =    18.76s     Wait for ch.drrius.nest to idle
+    t =    18.77s     Find the "Today" Button
+    t =    18.78s     Check for interrupting elements affecting "house" Button
+    t =    18.84s     Synthesize event
+    t =    19.14s     Wait for ch.drrius.nest to idle
+    t =    20.55s Find the "Around the house" StaticText
+    t =    20.62s Find the "Today" StaticText
+    t =    20.66s Find the "Me + shared" Button
+    t =    20.70s Find the "Today" StaticText
+    t =    20.74s Find the "Today" Button
+    t =    20.75s Find the Target Application 'ch.drrius.nest'
+    t =    20.81s Added attachment named 'Restored Today top and original filter'
+    t =    20.81s Requesting snapshot of accessibility hierarchy for app with pid 932
+    t =    20.98s Requesting snapshot of accessibility hierarchy for app with pid 932
+    t =    21.02s Added attachment named 'Restored Today top and original filter accessibility tree'
+    t =    21.03s Tear Down
+Test Case '-[NestAccessibilityTests.NativeMealsContrastViewportTests testMealsTuesdayContrastWithHeadingAboveTabBar]' failed (21.284 seconds).
+Test Suite 'NativeMealsContrastViewportTests' failed at 2026-10-06 15:47:39.589.
+	 Executed 1 test, with 4 failures (0 unexpected) in 21.284 (21.286) seconds
+Test Suite 'NestAccessibilityTests.xctest' failed at 2026-10-06 15:47:39.589.
+	 Executed 1 test, with 4 failures (0 unexpected) in 21.284 (21.287) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 15:47:39.590.
+	 Executed 1 test, with 4 failures (0 unexpected) in 21.284 (21.288) seconds
+2026-10-06 15:47:52.265 xcodebuild[918:21407510] [MT] IDETestOperationsObserverDebug: 35.345 elapsed -- Testing started completed.
+2026-10-06 15:47:52.265 xcodebuild[918:21407510] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 15:47:52.265 xcodebuild[918:21407510] [MT] IDETestOperationsObserverDebug: 35.345 sec, +35.345 sec -- end
+
+Test session results, code coverage, and logs:
+	/tmp/nest-meals-contrast-viewport-20261006/meals-contrast/result.xcresult
+
+Failing tests:
+	NativeMealsContrastViewportTests.testMealsTuesdayContrastWithHeadingAboveTabBar()
+
+** TEST EXECUTE FAILED **
+
+Testing started
