@@ -54,13 +54,17 @@ struct MealMoveSheet: View {
                         .accessibilityLabel("Next destination week")
                         .disabled((try? week.adjacent(1)) == nil)
                     }.buttonStyle(.borderless)
-                    Picker("Day", selection: $date) {
+                    Picker(selection: $date) {
                         ForEach(week.days, id: \.self) { day in
                             Text(MealWeekScreen.label(day)).tag(day)
                         }
+                    } label: {
+                        Text("Day").frame(minHeight: 44)
                     }
-                    Picker("Meal", selection: $slot) {
+                    Picker(selection: $slot) {
                         ForEach(MealSlot.allCases, id: \.self) { Text($0.label).tag($0) }
+                    } label: {
+                        Text("Meal").frame(minHeight: 44)
                     }
                 }.disabled(saving)
                 if let day = date.localDay() { SchedulingWarningSection(session: model, day: day) }

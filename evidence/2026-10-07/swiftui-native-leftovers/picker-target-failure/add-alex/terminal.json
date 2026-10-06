@@ -1,0 +1,9 @@
+{
+  "attempted": true,
+  "summaryRecorded": true,
+  "restorationPassed": true,
+  "methodPassed": false,
+  "testBuiltSource": "f54145f6b58c1ab01a996038eccb32ba9f2e60e2",
+  "noFixtureSQLOrModel": true,
+  "wireRequestsMeasured": false
+}

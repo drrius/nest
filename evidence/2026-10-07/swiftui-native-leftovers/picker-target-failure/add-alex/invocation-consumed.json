@@ -1,0 +1,8 @@
+{
+  "action": "add",
+  "actor": "alex",
+  "source": "f54145f6b58c1ab01a996038eccb32ba9f2e60e2",
+  "method": "NativeMealLeftoversJourneyTests/testAddOneOwnedCrossWeekLeftover",
+  "testBuiltSource": "f54145f6b58c1ab01a996038eccb32ba9f2e60e2",
+  "positiveBudget": 1
+}

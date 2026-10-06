@@ -237,6 +237,15 @@ The first dialog attempt also stops before a command: the symbol-labelled action
 has duplicate parent/child buttons in the native accessibility tree. Plain-text
 native dialog actions replace those symbol labels. Source/target and receipts
 remain exact, original scopes/settings restore, and the failure is retained.
+The plain-text dialog passes its target checks on `f54145f6`; the next check
+stops at the destination Meal picker, whose native target is only 34.5 points
+high. No Add or Remove is submitted. A fresh independent hosted comparison
+confirms the original source, target, receipts and all eight protected
+fingerprints unchanged; scopes/settings/local state restore. Both destination
+picker labels now request a 44-point minimum height. Strict configured Mac
+formatting and source limits pass; actual native picker verification is pending.
+The failed invocation and products are retained in
+[picker target evidence](../evidence/2026-10-07/swiftui-native-leftovers/picker-target-failure/).
 No Remove has run.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
