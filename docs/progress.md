@@ -229,7 +229,7 @@ Plain native meal action dialogs and navigation-link destination pickers fix the
 observed undersized targets. Eight pre-save native failures and three tooling
 errors are preserved; no committed Add is repeated. Their dated sequence is in
 [7 October history](progress-history-2026-10-07.md). Routine CI 37543537027 passes;
-native CI 37543536999 remains running. No new TestFlight build, inference,
+native CI 37543536999 now passes. No new TestFlight build, inference,
 production action, financial write or merge occurs. M5 remains open for its broader
 portion/partner/live-plan/phone criteria.
 
@@ -239,8 +239,22 @@ scopes, 64 empty journals, settings and local semantics restore. The new candida
 uses Apple's distinct `scrollEdgeEffectHidden` API on the four root scroll views,
 guarded to iOS 26; it removes the bottom effect entirely instead of changing its
 style. Palette, native tabs, header/content spacing and audit handling are
-unchanged. Configured Mac formatting and source limits pass. Fresh candidate
-compilation/execution is pending; no contrast finding is closed.
+unchanged. Fresh signed candidate `e21d6b44` compiles all 1,132 inputs and reduces
+Calendar's two reports to the same below-bar availability paragraph. The three
+other full root audits retain six contrast reports, including four anonymous
+reports whose historical identities remain unproven. The four-root candidate
+has seven contrast reports, no reported noncontrast findings, and four failed
+full audits. Eight screenshots/crops are directly reviewed; original scopes,
+64 journals, settings and local semantics restore. No finding is suppressed or
+full acceptance claimed. Configured formatting/source limits pass; candidate
+routine CI 37544880908/native CI 37544880800 are running.
+[Bottom-effect evidence](../evidence/2026-10-07/swiftui-bottom-fade/README.md).
+
+The preceding leftovers source `a4739172` now passes SwiftUI CI 37543536999:
+506 Foundation tests/41 explicit skips, 471 signed-app tests/39 explicit skips
+and four Swift Testing cases, zero failures. Strict formatting/limits, signing
+and guarded UI compilation pass. This source-specific result is separate from
+the candidate's pending CI and the actual hosted/native leftovers journey.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

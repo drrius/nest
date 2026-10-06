@@ -1,0 +1,20 @@
+[
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [40, 599.5, 287.5, 64.5],
+    "label": "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day.",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)",
+    "case": "RootAccessibilityTests/testCalendarAccessibility()"
+  },
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [20, 549.5, 182, 18],
+    "label": "Your partner\u2019s availability",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)",
+    "case": "RootAccessibilityTests/testCalendarAccessibility()"
+  }
+]

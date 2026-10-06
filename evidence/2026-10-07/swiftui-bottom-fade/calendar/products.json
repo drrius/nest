@@ -1,0 +1,17 @@
+{
+  "source": "e21d6b441c355eb451d8089351c8524f395540b1",
+  "inputs": 1132,
+  "binarySHA256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "c8bdf61331bc24993f8bd480daa7baa932cd8bf14b05accc4e2e5c7c030e271a",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "9964886576e42e619a3eece4a7116313648e8534747400034e057615f80db36e",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "82995809ef70f14ea4fe8e0fa25c03e6e770d5a6a8323f36e614cb6c3fbe8a25"
+  },
+  "selectedProducts": {
+    "TestHostPath": "/private/tmp/nest-native-bottom-fade-candidate-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+    "TestBundlePath": "/private/tmp/nest-native-bottom-fade-candidate-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+    "UITargetAppPath": "/private/tmp/nest-native-bottom-fade-candidate-ui-20261007/Build/Products/Debug-iphonesimulator/Nest.app"
+  },
+  "originsVerified": true,
+  "pushEnabled": false,
+  "version": "19"
+}

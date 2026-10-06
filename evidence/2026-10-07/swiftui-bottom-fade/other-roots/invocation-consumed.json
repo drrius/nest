@@ -1,0 +1,10 @@
+{
+  "methods": [
+    "RootAccessibilityTests/testTodayAccessibility",
+    "RootAccessibilityTests/testMealsAccessibility",
+    "RootAccessibilityTests/testMoneyAccessibility"
+  ],
+  "source": "e21d6b441c355eb451d8089351c8524f395540b1",
+  "unfiltered": true,
+  "positiveBudget": 0
+}
