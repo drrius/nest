@@ -1,0 +1,10 @@
+alter table private.nest_recurring_job_receipts enable row level security;
+alter table private.nest_legacy_draft_operations enable row level security;
+alter table private.nest_legacy_confirmation_operations enable row level security;
+alter table private.nest_legacy_recurring_adoptions enable row level security;
+alter table private.nest_legacy_adoption_operations enable row level security;
+alter table private.nest_renewal_operations enable row level security;
+alter table private.nest_recurring_sweep enable row level security;
+alter table private.nest_recurring_runs enable row level security;
+alter table private.nest_recurring_execution_control enable row level security;
+alter table private.nest_legacy_job_control enable row level security;

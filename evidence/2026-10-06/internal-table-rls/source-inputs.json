@@ -1,0 +1,7 @@
+{
+  "supabase/migrations/20261006160244_native_internal_rls.sql": "d11eb83a72d4ca159853b7f9a7961ff4b89c977fbb2b88293cf6497dfeaf4db6",
+  "tests/database/internal-table-rls.test.mjs": "5c22a5cf9ff6fb42737fc2c8daef28c716a0876ab7f0ff33f4ab5d97db6962ed",
+  "tools/migration/internal-table-rls.mjs": "cfcdd2b5e75ab425a4c2844485132d7bc9f0bf8aa8609ec753d6075b9e7bff5f",
+  "tools/migration/schema-probe.mjs": "a78056f647e3022403fab5499c317d288a9d4a16d2726b79bab339a9bb912ba9",
+  "docs/native-rewrite/nest-test-migration-manifest.csv": "219190062ea806d8abbc12ae1e76d26af33a5111e186a6a62d5ae0ef426cd057"
+}

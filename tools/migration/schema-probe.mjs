@@ -21,6 +21,7 @@ import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
 import { verifyGroceryRetentionCutover } from "./grocery-retention-cutover.mjs";
 import { verifyShoppingCutover } from "./shopping-cutover.mjs";
 import { captureLegacyWriterInventory } from "./writer-inventory.mjs";
+import { verifyInternalTableRLS } from "./internal-table-rls.mjs";
 import { runFixtureAdvisors } from "./security-advisors.mjs";
 import {
   seedExcludedRehearsal,
@@ -165,6 +166,7 @@ try {
   if (!report.cutoverFinancialReconciliation.passed)
     throw new Error("Cutover rehearsal changed financial history or receipt references");
   report.legacyWriters = captureLegacyWriterInventory(db);
+  report.internalTableRLS = verifyInternalTableRLS(db);
   report.offlineEpochAi = verifyOfflineEpochAi(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
   report.committedFinancialRecovery = verifyCommittedFinancialRecovery(db);
