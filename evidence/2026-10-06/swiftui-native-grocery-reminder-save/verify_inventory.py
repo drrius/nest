@@ -99,11 +99,12 @@ def verify():
     parser = argparse.ArgumentParser()
     mode = parser.add_mutually_exclusive_group()
     mode.add_argument('--working-tree', action='store_true')
-    mode.add_argument('--source-ref', default='db6023fe17893ec7c75b1a0815160ccbf4c7ff9f')
+    mode.add_argument('--source-ref', default='38f78e134458b13607ec364e26002f50c27daee4')
     args = parser.parse_args()
     inventory, actual = verify_files()
     references = verify_attachments()
     inputs = verify_sources(args.working_tree, args.source_ref)
+    verify_receipts()
     reviewed = verify_review(inventory, actual)
     print(json.dumps({'files': len(actual) + 1, 'attachmentReferences': references, 'nativeInputs': inputs, 'PNGReviewed': reviewed, 'workingTreeChecked': args.working_tree, 'passed': True}))
 
