@@ -1,0 +1,7 @@
+{
+  "count": 822,
+  "inventoryParts": ["source-inputs-1.csv", "source-inputs-2.csv", "source-inputs-3.csv"],
+  "originalShippingInputsMatch51b48cb6": false,
+  "allShippingInputsMatchCurrent": true,
+  "shippingSourceCommit": "38cfed7b"
+}

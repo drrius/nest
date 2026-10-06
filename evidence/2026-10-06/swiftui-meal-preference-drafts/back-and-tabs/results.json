@@ -1,0 +1,82 @@
+[
+  {
+    "step": "original-before",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 7.636
+  },
+  {
+    "step": "partner-before",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.239
+  },
+  {
+    "step": "normal-food",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "MealPreferenceDraftTests/testFoodBackProtectsAnInvalidUnsentDraft",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 36.587
+  },
+  {
+    "step": "normal-cooking",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "MealPreferenceDraftTests/testCookingBackProtectsAnUnsentSlotChoice",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 38.318
+  },
+  {
+    "step": "maximum-food",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "MealPreferenceDraftTests/testFoodBackProtectsAnInvalidUnsentDraft",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 52.092
+  },
+  {
+    "step": "maximum-cooking",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "MealPreferenceDraftTests/testCookingBackProtectsAnUnsentSlotChoice",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 45.778
+  },
+  {
+    "step": "original-after",
+    "simulator": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.772
+  },
+  {
+    "step": "partner-after",
+    "simulator": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+    "method": "HostedManualPreparationReadTests/testBothMembersReadSameLinkedPreparationAndUnchangedPlan",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.176
+  }
+]
