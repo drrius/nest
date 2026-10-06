@@ -222,6 +222,14 @@ or closure of the 19 reports. No new fixture or domain action is planned.
 Its fresh source-pinned signed build passes with all 1,129 inputs and actual
 card/audit compilation. One unfiltered five-method root audit is now running;
 the earlier dated baseline remains preserved. No unrelated SDK reader runs.
+That audit finishes in 66.465 seconds with five failed methods and 13
+unsuppressed reports: eleven contrast and two font reports. Access-button and
+Full Access font warnings do not recur; both remaining font reports identify
+the partner-availability heading. The controller's termination guard fails
+during restoration; separate ordinary foreground restoration then verifies both
+original scopes, 64 empty journals, settings and local semantics. The suite is
+not replayed. Calendar's fixed outer sections now also use a regular stack;
+focused audit and largest-text reading are pending on that combined candidate.
 Routine CI 37535583085 catches eleven exported chore-evidence JSON formatting
 issues. Oxfmt corrects them with every JSON value verified unchanged against Git;
 raw logs/screenshots and the original native outcomes remain unchanged.

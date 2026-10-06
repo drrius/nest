@@ -23,7 +23,7 @@ struct CalendarScreen: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
+            VStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
                 if case .ready(let member) = session.status {
                     QuietTabHeader(
                         title: "Calendar", subtitle: "Your day, with room for everything.",
