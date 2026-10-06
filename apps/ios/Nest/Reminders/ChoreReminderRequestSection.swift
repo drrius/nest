@@ -12,9 +12,7 @@ struct ChoreReminderRequestSection: View {
             Text(saved.baseline.chore.title).font(.headline)
             Text(saved.command.settings.enabled ? "Reminder enabled" : "Reminder off")
             Text("Before the chore due date: \(saved.baseline.chore.dueDate.value)")
-            Text(
-                "\(saved.command.settings.daysBefore) days before · \(saved.command.settings.localTime) Europe/Zurich"
-            )
+            ReminderTimingText(settings: saved.command.settings)
             ForEach(saved.command.settings.recipientIds, id: \.self) { actor in
                 Text(
                     actor == member.userId

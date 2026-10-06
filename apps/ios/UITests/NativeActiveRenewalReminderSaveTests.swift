@@ -44,7 +44,7 @@ final class NativeActiveRenewalReminderSaveTests: XCTestCase {
         let app = openRenewals()
         openReminder(app)
         for label in [
-            "Your saved reminder request", "Before renewal", "1 days before · 09:00 Europe/Zurich", "For you",
+            "Your saved reminder request", "Before renewal", "1 day before · 09:00 Europe/Zurich", "For you",
             "For Test Sam", "Reminder choices saved. This does not confirm delivery.",
         ] {
             let text = app.staticTexts.matching(identifier: label).firstMatch

@@ -39,7 +39,7 @@ final class NativeActiveRecurringReminderSaveTests: XCTestCase {
         openReminder(app)
         for label in [
             "Your saved reminder request", "Reminder enabled", "Before the reviewed bill due date: 2026-11-01",
-            "1 days before · 09:00 Europe/Zurich", "For you", "For Test Sam",
+            "1 day before · 09:00 Europe/Zurich", "For you", "For Test Sam",
             "Reminder choices saved. This does not confirm delivery.",
         ] {
             let text = app.staticTexts.matching(identifier: label).firstMatch

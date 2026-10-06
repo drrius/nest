@@ -12,9 +12,7 @@ struct RenewalReminderRequestSection: View {
             Text(saved.renewal.fields.title).font(.headline)
             Text(saved.command.settings.delivery.enabled ? "Reminder enabled" : "Reminder off")
             Text(saved.command.settings.anchor == .renewal ? "Before renewal" : "Before cancellation deadline")
-            Text(
-                "\(saved.command.settings.delivery.daysBefore) days before · \(saved.command.settings.delivery.localTime) Europe/Zurich"
-            )
+            ReminderTimingText(settings: saved.command.settings.delivery)
             ForEach(saved.command.settings.delivery.recipientIds, id: \.self) { actor in
                 Text(
                     actor == member.userId

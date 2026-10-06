@@ -12,9 +12,7 @@ struct MealReminderRequestSection: View {
             Text(saved.baseline.meal.title).font(.headline)
             Text(saved.command.settings.enabled ? "Reminder enabled" : "Reminder off")
             Text("Before the meal date: \(saved.baseline.meal.date.value) · \(saved.baseline.meal.slot.label)")
-            Text(
-                "\(saved.command.settings.daysBefore) days before · \(saved.command.settings.localTime) Europe/Zurich"
-            )
+            ReminderTimingText(settings: saved.command.settings)
             ForEach(saved.command.settings.recipientIds, id: \.self) { actor in
                 Text(
                     actor == member.userId

@@ -12,9 +12,7 @@ struct RecurringReminderRequestSection: View {
             Text(saved.baseline.rule.configuration.description).font(.headline)
             Text(saved.command.settings.enabled ? "Reminder enabled" : "Reminder off")
             Text("Before the reviewed bill due date: \(saved.command.expectedDueOn.value)")
-            Text(
-                "\(saved.command.settings.daysBefore) days before · \(saved.command.settings.localTime) Europe/Zurich"
-            )
+            ReminderTimingText(settings: saved.command.settings)
             ForEach(saved.command.settings.recipientIds, id: \.self) { actor in
                 Text(
                     actor == member.userId
