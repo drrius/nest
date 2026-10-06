@@ -330,3 +330,23 @@ and Refresh, explicit Refresh discard/reload and Back discard work with full
 captured recipe remain exact; no server command occurs. Today, original roles,
 large/light settings and 64 empty journals per client are restored.
 [Evidence](../evidence/2026-10-06/swiftui-meal-reminder-navigation/README.md). Both workflows pass at `f675ae76`: 502 Foundation/41 skips, 459 signed-app/27 skips, four Swift Testing cases, zero failures. Physical accessibility, delivery and full M8 remain open. Build18 has no later reminder fix.
+
+## Remaining reminder eligibility
+
+Two real GET-only native preflights pass at `a7ac3ad7`. Both members agree on seven
+recurring rules, four paused and three cancelled, with no active eligible rule;
+the native renewal list is empty. Both lists reach a terminal cursor and scopes/
+64 empty journals remain unchanged. No target context or financial history was read
+because no active target exists. Active recurring/renewal editor acceptance remains
+blocked by missing eligible fixtures; no rule activation or renewal recreation occurs.
+[Evidence](../evidence/2026-10-06/swiftui-remaining-reminder-eligibility/README.md) verifies 25 tracked artifacts and 1,105 frozen native inputs. Both workflows pass at `f176b2a9`: 506 Foundation/41 skips, 461 signed-app/29 skips, four Swift Testing cases, zero failures.
+The separate paused-rule preflight at `8313d762` stops on HTTP401 at `/v1/session`,
+before roster/context/finance reads; the second actor and UI are not run. Two token
+refresh requests are observed, but causation is unproven and diagnosis remains open.
+One isolated diagnostic at `1e8a5869` verifies current native session HTTP200. Its
+unchanged cache is already fresh; no provider refresh, credential promotion or TTL
+change occurs. [Evidence](../evidence/2026-10-06/swiftui-native-natural-session-diagnostic/README.md) preserves the failed read and limited diagnostic; the earlier401 remains unexplained.
+The justified paired retry passes both native reads with the existing paused rule
+and complete62-entry API history, Alex+1/Sam−1 centime. Local comparison preserves
+all61 earlier semantic entries and identifies the known CHF0.02 posted-PDF append;
+UUID-case/optional-null normalization is explicit. The normal-text paused-state UI passes disabled controls/Save, untouched Back and read-only Refresh; four fresh SDK reads retain all62 entries and balances. The largest-text attempt stops before reminder entry because its rule row is below the virtualized list viewport. That failure remains recorded. The corrected observer at `dacea8fa` retains a second failure: the compound rule link is599pt tall in a502pt usable viewport. All four fresh SDK reads and ordinary-client restoration pass. Shipping `2465acb2` splits title/status navigation from mode/amount/due rows at accessibility sizes, retaining normal layout and unrestricted native text. Strict Mac formatting and all Swift limits pass. At `f7094205`, the corrected maximum-text method and four fresh SDK reads pass: whole title/status, amount/due rows, inactive explanation, disabled defaults/Save, untouched44pt Back and Refresh retain all62 events/balances/context. All four representative captures were reviewed; both clients restore Today/large/light/original scopes/64 empty journals. Aggregate14 native passes/two retained failures remain source-separated. Both exact-source workflows pass: Nest37449245699/Swift37449245100,506 Foundation/41 skips,463 signed-app/31 skips and four Swift Testing cases, zero failures, strict format/limits/signing/UI compilation. The [immutable evidence](../evidence/2026-10-06/swiftui-paused-recurring-reminder/README.md) verifier passes286 tracked artifacts, three source variants and35 reviewed screenshots; this layout fix is not in build19. Both original failures remain recorded. No hosted mutation occurs; active-rule editing/delivery acceptance remains open.

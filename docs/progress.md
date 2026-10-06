@@ -10,13 +10,7 @@ Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work us
 
 The preceding build18 includes the shared four-tab header/20pt side/14pt top insets and Quiet Calendar cards, auth/draft/recipe fixes since17 and the demonstrated large-text Today grocery shortcut fix. Twelve header captures/24 Profile and assistant links plus twelve post-fix both-member grocery methods pass with restored settings/identities and unchanged retained history. Nest37374014717/SwiftUI37374014748 pass at the signed source:496 Foundation/41 skips,440 signed-native/18 skips, zero failures, format/limits/signing and guarded UI compilation. All1,080 frozen source inputs and copied IPA hash match. Exactly one private submissionfcd756b6-fe07-4356-8346-521c2c6113da finishes, and the spaced Apple check verifies internal availability. Owned temporary signing keychain/certificate/password copies are removed on both hosts; original credentials/search list and the older unpublisheda3 archive remain intact. No cloud build, expanded invitations, purchase, public release or source merge occurred. Full M1–M9 acceptance remains open.
 
-Detailed earlier slice checkpoints, including previous candidate numbers, remain in [the 4 October history](progress-history-2026-10-04.md). Later evidence below supersedes their pending states.
-
-Earlier Calendar reading evidence is preserved in [6 October history](progress-history-2026-10-06.md).
-
 ## Milestone checklist
-
-The retained schedule validation and earlier PDF checkpoint are preserved in [the dated history](progress-history-2026-10-06.md#retained-schedule-validation--5-october).
 
 Unchecked means complete acceptance is outstanding, even where implementation and bounded verification exist.
 
@@ -153,6 +147,18 @@ investigation, not an Apple exemption. All19 original reports remain open. No sh
 color/layout change, hosted write, permission or unchanged full-audit rerun occurs.
 Checkpoint13b00520 passes Nest37416103059/SwiftUI37416103073:502 Foundation/41 skips,454 signed-app/22 skips, four Swift Testing cases and zero failures. CI compiles the diagnostic; it does not approve the failed manual audit.
 
+## Meals contrast viewport diagnosis
+
+At exact `971553a6`, one unfiltered native contrast audit fails35.465s summary/21.284s testcase with
+four findings. Tuesday's heading is fully visible90pt above the bar and does
+not recur. Lunch/Add meal and Dinner/Add meal overlap or fall below the bar;
+no anonymous finding appears in this run. Original anonymous findings remain
+unmatched and all19 original reports remain open. No shipping color/layout,
+audit filter, permission or hosted command changes. Both clients restore
+Today, original scopes, large/light and64 empty journals. Root reviews the full screenshot and all four finding crops. The immutable
+[evidence](../evidence/2026-10-06/swiftui-meals-contrast-viewport/README.md) verifier
+passes47 artifacts/1,116 inputs/12 inspected images; full accessibility is unverified.
+
 The earlier native existing-expense cycle linkage is preserved in [dated history](progress-history-2026-10-06.md#native-existing-expense-cycle-linkage).
 
 The retained routine definition checkpoint is preserved in [the dated history](progress-history-2026-10-06.md#retained-routine-definition-boundaries).
@@ -201,25 +207,15 @@ native checks. Build19 is internally available with matching source/CI/package e
 The complete23-pass/five-failure/six-Core history and release records remain in
 [dated history](progress-history-2026-10-06.md#recipe-draft-cancellation). Phones and full accessibility remain open.
 
-## Remaining reminder eligibility
+## Earlier reminder eligibility and inactive-rule checks
 
-Two real GET-only native preflights pass at `a7ac3ad7`. Both members agree on seven
-recurring rules, four paused and three cancelled, with no active eligible rule;
-the native renewal list is empty. Both lists reach a terminal cursor and scopes/
-64 empty journals remain unchanged. No target context or financial history was read
-because no active target exists. Active recurring/renewal editor acceptance remains
-blocked by missing eligible fixtures; no rule activation or renewal recreation occurs.
-[Evidence](../evidence/2026-10-06/swiftui-remaining-reminder-eligibility/README.md) verifies 25 tracked artifacts and 1,105 frozen native inputs. Both workflows pass at `f176b2a9`: 506 Foundation/41 skips, 461 signed-app/29 skips, four Swift Testing cases, zero failures.
-The separate paused-rule preflight at `8313d762` stops on HTTP401 at `/v1/session`,
-before roster/context/finance reads; the second actor and UI are not run. Two token
-refresh requests are observed, but causation is unproven and diagnosis remains open.
-One isolated diagnostic at `1e8a5869` verifies current native session HTTP200. Its
-unchanged cache is already fresh; no provider refresh, credential promotion or TTL
-change occurs. [Evidence](../evidence/2026-10-06/swiftui-native-natural-session-diagnostic/README.md) preserves the failed read and limited diagnostic; the earlier401 remains unexplained.
-The justified paired retry passes both native reads with the existing paused rule
-and complete62-entry API history, Alex+1/Sam−1 centime. Local comparison preserves
-all61 earlier semantic entries and identifies the known CHF0.02 posted-PDF append;
-UUID-case/optional-null normalization is explicit. The normal-text paused-state UI passes disabled controls/Save, untouched Back and read-only Refresh; four fresh SDK reads retain all62 entries and balances. The largest-text attempt stops before reminder entry because its rule row is below the virtualized list viewport. That failure remains recorded. The corrected observer at `dacea8fa` retains a second failure: the compound rule link is599pt tall in a502pt usable viewport. All four fresh SDK reads and ordinary-client restoration pass. Shipping `2465acb2` splits title/status navigation from mode/amount/due rows at accessibility sizes, retaining normal layout and unrestricted native text. Strict Mac formatting and all Swift limits pass. At `f7094205`, the corrected maximum-text method and four fresh SDK reads pass: whole title/status, amount/due rows, inactive explanation, disabled defaults/Save, untouched44pt Back and Refresh retain all62 events/balances/context. All four representative captures were reviewed; both clients restore Today/large/light/original scopes/64 empty journals. Aggregate14 native passes/two retained failures remain source-separated. Both exact-source workflows pass: Nest37449245699/Swift37449245100,506 Foundation/41 skips,463 signed-app/31 skips and four Swift Testing cases, zero failures, strict format/limits/signing/UI compilation. The [immutable evidence](../evidence/2026-10-06/swiftui-paused-recurring-reminder/README.md) verifier passes286 tracked artifacts, three source variants and35 reviewed screenshots; this layout fix is not in build19. Both original failures remain recorded. No hosted mutation occurs; active-rule editing/delivery acceptance remains open.
+The read-only eligibility census, bounded natural-session diagnosis and
+largest-text paused-rule fix remain in
+[dated history](progress-history-2026-10-06.md#remaining-reminder-eligibility).
+The later fictional renewal was created, saved and removed normally below.
+One future fictional confirm-each-bill rule is the next eligibility fixture.
+Its guarded creation/recovery is being prepared; reminder editing, delivery and
+phone acceptance remain open.
 
 ## Active renewal reminder verification
 
@@ -251,11 +247,15 @@ Original native and preparation failures remain in
 [dated history](progress-history-2026-10-06.md#active-renewal-reminder-save-and-removal-chronology).
 [Save evidence](../evidence/2026-10-06/swiftui-native-renewal-reminder-save/README.md)
 retains its post-Save observer failure and passing restart/Done continuation.
-Latest completed CI at `2ea30673` passes Nest37470058962/SwiftUI37470058991:
+The explicit-Cancel shipping source now passes SwiftUI37472377978 at `ce0f0766`:
 506 Foundation/41 skips,466 signed-app/34 skips, four Swift Testing cases,
-zero failures and strict native gates. That CI precedes the explicit-Cancel fix;
-current-head CI remains pending. Removal at maximum text, delivery and physical
-phone acceptance remain open. Build19 does not contain this later renewal fix.
+zero failures and strict native gates. Nest37472717035 passes `1f6a7e92`, with
+identical shipping code plus the evidence/phone-guide update. The earlier routine
+run37472378014 was superseded/cancelled. The new guarded Meals diagnostic at
+`971553a6` passes Nest37473580382; SwiftUI37473580828 remains pending. Its
+single native diagnostic fails as recorded below.
+Maximum-text removal, delivery and phone acceptance remain open. Build19 does not
+contain the later renewal fix.
 
 Eight focused existing local database tests pass on disposable PostgreSQL18.6, including tenant/receipt isolation, immutable retries/cancellation races and removed-item invalidation. Six focused local domain tests also pass at `a4d1949c`, covering recipient privacy, reminder identities/invalidation and civil renewal dates; exact source hashes and TAP are recorded. Both configuration failures are retained; hosted17.6/full-chain/worker delivery are separate. [Database evidence](../evidence/2026-10-06/renewal-reminder-focused-database/README.md).
 
@@ -382,8 +382,6 @@ The full audit and twelve-size reading evidence are preserved in
 [the dated history](progress-history-2026-10-05.md#native-accessibility-diagnostics-and-calendar-readability)
 and [native evidence](../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
 The original full audit has20 unsuppressed reports; focused reading passes do not close it.
-
-Earlier failed Calendar contrast experiments remain in [6 October history](progress-history-2026-10-06.md#focused-calendar-contrast-diagnostics).
 
 ## Earlier money, auth and draft checkpoints
 
