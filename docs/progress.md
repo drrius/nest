@@ -244,6 +244,7 @@ All81 PNGs are reviewed. Current routine CI passes; final native CI remains pend
 Earlier numeric-key lookup failures remain recorded; no failure is relabeled passed.
 [Evidence](../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md) verifies all immutable source maps and 422 tracked artifacts.
 Build19 is reserved;18 remains latest. No recipe Save, beta upload or production action occurs.
+[Build19 preparation](../evidence/2026-10-06/swiftui-build19/README.md) freezes 1,111 files and matches all 1,104 native inputs on both hosts. Signing/export/upload await final CI; no archive or submission exists yet.
 
 ## Earlier native settlement verification
 

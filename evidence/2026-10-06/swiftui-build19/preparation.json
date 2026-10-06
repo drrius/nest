@@ -1,0 +1,14 @@
+{
+  "source": "484e5feba9b2d2d49f45c3712d14f701bc5e4fbb",
+  "version": "0.1.0",
+  "build": "19",
+  "preparedAt": "2026-10-06T08:55:26.609079+00:00",
+  "archivedFiles": 1111,
+  "nativeInputsMatchedToProof": 1104,
+  "macSourceHashesVerified": true,
+  "existingProfilePresent": true,
+  "signingStarted": false,
+  "uploaded": false,
+  "pendingChecks": [37438352328, 37439103691],
+  "scope": "private nest-test beta; no production migration or public release"
+}
