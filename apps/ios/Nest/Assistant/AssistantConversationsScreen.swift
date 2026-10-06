@@ -31,6 +31,7 @@ struct AssistantConversationsScreen: View {
                         }
                     }.frame(minHeight: 44)
                 }
+                .accessibilityIdentifier("assistant-conversation-\(row.id.uuidString.lowercased())")
             }
             if loaded && rows.isEmpty { Text("No saved conversations yet.") }
             if let notice { Text(notice).foregroundStyle(QuietPalette.muted) }
