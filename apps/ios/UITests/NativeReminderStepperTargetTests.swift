@@ -62,6 +62,10 @@ final class NativeReminderStepperTargetTests: XCTestCase {
         let lead = app.staticTexts["reminder-lead-value"]
         reveal(lead, in: app, permitsDisabled: true)
         XCTAssertEqual(lead.label, "Days before: \(initial)")
+        if initial == 0 {
+            XCTAssertTrue(app.buttons["Decrease days before"].exists)
+            XCTAssertFalse(app.buttons["Decrease days before"].isEnabled)
+        }
         let button = app.buttons[action == "Increment" ? "Increase days before" : "Decrease days before"]
         XCTAssertTrue(button.exists && button.isEnabled && button.isHittable)
         XCTAssertEqual(button.value as? String, "\(initial) days")
