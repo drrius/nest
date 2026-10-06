@@ -1,0 +1,19 @@
+{
+  "checkedAtUTC": "2026-10-06T13:56:30Z",
+  "team": {
+    "id": "team_SLKgF8o2fjkWkbVP8qpyjluo",
+    "slug": "drrius-projects"
+  },
+  "project": {
+    "id": "prj_yN4ZNro5utMbzmyrSC3xgPZka67G",
+    "name": "nest-test-api",
+    "accountId": "team_SLKgF8o2fjkWkbVP8qpyjluo"
+  },
+  "reads": ["Vercel get_team", "Vercel get_project"],
+  "inferenceRequests": 0,
+  "billingMutations": 0,
+  "providerChanges": 0,
+  "gatewayEligibilityExposed": false,
+  "gatewayCreditBalanceExposed": false,
+  "liveAIUnblocked": false
+}
