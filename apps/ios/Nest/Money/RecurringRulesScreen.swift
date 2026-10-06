@@ -9,6 +9,7 @@ struct RecurringRulesScreen: View {
     @State private var loaded = false
     @State private var working = false
     @State private var notice: String?
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
         List {
@@ -31,18 +32,13 @@ struct RecurringRulesScreen: View {
                 }
             }
             ForEach(rules) { rule in
-                NavigationLink {
-                    RecurringRuleScreen(session: session, member: member, ruleId: rule.id).id(session.generation)
-                } label: {
-                    VStack(alignment: .leading, spacing: 6) {
-                        Text(rule.configuration.description).font(.headline)
-                        Text(
-                            rule.configuration.mode == .fixed
-                                ? "Automatic · \(rule.configuration.amountCentimes?.absoluteCHF ?? "")"
-                                : "Confirm each bill")
-                        Text(rule.status.rawValue.capitalized).font(.caption).foregroundStyle(QuietPalette.muted)
-                        if let due = rule.nextDueOn { Text("Next due \(due.value)").font(.subheadline) }
-                    }.padding(.vertical, 4)
+                if textSize.isAccessibilitySize {
+                    Section {
+                        ruleLink(rule)
+                        ruleDetails(rule)
+                    }
+                } else {
+                    ruleLink(rule)
                 }
             }
             if loaded && rules.isEmpty { Text(dueOnly ? "No bills need confirmation." : "No recurring rules yet.") }
@@ -55,6 +51,33 @@ struct RecurringRulesScreen: View {
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .task { await load(more: false) }
         .refreshable { await load(more: false) }
+    }
+
+    private func ruleLink(_ rule: RecurringRule) -> some View {
+        NavigationLink {
+            RecurringRuleScreen(session: session, member: member, ruleId: rule.id).id(session.generation)
+        } label: {
+            VStack(alignment: .leading, spacing: 6) {
+                Text(rule.configuration.description).font(.headline)
+                if !textSize.isAccessibilitySize { Text(modeLabel(rule)) }
+                Text(rule.status.rawValue.capitalized).font(.caption).foregroundStyle(QuietPalette.muted)
+                if !textSize.isAccessibilitySize, let due = rule.nextDueOn {
+                    Text("Next due \(due.value)").font(.subheadline)
+                }
+            }.padding(.vertical, 4)
+        }
+    }
+
+    @ViewBuilder
+    private func ruleDetails(_ rule: RecurringRule) -> some View {
+        Text(modeLabel(rule))
+        if let due = rule.nextDueOn { Text("Next due \(due.value)").font(.subheadline) }
+    }
+
+    private func modeLabel(_ rule: RecurringRule) -> String {
+        rule.configuration.mode == .fixed
+            ? "Automatic · \(rule.configuration.amountCentimes?.absoluteCHF ?? "")"
+            : "Confirm each bill"
     }
 
     private func load(more: Bool) async {
