@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "4BCBCAD7-D612-42D8-A665-65910B111F11.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Existing native recurring and renewal reminder eligibility GET-only_0_E95EB7E7-DA87-4ACE-9FE5-F6EBFFA25615.json",
+        "timestamp": 1791278478.534
+      }
+    ],
+    "testIdentifier": "HostedRemainingReminderEligibilityTests/testGETOnlyExistingRecurringAndRenewalReminderEligibility()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedRemainingReminderEligibilityTests/testGETOnlyExistingRecurringAndRenewalReminderEligibility"
+  }
+]

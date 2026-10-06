@@ -1,0 +1,175 @@
+{
+  "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+  "displayName": "Test Alex",
+  "domainHTTPMethods": ["GET"],
+  "eligibleRecurringIds": [],
+  "eligibleRenewalIds": [],
+  "hostedCommands": 0,
+  "household": "be772ffd-3ab5-41d5-8438-647a79a553da",
+  "recurringPages": [
+    {
+      "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+      "rules": [
+        {
+          "authorizedAt": "2026-10-04T15:48:28.359515Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": [
+              { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+              { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+            ],
+            "amountCentimes": "3",
+            "categoryId": null,
+            "description": "Synthetic native manual-link QA",
+            "mode": "fixed",
+            "note": "Fictional native linkage check; pause after verification.",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "kind": "weekly", "weekday": 7 },
+            "startDate": "2026-10-04"
+          },
+          "coveredThrough": "2026-10-04",
+          "nextDueOn": "2026-10-11",
+          "revision": "CD7F8771-AD48-42CC-A4DA-0EBFCBB215BF",
+          "ruleId": "06146B4A-95E5-4227-A562-5AEBACCEEA6D",
+          "status": "paused"
+        },
+        {
+          "authorizedAt": "2026-10-04T21:23:21.368462Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": null,
+            "amountCentimes": null,
+            "categoryId": null,
+            "description": "Fictional native variable bill 894747fa",
+            "mode": "variable",
+            "note": "Fictional native bill QA; no payment or actual transfer.",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "dayOfMonth": 4, "kind": "monthly" },
+            "startDate": "2026-10-04"
+          },
+          "coveredThrough": "2026-10-31",
+          "nextDueOn": "2026-11-04",
+          "revision": "62399AB4-C545-4D4E-9A14-40CBBA708E5B",
+          "ruleId": "10EAAC3C-8445-49A9-B894-A18272EF3325",
+          "status": "paused"
+        },
+        {
+          "authorizedAt": "2026-09-29T21:48:57.594295Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": null,
+            "amountCentimes": null,
+            "categoryId": null,
+            "description": "Test Swift reminder D70F5345-1B62-454B-A8EA-A15DBA695F04",
+            "mode": "variable",
+            "note": "Future variable reminder fixture; no posting",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+            "startDate": "2099-01-01"
+          },
+          "nextDueOn": "2099-01-01",
+          "revision": "7F0D3129-C4FD-403B-9219-5FB9FA246DD7",
+          "ruleId": "3EC03A31-228F-4418-972E-FD7214E5482E",
+          "status": "cancelled"
+        },
+        {
+          "authorizedAt": "2026-10-04T04:37:50.631410Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": [
+              { "centimes": "2", "memberId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200" },
+              { "centimes": "1", "memberId": "E5F80CFD-B69A-4AA0-A267-75784E943676" }
+            ],
+            "amountCentimes": "3",
+            "categoryId": null,
+            "description": "Synthetic retained adopted rule",
+            "mode": "fixed",
+            "note": null,
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "kind": "weekly", "weekday": 1 },
+            "startDate": "2030-01-07"
+          },
+          "coveredThrough": "2026-10-31",
+          "nextDueOn": "2030-01-07",
+          "revision": "856BF47A-69FC-45AC-BC5D-F425C8B02124",
+          "ruleId": "8102650A-DB30-441E-B693-4F5B9561116F",
+          "status": "paused"
+        },
+        {
+          "authorizedAt": "2026-09-28T06:07:43.399696Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": null,
+            "amountCentimes": null,
+            "categoryId": null,
+            "description": "Native recurring fixture 2F7FBFE5-B228-49F0-9E26-8C173B9FAC37",
+            "mode": "variable",
+            "note": "Edited isolated variable fixture",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "dayOfMonth": 1, "kind": "monthly" },
+            "startDate": "2099-01-01"
+          },
+          "nextDueOn": "2099-01-01",
+          "revision": "F78209DD-BD2D-4D62-AB18-8A4E12C9A9AF",
+          "ruleId": "A25B5DB8-2CC9-4FFC-9837-E1094695016B",
+          "status": "cancelled"
+        },
+        {
+          "authorizedAt": "2026-09-28T06:22:51.676739Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": null,
+            "amountCentimes": null,
+            "categoryId": null,
+            "description": "Native bill fixture 60EA3D29-7562-43DC-AB4B-36706C64CEB4",
+            "mode": "variable",
+            "note": "Isolated variable bill",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "dayOfMonth": 28, "kind": "monthly" },
+            "startDate": "2026-09-28"
+          },
+          "coveredThrough": "2026-09-30",
+          "nextDueOn": "2026-10-28",
+          "revision": "EFB23385-2336-4253-B818-6510D2208AC1",
+          "ruleId": "BAD4A3BB-D0CE-4799-A284-BDBCDB1F6DD0",
+          "status": "cancelled"
+        },
+        {
+          "authorizedAt": "2026-10-04T22:23:03.220877Z",
+          "authorizedBy": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+          "configuration": {
+            "allocations": null,
+            "amountCentimes": null,
+            "categoryId": null,
+            "description": "Fictional private bill approval 3e7cd25c",
+            "mode": "variable",
+            "note": "Fictional private approval QA; no payment or actual transfer.",
+            "payerId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200",
+            "schedule": { "dayOfMonth": 5, "kind": "monthly" },
+            "startDate": "2026-10-05"
+          },
+          "coveredThrough": "2026-10-31",
+          "nextDueOn": "2026-11-05",
+          "revision": "28E419F4-236A-4A4D-80D3-7060E94A4C63",
+          "ruleId": "DB1568A6-24E4-48E5-AB6B-F0A8968068C1",
+          "status": "paused"
+        }
+      ],
+      "today": "2026-10-06",
+      "version": 1
+    }
+  ],
+  "recurringTarget": null,
+  "renewalPages": [
+    { "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA", "renewals": [], "version": 1 }
+  ],
+  "renewalTarget": null,
+  "roster": {
+    "householdId": "BE772FFD-3AB5-41D5-8438-647A79A553DA",
+    "members": [
+      { "actorId": "791F7261-6C9D-4061-9C8A-57AA6E0B0200", "displayName": "Test Alex" },
+      { "actorId": "E5F80CFD-B69A-4AA0-A267-75784E943676", "displayName": "Test Sam" }
+    ],
+    "version": 1
+  }
+}
