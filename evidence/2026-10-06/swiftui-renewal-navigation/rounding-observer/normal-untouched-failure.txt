@@ -1,0 +1,5 @@
+    t =    25.21s Find the "Cancel" Button
+    t =    25.29s Find the "Cancel" Button
+/tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift:99: error: -[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable] : XCTAssertGreaterThanOrEqual failed: ("43.99999999999999") is less than ("44.0")
+    t =    25.38s Tear Down
+Test Case '-[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable]' failed (25.665 seconds).

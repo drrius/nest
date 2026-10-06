@@ -78,6 +78,40 @@ final class RenewalNavigationTests: XCTestCase {
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
 
+    func testRenewalModalViewportCensus() throws {
+        let fixture = try NativeMealWeekFixture(action: "renewal_navigation")
+        let app = openRenewals(fixture: fixture)
+        app.navigationBars["Renewals"].buttons["Add"].tap()
+        XCTAssertTrue(app.navigationBars["New renewal"].waitForExistence(timeout: 15))
+        var samples: [[String: Any]] = []
+        for step in 0..<6 {
+            let elements =
+                app.scrollViews.allElementsBoundByIndex + app.collectionViews.allElementsBoundByIndex
+                + app.buttons.matching(identifier: "Save renewal").allElementsBoundByIndex
+            let rows = elements.map { element in
+                let frame = element.frame
+                return [
+                    "label": element.label, "type": element.elementType.rawValue,
+                    "frame": [frame.minX, frame.minY, frame.width, frame.height],
+                    "enabled": element.isEnabled, "hittable": element.isHittable,
+                ] as [String: Any]
+            }
+            samples.append(["step": step, "elements": rows])
+            app.swipeUp(velocity: .slow)
+        }
+        let data = try JSONSerialization.data(withJSONObject: samples, options: [.sortedKeys])
+        let attachment = XCTAttachment(data: data, uniformTypeIdentifier: "public.json")
+        attachment.name = "Renewal modal viewport census"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+        capture([app.buttons["Save renewal"]], name: "Renewal final scroll viewport", in: app)
+        app.navigationBars["New renewal"].buttons["Cancel"].tap()
+        XCTAssertTrue(app.navigationBars["Renewals"].waitForExistence(timeout: 15))
+        app.navigationBars["Renewals"].buttons.element(boundBy: 0).tap()
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
     private func openRenewals(fixture: NativeMealWeekFixture) -> XCUIApplication {
         let app = fixture.openMeals()
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -95,8 +129,8 @@ final class RenewalNavigationTests: XCTestCase {
     private func requireTarget(_ element: XCUIElement) {
         XCTAssertTrue(element.isHittable)
         XCTAssertTrue(element.isEnabled)
-        XCTAssertGreaterThanOrEqual(element.frame.width, 44)
-        XCTAssertGreaterThanOrEqual(element.frame.height, 44)
+        XCTAssertGreaterThanOrEqual(element.frame.width, 44 - 1e-9)
+        XCTAssertGreaterThanOrEqual(element.frame.height, 44 - 1e-9)
     }
 
     private func capture(_ elements: [XCUIElement], name: String, in app: XCUIApplication) {
@@ -124,8 +158,7 @@ final class RenewalNavigationTests: XCTestCase {
     ) {
         for _ in 0..<40 {
             let frame = element.exists ? element.frame : .zero
-            let bottom =
-                app.navigationBars["New renewal"].exists ? app.frame.maxY - 24 : app.tabBars.firstMatch.frame.minY
+            let bottom = viewportBottom(in: app)
             if (element.isHittable || permitsDisabled && element.exists) && frame.minY >= 80 && frame.maxY <= bottom {
                 return
             }
@@ -140,5 +173,11 @@ final class RenewalNavigationTests: XCTestCase {
             start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
         }
         XCTFail("Renewal navigation control is not fully visible")
+    }
+
+    private func viewportBottom(in app: XCUIApplication) -> CGFloat {
+        guard app.navigationBars["New renewal"].exists else { return app.tabBars.firstMatch.frame.minY }
+        let collections = app.collectionViews.allElementsBoundByIndex + app.scrollViews.allElementsBoundByIndex
+        return collections.first(where: { $0.isHittable })?.frame.maxY ?? app.frame.maxY
     }
 }
