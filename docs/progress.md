@@ -168,21 +168,9 @@ remain in [dated history](progress-history-2026-10-06.md#native-reminder-navigat
 Later real saves, chore/meal navigation and lead-control checks follow below.
 Physical accessibility and delivery acceptance remain open.
 
-## Native grocery reminder save
+## Earlier native grocery reminder save
 
-One native Save enables Both recipients for 7 October at 08:00 against owned
-QA rice/version 1. Operation `e47d19d1-9c1b-47fd-bba3-a81af12114fc` records revision
-`3d473b6b-3a60-4857-8524-201b6241bb1d`. One ordinary disable Save, bound to that
-revision, records operation `e1596aa1-1812-4396-840d-2e9282baec73` and revision
-`0238a099-9dd1-4ab7-8050-b4738dbf4b10`. Both members' canonical reads and both
-owner receipts agree. Both recipients, date/time and the unchanged grocery remain.
-Ordinary Done clears each request. Twelve actual methods pass with zero failures:
-four native UI and eight SDK checks. Exactly two Saves occur, with no replay.
-Both original scopes return to Today/top/Me + shared/large-light/stable origins
-and 64 empty journals. Source `a0a072c7` passes both workflows: 502 Foundation/41 skips, 456 signed-app/24 skips, four Swift Testing cases and zero failures.
-[Evidence](../evidence/2026-10-06/swiftui-native-grocery-reminder-save/README.md) records
-configuration and receipt verification; retained disabled history is not a nil reset.
-No delivery, worker activation, financial or production action is claimed.
+The two actual Saves, exact receipts, disabled retained history, source CI and restoration remain in [dated history](progress-history-2026-10-06.md#native-grocery-reminder-save). Delivery and physical-phone acceptance remain open.
 
 ## Grocery reminder receipt isolation
 
@@ -194,12 +182,9 @@ Two real native SDK checks also pass with zero failures: Alex recovers both orig
 receipts; Sam receives unresolved results with no receipt. Both canonical reads and
 64 empty journals remain exact. [Native evidence](../evidence/2026-10-06/swiftui-grocery-reminder-receipt-isolation/README.md). Source `a5ce9ec7` passes both workflows: 502 Foundation/41 skips, 457 signed-app/25 skips, four Swift Testing cases, zero failures. No delivery or phone claim.
 
-## Native chore reminder drafts
+## Earlier chore reminder drafts
 
-Six native methods pass; two observer failures remain recorded. Normal navigation
-passes end to end; maximum-text coverage combines its prefix with a corrected suffix.
-Both canonical reads, original scopes and 64 empty journals remain unchanged. Both CI workflows pass at `9c2b7f25`: 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.
-[Evidence](../evidence/2026-10-06/swiftui-chore-reminder-navigation/README.md). Stepper touch area, phones and full M8 remain open; no Save occurs.
+The original combined normal/MAX draft proof and retained observer failures remain in [dated history](progress-history-2026-10-06.md#native-chore-reminder-drafts). Later touch-target evidence follows below.
 
 ## Reminder Stepper touch area
 
@@ -245,6 +230,16 @@ Earlier numeric-key lookup failures remain recorded; no failure is relabeled pas
 [Evidence](../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md) verifies all immutable source maps and 422 tracked artifacts.
 No recipe Save or production action occurs. Build19 is internally available; both-phone acceptance remains open.
 [Build19](../evidence/2026-10-06/swiftui-build19/README.md) passes exact 1,111-file source, CI, signed archive/export/package and copied IPA hash checks. Temporary credentials are removed. One private submission `80654dba-1d01-4568-b6b1-af0a72d2af8e` finished; Apple verifies19 VALID/IN_BETA_TESTING/unexpired.
+
+## Remaining reminder eligibility
+
+Two real GET-only native preflights pass at `a7ac3ad7`. Both members agree on seven
+recurring rules, four paused and three cancelled, with no active eligible rule;
+the native renewal list is empty. Both lists reach a terminal cursor and scopes/
+64 empty journals remain unchanged. No target context or financial history was read
+because no active target exists. Active recurring/renewal editor acceptance remains
+blocked by missing eligible fixtures; no rule activation or renewal recreation occurs.
+[Evidence](../evidence/2026-10-06/swiftui-remaining-reminder-eligibility/README.md) verifies 23 tracked artifacts and 1,105 frozen native inputs; corresponding CI remains pending.
 
 ## Earlier native settlement verification
 

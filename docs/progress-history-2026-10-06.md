@@ -234,3 +234,26 @@ functions are split without changing guards or assertions. All Swift limits and
 three regression cases pass; all 14 tooling cases pass with zero failures.
 [Evidence](../evidence/2026-10-06/swift-test-source-limits/README.md). Native compilation
 and affected behavior checks now pass at `a982e879`: both CI workflows, 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.
+
+## Native chore reminder drafts
+
+Six native methods pass; two observer failures remain recorded. Normal navigation
+passes end to end; maximum-text coverage combines its prefix with a corrected suffix.
+Both canonical reads, original scopes and 64 empty journals remain unchanged. Both CI workflows pass at `9c2b7f25`: 502 Foundation/41 skips, 458 signed-app/26 skips, four Swift Testing cases, zero failures.
+[Evidence](../evidence/2026-10-06/swiftui-chore-reminder-navigation/README.md). Stepper touch area, phones and full M8 remain open; no Save occurs.
+
+## Native grocery reminder save
+
+One native Save enables Both recipients for 7 October at 08:00 against owned
+QA rice/version 1. Operation `e47d19d1-9c1b-47fd-bba3-a81af12114fc` records revision
+`3d473b6b-3a60-4857-8524-201b6241bb1d`. One ordinary disable Save, bound to that
+revision, records operation `e1596aa1-1812-4396-840d-2e9282baec73` and revision
+`0238a099-9dd1-4ab7-8050-b4738dbf4b10`. Both members' canonical reads and both
+owner receipts agree. Both recipients, date/time and the unchanged grocery remain.
+Ordinary Done clears each request. Twelve actual methods pass with zero failures:
+four native UI and eight SDK checks. Exactly two Saves occur, with no replay.
+Both original scopes return to Today/top/Me + shared/large-light/stable origins
+and 64 empty journals. Source `a0a072c7` passes both workflows: 502 Foundation/41 skips, 456 signed-app/24 skips, four Swift Testing cases and zero failures.
+[Evidence](../evidence/2026-10-06/swiftui-native-grocery-reminder-save/README.md) records
+configuration and receipt verification; retained disabled history is not a nil reset.
+No delivery, worker activation, financial or production action is claimed.
