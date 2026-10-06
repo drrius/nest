@@ -60,6 +60,33 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         finish(app)
     }
 
+    func testMaximumCompactDonePreservesUnsentInvalidRecipeInput() throws {
+        let recipe = try authorized(phase: "after")
+        XCTAssertEqual(ProcessInfo.processInfo.environment["NEST_QA_RECIPE_CANCEL_PROFILE"], "maximum_dark")
+        let app = try openLibrary()
+        openCreate(app)
+        zeroAndDismissKeyboard(baseline: "2", in: app)
+        discardInvalidInput("New recipe", in: app)
+        openRecipe(app, title: recipe.title)
+        openEdit(app, recipe: recipe)
+        zeroAndDismissKeyboard(baseline: recipe.servings.map(String.init) ?? "", in: app)
+        discardInvalidInput("Edit recipe", in: app)
+        app.navigationBars["Recipe"].buttons.element(boundBy: 0).tap()
+        finish(app)
+    }
+
+    private func discardInvalidInput(_ title: String, in app: XCUIApplication) {
+        XCTAssertEqual(app.textFields["Servings"].value as? String, "0")
+        XCTAssertFalse(app.navigationBars[title].buttons["Save"].isEnabled)
+        let cancel = app.navigationBars[title].buttons["Cancel"]
+        requireAction(cancel, in: app)
+        cancel.tap()
+        let alert = title == "New recipe" ? "Discard draft?" : "Discard changes?"
+        let discard = title == "New recipe" ? "Discard draft" : "Discard changes"
+        choose(discard, alert: alert, in: app, name: title + " explicit Discard after compact Done")
+        XCTAssertEqual(disappearance(app.navigationBars[title], timeout: 15), .completed)
+    }
+
     private func openLibrary() throws -> XCUIApplication {
         let fixture = try NativeMealWeekFixture(action: "read_recipe_cancel_drafts")
         return fixture.openLibrary()
@@ -108,22 +135,9 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
     }
 
     private func dirtyAndDiscard(_ title: String, baseline: String?, in app: XCUIApplication) {
+        zeroAndDismissKeyboard(baseline: baseline, in: app)
         let raw = "0"
         let name = app.textFields["Servings"]
-        reveal(name, in: app)
-        name.tap()
-        let keyboard = app.keyboards.firstMatch
-        XCTAssertTrue(keyboard.waitForExistence(timeout: 15))
-        if let baseline {
-            XCTAssertEqual(name.value as? String, baseline.isEmpty ? "Servings" : baseline)
-            let deletion = keyboard.keys["Delete"]
-            XCTAssertTrue(deletion.exists && deletion.isEnabled && deletion.isHittable)
-            capture(app, name: "Actual number-pad Delete key before local numeric draft")
-            for _ in baseline { deletion.tap() }
-        }
-        name.typeText(raw)
-        XCTAssertEqual(name.value as? String, raw)
-        dismissKeyboardAtEdge(app, field: name)
         XCTAssertFalse(app.navigationBars[title].buttons["Save"].isEnabled)
         swipeSheet(title, dirty: true, in: app)
         let cancel = app.navigationBars[title].buttons["Cancel"]
@@ -140,10 +154,30 @@ final class NativeRecipeCancelDraftTests: XCTestCase {
         XCTAssertEqual(disappearance(app.navigationBars[title], timeout: 15), .completed)
     }
 
+    private func zeroAndDismissKeyboard(baseline: String?, in app: XCUIApplication) {
+        let raw = "0"
+        let name = app.textFields["Servings"]
+        reveal(name, in: app)
+        name.tap()
+        let keyboard = app.keyboards.firstMatch
+        XCTAssertTrue(keyboard.waitForExistence(timeout: 15))
+        if let baseline {
+            XCTAssertEqual(name.value as? String, baseline.isEmpty ? "Servings" : baseline)
+            let deletion = keyboard.keys["Delete"]
+            XCTAssertTrue(deletion.exists && deletion.isEnabled && deletion.isHittable)
+            capture(app, name: "Actual number-pad Delete key before local numeric draft")
+            for _ in baseline { deletion.tap() }
+        }
+        name.typeText(raw)
+        XCTAssertEqual(name.value as? String, raw)
+        dismissKeyboardAtEdge(app, field: name)
+    }
+
     private func dismissKeyboardAtEdge(_ app: XCUIApplication, field: XCUIElement) {
         let keyboard = app.keyboards.firstMatch
         let done = app.buttons["Done"]
         requireAction(done, in: app)
+        XCTAssertEqual(done.label, "Done")
         let frame = done.frame
         let keyboardFrame = keyboard.frame
         let toolbar = CGRect(
