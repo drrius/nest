@@ -41,3 +41,5 @@ actor/household with 64 empty intent journals, excluding the renewal read cache.
 [Restoration](restoration.json) and the final screenshot record that state. Private
 selected plans are removed and scoped caffeinate ends. Original credentials and
 Keychains are untouched.
+
+The committed diagnostic checkpoint13b00520 passes [Nest37416103059](https://github.com/drrius/nest/actions/runs/37416103059) and [SwiftUI37416103073](https://github.com/drrius/nest/actions/runs/37416103073). Native CI records502 Foundation cases/41 skips and454 signed-app cases/22 skips, zero failures, four Swift Testing cases and strict formatting/limits/signing/UI compilation. It compiles the optional diagnostic rather than executing or approving the failing manual audit. [Metadata](ci.json) and [totals](ci-totals.txt) retain this distinction.

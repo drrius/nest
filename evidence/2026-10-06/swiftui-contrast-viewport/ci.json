@@ -1,0 +1,29 @@
+{
+  "native": {
+    "conclusion": "success",
+    "databaseId": 37416103073,
+    "headSha": "13b005202788182b63c8b2a175a861f9c2d3a1e2",
+    "status": "completed",
+    "url": "https://github.com/drrius/nest/actions/runs/37416103073"
+  },
+  "routine": {
+    "conclusion": "success",
+    "databaseId": 37416103059,
+    "headSha": "13b005202788182b63c8b2a175a861f9c2d3a1e2",
+    "status": "completed",
+    "url": "https://github.com/drrius/nest/actions/runs/37416103059"
+  },
+  "foundation": {
+    "executed": 502,
+    "skipped": 41,
+    "failed": 0
+  },
+  "signedApp": {
+    "executed": 454,
+    "skipped": 22,
+    "failed": 0
+  },
+  "swiftTestingPassed": 4,
+  "manualContrastAuditExecutedInCI": false,
+  "manualContrastAuditPassed": false
+}

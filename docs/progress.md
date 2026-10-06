@@ -151,6 +151,7 @@ Original Today/top/filter/large/light/scope and64 empty journals are restored.
 [Evidence](../evidence/2026-10-06/swiftui-contrast-viewport/README.md) supports a viewport-dependent
 investigation, not an Apple exemption. All19 original reports remain open. No shipping
 color/layout change, hosted write, permission or unchanged full-audit rerun occurs.
+Checkpoint13b00520 passes Nest37416103059/SwiftUI37416103073:502 Foundation/41 skips,454 signed-app/22 skips, four Swift Testing cases and zero failures. CI compiles the diagnostic; it does not approve the failed manual audit.
 
 The earlier native existing-expense cycle linkage is preserved in [dated history](progress-history-2026-10-06.md#native-existing-expense-cycle-linkage).
 
@@ -160,31 +161,9 @@ The retained routine definition checkpoint is preserved in [the dated history](p
 
 The bounded native PDF picker/upload recovery checkpoint and its verification limits are preserved in [the dated history](progress-history-2026-10-05.md#native-pdf-receipt-picker).
 
-## Native partial/full settlement and stale review
+## Earlier native settlement verification
 
-One actual native partial payment now records one centime, survives process restart
-with its exact receipt, opens native detail/shares and normally finishes. A reviewed
-CHF1.02 full payment is refused after one ordinary partner test-API centime payment:
-original terms/note remain, all64 scoped journals stay empty and no event is added.
-Explicit reload/review and one maximum-text/dark343×155.5pt corner Save record only
-the101-centime remainder. Both members agree on exact52 original plus3 new events,
-zero balances and−1/+1 or−101/+101 details; operation receipts stay owner-only.
-Exact existing-operation API replay adds nothing; changed-note replay is refused400
-with the original receipt intact. All original financial/allocation/ledger/claimed
-Storage digests match. Normal terminal Done and readable maximum-text settled copy
-pass; normal/light Today/data/Keychain and64 empty journals are restored.
-[Evidence](../evidence/2026-10-04/swiftui-native-settlement/README.md).
-
-The payment journeys are bound to both-CI-green177d0a70. A separately source-matched
-signed Mac build/native detail check now clarifies signed balance changes: negative
-can mean owed less, positive can mean owing less. Only this explanation changes
-among1,041 native inputs; no new local unit run is claimed. Exact-sourcec45b265b
-passes Nest37227213383/SwiftUI37227213372:491 Foundation/41 explicit skips,
-409 signed-native/11 explicit skips, zero failures, strict formatting/limits and
-actual signing. Native lost-reply/cancellation/private approval variants, broader member/
-concurrency families, full accessibility/radio loss, two native clients and both
-phones remain open. M7 and other unchecked milestones remain incomplete. No actual
-transfer, beta, production change, purchase, worker activation or merge occurred.
+The partial/full settlement and stale-review evidence is preserved in [dated history](progress-history-2026-10-06.md#native-partialfull-settlement-and-stale-review). Its exact retained financial results do not close phone, private-approval or concurrency acceptance.
 
 ## Native refund/correction and keyboard controls — 4 October
 
