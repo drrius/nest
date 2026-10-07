@@ -818,3 +818,10 @@ an authorized object insert and concurrent member deletion. The authorized metad
 row survives when insertion wins; a revoked writer creates none. This bounds one
 trusted insertion path, not managed Storage bytes/HTTP or all service writers.
 No shipping migration or hosted write occurs. [Privileged writer check](../evidence/2026-10-07/receipt-service-writer-membership/README.md).
+
+Build21 exact candidate now passes routine37594517335/native37594517196:509
+Foundation/41 skips,480 signed-app/41 skips, zero failures, formatting/limits/
+signing/guarded UI compilation. One authorized private submission
+76186aef-2b60-4248-be9d-39f38301af32 is queued after exact IPA/source gates. No
+second attempt, cloud build, invitations, public release or production change
+occurs. Apple processing/availability21 is not yet verified;20 remains available.

@@ -10,17 +10,19 @@ Version21, iPhoneOS/arm64, test origins, push disabled, original profile, packag
 privacy manifests, dSYM and forbidden-file checks pass. Owned signing keychain,
 certificate/password copies are removed on both hosts; originals remain intact.
 
-Routine CI37594517335/native CI37594517196 are running on this same source.
+Routine CI37594517335/native CI37594517196 pass this same source:509 Foundation
+cases/41 skips,480 signed-app cases/41 skips, zero failures.
 Shipping API/contracts/domain/AI/migration inputs match the earlier passing deep
 source018578ef; later receipt-boundary assertions have focused disposable and full
 rehearsal evidence. This does not make the new native binary CI- or device-verified.
 
 Read-only supported Apple status confirms the expected existing app, build20 VALID,
-and no build21. No submission intent or upload21 exists. The candidate uses nest-test
+and no build21 before submission. Exactly one authorized private submission
+76186aef-2b60-4248-be9d-39f38301af32 is now queued; Apple availability is pending. The candidate uses nest-test
 and keeps push disabled. It consolidates financial review/status/header fixes and
 grocery headings/spoken details since20. Live AI, full accessibility, physical push,
 both-phone acceptance and production cutover remain open.
 
-Next steps retain this exact source: wait for current-source CI, then one
-guarded private upload only. No cloud build, purchase, invitations, public release
+Next steps inspect the same submission and supported Apple status; do not
+repeat upload because processing is pending. No cloud build, purchase, invitations, public release
 or production change occurs.
