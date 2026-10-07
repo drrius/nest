@@ -396,3 +396,10 @@ owner confirmation on the phone remains outstanding.
 
 Earlier preparations, diagnostic comparisons and native checkpoints remain in
 [6 October history](progress-history-2026-10-06.md).
+
+The retained seven-report root audit census finds all three identified contrast
+reports intersect the native tab-bar region, while four reports lack usable
+element/frame identity. This is retained geometry, not a fresh audit or finding
+closure. Further palette changes are not justified by this census; anonymous
+identity and fully visible text comparison remain required.
+[Audit census](../evidence/2026-10-07/swiftui-root-audit-census/README.md).

@@ -13,6 +13,15 @@ and 257 Nest migrations with exact financial reconciliation.
 [Current inventory](../../evidence/2026-10-07/private-function-inventory/README.md),
 [calendar trigger boundaries](../../evidence/2026-10-07/legacy-calendar-trigger-boundaries/README.md).
 
+The later expense UI now has both-member normal/maximal split-picker and exact/
+percentage review evidence. The corrected review transition also passes both-member
+maximal and Alex normal checks: Review starts at the beginning, Edit preserves raw
+fields and Back requires explicit discard. These changes are later than build19.
+Receipt-bearing/date variants, continuous long-copy reading, VoiceOver, full approval
+families and actual phones remain required; these bounded passes do not close M7.
+[Split checks](../../evidence/2026-10-07/swiftui-expense-splits/README.md),
+[review transition](../../evidence/2026-10-07/swiftui-expense-review-start/README.md).
+
 The later source-specific root audits at `e21d6b44` retain seven unsuppressed
 contrast reports across four failed full audits, with no reported noncontrast findings.
 Four reports have no identified element; earlier anonymous reports are not closed by

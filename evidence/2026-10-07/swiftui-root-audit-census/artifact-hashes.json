@@ -1,0 +1,14 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "ac91f549f425e029d414a20bb1e734bd68099916e3bd3af553a1904cdf0b6fbb"
+  },
+  {
+    "path": "census.json",
+    "sha256": "4dd734f816608fdbb48b4ff9190911c2fd9993d81b33398917fbfce657e5df6e"
+  },
+  {
+    "path": "issues.json",
+    "sha256": "0a5f7e3a800eec3a23df83d16de5b21d38a4f889ce6bab617abb6b369b31444d"
+  }
+]
