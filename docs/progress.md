@@ -66,7 +66,14 @@ inactive jobs, hashed commands/functions without exported bodies, unchanged rows
 and refusal of an already writable transaction.
 [Evidence](../evidence/2026-10-07/scheduled-writer-inventory/README.md).
 Real pg_cron execution, hosted identity and drainage remain unverified.
-This change does not require another phone build. Current-change CI is pending.
+This change does not require another phone build. Source `e724fe87` passes routine
+[CI 37615820449](https://github.com/drrius/nest/actions/runs/37615820449).
+
+CI now has a conservative documentation-only path under preparation. It retains
+formatting, relative-document link checks and its own scope tests. Application
+checks can be omitted only for docs/evidence Markdown changes whose base commit
+already passed CI; unknown/failed/pending bases and all other changed files keep
+the full checks. Four local Git/CLI cases pass; current-change CI remains pending.
 
 ## Exact blockers and owner inputs
 

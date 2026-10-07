@@ -1,6 +1,6 @@
 # Nest cutover review package
 
-Prepared4 October2026. This is the review plan for a future separately approved production transition. It is not an executable activation script, approval to change production, or a claim that release gates pass. The existing Household OS app remains in service.
+Updated 7 October 2026; originally prepared 4 October. This is the review plan for a future separately approved production transition. It is not an executable activation script, approval to change production, or a claim that release gates pass. The existing Household OS app remains in service.
 
 ## Current evidence
 
@@ -11,7 +11,7 @@ Prepared4 October2026. This is the review plan for a future separately approved 
 | Old database jobs  | Eight owner-only pause guards, lock-wait checks and pending reminder/draft/outbox preservation                                    | Actual job/function inventory, retain/replace/stop decisions and running-job drainage                     |
 | Offline transition | Fixture epoch activation fences old new commands while keeping known recorded receipts recoverable                                | Agree and record the real epoch; reconcile both phones' unknown saved work before switching               |
 | External writers   | Audited cron source inventory plus separate Edge push-dispatch consumer                                                           | Live Edge, GitHub/Vercel schedules, old clients, direct SQL and already dispatched requests               |
-| Client             | Build16 is internally available; later preferences, meal toolbar and online-preflight fixes are tested and pushed                 | Current final signed binary on both phones, Quiet/accessibility and full agreed journey acceptance        |
+| Client             | Build22 is internally available with exact-source CI, local signing/package checks and retained native journey evidence           | Current final signed binary on both phones, Quiet/accessibility and full agreed journey acceptance        |
 | Integrations       | Test API and bounded authorized/isolation checks pass                                                                             | Live AI eligibility, worker credential configuration, APNs provider and real deliveries                   |
 | Test security      | Fresh hosted public RLS, private-schema API rejection, worker client-denial grants, zero database cron jobs and advisor inventory | Privileged-function semantic review, signup/provider decisions, external writers and production inventory |
 

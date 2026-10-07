@@ -1,0 +1,3 @@
+scripts/ci-change-scope.mjs:1:30: warning effecttsgo(node-builtin-import): This module reference uses the `child_process` module, the corresponding Effect API is `CommandExecutor` from `@effect/platform`.
+scripts/ci-change-scope.mjs:2:42: warning effecttsgo(node-builtin-import): This module reference uses the `fs` module, the corresponding Effect API is `FileSystem` from `@effect/platform`.
+scripts/ci-change-scope.mjs:3:35: warning effecttsgo(node-builtin-import): This module reference uses the `path` module, the corresponding Effect API is `Path` from `@effect/platform`.

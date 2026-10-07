@@ -32,6 +32,11 @@ must all pass before catalogSnapshotComplete can be true. Missing evidence retur
 null jobs or an explicitly incomplete snapshot, never confirmed scheduling absence.
 External invokers, in-flight drainage and cutover verification always remain false.
 
+Exact source `e724fe87bc69756f22c4d8dac25a14374d1813bc` passes routine
+[CI 37615820449](https://github.com/drrius/nest/actions/runs/37615820449), including
+the focused inventory/fence selection. Native source is unchanged from the
+available build 22, so no native rebuild or submission is needed.
+
 No hosted database or production data was accessed, credentials transferred,
 worker enabled, financial event created, beta submitted or merge performed.
 The existing 311-migration rehearsal and native build evidence are retained;
