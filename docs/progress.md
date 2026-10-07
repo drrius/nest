@@ -93,10 +93,6 @@ The rerunnable comparison source `6ef3c4b7` also passes
 [CI 37623018040](https://github.com/drrius/nest/actions/runs/37623018040).
 Neither check changes the retained failures or closes M1/M9 acceptance.
 
-Earlier scheduled-inventory, conservative CI-scope and ordered variable-bill
-verification records are preserved in the [verification checkpoints](progress-history-2026-10-07-verification.md).
-Their passing evidence remains valid within its scope.
-
 Money history now groups its rows instead of inheriting page-level gaps. The
 signed baseline fails on an extra 24-point gap; corrected Money preview and full
 history journeys both pass without skips, and all three screenshots are inspected.
@@ -360,6 +356,14 @@ and nullable timestamptz expiry, with query-role SELECT permissions. No Auth row
 or tokens are read. This closes column-shape uncertainty only; Auth policy/runtime,
 worker credentials/APNs and actual phone delivery remain open. Build 23 stays
 unchanged. [Evidence](../evidence/2026-10-07/hosted-test-push-session-schema/README.md).
+
+EventKit integration source `c0c0cf95` passes routine
+[CI 37676884490](https://github.com/drrius/nest/actions/runs/37676884490) and native
+[CI 37676884473](https://github.com/drrius/nest/actions/runs/37676884473). Native CI
+reports 518 app tests, 60 guarded skips and zero failures. The actual EventKit
+case ran separately on the owned Mac simulator without skips; its CI skip does
+not replace that proof. Hosted session-schema source `72c930fa` passes
+[routine CI 37677592966](https://github.com/drrius/nest/actions/runs/37677592966).
 
 ## Exact blockers and owner inputs
 
