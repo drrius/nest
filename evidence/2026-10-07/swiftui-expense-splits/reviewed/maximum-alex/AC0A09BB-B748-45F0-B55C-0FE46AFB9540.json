@@ -1,0 +1,63 @@
+{
+  "actionRegions": [],
+  "attempt": 9,
+  "end": [24, 572],
+  "navigation": "Add expense",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 449],
+  "target": "CHF 1.01",
+  "targetElementType": "XCUIElementType(rawValue: 48)",
+  "targetFrame": {
+    "height": 63.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 235.5,
+    "maxY": 15.5,
+    "midX": 133.75,
+    "midY": -16.25,
+    "minX": 32,
+    "minY": -48,
+    "usable": true,
+    "width": 203.5
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

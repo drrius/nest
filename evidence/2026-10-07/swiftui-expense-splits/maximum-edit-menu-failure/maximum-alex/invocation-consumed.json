@@ -1,0 +1,12 @@
+{
+  "source": "3f82451ee57d1cba1b70dbf391babfb7a651a283",
+  "testBuiltSource": "3f82451ee57d1cba1b70dbf391babfb7a651a283",
+  "actor": "alex",
+  "step": "maximum",
+  "methods": [
+    "NativeExpenseSplitPickerTests/testOwnedSplitChoicesHaveFullSizedTargetsWithoutSaving",
+    "NativeExpenseSplitReviewTests/testOwnedPercentageBelongsToDisplayedPersonWithoutSaving",
+    "NativeExpenseSplitReviewTests/testOwnedExactSharesRejectMismatchAndReviewLiteralCentimesWithoutSaving"
+  ],
+  "positiveBudget": 0
+}

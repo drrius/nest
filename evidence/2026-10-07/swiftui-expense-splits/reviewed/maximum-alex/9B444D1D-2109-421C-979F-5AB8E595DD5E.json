@@ -1,0 +1,20 @@
+{
+  "scrollBars": [
+    {
+      "label": "Vertical scroll bar, 6 pages",
+      "rawFrame": {
+        "height": 510,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 372,
+        "maxY": 584,
+        "midX": 357,
+        "midY": 329,
+        "minX": 342,
+        "minY": 74,
+        "usable": true,
+        "width": 30
+      }
+    }
+  ]
+}

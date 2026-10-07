@@ -79,24 +79,20 @@ hosted read-only metadata, not live CalDAV or native EventKit evidence.
 
 ## Current native verification
 
-Expense split/payer choices now use native navigation pickers after the original
-Split trigger measured34.5pt. The corrected normal Alex picker method passes, and
-both exact/percentage normal Alex reviews now pass at8133669e, including literal
-CHF1.01/0.25/0.76 values, explicit mismatch refusal and unsent discard. Eight earlier
-failed methods remain retained across trigger/readiness/input/row-observer stages.
-The original Sam normal reviews failed before input because selecting the
-already-current payer left the native picker open. Source4a3d6d1e explicitly uses
-its visible Back control when needed, with unchanged shipping inputs. Corrected Sam
-normal exact/percentage reviews now both pass at4a3d6d1e, with completed scoped
-restoration and zero skips. Alex maximal picker fails its bounded reveal after
-all three split choices succeed; exact review reaches Exact selection and seeks
-the earlier payer in the wrong direction. The same run remains active. The two
-test callers now search earlier for Paid by, with unchanged shipping code and
-44-point requirements. Corrected maximal verification and Sam maximal remain
-pending. No financial save is selected.
-All1,141 frozen inputs, signing, scoped restoration and source limits match. Current
-routine37562483137 passes at4a3d6d1e; native37562483127 remains running. Full variants/phone
-acceptance and M7 remain open.
+Expense split/payer choices now use full-row native navigation pickers. Both
+members' normal-text picker and exact/percentage review methods pass across the
+recorded sources. Alex's maximal picker passes at3f82451e; both maximal reviews
+pass at00d65b11, including mismatched-total refusal, literal CHF1.01/0.25/0.76,
+native edit-menu paging and explicit unsent discard. The same-source Sam maximal
+picker and reviews are running. All completed batches restore both original
+scopes,64 empty journals, display settings and local semantics. Earlier trigger,
+readiness, input, picker-return and scroll/menu observer failures are retained.
+All1,141 frozen inputs/signing/products match; both00d65b11 CI workflows pass.
+CI has506 Foundation/41 explicit skips,473 signed-app/41 explicit skips and four
+Swift Testing cases with zero failures, plus formatting/limits/signing/UI compilation.
+No financial Save, inference, release or merge occurs. Broader financial variants,
+full accessibility, both phones and M7 acceptance remain open.
+[Split evidence](../evidence/2026-10-07/swiftui-expense-splits/README.md).
 
 Payment, refund and correction forms now protect unsaved fields/reviewed intent with
 the same Keep editing / explicit Discard interaction. Untouched correction compares

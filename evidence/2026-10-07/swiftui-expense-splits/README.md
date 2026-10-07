@@ -28,3 +28,41 @@ remain pending. Routine CI 37562483137 passes this source; native CI 37562483127
 This is simulator verification. It does not establish financial posting, receipt-bearing
 split variants, full accessibility or either phone's acceptance. No new TestFlight
 submission, production operation, inference or merge occurs.
+
+The original largest-text Alex batch at 4a3d6d1e finishes with zero passes, three
+failures and zero skips. All fail at bounded reveal after split selection, before
+payer selection. The target is unrealized; the retained tree is at the bottom
+Review expense row. The two test callers now search earlier for Paid by in
+3f82451e. Shipping code, expected literal shares and target limits are unchanged.
+Original scopes, 64 journals, display settings and local semantics restore.
+Corrected largest-text execution remains pending.
+
+At 3f82451e the largest-text picker passes in 194.179 seconds; both review
+methods reach payer and share fields but fail waiting for Select All. Captured
+native trees show a paginated edit menu with Select and Forward, while the field
+is keyboard-focused. The correction in f7d1990c taps the fully visible native
+Forward control before Select All. This changes only the test interaction, with
+unchanged financial math, literal expectations and shipping inputs. All scopes,
+64 journals, original settings and local semantics restore. Corrected reviews
+and Sam's largest-text checks remain pending. Both source-specific 3f82451e CI
+workflows pass; the stored excerpt distinguishes 506 Foundation/41 skips and
+473 signed-app/41 skips from the guarded UI compilation.
+
+At f7d1990c both largest-text Alex reviews successfully use Forward/Select All
+and replace the inputs with exactly 0.76 or 25. Both subsequently fail reading
+the amount because the form retains a bottom scroll offset and the absent target
+was sought downward. Both full native diagnostic trees and screenshots are retained.
+Original scopes, 64 journals, display settings and local semantics restore.
+Source 00d65b11 makes only the first amount read search earlier. Its 1,141-input
+signed preparation passes, and both Alex reviews are running. Sam's maximal
+checks remain pending. Both f7d1990c CI workflows pass; routine CI also passes
+00d65b11, whose native CI remains running.
+
+At 00d65b11 both Alex maximal review methods pass with zero failures/skips:
+exact 448.491 seconds and percentage 429.517 seconds. Both original member
+scopes, 64 journals, display settings and local semantics restore. The actual
+amount and partner-share screenshots are directly inspected; literal CHF 1.01
+and CHF 0.76/0.25 are visible at largest text. Other text can be above/below the
+viewport, so this is not full continuous review-copy or VoiceOver acceptance.
+Sam's maximal picker and both reviews are now running. Both 00d65b11 CI workflows
+pass, separately recorded from native UI execution.
