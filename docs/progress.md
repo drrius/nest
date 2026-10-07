@@ -8,12 +8,21 @@ Receipt access now has two focused API/PostgREST/PostgreSQL checks passing with
 zero failures or skips. Removing an unposted uploader blocks metadata and link
 requests using both retained tokens, while direct SQL authorization also refuses.
 A financial author's deletion remains blocked by the existing foreign key; both
-partners retain claimed-receipt access and exact history. Routine CI selects these
-two checks; the changed commit is not yet CI-verified. Managed Storage bytes,
+partners retain claimed-receipt access and exact history. Routine37597088358 passes
+at e3c7bb63, including both receipt cases with zero failures or skips. Managed Storage bytes,
 real Auth-session revocation and existing signed-link expiry remain separate gaps.
 [Receipt evidence](../evidence/2026-10-07/receipt-read-membership/README.md).
 The full phone checklist now consistently identifies available build21 and its
 included fixes, rather than directing testers to the older build19.
+
+A7 October no-generation AI credit recheck could not complete. Automatic approval
+review rejected generating a short-lived nest-test-api OIDC token, requiring
+specific authorization for that authentication material. The safer existing-team
+metadata read exposes no balance. A limited token/credit-check approval question
+is pending; no token was issued, model called, key created, budget changed or
+deployment activated. The last provider403/zero-credit observation remains
+historical, not a fresh eligibility result. APNs provider credentials and the
+earlier worker secret-transfer exception remain separate blockers.
 
 SwiftUI0.1.0/build21, exact source `5d609069`, is available for internal TestFlight
 testing. It consolidates post20 financial review viewport/controls/value/header/

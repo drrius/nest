@@ -33,7 +33,8 @@ NEST_TEST_POSTGREST_BIN=/tmp/nest-leftovers-postgrest-20261007/postgrest \
 node --test tests/integration/receipt-read-postgrest.test.mjs
 ```
 
-Routine CI now selects these two cases. Its updated-commit result remains pending
-until the workflow finishes. Auth session revocation and already-issued signed
+Routine CI37597088358 passes exact source e3c7bb63. Its selected receipt step also
+passes both cases with zero failures or skips in 5.024 seconds; the actual step
+output is retained in ci-result.json. Auth session revocation and already-issued signed
 URL revocation are not proven: links have a 60-second TTL and may remain usable
 until expiry. No hosted membership, receipt bytes or production records changed.
