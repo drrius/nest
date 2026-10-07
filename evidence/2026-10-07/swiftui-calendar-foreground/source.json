@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "path": "apps/ios/AppTests/CalendarModelTests.swift",
+      "sha256": "c990272cc3a9dd6a279d48fe6eb8d271be8d05fa3a672ef23f3b3e4b52188960"
+    },
+    {
+      "path": "apps/ios/Nest/Calendar/CalendarModel.swift",
+      "sha256": "e8746daa5adbf54ef40c9a3682b0ef06bb3277decde5f2c43a7c0cfe7c66d7d6"
+    },
+    {
+      "path": "apps/ios/Nest/Calendar/CalendarScreen.swift",
+      "sha256": "9955a2bf8c87a0b29c0e6eafa955d15d5cd5c21b5b1a1761a08f434606a5b37f"
+    },
+    {
+      "path": "apps/ios/Nest/Today/TodayCalendarSection.swift",
+      "sha256": "b0120e19c26c9525a9097120ad296e902577c0dc2e2d3df832bdd723db9edd94"
+    }
+  ],
+  "shippingSourceChanged": false,
+  "controlledDeviceReader": true
+}

@@ -26,6 +26,20 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Calendar foreground model](../../evidence/2026-10-07/swiftui-calendar-foreground/README.md)
+  now passes one signed app-hosted check with a controlled local reader. Visible
+  details clear while inactive, selection persists, and refresh reads changed
+  events without another permission request. Screen hooks are inspected only;
+  real EventKit background changes, radios and phone privacy acceptance remain open.
+
+- [Unqueued household read revocation](../../evidence/2026-10-07/swiftui-household-read-revocation/README.md)
+  now has failing-before evidence and a shipping correction. Twenty-five signed
+  native checks pass: read 403 reverifies membership, revoked access hides cached
+  household presentation and removes the active offline scope, valid members keep
+  saved data, and queued retry/account-switch behavior is preserved. Hosted
+  revocation, physical radios and uncoached daily use remain open. This fix is
+  newer than build 23 and is not yet on phones.
+
 - [Variable-rule edit and resumption](../../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md)
   now record creation, a note edit, pause, explicit prospective resume and
   cancellation through the real hosted native client. The final resumed suffix

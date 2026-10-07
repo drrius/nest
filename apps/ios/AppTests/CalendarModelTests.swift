@@ -5,6 +5,34 @@ import XCTest
 
 @MainActor
 final class CalendarModelTests: XCTestCase {
+    func testBackgroundClearingPreservesSelectionAndForegroundReadsChangedLocalEvents() throws {
+        let suite = "calendar-foreground-\(UUID())"
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        defer { defaults.removePersistentDomain(forName: suite) }
+        let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
+        let storage = CalendarSelectionStore(member: member, defaults: defaults)
+        let reader = FakeCalendarReader()
+        let model = CalendarModel(reader: reader, selectionStore: storage)
+        let day = Date(timeIntervalSince1970: 1_791_331_200)
+        model.refresh(day: day)
+        model.select("personal", enabled: true, day: day)
+        XCTAssertEqual(model.events.first?.title, "Private fixture")
+
+        model.clearVisibleDetails()
+        XCTAssertTrue(model.events.isEmpty)
+        XCTAssertTrue(model.calendars.isEmpty)
+        XCTAssertEqual(storage.read(), ["personal"])
+        reader.eventTitle = "Changed while Nest was inactive"
+        let previousReads = reader.eventReads
+
+        model.refresh(day: day)
+        XCTAssertEqual(reader.eventReads, previousReads + 1)
+        XCTAssertEqual(model.events.first?.title, "Changed while Nest was inactive")
+        XCTAssertEqual(model.selected, ["personal"])
+        XCTAssertEqual(model.calendars.map(\.id), ["personal"])
+        XCTAssertEqual(reader.permissionRequests, 0)
+    }
+
     func testTwoScreensRefreshTheLatestSelectionWithoutOverwritingEachOther() throws {
         let suite = "calendar-shared-selection-\(UUID())"
         let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
@@ -96,8 +124,13 @@ private final class FakeCalendarReader: DeviceCalendarReading {
     var lastSelection: Set<String> = []
     var lastInterval: DateInterval?
     var eventReads = 0
+    var eventTitle = "Private fixture"
+    var permissionRequests = 0
 
-    func requestAccess() async throws { access = .denied }
+    func requestAccess() async throws {
+        permissionRequests += 1
+        access = .denied
+    }
     func calendars() -> [DeviceCalendar] { available }
     func events(in interval: DateInterval, calendars: Set<String>) -> [DeviceCalendarEvent] {
         eventReads += 1
@@ -106,7 +139,7 @@ private final class FakeCalendarReader: DeviceCalendarReading {
         guard calendars.contains("personal") else { return [] }
         return [
             .init(
-                id: "fixture", title: "Private fixture", calendar: "Personal", start: interval.start,
+                id: "fixture", title: eventTitle, calendar: "Personal", start: interval.start,
                 end: interval.end, allDay: true, location: nil)
         ]
     }

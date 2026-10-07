@@ -332,6 +332,18 @@ unchanged. [Evidence](../evidence/2026-10-07/swiftui-household-read-revocation/R
 Receipt-source audit `05a05085` passes
 [routine CI 37669881172](https://github.com/drrius/nest/actions/runs/37669881172).
 
+A delegated Calendar lifecycle check now passes on a fresh signed iPhone
+simulator: inactive clearing removes visible local details, preserves selection,
+and foreground refresh rereads changed events without another permission request.
+The controlled reader isolates native model behavior; inspected scene hooks are
+not counted as rendered execution. Real EventKit changes/backgrounding and both
+phones remain open. Build 23 is unchanged; no release is needed for this test.
+[Evidence](../evidence/2026-10-07/swiftui-calendar-foreground/README.md).
+
+Household-read fix `41e1f316` passes
+[routine CI 37672466304](https://github.com/drrius/nest/actions/runs/37672466304).
+Its native CI remains in progress; the new Calendar test is locally verified only.
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
