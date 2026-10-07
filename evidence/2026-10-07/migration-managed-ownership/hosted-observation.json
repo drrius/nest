@@ -1,0 +1,99 @@
+{
+  "project": "tkjixmujjoustdiedfmw",
+  "observedOn": "2026-10-07",
+  "catalogOnly": true,
+  "dataRead": false,
+  "runtimeRole": "postgres",
+  "schemas": [
+    {
+      "schema": "auth",
+      "owner": "supabase_admin",
+      "usage": true,
+      "create": false,
+      "runtimeInheritsOwner": false,
+      "runtimeCanSetOwner": false
+    },
+    {
+      "schema": "storage",
+      "owner": "supabase_admin",
+      "usage": true,
+      "create": false,
+      "runtimeInheritsOwner": false,
+      "runtimeCanSetOwner": false
+    }
+  ],
+  "tables": [
+    {
+      "schema": "auth",
+      "table": "sessions",
+      "owner": "supabase_auth_admin",
+      "rls": true,
+      "forceRLS": false,
+      "runtimeInheritsOwner": false,
+      "runtimeCanSetOwner": false,
+      "privileges": {
+        "SELECT": true,
+        "INSERT": true,
+        "UPDATE": true,
+        "DELETE": true,
+        "TRUNCATE": true,
+        "REFERENCES": true,
+        "TRIGGER": true
+      }
+    },
+    {
+      "schema": "auth",
+      "table": "users",
+      "owner": "supabase_auth_admin",
+      "rls": true,
+      "forceRLS": false,
+      "runtimeInheritsOwner": false,
+      "runtimeCanSetOwner": false,
+      "privileges": {
+        "SELECT": true,
+        "INSERT": true,
+        "UPDATE": true,
+        "DELETE": true,
+        "TRUNCATE": true,
+        "REFERENCES": true,
+        "TRIGGER": true
+      }
+    },
+    {
+      "schema": "storage",
+      "table": "buckets",
+      "owner": "supabase_storage_admin",
+      "rls": true,
+      "forceRLS": false,
+      "runtimeInheritsOwner": false,
+      "runtimeCanSetOwner": false,
+      "privileges": {
+        "SELECT": true,
+        "INSERT": true,
+        "UPDATE": true,
+        "DELETE": true,
+        "TRUNCATE": true,
+        "REFERENCES": true,
+        "TRIGGER": true
+      }
+    },
+    {
+      "schema": "storage",
+      "table": "objects",
+      "owner": "supabase_storage_admin",
+      "rls": true,
+      "forceRLS": false,
+      "runtimeInheritsOwner": false,
+      "runtimeCanSetOwner": false,
+      "privileges": {
+        "SELECT": true,
+        "INSERT": true,
+        "UPDATE": true,
+        "DELETE": true,
+        "TRUNCATE": true,
+        "REFERENCES": true,
+        "TRIGGER": true
+      }
+    }
+  ]
+}

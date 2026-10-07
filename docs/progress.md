@@ -300,6 +300,16 @@ confirmation/dismissal/adoption evidence instead of scheduling repeated writes.
 Later Quiet presentation, private live approvals, scheduling and phones retain
 their separate acceptance requirements.
 
+The migration fixture now models the observed separate Auth/Storage schema and
+table owners, explicit runtime data grants and RLS. Catalog-only nest-test reads
+inspect no users, sessions, objects or credentials. Nine focused database checks
+pass; the full 54-legacy/257-native rehearsal completes with both financial and
+receipt reconciliations passing. Local managed-DDL/role refusal is verified, but
+hosted administrative hooks and full permission parity are not claimed. Provider
+interfaces, remaining grants, private semantics, external writers and production
+rehearsal remain open. Build 23 is unchanged; current-source routine CI is pending.
+[Evidence](../evidence/2026-10-07/migration-managed-ownership/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.

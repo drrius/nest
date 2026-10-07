@@ -1,3 +1,8 @@
+import {
+  prepareManagedFixtureOwnership,
+  verifyManagedFixtureOwnership,
+} from "./fixture-managed-ownership.mjs";
+
 export function captureFixtureOwner(db) {
   return JSON.parse(
     db.sql(`select jsonb_build_object(
@@ -12,6 +17,7 @@ export function configureFixtureRuntimeOwner(db) {
   const before = captureFixtureOwner(db);
   if (!before.superuser || !before.bypassRLS)
     throw new Error("Disposable bootstrap must have its expected administrative role");
+  const managedTables = prepareManagedFixtureOwnership(db, before.name);
   const identifier = `"${before.name.replaceAll('"', '""')}"`;
   db.sql(
     `grant usage,create on schema public to ${identifier};
@@ -32,7 +38,11 @@ export function configureFixtureRuntimeOwner(db) {
     after,
     roleFlagsMatchHostedObservation: true,
     hostedPermissionParityVerified: false,
-    simulated: ["Auth/Storage ownership and grants", "API-role membership for fixture actors"],
+    managedOwnership: managedTables ? verifyManagedFixtureOwnership(db) : null,
+    simulated: [
+      "Auth/Storage shapes, interfaces and remaining grants",
+      "API-role membership for fixture actors",
+    ],
   };
 }
 export function createFixtureMigrationOwner(bootstrap) {
