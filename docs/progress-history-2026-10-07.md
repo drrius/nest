@@ -109,3 +109,24 @@ an unchanged form uses the native Profile BackButton rather than the draft Back
 label. The final observer now selects/measures that native back control. Fresh
 hosted profiles/cooking/receipts remain exact and restoration passes. The failed
 method is retained and not counted as a full pass; corrected execution is pending.
+
+## Optional setup preparation and failed observations
+
+Fresh source `dad2f4be` compiles 1,136 inputs and signed UI/SDK products. Both actual
+native GET-only setup-status reads and both full normal-text setup journeys pass.
+The largest-text Alex method fails before a handoff: the food setup link includes
+its entire explanation and measures 861 points, exceeding the 510-point usable
+viewport. Twenty-four bounded pans cannot expose the whole action. Its complete
+geometry, screenshot and failed method are retained; no Save or grant occurs.
+Both scopes/64 journals/display settings/local privacy and first-use choices
+restore. Fresh food/cooking/notification records and receipts remain exact.
+The setup explanations are now separate static/footer text; interactive labels
+retain titles and saved-choice status. Fonts and wording are preserved. Formatting
+and source limits pass; fresh native verification of this layout is pending.
+At `0f57648a`, the largest-text food action fits, opens and exposes the complete
+private-preference explanation through overlapping reading. The method then fails
+when it waits for an offscreen, unrealized cooking row before revealing it.
+The observer now reveals each setup row before checking its exact configured
+status. No further shipping behavior changes. Preferences/receipts remain exact,
+and scopes/64 journals/settings/local first-use/privacy semantics restore. The
+failed method is retained; corrected complete/maximal journeys are still pending.

@@ -64,7 +64,7 @@ files against the reviewed layout and build 19, and directly inspects all four
 retained normal-dark root captures together. The header, 20-point horizontal and 14-point top
 insets, and 24-point section spacing match. This recheck compares source and existing images,
 not a new simulator run or phone acceptance.
-[Current layout comparison](../evidence/2026-10-05/swiftui-root-layout/current-layout-revalidation-20261006.json).
+[Current layout comparison](../evidence/2026-10-05/swiftui-root-layout/current-layout-revalidation-20261007.json).
 
 The fresh preparation at `55d25d94` fails during Swift compilation of
 three diagnostic dictionaries before any SDK, API or UI execution. The 1,127-input
@@ -285,24 +285,18 @@ eight protected household/financial fingerprints are captured. The focused setup
 service test passes configured-only output, actor/tenant filters and unknown
 incomplete reads. Two opt-in native sources pass configured formatting/limits;
 no native method has run. [Preparation](../evidence/2026-10-07/swiftui-native-setup/prepared.json).
-Fresh source `dad2f4be` compiles 1,136 inputs and signed UI/SDK products. Both actual
-native GET-only setup-status reads and both full normal-text setup journeys pass.
-The largest-text Alex method fails before a handoff: the food setup link includes
-its entire explanation and measures 861 points, exceeding the 510-point usable
-viewport. Twenty-four bounded pans cannot expose the whole action. Its complete
-geometry, screenshot and failed method are retained; no Save or grant occurs.
-Both scopes/64 journals/display settings/local privacy and first-use choices
-restore. Fresh food/cooking/notification records and receipts remain exact.
-The setup explanations are now separate static/footer text; interactive labels
-retain titles and saved-choice status. Fonts and wording are preserved. Formatting
-and source limits pass; fresh native verification of this layout is pending.
-At `0f57648a`, the largest-text food action fits, opens and exposes the complete
-private-preference explanation through overlapping reading. The method then fails
-when it waits for an offscreen, unrealized cooking row before revealing it.
-The observer now reveals each setup row before checking its exact configured
-status. No further shipping behavior changes. Preferences/receipts remain exact,
-and scopes/64 journals/settings/local first-use/privacy semantics restore. The
-failed method is retained; corrected complete/maximal journeys are still pending.
+Fresh source `b7aea8ba` compiles 1,136 frozen inputs. Both native GET-only
+setup-status reads pass. Both complete largest-text/dark setup journeys now pass,
+including food, cooking, Calendar, notifications, Get started and return to Today.
+Setup explanations sit outside tappable labels so whole actions remain visible.
+Both revised normal-text journeys and final canonical native reads pass. All eight
+methods have zero failures/skips. Canonical statuses and independently read preference
+records/receipts plus eight protected fingerprints remain exact. Routine37551574018
+and native37551574034 pass at this source, with zero failures.
+[Setup evidence](../evidence/2026-10-07/swiftui-native-setup/README.md).
+Each completed method restores both original scopes, 64 empty journals, display
+settings and local privacy/first-use choices. No Save or permission grant occurs.
+Earlier failures remain in [7 October history](progress-history-2026-10-07.md).
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

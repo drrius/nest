@@ -1,0 +1,19 @@
+{
+  "source": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
+  "routine": {
+    "run": 37551574018,
+    "conclusion": "success"
+  },
+  "native": {
+    "run": 37551574034,
+    "conclusion": "success",
+    "foundationExecuted": 506,
+    "foundationSkipped": 41,
+    "signedAppExecuted": 473,
+    "signedAppSkipped": 41,
+    "swiftTestingPassed": 4,
+    "failures": 0,
+    "decodedLogSHA256": "0fd4216f13e0b57353cf7cf3961217eb5520de4a0a737e04b9e9942be095bd96"
+  },
+  "hostedMethodsRunInRoutineCI": false
+}

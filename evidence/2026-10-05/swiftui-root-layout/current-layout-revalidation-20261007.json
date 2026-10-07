@@ -1,0 +1,50 @@
+{
+  "sourceCommit": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
+  "checkedAtUTC": "2026-10-07T00:39:40.037890+00:00",
+  "layout": {
+    "horizontalInsetPoints": 20,
+    "topInsetPoints": 14,
+    "headerToContentSpacingPoints": 24
+  },
+  "files": [
+    {
+      "path": "apps/ios/Nest/QuietTabHeader.swift",
+      "sha256": "928a931abb3c0709b4688defe81ad2bccc20c3f5317dab0983a004115ed5247a",
+      "matchesBuild19": true
+    },
+    {
+      "path": "apps/ios/Nest/QuietTabLayout.swift",
+      "sha256": "f00b7a5d9b3340cf4d1d1f9309c36b8972849f68a605ccc046af37c35656d5a0",
+      "matchesBuild19": false
+    },
+    {
+      "path": "apps/ios/Nest/Today/TodayHeader.swift",
+      "sha256": "1d67ce3f58293d208bef7dab18481a65a7698d6c02547ecaa742150aa28260c2",
+      "matchesBuild19": true
+    },
+    {
+      "path": "apps/ios/Nest/Today/TodayScreen.swift",
+      "sha256": "e1c50fb45495c13406da8869abeee8ea8fb3cc4a7823e99805d54e6ef811d85e",
+      "matchesBuild19": false
+    },
+    {
+      "path": "apps/ios/Nest/Meals/MealWeekScreen.swift",
+      "sha256": "688ad6d836790445fe2a2e6df6bcb4fe33e0cf50c13e86a165d6134e2e5f5921",
+      "matchesBuild19": false
+    },
+    {
+      "path": "apps/ios/Nest/Calendar/CalendarScreen.swift",
+      "sha256": "9955a2bf8c87a0b29c0e6eafa955d15d5cd5c21b5b1a1761a08f434606a5b37f",
+      "matchesBuild19": false
+    },
+    {
+      "path": "apps/ios/Nest/Money/MoneyScreen.swift",
+      "sha256": "00919feb1740218720e37af653d34495b15b4688a1456bb66cb3fdd2a4b923a8",
+      "matchesBuild19": false
+    }
+  ],
+  "postBuild19RootChange": "Hide the bottom scroll edge effect on iOS 26. Header and content inset values are unchanged.",
+  "nativeEvidence": "README.md",
+  "newRootExecution": false,
+  "phoneAcceptanceVerified": false
+}

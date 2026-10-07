@@ -1,0 +1,63 @@
+{
+  "actionRegions": [],
+  "attempt": 1,
+  "end": [24, 245.75],
+  "navigation": "_TtGC7SwiftUI32NavigationStackHosting",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 449],
+  "target": "iOS calls this Full Access. Nest uses it only to read your calendars.",
+  "targetElementType": "XCUIElementType(rawValue: 48)",
+  "targetFrame": {
+    "height": 348.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 316.5,
+    "maxY": 706.5,
+    "midX": 178.25,
+    "midY": 532.25,
+    "minX": 40,
+    "minY": 358,
+    "usable": true,
+    "width": 276.5
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "source": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
+  "testBuiltSource": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
+  "attempted": true,
+  "summaryRecorded": true,
+  "restorationPassed": true,
+  "methodPassed": true,
+  "explicitSaveCalls": 0,
+  "authorizedSaveBudget": 0,
+  "apiRequestsMeasured": false
+}

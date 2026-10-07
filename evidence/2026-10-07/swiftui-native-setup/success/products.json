@@ -1,0 +1,21 @@
+{
+  "source": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
+  "inputs": 1136,
+  "binarySHA256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "ae41e8b083ddcbd688c4138cac85716c556c0afdc1c8f56bb9d91bc847a859a4",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "31f3d8783e5d3df38cd27761bf57d1a3bea270d40bfdc48bf386b4d066d57c88",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "6bcfeed213e18311f56179a8b9a28b7f84acf04dffc19f5c4755aeb1eb3ae489"
+  },
+  "selectedProducts": {
+    "TestHostPath": "/private/tmp/nest-native-setup-status-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+    "TestBundlePath": "/private/tmp/nest-native-setup-status-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+    "UITargetAppPath": "/private/tmp/nest-native-setup-status-ui-20261007/Build/Products/Debug-iphonesimulator/Nest.app"
+  },
+  "originsVerified": true,
+  "pushEnabled": false,
+  "version": "19",
+  "compileLines": [
+    "SwiftCompile normal arm64 Compiling\\ NativeReminderStepperTargetTests.swift,\\ NativeRenewalCrudTests.swift,\\ NativeRenewalOfflineViewTests.swift,\\ NativeSetupJourneyTests.swift,\\ NotificationDraftNavigationTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeReminderStepperTargetTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeRenewalCrudTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeRenewalOfflineViewTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NativeSetupJourneyTests.swift /tmp/nest-current-qa-82a/apps/ios/UITests/NotificationDraftNavigationTests.swift (in target 'NestAccessibilityTests' from project 'Nest')",
+    "SwiftCompile normal arm64 /tmp/nest-current-qa-82a/apps/ios/UITests/NativeSetupJourneyTests.swift (in target 'NestAccessibilityTests' from project 'Nest')"
+  ]
+}

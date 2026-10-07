@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3E8EA958-F7C3-4A0D-A877-BB11676C2999.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Safe setup GET status trace_0_6BAD4C95-4D40-4AEC-8DA5-36A94518274C.json",
+        "timestamp": 1791333723.463
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "79C2D229-D85B-43F9-9C53-D23728CCBD76.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned native setup status canonical read_0_F1BA545A-1EF4-4F5F-9F74-B751BAEDB81D.json",
+        "timestamp": 1791333723.458
+      }
+    ],
+    "testIdentifier": "HostedSetupJourneyReadTests/testOwnedSetupStatusReadOnly()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/HostedSetupJourneyReadTests/testOwnedSetupStatusReadOnly"
+  }
+]
