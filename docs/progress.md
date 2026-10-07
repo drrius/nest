@@ -69,6 +69,14 @@ Six focused inventory/API-fence tests pass, including actual inherited calls and
 [Current inventory](../evidence/2026-10-07/private-function-inventory/README.md).
 No hosted mutation, production migration, worker activation, release or merge occurs.
 
+Two retained private calendar triggers now pass 27 real full-chain cases, covering
+both-member local edits/pending sync, lease and acknowledgment refusal, direct foreign
+updates excluded by RLS, ordinary trigger-call rejection and anonymous schema denial.
+Both exact hosted body hashes match the sole source definitions; original calendar
+and full financial reconciliation remain unchanged. This is disposable SQL plus
+hosted read-only metadata, not live CalDAV or native EventKit evidence.
+[Trigger evidence](../evidence/2026-10-07/legacy-calendar-trigger-boundaries/README.md).
+
 ## Current native verification
 
 The latest header and padding report is addressed by the shared four-tab layout

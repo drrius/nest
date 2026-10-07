@@ -1,5 +1,6 @@
 import { verifyLegacyJobPause } from "./legacy-job-pause-rehearsal.mjs";
 import { verifyLegacyBoundaries } from "./legacy-boundary-rehearsal.mjs";
+import { verifyLegacyCalendarTriggerBoundaries } from "./legacy-calendar-trigger-boundaries.mjs";
 import { verifyLegacyAttachmentBoundaries } from "./legacy-attachment-boundaries.mjs";
 import { verifyLegacyReceiptParents } from "./legacy-receipt-parent-boundaries.mjs";
 import { verifyLegacyRoutineBoundaries } from "./legacy-routine-boundaries.mjs";
@@ -148,6 +149,7 @@ try {
   report.legacyMealBoundaries = verifyLegacyMealBoundaries(db);
   report.legacyShoppingBoundaries = verifyLegacyShoppingBoundaries(db);
   report.legacyCalendarBoundaries = verifyLegacyCalendarBoundaries(db);
+  report.legacyCalendarTriggerBoundaries = verifyLegacyCalendarTriggerBoundaries(db);
   report.legacyContextBoundaries = verifyLegacyContextBoundaries(db);
   report.legacyRecurringBoundaries = verifyLegacyRecurringBoundaries(db);
   report.legacyNotificationBoundaries = verifyLegacyNotificationBoundaries(db);
