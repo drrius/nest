@@ -684,6 +684,14 @@ shared claimed financial attachment access and partner cleanup refusal. This
 bounds those policies; broader trusted upload/Storage/external writer acceptance
 remains open. No hosted object mutation occurs.
 
+Receipt object mutation checks now pass12 direct metadata/path UPDATE refusals
+across uploader/partner/foreign actors before and after expense claim, with exact
+object/finance/registry preservation. The final311-migration rehearsal passes22
+attachment boundary cases, including six new native/legacy mutation probes, and
+exact financial/receipt reconciliation. The helper extraction satisfies function
+limits. Managed Storage bytes, privileged writers and production remain open.
+[Mutation boundary](../evidence/2026-10-07/receipt-object-mutation-boundary/README.md).
+
 Current hosted table metadata also confirms no public/private/storage views and
 no direct client SELECT grant on any private table. Private function semantics
 and service writers remain separate open boundaries.

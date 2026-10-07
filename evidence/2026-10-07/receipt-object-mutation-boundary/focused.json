@@ -1,0 +1,13 @@
+{
+  "focusedCases": 1,
+  "mutationRefusals": 12,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 1350.995427,
+  "sourceSHA256": "989af0bb15f219eff4456ab2716af1e7470638d7926901190d1bb78839a0ef16",
+  "objectMetadataExact": true,
+  "financialAndUploadRegistryExact": true,
+  "disposableOnly": true,
+  "storageBytesVerified": false,
+  "trustedServiceWriterVerified": false
+}

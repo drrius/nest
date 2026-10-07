@@ -73,6 +73,7 @@ export function verifyLegacyAttachmentBoundaries(db) {
   check("partner explicit native cleanup is refused", run(db, 2, begin(native)), "");
   check("foreign explicit native cleanup is refused", run(db, 9511, begin(native)), "");
   check("native owner explicit cleanup succeeds", run(db, 1, begin(native)), native);
+  verifyObjectMutationRefusal(db, check);
   const deleting = `set local request.jwt.claim.sub='${id(1)}';
     do $begin$ begin perform public.begin_household_attachment_cleanup('${native}'); end $begin$;`;
   check("partner cannot retry native deletion", JSON.parse(run(db, 2, sweep, deleting)), [legacy]);
@@ -125,4 +126,23 @@ export function verifyLegacyAttachmentBoundaries(db) {
     disposableOnly: true,
     storageBytesVerified: false,
   };
+}
+
+function verifyObjectMutationRefusal(db, check) {
+  for (const actor of [1, 2, 9511]) {
+    for (const target of [native, legacy]) {
+      check(
+        `actor ${actor} cannot rewrite object identity or metadata ${target}`,
+        run(
+          db,
+          actor,
+          `with changed as (update storage.objects
+          set name='${foreign}',metadata='{"mimetype":"application/pdf","size":1}'::jsonb
+          where bucket_id='household-files' and name='${target}' returning id)
+          select count(*) from changed`,
+        ),
+        "0",
+      );
+    }
+  }
 }

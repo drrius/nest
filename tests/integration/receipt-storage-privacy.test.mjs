@@ -38,6 +38,42 @@ function rejectPartnerClaim(f, path) {
   );
   assert.equal(visible(f, 2, path), "0");
 }
+
+function rejectDirectObjectChanges(f, path) {
+  const history = () =>
+    f.db.sql(`select jsonb_build_object(
+    'events',(select jsonb_agg(to_jsonb(e) order by id) from public.financial_events e),
+    'ledger',(select jsonb_agg(to_jsonb(l) order by id) from public.ledger_entries l),
+    'uploads',(select jsonb_agg(to_jsonb(u) order by path) from public.household_attachment_uploads u))`);
+  const retained = history();
+  const before = f.db.sql(
+    `select to_jsonb(o) from storage.objects o where bucket_id='household-files' and name='${path}'`,
+  );
+  for (const actor of [1, 2, 3]) {
+    for (const change of [
+      'metadata=\'{"mimetype":"application/pdf","size":1}\'::jsonb',
+      `name='${id(20)}/receipts/${id(999)}.jpg'`,
+    ]) {
+      assert.equal(
+        f.db.sql(
+          as(
+            actor,
+            `with changed as (update storage.objects set ${change} where name='${path}' returning id)
+            select count(*) from changed`,
+          ),
+        ),
+        "0",
+      );
+    }
+  }
+  assert.equal(
+    f.db.sql(
+      `select to_jsonb(o) from storage.objects o where bucket_id='household-files' and name='${path}'`,
+    ),
+    before,
+  );
+  assert.equal(history(), retained);
+}
 test("Storage RLS keeps unposted native receipt bytes private and shares only financial attachments", async (t) => {
   const f = await postgrestFixture(t, [
     ...files,
@@ -53,12 +89,14 @@ test("Storage RLS keeps unposted native receipt bytes private and shares only fi
     ["1", "0", "0"],
   );
   assert.equal(f.db.sql(`set role anon; select count(*) from storage.objects`), "0");
+  rejectDirectObjectChanges(f, first.path);
   rejectPartnerClaim(f, first.path);
   f.db.sql(as(1, save(200, payload({ receiptPath: first.path }))));
   assert.deepEqual(
     [1, 2, 3].map((actor) => visible(f, actor, first.path)),
     ["1", "1", "0"],
   );
+  rejectDirectObjectChanges(f, first.path);
   const second = reserve(f, 101);
   f.db.sql(
     as(
