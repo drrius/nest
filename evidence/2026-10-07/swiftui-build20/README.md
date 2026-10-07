@@ -32,3 +32,13 @@ Apple status check confirms20 absent and19 VALID/IN_BETA_TESTING. The single-upl
 controller is prepared with exact candidate CI/source/hash/Info.plist and absence
 guards; it has not run and no submission intent exists. No new EAS cloud build is
 used. Candidate CI remains live, so source and package are held stable.
+
+Deep37577691207 completes successfully at018578ef:23 HTTP/database journey cases,
+50 conflict/recovery cases and1,272 isolated database/RLS cases all pass, zero
+failures/skips. The candidate has identical apps/api, packages, Supabase,
+tools/migration and database/integration test inputs. It differs in native proposal
+staging/tests/version and docs. This provides backend/database evidence for those
+unchanged inputs, not candidate native execution or hosted production acceptance.
+
+Candidate routine37578558002 completes successfully at exact0ba4a5c3. Candidate
+native37578558027 remains live in signed app tests; private upload is still gated.

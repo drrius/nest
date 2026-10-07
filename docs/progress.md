@@ -40,6 +40,12 @@ Candidate20's copied IPA matches its signed hash. The supported Apple read verif
 but not invoked; no submission intent exists. Candidate routine/native and deep
 CI remain live, so the source/package are held stable without another push.
 
+Deep37577691207 now passes23 HTTP/database journeys,50 conflict/recovery and1,272
+database/RLS cases, zero failures/skips. Candidate20 backend/migration/test inputs
+are identical; its changed native proposal code still awaits candidate-native CI.
+The [short build20 phone pass](native-rewrite/build20-first-phone-pass.md) is prepared
+for use only after actual TestFlight availability. No upload is inferred.
+
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
 Expense and replacement-expense correction approval screens now read exact
