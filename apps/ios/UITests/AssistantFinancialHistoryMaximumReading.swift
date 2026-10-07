@@ -210,9 +210,9 @@ struct AssistantFinancialHistoryMaximumReading {
     }
 
     private func observedScrollBars() -> [CGRect] {
-        let candidates = app.otherElements.allElementsBoundByIndex.filter {
-            $0.exists && $0.label.hasPrefix("Vertical scroll bar")
-        }
+        let candidates = app.otherElements
+            .matching(NSPredicate(format: "label BEGINSWITH %@", "Vertical scroll bar"))
+            .allElementsBoundByIndex.filter { $0.exists }
         attach(
             ["scrollBars": candidates.map { ["label": $0.label, "rawFrame": diagnostic($0.frame)] }],
             name: "Raw scroll-indicator geometry before recorded-history pan")

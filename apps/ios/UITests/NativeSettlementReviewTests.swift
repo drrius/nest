@@ -63,6 +63,9 @@ final class NativeSettlementReviewTests: XCTestCase {
         try reader.requireTarget(review)
         review.tap()
         let amount = reader.element("Amount, CHF 0.01")
+        if ProcessInfo.processInfo.environment["NEST_QA_MAXIMUM_PAYMENT_READING"] == "20261007-no-save" {
+            try reader.reveal(amount)
+        }
         let ready = amount.waitForExistence(timeout: 15)
         reader.capture(amount, name: "Payment value row contrast before recording")
         XCTAssertTrue(ready)
