@@ -38,6 +38,15 @@ signed-app methods without skips on a separate owned simulator; it is shut down
 afterward and both preserved QA app origins remain correct. This is native
 session/SQLite evidence, not rendered or physical-phone account switching.
 
+The remaining manual-link rendering preflight finds no eligible current fixture:
+the retained manual rule is paused with next due11 October, the active reminder
+rule starts1 November, and no recurring.link-cycle approval exists. No rule is
+activated/backdated and no consumed history is rewritten. One read-only inventory
+query initially used nonexistent created_at, then succeeds ordered by id. This
+privileged inventory is fixture eligibility evidence only. The pending-review
+integration test title is corrected to identify its test-only protocol adapter;
+it must not be reported as native UI or real model generation.
+
 Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
 and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior

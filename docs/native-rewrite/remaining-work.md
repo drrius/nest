@@ -2,6 +2,24 @@
 
 Current private candidate: **0.1.0/build19**, source `484e5feb`, Apple VALID/IN_BETA_TESTING internally and unexpired after one finished private submission. Candidate routine CI, identical-native-input CI and Mac signing/package checks pass. Build19 retains the consistent four-tab headers/insets and Quiet Calendar cards, and adds the later draft/reminder/recipe/renewal fixes. [Evidence](../../evidence/2026-10-06/swiftui-build19/README.md), [short phone pass](build19-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
 
+Latest approval checkpoint, 7 October: expense and replacement-expense correction
+reviews load exact category names. Shared native staging requires current category
+metadata for approval, while decline and saved-result recovery remain available.
+Twelve focused category cases pass, including delayed replies after switching
+accounts. Actual normal-text expense review/Cancel, partner list privacy and one
+explicit Decline/Done pass; the declined audit row is retained. Earlier six-family
+consent and representative maximum-text checks are already recorded and must not
+be replayed as new coverage. Rendered category outage/retry, new correction-category
+presentation, settlement/manual-cycle/legacy branches, hosted races and phones
+remain. [Current evidence](../../evidence/2026-10-07/swiftui-financial-category-preflight/README.md).
+
+The current manual-link fixture cannot supply a pending approval: its retained
+rule is paused, next due11 October, and no recurring.link-cycle approval exists.
+The only active fixture rule starts1 November. Do not activate/backdate retained
+rules or rewrite consumed receipts merely to satisfy this test. A separately
+prepared prospective fixture or later eligible cycle is needed. The privileged
+read-only inventory proves this fixture condition, not client authorization.
+
 Current migration-security status: bounded full-chain SQL evidence now covers all
 60 retained public definers and two invokers. The counts of 49 or 50 remaining
 functions in the dated checkpoints below are historical. The 219 private-function

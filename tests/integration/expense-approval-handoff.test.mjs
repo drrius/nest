@@ -58,7 +58,7 @@ async function proposal(f, config) {
     messages: [],
   });
 }
-test("real AI proposal card opens native review with category and records only after exact explicit confirmation", async (t) => {
+test("SDK proposal passes category and exact confirmation through the test-only protocol adapter", async (t) => {
   const f = await postgrestFixture(t, [
     ...files,
     "tests/integration/food-postgrest.sql",
