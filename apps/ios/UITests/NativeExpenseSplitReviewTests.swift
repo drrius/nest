@@ -58,7 +58,12 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
         if !previous.isEmpty && previous != placeholder {
             field.press(forDuration: 1.2)
             let select = app.descendants(matching: .any).matching(identifier: "Select All").firstMatch
-            XCTAssertTrue(select.waitForExistence(timeout: 15))
+            if !select.waitForExistence(timeout: 2) {
+                let forward = app.buttons["Forward"]
+                try reader(app).requireTarget(forward, bounds: app.frame)
+                forward.tap()
+            }
+            XCTAssertTrue(select.waitForExistence(timeout: 10))
             XCTAssertTrue(select.isHittable && app.frame.contains(select.frame))
             select.tap()
         }
