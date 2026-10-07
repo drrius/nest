@@ -1,0 +1,16 @@
+{
+  "runtime": "Deno2.9.6",
+  "passed": 3,
+  "failed": 0,
+  "durationMs": 268,
+  "tests": [
+    "Maximum-size/progressive JPEG decode and trailing-data refusal",
+    "Exact device subscription selection and missing-target refusal",
+    "Ordinary member-wide selection"
+  ],
+  "httpProviderCalls": 0,
+  "databaseWrites": 0,
+  "rawLogSHA256": "9fd80bbd60f16bdf60972c3c52ce2a6b6b2406b93fb47bb1d6ea5135526b9feb",
+  "command": "deno test --no-config --no-lock --node-modules-dir=none --allow-read=/home/drrius/Work/household-os/tests/fixtures/attachments <two audited test paths>",
+  "originalRepoDependenciesUnchanged": true
+}

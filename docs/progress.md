@@ -802,3 +802,12 @@ The one-use submit controller is prepared but uninvoked. Current-source routine/
 native CI remain running; no upload21 or Apple acceptance is claimed.
 
 Build21 routine CI37594517335 passes the exact frozen source. Native37594517196 remains live. Keep that candidate unchanged; inspect the same native handle before invoking the one-use private submission controller. No new upload is authorized by a pending check.
+
+Legacy Edge source review now accounts for reserved attachment insertion and Web
+Push claim/send/finalization/invalid-device updates. Three focused existing Deno
+tests pass without provider calls or database writes; JPEG decoding is actual,
+device-selection checks use an injected database client. Exact source hashes are
+retained. Initial tool workspace mutation is removed and package content restored.
+Hosted deployment identity, destination behavior, in-flight uploads/deliveries and
+external drainage remain open. No legacy endpoint is invoked or source migrated.
+[Writer boundaries](native-rewrite/legacy-edge-writer-boundaries.md).

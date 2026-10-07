@@ -17,6 +17,11 @@ Seven registrations appear in legacy `20260812090000_notifications_realtime.sql`
 
 ## Required hosted evidence
 
+The [legacy Edge writer source audit](legacy-edge-writer-boundaries.md) now records
+attachment insertion and Web Push dispatch effects, exact source hashes and three
+focused local tests. It does not establish hosted deployment identity, actual
+delivery or external request drainage.
+
 Under separately approved access, inventory every actual scheduled job, including unknown names and non-cron invokers. Record job identity, active state, database role, schedule and a digest of the command; inspect command contents securely without copying embedded credentials into progress logs. Compare the live function definitions with the audited migrations. An absent extension or suppressed migration exception is missing evidence, not proof that scheduling is disabled.
 
 For each selected job, record the approved retain/replace/stop decision, owner, affected tables/outboxes, replacement behavior and unresolved records. Stop future scheduling only after authorization. Then establish that running transactions, claimed work and externally dispatched requests have completed or have an explicit reconciliation outcome. A job being inactive does not prove drainage. Do not delete history or mark uncertain delivery successful to clear this gate.
