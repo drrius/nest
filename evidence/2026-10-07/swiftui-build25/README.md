@@ -22,9 +22,9 @@ occurred. [Declaration rationale](privacy-declaration-note.md).
 Focused local checks pass: six Mac diagnostic Foundation cases, two signed native
 Money account cases, seventeen API/SDK diagnostic+Money cases. Earlier API worker
 additionally records27request/identity/adapter/Money and14SDK/assistant/meal checks.
-Exact-source [routine CI](routine-ci.json) passes. Native CI37686705773 is
-still running. Private testing was explicitly authorized and locally verified;
-no merge is claimed while native CI remains pending.
+Exact-source [routine CI](routine-ci.json) and [native CI](native-ci.json) pass.
+Private testing was explicitly authorized and locally verified. Submission
+preceded the later CI result; no repository merge is claimed here.
 These counts do not prove live AI, physical-phone behavior or full acceptance.
 
 [Apple preflight](apple-preflight.json) confirms the correct AppStoreConnect app
