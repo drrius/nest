@@ -1,0 +1,46 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "9A315D76-1A57-45DE-8BEB-6A71CD39D228",
+        "deviceName": "Nest revoked read 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791399562.155,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791399526.374,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"ready(Nest.VerifiedMember(userId: 41EA3E74-677A-4825-96A1-00F5FB219120, householdId: BCBE279E-E046-4524-B938-5755C1C90904, displayName: \"Test\"))\") is not equal to (\"notMember\")",
+      "targetName": "NestAppTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "QueuedChoreRevocationTests/testRevokedSnapshotWithoutQueuedWritesHidesHousehold()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/QueuedChoreRevocationTests/testRevokedSnapshotWithoutQueuedWritesHidesHousehold",
+      "testName": "testRevokedSnapshotWithoutQueuedWritesHidesHousehold()"
+    }
+  ],
+  "title": "Test - Nest",
+  "topInsights": [],
+  "totalTestCount": 1
+}

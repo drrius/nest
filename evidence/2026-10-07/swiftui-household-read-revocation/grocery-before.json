@@ -1,0 +1,60 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "FA6F6B02-FF8E-43B7-A2DB-D557AF89A259",
+        "deviceName": "Nest revoked read 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 2,
+  "finishTime": 1791399998.159,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791399955.596,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "XCTAssertEqual failed: (\"[\"GET /v1/groceries\"]\") is not equal to (\"[\"GET /v1/groceries\", \"GET /v1/session\"]\")",
+      "targetName": "NestAppTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "GroceryReadRevocationTests/testForbiddenListWithCurrentMembershipPreservesSavedGroceriesWithoutWriting()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/GroceryReadRevocationTests/testForbiddenListWithCurrentMembershipPreservesSavedGroceriesWithoutWriting",
+      "testName": "testForbiddenListWithCurrentMembershipPreservesSavedGroceriesWithoutWriting()"
+    },
+    {
+      "failureText": "XCTAssertEqual failed: (\"ready(Nest.VerifiedMember(userId: AEBAB11E-926D-46AA-A964-08D0A1838F10, householdId: FDB1D0FB-7038-4878-98B0-F3856A5012E0, displayName: \"Alex\"))\") is not equal to (\"notMember\")",
+      "targetName": "NestAppTests",
+      "testIdentifier": 2,
+      "testIdentifierString": "GroceryReadRevocationTests/testForbiddenListWithoutQueuedWritesReverifiesAndHidesRevokedHousehold()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/GroceryReadRevocationTests/testForbiddenListWithoutQueuedWritesReverifiesAndHidesRevokedHousehold",
+      "testName": "testForbiddenListWithoutQueuedWritesReverifiesAndHidesRevokedHousehold()"
+    }
+  ],
+  "title": "Test - Nest",
+  "topInsights": [
+    {
+      "category": "Common Failures",
+      "impact": "100% of failures",
+      "text": "2 runs of 2 tests failed with XCTAssertEqual failed: (\"[\"GET /v1/groceries\"]\") is not equal to (\"[\"GET /v1/groceries\", \"GET /v1/session\"]\")"
+    }
+  ],
+  "totalTestCount": 2
+}

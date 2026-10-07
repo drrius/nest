@@ -319,6 +319,19 @@ unchanged test rerun occurs. Resolved third-party dependencies, production legac
 writers and in-flight external drainage remain unverified. Build 23 stays stable.
 [Source comparison](../evidence/2026-10-07/deployed-native-receipt-source/README.md).
 
+The unqueued chore/grocery read-revocation gap now has a reproduced failure and
+shipping fix. HTTP 403 reads reverify the actor/household before retaining saved
+presentation. Confirmed revoked membership hides household data and removes the
+active offline scope; current members keep saved information. A delegated worker
+handled groceries and the companion chore test while the primary agent handled
+chore sync and the shared Mac verification. All 25 focused signed app-hosted
+checks pass with zero failures, skips or runtime warnings. Hosted revocation,
+rendered phone acceptance and CI for this source remain open. Build 23 stays
+unchanged. [Evidence](../evidence/2026-10-07/swiftui-household-read-revocation/README.md).
+
+Receipt-source audit `05a05085` passes
+[routine CI 37669881172](https://github.com/drrius/nest/actions/runs/37669881172).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
