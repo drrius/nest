@@ -455,7 +455,9 @@ private nest-test fixture work, not production or live AI planning acceptance.
 
 The broad-service-role barrier regression and table-access inventory now pass
 routine CI37572407700 atd8c8c2ed. This CI does not run hosted/profile or native
-UI actions. Current saved-portion source21b41f37 routine/native CI remains running.
+UI actions. Saved-portion source21b41f37 now passes routine37573041879/native37573041751:
+506 Foundation/41 skips,473 signed-app/41 skips, four Swift Testing cases and
+zero failures, plus strict format/limits/signing/guarded UI compilation.
 
 Saved varied portions now reach meal generation inputs in a real disposable
 PostgREST/PG test: authorized0.5/2.5 saves, changed shared context hash, retained

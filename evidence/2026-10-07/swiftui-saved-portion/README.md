@@ -35,5 +35,7 @@ new immutable receipts. Original five receipt hashes match; Sam remains absent.
 The canonical native reader's fixture expectation is updated to revision7, but
 that reader is compiled only in this pass, not executed. Saved portions used by
 shared planning, live generation, both phones and complete M5 acceptance remain open.
-Current source is pushed; latest routine/native CI remains pending. No production
+Current source is pushed; routine37573041879 and native37573041751 pass21b41f37. Native CI runs506
+Foundation/41 explicit skips,473 signed-app/41 explicit skips and four Swift
+Testing cases, zero failures, with format/limits/signing/guarded UI compilation. No production
 operation, new financial event, inference, release or merge occurs.

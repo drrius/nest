@@ -1,7 +1,7 @@
 [
   {
     "path": "README.md",
-    "sha256": "e312de11399f847ced4a421b6a5414bb951a55e25f0f223e82f7e8ef3100f75d"
+    "sha256": "833950e8c015a347d1f7561f9543d25947f636d91cdcb4ba816f25a415d26059"
   },
   {
     "path": "after.json",
@@ -22,6 +22,14 @@
   {
     "path": "interim.json",
     "sha256": "854845c4f53fddf0dd13fc5bcf4aa5b747782fb8107831925ca60bd44c6a51fe"
+  },
+  {
+    "path": "native-ci-excerpt.txt",
+    "sha256": "c30f83f76886f90667177033c21f454a7c50ed37f2e31bb0b03fdcf4dd31b76e"
+  },
+  {
+    "path": "native-ci.json",
+    "sha256": "d8044f854f679b30d488212d34875e313068f03a20c56bb55122aa3840cd7370"
   },
   {
     "path": "prepare.py",
