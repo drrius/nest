@@ -368,7 +368,9 @@ Owner/capability/runtime equivalence and data/drainage remain unverified.
 
 Calendar/push-documentation source `2670d1c7` passes
 [routine CI 37674049755](https://github.com/drrius/nest/actions/runs/37674049755).
-Its native CI is still running; the local Calendar model proof remains credited.
+Its [native CI 37674049688](https://github.com/drrius/nest/actions/runs/37674049688)
+also passes. The focused Calendar case ran separately without skips on the Mac;
+these checks do not establish rendered lifecycle or phone acceptance.
 
 ## Exact blockers and owner inputs
 
