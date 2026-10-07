@@ -1,0 +1,86 @@
+Attributes: Application, 0x11ffec7b0, pid: 37574, label: 'Nest'
+Element subtree:
+ →Application, 0x11ffec7b0, pid: 37574, label: 'Nest'
+    Window (Main), 0x11fff1da0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11ffe7e70, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fff5e20, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11fff8160, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11fff19b0, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11ffefda0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11fff6240, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11fff9d10, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11fffd820, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11fffd940, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11fffda60, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11fffdb80, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11fffdca0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11fffddc0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Paid by'
+                              Button, 0x11fffdee0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Add expense'
+                              StaticText, 0x11fffe000, {{158.5, 31.5}, {58.0, 21.0}}, label: 'Paid by'
+                            Other, 0x11fffe120, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fffe240, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11fffe360, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11fffe480, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11fffe5a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11fffe6c0, {{-16.0, -1260.0}, {407.0, 2827.0}}
+                                      Other, 0x11fffe7e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11fffe900, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Cell, 0x11fffea20, {{16.0, 109.0}, {343.0, 52.0}}
+                                        Other, 0x11fffeb40, {{16.0, 109.0}, {343.0, 52.0}}
+                                          Other, 0x11fffecc0, {{16.0, 109.0}, {343.0, 52.0}}
+                                        Other, 0x11fffede0, {{16.0, 109.0}, {343.0, 52.0}}
+                                          Other, 0x11fffef00, {{16.0, 109.0}, {343.0, 52.0}}
+                                            Other, 0x11ffff020, {{16.0, 109.0}, {343.0, 52.0}}
+                                              Button, 0x11ffff140, {{16.0, 109.0}, {343.0, 52.0}}, label: 'Test Alex', Selected
+                                      Cell, 0x11ffff260, {{16.0, 161.0}, {343.0, 52.0}}
+                                        Other, 0x11ffff380, {{16.0, 161.0}, {343.0, 52.0}}
+                                          Other, 0x11ffff4a0, {{16.0, 161.0}, {343.0, 52.0}}
+                                        Other, 0x11ffff5c0, {{16.0, 161.0}, {343.0, 52.0}}
+                                          Other, 0x11ffff6e0, {{16.0, 161.0}, {343.0, 52.0}}
+                                            Other, 0x11ffff800, {{16.0, 161.0}, {343.0, 52.0}}
+                                              Button, 0x11ffff920, {{16.0, 161.0}, {343.0, 52.0}}, label: 'Test Sam'
+                                      Other, 0x11ffffa40, {{32.0, 160.0}, {311.0, 1.0}}
+                                      Other, 0x11ffffb60, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11ffffc80, {{369.0, 574.0}, {3.0, 7.0}}
+                                      Other, 0x11ffffda0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11ffffec0, {{369.0, 574.0}, {3.0, 7.0}}
+                            Other, 0x139304080, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x1393041a0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x1393042c0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x1393043e0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x139304500, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x139304620, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x139304740, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x139304860, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x139304980, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x139304aa0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x139304bc0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x139304ce0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x139304e00, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x139304f20, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x139305040, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x139305160, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x139305280, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x1393053a0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x1393054c0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x1393055e0, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x139305700, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x139305820, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x139305940, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x139305a60, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x139305b80, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x139305ca0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x139305dc0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x139305ee0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x139306000, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x139306120, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x139306240, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x139306360, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x139306480, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x11ffec7b0, pid: 37574, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11ffefa60, pid: 37574, label: 'Nest'
+  }

@@ -1,0 +1,175 @@
+Attributes: Application, 0x13bdabdf0, pid: 40396, label: 'Nest'
+Element subtree:
+ →Application, 0x13bdabdf0, pid: 40396, label: 'Nest'
+    Window (Main), 0x13bdae590, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x13bdbeb70, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x13bdc0ab0, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x13bdc10f0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x13bdbda80, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x13bd8f640, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x13bdc1ad0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13bdc1bf0, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x13bdc1d10, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x13bdc1e30, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x13bdc1f50, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x13bdc2070, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x13bdc2190, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x13bdc22b0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Add expense'
+                              Other, 0x13bdc23d0, {{20.0, 24.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                                Other, 0x13bdc24f0, {{20.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x13bdc2610, {{20.0, 20.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                              StaticText, 0x13bdc2730, {{136.0, 31.5}, {103.0, 21.0}}, label: 'Add expense'
+                            Other, 0x13bdc2850, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13bdc2970, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x13bdc2a90, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x13bdc2bb0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x13bdc2cd0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x13bdc2df0, {{-16.0, -1264.5}, {407.0, 1768.0}}
+                                      Other, 0x13bdc2f10, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13bdc3030, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x13bdc3150, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x13bdc3270, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x13bdc3390, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Image, 0x13bdc34b0, {{-120.0, 524.0}, {615.0, 286.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x13bdc35d0, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13bdc36f0, {{0.0, 519.2}, {375.0, 147.8}}
+                                          Other, 0x13bdc3810, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13bdc3930, {{0.0, 519.2}, {375.0, 147.8}}
+                                            Other, 0x13bdc3a50, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Cell, 0x13bdc3b70, {{16.0, 69.5}, {343.0, 40.5}}
+                                        Other, 0x13bdc3c90, {{16.0, 69.5}, {343.0, 40.5}}
+                                        Other, 0x13bdc3db0, {{16.0, 69.5}, {343.0, 40.5}}
+                                          Other, 0x13bdc3ed0, {{16.0, 69.5}, {343.0, 40.5}}
+                                            Other, 0x13bdc3ff0, {{16.0, 69.5}, {343.0, 40.5}}
+                                              StaticText, 0x13bdc4110, {{16.0, 69.5}, {343.0, 40.5}}, label: 'Review expense'
+                                      Cell, 0x13bdc4230, {{16.0, 110.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc4350, {{16.0, 110.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc4470, {{16.0, 110.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc4590, {{16.0, 110.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc46b0, {{16.0, 110.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc47d0, {{16.0, 110.0}, {343.0, 52.0}}
+                                              StaticText, 0x13bdc48f0, {{16.0, 110.0}, {343.0, 52.0}}, label: 'Unsent split review QA'
+                                      Cell, 0x13bdc4a10, {{16.0, 162.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc4b30, {{16.0, 162.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc4c50, {{16.0, 162.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc4d70, {{16.0, 162.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc4e90, {{16.0, 162.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc4fb0, {{16.0, 162.0}, {343.0, 52.0}}
+                                              StaticText, 0x13bdc50d0, {{32.0, 177.8}, {116.0, 20.5}}, label: 'Shared amount'
+                                              StaticText, 0x13bdc51f0, {{276.5, 177.8}, {66.5, 20.5}}, identifier: 'expense-review-amount', label: 'CHF 1.01'
+                                      Other, 0x13bdc5310, {{32.0, 161.0}, {311.0, 1.0}}
+                                      Cell, 0x13bdc5430, {{16.0, 214.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc5550, {{16.0, 214.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc5670, {{16.0, 214.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc5790, {{16.0, 214.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc58b0, {{16.0, 214.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc59d0, {{16.0, 214.0}, {343.0, 52.0}}
+                                              StaticText, 0x13bdc5af0, {{32.0, 229.8}, {56.0, 20.5}}, label: 'Paid by'
+                                              StaticText, 0x13bdc5c10, {{314.5, 229.8}, {28.5, 20.5}}, identifier: 'expense-review-payer', label: 'You'
+                                      Other, 0x13bdc5d30, {{32.0, 213.0}, {311.0, 1.0}}
+                                      Cell, 0x13bdc5e50, {{16.0, 266.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc5f70, {{16.0, 266.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc6090, {{16.0, 266.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc61b0, {{16.0, 266.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc62d0, {{16.0, 266.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc63f0, {{16.0, 266.0}, {343.0, 52.0}}
+                                              StaticText, 0x13bdc6510, {{32.0, 281.8}, {36.0, 20.5}}, label: 'Date'
+                                              StaticText, 0x13bdc6630, {{250.5, 281.8}, {92.5, 20.5}}, label: '2026-10-07'
+                                      Other, 0x13bdc6750, {{32.0, 265.0}, {311.0, 1.0}}
+                                      Cell, 0x13bdc6870, {{16.0, 318.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc6990, {{16.0, 318.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc6ab0, {{16.0, 318.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc6bd0, {{16.0, 318.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc6cf0, {{16.0, 318.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc6e10, {{16.0, 318.0}, {343.0, 52.0}}
+                                              StaticText, 0x13bdc6f30, {{32.0, 333.8}, {127.5, 20.5}}, label: 'Test Alex’s share'
+                                              StaticText, 0x13bdc7050, {{271.5, 333.8}, {71.5, 20.5}}, identifier: 'expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200', label: 'CHF 0.25'
+                                      Other, 0x13bdc7170, {{32.0, 317.0}, {311.0, 1.0}}
+                                      Cell, 0x13bdc7290, {{16.0, 370.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc73b0, {{16.0, 370.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc74d0, {{16.0, 370.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc75f0, {{16.0, 370.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc7710, {{16.0, 370.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc7830, {{16.0, 370.0}, {343.0, 52.0}}
+                                              StaticText, 0x13bdc7950, {{32.0, 385.8}, {81.0, 20.5}}, label: 'Your share'
+                                              StaticText, 0x13bdc7a70, {{272.0, 385.8}, {71.0, 20.5}}, identifier: 'expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676', label: 'CHF 0.76'
+                                      Other, 0x13bdc7b90, {{32.0, 369.0}, {311.0, 1.0}}
+                                      Cell, 0x13bdc7cb0, {{16.0, 422.0}, {343.0, 64.0}}
+                                        Other, 0x13bdc7dd0, {{16.0, 422.0}, {343.0, 64.0}}
+                                          Other, 0x13bdc7ef0, {{16.0, 422.0}, {343.0, 64.0}}
+                                        Other, 0x13bdc8010, {{16.0, 422.0}, {343.0, 64.0}}
+                                          Other, 0x13bdc8130, {{16.0, 422.0}, {343.0, 64.0}}
+                                            Other, 0x13bdc8250, {{16.0, 422.0}, {343.0, 64.0}}
+                                              StaticText, 0x13bdc8370, {{16.0, 422.0}, {343.0, 64.0}}, label: 'Saving records this expense in your shared financial history. It does not transfer money.'
+                                      Other, 0x13bdc8490, {{32.0, 421.0}, {311.0, 1.0}}
+                                      Other, 0x13bdc85b0, {{-16.0, 503.5}, {407.0, 1527.5}}
+                                      Cell, 0x13bdc86d0, {{16.0, 521.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc87f0, {{16.0, 521.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc8910, {{16.0, 521.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc8a30, {{16.0, 521.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc8b50, {{16.0, 521.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc8c70, {{16.0, 521.0}, {343.0, 52.0}}
+                                              Button, 0x13bdc8d90, {{16.0, 521.0}, {343.0, 52.0}}, label: 'Save expense'
+                                      Cell, 0x13bdc8eb0, {{16.0, 573.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc8fd0, {{16.0, 573.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc90f0, {{16.0, 573.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc9210, {{16.0, 573.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc9330, {{16.0, 573.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc9450, {{16.0, 573.0}, {343.0, 52.0}}
+                                              Button, 0x13bdc9570, {{16.0, 573.0}, {343.0, 52.0}}, label: 'Edit'
+                                      Other, 0x13bdc9690, {{32.0, 572.0}, {311.0, 1.0}}
+                                      Cell, 0x13bdc97b0, {{16.0, 625.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc98d0, {{16.0, 625.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc99f0, {{16.0, 625.0}, {343.0, 52.0}}
+                                        Other, 0x13bdc9b10, {{16.0, 625.0}, {343.0, 52.0}}
+                                          Other, 0x13bdc9c30, {{16.0, 625.0}, {343.0, 52.0}}
+                                            Other, 0x13bdc9d50, {{16.0, 625.0}, {343.0, 52.0}}
+                                              Button, 0x13bdc9e70, {{16.0, 625.0}, {343.0, 52.0}}, label: 'Reload people and edit'
+                                      Other, 0x13bdc9f90, {{32.0, 624.0}, {311.0, 1.0}}
+                                      Other, 0x13bdca0b0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 4%
+                                        Other, 0x13bdca1d0, {{369.0, 80.0}, {3.0, 428.5}}
+                                      Other, 0x13bdca2f0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 4%
+                                        Other, 0x13bdca410, {{369.0, 80.0}, {3.0, 428.5}}
+                            Other, 0x13bdca730, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x13bdca850, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x13bdca970, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x13bdcaa90, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x13bdcabb0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x13bdcacd0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x13bdcadf0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x13bdcaf10, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x13bdcb030, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x13bdcb150, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x13bdcb270, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x13bdcb390, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x13bdcb4b0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x13bdcb5d0, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x13bdcb6f0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x13bdcb810, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x13bdcb930, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x13bdcba50, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x13bdcbb70, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x13bdcbc90, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x13bdcbdb0, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x13bdcbed0, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x13bdcbff0, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x13bdcc110, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x13bdcc230, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x13bdcc350, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x13bdcc470, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x13bdcc590, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13bdcc6b0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13bdcc7d0, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x13bdcc8f0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x13bdcca10, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x13bdccb30, {{0.0, 584.0}, {375.0, 83.0}}
+    Window, 0x13bdccc50, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x13bdccd70, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x13bdcce90, {{0.0, 0.0}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x13bdabdf0, pid: 40396, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x13bdcda50, pid: 40396, label: 'Nest'
+  }

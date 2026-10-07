@@ -1,0 +1,94 @@
+Attributes: Application, 0x11c6b1610, pid: 37574, label: 'Nest'
+Element subtree:
+ →Application, 0x11c6b1610, pid: 37574, label: 'Nest'
+    Window (Main), 0x11c699bc0, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11c694dc0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11c6ae540, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11c6bdb30, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11c6b0e90, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11c6a09a0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11c6a23a0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11c69b960, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11c6bd6b0, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11c6bd7d0, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11c6bd8f0, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11c6bda10, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11c6bdc80, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11c6bdda0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Split'
+                              Button, 0x11c6bdec0, {{16.0, 20.0}, {44.0, 44.0}}, identifier: 'BackButton', label: 'Add expense'
+                              StaticText, 0x11c6bdfe0, {{169.5, 31.5}, {36.0, 21.0}}, label: 'Split'
+                            Other, 0x11c6be100, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11c6be220, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11c6be340, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11c6be460, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11c6be580, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11c6be6a0, {{-16.0, -1260.0}, {407.0, 2879.0}}
+                                      Other, 0x11c6be7c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11c6be8e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Cell, 0x11c6bea00, {{16.0, 109.0}, {343.0, 52.0}}
+                                        Other, 0x11c6beb20, {{16.0, 109.0}, {343.0, 52.0}}
+                                          Other, 0x11c6bec40, {{16.0, 109.0}, {343.0, 52.0}}
+                                        Other, 0x11c6bed60, {{16.0, 109.0}, {343.0, 52.0}}
+                                          Other, 0x11c6bee80, {{16.0, 109.0}, {343.0, 52.0}}
+                                            Other, 0x11c6befa0, {{16.0, 109.0}, {343.0, 52.0}}
+                                              Button, 0x11c6bf0c0, {{16.0, 109.0}, {343.0, 52.0}}, label: 'Equal', Selected
+                                      Cell, 0x11c6bf1e0, {{16.0, 161.0}, {343.0, 52.0}}
+                                        Other, 0x11c6bf300, {{16.0, 161.0}, {343.0, 52.0}}
+                                          Other, 0x11c6bf420, {{16.0, 161.0}, {343.0, 52.0}}
+                                        Other, 0x11c6bf540, {{16.0, 161.0}, {343.0, 52.0}}
+                                          Other, 0x11c6bf660, {{16.0, 161.0}, {343.0, 52.0}}
+                                            Other, 0x11c6bf780, {{16.0, 161.0}, {343.0, 52.0}}
+                                              Button, 0x11c6bf8a0, {{16.0, 161.0}, {343.0, 52.0}}, label: 'Exact'
+                                      Other, 0x11c6bf9c0, {{32.0, 160.0}, {311.0, 1.0}}
+                                      Cell, 0x11c6bfae0, {{16.0, 213.0}, {343.0, 52.0}}
+                                        Other, 0x11c6bfc00, {{16.0, 213.0}, {343.0, 52.0}}
+                                          Other, 0x11c6bfd20, {{16.0, 213.0}, {343.0, 52.0}}
+                                        Other, 0x11c6bfe40, {{16.0, 213.0}, {343.0, 52.0}}
+                                          Other, 0x11c6bff60, {{16.0, 213.0}, {343.0, 52.0}}
+                                            Other, 0x11c6c0080, {{16.0, 213.0}, {343.0, 52.0}}
+                                              Button, 0x11c6c01a0, {{16.0, 213.0}, {343.0, 52.0}}, label: 'Percentage'
+                                      Other, 0x11c6c02c0, {{32.0, 212.0}, {311.0, 1.0}}
+                                      Other, 0x11c6c03e0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11c6c0500, {{369.0, 574.0}, {3.0, 7.0}}
+                                      Other, 0x11c6c0620, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11c6c0740, {{369.0, 574.0}, {3.0, 7.0}}
+                            Other, 0x11c6c0860, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11c6c0980, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11c6c0aa0, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11c6c0bc0, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11c6c0ce0, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11c6c0e00, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11c6c0f20, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11c6c1040, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11c6c1160, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x11c6c1280, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11c6c13a0, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11c6c14c0, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11c6c15e0, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11c6c1700, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11c6c1820, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x11c6c1940, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11c6c1a60, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x11c6c1b80, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11c6c1ca0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11c6c1dc0, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11c6c1ee0, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11c6c2000, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11c6c2120, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11c6c2240, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11c6c2360, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x11c6c2480, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11c6c25a0, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11c6c26c0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11c6c27e0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11c6c2900, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11c6c2a20, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11c6c2b40, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11c6c2c60, {{0.0, 584.0}, {375.0, 83.0}}
+Path to element:
+ →Application, 0x11c6b1610, pid: 37574, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11c6bd490, pid: 37574, label: 'Nest'
+  }

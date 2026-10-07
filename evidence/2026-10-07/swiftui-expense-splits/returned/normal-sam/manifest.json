@@ -1,0 +1,419 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "2E478D3B-2ED6-4D93-9D1F-2F5C221864B0.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676 exact visible value accessibility tree_0_FB7BFC23-1826-40DA-A572-D615B3BCBD20.txt",
+        "timestamp": 1791340547.61
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "BCFF5846-5CFC-476E-89F9-3C5A2BA6DB39.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676 exact visible value_0_88A8E9F7-78B1-4673-9672-34029C3FD442.png",
+        "timestamp": 1791340547.29
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "B208D2B2-256F-4B62-B7DB-F589DEC287A1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676 exact visible value_0_CA0219F3-4D4F-4E25-91C9-E27A5DA40339.json",
+        "timestamp": 1791340547.205
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "BFD2B3AA-4268-4C06-969B-47630610E614.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200 exact visible value accessibility tree_0_83A34F27-605F-4D24-800C-9BB33CC91104.txt",
+        "timestamp": 1791340544.962
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "987AE38A-44EE-4F30-9E1C-E39704BBC170.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200 exact visible value_0_0EA22506-0646-497D-819D-4A3AFB58F7CC.png",
+        "timestamp": 1791340544.644
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "443044B1-5384-4904-868E-111836EDC18F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200 exact visible value_0_1B232C8D-E383-42E5-A63E-C4FED50F3941.json",
+        "timestamp": 1791340544.568
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "6BE09200-6FAD-448E-A399-B26F6A721340.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-amount exact visible value accessibility tree_0_AF728854-5C09-49BC-B934-25A0381F800B.txt",
+        "timestamp": 1791340542.35
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "369A2F3B-6B69-41E6-9FFF-7BED4F848F4F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-amount exact visible value_0_31475E77-CA88-4466-AFE8-7B04191C2AC6.png",
+        "timestamp": 1791340542.027
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "CE3BB667-6B82-4F98-B926-A6593B774869.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-amount exact visible value_0_5E494D82-56CC-4927-9C60-D934316C77F9.json",
+        "timestamp": 1791340541.951
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "2CD29681-BB23-4F12-9701-B30A2984E668.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_E36E3662-5C2C-438C-AB08-8E4FC8FF2FF8.json",
+        "timestamp": 1791340538.496
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "DDEB988C-EF5A-4267-8BC8-49A2E31F0B92.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_2499AA9A-79E5-4E55-9D4D-9FF49DF2D0AA.json",
+        "timestamp": 1791340537.479
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "11FA21B5-FED1-4AB7-8094-B3AD99066AF2.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_060ADAF5-161B-43A9-96B9-A357A596A9BE.json",
+        "timestamp": 1791340524.268
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "10C07C4E-272A-437C-84F5-31760210E875.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_C3B7A090-5954-4452-860E-8A87E1D32991.json",
+        "timestamp": 1791340523.708
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "BE88DD12-61C4-43FE-A6E0-74D4D806EA21.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_AB65EE00-9757-4277-B0E8-E2A87F8AE35A.json",
+        "timestamp": 1791340503.776
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "3DC588E1-4123-4A71-9BCE-30B996D9B47D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_2CE19C9F-8407-49A2-BF69-1AB02E9C3F62.json",
+        "timestamp": 1791340503.37
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "63C41B57-066E-44D8-BB7E-BF13E8F50A6D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_2B0430E7-9A99-48C7-A4C5-20D1A48EC2C4.json",
+        "timestamp": 1791340486.14
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "015D5388-BE2B-4F90-A504-86C8E50A0473.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_EA92A36F-960D-4C48-90A1-A4B4A56D8440.json",
+        "timestamp": 1791340485.455
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "E5C19066-FA21-431A-8EB7-4FE75ABBC5ED.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_20114DAB-D481-44A4-A830-F9A60A7D26E9.json",
+        "timestamp": 1791340464.413
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "C5E4B096-406F-4896-BD3A-F57DC9DDA58A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_1DA3351A-43C9-4AB3-BA48-95889BB498E4.json",
+        "timestamp": 1791340464.046
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "5517086E-C69F-41C5-8C12-5E55123CDA45.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_B5FDF3FB-3AC1-46E4-AF24-C6CCF1367CD8.json",
+        "timestamp": 1791340450.722
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "0F624975-D3A2-4A25-92D1-774FBF54BE19.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_729062B3-76BB-4E52-A939-E0A7BD62E79A.json",
+        "timestamp": 1791340450.158
+      }
+    ],
+    "testIdentifier": "NativeExpenseSplitReviewTests/testOwnedExactSharesRejectMismatchAndReviewLiteralCentimesWithoutSaving()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeExpenseSplitReviewTests/testOwnedExactSharesRejectMismatchAndReviewLiteralCentimesWithoutSaving"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "33CA0B18-4F5E-4D5F-B698-6BDA1371296B.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676 exact visible value accessibility tree_0_0416987D-B679-4F48-B295-89F7A6A23FFC.txt",
+        "timestamp": 1791340663.709
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "306B2770-C42B-42FD-8E7B-19F7235294C5.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676 exact visible value_0_DB4C35F4-0361-423A-A704-37D4454FC7EC.png",
+        "timestamp": 1791340663.376
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "FA8F5BD4-236C-41DA-ADE3-8F94CB2A7E89.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-e5f80cfd-b69a-4aa0-a267-75784e943676 exact visible value_0_ECB86CB7-B622-49BC-8EE1-3C66664AE41C.json",
+        "timestamp": 1791340663.295
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "444F200B-5008-4B7A-B643-4892CB03C3D1.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200 exact visible value accessibility tree_0_B35CAE43-4278-4A98-8718-B38DA8E38747.txt",
+        "timestamp": 1791340661.075
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "6DDF0892-4263-4A2D-BDED-22D881AB40D3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200 exact visible value_0_7425FA12-2009-4B18-9C2A-1A4DFFCB569D.png",
+        "timestamp": 1791340660.75
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "0B4CDB27-6020-477B-A778-73EE3C5190CA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-share-791f7261-6c9d-4061-9c8a-57aa6e0b0200 exact visible value_0_157F2992-70AF-47CD-9AF9-D46679665D17.json",
+        "timestamp": 1791340660.672
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "EF985566-3525-42E2-812F-7B429D1C0030.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-payer exact visible value accessibility tree_0_C30EE647-1D79-4815-9144-F37F278D5A2F.txt",
+        "timestamp": 1791340658.327
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "F0888CBA-7CCF-45A7-8DFC-A2AEEC0C51A3.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-payer exact visible value_0_D0E2275C-F45D-48C0-9B06-5415C85BF913.png",
+        "timestamp": 1791340658.002
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "A27B2237-ADBC-4CD1-A212-C7EEBC0C50DD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-payer exact visible value_0_96501F77-526E-4E2E-A8FE-AEE84C5E0A1A.json",
+        "timestamp": 1791340657.925
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "173B5DB9-B50B-4330-B427-FCED4E0C8A97.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-amount exact visible value accessibility tree_0_643A367A-F10B-40C3-9CEA-4FE16D9D093B.txt",
+        "timestamp": 1791340655.693
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "B40FD7E2-1169-4F53-BBB2-02A2B29149D9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-amount exact visible value_0_6EAF3204-FB4F-466B-912B-FA7948930392.png",
+        "timestamp": 1791340655.365
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "29C61513-BE4A-48F1-A4CA-0C7D320616AE.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Owned split review expense-review-amount exact visible value_0_D1707FC7-997A-4E76-8EF8-370ABE1379C3.json",
+        "timestamp": 1791340655.287
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "80AB593F-2447-4D27-954A-5F64EF51F519.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_FBCEA53F-6CC6-4742-A37D-7042249AC070.json",
+        "timestamp": 1791340651.885
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "C851E790-C1AC-435A-BFDC-E4588D9B861E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_17F28969-7257-47CB-B352-142FB2D95DC7.json",
+        "timestamp": 1791340650.807
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "E8F71B70-4980-43A3-84EC-1533C51F221A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_EDD859DC-4063-49B3-BA62-CF6134C30377.json",
+        "timestamp": 1791340637.484
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "6028DCBA-C089-4F3D-95D5-F50C6EADC5F5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_3E1DE193-754E-4978-A7F9-E58445B1827A.json",
+        "timestamp": 1791340636.918
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "86B69620-BA4B-490D-B9D1-912436F68A7A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_734EAA73-0CEC-4CA1-84FC-8350694CBA23.json",
+        "timestamp": 1791340624.83
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "B8EDBE4E-6EE7-4673-A7B7-7D3D268B7530.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_2D875CBE-A77B-4DAC-A868-2C58BFA615AA.json",
+        "timestamp": 1791340624.196
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "33F9ED9F-BA96-4B01-A527-1F8A8813A8F6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_D0A03952-BD3C-4548-9E98-D5ECF4E865CF.json",
+        "timestamp": 1791340607.768
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "F5541A69-24DE-4269-A06D-1A23C49B5F3B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_A735BD25-AC30-4FCB-9BFA-5538443422C2.json",
+        "timestamp": 1791340607.13
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "6DB2F42E-A65E-4DF3-99EE-CE23B5040FFC.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_C37EC919-5994-419B-93C6-315DEB11C761.json",
+        "timestamp": 1791340585.924
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "FEDD8E45-C516-4255-90AA-3B27F7464B90.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_CE709440-9E36-43A4-B378-B85368AD3853.json",
+        "timestamp": 1791340585.565
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "DC8028C2-ED87-43E4-81EB-7F8687B32931.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_73E111AB-C16A-4353-9860-3B1E3C82D0A9.json",
+        "timestamp": 1791340572.202
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "CA0BCEDE-A297-493A-8921-9E31F8B65783",
+        "deviceName": "Nest partner QA 20261005",
+        "exportedFileName": "97B4CB3F-B6A9-4A86-A4FC-D9DD3A8F6E45.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_486DA713-EAF3-4B08-9176-FF7D08560741.json",
+        "timestamp": 1791340571.599
+      }
+    ],
+    "testIdentifier": "NativeExpenseSplitReviewTests/testOwnedPercentageBelongsToDisplayedPersonWithoutSaving()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeExpenseSplitReviewTests/testOwnedPercentageBelongsToDisplayedPersonWithoutSaving"
+  }
+]

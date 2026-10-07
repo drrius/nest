@@ -79,6 +79,21 @@ hosted read-only metadata, not live CalDAV or native EventKit evidence.
 
 ## Current native verification
 
+Expense split/payer choices now use native navigation pickers after the original
+Split trigger measured34.5pt. The corrected normal Alex picker method passes, and
+both exact/percentage normal Alex reviews now pass at8133669e, including literal
+CHF1.01/0.25/0.76 values, explicit mismatch refusal and unsent discard. Eight earlier
+failed methods remain retained across trigger/readiness/input/row-observer stages.
+The original Sam normal reviews failed before input because selecting the
+already-current payer left the native picker open. Source4a3d6d1e explicitly uses
+its visible Back control when needed, with unchanged shipping inputs. Corrected Sam
+normal exact/percentage reviews now both pass at4a3d6d1e, with completed scoped
+restoration and zero skips. Alex maximal checks are running; Sam maximal remains
+pending. No financial save is selected.
+All1,141 frozen inputs, signing, scoped restoration and source limits match. Current
+routine37562483137 passes at4a3d6d1e; native37562483127 remains running. Full variants/phone
+acceptance and M7 remain open.
+
 Payment, refund and correction forms now protect unsaved fields/reviewed intent with
 the same Keep editing / explicit Discard interaction. Untouched correction compares
 with its loaded entry; refund recognizes its initial “Refund” text. All12 both-member

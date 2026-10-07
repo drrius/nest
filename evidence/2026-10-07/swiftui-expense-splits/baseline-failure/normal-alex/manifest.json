@@ -1,0 +1,98 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "74E6B71A-9B73-4343-9C04-CD4D0ACF4C0A",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 04.00.35 AM",
+        "timestamp": 1791338435.388
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "44794751-C20E-4997-A477-740736714E2F",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 04.00.37 AM",
+        "timestamp": 1791338437.102
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "38CAA8D5-C900-429F-BF3A-2CE633C6F23B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_BEA305BF-AD91-4AAC-9D7B-768CF107AB48.json",
+        "timestamp": 1791338435.305
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "52ECD532-A9A0-4458-B696-FB069D376A56.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_3988D738-3EBD-4139-A020-C195EEB20A0F.json",
+        "timestamp": 1791338434.683
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F32919A6-E48C-4C9D-B4B2-55ABBE9288DD.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_78E38EBA-603F-4F9F-BEBE-6DF1B6CF2B57.json",
+        "timestamp": 1791338421.786
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "645CAEDF-06E3-4BFA-94B7-91661DEE4560.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_0CD851A6-2654-405E-BE43-7C86B9BFF8A9.json",
+        "timestamp": 1791338421.193
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "7D9C1FBA-73D2-487A-85DE-575090C7C723",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 04.00.17 AM",
+        "timestamp": 1791338417.782
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "A2586EB4-C355-4892-BBC3-EC23D4D4002D",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 04.00.18 AM",
+        "timestamp": 1791338418.074
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "5D4EFC94-A673-4879-9686-EE37BE7787CA",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 04.00.15 AM",
+        "timestamp": 1791338415.716
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "0FA6EFBB-DE3E-4B39-ABE1-9FD082A7FCBA.mp4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Screen Recording 2026-10-07 at 04.00.10 AM.mp4",
+        "timestamp": 1791338410.573
+      }
+    ],
+    "testIdentifier": "NativeExpenseSplitPickerTests/testOwnedSplitChoicesHaveFullSizedTargetsWithoutSaving()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeExpenseSplitPickerTests/testOwnedSplitChoicesHaveFullSizedTargetsWithoutSaving"
+  }
+]

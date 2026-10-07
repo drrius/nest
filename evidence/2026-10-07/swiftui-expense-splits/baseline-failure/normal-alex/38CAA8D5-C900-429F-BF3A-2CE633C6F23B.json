@@ -1,0 +1,90 @@
+{
+  "actionRegions": [
+    {
+      "height": 34.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 343,
+      "maxY": 319,
+      "midX": 187.5,
+      "midY": 301.75,
+      "minX": 32,
+      "minY": 284.5,
+      "usable": true,
+      "width": 311
+    },
+    {
+      "height": 34.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 343,
+      "maxY": 377,
+      "midX": 286.5,
+      "midY": 359.75,
+      "minX": 230,
+      "minY": 342.5,
+      "usable": true,
+      "width": 113
+    }
+  ],
+  "attempt": 0,
+  "end": [24, 199],
+  "navigation": "Add expense",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 449],
+  "target": "Split, Equal",
+  "targetElementType": "XCUIElementType(rawValue: 9)",
+  "targetFrame": {
+    "height": 34.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 343,
+    "maxY": 646.5,
+    "midX": 187.5,
+    "midY": 629.25,
+    "minX": 32,
+    "minY": 612,
+    "usable": true,
+    "width": 311
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

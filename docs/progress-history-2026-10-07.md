@@ -175,3 +175,23 @@ Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
 Oxfmt corrects them with every value unchanged against Git. Corrected evidence
 source `70ec041e` passes routine CI 37536050729. Combined layout source `79de03f9`
 passes routine CI 37536789330; its native CI is still running.
+
+## Expense split preparation and earlier failed observers
+
+The expense Split picker baseline `5a2b63a6` fails before opening options because
+its tappable rectangle is34.5pt high. Its failed native method and restoration are
+retained; no option or save is selected. Source `7b8f4c27` changes Split/Paid by to
+native navigation pickers. Percentage/Exact full-sized options select successfully;
+the method then fails on readiness after returning to the form. The observer now
+waits for the form and enabled/hittable picker, then rechecks current geometry.
+Source `67c4395e` adds exact/percentage review checks with literal CHF1.01/0.25/0.76
+expectations and exact-total mismatch refusal; semantic row IDs identify the actor's
+share without changing labels. The picker method passes at67c4395e. Exact/percentage reviews both fail because
+the driver deletes at the start of existing text, producing0.760.75 and2550.
+Source8cf76e12 uses native Select All and exact replacement-value assertions; its
+shipping inputs are unchanged. Formatting/limits pass; fresh1,141-input Mac compile
+The Select All inputs succeed, but both review assertions then fail because the
+identifier resolves directly to a visible value leaf labeled CHF1.01, not a parent
+with child text. The observer now compares its exact label; source8133669e compiles
+with unchanged shipping inputs. Corrected journeys are pending. All failed methods
+and restorations remain retained; no financial write occurs.

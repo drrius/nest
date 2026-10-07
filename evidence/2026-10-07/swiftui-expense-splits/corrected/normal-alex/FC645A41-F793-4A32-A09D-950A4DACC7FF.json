@@ -1,0 +1,90 @@
+{
+  "actionRegions": [
+    {
+      "height": 52,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 359,
+      "maxY": 577.5,
+      "midX": 187.5,
+      "midY": 551.5,
+      "minX": 16,
+      "minY": 525.5,
+      "usable": true,
+      "width": 343
+    },
+    {
+      "height": 52,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 359,
+      "maxY": 629.5,
+      "midX": 187.5,
+      "midY": 603.5,
+      "minX": 16,
+      "minY": 577.5,
+      "usable": true,
+      "width": 343
+    }
+  ],
+  "attempt": 0,
+  "end": [12, 199],
+  "navigation": "Add expense",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [12, 449],
+  "target": "Edit",
+  "targetElementType": "XCUIElementType(rawValue: 9)",
+  "targetFrame": {
+    "height": 52,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 359,
+    "maxY": 629.5,
+    "midX": 187.5,
+    "midY": 603.5,
+    "minX": 16,
+    "minY": 577.5,
+    "usable": true,
+    "width": 343
+  },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}
