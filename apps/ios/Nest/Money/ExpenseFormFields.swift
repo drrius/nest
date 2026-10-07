@@ -17,6 +17,7 @@ struct ExpenseFormFields: View {
             Picker("Paid by", selection: $draft.payer) {
                 ForEach(members) { person in Text(person.displayName).tag(person.id) }
             }
+            .pickerStyle(.navigationLink)
             DatePicker("Date", selection: $date, displayedComponents: .date)
             input("Note (optional)", text: $draft.note, field: .note)
             if allowsReceiptTotal {
@@ -30,6 +31,7 @@ struct ExpenseFormFields: View {
             Picker("Split", selection: $draft.split) {
                 ForEach(ExpenseDraft.Split.allCases, id: \.self) { Text($0.rawValue).tag($0) }
             }
+            .pickerStyle(.navigationLink)
             if members.count == 2 {
                 if draft.split == .exact {
                     input(

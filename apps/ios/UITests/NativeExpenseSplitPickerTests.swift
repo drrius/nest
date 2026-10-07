@@ -40,6 +40,19 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
             try reading.requireTarget(option, bounds: app.frame)
             option.tap()
         }
+        let name = try XCTUnwrap(env["NEST_QA_NAME"])
+        XCTAssertTrue(["Test Alex", "Test Sam"].contains(name))
+        for choice in [name == "Test Alex" ? "Test Sam" : "Test Alex", name] {
+            let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Paid by")).firstMatch
+            try reading.reveal(picker)
+            try reading.requireTarget(picker)
+            picker.tap()
+            let option = app.buttons[choice]
+            XCTAssertTrue(option.waitForExistence(timeout: 10))
+            reading.capture(option, name: "Owned expense payer option before selection")
+            try reading.requireTarget(option, bounds: app.frame)
+            option.tap()
+        }
         let back = app.navigationBars["Add expense"].buttons.element(boundBy: 0)
         try reading.requireTarget(back, bounds: app.frame)
         back.tap()
