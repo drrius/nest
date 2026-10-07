@@ -1,0 +1,21 @@
+{
+  "light": {
+    "foreground": [39, 58, 49],
+    "actualNativeFormSurface": [255, 255, 255],
+    "ratio": 12.0979,
+    "glyphPixels": 558,
+    "sampleBoxPixels": [520, 740, 700, 820]
+  },
+  "dark": {
+    "foreground": [238, 242, 233],
+    "actualNativeFormSurface": [28, 28, 30],
+    "ratio": 14.9996,
+    "glyphPixels": 558,
+    "sampleBoxPixels": [520, 740, 700, 820]
+  },
+  "previous": {
+    "foreground": [138, 138, 142],
+    "surface": [255, 255, 255],
+    "ratio": 3.4389
+  }
+}

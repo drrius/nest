@@ -1,0 +1,17 @@
+{
+  "source": "e48df2d1d2e9fb0e00011cc732d2db802eb8a54b",
+  "files": 1157,
+  "binaries": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "cf11a7bfeaafcd531d13ba7f2ae39f810720841130acdcae232c5607ac4e59cb",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "95ba235fb815926e2858d8384ef39c93a8cfc9cf2b85af3f9a2677cbc69fbb9b",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "1bf92fe8a4eca849e3f4f12385d684838b4761a1db4bf0712bc3f130ef4f2def"
+  },
+  "selectedProducts": {
+    "TestHostPath": "/private/tmp/nest-financial-value-contrast-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+    "TestBundlePath": "/private/tmp/nest-financial-value-contrast-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+    "UITargetAppPath": "/private/tmp/nest-financial-value-contrast-ui-20261007/Build/Products/Debug-iphonesimulator/Nest.app"
+  },
+  "version": "20",
+  "testOriginsVerified": true,
+  "pushEnabled": false
+}

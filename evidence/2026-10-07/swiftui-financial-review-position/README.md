@@ -38,6 +38,9 @@ The retained runtime warnings about nonfinite frame dimensions remain unresolved
 This verifies selected normal-text fictional native interactions, not large-text,
 VoiceOver, recurring review rendering, successful payment posting, either phone or
 full M7 acceptance. These changes follow the delivered build20 and are not a new
-TestFlight submission. Current-source CI is pending. Five different normal-text
+TestFlight submission. Exact form/picker source `dbc1f236` now passes routine
+37582173064 and native37582173046:509 Foundation/41 skips,478 signed-app/41 skips,
+four Swift Testing cases and zero failures. The later contrast sweep has separate
+verification and is not implied by those checks. Five different normal-text
 methods have passing evidence across the recorded sources. There is no claim of
 five passes on one source.

@@ -123,9 +123,22 @@ but the popup option exposes 42 points. `2eb6bd07` replaces that menu with inlin
 44-point choices; the focused partial-review check passes, zero skips. All completed
 controllers restore scopes, 64 empty journals and settings/local choices. No
 financial confirmation occurs. Eight post-check fingerprints remain exact,
-including 62 financial events, 104 allocations and 124 ledger rows. Current-source
-CI, runtime frame warnings and full accessibility remain open. These changes follow build20 and have not been submitted as a new beta.
+including 62 financial events, 104 allocations and 124 ledger rows. Form/picker source `dbc1f236` now passes routine37582173064 and native37582173046:
+509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases, zero
+failures. Runtime frame warnings and full accessibility remain open. These changes follow build20 and have not been submitted as a new beta.
 [Financial review evidence](../evidence/2026-10-07/swiftui-financial-review-position/README.md).
+
+Financial value rows now share explicit Quiet foreground colors and combined
+native accessibility semantics:118 rows across25 Money files. Light and dark
+normal-text partial-payment review/discard methods pass at `916b744c`, zero skips.
+Actual captured contrast improves from3.44:1 gray/white to12.10:1 in light mode;
+the native dark Form surface also passes the sampled ratio. The initial split-row
+accessibility failure is retained and corrected with explicit combining; the
+observer now waits15 seconds rather than repeatedly scanning an absent label.
+Both scopes/64 journals/settings/local choices restore and eight protected data
+fingerprints remain exact. Compilation/strict format/limits pass. Current-source
+CI, complete screen audits, largest text, VoiceOver and phones remain open.
+[Value contrast evidence](../evidence/2026-10-07/swiftui-financial-value-contrast/README.md).
 
 ## Available candidate and current source
 
