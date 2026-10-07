@@ -1,6 +1,7 @@
 import * as Redacted from "effect/Redacted";
 import { gatewayModel } from "@nest/ai/chat";
 import { createHandler } from "./src/handler.ts";
+import { observeHandler } from "./src/telemetry.ts";
 
 export function runtimeModel(environment) {
   if (!environment.NEST_AI_MODEL) return undefined;
@@ -18,5 +19,8 @@ export function runtimeHandler(environment) {
   const planningSecret = environment.NEST_SUPABASE_PLANNING_SECRET
     ? Redacted.make(environment.NEST_SUPABASE_PLANNING_SECRET)
     : undefined;
-  return createHandler({ url, publishableKey }, { model, planningSecret });
+  return observeHandler(
+    createHandler({ url, publishableKey }, { model, planningSecret }),
+    environment,
+  );
 }

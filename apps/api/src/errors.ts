@@ -4,6 +4,7 @@ export class ApiFailure extends Schema.TaggedError<ApiFailure>()("ApiFailure", {
   code: Schema.Literals([
     "unauthenticated",
     "not_a_member",
+    "household_incomplete",
     "unavailable",
     "invalid_request",
     "forbidden",
@@ -17,6 +18,7 @@ export function failureResponse(error: ApiFailure): Response {
   const statuses = {
     unauthenticated: 401,
     not_a_member: 403,
+    household_incomplete: 409,
     unavailable: 503,
     invalid_request: 400,
     forbidden: 403,

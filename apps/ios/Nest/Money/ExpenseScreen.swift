@@ -157,7 +157,12 @@ struct ExpenseScreen: View {
                 loaded = true
             }
             notice = nil
-        } catch { notice = "Could not load expense entry. Try again online." }
+        } catch {
+            notice =
+                (error as? NestAPIFailure) == .householdIncomplete
+                ? "Your partner’s verified account needs to be linked before you can record shared expenses."
+                : "Could not load expense entry. Try again online."
+        }
     }
 
     private func review() {

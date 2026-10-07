@@ -3,7 +3,9 @@ import * as Layer from "effect/Layer";
 import * as Schema from "effect/Schema";
 import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
+import * as Exit from "effect/Exit";
 import { ApiFailure } from "./errors.ts";
+import { backendTrace } from "./telemetry.ts";
 import { Identity } from "./identity.ts";
 
 const Uuid = Schema.String.check(Schema.isUUID());
@@ -21,33 +23,43 @@ export type IdentityConfig = {
   readonly publishableKey: string;
 };
 
-function jsonRequest(url: URL, headers: Record<string, string>) {
-  return Effect.gen(function* () {
-    const response = yield* HttpClient.get(url, { headers });
-    if (response.status === 401 || response.status === 403) {
-      return yield* new ApiFailure({ code: "unauthenticated" });
-    }
-    if (response.status < 200 || response.status >= 300) {
-      return yield* new ApiFailure({ code: "unavailable" });
-    }
-    return yield* response.json;
-  }).pipe(
-    Effect.timeout("10 seconds"),
-    Effect.mapError((cause) =>
-      Schema.is(ApiFailure)(cause) ? cause : new ApiFailure({ code: "unavailable" }),
-    ),
-    Effect.provide(FetchHttpClient.layer),
-    Effect.provideService(FetchHttpClient.RequestInit, { redirect: "error" }),
-  );
+function jsonRequest<S extends Schema.Top>(url: URL, headers: Record<string, string>, schema: S) {
+  return Effect.suspend(() => {
+    const diagnostic = backendTrace(url.pathname.slice(1));
+    diagnostic.stage("transport");
+    return Effect.gen(function* () {
+      const response = yield* HttpClient.get(url, {
+        headers: { ...headers, ...diagnostic.headers },
+      });
+      diagnostic.status(response.status);
+      diagnostic.stage("response");
+      if (response.status === 401 || response.status === 403) {
+        return yield* new ApiFailure({ code: "unauthenticated" });
+      }
+      if (response.status < 200 || response.status >= 300) {
+        return yield* new ApiFailure({ code: "unavailable" });
+      }
+      diagnostic.stage("decode");
+      const value = yield* response.json;
+      diagnostic.stage("schema");
+      return yield* Schema.decodeUnknownEffect(schema)(value);
+    }).pipe(
+      Effect.timeout("10 seconds"),
+      Effect.mapError((cause) =>
+        Schema.is(ApiFailure)(cause) ? cause : new ApiFailure({ code: "unavailable" }),
+      ),
+      Effect.provide(FetchHttpClient.layer),
+      Effect.provideService(FetchHttpClient.RequestInit, { redirect: "error" }),
+      Effect.provideService(HttpClient.TracerDisabledWhen, () => true),
+      Effect.onExit((exit) => Effect.sync(() => diagnostic.end(Exit.isFailure(exit)))),
+    );
+  });
 }
 
 function verifyMember(config: IdentityConfig, token: string) {
   return Effect.gen(function* () {
     const headers = { apikey: config.publishableKey, Authorization: `Bearer ${token}` };
-    const rawUser = yield* jsonRequest(new URL("auth/v1/user", config.url), headers);
-    const user = yield* Schema.decodeUnknownEffect(AuthUser)(rawUser).pipe(
-      Effect.mapError(() => new ApiFailure({ code: "unavailable" })),
-    );
+    const user = yield* jsonRequest(new URL("auth/v1/user", config.url), headers, AuthUser);
     if (user.is_anonymous) return yield* new ApiFailure({ code: "unauthenticated" });
     const query = new URL("rest/v1/household_members", config.url);
     query.search = new URLSearchParams({
@@ -55,10 +67,7 @@ function verifyMember(config: IdentityConfig, token: string) {
       user_id: `eq.${user.id}`,
       limit: "2",
     }).toString();
-    const rawMembers = yield* jsonRequest(query, headers);
-    const members = yield* Schema.decodeUnknownEffect(Memberships)(rawMembers).pipe(
-      Effect.mapError(() => new ApiFailure({ code: "unavailable" })),
-    );
+    const members = yield* jsonRequest(query, headers, Memberships);
     const member = members[0];
     if (members.length !== 1 || !member || member.user_id !== user.id) {
       return yield* new ApiFailure({ code: "not_a_member" });

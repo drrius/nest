@@ -7,14 +7,14 @@ and privacy rules remain authoritative.
 
 ## Current build
 
-**SwiftUI 0.1.0, build 23 is available for internal TestFlight testing.** Its frozen
-source is `9ecfdca2c66c98dae0df9d906a088c56a42580dc`. Apple reports VALID,
+**SwiftUI 0.1.0, build 24 is available for internal TestFlight testing.** Its frozen
+source is `c0c0cf9513da6860efef30676f120b1fdebb5af1`. Apple reports VALID,
 IN_BETA_TESTING and unexpired. One private submission finished; no further upload
-is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build23/README.md).
+is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build24/README.md).
 
 It uses the separate test Supabase/API and keeps push disabled. It includes
-build 22's shared tab layout and recovery controls plus later saved-meal,
-meal-read privacy/account-context, Money history spacing and picker target fixes.
+build 23's layout fixes plus chore/grocery membership revocation cleanup.
+Money setup error handling and diagnostics are newer than this build.
 Installation of this version, partner tester access and full phone acceptance
 remain unverified. Use the [short phone pass](native-rewrite/build23-first-phone-pass.md)
 and [full acceptance checklist](native-rewrite/swiftui-phone-acceptance.md).
@@ -24,11 +24,12 @@ simulator journeys run on the authorized Mac. The original clients, credentials,
 local journals and settings are preserved. New source remains on
 `codex/swiftui-renewal-navigation`; no production cutover or public release occurs.
 
-Build 23's 1,188 frozen inputs match the Mac copy and local signed Release
-archive/export/package checks pass. The copied IPA hash matches; temporary signing
-material is removed on both hosts. Both exact-source CI runs pass and the single
-private submission `b113adff-6504-4a4f-91e0-4d6304667f94` is FINISHED. Apple
-availability is verified separately. No cloud build is used.
+## Current priority
+
+Owner requests practical diagnostics and focused simulator checks, without expanding
+unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagnostics/README.md)
+is confirmed: the owner test household has one member. Verified partner linking
+remains needed. Native/server diagnostics and clear setup errors are being verified.
 
 ## Milestone checklist
 

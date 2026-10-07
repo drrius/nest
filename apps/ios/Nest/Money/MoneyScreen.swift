@@ -128,9 +128,11 @@ struct MoneyScreen: View {
             guard request == attempt, !Task.isCancelled else { return }
             if (error as? NestAPIFailure) != .unavailable && !(error is URLError) { balance = nil }
             notice =
-                balance == nil
-                ? "Could not confirm your balance. Try again online."
-                : "Showing your previous balance. Connect and refresh for updates."
+                (error as? NestAPIFailure) == .householdIncomplete
+                ? "Money will be ready when your partner’s verified account is linked to your household."
+                : balance == nil
+                    ? "Could not confirm your balance. Try again online."
+                    : "Showing your previous balance. Connect and refresh for updates."
         }
     }
 }

@@ -42,6 +42,9 @@ struct ProfileScreen: View {
                     DailySummaryScreen(session: model, member: member).id(model.generation)
                 }
             }
+            Section("Support") {
+                NavigationLink("Diagnostics") { DiagnosticsScreen() }
+            }
             Section {
                 Button("Sign out on this device", role: .destructive) { confirmSignOut = true }
                     .disabled(signingOut)

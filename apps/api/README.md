@@ -8,6 +8,14 @@ Configuration deliberately accepts new Supabase publishable keys only. The adapt
 
 Run `pnpm --filter @nest/api test` for 25 focused HTTP-boundary and Node adapter cases. Tests start a loopback fixture server, requiring local socket access. They exercise the real HTTP adapter and Effect runtime; the upstream server is a fixture, so these are **not** RLS/database tests or proof of live Supabase configuration. Separate database and PostgREST fixtures cover the invariants described below.
 
+## Request diagnostics
+
+`runtimeHandler` records OpenTelemetry server and Supabase client spans as one JSON line per completed span in the existing server logs. A validated `X-Nest-Request-ID` UUID and W3C `traceparent` connect the iPhone request, server response and backend request. Responses include both correlation headers. Logs include safe route categories, status, duration, deployment/commit identity when present, backend RPC names, and fixed transport/response/decode/schema failure stages. Streaming spans finish at EOF, cancellation or disconnect; the wrapper preserves backpressure and cancellation.
+
+The span processor writes only selected fields. It never writes bearer tokens, API keys, URLs/query strings, identity IDs, request/response bodies, database error messages, private chats, calendar details or financial values. Effect's automatic HTTP tracing is disabled inside these instrumented adapters because its default spans capture URLs and queries and replace the explicit trace header. Failed logging cannot change command results.
+
+There is no collector, hosted tracing account, automatic alert, metrics dashboard or new paid service. The OpenTelemetry provider is private to the runtime wrapper and its selected span processor writes synchronously to the current log sink. `createHandler` remains the unwrapped API factory for isolated fixtures. Verification: `node --test tests/api/telemetry.test.mjs tests/api/identity.test.mjs tests/api/node-server.test.mjs tests/api/money-balance.test.mjs` from the repository root. This proves server behavior locally and does not establish hosted log retention or a TestFlight device run. See the official [OpenTelemetry JavaScript instrumentation documentation](https://opentelemetry.io/docs/languages/js/instrumentation/) for the SDK span model.
+
 ## Authorized chore commands
 
 `GET /v1/chores` returns current open occurrences using the verified member's household and caller bearer token. `POST /v1/chores/complete` accepts `operationId`, `occurrenceId`, `expectedDueDate` and `completedOn`, invokes `nest_complete_chore` once and validates the returned receipt. The same Effect command factory is the intended native/AI boundary. Bodies are limited to 8 KiB; unknown fields and impossible dates are rejected. HTTP 409 means a version conflict; authorization failures and upstream unavailability remain distinct. Callers must preserve the operation ID after an uncertain response.
