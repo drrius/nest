@@ -85,6 +85,11 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
         XCTAssertTrue(option.waitForExistence(timeout: 10))
         try reader(app).requireTarget(option, bounds: app.frame)
         option.tap()
+        if app.navigationBars[title].exists {
+            let back = app.navigationBars[title].buttons.element(boundBy: 0)
+            try reader(app).requireTarget(back, bounds: app.frame)
+            back.tap()
+        }
         XCTAssertTrue(app.navigationBars["Add expense"].waitForExistence(timeout: 15))
     }
 
