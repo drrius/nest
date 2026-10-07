@@ -10,5 +10,9 @@
   "backend": "nest-test",
   "pushEnabled": false,
   "exportState": "passed",
-  "signedPackageVerified": true
+  "signedPackageVerified": true,
+  "copiedIPAHashMatches": true,
+  "appleBuild20Absent": true,
+  "existingBuild19ValidInternal": true,
+  "submitControllerPrepared": true
 }

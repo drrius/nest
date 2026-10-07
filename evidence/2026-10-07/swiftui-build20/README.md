@@ -26,3 +26,9 @@ is still running; backend/migration inputs are unchanged in the candidate.
 No submission, tester invitation, production operation, purchase or public
 release occurs. Final candidate CI and private submission/Apple processing remain.
 Live AI, push and full M1–M9/phone acceptance are not implied by this package.
+
+The IPA copied to Linux matches the signed export hash. A supported read-only
+Apple status check confirms20 absent and19 VALID/IN_BETA_TESTING. The single-upload
+controller is prepared with exact candidate CI/source/hash/Info.plist and absence
+guards; it has not run and no submission intent exists. No new EAS cloud build is
+used. Candidate CI remains live, so source and package are held stable.

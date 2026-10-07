@@ -35,6 +35,11 @@ Info.plist without rebuild. Preceding018578ef routine/native CI pass; candidate
 37578558002/37578558027 and deep37577691207 remain live. No upload occurs.
 [Candidate20 package](../evidence/2026-10-07/swiftui-build20/README.md).
 
+Candidate20's copied IPA matches its signed hash. The supported Apple read verifies
+20 absent and19 valid/internal. A guarded single-submission controller is prepared
+but not invoked; no submission intent exists. Candidate routine/native and deep
+CI remain live, so the source/package are held stable without another push.
+
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
 Expense and replacement-expense correction approval screens now read exact
