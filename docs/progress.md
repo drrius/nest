@@ -103,7 +103,11 @@ Corrected8d03135f Alex maximal check passes in110.945s: amount immediately visib
 Edit retains both fields, explicit discard and complete restoration. Sam maximal also passes in111.084s, and Alex normal passes in45.821s. All three
 methods restore both scopes/64 journals/settings/local semantics. Final metadata
 matches the eight protected digests. Long-copy reading and phone acceptance remain
-open; candidate native CI37570191489 is still running.
+open; candidate native CI37570191489 now passes atd097752d. Corrected test/evidence
+source1832fd29 is pushed; a new continuous financial-explanation check passes its1,142-input preparation
+and passes at largest text on Alex in112.421s, with no failures/skips and full
+restoration. The exact343pt explanation fits within the510pt viewport after reveal;
+no multi-viewport text claim is made.
 
 Payment, refund and correction forms now protect unsaved fields/reviewed intent with
 the same Keep editing / explicit Discard interaction. Untouched correction compares
