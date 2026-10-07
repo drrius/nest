@@ -14,7 +14,7 @@ Vercel team projects, with no next page. None is Git-linked to drrius/nest. The
 nest-test-api project has no Git link and uses apps/api; household-os and
 household-payroll are linked to their separate repositories. No project or Git
 settings changed, environment values or deploy-hook URLs were exported, or
-production endpoint was called. [Supabase branch metadata](supabase-branches.json)
+production application endpoint was called. [Supabase branch metadata](supabase-branches.json)
 shows no test branches and one legacy default main branch. It does not expose
 the repository or production auto-deploy setting. The owner configuration
 question is pending; a remote main push remains gated on that setting.
