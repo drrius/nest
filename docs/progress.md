@@ -758,3 +758,13 @@ behind/below the584pt tab bar. Both audits remain failed; all reports and the fi
 observer failure are retained. Original clients/64 journals/settings/local choices
 restore. Meals is not repeated. Full accessibility remains
 open. [Visible-row comparison](../evidence/2026-10-07/swiftui-visible-root-contrast/README.md).
+
+Grocery spoken details now include quantity/unit/category, pickup state and clear
+sync descriptions instead of hiding visible detail behind the item-name override.
+Source `eae60688` passes one signed read-only native method on the retained100g rice:
+actual accessible value100 g, To pick up, full56pt target and return to Today.
+Original scopes/64 journals/settings/local choices restore. Existing guarded
+rice/reminder/conflict assertions follow the changed value. Strict native format,
+source limits and compilation pass. Actual VoiceOver speech/traversal, other
+states, both phones and full accessibility remain open. This is later thanbuild20.
+[Grocery spoken detail](../evidence/2026-10-07/swiftui-grocery-spoken-detail/README.md).

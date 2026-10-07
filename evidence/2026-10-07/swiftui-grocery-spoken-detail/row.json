@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 56,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 307,
+    "maxY": 333.5,
+    "midX": 161.5,
+    "midY": 305.5,
+    "minX": 16,
+    "minY": 277.5,
+    "usable": true,
+    "width": 291
+  },
+  "hittable": true,
+  "label": "QA rice",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

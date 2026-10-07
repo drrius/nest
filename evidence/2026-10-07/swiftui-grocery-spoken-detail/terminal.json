@@ -1,0 +1,16 @@
+{
+  "source": "eae60688da5b92900ae920c59b773d3d3948ea17",
+  "originalStateRestored": true,
+  "journalsEmpty": 64,
+  "positiveBudget": 0,
+  "unfiltered": true,
+  "results": [
+    {
+      "case": "grocery-spoken",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ]
+}
