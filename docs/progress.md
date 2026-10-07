@@ -275,6 +275,17 @@ guarded UI compilation pass. Saved
 portion variation/shared planning, broader settings, full accessibility/live AI
 and both phones remain open. No new beta, production action or merge occurs.
 
+Next M3 native pass covers both members' Profile → optional setup → existing
+food/cooking/calendar/notification handoffs → Get started, in normal and maximal
+text. No Save, permission request or local first-use-choice change is authorized
+by the test. Fresh metadata confirms Alex's food/notification records exist,
+Sam's do not, and shared cooking exists for both; setup status must reflect those
+facts without revealing raw preferences. Food/cooking/notification receipts and
+eight protected household/financial fingerprints are captured. The focused setup
+service test passes configured-only output, actor/tenant filters and unknown
+incomplete reads. Two opt-in native sources pass configured formatting/limits;
+no native method has run. [Preparation](../evidence/2026-10-07/swiftui-native-setup/prepared.json).
+
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
 and two repeated partner-heading font reports), down from the dated 19-report
