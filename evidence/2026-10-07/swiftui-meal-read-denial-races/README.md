@@ -27,7 +27,10 @@ including both held-reply orders and move/leftover/replacement recovery.
 and [cleanup](final-cleanup.json). The intermediate run is retained separately;
 the final run includes the tightened asynchronous checks. All three owned
 simulators are deleted. Strict formatting, source limits and diff checks pass.
-Current-source CI remains pending.
+Race source `4192478a` is pushed in `f3931206`.
+[Routine CI 37639324481](https://github.com/drrius/nest/actions/runs/37639324481)
+and [native CI 37639324200](https://github.com/drrius/nest/actions/runs/37639324200)
+are running. Preserve the completed local results and poll these same runs.
 
 The fixtures use actual SessionModel, typed API and SQLite with controlled Auth/
 HTTP on separate owned simulators. They do not prove hosted permission changes,

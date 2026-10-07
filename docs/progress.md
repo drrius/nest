@@ -153,8 +153,7 @@ hosted revocation and phone behavior remain unverified. Current-source CI is
 pending for later source. The sequential-denial source `bb3d93a5` is pushed and
 passes [routine CI 37637534983](https://github.com/drrius/nest/actions/runs/37637534983).
 [Native CI 37637535002](https://github.com/drrius/nest/actions/runs/37637535002)
-is still running; the newer race fix is committed locally at `4192478a`, and its
-push waits to avoid cancelling that run.
+also passes, with 504 app tests, 57 guarded skips and zero failures.
 [Evidence](../evidence/2026-10-07/swiftui-meal-cache-denial/README.md).
 
 Late meal-week replies now pass through one scoped SQLite read epoch. A denial
@@ -163,7 +162,10 @@ week-cache writer uses the shared command. The held-success baseline fails by
 restoring denied data. Both corrected reply orders, 34 affected signed app cases
 and six SQLite checks pass without skips. Pending journals survive, old tickets
 remain invalid after reopening and a new authorized read recovers. Hosted and
-other read-only-path revocation remain open. Current-source CI is pending.
+other read-only-path revocation remain open. Race source `4192478a` is pushed in
+`f3931206`. [Routine CI 37639324481](https://github.com/drrius/nest/actions/runs/37639324481)
+and [native CI 37639324200](https://github.com/drrius/nest/actions/runs/37639324200)
+are running; keep these existing handles rather than repeating the local cases.
 [Evidence](../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md).
 
 ## Exact blockers and owner inputs
