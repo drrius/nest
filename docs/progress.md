@@ -31,6 +31,7 @@ unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagno
 is confirmed: the owner test household has one member. Verified partner linking
 remains needed. Native/server diagnostics and clear setup errors pass focused checks. Server
 traces and private AI timing are deployed; native diagnostics ship in build25.
+[Stream diagnostics](../evidence/2026-10-07/native-stream-diagnostics/README.md) pass ten Mac checks for the next beta.
 
 ## Milestone checklist
 

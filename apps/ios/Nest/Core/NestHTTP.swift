@@ -8,7 +8,7 @@ public enum NestAPIFailure: Error, Equatable {
 public struct NestHTTP: Sendable {
     let baseURL: URL
     private let transport: @Sendable (URLRequest) async throws -> (Data, URLResponse)
-    private let diagnostics: NestRequestDiagnostics
+    let diagnostics: NestRequestDiagnostics
 
     public init(baseURL: URL, diagnostics: NestRequestDiagnostics = .shared) throws {
         try self.init(baseURL: baseURL, diagnostics: diagnostics) { request in
@@ -98,10 +98,7 @@ public struct NestHTTP: Sendable {
         request.cachePolicy = .reloadIgnoringLocalCacheData
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
-        request.setValue(trace.requestId.uuidString.lowercased(), forHTTPHeaderField: "X-Nest-Request-ID")
-        request.setValue(trace.traceparent, forHTTPHeaderField: "traceparent")
-        request.setValue(diagnostics.appVersion, forHTTPHeaderField: "X-Nest-App-Version")
-        request.setValue(diagnostics.appBuild, forHTTPHeaderField: "X-Nest-App-Build")
+        diagnostics.addHeaders(to: &request, trace: trace)
         if body != nil { request.setValue("application/json", forHTTPHeaderField: "Content-Type") }
         if let household { request.setValue(household.uuidString.lowercased(), forHTTPHeaderField: "X-Nest-Household") }
         return request

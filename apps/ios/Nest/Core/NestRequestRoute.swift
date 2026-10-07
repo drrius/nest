@@ -3,6 +3,7 @@ import Foundation
 public enum NestRequestRoute: String, Codable, Sendable {
     case session, moneyBalance, moneyHistory, moneyExpenseContext, moneyExpense, moneySettlement, moneyRecurring, money
     case meals, groceries, chores, renewals, availability, preferences, reminders, memories, notifications, unknown
+    case assistant
 
     static func category(_ path: String) -> Self {
         guard let components = URLComponents(string: path), components.scheme == nil, components.host == nil else {
@@ -15,7 +16,7 @@ public enum NestRequestRoute: String, Codable, Sendable {
     }
 
     private static let families: [String: Self] = [
-        "session": .session, "meals": .meals, "groceries": .groceries, "chores": .chores,
+        "session": .session, "assistant": .assistant, "meals": .meals, "groceries": .groceries, "chores": .chores,
         "renewals": .renewals, "availability": .availability, "food-preferences": .preferences,
         "cooking-preferences": .preferences, "notification-preferences": .notifications,
         "push-devices": .notifications, "memories": .memories,

@@ -60,8 +60,12 @@ its existing operation receipt or use native recovery; do not create another
 expense/settlement to replace an uncertain request. Keep offline journals, immutable
 operation IDs, append-only history and approval enforcement intact during debugging.
 
-Initial coverage includes the standard native HTTP client and API boundary,
+Build25 coverage includes the standard native HTTP client and API boundary,
 identity, Supabase RPCs and AI SDK execution. Apple authentication transport,
 native assistant SSE transport, Edge receipt processing, scheduling and APNs do
 not all have independent spans yet. Diagnose those with their existing fixed error
 states and platform logs; do not claim end-to-end telemetry for them.
+
+The next source patch adds native SSE request/framing/receiver diagnostics. Ten
+focused Mac cases pass; it is not in build25 or a live-provider verification.
+[Evidence](../../evidence/2026-10-07/native-stream-diagnostics/README.md).

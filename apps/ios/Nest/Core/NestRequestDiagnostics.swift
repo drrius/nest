@@ -4,8 +4,10 @@ import OSLog
 public enum NestRequestOutcome: String, Codable, Sendable {
     case success, configuration, transport, timeout, offline, cancelled, response, responseSize, http, decoding
     case householdIncomplete
+    case streamIncomplete, streamFailure, streamAborted, consumerFailure
 
     static func transport(_ error: Error) -> Self {
+        if error is CancellationError { return .cancelled }
         guard let error = error as? URLError else { return .transport }
         switch error.code {
         case .timedOut: return .timeout
@@ -73,6 +75,13 @@ public final class NestRequestDiagnostics: @unchecked Sendable {
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
         encoder.dateEncodingStrategy = .iso8601
         return String(decoding: try encoder.encode(snapshot()), as: UTF8.self)
+    }
+
+    func addHeaders(to request: inout URLRequest, trace: NestRequestTrace) {
+        request.setValue(trace.requestId.uuidString.lowercased(), forHTTPHeaderField: "X-Nest-Request-ID")
+        request.setValue(trace.traceparent, forHTTPHeaderField: "traceparent")
+        request.setValue(appVersion, forHTTPHeaderField: "X-Nest-App-Version")
+        request.setValue(appBuild, forHTTPHeaderField: "X-Nest-App-Build")
     }
 
     func record(
