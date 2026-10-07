@@ -663,6 +663,14 @@ closure. Further palette changes are not justified by this census; anonymous
 identity and fully visible text comparison remain required.
 [Audit census](../evidence/2026-10-07/swiftui-root-audit-census/README.md).
 
+The existing failure screenshots now bound all four anonymous contrast reports
+to highlighted regions behind the native tab bar: Tuesday breakfast/Add meal in
+Meals and the second recent-activity row in Money. This visual region evidence
+does not establish exact accessibility-node identity or clear any finding.
+Complete descriptions contain no further identity. Fully visible highlighted-row
+comparison remains the useful next check; palette changes are unjustified by
+obscured captures. No audit is rerun. [Overlay inspection](../evidence/2026-10-07/swiftui-anonymous-audit-overlays/README.md).
+
 M9 now includes an effective table-access inventory with seven focused real-PG
 tests passing. The complete311-migration rehearsal preserves financial history
 and maps179 relations before/after fixture cutover. One read-only nest-test
