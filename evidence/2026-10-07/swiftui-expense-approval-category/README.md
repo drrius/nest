@@ -32,3 +32,27 @@ decision recovery remain available. The correction decision guard also refuses
 approval without the required category name. Its existing exact bound-receipt
 Foundation test passes, and the signed simulator build-for-testing passes again.
 This adds no rendered native correction-approval or live-provider evidence.
+
+## Native pending expense review
+
+One fresh fictional Alex-owned proposal is created through the audited private
+`nest_propose_expense` command with fixture auth claims, not an arbitrary approval
+insert. This privileged fixture setup is not authentication or model evidence.
+It proposes CHF1.01, Alex payer, 51/50-centime shares and the existing Home category.
+No receipt, bank payment or actual expense is involved. The new approval audit row
+is retained; existing proposals and receipts are unchanged.
+
+The actual normal-size SE3 native method passes once without skips. It verifies
+Alex identity, opens the one eligible expense proposal from Money, reads its
+description and Home category, verifies the enabled44pt Approve target, opens the
+decline confirmation and chooses Cancel, then returns to Today. The signed product
+was built from the shipping category fixes plus the retained guarded UI test.
+No Record or Decline confirmation is tapped. A privileged read afterward confirms
+pending status with null decision/consumption timestamps. Eight retained fixture
+fingerprints, including62 financial events/104 allocations/124 ledger rows, remain
+exact. Both original simulator scopes,64 empty journals, settings and device-only
+calendar/first-use selections are restored by the controller.
+
+The screenshot is directly inspected. Native metadata failure/retry, actual
+decline/approve posting, maximum text, partner privacy and correction review still
+need their own execution. Live model generation and phone acceptance remain open.

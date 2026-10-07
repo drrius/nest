@@ -20,6 +20,15 @@ and approval guard. Reversal-only/opening proposals require no category. One
 focused correction approval Foundation test and signed native compile pass.
 Rendered pending correction approval and failure/retry interaction remain open.
 
+One actual pending-expense native review now passes on Alex's normal-size fictional
+SE3. It reads Home, verifies Approve is enabled, opens Decline and presses Cancel,
+then returns to Today. The proposal remains pending with no decision/consumption;
+all eight retained fingerprints including financial history remain exact. Both
+simulator scopes,64 empty journals/settings/local selections restore. The fresh
+private audit proposal was prepared through the existing audited command with
+fixture auth claims; this is not live AI or authorization proof. No expense was
+posted. Maximum text, partner privacy, actual decision and correction UI remain.
+
 ## Available candidate and current source
 
 **Latest private candidate: SwiftUI0.1.0/build19**, exact `484e5feb`. Candidate routine CI and identical-native-source CI, signed Mac archive/export/package/source audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass. [Release evidence](../evidence/2026-10-06/swiftui-build19/README.md). Update Nest to19 in TestFlight and try the [short phone pass](native-rewrite/build19-first-phone-pass.md). Partner access, installation and phone/design acceptance remain unverified. Live AI, scheduled posting/reminders and push stay inactive; production is untouched.
