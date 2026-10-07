@@ -1,0 +1,34 @@
+[
+  {
+    "path": "corrected/maximum-alex",
+    "source": "8d03135f7aeb4063a1ffb21cfba4ec1167070d77",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "restorationPassed": true
+  },
+  {
+    "path": "corrected/maximum-sam",
+    "source": "8d03135f7aeb4063a1ffb21cfba4ec1167070d77",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "restorationPassed": true
+  },
+  {
+    "path": "corrected/normal-alex",
+    "source": "8d03135f7aeb4063a1ffb21cfba4ec1167070d77",
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "restorationPassed": true
+  },
+  {
+    "path": "first-failure/maximum-alex",
+    "source": "d097752da7482d66007bfbe116ad9f7b58a74ca5",
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "restorationPassed": true
+  }
+]

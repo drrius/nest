@@ -80,21 +80,30 @@ hosted read-only metadata, not live CalDAV or native EventKit evidence.
 ## Current native verification
 
 Expense split/payer choices now use full-row native navigation pickers. Both
-members' normal-text picker and exact/percentage review methods pass across the
-recorded sources. Alex's maximal picker passes at3f82451e; both maximal reviews
-pass at00d65b11, including mismatched-total refusal, literal CHF1.01/0.25/0.76,
-native edit-menu paging and explicit unsent discard. The same-source Sam maximal
-picker passes in194.077s; exact review passes in450.451s and percentage in431.619s.
-Both-member normal/maximal split checks now pass. Final privileged metadata confirms
-all eight protected fingerprints unchanged; this is separate from native auth proof. All completed batches restore both original
-scopes,64 empty journals, display settings and local semantics. Earlier trigger,
-readiness, input, picker-return and scroll/menu observer failures are retained.
-All1,141 frozen inputs/signing/products match; both00d65b11 CI workflows pass.
-CI has506 Foundation/41 explicit skips,473 signed-app/41 explicit skips and four
-Swift Testing cases with zero failures, plus formatting/limits/signing/UI compilation.
-No financial Save, inference, release or merge occurs. Broader financial variants,
-full accessibility, both phones and M7 acceptance remain open.
+members' normal and maximal picker, exact-review and percentage-review checks
+pass across source-specific evidence. Twelve native methods pass; fifteen earlier
+failed methods remain retained, with zero skips. Literal CHF1.01/0.25/0.76,
+mismatched-total refusal, native menu paging, raw-baseline return and explicit
+unsent discard are verified. Both original scopes,64 empty journals, settings and
+local semantics restore. Final privileged metadata matches all eight protected
+digests. Source00d65b11 passes both CI workflows; the evidence-format repair also
+passes routine CI. No financial Save, inference, release or merge occurs.
+Broader financial variants, full accessibility, both phones and M7 remain open.
 [Split evidence](../evidence/2026-10-07/swiftui-expense-splits/README.md).
+
+The rendered split pass exposes a review usability issue: transitioning from a
+scrolled form retains its lower offset. Candidated097752d gives draft/review/saved
+forms distinct native identities while keeping draft values in screen state.
+A focused no-Save check requires the amount visible without scrolling, retained
+fields after Edit and explicit discard. Mac formatting/source limits pass; fresh
+1,142-input signing/build preparation passes. The first Alex maximal transition check fails immediate-amount visibility with
+a long description, and restores all scopes/settings/local semantics. The short
+QA fixture now isolates top-reset behavior and captures geometry before asserting.
+Corrected8d03135f Alex maximal check passes in110.945s: amount immediately visible,
+Edit retains both fields, explicit discard and complete restoration. Sam maximal also passes in111.084s, and Alex normal passes in45.821s. All three
+methods restore both scopes/64 journals/settings/local semantics. Final metadata
+matches the eight protected digests. Long-copy reading and phone acceptance remain
+open; candidate native CI37570191489 is still running.
 
 Payment, refund and correction forms now protect unsaved fields/reviewed intent with
 the same Keep editing / explicit Discard interaction. Untouched correction compares
