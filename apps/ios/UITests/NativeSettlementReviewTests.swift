@@ -71,6 +71,11 @@ final class NativeSettlementReviewTests: XCTestCase {
         XCTAssertTrue(ready)
         try reader.reveal(amount)
         if ProcessInfo.processInfo.environment["NEST_QA_PAYMENT_CONTRAST_AUDIT"] == "20261007-one-unfiltered" {
+            if ProcessInfo.processInfo.environment["NEST_QA_PAYMENT_AUDIT_ACTIONS"] == "20261007-visible-no-save" {
+                try reader.reveal(app.buttons["Record payment"])
+                try reader.reveal(app.buttons["Edit"])
+                reader.capture(app.buttons["Edit"], name: "Payment controls fully inside content viewport")
+            }
             continueAfterFailure = true
             try AccessibilityAuditDiagnostics.audit(app: app, types: .contrast, test: self)
         }
