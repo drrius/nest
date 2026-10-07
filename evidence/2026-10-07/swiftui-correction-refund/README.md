@@ -44,11 +44,26 @@ execution; its corrected classification preserves the 64 actual command journals
 [reconciliation](reconciliation.json), [new event relationships](events.json).
 The final run retains an `Invalid frame dimension (negative or non-finite)` runtime
 warning. It is not suppressed or attributed to the SDK without further evidence.
-This functional pass does not close the broader runtime/accessibility gate.
+The earlier [standalone keyboard-toolbar diagnosis](../swiftui-keyboard-toolbar-probe/README.md)
+already reproduces this message with matching framework stacks on iOS 26.3.1.
+The current warning occurs when Replace entry introduces native inputs/toolbars;
+its source location and current backtrace are unavailable. This is consistent
+with the existing diagnosis, but does not prove identical origin. No new probe
+or financial journey is needed to repeat that established result.
+[Current warning context](frame-warning-context.json). This functional pass does
+not close the broader runtime/accessibility or physical-phone gate.
 
-This proves direct native posting/readback and hosted balance/history behavior for
-this fixture. Partner rendered readback, physical phones, other correction/refund
-variants, live AI approvals, accessibility and production remain open. The final
+A separate Test Sam clone now opens all four exact event IDs through Financial
+history and reads their types/amounts plus the replacement note. This read-only
+native case passes without failures, skips or runtime warnings. Its original
+scope and 64 empty command journals match; the clone is deleted. A fresh
+financial snapshot matches the complete post-journey snapshot, so peer reading
+changes no financial row or balance. [Partner result](partner/summary.json),
+[reconciliation](partner/reconciliation.json), [cleanup](partner/cleanup.json).
+
+This proves both native clients' direct posting/readback and hosted balance/history
+behavior for this fixture. Physical phones, other correction/refund variants, live
+AI approvals, accessibility and production remain open. The final
 passing invocation uses the explicit saved-expense resume branch; the corrected
 beginning branch is not repeated because the one-use three-command budget is spent.
 Build 22 is unchanged. The picker fix needs a later consolidated candidate.

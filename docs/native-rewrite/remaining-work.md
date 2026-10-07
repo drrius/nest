@@ -26,7 +26,7 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
-- [Direct correction/refund posting](../../evidence/2026-10-07/swiftui-correction-refund/README.md) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendering, physical phones, live AI, other variants and the retained runtime warning remain open.
+- [Direct correction/refund posting](../../evidence/2026-10-07/swiftui-correction-refund/README.md) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendered readback now passes separately without any financial change. Physical phones, live AI, other variants and the retained writer warning remain open.
 
 - [Actual EventKit revocation](../../evidence/2026-10-07/swiftui-eventkit-revocation/README.md) now verifies OS-denied reads and persisted-selection clearing across test-host restart in two signed native checks. It uses a fresh simulator and one synthetic event. Physical phones, rendered privacy behavior and live busy sharing remain open.
 
@@ -50,20 +50,34 @@ Evidence reconciliation7 October:
 
 Work order:
 
-1. Finish remaining local UI/runtime and financial recovery gaps. Keep one source
-   candidate stable until its CI jobs finish. Avoid further per-detail beta builds.
-2. Use available consolidated build22 and the existing phone checklist
-   to gather both partners' acceptance. Prepare another beta only for necessary
-   shipping changes; test-only or evidence updates do not need a beta.
-   Do not count simulator evidence as phone
-   acceptance or turn broad gates into individual passing screenshots.
-3. When the existing AI/credential blockers change, verify the actual provider and
-   scheduled delivery. The read-only inventory now has actual nest-test catalog
-   and eight definition-hash comparisons. Production inventory, external invokers
-   and drainage still need separately authorized access and reconciliation.
-   Continue remaining migration/read-only work while they remain blocked.
-4. Reconcile every milestone exit against its evidence before claiming completion.
-   Production migration, retirement and public release require separate approval.
+1. Complete the remaining named native Money journeys: recurring creation/edit,
+   pause/cancel/resume, manual cycle linkage and retained-rule decisions. Existing
+   model/database evidence stays valid. Direct correction/refund and full/partial
+   settlement journeys already have their bounded evidence; repeat only for an
+   affected change or failure. The action inventory distinguishes those flows.
+2. Keep one source candidate stable until its CI finishes. Batch necessary shipping
+   fixes for a consolidated beta. Test-only/evidence changes do not need another
+   beta. Build 22 remains the available owner candidate; later fixes are separate.
+3. Complete live AI only after the specific credential/eligibility blocker changes.
+   The required journey is actual private streaming/tool execution, visible
+   financial approval and generated week/replacement/approval/ingredient review.
+   Source and controlled fixtures do not close it.
+4. Complete scheduled posting and six reminder delivery kinds only after the
+   blocked worker configuration and APNs provider setup. Verify actual phone
+   delivery, recipient/mute behavior and cold-start links. No scheduler activation
+   is inferred from source merges or fixture success.
+5. Gather both partners' phone acceptance using the existing checklist: daily
+   grocery/chore radio-loss recovery, weekly planning, Money, real Calendar
+   sharing/revocation, light/dark/large text, VoiceOver, Reduce Motion and uncoached
+   use. Simulator evidence is retained within its scope and does not replace this.
+6. Finish migration/private-writer/Storage reconciliation and pending-intent
+   drainage, then verify the final release binary. Production inventory/cutover,
+   retirement and publication remain separately authorized actions. The current
+   fixture owner improvement does not establish hosted privilege equivalence.
+
+These are the existing release requirements. Do not turn a passing journey into
+an expanding list of hypothetical variations. New local checks must answer a
+named uncovered requirement, an affected source change or a concrete failure.
 
 The progress log records detailed evidence and exact blocker history. This list
 does not authorize purchases, production mutation, new invitations or previously

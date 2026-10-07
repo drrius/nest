@@ -245,8 +245,23 @@ return to their starting zero. The final native invocation passes without skips;
 initial observer/target failures remain retained. The correction picker target is
 now 44 points high. Original scope and all 64 command journals match; the owned
 clone is deleted. A reported invalid-frame runtime warning remains open. Partner
-rendering, phones, live AI and broader variants remain unverified. Build 22 stays
+rendering is verified below; phones, live AI and broader variants remain open. Build 22 stays
 unchanged. [Evidence](../evidence/2026-10-07/swiftui-correction-refund/README.md).
+
+The second fictional member now reads the four exact correction/refund-chain
+entries through native Financial history and the hosted test API. The read-only
+signed case passes without failures, skips or runtime warnings. The full financial
+snapshot is unchanged after reading. Original Sam scope and all 64 command
+journals match; its owned clone is deleted. The earlier standalone keyboard
+warning diagnosis already reproduces the writer's warning message on this runtime;
+current writer stack identity is unavailable, so phone/runtime acceptance stays
+open. No new probe or financial posting is used for that diagnosis.
+[Evidence](../evidence/2026-10-07/swiftui-correction-refund/README.md).
+
+Picker/posting source `50276391` passes [routine CI 37651420402](https://github.com/drrius/nest/actions/runs/37651420402)
+and [native CI 37651420448](https://github.com/drrius/nest/actions/runs/37651420448).
+The separately executed partner reader has its local passing evidence; its updated
+source still requires CI after delivery. No current CI run is cancelled to push it.
 
 ## Exact blockers and owner inputs
 
