@@ -1,0 +1,114 @@
+{
+  "premise": "Earlier visual fixes assumed color or scroll-edge styling would remove findings behind the floating native tab bar.",
+  "rows": [
+    {
+      "source": "evidence/2026-10-05/swiftui-accessibility-audit/testCalendarAccessibility.json",
+      "contrast": {
+        "above": 1,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-05/swiftui-accessibility-audit/testMealsAccessibility.json",
+      "contrast": {
+        "above": 1,
+        "crossing": 0,
+        "below": 0,
+        "unidentified": 2
+      }
+    },
+    {
+      "source": "evidence/2026-10-05/swiftui-accessibility-audit/testMoneyAccessibility.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 0,
+        "unidentified": 3
+      }
+    },
+    {
+      "source": "evidence/2026-10-05/swiftui-accessibility-audit/testTodayAccessibility.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 1,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-current-calendar-audit/finding.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/meals/1DF12355-A4BC-4E6D-B866-CD5F4740AA18.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/meals/34F9FE52-6984-49F1-A54D-BA1717D234AD.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/meals/6D5F3288-EEAD-4BA8-A78A-2E8DDF55B4B8.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/meals/6FC3445E-745B-4C8E-914F-55C6A4F195A6.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/money-corrected/56D8AE15-CB61-4C49-A846-C5DCD528F0FC.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/money-corrected/BE1932D8-FB51-4A18-8916-7F8A04E13643.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    },
+    {
+      "source": "evidence/2026-10-07/swiftui-visible-root-contrast/money-corrected/F73DC411-4D93-44CB-9A16-F549347B2393.json",
+      "contrast": {
+        "above": 0,
+        "crossing": 0,
+        "below": 1,
+        "unidentified": 0
+      }
+    }
+  ],
+  "limitations": "Historical and current source states differ. Position is evidence, not proof of the cause or accessibility approval."
+}

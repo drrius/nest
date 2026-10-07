@@ -927,3 +927,10 @@ viewport and issue crop are inspected, failure retained, originals/64 journals/
 settings/privacy restored. Other sizes/states, VoiceOver/Reduce Motion and phones
 remain open; no full accessibility approval is claimed.
 [Current Calendar audit](../evidence/2026-10-07/swiftui-current-calendar-audit/README.md).
+
+A rerunnable contrast-position census now compares retained audit records. All
+eight recent identified Calendar/Meals/Money reports lie below the native tab bar;
+older source reports include above-bar/unidentified nodes. This narrows the current
+root-cause investigation and avoids repeating failed color/fade/background fixes.
+It suppresses no issue and does not clear full accessibility or hardware gates.
+[Census](../evidence/2026-10-07/swiftui-current-calendar-audit/contrast-census.json).

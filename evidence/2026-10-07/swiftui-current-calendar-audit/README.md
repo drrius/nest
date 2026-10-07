@@ -24,3 +24,11 @@ so no accessibility gate is closed or issue suppressed.
 member scopes, 64 empty journals per client, display settings and local privacy
 choices restore; [restoration](restoration.json). VoiceOver, Reduce Motion,
 populated calendars, both phones and owner design acceptance remain open.
+
+The rerunnable [position census](contrast-census.py) compares retained historical
+and recent identified contrast reports without rerunning UI or suppressing issues.
+Its [output](contrast-census.json) places all eight recent Calendar/Meals/Money
+reports below the native tab bar. Older source reports also include above-bar and
+unidentified elements, so this is a source-bounded observation, not a blanket
+platform diagnosis. Earlier color/fade/background experiments failed; no further
+palette workaround follows from this count. Full audits remain failed.
