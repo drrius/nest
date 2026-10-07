@@ -13,6 +13,7 @@ struct RefundScreen: View {
     @State private var description = "Refund"
     @State private var note = ""
     @State private var date = Date()
+    @State private var initialDate: Date?
     @State private var working = false
     @State private var notice: String?
     @State private var confirmCancel = false
@@ -47,6 +48,7 @@ struct RefundScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Record refund")
+        .modifier(QuietDiscardBack(hasChanges: hasUnsavedChanges, busy: working) { focusedField = nil })
         .scrollDismissesKeyboard(.interactively)
         .modifier(
             MoneyDraftKeyboard(
@@ -59,6 +61,13 @@ struct RefundScreen: View {
         } message: {
             Text("An already recorded refund stays in financial history.")
         }
+    }
+
+    private var hasUnsavedChanges: Bool {
+        guard saved == nil else { return false }
+        return reviewed != nil || description != "Refund" || !note.isEmpty || shares.values.contains { !$0.isEmpty }
+            || source.map { payer != $0.source.event.payerId } == true
+            || initialDate.map { !Calendar.current.isDate(date, inSameDayAs: $0) } == true
     }
 
     private func fields(_ source: RefundContext) -> some View {
@@ -140,6 +149,7 @@ struct RefundScreen: View {
     }
 
     private func load() async {
+        if initialDate == nil { initialDate = date }
         await perform {
             let current = try session.expenseContext()
             context = current
@@ -195,6 +205,7 @@ struct RefundScreen: View {
             self.saved = nil
             reviewed = nil
             shares = [:]
+            initialDate = date
             source = nil
             source = try await session.readRefundContext(context, sourceEventId: sourceEventId)
         }

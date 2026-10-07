@@ -1,6 +1,6 @@
 import Foundation
 
-struct CorrectionDraft {
+struct CorrectionDraft: Equatable {
     var replace = false
     var description: String
     var amount: String

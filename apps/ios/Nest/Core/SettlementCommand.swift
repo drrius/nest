@@ -63,7 +63,7 @@ struct SettlementReceipt: Codable, Sendable {
     }
 }
 
-struct SettlementDraft {
+struct SettlementDraft: Equatable {
     var mode = SettlementInput.Mode.full
     var amount = ""
     var note = ""

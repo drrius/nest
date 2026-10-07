@@ -7,6 +7,7 @@ struct SettlementScreen: View {
     @State private var context: ExpenseContext?
     @State private var draft = SettlementDraft()
     @State private var date = Date()
+    @State private var initialDate: Date?
     @State private var reviewed: SettlementInput?
     @State private var saved: SavedSettlement?
     @State private var working = false
@@ -45,6 +46,7 @@ struct SettlementScreen: View {
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Record payment")
         .modifier(MoneyDraftKeyboard(focus: $focusedField))
+        .modifier(QuietDiscardBack(hasChanges: hasUnsavedChanges, busy: working) { focusedField = nil })
         .task { await load() }
         .confirmationDialog("Cancel this pending record?", isPresented: $confirmCancel) {
             Button("Cancel pending record", role: .destructive) { Task { await resolve(cancel: true) } }
@@ -54,6 +56,12 @@ struct SettlementScreen: View {
     }
 
     private var editingDraft: Bool { balance != nil && saved == nil && reviewed == nil }
+
+    private var hasUnsavedChanges: Bool {
+        guard saved == nil else { return false }
+        return reviewed != nil || draft != SettlementDraft()
+            || initialDate.map { !Calendar.current.isDate(date, inSameDayAs: $0) } == true
+    }
 
     @ViewBuilder private func fields(_ balance: MoneyBalance) -> some View {
         if let recipient = balance.members.first(where: { $0.centimes.value > 0 }),
@@ -123,6 +131,7 @@ struct SettlementScreen: View {
     }
 
     private func load() async {
+        if initialDate == nil { initialDate = date }
         await perform {
             balance = nil
             let current = try session.expenseContext()
@@ -172,6 +181,7 @@ struct SettlementScreen: View {
             self.saved = nil
             reviewed = nil
             draft = SettlementDraft()
+            initialDate = date
             balance = nil
             balance = try await session.readMoneyBalance(member: member, generation: context.generation)
         }

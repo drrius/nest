@@ -7,6 +7,7 @@ struct CorrectionScreen: View {
     @State private var context: ExpenseContext?
     @State private var source: CorrectionContext?
     @State private var draft: CorrectionDraft?
+    @State private var initialDraft: CorrectionDraft?
     @State private var reviewed: CorrectionInput?
     @State private var saved: SavedCorrection?
     @State private var working = false
@@ -48,6 +49,7 @@ struct CorrectionScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Correct entry")
+        .modifier(QuietDiscardBack(hasChanges: hasUnsavedChanges, busy: working) { focusedField = nil })
         .scrollDismissesKeyboard(.interactively)
         .modifier(
             MoneyDraftKeyboard(
@@ -60,6 +62,10 @@ struct CorrectionScreen: View {
         } message: {
             Text("An already recorded correction stays in financial history.")
         }
+    }
+
+    private var hasUnsavedChanges: Bool {
+        saved == nil && (reviewed != nil || (draft != nil && initialDraft != nil && draft != initialDraft))
     }
 
     @ViewBuilder
@@ -180,6 +186,7 @@ struct CorrectionScreen: View {
         if value.canReverse || value.canReplace {
             draft = try previous ?? CorrectionDraft(source: value.source)
             if previous == nil { draft?.replace = !value.canReverse }
+            if previous == nil { initialDraft = draft }
         }
     }
     private func review() {

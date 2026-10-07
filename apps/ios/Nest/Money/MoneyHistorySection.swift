@@ -29,6 +29,7 @@ struct MoneyHistorySection: View {
                     .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
                 }
                 .buttonStyle(.plain)
+                .accessibilityIdentifier("money-event-\(event.id.uuidString.lowercased())")
             }
             if loading { ProgressView("Loading history…") }
             if let notice { Text(notice) }
