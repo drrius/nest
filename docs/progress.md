@@ -208,10 +208,10 @@ schema permission failure is retained. This closes a local rehearsal gap without
 another native build. [Evidence](../evidence/2026-10-07/migration-runtime-owner/README.md).
 
 Runtime-owner source `f1cff427` is delivered on the feature branch. Its routine
-[CI 37644412576](https://github.com/drrius/nest/actions/runs/37644412576) is running.
-The current client source is covered by native
-[CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666), still running
-at this checkpoint. No unchanged native run is restarted. The phone acceptance
+[CI 37644412576](https://github.com/drrius/nest/actions/runs/37644412576) passes.
+Native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666)
+is terminal/cancelled, with one account-switch error-contract failure in its log.
+The failure is corrected below; current-source CI remains required. The phone acceptance
 guide now identifies build 22's actual frozen source and working short-checklist
 link, and separates later history/cache fixes from that available candidate.
 
@@ -221,9 +221,15 @@ event reads with granted access; denied access clears saved selection and refuse
 event/busy reads after a separate launch. The fixture explicitly flushes its
 marker after an initial transport failure, retained in evidence. Both owned
 simulators are deleted. Shipping Calendar code and build 22 stay unchanged.
-The test and corrected phone guide are committed locally; their push waits for
-the existing CI runs so it cannot cancel the current client check. Rendered UI,
+The test and corrected phone guide are ready for feature-branch delivery. Rendered UI,
 initial permission prompts, live sharing and both phones remain open. [Evidence](../evidence/2026-10-07/swiftui-eventkit-revocation/README.md).
+
+The failed ingredient account-switch contract now rechecks caller context when
+the shared week read throws. The exact failed method and affected library,
+ingredient and denial-race cases pass in 21 signed app tests, without failures or
+skips. The original CI failure remains recorded; current-head CI is pending for
+this correction. No test expectation is relaxed, hosted data is untouched and
+build 22 stays unchanged. [Evidence](../evidence/2026-10-07/swiftui-ingredient-context-ci/README.md).
 
 ## Exact blockers and owner inputs
 
@@ -231,7 +237,7 @@ initial permission prompts, live sharing and both phones remain open. [Evidence]
 - **Scheduled workers:** automatic approval review blocked transferring the test Supabase server key and scheduler token to Vercel. The specific transfer approval remains pending; no alternate transfer or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
 - **Phones:** both partners need build 22 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
-- **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) is still running at this checkpoint. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
+- **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) later ended cancelled with the account-switch failure recorded above. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
 - **Merge:** [PR 85](https://github.com/drrius/nest/pull/85) is OPEN at `1c00a089`, with four successful checks. Its sole Greptile response reports the trial credit limit and supplies no approval. The specific automatic-review merge rejection remains unresolved. The owner waived extra Sol review; no Sol, duplicate unchanged review request or alternate main push is used.
 - **Production:** existing-data reconciliation, writer decisions and pending-intent/external-work drainage must precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
 

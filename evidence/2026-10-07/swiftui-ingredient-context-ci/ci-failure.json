@@ -1,0 +1,15 @@
+{
+  "run": 37642938666,
+  "headSha": "aa4df4ee4ac08b24dc4a76534834a24e0dfc4175",
+  "conclusion": "cancelled",
+  "tests": 510,
+  "skipped": 57,
+  "failed": 1,
+  "failure": "MealLibraryModelTests/testLateIngredientWeekReadRejectsOldAccountContext",
+  "message": "XCTAssertEqual failed: nil is not equal to Optional(OfflineFailure.sessionChanged)",
+  "lateDataReturned": false,
+  "jobStarted": "2026-10-07T15:19:39Z",
+  "testsFinished": "2026-10-07T15:32:25Z",
+  "jobFinished": "2026-10-07T15:40:22Z",
+  "inferredErrorFromReadPath": "NestAPIFailure.signedOut"
+}

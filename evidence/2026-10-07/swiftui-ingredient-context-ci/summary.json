@@ -1,0 +1,37 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "2E6B4F43-8BFE-4047-B20C-32893301215B",
+        "deviceName": "Nest Today cache owned 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 21,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1791387728.14,
+  "passedTests": 21,
+  "result": "Passed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791387718.748,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - Nest",
+  "topInsights": [],
+  "totalTestCount": 21
+}

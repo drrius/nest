@@ -26,8 +26,14 @@ extension SessionModel {
         let session = try await auth.session()
         guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
         try requireIngredientContext(context)
-        let week = try await readAndCacheMealWeek(
-            context.week, token: session.accessToken, member: context.member, generation: context.generation)
+        let week: MealWeekSnapshot
+        do {
+            week = try await readAndCacheMealWeek(
+                context.week, token: session.accessToken, member: context.member, generation: context.generation)
+        } catch {
+            try requireIngredientContext(context)
+            throw error
+        }
         try requireIngredientContext(context)
         let listing: MealIngredientListing
         do {
