@@ -32,3 +32,10 @@ reports below the native tab bar. Older source reports also include above-bar an
 unidentified elements, so this is a source-bounded observation, not a blanket
 platform diagnosis. Earlier color/fade/background experiments failed; no further
 palette workaround follows from this count. Full audits remain failed.
+
+A subsequent reversible Calendar viewport-clipping experiment runs the same full
+audit against the same permission/text/appearance state. It fails with the same
+one contrast finding at the same bounds. The clipping modifier is removed from
+Linux and Mac source; it is not presented as a fix. The pre-experiment stable-origin
+signed client is reinstalled and its original scopes/settings/privacy verified.
+No issue is suppressed and no hosted command or permission change occurs.

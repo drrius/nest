@@ -934,3 +934,9 @@ older source reports include above-bar/unidentified nodes. This narrows the curr
 root-cause investigation and avoids repeating failed color/fade/background fixes.
 It suppresses no issue and does not clear full accessibility or hardware gates.
 [Census](../evidence/2026-10-07/swiftui-current-calendar-audit/contrast-census.json).
+
+The distinct Calendar viewport-clipping experiment reproduces the same single
+under-tab-bar contrast finding. It is removed from both source copies and the
+pre-experiment stable-origin signed client is reinstalled. Original scopes,
+settings, privacy and64 empty journals per client verify. No palette/layout fix
+is claimed; full accessibility and phones remain open.
