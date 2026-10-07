@@ -285,6 +285,17 @@ eight protected household/financial fingerprints are captured. The focused setup
 service test passes configured-only output, actor/tenant filters and unknown
 incomplete reads. Two opt-in native sources pass configured formatting/limits;
 no native method has run. [Preparation](../evidence/2026-10-07/swiftui-native-setup/prepared.json).
+Fresh source `dad2f4be` compiles 1,136 inputs and signed UI/SDK products. Both actual
+native GET-only setup-status reads and both full normal-text setup journeys pass.
+The largest-text Alex method fails before a handoff: the food setup link includes
+its entire explanation and measures 861 points, exceeding the 510-point usable
+viewport. Twenty-four bounded pans cannot expose the whole action. Its complete
+geometry, screenshot and failed method are retained; no Save or grant occurs.
+Both scopes/64 journals/display settings/local privacy and first-use choices
+restore. Fresh food/cooking/notification records and receipts remain exact.
+The setup explanations are now separate static/footer text; interactive labels
+retain titles and saved-choice status. Fonts and wording are preserved. Formatting
+and source limits pass; fresh native verification of this layout is pending.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

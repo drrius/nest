@@ -1,0 +1,164 @@
+{
+  "actions": [
+    {
+      "label": "Today",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 113.25,
+        "maxY": 642,
+        "midX": 69.125,
+        "midY": 615,
+        "minX": 25,
+        "minY": 588,
+        "usable": true,
+        "width": 88.25
+      }
+    },
+    {
+      "label": "Meals",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 192.16666666666669,
+        "maxY": 642,
+        "midX": 148.04166666666669,
+        "midY": 615,
+        "minX": 103.91666666666667,
+        "minY": 588,
+        "usable": true,
+        "width": 88.250000000000014
+      }
+    },
+    {
+      "label": "Calendar",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 271.08333333333337,
+        "maxY": 642,
+        "midX": 226.95833333333337,
+        "midY": 615,
+        "minX": 182.83333333333334,
+        "minY": 588,
+        "usable": true,
+        "width": 88.250000000000028
+      }
+    },
+    {
+      "label": "Money",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 350,
+        "maxY": 642,
+        "midX": 305.875,
+        "midY": 615,
+        "minX": 261.75,
+        "minY": 588,
+        "usable": true,
+        "width": 88.25
+      }
+    },
+    {
+      "label": "Profile",
+      "rawFrame": {
+        "height": 44,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 60,
+        "maxY": 64,
+        "midX": 38,
+        "midY": 42,
+        "minX": 16,
+        "minY": 20,
+        "usable": true,
+        "width": 44
+      }
+    },
+    {
+      "label": "Cooking preferences, Choices saved, Shared cooking notes and meal slots. Existing household choices are reused.",
+      "rawFrame": {
+        "height": 119,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 159.5,
+        "midX": 187.5,
+        "midY": 100,
+        "minX": 16,
+        "minY": 40.5,
+        "usable": true,
+        "width": 343
+      }
+    },
+    {
+      "label": "Calendars and busy sharing, Choose calendars on this iPhone. Personal details stay here; busy sharing is a separate opt-in.",
+      "rawFrame": {
+        "height": 116.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 334,
+        "midX": 187.5,
+        "midY": 275.75,
+        "minX": 16,
+        "minY": 217.5,
+        "usable": true,
+        "width": 343
+      }
+    },
+    {
+      "label": "Notification choices, Choices saved, Your daily summary and item reminders. Connect this iPhone separately if delivery is available.",
+      "rawFrame": {
+        "height": 137,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 471,
+        "midX": 187.5,
+        "midY": 402.5,
+        "minX": 16,
+        "minY": 334,
+        "usable": true,
+        "width": 343
+      }
+    },
+    {
+      "label": "Reload saved choices",
+      "rawFrame": {
+        "height": 52,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 558,
+        "midX": 187.5,
+        "midY": 532,
+        "minX": 16,
+        "minY": 506,
+        "usable": true,
+        "width": 343
+      }
+    },
+    {
+      "label": "Get started",
+      "rawFrame": {
+        "height": 52,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 359,
+        "maxY": 610,
+        "midX": 187.5,
+        "midY": 584,
+        "minX": 16,
+        "minY": 558,
+        "usable": true,
+        "width": 343
+      }
+    }
+  ]
+}
