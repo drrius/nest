@@ -141,7 +141,7 @@ shows the saved meal during a held read and afterward. The final olive-tint
 capture method passes without skips; both screenshots are inspected. Source
 `96ce536b` passes [routine CI 37635279113](https://github.com/drrius/nest/actions/runs/37635279113).
 [Native CI 37635279186](https://github.com/drrius/nest/actions/runs/37635279186)
-is still running its signed app tests; keep that existing run. This is local native proof with controlled
+also passes, with 502 app tests, 57 guarded skips and zero failures. This is local native proof with controlled
 HTTP, not hosted/phone acceptance. Build 22 stays unchanged.
 [Evidence](../evidence/2026-10-07/swiftui-today-meals-cache/README.md).
 
@@ -150,7 +150,12 @@ read snapshot in Today and Meals. The baseline exposes the denied cache; four
 corrected signed app cases and one SQLite restart/scope check pass without skips.
 Uncertain operations and partner snapshots remain intact. Concurrent old replies,
 hosted revocation and phone behavior remain unverified. Current-source CI is
-pending. [Evidence](../evidence/2026-10-07/swiftui-meal-cache-denial/README.md).
+pending for later source. The sequential-denial source `bb3d93a5` is pushed and
+passes [routine CI 37637534983](https://github.com/drrius/nest/actions/runs/37637534983).
+[Native CI 37637535002](https://github.com/drrius/nest/actions/runs/37637535002)
+is still running; the newer race fix is committed locally at `4192478a`, and its
+push waits to avoid cancelling that run.
+[Evidence](../evidence/2026-10-07/swiftui-meal-cache-denial/README.md).
 
 Late meal-week replies now pass through one scoped SQLite read epoch. A denial
 atomically invalidates older replies and deletes the snapshot; every shipping

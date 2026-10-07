@@ -22,7 +22,11 @@ Strict formatting, source caps and diff checks pass.
 The checks use controlled HTTP and real local persistence on separate owned
 simulators, with no hosted data or credentials. Both simulators are deleted.
 [Baseline cleanup](baseline-cleanup.json), [corrected cleanup](fixed-cleanup.json).
-Current-source CI remains pending.
+Source `bb3d93a5` is pushed and passes [routine CI 37637534983](https://github.com/drrius/nest/actions/runs/37637534983).
+[Native CI 37637535002](https://github.com/drrius/nest/actions/runs/37637535002)
+is still running. The later [read-epoch fix](../swiftui-meal-read-denial-races/README.md)
+now has both controlled late-reply orders verified locally; it is a separate
+source checkpoint.
 
 This addresses the sequential known-denial/reopen case. Concurrent old successful
 reads, hosted permission changes, all meal/recipe cache variants and phone

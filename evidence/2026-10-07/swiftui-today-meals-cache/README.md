@@ -38,6 +38,7 @@ precede the one-line tint change; their session/cache source remains unchanged.
 
 Source `96ce536b` passes [routine CI](https://github.com/drrius/nest/actions/runs/37635279113).
 [Native CI 37635279186](https://github.com/drrius/nest/actions/runs/37635279186)
-is still running at the signed app tests. Do not restart it while it is live. TestFlight build
+also passes. It reports 502 app tests, 57 guarded skips and zero failures. The
+separate local guarded rendering execution remains the visible card proof. TestFlight build
 22 remains unchanged. No production, hosted household, credentials, provider,
 scheduler or push configuration changes are made. M1/M4/M5 acceptance stays open.
