@@ -22,7 +22,7 @@ final class NativeReminderAlertReadabilityTests: XCTestCase {
         groceries.tap()
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
         app.buttons["More options for QA rice"].tap()
         XCTAssertTrue(app.buttons["Reminder choices"].waitForExistence(timeout: 15))
         app.buttons["Reminder choices"].tap()
@@ -47,7 +47,7 @@ final class NativeReminderAlertReadabilityTests: XCTestCase {
             predicate: NSPredicate(format: "exists == false"), object: app.navigationBars["Grocery reminder"])
         XCTAssertEqual(XCTWaiter.wait(for: [gone], timeout: 15), .completed)
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
     }
 
     private func assertReadableAlert(_ app: XCUIApplication, name: String) {

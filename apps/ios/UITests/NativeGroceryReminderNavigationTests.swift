@@ -22,7 +22,7 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
         groceries.tap()
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
         let more = app.buttons["More options for QA rice"]
         reveal(more, in: app)
         more.tap()
@@ -49,7 +49,7 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
         back.tap()
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
         XCTAssertFalse(app.buttons["Discard choices"].exists)
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
         capture(app, name: "Untouched Back returned to unchanged groceries")
     }
 
@@ -122,7 +122,7 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
         back.tap()
         requireEditorDismissed(app)
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
     }
 
     func testMaximumRefreshKeepAndDiscardSuffixRecovery() throws {
@@ -159,7 +159,7 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
         app.navigationBars["Grocery reminder"].buttons["Back"].tap()
         requireEditorDismissed(app)
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
     }
 
     private func requireEditorDismissed(_ app: XCUIApplication) {
@@ -173,7 +173,7 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
         let more = app.buttons["More options for QA rice"]
         reveal(more, in: app)
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
         more.tap()
         XCTAssertTrue(app.buttons["Reminder choices"].waitForExistence(timeout: 15))
         app.buttons["Reminder choices"].tap()

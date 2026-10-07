@@ -57,7 +57,7 @@ final class NativeGroceryReminderSaveTests: XCTestCase {
         capture(app, name: "Done clears the exact local request and reloads retained canonical reminder")
         app.navigationBars["Grocery reminder"].buttons["Back"].tap()
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
         restoreToday(app)
     }
 
@@ -143,7 +143,7 @@ final class NativeGroceryReminderSaveTests: XCTestCase {
         groceries.tap()
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
-        XCTAssertEqual(app.buttons["QA rice"].value as? String, "To pick up")
+        XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
         app.buttons["More options for QA rice"].tap()
         XCTAssertTrue(app.buttons["Reminder choices"].waitForExistence(timeout: 15))
         app.buttons["Reminder choices"].tap()

@@ -74,7 +74,7 @@ final class NativeGroceryPairTests: XCTestCase {
         try requireMutation("discard")
         let app = try openGroceries()
         let item = revealFixture(in: app)
-        XCTAssertEqual(item.value as? String, "To pick up, conflict")
+        XCTAssertEqual(item.value as? String, "To pick up, Needs review")
         XCTAssertTrue(app.staticTexts["Saved change: Picked up"].exists)
         let discard = app.buttons["Discard saved change"]
         reveal(discard, in: app)
@@ -167,7 +167,9 @@ final class NativeGroceryPairTests: XCTestCase {
     private func expectedState() throws -> String {
         _ = try requireFixture()
         let value = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_QA_NATIVE_PAIR_STATE"])
-        XCTAssertTrue(["To pick up", "Picked up", "Picked up, pending", "To pick up, conflict"].contains(value))
+        XCTAssertTrue(
+            ["To pick up", "Picked up", "Picked up, Saved on device, waiting to sync", "To pick up, Needs review"]
+                .contains(value))
         return value
     }
 

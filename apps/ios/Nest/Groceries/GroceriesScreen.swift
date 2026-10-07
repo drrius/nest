@@ -175,6 +175,7 @@ struct GroceriesScreen: View {
                 )
                 .accessibilityLabel(local.item.name)
                 .accessibilityValue(accessibilityValue(local))
+                .accessibilityHint(local.checked ? "Mark as still to pick up." : "Mark as picked up.")
                 if local.state == .open {
                     Menu {
                         Button("Edit", systemImage: "pencil") { editingItem = local.item }
@@ -257,7 +258,14 @@ struct GroceriesScreen: View {
 
     private func accessibilityValue(_ local: LocalGrocery) -> String {
         let current = local.checked ? "Picked up" : "To pick up"
-        return local.state == .open ? current : "\(current), \(local.state.rawValue)"
+        let sync =
+            switch local.state {
+            case .open: nil as String?
+            case .pending: "Saved on device, waiting to sync"
+            case .acknowledged: "Confirmed, refreshing list"
+            case .conflict: "Needs review"
+            }
+        return [itemDetail(local.item), current, sync].compactMap { $0 }.joined(separator: ", ")
     }
 }
 

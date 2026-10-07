@@ -19,7 +19,7 @@ final class NativeIngredientGroceryReadTests: XCTestCase {
         let rice = app.buttons["QA rice"]
         reveal(rice, in: app)
         XCTAssertTrue(rice.isHittable)
-        XCTAssertEqual(rice.value as? String, "To pick up")
+        XCTAssertEqual(rice.value as? String, "100 g, To pick up")
         XCTAssertGreaterThanOrEqual(rice.frame.height, 56)
         XCTAssertTrue(app.staticTexts["100 g"].exists)
         let screenshot = XCTAttachment(screenshot: app.screenshot())
