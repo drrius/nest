@@ -26,6 +26,8 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Money history spacing](../../evidence/2026-10-07/swiftui-money-history-spacing/README.md) reproduces an actual 24-point gap between populated rows and verifies its removal in two signed native journeys. Preview and full history retain complete visible targets; screenshots are inspected. This shipping fix is newer than TestFlight build 22. Full accessibility and phone acceptance remain.
+
 - [Standalone native contrast diagnosis](../../evidence/2026-10-07/swiftui-native-contrast-probe/README.md) reproduces strict below-bar contrast reports with standard SwiftUI colors, including Nest's hidden bottom fade. The no-tab control keeps identical paragraph frames and removes strict failures. All three diagnostic audits still fail on retained contrast findings. This guides the remaining investigation without clearing Nest's audit, historical above-bar reports, accessibility or phone gates. Do not repeat palette/fade/clipping workarounds for this already reproduced case.
 
 - [Posted PDF and partner browser/download](../../evidence/2026-10-05/swiftui-posted-pdf/README.md#partner-receipt-and-account-boundaries) already establish both fictional identities on one simulator, exact640-byte download and native browser return. Physical phones, live AI handoff and full accessibility remain; do not repeat upload/posting/account switches to clear an obsolete pending statement.

@@ -13,24 +13,10 @@ struct MoneyHistorySection: View {
     @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
-        Section {
+        VStack(alignment: .leading, spacing: 16) {
+            QuietSectionHeader(title: "Recent activity")
             if let savedNotice { Text(savedNotice).foregroundStyle(QuietPalette.muted) }
-            ForEach(Array(events.prefix(previewCount ?? events.count))) { event in
-                NavigationLink {
-                    MoneyDetailScreen(session: session, member: member, eventId: event.id)
-                } label: {
-                    HStack(spacing: 12) {
-                        activity(event)
-                        Image(systemName: "chevron.right").font(.caption)
-                            .foregroundStyle(QuietPalette.muted)
-                    }
-                    .padding(.vertical, 8).frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
-                    .contentShape(Rectangle())
-                    .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
-                }
-                .buttonStyle(.plain)
-                .accessibilityIdentifier("money-event-\(event.id.uuidString.lowercased())")
-            }
+            if !events.isEmpty { activityRows }
             if loading { ProgressView("Loading history…") }
             if let notice { Text(notice) }
             if events.isEmpty && !loading && notice == nil { Text("No financial history yet.") }
@@ -55,12 +41,31 @@ struct MoneyHistorySection: View {
                 Text("Refresh history").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                     .contentShape(Rectangle())
             }.disabled(loading)
-        } header: {
-            Text("Recent activity").font(.headline).foregroundStyle(QuietPalette.ink)
-                .textCase(nil).padding(.top, 12)
         }
+        .frame(maxWidth: .infinity, alignment: .leading)
         .task {
             if previewCount != nil || events.isEmpty { await load(more: false) }
+        }
+    }
+
+    private var activityRows: some View {
+        LazyVStack(alignment: .leading, spacing: 0) {
+            ForEach(Array(events.prefix(previewCount ?? events.count))) { event in
+                NavigationLink {
+                    MoneyDetailScreen(session: session, member: member, eventId: event.id)
+                } label: {
+                    HStack(spacing: 12) {
+                        activity(event)
+                        Image(systemName: "chevron.right").font(.caption)
+                            .foregroundStyle(QuietPalette.muted)
+                    }
+                    .padding(.vertical, 8).frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                    .contentShape(Rectangle())
+                    .overlay(alignment: .bottom) { QuietPalette.border.frame(height: 1) }
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("money-event-\(event.id.uuidString.lowercased())")
+            }
         }
     }
 

@@ -115,7 +115,19 @@ force each order; recorded outcomes retain one expense and cancelled outcomes
 retain none. Terminal replay sends no second write. Authentication/session entry
 is controlled, so hosted/Apple/phone/UI-race and live-AI acceptance remain open.
 [Ordered race evidence](../evidence/2026-10-07/swiftui-variable-bill-ordered-races/README.md).
-Shipping runtime/configuration remains unchanged; current-source CI is pending.
+Shipping runtime/configuration remains unchanged. Source `a1aa923d` passes routine
+[CI 37627414604](https://github.com/drrius/nest/actions/runs/37627414604) and native
+[CI 37627414734](https://github.com/drrius/nest/actions/runs/37627414734). Native CI
+reports 498 app tests, 56 guarded skips and zero failures. The two ordered native
+cases ran separately on the Mac without skips; CI skips do not replace them.
+
+Money history now groups its rows instead of inheriting page-level gaps. The
+signed baseline fails on an extra 24-point gap; corrected Money preview and full
+history journeys both pass without skips, and all three screenshots are inspected.
+The shared section heading, 20-point margins and minimum 52-point row targets
+remain. Original binaries, scopes, 64 journals and settings restore. This is a
+shipping UI fix after build 22; no new beta is submitted. Current-source CI is
+pending. [Evidence](../evidence/2026-10-07/swiftui-money-history-spacing/README.md).
 
 ## Exact blockers and owner inputs
 

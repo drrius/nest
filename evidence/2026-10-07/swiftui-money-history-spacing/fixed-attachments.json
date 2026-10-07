@@ -1,0 +1,26 @@
+[
+  {
+    "file": "892522C9-CFDB-488E-8707-F9F223D11358.png",
+    "name": "Financial history adjacent rows_0_6A4B826B-04DC-43DE-82C9-4055EA8FE933.png",
+    "test": "MoneyHistorySpacingTests/testFullHistoryRowsStayTogether()",
+    "sha256": "7801f6d7e7ecc1d8da347b56cc0773d4bc6efd2dcfe5be78f7c0c9106d2a2454"
+  },
+  {
+    "file": "DE0D93DC-D278-445C-9CFF-9C2339AA21D2.json",
+    "name": "Financial history adjacent rows_0_B1FDBE60-B540-4784-AC34-3D62CBE384E4.json",
+    "test": "MoneyHistorySpacingTests/testFullHistoryRowsStayTogether()",
+    "sha256": "fc1b892d812d00fe64d7c2968395bb6bc4d23af90bd94ffa19c886c77f5195a8"
+  },
+  {
+    "file": "642E4D0D-6FA4-4068-8EC0-2EB43DDA7133.png",
+    "name": "Financial history adjacent rows_0_1D098B52-1E5E-4948-93DA-F70C835013BF.png",
+    "test": "MoneyHistorySpacingTests/testRecentActivityRowsStayTogether()",
+    "sha256": "5f0832dd641cb2c2e3be6a688458bec5b372f94e4873c2e3fdaf42302423f3a5"
+  },
+  {
+    "file": "C4B11EF0-0265-47E4-8712-206F29843B3D.json",
+    "name": "Financial history adjacent rows_0_BD697512-59EF-4E3B-BA1A-CC5B24B96F71.json",
+    "test": "MoneyHistorySpacingTests/testRecentActivityRowsStayTogether()",
+    "sha256": "0a87ea4d440c45f0ee8e57da85cb49cbb01e92c9d84f18d3b64ed8078f922184"
+  }
+]

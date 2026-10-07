@@ -51,3 +51,8 @@ No production or hosted test-household records, credentials, permissions, worker
 beta submission or existing financial history are changed. Build 22 remains stable.
 The native screen gestures, hosted simultaneous race, live AI handoff and phone
 acceptance remain separate gaps; M7 is not closed by these four local cases.
+
+Source `a1aa923d` passes [routine CI](https://github.com/drrius/nest/actions/runs/37627414604)
+and [native CI](https://github.com/drrius/nest/actions/runs/37627414734). The latter
+reports 498 app tests, 56 guarded skips and zero failures. The guarded local
+ordering methods skip there; their two actual Mac passes remain the native proof.

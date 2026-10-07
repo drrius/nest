@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 79,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 355,
+    "maxY": 207,
+    "midX": 187.5,
+    "midY": 167.5,
+    "minX": 20,
+    "minY": 128,
+    "usable": true,
+    "width": 335
+  },
+  "hittable": true,
+  "label": "Nest lost-reply variable bill 20261007, Expense · 2026-10-07, CHF 0.02",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}
