@@ -34,11 +34,14 @@ final class NativeExpenseDraftBackTests: XCTestCase {
         try reading.reveal(description)
         description.tap()
         description.typeText("Unsent reviewed expense QA")
+        let review = app.buttons["expense.keyboard-review"]
+        try reading.requireTarget(review, bounds: app.frame)
+        review.tap()
+        XCTAssertFalse(app.buttons["Save expense"].exists, "The incomplete draft must not reach financial review")
         let amount = input("Shared amount (CHF)", app: app)
         try reading.reveal(amount)
         amount.tap()
         amount.typeText("0.03")
-        let review = app.buttons["expense.keyboard-review"]
         try reading.requireTarget(review, bounds: app.frame)
         review.tap()
         let save = app.buttons["Save expense"]
