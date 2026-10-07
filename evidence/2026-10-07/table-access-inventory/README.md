@@ -31,3 +31,19 @@ No hosted client-accessible base table lacks RLS. This does not establish comple
 tenant isolation, every private call chain, view security semantics, Storage APIs,
 external writer drainage or cutover. All differences are preserved in comparison.json.
 No hosted/production data mutation, inference, deployment, merge or release occurs.
+
+The two-profile public-key-only GET probe is invoked twice, once for observation
+and once to retain its output. Each invocation requests zero rows with storage/private
+Accept-Profile headers. Both receive406/PGRST106 Invalid schema. This confirms
+those direct REST profiles are currently unexposed; it does not rule out indirect
+privileged RPCs, trusted service access or Storage service paths. No row data is
+returned or mutation attempted. Managed grants remain unchanged.
+
+Read-only hosted policy inventory records exactly three objects policies: household
+SELECT, restrictive native receipt SELECT and attachment-state DELETE. Their
+source predicates are reviewed alongside household_attachment_uploads RLS. No
+client INSERT policy exists; byte-inspecting upload uses the trusted Edge path.
+One focused real PostgREST/PG test passes unposted uploader-only reads, shared
+claimed financial reads and partner cleanup refusal. This is disposable HTTP/RLS
+behavior, separate from hosted catalog and prior actual native stored-byte evidence.
+No hosted delete/insert/TRUNCATE is attempted.

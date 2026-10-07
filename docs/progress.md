@@ -417,3 +417,14 @@ client-accessible base table lacks RLS. Managed Storage client TRUNCATE grants a
 broader service grants require execution-path review; no destructive probe or
 grant change occurs. This is inventory, not policy-semantic/Storage/cutover proof.
 [Table inventory](../evidence/2026-10-07/table-access-inventory/README.md).
+
+Fresh public-key-only zero-row GET probes reject both storage and private REST
+profiles with406/PGRST106. This bounds direct Data API profile exposure while
+leaving indirect definer/Storage-service/trusted-writer paths open. Managed
+Storage TRUNCATE grants are not exercised or changed.
+
+The three hosted Storage policy predicates are inventoried read-only. One focused
+disposable PostgREST/PG receipt-privacy test passes uploader-only unposted bytes,
+shared claimed financial attachment access and partner cleanup refusal. This
+bounds those policies; broader trusted upload/Storage/external writer acceptance
+remains open. No hosted object mutation occurs.

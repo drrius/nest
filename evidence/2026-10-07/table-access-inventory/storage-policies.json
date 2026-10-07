@@ -1,0 +1,32 @@
+[
+  {
+    "schemaname": "storage",
+    "tablename": "objects",
+    "policyname": "household_files_cleanup",
+    "permissive": "PERMISSIVE",
+    "roles": "{authenticated}",
+    "cmd": "DELETE",
+    "qual": "((bucket_id = 'household-files'::text) AND (EXISTS ( SELECT 1\n   FROM household_attachment_uploads u\n  WHERE ((u.path = objects.name) AND (u.state = 'deleting'::text)))))",
+    "with_check": null
+  },
+  {
+    "schemaname": "storage",
+    "tablename": "objects",
+    "policyname": "household_files_read",
+    "permissive": "PERMISSIVE",
+    "roles": "{authenticated}",
+    "cmd": "SELECT",
+    "qual": "((bucket_id = 'household-files'::text) AND (EXISTS ( SELECT 1\n   FROM household_members m\n  WHERE ((m.user_id = ( SELECT auth.uid() AS uid)) AND ((m.household_id)::text = split_part(objects.name, '/'::text, 1))))))",
+    "with_check": null
+  },
+  {
+    "schemaname": "storage",
+    "tablename": "objects",
+    "policyname": "native_receipt_object_privacy",
+    "permissive": "RESTRICTIVE",
+    "roles": "{authenticated}",
+    "cmd": "SELECT",
+    "qual": "((bucket_id <> 'household-files'::text) OR private.nest_can_read_receipt_object(name))",
+    "with_check": null
+  }
+]
