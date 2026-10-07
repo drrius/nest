@@ -5,6 +5,13 @@ the product brief, milestone exits or release gates. Passing dated checks remain
 valid within their recorded scope. Repeat them only for affected source changes,
 a new failure or an uncovered requirement. M1 through M9 remain open.
 
+The owner prioritizes usable daily flows and safe diagnostics over further expansion
+of unchanged QA variants. Money currently fails in the owner test household because
+only Darius is linked; the two-member simulator fixture hid that setup issue.
+[Diagnosis and focused fixes](../../evidence/2026-10-07/money-setup-diagnostics/README.md).
+Verified partner linking is required; client diagnostics and clear setup errors
+are implemented and locally checked, but are newer than TestFlight build24.
+
 | Work                       | Existing proof                                                                                                                                                                                    | Remaining proof or blocker                                                                                                                                                                             |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Quiet UI and accessibility | Shared tab headers/insets, selected normal/maximal text journeys and financial result visibility; native keyboard warning reproduced in an isolated SDK-only app                                  | Remaining contrast reports, VoiceOver/Reduce Motion, populated/error/keyboard usability and owner acceptance; track the diagnosed SDK warning without treating it as an unexplained Nest layout defect |
@@ -52,8 +59,8 @@ Evidence reconciliation7 October:
   native checks pass: read 403 reverifies membership, revoked access hides cached
   household presentation and removes the active offline scope, valid members keep
   saved data, and queued retry/account-switch behavior is preserved. Hosted
-  revocation, physical radios and uncoached daily use remain open. This fix is
-  newer than build 23 and is not yet on phones.
+  revocation, physical radios and uncoached daily use remain open. This fix is included in internally available build24; phone installation
+  remains unverified.
 
 - [Variable-rule edit and resumption](../../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md)
   now record creation, a note edit, pause, explicit prospective resume and

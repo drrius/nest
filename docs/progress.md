@@ -29,7 +29,8 @@ local journals and settings are preserved. New source remains on
 Owner requests practical diagnostics and focused simulator checks, without expanding
 unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagnostics/README.md)
 is confirmed: the owner test household has one member. Verified partner linking
-remains needed. Native/server diagnostics and clear setup errors are being verified.
+remains needed. Native/server diagnostics and clear setup errors pass focused checks. Server
+traces are deployed and observed; native diagnostics await a new TestFlight build.
 
 ## Milestone checklist
 

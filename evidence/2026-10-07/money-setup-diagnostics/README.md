@@ -32,4 +32,11 @@ Verification: focused API tests pass11; six diagnostic Foundation tests pass on
 the authorized Mac. Signed native app compilation and two focused simulator MoneyAccountTests pass
 with zero failures or skips. [Verification counts](verification.json). The initial
 local packaging attempt missed two resource files and failed before execution;
-including those unchanged inputs allowed the checks to run. Deployment is pending. These edits are not in TestFlight build24.
+including those unchanged inputs allowed the checks to run. The [test deployment](deployment.json) is READY and serves the existing stable
+test alias, using existing encrypted environment configuration with no credential
+transfer. AI and recurring workers stay disabled. A [real unauthenticated read](deployed-public-smoke.json)
+returns401 with matching request ID/traceparent; the [actual runtime span](observed-runtime-span.json)
+is observed in Vercel logs. No owner token was captured and no financial write was
+performed. The initial wrong-root deployment fails before build; an oversized
+archive attempt was stopped. The successful source archive contains946 audited
+backend/package inputs and no env/native/evidence files. These edits are not in TestFlight build24.
