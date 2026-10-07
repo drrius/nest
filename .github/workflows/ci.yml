@@ -56,7 +56,7 @@ jobs:
       - name: Test retained attention date handling
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/legacy-attention-dates.test.mjs
       - name: Test migration writer privileges and reversible API fences
-        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs tests/database/table-access-inventory.test.mjs
       - name: Test retained routine schedule validation
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/routine-schedule-validation.test.mjs
       - name: Test complete append-only ledger events

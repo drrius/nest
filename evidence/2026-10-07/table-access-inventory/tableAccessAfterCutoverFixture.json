@@ -1,0 +1,6625 @@
+[
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "contextual_expense_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "expense_context_change_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_ai_cancelled_turns",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_apns_delivery_attempts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_push_scan_checkpoint",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_reminder_cancel_scan",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_reminder_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_reminder_outbox",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_reminder_scans",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_daily_summary_outbox",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_daily_summary_scans",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_daily_summary_snapshots",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_push_scan_checkpoint",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_reminder_cancel_scan",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_reminder_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_reminder_outbox",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_reminder_scans",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_household_write_control",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_legacy_adoption_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_legacy_confirmation_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_legacy_draft_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_legacy_job_control",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_legacy_recurring_adoptions",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_ingredient_additions",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_ingredient_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_proposal_edits",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_proposal_jobs",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_proposal_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_proposals",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_push_scan_checkpoint",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_reminder_cancel_scan",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_reminder_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_reminder_outbox",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_reminder_scans",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_cancelled_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_deliveries",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_delivery_attempts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_device_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_devices",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_receipt_polls",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_receipt_results",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_retry_scan",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_revoked_sessions",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_scan_checkpoint",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_push_send_results",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_receipt_upload_intents",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_execution",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_execution_control",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_job_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_push_scan_checkpoint",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_reminder_cancel_scan",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_reminder_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_reminder_outbox",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_reminder_scans",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_runs",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_sweep",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_conversions",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_reminder_cancel_scan",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_reminder_operations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_reminder_outbox",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_reminder_scans",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_routine_creation_cancellations",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_summary_push_scan_checkpoint",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "project_starter_selections",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_creation_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_edit_clear_intents",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": false
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_edit_receipts",
+    "schema": "private",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "activity_events",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "areas",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "asset_maintenance",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "asset_routines",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "calendar_connections",
+    "schema": "public",
+    "policies": 4,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "calendar_events",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "decision_options",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "device_push_test_requests",
+    "schema": "public",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "expense_categories",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "expense_drafts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "financial_allocations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "financial_events",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "grocery_categories",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "grocery_items",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_assets",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_attachment_uploads",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_commitments",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_contacts",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_decisions",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_documents",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_financial_links",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_members",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "household_projects",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "households",
+    "schema": "public",
+    "policies": 2,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "inbox_notifications",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "job_claims",
+    "schema": "public",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "ledger_entries",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "meal_definitions",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "meal_grocery_command_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "meal_grocery_templates",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "meal_plan_entries",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "money_command_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_action_approvals",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_ai_commands",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_ai_conversation_saves",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_ai_conversations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_ai_turns",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_busy_snapshots",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_calendar_consent",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_change_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_reminders",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_transfer_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_chore_transfers",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_cooking_preference_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_cooking_preferences",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_correction_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_correction_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_expense_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_expense_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_food_profile_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_food_profiles",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_check_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_edit_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_expenses",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_grocery_reminders",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_leftover_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_library_revisions",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_move_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_placement_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_preparation_edit_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_preparation_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_reminders",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_removal_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_replacement_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_meal_week_revisions",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_memories",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_memory_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_notification_preference_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_notification_preferences",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_planned_recipe_snapshots",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recipe_archive_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recipe_creation_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recipe_edit_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recipe_selection_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_cycle_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_cycle_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_cycles",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_reminders",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_revisions",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_rules",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_state_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_recurring_state_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_refund_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_refund_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewal_reminders",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_renewals",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_routine_creation_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_routine_edit_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_routine_state_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_settlement_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "nest_settlement_save_cancellations",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "notification_digest_preferences",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "pets",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "project_tasks",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "push_outbox",
+    "schema": "public",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": true,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "push_subscriptions",
+    "schema": "public",
+    "policies": 2,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "recurring_expense_rules",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "reminder_candidates",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_command_receipts",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_completions",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_occurrences",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routine_reminder_preferences",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "routines",
+    "schema": "public",
+    "policies": 2,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "shopping_session_items",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "shopping_sessions",
+    "schema": "public",
+    "policies": 1,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": false,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "trip_bookings",
+    "schema": "public",
+    "policies": 3,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": false,
+        "insert": false,
+        "select": true,
+        "update": false,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "buckets",
+    "schema": "storage",
+    "policies": 0,
+    "forcedRls": false
+  },
+  {
+    "rls": true,
+    "kind": "r",
+    "roles": [
+      {
+        "role": "anon",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "authenticated",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      },
+      {
+        "role": "service_role",
+        "delete": true,
+        "insert": true,
+        "select": true,
+        "update": true,
+        "truncate": false,
+        "schemaUsage": true
+      }
+    ],
+    "table": "objects",
+    "schema": "storage",
+    "policies": 3,
+    "forcedRls": false
+  }
+]

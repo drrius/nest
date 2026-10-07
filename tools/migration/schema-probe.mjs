@@ -22,6 +22,7 @@ import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
 import { verifyGroceryRetentionCutover } from "./grocery-retention-cutover.mjs";
 import { verifyShoppingCutover } from "./shopping-cutover.mjs";
 import { captureLegacyWriterInventory } from "./writer-inventory.mjs";
+import { captureTableAccessInventory } from "./table-access-inventory.mjs";
 import { verifyInternalTableRLS } from "./internal-table-rls.mjs";
 import { runFixtureAdvisors } from "./security-advisors.mjs";
 import {
@@ -131,6 +132,7 @@ try {
   const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.tableAccessBeforeCutoverFixture = captureTableAccessInventory(db);
   report.excluded = verifyExcludedRehearsal(db, excludedBefore);
   report.routines = verifyRoutineRehearsal(db, routinesBefore);
   report.renewals = await verifyRenewalPlan(db, renewalsBefore);
@@ -168,6 +170,7 @@ try {
   if (!report.cutoverFinancialReconciliation.passed)
     throw new Error("Cutover rehearsal changed financial history or receipt references");
   report.legacyWriters = captureLegacyWriterInventory(db);
+  report.tableAccessAfterCutoverFixture = captureTableAccessInventory(db);
   report.internalTableRLS = verifyInternalTableRLS(db);
   report.offlineEpochAi = verifyOfflineEpochAi(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);

@@ -1,0 +1,6780 @@
+{
+  "hostedRelations": 185,
+  "fixtureRelations": 179,
+  "sharedRelations": 179,
+  "exactShared": 120,
+  "differences": [
+    {
+      "schema": "public",
+      "table": "asset_maintenance",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "asset_maintenance",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "asset_maintenance",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "asset_routines",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "asset_routines",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "asset_routines",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "calendar_connections",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "calendar_connections",
+        "schema": "public",
+        "policies": 4,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "calendar_connections",
+        "schema": "public",
+        "policies": 4,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "calendar_events",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "calendar_events",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "calendar_events",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "decision_options",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "decision_options",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "decision_options",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_assets",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_assets",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_assets",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_attachment_uploads",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_attachment_uploads",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_attachment_uploads",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_commitments",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_commitments",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_commitments",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_contacts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_contacts",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_contacts",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_decisions",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_decisions",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_decisions",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_documents",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_documents",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_documents",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_financial_links",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_financial_links",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_financial_links",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "household_projects",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_projects",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "household_projects",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_action_approvals",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_action_approvals",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_action_approvals",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_commands",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_commands",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_commands",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_conversation_saves",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_conversation_saves",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_conversation_saves",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_conversations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_conversations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_conversations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_turns",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_turns",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_ai_turns",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_busy_snapshots",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_busy_snapshots",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_busy_snapshots",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_calendar_consent",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_calendar_consent",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_calendar_consent",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_change_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_change_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_change_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_transfer_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_transfer_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_transfer_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_transfers",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_transfers",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_chore_transfers",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_cooking_preference_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_cooking_preference_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_cooking_preference_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_cooking_preferences",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_cooking_preferences",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_cooking_preferences",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_correction_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_correction_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_correction_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_correction_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_correction_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_correction_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_expense_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_expense_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_expense_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_expense_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_expense_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_expense_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_food_profile_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_food_profile_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_food_profile_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_food_profiles",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_food_profiles",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_food_profiles",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_grocery_check_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_grocery_check_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_grocery_check_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_grocery_edit_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_grocery_edit_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_grocery_edit_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_grocery_expenses",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_grocery_expenses",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_grocery_expenses",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_memories",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_memories",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_memories",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_memory_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_memory_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_memory_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_notification_preference_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_notification_preference_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_notification_preference_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_notification_preferences",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_notification_preferences",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_notification_preferences",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_cycle_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_cycle_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_cycle_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_cycle_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_cycle_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_cycle_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_cycles",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_cycles",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_cycles",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_revisions",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_revisions",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_revisions",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_rules",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_rules",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_rules",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_state_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_state_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_state_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_state_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_state_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_recurring_state_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_refund_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_refund_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_refund_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_refund_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_refund_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_refund_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_routine_creation_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_routine_creation_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_routine_creation_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_routine_edit_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_routine_edit_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_routine_edit_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_routine_state_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_routine_state_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_routine_state_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_settlement_receipts",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_settlement_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_settlement_receipts",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "nest_settlement_save_cancellations",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_settlement_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "nest_settlement_save_cancellations",
+        "schema": "public",
+        "policies": 1,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "project_tasks",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "project_tasks",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "project_tasks",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "public",
+      "table": "trip_bookings",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "trip_bookings",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": false,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "trip_bookings",
+        "schema": "public",
+        "policies": 3,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "storage",
+      "table": "buckets",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": false,
+            "insert": false,
+            "select": true,
+            "update": false,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "buckets",
+        "schema": "storage",
+        "policies": 0,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "buckets",
+        "schema": "storage",
+        "policies": 0,
+        "forcedRls": false
+      }
+    },
+    {
+      "schema": "storage",
+      "table": "objects",
+      "fixture": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": false,
+            "schemaUsage": true
+          }
+        ],
+        "table": "objects",
+        "schema": "storage",
+        "policies": 3,
+        "forcedRls": false
+      },
+      "hosted": {
+        "rls": true,
+        "kind": "r",
+        "roles": [
+          {
+            "role": "anon",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          },
+          {
+            "role": "authenticated",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          },
+          {
+            "role": "service_role",
+            "delete": true,
+            "insert": true,
+            "select": true,
+            "update": true,
+            "truncate": true,
+            "schemaUsage": true
+          }
+        ],
+        "table": "objects",
+        "schema": "storage",
+        "policies": 3,
+        "forcedRls": false
+      }
+    }
+  ],
+  "hostedOnly": [
+    ["storage", "buckets_analytics"],
+    ["storage", "buckets_vectors"],
+    ["storage", "migrations"],
+    ["storage", "s3_multipart_uploads"],
+    ["storage", "s3_multipart_uploads_parts"],
+    ["storage", "vector_indexes"]
+  ],
+  "fixtureOnly": [],
+  "clientAccessibleBaseTablesWithoutRLS": [],
+  "catalogIsNotPolicySemanticsProof": true,
+  "differenceFieldCounts": {
+    "service_role.delete": 58,
+    "service_role.insert": 58,
+    "service_role.select": 55,
+    "service_role.update": 58,
+    "service_role.truncate": 59,
+    "anon.delete": 1,
+    "anon.insert": 1,
+    "anon.update": 1,
+    "anon.truncate": 2,
+    "authenticated.delete": 1,
+    "authenticated.insert": 1,
+    "authenticated.update": 1,
+    "authenticated.truncate": 2
+  },
+  "differenceDetails": [
+    {
+      "schema": "public",
+      "table": "asset_maintenance",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "asset_routines",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "calendar_connections",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "calendar_events",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "decision_options",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_assets",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_attachment_uploads",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_commitments",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_contacts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_decisions",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_documents",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_financial_links",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "household_projects",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_action_approvals",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_commands",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_conversation_saves",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_conversations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_ai_turns",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_busy_snapshots",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_calendar_consent",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_change_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_transfer_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_chore_transfers",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_cooking_preference_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_cooking_preferences",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_correction_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_correction_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_expense_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_expense_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_food_profile_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_food_profiles",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_grocery_check_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_grocery_edit_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_grocery_expenses",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_memories",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_memory_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_notification_preference_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_notification_preferences",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_cycle_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_cycle_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_cycles",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_revisions",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_rules",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_state_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_recurring_state_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_refund_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_refund_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_routine_creation_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_routine_edit_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_routine_state_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_settlement_receipts",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "nest_settlement_save_cancellations",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "project_tasks",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "public",
+      "table": "trip_bookings",
+      "delta": [
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "select",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "storage",
+      "table": "buckets",
+      "delta": [
+        {
+          "role": "anon",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "anon",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "anon",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "anon",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "authenticated",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "authenticated",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "authenticated",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "authenticated",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "delete",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "insert",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "update",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    },
+    {
+      "schema": "storage",
+      "table": "objects",
+      "delta": [
+        {
+          "role": "anon",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "authenticated",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        },
+        {
+          "role": "service_role",
+          "field": "truncate",
+          "fixture": false,
+          "hosted": true
+        }
+      ]
+    }
+  ]
+}

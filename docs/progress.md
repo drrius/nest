@@ -407,3 +407,13 @@ element/frame identity. This is retained geometry, not a fresh audit or finding
 closure. Further palette changes are not justified by this census; anonymous
 identity and fully visible text comparison remain required.
 [Audit census](../evidence/2026-10-07/swiftui-root-audit-census/README.md).
+
+M9 now includes an effective table-access inventory with seven focused real-PG
+tests passing. The complete311-migration rehearsal preserves financial history
+and maps179 relations before/after fixture cutover. One read-only nest-test
+catalog maps185 relations:120 shared metadata rows exact,59 grant-only differences,
+six managed Storage-only relations. RLS/policy counts match for shared rows; no
+client-accessible base table lacks RLS. Managed Storage client TRUNCATE grants and
+broader service grants require execution-path review; no destructive probe or
+grant change occurs. This is inventory, not policy-semantic/Storage/cutover proof.
+[Table inventory](../evidence/2026-10-07/table-access-inventory/README.md).

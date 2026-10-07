@@ -1,0 +1,30 @@
+[
+  {
+    "path": "README.md",
+    "sha256": "4d9bbc1fc9aa54c569232bd243a7662aaf733b59e3870b71a16f1ce87736cb7f"
+  },
+  {
+    "path": "catalog-query.sql",
+    "sha256": "1e6d2c925fcb13c7a3643a9d5cb33e7bcf08961e68c6da9e8c9b8fdf89ab4a77"
+  },
+  {
+    "path": "comparison.json",
+    "sha256": "312927c68483ca5ff405e1ad8d123fa9d5d98fba0d88e3e661ccbd4ca7560a0a"
+  },
+  {
+    "path": "hosted-catalog.json",
+    "sha256": "797fb097480719ffeb9c7d4c7debc46ec4b532579b137c9fbda5a7f7b35d9b0a"
+  },
+  {
+    "path": "schema-report.json",
+    "sha256": "51ae0f241dd829e2704ad7c50361248675bbbdbcede17a814a33bc85745d05d1"
+  },
+  {
+    "path": "tableAccessAfterCutoverFixture.json",
+    "sha256": "14d5aa25e75062cb57f015fca5d32861df9c3bd1dfefb8116f1905e043b23504"
+  },
+  {
+    "path": "tableAccessBeforeCutoverFixture.json",
+    "sha256": "14d5aa25e75062cb57f015fca5d32861df9c3bd1dfefb8116f1905e043b23504"
+  }
+]
