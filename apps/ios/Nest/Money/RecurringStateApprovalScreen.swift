@@ -60,7 +60,7 @@ struct RecurringStateApprovalScreen: View {
     }
 
     private func requestedChange(_ change: RecurringStateInput) -> some View {
-        Section("Proposed change") {
+        QuietFormSection("Proposed change") {
             Text(change.action == .pause ? "Pause future recording" : "Permanently cancel this rule").font(.headline)
             Text(
                 change.action == .pause
@@ -104,7 +104,7 @@ struct RecurringStateApprovalScreen: View {
     }
 
     private func recovery(_ saved: SavedRecurringStateDecision) -> some View {
-        Section("Saved decision") {
+        QuietFormSection("Saved decision") {
             Text(saved.decision.approved ? "You chose to confirm this change." : "You chose to decline this change.")
             if saved.expiry?.expiredUnused == true {
                 Text("This proposal expired without applying its change. Ask for a new proposal if still needed.")

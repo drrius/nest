@@ -17,7 +17,7 @@ struct SettlementApprovalScreen: View {
             if let notice { Section { Text(notice) } }
             if let saved {
                 summary(saved.decision.settlement)
-                Section("Saved decision") {
+                QuietFormSection("Saved decision") {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this settlement." : "You chose to decline this settlement.")
@@ -98,7 +98,7 @@ struct SettlementApprovalScreen: View {
     }
 
     private func summary(_ settlement: SettlementInput) -> some View {
-        Section("Payment to record") {
+        QuietFormSection("Payment to record") {
             Text(settlement.description).font(.headline)
             Text("Confirm a payment that already happened. Nest does not transfer money.")
                 .foregroundStyle(QuietPalette.muted)

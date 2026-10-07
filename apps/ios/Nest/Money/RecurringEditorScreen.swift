@@ -71,7 +71,7 @@ struct RecurringEditorScreen: View {
     }
     private var editingDraft: Bool { draft != nil && saved == nil && reviewed == nil }
     private func summary(_ input: RecurringInput) -> some View {
-        Section("Review rule") {
+        QuietFormSection("Review rule") {
             Text(input.configuration.description).font(.headline)
             Text(
                 input.configuration.mode == .fixed
@@ -97,7 +97,7 @@ struct RecurringEditorScreen: View {
         }
     }
     private func recovery(_ saved: SavedRecurring) -> some View {
-        Section("Save status") {
+        QuietFormSection("Save status") {
             if let receipt = saved.result?.receipt {
                 Text("Rule saved · \(receipt.status.rawValue).")
                 NavigationLink("View saved rule") {

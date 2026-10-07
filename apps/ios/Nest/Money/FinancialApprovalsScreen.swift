@@ -32,14 +32,14 @@ struct FinancialApprovalsScreen: View {
                     .foregroundStyle(QuietPalette.muted)
             }
             if let saved {
-                Section("Saved decision") {
+                QuietFormSection("Saved decision") {
                     NavigationLink("Check expense decision") {
                         ExpenseApprovalScreen(session: session, member: member, approvalId: saved.decision.approvalId)
                     }
                 }
             }
             if let savedRefund {
-                Section("Saved refund decision") {
+                QuietFormSection("Saved refund decision") {
                     NavigationLink("Check refund decision") {
                         RefundApprovalScreen(
                             session: session, member: member, approvalId: savedRefund.decision.approvalId)
@@ -47,7 +47,7 @@ struct FinancialApprovalsScreen: View {
                 }
             }
             if let savedSettlement {
-                Section("Saved payment decision") {
+                QuietFormSection("Saved payment decision") {
                     NavigationLink("Check payment decision") {
                         SettlementApprovalScreen(
                             session: session, member: member,
@@ -56,7 +56,7 @@ struct FinancialApprovalsScreen: View {
                 }
             }
             if let savedCorrection {
-                Section("Saved correction decision") {
+                QuietFormSection("Saved correction decision") {
                     NavigationLink("Check correction decision") {
                         CorrectionApprovalScreen(
                             session: session, member: member,
@@ -65,7 +65,7 @@ struct FinancialApprovalsScreen: View {
                 }
             }
             if let savedRecurring {
-                Section("Saved recurring decision") {
+                QuietFormSection("Saved recurring decision") {
                     NavigationLink("Check recurring decision") {
                         RecurringApprovalScreen(
                             session: session, member: member,
@@ -74,7 +74,7 @@ struct FinancialApprovalsScreen: View {
                 }
             }
             if let savedRecurringState {
-                Section("Saved pause or cancellation decision") {
+                QuietFormSection("Saved pause or cancellation decision") {
                     NavigationLink("Check rule change decision") {
                         RecurringStateApprovalScreen(
                             session: session, member: member, approvalId: savedRecurringState.decision.approvalId
@@ -83,7 +83,7 @@ struct FinancialApprovalsScreen: View {
                     }
                 }
             }
-            Section("Waiting for your review") {
+            QuietFormSection("Waiting for your review") {
                 ForEach(rows) { row in
                     FinancialApprovalRow(session: session, member: member, row: row)
                 }
@@ -104,7 +104,7 @@ struct FinancialApprovalsScreen: View {
 
     @ViewBuilder private var laterSavedDecisions: some View {
         if let savedRecurringResume {
-            Section("Saved resumption decision") {
+            QuietFormSection("Saved resumption decision") {
                 NavigationLink("Check resumption decision") {
                     RecurringResumeApprovalScreen(
                         session: session, member: member, approvalId: savedRecurringResume.decision.approvalId
@@ -113,7 +113,7 @@ struct FinancialApprovalsScreen: View {
             }
         }
         if let savedVariableCycle {
-            Section("Saved bill decision") {
+            QuietFormSection("Saved bill decision") {
                 NavigationLink("Check bill decision") {
                     VariableCycleApprovalScreen(
                         session: session, member: member, approvalId: savedVariableCycle.decision.approvalId
@@ -125,7 +125,7 @@ struct FinancialApprovalsScreen: View {
 
     @ViewBuilder private var savedLinkDecision: some View {
         if let savedManualCycle {
-            Section("Saved expense-link decision") {
+            QuietFormSection("Saved expense-link decision") {
                 NavigationLink("Check expense-link decision") {
                     ManualCycleApprovalScreen(
                         session: session, member: member, approvalId: savedManualCycle.decision.approvalId

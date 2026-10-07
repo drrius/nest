@@ -62,7 +62,7 @@ struct RecurringResumeApprovalScreen: View {
     }
 
     private func requestedChange(_ change: RecurringResumeInput) -> some View {
-        Section("Proposed resumption") {
+        QuietFormSection("Proposed resumption") {
             QuietValueRow("Resume from", value: change.resumeFrom.value)
             QuietValueRow("First new cycle", value: change.firstDueOn.value)
             Text(
@@ -111,7 +111,7 @@ struct RecurringResumeApprovalScreen: View {
     }
 
     private func recovery(_ saved: SavedRecurringResumeDecision) -> some View {
-        Section("Saved decision") {
+        QuietFormSection("Saved decision") {
             Text(saved.decision.approved ? "You chose to confirm this change." : "You chose to decline this change.")
             if saved.datePassedUnused {
                 Text("The resumption date passed without applying this change. Ask for a new proposal if still needed.")

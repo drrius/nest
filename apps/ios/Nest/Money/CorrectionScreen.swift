@@ -71,7 +71,7 @@ struct CorrectionScreen: View {
 
     @ViewBuilder
     private func fields(_ source: CorrectionContext) -> some View {
-        Section("Original entry") {
+        QuietFormSection("Original entry") {
             Text(source.source.event.description).font(.headline)
             Text(source.source.event.amountCentimes.absoluteCHF)
             Text("The original stays in your history. Undo its effect, or replace it with corrected details.")
@@ -82,7 +82,7 @@ struct CorrectionScreen: View {
             }
         }
         if draft?.replace == true {
-            Section("Replacement") {
+            QuietFormSection("Replacement") {
                 field("Description", key: \.description)
                 field("Amount (CHF)", key: \.amount)
                 Picker("Payer", selection: Binding(get: { draft?.payer ?? member.userId }, set: { draft?.payer = $0 }))
@@ -116,7 +116,7 @@ struct CorrectionScreen: View {
     }
 
     private func summary(_ input: CorrectionInput) -> some View {
-        Section("Review correction") {
+        QuietFormSection("Review correction") {
             NavigationLink("View original entry") {
                 MoneyDetailScreen(session: session, member: member, eventId: input.sourceEventId)
             }
@@ -143,7 +143,7 @@ struct CorrectionScreen: View {
     }
 
     private func recovery(_ saved: SavedCorrection) -> some View {
-        Section("Correction status") {
+        QuietFormSection("Correction status") {
             if let receipt = saved.result?.receipt {
                 Text("Correction recorded.")
                 NavigationLink("View correction") {

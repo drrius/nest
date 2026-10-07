@@ -77,7 +77,7 @@ struct LegacyDismissalApprovalScreen: View {
         } else if let context, context.matches {
             LegacyReviewedDraftTerms(draft: context.review.draft, member: member)
         } else {
-            Section("Original proposal references") {
+            QuietFormSection("Original proposal references") {
                 QuietValueRow("Draft", value: input.draftId.uuidString.lowercased())
                 QuietValueRow("Old rule", value: input.ruleId.uuidString.lowercased())
                 Text(
@@ -120,7 +120,7 @@ struct LegacyDismissalApprovalScreen: View {
     }
 
     private func recovery(_ saved: SavedLegacyDismissalDecision) -> some View {
-        Section("Saved decision") {
+        QuietFormSection("Saved decision") {
             Text(saved.decision.approved ? "You chose to dismiss this draft." : "You chose to decline this proposal.")
             if saved.result?.approval.status == .consumed {
                 Text("Draft dismissed. The recorded outcome wins even if withdrawal was requested later.")

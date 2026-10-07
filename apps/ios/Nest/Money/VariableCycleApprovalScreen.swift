@@ -107,7 +107,7 @@ struct VariableCycleApprovalScreen: View {
     }
 
     private func recovery(_ saved: SavedVariableCycleDecision) -> some View {
-        Section("Saved decision") {
+        QuietFormSection("Saved decision") {
             Text(saved.decision.approved ? "You chose to record this bill." : "You chose to decline this bill.")
             if saved.expiry?.expiredUnused == true {
                 Text("The proposal expired without recording its bill. Ask for a new proposal if still needed.")

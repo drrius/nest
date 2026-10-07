@@ -51,13 +51,13 @@ struct RecurringRuleScreen: View {
                         ManualCycleScreen(session: session, member: member, ruleId: ruleId).id(session.generation)
                     }
                 }
-                Section("Schedule") {
+                QuietFormSection("Schedule") {
                     Text(schedule(rule.configuration.schedule))
                     QuietValueRow("Starts", value: rule.configuration.startDate.value)
                     if let next = rule.nextDueOn { QuietValueRow("Next due", value: next.value) }
                     if let covered = rule.coveredThrough { QuietValueRow("Covered through", value: covered.value) }
                 }
-                Section("Expense details") {
+                QuietFormSection("Expense details") {
                     QuietValueRow("Payer", value: name(rule.configuration.payerId))
                     if let amount = rule.configuration.amountCentimes {
                         QuietValueRow("Amount", value: amount.absoluteCHF)

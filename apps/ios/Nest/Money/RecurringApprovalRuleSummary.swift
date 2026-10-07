@@ -10,7 +10,7 @@ struct RecurringApprovalRuleSummary: View {
     private var configuration: RecurringConfiguration { recordedResume?.configuration ?? rule.configuration }
 
     var body: some View {
-        Section(title) {
+        QuietFormSection(title) {
             Text(configuration.description).font(.headline)
             QuietValueRow("Status", value: (recordedResume?.status ?? rule.status).rawValue.capitalized)
             QuietValueRow("Payer", value: configuration.payerId == member.userId ? "You" : "Your partner")

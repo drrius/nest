@@ -73,7 +73,7 @@ struct LegacyAdoptionApprovalScreen: View {
         } else if let context, context.matches {
             LegacyAdoptionTerms(context: context.review, member: member)
         } else {
-            Section("Original proposal reference") {
+            QuietFormSection("Original proposal reference") {
                 QuietValueRow("Old rule", value: input.ruleId.uuidString.lowercased())
                 Text("The current rule cannot replace the original review. Decline and request a new proposal.")
             }
@@ -119,7 +119,7 @@ struct LegacyAdoptionApprovalScreen: View {
     }
 
     private func recovery(_ saved: SavedLegacyAdoptionDecision) -> some View {
-        Section("Saved decision") {
+        QuietFormSection("Saved decision") {
             Text(
                 saved.decision.approved
                     ? "You chose to adopt these exact proposed terms." : "You chose to decline this proposal.")

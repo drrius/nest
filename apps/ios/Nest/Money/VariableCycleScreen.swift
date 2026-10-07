@@ -60,7 +60,7 @@ struct VariableCycleScreen: View {
     }
 
     private func fields(_ detail: RecurringDetail) -> some View {
-        Section(detail.rule.configuration.description) {
+        QuietFormSection(detail.rule.configuration.description) {
             Text("Confirm this bill’s amount and each person’s share. Nest records the expense; it does not pay it.")
                 .foregroundStyle(QuietPalette.muted)
             MoneyDraftField(
@@ -94,7 +94,7 @@ struct VariableCycleScreen: View {
     }
 
     private func summary(_ input: VariableCycleInput, receipt: VariableCycleReceipt? = nil) -> some View {
-        Section(receipt == nil ? "Bill to record" : "Recorded bill") {
+        QuietFormSection(receipt == nil ? "Bill to record" : "Recorded bill") {
             if let config = receipt?.configuration
                 ?? (detail?.rule.id == input.ruleId ? detail?.rule.configuration : nil)
             {

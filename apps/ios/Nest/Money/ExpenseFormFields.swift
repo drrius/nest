@@ -11,7 +11,7 @@ struct ExpenseFormFields: View {
     var allowsReceiptTotal = true
 
     var body: some View {
-        Section("Expense") {
+        QuietFormSection("Expense") {
             input("Description", text: $draft.description, field: .description)
             input("Shared amount (CHF)", text: $draft.amount, field: .amount, keyboard: .decimalPad)
             Picker("Paid by", selection: $draft.payer) {
@@ -27,7 +27,7 @@ struct ExpenseFormFields: View {
                 input("Receipt total (CHF)", text: $draft.receiptTotal, field: .receiptTotal, keyboard: .decimalPad)
             }
         }
-        Section("Split") {
+        QuietFormSection("Split") {
             Picker("Split", selection: $draft.split) {
                 ForEach(ExpenseDraft.Split.allCases, id: \.self) { Text($0.rawValue).tag($0) }
             }

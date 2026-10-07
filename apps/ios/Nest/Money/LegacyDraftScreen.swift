@@ -7,7 +7,7 @@ struct LegacyDraftScreen: View {
 
     var body: some View {
         List {
-            Section("Retained draft terms") {
+            QuietFormSection("Retained draft terms") {
                 Text(draft.description).font(.headline)
                 QuietValueRow("Status", value: draft.status.rawValue.capitalized)
                 QuietValueRow("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Needs review")

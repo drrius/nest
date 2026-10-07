@@ -66,7 +66,7 @@ struct ManualCycleApprovalScreen: View {
                 member: member, input: input, configuration: context.target.rule.configuration,
                 cycle: cycle, source: context.detail)
         } else {
-            Section("Original proposal") {
+            QuietFormSection("Original proposal") {
                 QuietValueRow("Due date", value: input.dueOn.value)
                 Text("The current expense or bill no longer matches this proposal. Request a new review.")
                 Text("A changed rule’s current terms are not part of this original proposal.")
@@ -121,7 +121,7 @@ struct ManualCycleApprovalScreen: View {
     }
 
     private func recovery(_ saved: SavedManualCycleDecision) -> some View {
-        Section("Saved decision") {
+        QuietFormSection("Saved decision") {
             Text(saved.decision.approved ? "You chose to link this expense." : "You chose to decline this link.")
             if saved.expiry?.expiredUnused == true {
                 Text("The proposal expired without linking its expense. Ask for a new proposal if still needed.")

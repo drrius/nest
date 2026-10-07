@@ -119,7 +119,7 @@ struct ExpenseScreen: View {
     }
 
     private func recovery(_ saved: SavedExpense) -> some View {
-        Section("Save status") {
+        QuietFormSection("Save status") {
             if let receipt = saved.result?.receipt {
                 Text("Expense recorded.")
                 NavigationLink("View recorded entry") {

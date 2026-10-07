@@ -68,12 +68,12 @@ struct SettlementScreen: View {
         if let recipient = balance.members.first(where: { $0.centimes.value > 0 }),
             let payer = balance.members.first(where: { $0.centimes.value < 0 })
         {
-            Section("Current balance") {
+            QuietFormSection("Current balance") {
                 Text("\(payer.displayName) owes \(recipient.displayName)")
                 Text(recipient.centimes.absoluteCHF).font(.title2).monospacedDigit()
                 Button("Reload balance") { Task { await load() } }
             }
-            Section("Payment already made") {
+            QuietFormSection("Payment already made") {
                 Picker("Amount", selection: $draft.mode) {
                     Text("Full balance").tag(SettlementInput.Mode.full)
                         .frame(minHeight: 44).contentShape(Rectangle())
@@ -99,20 +99,18 @@ struct SettlementScreen: View {
     }
 
     private func summary(_ input: SettlementInput) -> some View {
-        Section {
+        QuietFormSection("Review payment") {
             QuietValueRow("Paid by", value: name(input.payerId))
             QuietValueRow("Paid to", value: name(input.recipientId))
             QuietValueRow("Amount", value: input.amountCentimes.absoluteCHF)
             QuietValueRow("Payment date", value: input.date.value)
             if let note = input.note { Text(note) }
             Text("Confirm only if this payment has already happened.").font(.footnote)
-        } header: {
-            QuietSectionHeader(title: "Review payment")
         }
     }
 
     private func recovery(_ saved: SavedSettlement) -> some View {
-        Section("Record status") {
+        QuietFormSection("Record status") {
             if let receipt = saved.result?.receipt {
                 Text("Payment recorded.")
                 NavigationLink("View recorded payment") {

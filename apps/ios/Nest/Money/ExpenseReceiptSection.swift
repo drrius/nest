@@ -15,7 +15,7 @@ struct ExpenseReceiptSection: View {
     @State private var notice: String?
 
     var body: some View {
-        Section("Receipt (optional)") {
+        QuietFormSection("Receipt (optional)") {
             if let saved {
                 Text(
                     saved.cleanupRequested

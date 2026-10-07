@@ -21,7 +21,7 @@ struct CorrectionApprovalScreen: View {
             if let categoryNotice { Section { Text(categoryNotice) } }
             if let saved {
                 summary(saved.decision.correction)
-                Section("Saved decision") {
+                QuietFormSection("Saved decision") {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this correction." : "You chose to decline this correction.")
@@ -107,7 +107,7 @@ struct CorrectionApprovalScreen: View {
         if let original, original.event.id == correction.sourceEventId {
             ApprovalOriginalEntry(detail: original, member: member)
         }
-        Section("Proposed correction") {
+        QuietFormSection("Proposed correction") {
             Text(correction.replacement == nil ? "Undo the original entry" : "Replace the original entry")
                 .font(.headline)
             Text("The original remains in financial history. A reversal cancels its effect on your balance.")
@@ -123,7 +123,7 @@ struct CorrectionApprovalScreen: View {
                 expense: expense, member: member, members: [], categoryName: categoryName,
                 unknownCategoryLabel: "Could not confirm category")
         case .opening(let opening):
-            Section("Replacement opening balance") {
+            QuietFormSection("Replacement opening balance") {
                 Text(opening.description)
                 QuietValueRow("Amount", value: opening.amountCentimes.absoluteCHF)
                 QuietValueRow("Owed to", value: opening.payerId == member.userId ? "You" : "Your partner")

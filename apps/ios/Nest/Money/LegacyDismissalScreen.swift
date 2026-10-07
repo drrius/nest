@@ -75,7 +75,7 @@ struct LegacyDismissalScreen: View {
 
     @ViewBuilder
     private func recovery(_ saved: SavedLegacyDismissal) -> some View {
-        Section("Saved dismissal request") {
+        QuietFormSection("Saved dismissal request") {
             if saved.result?.status == .recorded {
                 Text(
                     "Draft dismissed. No expense, payment or balance change was recorded. The old recurring rule is unchanged."
@@ -103,7 +103,7 @@ struct LegacyReviewedDraftTerms: View {
     let member: VerifiedMember
 
     var body: some View {
-        Section("Original reviewed draft") {
+        QuietFormSection("Original reviewed draft") {
             Text(LegacyRecurringLabel.display(draft.description)).font(.headline)
             QuietValueRow("Status at review", value: draft.status.rawValue.capitalized)
             QuietValueRow("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Not specified")

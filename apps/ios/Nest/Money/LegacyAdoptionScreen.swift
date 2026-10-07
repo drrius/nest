@@ -97,7 +97,7 @@ struct LegacyAdoptionScreen: View {
                 Button("Edit new terms") { model.edit() }
             }
         } else if let draft {
-            Section("Choose new terms") {
+            QuietFormSection("Choose new terms") {
                 Text("Choose the new schedule and recording mode. No original amount or split is filled in for you.")
             }
             RecurringEditorFields(
@@ -134,7 +134,7 @@ struct LegacyAdoptionScreen: View {
     }
 
     private func recovery(_ saved: SavedLegacyAdoption) -> some View {
-        Section("Saved adoption") {
+        QuietFormSection("Saved adoption") {
             if let receipt = saved.result?.receipt {
                 Text("Rule adopted. Old history is unchanged; no expense was recorded by this save.")
                 NavigationLink("View current rule") {

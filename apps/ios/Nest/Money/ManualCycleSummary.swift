@@ -8,7 +8,7 @@ struct ManualCycleSummary: View {
     let source: MoneyDetail
 
     var body: some View {
-        Section("Existing expense") {
+        QuietFormSection("Existing expense") {
             Text(source.event.description).font(.headline)
             QuietValueRow("Amount", value: source.event.amountCentimes.absoluteCHF)
             QuietValueRow("Date", value: source.event.occurredOn)
@@ -19,7 +19,7 @@ struct ManualCycleSummary: View {
             if let category = source.category { QuietValueRow("Category", value: category.name) }
             if let note = source.note { Text(note) }
         }
-        Section("Bill cycle to cover") {
+        QuietFormSection("Bill cycle to cover") {
             Text(configuration.description).font(.headline)
             QuietValueRow("Due date", value: input.dueOn.value)
             QuietValueRow("Period", value: "\(cycle.startsOn.value) to \(cycle.through.value)")

@@ -112,7 +112,7 @@ struct LegacyConfirmationScreen: View {
                 Button("Edit new expense") { model.edit() }
             }
         } else {
-            Section("Choose a new expense") {
+            QuietFormSection("Choose a new expense") {
                 Text(
                     "Original terms are shown separately. Choose the amount, people, split and date for the new expense. Receipt attachments and separate receipt totals are unavailable for this conversion."
                 )
@@ -148,7 +148,7 @@ struct LegacyConfirmationScreen: View {
     }
 
     private func recovery(_ saved: SavedLegacyConfirmation) -> some View {
-        Section("Saved confirmation") {
+        QuietFormSection("Saved confirmation") {
             if let receipt = saved.result?.receipt {
                 Text(
                     "Expense recorded and linked to this draft. No bank transfer occurred and the old rule remains unchanged."

@@ -75,7 +75,7 @@ struct ManualCycleScreen: View {
                 member: member, input: receipt.input, configuration: receipt.configuration,
                 cycle: receipt.cycle, source: receipt.linkedExpense)
         }
-        Section("Saved link") {
+        QuietFormSection("Saved link") {
             if let receipt = saved.result?.receipt {
                 Text("Existing expense linked. No new expense or balance change was created.")
                 NavigationLink("View linked expense") {

@@ -5,7 +5,7 @@ struct ApprovalOriginalEntry: View {
     let member: VerifiedMember
 
     var body: some View {
-        Section("Original entry") {
+        QuietFormSection("Original entry") {
             Text(detail.event.description).font(.headline)
             QuietValueRow("Amount", value: detail.event.amountCentimes.absoluteCHF)
             QuietValueRow("Date", value: detail.event.occurredOn)

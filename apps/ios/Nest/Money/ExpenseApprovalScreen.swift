@@ -20,7 +20,7 @@ struct ExpenseApprovalScreen: View {
             if let categoryNotice { Section { Text(categoryNotice) } }
             if let saved {
                 review(saved.decision.expense)
-                Section("Saved decision") {
+                QuietFormSection("Saved decision") {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this expense." : "You chose to decline this expense.")

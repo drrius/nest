@@ -41,7 +41,7 @@ struct MoneyDetailScreen: View {
                 if detail.event.hasReceipt {
                     Section { ReceiptButton(session: session, member: member, eventId: eventId) }
                 }
-                Section("Recorded shares") {
+                QuietFormSection("Recorded shares") {
                     ForEach(detail.shares) { share in
                         VStack(alignment: .leading, spacing: 6) {
                             Text(share.id == member.userId ? "You" : "Your partner").font(.headline)

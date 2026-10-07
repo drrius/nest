@@ -6,7 +6,7 @@ struct LegacyAdoptionTerms: View {
 
     var body: some View {
         LegacyRecurringTerms(rule: context.rule, member: member)
-        Section("Before changing this rule") {
+        QuietFormSection("Before changing this rule") {
             if let covered = context.coveredThrough {
                 QuietValueRow("History covered through", value: covered.value)
                 Text("Bills covering old history are skipped.").font(.footnote)
@@ -39,7 +39,7 @@ struct LegacyAdoptionNewTerms: View {
     var categoryName: String? = nil
 
     var body: some View {
-        Section("New terms to approve") {
+        QuietFormSection("New terms to approve") {
             Text(input.configuration.description).font(.headline)
             Text(
                 input.configuration.mode == .fixed

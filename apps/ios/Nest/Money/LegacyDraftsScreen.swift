@@ -28,7 +28,7 @@ struct LegacyDraftsScreen: View {
                     LegacyAdoptionScreen(session: session, member: member, ruleId: model.ruleId).id(session.generation)
                 }
             }
-            Section("Retained drafts") {
+            QuietFormSection("Retained drafts") {
                 ForEach(model.drafts) { draft in
                     NavigationLink {
                         LegacyDraftScreen(session: session, member: member, draft: draft).id(session.generation)
@@ -63,7 +63,7 @@ struct LegacyRecurringTerms: View {
     let member: VerifiedMember
 
     var body: some View {
-        Section("Retained rule terms") {
+        QuietFormSection("Retained rule terms") {
             Text(rule.description).font(.headline)
             QuietValueRow("Amount", value: rule.amountCentimes.absoluteCHF)
             LegacySplitTerms(split: rule.allocations, payerId: rule.payerId, member: member)

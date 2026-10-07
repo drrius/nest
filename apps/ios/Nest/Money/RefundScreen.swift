@@ -72,7 +72,7 @@ struct RefundScreen: View {
     }
 
     private func fields(_ source: RefundContext) -> some View {
-        Section("Refund already received") {
+        QuietFormSection("Refund already received") {
             Text(source.source.event.description).font(.headline)
             Text("Record money returned for this expense. The original entry stays in your history.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)
@@ -101,7 +101,7 @@ struct RefundScreen: View {
     }
 
     private func summary(_ input: RefundInput) -> some View {
-        Section("Review refund") {
+        QuietFormSection("Review refund") {
             Text(input.description).font(.headline)
             QuietValueRow("Received by", value: name(input.payerId))
             QuietValueRow("Total", value: input.amountCentimes.absoluteCHF)
@@ -115,7 +115,7 @@ struct RefundScreen: View {
     }
 
     private func recovery(_ saved: SavedRefund) -> some View {
-        Section("Refund status") {
+        QuietFormSection("Refund status") {
             if let receipt = saved.result?.receipt {
                 Text("Refund recorded.")
                 NavigationLink("View recorded refund") {

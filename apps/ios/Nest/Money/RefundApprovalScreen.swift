@@ -18,7 +18,7 @@ struct RefundApprovalScreen: View {
             if let notice { Section { Text(notice) } }
             if let saved {
                 summary(saved.decision.refund)
-                Section("Saved decision") {
+                QuietFormSection("Saved decision") {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this refund." : "You chose to decline this refund.")
@@ -103,7 +103,7 @@ struct RefundApprovalScreen: View {
         if let original, original.event.id == refund.sourceEventId {
             ApprovalOriginalEntry(detail: original, member: member)
         }
-        Section("Refund to record") {
+        QuietFormSection("Refund to record") {
             Text(refund.description).font(.headline)
             QuietValueRow("Amount", value: refund.amountCentimes.absoluteCHF)
             QuietValueRow("Received by", value: refund.payerId == member.userId ? "You" : "Your partner")

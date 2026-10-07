@@ -61,7 +61,7 @@ struct RecurringStateScreen: View {
     }
 
     private func recovery(_ saved: SavedRecurringState) -> some View {
-        Section("Saved rule change") {
+        QuietFormSection("Saved rule change") {
             Text(saved.command.change.action == .pause ? "Pause rule" : "Cancel rule").font(.headline)
             NavigationLink("View affected rule") {
                 RecurringRuleScreen(session: session, member: member, ruleId: saved.command.change.ruleId)

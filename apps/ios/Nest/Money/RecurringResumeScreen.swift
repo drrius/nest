@@ -62,7 +62,7 @@ struct RecurringResumeScreen: View {
     }
 
     private func summary(_ input: RecurringResumeInput) -> some View {
-        Section("Review resume") {
+        QuietFormSection("Review resume") {
             NavigationLink("View affected rule") {
                 RecurringRuleScreen(session: session, member: member, ruleId: input.ruleId)
             }
@@ -86,7 +86,7 @@ struct RecurringResumeScreen: View {
         }
     }
     private func recovery(_ saved: SavedRecurringResume) -> some View {
-        Section("Resume status") {
+        QuietFormSection("Resume status") {
             if saved.result?.receipt != nil {
                 Text("Rule resumed.")
                 Button("Done") { Task { await finish() } }

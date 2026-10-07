@@ -7,7 +7,7 @@ struct VariableCycleApprovalSummary: View {
     let recordedCycle: RecurringCycle?
 
     var body: some View {
-        Section(recordedCycle == nil ? "Bill being reviewed" : "Bill recorded") {
+        QuietFormSection(recordedCycle == nil ? "Bill being reviewed" : "Bill recorded") {
             Text(configuration?.description ?? "Bill proposal").font(.headline)
             QuietValueRow("Amount", value: input.amountCentimes.absoluteCHF)
             if let configuration { QuietValueRow("Payer", value: name(configuration.payerId)) }

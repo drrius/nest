@@ -9,7 +9,7 @@ struct ExpenseReviewSection: View {
     var unknownMemberLabel = "Your partner"
 
     var body: some View {
-        Section("Review expense") {
+        QuietFormSection("Review expense") {
             Text(expense.description).font(.headline)
             row("Shared amount", expense.amountCentimes.absoluteCHF)
                 .accessibilityIdentifier("expense-review-amount")

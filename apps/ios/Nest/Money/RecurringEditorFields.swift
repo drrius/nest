@@ -7,7 +7,7 @@ struct RecurringEditorFields: View {
     var usesNativeDate = false
 
     var body: some View {
-        Section("Rule") {
+        QuietFormSection("Rule") {
             field("Description", text: $draft.description)
             Picker("Recording", selection: $draft.mode) {
                 Text("Confirm each bill").tag(RecurringConfiguration.Mode.variable)
@@ -33,7 +33,7 @@ struct RecurringEditorFields: View {
             }
         }
         if draft.mode == .fixed {
-            Section("Automatic amount and split") {
+            QuietFormSection("Automatic amount and split") {
                 field("Amount (CHF)", text: $draft.amount, keyboard: .decimalPad)
                 ForEach(members) { person in
                     field(

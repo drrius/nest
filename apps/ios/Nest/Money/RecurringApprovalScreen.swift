@@ -19,7 +19,7 @@ struct RecurringApprovalScreen: View {
             if let notice { Section { Text(notice) } }
             if let saved {
                 summary(saved.decision.rule)
-                Section("Saved decision") {
+                QuietFormSection("Saved decision") {
                     Text(
                         saved.decision.approved
                             ? "You chose to approve this rule." : "You chose to decline this rule.")
@@ -103,7 +103,7 @@ struct RecurringApprovalScreen: View {
         if let currentRule, currentRule.id == rule.ruleId {
             currentSummary(currentRule, proposal: rule)
         }
-        Section("Rule to save") {
+        QuietFormSection("Rule to save") {
             Text(rule.configuration.description).font(.headline)
             QuietValueRow("Category", value: categoryLabel(rule.configuration.categoryId))
             QuietValueRow("Change", value: rule.expectedRevision == nil ? "Create rule" : "Update rule")
@@ -134,7 +134,7 @@ struct RecurringApprovalScreen: View {
     }
 
     private func currentSummary(_ currentRule: RecurringRule, proposal rule: RecurringInput) -> some View {
-        Section("Current rule") {
+        QuietFormSection("Current rule") {
             Text(currentRule.configuration.description).font(.headline)
             QuietValueRow("Category", value: categoryLabel(currentRule.configuration.categoryId))
             Text(currentRule.status.rawValue.capitalized)

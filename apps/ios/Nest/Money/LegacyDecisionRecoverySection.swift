@@ -10,7 +10,7 @@ struct LegacyDecisionRecoverySection: View {
             if session.status == .ready(member),
                 model.adoption != nil || model.confirmation != nil || model.dismissal != nil || model.notice != nil
             {
-                Section("Saved recurring decisions") {
+                QuietFormSection("Saved recurring decisions") {
                     if let saved = model.adoption {
                         NavigationLink("Check rule adoption decision") {
                             LegacyAdoptionApprovalScreen(
