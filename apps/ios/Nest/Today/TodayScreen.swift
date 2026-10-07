@@ -113,7 +113,7 @@ struct TodayScreen: View {
                 .font(.subheadline.weight(.semibold))
                 .padding(.horizontal, 18)
                 .frame(minHeight: 44)
-                .foregroundStyle(QuietPalette.surface)
+                .foregroundStyle(QuietPalette.onAccent)
                 .background(QuietPalette.accent, in: Capsule())
         }
         .accessibilityLabel("Add to your household")

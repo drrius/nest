@@ -953,3 +953,11 @@ format/source limits, Foundation/signed-app tests, signing and guarded UI
 compilation. Hosted native recovery remains the separate Mac evidence; CI does
 not execute its opt-in financial fixture. The later cancellation-test and audit
 commits are being pushed together and need their own current-head CI.
+
+Today filled Add now uses the same onAccent semantic token as Meals/Money. This
+is styling consistency; its former label already had adequate calculated contrast.
+Actual signed normal-text light/dark checks pass, two methods/zero failures/skips:
+44pt hittable action, native Chore/Grocery/Expense menu and no-action dismissal.
+Screenshots inspected; originals/64 journals/settings/privacy restored. No hosted
+write/AI/permission/beta occurs. Full audits/phones and current-source CI remain
+open. [Add reading](../evidence/2026-10-07/swiftui-today-add-reading/README.md).
