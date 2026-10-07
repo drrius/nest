@@ -202,7 +202,7 @@ all64 clone journals remain empty and eight hosted fingerprints stay exact.
 Original simulator state restores; the owned clone/trust store, relay and private
 control configuration are removed. This does not prove physical radio loss,
 post-commit lost-reply recovery or full financial acceptance. Routine CI37590324711
-passes source `eafc296d`; native CI37590324662 is still running. The existing frame
+and native CI37590324662 pass source `eafc296d`. The existing frame
 runtime warning remains. [Outage evidence](../evidence/2026-10-07/swiftui-expense-api-outage/README.md).
 
 The captured outage diagnostic now resolves all five frame-warning backtraces
@@ -227,8 +227,24 @@ the exact command and bound Save sends; both signed SE3 cases now pass with zero
 failures/skips. The separate simulator is removed and original clients remain
 untouched. Controlled native HTTP/store evidence does not establish rendered
 recovery or M7 completion. Routine
-CI37590324711 passes `eafc296d`; native CI37590324662 remains running on that
-unchanged commit. [Recovery work](../evidence/2026-10-07/swiftui-settlement-cancellation-restart/README.md).
+CI37590324711 and native CI37590324662 both pass `eafc296d`. [Recovery work](../evidence/2026-10-07/swiftui-settlement-cancellation-restart/README.md).
+
+Guarded rendered settlement recovery runs once at `d91953b2`: payment Save is
+refused before upstream and the same unresolved request survives restart. The
+confirmation observer fails on content-versus-sheet bounds before cancellation.
+Original clients restore; the pending clone is retained, never erased or re-Saved.
+Source `a9a1ffbf` corrects the sheet bounds; its recovery-only method now passes
+in39.338 seconds with zero failures/skips on that exact operation. Both actual
+screens are inspected. One explicit cancellation confirms no recorded payment,
+Start again reloadsCHF0.01 and returns to Today without another Save. All eight
+before/after fingerprints remain exact,64 clone journals empty, originals restored,
+clone/trust store deleted and relay/private configuration removed. The one
+cancellation record remains; its budget is consumed. The earlier whole method
+stays failed and is not repeated. The relay refuses all payment
+Saves and permits one explicit cancellation bound to the refused operation.
+Fresh eight protected fingerprints still match66 events/108 allocations/132
+ledger rows and existing household data. A failed pending journal must be retained
+for exact recovery, not erased. [Preparation](../evidence/2026-10-07/swiftui-settlement-cancellation-rendering/README.md).
 
 The [remaining acceptance list](native-rewrite/remaining-work.md) now owns
 next-work sequencing. Historical checks below remain evidence, not instructions
