@@ -961,3 +961,12 @@ Actual signed normal-text light/dark checks pass, two methods/zero failures/skip
 Screenshots inspected; originals/64 journals/settings/privacy restored. No hosted
 write/AI/permission/beta occurs. Full audits/phones and current-source CI remain
 open. [Add reading](../evidence/2026-10-07/swiftui-today-add-reading/README.md).
+
+A controlled signed-native queued-chore membership-loss/restart case passes:
+queued completion receives forbidden, fresh membership receives not_a_member,
+Today/lease hide, restart refuses disclosure/replay, and exact canonical pending
+command bytes remain in scoped SQLite. No completion reaches the controlled server.
+Initial compile-only Equatable mismatch is retained and corrected via payload
+comparison, not shipping-type changes. Originals/64 journals/settings/privacy
+restore. Hosted revocation/rendered guidance/phones and current-head CI remain
+open. [Revocation](../evidence/2026-10-07/swiftui-queued-chore-revocation/README.md).
