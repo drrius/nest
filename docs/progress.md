@@ -263,6 +263,17 @@ and [native CI 37651420448](https://github.com/drrius/nest/actions/runs/37651420
 The separately executed partner reader has its local passing evidence; its updated
 source still requires CI after delivery. No current CI run is cancelled to push it.
 
+A direct fixed recurring-rule create/pause/cancel journey now passes through
+signed native UI and the hosted test API without failures or skips. Its explicit
+review covers a future first due date and CHF 0.02 split into two centimes. The
+exact test rule ends cancelled, with mandate attribution retained. All ten older
+rule hashes and the complete financial snapshot match. No scheduler is enabled;
+pg_cron has zero registrations at both checkpoints. The recurring pickers now
+use 44-point targets. Its original observer failure and runtime warning remain
+recorded. The owned clone is deleted and original scope/64 journals match.
+Editing/resumption, manual linkage, actual scheduling, AI and phones remain open.
+[Evidence](../evidence/2026-10-07/swiftui-recurring-lifecycle/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.

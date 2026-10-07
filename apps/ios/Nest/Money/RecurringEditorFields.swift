@@ -13,9 +13,11 @@ struct RecurringEditorFields: View {
                 Text("Confirm each bill").tag(RecurringConfiguration.Mode.variable)
                 Text("Automatic fixed expense").tag(RecurringConfiguration.Mode.fixed)
             }
+            .frame(minHeight: 44).contentShape(Rectangle())
             Picker("Payer", selection: $draft.payer) {
                 ForEach(members) { Text($0.displayName).tag($0.id) }
             }
+            .frame(minHeight: 44).contentShape(Rectangle())
             if usesNativeDate {
                 DatePicker("Starts", selection: nativeStart, displayedComponents: .date)
                     .environment(\.timeZone, TimeZone(identifier: "Europe/Zurich")!)
@@ -25,12 +27,14 @@ struct RecurringEditorFields: View {
             Picker("Frequency", selection: $draft.scheduleKind) {
                 Text("Monthly").tag(RecurringSchedule.Kind.monthly)
                 Text("Weekly").tag(RecurringSchedule.Kind.weekly)
-            }.onChange(of: draft.scheduleKind) { _, _ in draft.scheduleDay = 1 }
+            }.frame(minHeight: 44).contentShape(Rectangle())
+                .onChange(of: draft.scheduleKind) { _, _ in draft.scheduleDay = 1 }
             Picker(draft.scheduleKind == .monthly ? "Day of month" : "Weekday", selection: $draft.scheduleDay) {
                 ForEach(1...(draft.scheduleKind == .monthly ? 31 : 7), id: \.self) { day in
                     Text(draft.scheduleKind == .monthly ? String(day) : weekdays[day - 1]).tag(day)
                 }
             }
+            .frame(minHeight: 44).contentShape(Rectangle())
         }
         if draft.mode == .fixed {
             QuietFormSection("Automatic amount and split") {

@@ -26,6 +26,8 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Fixed-rule lifecycle](../../evidence/2026-10-07/swiftui-recurring-lifecycle/README.md) now passes direct native creation, explicit automatic mandate, pause and cancellation against the hosted test API. Earlier rules and all financial history remain unchanged, with no scheduler activated. Editing, resumption, manual linkage, actual scheduling, AI and phones stay open.
+
 - [Direct correction/refund posting](../../evidence/2026-10-07/swiftui-correction-refund/README.md) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendered readback now passes separately without any financial change. Physical phones, live AI, other variants and the retained writer warning remain open.
 
 - [Actual EventKit revocation](../../evidence/2026-10-07/swiftui-eventkit-revocation/README.md) now verifies OS-denied reads and persisted-selection clearing across test-host restart in two signed native checks. It uses a fresh simulator and one synthetic event. Physical phones, rendered privacy behavior and live busy sharing remain open.
@@ -50,8 +52,9 @@ Evidence reconciliation7 October:
 
 Work order:
 
-1. Complete the remaining named native Money journeys: recurring creation/edit,
-   pause/cancel/resume, manual cycle linkage and retained-rule decisions. Existing
+1. Complete the remaining named native Money journeys: recurring configuration
+   edits/resumption, manual cycle linkage and retained-rule decisions. Direct
+   fixed-rule creation/pause/cancel now has bounded native/hosted evidence. Existing
    model/database evidence stays valid. Direct correction/refund and full/partial
    settlement journeys already have their bounded evidence; repeat only for an
    affected change or failure. The action inventory distinguishes those flows.
