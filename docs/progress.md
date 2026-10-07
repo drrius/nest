@@ -26,6 +26,15 @@ reserved locally for the accumulated layout/form/approval fixes, with nest-test
 origins and push disabled. No release/submission has occurred; source CI/signing
 and package checks are still required.
 
+Consolidated candidate20 at0ba4a5c3 now passes local Release archive/export and
+package/signing audit. All1,157 frozen inputs match; native iPhoneOS/arm64, build20,
+nest-test/push-disabled/privacy/dSYM checks pass. Temporary signing copies/keychain
+are removed on both hosts; originals/search list remain intact. A reused evidence
+label initially said19 but actual artifact asserted20; it is corrected from the
+Info.plist without rebuild. Preceding018578ef routine/native CI pass; candidate
+37578558002/37578558027 and deep37577691207 remain live. No upload occurs.
+[Candidate20 package](../evidence/2026-10-07/swiftui-build20/README.md).
+
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
 Expense and replacement-expense correction approval screens now read exact
