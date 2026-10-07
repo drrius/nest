@@ -5,11 +5,17 @@
   "trackedNativeFiles": 1165,
   "sourceHashVerificationPassed": true,
   "formatAndSourceLimitsPassed": true,
-  "archiveState": "running",
+  "archiveState": "passed",
   "submitted": false,
   "backend": "nest-test",
   "pushEnabled": false,
   "routineCI": 37594517335,
   "nativeCI": 37594517196,
-  "originalProductionUntouched": true
+  "originalProductionUntouched": true,
+  "exportState": "passed",
+  "signedPackageVerified": true,
+  "copiedIPAHashMatches": true,
+  "ownedSigningCopiesRemoved": true,
+  "appleBuild21Absent": true,
+  "submitControllerPrepared": true
 }

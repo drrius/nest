@@ -792,3 +792,11 @@ running; export/package/cleanup remain pending. Routine37594517335/native3759451
 are running on the same commit. Read-only Apple preflight confirms build21 absent
 and20 VALID. No upload intent, cloud build, purchase or production change occurs.
 [Candidate preparation](../evidence/2026-10-07/swiftui-build21/README.md).
+
+Build21 archive/export/package now pass at the frozen source. The copied IPA is
+13,676,426 bytes with exact hash43c623c254d98ececff1b270b01b13d3c7d9a70c17df13d660ed9d256ea0738f.
+Actual version21/iPhoneOS/arm64/test origins/push-disabled/profile/privacy/dSYM/
+forbidden-file checks pass. Owned temporary keychain and credential/password
+copies are removed on both hosts; original credentials/search list remain intact.
+The one-use submit controller is prepared but uninvoked. Current-source routine/
+native CI remain running; no upload21 or Apple acceptance is claimed.
