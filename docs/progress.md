@@ -178,7 +178,7 @@ rendered-phone and other read-only-path acceptance remain open. Current-source C
 is pending for later source. Detail source `91c06917` passes
 [routine CI 37641010696](https://github.com/drrius/nest/actions/runs/37641010696);
 [native CI 37641010744](https://github.com/drrius/nest/actions/runs/37641010744)
-is still running. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
+also passes. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
 
 All remaining shipping week reads now use the shared fenced command, including
 proposal preview, ingredient refresh and mutation preflight. Ingredient read
@@ -188,6 +188,15 @@ before the fix. Thirty-two corrected signed app cases and nine SQLite cases pass
 without skips, including existing approval/retry/offline behavior. Hosted, live-AI
 and phone acceptance remain open. Current-source CI is pending.
 [Evidence](../evidence/2026-10-07/swiftui-meal-read-callers/README.md).
+
+Audited writer owner attributes are now measured from nest-test catalog metadata.
+Its postgres owner is non-superuser with BYPASSRLS; the fresh disposable fixture
+bootstrap is superuser with BYPASSRLS. Other measured role flags match. This
+confirms a real privilege-fidelity gap instead of assuming equivalent owners;
+effective table/function grants, private dependencies and production remain open.
+No roles, data or schedules change. The small fixture is stopped and the completed
+311-migration rehearsal is not repeated.
+[Evidence](../evidence/2026-10-07/migration-owner-roles/README.md).
 
 ## Exact blockers and owner inputs
 

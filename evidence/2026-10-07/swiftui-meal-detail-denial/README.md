@@ -32,4 +32,6 @@ AI provider, worker, push setting or beta submission changes.
 
 Rendered phone behavior, hosted permission changes and other proposal/ingredient
 read paths remain unverified. These checks do not close M1/M5 or full authorization
-acceptance. Build 22 stays unchanged. Current-source CI remains pending.
+acceptance. Build 22 stays unchanged. Detail source `91c06917` passes [routine CI 37641010696](https://github.com/drrius/nest/actions/runs/37641010696)
+and [native CI 37641010744](https://github.com/drrius/nest/actions/runs/37641010744).
+The separate local controlled denial cases remain the direct regression proof.

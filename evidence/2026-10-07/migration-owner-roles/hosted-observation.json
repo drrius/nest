@@ -1,0 +1,84 @@
+{
+  "owners": [
+    {
+      "name": "postgres",
+      "inherit": true,
+      "bypassRLS": true,
+      "superuser": false,
+      "createRole": true,
+      "replication": true,
+      "createDatabase": true
+    }
+  ],
+  "functions": [
+    {
+      "owner": "postgres",
+      "signature": "private.invoke_push_dispatch()",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_deliver_due_reminders(text,integer)",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_deliver_member_digests(text,time without time zone,integer)",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_drain_push_outbox(text,integer)",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_ensure_due_occurrences(text,integer)",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_generate_recurring_drafts_cron(text,date,integer)",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_retain_activity_events(text,integer)",
+      "securityDefiner": true
+    },
+    {
+      "owner": "postgres",
+      "signature": "run_retain_purchased_groceries(text,integer)",
+      "securityDefiner": true
+    }
+  ],
+  "queryRole": "postgres",
+  "observedAt": "2026-10-07T15:11:22.119962+00:00",
+  "schemaPrivileges": [
+    {
+      "owner": "postgres",
+      "usage": true,
+      "create": false,
+      "schema": "auth"
+    },
+    {
+      "owner": "postgres",
+      "usage": true,
+      "create": true,
+      "schema": "private"
+    },
+    {
+      "owner": "postgres",
+      "usage": true,
+      "create": true,
+      "schema": "public"
+    },
+    {
+      "owner": "postgres",
+      "usage": true,
+      "create": false,
+      "schema": "storage"
+    }
+  ],
+  "transactionReadOnly": false
+}
