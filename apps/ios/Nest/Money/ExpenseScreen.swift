@@ -65,6 +65,7 @@ struct ExpenseScreen: View {
                 Section { Button("Load expense form") { Task { await load() } } }
             }
         }
+        .id(saved != nil ? "saved" : reviewed != nil ? "review" : "draft")
         .disabled(working)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
