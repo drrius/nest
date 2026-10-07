@@ -80,6 +80,7 @@ struct CorrectionScreen: View {
                 if source.canReverse { Text("Undo entry").tag(false) }
                 if source.canReplace { Text("Replace entry").tag(true) }
             }
+            .frame(minHeight: 44).contentShape(Rectangle())
         }
         if draft?.replace == true {
             QuietFormSection("Replacement") {

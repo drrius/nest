@@ -1,0 +1,6 @@
+{
+  "apiOrigin": "https://nest-test-api-drrius-projects.vercel.app",
+  "supabaseOrigin": "https://tkjixmujjoustdiedfmw.supabase.co",
+  "pushDisabled": true,
+  "bundle": "ch.drrius.nest"
+}

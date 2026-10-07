@@ -26,6 +26,8 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Direct correction/refund posting](../../evidence/2026-10-07/swiftui-correction-refund/README.md) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendering, physical phones, live AI, other variants and the retained runtime warning remain open.
+
 - [Actual EventKit revocation](../../evidence/2026-10-07/swiftui-eventkit-revocation/README.md) now verifies OS-denied reads and persisted-selection clearing across test-host restart in two signed native checks. It uses a fresh simulator and one synthetic event. Physical phones, rendered privacy behavior and live busy sharing remain open.
 
 - [Remaining meal read callers](../../evidence/2026-10-07/swiftui-meal-read-callers/README.md) now use one fenced week-read command. Held proposal/preflight replies and invalidated ingredient updates are rejected; existing choices, pending requests and approvals retain their behavior in 32 native app and nine SQLite checks. Hosted permissions, live AI and phone acceptance remain open.

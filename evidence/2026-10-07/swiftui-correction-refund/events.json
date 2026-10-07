@@ -1,0 +1,42 @@
+[
+  {
+    "id": "ff4ce2a2-9dd7-457b-9f81-d5a43eddbdbd",
+    "type": "expense",
+    "amount_cents": 2,
+    "description": "Nest QA correction-refund original 20261007",
+    "note": null,
+    "related_event_id": null,
+    "ledger_count": 2,
+    "ledger_sum": "0"
+  },
+  {
+    "id": "0c242bc7-2499-45a1-b70c-36eb9407881f",
+    "type": "reversal",
+    "amount_cents": 2,
+    "description": "Reversal: Nest QA correction-refund original 20261007",
+    "note": null,
+    "related_event_id": "ff4ce2a2-9dd7-457b-9f81-d5a43eddbdbd",
+    "ledger_count": 2,
+    "ledger_sum": "0"
+  },
+  {
+    "id": "569c356b-c98d-40ae-b55c-6f17c4e02457",
+    "type": "replacement",
+    "amount_cents": 2,
+    "description": "Nest QA correction-refund original 20261007",
+    "note": "Fictional corrected details; no actual transfer.",
+    "related_event_id": "ff4ce2a2-9dd7-457b-9f81-d5a43eddbdbd",
+    "ledger_count": 2,
+    "ledger_sum": "0"
+  },
+  {
+    "id": "cf4cac63-21f2-4ce8-b452-c9cffd48a436",
+    "type": "refund",
+    "amount_cents": 2,
+    "description": "Refund",
+    "note": null,
+    "related_event_id": "569c356b-c98d-40ae-b55c-6f17c4e02457",
+    "ledger_count": 2,
+    "ledger_sum": "0"
+  }
+]

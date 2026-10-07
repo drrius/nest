@@ -221,7 +221,7 @@ event reads with granted access; denied access clears saved selection and refuse
 event/busy reads after a separate launch. The fixture explicitly flushes its
 marker after an initial transport failure, retained in evidence. Both owned
 simulators are deleted. Shipping Calendar code and build 22 stay unchanged.
-The test and corrected phone guide are ready for feature-branch delivery. Rendered UI,
+The EventKit test and corrected phone guide are delivered in `93e59c04`. Rendered UI,
 initial permission prompts, live sharing and both phones remain open. [Evidence](../evidence/2026-10-07/swiftui-eventkit-revocation/README.md).
 
 The failed ingredient account-switch contract now rechecks caller context when
@@ -230,6 +230,23 @@ ingredient and denial-race cases pass in 21 signed app tests, without failures o
 skips. The original CI failure remains recorded; current-head CI is pending for
 this correction. No test expectation is relaxed, hosted data is untouched and
 build 22 stays unchanged. [Evidence](../evidence/2026-10-07/swiftui-ingredient-context-ci/README.md).
+
+Source `93e59c04` now passes [routine CI 37646179922](https://github.com/drrius/nest/actions/runs/37646179922)
+and [native CI 37646179888](https://github.com/drrius/nest/actions/runs/37646179888).
+Native CI reports 512 app tests, 59 guarded skips and zero failures, including the
+corrected ingredient account-switch contract. The explicit EventKit cases retain
+their separate two-pass local evidence.
+
+Direct correction/refund posting now completes a resumed signed native journey
+through the hosted test API. One fictional CHF 0.02 expense is replaced and fully
+refunded using exactly three commands. Four events remain appended, all prior
+financial row hashes match, every new ledger event is zero-sum and both balances
+return to their starting zero. The final native invocation passes without skips;
+initial observer/target failures remain retained. The correction picker target is
+now 44 points high. Original scope and all 64 command journals match; the owned
+clone is deleted. A reported invalid-frame runtime warning remains open. Partner
+rendering, phones, live AI and broader variants remain unverified. Build 22 stays
+unchanged. [Evidence](../evidence/2026-10-07/swiftui-correction-refund/README.md).
 
 ## Exact blockers and owner inputs
 
