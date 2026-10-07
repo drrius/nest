@@ -1,0 +1,8 @@
+{
+  "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+  "frame": [20, 651, 127.5, 14.5],
+  "label": "Expense · 2026-10-05",
+  "summary": "Contrast failed",
+  "tabBarFrame": [0, 584, 375, 83],
+  "type": "Optional(__C.XCUIElementType)"
+}

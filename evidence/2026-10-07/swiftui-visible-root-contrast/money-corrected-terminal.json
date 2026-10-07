@@ -1,0 +1,16 @@
+{
+  "source": "fbb811d8cb6c409be0ed9b1503e0f0a85f8bdedf",
+  "originalStateRestored": true,
+  "journalsEmpty": 64,
+  "positiveBudget": 0,
+  "unfiltered": true,
+  "results": [
+    {
+      "case": "money-corrected",
+      "exit": 65,
+      "passed": 0,
+      "failed": 1,
+      "skipped": 0
+    }
+  ]
+}

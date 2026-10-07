@@ -1,0 +1,8 @@
+{
+  "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+  "frame": [20, 602.5, 139.5, 42.5],
+  "label": "Nest QA PDF posted 20261005",
+  "summary": "Contrast failed",
+  "tabBarFrame": [0, 584, 375, 83],
+  "type": "Optional(__C.XCUIElementType)"
+}

@@ -745,3 +745,16 @@ call, including exact retry. A new request after fixture repair reaches a synthe
 provider without active meal/grocery writes. One case passes; two initial expected
 200 assertions failed at the actual pre-reservation409 boundary and are recorded.
 Fast CI adds only the selected case. Real Gateway/phone planning remains open.
+
+The read-only fully-visible-row comparison captures Tuesday breakfast at y346–406
+above the584pt native tab bar. The unfiltered Meals audit fails with four identified
+contrast reports on other Breakfast/Lunch/Add meal text at606/666.5, all behind/below
+the bar; the revealed row is absent from those findings. Money's first observer
+uses link instead of the actual button type and fails before audit. Both original
+scopes/64 journals/settings/local choices restore. The corrected Money-only signed
+method completes at `fbb811d8`: its target expense row is visible at307.5–386.5
+and absent from three reports on the PDF expense title/amount/date at602.5/651,
+behind/below the584pt tab bar. Both audits remain failed; all reports and the first
+observer failure are retained. Original clients/64 journals/settings/local choices
+restore. Meals is not repeated. Full accessibility remains
+open. [Visible-row comparison](../evidence/2026-10-07/swiftui-visible-root-contrast/README.md).
