@@ -20,8 +20,12 @@ and unverified documentation bases. Renames are compared as independent old/new
 paths. Broken repository-relative document links fail; external URLs, absolute
 device paths and heading anchors are outside this check.
 
-Formatting, scoped lint and diff checks pass. The workflow change itself requires
-full source CI; no application checks have been skipped for it. Actual GitHub
-execution of the shorter documentation path remains to be observed after this
-source has passed. No native source, backend runtime, migration, dependency,
-deployment, signing or phone build changes are included.
+Formatting, scoped lint and diff checks pass. Exact source
+`7911bb765b6f9943ba9abffbb5d257200bb91fa6` passes full
+[CI 37616655593](https://github.com/drrius/nest/actions/runs/37616655593). Its scope
+step, four scope cases, lint/typechecking and all application checks execute and
+pass. The foundation job runs from 11:49:04 to 11:52:13 UTC, 189 seconds.
+
+Actual GitHub execution of the shorter documentation path remains to be observed
+on the next docs-only update. No native source, backend runtime, migration,
+dependency, deployment, signing or phone build changes are included.
