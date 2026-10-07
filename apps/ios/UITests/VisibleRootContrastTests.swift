@@ -25,6 +25,7 @@ final class VisibleRootContrastTests: XCTestCase {
         app.tabBars.firstMatch.buttons[tab].tap()
         let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
         let row = app.descendants(matching: kind).matching(identifier: identifier).firstMatch
+        XCTAssertTrue(row.waitForExistence(timeout: 15), "Required fixture row must exist before bounded scrolling")
         try reader.reveal(row)
         try reader.requireTarget(row)
         reader.capture(row, name: "\(tab) affected row fully above native tab bar before unfiltered audit")
