@@ -70,6 +70,10 @@ final class NativeSettlementReviewTests: XCTestCase {
         reader.capture(amount, name: "Payment value row contrast before recording")
         XCTAssertTrue(ready)
         try reader.reveal(amount)
+        if ProcessInfo.processInfo.environment["NEST_QA_PAYMENT_CONTRAST_AUDIT"] == "20261007-one-unfiltered" {
+            continueAfterFailure = true
+            try AccessibilityAuditDiagnostics.audit(app: app, types: .contrast, test: self)
+        }
         try reader.read("Confirm only if this payment has already happened.")
         let back = app.navigationBars["Record payment"].buttons["Back"]
         try reader.requireTarget(back, bounds: app.frame)
