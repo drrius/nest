@@ -76,6 +76,33 @@ test("API roles cannot change the freeze and missing control fails closed", (t) 
   assert.throws(() => setFixtureWritesFrozen(db, false), /Household write control missing/);
 });
 
+test("broad service-role grants and BYPASSRLS cannot bypass a committed write freeze", (t) => {
+  const db = fixture(t);
+  db.sql(`grant usage on schema private to service_role;
+    grant select,insert,update,delete,truncate on public.fixture_history,private.fixture_receipts to service_role;
+    alter table public.fixture_history enable row level security;
+    alter table private.fixture_receipts enable row level security;
+    set role service_role;
+    insert into public.fixture_history values(1);
+    insert into private.fixture_receipts values(1); reset role;`);
+  setFixtureWritesFrozen(db, true);
+  for (const table of ["public.fixture_history", "private.fixture_receipts"]) {
+    assert.equal(db.sql(`set role service_role; select array_agg(id) from ${table}`), "{1}");
+    for (const sql of [
+      `insert into ${table} values(2)`,
+      `update ${table} set id=2`,
+      `delete from ${table}`,
+      `truncate ${table}`,
+    ]) {
+      assert.throws(() => db.sql(`set role service_role; ${sql}`), /Household writes suspended/);
+    }
+    assert.equal(db.sql(`select array_agg(id) from ${table}`), "{1}");
+  }
+  setFixtureWritesFrozen(db, false);
+  db.sql("set role service_role; insert into public.fixture_history values(2)");
+  assert.equal(db.sql("select array_agg(id order by id) from public.fixture_history"), "{1,2}");
+});
+
 for (const isolation of ["read committed", "repeatable read"]) {
   test(`a previously started ${isolation} transaction cannot begin writing after freeze`, async (t) => {
     const db = fixture(t);

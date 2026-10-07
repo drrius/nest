@@ -52,3 +52,10 @@ The actual hosted inventory contains only base tables:68 private,109 public and
 eight Storage. No views/materialized views are present in these schemas. Neither
 client role has direct SELECT on private tables. This reduces the direct table
 read surface; it does not authorize or prove delegated private-function access.
+
+The grant drift motivates one new disposable barrier test. A BYPASSRLS service role
+with broad grants writes before freeze, reads retained rows during freeze, and is
+refused INSERT/UPDATE/DELETE/TRUNCATE on both public/private RLS-enabled tables.
+Unfreeze restores writes. The selected test passes with zero failures/skips and
+is added to fast CI. This establishes the trigger boundary under broad grants,
+not hosted freeze activation, Storage control or live external-writer drainage.

@@ -432,3 +432,10 @@ remains open. No hosted object mutation occurs.
 Current hosted table metadata also confirms no public/private/storage views and
 no direct client SELECT grant on any private table. Private function semantics
 and service writers remain separate open boundaries.
+
+A focused disposable write-barrier test now grants service_role broad public/private
+DML/TRUNCATE access with BYPASSRLS. Actual writes succeed before freeze; committed
+freeze preserves reads and refuses all four write kinds on both RLS-enabled tables;
+unfreeze restores writes. One focused test passes with zero skips. Fast CI adds only
+this case. Hosted freeze is never activated; Storage is outside this barrier and
+live service writers/production drainage remain open.
