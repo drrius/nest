@@ -439,3 +439,10 @@ freeze preserves reads and refuses all four write kinds on both RLS-enabled tabl
 unfreeze restores writes. One focused test passes with zero skips. Fast CI adds only
 this case. Hosted freeze is never activated; Storage is outside this barrier and
 live service writers/production drainage remain open.
+
+Next M5 check is a real saved portion variation on Test Alex only. Fresh metadata
+confirms revision5,Vegetarian, no dislikes/goal and portion1; Sam stays unconfigured.
+The gated native method permits exactly two UI saves:1.5, actual restart/readback,
+then normal restoration to1 and restart/readback. Five original food receipts are
+retained. Source formatting/limits pass; no method or new Save has run. This is
+private nest-test fixture work, not production or live AI planning acceptance.
