@@ -26,6 +26,13 @@ Formatting, scoped lint and diff checks pass. Exact source
 step, four scope cases, lint/typechecking and all application checks execute and
 pass. The foundation job runs from 11:49:04 to 11:52:13 UTC, 189 seconds.
 
-Actual GitHub execution of the shorter documentation path remains to be observed
-on the next docs-only update. No native source, backend runtime, migration,
-dependency, deployment, signing or phone build changes are included.
+The actual docs-only commit `245a754dd02ccf87457203ec6d93a3e144a5bbbf` passes
+[CI 37617123884](https://github.com/drrius/nest/actions/runs/37617123884). Its job
+runs from 11:53:14 to 11:53:45 UTC, 31 seconds. Formatting, document scope/link
+checks and four scope cases pass. Application lint/typechecks, PostgreSQL journeys
+and package tests are explicitly skipped, with the already passing `7911bb76`
+source as the base. This confirms actual workflow wiring; it is not a repeated
+domain/native test or proof of any open milestone exit.
+
+No native source, backend runtime, migration, dependency, deployment, signing or
+phone build changes are included.

@@ -75,7 +75,11 @@ checks can be omitted only for docs/evidence Markdown changes whose base commit
 already passed CI; unknown/failed/pending bases and all other changed files keep
 the full checks. Four local Git/CLI cases and full source
 [CI 37616655593](https://github.com/drrius/nest/actions/runs/37616655593) pass at
-`7911bb76`. An actual documentation-only push is the remaining execution check.
+`7911bb76`. Actual documentation-only
+[CI 37617123884](https://github.com/drrius/nest/actions/runs/37617123884) passes at
+`245a754d` in 31 seconds with format/link/scope checks; application checks are
+explicitly skipped against the already verified source. This is documentation
+verification, not another native or domain test run.
 
 ## Exact blockers and owner inputs
 
