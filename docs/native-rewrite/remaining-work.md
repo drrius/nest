@@ -26,6 +26,13 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Actual EventKit foreground refresh](../../evidence/2026-10-07/swiftui-eventkit-foreground/README.md)
+  passes one signed app-hosted integration with a synthetic local event changed
+  through a separate real EventKit store. Private presentation stays cleared until
+  refresh, then shows exact updated fields with preserved selection. Model
+  lifecycle is called directly; rendered scene hooks, Apple sync and phones remain
+  unverified. Only the owned fixture/simulator is removed; shipping source is unchanged.
+
 - [Read-only production writer inventory](../../evidence/2026-10-07/production-catalog-inventory/README.md)
   identifies eight active legacy cron registrations, 153 public/private functions
   and two active Edge writers. All nine returned Edge application files match

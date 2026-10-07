@@ -372,6 +372,20 @@ Its [native CI 37674049688](https://github.com/drrius/nest/actions/runs/37674049
 also passes. The focused Calendar case ran separately without skips on the Mac;
 these checks do not establish rendered lifecycle or phone acceptance.
 
+Production inventory/comparison source `9f138fcf` passes
+[routine CI 37675467902](https://github.com/drrius/nest/actions/runs/37675467902).
+The five-signature source difference remains a migration blocker; CI does not
+turn the preserved mismatch report into catalog parity or cutover approval.
+
+One actual EventKit foreground-refresh integration now passes on a fresh signed
+simulator, with zero failures, skips or runtime warnings. A separate EventKit
+store changes the synthetic event; cleared local presentation stays empty until
+refresh, then shows the exact new title/location/time and preserved selection.
+Only the owned calendar/preferences and simulator are removed. All four executed
+source hashes match. Model lifecycle calls are direct; rendered background/scene
+hooks, initial prompt, Apple sync and both-phone privacy remain open. No shipping
+source or build 23 changes. [Evidence](../evidence/2026-10-07/swiftui-eventkit-foreground/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
