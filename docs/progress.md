@@ -800,3 +800,5 @@ forbidden-file checks pass. Owned temporary keychain and credential/password
 copies are removed on both hosts; original credentials/search list remain intact.
 The one-use submit controller is prepared but uninvoked. Current-source routine/
 native CI remain running; no upload21 or Apple acceptance is claimed.
+
+Build21 routine CI37594517335 passes the exact frozen source. Native37594517196 remains live. Keep that candidate unchanged; inspect the same native handle before invoking the one-use private submission controller. No new upload is authorized by a pending check.
