@@ -1,11 +1,21 @@
 # Native push delivery boundary
 
+Current status, 7 October 2026: the shipping client uses SwiftUI,
+UserNotifications and APNs under [ADR 0002](../adr/0002-swiftui-client.md).
+No Expo client, SDK or notification dependency remains. The
+[worker runbook](push-worker-runbook.md) describes current server configuration
+and acceptance requirements. Registration and worker source have bounded native,
+database and protocol evidence; real Apple delivery is still unverified. The
+test worker remains disabled pending server configuration and APNs credentials.
+Build 23 does not enable push. The dated audit below preserves earlier decisions
+and does not authorize restoring Expo or activating a scheduler.
+
 Audited 23 September 2026 against the approved native architecture and these legacy sources:
 
 - `/home/drrius/Work/household-os/supabase/functions/_shared/push-delivery-policy.ts`
 - `/home/drrius/Work/household-os/supabase/functions/_shared/push-dispatch-delivery.ts`
 
-The legacy adapter is Web Push/VAPID, using `@pushforge/builder` and HTTP subscription endpoints. It is not an Expo/APNs adapter and must not be copied into Nest. Its HTTP 2xx classification means Web Push acceptance, not device presentation. Nest must separately persist Expo tickets and receipts and never label acceptance as confirmed display.
+The legacy adapter is Web Push/VAPID, using `@pushforge/builder` and HTTP subscription endpoints. It is not an APNs adapter and must not be copied into Nest. Its HTTP 2xx classification means Web Push acceptance, not device presentation. Nest persists provider-specific outcomes and never labels acceptance as confirmed display. APNs has no delivery-receipt polling API; retained Expo compatibility paths have separate ticket/receipt semantics.
 
 Useful audited behavior to retain conceptually: do not resend to device registrations already accepted; defer missing/invalid configuration; cap transient retries; disable invalid registrations; preserve per-device outcomes across partial success. No legacy code was copied in this audit.
 
@@ -19,15 +29,15 @@ External push sending cannot share a PostgreSQL transaction. Preserve the distin
 
 Payloads should contain a generic Nest notification message and strictly validated routing identity. They must exclude private calendar text, private conversation content and financial amounts from lock-screen previews. The app must verify the current account and fetch authorized content after opening the link, including cold start.
 
-## Current evidence and gaps
+## Historical Expo snapshot, 23 September 2026
 
-Nest currently has notification preferences and renewal reminder native/AI commands. The scheduling branch has private due-time, candidate and outbox primitives with synthetic PostgreSQL tests. The working tree now pins `expo-notifications@57.0.19` and includes a permission/token adapter connected to explicit notification-settings controls. The registration controller has local tests, but native interaction is unverified. There is no Expo transport, ticket/receipt worker or active hosted scheduler yet. No push was sent, no hosted migration applied, and no device acceptance is claimed.
+At this earlier checkpoint, Nest had notification preferences and renewal reminder native/AI commands. The scheduling branch had private due-time, candidate and outbox primitives with synthetic PostgreSQL tests. The then-current Expo client pinned `expo-notifications@57.0.19` and included a permission/token adapter connected to explicit notification-settings controls. Registration had local tests, with no verified native interaction, transport/receipt worker, active scheduler or hosted migration. That client and dependency were subsequently removed; this paragraph is historical evidence.
 
 ## Delivery authorization and uncertainty
 
 The private delivery candidate uses a single occurrence/installation row with a captured registration revision. Preparing it does not release a token. Beginning delivery rechecks reminder/item revisions, recipient preferences/membership, device ownership/revision, session existence/expiry and explicit Nest session revocation. Only one begin succeeds. Its transaction is the authorization point; a later external request cannot share the database transaction or retract a notification already accepted by a provider.
 
-A crashed or lost begin/send response must stay uncertain rather than returning to ready automatically. A known provider rejection may later permit a bounded retry under fresh authorization; an accepted ticket requires receipt tracking. Expo distinguishes ticket acceptance from provider receipt acceptance, recommends checking receipts after 15 minutes and removes receipts after 24 hours: [Expo send documentation](https://docs.expo.dev/push-notifications/sending-notifications/). Neither is evidence that the user saw a notification.
+A crashed or lost begin/send response must stay uncertain rather than returning to ready automatically. A known provider rejection may later permit a bounded retry under fresh authorization. The retained Expo compatibility path tracks accepted tickets and later receipts. The shipping APNs path records provider acceptance, rejection or uncertainty without receipt polling. Neither provider acceptance nor a legacy receipt proves that the user saw a notification.
 
 Session validation checks `auth.sessions.id`, `user_id` and nullable `not_after`, alongside Nest's explicit revocation fence. Supabase documents that session-policy checks run at refresh rather than proactively destroying every session: [Supabase sessions](https://supabase.com/docs/guides/auth/sessions). Hosted Auth configuration and actual schema remain acceptance checks; local tests use a declared minimal synthetic Auth session table.
 

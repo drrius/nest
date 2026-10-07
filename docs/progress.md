@@ -344,6 +344,12 @@ Household-read fix `41e1f316` passes
 [routine CI 37672466304](https://github.com/drrius/nest/actions/runs/37672466304).
 Its native CI remains in progress; the new Calendar test is locally verified only.
 
+The push-delivery audit now identifies its removed Expo dependency and earlier
+registration state as historical. Current guidance points to SwiftUI/APNs and the
+worker runbook, keeping provider acceptance separate from phone presentation and
+legacy ticket/receipt polling. No runtime, credentials, scheduler or release changes.
+Documentation formatting, links and whitespace checks pass.
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
