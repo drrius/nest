@@ -7,7 +7,7 @@ final class VisibleRootContrastTests: XCTestCase {
     }
 
     func testHistoryRowContrastAboveNativeTabBar() throws {
-        try audit(tab: "Money", kind: .link)
+        try audit(tab: "Money", kind: .button)
     }
 
     private func audit(tab: String, kind: XCUIElement.ElementType) throws {
