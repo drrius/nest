@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "40EE0082-870A-4DFA-846C-5FDDBBD57562.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Money bills card shared page and inner insets_0_3E778916-C6A4-4FE5-8D9A-002A605A95C3.png",
+        "timestamp": 1791351027.473
+      }
+    ],
+    "testIdentifier": "MoneyRootGroupingTests/testBillsCardUsesSharedInsetsAndOpensApprovals()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/MoneyRootGroupingTests/testBillsCardUsesSharedInsetsAndOpensApprovals"
+  }
+]

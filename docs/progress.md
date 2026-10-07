@@ -47,6 +47,14 @@ privileged inventory is fixture eligibility evidence only. The pending-review
 integration test title is corrected to identify its test-only protocol adapter;
 it must not be reported as native UI or real model generation.
 
+Money's unstyled root Sections now use the shared Quiet cards for Bills and
+approvals and saved changes. A real normal-size Alex simulator method passes
+40pt action inset measurement, visible44pt target, private-list navigation and
+return. Signed compile/format/limits pass; both original scopes,64 empty journals,
+settings/local selections restore. Maximum text/full accessibility/disclosure and
+phone acceptance remain; this is later than build19 and current CI is pending.
+[Money grouping evidence](../evidence/2026-10-07/swiftui-money-root-grouping/README.md).
+
 Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
 and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior

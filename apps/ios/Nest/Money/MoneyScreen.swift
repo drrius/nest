@@ -17,7 +17,7 @@ struct MoneyScreen: View {
                 balanceCard
                 MoneyQuickActions(session: session, member: member)
                 MoneyHistorySection(session: session, member: member, previewCount: 5)
-                Section("Bills and approvals") {
+                QuietSectionCard(title: "Bills and approvals") {
                     NavigationLink {
                         RecurringRulesScreen(session: session, member: member, dueOnly: true).id(session.generation)
                     } label: {
@@ -34,7 +34,7 @@ struct MoneyScreen: View {
                         QuietActionLabel("Recurring expenses")
                     }
                 }
-                Section {
+                QuietSectionCard {
                     DisclosureGroup {
                         NavigationLink {
                             LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
