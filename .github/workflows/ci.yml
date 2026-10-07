@@ -65,8 +65,8 @@ jobs:
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs tests/database/table-access-inventory.test.mjs
       - name: Test service-role write freeze
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test --test-name-pattern='broad service-role' tests/database/cutover-write-barrier.test.mjs
-      - name: Test retained routine schedule validation
-        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/routine-schedule-validation.test.mjs
+      - name: Test retained routine schedule validation and history repair
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/routine-schedule-validation.test.mjs tests/database/routine-repair-history.test.mjs
       - name: Test complete append-only ledger events
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/complete-ledger-events.test.mjs
       - name: Test financial allocation consistency

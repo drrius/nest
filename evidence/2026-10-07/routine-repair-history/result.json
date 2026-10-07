@@ -1,0 +1,12 @@
+{
+  "passed": 6,
+  "failed": 0,
+  "skipped": 0,
+  "durationMilliseconds": 800.307411,
+  "source": "tests/database/routine-repair-history.test.mjs",
+  "sha256": "0a367068f4ce05d8ce8dd647971a18456ea66a0f60eadf0af77f3b4734e8513f",
+  "database": "disposable PostgreSQL 18",
+  "shippingSQLChanged": false,
+  "hostedSchedulerVerified": false,
+  "productionTouched": false
+}

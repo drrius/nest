@@ -979,3 +979,18 @@ animation acceptance is claimed. Original switch-value restoration has no failur
 in the final result; original scopes/64 journals/settings/privacy restore each
 time. Further unchanged retries stop. Hardware Reduce Motion acceptance remains.
 [Attempt evidence](../evidence/2026-10-07/swiftui-reduce-motion-attempt/README.md).
+
+Six focused disposable PostgreSQL retained-window repair cases pass in0.8s:
+ordinary/leap February31 clamping, original biweekly anchor after reschedule,
+after-completion days/weeks, alternating turns, missing preview, unchanged closed
+history and exact row-identity/no-op retry. Audited isolated engine/native creation
+fixture only; shipping SQL unchanged. Format/scoped lint pass after replacing
+ambiguous test tuples with named fields. Focused routine CI adds the six cases;
+full-chain/hosted identity, scheduled preview selection, active bounds/transfer
+semantics and cutover remain open.
+[Repair evidence](../evidence/2026-10-07/routine-repair-history/README.md).
+
+Candidatea00fdad3 now passes routine37608862949/native37608863001. The locally
+verified Today token, queued-chore revocation, guarded failed-motion diagnostic
+and new repair-test increments are being pushed together; their exact-head CI
+remains pending. No beta, source merge, hosted scheduler or production change.
