@@ -4,6 +4,17 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 ## Current delivery checkpoint
 
+Receipt access now has two focused API/PostgREST/PostgreSQL checks passing with
+zero failures or skips. Removing an unposted uploader blocks metadata and link
+requests using both retained tokens, while direct SQL authorization also refuses.
+A financial author's deletion remains blocked by the existing foreign key; both
+partners retain claimed-receipt access and exact history. Routine CI selects these
+two checks; the changed commit is not yet CI-verified. Managed Storage bytes,
+real Auth-session revocation and existing signed-link expiry remain separate gaps.
+[Receipt evidence](../evidence/2026-10-07/receipt-read-membership/README.md).
+The full phone checklist now consistently identifies available build21 and its
+included fixes, rather than directing testers to the older build19.
+
 SwiftUI0.1.0/build21, exact source `5d609069`, is available for internal TestFlight
 testing. It consolidates post20 financial review viewport/controls/value/header/
 result fixes plus grocery spoken details and shared headings. It uses nest-test
