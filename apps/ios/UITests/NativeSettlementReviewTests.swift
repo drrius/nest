@@ -62,8 +62,11 @@ final class NativeSettlementReviewTests: XCTestCase {
         try reader.reveal(review)
         try reader.requireTarget(review)
         review.tap()
-        try reader.read("Amount, CHF 0.01")
-        reader.capture(reader.element("Amount, CHF 0.01"), name: "Payment value row contrast before recording")
+        let amount = reader.element("Amount, CHF 0.01")
+        let ready = amount.waitForExistence(timeout: 15)
+        reader.capture(amount, name: "Payment value row contrast before recording")
+        XCTAssertTrue(ready)
+        try reader.reveal(amount)
         try reader.read("Confirm only if this payment has already happened.")
         let back = app.navigationBars["Record payment"].buttons["Back"]
         try reader.requireTarget(back, bounds: app.frame)

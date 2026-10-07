@@ -15,5 +15,6 @@ struct QuietValueRow: View {
         } label: {
             Text(title).foregroundStyle(QuietPalette.ink)
         }
+        .accessibilityElement(children: .combine)
     }
 }
