@@ -69,6 +69,15 @@ The current Nest full audit remains failed. Fully visible contrast, VoiceOver,
 Reduce Motion, phone readability and owner acceptance stay open. No palette or
 navigation workaround is added for this diagnosis.
 
+The authorized nest-test catalog now confirms installed pg_cron, full catalog
+visibility and zero registered jobs at 12:21 UTC. All eight audited legacy
+entry-point definition hashes and definer flags match the current compiled
+migrations. Local/hosted owner identities differ and remain recorded. The new
+source-parity comparison uses a disposable 54-legacy/257-native compilation;
+production, private dependency semantics, owner capability equivalence and
+external drainage remain open. No job is run or changed.
+[Hosted checkpoint](../evidence/2026-10-07/hosted-test-scheduled-writers/README.md).
+
 The new read-only scheduled-writer inventory is integrated into the disposable
 migration runner and focused CI selection. Thirteen local PostgreSQL checks pass
 with no failures or skips across the new inventory and existing privilege/fence

@@ -1,0 +1,83 @@
+{
+  "project": {
+    "id": "tkjixmujjoustdiedfmw",
+    "name": "nest-test",
+    "status": "ACTIVE_HEALTHY",
+    "postgresVersion": "17.6.1.166"
+  },
+  "observation": {
+    "jobs": {
+      "rows": [],
+      "count": 0
+    },
+    "metadata": {
+      "role": "postgres",
+      "database": "postgres",
+      "readOnly": false,
+      "allRowsVisible": true,
+      "catalogPresent": true,
+      "catalogReadable": true,
+      "extensionPresent": true,
+      "extensionVersion": "1.6.4",
+      "catalogShapeSupported": true,
+      "catalogOwnedByExtension": true
+    },
+    "observedAt": "2026-10-07T12:21:26.23397+00:00",
+    "auditedFunctionDefinitions": [
+      {
+        "owner": "postgres",
+        "signature": "private.invoke_push_dispatch()",
+        "securityDefiner": true,
+        "definitionSha256": "82b7aaf0382561d336fa424646537bbf7b265893678c1f2c6eb2b67a9f388904"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_deliver_due_reminders(text,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "87d197f06cf9efeae724f0fb25ac3d8be0c346d7b7d8d1be0e8d6ff45727df81"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_deliver_member_digests(text,time without time zone,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "bd01f62e9cc0c3ed816287fef7a53cd92fb2a05d96a020ba7878ee67f3bead8c"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_drain_push_outbox(text,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "b6df64bd77e60a75d7a04df8a1e07407e8b1c2ac54fae82a723142804533f7aa"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_ensure_due_occurrences(text,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "d940e5d828ecb65e1620ec8c96385112e3ca3a34c2a00d1b6cb125be45c9cca8"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_generate_recurring_drafts_cron(text,date,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "41929a8a21c580991c76b12676128e01508d10b43f9712f7e7e07e48b5213add"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_retain_activity_events(text,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "98be10bc4c0c040ef68b09f9499dec0534d5ac3cc4ffbfc0b0418d633757ebba"
+      },
+      {
+        "owner": "postgres",
+        "signature": "run_retain_purchased_groceries(text,integer)",
+        "securityDefiner": true,
+        "definitionSha256": "667f5ca7ab1c6a41adfa69e4c7b8c736a4912e8309e964ad95d9bf7f6667e28c"
+      }
+    ]
+  },
+  "catalogSnapshotComplete": true,
+  "helperReadOnlyTransactionVerified": false,
+  "definitionSourceParityVerified": true,
+  "externalInvokersVerified": false,
+  "drainageVerified": false,
+  "productionAccessed": false
+}

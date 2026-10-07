@@ -17,6 +17,14 @@ Seven registrations appear in legacy `20260812090000_notifications_realtime.sql`
 
 ## Required hosted evidence
 
+The 7 October [authorized test-project checkpoint](../../evidence/2026-10-07/hosted-test-scheduled-writers/README.md)
+now verifies installed pg_cron, its readable/unfiltered extension-owned catalog,
+zero registered jobs at the recorded time and all eight known entry-point
+definition hashes matching current compiled migration source. Owner names differ
+between local and hosted databases and are retained. This is nest-test evidence;
+production, owner capabilities, private dependencies, external invokers and
+drainage remain unverified. No function is invoked or scheduler changed.
+
 The read-only `tools/migration/scheduled-writer-inventory.mjs` helper is now wired
 into the disposable schema report. It records job identity, active state,
 database role and schedule, with SHA-256 command and audited-function definition
