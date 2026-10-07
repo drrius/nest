@@ -18,3 +18,7 @@ run compiles the shipping initializer against the pinned SDK. These do not estab
 fresh Apple sign-in, live Supabase refresh or physical-phone behavior. SDK decoding
 remains outside this HTTP coverage. Strict formatting, limits and whitespace pass.
 This is a source patch for the next planned beta; build25 remains unchanged.
+
+Current shipping source passes native CI37689230064 at8440b6f6 after the
+stream-test formatting fix. Documentation head e1cca0a0 passes routine
+CI37691063675; its shipping files match that native-tested source.

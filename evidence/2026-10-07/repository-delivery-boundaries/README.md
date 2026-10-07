@@ -29,3 +29,10 @@ The existing connector does not expose the
 [organization GitHub connections endpoint](https://supabase.com/docs/reference/api/v2-list-organization-github-connections),
 and no CLI management login is available. No new credential, token, connection or
 production setting was created to fill this read-only gap.
+
+Local main is now fast-forwarded from f6264642 to e1cca0a0 under the owner’s
+explicit local-merge authorization. That target’s routine CI37691063675 passes;
+shipping source is identical to native CI37689230064 at8440b6f6, which passes.
+Only docs/evidence differ between those heads. The checkout remains on its feature
+branch and origin/main stays f6264642. No remote ref, PR or production state is
+changed. A fast-forward preserves the existing verified commit lineage.
