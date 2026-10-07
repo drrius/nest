@@ -178,7 +178,7 @@ rendered-phone and other read-only-path acceptance remain open. Current-source C
 is pending for later source. Detail source `91c06917` passes
 [routine CI 37641010696](https://github.com/drrius/nest/actions/runs/37641010696);
 [native CI 37641010744](https://github.com/drrius/nest/actions/runs/37641010744)
-also passes. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
+also passes, with 508 app tests, 57 guarded skips and zero failures. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
 
 All remaining shipping week reads now use the shared fenced command, including
 proposal preview, ingredient refresh and mutation preflight. Ingredient read
@@ -204,6 +204,7 @@ No roles, data or schedules change. The small fixture is stopped and the complet
 - **Scheduled workers:** automatic approval review blocked transferring the test Supabase server key and scheduler token to Vercel. The specific transfer approval remains pending; no alternate transfer or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
 - **Phones:** both partners need build 22 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
+- **Branch delivery:** three normal pushes of queued source `bf17cbb0` and metadata `4e7e8d0e` returned GitHub Internal Server Error at 15:13–15:15 UTC. Remote remains `91c06917`; local worktree is clean and the queued source has its recorded passing native/SQLite checks. GitHub's status API reports operational. A stale local commit-graph cache was backed up/rebuilt; ordinary connectivity now passes, but the same remote error persists. Request IDs: `A8C8:17FA84:151E07:1B9BCD:6AC661A4`, `9E6E:168083:14D2B4:1B51A7:6AC661B4`, `E858:246D9C:261918E:24B84AE:6AC6621A`. Stop immediate retries; revalidate the same branch and retry only after backoff or a changed condition. No force push, history rewrite or main update occurs.
 - **Merge:** [PR 85](https://github.com/drrius/nest/pull/85) is OPEN at `1c00a089`, with four successful checks. Its sole Greptile response reports the trial credit limit and supplies no approval. The specific automatic-review merge rejection remains unresolved. The owner waived extra Sol review; no Sol, duplicate unchanged review request or alternate main push is used.
 - **Production:** existing-data reconciliation, writer decisions and pending-intent/external-work drainage must precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
 
