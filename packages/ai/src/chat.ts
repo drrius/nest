@@ -11,6 +11,8 @@ import {
   type StopCondition,
 } from "ai";
 import { assistantFailureDiagnostic } from "./failure-diagnostic.ts";
+import { privateTelemetry, type GenerationTelemetry } from "./telemetry.ts";
+export type { GenerationTelemetry } from "./telemetry.ts";
 export type AssistantModel = LanguageModel;
 export type AssistantTools = ToolSet;
 export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssistantAgent>>;
@@ -129,16 +131,18 @@ export function assistantStream({
   signal,
   finish,
   onInvalidToolCall,
+  telemetry,
 }: {
   model: LanguageModel;
   onInvalidToolCall?: () => void;
+  telemetry?: GenerationTelemetry;
   tools: ToolSet;
   messages: UIMessage[];
   assistantId: string;
   signal: AbortSignal;
   finish: (response: UIMessage, completed: boolean) => Promise<void>;
 }) {
-  const agent = createAssistantAgent(model, tools, onInvalidToolCall);
+  const agent = createAssistantAgent(model, tools, onInvalidToolCall, telemetry);
   let failureReported = false;
   return createAgentUIStreamResponse({
     agent,
@@ -175,10 +179,12 @@ export function createAssistantAgent(
   model: LanguageModel,
   tools: ToolSet,
   onInvalidToolCall?: () => void,
+  telemetry?: GenerationTelemetry,
 ) {
   return new ToolLoopAgent({
     model,
     tools,
+    telemetry: privateTelemetry(telemetry),
     maxRetries: 0,
     maxOutputTokens: 2048,
     stopWhen: [stepCountIs(5), failedTool],

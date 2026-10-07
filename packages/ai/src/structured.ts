@@ -2,6 +2,7 @@ import { generateText, Output, type LanguageModel } from "ai";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { effectSchema } from "./schema.ts";
+import { privateTelemetry, type GenerationTelemetry } from "./telemetry.ts";
 export class StructuredGenerationFailure extends Schema.TaggedError<StructuredGenerationFailure>()(
   "StructuredGenerationFailure",
   { reason: Schema.Literal("unavailable") },
@@ -9,13 +10,20 @@ export class StructuredGenerationFailure extends Schema.TaggedError<StructuredGe
 // Server-only adapter. Raw provider errors can contain private prompt/response text.
 export function structuredGeneration<
   S extends Schema.ConstraintCodec<unknown, unknown, never, never>,
->(options: { model: LanguageModel; schema: S; instructions: string; data: unknown }) {
+>(options: {
+  model: LanguageModel;
+  schema: S;
+  instructions: string;
+  data: unknown;
+  telemetry?: GenerationTelemetry;
+}) {
   return Effect.tryPromise({
     try: async (signal) => {
       const prompt = JSON.stringify(options.data);
       if (new TextEncoder().encode(prompt).length > 131072) throw new Error("Input too large");
       const result = await generateText({
         model: options.model,
+        telemetry: privateTelemetry(options.telemetry),
         output: Output.object({ schema: effectSchema(options.schema) }),
         system: options.instructions,
         prompt,

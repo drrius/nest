@@ -10,6 +10,7 @@ import {
 } from "@nest/ai/chat";
 import { StartTurn } from "@nest/contracts/conversations";
 import { ApiFailure, failureResponse } from "../errors.ts";
+import { aiTelemetry } from "../ai-telemetry.ts";
 import { bearerToken, currentMember } from "../identity.ts";
 import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { commandBody } from "../request-body.ts";
@@ -123,6 +124,7 @@ function startResponse(
           return await assistantStream({
             model,
             tools,
+            telemetry: aiTelemetry("assistant", model, Object.keys(tools)),
             onInvalidToolCall: rejectInvalidCall,
             messages,
             assistantId: turn.assistantId,

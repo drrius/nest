@@ -17,7 +17,19 @@ type RequestTrace = {
 const requests = new AsyncLocalStorage<RequestTrace>();
 const uuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 const parent = /^00-([0-9a-f]{32})-([0-9a-f]{16})-(0[01])$/;
-const fields = ["request_id", "route", "method", "status", "outcome", "stage", "rpc", "code"];
+const fields = [
+  "request_id",
+  "route",
+  "method",
+  "status",
+  "outcome",
+  "stage",
+  "rpc",
+  "code",
+  "operation",
+  "model",
+  "tool",
+];
 
 function parentContext(request: Request) {
   const match = parent.exec(request.headers.get("traceparent") ?? "");
@@ -268,4 +280,28 @@ function backendCategory(path: string) {
   if (path === "auth/v1/user") return "auth.user";
   if (path === "rest/v1/household_members") return "identity.membership";
   return "postgrest";
+}
+
+export function diagnosticSpans() {
+  const request = requests.getStore();
+  return (
+    kind: "generation" | "model" | "tool",
+    attributes: { operation: string; model: string; tool?: string },
+  ) => {
+    const span = request?.tracer.startSpan(
+      `nest.ai.${kind}`,
+      {
+        attributes: { ...attributes, request_id: request.requestId },
+      },
+      trace.setSpan(ROOT_CONTEXT, request.span),
+    );
+    let ended = false;
+    return (outcome: "complete" | "failed" | "cancelled") => {
+      if (ended) return;
+      ended = true;
+      span?.setAttribute("outcome", outcome);
+      if (outcome === "failed") span?.setStatus({ code: SpanStatusCode.ERROR });
+      span?.end();
+    };
+  };
 }

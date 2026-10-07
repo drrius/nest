@@ -10,6 +10,7 @@ import {
 } from "./generation-schema.ts";
 import { slotKey, type PreparedGeneration } from "./generation-input.ts";
 import { generateInstructions, checkInstructions } from "./generation-prompts.ts";
+import { aiTelemetry } from "../ai-telemetry.ts";
 function bindChoices(
   input: PlanningGenerationInput,
   prepared: PreparedGeneration,
@@ -57,6 +58,7 @@ export function checkMealEntries(
   return Effect.gen(function* () {
     const checked = yield* structuredGeneration({
       model,
+      telemetry: aiTelemetry("meal-constraint-check", model),
       schema: ConstraintChecks,
       instructions: checkInstructions,
       data: {
@@ -82,6 +84,7 @@ export function generatePreparedMeals(
   return Effect.gen(function* () {
     const generated = yield* structuredGeneration({
       model,
+      telemetry: aiTelemetry("meal-generation", model),
       schema: GeneratedChoices,
       instructions,
       data: prepared,
