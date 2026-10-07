@@ -1,0 +1,16 @@
+{
+  "source": "6e1a09ed34597681656474c56db1891fd5355773",
+  "originalStateRestored": true,
+  "journalsEmpty": 64,
+  "positiveBudget": 0,
+  "unfiltered": true,
+  "results": [
+    {
+      "case": "grocery-header",
+      "exit": 0,
+      "passed": 1,
+      "failed": 0,
+      "skipped": 0
+    }
+  ]
+}

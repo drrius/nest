@@ -1,0 +1,9 @@
+{
+  "sample": "To pick up heading in actual normal/light screenshots",
+  "backgroundRGB": [250, 251, 247],
+  "beforeForegroundRGB": [136, 136, 139],
+  "afterForegroundRGB": [39, 58, 49],
+  "beforeContrast": 3.4010496222914566,
+  "afterContrast": 11.640909023439107,
+  "wholeAccessibilityAuditPassed": false
+}

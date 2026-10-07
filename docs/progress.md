@@ -768,3 +768,19 @@ rice/reminder/conflict assertions follow the changed value. Strict native format
 source limits and compilation pass. Actual VoiceOver speech/traversal, other
 states, both phones and full accessibility remain open. This is later thanbuild20.
 [Grocery spoken detail](../evidence/2026-10-07/swiftui-grocery-spoken-detail/README.md).
+
+Grocery headings now reuse QuietFormSection across12 sections. Source `6e1a09ed`
+passes signed compilation and one actual read-only checklist method, zero failures/
+skips, with preserved100g accessible value and56pt target. Inspected heading pixels
+change from system gray136/136/139 to Quiet ink39/58/49 over250/251/247; sampled
+contrast is retained. Original scopes/64 journals/settings/local choices restore.
+Other migrated headings compile but are not individually rendered; full accessibility
+and phones remain open. [Heading evidence](../evidence/2026-10-07/swiftui-grocery-headings/README.md).
+
+Both routine37592497160/native37592497181 now pass consolidated source `a746e703`.
+Native CI reports509 Foundation/41 skips,480 signed-app/41 skips, zero failures,
+plus strict formatting/limits/signing and guarded UI compilation. Later receipt
+boundary, contrast diagnostic, grocery spoken-detail/heading changes are committed
+locally. Build21 is being prepared as their consolidated private candidate; its
+current-source CI, archive/export and Apple availability are unverified. Build20
+remains the available beta and no upload21 has occurred.
