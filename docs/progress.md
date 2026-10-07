@@ -4,6 +4,17 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
+Expense approval category review now loads the exact tenant-scoped category name,
+including retained archived names, instead of always showing “Previously selected
+category.” Missing/unavailable metadata is explicit; Approve is disabled until the
+category is confirmed, while Decline remains available. The native decision guard
+also enforces this condition. Signed Mac build-for-testing and five focused
+Foundation category/approval tests pass; two disposable SDK/approval integration
+cases pass without skips. The integration fixtures are not live AI or native UI
+execution. Fresh pending-proposal native rendering/decision, phone verification
+and current-change CI remain open. This change is later than build19. No hosted
+proposal, financial posting, production mutation or release occurs.
+
 ## Available candidate and current source
 
 **Latest private candidate: SwiftUI0.1.0/build19**, exact `484e5feb`. Candidate routine CI and identical-native-source CI, signed Mac archive/export/package/source audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass. [Release evidence](../evidence/2026-10-06/swiftui-build19/README.md). Update Nest to19 in TestFlight and try the [short phone pass](native-rewrite/build19-first-phone-pass.md). Partner access, installation and phone/design acceptance remain unverified. Live AI, scheduled posting/reminders and push stay inactive; production is untouched.

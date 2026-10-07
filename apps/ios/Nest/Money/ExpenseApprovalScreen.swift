@@ -11,12 +11,15 @@ struct ExpenseApprovalScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var choice: Bool?
+    @State private var categoryName: String?
+    @State private var categoryNotice: String?
 
     var body: some View {
         Form {
             if let notice { Section { Text(notice) } }
+            if let categoryNotice { Section { Text(categoryNotice) } }
             if let saved {
-                ExpenseReviewSection(expense: saved.decision.expense, member: member, members: [], categoryName: nil)
+                review(saved.decision.expense)
                 Section("Saved decision") {
                     Text(
                         saved.decision.approved
@@ -46,7 +49,7 @@ struct ExpenseApprovalScreen: View {
                     }
                 }
             } else if let approval = envelope?.approval {
-                ExpenseReviewSection(expense: approval.expense, member: member, members: [], categoryName: nil)
+                review(approval.expense)
                 Section {
                     if approval.status == .pending {
                         TimelineView(.periodic(from: .now, by: 1)) { clock in
@@ -57,6 +60,7 @@ struct ExpenseApprovalScreen: View {
                                 } label: {
                                     QuietActionLabel("Approve expense")
                                 }
+                                .disabled(approval.expense.categoryId != nil && categoryName == nil)
                                 Button(role: .destructive) {
                                     choice = false
                                 } label: {
@@ -97,6 +101,12 @@ struct ExpenseApprovalScreen: View {
         }
     }
 
+    private func review(_ expense: ExpenseInput) -> some View {
+        ExpenseReviewSection(
+            expense: expense, member: member, members: [], categoryName: categoryName,
+            unknownCategoryLabel: "Could not confirm category")
+    }
+
     @ViewBuilder
     private func outcome(_ approval: ExpenseApproval) -> some View {
         if let receipt = approval.receipt {
@@ -116,15 +126,30 @@ struct ExpenseApprovalScreen: View {
         await perform {
             let current = try session.expenseContext()
             context = current
+            categoryName = nil
+            categoryNotice = nil
             saved = try await session.savedExpenseDecision(current)
             envelope = nil
             if saved == nil { envelope = try await session.readExpenseApproval(current, approvalId: approvalId) }
+            if let categoryId = (saved?.decision.expense ?? envelope?.approval.expense)?.categoryId {
+                do {
+                    let result = try await session.readMoneyCategory(current, categoryId: categoryId)
+                    categoryName = result.category?.name
+                } catch {
+                    try session.requireMoneyAccount(current.member, generation: current.generation)
+                }
+                if categoryName == nil {
+                    categoryNotice =
+                        "Could not confirm the proposed category. Refresh before approving. You can still decline."
+                }
+            }
         }
     }
     private func decide(_ approved: Bool) async {
         guard let context, let approval = envelope?.approval, approval.status == .pending,
             ApprovalTime.isOpen(approval.expiresAt, now: .now)
         else { return }
+        guard !approved || approval.expense.categoryId == nil || categoryName != nil else { return }
         await perform {
             try await session.stageExpenseDecision(
                 .init(

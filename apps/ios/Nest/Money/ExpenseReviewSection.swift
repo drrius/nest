@@ -5,6 +5,7 @@ struct ExpenseReviewSection: View {
     let member: VerifiedMember
     let members: [MoneyBalance.Member]
     var categoryName: String? = nil
+    var unknownCategoryLabel = "Previously selected category"
     var unknownMemberLabel = "Your partner"
 
     var body: some View {
@@ -24,7 +25,7 @@ struct ExpenseReviewSection: View {
                 .accessibilityIdentifier("expense-share-\(share.memberId.uuidString.lowercased())")
             }
             if expense.categoryId != nil {
-                row("Category", categoryName ?? "Previously selected category")
+                row("Category", categoryName ?? unknownCategoryLabel)
             }
             if expense.receiptPath != nil { Label("Receipt attached", systemImage: "paperclip") }
             if let note = expense.note { Text(note) }
