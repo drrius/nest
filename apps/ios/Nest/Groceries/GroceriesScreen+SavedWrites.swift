@@ -2,7 +2,7 @@ import SwiftUI
 
 extension GroceriesScreen {
     func addStatus(_ saved: SavedGroceryAdd) -> some View {
-        Section("Add to the list") {
+        QuietFormSection("Add to the list") {
             VStack(alignment: .leading, spacing: 8) {
                 Text(saved.command.name)
                     .font(.headline)
@@ -42,7 +42,7 @@ extension GroceriesScreen {
     }
 
     func editStatus(_ saved: SavedGroceryEdit) -> some View {
-        Section("Edit to review") {
+        QuietFormSection("Edit to review") {
             VStack(alignment: .leading, spacing: 8) {
                 Text("\(saved.item.name) → \(saved.command.name)")
                     .font(.headline)
@@ -100,7 +100,7 @@ extension GroceriesScreen {
     }
 
     func removeStatus(_ saved: SavedGroceryRemove) -> some View {
-        Section("Removal to review") {
+        QuietFormSection("Removal to review") {
             VStack(alignment: .leading, spacing: 8) {
                 Text(saved.item.name).font(.headline).foregroundStyle(QuietPalette.ink)
                 Text(removeStatusText(saved.state))

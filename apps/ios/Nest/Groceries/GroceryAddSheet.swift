@@ -110,7 +110,7 @@ struct GroceryAddSheet: View {
     }
 
     private func savedRequest(_ saved: SavedGroceryAdd) -> some View {
-        Section("Saved request") {
+        QuietFormSection("Saved request") {
             if saved.state == .pending {
                 Text("This add is not confirmed. Retry the saved request when online.")
                     .foregroundStyle(QuietPalette.muted)

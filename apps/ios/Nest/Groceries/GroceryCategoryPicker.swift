@@ -10,7 +10,7 @@ struct GroceryCategoryPicker: View {
             Section { ProgressView("Loading categories…") }
         case .loaded(let categories):
             if !categories.isEmpty {
-                Section("Category") {
+                QuietFormSection("Category") {
                     Picker("Category", selection: $selection) {
                         Text("None").tag(Optional<UUID>.none)
                         ForEach(categories) { category in
@@ -20,7 +20,7 @@ struct GroceryCategoryPicker: View {
                 }
             }
         case .failed:
-            Section("Category") {
+            QuietFormSection("Category") {
                 Text("Categories unavailable. You can save without one.")
                     .foregroundStyle(QuietPalette.muted)
                 Button("Retry categories") {

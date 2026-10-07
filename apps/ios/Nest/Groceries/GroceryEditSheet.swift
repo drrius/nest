@@ -26,13 +26,13 @@ struct GroceryEditSheet: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section("Item") {
+                QuietFormSection("Item") {
                     TextField("What do you need?", text: $name)
                         .textInputAutocapitalization(.sentences)
                         .accessibilityLabel("Grocery name")
                 }
                 .disabled(fieldsLocked)
-                Section("Details") {
+                QuietFormSection("Details") {
                     TextField("Quantity (optional)", text: $quantity)
                         .accessibilityLabel("Quantity")
                     TextField("Unit (optional)", text: $unit)
@@ -70,7 +70,7 @@ struct GroceryEditSheet: View {
                     }
                 }
                 if showingLatest {
-                    Section("Shared item now") {
+                    QuietFormSection("Shared item now") {
                         Text(item.name)
                         let detail = [item.quantity, item.unit, item.categoryName].compactMap { $0 }
                         if !detail.isEmpty {
@@ -171,7 +171,7 @@ struct GroceryEditSheet: View {
     }
 
     private func savedRequest(_ saved: SavedGroceryEdit) -> some View {
-        Section("Saved request") {
+        QuietFormSection("Saved request") {
             if saved.state == .pending {
                 Text("This edit is not confirmed. Retry the same saved request when online.")
                     .foregroundStyle(QuietPalette.muted)

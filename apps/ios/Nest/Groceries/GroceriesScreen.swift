@@ -105,12 +105,12 @@ struct GroceriesScreen: View {
             let open = state.items.filter { $0.state == .open && !$0.checked }
             let checked = state.items.filter { $0.state == .open && $0.checked }
             if !saved.isEmpty {
-                Section("Saved changes") {
+                QuietFormSection("Saved changes") {
                     ForEach(saved) { row($0) }
                 }
                 .listRowBackground(QuietPalette.background)
             }
-            Section("To pick up") {
+            QuietFormSection("To pick up") {
                 if open.isEmpty {
                     Text("Nothing on the list right now.")
                         .foregroundStyle(QuietPalette.muted)
