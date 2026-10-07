@@ -351,6 +351,25 @@ worker runbook, keeping provider acceptance separate from phone presentation and
 legacy ticket/receipt polling. No runtime, credentials, scheduler or release changes.
 Documentation formatting, links and whitespace checks pass.
 
+Production now has a read-only catalog/Edge inventory, with no household, Auth
+or Storage rows read and no production changes. It identifies 153 public/private
+functions, zero Nest relations, eight active legacy scheduled jobs and two active
+Edge writers. All nine returned Edge application files match audited legacy
+source; resolved dependencies/configuration/runtime and drainage remain unverified.
+Auth/Storage ownership and grants match the bounded fixture model. The observed
+writers remain active; migration/stop/retirement decisions are separately gated.
+The disposable comparison now matches all 148 common definitions, security
+flags and execution grants. Exact parity remains false: production has four
+payroll functions absent from legacy migrations plus the referenced platform
+RLS event-trigger helper. Two payroll triggers bind to `payroll_payslips`.
+Three focused comparison tests pass; source clarification for payroll is pending.
+Owner/capability/runtime equivalence and data/drainage remain unverified.
+[Evidence](../evidence/2026-10-07/production-catalog-inventory/README.md).
+
+Calendar/push-documentation source `2670d1c7` passes
+[routine CI 37674049755](https://github.com/drrius/nest/actions/runs/37674049755).
+Its native CI is still running; the local Calendar model proof remains credited.
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
@@ -359,7 +378,8 @@ Documentation formatting, links and whitespace checks pass.
 - **Phones:** both partners need build 23 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
 - **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) later ended cancelled with the account-switch failure recorded above. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
 - **Merge:** [PR 85](https://github.com/drrius/nest/pull/85) is OPEN at `1c00a089`, with four successful checks. Its sole Greptile response reports the trial credit limit and supplies no approval. The specific automatic-review merge rejection remains unresolved. The owner waived extra Sol review; no Sol, duplicate unchanged review request or alternate main push is used.
-- **Production:** existing-data reconciliation, writer decisions and pending-intent/external-work drainage must precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
+- **Production source difference:** four payroll functions and `payroll_payslips` trigger bindings are absent from the audited legacy migrations. The source/location question is pending. Preserve these objects; exact catalog parity and cutover readiness remain false. The platform auto-RLS hook is also absent from the disposable bootstrap.
+- **Production:** read-only catalog/Edge identity is now recorded. Existing-data reconciliation, writer decisions and pending-intent/external-work drainage must still precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
 
 ## Work order
 

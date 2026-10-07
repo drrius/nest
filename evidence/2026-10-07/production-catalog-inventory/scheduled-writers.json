@@ -1,0 +1,142 @@
+{
+  "jobs": {
+    "rows": [
+      {
+        "id": 1,
+        "name": "household-os-deliver-due-reminders",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "* * * * *",
+        "commandSha256": "73b3250d2def2ade49613941737d9d07d1e007241fb069c0549a0bd401d9e81b"
+      },
+      {
+        "id": 2,
+        "name": "household-os-retain-activity",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "15 3 * * *",
+        "commandSha256": "9b35ef2bbfeced86882537164c90ef83d1463d2072c0b61ec86b4d534fb42e13"
+      },
+      {
+        "id": 3,
+        "name": "household-os-retain-purchased-groceries",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "20 3 * * *",
+        "commandSha256": "4ecb07f188e97427708a00ad97efef95585c9701e02582d0d471a0b76223da92"
+      },
+      {
+        "id": 4,
+        "name": "household-os-ensure-due-occurrences",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "5 * * * *",
+        "commandSha256": "d87f82819257df4651c40200fe5b538f2f70d180097d1350d4bca5d4bfca4d8c"
+      },
+      {
+        "id": 5,
+        "name": "household-os-deliver-member-digests",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "* * * * *",
+        "commandSha256": "99a98166deb1604bdfa6bb18fd98877ab732b4e97b58119a8db7858b2a97ec4b"
+      },
+      {
+        "id": 6,
+        "name": "household-os-generate-recurring-drafts",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "10 4 * * *",
+        "commandSha256": "fee18e310d2553f317785296104853a908defe6f1c23f43132dd88d34a5988f9"
+      },
+      {
+        "id": 7,
+        "name": "household-os-drain-push-outbox",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "* * * * *",
+        "commandSha256": "73dd741059556aed84b3585dd5be10d34cb178fd89b02589e02f305b4c6b4d0f"
+      },
+      {
+        "id": 8,
+        "name": "household-os-invoke-push-dispatch",
+        "role": "postgres",
+        "active": true,
+        "database": "postgres",
+        "schedule": "* * * * *",
+        "commandSha256": "d3d7287ce421e996ab6fba5b4e3894588baad3d3f863615b5fc7aaeef671c1dd"
+      }
+    ],
+    "count": 8
+  },
+  "metadata": {
+    "role": "postgres",
+    "database": "postgres",
+    "readOnly": true,
+    "allRowsVisible": true,
+    "catalogPresent": true,
+    "catalogReadable": true,
+    "extensionPresent": true,
+    "extensionVersion": "1.6.4",
+    "catalogShapeSupported": true,
+    "catalogOwnedByExtension": true
+  },
+  "observedAt": "2026-10-07T19:24:41.331772+00:00",
+  "auditedFunctionDefinitions": [
+    {
+      "owner": "postgres",
+      "signature": "private.invoke_push_dispatch()",
+      "securityDefiner": true,
+      "definitionSha256": "6868de262d0ef9f319845058ae95d319586092d3296bf282185c84883c8768b5"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_deliver_due_reminders(text,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "87d197f06cf9efeae724f0fb25ac3d8be0c346d7b7d8d1be0e8d6ff45727df81"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_deliver_member_digests(text,time without time zone,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "bd01f62e9cc0c3ed816287fef7a53cd92fb2a05d96a020ba7878ee67f3bead8c"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_drain_push_outbox(text,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "b6df64bd77e60a75d7a04df8a1e07407e8b1c2ac54fae82a723142804533f7aa"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_ensure_due_occurrences(text,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "d940e5d828ecb65e1620ec8c96385112e3ca3a34c2a00d1b6cb125be45c9cca8"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_generate_recurring_drafts_cron(text,date,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "41929a8a21c580991c76b12676128e01508d10b43f9712f7e7e07e48b5213add"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_retain_activity_events(text,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "98be10bc4c0c040ef68b09f9499dec0534d5ac3cc4ffbfc0b0418d633757ebba"
+    },
+    {
+      "owner": "postgres",
+      "signature": "public.run_retain_purchased_groceries(text,integer)",
+      "securityDefiner": true,
+      "definitionSha256": "667f5ca7ab1c6a41adfa69e4c7b8c736a4912e8309e964ad95d9bf7f6667e28c"
+    }
+  ]
+}

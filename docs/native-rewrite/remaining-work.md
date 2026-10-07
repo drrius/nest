@@ -26,6 +26,14 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Read-only production writer inventory](../../evidence/2026-10-07/production-catalog-inventory/README.md)
+  identifies eight active legacy cron registrations, 153 public/private functions
+  and two active Edge writers. All nine returned Edge application files match
+  audited legacy source. Catalog queries confirm read-only scope and exclude
+  household/Auth/Storage data rows and secrets. Dependency/configuration/runtime
+  semantics, existing-data reconciliation, writer decisions and drainage remain
+  open; no production mutation or cutover occurs.
+
 - [Calendar foreground model](../../evidence/2026-10-07/swiftui-calendar-foreground/README.md)
   now passes one signed app-hosted check with a controlled local reader. Visible
   details clear while inactive, selection persists, and refresh reads changed
@@ -107,8 +115,9 @@ Work order:
    sharing/revocation, light/dark/large text, VoiceOver, Reduce Motion and uncoached
    use. Simulator evidence is retained within its scope and does not replace this.
 6. Finish migration/private-writer/Storage reconciliation and pending-intent
-   drainage, then verify the final release binary. Production inventory/cutover,
-   retirement and publication remain separately authorized actions. The current
+   drainage, then verify the final release binary. Production data rehearsal/cutover,
+   retirement and publication remain separately authorized actions. Read-only
+   catalog and deployed-source identity are now recorded within the audit scope. The current
    fixture owner improvement does not establish hosted privilege equivalence.
 
 These are the existing release requirements. Do not turn a passing journey into

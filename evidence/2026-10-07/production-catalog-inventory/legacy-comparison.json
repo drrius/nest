@@ -1,0 +1,2478 @@
+{
+  "kind": "legacy-function-catalog-fixture-comparison",
+  "complete": true,
+  "observationSha256": "533a16df25612580156639546631fab3ede47b6be9325b84e17eee523135b2bc",
+  "observedServerVersion": "17.6",
+  "applied": [
+    {
+      "name": "20260809100000_core_tenancy.sql",
+      "sha256": "db2d06e3f5a29432e3a1a9648a88fb6c993bf897c0edfc77e5dd1c35ff052e72"
+    },
+    {
+      "name": "20260809190100_harden_core_tenancy.sql",
+      "sha256": "fc05891739ba59ce396c126032b813a1f717ffaffb42d496af61e048fbb8c70d"
+    },
+    {
+      "name": "20260809201000_household_member_cap.sql",
+      "sha256": "2ac90fcfdd53350f36be3e1cfe9be1ac2753da66b5ffbb594084180950935cc0"
+    },
+    {
+      "name": "20260809202000_serialize_household_member_cap.sql",
+      "sha256": "9fc16e87a7401f401c929db10e8ae8bd6779998f6c017b71978091c321011e5c"
+    },
+    {
+      "name": "20260809210000_routine_engine.sql",
+      "sha256": "e3441544c85fe74dbefe775880aefb383409efcd11c1728d637616211c5296bb"
+    },
+    {
+      "name": "20260811180000_meals_groceries.sql",
+      "sha256": "105552a4fe0596141331711232d8b1e70990b25bf7687025897dbc456c943aa1"
+    },
+    {
+      "name": "20260811200000_chf_ledger.sql",
+      "sha256": "de54846277e51e048aa416cd798b97ad4be2ba8a35aa35989e1a083877f6fc71"
+    },
+    {
+      "name": "20260812090000_notifications_realtime.sql",
+      "sha256": "1fdf6a18945d47ad36b8e32956135e7d970f607c84cbd69e6610a3fb5bffd982"
+    },
+    {
+      "name": "20260812193000_m7_atomic_meal_library.sql",
+      "sha256": "272c5b76c3a4712632dfcbe31e4c63ae9956fa61d3eeb1f06704eb8d45785aa8"
+    },
+    {
+      "name": "20260812201042_atomic_settlement.sql",
+      "sha256": "3dad72cba69285028163752a66c821154d5c804701e72e41608165caabf31dfc"
+    },
+    {
+      "name": "20260812202316_share_ledger_lock.sql",
+      "sha256": "39358074862dbb99b20ffb879465f9cf29f7fed1ca243a2f4025f6d664543b50"
+    },
+    {
+      "name": "20260813140907_update_meal_plan_entry.sql",
+      "sha256": "d4d1b6417cb433ab75cc00b733c886c77f1141f1f0e6759e3557ee3ae3f6d667"
+    },
+    {
+      "name": "20260814084448_revoke_auto_rls_helper_execute.sql",
+      "sha256": "fb6dc27f0a9343bc7f47a2bed3a7d06c9831147ea7ba369731ef80a3eed4a669"
+    },
+    {
+      "name": "20260814120000_invoke_push_dispatch.sql",
+      "sha256": "ffb25dd50807660658cdb206bbf79ffdcf7ee7ae69fa7bd810ae49b4de38b9c8"
+    },
+    {
+      "name": "20260830190000_grant_schedule_validator_execute.sql",
+      "sha256": "b9bd10d6c719b108a5e153f042313f4244b4f107a3733bcbacdab7c3560366c2"
+    },
+    {
+      "name": "20260830210000_biweekly_schedule.sql",
+      "sha256": "dcb0f55b56b11e37d19395fad3932f39cf9657b3bb23eb7c161445cc21a31604"
+    },
+    {
+      "name": "20260830220000_preserve_reschedule_on_rebuild.sql",
+      "sha256": "cff807df5329d4ee312b5823491a46bd7dc69f635f842068c0304fdaa1e6cf18"
+    },
+    {
+      "name": "20260904224746_household_attachments.sql",
+      "sha256": "ca17519d706dffdca0a32486cadaa3e12a7689c3dfefebdb827ad1f55475e36f"
+    },
+    {
+      "name": "20260904225404_cancel_shopping_session.sql",
+      "sha256": "6457ff8b0be33b241d2394484e289cfa7123479664466fa8aa4e24d5934c3ac4"
+    },
+    {
+      "name": "20260904225405_connected_household.sql",
+      "sha256": "eed3c90bb2882835ee72d26a949c2371b5a7828d8976afa338921b153945ad2d"
+    },
+    {
+      "name": "20260904225416_reorder_household_areas.sql",
+      "sha256": "a3eab28adadb3d56871c5743490cb0b805d8c8bf4c16a04e884f6975b54f0740"
+    },
+    {
+      "name": "20260904230229_money_refund_limits_and_recurring_edit.sql",
+      "sha256": "3e93c7881ba051752f413fe673c299b9c3ecaaf0a06a937fb66eb99adbcaad92"
+    },
+    {
+      "name": "20260904230557_private_icloud_calendar.sql",
+      "sha256": "4bf3c985c06aa2435ac14c80e22a140d495dc2c1136987b1b6303698a6dc5bf6"
+    },
+    {
+      "name": "20260904231923_meal_library_lifecycle_and_preparation.sql",
+      "sha256": "0767bc7513adb3505dfa797cbf0135ee1030c27d26888ea0c9b795020b26da3f"
+    },
+    {
+      "name": "20260904233306_financial_context_read_model.sql",
+      "sha256": "3b60f0c4276ff4d28eedb0d6b882875f90f1892bd4e5d55262c0d3d95259c063"
+    },
+    {
+      "name": "20260904234301_household_search.sql",
+      "sha256": "c30634335e452b978abc16765bc2757226f8ad1c95a480bdee1413060c51420f"
+    },
+    {
+      "name": "20260905001500_project_task_parent_lifecycle.sql",
+      "sha256": "8801e15540957e48bca569316a9cdccd6c1744a01b25fc4f2ff8cf8133db7948"
+    },
+    {
+      "name": "20260905002000_routine_edit_versions.sql",
+      "sha256": "cce3642928fd051b42c9f399b8f8344fd61d47c48e0586043ae3c8486b1d8718"
+    },
+    {
+      "name": "20260905002500_recurring_expense_edit_versions.sql",
+      "sha256": "eea2ee13e9f7d477e3905184b8323d93a529be7831cb6dd67a76f5675d4dcf0d"
+    },
+    {
+      "name": "20260905003000_device_push_tests.sql",
+      "sha256": "83aab8d9755c6254aa6248b920a97efe718fcfb3126507b103217af57f4dcf48"
+    },
+    {
+      "name": "20260905003500_project_task_starters.sql",
+      "sha256": "16b856df59d821b20011784a0860a74c867099b4d21746ce9389fbb41ac8185b"
+    },
+    {
+      "name": "20260905004000_release_replaced_document_files.sql",
+      "sha256": "afc90ade1507ab16443ddfc297a5b51a9526615dc457dac2044eec79ee7d5765"
+    },
+    {
+      "name": "20260905004500_calendar_timezone_validation.sql",
+      "sha256": "9fafe534e289644fa77deb1763f280f5dee2a78ff164e32e8e68e4ecd73932ca"
+    },
+    {
+      "name": "20260905005000_grocery_fallback_identity.sql",
+      "sha256": "2255e9e5258a3ad7689b57c5767891e2bd01be2bdfb2629fd7cddcbfc5b1d764"
+    },
+    {
+      "name": "20260905005500_home_record_activity.sql",
+      "sha256": "1b3e102fedd92b8d52e89d39059579f86c9a3d371a2567d758e79fb827f7fddc"
+    },
+    {
+      "name": "20260905005726_contextual_expenses.sql",
+      "sha256": "059646c26728dd831ba409c1b013b5a52614969bbe5ed4ce3acfc37f05a1064f"
+    },
+    {
+      "name": "20260905005821_attachment_usage.sql",
+      "sha256": "7a953e51434b6921b885f3992e2b6ca26807a0fd153a17ba6aad4913d7e1efcd"
+    },
+    {
+      "name": "20260905010000_decision_choice_retries.sql",
+      "sha256": "f3e630f6b2ee62b5e4526ee5181205a8f8047c9263d8489966d360e9d211b3e1"
+    },
+    {
+      "name": "20260905053818_expense_context_associations.sql",
+      "sha256": "7bb0f27df9cb6d719266557b95766737ec6c502978006489dcfa03afef766956"
+    },
+    {
+      "name": "20260905060352_signout_push_fallback.sql",
+      "sha256": "07a01df2793548a3e6c9b9abf5b95c605557f99ae39372cc20e377a38270642e"
+    },
+    {
+      "name": "20260905061222_household_search_realtime.sql",
+      "sha256": "1bdfe9a85d9dab225746d1decb155064e3375d15a6d737b3cb22be3f75bd21aa"
+    },
+    {
+      "name": "20260905072131_serialize_leftover_source_dates.sql",
+      "sha256": "5eb71c855ae10714cd014ea3550cde58a98fedb9cc2c6828492c18e80a7307cf"
+    },
+    {
+      "name": "20260905073644_archived_decision_choice_guards.sql",
+      "sha256": "61afc2dcb1122ed8b1dd38893597c088edfe63a0380d0ff95c11962bb92bb40e"
+    },
+    {
+      "name": "20260905075117_meal_template_edit_versions.sql",
+      "sha256": "b8738c2788288c537fc07a17b5e156e14fb46f57b33123ad52c723d563165a1a"
+    },
+    {
+      "name": "20260905080151_trip_booking_lifecycle.sql",
+      "sha256": "8e66dc5fb7f3d3c7a99fd86d960dbd378b64f9aea522e2deaab54b291e6aceb1"
+    },
+    {
+      "name": "20260905082952_home_review_guards.sql",
+      "sha256": "4489b570c11e561a13d25e0aaabae613584ebc7917517887859de0beca0c9454"
+    },
+    {
+      "name": "20260905085807_grocery_review_guards.sql",
+      "sha256": "f978bd8f3324f82610140baf3254affc0d3c6ed278b47ab741c74b9fc8f1ded8"
+    },
+    {
+      "name": "20260905090314_project_archive_edit_guards.sql",
+      "sha256": "9c3c003436f6971f2bd6afd3365fd51a1e4b0f83fdfd94a1f6c5d031a46da8cc"
+    },
+    {
+      "name": "20260905093553_project_coordination_history.sql",
+      "sha256": "a4d73de60e0d5bb3d03cb7963e04b3d60743082c6fecffcd55ac2f93555e356a"
+    },
+    {
+      "name": "20260905141000_calendar_snapshot_recurrence_type.sql",
+      "sha256": "11a03d77dec923705afb8435a3234097fdee9b18a3e9025ee430b05e22a671c8"
+    },
+    {
+      "name": "20260905141100_booking_restore_only.sql",
+      "sha256": "489377a169a97303f30a3ad9c4eebd1db66f40735bf66db1f4b0cb7096d14c1e"
+    },
+    {
+      "name": "20260905154224_validate_calendar_timezone_constraints.sql",
+      "sha256": "cd1c29ee1451377ef60243dd5eb51f352381ab7603d2160ded9954558baeea04"
+    },
+    {
+      "name": "20260905210500_routine_creation_retries.sql",
+      "sha256": "7bc2f69be2ef93a685e9d79afdf00c05c8d970da23ca67459ade4ba17e2a9376"
+    },
+    {
+      "name": "20260905211520_restore_project_activity_constraints.sql",
+      "sha256": "3460a7d2a9593046e3faa577efbf00d61ff757545e56cc9aff2fe84ecab100ea"
+    }
+  ],
+  "skipped": [
+    {
+      "name": "20260814153314_enable_pg_net.sql",
+      "sha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70"
+    }
+  ],
+  "simulated": ["Auth/Storage metadata interfaces", "fixture migration-owner capabilities"],
+  "ownerCapabilityParityVerified": false,
+  "runtimeSemanticParityVerified": false,
+  "fixture": {
+    "role": "nest_fixture_owner",
+    "readOnly": true,
+    "functions": [
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.advance_home_record_version()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "40f3f4aec87ab3ed33a9d41d8557999fc552f308ad90487fdfdbd4729587d2d6",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.advance_meal_template_version()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "c56ff975632535dd9de047c3830da29db12d0ecf36d4a2151925ff983a7fbc9b",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.advance_recurring_expense_version()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "9c92437da5924f1c8627cf59a58baea24377f3b5f0ba8c25c9566a88f1d1baaf",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.affected_members_for_routine_change(uuid,text,uuid,text,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "a0eeb67d9438e927a922a706481208f061e64c39726e4be5fb44f32a23bcd472",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.append_household_area()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "ca09c135f596df441ae42165227d5d215980764d76d676ab2781d00b61e312e1",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.apply_routine_closure(uuid,text,text,date,date,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c833a86a125a739acbc186f8b25139f75091ef4dbd5b8206071b3ddae58bc4ff",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.apply_routine_edit_clears()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "44f7c309f174fd781bb36ba6567d7f25a5f60a5ec6e79b12316426d8c05dd375",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.cancel_inbox_reminder_for_occurrence(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "d770621fbd1aa1204dd9493e7cfce0c8ca90821b54f71d56a041e0684f10fda2",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.claim_household_attachment(text,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "038d8c05d04e517f8e057c60c320c6084a1e8ef6759d963805e3b2f2d1cced92",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.claim_job(text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c2b87e62eada3e10490682c825b5c1339541036601088d2a9e095aa8517122cd",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.claim_parent_household_attachment()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "25a7bce9a61155fde465b52bb48f3a8004550d9b3709ac948a1100781c93dde3",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.claim_profile_household_file()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c5b1c24bc81fe1ccd485d3b2db7f21d881a613bcffb3ebd44a3ed1862371f913",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.complete_job_claim(text,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "fef0123bda61b372429aa2ab747640ab2f7725311b7422cfe2a34d6356a90b0c",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.create_reminder_candidates_for_occurrence(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "837e3e005105e2cd422175296a88699e461d4e0140a2336fa61af2918a81c851",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.deliver_partner_notice(uuid,uuid,text,text,uuid,jsonb,uuid,uuid[])",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "5571aca4e08c4d097cc73bf128db6bea6e3ad630831b2d0a3806d532a0ce4372",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.enforce_household_member_cap()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "986af2116feac1ee07fa3728d628e80b6821ad3f88148e91bbf343fc86eff687",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.enforce_ledger_entries_zero_sum()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "29a0d3e55721ddf6d4ebad60fdaa2413d90dc514cf357ae4d9b115c93f87b692",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.ensure_routine_window(uuid,date,uuid,date,timestamp with time zone,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "704a59f24604a5db815aa1a8f52bb4f160b0880f1151a6f96158c861777662eb",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.fail_job_claim(text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "3f95e1edf9a1363ad59b539e76ff397af3bae0bf4439e46a8eef40b471ff0831",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.first_rebuild_due_date(jsonb,jsonb,date,date)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "f77ae9a0ad6b872c19840247fcbd965dda443df2f646eafc63213baa55abdfda",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.first_routine_due_date(jsonb,date)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "8c68765fb0d2a05d7528804749e12ea1d214e21e04fec2d36a456b0425972242",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.generate_due_recurring_drafts_for_household(uuid,uuid,date)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "24b8a9087d0e81c17092e1d6857878e22db9d53444908800728c749a59ef9ddf",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.get_meal_grocery_command_result(uuid,text,text,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "69b90de4fbcc039d7b8ae559ce4548cbfb19d6624504d2c428e29a9f7f1eb605",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.get_money_command_result(uuid,text,text,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "2bf9b8bb5b213fbf36137b8c575e732a5bafe07f55bab1316e60a1bbc9e4997c",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_archived_decision_choice()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "c4cd246ecab91a67bc874514ab2dc846f32517dfe5e238004aba83176f5b55d6",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_archived_decision_status()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "5d3e9fc28407115a2b1621b641941c874e3d2e4954e986352f4df2d4138f38d4",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_archived_project_edits()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "723272cf9656ef894ed593e658ce686476461473547f7a6562eebb8435b524de",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_calendar_connection()",
+        "securityDefiner": false,
+        "anonymousExecute": true,
+        "definitionSha256": "f0935977842144487c9aa0819c5ef47dc1e1029f8e778a3fb83e12c03c43ca1c",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_calendar_event_sync()",
+        "securityDefiner": false,
+        "anonymousExecute": true,
+        "definitionSha256": "2101a6164b0fa63c65f769c4d858c93a11ec1b77b6bf1d7afb1204a487c82d55",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_decision_option_parent()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "6244820d7a7017fab6c04e283f022a4dbb093d0417a7049aaadd9b5f93dc0a40",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_document_attachment_access()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "0274c84307eb4e1e45af9dba4ba9438f91947a92d0b4945a2bf0dfc74144d6fc",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_grocery_receipt_purpose()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c6470fd0c6728edee7e7b3db25161db31ec15132985f01bb76edaa2e76fa6995",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_household_attachment_insert()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "73b6f5ffa2011b1333b8279ae8b768e8bced96516c2f8834b300216a4a2dc668",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_household_record_identity()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "c917120d78fb2bfd4502c688398181df0f8c727f3409f06235f1670ec3fdb333",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_paid_cost_link()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "6b47f9e7f765a9ea95f28afd813682be9a8b35317726f3b872b9d19f5753f439",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_project_task_parent_identity()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "ee6a07f55c1b90a161c7d2c150535094cbeb423f1e45f32e1a0c20fd68b04179",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_project_task_parent_state()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "75d8b20785eac43073a6a4bdb896537fc27d0b0a6ea9724d2a210428640e2638",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_project_with_bookings()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "dbd0fc7682db569c9249bd7c21476496f8a3f0695ba91cfa3047c564d240cb38",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.guard_trip_booking_lifecycle()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "4b3b62262b829d30d3c25f87eaaa018473f5fdcafa09b4d48a716db353dad757",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.household_today()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "5a02c4db9a6251013b06fa9ae780b01ef846e79685d94e7888e9cb96f0ae5b3b",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.insert_open_routine_occurrence(public.routines,text,date,uuid,date,timestamp with time zone,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "febe606cb579ae27a17b91c787773797fa4dd64e3c95f31b1577c06d368a5556",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.insert_partner_inbox_and_outbox(uuid,uuid,uuid,text,text,uuid,jsonb,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "ab2fd40aadcd75f6b120163af5b3d2ef4fbcb5c269b2315d64e4f0b6893ad4ad",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.invoke_push_dispatch()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "6868de262d0ef9f319845058ae95d319586092d3296bf282185c84883c8768b5",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.is_household_member(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "cd473af417e0f05031927e2a9a67acd7c46ca94d7e48e2659a493fce4c12fbcb",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.is_supported_calendar_time_zone(text)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "ff6c851844d54e8bb7e0129de020dcf03dd840d4d008caa549745ea9cb023e0a",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.is_valid_routine_schedule(text,jsonb)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "777b20ac4ba905ff1d5c68b108d6bcda758dee71b0f18138d8d2b84272a55fbb",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.lock_household_ledger(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c8ea21cc15a4d13bb7422c2111062a9eb27720ccdef8089663495883e8f4aa34",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.lock_replaced_household_files()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "dd0b97d6cb9dc43d046374eb97f6b69c57de51228b676ca71263645e5b77c12a",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.materialize_meal_groceries(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "d2713fd8c0b06e9ae9c51e51faf23dacf60387e45813e913a2c306a37c8dd4cd",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.member_belongs_to_household(uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "5561e7f199d89a739b5473b840114fbcef45e114c631ecd6eaafc92cf72d3413",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.next_recurring_expense_date(text,date,integer,integer)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "a8d5f85e322b1e9d508cf2eb99cac53a4d6d892cf13b24c287423277adc30065",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.next_routine_assignee(uuid,text,uuid,uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "cfe1a0851d8914ab453770388fc95f6db85dab9c5189a19ba22e9b732da5d342",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.next_routine_due_date(jsonb,date,date,date)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "2355d11529d1e397cd1737382d6329ae365d845c5cb3fb468f53e3ed8e1ee993",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.other_household_member(uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "de69c8d4f33ef73667a8d4d976242f03abc9b9059fee0b05154368c3407b84ec",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.post_financial_event(uuid,uuid,text,uuid,text,bigint,jsonb,date,uuid,uuid,text,text,uuid,uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "ec100392e57ae85788dc603ce4a7d0cb7bb66435011528ee66e4f926904686cb",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.record_household_record_activity()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "682829608a242c781faca7d0b9c30b5347cebf779474ca0826b354cd6e4a1bcd",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.record_project_change()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "aabf6a62d56d94987fc9fc0ce6f127aad302cca85ac860259f7f6b9ad9ed0f78",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.reject_financial_history_change()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "1138c657d6441b92232acbcded3a0bcdb3b1bd178a02f073191a6803dbc2cba7",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.release_replaced_household_file()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "73843922fd3babec2408d81cdd6b386d52dddfdac34ac0b123b15cd12e0dd57b",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.repair_missing_grocery_fallbacks()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "784366d6126ae82fa77032ad501943de4452cd2e340207377afd8b78f9ab3c91",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.require_calendar_lease(uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "87c11650ef771f49feb7b472e984509315052ea96a64c30237ffb33d98c8b72d",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.require_money_actor(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "74570d21062774f3198e9156837004e25b9413ca5ef88b28cd51309e6dd835cd",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.revise_expense_context_link()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "2b675a22fd1bcc4f730f0b791568f4e395260b36153e8beca0aed077ae10d240",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.seed_default_areas()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "fe237a36ddf19c5a0957920165403ab4d44105397d1308ff228f91db4ceaee6d",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.seed_default_expense_categories()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "cd6559fb57442d750777571e6d5b406e8f53d4ccc29dff07740ea346ded879c6",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.seed_default_grocery_categories()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "426857018760e71db0f8de76defe91aa324ee8b180a85010f6638b4e5b8ef95f",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.set_meals_groceries_updated_at()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "3de4468cde810e6dfcc954c9bd52879e0444b23737b9fdf233400d2c5e3f9b6e",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.set_money_updated_at()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "9c197ccc313e7960f376ac05860511a08edd9001f338effb80353223a6b73eaa",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.set_routine_updated_at()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "bdeced69a9c5037f1879f64b020135309ac1e55c0e27525ecd516548fa917222",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.stamp_project_task_completion()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "d9d5bb8d9981353cd464e1c60e6b1c3e887a33e08fd4cb8434bc0c6d0405fb2a",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.store_money_command_result(uuid,text,text,jsonb,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "207147039de8360398fa34514746f7ddb90a61ee88958982f09db8dd2cfda544",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.sync_routine_reminder_preference()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "3a80890993a98013f33288f7087ae36a1d78465737b8b988faf357b1020fa674",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.validate_leftover_meal_plan_entry()",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "c1febe3aacf4b15da41fab048b34977601ac330e8ca5f8e7efa2f770dca9f0fa",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.validate_money_allocations(uuid,bigint,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "acb13abb87c1afbc11777fb34a0fa0527ea94743f28c6f6d593801ec6cd2d328",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "private",
+        "signature": "private.validate_opening_balance_lineage()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "a24d63a83ec3b1d7dcb14b39b9016a41478c56ffd6b8b5a9741a80c61ce612b1",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.add_project_task_batch(uuid,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "31a06f7b30ccc4e29c926fc6a00a91b0b9be2e1824a41741af99e274153ea72a",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.archive_household_decision_option(uuid,boolean)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "93831394c1fda281e49324342f6db9f56225f46cc8a885924466beff55787c75",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.archive_household_decision_option_versioned(uuid,boolean,timestamp with time zone)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "7a80718b2b8d79f7068d80a7f3c90a2cdb8873a6c3b3d2112ba72a00ec573593",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.archive_routine(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "d03d32369e0a36b07337cb78321522b7c9ec729bff9414ebf3a9c33ec2769bee",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.assign_expense_context(uuid,uuid,uuid,uuid,text,uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "e407046559c12c0eb1cd5e8ca288f19fb36244bb2145728c8c181bed5ac3318c",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.begin_household_attachment_cleanup(text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "f8b491c8fa312b8dbe9d8642451238f751c7319aa2e1b098882970d3f49815b0",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.cancel_shopping_session(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "f8041703461df124f32013c67713805f221c86fa7ce2e6c1954b11c32c843d49",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.choose_household_decision_option(uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "16efe9c6787a78dade7f9998355d5bc577cc10c566dc2dc43fdb8f40c6d486f7",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.claim_calendar_sync(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c1d1205b7f64ea5c9466ff90324b9d9c04806bcd35c174921a0201c326413b07",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.claim_grocery_item(uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "dc57f67169a9767d009b7eb8e3f54460b4f44cd4265c77ba4809a04c531dd553",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.claim_push_outbox(integer,integer,uuid[])",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "1cfc095749a8a50561b4d0eab50def19190d64050df17e28203d8dd118d0eb49",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.complete_occurrence(uuid,text,date,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "a49cbc5902e16b938db82d56af86c19a2f3065e5ac2775e6344ff67ecc41e8fd",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.confirm_expense_draft(uuid,text,bigint,uuid,jsonb,date,uuid,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "bb1a28a362f1ae2423acec48f2792b9d6db776ecb8886b81914dc01fa25c5b59",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.convert_household_decision(uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "e2887455fdb8acde89d6fa6b3ca40a1adfb106633652dc49fda307639a3c1375",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.correct_financial_event(uuid,text,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "b47bb7d9eb6ded39bd86b4853cc0c3dce798133a91e0f16fdfc2b4e2b36898db",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.create_and_place_meal(uuid,text,date,text,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "11075120683134d1247a8556fac4a4fd8575e8fbf45d372bc90d62f4680eb95e",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.create_meal_preparation(uuid,text,text,date,uuid,text,uuid,uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "2161b3e1f24a036a2e5bb70f13766cac1a7ac089fa5b2e819ef4312b5bf6bd6a",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.create_recurring_expense_rule(uuid,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "230d25f0562c35d45746f8cdc38e1bd537cbc2ff4e0c68ac27404ba47e9e5eab",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.create_routine(uuid,text,uuid,text,text,jsonb,uuid,uuid,text,uuid,text,date,date)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "1eb7ffa1a6e5663ba95573f53ba195c150ad0f711a9a08837dd756ed19a784a4",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.create_routine_once(uuid,text,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "104aec052d1fa8d83d89671c8061eedf7671f627769a781013b5d33c7caf8ab3",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.disconnect_calendar(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "18c0718e6ed5cabc41fc7649edebf61b7468554eae51aefd12c18192169d5463",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.dismiss_expense_draft(uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "4a4b96f93765a599cf0cdb7af1fad5f16c42950a258de7c0273c24860286e0f4",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.edit_routine_definition(uuid,timestamp with time zone,text,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "9fe29c47ecff952312894c47476a07bfdff790cf189247f3ecf59c805e4ba021",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.enqueue_self_device_push_test(text,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "8b144b3ac12aba827873ec9318102d79ef263d3a8fb1ee34bd1feadbf2f0de3c",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.establish_opening_balance(uuid,uuid,bigint,date,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c390bc7f9cb84065c99bc95cf358b7c107df0b1bee1647626593a492dc233f93",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.finalize_push_outbox_claim(uuid,uuid,text,text,uuid[])",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "6b1e41dce29d7c6249060163a1beeeb67aae81e862d91eaafb65aef440acb44d",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.finish_household_attachment_cleanup(text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "c74ab3514a93c5acfaa8d86978893a1484c9dbdd27fd74568b7b45a8f972eb35",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.finish_shopping_session(uuid,text,date,bigint,text,boolean,text,bigint,uuid,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "4cd829910611332467c6fd3061bd46d168ae1a27ca07e6270f1182793fe0dc4e",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.generate_due_recurring_drafts(uuid,date,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "057bbfc2ded095aec16afb8116e54a474fe5de3103adb547a856e2e31765aeb4",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.household_attachment_usage()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "4d8d3cf8292b8d21aac78c6ff1c7d1e65597835f2f9142a5c175f752d568cea8",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.list_home_attention_records(text,text,integer,date)",
+        "securityDefiner": false,
+        "anonymousExecute": false,
+        "definitionSha256": "852940aea7cdaa1b4aa86455166d28bbff799ff84c107976ac86758d838f7386",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.mark_inbox_notifications_read(uuid[])",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "5d8d9fd971915d726790c8b0f2281e0a7b4f775f0103a912fe3b99189942719e",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.merge_grocery_items(uuid,uuid,text,text,text,uuid,text,integer,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "24087dde4499f351bd2c47852eb20eacd11e28f7755dd1572c5e0413e3cd4ecc",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.move_meal_plan_entry(uuid,date,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "45b80b5d206841b30814b44e150b128c4e671a053b5d568f7e851074954868b8",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.pause_my_push_for_signout()",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "eb5308df41f66b6dfc99367396122003f7c5bb781b3b271690b1bbd7aa52e81e",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.pause_routine(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "2a9999f0e65f4477df25fa177768b42c61b2b39a84438f02b02afc5d45b5cb19",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.place_meal(uuid,date,text,text,text,uuid,uuid,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "082ddebce796663c6d98a54dab08f64a521ba013e4ea5439e7e558de501fbc82",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.post_contextual_expense(uuid,text,bigint,uuid,jsonb,date,text,text,uuid,uuid,text,text,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "28c91ff76251bb0eecb8d9d8853f752aa370be36b6368e0450b6c85619230a51",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.post_manual_expense(uuid,text,bigint,uuid,jsonb,date,text,uuid,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "a9b6f8ed518338f9838a8829e2f5c3ca6f2e6065fec998a0c2dbc1a2a8aae481",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.post_refund(uuid,bigint,jsonb,date,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "7d89679d2cc517ef02441c7346ca5137454881bf12097e305cdedbc0f09dcd78",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.read_household_cost_context(text,uuid,integer,date,uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "a93e0d2d2b4c176e08f49c27e062139dfae3c503e7330f113d29179b95adee0f",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.read_self_device_push_test(text,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "bd1a9c24f4822c8578f74ad319031bffc307cfd0aa61913ceb3fa4daa15a0d3a",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.reconcile_calendar_snapshot(uuid,uuid,jsonb)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "addf2ad0c0ebe2b6752e8a47c2a35bed169ad5b499a3116ab6bdd36538a4c0f0",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.record_calendar_push(uuid,uuid,uuid,text,boolean,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "86a3ba5067ea5ef0f023b1b9dfdd69e66867f5a6dd0921775ed4b78cced1350c",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.record_settlement(uuid,uuid,bigint,date,text,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "1dfb926cf792c945c89097937f03406085f0d17db2e68d79d224bc7221e39c08",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.register_push_subscription(text,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "2ba4178ab517024d2641697bc607c6ede02dcf4ee3f25982e956b49bd9d9c003",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.release_calendar_sync(uuid,uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "249faf3a6aa60e01e696c70209b23a304e1439ed83bf658752c5f8b70170b63f",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.release_grocery_item(uuid,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "153b241a9ab459438abc07cb198d38ea98927ebfac115444beae39adfd139e44",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.remove_grocery_item(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "8e67491471db005b7501745e056693b75224bedd2f101d9af590fde46a81fd28",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.remove_meal_plan_entry(uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "b3658297915351e6736da792bf49486ad679abbd5212b5bfa8821395c7123905",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.reorder_household_areas(uuid[])",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "e971139d6a6b718b4a1c7bbd48312948083f81223ab35632722a51bae93f763b",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.reschedule_occurrence(uuid,date,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "eab238743c6ca319ff2fea42ba430df00baed7df6074c34fe92d81e1c2b76eb0",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.reserve_household_attachment(text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "5a7c663c36d9fdbbfd7931fe426f40414dd1fb4d3c7f584279022e1d4cc089b6",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_deliver_due_reminders(text,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "87d197f06cf9efeae724f0fb25ac3d8be0c346d7b7d8d1be0e8d6ff45727df81",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_deliver_member_digests(text,time without time zone,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "bd01f62e9cc0c3ed816287fef7a53cd92fb2a05d96a020ba7878ee67f3bead8c",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_drain_push_outbox(text,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "b6df64bd77e60a75d7a04df8a1e07407e8b1c2ac54fae82a723142804533f7aa",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_ensure_due_occurrences(text,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "d940e5d828ecb65e1620ec8c96385112e3ca3a34c2a00d1b6cb125be45c9cca8",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_generate_recurring_drafts_cron(text,date,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "41929a8a21c580991c76b12676128e01508d10b43f9712f7e7e07e48b5213add",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_retain_activity_events(text,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "98be10bc4c0c040ef68b09f9499dec0534d5ac3cc4ffbfc0b0418d633757ebba",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.run_retain_purchased_groceries(text,integer)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "667f5ca7ab1c6a41adfa69e4c7b8c736a4912e8309e964ad95d9bf7f6667e28c",
+        "serviceRoleExecute": true,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.save_planned_meal_to_library(uuid,uuid,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "93a66a2d6ac1090299ad031b3b042047c9ef677be02411c97248d604dfd3b903",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.search_household(text,text[],boolean,integer,integer,text,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "8cd0f5bf88235578cbb4a7b5bd9ef7dcd0c647d65a1646928622f31fc701b6bb",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.set_household_decision_status(uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "356abb8e811b3d468b8136ffd3783206cb6a909a312aaaea3814820c63b5ae50",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.set_recurring_expense_rule_active(uuid,boolean,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "32e9c50acbbb5bccd052b4fdb66dbd227c18915deca97e174f7b68502b006ea9",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.skip_occurrence(uuid,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "d05bfe2d7dca086f45fa9bbaf376fa3c63bf91581f3f9b65fe1a73e82081b1db",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.start_shopping_session(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "95c40deb3b415325c2b36839085cccc83f0760c63023d8b6b82608c5bb06b0c5",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.unpause_routine(uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "6400635d94251563838d87dc793ba9b3c57f44a808987c729f9145883dc082ae",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.unregister_push_subscription(text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "9583bec7fa6259eb7adf2daadec0db9ddeef009f5c66a43890d71da1a3c06d3a",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.update_meal_plan_entry(uuid,text,date,text,text,text,text)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "f2d6b235acd591643743c0f1c02e77e24f55263ef46d4a18a49884772a8c9005",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.update_recurring_expense_rule(uuid,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "919364bc9bade9f530f8e9ebcc777751c826b5bea477b9bb5c26a5198192565f",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.update_recurring_expense_rule(uuid,timestamp with time zone,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "ac401442569bc759252a2d94b1f146aebcde6c9b9b9aa1b194e6af6ca27decde",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.update_routine_definition(uuid,text,text,uuid,uuid,text,uuid,uuid,text,jsonb,text,date,date,boolean)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "f39383f0b67e8b982e77b3a606dcf963f453509201cccf1ff7cbd6015374c08b",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": false
+      },
+      {
+        "owner": "nest_fixture_owner",
+        "schema": "public",
+        "signature": "public.upsert_digest_preference(boolean,time without time zone)",
+        "securityDefiner": true,
+        "anonymousExecute": false,
+        "definitionSha256": "66585f968ee62d43a2a0cfcd4c77ff42d02bb7ab928422666a8b359b6c7540fe",
+        "serviceRoleExecute": false,
+        "authenticatedExecute": true
+      }
+    ],
+    "serverVersion": "18.6"
+  },
+  "comparison": {
+    "exactFunctionCatalogMatch": false,
+    "observedCount": 153,
+    "fixtureCount": 148,
+    "missing": [
+      "public.payroll_is_member()",
+      "public.payroll_payslip_guard()",
+      "public.payroll_payslip_supersede()",
+      "public.payroll_restore(jsonb)",
+      "public.rls_auto_enable()"
+    ],
+    "extra": [],
+    "mismatches": [],
+    "ownerDifferences": [
+      {
+        "signature": "private.advance_home_record_version()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.advance_meal_template_version()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.advance_recurring_expense_version()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.affected_members_for_routine_change(uuid,text,uuid,text,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.append_household_area()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.apply_routine_closure(uuid,text,text,date,date,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.apply_routine_edit_clears()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.cancel_inbox_reminder_for_occurrence(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.claim_household_attachment(text,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.claim_job(text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.claim_parent_household_attachment()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.claim_profile_household_file()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.complete_job_claim(text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.create_reminder_candidates_for_occurrence(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.deliver_partner_notice(uuid,uuid,text,text,uuid,jsonb,uuid,uuid[])",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.enforce_household_member_cap()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.enforce_ledger_entries_zero_sum()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.ensure_routine_window(uuid,date,uuid,date,timestamp with time zone,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.fail_job_claim(text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.first_rebuild_due_date(jsonb,jsonb,date,date)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.first_routine_due_date(jsonb,date)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.generate_due_recurring_drafts_for_household(uuid,uuid,date)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.get_meal_grocery_command_result(uuid,text,text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.get_money_command_result(uuid,text,text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_archived_decision_choice()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_archived_decision_status()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_archived_project_edits()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_calendar_connection()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_calendar_event_sync()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_decision_option_parent()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_document_attachment_access()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_grocery_receipt_purpose()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_household_attachment_insert()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_household_record_identity()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_paid_cost_link()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_project_task_parent_identity()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_project_task_parent_state()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_project_with_bookings()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.guard_trip_booking_lifecycle()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.household_today()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.insert_open_routine_occurrence(public.routines,text,date,uuid,date,timestamp with time zone,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.insert_partner_inbox_and_outbox(uuid,uuid,uuid,text,text,uuid,jsonb,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.invoke_push_dispatch()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.is_household_member(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.is_supported_calendar_time_zone(text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.is_valid_routine_schedule(text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.lock_household_ledger(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.lock_replaced_household_files()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.materialize_meal_groceries(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.member_belongs_to_household(uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.next_recurring_expense_date(text,date,integer,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.next_routine_assignee(uuid,text,uuid,uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.next_routine_due_date(jsonb,date,date,date)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.other_household_member(uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.post_financial_event(uuid,uuid,text,uuid,text,bigint,jsonb,date,uuid,uuid,text,text,uuid,uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.record_household_record_activity()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.record_project_change()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.reject_financial_history_change()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.release_replaced_household_file()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.repair_missing_grocery_fallbacks()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.require_calendar_lease(uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.require_money_actor(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.revise_expense_context_link()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.seed_default_areas()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.seed_default_expense_categories()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.seed_default_grocery_categories()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.set_meals_groceries_updated_at()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.set_money_updated_at()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.set_routine_updated_at()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.stamp_project_task_completion()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.store_money_command_result(uuid,text,text,jsonb,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.sync_routine_reminder_preference()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.validate_leftover_meal_plan_entry()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.validate_money_allocations(uuid,bigint,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "private.validate_opening_balance_lineage()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.add_project_task_batch(uuid,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.archive_household_decision_option_versioned(uuid,boolean,timestamp with time zone)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.archive_household_decision_option(uuid,boolean)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.archive_routine(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.assign_expense_context(uuid,uuid,uuid,uuid,text,uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.begin_household_attachment_cleanup(text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.cancel_shopping_session(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.choose_household_decision_option(uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.claim_calendar_sync(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.claim_grocery_item(uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.claim_push_outbox(integer,integer,uuid[])",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.complete_occurrence(uuid,text,date,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.confirm_expense_draft(uuid,text,bigint,uuid,jsonb,date,uuid,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.convert_household_decision(uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.correct_financial_event(uuid,text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.create_and_place_meal(uuid,text,date,text,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.create_meal_preparation(uuid,text,text,date,uuid,text,uuid,uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.create_recurring_expense_rule(uuid,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.create_routine_once(uuid,text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.create_routine(uuid,text,uuid,text,text,jsonb,uuid,uuid,text,uuid,text,date,date)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.disconnect_calendar(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.dismiss_expense_draft(uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.edit_routine_definition(uuid,timestamp with time zone,text,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.enqueue_self_device_push_test(text,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.establish_opening_balance(uuid,uuid,bigint,date,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.finalize_push_outbox_claim(uuid,uuid,text,text,uuid[])",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.finish_household_attachment_cleanup(text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.finish_shopping_session(uuid,text,date,bigint,text,boolean,text,bigint,uuid,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.generate_due_recurring_drafts(uuid,date,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.household_attachment_usage()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.list_home_attention_records(text,text,integer,date)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.mark_inbox_notifications_read(uuid[])",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.merge_grocery_items(uuid,uuid,text,text,text,uuid,text,integer,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.move_meal_plan_entry(uuid,date,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.pause_my_push_for_signout()",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.pause_routine(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.place_meal(uuid,date,text,text,text,uuid,uuid,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.post_contextual_expense(uuid,text,bigint,uuid,jsonb,date,text,text,uuid,uuid,text,text,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.post_manual_expense(uuid,text,bigint,uuid,jsonb,date,text,uuid,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.post_refund(uuid,bigint,jsonb,date,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.read_household_cost_context(text,uuid,integer,date,uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.read_self_device_push_test(text,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.reconcile_calendar_snapshot(uuid,uuid,jsonb)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.record_calendar_push(uuid,uuid,uuid,text,boolean,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.record_settlement(uuid,uuid,bigint,date,text,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.register_push_subscription(text,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.release_calendar_sync(uuid,uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.release_grocery_item(uuid,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.remove_grocery_item(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.remove_meal_plan_entry(uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.reorder_household_areas(uuid[])",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.reschedule_occurrence(uuid,date,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.reserve_household_attachment(text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_deliver_due_reminders(text,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_deliver_member_digests(text,time without time zone,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_drain_push_outbox(text,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_ensure_due_occurrences(text,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_generate_recurring_drafts_cron(text,date,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_retain_activity_events(text,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.run_retain_purchased_groceries(text,integer)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.save_planned_meal_to_library(uuid,uuid,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.search_household(text,text[],boolean,integer,integer,text,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.set_household_decision_status(uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.set_recurring_expense_rule_active(uuid,boolean,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.skip_occurrence(uuid,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.start_shopping_session(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.unpause_routine(uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.unregister_push_subscription(text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.update_meal_plan_entry(uuid,text,date,text,text,text,text)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.update_recurring_expense_rule(uuid,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.update_recurring_expense_rule(uuid,timestamp with time zone,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.update_routine_definition(uuid,text,text,uuid,uuid,text,uuid,uuid,text,jsonb,text,date,date,boolean)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      },
+      {
+        "signature": "public.upsert_digest_preference(boolean,time without time zone)",
+        "observed": "postgres",
+        "fixture": "nest_fixture_owner"
+      }
+    ],
+    "ownerCapabilityParityVerified": false,
+    "runtimeSemanticParityVerified": false
+  }
+}

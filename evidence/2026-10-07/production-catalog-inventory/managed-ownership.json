@@ -1,0 +1,102 @@
+[
+  {
+    "schemas": [
+      {
+        "owner": "supabase_admin",
+        "usage": true,
+        "create": false,
+        "schema": "auth",
+        "runtimeCanSetOwner": false,
+        "runtimeInheritsOwner": false
+      },
+      {
+        "owner": "supabase_admin",
+        "usage": true,
+        "create": false,
+        "schema": "storage",
+        "runtimeCanSetOwner": false,
+        "runtimeInheritsOwner": false
+      }
+    ],
+    "readOnly": true,
+    "runtimeRole": "postgres"
+  },
+  {
+    "tables": [
+      {
+        "rls": true,
+        "owner": "supabase_auth_admin",
+        "table": "sessions",
+        "schema": "auth",
+        "forceRLS": false,
+        "privileges": {
+          "DELETE": true,
+          "INSERT": true,
+          "SELECT": true,
+          "UPDATE": true,
+          "TRIGGER": true,
+          "TRUNCATE": true,
+          "REFERENCES": true
+        },
+        "runtimeCanSetOwner": false,
+        "runtimeInheritsOwner": false
+      },
+      {
+        "rls": true,
+        "owner": "supabase_auth_admin",
+        "table": "users",
+        "schema": "auth",
+        "forceRLS": false,
+        "privileges": {
+          "DELETE": true,
+          "INSERT": true,
+          "SELECT": true,
+          "UPDATE": true,
+          "TRIGGER": true,
+          "TRUNCATE": true,
+          "REFERENCES": true
+        },
+        "runtimeCanSetOwner": false,
+        "runtimeInheritsOwner": false
+      },
+      {
+        "rls": true,
+        "owner": "supabase_storage_admin",
+        "table": "buckets",
+        "schema": "storage",
+        "forceRLS": false,
+        "privileges": {
+          "DELETE": true,
+          "INSERT": true,
+          "SELECT": true,
+          "UPDATE": true,
+          "TRIGGER": true,
+          "TRUNCATE": true,
+          "REFERENCES": true
+        },
+        "runtimeCanSetOwner": false,
+        "runtimeInheritsOwner": false
+      },
+      {
+        "rls": true,
+        "owner": "supabase_storage_admin",
+        "table": "objects",
+        "schema": "storage",
+        "forceRLS": false,
+        "privileges": {
+          "DELETE": true,
+          "INSERT": true,
+          "SELECT": true,
+          "UPDATE": true,
+          "TRIGGER": true,
+          "TRUNCATE": true,
+          "REFERENCES": true
+        },
+        "runtimeCanSetOwner": false,
+        "runtimeInheritsOwner": false
+      }
+    ],
+    "readOnly": true,
+    "runtimeRole": "postgres"
+  }
+]
