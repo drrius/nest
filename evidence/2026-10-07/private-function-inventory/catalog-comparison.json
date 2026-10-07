@@ -1,0 +1,34 @@
+{
+  "privateSignaturesMatch": true,
+  "privatePrivilegeDifferences": [],
+  "legacyInventoryDifferences": [
+    {
+      "group": "legacyCallableFunctions",
+      "hostedOnly": [
+        "update_recurring_expense_rule(uuid,text,bigint,uuid,jsonb,text,date,text,integer,integer,uuid)",
+        "update_routine_definition(uuid,text,text,uuid,uuid,text,uuid,uuid,text,jsonb,text,date,date,boolean)"
+      ],
+      "localOnly": []
+    },
+    {
+      "group": "legacyWritableTables",
+      "hostedOnly": ["household_attachment_uploads", "household_financial_links"],
+      "localOnly": []
+    }
+  ],
+  "hostedPrivatePrivilegeCounts": {
+    "anonymous": {
+      "execute": 2,
+      "executeAndSchemaUsage": 0
+    },
+    "authenticated": {
+      "execute": 177,
+      "executeAndSchemaUsage": 177
+    },
+    "serviceRole": {
+      "execute": 51,
+      "executeAndSchemaUsage": 51
+    }
+  },
+  "productionCutoverVerified": false
+}
