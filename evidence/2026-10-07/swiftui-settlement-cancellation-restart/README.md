@@ -10,10 +10,14 @@ Two new signed-app tests use SessionModel, SettlementAPI and the real native SQL
 store with controlled HTTP. They stage once, lose either cancellation or committed
 Save response, create a new SessionModel/store instance, preserve the exact command
 and cancellation flag, resolve the correct cancelled/recorded outcome and finish
-only that terminal operation. Assertions bound Save sends to zero or one. Their
-owned simulator execution is currently running; no pass is claimed yet.
+only that terminal operation. Assertions bound Save sends to zero or one. Both
+owned signed SE3 simulator cases pass with zero failures/skips. The completed
+summary and cleanup receipts are retained. The new test file matches the recorded
+SHA256; the copied shipping source is the existing QA mirror, not a newly released
+candidate. Exact-current-source CI remains separate.
 
 The focused native run uses a copied source mirror with the new test file, a
-separate clean simulator and no hosted credentials or requests. It does not render
+separate clean simulator and no hosted credentials or requests. Teardown deletes
+that simulator and leaves the original clients untouched. It does not render
 recovery controls, prove real provider behavior or close M7. Hosted rendering,
 both-phone recovery and full financial acceptance remain open.

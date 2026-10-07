@@ -223,8 +223,10 @@ Settlement cancellation/restart now has seven focused real disposable
 PostgreSQL/PostgREST/API cases passing, zero failures/skips. Protocol-fixture
 SQLite recovery is explicitly separate from native execution. Two new signed-app
 cases reopen the actual native store after lost cancellation/Save replies, bind
-the exact command and bound Save sends; their isolated Mac execution is running.
-No new native pass, rendered recovery or M7 completion is claimed. Routine
+the exact command and bound Save sends; both signed SE3 cases now pass with zero
+failures/skips. The separate simulator is removed and original clients remain
+untouched. Controlled native HTTP/store evidence does not establish rendered
+recovery or M7 completion. Routine
 CI37590324711 passes `eafc296d`; native CI37590324662 remains running on that
 unchanged commit. [Recovery work](../evidence/2026-10-07/swiftui-settlement-cancellation-restart/README.md).
 
