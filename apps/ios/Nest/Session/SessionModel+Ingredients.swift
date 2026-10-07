@@ -21,23 +21,39 @@ extension SessionModel {
     func refreshIngredientReview(_ context: IngredientReviewContext) async throws -> IngredientReviewContext {
         try requireIngredientContext(context)
         guard let auth, let api = mealAPI, let offline, let lease else { throw NestAPIFailure.signedOut }
+        let ticket = try await offline.beginMealWeekRead(context.week, lease: lease)
+        try requireIngredientContext(context)
         let session = try await auth.session()
         guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
         try requireIngredientContext(context)
-        let week = try await api.week(token: session.accessToken, member: context.member, start: context.week)
+        let week = try await readAndCacheMealWeek(
+            context.week, token: session.accessToken, member: context.member, generation: context.generation)
         try requireIngredientContext(context)
-        let listing = try await api.allIngredients(
-            token: session.accessToken, member: context.member, week: context.week, revision: week.revision)
+        let listing: MealIngredientListing
+        do {
+            listing = try await api.allIngredients(
+                token: session.accessToken, member: context.member, week: context.week, revision: week.revision)
+        } catch {
+            try requireIngredientContext(context)
+            if (error as? NestAPIFailure) == .forbidden {
+                try await forgetDeniedMealWeek(context.week, member: context.member, generation: context.generation)
+            }
+            throw error
+        }
+        try requireIngredientContext(context)
+        guard try await offline.isCurrentMealWeekRead(ticket) else { throw NestAPIFailure.conflict }
         try requireIngredientContext(context)
         var updated = context
         updated.listing = listing
         if context.saved?.pending == nil {
             let choices = try MealIngredientChoice.reconcile(
                 rows: listing.ingredients, previous: context.saved?.choices ?? [])
-            updated.saved = try await offline.saveIngredientReview(
-                week: context.week, revision: listing.revision, choices: choices,
-                expectedSequence: context.saved?.sequence, lease: lease)
+            updated.saved = try await offline.saveIngredientRead(
+                revision: listing.revision, choices: choices,
+                expectedSequence: context.saved?.sequence, ticket: ticket)
         }
+        try requireIngredientContext(context)
+        guard try await offline.isCurrentMealWeekRead(ticket) else { throw NestAPIFailure.conflict }
         try requireIngredientContext(context)
         return updated
     }

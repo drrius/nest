@@ -25,11 +25,12 @@ extension SessionModel {
 
     func freshProposalWeek(_ start: MealWeekStart, context: ProposalContext) async throws -> MealWeekSnapshot {
         try requireProposalContext(context)
-        guard let auth, let api = mealAPI else { throw NestAPIFailure.signedOut }
+        guard let auth, mealAPI != nil else { throw NestAPIFailure.signedOut }
         let session = try await auth.session()
         try requireProposalContext(context)
         guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
-        let week = try await api.week(token: session.accessToken, member: context.member, start: start)
+        let week = try await readAndCacheMealWeek(
+            start, token: session.accessToken, member: context.member, generation: context.generation)
         try requireProposalContext(context)
         return week
     }

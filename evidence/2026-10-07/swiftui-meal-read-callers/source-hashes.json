@@ -1,0 +1,8 @@
+{
+  "AppTests/MealReadDenialRaceTests.swift": "97d752e60be59540bc5a9479bd3b7bfeaa608c27609ede1a7f66d60221d03172",
+  "Nest/Core/MealIngredientStore.swift": "da73424e985cab13bcacfc997c7de5e74410168bd281ba970621543e04f1df6c",
+  "Nest/Session/SessionModel+Ingredients.swift": "52395fe349aea843babff323b08efc0d7b886e060901642af4a00d933a798b79",
+  "Nest/Session/SessionModel+MealWritePreflight.swift": "b4c6990dd382a5db68218d2adcd2d1f18a3d2e597efabacb1db588172817605d",
+  "Nest/Session/SessionModel+Proposals.swift": "2ff5974ef747a71fe580d91ca7d2c39e76d85da85eff11782ec6532bcd85a42a",
+  "Tests/Core/MealIngredientStoreTests.swift": "f7bf3667457a74769a76088b546eb6d8401b45ef419704441d68d5328c0eea6b"
+}

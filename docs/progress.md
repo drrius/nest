@@ -175,7 +175,19 @@ them, while pending commands remain intact. Both baseline regressions fail as
 expected. Fourteen corrected signed app cases and fourteen SQLite cases pass
 without skips, including normal offline/absence behavior and recovery. Hosted,
 rendered-phone and other read-only-path acceptance remain open. Current-source CI
-is pending. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
+is pending for later source. Detail source `91c06917` passes
+[routine CI 37641010696](https://github.com/drrius/nest/actions/runs/37641010696);
+[native CI 37641010744](https://github.com/drrius/nest/actions/runs/37641010744)
+is still running. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
+
+All remaining shipping week reads now use the shared fenced command, including
+proposal preview, ingredient refresh and mutation preflight. Ingredient read
+updates validate the same ticket atomically with the saved-choice sequence;
+exclusions and pending additions remain intact. A held proposal reply fails
+before the fix. Thirty-two corrected signed app cases and nine SQLite cases pass
+without skips, including existing approval/retry/offline behavior. Hosted, live-AI
+and phone acceptance remain open. Current-source CI is pending.
+[Evidence](../evidence/2026-10-07/swiftui-meal-read-callers/README.md).
 
 ## Exact blockers and owner inputs
 

@@ -5,6 +5,51 @@ import XCTest
 
 @MainActor
 final class MealReadDenialRaceTests: XCTestCase {
+    func testMutationPreflightCannotAcceptHeldReplyAfterDenial() async throws {
+        let fixture = try Fixture()
+        let model = fixture.model
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let generation = model.generation
+        await fixture.held.holdNextWeek()
+        let old = Task {
+            try await model.requireMealWeekOnline(
+                start: fixture.start, revision: "0", member: member, attempt: generation)
+        }
+        await fixture.held.waitForReply()
+        await fixture.server.failWeeks(.forbidden)
+        do {
+            _ = try await model.readTodayMeals(fixture.start, member: member)
+            XCTFail("Denied week succeeded")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+        await fixture.held.release()
+        do {
+            _ = try await old.value
+            XCTFail("Mutation preflight accepted an old reply after denial")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .conflict) }
+    }
+
+    func testProposalWeekReadCannotAcceptHeldReplyAfterDenial() async throws {
+        let fixture = try Fixture()
+        let model = fixture.model
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let context = try await model.cachedProposalContext()
+        await fixture.held.holdNextWeek()
+        let old = Task { try await model.freshProposalWeek(fixture.start, context: context) }
+        await fixture.held.waitForReply()
+        await fixture.server.failWeeks(.forbidden)
+        do {
+            _ = try await model.readTodayMeals(fixture.start, member: member)
+            XCTFail("Denied week succeeded")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+        await fixture.held.release()
+        do {
+            _ = try await old.value
+            XCTFail("Proposal accepted the old authorized reply after denial")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .conflict) }
+    }
+
     func testOlderSuccessfulMealsReplyCannotRestoreWeekAfterTodayDenial() async throws {
         let fixture = try Fixture()
         let model = fixture.model

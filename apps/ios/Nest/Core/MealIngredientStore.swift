@@ -38,6 +38,18 @@ struct SavedIngredientReview: Codable, Equatable, Sendable {
 }
 
 extension ChoreOfflineStore {
+    func saveIngredientRead(
+        revision: String, choices: [MealIngredientChoice], expectedSequence: Int?, ticket: MealWeekReadTicket
+    ) throws -> SavedIngredientReview {
+        try authorize(ticket.lease)
+        return try db.transaction {
+            guard try isCurrentMealWeekRead(ticket) else { throw OfflineFailure.missingSnapshot }
+            return try saveIngredientReview(
+                week: ticket.start, revision: revision, choices: choices,
+                expectedSequence: expectedSequence, lease: ticket.lease)
+        }
+    }
+
     func readIngredientReview(week: MealWeekStart, lease: OfflineLease) throws -> SavedIngredientReview? {
         try authorize(lease)
         let rows = try db.rows(

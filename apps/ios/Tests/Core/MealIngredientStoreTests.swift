@@ -4,6 +4,33 @@ import XCTest
 @testable import NestCore
 
 final class MealIngredientStoreTests: XCTestCase {
+    func testDeniedReadCannotReplaceSavedChoicesAndFreshReadPreservesExclusion() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "ingredient-read-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(.init(userId: UUID(), householdId: UUID(), displayName: "Test"))
+        let week = try MealWeekStart("2035-06-04")
+        let choice = MealIngredientChoice(
+            ingredient: .init(entryId: UUID(), ingredientId: UUID(), quantity: "1", unit: "cup"), selected: false)
+        let draft = try await store.saveIngredientReview(
+            week: week, revision: "2", choices: [choice], expectedSequence: nil, lease: lease)
+        let ticket = try await store.beginMealWeekRead(week, lease: lease)
+        try await store.forgetMealWeek(week, lease: lease)
+        do {
+            _ = try await store.saveIngredientRead(
+                revision: "3", choices: [], expectedSequence: draft.sequence, ticket: ticket)
+            XCTFail("Denied read overwrote the saved exclusion")
+        } catch { XCTAssertEqual(error as? OfflineFailure, .missingSnapshot) }
+        let retained = try await store.readIngredientReview(week: week, lease: lease)
+        XCTAssertEqual(retained, draft)
+        let fresh = try await store.beginMealWeekRead(week, lease: lease)
+        let current = try await store.saveIngredientRead(
+            revision: "3", choices: [choice], expectedSequence: draft.sequence, ticket: fresh)
+        XCTAssertEqual(current.choices, [choice])
+        XCTAssertNil(current.pending)
+        XCTAssertNil(current.receipt)
+    }
+
     func testRestartScopeAndUncertainRequestProtection() async throws {
         let url = FileManager.default.temporaryDirectory.appending(path: "ingredients-\(UUID()).sqlite")
         defer { try? FileManager.default.removeItem(at: url) }

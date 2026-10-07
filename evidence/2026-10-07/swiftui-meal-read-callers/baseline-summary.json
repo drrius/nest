@@ -1,0 +1,46 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "45B08A73-032B-4F33-A475-8A32F09C7B14",
+        "deviceName": "Nest Today cache owned 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791385254.506,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791385232.961,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "failed - Proposal accepted the old authorized reply after denial",
+      "targetName": "NestAppTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "MealReadDenialRaceTests/testProposalWeekReadCannotAcceptHeldReplyAfterDenial()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/MealReadDenialRaceTests/testProposalWeekReadCannotAcceptHeldReplyAfterDenial",
+      "testName": "testProposalWeekReadCannotAcceptHeldReplyAfterDenial()"
+    }
+  ],
+  "title": "Test - Nest",
+  "topInsights": [],
+  "totalTestCount": 1
+}

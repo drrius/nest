@@ -5,11 +5,12 @@ extension SessionModel {
         start: MealWeekStart, revision: String, member: VerifiedMember, attempt: Int
     ) async throws -> MealWeekSnapshot {
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
-        guard let auth, let api = mealAPI else { throw NestAPIFailure.signedOut }
+        guard let auth, mealAPI != nil else { throw NestAPIFailure.signedOut }
         let session = try await auth.session()
         guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
-        let current = try await api.week(token: session.accessToken, member: member, start: start)
+        let current = try await readAndCacheMealWeek(
+            start, token: session.accessToken, member: member, generation: attempt)
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
         guard current.revision == revision else { throw NestAPIFailure.conflict }
         return current
