@@ -1,0 +1,7 @@
+{
+  "forwardedWrites": 0,
+  "refusedPostAttempts": 0,
+  "controlledBalanceFailures": 1,
+  "controlModes": ["offline", "online"],
+  "cloneJournalsEmpty": true
+}

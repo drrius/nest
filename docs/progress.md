@@ -187,10 +187,27 @@ receipt confirms partial1 against reviewed2 centimes. All64 earlier events and
 related rows remain exact, final balances return to +1/−1, and unrelated protected
 data/scopes/64 journals/settings/local choices restore. The fixture now retains
 66 events/108 allocations/132 ledger rows. Both two-operation budgets are consumed;
-do not rerun them or delete their history. Current-source CI and broader financial
-recovery/phone/accessibility acceptance remain open.
+do not rerun them or delete their history. Source `d4f838e9` passes routine
+CI37588357919/native CI37588357855 with509 Foundation/41 skips,478 signed-app/41
+skips,four Swift Testing cases and zero failures. Broader financial
+recovery/phone/accessibility acceptance remains open.
 [Full posting](../evidence/2026-10-07/swiftui-money-roundtrip/README.md),
 [visible partial results](../evidence/2026-10-07/swiftui-money-result-feedback/README.md).
+
+Expense API-outage initiation now passes one real authenticated native read-only
+journey at `458e45ed`,66.714 seconds with zero failures/skips. A controlled503
+balance read refuses new financial staging; online reload retains the exact
+description/CHF1.01 draft before explicit Discard. No financial POST is attempted,
+all64 clone journals remain empty and eight hosted fingerprints stay exact.
+Original simulator state restores; the owned clone/trust store, relay and private
+control configuration are removed. This does not prove physical radio loss,
+post-commit lost-reply recovery or full financial acceptance. The existing frame
+runtime warning remains. [Outage evidence](../evidence/2026-10-07/swiftui-expense-api-outage/README.md).
+
+The [remaining acceptance list](native-rewrite/remaining-work.md) now owns
+next-work sequencing. Historical checks below remain evidence, not instructions
+to rerun passing cases. Build20 remains the available candidate; later source
+fixes need one consolidated signed candidate after its required checks pass.
 
 ## Available candidate and current source
 

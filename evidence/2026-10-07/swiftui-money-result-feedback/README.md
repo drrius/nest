@@ -29,5 +29,8 @@ not compared as if append-only verification involved no data change.
 This establishes visible canonical happy-path feedback and actual partial posting.
 It does not establish financial network-loss/restart/conflict rendering, every
 other recovery form, largest text, VoiceOver, either phone or full M7 acceptance.
-Current-source CI is pending. Production, bank transfers, provider/worker calls,
+Source `d4f838e9` passes routine CI37588357919 and native CI37588357855.
+Native CI reports 509 Foundation cases with 41 skips, 478 signed-app cases with
+41 skips and four Swift Testing cases, zero failures. Guarded UI compilation
+does not repeat or establish the hosted posting journey. Production, bank transfers, provider/worker calls,
 new beta submission and purchases are untouched.
