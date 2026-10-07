@@ -1,0 +1,54 @@
+{
+  "kind": "schema-and-financial-fixture-diagnostic",
+  "fixtureDiagnosticComplete": true,
+  "migrationCount": 311,
+  "pendingLegacyJobs": {
+    "baseline": {
+      "reminderDelivered": true,
+      "liveClaimPreserved": true,
+      "unclaimedOutboxSkipped": true,
+      "recurringDraftGenerated": true
+    },
+    "paused": {
+      "entryPointsRefused": 3,
+      "pendingWorkUnchanged": true
+    },
+    "pushRetry": {
+      "expiredClaimReleased": true,
+      "pausedRetryPreserved": true,
+      "failedClaimCountedOnce": true,
+      "retryRetainsAttemptCount": true,
+      "staleFinalizationRefused": true,
+      "disabledSubscriptionSkipped": true,
+      "edgeDeliveryVerified": false,
+      "externalRequestsDrained": false
+    },
+    "rollbackVerified": true,
+    "financialHistoryUnchanged": true,
+    "schedulerVerified": false,
+    "dispatchedRequestsDrained": false,
+    "productionTouched": false
+  },
+  "retainedReconciliation": {
+    "passed": true,
+    "financial": {
+      "passed": true,
+      "failures": []
+    },
+    "receipts": {
+      "passed": true,
+      "reason": null
+    },
+    "retainedEvents": 7,
+    "retainedAllocations": 8,
+    "retainedLedgerEntries": 14,
+    "retainedReceiptReferences": 1
+  },
+  "infrastructure": {
+    "simulated": ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
+    "schedulingVerified": false,
+    "storageBytesVerified": false
+  },
+  "rawReportSHA256": "dbfeb3d51de7d38b5d31880868c5887083d912810bde45a30515f82d6e71c5d9",
+  "productionCutoverVerified": false
+}

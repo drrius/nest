@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { captureRehearsal, compareRehearsal } from "./financial-rehearsal.mjs";
+import { verifyLegacyPushRetry } from "./legacy-push-retry-rehearsal.mjs";
 
 // Disposable full-schema fixture only. Every producer/consumer probe rolls back.
 export function verifyPendingLegacyJobs(db) {
@@ -13,6 +14,8 @@ export function verifyPendingLegacyJobs(db) {
     liveClaimPreserved: true,
   });
   assert.equal(snapshot(db), before, "Active-job probe did not restore retained work");
+  const pushRetry = verifyLegacyPushRetry(db, seedSql());
+  assert.equal(snapshot(db), before, "Expired-push probe did not restore retained work");
   const paused = JSON.parse(db.sql(pausedSql()));
   assert.deepEqual(paused, { entryPointsRefused: 3, pendingWorkUnchanged: true });
   assert.equal(snapshot(db), before, "Paused-job probe did not restore retained work");
@@ -20,6 +23,7 @@ export function verifyPendingLegacyJobs(db) {
   return {
     baseline,
     paused,
+    pushRetry,
     rollbackVerified: true,
     financialHistoryUnchanged: true,
     schedulerVerified: false,
@@ -37,6 +41,7 @@ function snapshotSql() {
     "reminder_candidates",
     "inbox_notifications",
     "push_outbox",
+    "push_subscriptions",
     "job_claims",
     "recurring_expense_rules",
     "expense_drafts",

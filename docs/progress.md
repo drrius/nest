@@ -137,8 +137,24 @@ accessibility failure is retained and corrected with explicit combining; the
 observer now waits15 seconds rather than repeatedly scanning an absent label.
 Both scopes/64 journals/settings/local choices restore and eight protected data
 fingerprints remain exact. Compilation/strict format/limits pass. Current-source
-CI, complete screen audits, largest text, VoiceOver and phones remain open.
+Contrast source `5d946dca` now passes routine37583789992/native37583789861:
+509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases and zero
+failures. Complete screen audits, VoiceOver and phones remain open. The later largest-text
+dark partial-payment flow passes at `c7521e15` in 106.5 seconds, zero skips, with its
+complete 161pt amount row inside the measured viewport and full restoration. The
+initial observer assumes immediate visibility of an offscreen row; its failure
+is retained. The correction scrolls before observing that row and eliminates
+unrelated scrollbar scans without removing geometry guards.
 [Value contrast evidence](../evidence/2026-10-07/swiftui-financial-value-contrast/README.md).
+
+M9's full 311-migration fixture now passes six expired legacy push retry checks:
+stale finalization refuses, failed attempts count once, paused retries remain
+unchanged and disabled subscriptions are skipped. All producer/consumer/control/
+claim/subscription snapshots roll back exactly, and retained financial/receipt
+reconciliation passes. The first synthetic lease fails the real claimed_at/expiry
+constraint and is corrected without weakening it. No hosted/production/network
+operation occurs. Edge delivery, external requests and actual writer drainage
+remain open. [Retry evidence](../evidence/2026-10-07/legacy-push-retry/README.md).
 
 ## Available candidate and current source
 
