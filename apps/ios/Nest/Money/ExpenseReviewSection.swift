@@ -11,13 +11,17 @@ struct ExpenseReviewSection: View {
         Section("Review expense") {
             Text(expense.description).font(.headline)
             row("Shared amount", expense.amountCentimes.absoluteCHF)
+                .accessibilityIdentifier("expense-review-amount")
             if let total = expense.receiptTotalCentimes { row("Receipt total", total.absoluteCHF) }
             row("Paid by", name(expense.payerId))
+                .accessibilityIdentifier("expense-review-payer")
             row("Date", expense.date.value)
             ForEach(expense.allocations, id: \.memberId) { share in
                 row(
                     share.memberId == member.userId ? "Your share" : "\(name(share.memberId))’s share",
-                    share.centimes.absoluteCHF)
+                    share.centimes.absoluteCHF
+                )
+                .accessibilityIdentifier("expense-share-\(share.memberId.uuidString.lowercased())")
             }
             if expense.categoryId != nil {
                 row("Category", categoryName ?? "Previously selected category")

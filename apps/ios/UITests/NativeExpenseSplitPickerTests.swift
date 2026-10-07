@@ -32,6 +32,8 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
         for choice in ["Percentage", "Exact", "Equal"] {
             let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Split")).firstMatch
             try reading.reveal(picker)
+            try waitForPicker(picker)
+            try reading.reveal(picker)
             try reading.requireTarget(picker)
             picker.tap()
             let option = app.buttons[choice]
@@ -39,11 +41,14 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
             reading.capture(option, name: "Owned expense \(choice) split option before selection")
             try reading.requireTarget(option, bounds: app.frame)
             option.tap()
+            XCTAssertTrue(app.navigationBars["Add expense"].waitForExistence(timeout: 15))
         }
         let name = try XCTUnwrap(env["NEST_QA_NAME"])
         XCTAssertTrue(["Test Alex", "Test Sam"].contains(name))
         for choice in [name == "Test Alex" ? "Test Sam" : "Test Alex", name] {
             let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Paid by")).firstMatch
+            try reading.reveal(picker)
+            try waitForPicker(picker)
             try reading.reveal(picker)
             try reading.requireTarget(picker)
             picker.tap()
@@ -52,6 +57,7 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
             reading.capture(option, name: "Owned expense payer option before selection")
             try reading.requireTarget(option, bounds: app.frame)
             option.tap()
+            XCTAssertTrue(app.navigationBars["Add expense"].waitForExistence(timeout: 15))
         }
         let back = app.navigationBars["Add expense"].buttons.element(boundBy: 0)
         try reading.requireTarget(back, bounds: app.frame)
@@ -60,5 +66,11 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
             app.alerts["Discard edits?"].exists, "Returning to untouched Equal should restore the raw baseline")
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
+    private func waitForPicker(_ picker: XCUIElement) throws {
+        let ready = XCTNSPredicateExpectation(
+            predicate: NSPredicate(format: "exists == true AND enabled == true AND hittable == true"), object: picker)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed)
     }
 }
