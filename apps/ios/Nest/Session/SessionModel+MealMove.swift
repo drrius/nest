@@ -10,20 +10,22 @@ struct MealMoveContext {
 
 extension SessionModel {
     func loadMealMove(source: MealWeekStart, target: MealWeekStart, entry: UUID) async throws -> MealMoveContext {
-        guard let auth, let api = mealAPI, let offline, let lease,
+        guard let auth, mealAPI != nil,
             case .ready(let member) = status
         else { throw NestAPIFailure.signedOut }
         let attempt = generation
         do {
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let from = try await api.week(token: session.accessToken, member: member, start: source)
+            let from = try await readAndCacheMealWeek(
+                source, token: session.accessToken, member: member, generation: attempt)
             let to =
-                source == target ? from : try await api.week(token: session.accessToken, member: member, start: target)
+                source == target
+                ? from
+                : try await readAndCacheMealWeek(
+                    target, token: session.accessToken, member: member, generation: attempt)
             guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
             guard let meal = from.entries.first(where: { $0.id == entry }) else { throw NestAPIFailure.removed }
-            try await offline.saveMealWeek(from, lease: lease)
-            try await offline.saveMealWeek(to, lease: lease)
             guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
             return MealMoveContext(member: member, generation: attempt, source: from, target: to, meal: meal)
         } catch {
@@ -95,11 +97,10 @@ extension SessionModel {
         _ saved: SavedMealMove, token: String,
         member: VerifiedMember, attempt: Int
     ) async throws {
-        guard let api = mealAPI, let offline, let lease else { return }
+        guard mealAPI != nil else { return }
         for start in Set([saved.source.weekStart, saved.target.weekStart]) {
-            let week = try await api.week(token: token, member: member, start: start)
+            _ = try await readAndCacheMealWeek(start, token: token, member: member, generation: attempt)
             guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
-            try await offline.saveMealWeek(week, lease: lease)
         }
     }
 

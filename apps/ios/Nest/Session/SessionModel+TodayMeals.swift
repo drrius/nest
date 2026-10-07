@@ -14,6 +14,10 @@ extension SessionModel {
         guard generation == expected, status == .ready(member), self.lease == lease else {
             throw NestAPIFailure.signedOut
         }
+        if mealSelection == start {
+            mealStatus = .failed
+            mealNotice = "Could not load this week. Try again online."
+        }
     }
 
     func cachedTodayMeals(_ start: MealWeekStart, member: VerifiedMember, generation expected: Int) async throws
@@ -27,18 +31,22 @@ extension SessionModel {
                 throw NestAPIFailure.signedOut
             }
         }
+        let ticket = try await offline.beginMealWeekRead(start, lease: lease)
+        try requireAccount()
         let cached = await auth.cachedSession()
         try requireAccount()
         guard cached?.userId == member.userId else { throw NestAPIFailure.signedOut }
         let week = try await offline.readMealWeek(start, lease: lease)
         try Task.checkCancellation()
         try requireAccount()
+        guard try await offline.isCurrentMealWeekRead(ticket) else { throw NestAPIFailure.conflict }
+        try requireAccount()
         return week.map { TodayMealsRead(week: $0, saved: true) }
     }
 
     /// Reads independently of the week selected in Meals; never stages or retries a mutation.
     func readTodayMeals(_ start: MealWeekStart, member: VerifiedMember) async throws -> TodayMealsRead {
-        guard status == .ready(member), let lease, let offline, let auth, let mealAPI else {
+        guard status == .ready(member), let lease, let offline, let auth, mealAPI != nil else {
             throw NestAPIFailure.signedOut
         }
         let attempt = generation
@@ -51,18 +59,14 @@ extension SessionModel {
             let session = try await auth.session()
             try requireAccount()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let week = try await mealAPI.week(token: session.accessToken, member: member, start: start)
+            let week = try await readAndCacheMealWeek(
+                start, token: session.accessToken, member: member, generation: attempt)
             try requireAccount()
-            try await offline.saveMealWeek(week, lease: lease)
             let visible = try await offline.readMealWeek(start, lease: lease) ?? week
             try requireAccount()
             return TodayMealsRead(week: visible, saved: false)
         } catch {
             try requireAccount()
-            if (error as? NestAPIFailure) == .forbidden {
-                try await forgetDeniedMealWeek(start, member: member, generation: attempt)
-                try requireAccount()
-            }
             await handleTodayMealAuthorization(error, member: member, attempt: attempt)
             try requireAccount()
             guard error is URLError || (error as? NestAPIFailure) == .unavailable else { throw error }

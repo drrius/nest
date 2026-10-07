@@ -93,6 +93,33 @@ final class MealWeekStoreTests: XCTestCase {
         XCTAssertEqual(retained?.entries.first?.title, "Pasta")
     }
 
+    func testOldReadTicketCannotRestoreDeniedSnapshotAndFreshReadCanRecover() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "meal-read-epoch-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(member)
+        let week = try snapshot(revision: "1", placed: true)
+        let before = try await store.beginMealWeekRead(start, lease: lease)
+        let peerRead = try await store.beginMealWeekRead(start, lease: lease)
+        let initial = try await store.saveMealWeekRead(week, ticket: before)
+        XCTAssertTrue(initial)
+        try await store.forgetMealWeek(start, lease: lease)
+        let old = try await store.saveMealWeekRead(week, ticket: before)
+        let oldPeer = try await store.saveMealWeekRead(week, ticket: peerRead)
+        XCTAssertFalse(old)
+        XCTAssertFalse(oldPeer)
+        let absent = try await store.readMealWeek(start, lease: lease)
+        XCTAssertNil(absent)
+        let reopened = try ChoreOfflineStore(url: url)
+        let stillOld = try await reopened.saveMealWeekRead(week, ticket: before)
+        XCTAssertFalse(stillOld)
+        let fresh = try await reopened.beginMealWeekRead(start, lease: lease)
+        let restored = try await reopened.saveMealWeekRead(week, ticket: fresh)
+        XCTAssertTrue(restored)
+        let saved = try await reopened.readMealWeek(start, lease: lease)
+        XCTAssertEqual(saved, week)
+    }
+
     func testForgettingDeniedWeekSurvivesRestartAndPreservesPendingCommandAndOtherScopes() async throws {
         let url = FileManager.default.temporaryDirectory.appending(path: "meal-denial-\(UUID()).sqlite")
         defer { try? FileManager.default.removeItem(at: url) }

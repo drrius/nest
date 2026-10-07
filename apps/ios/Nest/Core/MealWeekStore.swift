@@ -10,9 +10,12 @@ struct SavedMealPlacement: Equatable, Sendable {
 extension ChoreOfflineStore {
     func forgetMealWeek(_ start: MealWeekStart, lease: OfflineLease) throws {
         try authorize(lease)
-        try db.run(
-            "DELETE FROM meal_weeks WHERE actor=? AND household=? AND week_start=?",
-            lease.scope + [start.date.value])
+        try db.transaction {
+            try advanceMealWeekReadEpoch(start, lease: lease)
+            try db.run(
+                "DELETE FROM meal_weeks WHERE actor=? AND household=? AND week_start=?",
+                lease.scope + [start.date.value])
+        }
     }
 
     func readMealWeek(_ start: MealWeekStart, lease: OfflineLease) throws -> MealWeekSnapshot? {
@@ -28,6 +31,20 @@ extension ChoreOfflineStore {
     func saveMealWeek(_ week: MealWeekSnapshot, lease: OfflineLease) throws {
         try authorize(lease)
         _ = try week.validated(household: lease.household, week: week.weekStart)
+        try db.transaction { try persistMealWeek(week, lease: lease) }
+    }
+
+    func saveMealWeekRead(_ week: MealWeekSnapshot, ticket: MealWeekReadTicket) throws -> Bool {
+        try authorize(ticket.lease)
+        _ = try week.validated(household: ticket.lease.household, week: ticket.start)
+        return try db.transaction {
+            guard try isCurrentMealWeekRead(ticket) else { return false }
+            try persistMealWeek(week, lease: ticket.lease)
+            return true
+        }
+    }
+
+    private func persistMealWeek(_ week: MealWeekSnapshot, lease: OfflineLease) throws {
         if let previous = try readMealWeek(week.weekStart, lease: lease),
             let oldRevision = Int64(previous.revision), let newRevision = Int64(week.revision),
             oldRevision > newRevision
@@ -35,17 +52,15 @@ extension ChoreOfflineStore {
             return
         }
         let body = String(decoding: try JSONEncoder().encode(week), as: UTF8.self)
-        try db.transaction {
-            try db.run(
-                "INSERT INTO meal_weeks(actor,household,week_start,body) VALUES(?,?,?,?) ON CONFLICT(actor,household,week_start) DO UPDATE SET body=excluded.body",
-                lease.scope + [week.weekStart.date.value, body])
-            try clearConfirmedMealPlacement(week, lease: lease)
-            try clearConfirmedMealRemoval(week, lease: lease)
-            try clearConfirmedMealRecipePlacement(week, lease: lease)
-            try clearConfirmedMealMove(lease: lease)
-            try clearConfirmedMealLeftovers(lease: lease)
-            try clearConfirmedMealReplacement(week, lease: lease)
-        }
+        try db.run(
+            "INSERT INTO meal_weeks(actor,household,week_start,body) VALUES(?,?,?,?) ON CONFLICT(actor,household,week_start) DO UPDATE SET body=excluded.body",
+            lease.scope + [week.weekStart.date.value, body])
+        try clearConfirmedMealPlacement(week, lease: lease)
+        try clearConfirmedMealRemoval(week, lease: lease)
+        try clearConfirmedMealRecipePlacement(week, lease: lease)
+        try clearConfirmedMealMove(lease: lease)
+        try clearConfirmedMealLeftovers(lease: lease)
+        try clearConfirmedMealReplacement(week, lease: lease)
     }
 
     func readMealPlacement(_ start: MealWeekStart, lease: OfflineLease) throws -> SavedMealPlacement? {

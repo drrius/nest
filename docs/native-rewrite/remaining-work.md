@@ -26,6 +26,8 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Meal read denial races](../../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md) close both controlled late-success/denial orders for week-cache writes. Final native recovery cases and SQLite restart/fresh-read checks pass. Hosted revocation, other recipe/proposal read-only paths and phones remain separate gaps. This shipping change is newer than build 22.
+
 - [Today saved meals](../../evidence/2026-10-07/swiftui-today-meals-cache/README.md) now appear before the network reply and remain visible during refresh/unavailability. Five signed session/SQLite checks and one final controlled SwiftUI capture pass without skips; both screenshots are inspected. Rendered hosted interruption, larger text, day rollover and phones remain unverified. This shipping change is newer than build 22.
 
 - [Money history spacing](../../evidence/2026-10-07/swiftui-money-history-spacing/README.md) reproduces an actual 24-point gap between populated rows and verifies its removal in two signed native journeys. Preview and full history retain complete visible targets; screenshots are inspected. This shipping fix is newer than TestFlight build 22. Full accessibility and phone acceptance remain.

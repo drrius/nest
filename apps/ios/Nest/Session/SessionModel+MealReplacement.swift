@@ -68,12 +68,11 @@ extension SessionModel {
         _ saved: SavedMealReplacement, token: String,
         member: VerifiedMember, attempt: Int
     ) async throws {
-        guard let api = mealAPI, let offline, let lease else { return }
+        guard mealAPI != nil else { return }
         do {
             let start = saved.week.weekStart
-            let week = try await api.week(token: token, member: member, start: start)
+            _ = try await readAndCacheMealWeek(start, token: token, member: member, generation: attempt)
             guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
-            try await offline.saveMealWeek(week, lease: lease)
         }
     }
 

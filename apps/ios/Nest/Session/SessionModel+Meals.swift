@@ -46,10 +46,10 @@ extension SessionModel {
             mealRecipePlacement = pendingRecipe
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-            let fresh = try await api.week(token: session.accessToken, member: member, start: start)
+            let fresh = try await readAndCacheMealWeek(
+                start, token: session.accessToken, member: member, generation: attempt)
             guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
             else { return }
-            try await offline.saveMealWeek(fresh, lease: lease)
             let visible = try await offline.readMealWeek(start, lease: lease)
             let savedRecipeReplacement = try await offline.readMealRecipeReplacement(lease: lease)
             let savedReplacement = try await offline.readMealReplacement(lease: lease)
@@ -124,13 +124,6 @@ extension SessionModel {
         api: MealAPI, auth: any NestAuthentication, member: VerifiedMember,
         attempt: Int, request: UUID, start: MealWeekStart
     ) async {
-        do {
-            try await forgetDeniedMealWeek(start, member: member, generation: attempt)
-        } catch {
-            guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt) else { return }
-            await leaveMealAccount(.unavailable)
-            return
-        }
         guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt) else { return }
         mealStatus = .failed
         mealNotice = "Could not load this week. Try again online."

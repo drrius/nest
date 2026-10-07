@@ -152,6 +152,15 @@ Uncertain operations and partner snapshots remain intact. Concurrent old replies
 hosted revocation and phone behavior remain unverified. Current-source CI is
 pending. [Evidence](../evidence/2026-10-07/swiftui-meal-cache-denial/README.md).
 
+Late meal-week replies now pass through one scoped SQLite read epoch. A denial
+atomically invalidates older replies and deletes the snapshot; every shipping
+week-cache writer uses the shared command. The held-success baseline fails by
+restoring denied data. Both corrected reply orders, 34 affected signed app cases
+and six SQLite checks pass without skips. Pending journals survive, old tickets
+remain invalid after reopening and a new authorized read recovers. Hosted and
+other read-only-path revocation remain open. Current-source CI is pending.
+[Evidence](../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.

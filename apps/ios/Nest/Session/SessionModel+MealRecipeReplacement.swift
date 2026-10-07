@@ -23,7 +23,6 @@ extension SessionModel {
             let saved = SavedMealRecipeReplacement(
                 week: fresh, meal: context.meal, recipe: recipe,
                 command: command, state: .pending, receipt: nil)
-            try await offline.saveMealWeek(fresh, lease: lease)
             try await offline.enqueueMealRecipeReplacement(saved, lease: lease)
             guard generation == attempt, status == .ready(member) else { return false }
             mealRecipeReplacement = saved
@@ -43,7 +42,8 @@ extension SessionModel {
         _ context: MealMoveContext, recipe: SavedRecipe, libraryRevision: String,
         token: String, member: VerifiedMember, api: MealAPI
     ) async throws -> MealWeekSnapshot {
-        let fresh = try await api.week(token: token, member: member, start: context.source.weekStart)
+        let fresh = try await readAndCacheMealWeek(
+            context.source.weekStart, token: token, member: member, generation: context.generation)
         let listing = try await api.library(token: token, member: member)
         guard fresh == context.source, listing.revision == libraryRevision else { throw NestAPIFailure.conflict }
         let detail = try await api.recipe(token: token, member: member, id: recipe.id, revision: libraryRevision)
@@ -86,13 +86,13 @@ extension SessionModel {
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
         mealRecipeReplacement = try await offline.readMealRecipeReplacement(lease: lease)
         guard let receipt = mealRecipeReplacement?.receipt else { throw MealContractError.invalidReceipt }
-        let week = try await api.week(token: token, member: member, start: saved.week.weekStart)
+        let week = try await readAndCacheMealWeek(
+            saved.week.weekStart, token: token, member: member, generation: attempt)
         var retained: PlannedRecipeEnvelope?
         if week.revision == receipt.revision {
             retained = try await api.plannedRecipe(token: token, member: member, week: week, id: receipt.entryId)
         }
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }
-        try await offline.saveMealWeek(week, lease: lease)
         try await offline.clearConfirmedMealRecipeReplacement(week, retained: retained, lease: lease)
         let remaining = try await offline.readMealRecipeReplacement(lease: lease)
         guard generation == attempt, status == .ready(member) else { throw OfflineFailure.sessionChanged }

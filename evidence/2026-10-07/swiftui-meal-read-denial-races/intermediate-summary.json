@@ -1,0 +1,43 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "A94C6ECC-63BB-43E2-8E7C-ECE274842677",
+        "deviceName": "Nest Today cache owned 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 0,
+      "passedTests": 34,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 0,
+  "finishTime": 1791383871.543,
+  "passedTests": 34,
+  "result": "Passed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791383859.378,
+  "statistics": [],
+  "testFailures": [],
+  "title": "Test - Nest",
+  "topInsights": [
+    {
+      "category": "Longest Test Runs",
+      "impact": "5% of duration",
+      "text": "1 longest test run with outlier durations exceeding 0.15s (three standard deviations)"
+    }
+  ],
+  "totalTestCount": 34
+}

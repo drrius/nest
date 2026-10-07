@@ -1,0 +1,14 @@
+{
+  "Nest/Core/MealWeekStore.swift": "ddd86bf209640924a1e1ab1db97716638087d10c05288bc0eeb4153e6aaf56b3",
+  "Nest/Core/RecipeReadStore.swift": "70ac4adf75f0e21912fb716319cb4e597fbcd750dc31ed273f68c3056ce73b31",
+  "Nest/Session/SessionModel+MealLeftovers.swift": "0f932cfd77085e088fdb3be3249e68b88900f2216cc534f6b978b78ae19d4ce4",
+  "Nest/Session/SessionModel+MealMove.swift": "32a69ed0d8234e0861bfdda3892f4b52cbc2158bebd8b3c194ceaf5054e0bf84",
+  "Nest/Session/SessionModel+MealRecipeReplacement.swift": "cf825a288eb10598da06f8f09e81cd54a04a0487888f222659780abd825f097e",
+  "Nest/Session/SessionModel+MealReplacement.swift": "7a78d72cc8820f2d7d51f56f3c1326c8d054bb834b6af62f3790e374d23f0f7c",
+  "Nest/Session/SessionModel+Meals.swift": "7d554b50a442eba147b86afa561d9ef7943219ca3c80c544313df4bb77c7aa2d",
+  "Nest/Session/SessionModel+TodayMeals.swift": "5afa14855eecf9748d88506be552b275f600368c87bb0fa2f9e0c214a45d2709",
+  "Tests/Core/MealWeekStoreTests.swift": "3b1bdb303384684960de122265e0561a5ec68df94055aed29cd89e3275730e15",
+  "Nest/Core/MealWeekReadStore.swift": "95f10dcbeb4c88aab771a25f61455ba0449a89d3806c093a42e604c6fadc9826",
+  "Nest/Session/SessionModel+MealWeekReads.swift": "0b700964ed880d82c0563f299d4a91e02308427ac34c5dacd105a82fe5a54106",
+  "AppTests/MealReadDenialRaceTests.swift": "06cdefab89cbce9e9361b1cd6b8dc39b98de2483f985297a8c50577c7eec8d7d"
+}
