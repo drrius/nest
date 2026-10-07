@@ -905,3 +905,15 @@ and two shares/ledger rows are added. Both clients/settings/privacy/64 journals
 restore; relay stops and key is destroyed. Format/limits/signed builds pass;
 current-source CI and phones remain open. This shipping fix is after build21.
 [Bill recovery](../evidence/2026-10-07/swiftui-variable-bill-lost-reply/README.md).
+
+Two controlled signed-native variable-bill cancellation restart cases now pass,
+zero failures/skips: a lost cancellation reply keeps its cancellation flag and
+original command across SQLite reopen, retries cancellation without Save, and
+finishes only the cancelled result. Cancellation after a lost committed Save
+recovers the original recorded receipt with one Save total. Initial two failures
+were a fixture decoder mismatch with operation-only cancellation and are retained.
+Shipping code is unchanged; original clients/64 journals/settings/privacy restore.
+Actual hosted cancellation/dialog/phones remain unverified. Recurring-money audit
+now credits implemented worker/manual-link evidence instead of stale future-work
+claims; active hosted execution/credentials/timer acceptance remain pending.
+[Cancellation tests](../evidence/2026-10-07/swiftui-variable-bill-cancellation/README.md).
