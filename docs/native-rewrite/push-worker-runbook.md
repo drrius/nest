@@ -17,6 +17,13 @@ Responses contain aggregate counts/status only, including separate summary, chor
 
 Before hosted activation, verify the actual Auth session schema and migrations in the isolated backend, signed APNs environment and Apple credentials, explicit device enrollment, mute/revocation behavior, immutable provider outcomes and notification opening from foreground/background/cold start. Verify that scheduling fits the approved hosting and monthly budget. Production migration, purchases and release publication require separate owner approval.
 
+The three Auth session column assumptions are now confirmed by a read-only
+nest-test catalog query on 7 October: non-null UUID `id`/`user_id` and nullable
+`timestamptz` `not_after`, with query-role SELECT privileges. No session or token
+rows are read. [Metadata evidence](../../evidence/2026-10-07/hosted-test-push-session-schema/README.md).
+This verifies column shape, not complete Auth policies, refresh/expiry behavior
+or actual delivery. Server credentials/APNs configuration and activation remain open.
+
 Current evidence: disposable PostgreSQL, real local HTTP/PostgREST and loopback HTTP/2 acceptance for all six APNs sources; lost checkpoint acknowledgements recover without duplicate sends. Legacy Expo compatibility regressions also pass. Native enrollment controls/logout and warm/cold notification opening have focused simulator evidence. On 30 September the hash-checked APNs registration/outcome migrations and journal-barrier repair were installed on nest-test after full-chain rehearsal; a real Swift/API registration/replay/cancellation/disable fixture passes with no active token or provider attempt remaining. See [hosted installation](nest-test-setup.md). No worker/scheduler is configured there, and delivery remains default-disabled. Real Apple delivery, hardware permissions/token callbacks and two-phone notification navigation are not accepted yet.
 
 Chore maintenance visits up to 250 reminder settings in each of two fixed UTC-day windows, then up to 500 pending rows for invalidation. Its delivery scan visits at most 100 raw outbox/device pairs per invocation, using an independent compare-and-swap checkpoint. Invalid sessions still advance the cursor. A completed page wraps so later edits and new registrations are revisited. The send claim rechecks the exact occurrence/settings fingerprint and recipient authorization; unknown provider outcomes are never automatically resent. Chore payloads contain generic text and only household/occurrence routing IDs. Native taps open the authorized reminder screen. These paths have local fixture/provider-simulation evidence; hosted scheduling and physical delivery still require separate verification and activation.

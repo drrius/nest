@@ -93,41 +93,9 @@ The rerunnable comparison source `6ef3c4b7` also passes
 [CI 37623018040](https://github.com/drrius/nest/actions/runs/37623018040).
 Neither check changes the retained failures or closes M1/M9 acceptance.
 
-The new read-only scheduled-writer inventory is integrated into the disposable
-migration runner and focused CI selection. Thirteen local PostgreSQL checks pass
-with no failures or skips across the new inventory and existing privilege/fence
-checks. They cover missing/restricted/unsupported/truncated catalogs, unknown and
-inactive jobs, hashed commands/functions without exported bodies, unchanged rows
-and refusal of an already writable transaction.
-[Evidence](../evidence/2026-10-07/scheduled-writer-inventory/README.md).
-Real pg_cron execution, hosted identity and drainage remain unverified.
-This change does not require another phone build. Source `e724fe87` passes routine
-[CI 37615820449](https://github.com/drrius/nest/actions/runs/37615820449).
-
-CI now has a conservative documentation-only path. It retains
-formatting, relative-document link checks and its own scope tests. Application
-checks can be omitted only for docs/evidence Markdown changes whose base commit
-already passed CI; unknown/failed/pending bases and all other changed files keep
-the full checks. Four local Git/CLI cases and full source
-[CI 37616655593](https://github.com/drrius/nest/actions/runs/37616655593) pass at
-`7911bb76`. Actual documentation-only
-[CI 37617123884](https://github.com/drrius/nest/actions/runs/37617123884) passes at
-`245a754d` in 31 seconds with format/link/scope checks; application checks are
-explicitly skipped against the already verified source. This is documentation
-verification, not another native or domain test run.
-
-Variable-bill Save/cancellation now has both commit orders verified through the
-native session, real local Effect API, PostgREST/PostgreSQL and SQLite restart.
-Two API and two signed native cases pass without skips. Actual database lock waits
-force each order; recorded outcomes retain one expense and cancelled outcomes
-retain none. Terminal replay sends no second write. Authentication/session entry
-is controlled, so hosted/Apple/phone/UI-race and live-AI acceptance remain open.
-[Ordered race evidence](../evidence/2026-10-07/swiftui-variable-bill-ordered-races/README.md).
-Shipping runtime/configuration remains unchanged. Source `a1aa923d` passes routine
-[CI 37627414604](https://github.com/drrius/nest/actions/runs/37627414604) and native
-[CI 37627414734](https://github.com/drrius/nest/actions/runs/37627414734). Native CI
-reports 498 app tests, 56 guarded skips and zero failures. The two ordered native
-cases ran separately on the Mac without skips; CI skips do not replace them.
+Earlier scheduled-inventory, conservative CI-scope and ordered variable-bill
+verification records are preserved in the [verification checkpoints](progress-history-2026-10-07-verification.md).
+Their passing evidence remains valid within its scope.
 
 Money history now groups its rows instead of inheriting page-level gaps. The
 signed baseline fails on an extra 24-point gap; corrected Money preview and full
@@ -385,6 +353,13 @@ Only the owned calendar/preferences and simulator are removed. All four executed
 source hashes match. Model lifecycle calls are direct; rendered background/scene
 hooks, initial prompt, Apple sync and both-phone privacy remain open. No shipping
 source or build 23 changes. [Evidence](../evidence/2026-10-07/swiftui-eventkit-foreground/README.md).
+
+A read-only nest-test catalog check confirms the three Auth session columns
+used by push authorization match the fixture assumptions: non-null UUID ID/user
+and nullable timestamptz expiry, with query-role SELECT permissions. No Auth rows
+or tokens are read. This closes column-shape uncertainty only; Auth policy/runtime,
+worker credentials/APNs and actual phone delivery remain open. Build 23 stays
+unchanged. [Evidence](../evidence/2026-10-07/hosted-test-push-session-schema/README.md).
 
 ## Exact blockers and owner inputs
 

@@ -1,0 +1,27 @@
+{
+  "rls": true,
+  "role": "postgres",
+  "owner": "supabase_auth_admin",
+  "columns": [
+    {
+      "name": "id",
+      "type": "uuid",
+      "notNull": true,
+      "roleCanSelect": true
+    },
+    {
+      "name": "not_after",
+      "type": "timestamp with time zone",
+      "notNull": false,
+      "roleCanSelect": true
+    },
+    {
+      "name": "user_id",
+      "type": "uuid",
+      "notNull": true,
+      "roleCanSelect": true
+    }
+  ],
+  "readOnly": true,
+  "relation": "auth.sessions"
+}
