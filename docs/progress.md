@@ -1035,3 +1035,12 @@ One-use submission remains uninvoked until exact-source CI passes. Build21
 remains available;22/device acceptance is not claimed. No cloud build, purchase,
 invitation, public release, source merge or production change.
 [Build22 preparation](../evidence/2026-10-07/swiftui-build22/README.md).
+
+Build22 frozenf324c905 now passes both exact-source workflows37612410978/
+37612410354:509 Foundation/41 skips,496 signed-app/54 skips, zero failures,
+format/limits/signing/guarded UI compile. One-use source/IPA/version/backend/
+Apple-preflight gates pass and exactly one authorized private submission
+12d18101-2fef-4cda-a9ef-03a0743bcd10 is queued. Follow that job; no rebuild or
+second upload. Apple processing/availability22 and physical acceptance remain
+unverified;21 stays available. No cloud build, invitations, public release,
+production migration, source merge or credential change.

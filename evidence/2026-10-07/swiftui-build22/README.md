@@ -20,10 +20,12 @@ The existing accepted App Store profile/certificate is reused; no credential is
 created/revoked. Owned temporary keychain, certificate and password copies are
 removed on both hosts, with original credentials and user search list intact.
 
-Apple read-only preflight confirms22 absent and21 valid. Routine37612410978 passes
-the exact frozen source; native37612410354 remains active. No upload is invoked
-until both exact-source checks and the one-use artifact gates pass. Build21 remains
-available; neither Apple acceptance nor device execution of22 is claimed.
+Apple read-only preflight confirms22 absent and21 valid. Both routine37612410978 and native37612410354 pass the exact frozen source:
+509 Foundation/41 skips and496 signed-app/54 skips, zero failures, strict format/
+limits/signing and guarded UI compilation. One-use artifact gates pass; exactly
+one private submission12d18101-2fef-4cda-a9ef-03a0743bcd10 is queued. No second
+attempt occurs. Build21 remains available; Apple processing/availability and
+device execution of22 remain unverified.
 
 The candidate uses nest-test and keeps push disabled. Live AI, full accessibility,
 physical push, both-phone acceptance and production cutover remain open. No
