@@ -1,0 +1,103 @@
+{
+  "actionRegions": [
+    {
+      "height": 58.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 355,
+      "maxY": 282.5,
+      "midX": 187.5,
+      "midY": 253.25,
+      "minX": 20,
+      "minY": 224,
+      "usable": true,
+      "width": 335
+    },
+    {
+      "height": 58.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 355,
+      "maxY": 353,
+      "midX": 187.5,
+      "midY": 323.75,
+      "minX": 20,
+      "minY": 294.5,
+      "usable": true,
+      "width": 335
+    },
+    {
+      "height": 492.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 355,
+      "maxY": 1031,
+      "midX": 187.5,
+      "midY": 784.75,
+      "minX": 20,
+      "minY": 538.5,
+      "usable": true,
+      "width": 335
+    }
+  ],
+  "attempt": 3,
+  "end": [16, 182],
+  "navigation": "absent",
+  "scrollBars": [
+    {
+      "height": 564,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 302,
+      "minX": 342,
+      "minY": 20,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [16, 432],
+  "target": "Nest QA PDF posted 20261005, Expense · 2026-10-05, Receipt attached, CHF 0.02",
+  "targetElementType": "XCUIElementType(rawValue: 9)",
+  "targetFrame": {
+    "height": 492.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 355,
+    "maxY": 1031,
+    "midX": 187.5,
+    "midY": 784.75,
+    "minX": 20,
+    "minY": 538.5,
+    "usable": true,
+    "width": 335
+  },
+  "viewport": {
+    "height": 544,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 312,
+    "minX": 0,
+    "minY": 40,
+    "usable": true,
+    "width": 375
+  }
+}

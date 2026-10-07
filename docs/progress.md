@@ -79,6 +79,20 @@ hosted read-only metadata, not live CalDAV or native EventKit evidence.
 
 ## Current native verification
 
+Payment, refund and correction forms now protect unsaved fields/reviewed intent with
+the same Keep editing / explicit Discard interaction. Untouched correction compares
+with its loaded entry; refund recognizes its initial “Refund” text. All12 both-member
+normal/light and maximal/dark native methods pass, with zero failures/skips. Back and
+alert controls meet44pt/full-visibility checks; untouched forms close directly.
+Both original scopes,64 empty journals,settings/local privacy/first-use semantics
+restore. Eight protected fingerprints and +1/−1 centime balances remain exact.
+Six confirmation screenshots are directly reviewed. Source `e5bea30b` builds/signs
+all1,139 frozen inputs and passes routine37557131439/native37557131449:506 Foundation /
+41 skips,473 signed-app /41 skips,four Swift Testing cases,zero failures.
+No record/confirm action,release,merge or production operation occurs. Replacement
+editing,date/amount/payer variants,VoiceOver and phone/full M7 acceptance remain open.
+[Payment/adjustment Back evidence](../evidence/2026-10-07/swiftui-money-draft-back/README.md).
+
 Expense Back now protects unsent fields and reviewed drafts using Keep editing /
 Discard edits. Blank/invalid raw fields and date changes count as edits. Attached
 receipts and saved financial requests retain their separate recovery paths.

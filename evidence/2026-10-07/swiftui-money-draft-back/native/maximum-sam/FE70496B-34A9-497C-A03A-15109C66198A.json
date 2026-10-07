@@ -1,0 +1,32 @@
+{
+  "enabled": true,
+  "exists": true,
+  "frame": {
+    "height": 187.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 341,
+    "maxY": 441.5,
+    "midX": 187.5,
+    "midY": 347.75,
+    "minX": 34,
+    "minY": 254,
+    "usable": true,
+    "width": 307
+  },
+  "hittable": true,
+  "label": "Discard edits",
+  "observedViewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}

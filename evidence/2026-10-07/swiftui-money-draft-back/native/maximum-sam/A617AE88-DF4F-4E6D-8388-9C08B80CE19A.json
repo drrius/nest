@@ -1,0 +1,324 @@
+{
+  "actions": [
+    {
+      "label": "Today",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 113.25,
+        "maxY": 642,
+        "midX": 69.125,
+        "midY": 615,
+        "minX": 25,
+        "minY": 588,
+        "usable": true,
+        "width": 88.25
+      }
+    },
+    {
+      "label": "Meals",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 192.16666666666669,
+        "maxY": 642,
+        "midX": 148.04166666666669,
+        "midY": 615,
+        "minX": 103.91666666666667,
+        "minY": 588,
+        "usable": true,
+        "width": 88.250000000000014
+      }
+    },
+    {
+      "label": "Calendar",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 271.08333333333337,
+        "maxY": 642,
+        "midX": 226.95833333333337,
+        "midY": 615,
+        "minX": 182.83333333333334,
+        "minY": 588,
+        "usable": true,
+        "width": 88.250000000000028
+      }
+    },
+    {
+      "label": "Money",
+      "rawFrame": {
+        "height": 54,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 350,
+        "maxY": 642,
+        "midX": 305.875,
+        "midY": 615,
+        "minX": 261.75,
+        "minY": 588,
+        "usable": true,
+        "width": 88.25
+      }
+    },
+    {
+      "label": "Private conversations",
+      "rawFrame": {
+        "height": 66.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 281,
+        "maxY": -745.5,
+        "midX": 237.25,
+        "midY": -778.75,
+        "minX": 193.5,
+        "minY": -812,
+        "usable": true,
+        "width": 87.5
+      }
+    },
+    {
+      "label": "Profile and preferences",
+      "rawFrame": {
+        "height": 64,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": -746.5,
+        "midX": 322,
+        "midY": -778.5,
+        "minX": 289,
+        "minY": -810.5,
+        "usable": true,
+        "width": 66
+      }
+    },
+    {
+      "label": "Add expense",
+      "rawFrame": {
+        "height": 58.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 42.5,
+        "midX": 187.5,
+        "midY": 13.25,
+        "minX": 20,
+        "minY": -16,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Record a payment",
+      "rawFrame": {
+        "height": 58.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 113,
+        "midX": 187.5,
+        "midY": 83.75,
+        "minX": 20,
+        "minY": 54.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Nest QA PDF posted 20261005, Expense · 2026-10-05, Receipt attached, CHF 0.02",
+      "rawFrame": {
+        "height": 492.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 791,
+        "midX": 187.5,
+        "midY": 544.75,
+        "minX": 20,
+        "minY": 298.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Fictional private bill QA balance restoration, Settlement · 2026-10-05, CHF 0.01",
+      "rawFrame": {
+        "height": 445.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 1260.5,
+        "midX": 187.5,
+        "midY": 1037.75,
+        "minX": 20,
+        "minY": 815,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Fictional private bill approval 3e7cd25c, Expense · 2026-10-05, CHF 0.03",
+      "rawFrame": {
+        "height": 445.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 1730,
+        "midX": 187.5,
+        "midY": 1507.25,
+        "minX": 20,
+        "minY": 1284.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Fictional native variable bill 894747fa, Expense · 2026-10-04, CHF 0.03",
+      "rawFrame": {
+        "height": 445.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 2199.5,
+        "midX": 187.5,
+        "midY": 1976.75,
+        "minX": 20,
+        "minY": 1754,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Reversal: Nest money recovery recorded-cancel c3e6461f, Reversal · 2026-10-04, CHF 0.03",
+      "rawFrame": {
+        "height": 569.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 2793,
+        "midX": 187.5,
+        "midY": 2508.25,
+        "minX": 20,
+        "minY": 2223.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "View full history",
+      "rawFrame": {
+        "height": 125.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 2942.5,
+        "midX": 187.5,
+        "midY": 2879.75,
+        "minX": 20,
+        "minY": 2817,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Refresh history",
+      "rawFrame": {
+        "height": 125.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 3092,
+        "midX": 187.5,
+        "midY": 3029.25,
+        "minX": 20,
+        "minY": 2966.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Bills to confirm",
+      "rawFrame": {
+        "height": 63.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 3329,
+        "midX": 187.5,
+        "midY": 3297.25,
+        "minX": 20,
+        "minY": 3265.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Your financial approvals",
+      "rawFrame": {
+        "height": 125.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 3478.5,
+        "midX": 187.5,
+        "midY": 3415.75,
+        "minX": 20,
+        "minY": 3353,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Recurring expenses",
+      "rawFrame": {
+        "height": 125.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 3628,
+        "midX": 187.5,
+        "midY": 3565.25,
+        "minX": 20,
+        "minY": 3502.5,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Saved changes",
+      "rawFrame": {
+        "height": 133.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 3785.5,
+        "midX": 187.5,
+        "midY": 3718.75,
+        "minX": 20,
+        "minY": 3652,
+        "usable": true,
+        "width": 335
+      }
+    },
+    {
+      "label": "Refresh balance",
+      "rawFrame": {
+        "height": 125.5,
+        "isInfinite": false,
+        "isNull": false,
+        "maxX": 355,
+        "maxY": 3935,
+        "midX": 187.5,
+        "midY": 3872.25,
+        "minX": 20,
+        "minY": 3809.5,
+        "usable": true,
+        "width": 335
+      }
+    }
+  ]
+}

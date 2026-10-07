@@ -1,0 +1,34 @@
+[
+  {
+    "path": "apps/ios/Nest/QuietDiscardBack.swift",
+    "sha256": "674f58c537eb4f499643b6984b51b29565c323f6479489aa43937cf808468e15"
+  },
+  {
+    "path": "apps/ios/Nest/Core/CorrectionDraft.swift",
+    "sha256": "9c59fdb0e276d1259d9a76109718cd0f6bcc5e47f96012571b52ab673ee95de7"
+  },
+  {
+    "path": "apps/ios/Nest/Core/SettlementCommand.swift",
+    "sha256": "4ff6bfe643aa9041093423ff2e4261bc040d2e04659054a72e6b8cead586c6ed"
+  },
+  {
+    "path": "apps/ios/Nest/Money/CorrectionScreen.swift",
+    "sha256": "7af2f1dfaef6a003a5f63f62f39307a7e9d5919603e48b1b68733a77cf54b46f"
+  },
+  {
+    "path": "apps/ios/Nest/Money/RefundScreen.swift",
+    "sha256": "4c6dceb5f3a00fb3bdb8a765d7d07fcb3f8839c9497c6fd932eee5fe3a1cf306"
+  },
+  {
+    "path": "apps/ios/Nest/Money/SettlementScreen.swift",
+    "sha256": "7d95893d91a472672ec8391603a35b6dde272dfd75bc789ac593a07cafb99f22"
+  },
+  {
+    "path": "apps/ios/Nest/Money/MoneyHistorySection.swift",
+    "sha256": "fd43db161bbb783e20e047a2194877e81cb16701adfe09c8757830581326b872"
+  },
+  {
+    "path": "apps/ios/UITests/NativeMoneyDraftBackTests.swift",
+    "sha256": "a1a8c0e34332d8039219c937e53b913a5b64b8f11f7a0f1b18ab48978086a2a6"
+  }
+]

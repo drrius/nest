@@ -1,0 +1,38 @@
+{
+  "source": "e5bea30bfb636ea57776135ea445b4572c2f5a72",
+  "results": [
+    {
+      "phase": "maximum-alex",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "restorationPassed": true
+    },
+    {
+      "phase": "maximum-sam",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "restorationPassed": true
+    },
+    {
+      "phase": "normal-alex",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "restorationPassed": true
+    },
+    {
+      "phase": "normal-sam",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "restorationPassed": true
+    }
+  ],
+  "totalPassed": 12,
+  "totalFailed": 0,
+  "totalSkipped": 0,
+  "financialRecordOrConfirmSelections": 0,
+  "wirePOSTsMeasured": false
+}

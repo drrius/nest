@@ -1,0 +1,171 @@
+Attributes: Application, 0x11fe1ac30, pid: 18460, label: 'Nest'
+Element subtree:
+ →Application, 0x11fe1ac30, pid: 18460, label: 'Nest'
+    Window (Main), 0x11fe16110, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11fe12560, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe18610, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11fe17db0, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11fe115f0, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11fe24fa0, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x103ee8c70, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x103edfb50, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11fe26a20, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11fe26b40, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11fe26c60, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11fe26d80, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11fe26ea0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11fe26fc0, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Correct entry'
+                              Other, 0x11fe270e0, {{20.0, 24.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                                Other, 0x11fe27200, {{20.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x11fe27320, {{20.0, 20.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                              StaticText, 0x11fe27440, {{134.0, 31.5}, {107.0, 21.0}}, label: 'Correct entry'
+                            Other, 0x11fe27560, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fe27680, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11fe277a0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11fe278c0, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11fe279e0, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11fe27b00, {{-16.0, -1260.0}, {407.0, 1560.0}}
+                                      Other, 0x11fe27c20, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11fe27d40, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11fe27e60, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11fe27f80, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Cell, 0x11fe280a0, {{16.0, 74.0}, {343.0, 40.5}}
+                                        Other, 0x11fe281c0, {{16.0, 74.0}, {343.0, 40.5}}
+                                        Other, 0x11fe282e0, {{16.0, 74.0}, {343.0, 40.5}}
+                                          Other, 0x11fe28400, {{16.0, 74.0}, {343.0, 40.5}}
+                                            Other, 0x11fe28520, {{16.0, 74.0}, {343.0, 40.5}}
+                                              StaticText, 0x11fe28640, {{16.0, 74.0}, {343.0, 40.5}}, label: 'Review correction'
+                                      Cell, 0x11fe28760, {{16.0, 114.5}, {343.0, 52.0}}
+                                        Other, 0x11fe28880, {{16.0, 114.5}, {343.0, 52.0}}
+                                          Other, 0x11fe289a0, {{16.0, 114.5}, {343.0, 52.0}}
+                                        Other, 0x11fe28ac0, {{16.0, 114.5}, {343.0, 52.0}}
+                                          Other, 0x11fe28be0, {{16.0, 114.5}, {343.0, 52.0}}
+                                            Other, 0x11fe28d00, {{16.0, 114.5}, {343.0, 52.0}}
+                                              Button, 0x11fe28e20, {{16.0, 114.5}, {343.0, 52.0}}, label: 'View original entry'
+                                                StaticText, 0x11fe28f40, {{32.0, 130.2}, {140.5, 20.5}}, label: 'View original entry'
+                                                Image, 0x11fe29060, {{333.5, 134.5}, {7.0, 12.0}}, identifier: 'chevron.forward'
+                                      Cell, 0x11fe29180, {{16.0, 166.5}, {343.0, 52.0}}
+                                        Other, 0x11fe292a0, {{16.0, 166.5}, {343.0, 52.0}}
+                                          Other, 0x11fe293c0, {{16.0, 166.5}, {343.0, 52.0}}
+                                        Other, 0x11fe294e0, {{16.0, 166.5}, {343.0, 52.0}}
+                                          Other, 0x11fe29600, {{16.0, 166.5}, {343.0, 52.0}}
+                                            Other, 0x11fe29720, {{16.0, 166.5}, {343.0, 52.0}}
+                                              StaticText, 0x11fe29840, {{16.0, 166.5}, {343.0, 52.0}}, label: 'Undo the effect of this entry.'
+                                      Other, 0x11fe29960, {{32.0, 165.5}, {311.0, 1.0}}
+                                      Cell, 0x11fe29a80, {{16.0, 218.5}, {343.0, 64.0}}
+                                        Other, 0x11fe29ba0, {{16.0, 218.5}, {343.0, 64.0}}
+                                          Other, 0x11fe29cc0, {{16.0, 218.5}, {343.0, 64.0}}
+                                        Other, 0x11fe29de0, {{16.0, 218.5}, {343.0, 64.0}}
+                                          Other, 0x11fe29f00, {{16.0, 218.5}, {343.0, 64.0}}
+                                            Other, 0x11fe2a020, {{16.0, 218.5}, {343.0, 64.0}}
+                                              StaticText, 0x11fe2a140, {{16.0, 218.5}, {343.0, 64.0}}, label: 'Financial history is preserved. Nest records the correction without moving money.'
+                                      Other, 0x11fe2a260, {{32.0, 217.5}, {311.0, 1.0}}
+                                      Other, 0x11fe2a380, {{-16.0, 300.0}, {407.0, 1527.5}}
+                                      Cell, 0x11fe2a4a0, {{16.0, 317.5}, {343.0, 52.0}}
+                                        Other, 0x11fe2a5c0, {{16.0, 317.5}, {343.0, 52.0}}
+                                          Other, 0x11fe2a6e0, {{16.0, 317.5}, {343.0, 52.0}}
+                                        Other, 0x11fe2a800, {{16.0, 317.5}, {343.0, 52.0}}
+                                          Other, 0x11fe2a920, {{16.0, 317.5}, {343.0, 52.0}}
+                                            Other, 0x11fe2aa40, {{16.0, 317.5}, {343.0, 52.0}}
+                                              Button, 0x11fe2ab60, {{16.0, 317.5}, {343.0, 52.0}}, label: 'Confirm correction'
+                                      Cell, 0x11fe2ac80, {{16.0, 369.5}, {343.0, 52.0}}
+                                        Other, 0x11fe2ada0, {{16.0, 369.5}, {343.0, 52.0}}
+                                          Other, 0x11fe2aec0, {{16.0, 369.5}, {343.0, 52.0}}
+                                        Other, 0x11fe2afe0, {{16.0, 369.5}, {343.0, 52.0}}
+                                          Other, 0x11fe2b100, {{16.0, 369.5}, {343.0, 52.0}}
+                                            Other, 0x11fe2b220, {{16.0, 369.5}, {343.0, 52.0}}
+                                              Button, 0x11fe2b340, {{16.0, 369.5}, {343.0, 52.0}}, label: 'Edit'
+                                      Other, 0x11fe2b460, {{32.0, 368.5}, {311.0, 1.0}}
+                                      Cell, 0x11fe2b580, {{16.0, 421.5}, {343.0, 52.0}}
+                                        Other, 0x11fe2b6a0, {{16.0, 421.5}, {343.0, 52.0}}
+                                          Other, 0x11fe2b7c0, {{16.0, 421.5}, {343.0, 52.0}}
+                                        Other, 0x11fe2b8e0, {{16.0, 421.5}, {343.0, 52.0}}
+                                          Other, 0x11fe2ba00, {{16.0, 421.5}, {343.0, 52.0}}
+                                            Other, 0x11fe2bb20, {{16.0, 421.5}, {343.0, 52.0}}
+                                              Button, 0x11fe2bc40, {{16.0, 421.5}, {343.0, 52.0}}, label: 'Reload entry and edit'
+                                      Other, 0x11fe2bd60, {{32.0, 420.5}, {311.0, 1.0}}
+                                      Other, 0x11fe2be80, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11fe2bfa0, {{369.0, 219.5}, {3.0, 361.5}}
+                                      Other, 0x11fe2c0c0, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                                        Other, 0x11fe2c1e0, {{369.0, 219.5}, {3.0, 361.5}}
+                            Other, 0x11fe2c300, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fe2c420, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11fe2c540, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11fe2c660, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11fe2c780, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11fe2c8a0, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11fe2c9c0, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11fe2cae0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11fe2cc00, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x11fe2cd20, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11fe2ce40, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11fe2cf60, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11fe2d080, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11fe2d1a0, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11fe2d2c0, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x11fe2d3e0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11fe2d500, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x11fe2d620, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11fe2d740, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11fe2d860, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11fe2d980, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11fe2daa0, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11fe2dbc0, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11fe2dce0, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11fe2de00, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x11fe2df20, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11fe2e040, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11fe2e160, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11fe2e280, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11fe2e3a0, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11fe2e4c0, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11fe2e5e0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11fe2e700, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x11fe2e820, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe2e940, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe2ea60, {{0.0, 0.0}, {375.0, 667.0}}
+        Alert, 0x11fe2eb80, {{27.5, 280.5}, {320.0, 126.0}}, label: 'Discard edits?'
+          Other, 0x11fe2eca0, {{27.5, 280.5}, {320.0, 126.0}}
+            Other, 0x11fe2edc0, {{27.5, 280.5}, {320.0, 126.0}}
+              Other, 0x11fe2eee0, {{27.5, 280.5}, {320.0, 126.0}}
+              Other, 0x11fe2f000, {{27.5, 280.5}, {320.0, 126.0}}
+                ScrollView, 0x11fe2f120, {{27.5, 280.5}, {320.0, 46.0}}
+                  Other, 0x11fe2f240, {{27.5, 280.5}, {320.0, 46.0}}
+                    StaticText, 0x11fe2f360, {{57.5, 302.5}, {260.0, 20.5}}, label: 'Discard edits?'
+                  Other, 0x11fe2f480, {{27.5, 324.5}, {320.0, 2.0}}
+                  Other, 0x11fe2f5a0, {{314.5, 280.5}, {30.0, 46.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                    Other, 0x11fe2f6c0, {{341.5, 241.5}, {3.0, 36.0}}
+                  Other, 0x11fe2f7e0, {{27.5, 300.5}, {320.0, 23.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe2f900, {{-11.5, 320.5}, {36.0, 3.0}}
+                  Other, 0x11fe2fa20, {{314.5, 280.5}, {30.0, 46.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                    Other, 0x11fe2fb40, {{341.5, 241.5}, {3.0, 36.0}}
+                  Other, 0x11fe2fc60, {{27.5, 300.5}, {320.0, 23.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe2fd80, {{-11.5, 320.5}, {36.0, 3.0}}
+                ScrollView, 0x11fe2fea0, {{27.5, 326.5}, {320.0, 80.0}}
+                  Other, 0x11fe2ffc0, {{27.5, 326.5}, {320.0, 80.0}}
+                    Other, 0x11fe300e0, {{43.5, 342.5}, {288.0, 48.0}}
+                      Button, 0x11fe30200, {{43.5, 342.5}, {140.0, 48.0}}, label: 'Keep editing'
+                      Button, 0x11fe30320, {{191.5, 342.5}, {140.0, 48.0}}, label: 'Discard edits'
+                  Other, 0x11fe30440, {{314.5, 326.5}, {30.0, 80.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x11fe30560, {{341.5, 416.5}, {3.0, 7.0}}
+                  Other, 0x11fe30680, {{27.5, 373.5}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe307a0, {{117.5, 400.5}, {7.0, 3.0}}
+                  Other, 0x11fe308c0, {{314.5, 326.5}, {30.0, 80.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x11fe309e0, {{341.5, 416.5}, {3.0, 7.0}}
+                  Other, 0x11fe30b00, {{27.5, 373.5}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe30c20, {{117.5, 400.5}, {7.0, 3.0}}
+          Other, 0x11fe30d40, {{27.5, 280.5}, {320.0, 126.0}}
+            Other, 0x11fe30e60, {{27.5, 280.5}, {320.0, 126.0}}
+              Other, 0x11fe30f80, {{27.5, 280.5}, {320.0, 126.0}}
+                Other, 0x11fe310a0, {{27.5, 280.5}, {320.0, 126.0}}
+                  Other, 0x11fe311c0, {{27.5, 280.5}, {320.0, 126.0}}
+                    Other, 0x11fe312e0, {{27.5, 280.5}, {375.0, 667.0}}
+                Other, 0x11fe31400, {{27.5, 280.5}, {320.0, 126.0}}
+                  Other, 0x11fe31520, {{27.5, 280.5}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x11fe1ac30, pid: 18460, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11fd45cd0, pid: 18460, label: 'Nest'
+  }

@@ -1,0 +1,218 @@
+Attributes: Application, 0x11fe2fe00, pid: 18540, label: 'Nest'
+Element subtree:
+ →Application, 0x11fe2fe00, pid: 18540, label: 'Nest'
+    Window (Main), 0x11fe1a920, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11fe35bf0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe31c90, {{0.0, 0.0}, {375.0, 667.0}}
+          Other, 0x11fe2f920, {{0.0, 0.0}, {375.0, 667.0}}
+            Other, 0x11fe33610, {{0.0, 0.0}, {375.0, 667.0}}
+              Other, 0x11fe19840, {{0.0, 20.0}, {375.0, 647.0}}
+              Other, 0x11fe1a2c0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11fe22370, {{0.0, 0.0}, {375.0, 667.0}}
+                  Other, 0x11fe32090, {{0.0, 0.0}, {375.0, 667.0}}
+                    Other, 0x11fe31650, {{0.0, 0.0}, {375.0, 667.0}}
+                      Other, 0x11fe36ec0, {{0.0, 0.0}, {375.0, 667.0}}
+                        Other, 0x11fe3a3d0, {{0.0, 0.0}, {375.0, 667.0}}
+                          Other, 0x11fe3a4f0, {{0.0, 0.0}, {375.0, 667.0}}
+                            NavigationBar, 0x11fe3a610, {{0.0, 20.0}, {375.0, 54.0}}, identifier: 'Record payment'
+                              Other, 0x11fe3a730, {{20.0, 24.0}, {44.0, 36.0}}, identifier: 'chevron.left', label: 'Back'
+                                Other, 0x11fe3a850, {{20.0, 24.0}, {44.0, 36.0}}
+                                  Button, 0x11fe3a970, {{20.0, 20.0}, {44.0, 44.0}}, identifier: 'chevron.left', label: 'Back'
+                              StaticText, 0x11fe3aa90, {{122.0, 31.5}, {130.5, 21.0}}, label: 'Record payment'
+                            Other, 0x11fe3abb0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fe3acd0, {{0.0, 0.0}, {375.0, 667.0}}
+                                Other, 0x11fe3adf0, {{0.0, 0.0}, {375.0, 667.0}}
+                                  Other, 0x11fe3af10, {{0.0, 0.0}, {375.0, 667.0}}
+                                    CollectionView, 0x11fe3b030, {{0.0, 0.0}, {375.0, 667.0}}
+                                      Other, 0x11fe3b150, {{-16.0, -1425.0}, {407.0, 1481.0}}
+                                      Cell, 0x11fe3b270, {{16.0, -56.0}, {343.0, 94.5}}
+                                        Other, 0x11fe3b390, {{16.0, -56.0}, {343.0, 94.5}}
+                                          Other, 0x11fe3b4b0, {{16.0, -56.0}, {343.0, 94.5}}
+                                        Other, 0x11fe3b5d0, {{16.0, -56.0}, {343.0, 94.5}}
+                                          Other, 0x11fe3b6f0, {{16.0, -56.0}, {343.0, 94.5}}
+                                            Other, 0x11fe3b810, {{16.0, -56.0}, {343.0, 94.5}}
+                                              StaticText, 0x11fe3b930, {{16.0, -56.0}, {343.0, 94.5}}, label: 'Record a payment you’ve already made outside Nest. Nest does not transfer money.'
+                                      Other, 0x11fe3ba50, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11fe3bb70, {{0.0, 0.0}, {375.0, 128.8}}
+                                        Other, 0x11fe3bc90, {{0.0, 519.2}, {375.0, 147.8}}
+                                      Other, 0x11fe3bdb0, {{0.0, 0.0}, {375.0, 667.0}}
+                                        Other, 0x11fe3bed0, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Image, 0x11fe3bff0, {{-120.0, -124.0}, {615.0, 248.0}}, identifier: 'AdditionalDimmingOverlay'
+                                          Other, 0x11fe3c110, {{0.0, 0.0}, {375.0, 64.0}}
+                                          Other, 0x11fe3c230, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fe3c350, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11fe3c470, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fe3c590, {{0.0, 0.0}, {375.0, 128.8}}
+                                          Other, 0x11fe3c6b0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fe3c7d0, {{0.0, 0.0}, {375.0, 128.8}}
+                                            Other, 0x11fe3c8f0, {{0.0, 0.0}, {375.0, 128.8}}
+                                      Other, 0x11fe3ca10, {{-16.0, 56.0}, {407.0, 218.5}}
+                                      Cell, 0x11fe3cb30, {{16.0, 56.0}, {343.0, 40.5}}
+                                        Other, 0x11fe3cc50, {{16.0, 56.0}, {343.0, 40.5}}
+                                        Other, 0x11fe3cd70, {{16.0, 56.0}, {343.0, 40.5}}
+                                          Other, 0x11fe3ce90, {{16.0, 56.0}, {343.0, 40.5}}
+                                            Other, 0x11fe3cfb0, {{16.0, 56.0}, {343.0, 40.5}}
+                                              StaticText, 0x11fe3d0d0, {{16.0, 56.0}, {343.0, 40.5}}, label: 'Current balance'
+                                      Cell, 0x11fe3d1f0, {{16.0, 96.5}, {343.0, 52.0}}
+                                        Other, 0x11fe3d310, {{16.0, 96.5}, {343.0, 52.0}}
+                                          Other, 0x11fe3d430, {{16.0, 96.5}, {343.0, 52.0}}
+                                        Other, 0x11fe3d550, {{16.0, 96.5}, {343.0, 52.0}}
+                                          Other, 0x11fe3d670, {{16.0, 96.5}, {343.0, 52.0}}
+                                            Other, 0x11fe3d790, {{16.0, 96.5}, {343.0, 52.0}}
+                                              StaticText, 0x11fe3d8b0, {{16.0, 96.5}, {343.0, 52.0}}, label: 'Test Sam owes Test Alex'
+                                      Cell, 0x11fe3d9d0, {{16.0, 148.5}, {343.0, 56.5}}
+                                        Other, 0x11fe3daf0, {{16.0, 148.5}, {343.0, 56.5}}
+                                          Other, 0x11fe3dc10, {{16.0, 148.5}, {343.0, 56.5}}
+                                        Other, 0x11fe3dd30, {{16.0, 148.5}, {343.0, 56.5}}
+                                          Other, 0x11fe3de50, {{16.0, 148.5}, {343.0, 56.5}}
+                                            Other, 0x11fe3df70, {{16.0, 148.5}, {343.0, 56.5}}
+                                              StaticText, 0x11fe3e090, {{16.0, 148.5}, {343.0, 56.5}}, label: 'CHF 0.01'
+                                      Other, 0x11fe3e1b0, {{32.0, 147.5}, {311.0, 1.0}}
+                                      Cell, 0x11fe3e2d0, {{16.0, 205.0}, {343.0, 52.0}}
+                                        Other, 0x11fe3e3f0, {{16.0, 205.0}, {343.0, 52.0}}
+                                          Other, 0x11fe3e510, {{16.0, 205.0}, {343.0, 52.0}}
+                                        Other, 0x11fe3e630, {{16.0, 205.0}, {343.0, 52.0}}
+                                          Other, 0x11fe3e750, {{16.0, 205.0}, {343.0, 52.0}}
+                                            Other, 0x11fe3e870, {{16.0, 205.0}, {343.0, 52.0}}
+                                              Button, 0x11fe3e990, {{16.0, 205.0}, {343.0, 52.0}}, label: 'Reload balance'
+                                      Other, 0x11fe3eab0, {{32.0, 204.0}, {311.0, 1.0}}
+                                      Other, 0x11fe3ebd0, {{-16.0, 274.5}, {407.0, 1643.5}}
+                                      Cell, 0x11fe3ecf0, {{16.0, 274.5}, {343.0, 40.5}}
+                                        Other, 0x11fe3ee10, {{16.0, 274.5}, {343.0, 40.5}}
+                                        Other, 0x11fe3ef30, {{16.0, 274.5}, {343.0, 40.5}}
+                                          Other, 0x11fe3f050, {{16.0, 274.5}, {343.0, 40.5}}
+                                            Other, 0x11fe3f170, {{16.0, 274.5}, {343.0, 40.5}}
+                                              StaticText, 0x11fe3f290, {{16.0, 274.5}, {343.0, 40.5}}, label: 'Payment already made'
+                                      Cell, 0x11fe3f3b0, {{16.0, 315.0}, {343.0, 52.0}}
+                                        Other, 0x11fe3f4d0, {{16.0, 315.0}, {343.0, 52.0}}
+                                          Other, 0x11fe3f5f0, {{16.0, 315.0}, {343.0, 52.0}}
+                                        Other, 0x11fe3f710, {{16.0, 315.0}, {343.0, 52.0}}
+                                          Other, 0x11fe3f830, {{16.0, 315.0}, {343.0, 52.0}}
+                                            Other, 0x11fe3f950, {{16.0, 315.0}, {343.0, 52.0}}
+                                              StaticText, 0x11fe3fa70, {{32.0, 330.8}, {60.0, 20.5}}, label: 'Amount'
+                                              Button, 0x11fe3fb90, {{32.0, 324.0}, {311.0, 34.5}}, label: 'Amount, Full balance'
+                                                StaticText, 0x11fe3fcb0, {{236.5, 331.0}, {90.5, 20.5}}, label: 'Full balance'
+                                      Cell, 0x11fe3fdd0, {{16.0, 367.0}, {343.0, 64.5}}
+                                        Other, 0x11fe3fef0, {{16.0, 367.0}, {343.0, 64.5}}
+                                          Other, 0x11fe40010, {{16.0, 367.0}, {343.0, 64.5}}
+                                        Other, 0x11fe40130, {{16.0, 367.0}, {343.0, 64.5}}
+                                          Other, 0x11fe40250, {{16.0, 367.0}, {343.0, 64.5}}
+                                            Other, 0x11fe40370, {{16.0, 367.0}, {343.0, 64.5}}
+                                              StaticText, 0x11fe40490, {{32.0, 389.0}, {105.0, 20.5}}, label: 'Payment date'
+                                              DatePicker, 0x11fe405b0, {{230.0, 382.0}, {113.0, 34.5}}
+                                                Button, 0x11fe406d0, {{230.0, 382.0}, {113.0, 34.5}}, label: 'Date Picker', value: Oct 7, 2026
+                                      Other, 0x11fe407f0, {{32.0, 366.0}, {311.0, 1.0}}
+                                      Cell, 0x11fe40910, {{16.0, 431.5}, {343.0, 80.5}}
+                                        Other, 0x11fe40a30, {{16.0, 431.5}, {343.0, 80.5}}
+                                          Other, 0x11fe40b50, {{16.0, 431.5}, {343.0, 80.5}}
+                                        Other, 0x11fe40c70, {{16.0, 431.5}, {343.0, 80.5}}
+                                          Other, 0x11fe40d90, {{16.0, 431.5}, {343.0, 80.5}}
+                                            Other, 0x11fe40eb0, {{16.0, 431.5}, {343.0, 80.5}}
+                                              StaticText, 0x11fe40fd0, {{32.0, 450.5}, {85.5, 14.5}}, label: 'Note (optional)'
+                                              TextField, 0x11fe410f0, {{32.0, 471.0}, {311.0, 22.0}}, label: 'Note (optional)', value: Unsent note QA
+                                                Other, 0x11fe41210, {{32.0, 471.0}, {0.0, 0.0}}, identifier: '_UITextSelectionRangeAdjustmentContainerView'
+                                                  Other, 0x11fe41330, {{32.0, 471.0}, {0.0, 0.0}}, identifier: 'com.apple.text.grabber.leading'
+                                                    Other, 0x11fe41450, {{24.8, 457.5}, {16.5, 16.5}}
+                                                    Other, 0x11fe41570, {{32.0, 471.0}, {2.0, 0.0}}
+                                                  Other, 0x11fe41690, {{32.0, 471.0}, {0.0, 0.0}}, identifier: 'com.apple.text.grabber.leading'
+                                                    Other, 0x11fe417b0, {{24.8, 457.5}, {16.5, 16.5}}
+                                                    Other, 0x11fe418d0, {{32.0, 471.0}, {2.0, 0.0}}
+                                                Other, 0x11fe419f0, {{32.0, 479.0}, {311.0, 11.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                                                  Other, 0x11fe41b10, {{35.0, 487.0}, {305.0, 3.0}}
+                                      Other, 0x11fe41c30, {{32.0, 430.5}, {311.0, 1.0}}
+                                      Cell, 0x11fe41d50, {{16.0, 512.0}, {343.0, 52.0}}
+                                        Other, 0x11fe41e70, {{16.0, 512.0}, {343.0, 52.0}}
+                                          Other, 0x11fe41f90, {{16.0, 512.0}, {343.0, 52.0}}
+                                        Other, 0x11fe420b0, {{16.0, 512.0}, {343.0, 52.0}}
+                                          Other, 0x11fe421d0, {{16.0, 512.0}, {343.0, 52.0}}
+                                            Other, 0x11fe422f0, {{16.0, 512.0}, {343.0, 52.0}}
+                                              Button, 0x11fe42410, {{16.0, 512.0}, {343.0, 52.0}}, label: 'Review payment'
+                                      Other, 0x11fe42530, {{32.0, 511.0}, {311.0, 1.0}}
+                                      Other, 0x11fe42650, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 100%
+                                        Other, 0x11fe42770, {{369.0, 177.0}, {3.0, 404.0}}
+                                      Other, 0x11fe42890, {{342.0, 74.0}, {30.0, 510.0}}, label: 'Vertical scroll bar, 2 pages', value: 100%
+                                        Other, 0x11fe429b0, {{369.0, 177.0}, {3.0, 404.0}}
+                            Other, 0x11fe42ad0, {{0.0, 0.0}, {375.0, 667.0}}
+                              Other, 0x11fe42bf0, {{0.0, 0.0}, {375.0, 667.0}}
+                Other, 0x11fe42d10, {{0.0, 584.0}, {375.0, 83.0}}
+                  Other, 0x11fe42e30, {{0.0, 0.0}, {375.0, 667.0}}
+                    TabBar, 0x11fe42f50, {{0.0, 584.0}, {375.0, 83.0}}, label: 'Tab Bar'
+                      Other, 0x11fe43070, {{21.0, 584.0}, {333.0, 62.0}}
+                        Other, 0x11fe43190, {{21.0, 584.0}, {88.2, 54.0}}
+                        Other, 0x11fe432b0, {{21.0, 584.0}, {333.0, 62.0}}
+                          Button, 0x11fe433d0, {{25.0, 588.0}, {88.2, 54.0}}, identifier: 'house', label: 'Today'
+                            Image, 0x11fe434f0, {{52.0, 594.0}, {33.5, 28.0}}, identifier: 'house.fill', label: 'home'
+                          Button, 0x11fe43610, {{103.9, 588.0}, {88.3, 54.0}}, identifier: 'fork.knife', label: 'Meals'
+                            Image, 0x11fe43730, {{136.9, 591.5}, {22.0, 31.0}}, identifier: 'fork.knife', label: 'Food'
+                          Button, 0x11fe43850, {{182.8, 588.0}, {88.3, 54.0}}, identifier: 'calendar', label: 'Calendar'
+                            Image, 0x11fe43970, {{212.8, 595.5}, {29.0, 25.0}}, identifier: 'calendar', label: 'calendar'
+                          Button, 0x11fe43a90, {{261.8, 588.0}, {88.2, 54.0}}, identifier: 'creditcard', label: 'Money', Selected
+                            Image, 0x11fe43bb0, {{289.8, 596.5}, {33.0, 23.5}}, identifier: 'creditcard.fill', label: 'card'
+                        Other, 0x11fe43cd0, {{261.8, 588.0}, {88.2, 54.0}}
+                          Other, 0x11fe43df0, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11fe43f10, {{261.8, 588.0}, {88.0, 54.0}}
+                            Other, 0x11fe44030, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11fe44150, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11fe44270, {{261.8, 588.0}, {88.0, 54.0}}
+                                  Other, 0x11fe44390, {{261.8, 588.0}, {88.0, 54.0}}
+                                Other, 0x11fe444b0, {{261.8, 588.0}, {88.0, 54.0}}
+                              Other, 0x11fe445d0, {{261.8, 588.0}, {88.0, 54.0}}
+                  Other, 0x11fe446f0, {{0.0, 584.0}, {375.0, 83.0}}
+                    Other, 0x11fe44810, {{0.0, 584.0}, {375.0, 83.0}}
+                      Other, 0x11fe44930, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11fe44a50, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11fe44b70, {{0.0, 584.0}, {375.0, 83.0}}
+                            Other, 0x11fe44c90, {{0.0, 584.0}, {375.0, 83.0}}
+                        Other, 0x11fe44db0, {{0.0, 584.0}, {375.0, 83.0}}
+                          Other, 0x11fe44ed0, {{0.0, 584.0}, {375.0, 83.0}}
+      Other, 0x11fe44ff0, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe45110, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe45230, {{0.0, 0.0}, {375.0, 667.0}}
+        Alert, 0x11fe45350, {{27.5, 280.5}, {320.0, 126.0}}, label: 'Discard edits?'
+          Other, 0x11fe45470, {{27.5, 280.5}, {320.0, 126.0}}
+            Other, 0x11fe45590, {{27.5, 280.5}, {320.0, 126.0}}
+              Other, 0x11fe456b0, {{27.5, 280.5}, {320.0, 126.0}}
+              Other, 0x11fe457d0, {{27.5, 280.5}, {320.0, 126.0}}
+                ScrollView, 0x11fe458f0, {{27.5, 280.5}, {320.0, 46.0}}
+                  Other, 0x11fe45a10, {{27.5, 280.5}, {320.0, 46.0}}
+                    StaticText, 0x11fe45b30, {{57.5, 302.5}, {260.0, 20.5}}, label: 'Discard edits?'
+                  Other, 0x11fe45c50, {{27.5, 324.5}, {320.0, 2.0}}
+                  Other, 0x11fe45d70, {{314.5, 280.5}, {30.0, 46.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                    Other, 0x11fe45e90, {{341.5, 241.5}, {3.0, 36.0}}
+                  Other, 0x11fe45fb0, {{27.5, 300.5}, {320.0, 23.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe460d0, {{-11.5, 320.5}, {36.0, 3.0}}
+                  Other, 0x11fe461f0, {{314.5, 280.5}, {30.0, 46.0}}, label: 'Vertical scroll bar, 2 pages', value: 0%
+                    Other, 0x11fe46310, {{341.5, 241.5}, {3.0, 36.0}}
+                  Other, 0x11fe46430, {{27.5, 300.5}, {320.0, 23.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe46550, {{-11.5, 320.5}, {36.0, 3.0}}
+                ScrollView, 0x11fe46670, {{27.5, 326.5}, {320.0, 80.0}}
+                  Other, 0x11fe46790, {{27.5, 326.5}, {320.0, 80.0}}
+                    Other, 0x11fe468b0, {{43.5, 342.5}, {288.0, 48.0}}
+                      Button, 0x11fe469d0, {{43.5, 342.5}, {140.0, 48.0}}, label: 'Keep editing'
+                      Button, 0x11fe46af0, {{191.5, 342.5}, {140.0, 48.0}}, label: 'Discard edits'
+                  Other, 0x11fe46c10, {{314.5, 326.5}, {30.0, 80.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x11fe46d30, {{341.5, 416.5}, {3.0, 7.0}}
+                  Other, 0x11fe46e50, {{27.5, 373.5}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe46f70, {{117.5, 400.5}, {7.0, 3.0}}
+                  Other, 0x11fe47090, {{314.5, 326.5}, {30.0, 80.0}}, label: 'Vertical scroll bar, 1 page', value: 0%
+                    Other, 0x11fe471b0, {{341.5, 416.5}, {3.0, 7.0}}
+                  Other, 0x11fe472d0, {{27.5, 373.5}, {320.0, 30.0}}, label: 'Horizontal scroll bar, 1 page', value: 0%
+                    Other, 0x11fe473f0, {{117.5, 400.5}, {7.0, 3.0}}
+          Other, 0x11fe47510, {{27.5, 280.5}, {320.0, 126.0}}
+            Other, 0x11fe47630, {{27.5, 280.5}, {320.0, 126.0}}
+              Other, 0x11fe47750, {{27.5, 280.5}, {320.0, 126.0}}
+                Other, 0x11fe47870, {{27.5, 280.5}, {320.0, 126.0}}
+                  Other, 0x11fe47990, {{27.5, 280.5}, {320.0, 126.0}}
+                    Other, 0x11fe47ab0, {{27.5, 280.5}, {375.0, 667.0}}
+                Other, 0x11fe47bd0, {{27.5, 280.5}, {320.0, 126.0}}
+                  Other, 0x11fe47cf0, {{27.5, 280.5}, {375.0, 667.0}}
+    Window, 0x11fe47e10, {{0.0, 0.0}, {375.0, 667.0}}
+      Other, 0x11fe47f30, {{0.0, 0.0}, {375.0, 667.0}}
+        Other, 0x11fe48050, {{0.0, 0.0}, {375.0, 667.0}}
+Path to element:
+ →Application, 0x11fe2fe00, pid: 18540, label: 'Nest'
+Query chain:
+ →Find: Target Application 'ch.drrius.nest'
+  Output: {
+    Application, 0x11fe48c10, pid: 18540, label: 'Nest'
+  }
