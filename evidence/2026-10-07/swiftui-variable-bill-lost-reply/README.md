@@ -41,6 +41,7 @@ The six successful hosted/native methods have zero skips. Two earlier observer/
 rendering failures remain recorded. Both original clients restore their actor,
 household, 64 empty journals, stable API origin, display settings and local privacy
 choices. The relay stops and its private key is destroyed; public test certificates
-expire after two days. Current-source CI and full phone/accessibility acceptance
-remain unverified.
+expire after two days. Exact-source routine37607214163 and native37607214035 pass for4d0c0d09.
+[CI receipt](ci-result.json). Guarded hosted UI actions remain separate Mac
+evidence. Full phone/accessibility acceptance remains unverified.
 Build 21 predates this shipping fix; no new beta has been submitted.

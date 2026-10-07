@@ -1,0 +1,12 @@
+{
+  "source": "4d0c0d09c832e98a96460d7cd69b923640e75e12",
+  "routine": {
+    "run": 37607214163,
+    "conclusion": "success"
+  },
+  "native": {
+    "run": 37607214035,
+    "conclusion": "success"
+  },
+  "guardedHostedUITestsExecutedByCI": false
+}

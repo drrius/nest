@@ -940,3 +940,16 @@ under-tab-bar contrast finding. It is removed from both source copies and the
 pre-experiment stable-origin signed client is reinstalled. Original scopes,
 settings, privacy and64 empty journals per client verify. No palette/layout fix
 is claimed; full accessibility and phones remain open.
+
+Supported read-only EAS TestFlight feedback/crash queries succeed for the existing
+Nest profile, each with zero records/no next page. No invitations, assignment,
+upload or credential export occurs. Empty reports do not prove installation,
+tester access, crash-free behavior or phone acceptance; those gaps remain.
+[TestFlight reports](../evidence/2026-10-07/testflight-reported-feedback/README.md).
+
+The saved-variable-bill shipping fix at4d0c0d09 now passes both exact-source
+required workflows: routine37607214163 and native37607214035, including strict
+format/source limits, Foundation/signed-app tests, signing and guarded UI
+compilation. Hosted native recovery remains the separate Mac evidence; CI does
+not execute its opt-in financial fixture. The later cancellation-test and audit
+commits are being pushed together and need their own current-head CI.
