@@ -19,7 +19,11 @@ lost acknowledgment after a committed write.
 The terminal receipt confirms original simulator state restored, the temporary
 clone deleted with its trust store, relay stopped and owned private key/control
 configuration removed. No production action, model call or release occurs.
-One existing negative/nonfinite frame runtime warning remains unresolved.
+One grouped negative/nonfinite frame warning remains unresolved. The captured
+simulator log contains five emissions from SwiftUICore, beginning when Add
+expense opens before field focus. No source location or call stack is present;
+this does not establish an app or framework cause. The bounded diagnostic is
+retained in `frame-warning-diagnosis.json`.
 Full financial recovery, accessibility and both-phone acceptance remain open.
 
 `prepared.json` records preparation before invocation. `summary.json` records

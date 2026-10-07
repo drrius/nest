@@ -1,0 +1,14 @@
+{
+  "source": "458e45eddcc5ae7f478a3891a6e640df60237b54",
+  "warning": "Invalid frame dimension (negative or non-finite).",
+  "xcresultGroupedWarnings": 1,
+  "capturedLogEmissions": 5,
+  "sender": "SwiftUICore",
+  "subsystem": "com.apple.runtime-issues",
+  "firstEmission": "2026-10-07 09:50:02.139045+0200",
+  "lastEmission": "2026-10-07 09:50:22.314524+0200",
+  "firstObservedPhase": "Opening Add expense before focusing Description",
+  "sourceLocationAvailable": false,
+  "causeEstablished": false,
+  "nextDiagnostic": "Capture a runtime-issue call stack during a zero-write form-open reproduction; do not alter palette or suppress warnings without identifying the originating layout."
+}
