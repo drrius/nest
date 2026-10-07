@@ -11,9 +11,9 @@ struct AssistantFinancialHistoryMaximumReading {
         app.descendants(matching: .any).matching(NSPredicate(format: "label == %@", label)).firstMatch
     }
 
-    func read(_ label: String) throws {
+    func read(_ label: String, searchEarlier: Bool = false) throws {
         let target = element(label)
-        try reveal(target, permitsTallText: true)
+        try reveal(target, permitsTallText: true, searchEarlier: searchEarlier)
         let bounds = try viewport()
         let observed = target.exists ? target.frame : nil
         guard let frame = observed, usable(frame) else {
@@ -95,7 +95,7 @@ struct AssistantFinancialHistoryMaximumReading {
         throw GeometryFailure.viewportUnavailable
     }
 
-    func reveal(_ target: XCUIElement, permitsTallText: Bool = false) throws {
+    func reveal(_ target: XCUIElement, permitsTallText: Bool = false, searchEarlier: Bool = false) throws {
         for attempt in 0..<24 {
             let bounds = try viewport()
             let frame = target.exists ? target.frame : nil
@@ -103,7 +103,10 @@ struct AssistantFinancialHistoryMaximumReading {
                 if permitsTallText && target.elementType == .staticText && frame.height > bounds.height { return }
                 if bounds.contains(frame) { return }
             }
-            let distance = frame.map { usable($0) ? max(-180, min(250, $0.midY - bounds.midY)) : 250 } ?? 250
+            let missingDirection: CGFloat = searchEarlier ? -250 : 250
+            let distance =
+                frame.map { usable($0) ? max(-180, min(250, $0.midY - bounds.midY)) : missingDirection }
+                ?? missingDirection
             try pan(target, distance: distance, attempt: attempt)
         }
         capture(target, name: "Maximum required recorded target outside viewport")

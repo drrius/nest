@@ -49,7 +49,7 @@ final class NativeExpenseDraftBackTests: XCTestCase {
         XCTAssertTrue(save.waitForExistence(timeout: 15))
         try protectedBack(app, reading: reading, keep: true)
         XCTAssertTrue(save.exists)
-        try reading.read("Unsent reviewed expense QA")
+        try reading.read("Unsent reviewed expense QA", searchEarlier: true)
         try protectedBack(app, reading: reading, keep: false)
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
