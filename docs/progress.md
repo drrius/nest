@@ -970,3 +970,12 @@ Initial compile-only Equatable mismatch is retained and corrected via payload
 comparison, not shipping-type changes. Originals/64 journals/settings/privacy
 restore. Hosted revocation/rendered guidance/phones and current-head CI remain
 open. [Revocation](../evidence/2026-10-07/swiftui-queued-chore-revocation/README.md).
+
+The guarded native Reduce Motion journey compiles but remains unverified. The
+first Settings selector fails before a setting tap; the corrected lookup reaches
+Accessibility/Motion/REDUCE_MOTION but the enabled value stays0, including a final
+10-second wait. Three failed attempts remain retained. No Nest navigation or
+animation acceptance is claimed. Original switch-value restoration has no failure
+in the final result; original scopes/64 journals/settings/privacy restore each
+time. Further unchanged retries stop. Hardware Reduce Motion acceptance remains.
+[Attempt evidence](../evidence/2026-10-07/swiftui-reduce-motion-attempt/README.md).
