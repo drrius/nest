@@ -76,10 +76,11 @@ struct SettlementScreen: View {
             Section("Payment already made") {
                 Picker("Amount", selection: $draft.mode) {
                     Text("Full balance").tag(SettlementInput.Mode.full)
+                        .frame(minHeight: 44).contentShape(Rectangle())
                     Text("Partial amount").tag(SettlementInput.Mode.partial)
+                        .frame(minHeight: 44).contentShape(Rectangle())
                 }
-                .frame(minHeight: 44)
-                .contentShape(Rectangle())
+                .pickerStyle(.inline)
                 if draft.mode == .partial {
                     MoneyDraftField(
                         label: "Amount (CHF)", text: $draft.amount, focus: $focusedField, keyboard: .decimalPad)

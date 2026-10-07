@@ -46,13 +46,10 @@ final class NativeSettlementReviewTests: XCTestCase {
     func testOwnedPartialAmountReviewAndDiscardWithoutRecording() throws {
         let app = try openPayment()
         let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
-        let mode = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Amount")).firstMatch
-        try reader.reveal(mode)
-        try reader.requireTarget(mode)
-        mode.tap()
         let partial = app.buttons["Partial amount"]
+        try reader.reveal(partial)
         XCTAssertTrue(partial.waitForExistence(timeout: 10))
-        try reader.requireTarget(partial, bounds: app.frame)
+        try reader.requireTarget(partial)
         partial.tap()
         let field = app.textFields["Amount (CHF)"]
         try reader.reveal(field)
