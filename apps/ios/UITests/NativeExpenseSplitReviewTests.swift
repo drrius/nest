@@ -74,11 +74,11 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
 
     private func select(_ title: String, choice: String, app: XCUIApplication) throws {
         let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", title)).firstMatch
-        try reader(app).reveal(picker)
+        try reader(app).reveal(picker, searchEarlier: title == "Paid by")
         let ready = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "enabled == true AND hittable == true"), object: picker)
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed)
-        try reader(app).reveal(picker)
+        try reader(app).reveal(picker, searchEarlier: title == "Paid by")
         try reader(app).requireTarget(picker)
         picker.tap()
         let option = app.buttons[choice]

@@ -88,7 +88,11 @@ The original Sam normal reviews failed before input because selecting the
 already-current payer left the native picker open. Source4a3d6d1e explicitly uses
 its visible Back control when needed, with unchanged shipping inputs. Corrected Sam
 normal exact/percentage reviews now both pass at4a3d6d1e, with completed scoped
-restoration and zero skips. Alex maximal checks are running; Sam maximal remains
+restoration and zero skips. Alex maximal picker fails its bounded reveal after
+all three split choices succeed; exact review reaches Exact selection and seeks
+the earlier payer in the wrong direction. The same run remains active. The two
+test callers now search earlier for Paid by, with unchanged shipping code and
+44-point requirements. Corrected maximal verification and Sam maximal remain
 pending. No financial save is selected.
 All1,141 frozen inputs, signing, scoped restoration and source limits match. Current
 routine37562483137 passes at4a3d6d1e; native37562483127 remains running. Full variants/phone

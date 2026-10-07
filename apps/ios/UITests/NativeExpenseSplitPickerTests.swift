@@ -47,9 +47,9 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
         XCTAssertTrue(["Test Alex", "Test Sam"].contains(name))
         for choice in [name == "Test Alex" ? "Test Sam" : "Test Alex", name] {
             let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Paid by")).firstMatch
-            try reading.reveal(picker)
+            try reading.reveal(picker, searchEarlier: true)
             try waitForPicker(picker)
-            try reading.reveal(picker)
+            try reading.reveal(picker, searchEarlier: true)
             try reading.requireTarget(picker)
             picker.tap()
             let option = app.buttons[choice]
