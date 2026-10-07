@@ -15,6 +15,11 @@ execution. Fresh pending-proposal native rendering/decision, phone verification
 and current-change CI remain open. This change is later than build19. No hosted
 proposal, financial posting, production mutation or release occurs.
 
+Replacement-expense correction approvals now use the same exact category lookup
+and approval guard. Reversal-only/opening proposals require no category. One
+focused correction approval Foundation test and signed native compile pass.
+Rendered pending correction approval and failure/retry interaction remain open.
+
 ## Available candidate and current source
 
 **Latest private candidate: SwiftUI0.1.0/build19**, exact `484e5feb`. Candidate routine CI and identical-native-source CI, signed Mac archive/export/package/source audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass. [Release evidence](../evidence/2026-10-06/swiftui-build19/README.md). Update Nest to19 in TestFlight and try the [short phone pass](native-rewrite/build19-first-phone-pass.md). Partner access, installation and phone/design acceptance remain unverified. Live AI, scheduled posting/reminders and push stay inactive; production is untouched.

@@ -12,10 +12,13 @@ struct CorrectionApprovalScreen: View {
     @State private var working = false
     @State private var notice: String?
     @State private var choice: Bool?
+    @State private var categoryName: String?
+    @State private var categoryNotice: String?
 
     var body: some View {
         Form {
             if let notice { Section { Text(notice) } }
+            if let categoryNotice { Section { Text(categoryNotice) } }
             if let saved {
                 summary(saved.decision.correction)
                 Section("Saved decision") {
@@ -58,6 +61,7 @@ struct CorrectionApprovalScreen: View {
                                 } label: {
                                     QuietActionLabel("Approve correction")
                                 }
+                                .disabled(categoryId(approval.correction) != nil && categoryName == nil)
                                 Button(role: .destructive) {
                                     choice = false
                                 } label: {
@@ -115,7 +119,9 @@ struct CorrectionApprovalScreen: View {
         }
         switch correction.replacement {
         case .expense(let expense):
-            ExpenseReviewSection(expense: expense, member: member, members: [], categoryName: nil)
+            ExpenseReviewSection(
+                expense: expense, member: member, members: [], categoryName: categoryName,
+                unknownCategoryLabel: "Could not confirm category")
         case .opening(let opening):
             Section("Replacement opening balance") {
                 Text(opening.description)
@@ -148,6 +154,8 @@ struct CorrectionApprovalScreen: View {
         await perform {
             let current = try session.expenseContext()
             context = current
+            categoryName = nil
+            categoryNotice = nil
             saved = try await session.savedCorrectionDecision(current)
             envelope = nil
             original = nil
@@ -158,12 +166,26 @@ struct CorrectionApprovalScreen: View {
                     eventId: proposal.approval.correction.sourceEventId)
                 envelope = proposal
             }
+            if let correction = saved?.decision.correction ?? envelope?.approval.correction,
+                let id = categoryId(correction)
+            {
+                do {
+                    categoryName = try await session.readMoneyCategory(current, categoryId: id).category?.name
+                } catch {
+                    try session.requireMoneyAccount(current.member, generation: current.generation)
+                }
+                if categoryName == nil {
+                    categoryNotice =
+                        "Could not confirm the replacement category. Refresh before approving. You can still decline."
+                }
+            }
         }
     }
     private func decide(_ approved: Bool) async {
         guard let context, let approval = envelope?.approval, approval.status == .pending,
             ApprovalTime.isOpen(approval.expiresAt, now: .now), original?.event.id == approval.correction.sourceEventId
         else { return }
+        guard !approved || categoryId(approval.correction) == nil || categoryName != nil else { return }
         await perform {
             try await session.stageCorrectionDecision(
                 .init(
@@ -172,6 +194,10 @@ struct CorrectionApprovalScreen: View {
             saved = try await session.savedCorrectionDecision(context)
             saved = try await session.retryCorrectionDecision(context)
         }
+    }
+    private func categoryId(_ correction: CorrectionInput) -> UUID? {
+        if case .expense(let expense) = correction.replacement { return expense.categoryId }
+        return nil
     }
     private func retry() async {
         guard let context else { return }

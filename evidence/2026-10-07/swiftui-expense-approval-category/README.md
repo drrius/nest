@@ -24,3 +24,11 @@ Strict Swift formatting, source limits, full repository formatting and diff chec
 pass. Current-change CI remains pending until the feature branch is pushed. The
 shipping change is not in TestFlight build19. Hosted fixtures, retained financial
 history, production and distribution were not changed.
+
+The same bounded change is applied to correction approvals that replace an
+expense. Opening-balance and reversal-only proposals need no category lookup.
+Missing replacement category metadata disables only approval; decline and saved
+decision recovery remain available. The correction decision guard also refuses
+approval without the required category name. Its existing exact bound-receipt
+Foundation test passes, and the signed simulator build-for-testing passes again.
+This adds no rendered native correction-approval or live-provider evidence.
