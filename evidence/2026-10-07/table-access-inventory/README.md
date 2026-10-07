@@ -47,3 +47,8 @@ One focused real PostgREST/PG test passes unposted uploader-only reads, shared
 claimed financial reads and partner cleanup refusal. This is disposable HTTP/RLS
 behavior, separate from hosted catalog and prior actual native stored-byte evidence.
 No hosted delete/insert/TRUNCATE is attempted.
+
+The actual hosted inventory contains only base tables:68 private,109 public and
+eight Storage. No views/materialized views are present in these schemas. Neither
+client role has direct SELECT on private tables. This reduces the direct table
+read surface; it does not authorize or prove delegated private-function access.

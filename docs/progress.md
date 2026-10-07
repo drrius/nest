@@ -428,3 +428,7 @@ disposable PostgREST/PG receipt-privacy test passes uploader-only unposted bytes
 shared claimed financial attachment access and partner cleanup refusal. This
 bounds those policies; broader trusted upload/Storage/external writer acceptance
 remains open. No hosted object mutation occurs.
+
+Current hosted table metadata also confirms no public/private/storage views and
+no direct client SELECT grant on any private table. Private function semantics
+and service writers remain separate open boundaries.
