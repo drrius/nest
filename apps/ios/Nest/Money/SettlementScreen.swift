@@ -78,6 +78,8 @@ struct SettlementScreen: View {
                     Text("Full balance").tag(SettlementInput.Mode.full)
                     Text("Partial amount").tag(SettlementInput.Mode.partial)
                 }
+                .frame(minHeight: 44)
+                .contentShape(Rectangle())
                 if draft.mode == .partial {
                     MoneyDraftField(
                         label: "Amount (CHF)", text: $draft.amount, focus: $focusedField, keyboard: .decimalPad)
