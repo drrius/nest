@@ -19,11 +19,13 @@ struct NestAuth: NestAuthentication {
         pushCleanup = PushLogoutCleanup(
             api: try PushLogoutAPI(origin: configuration.supabaseURL, publishableKey: configuration.publishableKey),
             store: offline)
+        let transport = NestAuthHTTP()
         client = AuthClient(
             url: configuration.supabaseURL.appending(path: "auth/v1"),
             headers: ["apikey": configuration.publishableKey],
             storageKey: key,
             localStorage: localStorage,
+            fetch: { request in try await transport.fetch(request) },
             // Refresh through session() at request time, serialized with credential changes.
             autoRefreshToken: false
         )

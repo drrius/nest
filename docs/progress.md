@@ -31,7 +31,7 @@ unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagno
 is confirmed: the owner test household has one member. Verified partner linking
 remains needed. Native/server diagnostics and clear setup errors pass focused checks. Server
 traces and private AI timing are deployed; native diagnostics ship in build25.
-[Stream diagnostics](../evidence/2026-10-07/native-stream-diagnostics/README.md) pass ten Mac checks for the next beta.
+Next beta: [stream diagnostics](../evidence/2026-10-07/native-stream-diagnostics/README.md) pass ten Mac checks; [Auth diagnostics](../evidence/2026-10-07/native-auth-diagnostics/README.md) pass four Mac/two simulator checks.
 
 ## Milestone checklist
 
@@ -370,10 +370,10 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 
 ## Exact blockers and owner inputs
 
-- **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
+- **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The owner check of current credits/verification remains pending. No token, model call, purchase or billing change followed.
 - **Scheduled workers:** automatic approval review blocked transferring the test Supabase server key and scheduler token to Vercel. The specific transfer approval remains pending; no alternate transfer or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
-- **Phones:** both partners need build 23 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
+- **Phones:** both partners need build 25 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
 - **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) later ended cancelled with the account-switch failure recorded above. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
 - **Merge:** [PR 85](https://github.com/drrius/nest/pull/85) is OPEN at `1c00a089`, with four successful checks. Its sole Greptile response reports the trial credit limit and supplies no approval. The specific automatic-review merge rejection remains unresolved. The owner waived extra Sol review; no Sol, duplicate unchanged review request or alternate main push is used.
 - **Production source difference:** four payroll functions and `payroll_payslips` trigger bindings are absent from the audited legacy migrations. The source/location question is pending. Preserve these objects; exact catalog parity and cutover readiness remain false. The platform auto-RLS hook is also absent from the disposable bootstrap.
@@ -381,7 +381,7 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 
 ## Work order
 
-Keep build 23 stable for phone testing. Batch necessary shipping fixes, preserve
+Keep build 25 stable for phone testing. Batch necessary shipping fixes, preserve
 completed evidence and repeat checks only for affected changes, failures or uncovered
 requirements. Finish concrete local gaps while provider/worker/device blockers
 remain. Reconcile all milestone exits before declaring completion.

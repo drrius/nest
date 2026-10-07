@@ -69,3 +69,9 @@ states and platform logs; do not claim end-to-end telemetry for them.
 The next source patch adds native SSE request/framing/receiver diagnostics. Ten
 focused Mac cases pass; it is not in build25 or a live-provider verification.
 [Evidence](../../evidence/2026-10-07/native-stream-diagnostics/README.md).
+
+The next source also adds local Auth HTTP metadata, preserving the pinned SDK
+transport and request unchanged. Four Mac adapter cases and two signed simulator
+refresh-boundary cases pass. SDK response decoding is outside the fetch adapter;
+references are local, not Auth-provider trace headers.
+[Evidence](../../evidence/2026-10-07/native-auth-diagnostics/README.md).

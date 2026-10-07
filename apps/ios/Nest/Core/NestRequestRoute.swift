@@ -3,7 +3,7 @@ import Foundation
 public enum NestRequestRoute: String, Codable, Sendable {
     case session, moneyBalance, moneyHistory, moneyExpenseContext, moneyExpense, moneySettlement, moneyRecurring, money
     case meals, groceries, chores, renewals, availability, preferences, reminders, memories, notifications, unknown
-    case assistant
+    case assistant, auth
 
     static func category(_ path: String) -> Self {
         guard let components = URLComponents(string: path), components.scheme == nil, components.host == nil else {
