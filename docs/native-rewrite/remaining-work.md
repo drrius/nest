@@ -2,6 +2,17 @@
 
 Current private candidate: **0.1.0/build19**, source `484e5feb`, Apple VALID/IN_BETA_TESTING internally and unexpired after one finished private submission. Candidate routine CI, identical-native-input CI and Mac signing/package checks pass. Build19 retains the consistent four-tab headers/insets and Quiet Calendar cards, and adds the later draft/reminder/recipe/renewal fixes. [Evidence](../../evidence/2026-10-06/swiftui-build19/README.md), [short phone pass](build19-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
 
+Current migration-security status: bounded full-chain SQL evidence now covers all
+60 retained public definers and two invokers. The counts of 49 or 50 remaining
+functions in the dated checkpoints below are historical. The 219 private-function
+privilege signatures match the read-only test-project catalog, but this is not
+semantic proof of private call chains. Direct table/Storage policies, trusted service
+writers, live external writers, Auth/Storage migration and old-client intent drainage
+still require acceptance evidence. The latest disposable rehearsal applies 54 legacy
+and 257 Nest migrations with exact financial reconciliation.
+[Current inventory](../../evidence/2026-10-07/private-function-inventory/README.md),
+[calendar trigger boundaries](../../evidence/2026-10-07/legacy-calendar-trigger-boundaries/README.md).
+
 The later source-specific root audits at `e21d6b44` retain seven unsuppressed
 contrast reports across four failed full audits, with no reported noncontrast findings.
 Four reports have no identified element; earlier anonymous reports are not closed by

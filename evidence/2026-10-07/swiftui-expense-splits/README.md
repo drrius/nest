@@ -66,3 +66,19 @@ and CHF 0.76/0.25 are visible at largest text. Other text can be above/below the
 viewport, so this is not full continuous review-copy or VoiceOver acceptance.
 Sam's maximal picker and both reviews are now running. Both 00d65b11 CI workflows
 pass, separately recorded from native UI execution.
+
+Sam's final maximal batch at 00d65b11 passes all three methods with zero failures
+or skips: picker 194.077 seconds, exact review 450.451 seconds, percentage review
+431.619 seconds. Both scopes, 64 empty journals, settings and local semantics
+restore. Three Sam option/share images are directly inspected. Both members'
+normal and maximal picker/review checks now pass across source-specific evidence.
+The final privileged metadata read matches all eight original protected digests.
+This is separate from authorization proof or traffic measurement. Original failed
+executions remain counted in executions.json; cross-source totals are not a claim
+that every method ran at the final commit. Full copy reading, receipt-bearing
+variants, VoiceOver, financial posting and both-phone acceptance remain open.
+
+The evidence-only 7847f2db commit fails CI formatting for two CI JSON files. The
+7e7bb84d repair formats them, refreshes hashes, passes the full local format check
+and passes routine CI 37569202115. Shipping inputs are unchanged. No merge or
+release is performed.

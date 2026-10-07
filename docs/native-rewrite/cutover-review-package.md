@@ -6,7 +6,7 @@ Prepared4 October2026. This is the review plan for a future separately approved 
 
 | Area               | Proven                                                                                                                            | Still needed                                                                                              |
 | ------------------ | --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| Migration chain    | Disposable populated54-legacy/248-Nest run, hashes recorded, no retained financial/receipt/domain changes                         | Representative isolated hosted run with actual Auth/Storage interfaces and supported extensions           |
+| Migration chain    | Disposable populated54-legacy/257-Nest run, hashes recorded, exact retained financial reconciliation                              | Representative isolated hosted run with actual Auth/Storage interfaces and supported extensions           |
 | Financial recovery | 24 newly committed fixture events survive freeze; balances/history/details and private operation/approval reads remain correct    | Real old-device intent inventory and complete pending-command reconciliation                              |
 | Old database jobs  | Eight owner-only pause guards, lock-wait checks and pending reminder/draft/outbox preservation                                    | Actual job/function inventory, retain/replace/stop decisions and running-job drainage                     |
 | Offline transition | Fixture epoch activation fences old new commands while keeping known recorded receipts recoverable                                | Agree and record the real epoch; reconcile both phones' unknown saved work before switching               |
@@ -49,3 +49,10 @@ Resuming a barrier does not restore revoked grants or restart jobs. The packet m
 ## Exact open inputs
 
 Production has not been inspected or changed for this package. It still needs separately authorized live inventory/representative data handling, both clients' pending-intent outcomes, stored bytes/access and a final owner-approved transition window. AI eligibility and the already pending specific test-worker secret-transfer approval, APNs provider setup, both-phone acceptance and passing final-source checks remain prerequisites. No production activation is currently scheduled.
+
+The 7 October chain checkpoint is recorded in
+[the private privilege inventory](../../evidence/2026-10-07/private-function-inventory/README.md).
+It covers 60 public definers, two invokers and catalog parity for 219 private
+privilege signatures. Catalog parity does not prove private-function semantics,
+direct table/Storage policy completeness or live writer drainage. Those gates
+remain open, and no production authorization is inferred.

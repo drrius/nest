@@ -84,7 +84,9 @@ members' normal-text picker and exact/percentage review methods pass across the
 recorded sources. Alex's maximal picker passes at3f82451e; both maximal reviews
 pass at00d65b11, including mismatched-total refusal, literal CHF1.01/0.25/0.76,
 native edit-menu paging and explicit unsent discard. The same-source Sam maximal
-picker and reviews are running. All completed batches restore both original
+picker passes in194.077s; exact review passes in450.451s and percentage in431.619s.
+Both-member normal/maximal split checks now pass. Final privileged metadata confirms
+all eight protected fingerprints unchanged; this is separate from native auth proof. All completed batches restore both original
 scopes,64 empty journals, display settings and local semantics. Earlier trigger,
 readiness, input, picker-return and scroll/menu observer failures are retained.
 All1,141 frozen inputs/signing/products match; both00d65b11 CI workflows pass.

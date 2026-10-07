@@ -1,0 +1,12 @@
+{
+  "source": "00d65b11b5b8d91de9d30aaf3a912dfdf2b520ad",
+  "testBuiltSource": "00d65b11b5b8d91de9d30aaf3a912dfdf2b520ad",
+  "actor": "sam",
+  "step": "maximum",
+  "methods": [
+    "NativeExpenseSplitPickerTests/testOwnedSplitChoicesHaveFullSizedTargetsWithoutSaving",
+    "NativeExpenseSplitReviewTests/testOwnedPercentageBelongsToDisplayedPersonWithoutSaving",
+    "NativeExpenseSplitReviewTests/testOwnedExactSharesRejectMismatchAndReviewLiteralCentimesWithoutSaving"
+  ],
+  "positiveBudget": 0
+}
