@@ -917,3 +917,13 @@ Actual hosted cancellation/dialog/phones remain unverified. Recurring-money audi
 now credits implemented worker/manual-link evidence instead of stale future-work
 claims; active hosted execution/credentials/timer acceptance remain pending.
 [Cancellation tests](../evidence/2026-10-07/swiftui-variable-bill-cancellation/README.md).
+
+A current full Calendar initial-viewport accessibility audit now runs against
+the shared-card SwiftUI root at large/light with unrequested permission. It fails
+with one unsuppressed contrast report on unknown availability at y599.5–664 under
+the native bar at584. No font-size/clipping/target/trait findings appear in this
+run; the older 5 October report predates the root layout rewrite. Both the full
+viewport and issue crop are inspected, failure retained, originals/64 journals/
+settings/privacy restored. Other sizes/states, VoiceOver/Reduce Motion and phones
+remain open; no full accessibility approval is claimed.
+[Current Calendar audit](../evidence/2026-10-07/swiftui-current-calendar-audit/README.md).

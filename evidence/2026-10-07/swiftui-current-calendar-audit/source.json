@@ -1,0 +1,11 @@
+{
+  "shippingSourceCommit": "4d0c0d09c832e98a96460d7cd69b923640e75e12",
+  "files": {
+    "apps/ios/Nest/Calendar/CalendarScreen.swift": "9955a2bf8c87a0b29c0e6eafa955d15d5cd5c21b5b1a1761a08f434606a5b37f",
+    "apps/ios/Nest/Calendar/PartnerBusySection.swift": "639c798ffaf47de9c79d0643b0d9e93c2c0e4103d866761607561564694a22a9",
+    "apps/ios/Nest/QuietSectionCard.swift": "e24ab93bb5f1465100f536d0c768be063d96717a30391468d9e4b1a193021abd",
+    "apps/ios/Nest/QuietTabLayout.swift": "de9e16540648020176d2f068032284b71ea497d04c42488904e19774c1eadd0a",
+    "apps/ios/UITests/RootAccessibilityTests.swift": "ad577b0aaef849b9acff367d2ed0ce9ae40de4a75aa9701ddc5413dff9f69df8"
+  },
+  "laterTestOnlyFile": "VariableCycleCancellationRestartTests.swift"
+}
