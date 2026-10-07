@@ -465,3 +465,10 @@ and existing auth/isolation context cases pass, zero skips/provider calls. Fast
 CI adds this pair. This is context/preparation proof, not successful live model
 generation, rendered estimates or full M5 acceptance.
 [Planning projection](../evidence/2026-10-07/saved-portion-planning/README.md).
+
+The planning setup gate now has a focused real API/PostgREST regression: missing
+partner food setup returns409/conflict before any proposal/receipt/job or provider
+call, including exact retry. A new request after fixture repair reaches a synthetic
+provider without active meal/grocery writes. One case passes; two initial expected
+200 assertions failed at the actual pre-reservation409 boundary and are recorded.
+Fast CI adds only the selected case. Real Gateway/phone planning remains open.

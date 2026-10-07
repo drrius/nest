@@ -217,3 +217,35 @@ test("familiar-only with no complete recipes records an honest failure without m
   assert.equal((await response.json()).envelope.proposal.failure, "no_suitable_meals");
   assert.equal(provider.calls.length, 0);
 });
+
+test("unconfigured partner is refused before reservation or provider work", async (t) => {
+  const f = await fixture(t),
+    provider = model(),
+    c = client(f, provider.instance);
+  f.db.sql(`delete from public.nest_food_profiles where actor_id='${id(2)}'`);
+  const response = await c("/generate", command());
+  assert.equal(response.status, 409);
+  const failed = await response.json();
+  assert.deepEqual(failed, { error: { code: "conflict" } });
+  assert.equal(provider.calls.length, 0);
+  const retry = await c("/generate", command());
+  assert.equal(retry.status, 409);
+  assert.deepEqual(await retry.json(), failed);
+  assert.equal(provider.calls.length, 0);
+  for (const table of [
+    "nest_meal_proposals",
+    "nest_meal_proposal_receipts",
+    "nest_meal_proposal_jobs",
+  ]) {
+    assert.equal(f.db.sql(`select count(*) from private.${table}`), "0");
+  }
+  f.db.sql(`insert into public.nest_food_profiles values(
+    '${id(2)}','${id(10)}',1,array['Vegetarian'],array[]::text[],2400,1.5,now())`);
+  const configured = await c("/generate", command(801));
+  assert.equal(configured.status, 200);
+  assert.equal((await configured.json()).envelope.proposal.status, "ready");
+  assert.equal(provider.calls.length, 2);
+  for (const table of ["meal_plan_entries", "grocery_items"]) {
+    assert.equal(f.db.sql(`select count(*) from public.${table}`), "0");
+  }
+});

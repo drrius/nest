@@ -19,3 +19,13 @@ This complements the actual native saved-portion restart/restoration evidence.
 It does not prove live model generation, occupied-slot approval, rendered varied
 meal estimates, both phones or complete M5 acceptance. No hosted data change,
 server-secret transfer, purchase, inference, release or merge occurs.
+
+A separate real API/PostgREST setup-gate case passes. With an unconfigured partner,
+generation and exact retry return409/conflict, with zero proposal/receipt/job rows
+and zero provider dispatch. After fixture setup repair, a new operation reaches
+the synthetic SDK provider and returns ready; active meals/groceries remain empty.
+This synthetic positive branch proves the gate is exercised, not live generation.
+The first two attempts assumed200/failed proposal and failed at the actual409
+boundary; SQL inspection confirms Food setup incomplete is refused before reservation.
+Those expectation errors are not app fixes or passing executions. Fast CI runs
+only this selected case alongside the two real planning-context cases.

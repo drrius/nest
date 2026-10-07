@@ -53,8 +53,10 @@ jobs:
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:core
       - name: Test grocery reminder receipt isolation
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/grocery-reminders.test.mjs
-      - name: Test saved portions and private planning context
-        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/meal-planning-context-postgrest.test.mjs
+      - name: Test planning preference privacy and setup
+        run: |
+          NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/meal-planning-context-postgrest.test.mjs
+          NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test --test-name-pattern='unconfigured partner' tests/integration/meal-proposal-api-postgrest.test.mjs
       - name: Test retained attention date handling
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/legacy-attention-dates.test.mjs
       - name: Test migration writer privileges and reversible API fences
