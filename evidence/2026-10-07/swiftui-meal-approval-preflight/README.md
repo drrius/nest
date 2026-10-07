@@ -20,3 +20,12 @@ simulator is shut down afterward. These tests prove the native session/SQLite
 boundary, not live AI, rendered approval or phone acceptance. Current-change CI
 remains required; the existing stable-source CI jobs are allowed to finish before
 pushing this next shipping change.
+
+The adjacent edit and discard staging commands now share the same fresh-preview
+boundary. Approval/edit require ready and unexpired; discard allows failed,
+generating or expired previews while still refusing approved/discarded and changed
+terms. Existing saved retries are unchanged. Six focused signed-app methods pass
+together without skips: seven refused offline/changed/expired starts and three
+lost-reply exact-recovery cases. Real isolated SQLite retains previews and never
+creates a new operation on refused preflight. No live provider or hosted mutation
+is involved. The batch is prepared for candidate20, not published.

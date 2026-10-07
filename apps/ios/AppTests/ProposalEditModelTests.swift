@@ -6,6 +6,14 @@ import XCTest
 @MainActor
 final class ProposalEditModelTests: XCTestCase {
     func testLostEditReplyRetriesExactOperationAndReconciles() async throws {
+        try await verify()
+    }
+
+    func testOfflineOrChangedPreviewCannotStageNewEdit() async throws {
+        for fault in ["offline", "changed"] { try await verify(fault: fault) }
+    }
+
+    private func verify(fault: String? = nil) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
         let auth = FakeAuthentication(
             active: .init(userId: member.userId, accessToken: "token-A"),
@@ -39,6 +47,19 @@ final class ProposalEditModelTests: XCTestCase {
             action: .replace, operationId: UUID(), proposalId: preview.proposal.id,
             expectedRevision: preview.proposal.revision, entryId: preview.proposal.entries![0].id,
             definitionId: nil, expectedLibraryRevision: nil)
+        if let fault {
+            await server.setFault(fault)
+            do {
+                try await model.stageProposalEdit(edit, context: context)
+                XCTFail("A cached or changed preview staged a new operation")
+            } catch {}
+            let refused = try await model.cachedProposalContext()
+            XCTAssertNil(refused.edit)
+            XCTAssertEqual(refused.saved?.envelope, preview)
+            let calls = await server.calls
+            XCTAssertTrue(calls.isEmpty)
+            return
+        }
         try await model.stageProposalEdit(edit, context: context)
         do {
             _ = try await model.retryProposalEdit(context)
@@ -57,6 +78,8 @@ final class ProposalEditModelTests: XCTestCase {
 
 actor ProposalEditServer {
     let preview: MealProposalEnvelope
+    private var fault: String?
+    func setFault(_ value: String) { fault = value }
     var calls: [MealProposalEditCommand] = []
     init(member: VerifiedMember) throws {
         let week = try MealWeekStart("2035-06-04")
@@ -75,6 +98,7 @@ actor ProposalEditServer {
     }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if fault == "offline" { throw URLError(.notConnectedToInternet) }
         let p = preview.proposal
         let data: Data
         if request.url?.path == "/v1/meals/proposal/edit" {
@@ -92,7 +116,8 @@ actor ProposalEditServer {
                     status: .applied, failure: nil, receipt: receipt))
         } else {
             let approved = MealProposal(
-                proposalId: p.id, revision: "3", weekRevision: "0", weekStart: p.weekStart,
+                proposalId: p.id, revision: calls.isEmpty && fault != "changed" ? "2" : "3", weekRevision: "0",
+                weekStart: p.weekStart,
                 familiarOnly: false, entries: p.entries, status: .ready, expiresAt: p.expiresAt, failure: nil)
             data = try JSONEncoder().encode(
                 MealProposalEnvelope(

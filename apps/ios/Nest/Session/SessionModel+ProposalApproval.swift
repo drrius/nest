@@ -6,16 +6,7 @@ extension SessionModel {
         guard let offline, let lease, let preview = context.saved?.envelope else {
             throw OfflineFailure.missingSnapshot
         }
-        guard let auth, let api = proposalAPI else { throw NestAPIFailure.signedOut }
-        let session = try await auth.session()
-        try requireProposalContext(context)
-        guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
-        let current = try await api.recover(
-            token: session.accessToken, member: context.member, id: preview.proposal.id)
-        try requireProposalContext(context)
-        guard current == preview, current.proposal.status == .ready,
-            current.proposal.expiresAt > Int64(Date().timeIntervalSince1970 * 1_000)
-        else { throw NestAPIFailure.conflict }
+        try await requireCurrentProposal(preview, context: context, unexpired: true)
         try await offline.enqueueProposalApproval(preview: preview, operation: UUID(), lease: lease)
         try requireProposalContext(context)
     }

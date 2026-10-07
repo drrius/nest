@@ -6,6 +6,7 @@ extension SessionModel {
         guard let offline, let lease, let preview = context.saved?.envelope else {
             throw OfflineFailure.missingSnapshot
         }
+        try await requireCurrentProposal(preview, context: context, unexpired: true)
         try await offline.enqueueProposalEdit(preview: preview, command: command, lease: lease)
         try requireProposalContext(context)
     }

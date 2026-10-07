@@ -18,6 +18,14 @@ occurs. This shipping change waits for the existing CI runs before its next push
 current-change CI and rendered/live-provider/phone acceptance remain open.
 [Meal approval preflight](../evidence/2026-10-07/swiftui-meal-approval-preflight/README.md).
 
+Meal proposal edit/discard staging now shares the fresh-preview boundary.
+Discard preserves failed/generating/expired eligibility; edit/approval require
+ready/unexpired. Six focused signed-app methods pass together with no skips,
+covering refused starts and unchanged exact lost-reply recovery. Candidate20 is
+reserved locally for the accumulated layout/form/approval fixes, with nest-test
+origins and push disabled. No release/submission has occurred; source CI/signing
+and package checks are still required.
+
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
 Expense and replacement-expense correction approval screens now read exact

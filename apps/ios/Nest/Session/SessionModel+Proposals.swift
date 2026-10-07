@@ -102,4 +102,23 @@ extension SessionModel {
         guard generation == context.generation, status == .ready(context.member)
         else { throw OfflineFailure.sessionChanged }
     }
+
+    func requireCurrentProposal(
+        _ preview: MealProposalEnvelope, context: ProposalContext, unexpired: Bool
+    ) async throws {
+        try requireProposalContext(context)
+        guard let auth, let api = proposalAPI else { throw NestAPIFailure.signedOut }
+        let session = try await auth.session()
+        try requireProposalContext(context)
+        guard session.userId == context.member.userId else { throw NestAPIFailure.signedOut }
+        let current = try await api.recover(
+            token: session.accessToken, member: context.member, id: preview.proposal.id)
+        try requireProposalContext(context)
+        guard current == preview,
+            unexpired
+                ? current.proposal.status == .ready
+                : ![MealProposal.Status.approved, .discarded].contains(current.proposal.status),
+            !unexpired || current.proposal.expiresAt > Int64(Date().timeIntervalSince1970 * 1_000)
+        else { throw NestAPIFailure.conflict }
+    }
 }
