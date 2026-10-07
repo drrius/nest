@@ -1,0 +1,65 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "863C5C42-801C-486C-A452-F2CC0D597A4B",
+        "deviceName": "Nest SDK contrast probe 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "ContrastProbeAccessibility · Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 2,
+  "finishTime": 1791374693.418,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791374635.218,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "Contrast nearly passed",
+      "targetName": "ContrastProbeAccessibilityTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "NativeContrastProbeTests/testNativeTabsContrast()",
+      "testIdentifierURL": "test://com.apple.xcode/ContrastProbe/ContrastProbeAccessibilityTests/NativeContrastProbeTests/testNativeTabsContrast",
+      "testName": "testNativeTabsContrast()"
+    },
+    {
+      "failureText": "Contrast nearly passed",
+      "targetName": "ContrastProbeAccessibilityTests",
+      "testIdentifier": 2,
+      "testIdentifierString": "NativeContrastProbeTests/testPlainScrollContrast()",
+      "testIdentifierURL": "test://com.apple.xcode/ContrastProbe/ContrastProbeAccessibilityTests/NativeContrastProbeTests/testPlainScrollContrast",
+      "testName": "testPlainScrollContrast()"
+    }
+  ],
+  "title": "Test - ContrastProbeAccessibility",
+  "topInsights": [
+    {
+      "category": "Common Failures",
+      "impact": "100% of failures",
+      "text": "7 runs of 2 tests failed with Contrast nearly passed"
+    },
+    {
+      "category": "Common Failures",
+      "impact": "50% of failures",
+      "text": "2 runs of 1 test failed with Contrast failed"
+    }
+  ],
+  "totalTestCount": 2
+}

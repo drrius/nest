@@ -58,6 +58,17 @@ managed Storage rejects an expired receipt URL while a fresh authorized URL
 returns the same bytes. Their evidence and limits are linked in the remaining list.
 Production data was not used for those writes.
 
+A standalone native contrast diagnosis now reproduces below-tab-bar failures
+using standard SwiftUI colors, including with Nest's bottom fade hidden. Three
+unfiltered simulator audits retain three failures; they are diagnostic evidence,
+not passing Nest tests. All paragraph coordinates match the no-tab control.
+Both owned simulators are deleted and original scopes, 64 journals per client,
+display/private choices and application paths match exactly.
+[Probe and limits](../evidence/2026-10-07/swiftui-native-contrast-probe/README.md).
+The current Nest full audit remains failed. Fully visible contrast, VoiceOver,
+Reduce Motion, phone readability and owner acceptance stay open. No palette or
+navigation workaround is added for this diagnosis.
+
 The new read-only scheduled-writer inventory is integrated into the disposable
 migration runner and focused CI selection. Thirteen local PostgreSQL checks pass
 with no failures or skips across the new inventory and existing privilege/fence

@@ -1,0 +1,40 @@
+{
+  "cases": [
+    {
+      "test": "NativeContrastProbeTests/testNativeTabsContrast()",
+      "withoutTabs": false,
+      "hideEdge": false,
+      "strictFailureCount": 2,
+      "nearlyPassedCount": 3,
+      "belowBarStrictLabels": [
+        "Paragraph 4. Standard system text stays on this device. It contains no personal calendar information.",
+        "Section 4"
+      ],
+      "otherStrictLabels": []
+    },
+    {
+      "test": "NativeContrastProbeTests/testPlainScrollContrast()",
+      "withoutTabs": true,
+      "hideEdge": false,
+      "strictFailureCount": 0,
+      "nearlyPassedCount": 4,
+      "belowBarStrictLabels": [],
+      "otherStrictLabels": []
+    },
+    {
+      "test": "NativeContrastProbeTests/testNativeTabsWithoutEdgeFade()",
+      "withoutTabs": false,
+      "hideEdge": true,
+      "strictFailureCount": 1,
+      "nearlyPassedCount": 3,
+      "belowBarStrictLabels": [
+        "Paragraph 4. Standard system text stays on this device. It contains no personal calendar information."
+      ],
+      "otherStrictLabels": []
+    }
+  ],
+  "paragraphCoordinatesIdentical": true,
+  "suppressedIssues": 0,
+  "nestAuditPassClaimed": false,
+  "hardwareVerified": false
+}
