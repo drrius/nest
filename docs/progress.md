@@ -113,6 +113,20 @@ still needs metadata failure/retry and correction-category rendering evidence.
 Full settlement/manual-cycle/legacy rendering, hosted uncertain replies/races,
 VoiceOver, both phones and live AI remain open. [Earlier consent evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md).
 
+Financial Forms now reset their viewport when changing between draft, review and
+saved-result phases, following the expense-screen behavior. Settlement, refund,
+correction, recurring editing, variable-bill and resumption source compiles with
+strict format/limits. Four normal-text native methods pass at `a00f7d18`, including
+full-payment review/Edit, payment/refund draft cancellation and correction review.
+The partial method finds a 34.5-point amount picker. Its enlarged control passes,
+but the popup option exposes 42 points. `2eb6bd07` replaces that menu with inline
+44-point choices; the focused partial-review check passes, zero skips. All completed
+controllers restore scopes, 64 empty journals and settings/local choices. No
+financial confirmation occurs. Eight post-check fingerprints remain exact,
+including 62 financial events, 104 allocations and 124 ledger rows. Current-source
+CI, runtime frame warnings and full accessibility remain open. These changes follow build20 and have not been submitted as a new beta.
+[Financial review evidence](../evidence/2026-10-07/swiftui-financial-review-position/README.md).
+
 ## Available candidate and current source
 
 **Latest private candidate: SwiftUI 0.1.0, build 20**, exact `0ba4a5c3`.
