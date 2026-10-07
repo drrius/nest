@@ -1,0 +1,14 @@
+{
+  "files": [
+    "tests/integration/settlement-save-read.test.mjs",
+    "tests/integration/settlement-save-restart.test.mjs"
+  ],
+  "passed": 7,
+  "failed": 0,
+  "skipped": 0,
+  "durationMs": 5660.375298,
+  "database": "disposable PostgreSQL18/PostgREST",
+  "nativeExecution": false,
+  "hostedRequests": 0,
+  "nativeTestSourceSHA256": "8153caa76ebd35dce865dbcd4ce1cb2648874ded589ee02728cd22cf0e94af4d"
+}
