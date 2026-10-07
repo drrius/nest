@@ -198,13 +198,22 @@ No roles, data or schedules change. The small fixture is stopped and the complet
 311-migration rehearsal is not repeated.
 [Evidence](../evidence/2026-10-07/migration-owner-roles/README.md).
 
+The disposable migration rehearsal now uses a distinct owner, lowered from
+superuser before runtime checks. All 311 migrations apply and both financial
+reconciliations pass under the revised runner. Seven focused fixture/runtime/
+lifecycle tests pass without failures or skips. Measured role flags match nest-test;
+Auth/Storage grants and API-role membership remain simulated, so full hosted
+permission equivalence and production readiness remain open. The earlier public
+schema permission failure is retained. This closes a local rehearsal gap without
+another native build. [Evidence](../evidence/2026-10-07/migration-runtime-owner/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
 - **Scheduled workers:** automatic approval review blocked transferring the test Supabase server key and scheduler token to Vercel. The specific transfer approval remains pending; no alternate transfer or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
 - **Phones:** both partners need build 22 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
-- **Branch delivery:** three normal pushes of queued source `bf17cbb0` and metadata `4e7e8d0e` returned GitHub Internal Server Error at 15:13–15:15 UTC. Remote remains `91c06917`; local worktree is clean and the queued source has its recorded passing native/SQLite checks. GitHub's status API reports operational. A stale local commit-graph cache was backed up/rebuilt; ordinary connectivity now passes, but the same remote error persists. Request IDs: `A8C8:17FA84:151E07:1B9BCD:6AC661A4`, `9E6E:168083:14D2B4:1B51A7:6AC661B4`, `E858:246D9C:261918E:24B84AE:6AC6621A`. Stop immediate retries; revalidate the same branch and retry only after backoff or a changed condition. No force push, history rewrite or main update occurs.
+- **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) is still running at this checkpoint. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
 - **Merge:** [PR 85](https://github.com/drrius/nest/pull/85) is OPEN at `1c00a089`, with four successful checks. Its sole Greptile response reports the trial credit limit and supplies no approval. The specific automatic-review merge rejection remains unresolved. The owner waived extra Sol review; no Sol, duplicate unchanged review request or alternate main push is used.
 - **Production:** existing-data reconciliation, writer decisions and pending-intent/external-work drainage must precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
 

@@ -68,6 +68,10 @@ import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { startFixturePostgres } from "../../tests/database/fixture-postgres.mjs";
+import {
+  createFixtureMigrationOwner,
+  configureFixtureRuntimeOwner,
+} from "./fixture-runtime-owner.mjs";
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const [legacy, mode] = process.argv.slice(2);
 if (!legacy || (mode && mode !== "--without-pg-net"))
@@ -83,7 +87,8 @@ report.infrastructure = {
   schedulingVerified: false,
   storageBytesVerified: false,
 };
-const db = startFixturePostgres();
+const bootstrap = startFixturePostgres();
+let db;
 function apply(directory, source) {
   for (const name of readdirSync(directory)
     .filter((n) => n.endsWith(".sql"))
@@ -107,6 +112,7 @@ function apply(directory, source) {
   }
 }
 try {
+  db = createFixtureMigrationOwner(bootstrap);
   db.sql(`create schema auth; create schema extensions;
     create role anon nologin; create role authenticated nologin; create role service_role nologin bypassrls;
     create table auth.users(id uuid primary key);
@@ -133,6 +139,7 @@ try {
   const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.runtimeOwner = configureFixtureRuntimeOwner(db);
   report.tableAccessBeforeCutoverFixture = captureTableAccessInventory(db);
   report.excluded = verifyExcludedRehearsal(db, excludedBefore);
   report.routines = verifyRoutineRehearsal(db, routinesBefore);
@@ -182,6 +189,6 @@ try {
   report.error = error.message;
   process.exitCode = 1;
 } finally {
-  db.stop();
+  bootstrap.stop();
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 }

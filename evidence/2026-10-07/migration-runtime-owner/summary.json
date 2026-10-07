@@ -1,0 +1,103 @@
+{
+  "complete": true,
+  "migrationsApplied": 311,
+  "migrationSources": {
+    "legacy": 54,
+    "native": 257
+  },
+  "skipped": [
+    {
+      "source": "legacy",
+      "name": "20260814153314_enable_pg_net.sql",
+      "sha256": "300f02fa097199e0f43a3583134aa4762a1ac8bc6647e75614677f631ce6ed70"
+    }
+  ],
+  "runtimeOwner": {
+    "before": {
+      "name": "nest_fixture_owner",
+      "inherit": true,
+      "bypassRLS": true,
+      "superuser": true,
+      "createRole": true,
+      "replication": true,
+      "createDatabase": true
+    },
+    "after": {
+      "name": "nest_fixture_owner",
+      "inherit": true,
+      "bypassRLS": true,
+      "superuser": false,
+      "createRole": true,
+      "replication": true,
+      "createDatabase": true
+    },
+    "roleFlagsMatchHostedObservation": true,
+    "hostedPermissionParityVerified": false,
+    "simulated": ["Auth/Storage ownership and grants", "API-role membership for fixture actors"]
+  },
+  "financialReconciliation": true,
+  "cutoverFinancialReconciliation": true,
+  "completedCheckGroups": [
+    "tableAccessBeforeCutoverFixture",
+    "excluded",
+    "routines",
+    "renewals",
+    "privacy",
+    "meals",
+    "recurring",
+    "groceries",
+    "reconciliation",
+    "legacyBoundaries",
+    "legacyAttachmentBoundaries",
+    "legacyReceiptParents",
+    "legacyRoutineBoundaries",
+    "legacyRoutineDefinitions",
+    "legacyFinancialBoundaries",
+    "legacyMealBoundaries",
+    "legacyShoppingBoundaries",
+    "legacyCalendarBoundaries",
+    "legacyCalendarTriggerBoundaries",
+    "legacyContextBoundaries",
+    "legacyRecurringBoundaries",
+    "legacyNotificationBoundaries",
+    "legacyExcludedBoundaries",
+    "legacyInvokerBoundaries",
+    "routineRepair",
+    "legacyJobPause",
+    "pendingLegacyJobs",
+    "shoppingCutover",
+    "groceryRetentionCutover",
+    "financialEntryCutover",
+    "legacyApiFinancialCompatibility",
+    "cutoverFinancialReconciliation",
+    "legacyWriters",
+    "scheduledWriters",
+    "tableAccessAfterCutoverFixture",
+    "internalTableRLS",
+    "offlineEpochAi",
+    "securityAdvisors",
+    "committedFinancialRecovery"
+  ],
+  "infrastructure": {
+    "simulated": ["auth.users", "auth.sessions", "auth.uid", "storage.buckets", "storage.objects"],
+    "schedulingVerified": false,
+    "storageBytesVerified": false
+  },
+  "rawReportSHA256": "e67f7232081a3ac33afae0925bb3575c1b6e27ee8ae04703a20b9b544d76f1d4",
+  "sourceHashes": {
+    "tools/migration/fixture-runtime-owner.mjs": "e25bb72358d74d8470d5c3ccc140936eabdfc1aba277686db89a89638b6cd773",
+    "tools/migration/schema-probe.mjs": "38323ce1cc9c006354a41aaa6113228936efbb095921cc6adae80ccedccf3b9d",
+    "tests/database/fixture-postgres.mjs": "b62e6d4d64d1f8cfde1184cf18509309d693ad6de78ca2167d5c2f4889854fb9",
+    "tests/database/fixture-runtime-owner.test.mjs": "76b5f10ce025637c7180181849abceffd2481fa95842d50809294c31bc2060ea",
+    ".github/workflows/ci.yml": "6ccaa9cac145ada5ccf6ad384198a34750ea11d052796dd9e4fb2e4949e9c5d2"
+  },
+  "hostedRolesChanged": false,
+  "productionAccessed": false,
+  "fixtureStopped": true,
+  "focusedTests": {
+    "tests": 7,
+    "pass": 7,
+    "fail": 0,
+    "skipped": 0
+  }
+}
