@@ -92,7 +92,7 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
         let row = app.descendants(matching: .any).matching(identifier: id).firstMatch
         try reader(app).reveal(row)
         reader(app).capture(row, name: "Owned split review \(id) exact visible value")
-        XCTAssertTrue(row.staticTexts[value].exists, "Expected literal value \(value) in owned review row \(id)")
+        XCTAssertEqual(row.label, value, "Expected literal value in owned review row \(id)")
     }
 
     private func discard(_ app: XCUIApplication) throws {
