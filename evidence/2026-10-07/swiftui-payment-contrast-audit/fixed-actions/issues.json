@@ -1,0 +1,18 @@
+[
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [16, 63, 343, 38],
+    "label": "Review payment",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  },
+  {
+    "detail": "Contrast failed for SwiftUI.AccessibilityNode",
+    "frame": [16, -49, 343, 94.5],
+    "label": "Record a payment you\u2019ve already made outside Nest. Nest does not transfer money.",
+    "summary": "Contrast failed",
+    "tabBarFrame": [0, 584, 375, 83],
+    "type": "Optional(__C.XCUIElementType)"
+  }
+]

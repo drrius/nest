@@ -156,6 +156,22 @@ constraint and is corrected without weakening it. No hosted/production/network
 operation occurs. Edge delivery, external requests and actual writer drainage
 remain open. [Retry evidence](../evidence/2026-10-07/legacy-push-retry/README.md).
 
+Observer/rehearsal source `9809b6f0` now passes routine37585042267/native37585042284:
+509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases and zero
+failures. The full-schema migration probe remains separate local evidence.
+
+A new unfiltered payment-review contrast audit identifies the default gray section
+heading plus two controls intersecting the tab bar. Existing QuietSectionHeader
+removes the fully visible heading report. Scrolling both controls fully into the
+viewport removes their reports; two findings move to clipped top content instead.
+All three unfiltered audits remain failed and unsuppressed. `bc4d0979` shares the
+verified header style across80 financial sections through native QuietFormSection.
+All callers compile; a real no-save partial entry/review/discard method passes,
+zero skips, with full restoration and eight unchanged protected fingerprints.
+Full-page contrast/blur, runtime frame warnings, largest-text header checks,
+VoiceOver and phones remain open. No new beta is submitted.
+[Header/audit evidence](../evidence/2026-10-07/swiftui-payment-contrast-audit/README.md).
+
 ## Available candidate and current source
 
 **Latest private candidate: SwiftUI 0.1.0, build 20**, exact `0ba4a5c3`.

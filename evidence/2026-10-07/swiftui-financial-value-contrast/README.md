@@ -45,3 +45,8 @@ Both original identities, 64 empty journals/settings/local privacy/first-use sta
 restore. Native Form/tab-bar blur and runtime frame warnings remain open; this
 is not whole-page contrast, VoiceOver or phone acceptance. Shipping row code is
 identical to the normal light/dark source; only test observers change.
+
+Observer/rehearsal source `9809b6f0` passes routine37585042267/native37585042284:
+509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases, zero
+failures. Strict formatting/source limits, signing and guarded UI compilation pass.
+Routine CI does not execute the separately verified full-schema migration probe.
