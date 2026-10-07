@@ -25,7 +25,7 @@ final class NativeSettlementCancellationTests: XCTestCase {
         reader.capture(pending, name: "Restart preserves unresolved payment and recovery actions")
         try reader.read("Amount, CHF 0.01")
         try tap("Cancel pending record", app: app, reader: reader)
-        let cancel = app.buttons["Cancel pending record"].lastMatch
+        let cancel = app.sheets.buttons["Cancel pending record"].firstMatch
         XCTAssertTrue(cancel.waitForExistence(timeout: 10))
         try reader.requireTarget(cancel)
         cancel.tap()
