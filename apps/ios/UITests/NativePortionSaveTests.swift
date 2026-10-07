@@ -31,9 +31,39 @@ final class NativePortionSaveTests: XCTestCase {
         try reader(app).reveal(picker)
         XCTAssertEqual(picker.value as? String, 1.formatted())
         reader(app).capture(picker, name: "Original portion restored through normal Save and restart")
-        app.navigationBars["Your food preferences"].buttons["Back"].tap()
+        try returnToToday(app)
+    }
+
+    func testOwnedRestoredPortionReadbackAndReturnWithoutSaving() throws {
+        let env = ProcessInfo.processInfo.environment
+        guard env["NEST_QA_PORTION_READBACK"] == "20261007-restored-alex" else {
+            throw XCTSkip("Read-only follow-up after consumed portion Save budget")
+        }
+        continueAfterFailure = false
+        XCTAssertEqual(env["SIMULATOR_UDID"], "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A")
+        XCTAssertEqual(env["NEST_QA_NAME"], "Test Alex")
+        XCTAssertEqual(env["NEST_QA_POSITIVE_BUDGET"], "0")
+        XCTAssertEqual(env["NEST_QA_API_ORIGIN"], "https://nest-test-api-drrius-projects.vercel.app")
+        XCTAssertEqual(env["NEST_QA_SUPABASE_ORIGIN"], "https://tkjixmujjoustdiedfmw.supabase.co")
+        let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
+        app.launch()
+        try openPreferences(app)
+        let picker = portionPicker(app)
+        try reader(app).reveal(picker)
+        XCTAssertEqual(picker.value as? String, 1.formatted())
+        reader(app).capture(picker, name: "Read-only restored portion after two consumed saves")
+        try returnToToday(app)
+    }
+
+    private func returnToToday(_ app: XCUIApplication) throws {
+        let back = app.navigationBars["Your food preferences"].buttons.element(boundBy: 0)
+        try reader(app).requireTarget(back, bounds: app.frame)
+        back.tap()
         XCTAssertFalse(app.alerts["Discard edits?"].exists)
-        app.navigationBars["Profile"].buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(app.navigationBars["Profile"].waitForExistence(timeout: 15))
+        let profileBack = app.navigationBars["Profile"].buttons.element(boundBy: 0)
+        try reader(app).requireTarget(profileBack, bounds: app.frame)
+        profileBack.tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }

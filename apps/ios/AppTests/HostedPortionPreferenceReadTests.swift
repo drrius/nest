@@ -42,7 +42,7 @@ final class HostedPortionPreferenceReadTests: XCTestCase {
             let profile = try await FoodAPI(http: http).read(token: credentials.accessToken, member: member)
             if name == "Test Alex" {
                 let saved = try XCTUnwrap(profile.profile)
-                XCTAssertEqual(saved.revision, "5")
+                XCTAssertEqual(saved.revision, "7")
                 XCTAssertEqual(saved.preferences.restrictions, ["Vegetarian"])
                 XCTAssertEqual(saved.preferences.dislikes, [])
                 XCTAssertEqual(saved.preferences.portions, 1)

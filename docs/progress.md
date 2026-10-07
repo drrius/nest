@@ -444,5 +444,10 @@ Next M5 check is a real saved portion variation on Test Alex only. Fresh metadat
 confirms revision5,Vegetarian, no dislikes/goal and portion1; Sam stays unconfigured.
 The gated native method permits exactly two UI saves:1.5, actual restart/readback,
 then normal restoration to1 and restart/readback. Five original food receipts are
-retained. Source formatting/limits pass; no method or new Save has run. This is
+retained. The two Save/restart/readbacks complete, but the final Back label observer fails.
+Fresh metadata confirms revision7/portion1, exactly new receipts6/7, unchanged
+five original receipts and other preferences, Sam absent and eight protected
+digests exact. Full scopes/64 journals/settings/local semantics restore. A
+zero-Save readback/return method is prepared; the two-save invocation is consumed
+and will not be repeated. This is
 private nest-test fixture work, not production or live AI planning acceptance.
