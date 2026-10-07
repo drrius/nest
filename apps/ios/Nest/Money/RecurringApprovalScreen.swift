@@ -105,21 +105,21 @@ struct RecurringApprovalScreen: View {
         }
         Section("Rule to save") {
             Text(rule.configuration.description).font(.headline)
-            LabeledContent("Category", value: categoryLabel(rule.configuration.categoryId))
-            LabeledContent("Change", value: rule.expectedRevision == nil ? "Create rule" : "Update rule")
-            LabeledContent("Payer", value: rule.configuration.payerId == member.userId ? "You" : "Your partner")
-            LabeledContent("Starts", value: rule.configuration.startDate.value)
-            LabeledContent("First due", value: rule.firstDueOn.value)
+            QuietValueRow("Category", value: categoryLabel(rule.configuration.categoryId))
+            QuietValueRow("Change", value: rule.expectedRevision == nil ? "Create rule" : "Update rule")
+            QuietValueRow("Payer", value: rule.configuration.payerId == member.userId ? "You" : "Your partner")
+            QuietValueRow("Starts", value: rule.configuration.startDate.value)
+            QuietValueRow("First due", value: rule.firstDueOn.value)
             Text(schedule(rule.configuration.schedule))
             Text(
                 rule.configuration.mode == .fixed
                     ? "Fixed amount and shares each cycle. Nest does not transfer money."
                     : "Each cycle needs its amount and shares confirmed separately.")
             if let amount = rule.configuration.amountCentimes {
-                LabeledContent("Amount", value: amount.absoluteCHF)
+                QuietValueRow("Amount", value: amount.absoluteCHF)
             }
             ForEach(rule.configuration.allocations ?? [], id: \.memberId) {
-                LabeledContent(
+                QuietValueRow(
                     $0.memberId == member.userId ? "Your share" : "Partner’s share", value: $0.centimes.absoluteCHF)
             }
             if let note = rule.configuration.note { Text(note) }
@@ -136,22 +136,22 @@ struct RecurringApprovalScreen: View {
     private func currentSummary(_ currentRule: RecurringRule, proposal rule: RecurringInput) -> some View {
         Section("Current rule") {
             Text(currentRule.configuration.description).font(.headline)
-            LabeledContent("Category", value: categoryLabel(currentRule.configuration.categoryId))
+            QuietValueRow("Category", value: categoryLabel(currentRule.configuration.categoryId))
             Text(currentRule.status.rawValue.capitalized)
             Text(schedule(currentRule.configuration.schedule))
-            LabeledContent("Payer", value: currentRule.configuration.payerId == member.userId ? "You" : "Your partner")
-            LabeledContent("Starts", value: currentRule.configuration.startDate.value)
-            LabeledContent(
+            QuietValueRow("Payer", value: currentRule.configuration.payerId == member.userId ? "You" : "Your partner")
+            QuietValueRow("Starts", value: currentRule.configuration.startDate.value)
+            QuietValueRow(
                 "Mode", value: currentRule.configuration.mode == .fixed ? "Fixed amount" : "Confirm each bill")
-            if let due = currentRule.nextDueOn { LabeledContent("Next due", value: due.value) }
-            if let covered = currentRule.coveredThrough { LabeledContent("Covered through", value: covered.value) }
+            if let due = currentRule.nextDueOn { QuietValueRow("Next due", value: due.value) }
+            if let covered = currentRule.coveredThrough { QuietValueRow("Covered through", value: covered.value) }
             ForEach(currentRule.configuration.allocations ?? [], id: \.memberId) {
-                LabeledContent(
+                QuietValueRow(
                     $0.memberId == member.userId ? "Your share" : "Partner’s share", value: $0.centimes.absoluteCHF)
             }
             if let note = currentRule.configuration.note { Text(note) }
             if let amount = currentRule.configuration.amountCentimes {
-                LabeledContent("Amount", value: amount.absoluteCHF)
+                QuietValueRow("Amount", value: amount.absoluteCHF)
             }
             if !matchesCurrent(rule) {
                 Text("This rule changed after the proposal. Ask for an updated proposal before approving.")

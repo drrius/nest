@@ -74,7 +74,7 @@ struct LegacyAdoptionApprovalScreen: View {
             LegacyAdoptionTerms(context: context.review, member: member)
         } else {
             Section("Original proposal reference") {
-                LabeledContent("Old rule", value: input.ruleId.uuidString.lowercased())
+                QuietValueRow("Old rule", value: input.ruleId.uuidString.lowercased())
                 Text("The current rule cannot replace the original review. Decline and request a new proposal.")
             }
         }

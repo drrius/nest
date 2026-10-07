@@ -102,12 +102,12 @@ struct SettlementApprovalScreen: View {
             Text(settlement.description).font(.headline)
             Text("Confirm a payment that already happened. Nest does not transfer money.")
                 .foregroundStyle(QuietPalette.muted)
-            LabeledContent("Amount", value: settlement.amountCentimes.absoluteCHF)
-            LabeledContent("Paid by", value: settlement.payerId == member.userId ? "You" : "Your partner")
-            LabeledContent("Received by", value: settlement.recipientId == member.userId ? "You" : "Your partner")
-            LabeledContent("Date", value: settlement.date.value)
-            LabeledContent("Reviewed balance", value: settlement.expectedOutstandingCentimes.absoluteCHF)
-            LabeledContent("Payment", value: settlement.mode == .full ? "Full balance" : "Partial balance")
+            QuietValueRow("Amount", value: settlement.amountCentimes.absoluteCHF)
+            QuietValueRow("Paid by", value: settlement.payerId == member.userId ? "You" : "Your partner")
+            QuietValueRow("Received by", value: settlement.recipientId == member.userId ? "You" : "Your partner")
+            QuietValueRow("Date", value: settlement.date.value)
+            QuietValueRow("Reviewed balance", value: settlement.expectedOutstandingCentimes.absoluteCHF)
+            QuietValueRow("Payment", value: settlement.mode == .full ? "Full balance" : "Partial balance")
             if let note = settlement.note { Text(note) }
         }
     }

@@ -10,24 +10,24 @@ struct ManualCycleSummary: View {
     var body: some View {
         Section("Existing expense") {
             Text(source.event.description).font(.headline)
-            LabeledContent("Amount", value: source.event.amountCentimes.absoluteCHF)
-            LabeledContent("Date", value: source.event.occurredOn)
-            if let payer = source.event.payerId { LabeledContent("Paid by", value: name(payer)) }
+            QuietValueRow("Amount", value: source.event.amountCentimes.absoluteCHF)
+            QuietValueRow("Date", value: source.event.occurredOn)
+            if let payer = source.event.payerId { QuietValueRow("Paid by", value: name(payer)) }
             ForEach(source.shares) { share in
-                if let amount = share.allocatedCentimes { LabeledContent(name(share.id), value: amount.absoluteCHF) }
+                if let amount = share.allocatedCentimes { QuietValueRow(name(share.id), value: amount.absoluteCHF) }
             }
-            if let category = source.category { LabeledContent("Category", value: category.name) }
+            if let category = source.category { QuietValueRow("Category", value: category.name) }
             if let note = source.note { Text(note) }
         }
         Section("Bill cycle to cover") {
             Text(configuration.description).font(.headline)
-            LabeledContent("Due date", value: input.dueOn.value)
-            LabeledContent("Period", value: "\(cycle.startsOn.value) to \(cycle.through.value)")
-            LabeledContent("Rule payer", value: name(configuration.payerId))
-            if let amount = configuration.amountCentimes { LabeledContent("Rule amount", value: amount.absoluteCHF) }
+            QuietValueRow("Due date", value: input.dueOn.value)
+            QuietValueRow("Period", value: "\(cycle.startsOn.value) to \(cycle.through.value)")
+            QuietValueRow("Rule payer", value: name(configuration.payerId))
+            if let amount = configuration.amountCentimes { QuietValueRow("Rule amount", value: amount.absoluteCHF) }
             if let shares = configuration.allocations {
                 ForEach(shares, id: \.memberId) { share in
-                    LabeledContent("Rule share · \(name(share.memberId))", value: share.centimes.absoluteCHF)
+                    QuietValueRow("Rule share · \(name(share.memberId))", value: share.centimes.absoluteCHF)
                 }
             } else {
                 Text("The bill has a variable amount and split.")

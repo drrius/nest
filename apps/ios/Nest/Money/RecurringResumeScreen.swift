@@ -68,19 +68,19 @@ struct RecurringResumeScreen: View {
             }
             if let rule = detail?.rule, rule.id == input.ruleId {
                 Text(rule.configuration.description).font(.headline)
-                LabeledContent("Payer", value: rule.configuration.payerId == member.userId ? "You" : "Your partner")
+                QuietValueRow("Payer", value: rule.configuration.payerId == member.userId ? "You" : "Your partner")
                 if let amount = rule.configuration.amountCentimes { Text(amount.absoluteCHF) }
                 if let allocations = rule.configuration.allocations {
                     ForEach(allocations, id: \.memberId) {
-                        LabeledContent(
+                        QuietValueRow(
                             $0.memberId == member.userId ? "Your share" : "Partner’s share",
                             value: $0.centimes.absoluteCHF)
                     }
                 }
                 Text(rule.configuration.mode == .fixed ? "Automatic expense recording" : "Confirm each bill")
             }
-            LabeledContent("Resume from", value: input.resumeFrom.value)
-            LabeledContent("First due", value: input.firstDueOn.value)
+            QuietValueRow("Resume from", value: input.resumeFrom.value)
+            QuietValueRow("First due", value: input.firstDueOn.value)
             Text("The rule resumes with its existing amount, split and schedule. Skipped cycles are not backfilled.")
                 .font(.footnote)
         }

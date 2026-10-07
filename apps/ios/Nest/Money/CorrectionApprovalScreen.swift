@@ -125,9 +125,9 @@ struct CorrectionApprovalScreen: View {
         case .opening(let opening):
             Section("Replacement opening balance") {
                 Text(opening.description)
-                LabeledContent("Amount", value: opening.amountCentimes.absoluteCHF)
-                LabeledContent("Owed to", value: opening.payerId == member.userId ? "You" : "Your partner")
-                LabeledContent("Date", value: opening.date.value)
+                QuietValueRow("Amount", value: opening.amountCentimes.absoluteCHF)
+                QuietValueRow("Owed to", value: opening.payerId == member.userId ? "You" : "Your partner")
+                QuietValueRow("Date", value: opening.date.value)
                 if let note = opening.note { Text(note) }
             }
         case nil: EmptyView()

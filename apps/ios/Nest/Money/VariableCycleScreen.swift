@@ -99,16 +99,16 @@ struct VariableCycleScreen: View {
                 ?? (detail?.rule.id == input.ruleId ? detail?.rule.configuration : nil)
             {
                 Text(config.description).font(.headline)
-                LabeledContent("Paid by", value: name(config.payerId))
+                QuietValueRow("Paid by", value: name(config.payerId))
                 if let note = config.note { Text(note) }
             }
             NavigationLink("View bill rule") {
                 RecurringRuleScreen(session: session, member: member, ruleId: input.ruleId)
             }
-            LabeledContent("Due date", value: input.dueOn.value)
-            LabeledContent("Amount", value: input.amountCentimes.absoluteCHF)
+            QuietValueRow("Due date", value: input.dueOn.value)
+            QuietValueRow("Amount", value: input.amountCentimes.absoluteCHF)
             ForEach(input.allocations, id: \.memberId) {
-                LabeledContent(name($0.memberId), value: $0.centimes.absoluteCHF)
+                QuietValueRow(name($0.memberId), value: $0.centimes.absoluteCHF)
             }
         }
     }

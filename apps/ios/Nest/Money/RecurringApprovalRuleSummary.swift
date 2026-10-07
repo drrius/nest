@@ -12,28 +12,28 @@ struct RecurringApprovalRuleSummary: View {
     var body: some View {
         Section(title) {
             Text(configuration.description).font(.headline)
-            LabeledContent("Status", value: (recordedResume?.status ?? rule.status).rawValue.capitalized)
-            LabeledContent("Payer", value: configuration.payerId == member.userId ? "You" : "Your partner")
+            QuietValueRow("Status", value: (recordedResume?.status ?? rule.status).rawValue.capitalized)
+            QuietValueRow("Payer", value: configuration.payerId == member.userId ? "You" : "Your partner")
             if let amount = configuration.amountCentimes {
-                LabeledContent("Amount per cycle", value: amount.absoluteCHF)
+                QuietValueRow("Amount per cycle", value: amount.absoluteCHF)
             } else {
                 Text("Variable amount · each cycle needs confirmation")
             }
             if let allocations = configuration.allocations {
                 ForEach(allocations, id: \.memberId) {
-                    LabeledContent(
+                    QuietValueRow(
                         $0.memberId == member.userId ? "Your share" : "Partner’s share", value: $0.centimes.absoluteCHF)
                 }
             }
             if configuration.schedule.kind == .monthly {
-                LabeledContent("Cadence", value: "Monthly on day \(configuration.schedule.dayOfMonth ?? 1)")
+                QuietValueRow("Cadence", value: "Monthly on day \(configuration.schedule.dayOfMonth ?? 1)")
             } else {
                 let days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-                LabeledContent("Cadence", value: "Weekly on \(days[(configuration.schedule.weekday ?? 1) - 1])")
+                QuietValueRow("Cadence", value: "Weekly on \(days[(configuration.schedule.weekday ?? 1) - 1])")
             }
-            LabeledContent("Starts", value: configuration.startDate.value)
+            QuietValueRow("Starts", value: configuration.startDate.value)
             if let note = configuration.note { Text(note) }
-            if recordedResume == nil, let due = rule.nextDueOn { LabeledContent("Next due", value: due.value) }
+            if recordedResume == nil, let due = rule.nextDueOn { QuietValueRow("Next due", value: due.value) }
             NavigationLink("View current rule") {
                 RecurringRuleScreen(session: session, member: member, ruleId: rule.id).id(session.generation)
             }

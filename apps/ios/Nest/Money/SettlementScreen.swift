@@ -100,10 +100,10 @@ struct SettlementScreen: View {
 
     private func summary(_ input: SettlementInput) -> some View {
         Section("Review payment") {
-            LabeledContent("Paid by", value: name(input.payerId))
-            LabeledContent("Paid to", value: name(input.recipientId))
-            LabeledContent("Amount", value: input.amountCentimes.absoluteCHF)
-            LabeledContent("Payment date", value: input.date.value)
+            QuietValueRow("Paid by", value: name(input.payerId))
+            QuietValueRow("Paid to", value: name(input.recipientId))
+            QuietValueRow("Amount", value: input.amountCentimes.absoluteCHF)
+            QuietValueRow("Payment date", value: input.date.value)
             if let note = input.note { Text(note) }
             Text("Confirm only if this payment has already happened.").font(.footnote)
         }

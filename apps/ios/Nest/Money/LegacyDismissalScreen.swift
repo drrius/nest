@@ -105,9 +105,9 @@ struct LegacyReviewedDraftTerms: View {
     var body: some View {
         Section("Original reviewed draft") {
             Text(LegacyRecurringLabel.display(draft.description)).font(.headline)
-            LabeledContent("Status at review", value: draft.status.rawValue.capitalized)
-            LabeledContent("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Not specified")
-            LabeledContent("Date", value: draft.occurredOn.display)
+            QuietValueRow("Status at review", value: draft.status.rawValue.capitalized)
+            QuietValueRow("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Not specified")
+            QuietValueRow("Date", value: draft.occurredOn.display)
             if draft.payerId == nil { Text("The old payer is not specified.") }
             LegacySplitTerms(split: draft.allocations, payerId: draft.payerId, member: member)
             if draft.updatedAt.kind == .unsupported { Text("The old change date needs review.") }

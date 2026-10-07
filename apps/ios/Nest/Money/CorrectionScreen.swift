@@ -124,16 +124,16 @@ struct CorrectionScreen: View {
             case .expense(let expense):
                 Text("Replace with: \(expense.description)").font(.headline)
                 Text(expense.amountCentimes.absoluteCHF)
-                LabeledContent("Payer", value: name(expense.payerId))
+                QuietValueRow("Payer", value: name(expense.payerId))
                 ForEach(expense.allocations, id: \.memberId) {
-                    LabeledContent(name($0.memberId), value: $0.centimes.absoluteCHF)
+                    QuietValueRow(name($0.memberId), value: $0.centimes.absoluteCHF)
                 }
                 Text(expense.date.value)
                 if let note = expense.note { Text(note) }
             case .opening(let opening):
                 Text("Replace opening balance: \(opening.description)").font(.headline)
                 Text(opening.amountCentimes.absoluteCHF)
-                LabeledContent("Owed to", value: name(opening.payerId))
+                QuietValueRow("Owed to", value: name(opening.payerId))
                 Text(opening.date.value)
                 if let note = opening.note { Text(note) }
             case nil: Text("Undo the effect of this entry.").font(.headline)

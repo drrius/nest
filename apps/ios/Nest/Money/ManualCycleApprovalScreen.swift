@@ -67,7 +67,7 @@ struct ManualCycleApprovalScreen: View {
                 cycle: cycle, source: context.detail)
         } else {
             Section("Original proposal") {
-                LabeledContent("Due date", value: input.dueOn.value)
+                QuietValueRow("Due date", value: input.dueOn.value)
                 Text("The current expense or bill no longer matches this proposal. Request a new review.")
                 Text("A changed rule’s current terms are not part of this original proposal.")
                     .font(.footnote).foregroundStyle(QuietPalette.muted)

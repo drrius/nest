@@ -103,12 +103,12 @@ struct RefundScreen: View {
     private func summary(_ input: RefundInput) -> some View {
         Section("Review refund") {
             Text(input.description).font(.headline)
-            LabeledContent("Received by", value: name(input.payerId))
-            LabeledContent("Total", value: input.amountCentimes.absoluteCHF)
+            QuietValueRow("Received by", value: name(input.payerId))
+            QuietValueRow("Total", value: input.amountCentimes.absoluteCHF)
             ForEach(input.allocations, id: \.memberId) { share in
-                LabeledContent(name(share.memberId), value: share.centimes.absoluteCHF)
+                QuietValueRow(name(share.memberId), value: share.centimes.absoluteCHF)
             }
-            LabeledContent("Date", value: input.date.value)
+            QuietValueRow("Date", value: input.date.value)
             if let note = input.note { Text(note) }
             Text("This records a refund already received; Nest does not move money.").font(.footnote)
         }

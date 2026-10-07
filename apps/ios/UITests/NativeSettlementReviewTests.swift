@@ -63,6 +63,7 @@ final class NativeSettlementReviewTests: XCTestCase {
         try reader.requireTarget(review)
         review.tap()
         try reader.read("Amount, CHF 0.01")
+        reader.capture(reader.element("Amount, CHF 0.01"), name: "Payment value row contrast before recording")
         try reader.read("Confirm only if this payment has already happened.")
         let back = app.navigationBars["Record payment"].buttons["Back"]
         try reader.requireTarget(back, bounds: app.frame)

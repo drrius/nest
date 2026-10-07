@@ -105,11 +105,11 @@ struct RefundApprovalScreen: View {
         }
         Section("Refund to record") {
             Text(refund.description).font(.headline)
-            LabeledContent("Amount", value: refund.amountCentimes.absoluteCHF)
-            LabeledContent("Received by", value: refund.payerId == member.userId ? "You" : "Your partner")
-            LabeledContent("Date", value: refund.date.value)
+            QuietValueRow("Amount", value: refund.amountCentimes.absoluteCHF)
+            QuietValueRow("Received by", value: refund.payerId == member.userId ? "You" : "Your partner")
+            QuietValueRow("Date", value: refund.date.value)
             ForEach(refund.allocations, id: \.memberId) {
-                LabeledContent(
+                QuietValueRow(
                     $0.memberId == member.userId ? "Your share" : "Partner’s share", value: $0.centimes.absoluteCHF)
             }
             if let note = refund.note { Text(note) }

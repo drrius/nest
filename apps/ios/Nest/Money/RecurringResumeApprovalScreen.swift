@@ -63,8 +63,8 @@ struct RecurringResumeApprovalScreen: View {
 
     private func requestedChange(_ change: RecurringResumeInput) -> some View {
         Section("Proposed resumption") {
-            LabeledContent("Resume from", value: change.resumeFrom.value)
-            LabeledContent("First new cycle", value: change.firstDueOn.value)
+            QuietValueRow("Resume from", value: change.resumeFrom.value)
+            QuietValueRow("First new cycle", value: change.firstDueOn.value)
             Text(
                 "Retain the amount, payer and split shown above. Fixed expenses resume automatic recording; variable expenses still need confirmation for each cycle."
             )

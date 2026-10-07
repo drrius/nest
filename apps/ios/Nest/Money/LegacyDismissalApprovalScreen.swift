@@ -78,8 +78,8 @@ struct LegacyDismissalApprovalScreen: View {
             LegacyReviewedDraftTerms(draft: context.review.draft, member: member)
         } else {
             Section("Original proposal references") {
-                LabeledContent("Draft", value: input.draftId.uuidString.lowercased())
-                LabeledContent("Old rule", value: input.ruleId.uuidString.lowercased())
+                QuietValueRow("Draft", value: input.draftId.uuidString.lowercased())
+                QuietValueRow("Old rule", value: input.ruleId.uuidString.lowercased())
                 Text(
                     "The current draft could not be matched to this proposal. Its current terms cannot replace the original review."
                 )

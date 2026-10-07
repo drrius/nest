@@ -85,7 +85,7 @@ struct ManualCycleScreen: View {
                 Text("Pending link cancelled. No cycle was covered by this request.")
             } else {
                 Text("Not confirmed yet. Resolve this exact saved link before linking another expense.")
-                LabeledContent("Due date", value: saved.command.input.dueOn.value)
+                QuietValueRow("Due date", value: saved.command.input.dueOn.value)
                 NavigationLink("View selected expense") {
                     MoneyDetailScreen(session: session, member: member, eventId: saved.command.input.sourceEventId)
                 }

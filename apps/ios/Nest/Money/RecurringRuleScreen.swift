@@ -53,18 +53,18 @@ struct RecurringRuleScreen: View {
                 }
                 Section("Schedule") {
                     Text(schedule(rule.configuration.schedule))
-                    LabeledContent("Starts", value: rule.configuration.startDate.value)
-                    if let next = rule.nextDueOn { LabeledContent("Next due", value: next.value) }
-                    if let covered = rule.coveredThrough { LabeledContent("Covered through", value: covered.value) }
+                    QuietValueRow("Starts", value: rule.configuration.startDate.value)
+                    if let next = rule.nextDueOn { QuietValueRow("Next due", value: next.value) }
+                    if let covered = rule.coveredThrough { QuietValueRow("Covered through", value: covered.value) }
                 }
                 Section("Expense details") {
-                    LabeledContent("Payer", value: name(rule.configuration.payerId))
+                    QuietValueRow("Payer", value: name(rule.configuration.payerId))
                     if let amount = rule.configuration.amountCentimes {
-                        LabeledContent("Amount", value: amount.absoluteCHF)
+                        QuietValueRow("Amount", value: amount.absoluteCHF)
                     }
                     if let shares = rule.configuration.allocations {
                         ForEach(shares, id: \.memberId) {
-                            LabeledContent(name($0.memberId), value: $0.centimes.absoluteCHF)
+                            QuietValueRow(name($0.memberId), value: $0.centimes.absoluteCHF)
                         }
                     }
                     if let note = rule.configuration.note { Text(note) }

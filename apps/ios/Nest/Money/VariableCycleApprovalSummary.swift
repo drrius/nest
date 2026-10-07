@@ -9,14 +9,14 @@ struct VariableCycleApprovalSummary: View {
     var body: some View {
         Section(recordedCycle == nil ? "Bill being reviewed" : "Bill recorded") {
             Text(configuration?.description ?? "Bill proposal").font(.headline)
-            LabeledContent("Amount", value: input.amountCentimes.absoluteCHF)
-            if let configuration { LabeledContent("Payer", value: name(configuration.payerId)) }
+            QuietValueRow("Amount", value: input.amountCentimes.absoluteCHF)
+            if let configuration { QuietValueRow("Payer", value: name(configuration.payerId)) }
             ForEach(input.allocations, id: \.memberId) { share in
-                LabeledContent(name(share.memberId), value: share.centimes.absoluteCHF)
+                QuietValueRow(name(share.memberId), value: share.centimes.absoluteCHF)
             }
-            LabeledContent("Due date", value: input.dueOn.value)
+            QuietValueRow("Due date", value: input.dueOn.value)
             if let cycle {
-                LabeledContent("Cycle", value: "\(cycle.startsOn.value) to \(cycle.through.value)")
+                QuietValueRow("Cycle", value: "\(cycle.startsOn.value) to \(cycle.through.value)")
             }
             if configuration?.categoryId != nil { Text("Uses the bill’s selected category.").font(.footnote) }
             if let note = configuration?.note { Text(note) }

@@ -65,20 +65,20 @@ struct LegacyRecurringTerms: View {
     var body: some View {
         Section("Retained rule terms") {
             Text(rule.description).font(.headline)
-            LabeledContent("Amount", value: rule.amountCentimes.absoluteCHF)
+            QuietValueRow("Amount", value: rule.amountCentimes.absoluteCHF)
             LegacySplitTerms(split: rule.allocations, payerId: rule.payerId, member: member)
-            LabeledContent("Old rule", value: rule.active ? "Active · draft only" : "Inactive · draft only")
-            LabeledContent("Next old date", value: rule.nextOccurrenceOn.display)
+            QuietValueRow("Old rule", value: rule.active ? "Active · draft only" : "Inactive · draft only")
+            QuietValueRow("Next old date", value: rule.nextOccurrenceOn.display)
             if rule.updatedAt.kind == .unsupported { Text("The old change date needs review.") }
             if let weekday = rule.schedule.weekday {
-                LabeledContent("Schedule", value: "Every \(Calendar.current.weekdaySymbols[weekday % 7])")
+                QuietValueRow("Schedule", value: "Every \(Calendar.current.weekdaySymbols[weekday % 7])")
             }
-            if let day = rule.schedule.dayOfMonth { LabeledContent("Schedule", value: "Day \(day) of each month") }
+            if let day = rule.schedule.dayOfMonth { QuietValueRow("Schedule", value: "Day \(day) of each month") }
             if rule.drafts.needsReconciliation {
                 Text("These retained counts need reconciliation. Viewing this rule does not change your balance.")
-                LabeledContent("Posted without an entry", value: rule.drafts.postedWithoutEvent)
-                LabeledContent("Unposted with an entry", value: rule.drafts.unpostedWithEvent)
-                LabeledContent("Unsupported dates", value: rule.drafts.unsupportedDates)
+                QuietValueRow("Posted without an entry", value: rule.drafts.postedWithoutEvent)
+                QuietValueRow("Unposted with an entry", value: rule.drafts.unpostedWithEvent)
+                QuietValueRow("Unsupported dates", value: rule.drafts.unsupportedDates)
             }
             Text("Drafts keep their original amount and split even when this rule later changed.")
                 .font(.footnote).foregroundStyle(QuietPalette.muted)

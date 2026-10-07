@@ -76,21 +76,21 @@ struct RecurringEditorScreen: View {
             Text(
                 input.configuration.mode == .fixed
                     ? "Automatically recorded each cycle" : "Confirm amount and split each cycle")
-            LabeledContent("Payer", value: name(input.configuration.payerId))
+            QuietValueRow("Payer", value: name(input.configuration.payerId))
             if let amount = input.configuration.amountCentimes { Text(amount.absoluteCHF) }
             if let allocations = input.configuration.allocations {
                 ForEach(allocations, id: \.memberId) {
-                    LabeledContent(name($0.memberId), value: $0.centimes.absoluteCHF)
+                    QuietValueRow(name($0.memberId), value: $0.centimes.absoluteCHF)
                 }
             }
             Text(
                 input.configuration.schedule.kind == .monthly
                     ? "Monthly, day \(input.configuration.schedule.dayOfMonth ?? 1)"
                     : "Weekly, weekday \(input.configuration.schedule.weekday ?? 1) (Monday = 1)")
-            LabeledContent("Starts", value: input.configuration.startDate.value)
-            LabeledContent("First due", value: input.firstDueOn.value)
+            QuietValueRow("Starts", value: input.configuration.startDate.value)
+            QuietValueRow("First due", value: input.firstDueOn.value)
             if input.configuration.categoryId != nil {
-                LabeledContent("Category", value: categoryName ?? "Previously selected category")
+                QuietValueRow("Category", value: categoryName ?? "Previously selected category")
             }
             if let note = input.configuration.note { Text(note) }
             Text("Existing history stays unchanged. Saving does not move money.").font(.footnote)

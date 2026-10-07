@@ -9,9 +9,9 @@ struct LegacyDraftScreen: View {
         List {
             Section("Retained draft terms") {
                 Text(draft.description).font(.headline)
-                LabeledContent("Status", value: draft.status.rawValue.capitalized)
-                LabeledContent("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Needs review")
-                LabeledContent("Date", value: draft.occurredOn.display)
+                QuietValueRow("Status", value: draft.status.rawValue.capitalized)
+                QuietValueRow("Amount", value: draft.amountCentimes?.absoluteCHF ?? "Needs review")
+                QuietValueRow("Date", value: draft.occurredOn.display)
                 if draft.updatedAt.kind == .unsupported { Text("The old change date needs review.") }
                 LegacySplitTerms(split: draft.allocations, payerId: draft.payerId, member: member)
                 Text(
@@ -58,10 +58,10 @@ struct LegacySplitTerms: View {
     let member: VerifiedMember
 
     var body: some View {
-        if let payerId { LabeledContent("Retained payer", value: payerId == member.userId ? "You" : "Other member") }
+        if let payerId { QuietValueRow("Retained payer", value: payerId == member.userId ? "You" : "Other member") }
         if let shares = split.shares {
             ForEach(shares, id: \.memberId) { share in
-                LabeledContent(
+                QuietValueRow(
                     share.memberId == member.userId ? "Your retained share" : "Other retained share",
                     value: share.centimes.absoluteCHF)
             }
