@@ -38,6 +38,12 @@ hosted observations, refuses missing/different definition sets and fails if a
 body hash or definer flag differs. It retains owner differences without treating
 them as equivalent capabilities.
 
+Source `971b2069` passes [routine CI 37621917353](https://github.com/drrius/nest/actions/runs/37621917353).
+The retained comparison script at `6ef3c4b7` passes
+[CI 37623018040](https://github.com/drrius/nest/actions/runs/37623018040).
+Shipping native/backend code remains unchanged; these checks do not substitute
+for production, device or live-worker acceptance.
+
 The current [Supabase Cron documentation](https://supabase.com/docs/guides/cron)
 identifies cron.job as the registration catalog. The changelog and relevant
 [PostgreSQL minor-release notice](https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes)

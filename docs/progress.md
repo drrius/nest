@@ -81,6 +81,8 @@ The native diagnosis source `240ed33b` passes routine
 [CI 37619852843](https://github.com/drrius/nest/actions/runs/37619852843); the hosted
 inventory/source-parity source `971b2069` passes
 [CI 37621917353](https://github.com/drrius/nest/actions/runs/37621917353).
+The rerunnable comparison source `6ef3c4b7` also passes
+[CI 37623018040](https://github.com/drrius/nest/actions/runs/37623018040).
 Neither check changes the retained failures or closes M1/M9 acceptance.
 
 The new read-only scheduled-writer inventory is integrated into the disposable
