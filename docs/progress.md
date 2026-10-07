@@ -1044,3 +1044,12 @@ Apple-preflight gates pass and exactly one authorized private submission
 second upload. Apple processing/availability22 and physical acceptance remain
 unverified;21 stays available. No cloud build, invitations, public release,
 production migration, source merge or credential change.
+
+Build22 single submission12d18101-2fef-4cda-a9ef-03a0743bcd10 is FINISHED. Apple
+now reports0.1.0/22 VALID/IN_BETA_TESTING/unexpired. Owner notified; latest phone
+checklists now identify22. The same upload is followed to completion without
+replay. Installation, partner tester access and full hardware/owner acceptance
+remain unverified. It uses nest-test/push disabled; live AI, APNs delivery, merge
+exception and production cutover gates remain open. No cloud build, invitations,
+purchase, public release or production change.
+[Build22 availability](../evidence/2026-10-07/swiftui-build22/apple-availability.json).

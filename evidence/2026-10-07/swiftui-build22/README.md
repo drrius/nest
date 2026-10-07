@@ -22,10 +22,10 @@ removed on both hosts, with original credentials and user search list intact.
 
 Apple read-only preflight confirms22 absent and21 valid. Both routine37612410978 and native37612410354 pass the exact frozen source:
 509 Foundation/41 skips and496 signed-app/54 skips, zero failures, strict format/
-limits/signing and guarded UI compilation. One-use artifact gates pass; exactly
-one private submission12d18101-2fef-4cda-a9ef-03a0743bcd10 is queued. No second
-attempt occurs. Build21 remains available; Apple processing/availability and
-device execution of22 remain unverified.
+limits/signing and guarded UI compilation. One-use artifact gates pass; exactly one private submission
+12d18101-2fef-4cda-a9ef-03a0743bcd10 finishes successfully. No second attempt occurs.
+Apple confirms22 VALID/IN_BETA_TESTING/unexpired. [Availability](apple-availability.json).
+Tester installation, partner access and device execution remain unverified.
 
 The candidate uses nest-test and keeps push disabled. Live AI, full accessibility,
 physical push, both-phone acceptance and production cutover remain open. No

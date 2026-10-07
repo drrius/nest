@@ -1,7 +1,7 @@
-# Build21 first phone pass
+# Latest first phone pass: build22
 
-Apple confirms the consolidated SwiftUI0.1.0/build21 candidate is VALID, internally
-available and unexpired. Update to21 in your existing TestFlight installation. It uses nest-test, with push disabled; Household OS production is unchanged.
+Apple confirms the consolidated SwiftUI0.1.0/build22 candidate is VALID, internally
+available and unexpired. Update to22 in your existing TestFlight installation. The retained filename is historical; this checklist identifies the current beta. It uses nest-test, with push disabled; Household OS production is unchanged.
 
 1. Open all four tabs and compare the header/actions, side margins and card edges
    in your normal appearance/text size, then dark mode and larger text.
@@ -13,7 +13,10 @@ available and unexpired. Update to21 in your existing TestFlight installation. I
    your entries. Explicitly discard instead of Save when checking presentation.
 4. Open payment entry, inspect Full/Partial choices and review details, then Edit
    or discard. This records payments made elsewhere; it never transfers money.
-5. Report phone/iOS/build, clipped or confusing controls, and whether both partners
+5. In Money, open Saved changes. Bill confirmation appears only when this account
+   has a saved variable-bill entry. Do not create an expense solely to test this link.
+   If a real test entry is uncertain, preserve it and use its recovery actions.
+6. Report phone/iOS/build, clipped or confusing controls, and whether both partners
    can independently navigate without coaching. Preserve unresolved requests;
    do not reinstall or clear data to hide failures.
 
