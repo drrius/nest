@@ -4,39 +4,39 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
-Expense approval category review now loads the exact tenant-scoped category name,
-including retained archived names, instead of always showing “Previously selected
-category.” Missing/unavailable metadata is explicit; Approve is disabled until the
-category is confirmed, while Decline remains available. The native decision guard
-also enforces this condition. Signed Mac build-for-testing and five focused
-Foundation category/approval tests pass; two disposable SDK/approval integration
-cases pass without skips. The integration fixtures are not live AI or native UI
-execution. Fresh pending-proposal native rendering/decision, phone verification
-and current-change CI remain open. This change is later than build19. No hosted
-proposal, financial posting, production mutation or release occurs.
+Expense and replacement-expense correction approval screens now read exact
+category names through the tenant-scoped API. Missing/unavailable metadata is
+explicit; Approve is disabled while Decline and saved-result recovery remain
+available. These changes are later than build19. Five focused Foundation
+category/expense tests, one correction test, two disposable SDK/approval integration
+cases and signed simulator compilation pass. Integration adapters are test-only;
+they do not establish native UI or live-provider execution.
 
-Replacement-expense correction approvals now use the same exact category lookup
-and approval guard. Reversal-only/opening proposals require no category. One
-focused correction approval Foundation test and signed native compile pass.
-Rendered pending correction approval and failure/retry interaction remain open.
+Three source-matched native methods also pass on the fictional SE3 clients:
+Alex reviews Home and cancels the decline confirmation; Sam sees no owner-private
+pending proposal; Alex explicitly declines once, reads the no-expense result and
+uses Done. The server retains that proposal as denied with null consumption. The
+one decline budget is consumed. Eight protected fingerprints including all62
+financial events remain exact; both controllers restore original scopes,64 empty
+journals, settings and device-only local choices. Fixture setup used the audited
+private command with fixture auth claims, not model generation or auth proof.
+[Category review evidence](../evidence/2026-10-07/swiftui-expense-approval-category/README.md).
 
-One actual pending-expense native review now passes on Alex's normal-size fictional
-SE3. It reads Home, verifies Approve is enabled, opens Decline and presses Cancel,
-then returns to Today. The proposal remains pending with no decision/consumption;
-all eight retained fingerprints including financial history remain exact. Both
-simulator scopes,64 empty journals/settings/local selections restore. The fresh
-private audit proposal was prepared through the existing audited command with
-fixture auth claims; this is not live AI or authorization proof. No expense was
-posted. Maximum text, partner privacy, actual decision and correction UI remain.
+Category preflight now also belongs to the shared native decision commands, before
+durable expense/correction approval staging. Missing/offline/foreign metadata
+refuses approval; decline and existing saved-result recovery stay available.
+Eight focused signed-app methods pass without skips, including ten new category
+cases with real isolated SQLite journals. Two setup/fixture failures are retained;
+the successful run corrects only target selection and synthetic wire timestamps.
+Rendered category outage/retry and latest-source CI remain open.
+[Preflight evidence](../evidence/2026-10-07/swiftui-financial-category-preflight/README.md).
 
-The expense fixture now also passes two actual native methods: Sam sees no private
-pending expense while Alex's proposal is open, and Alex explicitly declines once,
-reads the no-expense outcome and uses Done to finish the local journal. Server
-status is denied with no consumption. Both controllers restore original scopes,
-64 empty journals/settings/local choices; all eight protected fingerprints remain
-exact. The one decline budget is consumed. This closes these bounded list-privacy
-and decline checks, not direct unauthorized links, financial posting, maximum text,
-category failure/retry, correction review or physical-phone acceptance.
+Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
+and largest-text checks remain valid within their recorded scope; do not repeat
+those decisions or call those whole families untested. The new category behavior
+still needs metadata failure/retry and correction-category rendering evidence.
+Full settlement/manual-cycle/legacy rendering, hosted uncertain replies/races,
+VoiceOver, both phones and live AI remain open. [Earlier consent evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md).
 
 ## Available candidate and current source
 

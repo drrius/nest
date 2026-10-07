@@ -24,6 +24,14 @@ extension SessionModel {
         guard proposal.approval.status == .pending,
             ApprovalTime.isOpen(proposal.approval.expiresAt, now: .now)
         else { throw NestAPIFailure.conflict }
+        if decision.approved, case .expense(let expense) = decision.correction.replacement,
+            let categoryId = expense.categoryId
+        {
+            guard try await readMoneyCategory(context, categoryId: categoryId).category != nil else {
+                throw NestAPIFailure.conflict
+            }
+        }
+        guard ApprovalTime.isOpen(proposal.approval.expiresAt, now: .now) else { throw NestAPIFailure.conflict }
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }
         try await offline.enqueueCorrectionDecision(decision, lease: context.lease)
