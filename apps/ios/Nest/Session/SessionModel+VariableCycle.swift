@@ -1,6 +1,14 @@
 import Foundation
 
 extension SessionModel {
+    func savedVariableBillEntry(member: VerifiedMember, generation: Int) async throws -> SavedVariableCycle? {
+        try requireMoneyAccount(member, generation: generation)
+        let context = try expenseContext()
+        let saved = try await savedVariableCycle(context)
+        try requireMoneyAccount(member, generation: generation)
+        return saved
+    }
+
     func savedVariableCycle(_ context: ExpenseContext) async throws -> SavedVariableCycle? {
         try requireMoneyAccount(context.member, generation: context.generation)
         guard let offline else { throw NestAPIFailure.configuration }

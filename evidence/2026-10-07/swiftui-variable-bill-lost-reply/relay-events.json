@@ -1,0 +1,403 @@
+[
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/session",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/chores/snapshot",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/pending-approvals",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/meals/week?weekStart=2026-10-05",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/history",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/chores/snapshot",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/due-variable",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/due-variable",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/rule?ruleId=52b920ea-0e59-48fd-a1f1-3ffe148d3b43",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/rule?ruleId=52b920ea-0e59-48fd-a1f1-3ffe148d3b43",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/rule?ruleId=52b920ea-0e59-48fd-a1f1-3ffe148d3b43",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/variable/receipt?operationId=76c432fa-db6d-4380-9eae-1908d4c3f6ed",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/variable/save",
+    "write": true,
+    "operation": "76c432fa-db6d-4380-9eae-1908d4c3f6ed",
+    "bodySHA256": "e377e7e57bebe1d6be3eb1f8e489115c67101e19b0aa30f41aa68005100dd0be",
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": true,
+    "eventId": "e18e0019-1717-4c8c-95de-a95cca2eb59e"
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/session",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/pending-approvals",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/due-variable",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/meals/week?weekStart=2026-10-05",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/chores/snapshot",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/history",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/session",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/pending-approvals",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/due-variable",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/meals/week?weekStart=2026-10-05",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/chores/snapshot",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/history",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": false,
+    "status": 503
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/session",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/due-variable",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/meals/week?weekStart=2026-10-05",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/chores/snapshot",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/pending-approvals",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/history",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/chores/snapshot",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/groceries",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/variable/receipt?operationId=76c432fa-db6d-4380-9eae-1908d4c3f6ed",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/detail?eventId=e18e0019-1717-4c8c-95de-a95cca2eb59e",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/balance",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/recurring/rule?ruleId=52b920ea-0e59-48fd-a1f1-3ffe148d3b43",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/meals/week?weekStart=2026-10-05",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  },
+  {
+    "actor": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+    "path": "/v1/money/pending-approvals",
+    "write": false,
+    "forwarded": true,
+    "status": 200,
+    "replyDropped": false
+  }
+]

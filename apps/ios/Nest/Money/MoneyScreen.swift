@@ -36,6 +36,7 @@ struct MoneyScreen: View {
                 }
                 QuietSectionCard {
                     DisclosureGroup {
+                        SavedVariableBillLink(session: session, member: member)
                         NavigationLink {
                             LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
                         } label: {

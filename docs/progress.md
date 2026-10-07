@@ -890,3 +890,18 @@ unexpired. The same upload was observed through completion without replay. Owner
 notification delivered; installation/partner access and phone acceptance remain
 unverified. Use the build21 checklist; pending earlier20 availability states above
 are dated history. No public release or production cutover occurs.
+
+The direct variable bill now has actual hosted lost-reply evidence: one native
+CHF 0.02 POST commits, its reply is dropped, and the unconfirmed local intent
+survives restart unchanged. Money now discovers that entry locally through Saved
+changes without requiring a live rule read. The view uses a stable container so
+its initial local lookup starts; member/generation guards reject stale disclosure.
+Native reconnection recovers the same receipt without another POST, opens its
+expense and clears through Done. Partner SDK read and ordinary owned-rule
+cancellation pass. Six successful native methods, two retained prior failures;
+two controlled model cases separately pass. Original 66 events/108 allocations/
+132 ledger rows and five nonfinancial fingerprints stay exact; only one event
+and two shares/ledger rows are added. Both clients/settings/privacy/64 journals
+restore; relay stops and key is destroyed. Format/limits/signed builds pass;
+current-source CI and phones remain open. This shipping fix is after build21.
+[Bill recovery](../evidence/2026-10-07/swiftui-variable-bill-lost-reply/README.md).

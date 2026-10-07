@@ -1,0 +1,8 @@
+{
+  "oneUpstreamPost": true,
+  "committedReplyDropped": true,
+  "originalOperation": "76c432fa-db6d-4380-9eae-1908d4c3f6ed",
+  "event": "e18e0019-1717-4c8c-95de-a95cca2eb59e",
+  "readOnlyReceiptRecovery": true,
+  "pendingClearedOnlyAfterRecordedReceipt": true
+}

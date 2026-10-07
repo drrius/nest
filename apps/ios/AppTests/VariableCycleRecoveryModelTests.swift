@@ -61,6 +61,7 @@ final class VariableCycleRecoveryModelTests: XCTestCase {
         let pending = try await model.savedVariableCycle(context)
         XCTAssertEqual(pending?.command, staged?.command)
         XCTAssertNil(pending?.result?.receipt)
+        try await verifyLocalDiscovery(model, context: context, command: staged?.command, server: server)
         let recovered = try await model.retryVariableCycle(context)
         XCTAssertEqual(recovered.result?.status, .recorded)
         XCTAssertEqual(recovered.command, staged?.command)
@@ -71,6 +72,31 @@ final class VariableCycleRecoveryModelTests: XCTestCase {
             _ = try await model.retryVariableCycle(context)
             XCTFail("Signed-out context reused")
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+        do {
+            _ = try await model.savedVariableBillEntry(member: member, generation: context.generation)
+            XCTFail("Signed-out saved entry disclosed")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+    }
+
+    private func verifyLocalDiscovery(
+        _ model: SessionModel, context: ExpenseContext,
+        command: SaveVariableCycle?, server: LostVariableCycleReplyServer
+    ) async throws {
+        let member = context.member
+        let before = await server.requests
+        let saved = try await model.savedVariableBillEntry(member: member, generation: context.generation)
+        XCTAssertEqual(saved?.command, command)
+        let wrong = VerifiedMember(userId: UUID(), householdId: member.householdId, displayName: "Other")
+        do {
+            _ = try await model.savedVariableBillEntry(member: wrong, generation: context.generation)
+            XCTFail("Another member discovered the local bill")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+        do {
+            _ = try await model.savedVariableBillEntry(member: member, generation: context.generation + 1)
+            XCTFail("A stale generation discovered the local bill")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+        let after = await server.requests
+        XCTAssertEqual(after, before, "Local recovery discovery must not need a live rule or financial read")
     }
 }
 
@@ -78,11 +104,13 @@ private actor LostVariableCycleReplyServer {
     let member: VerifiedMember
     var receipt: VariableCycleReceipt?
     var saves = 0
+    var requests = 0
     var preflight: RecurringEntryPreflightFixture?
     func prepare(_ value: RecurringEntryPreflightFixture) { preflight = value }
     init(member: VerifiedMember) { self.member = member }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        requests += 1
         if let result = try preflight?.respond(request) { return result }
         if request.url!.path.hasSuffix("/save") {
             let command = try JSONDecoder().decode(SaveVariableCycle.self, from: request.httpBody!)

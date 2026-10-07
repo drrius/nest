@@ -1,0 +1,74 @@
+[
+  {
+    "step": "01-prepare-rule",
+    "method": "HostedVariableBillLostReplyTests/testPrepareVariableOnlyRuleOnceWithoutPostingMoney",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 6.942
+  },
+  {
+    "step": "02-record-one-bill",
+    "method": "NativeVariableBillLostReplyTests/testRecordOneBillAndRetainUnconfirmedEntry",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 56.564
+  },
+  {
+    "step": "02b-record-one-bill",
+    "method": "NativeVariableBillLostReplyTests/testRecordOneBillAndRetainUnconfirmedEntry",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 78.424
+  },
+  {
+    "step": "03-offline-restart",
+    "method": "NativeVariableBillLostReplyTests/testOfflineRestartDiscoversSavedBillFromMoneyRoot",
+    "exitCode": 65,
+    "passed": 0,
+    "failed": 1,
+    "skipped": 0,
+    "seconds": 63.105
+  },
+  {
+    "step": "03b-offline-restart",
+    "method": "NativeVariableBillLostReplyTests/testOfflineRestartDiscoversSavedBillFromMoneyRoot",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 45.409
+  },
+  {
+    "step": "04b-recover-and-finish",
+    "method": "NativeVariableBillLostReplyTests/testRecoverOriginalBillReceiptAndFinishWithoutAnotherSave",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 52.358
+  },
+  {
+    "step": "05-partner-read",
+    "method": "HostedVariableBillLostReplyTests/testPartnerReadsOneRecordedBillAndCoveredCycle",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.687
+  },
+  {
+    "step": "06-cancel-owned-rule",
+    "method": "HostedVariableBillLostReplyTests/testCancelOnlyOwnedRuleKeepingRecordedHistory",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.714
+  }
+]
