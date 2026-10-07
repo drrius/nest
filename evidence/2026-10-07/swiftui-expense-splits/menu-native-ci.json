@@ -1,1 +1,107 @@
-{"conclusion":"success","headSha":"f7d1990c7cfe5a1fbc2eaf364e9abed2b7139189","jobs":[{"completedAt":"2026-10-07T03:29:23Z","conclusion":"success","databaseId":112613018473,"name":"swiftui","startedAt":"2026-10-07T03:13:59Z","status":"completed","steps":[{"completedAt":"2026-10-07T03:14:01Z","conclusion":"success","name":"Set up job","number":1,"startedAt":"2026-10-07T03:14:00Z","status":"completed"},{"completedAt":"2026-10-07T03:14:20Z","conclusion":"success","name":"Run actions/checkout@v4","number":2,"startedAt":"2026-10-07T03:14:01Z","status":"completed"},{"completedAt":"2026-10-07T03:14:22Z","conclusion":"success","name":"Verify Swift source limits","number":3,"startedAt":"2026-10-07T03:14:20Z","status":"completed"},{"completedAt":"2026-10-07T03:14:23Z","conclusion":"success","name":"Test native push signing gates","number":4,"startedAt":"2026-10-07T03:14:22Z","status":"completed"},{"completedAt":"2026-10-07T03:14:41Z","conclusion":"success","name":"Verify Swift formatting","number":5,"startedAt":"2026-10-07T03:14:23Z","status":"completed"},{"completedAt":"2026-10-07T03:17:00Z","conclusion":"success","name":"Test Foundation domain and offline rules","number":6,"startedAt":"2026-10-07T03:14:41Z","status":"completed"},{"completedAt":"2026-10-07T03:28:44Z","conclusion":"success","name":"Test iPhone session and account boundaries","number":7,"startedAt":"2026-10-07T03:17:00Z","status":"completed"},{"completedAt":"2026-10-07T03:28:45Z","conclusion":"success","name":"Verify actual app push signing","number":8,"startedAt":"2026-10-07T03:28:44Z","status":"completed"},{"completedAt":"2026-10-07T03:29:11Z","conclusion":"success","name":"Compile guarded native UI checks","number":9,"startedAt":"2026-10-07T03:28:45Z","status":"completed"},{"completedAt":"2026-10-07T03:29:12Z","conclusion":"success","name":"Post Run actions/checkout@v4","number":18,"startedAt":"2026-10-07T03:29:11Z","status":"completed"},{"completedAt":"2026-10-07T03:29:20Z","conclusion":"success","name":"Complete job","number":19,"startedAt":"2026-10-07T03:29:12Z","status":"completed"}],"url":"https://github.com/drrius/nest/actions/runs/37565774135/job/112613018473"}],"status":"completed","url":"https://github.com/drrius/nest/actions/runs/37565774135"}
+{
+  "conclusion": "success",
+  "headSha": "f7d1990c7cfe5a1fbc2eaf364e9abed2b7139189",
+  "jobs": [
+    {
+      "completedAt": "2026-10-07T03:29:23Z",
+      "conclusion": "success",
+      "databaseId": 112613018473,
+      "name": "swiftui",
+      "startedAt": "2026-10-07T03:13:59Z",
+      "status": "completed",
+      "steps": [
+        {
+          "completedAt": "2026-10-07T03:14:01Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-10-07T03:14:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:14:20Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-10-07T03:14:01Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:14:22Z",
+          "conclusion": "success",
+          "name": "Verify Swift source limits",
+          "number": 3,
+          "startedAt": "2026-10-07T03:14:20Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:14:23Z",
+          "conclusion": "success",
+          "name": "Test native push signing gates",
+          "number": 4,
+          "startedAt": "2026-10-07T03:14:22Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:14:41Z",
+          "conclusion": "success",
+          "name": "Verify Swift formatting",
+          "number": 5,
+          "startedAt": "2026-10-07T03:14:23Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:17:00Z",
+          "conclusion": "success",
+          "name": "Test Foundation domain and offline rules",
+          "number": 6,
+          "startedAt": "2026-10-07T03:14:41Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:28:44Z",
+          "conclusion": "success",
+          "name": "Test iPhone session and account boundaries",
+          "number": 7,
+          "startedAt": "2026-10-07T03:17:00Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:28:45Z",
+          "conclusion": "success",
+          "name": "Verify actual app push signing",
+          "number": 8,
+          "startedAt": "2026-10-07T03:28:44Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:29:11Z",
+          "conclusion": "success",
+          "name": "Compile guarded native UI checks",
+          "number": 9,
+          "startedAt": "2026-10-07T03:28:45Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:29:12Z",
+          "conclusion": "success",
+          "name": "Post Run actions/checkout@v4",
+          "number": 18,
+          "startedAt": "2026-10-07T03:29:11Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-10-07T03:29:20Z",
+          "conclusion": "success",
+          "name": "Complete job",
+          "number": 19,
+          "startedAt": "2026-10-07T03:29:12Z",
+          "status": "completed"
+        }
+      ],
+      "url": "https://github.com/drrius/nest/actions/runs/37565774135/job/112613018473"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/drrius/nest/actions/runs/37565774135"
+}

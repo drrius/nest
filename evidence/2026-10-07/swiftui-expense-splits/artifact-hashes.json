@@ -5117,7 +5117,7 @@
   },
   {
     "path": "menu-native-ci.json",
-    "sha256": "481b4a3e53806da7156497ade69e3f10a29bdfd45c6b3335de30d16342ff49c8"
+    "sha256": "189a9b8c66e1b64335cfedc18a34085bb8730490d630792ed3cd8c3ff20790d0"
   },
   {
     "path": "menu-prepare.py",
@@ -5125,7 +5125,7 @@
   },
   {
     "path": "menu-routine-ci.json",
-    "sha256": "b58e4f977954134386ee172c8ec6a70dcc18a890c588d9b1325aa4358317301d"
+    "sha256": "bad9f3bc733fa530bab4b605b70f52e5cc69cbb0685a4fc9b0a59e282907bdb3"
   },
   {
     "path": "native-ci-excerpt.txt",
