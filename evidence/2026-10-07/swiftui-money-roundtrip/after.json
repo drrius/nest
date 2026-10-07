@@ -1,0 +1,42 @@
+{
+  "balances": [
+    {
+      "member": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "centimes": "1"
+    },
+    {
+      "member": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "centimes": "-1"
+    }
+  ],
+  "newEvents": [
+    {
+      "id": "48bd1522-8ee3-42fb-9a9a-c3ed74889e1a",
+      "note": "Nest QA settlement roundtrip 20261007",
+      "type": "settlement",
+      "payer": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "description": "Settlement",
+      "amountCentimes": "1"
+    },
+    {
+      "id": "df4b9d97-e8b4-499d-8bac-4d335a803341",
+      "note": null,
+      "type": "expense",
+      "payer": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "description": "Nest QA settlement balance restore 20261007",
+      "amountCentimes": "2"
+    }
+  ],
+  "retainedEvents": {
+    "md5": "ad230373d9e4773aa38fc781b4194054",
+    "count": 62
+  },
+  "retainedLedger": {
+    "md5": "1a5226df5b754743fd4aedc6c2dc6760",
+    "count": 124
+  },
+  "retainedAllocations": {
+    "md5": "a54f487eb8e29f3b51ca34a9198d0d71",
+    "count": 104
+  }
+}

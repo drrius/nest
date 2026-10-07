@@ -24,3 +24,8 @@ controls screenshot is inspected. All eight protected post-check fingerprints
 remain exact, including 62 financial events/104 allocations/124 ledger rows. This is not a report
 that 80 screens, full-page contrast, largest text, VoiceOver or either phone pass.
 No new TestFlight submission or production operation occurs.
+
+Shared-header source `d6279529` now passes routine37586433686/native37586433639:
+509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases and zero
+failures. Format/limits/signing and guarded UI compilation pass; the retained
+unfiltered audit failures are not cleared by CI.

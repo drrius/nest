@@ -1,0 +1,42 @@
+{
+  "balances": [
+    {
+      "member": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "centimes": "1"
+    },
+    {
+      "member": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "centimes": "-1"
+    }
+  ],
+  "newEvents": [
+    {
+      "id": "3ac20606-e028-4a02-9e8c-e901a2ca9e45",
+      "note": null,
+      "type": "expense",
+      "payer": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "description": "Nest QA visible result expense 20261007",
+      "amountCentimes": "2"
+    },
+    {
+      "id": "c497e330-50ae-4d4e-a2f3-dfa57e618479",
+      "note": null,
+      "type": "settlement",
+      "payer": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "description": "Settlement",
+      "amountCentimes": "1"
+    }
+  ],
+  "retainedEvents": {
+    "md5": "b49b8546ac174f3a3eda87e7a1185500",
+    "count": 64
+  },
+  "retainedLedger": {
+    "md5": "9e35897b04a1756a20affc8bd38b9665",
+    "count": 128
+  },
+  "retainedAllocations": {
+    "md5": "4976911f57cd6b0e5db420b22cb8e0e6",
+    "count": 106
+  }
+}

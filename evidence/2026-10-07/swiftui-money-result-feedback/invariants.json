@@ -1,0 +1,20 @@
+{
+  "totals": {
+    "events": 66,
+    "ledger": 132,
+    "allocations": 108
+  },
+  "zeroSum": true,
+  "allocations": [
+    {
+      "event": "3ac20606-e028-4a02-9e8c-e901a2ca9e45",
+      "member": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "centimes": "1"
+    },
+    {
+      "event": "3ac20606-e028-4a02-9e8c-e901a2ca9e45",
+      "member": "e5f80cfd-b69a-4aa0-a267-75784e943676",
+      "centimes": "1"
+    }
+  ]
+}
