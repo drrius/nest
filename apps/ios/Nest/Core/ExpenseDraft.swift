@@ -1,6 +1,6 @@
 import Foundation
 
-struct ExpenseDraft {
+struct ExpenseDraft: Equatable {
     enum Split: String, CaseIterable {
         case equal = "Equal"
         case exact = "Exact"

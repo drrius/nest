@@ -1,11 +1,13 @@
 import SwiftUI
 
 struct ExpenseScreen: View {
+    @Environment(\.dismiss) private var dismiss
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     @State private var draft: ExpenseDraft
     @State private var categoryName: String?
-    @State private var date = Date()
+    @State private var date: Date
+    @State private var initialDate: Date
     @State private var members: [MoneyBalance.Member] = []
     @State private var context: ExpenseContext?
     @State private var saved: SavedExpense?
@@ -14,6 +16,7 @@ struct ExpenseScreen: View {
     @State private var working = false
     @State private var loaded = false
     @State private var confirmCancel = false
+    @State private var discardEdits = false
     @State private var receiptReady = false
     @FocusState private var focusedField: ExpenseFormFields.Field?
 
@@ -21,6 +24,9 @@ struct ExpenseScreen: View {
         self.session = session
         self.member = member
         _draft = State(initialValue: ExpenseDraft(payer: member.userId))
+        let today = Date()
+        _date = State(initialValue: today)
+        _initialDate = State(initialValue: today)
     }
 
     var body: some View {
@@ -63,6 +69,12 @@ struct ExpenseScreen: View {
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)
         .navigationTitle("Add expense")
+        .modifier(
+            QuietDraftBack(hasChanges: hasUnsavedChanges, busy: working) {
+                focusedField = nil
+                discardEdits = true
+            }
+        )
         .task { await load() }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
@@ -85,9 +97,25 @@ struct ExpenseScreen: View {
             Text(
                 "Nest checks with the server. If the expense was already recorded, it stays in your financial history.")
         }
+        .alert("Discard edits?", isPresented: $discardEdits) {
+            Button("Discard edits", role: .destructive) { dismiss() }
+            Button("Keep editing", role: .cancel) {}
+        } message: {
+            if draft.receiptPath != nil {
+                Text("Your attached receipt is kept for your next expense. You can remove it before saving.")
+            }
+        }
     }
 
     private var editingDraft: Bool { loaded && saved == nil && reviewed == nil }
+
+    private var hasUnsavedChanges: Bool {
+        guard loaded, saved == nil else { return false }
+        var fields = draft
+        fields.receiptPath = nil
+        return fields != ExpenseDraft(payer: member.userId)
+            || !Calendar.current.isDate(date, inSameDayAs: initialDate)
+    }
 
     private func recovery(_ saved: SavedExpense) -> some View {
         Section("Save status") {
@@ -189,6 +217,7 @@ struct ExpenseScreen: View {
             self.saved = nil
             reviewed = nil
             draft = ExpenseDraft(payer: member.userId)
+            initialDate = date
             categoryName = nil
             loaded = false
             await load()
