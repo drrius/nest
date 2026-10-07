@@ -19,8 +19,8 @@ struct CorrectionScreen: View {
         Form {
             if let notice { Section { Text(notice) } }
             if let saved {
-                summary(saved.command.correction)
                 recovery(saved)
+                summary(saved.command.correction)
             } else if let reviewed {
                 summary(reviewed)
                 Section {

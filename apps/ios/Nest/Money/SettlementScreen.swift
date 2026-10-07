@@ -23,8 +23,8 @@ struct SettlementScreen: View {
             }
             if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
-                summary(saved.command.settlement)
                 recovery(saved)
+                summary(saved.command.settlement)
             } else if let reviewed {
                 summary(reviewed)
                 Section {

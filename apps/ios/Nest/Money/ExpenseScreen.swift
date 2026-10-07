@@ -33,8 +33,8 @@ struct ExpenseScreen: View {
         Form {
             if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
-                ExpenseReviewSection(expense: saved.command.expense, member: member, members: members)
                 recovery(saved)
+                ExpenseReviewSection(expense: saved.command.expense, member: member, members: members)
             } else if let reviewed {
                 ExpenseReviewSection(expense: reviewed, member: member, members: members, categoryName: categoryName)
                 Section {

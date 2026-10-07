@@ -17,8 +17,8 @@ struct RecurringResumeScreen: View {
         Form {
             if let notice { Section { Text(notice) } }
             if let saved {
-                summary(saved.command.change)
                 recovery(saved)
+                summary(saved.command.change)
             } else if let reviewed {
                 summary(reviewed)
                 Section {

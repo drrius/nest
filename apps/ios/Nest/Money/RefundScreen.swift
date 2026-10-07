@@ -23,8 +23,8 @@ struct RefundScreen: View {
         Form {
             if let notice { Section { Text(notice) } }
             if let saved {
-                summary(saved.command.refund)
                 recovery(saved)
+                summary(saved.command.refund)
             } else if let reviewed {
                 summary(reviewed)
                 Section {

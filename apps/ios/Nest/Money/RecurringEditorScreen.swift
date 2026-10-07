@@ -20,8 +20,8 @@ struct RecurringEditorScreen: View {
         Form {
             if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
-                summary(saved.command.rule)
                 recovery(saved)
+                summary(saved.command.rule)
             } else if let reviewed {
                 summary(reviewed)
                 Section {
