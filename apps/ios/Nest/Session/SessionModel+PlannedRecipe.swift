@@ -12,20 +12,23 @@ extension SessionModel {
         plannedRecipe = .loading
         plannedRecipeFresh = false
         plannedRecipeNotice = nil
-        await showCachedPlannedRecipe(
-            target, offline: offline, lease: lease,
-            request: request, member: member, attempt: attempt)
         do {
+            let ticket = try await offline.beginMealWeekRead(target.start, lease: lease)
+            guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
+            await showCachedPlannedRecipe(
+                target, offline: offline, ticket: ticket,
+                request: request, member: member, attempt: attempt)
             let session = try await auth.session()
             guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
             guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
-            let week = try await api.week(token: session.accessToken, member: member, start: target.start)
+            let week = try await readAndCacheMealWeek(
+                target.start, token: session.accessToken, member: member, generation: attempt)
             guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
             let fresh = try await api.plannedRecipe(
                 token: session.accessToken, member: member, week: week, id: target.id)
             guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
-            await showFreshPlannedRecipe(
-                fresh, target: target, offline: offline, lease: lease,
+            try await showFreshPlannedRecipe(
+                fresh, target: target, offline: offline, ticket: ticket,
                 request: request, member: member, attempt: attempt)
         } catch {
             await handlePlannedRecipeFailure(
@@ -35,11 +38,12 @@ extension SessionModel {
     }
 
     private func showCachedPlannedRecipe(
-        _ target: PlannedRecipeTarget, offline: ChoreOfflineStore, lease: OfflineLease,
+        _ target: PlannedRecipeTarget, offline: ChoreOfflineStore, ticket: MealWeekReadTicket,
         request: UUID, member: VerifiedMember, attempt: Int
     ) async {
         do {
-            let cached = try await offline.readPlannedRecipe(target.id, start: target.start, lease: lease)
+            let cached = try await offline.readPlannedRecipe(target.id, start: target.start, lease: ticket.lease)
+            guard try await offline.isCurrentMealWeekRead(ticket) else { return }
             guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
             if let cached {
                 plannedRecipe = .loaded(cached)
@@ -53,21 +57,17 @@ extension SessionModel {
 
     private func showFreshPlannedRecipe(
         _ fresh: PlannedRecipeEnvelope, target: PlannedRecipeTarget, offline: ChoreOfflineStore,
-        lease: OfflineLease, request: UUID, member: VerifiedMember, attempt: Int
-    ) async {
-        do {
-            try await offline.savePlannedRecipe(fresh, id: target.id, lease: lease)
-            let visible = try await offline.readPlannedRecipe(target.id, start: target.start, lease: lease)
-            guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
-            plannedRecipe = .loaded(visible ?? fresh)
-            plannedRecipeFresh = visible == fresh
-            plannedRecipeNotice = plannedRecipeFresh ? nil : "Saved copy · refresh to check the current week."
-        } catch {
-            guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
-            plannedRecipe = .loaded(fresh)
-            plannedRecipeFresh = true
-            plannedRecipeNotice = "Showing current details. Could not save an offline copy."
+        ticket: MealWeekReadTicket, request: UUID, member: VerifiedMember, attempt: Int
+    ) async throws {
+        guard try await offline.savePlannedRecipeRead(fresh, id: target.id, ticket: ticket) else {
+            throw NestAPIFailure.conflict
         }
+        let visible = try await offline.readPlannedRecipe(target.id, start: target.start, lease: ticket.lease)
+        guard try await offline.isCurrentMealWeekRead(ticket) else { throw NestAPIFailure.conflict }
+        guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
+        plannedRecipe = .loaded(visible ?? fresh)
+        plannedRecipeFresh = visible == fresh
+        plannedRecipeNotice = plannedRecipeFresh ? nil : "Saved copy · refresh to check the current week."
     }
 
     private func currentPlannedRecipe(_ request: UUID, member: VerifiedMember, attempt: Int) -> Bool {
@@ -79,14 +79,13 @@ extension SessionModel {
         member: VerifiedMember, attempt: Int
     ) async {
         guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
+        if (error as? NestAPIFailure) == .forbidden {
+            await handleDeniedPlannedRecipe(api: api, auth: auth, member: member, attempt: attempt, request: request)
+            return
+        }
         let mapped = state(for: error)
         if mapped == .signedOut || mapped == .notMember {
             await leaveMealAccount(mapped)
-            return
-        }
-        if (error as? NestAPIFailure) == .forbidden,
-            await reverifyMealMembership(api: api, auth: auth, member: member, attempt: attempt)
-        {
             return
         }
         guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
@@ -99,5 +98,20 @@ extension SessionModel {
                 ? "The week changed while loading. Refresh to check this meal."
                 : "Could not load this meal. Try again online."
         }
+    }
+
+    private func handleDeniedPlannedRecipe(
+        api: MealAPI, auth: any NestAuthentication, member: VerifiedMember, attempt: Int, request: UUID
+    ) async {
+        guard let target = plannedRecipeTarget else { return }
+        do {
+            try await forgetDeniedMealWeek(target.start, member: member, generation: attempt)
+        } catch {
+            guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
+            await leaveMealAccount(.unavailable)
+            return
+        }
+        guard currentPlannedRecipe(request, member: member, attempt: attempt) else { return }
+        _ = await reverifyMealMembership(api: api, auth: auth, member: member, attempt: attempt)
     }
 }

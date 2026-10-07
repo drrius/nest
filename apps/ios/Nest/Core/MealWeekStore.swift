@@ -15,6 +15,12 @@ extension ChoreOfflineStore {
             try db.run(
                 "DELETE FROM meal_weeks WHERE actor=? AND household=? AND week_start=?",
                 lease.scope + [start.date.value])
+            try db.run(
+                "DELETE FROM planned_recipes WHERE actor=? AND household=? AND week_start=?",
+                lease.scope + [start.date.value])
+            try db.run(
+                "DELETE FROM meal_preparation_snapshots WHERE actor=? AND household=? AND week_start=?",
+                lease.scope + [start.date.value])
         }
     }
 

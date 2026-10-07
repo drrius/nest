@@ -26,6 +26,8 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Planned detail/preparation denial](../../evidence/2026-10-07/swiftui-meal-detail-denial/README.md) now removes denied read copies and rejects a held old detail reply, preserving pending commands. Fourteen signed app and fourteen SQLite checks pass locally. Hosted permissions, proposal/ingredient read paths and phone rendering remain open.
+
 - [Meal read denial races](../../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md) close both controlled late-success/denial orders for week-cache writes. Final native recovery cases and SQLite restart/fresh-read checks pass. Hosted revocation, other recipe/proposal read-only paths and phones remain separate gaps. This shipping change is newer than build 22.
 
 - [Today saved meals](../../evidence/2026-10-07/swiftui-today-meals-cache/README.md) now appear before the network reply and remain visible during refresh/unavailability. Five signed session/SQLite checks and one final controlled SwiftUI capture pass without skips; both screenshots are inspected. Rendered hosted interruption, larger text, day rollover and phones remain unverified. This shipping change is newer than build 22.

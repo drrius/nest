@@ -42,6 +42,46 @@ final class PlannedRecipeModelTests: XCTestCase {
         XCTAssertEqual(paths, ["/v1/meals/week", "/v1/meals/planned-recipe"])
     }
 
+    func testDeniedDetailCannotRemainVisibleOrReopenOfflineAfterRestart() async throws {
+        let server = FakePlannedRecipeServer()
+        let url = FileManager.default.temporaryDirectory.appending(path: "denied-detail-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let model = try model(server: server, url: url)
+        await model.restore()
+        let target = PlannedRecipeTarget(start: start, id: entry)
+        await model.loadPlannedRecipe(target)
+        await server.denyDetails()
+        await model.loadPlannedRecipe(target)
+        XCTAssertEqual(model.plannedRecipe, .failed)
+        XCTAssertFalse(model.plannedRecipeFresh)
+        await server.setOffline(true)
+        let reopened = try self.model(server: server, url: url)
+        await reopened.restore()
+        await reopened.loadPlannedRecipe(target)
+        XCTAssertEqual(reopened.plannedRecipe, .failed)
+    }
+
+    func testHeldDetailCannotRestoreRecipeAfterTodayWeekDenial() async throws {
+        let server = FakePlannedRecipeServer()
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let target = PlannedRecipeTarget(start: start, id: entry)
+        await model.loadPlannedRecipe(target)
+        await server.pauseFirstDetail()
+        let old = Task { await model.loadPlannedRecipe(target) }
+        await server.waitForDetail()
+        await server.denyWeeks()
+        do {
+            _ = try await model.readTodayMeals(start, member: member)
+            XCTFail("Denied week succeeded")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+        await server.releaseDetail()
+        await old.value
+        XCTAssertEqual(model.plannedRecipe, .failed)
+        XCTAssertFalse(model.plannedRecipeFresh)
+    }
+
     func testRestartShowsCachedRecipeAsStaleAndFreshRemovalReplacesIt() async throws {
         let server = FakePlannedRecipeServer()
         let url = FileManager.default.temporaryDirectory.appending(path: "planned-restart-\(UUID()).sqlite")

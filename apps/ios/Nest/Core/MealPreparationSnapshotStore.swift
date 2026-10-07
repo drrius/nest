@@ -25,6 +25,20 @@ extension ChoreOfflineStore {
     func savePreparationSnapshot(_ current: MealPreparationEnvelope, lease: OfflineLease) throws {
         try authorize(lease)
         _ = try current.validated(household: lease.household, week: current.weekStart, id: current.entryId)
+        try persistPreparationSnapshot(current, lease: lease)
+    }
+
+    func savePreparationRead(_ current: MealPreparationEnvelope, ticket: MealWeekReadTicket) throws -> Bool {
+        try authorize(ticket.lease)
+        _ = try current.validated(household: ticket.lease.household, week: ticket.start, id: current.entryId)
+        return try db.transaction {
+            guard try isCurrentMealWeekRead(ticket) else { return false }
+            try persistPreparationSnapshot(current, lease: ticket.lease)
+            return true
+        }
+    }
+
+    private func persistPreparationSnapshot(_ current: MealPreparationEnvelope, lease: OfflineLease) throws {
         if let previous = try readPreparationSnapshot(entry: current.entryId, week: current.weekStart, lease: lease) {
             if Int64(previous.revision)! > Int64(current.revision)! { return }
             if previous.revision == current.revision, previous.preparation != nil, current.preparation == nil { return }

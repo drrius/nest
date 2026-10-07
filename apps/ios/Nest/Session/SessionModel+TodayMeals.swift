@@ -18,6 +18,11 @@ extension SessionModel {
             mealStatus = .failed
             mealNotice = "Could not load this week. Try again online."
         }
+        if plannedRecipeTarget?.start == start {
+            plannedRecipe = .failed
+            plannedRecipeFresh = false
+            plannedRecipeNotice = "Could not load this meal. Try again online."
+        }
     }
 
     func cachedTodayMeals(_ start: MealWeekStart, member: VerifiedMember, generation expected: Int) async throws

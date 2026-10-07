@@ -165,8 +165,17 @@ remain invalid after reopening and a new authorized read recovers. Hosted and
 other read-only-path revocation remain open. Race source `4192478a` is pushed in
 `f3931206`. [Routine CI 37639324481](https://github.com/drrius/nest/actions/runs/37639324481)
 and [native CI 37639324200](https://github.com/drrius/nest/actions/runs/37639324200)
-are running; keep these existing handles rather than repeating the local cases.
+pass. Their exact source is `f3931206`; the separate local controlled race cases
+remain the direct late-reply proof.
 [Evidence](../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md).
+
+Planned recipe and preparation read copies now share the scoped week fence.
+Known denial removes the copies and selected detail; old replies cannot restore
+them, while pending commands remain intact. Both baseline regressions fail as
+expected. Fourteen corrected signed app cases and fourteen SQLite cases pass
+without skips, including normal offline/absence behavior and recovery. Hosted,
+rendered-phone and other read-only-path acceptance remain open. Current-source CI
+is pending. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
 
 ## Exact blockers and owner inputs
 

@@ -4,6 +4,29 @@ import XCTest
 @testable import NestCore
 
 final class PlannedRecipeStoreTests: XCTestCase {
+    func testWeekDenialInvalidatesHeldDetailAndFreshReadCanRecover() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "detail-denial-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(PlannedRecipeFixture.member)
+        let ticket = try await store.beginMealWeekRead(PlannedRecipeFixture.start, lease: lease)
+        let value = try PlannedRecipeFixture.detail()
+        let initial = try await store.savePlannedRecipeRead(value, id: PlannedRecipeFixture.entry, ticket: ticket)
+        XCTAssertTrue(initial)
+        try await store.forgetMealWeek(PlannedRecipeFixture.start, lease: lease)
+        let saved = try await store.readPlannedRecipe(
+            PlannedRecipeFixture.entry, start: PlannedRecipeFixture.start, lease: lease)
+        XCTAssertNil(saved)
+        let old = try await store.savePlannedRecipeRead(value, id: PlannedRecipeFixture.entry, ticket: ticket)
+        XCTAssertFalse(old)
+        let reopened = try ChoreOfflineStore(url: url)
+        let stale = try await reopened.savePlannedRecipeRead(value, id: PlannedRecipeFixture.entry, ticket: ticket)
+        XCTAssertFalse(stale)
+        let fresh = try await reopened.beginMealWeekRead(PlannedRecipeFixture.start, lease: lease)
+        let recovered = try await reopened.savePlannedRecipeRead(value, id: PlannedRecipeFixture.entry, ticket: fresh)
+        XCTAssertTrue(recovered)
+    }
+
     func testRetainedDetailsSurviveRestartAndStayAccountScoped() async throws {
         let url = FileManager.default.temporaryDirectory.appending(path: "planned-recipe-\(UUID()).sqlite")
         defer { try? FileManager.default.removeItem(at: url) }

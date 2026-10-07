@@ -18,24 +18,37 @@ extension SessionModel {
     }
 
     func loadMealPreparationContext(_ target: PlannedRecipeTarget) async throws -> MealPreparationContext {
-        guard let auth, let api = mealAPI, let chores, case .ready(let member) = status else {
+        guard let auth, let api = mealAPI, let chores, let offline, let lease, case .ready(let member) = status else {
             throw NestAPIFailure.signedOut
         }
         let attempt = generation
+        let ticket = try await offline.beginMealWeekRead(target.start, lease: lease)
+        try checkPreparationScope(member, attempt: attempt)
         let session = try await auth.session()
         try checkPreparationScope(member, attempt: attempt)
         guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
-        let week = try await api.week(token: session.accessToken, member: member, start: target.start)
+        let week = try await readAndCacheMealWeek(
+            target.start, token: session.accessToken, member: member, generation: attempt)
         try checkPreparationScope(member, attempt: attempt)
-        let value = try await api.preparation(
-            token: session.accessToken, member: member, entry: target.id, week: target.start, revision: week.revision)
+        let value: MealPreparationEnvelope
+        do {
+            value = try await api.preparation(
+                token: session.accessToken, member: member, entry: target.id, week: target.start,
+                revision: week.revision)
+        } catch {
+            try checkPreparationScope(member, attempt: attempt)
+            if (error as? NestAPIFailure) == .forbidden {
+                try await forgetDeniedMealWeek(target.start, member: member, generation: attempt)
+            }
+            throw error
+        }
         try checkPreparationScope(member, attempt: attempt)
         let roster = try await chores.routineRoster(token: session.accessToken, member: member)
         try checkPreparationScope(member, attempt: attempt)
-        if let offline, let lease {
-            try await offline.savePreparationSnapshot(value, lease: lease)
-            try checkPreparationScope(member, attempt: attempt)
-        }
+        guard try await offline.savePreparationRead(value, ticket: ticket) else { throw NestAPIFailure.conflict }
+        try checkPreparationScope(member, attempt: attempt)
+        guard try await offline.isCurrentMealWeekRead(ticket) else { throw NestAPIFailure.conflict }
+        try checkPreparationScope(member, attempt: attempt)
         return MealPreparationContext(member: member, generation: attempt, baseline: value, roster: roster)
     }
 

@@ -4,6 +4,29 @@ import XCTest
 @testable import NestCore
 
 final class MealPreparationStoreTests: XCTestCase {
+    func testWeekDenialRemovesReadCopyAndKeepsExactPreparationCommand() async throws {
+        let fixture = try MealPreparationFixture()
+        let original: MealPreparationEnvelope = try fixture.decode("read")
+        let command: EditMealPreparation = try fixture.decode("edit")
+        let url = FileManager.default.temporaryDirectory.appending(path: "prep-denial-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(fixture.member)
+        try await store.enqueueMealPreparation(.edit(command), baseline: original, lease: lease)
+        let ticket = try await store.beginMealWeekRead(original.weekStart, lease: lease)
+        let saved = try await store.savePreparationRead(original, ticket: ticket)
+        XCTAssertTrue(saved)
+        try await store.forgetMealWeek(original.weekStart, lease: lease)
+        let missing = try await store.readPreparationSnapshot(
+            entry: original.entryId, week: original.weekStart, lease: lease)
+        XCTAssertNil(missing)
+        let old = try await store.savePreparationRead(original, ticket: ticket)
+        XCTAssertFalse(old)
+        let pending = try await store.readMealPreparation(lease: lease)
+        XCTAssertEqual(pending?.command, .edit(command))
+        XCTAssertEqual(pending?.state, .pending)
+    }
+
     func testRestartRetainsExactNullEditAndRejectsPrematureDiscardAndWrongReceipt() async throws {
         let fixture = try MealPreparationFixture()
         let original: MealPreparationEnvelope = try fixture.decode("read")

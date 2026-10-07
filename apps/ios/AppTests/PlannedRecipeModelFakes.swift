@@ -10,6 +10,8 @@ actor FakePlannedRecipeServer {
     private var recorded: [String] = []
     private var offline = false
     private var removed = false
+    private var deniedWeeks = false
+    private var deniedDetails = false
     private var pause = false
     private var waiting = false
     private var started: CheckedContinuation<Void, Never>?
@@ -18,6 +20,8 @@ actor FakePlannedRecipeServer {
     func paths() -> [String] { recorded }
     func setOffline(_ value: Bool) { offline = value }
     func removeEntry() { removed = true }
+    func denyWeeks() { deniedWeeks = true }
+    func denyDetails() { deniedDetails = true }
     func pauseFirstDetail() { pause = true }
     func waitForDetail() async {
         if waiting { return }
@@ -31,6 +35,7 @@ actor FakePlannedRecipeServer {
     func respond(_ request: URLRequest) async throws -> (Data, URLResponse) {
         recorded.append(request.url!.path)
         if offline { throw URLError(.notConnectedToInternet) }
+        if let denied = deniedResponse(request) { return denied }
         let isA = request.value(forHTTPHeaderField: "Authorization") == "Bearer token-A"
         let week = try week(isA: isA)
         if request.url?.path == "/v1/meals/week" { return try answer(request, body: week) }
@@ -58,6 +63,15 @@ actor FakePlannedRecipeServer {
             await withCheckedContinuation { resume = $0 }
         }
         return try answer(request, body: result)
+    }
+
+    private func deniedResponse(_ request: URLRequest) -> (Data, URLResponse)? {
+        let denied =
+            request.url?.path == "/v1/meals/week" && deniedWeeks
+            || request.url?.path == "/v1/meals/planned-recipe" && deniedDetails
+        guard denied else { return nil }
+        let response = HTTPURLResponse(url: request.url!, statusCode: 403, httpVersion: nil, headerFields: nil)!
+        return (Data("{\"error\":{\"code\":\"forbidden\"}}".utf8), response)
     }
 
     private func week(isA: Bool) throws -> MealWeekSnapshot {
