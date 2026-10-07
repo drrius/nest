@@ -2,49 +2,37 @@
 
 Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execution foundation gate is verified; M1–M9 acceptance gates remain open.** [ADR0002](adr/0002-swiftui-client.md) makes SwiftUI authoritative; Expo/RN client code and dependencies are removed. The Effect v4/Vercel AI SDK backend, financial/privacy rules and approved Quiet design remain in force.
 
-Verification checkpoint at source018578ef: routine37577610750,
-native37577610754 and manually dispatched deep integration37577691207 are live.
-The branch is held stable so these gates can finish; earlier cancelled jobs are
-not passing evidence. Local protocol CI-selection and shipping/fixture import
-boundary checks pass two focused cases. Current candidate/migration summary
-counts are reconciled with the retained build19 and257-Nest evidence.
+## Current delivery checkpoint
 
-New meal approval staging now requires an exact current private ready/unexpired
-preview online before creating its durable intent. Offline, changed and expired
-preview cases leave the SQLite approval journal empty; existing lost-reply exact
-recovery remains valid. Two focused signed-app methods pass without skips on the
-isolated unit-test simulator, then it shuts down. No hosted/provider/meal write
-occurs. This shipping change waits for the existing CI runs before its next push;
-current-change CI and rendered/live-provider/phone acceptance remain open.
-[Meal approval preflight](../evidence/2026-10-07/swiftui-meal-approval-preflight/README.md).
+SwiftUI 0.1.0, build 20, source `0ba4a5c3`, is available for internal TestFlight
+testing. It includes the accumulated layout, form and approval fixes since build
+19, uses nest-test and keeps push disabled. All 1,157 frozen source files and the
+copied IPA hash match. Local archive/export, configuration, privacy and signing
+checks pass. Temporary signing copies/keychain are removed; original credentials
+remain intact. [Release evidence](../evidence/2026-10-07/swiftui-build20/README.md).
 
-Meal proposal edit/discard staging now shares the fresh-preview boundary.
-Discard preserves failed/generating/expired eligibility; edit/approval require
-ready/unexpired. Six focused signed-app methods pass together with no skips,
-covering refused starts and unchanged exact lost-reply recovery. Candidate20 is
-reserved locally for the accumulated layout/form/approval fixes, with nest-test
-origins and push disabled. No release/submission has occurred; source CI/signing
-and package checks are still required.
+Candidate routine CI37578558002 and native CI37578558027 pass at that exact
+commit. Native CI reports 509 Foundation cases with 41 skips, 478 signed-app cases
+with 41 skips and four Swift Testing cases, zero failures. Formatting, source
+limits, signing and guarded UI compilation pass. Skips and compilation do not
+establish device/UI acceptance.
 
-Consolidated candidate20 at0ba4a5c3 now passes local Release archive/export and
-package/signing audit. All1,157 frozen inputs match; native iPhoneOS/arm64, build20,
-nest-test/push-disabled/privacy/dSYM checks pass. Temporary signing copies/keychain
-are removed on both hosts; originals/search list remain intact. A reused evidence
-label initially said19 but actual artifact asserted20; it is corrected from the
-Info.plist without rebuild. Preceding018578ef routine/native CI pass; candidate
-37578558002/37578558027 and deep37577691207 remain live. No upload occurs.
-[Candidate20 package](../evidence/2026-10-07/swiftui-build20/README.md).
+Deep CI37577691207 passes 23 HTTP/database journeys, 50 conflict/recovery cases
+and 1,272 database/RLS cases with zero failures/skips at `018578ef`. The candidate
+backend/migration/test inputs are identical. Candidate native CI covers the
+changed proposal staging and version inputs.
 
-Candidate20's copied IPA matches its signed hash. The supported Apple read verifies
-20 absent and19 valid/internal. A guarded single-submission controller is prepared
-but not invoked; no submission intent exists. Candidate routine/native and deep
-CI remain live, so the source/package are held stable without another push.
+Proposal approval/edit/discard staging requires a current private preview online
+before persisting an intent. Six focused signed-app methods pass without skips,
+including refused offline/changed/expired starts and exact lost-reply recovery.
+[Proposal evidence](../evidence/2026-10-07/swiftui-meal-approval-preflight/README.md).
 
-Deep37577691207 now passes23 HTTP/database journeys,50 conflict/recovery and1,272
-database/RLS cases, zero failures/skips. Candidate20 backend/migration/test inputs
-are identical; its changed native proposal code still awaits candidate-native CI.
-The [short build20 phone pass](native-rewrite/build20-first-phone-pass.md) is prepared
-for use only after actual TestFlight availability. No upload is inferred.
+Exactly one private submission, `aaf2ad8e-6698-42b1-b8e7-7d14d9b07992`, finished
+successfully. Apple confirms build 20 VALID/IN_BETA_TESTING/unexpired. Actual
+installation, partner tester access and phone acceptance remain unverified. The
+[short phone pass](native-rewrite/build20-first-phone-pass.md) now applies to this
+available candidate. Live AI, scheduled delivery, full accessibility, both-phone
+acceptance and production cutover remain separate gates.
 
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
@@ -127,7 +115,15 @@ VoiceOver, both phones and live AI remain open. [Earlier consent evidence](../ev
 
 ## Available candidate and current source
 
-**Latest private candidate: SwiftUI0.1.0/build19**, exact `484e5feb`. Candidate routine CI and identical-native-source CI, signed Mac archive/export/package/source audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass. [Release evidence](../evidence/2026-10-06/swiftui-build19/README.md). Update Nest to19 in TestFlight and try the [short phone pass](native-rewrite/build19-first-phone-pass.md). Partner access, installation and phone/design acceptance remain unverified. Live AI, scheduled posting/reminders and push stay inactive; production is untouched.
+**Latest private candidate: SwiftUI 0.1.0, build 20**, exact `0ba4a5c3`.
+Candidate routine/native CI, unchanged-backend deep integration, signed local
+archive/export/package audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass.
+[Release evidence](../evidence/2026-10-07/swiftui-build20/README.md).
+Update Nest to **20** in TestFlight and try the
+[short phone pass](native-rewrite/build20-first-phone-pass.md). It includes the
+layout/card/form/approval changes since19. Partner tester access, installation,
+full phone/design acceptance, live AI, scheduled delivery and production cutover
+remain open. It uses nest-test; production is untouched.
 
 The preceding build18 includes the shared four-tab header/20pt side/14pt top insets and Quiet Calendar cards, auth/draft/recipe fixes since17 and the demonstrated large-text Today grocery shortcut fix. Twelve header captures/24 Profile and assistant links plus twelve post-fix both-member grocery methods pass with restored settings/identities and unchanged retained history. Nest37374014717/SwiftUI37374014748 pass at the signed source:496 Foundation/41 skips,440 signed-native/18 skips, zero failures, format/limits/signing and guarded UI compilation. All1,080 frozen source inputs and copied IPA hash match. Exactly one private submissionfcd756b6-fe07-4356-8346-521c2c6113da finishes, and the spaced Apple check verifies internal availability. Owned temporary signing keychain/certificate/password copies are removed on both hosts; original credentials/search list and the older unpublisheda3 archive remain intact. No cloud build, expanded invitations, purchase, public release or source merge occurred. Full M1–M9 acceptance remains open.
 
@@ -163,7 +159,7 @@ Earlier source-specific test totals and result-link checks are preserved in [the
 
 - **Worker credential transfer:** automatic approval review rejected exporting the test Supabase server key and scheduler token to Vercel because prior test-deployment authorization did not explicitly cover that transfer. A specific owner approval question is already pending. No transfer, alternate path, schedules or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID/team/configuration, worker activation and real hardware token/enrollment/six-kind delivery on both phones remain needed. App Store Connect signing credentials are not an APNs provider key. Push stays disabled.
-- **Phones:** both partners need the identified build19 installation, Apple sign-in and [phone checklist](native-rewrite/swiftui-phone-acceptance.md), followed by complete weekly/financial-approval/offline-conflict/calendar/privacy/accessibility acceptance. Actual partner tester access is still unverified. Pending phone-feedback questions should not be duplicated.
+- **Phones:** both partners need the identified build20 installation, Apple sign-in and [phone checklist](native-rewrite/swiftui-phone-acceptance.md), followed by complete weekly/financial-approval/offline-conflict/calendar/privacy/accessibility acceptance. Actual partner tester access is still unverified. Pending phone-feedback questions should not be duplicated.
 - **Merge:** [PR85](https://github.com/drrius/nest/pull/85) is freshly read6 October as OPEN/CLEAN at `1c00a089`, with all four checks successful and zero review conversations. The sole latest-commit Greptile response reports the50-credit trial limit, so it supplies no approval. The specific recorded automatic-review exception remains; the Sol waiver is respected and no local/main bypass, purchase or duplicate unchanged-commit request occurs. New source stays on feature branches with CI.
 - **Cutover:** existing-data/current-chain reconciliation and external-writer/old-intent drainage precede any production migration, retirement or public release. Safe fixtures and private testing do not authorize these actions.
 

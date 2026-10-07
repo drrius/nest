@@ -1,13 +1,13 @@
-# Build20 first phone pass
+# Build 20 first phone pass
 
-Use this checklist only after TestFlight lists Nest0.1.0/build20. Build19 remains
-the available beta until that is verified. Build20 uses the separate nest-test
+Apple confirms Nest 0.1.0, build 20 is available for internal TestFlight testing.
+Update to build 20 before this check. Build 20 uses the separate nest-test
 project; Household OS production is unchanged. Live AI and push remain inactive.
 
 1. Open Today, Meals, Calendar and Money. Check that titles, Profile/Ask controls,
    side margins and card content edges feel consistent. Repeat in dark mode and
    your preferred larger text size.
-2. In Money, open Expense. Enter a fictional description and CHF1.01, switch the
+2. In Money, open Expense. Enter a fictional description and CHF 1.01, switch the
    payer and try equal, exact and percentage splits. Review should start at the
    amount/details, and Edit should keep your entries. Leave through Back and
    explicitly discard. Do not press Save merely to test presentation.

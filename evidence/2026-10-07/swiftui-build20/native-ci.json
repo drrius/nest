@@ -1,0 +1,22 @@
+{
+  "status": "completed",
+  "conclusion": "success",
+  "headSha": "0ba4a5c35a6b074767a5c83b4c68c736644095d4",
+  "runId": 37578558027,
+  "foundation": {
+    "executed": 509,
+    "skipped": 41,
+    "failures": 0
+  },
+  "signedApp": {
+    "executed": 478,
+    "skipped": 41,
+    "failures": 0
+  },
+  "swiftTesting": {
+    "executed": 4,
+    "failures": 0
+  },
+  "guardedUI": "compiled only",
+  "physicalDevice": "not verified"
+}

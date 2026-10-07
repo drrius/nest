@@ -1,0 +1,13 @@
+{
+  "exitCode": 0,
+  "submissionIds": ["aaf2ad8e-6698-42b1-b8e7-7d14d9b07992"],
+  "singleAttempt": true,
+  "sourceCommit": "0ba4a5c35a6b074767a5c83b4c68c736644095d4",
+  "build": "20",
+  "version": "0.1.0",
+  "submissionStatus": "FINISHED",
+  "createdAt": "2026-10-07T06:06:33.608Z",
+  "privateTestFlightOnly": true,
+  "appleAvailability": "VALID / IN_BETA_TESTING / unexpired",
+  "workerUpload": "App Store Connect upload succeeded; processing was not awaited by the worker"
+}

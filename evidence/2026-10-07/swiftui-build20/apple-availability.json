@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-10-07T06:11:29.394282+00:00",
+  "ascAppIdentifier": "6814119349",
+  "sourceCommit": "0ba4a5c35a6b074767a5c83b4c68c736644095d4",
+  "build": {
+    "appVersion": "0.1.0",
+    "buildNumber": "20",
+    "processingState": "VALID",
+    "internalState": "IN_BETA_TESTING",
+    "externalState": "READY_FOR_BETA_SUBMISSION",
+    "uploadedDate": "2026-10-06T23:09:02-07:00",
+    "expired": false
+  },
+  "testerInstallation": "not verified",
+  "publicRelease": false
+}
