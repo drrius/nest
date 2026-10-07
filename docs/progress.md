@@ -207,6 +207,14 @@ permission equivalence and production readiness remain open. The earlier public
 schema permission failure is retained. This closes a local rehearsal gap without
 another native build. [Evidence](../evidence/2026-10-07/migration-runtime-owner/README.md).
 
+Runtime-owner source `f1cff427` is delivered on the feature branch. Its routine
+[CI 37644412576](https://github.com/drrius/nest/actions/runs/37644412576) is running.
+The current client source is covered by native
+[CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666), still running
+at this checkpoint. No unchanged native run is restarted. The phone acceptance
+guide now identifies build 22's actual frozen source and working short-checklist
+link, and separates later history/cache fixes from that available candidate.
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.

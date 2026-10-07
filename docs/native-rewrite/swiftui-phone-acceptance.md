@@ -1,8 +1,23 @@
 # SwiftUI phone acceptance
 
-The available private candidate is **0.1.0/build22**, source `5d60906914b4bdf7381f16758c80b0e7c78d954c`. Exact candidate routine and native CI, signed Mac archive/export/package and copied IPA hash checks pass. One private submission finished7 October; the supported Apple check establishes21 VALID/IN_BETA_TESTING internally and unexpired. [Release evidence](../../evidence/2026-10-07/swiftui-build22/README.md). Partner tester access and physical-phone acceptance remain unverified. This uses **nest-test**, separate from Household OS production; production balances/history are not copied into this app.
+The available private candidate is **0.1.0/build 22**, frozen source
+`f324c905ce0c2129b732b37663f03c4ea4392350`. Its exact-source routine and native CI,
+signed Mac archive/export and copied IPA hash checks pass. One private submission
+finished on 7 October; Apple confirms build 22 VALID, IN_BETA_TESTING and unexpired.
+[Release evidence](../../evidence/2026-10-07/swiftui-build22/README.md).
+Partner tester access and physical-phone acceptance remain unverified. It uses
+**nest-test**, separate from Household OS production. Production balances/history
+are not copied into this app.
 
-Build21 includes the shared four-tab headers/insets and Quiet Calendar cards, recipe/preparation, preference drafts, renewal and reminder controls. It also includes shared card padding, financial review/result positioning and readable value/section labels, inline settlement amount choices, and grocery quantities/sync states in accessible values. Recipe cancellation closes untouched forms directly and protects edited or invalid drafts; keyboard Done uses a compact semantic checkmark. Bounded native evidence is recorded in progress, with original failures retained. Start with the [short build22 pass](build22-first-phone-pass.md), then this checklist. Live AI, scheduled bill posting/reminders and push delivery remain inactive while provider/worker setup is incomplete. Source/simulator/CI results do not establish either phone's acceptance.
+Build 22 includes the shared four-tab headers/insets and Quiet Calendar cards,
+recipe/preparation flows, preferences, renewals/reminders and financial review
+controls. It also includes grocery spoken quantities/sync states, local variable-
+bill recovery discovery and Today action-label styling. Start with the
+[short build 22 pass](build21-first-phone-pass.md), then this checklist.
+Live AI and scheduled delivery remain unverified. Source/simulator/CI results do
+not establish either phone's acceptance. Money history spacing and meal-cache
+fixes recorded after this frozen source need a later consolidated candidate;
+do not expect those fixes in build 22.
 
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 
@@ -20,7 +35,7 @@ These are checks for both partners to complete independently. Record phone/iOS, 
 
 ## Recipe and preparation checks
 
-Build21 includes the recipe/preparation flows and preparation-readability fixes. Its archive was built locally on the authorized Mac. These shipping files match current source; simulator results still do not establish phone acceptance.
+Build 22 includes the recipe/preparation flows and preparation-readability fixes. Its archive was built locally on the authorized Mac. Later meal-cache fixes are outside this frozen candidate; simulator results do not establish phone acceptance.
 
 On build22, create one clearly named test recipe with at least one ingredient, edit its instructions and confirm the detail refreshes. Archive that exact test recipe and confirm existing planned meals retain their recipe snapshot. For a clearly named future test meal, open Meal preparation, create a date-only shared task, then edit instructions/responsibility and confirm the partner sees the same task. Reminder consent is separate; preparation is household work and must not post money. Record the actual build and result. Do not infer generated-plan, AI, offline, notification or full accessibility acceptance from those online checks.
 
@@ -51,7 +66,7 @@ value once. Discard the draft through Back; do not Save during this touch check.
 Report missed or double taps. Simulator bounds and automation do not establish
 physical-phone touch or VoiceOver acceptance.
 
-Build21 includes the explicit44-point reminder adjustment buttons. Record the
+Build 22 includes the explicit44-point reminder adjustment buttons. Record the
 installed build and physical result. The renewal-row44-point actions, explicit removal Cancel and the largest-text
 recurring-rule row fix are also included in build22.
 
