@@ -22,7 +22,10 @@ the explicitly gated reschedule/skip/archive variants; shipping app source is
 unchanged from build21. Signed preparation, source limits and selected normal-text/
 light rendering pass. Screenshots are inspected; whole-page accessibility,
 VoiceOver, Reduce Motion, touch/haptic and physical-device acceptance remain open.
-Current-source CI is pending until its workflows finish. No new beta is needed.
+Exact sourceb36bf550 passes routine37602114726 and native37602114700:509
+Foundation/41 skips,488 signed-app/49 skips, zero failures, strict format/limits/
+signing and guarded UI compilation. [CI receipt](ci-result.json). Hosted/UI fixture
+actions are the separate15 Mac methods, not the skipped CI cases. No beta is needed.
 
 The exact queued SQLite bytes and captured chore remain unchanged through restart
 and the partner command. Canonical HTTP encoding is captured before replay, so the

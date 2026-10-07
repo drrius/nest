@@ -4,6 +4,18 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 ## Current delivery checkpoint
 
+Evidence reconciliation corrects obsolete receipt/meal blockers rather than
+repeating completed actions. The5 October posted-PDF evidence already includes
+eight native account/browser/download methods, exact640-byte partner download and
+normal restoration; it is one simulator with two fictional identities, not two
+phones or Apple sign-in. Saved portion variation/restoration and its planning
+projection, the full manual week/move, ingredient confirmation and preparation
+create/edit/date/completion also have bounded evidence. The authoritative
+[remaining list](native-rewrite/remaining-work.md) now links those outcomes and
+keeps their actual live-provider/accessibility/phone gaps. Direct variable-bill
+hosted reply-loss/uncertain cancellation remains a concrete uncovered path;
+its controlled tests and recorded restart are not substituted for that proof.
+
 Grouped native skip/archive races now pass15 methods with zero failures or skips.
 Both retain the original queued completion through an API outage and restart;
 after the partner's command, exact replay gets409 and the real Today UI explains
@@ -13,8 +25,10 @@ does not resurrect the routine. Independent hosted reads find zero completions/
 receipts for either fixture. Original22 routines,28 occurrences,seven completions,
 126 activity rows and all eight financial/meal/grocery fingerprints remain exact.
 Both cases restore the original clients,64 empty journals, stable origins and local
-choices. All1,167 sources match; signed preparation/limits pass, with current-source
-CI pending. Membership variants, hardware and full M4 remain open. Shipping app
+choices. All1,167 sources match; signed preparation/limits pass. Sourceb36bf550
+passes routine37602114726/native37602114700:509 Foundation/41 skips,488 signed-app/
+49 skips, zero failures, strict format/limits/signing and guarded UI compilation.
+Membership variants, hardware and full M4 remain open. Shipping app
 source remains build21; no beta, production change, provider call or merge occurs.
 [Grouped conflict evidence](../evidence/2026-10-07/swiftui-chore-terminal-conflicts/README.md).
 
@@ -327,7 +341,7 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 
 ## Latest native receipt recovery
 
-The actual native Photos picker now uploads an audited synthetic fixture to private nest-test Storage. Its exact1,476 normalized JPEG bytes/hash match independent uploader reads; partner, outsider and anonymous requests are denied while unposted. The same native reservation/bytes survive restart and a signed client update. One native Remove deletes only this object, with a deliberately lost reply retaining the scoped cleanup intent; reopening emits no write. Two explicit largest-text corner retries return the same deletion result, one also losing its reply, then normally clear the slot. A misleading smaller-photo error is corrected to removal-specific guidance. Nine focused Foundation/three signed native tests pass with no failures/skips, strict formatting/source limits and1,039-input matching. Both full52-event histories/balances and the existing claimed receipt remain intact; pending inventories are restored. Ordinary Today/stable signed test origins, empty31+7+receipt slots, preserved data/Keychain and owned relay/key teardown pass. [Evidence](../evidence/2026-10-04/swiftui-native-receipt-recovery/README.md). Exact source `a0458304` now passes Nest37195153704/SwiftUI37195153685:490 Foundation cases/41 explicit skips and409 signed-native cases/11 explicit skips, zero failures, strict format/limits and actual signing. The existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry; both complete histories/Storage remain unchanged. [Viewer evidence](../evidence/2026-10-04/swiftui-claimed-receipt-viewer/README.md) records corrected offscreen/close-icon observer assumptions without repeated opens or signed-URL exports. The later PDF checkpoint above supersedes picking/upload/removal; independently downloaded PDF bytes, new posted attachments, partner native viewing, full accessibility, live AI handoff and both phones remain open. No expense, beta, production action or merge occurred; M7 remains incomplete.
+The actual native Photos picker now uploads an audited synthetic fixture to private nest-test Storage. Its exact1,476 normalized JPEG bytes/hash match independent uploader reads; partner, outsider and anonymous requests are denied while unposted. The same native reservation/bytes survive restart and a signed client update. One native Remove deletes only this object, with a deliberately lost reply retaining the scoped cleanup intent; reopening emits no write. Two explicit largest-text corner retries return the same deletion result, one also losing its reply, then normally clear the slot. A misleading smaller-photo error is corrected to removal-specific guidance. Nine focused Foundation/three signed native tests pass with no failures/skips, strict formatting/source limits and1,039-input matching. Both full52-event histories/balances and the existing claimed receipt remain intact; pending inventories are restored. Ordinary Today/stable signed test origins, empty31+7+receipt slots, preserved data/Keychain and owned relay/key teardown pass. [Evidence](../evidence/2026-10-04/swiftui-native-receipt-recovery/README.md). Exact source `a0458304` now passes Nest37195153704/SwiftUI37195153685:490 Foundation cases/41 explicit skips and409 signed-native cases/11 explicit skips, zero failures, strict format/limits and actual signing. The existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry; both complete histories/Storage remain unchanged. [Viewer evidence](../evidence/2026-10-04/swiftui-claimed-receipt-viewer/README.md) records corrected offscreen/close-icon observer assumptions without repeated opens or signed-URL exports. The later [posted-PDF checkpoint](../evidence/2026-10-05/swiftui-posted-pdf/README.md) supersedes the earlier pending byte/posting/partner-viewer statements: one native PDF expense, both identities' exact downloads and partner native browser return are verified within that checkpoint's scope. Full accessibility, live AI handoff and both phones remain open. This paragraph's4 October run created no expense, beta, production action or merge; the separately gated5 October post retains its one synthetic append-only entry. M7 remains incomplete.
 
 ## Earlier verification
 
