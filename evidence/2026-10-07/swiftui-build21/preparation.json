@@ -1,0 +1,15 @@
+{
+  "sourceCommit": "5d60906914b4bdf7381f16758c80b0e7c78d954c",
+  "build": 21,
+  "version": "0.1.0",
+  "trackedNativeFiles": 1165,
+  "sourceHashVerificationPassed": true,
+  "formatAndSourceLimitsPassed": true,
+  "archiveState": "running",
+  "submitted": false,
+  "backend": "nest-test",
+  "pushEnabled": false,
+  "routineCI": 37594517335,
+  "nativeCI": 37594517196,
+  "originalProductionUntouched": true
+}

@@ -784,3 +784,11 @@ boundary, contrast diagnostic, grocery spoken-detail/heading changes are committ
 locally. Build21 is being prepared as their consolidated private candidate; its
 current-source CI, archive/export and Apple availability are unverified. Build20
 remains the available beta and no upload21 has occurred.
+
+Build21 source is frozen at `5d609069`,1,165 native/build-helper inputs. Strict Mac
+format/limits and existing App Store profile/certificate binding pass. Isolated
+keychain operations restore the original user search list. Archive handle40743 is
+running; export/package/cleanup remain pending. Routine37594517335/native37594517196
+are running on the same commit. Read-only Apple preflight confirms build21 absent
+and20 VALID. No upload intent, cloud build, purchase or production change occurs.
+[Candidate preparation](../evidence/2026-10-07/swiftui-build21/README.md).
