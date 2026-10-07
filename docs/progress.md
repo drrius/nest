@@ -31,6 +31,13 @@ the successful run corrects only target selection and synthetic wire timestamps.
 Rendered category outage/retry and latest-source CI remain open.
 [Preflight evidence](../evidence/2026-10-07/swiftui-financial-category-preflight/README.md).
 
+The new category network boundary now also passes delayed-reply/account-switch
+checks for expense and correction. Old-account replies fail signedOut and cannot
+stage either decision for the new account. Twelve category cases pass as two
+signed-app methods without skips on a separate owned simulator; it is shut down
+afterward and both preserved QA app origins remain correct. This is native
+session/SQLite evidence, not rendered or physical-phone account switching.
+
 Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
 and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior

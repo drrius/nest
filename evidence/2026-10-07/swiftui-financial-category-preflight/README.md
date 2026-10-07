@@ -25,3 +25,13 @@ Strict Swift formatting, source limits and diff checks pass. Repository formatti
 and current-source CI are recorded when committed/pushed. No hosted proposal,
 decision, financial record, provider invocation, production operation or release
 was created. The earlier consent/decline fixtures are not replayed.
+
+The delayed category boundary now has a separate account-switch check for both
+expense and correction approval. The controlled server pauses the category reply,
+the native session signs in as the other member, then the old reply is released.
+Both staging tasks fail signedOut; neither expense nor correction journal belongs
+to the new member. The transport still permits only GET, so no decision is sent.
+The ten earlier category cases and two switch cases pass as two XCTest methods,
+without skips, on a newly isolated simulator. It is retained and shut down afterward.
+Both original hosted QA app origins remain unchanged and push remains disabled.
+This proves the native session/SQLite race, not physical sign-in or a rendered race.
