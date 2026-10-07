@@ -1022,3 +1022,16 @@ Preceding21be1712 passes routine37610326123/native37610326037:509 Foundation/41
 skips,494 signed-app/52 skips, zero failures, strict format/limits/signing and
 guarded UI compile. Hosted cancellation/expiry tests are being pushed together;
 their new exact-head workflows remain pending.
+
+One consolidated local build22 candidate now archives/exports from frozenf324c905,
+1176 exact inputs. Archive-only CURRENT_PROJECT_VERSION override22 preserves the
+source tree's21; actual IPA metadata is22. Only pending-variable-bill local
+discovery and Today filled-action token differ in shipping source since21.
+The copied13,695,445-byte IPA/hash, signing/profile/privacy/dSYM/test origins/
+iPhoneOS-arm64/no-secret/no-React checks pass. Temporary signing material is
+removed on both hosts and originals/search list preserved. Apple preflight22
+absent/21 valid. Routine37612410978 passes; native37612410354 still active.
+One-use submission remains uninvoked until exact-source CI passes. Build21
+remains available;22/device acceptance is not claimed. No cloud build, purchase,
+invitation, public release, source merge or production change.
+[Build22 preparation](../evidence/2026-10-07/swiftui-build22/README.md).

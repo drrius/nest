@@ -1,0 +1,9 @@
+{
+  "sameAcceptedBuild16Profile": true,
+  "validAppStoreProfile": true,
+  "existingPrivateCertificateMatches": true,
+  "privateIsolatedKeychain": true,
+  "searchListRestored": true,
+  "keychainLocked": true,
+  "noCertificateCreationRevocationOrAppleLogin": true
+}
