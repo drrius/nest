@@ -296,6 +296,13 @@ restore. Fresh food/cooking/notification records and receipts remain exact.
 The setup explanations are now separate static/footer text; interactive labels
 retain titles and saved-choice status. Fonts and wording are preserved. Formatting
 and source limits pass; fresh native verification of this layout is pending.
+At `0f57648a`, the largest-text food action fits, opens and exposes the complete
+private-preference explanation through overlapping reading. The method then fails
+when it waits for an offscreen, unrealized cooking row before revealing it.
+The observer now reveals each setup row before checking its exact configured
+status. No further shipping behavior changes. Preferences/receipts remain exact,
+and scopes/64 journals/settings/local first-use/privacy semantics restore. The
+failed method is retained; corrected complete/maximal journeys are still pending.
 
 The inner Quiet card stack and Calendar's fixed outer sections now use regular
 stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast

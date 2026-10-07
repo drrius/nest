@@ -62,6 +62,8 @@ final class NativeSetupJourneyTests: XCTestCase {
 
     private func checkStatus(_ title: String, configured: Bool, app: XCUIApplication) throws {
         let row = link(title, app: app)
+        let reading = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
+        try reading.reveal(row)
         let expected = configured ? "Choices saved" : "Not chosen yet"
         let loaded = XCTNSPredicateExpectation(
             predicate: NSPredicate(format: "exists == true AND label CONTAINS %@", expected), object: row)
