@@ -126,8 +126,12 @@ signed baseline fails on an extra 24-point gap; corrected Money preview and full
 history journeys both pass without skips, and all three screenshots are inspected.
 The shared section heading, 20-point margins and minimum 52-point row targets
 remain. Original binaries, scopes, 64 journals and settings restore. This is a
-shipping UI fix after build 22; no new beta is submitted. Current-source CI is
-pending. [Evidence](../evidence/2026-10-07/swiftui-money-history-spacing/README.md).
+shipping UI fix after build 22; no new beta is submitted. Source `7f5d1bd3` passes
+[routine CI 37632180353](https://github.com/drrius/nest/actions/runs/37632180353).
+[Native CI 37632180145](https://github.com/drrius/nest/actions/runs/37632180145)
+is still running its signed app tests after passing formatting, limits and
+Foundation checks. Poll that existing run; do not restart it or repeat the passed
+local UI journeys without an affected change or failure. [Evidence](../evidence/2026-10-07/swiftui-money-history-spacing/README.md).
 
 ## Exact blockers and owner inputs
 

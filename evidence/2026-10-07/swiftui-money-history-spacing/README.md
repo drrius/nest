@@ -33,3 +33,11 @@ not proof of a fresh hosted API/database read or financial posting.
 TestFlight build 22 remains unchanged. No new beta, production mutation, provider
 call, scheduler activation or push delivery is performed. Complete accessibility,
 large text, phone use and owner acceptance remain open.
+
+Exact source `7f5d1bd3bda3f0be13c9cfd8eb942169f889dd41` is pushed and passes
+[routine CI 37632180353](https://github.com/drrius/nest/actions/runs/37632180353).
+[Native CI 37632180145](https://github.com/drrius/nest/actions/runs/37632180145)
+remains in progress at the signed app test step. Formatting, source limits and
+Foundation checks have passed. Its guarded UI compilation is still pending;
+the two actual local UI executions above are separate evidence. Recheck this same
+run rather than starting another build.
