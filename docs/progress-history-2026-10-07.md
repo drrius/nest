@@ -139,3 +139,39 @@ failed method is retained; corrected complete/maximal journeys are still pending
 ## Broader privileged-function source parity and bounded legacy guards
 
 Fresh hosted reads and a disposable302-migration compilation now match all221 authenticated privileged function bodies (81 public/140 private), plus the delegated calendar-lease helper:222 exact-signature body matches. This is provenance, not a semantic safety claim. Seven legacy public access paths now have an actual guard trace,36 two-tenant/unauthorized/lease/rollback SQL checks in the populated rehearsal and eight actual hosted read-only probes. Search and Storage metadata usage remain tenant bound; known connections/tokens do not authorize another household; expired/mismatched/reentrant leases and foreign event IDs are rejected. Authorized partner calls succeed in rolled-back fixtures. Original calendar/Storage metadata/tenancy and full financial/receipt reconciliation remain unchanged. Fixture reservation/output errors were corrected without bypassing the real trigger; only the final complete run counts. [Evidence](../evidence/2026-10-04/legacy-privileged-boundaries/README.md). Focused formatting/lint and exact-head Nest37198811574 pass at `c73117e3`; native shipping source is unchanged. The remaining53 legacy public functions, deeper private semantics, real hosted Auth/Storage migration, workers/APNs, signup/provider decisions, external writers and complete M9 remain open. No hosted calendar/Storage/schema mutation, secret transfer, inference, beta, purchase, production action or merge occurred.
+
+## Earlier Calendar card and viewport investigations
+
+The inner Quiet card stack and Calendar's fixed outer sections now use regular
+stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
+and two repeated partner-heading font reports), down from the dated 19-report
+checkpoint. On the combined layout, Calendar's Dynamic Type/control audit passes;
+the full Calendar audit retains two contrast reports, with no font report. Its
+two methods finish in 34.710 seconds. No report is suppressed and the wider
+contrast/phone acceptance gates remain open.
+
+The initial card-only controller fails during process termination in restoration;
+separate ordinary foreground restoration verifies both original scopes, 64 empty
+journals, settings and local semantics. The combined controller restores those
+states normally. Its largest-text reading method fails after 20 observations:
+the paragraph is 559.5 points tall, exceeding the 510-point measured viewport.
+The old observer demands simultaneous full visibility. A guarded new method uses
+the existing measured overlapping-text reader and still requires the entire
+44-point access button visible. Source limits and strict Mac formatting pass;
+its first native invocation fails before a pan because the reused diagnostic
+accesses an absent native navigation bar. The helper now records absence safely;
+the corrected invocation passes in 58.831 seconds, but its root viewport starts
+at y0 and includes the status bar. It supplies no overlap record, so continuous
+reading is not verified. The owned 375×667 fixture now excludes the top 40 points
+(the captured status region ends at y20) and captures both paragraphs explicitly.
+The stricter source-pinned reading passes in 69.325 seconds: 504.5 points of
+overlap cover the entire 559.5-point paragraph; the other paragraph and
+295×187.5-point access button are fully visible. Eight measured pans avoid
+actions and scroll bars. All seven images are directly reviewed. Both original
+scopes, 64 empty journals, settings and local semantics restore. No permission
+is granted or font shrunk. [Native evidence](../evidence/2026-10-06/swiftui-fixed-card-measurement/README.md).
+
+Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
+Oxfmt corrects them with every value unchanged against Git. Corrected evidence
+source `70ec041e` passes routine CI 37536050729. Combined layout source `79de03f9`
+passes routine CI 37536789330; its native CI is still running.

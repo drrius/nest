@@ -79,6 +79,23 @@ hosted read-only metadata, not live CalDAV or native EventKit evidence.
 
 ## Current native verification
 
+Expense Back now protects unsent fields and reviewed drafts using Keep editing /
+Discard edits. Blank/invalid raw fields and date changes count as edits. Attached
+receipts and saved financial requests retain their separate recovery paths.
+Both members pass normal and maximal-text/dark unsent/reviewed navigation, including
+pristine Back, blank reopening, explicit discard and return to Today. Across source
+variants, 12 executions retain10 passes/two observer failures/zero skips. The corrected
+reader closes the keyboard through incomplete Review, then searches backward for the
+preserved earlier description. All tapped Back/alert controls are fully visible and44pt+.
+Both scopes,64 empty journals,settings/local privacy/first-use state restore; eight
+protected fingerprints, including complete finance, remain exact. Four confirmation
+images and two live diagnostic captures are directly reviewed. All1,137 frozen inputs
+and product/signing checks match each source. Source57404b37 passes routine37554215370 /
+native37554215393; corrected observerbca5f94e passes routine37555574332 /
+native37555574402. No financial save, release or merge occurs. Receipt-bearing
+Back/date/split variants, VoiceOver and phone acceptance remain open.
+[Expense Back evidence](../evidence/2026-10-07/swiftui-expense-draft-back/README.md).
+
 The latest header and padding report is addressed by the shared four-tab layout
 already available in private build 19. Root rechecks all eight current layout
 files against the reviewed layout and build 19, and directly inspects all four
@@ -319,39 +336,14 @@ Each completed method restores both original scopes, 64 empty journals, display
 settings and local privacy/first-use choices. No Save or permission grant occurs.
 Earlier failures remain in [7 October history](progress-history-2026-10-07.md).
 
-The inner Quiet card stack and Calendar's fixed outer sections now use regular
-stacks. The card-only full audit finishes with 13 unsuppressed reports (11 contrast
-and two repeated partner-heading font reports), down from the dated 19-report
-checkpoint. On the combined layout, Calendar's Dynamic Type/control audit passes;
-the full Calendar audit retains two contrast reports, with no font report. Its
-two methods finish in 34.710 seconds. No report is suppressed and the wider
-contrast/phone acceptance gates remain open.
-
-The initial card-only controller fails during process termination in restoration;
-separate ordinary foreground restoration verifies both original scopes, 64 empty
-journals, settings and local semantics. The combined controller restores those
-states normally. Its largest-text reading method fails after 20 observations:
-the paragraph is 559.5 points tall, exceeding the 510-point measured viewport.
-The old observer demands simultaneous full visibility. A guarded new method uses
-the existing measured overlapping-text reader and still requires the entire
-44-point access button visible. Source limits and strict Mac formatting pass;
-its first native invocation fails before a pan because the reused diagnostic
-accesses an absent native navigation bar. The helper now records absence safely;
-the corrected invocation passes in 58.831 seconds, but its root viewport starts
-at y0 and includes the status bar. It supplies no overlap record, so continuous
-reading is not verified. The owned 375×667 fixture now excludes the top 40 points
-(the captured status region ends at y20) and captures both paragraphs explicitly.
-The stricter source-pinned reading passes in 69.325 seconds: 504.5 points of
-overlap cover the entire 559.5-point paragraph; the other paragraph and
-295×187.5-point access button are fully visible. Eight measured pans avoid
-actions and scroll bars. All seven images are directly reviewed. Both original
-scopes, 64 empty journals, settings and local semantics restore. No permission
-is granted or font shrunk. [Native evidence](../evidence/2026-10-06/swiftui-fixed-card-measurement/README.md).
-
-Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
-Oxfmt corrects them with every value unchanged against Git. Corrected evidence
-source `70ec041e` passes routine CI 37536050729. Combined layout source `79de03f9`
-passes routine CI 37536789330; its native CI is still running.
+The corrected fixed Calendar card supports continuous largest-text reading with
+fully visible permission controls. Seven current root contrast reports remain,
+including four anonymous findings; all four full root audits fail. No reports
+are suppressed, and full forms/VoiceOver/phone acceptance remain open.
+[Calendar reading](../evidence/2026-10-06/swiftui-fixed-card-measurement/README.md),
+[root contrast](../evidence/2026-10-07/swiftui-bottom-fade/README.md).
+Earlier attempts and source-specific CI outcomes remain in
+[7 October history](progress-history-2026-10-07.md).
 
 Continue the remaining native journeys and investigate the existing 19
 accessibility findings with source-specific evidence. Do not repeat the passing

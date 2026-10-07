@@ -1,0 +1,8 @@
+{
+  "source": "d5e9264f59b4a91931bc37a387216549bfc54437",
+  "capture": "Read-only simctl screenshot during confirmed running maximum-alex method.",
+  "device": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+  "directlyReviewed": true,
+  "testOutcome": "pending at capture",
+  "limitations": "Visual capture is not the XCTest accessibility target geometry or a passing method."
+}

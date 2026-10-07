@@ -1,0 +1,20 @@
+foundation	Test migration writer privileges and reversible API fences	﻿2026-10-07T00:55:41.1067308Z ##[group]Run NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:41.1068660Z ^[[36;1mNEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs^[[0m
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:41.1147736Z shell: /usr/bin/bash -e {0}
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:41.1148057Z env:
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:41.1148376Z   PNPM_HOME: /home/runner/setup-pnpm/node_modules/.bin
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:41.1148771Z ##[endgroup]
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2743219Z ✔ API fence refuses inherited grants and reversibly restricts legacy access (1087.512496ms)
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2745139Z ✔ API fence blocks owner-backed writable views while preserving reads and rollback (948.077607ms)
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2758488Z ✔ API fence blocks legacy procedure calls and refuses surviving inherited execution (1003.07163ms)
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2837581Z ✔ cutover inventory includes anonymous, inherited, column-only and truncate-only access (983.749215ms)
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2839567Z ✔ writer inventory includes inherited view column grants without base-table access (962.999204ms)
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2841201Z ✔ private helper inventory separates inherited execute from schema access (1069.920131ms)
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2842405Z ℹ tests 6
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2842857Z ℹ suites 0
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2853160Z ℹ pass 6
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2853592Z ℹ fail 0
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2854000Z ℹ cancelled 0
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2854501Z ℹ skipped 0
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2854994Z ℹ todo 0
+foundation	Test migration writer privileges and reversible API fences	2026-10-07T00:55:44.2855348Z ℹ duration_ms 3114.437756

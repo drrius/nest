@@ -2,7 +2,12 @@
 
 Current private candidate: **0.1.0/build19**, source `484e5feb`, Apple VALID/IN_BETA_TESTING internally and unexpired after one finished private submission. Candidate routine CI, identical-native-input CI and Mac signing/package checks pass. Build19 retains the consistent four-tab headers/insets and Quiet Calendar cards, and adds the later draft/reminder/recipe/renewal fixes. [Evidence](../../evidence/2026-10-06/swiftui-build19/README.md), [short phone pass](build19-first-phone-pass.md). Both phones, live AI, worker/push and full M1–M9 acceptance remain open; dated checkpoints below retain their original scope.
 
-The current full native accessibility audit has19 unsuppressed reports,11 contrast and eight Dynamic Type findings. [Current evidence](../../evidence/2026-10-06/swiftui-current-accessibility/README.md) supersedes the older20-report checkpoint. Bounded twelve-size Calendar reading and live typography checks do not close the full diagnostic. Source/numeric capture checks and later form fixes retain exact data and ordinary restored clients. Full accessibility, VoiceOver and both-phone acceptance remain open.
+The later source-specific root audits at `e21d6b44` retain seven unsuppressed
+contrast reports across four failed full audits, with no reported noncontrast findings.
+Four reports have no identified element; earlier anonymous reports are not closed by
+this result. [Bottom-edge evidence](../../evidence/2026-10-07/swiftui-bottom-fade/README.md)
+supersedes the dated 19-report checkpoint for those tested roots only. Full forms,
+VoiceOver, Reduce Motion and both-phone acceptance remain open.
 
 The later recipe cancellation check reproduces untouched Cancel prompting and small opening/keyboard targets. Complete normal and maximum New/Edit flows pass after fixes, with raw invalid-input protection, explicit discard and unchanged canonical data. A separate final compact-Done check resolves largest-text label truncation. Across variants23 native methods pass, five original methods remain failed and six focused Core cases pass separately. [Evidence](../../evidence/2026-10-06/swiftui-recipe-cancel-drafts/README.md). These fixes are in19; the bounded simulator proof does not establish phone acceptance. No reminder delivery or live AI success is inferred.
 

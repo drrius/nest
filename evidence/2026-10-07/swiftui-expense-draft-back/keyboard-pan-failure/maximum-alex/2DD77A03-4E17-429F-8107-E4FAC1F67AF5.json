@@ -1,0 +1,90 @@
+{
+  "actionRegions": [
+    {
+      "height": 66.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 281,
+      "maxY": 214.5,
+      "midX": 237.25,
+      "midY": 181.25,
+      "minX": 193.5,
+      "minY": 148,
+      "usable": true,
+      "width": 87.5
+    },
+    {
+      "height": 64,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 355,
+      "maxY": 213.5,
+      "midX": 322,
+      "midY": 181.5,
+      "minX": 289,
+      "minY": 149.5,
+      "usable": true,
+      "width": 66
+    }
+  ],
+  "attempt": 0,
+  "end": [24, 182],
+  "navigation": "absent",
+  "scrollBars": [
+    {
+      "height": 564,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 302,
+      "minX": 342,
+      "minY": 20,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [24, 432],
+  "target": "Add expense",
+  "targetElementType": "XCUIElementType(rawValue: 9)",
+  "targetFrame": {
+    "height": 58.5,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 355,
+    "maxY": 1002.5,
+    "midX": 187.5,
+    "midY": 973.25,
+    "minX": 20,
+    "minY": 944,
+    "usable": true,
+    "width": 335
+  },
+  "viewport": {
+    "height": 544,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 312,
+    "minX": 0,
+    "minY": 40,
+    "usable": true,
+    "width": 375
+  }
+}

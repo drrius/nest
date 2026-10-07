@@ -1,0 +1,17 @@
+{
+  "source": "d5e9264f59b4a91931bc37a387216549bfc54437",
+  "inputs": 1137,
+  "binarySHA256": {
+    "Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "ebf298d60fbda8f28fb29310d0cf0a8d5507227816067c1cd2c6c70b757ca0bc",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest.debug.dylib": "f84a1398f24ca398a968d3491857513c3ca16544149ae0b3cba4e007db0807fb",
+    "Build/Products/Debug-iphonesimulator/Nest.app/Nest": "db0a95e5d440192edfd463d01a1c19c36d84133e6c5aff0a8e4ec779e3a8635a"
+  },
+  "selectedProducts": {
+    "TestHostPath": "/private/tmp/nest-native-expense-keyboard-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app",
+    "TestBundlePath": "/private/tmp/nest-native-expense-keyboard-ui-20261007/Build/Products/Debug-iphonesimulator/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest",
+    "UITargetAppPath": "/private/tmp/nest-native-expense-keyboard-ui-20261007/Build/Products/Debug-iphonesimulator/Nest.app"
+  },
+  "originsVerified": true,
+  "pushEnabled": false,
+  "version": "19"
+}

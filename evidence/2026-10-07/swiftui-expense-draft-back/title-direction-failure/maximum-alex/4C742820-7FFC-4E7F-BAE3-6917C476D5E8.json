@@ -1,0 +1,91 @@
+{
+  "actionRegions": [
+    {
+      "height": 155.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 359,
+      "maxY": 417,
+      "midX": 187.5,
+      "midY": 339.25,
+      "minX": 16,
+      "minY": 261.5,
+      "usable": true,
+      "width": 343
+    },
+    {
+      "height": 93.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 359,
+      "maxY": 510.5,
+      "midX": 187.5,
+      "midY": 463.75,
+      "minX": 16,
+      "minY": 417,
+      "usable": true,
+      "width": 343
+    },
+    {
+      "height": 217.5,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 359,
+      "maxY": 728,
+      "midX": 187.5,
+      "midY": 619.25,
+      "minX": 16,
+      "minY": 510.5,
+      "usable": true,
+      "width": 343
+    }
+  ],
+  "attempt": 0,
+  "end": [12, 199],
+  "navigation": "Add expense",
+  "scrollBars": [
+    {
+      "height": 510,
+      "isInfinite": false,
+      "isNull": false,
+      "maxX": 372,
+      "maxY": 584,
+      "midX": 357,
+      "midY": 329,
+      "minX": 342,
+      "minY": 74,
+      "usable": true,
+      "width": 30
+    }
+  ],
+  "scroller": {
+    "height": 667,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 667,
+    "midX": 187.5,
+    "midY": 333.5,
+    "minX": 0,
+    "minY": 0,
+    "usable": true,
+    "width": 375
+  },
+  "start": [12, 449],
+  "target": "unrealized recorded target",
+  "targetElementType": "absent",
+  "targetFrame": { "state": "absent" },
+  "viewport": {
+    "height": 510,
+    "isInfinite": false,
+    "isNull": false,
+    "maxX": 375,
+    "maxY": 584,
+    "midX": 187.5,
+    "midY": 329,
+    "minX": 0,
+    "minY": 74,
+    "usable": true,
+    "width": 375
+  }
+}
