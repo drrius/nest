@@ -6,7 +6,7 @@ struct TodayGroceryShortcut: View {
 
     var body: some View {
         content
-            .padding(18)
+            .padding(QuietTabLayout.cardInset)
             .frame(maxWidth: .infinity, minHeight: 76, alignment: .leading)
             .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
             .contentShape(Rectangle())

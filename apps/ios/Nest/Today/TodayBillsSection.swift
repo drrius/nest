@@ -45,7 +45,7 @@ struct TodayBillsSection: View {
                     }
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(18)
+                .padding(QuietTabLayout.cardInset)
                 .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
                 .padding(.top, 24)
             }

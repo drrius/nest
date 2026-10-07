@@ -100,7 +100,7 @@ struct MoneyScreen: View {
                 }.disabled(loading)
             }
         }
-        .padding(20).frame(maxWidth: .infinity, alignment: .leading)
+        .padding(QuietTabLayout.cardInset).frame(maxWidth: .infinity, alignment: .leading)
         .background(QuietPalette.soft, in: RoundedRectangle(cornerRadius: 24))
     }
 

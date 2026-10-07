@@ -61,6 +61,14 @@ and collapse. Original scopes/64 journals/settings/local choices restore. Images
 are inspected, but this target coverage is not whole-page readability or VoiceOver.
 Routine37576713440 passes shippinge01129db; its native CI remains pending.
 
+Root card inner padding is now one20pt QuietTabLayout value. Today cards move
+from18pt and meal-day horizontal content from16pt to the same20pt already used by
+Calendar/Money. A real normal-size Today meal-card method passes40pt action
+alignment, full44pt target, Meals navigation and return; signed compile passes and
+both original scopes/64 journals/settings/local choices restore. Conditional cards,
+largest-text meal-day width, full accessibility and phones remain unverified.
+[Shared inset evidence](../evidence/2026-10-07/swiftui-shared-card-insets/README.md).
+
 Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
 and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior

@@ -32,7 +32,7 @@ struct TodayCalendarSection: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(18)
+        .padding(QuietTabLayout.cardInset)
         .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
         .task(id: refresh) {
             visible = true

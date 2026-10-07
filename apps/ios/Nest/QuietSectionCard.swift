@@ -11,7 +11,7 @@ struct QuietSectionCard<Content: View>: View {
                 content
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(20)
+            .padding(QuietTabLayout.cardInset)
             .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
         }
         .font(.body)

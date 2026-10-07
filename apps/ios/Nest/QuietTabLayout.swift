@@ -2,6 +2,7 @@ import SwiftUI
 
 enum QuietTabLayout {
     static let horizontalInset: CGFloat = 20
+    static let cardInset: CGFloat = 20
     static let topInset: CGFloat = 14
     static let sectionSpacing: CGFloat = 24
 }

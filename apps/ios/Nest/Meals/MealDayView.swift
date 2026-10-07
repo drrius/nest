@@ -34,7 +34,7 @@ struct MealDayView<Detail: View>: View {
             }
             .font(.subheadline)
             .foregroundStyle(QuietPalette.accent)
-            .padding(.horizontal, 16)
+            .padding(.horizontal, QuietTabLayout.cardInset)
             .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
         }
         .confirmationDialog(
