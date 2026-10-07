@@ -39,6 +39,7 @@ final class NativeExpenseReviewStartTests: XCTestCase {
         XCTAssertTrue(try reader.viewport().contains(value.frame), "Review must start at its amount without scrolling")
         XCTAssertEqual(value.label, "CHF 1.01")
         reader.capture(value, name: "Review starts with exact amount fully visible")
+        try reader.read("Saving records this expense in your shared financial history. It does not transfer money.")
         let edit = app.buttons["Edit"]
         try reader.reveal(edit)
         try reader.requireTarget(edit)
