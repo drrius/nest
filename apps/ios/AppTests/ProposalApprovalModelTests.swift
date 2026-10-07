@@ -6,6 +6,14 @@ import XCTest
 @MainActor
 final class ProposalApprovalModelTests: XCTestCase {
     func testLostApprovalReplyRetriesExactOperationAndReconciles() async throws {
+        try await verifyApproval()
+    }
+
+    func testOfflineOrChangedPreviewCannotStageNewApproval() async throws {
+        for fault in ["offline", "changed", "expired"] { try await verifyApproval(fault: fault) }
+    }
+
+    private func verifyApproval(fault: String? = nil) async throws {
         let member = VerifiedMember(userId: UUID(), householdId: UUID(), displayName: "Test")
         let auth = FakeAuthentication(
             active: .init(userId: member.userId, accessToken: "token-A"),
@@ -35,6 +43,19 @@ final class ProposalApprovalModelTests: XCTestCase {
                 expectedWeekRevision: "0", familiarOnly: false), lease: lease)
         try await store.saveGeneratedProposal(preview, lease: lease)
         let context = try await model.cachedProposalContext()
+        if let fault {
+            await server.setFault(fault)
+            do {
+                try await model.stageProposalApproval(context)
+                XCTFail("A cached or changed preview staged a new approval")
+            } catch {}
+            let refused = try await model.cachedProposalContext()
+            XCTAssertNil(refused.approval)
+            XCTAssertEqual(refused.saved?.envelope, preview)
+            let calls = await server.calls
+            XCTAssertTrue(calls.isEmpty)
+            return
+        }
         try await model.stageProposalApproval(context)
         do {
             _ = try await model.retryProposalApproval(context)
@@ -54,6 +75,8 @@ final class ProposalApprovalModelTests: XCTestCase {
 actor ProposalApprovalServer {
     let preview: MealProposalEnvelope
     var calls: [ApproveMealProposal] = []
+    private var fault: String?
+    func setFault(_ value: String) { fault = value }
     init(member: VerifiedMember) throws {
         let week = try MealWeekStart("2035-06-04")
         let recipe = RecipeDraft(
@@ -71,6 +94,7 @@ actor ProposalApprovalServer {
     }
 
     func respond(_ request: URLRequest) throws -> (Data, URLResponse) {
+        if fault == "offline" { throw URLError(.notConnectedToInternet) }
         let p = preview.proposal
         let data: Data
         if request.url?.path == "/v1/meals/proposal/approve" {
@@ -94,13 +118,15 @@ actor ProposalApprovalServer {
             }
             data = try JSONEncoder().encode(Response(receipt: receipt))
         } else {
-            let approved = MealProposal(
-                proposalId: p.id, revision: "3", weekRevision: "0", weekStart: p.weekStart,
-                familiarOnly: false, entries: p.entries, status: .approved, expiresAt: p.expiresAt, failure: nil)
+            let current = MealProposal(
+                proposalId: p.id, revision: calls.isEmpty && fault != "changed" ? "2" : "3",
+                weekRevision: "0", weekStart: p.weekStart,
+                familiarOnly: false, entries: p.entries, status: calls.isEmpty ? .ready : .approved,
+                expiresAt: fault == "expired" ? 1 : p.expiresAt, failure: nil)
             data = try JSONEncoder().encode(
                 MealProposalEnvelope(
                     version: 1, actorId: preview.actorId,
-                    householdId: preview.householdId, proposal: approved))
+                    householdId: preview.householdId, proposal: current))
         }
         return (data, HTTPURLResponse(url: request.url!, statusCode: 200, httpVersion: nil, headerFields: nil)!)
     }
