@@ -33,6 +33,10 @@ between the compiled PostgreSQL 18 fixture and hosted PostgreSQL 17.
 hosted owner is postgres; this difference is retained. Owner capabilities, nested
 private-function semantics, API execution grants and complete cutover safety are
 not established by matching bodies. Earlier privilege evidence remains separate.
+`compare-definitions.py` recomputes the comparison from the retained source and
+hosted observations, refuses missing/different definition sets and fails if a
+body hash or definer flag differs. It retains owner differences without treating
+them as equivalent capabilities.
 
 The current [Supabase Cron documentation](https://supabase.com/docs/guides/cron)
 identifies cron.job as the registration catalog. The changelog and relevant

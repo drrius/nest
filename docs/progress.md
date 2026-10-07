@@ -77,6 +77,11 @@ source-parity comparison uses a disposable 54-legacy/257-native compilation;
 production, private dependency semantics, owner capability equivalence and
 external drainage remain open. No job is run or changed.
 [Hosted checkpoint](../evidence/2026-10-07/hosted-test-scheduled-writers/README.md).
+The native diagnosis source `240ed33b` passes routine
+[CI 37619852843](https://github.com/drrius/nest/actions/runs/37619852843); the hosted
+inventory/source-parity source `971b2069` passes
+[CI 37621917353](https://github.com/drrius/nest/actions/runs/37621917353).
+Neither check changes the retained failures or closes M1/M9 acceptance.
 
 The new read-only scheduled-writer inventory is integrated into the disposable
 migration runner and focused CI selection. Thirteen local PostgreSQL checks pass
