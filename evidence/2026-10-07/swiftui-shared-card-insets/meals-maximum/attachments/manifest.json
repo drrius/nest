@@ -1,0 +1,17 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8E0D7889-7888-483B-BD2C-7BA0ABCE3A89.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Largest text meal slot shared card insets_0_15968D89-64C9-461E-B024-754AC1B4A671.png",
+        "timestamp": 1791351678.53
+      }
+    ],
+    "testIdentifier": "MealCardInsetTests/testLargestTextEmptySlotKeepsSharedInsetAndNativeCancel()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/MealCardInsetTests/testLargestTextEmptySlotKeepsSharedInsetAndNativeCancel"
+  }
+]

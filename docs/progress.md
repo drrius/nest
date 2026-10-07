@@ -69,6 +69,11 @@ both original scopes/64 journals/settings/local choices restore. Conditional car
 largest-text meal-day width, full accessibility and phones remain unverified.
 [Shared inset evidence](../evidence/2026-10-07/swiftui-shared-card-insets/README.md).
 
+The shared meal-card width now also passes an actual largest-text/dark empty-slot
+check:40pt content bounds, complete44pt target, Add meal and native Cancel without
+Save. The slot remains empty and both scopes/64 journals/settings/local choices
+restore. Populated recipe rows, conditional Today cards and phones remain open.
+
 Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
 and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior
