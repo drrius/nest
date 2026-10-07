@@ -93,6 +93,37 @@ final class MealWeekStoreTests: XCTestCase {
         XCTAssertEqual(retained?.entries.first?.title, "Pasta")
     }
 
+    func testForgettingDeniedWeekSurvivesRestartAndPreservesPendingCommandAndOtherScopes() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "meal-denial-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let store = try ChoreOfflineStore(url: url)
+        let lease = try await store.activate(member)
+        let week = try snapshot(revision: "0", placed: false)
+        try await store.saveMealWeek(week, lease: lease)
+        let command = try PlaceMeal(
+            week: week, operationId: UUID(), date: try CivilDate("2026-09-29"), slot: .dinner, title: "Pasta")
+        try await store.enqueueMealPlacement(week, command: command, lease: lease)
+        let partner = VerifiedMember(userId: UUID(), householdId: household, displayName: "Sam")
+        let partnerLease = try await store.activate(partner)
+        try await store.saveMealWeek(week, lease: partnerLease)
+        do {
+            try await store.forgetMealWeek(start, lease: lease)
+            XCTFail("Inactive lease deleted a snapshot")
+        } catch { XCTAssertEqual(error as? OfflineFailure, .sessionChanged) }
+        let active = try await store.activate(member)
+        try await store.forgetMealWeek(start, lease: active)
+        let reopened = try ChoreOfflineStore(url: url)
+        let restored = try await reopened.activate(member)
+        let denied = try await reopened.readMealWeek(start, lease: restored)
+        XCTAssertNil(denied)
+        let pending = try await reopened.readMealPlacement(start, lease: restored)
+        XCTAssertEqual(pending?.command, command)
+        XCTAssertEqual(pending?.state, .pending)
+        let peer = try await reopened.activate(partner)
+        let retained = try await reopened.readMealWeek(start, lease: peer)
+        XCTAssertEqual(retained, week)
+    }
+
     private func snapshot(revision: String, placed: Bool) throws -> MealWeekSnapshot {
         let row = """
             {"entryId":"\(entry)","date":"2026-09-29","slot":"dinner","title":"Pasta","recipeUrl":null,"notes":null,"definitionId":null,"leftoverSourceId":null}

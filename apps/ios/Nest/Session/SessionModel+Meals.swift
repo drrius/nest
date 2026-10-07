@@ -100,14 +100,14 @@ extension SessionModel {
     ) async {
         guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
         else { return }
+        if (error as? NestAPIFailure) == .forbidden {
+            await handleDeniedMealWeek(
+                api: api, auth: auth, member: member, attempt: attempt, request: request, start: start)
+            return
+        }
         let mapped = state(for: error)
         if mapped == .signedOut || mapped == .notMember {
             await leaveMealAccount(mapped)
-            return
-        }
-        if (error as? NestAPIFailure) == .forbidden,
-            await reverifyMealMembership(api: api, auth: auth, member: member, attempt: attempt)
-        {
             return
         }
         guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
@@ -118,6 +118,23 @@ extension SessionModel {
             mealStatus = .failed
             mealNotice = "Could not load this week. Try again online."
         }
+    }
+
+    private func handleDeniedMealWeek(
+        api: MealAPI, auth: any NestAuthentication, member: VerifiedMember,
+        attempt: Int, request: UUID, start: MealWeekStart
+    ) async {
+        do {
+            try await forgetDeniedMealWeek(start, member: member, generation: attempt)
+        } catch {
+            guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt) else { return }
+            await leaveMealAccount(.unavailable)
+            return
+        }
+        guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt) else { return }
+        mealStatus = .failed
+        mealNotice = "Could not load this week. Try again online."
+        _ = await reverifyMealMembership(api: api, auth: auth, member: member, attempt: attempt)
     }
 
     func reverifyMealMembership(

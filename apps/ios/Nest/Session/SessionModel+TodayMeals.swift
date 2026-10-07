@@ -6,6 +6,16 @@ struct TodayMealsRead {
 }
 
 extension SessionModel {
+    func forgetDeniedMealWeek(_ start: MealWeekStart, member: VerifiedMember, generation expected: Int) async throws {
+        guard generation == expected, status == .ready(member), let offline, let lease else {
+            throw NestAPIFailure.signedOut
+        }
+        try await offline.forgetMealWeek(start, lease: lease)
+        guard generation == expected, status == .ready(member), self.lease == lease else {
+            throw NestAPIFailure.signedOut
+        }
+    }
+
     func cachedTodayMeals(_ start: MealWeekStart, member: VerifiedMember, generation expected: Int) async throws
         -> TodayMealsRead?
     {
@@ -49,6 +59,10 @@ extension SessionModel {
             return TodayMealsRead(week: visible, saved: false)
         } catch {
             try requireAccount()
+            if (error as? NestAPIFailure) == .forbidden {
+                try await forgetDeniedMealWeek(start, member: member, generation: attempt)
+                try requireAccount()
+            }
             await handleTodayMealAuthorization(error, member: member, attempt: attempt)
             try requireAccount()
             guard error is URLError || (error as? NestAPIFailure) == .unavailable else { throw error }

@@ -8,6 +8,13 @@ struct SavedMealPlacement: Equatable, Sendable {
 }
 
 extension ChoreOfflineStore {
+    func forgetMealWeek(_ start: MealWeekStart, lease: OfflineLease) throws {
+        try authorize(lease)
+        try db.run(
+            "DELETE FROM meal_weeks WHERE actor=? AND household=? AND week_start=?",
+            lease.scope + [start.date.value])
+    }
+
     func readMealWeek(_ start: MealWeekStart, lease: OfflineLease) throws -> MealWeekSnapshot? {
         try authorize(lease)
         let rows = try db.rows(

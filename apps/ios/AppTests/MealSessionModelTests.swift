@@ -66,6 +66,47 @@ final class MealSessionModelTests: XCTestCase {
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
 
+    func testForbiddenTodayReadCannotBeBypassedByReopeningCachedWeek() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        _ = try await model.readTodayMeals(start, member: member)
+        await server.failWeeks(.forbidden)
+        do {
+            _ = try await model.readTodayMeals(start, member: member)
+            XCTFail("Denied live read succeeded")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .forbidden) }
+        let cached = try await model.cachedTodayMeals(start, member: member, generation: model.generation)
+        XCTAssertNil(cached, "Reopening Today must not expose the denied week")
+        await server.failWeeks(.unavailable)
+        do {
+            _ = try await model.readTodayMeals(start, member: member)
+            XCTFail("Offline fallback exposed the denied week")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .unavailable) }
+    }
+
+    func testForbiddenMealsRefreshClearsCachedWeekAndKeepsUncertainPlacement() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        await model.selectMealWeek(start)
+        await server.loseNextPlace()
+        _ = await model.placeMeal(date: try CivilDate("2026-09-29"), slot: .dinner, title: "Pasta")
+        let command = try XCTUnwrap(model.mealPlacement?.command)
+        await server.failWeeks(.forbidden)
+        await model.refreshMealWeek()
+        XCTAssertEqual(model.mealStatus, .failed)
+        XCTAssertEqual(model.mealPlacement?.command, command)
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let cached = try await model.cachedTodayMeals(start, member: member, generation: model.generation)
+        XCTAssertNil(cached)
+        await server.failWeeks(.unavailable)
+        await model.refreshMealWeek()
+        XCTAssertEqual(model.mealStatus, .failed)
+        XCTAssertEqual(model.mealPlacement?.command, command)
+    }
+
     func testTodayCacheIsAvailableWhileNetworkReadWaitsWithoutChangingMealNavigation() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)

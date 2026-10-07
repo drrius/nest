@@ -138,10 +138,19 @@ them during refresh/unavailability. The card labels saved data, clears on
 non-network failures and resets across session generations/civil days. Five
 signed session/SQLite checks pass without skips; a controlled native card capture
 shows the saved meal during a held read and afterward. The final olive-tint
-capture method passes without skips; both screenshots are inspected. Current-source
-CI remains pending. This is local native proof with controlled
+capture method passes without skips; both screenshots are inspected. Source
+`96ce536b` passes [routine CI 37635279113](https://github.com/drrius/nest/actions/runs/37635279113).
+[Native CI 37635279186](https://github.com/drrius/nest/actions/runs/37635279186)
+is still running its signed app tests; keep that existing run. This is local native proof with controlled
 HTTP, not hosted/phone acceptance. Build 22 stays unchanged.
 [Evidence](../evidence/2026-10-07/swiftui-today-meals-cache/README.md).
+
+A known forbidden meal-week read now removes that actor/household/week's local
+read snapshot in Today and Meals. The baseline exposes the denied cache; four
+corrected signed app cases and one SQLite restart/scope check pass without skips.
+Uncertain operations and partner snapshots remain intact. Concurrent old replies,
+hosted revocation and phone behavior remain unverified. Current-source CI is
+pending. [Evidence](../evidence/2026-10-07/swiftui-meal-cache-denial/README.md).
 
 ## Exact blockers and owner inputs
 
