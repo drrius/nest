@@ -56,3 +56,22 @@ calendar/first-use selections are restored by the controller.
 The screenshot is directly inspected. Native metadata failure/retry, actual
 decline/approve posting, maximum text, partner privacy and correction review still
 need their own execution. Live model generation and phone acceptance remain open.
+
+## Partner privacy and explicit decline
+
+Two further native methods pass once each without skips. On Sam's verified
+simulator, the real pending-approval list reports no approvals while Alex's proposal
+is still open. Its title and expense details are absent. This establishes native
+list privacy; it does not establish a new direct unauthorized-link attempt.
+
+Alex then reviews Home, explicitly selects Decline and confirms the one permitted
+decline. The actual app reports “Expense declined. No expense was recorded by this
+approval.” Done finishes the local decision journal; the list is empty afterward.
+The server retains denied status with a decision timestamp and null consumption.
+The same eight protected fingerprints remain exact. Each controller restores both
+original identities,64 empty journals, settings and device-only local selections.
+Both screenshots are directly reviewed. The single decline budget is consumed;
+do not replay this decision or alter its retained audit record to rerun the test.
+Owner approval/posting, category failure/retry, maximum text, correction and phone
+acceptance remain open. This is fixture command preparation plus real native API
+and UI execution, not live model generation.

@@ -29,6 +29,15 @@ private audit proposal was prepared through the existing audited command with
 fixture auth claims; this is not live AI or authorization proof. No expense was
 posted. Maximum text, partner privacy, actual decision and correction UI remain.
 
+The expense fixture now also passes two actual native methods: Sam sees no private
+pending expense while Alex's proposal is open, and Alex explicitly declines once,
+reads the no-expense outcome and uses Done to finish the local journal. Server
+status is denied with no consumption. Both controllers restore original scopes,
+64 empty journals/settings/local choices; all eight protected fingerprints remain
+exact. The one decline budget is consumed. This closes these bounded list-privacy
+and decline checks, not direct unauthorized links, financial posting, maximum text,
+category failure/retry, correction review or physical-phone acceptance.
+
 ## Available candidate and current source
 
 **Latest private candidate: SwiftUI0.1.0/build19**, exact `484e5feb`. Candidate routine CI and identical-native-source CI, signed Mac archive/export/package/source audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass. [Release evidence](../evidence/2026-10-06/swiftui-build19/README.md). Update Nest to19 in TestFlight and try the [short phone pass](native-rewrite/build19-first-phone-pass.md). Partner access, installation and phone/design acceptance remain unverified. Live AI, scheduled posting/reminders and push stay inactive; production is untouched.
