@@ -1,23 +1,23 @@
 # SwiftUI phone acceptance
 
-The available private candidate is **0.1.0/build 22**, frozen source
-`f324c905ce0c2129b732b37663f03c4ea4392350`. Its exact-source routine and native CI,
+The available private candidate is **0.1.0/build 23**, frozen source
+`9ecfdca2c66c98dae0df9d906a088c56a42580dc`. Its exact-source routine and native CI,
 signed Mac archive/export and copied IPA hash checks pass. One private submission
-finished on 7 October; Apple confirms build 22 VALID, IN_BETA_TESTING and unexpired.
-[Release evidence](../../evidence/2026-10-07/swiftui-build22/README.md).
+finished on 7 October; Apple confirms build 23 VALID, IN_BETA_TESTING and unexpired.
+[Release evidence](../../evidence/2026-10-07/swiftui-build23/README.md).
 Partner tester access and physical-phone acceptance remain unverified. It uses
 **nest-test**, separate from Household OS production. Production balances/history
 are not copied into this app.
 
-Build 22 includes the shared four-tab headers/insets and Quiet Calendar cards,
+Build 23 includes the shared four-tab headers/insets and Quiet Calendar cards,
 recipe/preparation flows, preferences, renewals/reminders and financial review
 controls. It also includes grocery spoken quantities/sync states, local variable-
 bill recovery discovery and Today action-label styling. Start with the
-[short build 22 pass](build21-first-phone-pass.md), then this checklist.
+[short build 23 pass](build23-first-phone-pass.md), then this checklist.
 Live AI and scheduled delivery remain unverified. Source/simulator/CI results do
-not establish either phone's acceptance. Money history spacing and meal-cache
-fixes recorded after this frozen source need a later consolidated candidate;
-do not expect those fixes in build 22.
+not establish either phone's acceptance. Build 23 includes the later Money history spacing, meal-cache/privacy and picker
+target fixes, with bounded simulator evidence. Their physical-phone acceptance
+remains open.
 
 Before updating an older installed Nest build, reconnect it and synchronize any pending chore/grocery checks. Do not delete the installed app to fix a sign-in error: that can discard a local pending command. If it has unresolved pending changes, stop the update and report the visible message.
 
@@ -35,26 +35,26 @@ These are checks for both partners to complete independently. Record phone/iOS, 
 
 ## Recipe and preparation checks
 
-Build 22 includes the recipe/preparation flows and preparation-readability fixes. Its archive was built locally on the authorized Mac. Later meal-cache fixes are outside this frozen candidate; simulator results do not establish phone acceptance.
+Build 23 includes the recipe/preparation flows and preparation-readability fixes. Its archive was built locally on the authorized Mac. The later meal-cache fixes are included; simulator results do not establish phone acceptance.
 
-On build22, create one clearly named test recipe with at least one ingredient, edit its instructions and confirm the detail refreshes. Archive that exact test recipe and confirm existing planned meals retain their recipe snapshot. For a clearly named future test meal, open Meal preparation, create a date-only shared task, then edit instructions/responsibility and confirm the partner sees the same task. Reminder consent is separate; preparation is household work and must not post money. Record the actual build and result. Do not infer generated-plan, AI, offline, notification or full accessibility acceptance from those online checks.
+On build23, create one clearly named test recipe with at least one ingredient, edit its instructions and confirm the detail refreshes. Archive that exact test recipe and confirm existing planned meals retain their recipe snapshot. For a clearly named future test meal, open Meal preparation, create a date-only shared task, then edit instructions/responsibility and confirm the partner sees the same task. Reminder consent is separate; preparation is household work and must not post money. Record the actual build and result. Do not infer generated-plan, AI, offline, notification or full accessibility acceptance from those online checks.
 
 ## Financial candidate checks
 
-These changes are in **build22**, with implementation and bounded verification. Actual phone acceptance remains open; do not infer a completed journey from current source or CI. Use clearly marked fictional entries in nest-test only. Record each phone/build/result and keep unresolved saved decisions intact.
+These changes are in **build23**, with implementation and bounded verification. Actual phone acceptance remains open; do not infer a completed journey from current source or CI. Use clearly marked fictional entries in nest-test only. Record each phone/build/result and keep unresolved saved decisions intact.
 
 - Review a private variable-bill proposal's exact CHF amount, payer, two shares and due period. Merely opening it, returning from background or refreshing must not record it. Explicitly confirm one proposal and decline another, then check the matching immutable result. Do not use an ordinary bill form as a substitute for a private approval.
 - During review, have the other partner change the bill revision or cover that same cycle using a separate explicit test action. The old proposal must refuse confirmation and permit explicit decline or a fresh proposal. A saved uncertain decision must first resolve its exact recorded or unused result; do not discard it based only on a message or local clock.
 - To link an existing test expense, open its recurring rule and choose Link existing expense. Review the original expense and rule separately, including any difference in amount, payer or split. Explicit confirmation must cover one period while leaving the number of expenses and both balances unchanged. Both phones should observe the same covered cycle after refreshing. Check older history pages where applicable.
 - After an interrupted confirmation or cancellation, reopen the app and check the saved exact result before trying another entry. If already recorded, cancellation must preserve the receipt/history. Financial initiation needs an online fresh review; a disconnected phone must not silently queue a new financial approval or link. Report the exact state rather than deleting the app or saved intent.
 
-Private manual-link proposal cards are in build22 and pass exact-source native CI; complete rendered/two-phone acceptance remains open. Direct/private legacy dismissal now pass exact-source native CI; rendered/two-phone acceptance remains pending. Legacy confirmation/adoption forms and private proposal destinations in build22 have implementation and bounded Mac/backend/CI verification; they require hosted/phone acceptance. Full financial phone acceptance also includes expenses, refunds, reversals/replacements, settlements, rule creation/edit/state/resumption, approval privacy across the two members and repeated requests without duplicate posting. These focused checks do not close that full gate.
+Private manual-link proposal cards are in build23 and pass exact-source native CI; complete rendered/two-phone acceptance remains open. Direct/private legacy dismissal now pass exact-source native CI; rendered/two-phone acceptance remains pending. Legacy confirmation/adoption forms and private proposal destinations in build23 have implementation and bounded Mac/backend/CI verification; they require hosted/phone acceptance. Full financial phone acceptance also includes expenses, refunds, reversals/replacements, settlements, rule creation/edit/state/resumption, approval privacy across the two members and repeated requests without duplicate posting. These focused checks do not close that full gate.
 
 ## Retained-history checks
 
-These native readers are in **build22**. On build22, open Money → Recurring expenses → Retained recurring expenses. An empty successful list means there are no migrated test rules; it does not verify the populated workflow. Populated acceptance needs safe fictional migration fixtures prepared separately in nest-test.
+These native readers are in **build23**. On build23, open Money → Recurring expenses → Retained recurring expenses. An empty successful list means there are no migrated test rules; it does not verify the populated workflow. Populated acceptance needs safe fictional migration fixtures prepared separately in nest-test.
 
-For those fixtures, each partner should see the same retained rules and original drafts. A later rule edit must not replace the draft's original amount, payer, split or date. Pending, posted and dismissed states stay distinct; a linked entry opens authorized financial history. Unsupported values or status/entry discrepancies should show review messages. Opening, returning, refreshing and reading later pages must create no expense or automatic mandate. Disconnect and retry online; failed reads must not appear as a successful empty history. Record actual build/result. On build22 with safe populated fixtures, review one pending recurring unlinked draft for dismissal. Merely opening or refreshing must change nothing; explicit dismissal must retain the history, create no expense/payment, leave balances unchanged and not pause/cancel the old rule. Review a private dismissal proposal separately; only its owner may open it. A changed or expired proposal may be declined but cannot confirm changed terms. If interrupted, recover the exact receipt or explicitly cancel/withdraw; do not delete uncertain intent. A previously recorded dismissal wins over later cancellation. These implemented dismissal paths still need actual rendered/two-phone results. Confirmation, opt-in and their private decisions now have implementation and bounded verification, with hosted/phone acceptance still required.
+For those fixtures, each partner should see the same retained rules and original drafts. A later rule edit must not replace the draft's original amount, payer, split or date. Pending, posted and dismissed states stay distinct; a linked entry opens authorized financial history. Unsupported values or status/entry discrepancies should show review messages. Opening, returning, refreshing and reading later pages must create no expense or automatic mandate. Disconnect and retry online; failed reads must not appear as a successful empty history. Record actual build/result. On build23 with safe populated fixtures, review one pending recurring unlinked draft for dismissal. Merely opening or refreshing must change nothing; explicit dismissal must retain the history, create no expense/payment, leave balances unchanged and not pause/cancel the old rule. Review a private dismissal proposal separately; only its owner may open it. A changed or expired proposal may be declined but cannot confirm changed terms. If interrupted, recover the exact receipt or explicitly cancel/withdraw; do not delete uncertain intent. A previously recorded dismissal wins over later cancellation. These implemented dismissal paths still need actual rendered/two-phone results. Confirmation, opt-in and their private decisions now have implementation and bounded verification, with hosted/phone acceptance still required.
 
 ## Reminder touch controls
 
@@ -66,9 +66,9 @@ value once. Discard the draft through Back; do not Save during this touch check.
 Report missed or double taps. Simulator bounds and automation do not establish
 physical-phone touch or VoiceOver acceptance.
 
-Build 22 includes the explicit44-point reminder adjustment buttons. Record the
+Build 23 includes the explicit44-point reminder adjustment buttons. Record the
 installed build and physical result. The renewal-row44-point actions, explicit removal Cancel and the largest-text
-recurring-rule row fix are also included in build22.
+recurring-rule row fix are also included in build23.
 
 ## Separate unfinished gates
 

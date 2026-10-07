@@ -1,7 +1,11 @@
-# Latest first phone pass: build22
+# Historical first phone pass: build 22
+
+Build 23 is now the current candidate. Use the
+[current short phone pass](build23-first-phone-pass.md) for its included fixes.
 
 Apple confirms the consolidated SwiftUI0.1.0/build22 candidate is VALID, internally
-available and unexpired. Update to22 in your existing TestFlight installation. The retained filename is historical; this checklist identifies the current beta. It uses nest-test, with push disabled; Household OS production is unchanged.
+available and unexpired. The retained filename and checklist describe that earlier
+candidate. It uses nest-test, with push disabled; Household OS production is unchanged.
 
 1. Open all four tabs and compare the header/actions, side margins and card edges
    in your normal appearance/text size, then dark mode and larger text.

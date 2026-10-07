@@ -1,0 +1,52 @@
+{
+  "ios": {
+    "ascAppIdentifier": "6814119349",
+    "testFlightBuilds": [
+      {
+        "appVersion": "0.1.0",
+        "buildNumber": "22",
+        "processingState": "VALID",
+        "internalState": "IN_BETA_TESTING",
+        "externalState": "READY_FOR_BETA_SUBMISSION",
+        "uploadedDate": "2026-10-07T04:26:59-07:00",
+        "expired": false
+      },
+      {
+        "appVersion": "0.1.0",
+        "buildNumber": "21",
+        "processingState": "VALID",
+        "internalState": "IN_BETA_TESTING",
+        "externalState": "READY_FOR_BETA_SUBMISSION",
+        "uploadedDate": "2026-10-07T01:46:21-07:00",
+        "expired": false
+      },
+      {
+        "appVersion": "0.1.0",
+        "buildNumber": "20",
+        "processingState": "VALID",
+        "internalState": "IN_BETA_TESTING",
+        "externalState": "READY_FOR_BETA_SUBMISSION",
+        "uploadedDate": "2026-10-06T23:09:02-07:00",
+        "expired": false
+      },
+      {
+        "appVersion": "0.1.0",
+        "buildNumber": "19",
+        "processingState": "VALID",
+        "internalState": "IN_BETA_TESTING",
+        "externalState": "READY_FOR_BETA_SUBMISSION",
+        "uploadedDate": "2026-10-06T02:11:05-07:00",
+        "expired": false
+      },
+      {
+        "appVersion": "0.1.0",
+        "buildNumber": "18",
+        "processingState": "VALID",
+        "internalState": "IN_BETA_TESTING",
+        "externalState": "READY_FOR_BETA_SUBMISSION",
+        "uploadedDate": "2026-10-05T14:21:39-07:00",
+        "expired": false
+      }
+    ]
+  }
+}

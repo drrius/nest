@@ -16,7 +16,7 @@ a new failure or an uncovered requirement. M1 through M9 remain open.
 | Live AI                    | Tools/contracts, private persistence, approval enforcement and fixture/provider error handling                                                                                                    | Last live result403 customer_verification_required is historical; fresh credit check awaits the specific token approval. Then bounded live stream/tool/approval verification after eligibility changes |
 | Push and scheduling        | APNs transport, enrollment/outbox/worker source and focused tests                                                                                                                                 | APNs provider key/configuration, specific blocked credential-transfer approval, worker activation and six delivery kinds on both phones                                                                |
 | Migration                  | Disposable full-schema reconciliation, boundary inventories and rollback/retry rehearsal                                                                                                          | Remaining private/Storage/trusted-writer semantics, authorized existing-data rehearsal, external writers and pending-intent drainage                                                                   |
-| Delivery                   | Build22 is internally available; its exact candidate CI/archive/signing pass                                                                                                                      | Actual installation, both-member acceptance and final release checks. Production cutover stays separately gated                                                                                        |
+| Delivery                   | Build23 is internally available; its exact candidate CI/archive/signing pass                                                                                                                      | Actual installation, both-member acceptance and final release checks. Production cutover stays separately gated                                                                                        |
 | Merge                      | PR85 previously had green checks and no conversations                                                                                                                                             | Greptile trial limit supplies no approval; specific automatic-review merge rejection remains. No alternate main push bypass                                                                            |
 
 The7 October native reschedule, skip and archive races now have complete queued/
@@ -77,9 +77,9 @@ Work order:
    pass rather than posting again solely to refresh evidence. Existing
    model/database evidence stays valid. Private live approvals and scheduled
    posting still require their separate integration proof.
-2. Keep one source candidate stable until its CI finishes. Batch necessary shipping
+2. Keep the verified build 23 candidate stable for phone acceptance. Batch necessary shipping
    fixes for a consolidated beta. Test-only/evidence changes do not need another
-   beta. Build 22 remains the available owner candidate; later fixes are separate.
+   beta. Build 23 is the available owner candidate and includes the later fixes.
 3. Complete live AI only after the specific credential/eligibility blocker changes.
    The required journey is actual private streaming/tool execution, visible
    financial approval and generated week/replacement/approval/ingredient review.

@@ -1,0 +1,12 @@
+{
+  "id": "b113adff-6504-4a4f-91e0-4d6304667f94",
+  "status": "FINISHED",
+  "platform": "IOS",
+  "createdAt": "2026-10-07T17:51:30.815Z",
+  "completedAt": "2026-10-07T17:52:38.179Z",
+  "canRetry": false,
+  "sourceCommit": "9ecfdca2c66c98dae0df9d906a088c56a42580dc",
+  "build": "23",
+  "privateBetaOnly": true,
+  "singleRequest": true
+}

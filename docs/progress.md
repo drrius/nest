@@ -7,22 +7,28 @@ and privacy rules remain authoritative.
 
 ## Current build
 
-**SwiftUI 0.1.0, build 22 is available for internal TestFlight testing.** Its frozen
-source is `f324c905ce0c2129b732b37663f03c4ea4392350`. Apple reports VALID,
-IN_BETA_TESTING and unexpired. The single submission finished; no further upload
-is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build22/README.md).
+**SwiftUI 0.1.0, build 23 is available for internal TestFlight testing.** Its frozen
+source is `9ecfdca2c66c98dae0df9d906a088c56a42580dc`. Apple reports VALID,
+IN_BETA_TESTING and unexpired. One private submission finished; no further upload
+is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build23/README.md).
 
-It uses the separate test Supabase/API and keeps push disabled. It includes the
-shared tab layout, financial review fixes, saved variable-bill recovery and Today
-button styling. Installation of this version, partner tester access and full
-phone acceptance remain unverified. Use the [short phone pass](native-rewrite/build21-first-phone-pass.md)
-and [full acceptance checklist](native-rewrite/swiftui-phone-acceptance.md). The short
-checklist's historical filename is retained; its contents identify build 22.
+It uses the separate test Supabase/API and keeps push disabled. It includes
+build 22's shared tab layout and recovery controls plus later saved-meal,
+meal-read privacy/account-context, Money history spacing and picker target fixes.
+Installation of this version, partner tester access and full phone acceptance
+remain unverified. Use the [short phone pass](native-rewrite/build23-first-phone-pass.md)
+and [full acceptance checklist](native-rewrite/swiftui-phone-acceptance.md).
 
 Source work runs on Linux at `/home/drrius/Work/nest`; signed Xcode builds and
 simulator journeys run on the authorized Mac. The original clients, credentials,
 local journals and settings are preserved. New source remains on
 `codex/swiftui-renewal-navigation`; no production cutover or public release occurs.
+
+Build 23's 1,188 frozen inputs match the Mac copy and local signed Release
+archive/export/package checks pass. The copied IPA hash matches; temporary signing
+material is removed on both hosts. Both exact-source CI runs pass and the single
+private submission `b113adff-6504-4a4f-91e0-4d6304667f94` is FINISHED. Apple
+availability is verified separately. No cloud build is used.
 
 ## Milestone checklist
 
@@ -44,12 +50,14 @@ journey evidence and identifies the uncovered requirements.
 
 ## Verification
 
-Build 22's exact source passes routine CI
-[37612410978](https://github.com/drrius/nest/actions/runs/37612410978) and native CI
-[37612410354](https://github.com/drrius/nest/actions/runs/37612410354). Local signed
-archive/export, package configuration and all 1,176 frozen inputs match. Native CI
-reports zero failures with guarded/device-dependent skips; those skips and UI
-compilation do not establish phone or live-provider execution.
+Build 23's exact source passes routine CI
+[37660682366](https://github.com/drrius/nest/actions/runs/37660682366) and native CI
+[37660682517](https://github.com/drrius/nest/actions/runs/37660682517). Native CI
+reports 512 app tests, 59 guarded skips and zero failures, with strict formatting,
+source limits, signing and guarded UI compilation also passing. Local signed
+archive/export, package configuration and all 1,188 frozen inputs match. Skips and
+UI compilation do not establish phone or live-provider execution. Build 22's
+previous evidence stays retained; it is superseded as the phone candidate.
 
 Hosted test-backend journeys include two-client chore/grocery recovery, manual
 meal planning, append-only financial posting and PDF access. Later variable-bill
@@ -284,7 +292,7 @@ replayed. The final cancellation suffix passes one signed native test with no
 failures or skips. All eleven older rule hashes and every financial row match;
 both balances remain zero and cron registrations remain zero. The owned clone
 is deleted after all 64 journals are empty; original scope/journals and source
-hashes match. Current-head CI for the new guarded test remains pending.
+hashes match. The new guarded test source passes the exact-source CI recorded above.
 [Evidence](../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md).
 
 The remaining-work list now preserves earlier direct manual-link and retained
@@ -297,14 +305,14 @@ their separate acceptance requirements.
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
 - **Scheduled workers:** automatic approval review blocked transferring the test Supabase server key and scheduler token to Vercel. The specific transfer approval remains pending; no alternate transfer or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
-- **Phones:** both partners need build 22 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
+- **Phones:** both partners need build 23 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
 - **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) later ended cancelled with the account-switch failure recorded above. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
 - **Merge:** [PR 85](https://github.com/drrius/nest/pull/85) is OPEN at `1c00a089`, with four successful checks. Its sole Greptile response reports the trial credit limit and supplies no approval. The specific automatic-review merge rejection remains unresolved. The owner waived extra Sol review; no Sol, duplicate unchanged review request or alternate main push is used.
 - **Production:** existing-data reconciliation, writer decisions and pending-intent/external-work drainage must precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
 
 ## Work order
 
-Keep build 22 stable for phone testing. Batch necessary shipping fixes, preserve
+Keep build 23 stable for phone testing. Batch necessary shipping fixes, preserve
 completed evidence and repeat checks only for affected changes, failures or uncovered
 requirements. Finish concrete local gaps while provider/worker/device blockers
 remain. Reconcile all milestone exits before declaring completion.
