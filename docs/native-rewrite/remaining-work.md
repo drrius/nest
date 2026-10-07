@@ -10,7 +10,7 @@ of unchanged QA variants. Money currently fails in the owner test household beca
 only Darius is linked; the two-member simulator fixture hid that setup issue.
 [Diagnosis and focused fixes](../../evidence/2026-10-07/money-setup-diagnostics/README.md).
 Verified partner linking is required; client diagnostics and clear setup errors
-are implemented and locally checked, but are newer than TestFlight build24.
+are implemented, locally checked and included in internally available build25.
 
 | Work                       | Existing proof                                                                                                                                                                                    | Remaining proof or blocker                                                                                                                                                                             |
 | -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

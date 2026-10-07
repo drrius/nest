@@ -1,0 +1,20 @@
+{
+  "sourceCommit": "e6e808437bb225b2f9944ac355160985ebee15d7",
+  "sourceFilesVerified": 1194,
+  "version": "0.1.0",
+  "build": "25",
+  "bundle": "ch.drrius.nest",
+  "ipaName": "Nest.ipa",
+  "ipaBytes": 14430558,
+  "ipaSha256": "20db7c67ee3be1f1c83d3717d7be98e831b9eb50096aaa340da51c4afa301d10",
+  "team": "5ZKB6XKYFX",
+  "platform": "iPhoneOS",
+  "architecture": "arm64",
+  "backend": "nest-test",
+  "pushEnabled": false,
+  "signing": "passed",
+  "privacyManifestsPackaged": 2,
+  "dSYM": "retained",
+  "appleUpload": "not yet submitted",
+  "bundleAudit": "no signing-key, environment, SQLite/test target or React/Expo framework files"
+}

@@ -7,16 +7,16 @@ and privacy rules remain authoritative.
 
 ## Current build
 
-**SwiftUI 0.1.0, build 24 is available for internal TestFlight testing.** Its frozen
-source is `c0c0cf9513da6860efef30676f120b1fdebb5af1`. Apple reports VALID,
+**SwiftUI 0.1.0, build 25 is available for internal TestFlight testing.** Its frozen
+source is `e6e808437bb225b2f9944ac355160985ebee15d7`. Apple reports VALID,
 IN_BETA_TESTING and unexpired. One private submission finished; no further upload
-is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build24/README.md).
+is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build25/README.md).
 
 It uses the separate test Supabase/API and keeps push disabled. It includes
-build 23's layout fixes plus chore/grocery membership revocation cleanup.
-Money setup error handling and diagnostics are newer than this build.
+the earlier layout/privacy fixes, Money's missing-partner explanation and
+Profile → Diagnostics. [Debugging guide](native-rewrite/diagnostics.md).
 Installation of this version, partner tester access and full phone acceptance
-remain unverified. Use the [short phone pass](native-rewrite/build23-first-phone-pass.md)
+remain unverified. Use the [short phone pass](native-rewrite/build25-first-phone-pass.md)
 and [full acceptance checklist](native-rewrite/swiftui-phone-acceptance.md).
 
 Source work runs on Linux at `/home/drrius/Work/nest`; signed Xcode builds and
@@ -30,7 +30,7 @@ Owner requests practical diagnostics and focused simulator checks, without expan
 unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagnostics/README.md)
 is confirmed: the owner test household has one member. Verified partner linking
 remains needed. Native/server diagnostics and clear setup errors pass focused checks. Server
-traces are deployed and observed; native diagnostics await a new TestFlight build.
+traces and private AI timing are deployed; native diagnostics ship in build25.
 
 ## Milestone checklist
 
