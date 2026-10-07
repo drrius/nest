@@ -1,0 +1,237 @@
+{
+  "standalone": true,
+  "networkRequests": 0,
+  "nestDataAccess": false,
+  "runtime": "iOS26.3.1",
+  "warningEmissions": 1,
+  "keyboardFocusedAndDismissed": true,
+  "warnings": [
+    {
+      "message": "Invalid frame dimension (negative or non-finite).",
+      "backtrace": {
+        "frames": [
+          {
+            "imageOffset": 8017584,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 8008020,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 11347644,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 4078184,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 4076700,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 4078472,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 5289852,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 5288904,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 2612104,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 46888,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 48664,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 79180,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 176588,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 1403352,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 1544168,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 46888,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 48664,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 76888,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 177420,
+            "imageUUID": "378A79A0-D11A-39F4-899B-711602307378"
+          },
+          {
+            "imageOffset": 11736696,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 11728292,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 11715728,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 11708392,
+            "imageUUID": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B"
+          },
+          {
+            "imageOffset": 1452232,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 13968844,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 13968932,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 23569964,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11346672,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 5691932,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 15867480,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11766728,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11761656,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11760216,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11764324,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11764404,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 11752984,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 16429756,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 115888,
+            "imageUUID": "9FDEA32B-5910-3787-8738-D4F8A1EA99F8"
+          },
+          {
+            "imageOffset": 25972,
+            "imageUUID": "9FDEA32B-5910-3787-8738-D4F8A1EA99F8"
+          },
+          {
+            "imageOffset": 103816,
+            "imageUUID": "9FDEA32B-5910-3787-8738-D4F8A1EA99F8"
+          },
+          {
+            "imageOffset": 69900,
+            "imageUUID": "9FDEA32B-5910-3787-8738-D4F8A1EA99F8"
+          },
+          {
+            "imageOffset": 69228,
+            "imageUUID": "9FDEA32B-5910-3787-8738-D4F8A1EA99F8"
+          },
+          {
+            "imageOffset": 602024,
+            "imageUUID": "161EB371-3EC7-3196-AB53-3B7E098318F5"
+          },
+          {
+            "imageOffset": 598400,
+            "imageUUID": "161EB371-3EC7-3196-AB53-3B7E098318F5"
+          },
+          {
+            "imageOffset": 576956,
+            "imageUUID": "161EB371-3EC7-3196-AB53-3B7E098318F5"
+          },
+          {
+            "imageOffset": 10684,
+            "imageUUID": "D529A2A8-ADAE-3725-BDA8-6336DB108A15"
+          },
+          {
+            "imageOffset": 18530820,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 18547756,
+            "imageUUID": "F305BAE9-D353-3315-B495-FF836066D169"
+          },
+          {
+            "imageOffset": 8099228,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 8098532,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 5534596,
+            "imageUUID": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932"
+          },
+          {
+            "imageOffset": 5536,
+            "imageUUID": "F67F99B7-2C83-37BD-A321-B637FDA5A0C6"
+          },
+          {
+            "imageOffset": 18944,
+            "imageUUID": "F67F99B7-2C83-37BD-A321-B637FDA5A0C6"
+          },
+          {
+            "imageOffset": 0,
+            "imageUUID": "00000000-0000-0000-0000-000000000000"
+          },
+          {
+            "imageOffset": 0,
+            "imageUUID": "00000000-0000-0000-0000-000000000000"
+          }
+        ]
+      }
+    }
+  ]
+}

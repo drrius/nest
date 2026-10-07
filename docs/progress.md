@@ -201,8 +201,23 @@ description/CHF1.01 draft before explicit Discard. No financial POST is attempte
 all64 clone journals remain empty and eight hosted fingerprints stay exact.
 Original simulator state restores; the owned clone/trust store, relay and private
 control configuration are removed. This does not prove physical radio loss,
-post-commit lost-reply recovery or full financial acceptance. The existing frame
+post-commit lost-reply recovery or full financial acceptance. Routine CI37590324711
+passes source `eafc296d`; native CI37590324662 is still running. The existing frame
 runtime warning remains. [Outage evidence](../evidence/2026-10-07/swiftui-expense-api-outage/README.md).
+
+The captured outage diagnostic now resolves all five frame-warning backtraces
+against matching simulator framework UUIDs. SwiftUI InputAccessoryBar.body
+constructs the rejected fixed frame. This identifies the native keyboard-toolbar
+path without rerunning the financial journey or changing controls; it does not
+prove whether app composition or framework behavior causes the invalid size.
+An isolated minimal Form now reproduces the exact leading framework UUID/offset
+stack without Nest data, network or domain code. Its owned simulator is removed
+and the originals remain untouched. The same focus/dismissal no-toolbar control
+reports zero warnings and removes its separate simulator. The warning follows
+standard native keyboard ToolbarItemGroup on iOS26.3.1; shipping keyboard controls
+remain intact. This does not justify palette/financial-layout edits, clear device
+keyboard/accessibility acceptance or prove all runtime versions behave the same.
+[Isolated diagnosis](../evidence/2026-10-07/swiftui-keyboard-toolbar-probe/README.md).
 
 The [remaining acceptance list](native-rewrite/remaining-work.md) now owns
 next-work sequencing. Historical checks below remain evidence, not instructions

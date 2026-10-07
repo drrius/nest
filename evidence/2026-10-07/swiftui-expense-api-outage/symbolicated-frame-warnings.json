@@ -1,0 +1,117 @@
+[
+  {
+    "timestamp": "2026-10-07 09:50:02.139045+0200",
+    "frames": [
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8017584,
+        "symbol": "specialized _FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 396"
+      },
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8008020,
+        "symbol": "_FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 36"
+      },
+      {
+        "image": "SwiftUI",
+        "uuid": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932",
+        "offset": 11347644,
+        "symbol": "InputAccessoryBar.body.getter (in SwiftUI) + 172"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07 09:50:03.949855+0200",
+    "frames": [
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8017584,
+        "symbol": "specialized _FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 396"
+      },
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8008020,
+        "symbol": "_FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 36"
+      },
+      {
+        "image": "SwiftUI",
+        "uuid": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932",
+        "offset": 11347644,
+        "symbol": "InputAccessoryBar.body.getter (in SwiftUI) + 172"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07 09:50:06.711947+0200",
+    "frames": [
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8017584,
+        "symbol": "specialized _FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 396"
+      },
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8008020,
+        "symbol": "_FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 36"
+      },
+      {
+        "image": "SwiftUI",
+        "uuid": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932",
+        "offset": 11347644,
+        "symbol": "InputAccessoryBar.body.getter (in SwiftUI) + 172"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07 09:50:06.783443+0200",
+    "frames": [
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8017584,
+        "symbol": "specialized _FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 396"
+      },
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8008020,
+        "symbol": "_FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 36"
+      },
+      {
+        "image": "SwiftUI",
+        "uuid": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932",
+        "offset": 11347644,
+        "symbol": "InputAccessoryBar.body.getter (in SwiftUI) + 172"
+      }
+    ]
+  },
+  {
+    "timestamp": "2026-10-07 09:50:22.314524+0200",
+    "frames": [
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8017584,
+        "symbol": "specialized _FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 396"
+      },
+      {
+        "image": "SwiftUICore",
+        "uuid": "DFE7F474-9AA9-37E7-8502-C26B7DE2C10B",
+        "offset": 8008020,
+        "symbol": "_FrameLayout.init(width:height:alignment:) (in SwiftUICore) + 36"
+      },
+      {
+        "image": "SwiftUI",
+        "uuid": "D08C3FCD-BCB0-3BCA-97A0-31C3AEA80932",
+        "offset": 11347644,
+        "symbol": "InputAccessoryBar.body.getter (in SwiftUI) + 172"
+      }
+    ]
+  }
+]

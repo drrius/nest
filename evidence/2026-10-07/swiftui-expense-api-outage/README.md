@@ -21,9 +21,13 @@ clone deleted with its trust store, relay stopped and owned private key/control
 configuration removed. No production action, model call or release occurs.
 One grouped negative/nonfinite frame warning remains unresolved. The captured
 simulator log contains five emissions from SwiftUICore, beginning when Add
-expense opens before field focus. No source location or call stack is present;
-this does not establish an app or framework cause. The bounded diagnostic is
-retained in `frame-warning-diagnosis.json`.
+expense opens before field focus. The complete captured log includes unsymbolicated
+backtraces omitted from the grouped xcresult summary. Matching installed-framework
+UUIDs and atos resolve the leading caller in all five to SwiftUI's
+InputAccessoryBar.body.getter, which constructs the rejected fixed frame. This
+narrows investigation to native keyboard-toolbar layout; it does not establish
+an application or Apple defect. The frames are retained in
+`symbolicated-frame-warnings.json` and `frame-warning-diagnosis.json`.
 Full financial recovery, accessibility and both-phone acceptance remain open.
 
 `prepared.json` records preparation before invocation. `summary.json` records

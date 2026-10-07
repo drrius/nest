@@ -10,5 +10,8 @@
   "firstObservedPhase": "Opening Add expense before focusing Description",
   "sourceLocationAvailable": false,
   "causeEstablished": false,
-  "nextDiagnostic": "Capture a runtime-issue call stack during a zero-write form-open reproduction; do not alter palette or suppress warnings without identifying the originating layout."
+  "nextDiagnostic": "Reproduce the native keyboard-toolbar layout in an isolated minimal Form before changing shipping controls; framework caller identity alone does not prove an application or Apple defect.",
+  "runtimeBacktraceAvailable": true,
+  "leadingCaller": "SwiftUI.InputAccessoryBar.body.getter +172",
+  "matchingFrameworkUUIDsVerified": true
 }
