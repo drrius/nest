@@ -342,7 +342,8 @@ phones remain open. Build 23 is unchanged; no release is needed for this test.
 
 Household-read fix `41e1f316` passes
 [routine CI 37672466304](https://github.com/drrius/nest/actions/runs/37672466304).
-Its native CI remains in progress; the new Calendar test is locally verified only.
+Its [native CI 37672466352](https://github.com/drrius/nest/actions/runs/37672466352)
+also passes. The later Calendar test remains locally verified until its own CI.
 
 The push-delivery audit now identifies its removed Expo dependency and earlier
 registration state as historical. Current guidance points to SwiftUI/APNs and the
