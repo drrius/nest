@@ -2,7 +2,8 @@ import XCTest
 
 @MainActor
 final class NativeChoreScheduleConflictTests: XCTestCase {
-    private let title = "Nest native schedule conflict 20261007"
+    private var kind: String { ProcessInfo.processInfo.environment["NEST_QA_CONFLICT_KIND"] ?? "reschedule" }
+    private var title: String { "Nest native \(kind == "reschedule" ? "schedule" : kind) conflict 20261007" }
 
     override func setUp() {
         super.setUp()
@@ -70,13 +71,15 @@ final class NativeChoreScheduleConflictTests: XCTestCase {
         guard env["NEST_QA_SCHEDULE_CONFLICT"] == "20261007", env["NEST_QA_ACTION"] == action else {
             throw XCTSkip("Requires the exact prepared native schedule-conflict action")
         }
+        XCTAssertTrue(["reschedule", "skip", "archive"].contains(kind))
         #if targetEnvironment(simulator)
             XCTAssertEqual(env["SIMULATOR_UDID"], "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A")
         #else
             throw XCTSkip("Fictional schedule-conflict fixtures are forbidden on phones")
         #endif
         XCTAssertEqual(env["NEST_QA_POSITIVE_BUDGET"], action == "queue" ? "1" : "0")
-        XCTAssertEqual(env["NEST_QA_API_ORIGIN"], "https://localhost:4665")
+        XCTAssertEqual(
+            env["NEST_QA_API_ORIGIN"], kind == "reschedule" ? "https://localhost:4665" : "https://localhost:4666")
         XCTAssertEqual(env["NEST_QA_SUPABASE_ORIGIN"], "https://tkjixmujjoustdiedfmw.supabase.co")
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.launch()

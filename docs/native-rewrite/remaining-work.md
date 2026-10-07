@@ -19,10 +19,10 @@ a new failure or an uncovered requirement. M1 through M9 remain open.
 | Delivery                   | Build21 is internally available; its exact candidate CI/archive/signing pass                                | Current candidate CI/archive/export pass; actual installation, both-member acceptance and final release checks remain. Production cutover stays separately gated |
 | Merge                      | PR85 previously had green checks and no conversations                                                       | Greptile trial limit supplies no approval; specific automatic-review merge rejection remains. No alternate main push bypass                                      |
 
-The7 October native reschedule race now has complete queued/restart/409/exact
-discard/partner-read/archive evidence with original data reconciliation. Other
-skip/archive/membership races and physical-radio acceptance remain. This bounded
-result does not close the full daily-use or M4 gates.
+The7 October native reschedule, skip and archive races now have complete queued/
+restart/409/exact-discard/partner-read/cleanup evidence with original data
+reconciliation. Membership/access-revocation variants and physical-radio
+acceptance remain. These bounded results do not close the full daily-use or M4 gates.
 
 Work order:
 

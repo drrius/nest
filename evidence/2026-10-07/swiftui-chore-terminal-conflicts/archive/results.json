@@ -1,0 +1,65 @@
+[
+  {
+    "step": "01-create",
+    "method": "HostedChoreScheduleConflictTests/testCreateOwnedRoutineOnce",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.997
+  },
+  {
+    "step": "02-warm",
+    "method": "NativeChoreScheduleConflictTests/testWarmOwnedChoreWithoutCompleting",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 7.869
+  },
+  {
+    "step": "03-queue",
+    "method": "NativeChoreScheduleConflictTests/testQueueOwnedCompletionOnceDuringOutage",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 11.616
+  },
+  {
+    "step": "04-restart",
+    "method": "NativeChoreScheduleConflictTests/testQueuedCompletionSurvivesRestart",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 14.112
+  },
+  {
+    "step": "05-partner-change",
+    "method": "HostedChoreScheduleConflictTests/testPartnerArchivesOwnedRoutineOnce",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 4.629
+  },
+  {
+    "step": "06-conflict-discard",
+    "method": "NativeChoreScheduleConflictTests/testReconnectExplainsConflictThenDiscardsOnlySavedCompletion",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 13.613
+  },
+  {
+    "step": "07-partner-read",
+    "method": "HostedChoreScheduleConflictTests/testReadArchivedRoutineUnavailable",
+    "exitCode": 0,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 3.808
+  }
+]

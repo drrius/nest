@@ -4,6 +4,20 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 ## Current delivery checkpoint
 
+Grouped native skip/archive races now pass15 methods with zero failures or skips.
+Both retain the original queued completion through an API outage and restart;
+after the partner's command, exact replay gets409 and the real Today UI explains
+the conflict and permits explicit discard. Skip preserves its original skipped
+row and untouched next-day replacement; archive preserves retained history and
+does not resurrect the routine. Independent hosted reads find zero completions/
+receipts for either fixture. Original22 routines,28 occurrences,seven completions,
+126 activity rows and all eight financial/meal/grocery fingerprints remain exact.
+Both cases restore the original clients,64 empty journals, stable origins and local
+choices. All1,167 sources match; signed preparation/limits pass, with current-source
+CI pending. Membership variants, hardware and full M4 remain open. Shipping app
+source remains build21; no beta, production change, provider call or merge occurs.
+[Grouped conflict evidence](../evidence/2026-10-07/swiftui-chore-terminal-conflicts/README.md).
+
 The native offline-completion/reschedule journey now passes eight focused methods
 with zero failures or skips. Actual Today queues one fictional chore during a
 controlled API outage, retains its exact operation across restart, explains the
@@ -12,7 +26,9 @@ The partner's native SDK still reads the moved occurrence open; ordinary archive
 cleans up the owned fixture. Original chore/activity rows and all eight financial/
 meal/grocery fingerprints remain exact. Both clients restore their64 empty
 journals, identities, stable origins and local choices. Signed preparation and
-1,167 source hashes match; current-source CI is pending. Controller encoding/scope/
+1,167 source hashes match; source0cfeb6b8 passes routine37600360665 and
+native37600360697:509 Foundation/41 skips,484 signed-app/45 skips, zero failures,
+strict format/limits/signing and guarded UI compilation. Controller encoding/scope/
 archive-observer failures are retained separately from the eight passing native
 methods. This closes one schedule race, not phone radio loss, other race variants
 or full M4. Shipping UI is unchanged from build21; no new beta is needed.

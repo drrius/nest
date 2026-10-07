@@ -9,7 +9,10 @@ They do not establish partner UI interaction or Apple sign-in acceptance.
 All1,167 frozen native inputs match Linux and Mac, including the two new guarded
 test files. Signed SDK/UI preparation and source limits pass. Shipping app source
 is unchanged from build21; no new beta, deployment, provider request or production
-change occurs. Current-source CI is pending until both workflows finish.
+change occurs. Exact source0cfeb6b8 passes routine37600360665 and
+native37600360697:509 Foundation cases/41 skips,484 signed-app cases/45 skips,
+zero failures, strict format/limits/signing and guarded UI compilation. The hosted
+UI actions are the separately recorded Mac execution, not those skipped CI cases.
 
 The actual journey:
 

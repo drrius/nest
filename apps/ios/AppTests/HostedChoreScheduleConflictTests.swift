@@ -5,7 +5,8 @@ import XCTest
 
 @MainActor
 final class HostedChoreScheduleConflictTests: XCTestCase {
-    private let title = "Nest native schedule conflict 20261007"
+    private var kind: String { ProcessInfo.processInfo.environment["NEST_QA_CONFLICT_KIND"] ?? "reschedule" }
+    private var title: String { "Nest native \(kind == "reschedule" ? "schedule" : kind) conflict 20261007" }
     private let alex = UUID(uuidString: "791f7261-6c9d-4061-9c8a-57aa6e0b0200")!
     private let sam = UUID(uuidString: "e5f80cfd-b69a-4aa0-a267-75784e943676")!
     private let household = UUID(uuidString: "be772ffd-3ab5-41d5-8438-647a79a553da")!
@@ -51,8 +52,47 @@ final class HostedChoreScheduleConflictTests: XCTestCase {
         try record(chore, routine: identifier("NEST_QA_ROUTINE"), stage: "still-open")
     }
 
+    func testPartnerSkipsOwnedOccurrenceOnce() async throws {
+        let (api, member, token) = try await context("skip", actor: sam)
+        guard kind == "skip" else { throw ScheduleConflictFixtureFailure.configuration }
+        let chore = try owned(await api.snapshot(token: token, member: member))
+        XCTAssertEqual(chore.id, try identifier("NEST_QA_OCCURRENCE"))
+        XCTAssertEqual(chore.dueDate.value, try value("NEST_QA_ORIGINAL_DAY"))
+        let command = ChoreChangeCommand(
+            operationId: try operation(), occurrenceId: chore.id, expectedDueDate: chore.dueDate, newDueDate: nil)
+        let receipt = try await api.changeOccurrence(token: token, member: member, command: command)
+        XCTAssertEqual(receipt.status, "skipped")
+        try await verifyReplacement(api, member: member, token: token)
+    }
+
+    func testReadSkippedReplacementWithoutCompleting() async throws {
+        let (api, member, token) = try await context("read", actor: sam)
+        guard kind == "skip" else { throw ScheduleConflictFixtureFailure.configuration }
+        try await verifyReplacement(api, member: member, token: token)
+    }
+
+    func testPartnerArchivesOwnedRoutineOnce() async throws {
+        guard kind == "archive" else { throw XCTSkip("Requires the owned archive-race fixture") }
+        try await archive("archive-partner", actor: sam)
+    }
+
+    func testReadArchivedRoutineUnavailable() async throws {
+        let (api, member, token) = try await context("read", actor: sam)
+        guard kind == "archive" else { throw ScheduleConflictFixtureFailure.configuration }
+        let list = try await api.routines(token: token, member: member)
+        let snapshot = try await api.snapshot(token: token, member: member)
+        let id = try identifier("NEST_QA_ROUTINE")
+        XCTAssertFalse(list.routines.contains { $0.id == id })
+        XCTAssertFalse(snapshot.chores.contains { $0.title == title })
+        try attach(["title": title, "routine": value("NEST_QA_ROUTINE"), "stage": "archived-unavailable"])
+    }
+
     func testArchiveOwnedRoutineOnce() async throws {
-        let (api, member, token) = try await context("archive", actor: alex)
+        try await archive("archive", actor: alex)
+    }
+
+    private func archive(_ action: String, actor: UUID) async throws {
+        let (api, member, token) = try await context(action, actor: actor)
         let id = try identifier("NEST_QA_ROUTINE")
         let list = try await api.routines(token: token, member: member)
         let routine = try XCTUnwrap(list.routines.first { $0.id == id && $0.definition.title == title })
@@ -64,10 +104,20 @@ final class HostedChoreScheduleConflictTests: XCTestCase {
         XCTAssertFalse(after.chores.contains { $0.title == title })
     }
 
+    private func verifyReplacement(_ api: ChoreAPI, member: VerifiedMember, token: String) async throws {
+        let next = try owned(await api.snapshot(token: token, member: member))
+        XCTAssertNotEqual(next.id, try identifier("NEST_QA_OCCURRENCE"))
+        XCTAssertEqual(next.dueDate.value, try value("NEST_QA_NEXT_DAY"))
+        try record(next, routine: identifier("NEST_QA_ROUTINE"), stage: "replacement-open")
+    }
+
     private func context(_ action: String, actor: UUID) async throws -> (ChoreAPI, VerifiedMember, String) {
         let env = ProcessInfo.processInfo.environment
         guard env["NEST_QA_SCHEDULE_CONFLICT"] == "20261007", env["NEST_QA_ACTION"] == action else {
             throw XCTSkip("Requires the exact prepared schedule-conflict fixture action")
+        }
+        guard ["reschedule", "skip", "archive"].contains(kind) else {
+            throw ScheduleConflictFixtureFailure.configuration
         }
         #if targetEnvironment(simulator)
             let simulator = try value("SIMULATOR_UDID")
@@ -123,6 +173,10 @@ final class HostedChoreScheduleConflictTests: XCTestCase {
             "title": title, "routine": routine.uuidString.lowercased(), "occurrence": chore.id.uuidString.lowercased(),
             "due": chore.dueDate.value, "stage": stage,
         ]
+        try attach(report)
+    }
+
+    private func attach(_ report: [String: String]) throws {
         let attachment = XCTAttachment(
             data: try JSONSerialization.data(withJSONObject: report, options: [.sortedKeys]),
             uniformTypeIdentifier: "public.json")

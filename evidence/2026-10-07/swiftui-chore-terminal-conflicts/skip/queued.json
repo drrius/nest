@@ -1,0 +1,8 @@
+{
+  "operation": "42169fb9-9b5a-4838-a748-8819d53a55bf",
+  "target": "3563d7a2-f17c-48d0-a5f9-514fe5604b78",
+  "status": "pending",
+  "bodySHA256": "61ced4b01554d108e5a4c8cbd58b4fffe27c0cd08635e4072abc3c26d8357070",
+  "canonicalHTTPBodySHA256": "ffba073ea7486fee4f5dad4ce8d28f0546886f2d1881457aa8ae77c15d3fd48b",
+  "choreSHA256": "b7f2388d4e97584b429e8084380e188e96a5ffcd2fc3cecd312960114bfcb7c1"
+}

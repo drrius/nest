@@ -1,0 +1,7 @@
+{
+  "success": true,
+  "casesPassed": 2,
+  "nativeMethodsPassed": 15,
+  "originalClientsRestored": true,
+  "noProductionWrites": true
+}
