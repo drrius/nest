@@ -26,7 +26,7 @@ final class NativeExpenseReviewStartTests: XCTestCase {
         let description = app.textFields["Description"]
         XCTAssertTrue(description.waitForExistence(timeout: 20))
         description.tap()
-        description.typeText("Unsent review start QA")
+        description.typeText("QA")
         let amount = app.textFields["Shared amount (CHF)"]
         amount.tap()
         amount.typeText("1.01")
@@ -35,6 +35,7 @@ final class NativeExpenseReviewStartTests: XCTestCase {
         review.tap()
         let value = app.descendants(matching: .any).matching(identifier: "expense-review-amount").firstMatch
         XCTAssertTrue(value.waitForExistence(timeout: 15))
+        reader.capture(value, name: "Review amount before any scroll")
         XCTAssertTrue(try reader.viewport().contains(value.frame), "Review must start at its amount without scrolling")
         XCTAssertEqual(value.label, "CHF 1.01")
         reader.capture(value, name: "Review starts with exact amount fully visible")
@@ -44,7 +45,7 @@ final class NativeExpenseReviewStartTests: XCTestCase {
         edit.tap()
         XCTAssertTrue(description.waitForExistence(timeout: 15))
         XCTAssertTrue(try reader.viewport().contains(description.frame), "Edit starts at retained description")
-        XCTAssertEqual(description.value as? String, "Unsent review start QA")
+        XCTAssertEqual(description.value as? String, "QA")
         XCTAssertEqual(amount.value as? String, "1.01")
         let back = app.navigationBars["Add expense"].buttons["Back"]
         try reader.requireTarget(back, bounds: app.frame)
