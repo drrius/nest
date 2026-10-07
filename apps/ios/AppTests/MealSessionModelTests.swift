@@ -66,6 +66,70 @@ final class MealSessionModelTests: XCTestCase {
         } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
     }
 
+    func testTodayCacheIsAvailableWhileNetworkReadWaitsWithoutChangingMealNavigation() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let live = try await model.readTodayMeals(start, member: member)
+        let browsing = try start.adjacent(1)
+        model.mealSelection = browsing
+        model.mealStatus = .failed
+        await server.pauseActorA()
+        let refresh = Task { try await model.readTodayMeals(start, member: member) }
+        await server.waitForActorA()
+        do {
+            let saved = try await model.cachedTodayMeals(start, member: member, generation: model.generation)
+            XCTAssertTrue(try XCTUnwrap(saved).saved)
+            XCTAssertEqual(saved?.week, live.week)
+            XCTAssertEqual(model.mealSelection, browsing)
+            XCTAssertEqual(model.mealStatus, .failed)
+        } catch {
+            await server.releaseActorA()
+            throw error
+        }
+        await server.releaseActorA()
+        _ = try await refresh.value
+        let writes = await server.operations()
+        XCTAssertTrue(writes.isEmpty)
+    }
+
+    func testTodayCacheMissIsAbsentAndReadDoesNotRefreshAuthentication() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        let live = try await model.readTodayMeals(start, member: member)
+        let auth = try XCTUnwrap(model.auth as? FakeAuthentication)
+        await auth.failRefresh()
+        let saved = try await model.cachedTodayMeals(start, member: member, generation: model.generation)
+        XCTAssertEqual(saved?.week, live.week)
+        XCTAssertTrue(try XCTUnwrap(saved).saved)
+        let missing = try await model.cachedTodayMeals(
+            start.adjacent(1), member: member, generation: model.generation)
+        XCTAssertNil(missing)
+    }
+
+    func testTodayCacheRejectsChangedCachedIdentityAndOldGeneration() async throws {
+        let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
+        let model = try model(server: server)
+        await model.restore()
+        guard case .ready(let member) = model.status else { return XCTFail("Not ready") }
+        _ = try await model.readTodayMeals(start, member: member)
+        let previous = model.generation
+        let auth = try XCTUnwrap(model.auth as? FakeAuthentication)
+        _ = try await auth.signIn(appleIDToken: "B", nonce: "test")
+        do {
+            _ = try await model.cachedTodayMeals(start, member: member, generation: previous)
+            XCTFail("Changed cached identity exposed old meals")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+        await model.signIn(idToken: "B", nonce: "test")
+        do {
+            _ = try await model.cachedTodayMeals(start, member: member, generation: previous)
+            XCTFail("Old generation exposed old meals")
+        } catch { XCTAssertEqual(error as? NestAPIFailure, .signedOut) }
+    }
+
     func testLostPlacementResponseRetriesExactOperationAndShowsOneMeal() async throws {
         let server = FakeMealServer(actorA: actorA, actorB: actorB, household: household)
         let model = try model(server: server)

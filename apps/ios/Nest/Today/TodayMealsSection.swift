@@ -8,6 +8,7 @@ struct TodayMealsSection: View {
     @Environment(\.scenePhase) private var scenePhase
     @State private var result: TodayMealsRead?
     @State private var failed = false
+    @State private var loading = false
     @State private var request = UUID()
 
     var body: some View {
@@ -15,9 +16,17 @@ struct TodayMealsSection: View {
             Text("On the menu").font(.headline).foregroundStyle(QuietPalette.ink)
             if let result {
                 meals(result.week)
-                if result.saved {
-                    Text("Showing saved meals. Refresh when you’re online.")
-                        .font(.caption).foregroundStyle(QuietPalette.muted)
+                if loading || result.saved {
+                    Text(
+                        loading
+                            ? "Showing saved meals while refreshing…"
+                            : "Showing saved meals. Refresh when you’re online."
+                    )
+                    .font(.caption).foregroundStyle(QuietPalette.muted)
+                }
+                if failed {
+                    Button("Try again") { Task { await load() } }.frame(minHeight: 44)
+                        .disabled(loading)
                 }
             } else if failed {
                 Text("Could not load today’s meals.").foregroundStyle(QuietPalette.muted)
@@ -29,6 +38,7 @@ struct TodayMealsSection: View {
         .frame(maxWidth: .infinity, alignment: .leading)
         .padding(QuietTabLayout.cardInset)
         .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
+        .tint(QuietPalette.accent)
         .task(id: refresh) { await load() }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await load() } }
@@ -72,20 +82,32 @@ struct TodayMealsSection: View {
     private func load() async {
         let current = UUID()
         request = current
-        result = nil
         failed = false
+        loading = true
+        defer { if request == current { loading = false } }
         do {
             // Select the week containing this device's civil day, including while travelling.
             guard let date = day.localDay(timeZone: TimeZone(identifier: "Europe/Zurich")!) else {
                 throw MealContractError.invalidWeek
             }
             let start = try MealWeekStart.current(now: date)
+            if result == nil {
+                let cached = try? await model.cachedTodayMeals(start, member: member, generation: model.generation)
+                guard request == current, model.status == .ready(member) else { return }
+                result = cached
+            }
             let value = try await model.readTodayMeals(start, member: member)
             guard request == current, model.status == .ready(member) else { return }
             result = value
         } catch {
             guard request == current, model.status == .ready(member) else { return }
-            failed = true
+            presentFailure(error)
         }
+    }
+
+    private func presentFailure(_ error: Error) {
+        if (error as? NestAPIFailure) != .unavailable && !(error is URLError) { result = nil }
+        result = result.map { TodayMealsRead(week: $0.week, saved: true) }
+        failed = true
     }
 }

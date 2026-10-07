@@ -37,7 +37,7 @@ large text, phone use and owner acceptance remain open.
 Exact source `7f5d1bd3bda3f0be13c9cfd8eb942169f889dd41` is pushed and passes
 [routine CI 37632180353](https://github.com/drrius/nest/actions/runs/37632180353).
 [Native CI 37632180145](https://github.com/drrius/nest/actions/runs/37632180145)
-remains in progress at the signed app test step. Formatting, source limits and
-Foundation checks have passed. Its guarded UI compilation is still pending;
-the two actual local UI executions above are separate evidence. Recheck this same
-run rather than starting another build.
+passes, including formatting, source limits, Foundation checks, signed app tests,
+push signing and guarded UI compilation. It reports 498 app tests, 56 guarded
+skips and zero failures. The two actual local UI executions above are separate
+evidence; CI compilation/skips do not replace them.

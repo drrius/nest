@@ -41,7 +41,7 @@ struct TodayScreen: View {
                             QuietActionLabel("Manage chores")
                         }.padding(.top, 8)
                         TodayMealsSection(model: model, member: member, day: moment.day, refresh: todayRefresh)
-                            .id(member.userId)
+                            .id("\(model.generation):\(moment.day.value)")
                             .padding(.top, 24)
                         TodayBillsSection(session: model, member: member, refresh: todayRefresh)
                             .id(member.userId)

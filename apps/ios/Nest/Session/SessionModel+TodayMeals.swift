@@ -6,6 +6,26 @@ struct TodayMealsRead {
 }
 
 extension SessionModel {
+    func cachedTodayMeals(_ start: MealWeekStart, member: VerifiedMember, generation expected: Int) async throws
+        -> TodayMealsRead?
+    {
+        guard generation == expected, status == .ready(member), let lease, let offline, let auth else {
+            throw NestAPIFailure.signedOut
+        }
+        func requireAccount() throws {
+            guard generation == expected, status == .ready(member), self.lease == lease else {
+                throw NestAPIFailure.signedOut
+            }
+        }
+        let cached = await auth.cachedSession()
+        try requireAccount()
+        guard cached?.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let week = try await offline.readMealWeek(start, lease: lease)
+        try Task.checkCancellation()
+        try requireAccount()
+        return week.map { TodayMealsRead(week: $0, saved: true) }
+    }
+
     /// Reads independently of the week selected in Meals; never stages or retries a mutation.
     func readTodayMeals(_ start: MealWeekStart, member: VerifiedMember) async throws -> TodayMealsRead {
         guard status == .ready(member), let lease, let offline, let auth, let mealAPI else {

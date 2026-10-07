@@ -129,9 +129,19 @@ remain. Original binaries, scopes, 64 journals and settings restore. This is a
 shipping UI fix after build 22; no new beta is submitted. Source `7f5d1bd3` passes
 [routine CI 37632180353](https://github.com/drrius/nest/actions/runs/37632180353).
 [Native CI 37632180145](https://github.com/drrius/nest/actions/runs/37632180145)
-is still running its signed app tests after passing formatting, limits and
-Foundation checks. Poll that existing run; do not restart it or repeat the passed
-local UI journeys without an affected change or failure. [Evidence](../evidence/2026-10-07/swiftui-money-history-spacing/README.md).
+also passes with 498 app tests, 56 guarded skips and zero failures. The two local
+UI journeys ran separately without skips. Keep their passing evidence unless an
+affected change or failure requires another run. [Evidence](../evidence/2026-10-07/swiftui-money-history-spacing/README.md).
+
+Today now shows its scoped saved meals before the network reply and preserves
+them during refresh/unavailability. The card labels saved data, clears on
+non-network failures and resets across session generations/civil days. Five
+signed session/SQLite checks pass without skips; a controlled native card capture
+shows the saved meal during a held read and afterward. The final olive-tint
+capture method passes without skips; both screenshots are inspected. Current-source
+CI remains pending. This is local native proof with controlled
+HTTP, not hosted/phone acceptance. Build 22 stays unchanged.
+[Evidence](../evidence/2026-10-07/swiftui-today-meals-cache/README.md).
 
 ## Exact blockers and owner inputs
 

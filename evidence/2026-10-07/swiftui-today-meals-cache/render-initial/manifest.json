@@ -1,0 +1,26 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "0CAAA1A8-A5CA-4C58-A182-A4A35EF965BD",
+        "deviceName": "Nest Today cache owned 20261007",
+        "exportedFileName": "CD0E4ED9-45ED-45E9-A7E1-AAB0A6969197.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Saved Today meals after unavailable reply_0_46A94D80-A4D8-4A7E-BEF9-B605ED160789.png",
+        "timestamp": 1791382408.419
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "0CAAA1A8-A5CA-4C58-A182-A4A35EF965BD",
+        "deviceName": "Nest Today cache owned 20261007",
+        "exportedFileName": "3ADBB40D-137A-4F5A-84AA-52B9D5649FDC.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Saved Today meals while actual read waits_0_949A270F-0514-45A2-B5CB-9DAD1E6B4BA9.png",
+        "timestamp": 1791382408.053
+      }
+    ],
+    "testIdentifier": "TodayMealsCacheRenderingTests/testSavedMealRemainsVisibleDuringUnavailableRefresh()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/TodayMealsCacheRenderingTests/testSavedMealRemainsVisibleDuringUnavailableRefresh"
+  }
+]
