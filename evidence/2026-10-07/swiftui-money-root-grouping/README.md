@@ -17,3 +17,14 @@ decision, canonical mutation, provider invocation or release is performed.
 This is one normal-text card/navigation check. Maximum text, full Money root
 accessibility, saved-change disclosure interaction and phone acceptance remain.
 The change is later than TestFlight build19 and requires current-source CI.
+
+The largest-accessibility-text/dark method now also passes once without skips.
+It measures the approvals action's shared40pt inner bounds, opens Saved changes,
+scrolls to all three complete44pt links, and collapses the disclosure again.
+The four retained screenshots are reviewed; each target's full frame is verified
+in its own viewport. Surrounding content can remain outside the viewport in those
+captures. This is not full-page reading, VoiceOver or a complete accessibility
+audit. Both original scopes,64 empty journals, light/large display settings and
+device-only selections restore. No link destination or financial action is opened
+in this maximum-text method. Shipping source is unchanged from the normal pass.
+Routine CI37576713440 passes shipping sourcee01129db; native CI is still pending.

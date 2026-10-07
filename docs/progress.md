@@ -55,6 +55,12 @@ settings/local selections restore. Maximum text/full accessibility/disclosure an
 phone acceptance remain; this is later than build19 and current CI is pending.
 [Money grouping evidence](../evidence/2026-10-07/swiftui-money-root-grouping/README.md).
 
+Money grouping also passes one largest-text/dark disclosure check: matching40pt
+action insets, complete44pt approvals and three saved-change links, real expansion
+and collapse. Original scopes/64 journals/settings/local choices restore. Images
+are inspected, but this target coverage is not whole-page readability or VoiceOver.
+Routine37576713440 passes shippinge01129db; its native CI remains pending.
+
 Earlier expense/refund/correction/recurring setup/cancellation/resumption consent
 and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior
