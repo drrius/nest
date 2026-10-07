@@ -27,7 +27,7 @@ final class NativeSettlementCancellationTests: XCTestCase {
         try tap("Cancel pending record", app: app, reader: reader)
         let cancel = app.sheets.buttons["Cancel pending record"].firstMatch
         XCTAssertTrue(cancel.waitForExistence(timeout: 10))
-        try reader.requireTarget(cancel)
+        try reader.requireTarget(cancel, bounds: app.frame)
         cancel.tap()
         let cancelled = app.staticTexts["This request was cancelled without recording a payment."]
         XCTAssertTrue(cancelled.waitForExistence(timeout: 25))
@@ -36,6 +36,29 @@ final class NativeSettlementCancellationTests: XCTestCase {
         try reader.read("CHF 0.01")
         app.navigationBars["Record payment"].buttons.element(boundBy: 0).tap()
         XCTAssertFalse(app.alerts["Discard edits?"].exists)
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
+    func testRecoverRetainedRequestByExplicitCancellationWithoutSaving() throws {
+        let app = try ownedApp()
+        let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
+        try tap("Record a payment", app: app, reader: reader)
+        let pending = app.staticTexts["Not confirmed yet. Resolve this request before recording another payment."]
+        XCTAssertTrue(pending.waitForExistence(timeout: 20))
+        reader.capture(pending, name: "Retained exact unresolved payment before recovery-only cancellation")
+        try reader.read("Amount, CHF 0.01")
+        try tap("Cancel pending record", app: app, reader: reader)
+        let cancel = app.sheets.buttons["Cancel pending record"].firstMatch
+        XCTAssertTrue(cancel.waitForExistence(timeout: 10))
+        try reader.requireTarget(cancel, bounds: app.frame)
+        cancel.tap()
+        let cancelled = app.staticTexts["This request was cancelled without recording a payment."]
+        XCTAssertTrue(cancelled.waitForExistence(timeout: 25))
+        reader.capture(cancelled, name: "Recovery-only cancellation confirms no payment recorded")
+        try tap("Start again with current balance", app: app, reader: reader)
+        try reader.read("CHF 0.01")
+        app.navigationBars["Record payment"].buttons.element(boundBy: 0).tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
