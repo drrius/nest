@@ -20,3 +20,11 @@ these independent app objects and resolve guard drift before any production
 cutover. Current runtime usage, provider environment, pending payroll work and
 production migration authorization remain separate requirements. Nest does not
 add payroll as a feature or replace this app's schema/functions.
+
+Automatic approval review rejected retrieving the full production guard source:
+"This retries retrieval of full production payroll-function source, which exceeds
+the authorized metadata/hash audit and retains sensitive production code without
+explicit user approval." Both attempted reads were rejected before source was
+received. No function body was retained or indirect read used. The owner may
+defer this until migration work or approve this one code-only read; the question
+is pending. Existing hash evidence remains valid and the function stays untouched.
