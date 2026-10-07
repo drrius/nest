@@ -456,3 +456,12 @@ private nest-test fixture work, not production or live AI planning acceptance.
 The broad-service-role barrier regression and table-access inventory now pass
 routine CI37572407700 atd8c8c2ed. This CI does not run hosted/profile or native
 UI actions. Current saved-portion source21b41f37 routine/native CI remains running.
+
+Saved varied portions now reach meal generation inputs in a real disposable
+PostgREST/PG test: authorized0.5/2.5 saves, changed shared context hash, retained
+hard restrictions, requester-only calorie goal and no member identities/goals
+in the provider member projection. Unknown availability stays unknown. Both new
+and existing auth/isolation context cases pass, zero skips/provider calls. Fast
+CI adds this pair. This is context/preparation proof, not successful live model
+generation, rendered estimates or full M5 acceptance.
+[Planning projection](../evidence/2026-10-07/saved-portion-planning/README.md).
