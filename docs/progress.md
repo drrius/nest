@@ -108,6 +108,15 @@ the full checks. Four local Git/CLI cases and full source
 explicitly skipped against the already verified source. This is documentation
 verification, not another native or domain test run.
 
+Variable-bill Save/cancellation now has both commit orders verified through the
+native session, real local Effect API, PostgREST/PostgreSQL and SQLite restart.
+Two API and two signed native cases pass without skips. Actual database lock waits
+force each order; recorded outcomes retain one expense and cancelled outcomes
+retain none. Terminal replay sends no second write. Authentication/session entry
+is controlled, so hosted/Apple/phone/UI-race and live-AI acceptance remain open.
+[Ordered race evidence](../evidence/2026-10-07/swiftui-variable-bill-ordered-races/README.md).
+Shipping runtime/configuration remains unchanged; current-source CI is pending.
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.

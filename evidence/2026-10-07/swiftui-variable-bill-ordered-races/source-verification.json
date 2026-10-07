@@ -1,0 +1,8 @@
+{
+  "shippingSwiftFilesUnchanged": 642,
+  "nativeTestHashes": {
+    "NativeVariableRaceFixture.swift": "03ec71ff77278c64cfc77b1cb9bf0264085803470b401f71edb82e7191e2ca8f",
+    "VariableCycleContentionTests.swift": "91db7302093ce5ad51438acc504b4da69e9865ce6e535302c351ef6152589b07"
+  },
+  "ownedBuildOnlyATSException": "localhost"
+}

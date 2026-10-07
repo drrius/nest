@@ -1,0 +1,60 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "44C287D2-F069-4802-9F5E-A42C99B07803",
+        "deviceName": "Nest local variable race 20261007",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 2,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "Nest · Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 2,
+  "finishTime": 1791378594.469,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791378567.483,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "failed: caught error: \"signedOut\"",
+      "targetName": "NestAppTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "VariableCycleContentionTests/testCancellationWinningDelayedSaveRetainsCancelledResult()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/VariableCycleContentionTests/testCancellationWinningDelayedSaveRetainsCancelledResult",
+      "testName": "testCancellationWinningDelayedSaveRetainsCancelledResult()"
+    },
+    {
+      "failureText": "failed: caught error: \"signedOut\"",
+      "targetName": "NestAppTests",
+      "testIdentifier": 2,
+      "testIdentifierString": "VariableCycleContentionTests/testSaveWinningConcurrentCancellationRetainsOneRecordedResult()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAppTests/VariableCycleContentionTests/testSaveWinningConcurrentCancellationRetainsOneRecordedResult",
+      "testName": "testSaveWinningConcurrentCancellationRetainsOneRecordedResult()"
+    }
+  ],
+  "title": "Test - Nest",
+  "topInsights": [
+    {
+      "category": "Common Failures",
+      "impact": "100% of failures",
+      "text": "2 runs of 2 tests failed with failed: caught error: \"signedOut\""
+    }
+  ],
+  "totalTestCount": 2
+}

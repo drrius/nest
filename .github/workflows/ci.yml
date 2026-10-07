@@ -118,5 +118,8 @@ jobs:
       - name: Test financial allocation consistency
         if: steps.scope.outputs.source == 'true'
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/financial-allocation-consistency.test.mjs
+      - name: Test ordered variable bill cancellation races
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/variable-cycle-ordered-races.test.mjs
       - run: pnpm test
         if: steps.scope.outputs.source == 'true'
