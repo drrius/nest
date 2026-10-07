@@ -1007,3 +1007,18 @@ inputs match; signed builds/format/limits pass. Original clients/64 journals/set
 privacy restore, relay stops/key removed. Current-source CI, phones, live AI and
 Save/cancel races remain open.
 [Hosted cancellation](../evidence/2026-10-07/swiftui-variable-bill-cancel-reply/README.md).
+
+Actual managed receipt expiry now passes one signed-native read-only method, zero
+failures/skips: existing640-byte PDF returns200, actual token interval60s, sameURL
+after62.54s returns400/InvalidJWT with exp-claim timestamp refusal, fresh authorized
+URL returns200 with identical bytes. Initial skipped invocation and wording-only
+assertion failure are retained, not counted. Original scopes/64 journals/settings/
+privacy restore. No signedURL/token export or hosted mutation. This bounds the
+current object/cache path; Smart CDN/legacy caches, immediate revocation and phone
+browser behavior remain open. Format/limits/native execution pass; exact-head CI
+pending. [Managed expiry](../evidence/2026-10-07/managed-receipt-expiry/README.md).
+
+Preceding21be1712 passes routine37610326123/native37610326037:509 Foundation/41
+skips,494 signed-app/52 skips, zero failures, strict format/limits/signing and
+guarded UI compile. Hosted cancellation/expiry tests are being pushed together;
+their new exact-head workflows remain pending.

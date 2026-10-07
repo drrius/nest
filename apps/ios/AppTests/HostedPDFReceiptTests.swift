@@ -7,6 +7,95 @@ import XCTest
 @MainActor
 final class HostedPDFReceiptTests: XCTestCase {
     func testExistingPostedPDFDownloadsExactFixtureBytes() async throws {
+        let (money, member, token, eventId) = try await existingReceipt()
+        let detail = try await money.detail(token: token, member: member, eventId: eventId)
+        XCTAssertEqual(detail.shares.count, 2)
+        XCTAssertTrue(detail.shares.allSatisfy { $0.allocatedCentimes?.value == 1 })
+        XCTAssertEqual(detail.shares.reduce(Int64(0), { $0 + $1.deltaCentimes.value }), 0)
+        let url = try await money.receiptLink(token: token, member: member, eventId: eventId)
+        let (bytes, response) = try await download(url)
+        XCTAssertEqual(response.statusCode, 200)
+        XCTAssertEqual(response.mimeType, "application/pdf")
+        XCTAssertEqual(bytes.count, 640)
+        XCTAssertTrue(bytes.starts(with: Data("%PDF-".utf8)))
+        let hash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
+        XCTAssertEqual(hash, "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9")
+        let report = try JSONSerialization.data(
+            withJSONObject: [
+                "status": response.statusCode, "mime": response.mimeType ?? "", "bytes": bytes.count,
+                "sha256": hash, "nativeAuthenticatedDownload": true,
+                "actorId": member.userId.uuidString.lowercased(),
+                "householdId": member.householdId.uuidString.lowercased(),
+            ], options: [.sortedKeys])
+        let attachment = XCTAttachment(data: report, uniformTypeIdentifier: "public.json")
+        attachment.name = "Exact synthetic posted PDF download"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    func testManagedSignedReceiptLinkExpiresWhileFreshLinkStillDownloads() async throws {
+        guard ProcessInfo.processInfo.environment["NEST_QA_RECEIPT_EXPIRY"] == "20261007" else {
+            throw XCTSkip("Requires a read-only managed Storage expiry check on the fictional receipt")
+        }
+        #if targetEnvironment(simulator)
+            XCTAssertEqual(
+                ProcessInfo.processInfo.environment["SIMULATOR_UDID"], "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A")
+        #else
+            throw XCTSkip("Fictional receipt expiry checks are forbidden on phones")
+        #endif
+        let (money, member, token, eventId) = try await existingReceipt()
+        let url = try await money.receiptLink(token: token, member: member, eventId: eventId)
+        let expiry = try expiration(url)
+        let (original, valid) = try await download(url)
+        XCTAssertEqual(valid.statusCode, 200)
+        XCTAssertEqual(original.count, 640)
+        let delay = expiry.timeIntervalSinceNow + 3
+        guard delay > 0, delay <= 65 else { throw NestAPIFailure.contract }
+        try await Task.sleep(for: .seconds(delay))
+        let (failure, expired) = try await download(url)
+        XCTAssertTrue([400, 401, 403].contains(expired.statusCode))
+        let envelope = try XCTUnwrap(try JSONSerialization.jsonObject(with: failure) as? [String: Any])
+        let message = try XCTUnwrap(envelope["message"] as? String)
+        let expiryReported =
+            message.lowercased().contains("expired")
+            || message == "\"exp\" claim timestamp check failed"
+        XCTAssertEqual(envelope["error"] as? String, "InvalidJWT")
+        XCTAssertTrue(expiryReported)
+        let freshURL = try await money.receiptLink(token: token, member: member, eventId: eventId)
+        let (fresh, available) = try await download(freshURL)
+        XCTAssertEqual(available.statusCode, 200)
+        XCTAssertEqual(fresh, original)
+        let report = try JSONSerialization.data(
+            withJSONObject: [
+                "initialStatus": valid.statusCode, "expiredStatus": expired.statusCode,
+                "freshStatus": available.statusCode, "bytes": fresh.count,
+                "waitSeconds": delay, "expiryExplicitlyReported": expiryReported,
+                "expiryClaimCheckReported": message == "\"exp\" claim timestamp check failed",
+                "signedURLsAndTokensExcluded": true,
+            ], options: [.sortedKeys])
+        let attachment = XCTAttachment(data: report, uniformTypeIdentifier: "public.json")
+        attachment.name = "Managed receipt link expiry and fresh authorized recovery"
+        attachment.lifetime = .keepAlways
+        add(attachment)
+    }
+
+    private func expiration(_ url: URL) throws -> Date {
+        let token = try XCTUnwrap(
+            URLComponents(url: url, resolvingAgainstBaseURL: false)?.queryItems?
+                .first(where: { $0.name == "token" })?.value)
+        let parts = token.split(separator: ".")
+        guard parts.count == 3 else { throw NestAPIFailure.contract }
+        let raw = String(parts[1]).replacingOccurrences(of: "-", with: "+").replacingOccurrences(of: "_", with: "/")
+        let padded = raw + String(repeating: "=", count: (4 - raw.count % 4) % 4)
+        let data = try XCTUnwrap(Data(base64Encoded: padded))
+        let claims = try XCTUnwrap(try JSONSerialization.jsonObject(with: data) as? [String: Any])
+        let expires = try XCTUnwrap(claims["exp"] as? Double)
+        let issued = try XCTUnwrap(claims["iat"] as? Double)
+        XCTAssertEqual(expires - issued, 60, accuracy: 1)
+        return Date(timeIntervalSince1970: expires)
+    }
+
+    private func existingReceipt() async throws -> (MoneyAPI, VerifiedMember, String, UUID) {
         guard ProcessInfo.processInfo.environment["NEST_QA_READ_POSTED_PDF"] == "20261005" else {
             throw XCTSkip("Requires the existing, separately verified nest-test PDF expense and member session")
         }
@@ -36,29 +125,7 @@ final class HostedPDFReceiptTests: XCTestCase {
         let event = try XCTUnwrap(matches.first)
         XCTAssertEqual(event.amountCentimes.value, 2)
         XCTAssertTrue(event.hasReceipt)
-        let detail = try await money.detail(token: session.accessToken, member: member, eventId: event.id)
-        XCTAssertEqual(detail.shares.count, 2)
-        XCTAssertTrue(detail.shares.allSatisfy { $0.allocatedCentimes?.value == 1 })
-        XCTAssertEqual(detail.shares.reduce(Int64(0), { $0 + $1.deltaCentimes.value }), 0)
-        let url = try await money.receiptLink(token: session.accessToken, member: member, eventId: event.id)
-        let (bytes, response) = try await download(url)
-        XCTAssertEqual(response.statusCode, 200)
-        XCTAssertEqual(response.mimeType, "application/pdf")
-        XCTAssertEqual(bytes.count, 640)
-        XCTAssertTrue(bytes.starts(with: Data("%PDF-".utf8)))
-        let hash = SHA256.hash(data: bytes).map { String(format: "%02x", $0) }.joined()
-        XCTAssertEqual(hash, "2805607a936858af37610cf23cfb5ea9f2b6b410c246f4ecc2aceff09228fcc9")
-        let report = try JSONSerialization.data(
-            withJSONObject: [
-                "status": response.statusCode, "mime": response.mimeType ?? "", "bytes": bytes.count,
-                "sha256": hash, "nativeAuthenticatedDownload": true,
-                "actorId": member.userId.uuidString.lowercased(),
-                "householdId": member.householdId.uuidString.lowercased(),
-            ], options: [.sortedKeys])
-        let attachment = XCTAttachment(data: report, uniformTypeIdentifier: "public.json")
-        attachment.name = "Exact synthetic posted PDF download"
-        attachment.lifetime = .keepAlways
-        add(attachment)
+        return (money, member, session.accessToken, event.id)
     }
 
     private func download(_ url: URL) async throws -> (Data, HTTPURLResponse) {
