@@ -42,7 +42,9 @@ Work order:
    Do not count simulator evidence as phone
    acceptance or turn broad gates into individual passing screenshots.
 3. When the existing AI/credential blockers change, verify the actual provider and
-   scheduled delivery. Continue migration/read-only work while they remain blocked.
+   scheduled delivery. The read-only scheduled-writer inventory is now prepared
+   and fixture-tested; hosted inventory still needs separately authorized access.
+   Continue remaining migration/read-only work while they remain blocked.
 4. Reconcile every milestone exit against its evidence before claiming completion.
    Production migration, retirement and public release require separate approval.
 

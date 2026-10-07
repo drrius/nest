@@ -1,0 +1,2 @@
+tools/migration/schema-probe.mjs:66:43: warning effecttsgo(node-builtin-import): This module reference uses the `fs` module, the corresponding Effect API is `FileSystem` from `@effect/platform`.
+tools/migration/schema-probe.mjs:68:25: warning effecttsgo(node-builtin-import): This module reference uses the `path` module, the corresponding Effect API is `Path` from `@effect/platform`.

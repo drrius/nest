@@ -62,7 +62,7 @@ jobs:
       - name: Test retained attention date handling
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/legacy-attention-dates.test.mjs
       - name: Test migration writer privileges and reversible API fences
-        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs tests/database/table-access-inventory.test.mjs
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs tests/database/table-access-inventory.test.mjs tests/database/scheduled-writer-inventory.test.mjs
       - name: Test service-role write freeze
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test --test-name-pattern='broad service-role' tests/database/cutover-write-barrier.test.mjs
       - name: Test retained routine schedule validation and history repair

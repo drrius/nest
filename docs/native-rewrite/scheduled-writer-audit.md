@@ -17,6 +17,25 @@ Seven registrations appear in legacy `20260812090000_notifications_realtime.sql`
 
 ## Required hosted evidence
 
+The read-only `tools/migration/scheduled-writer-inventory.mjs` helper is now wired
+into the disposable schema report. It records job identity, active state,
+database role and schedule, with SHA-256 command and audited-function definition
+hashes computed inside PostgreSQL. It never returns command or function bodies,
+starts a job, pauses scheduling or opens a database connection. Its caller must
+provide an authorized executor using a fresh session per SQL call; each observation
+runs in a read-only repeatable-read transaction ending in rollback.
+
+Missing extension/catalog, an unsupported catalog, insufficient privileges,
+RLS-filtered visibility or more than 1,000 jobs cannot yield a complete catalog
+snapshot. Unknown and inactive job names are retained. A complete catalog snapshot
+still does not establish external invokers, in-flight drainage or cutover acceptance.
+[Fixture verification and limits](../../evidence/2026-10-07/scheduled-writer-inventory/README.md).
+
+The visibility check matters because [pg_cron uses row-level security](https://github.com/citusdata/pg_cron)
+to limit ordinary users to their own jobs. Hashes use PostgreSQL's built-in
+[SHA-256 binary function](https://www.postgresql.org/docs/16/functions-binarystring.html).
+These references establish the catalog behavior, not any Nest hosted configuration.
+
 The [legacy Edge writer source audit](legacy-edge-writer-boundaries.md) now records
 attachment insertion and Web Push dispatch effects, exact source hashes and three
 focused local tests. It does not establish hosted deployment identity, actual
