@@ -4,35 +4,30 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 ## Current delivery checkpoint
 
-SwiftUI 0.1.0, build 20, source `0ba4a5c3`, is available for internal TestFlight
-testing. It includes the accumulated layout, form and approval fixes since build
-19, uses nest-test and keeps push disabled. All 1,157 frozen source files and the
-copied IPA hash match. Local archive/export, configuration, privacy and signing
-checks pass. Temporary signing copies/keychain are removed; original credentials
-remain intact. [Release evidence](../evidence/2026-10-07/swiftui-build20/README.md).
+SwiftUI0.1.0/build21, exact source `5d609069`, is available for internal TestFlight
+testing. It consolidates post20 financial review viewport/controls/value/header/
+result fixes plus grocery spoken details and shared headings. It uses nest-test
+and keeps push disabled. All1,165 frozen native inputs and the copied13,676,426-byte
+IPA hash match. Local archive/export, configuration/privacy/signing/dSYM/package
+checks pass. Temporary signing keychain/certificate/password copies are removed
+on both hosts; original credentials/search list remain intact.
+[Release evidence](../evidence/2026-10-07/swiftui-build21/README.md).
 
-Candidate routine CI37578558002 and native CI37578558027 pass at that exact
-commit. Native CI reports 509 Foundation cases with 41 skips, 478 signed-app cases
-with 41 skips and four Swift Testing cases, zero failures. Formatting, source
-limits, signing and guarded UI compilation pass. Skips and compilation do not
-establish device/UI acceptance.
+Exact candidate routine37594517335/native37594517196 pass. Native CI reports509
+Foundation cases/41 skips,480 signed-app cases/41 skips, zero failures, strict
+format/limits/signing and guarded UI compilation. These skips/compilation do not
+establish hardware acceptance. Shipping backend/migration inputs remain identical
+to passing deep37577691207 at018578ef, which covers23 HTTP/database journeys,
+50 conflict/recovery cases and1,272 database/RLS cases, zero failures/skips.
+Later receipt boundary assertions also have focused local/full-schema evidence.
 
-Deep CI37577691207 passes 23 HTTP/database journeys, 50 conflict/recovery cases
-and 1,272 database/RLS cases with zero failures/skips at `018578ef`. The candidate
-backend/migration/test inputs are identical. Candidate native CI covers the
-changed proposal staging and version inputs.
-
-Proposal approval/edit/discard staging requires a current private preview online
-before persisting an intent. Six focused signed-app methods pass without skips,
-including refused offline/changed/expired starts and exact lost-reply recovery.
-[Proposal evidence](../evidence/2026-10-07/swiftui-meal-approval-preflight/README.md).
-
-Exactly one private submission, `aaf2ad8e-6698-42b1-b8e7-7d14d9b07992`, finished
-successfully. Apple confirms build 20 VALID/IN_BETA_TESTING/unexpired. Actual
-installation, partner tester access and phone acceptance remain unverified. The
-[short phone pass](native-rewrite/build20-first-phone-pass.md) now applies to this
-available candidate. Live AI, scheduled delivery, full accessibility, both-phone
-acceptance and production cutover remain separate gates.
+Exactly one private submission76186aef-2b60-4248-be9d-39f38301af32 finished. Apple
+confirms21 VALID/IN_BETA_TESTING/unexpired. Update to21 and try the
+[short phone pass](native-rewrite/build21-first-phone-pass.md). Actual installation,
+partner tester access and both-phone/design acceptance remain unverified. Live AI,
+scheduled push delivery, full accessibility and production cutover remain separate
+gates. Build20 and its dated evidence remain retained; no public release, new
+invitations, cloud build, purchase or production change occurs.
 
 Source work is on Linux, `/home/drrius/Work/nest`; owned Xcode/simulator work uses the isolated `/private/tmp/nest-current-qa-82a` mirror on the Mac; the original `/Users/dariussibarium/Developer/nest-swiftui` mirror is preserved. Native CI is separate from that owned simulator. The full prior log is preserved in [dated evidence](progress-history-2026-10-01.md); its old build numbers and pending states are historical.
 
@@ -253,12 +248,12 @@ fixes need one consolidated signed candidate after its required checks pass.
 
 ## Available candidate and current source
 
-**Latest private candidate: SwiftUI 0.1.0, build 20**, exact `0ba4a5c3`.
+**Latest private candidate: SwiftUI0.1.0/build21**, exact `5d609069`.
 Candidate routine/native CI, unchanged-backend deep integration, signed local
 archive/export/package audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass.
-[Release evidence](../evidence/2026-10-07/swiftui-build20/README.md).
-Update Nest to **20** in TestFlight and try the
-[short phone pass](native-rewrite/build20-first-phone-pass.md). It includes the
+[Release evidence](../evidence/2026-10-07/swiftui-build21/README.md).
+Update Nest to **21** in TestFlight and try the
+[short phone pass](native-rewrite/build21-first-phone-pass.md). It includes the
 layout/card/form/approval changes since19. Partner tester access, installation,
 full phone/design acceptance, live AI, scheduled delivery and production cutover
 remain open. It uses nest-test; production is untouched.
@@ -277,7 +272,7 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 - [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation, replacement and cross-week leftovers copy/read/removal have bounded real native/two-member evidence with normal cleanup. Both-member unsaved varied portions/discard pass normal/maximal text; saved portion planning beyond the bounded projection, live generation/replacement and full phone/UI acceptance remain.
 - [ ] **M6 — Read-only Calendar.** EventKit, permission/selection, agenda/layers and explicit numeric-only busy sharing exist. Selected real timed/all-day/DST, both-member sharing, outsider denial and online cleanup pass; durable offline removal and races have focused tests. Hardware offline/reconnection, long background periods, complex calendars and full accessibility/privacy journeys remain. Personal event text stays on-device.
 - [ ] **M7 — Money.** Actual fictional native full/partial settlement and ordinary expense posting now pass with exact retained-history/balance reconciliation and visible canonical feedback. Native balance/history/detail, financial commands/private approvals, receipt storage, recurring controls/variable bills and exact recovery exist over append-only CHF-centime history. Selected arithmetic/isolation/lost-response/hosted checks pass. Pause/cancel proposal review and exact recovery pass focused native CI; resumption proposal review/recovery passes current-source native CI; variable-cycle proposal review/decision/recovery is implemented with local wire/database checks and exact-source Foundation/native/routine CI passing; manual-cycle selection/review/command recovery passes local checks and exact-source Foundation/native/routine CI; private manual-cycle approvals and retained legacy inventory/draft history pass exact-source native/routine CI. Direct legacy dismissal passes local checks and exact-source native/routine CI; its original-term review/navigation/alert cancellation now pass owned rendering. Private dismissal approval/withdrawal passes local and exact-source native/routine CI; original-term review/navigation/alert cancellation now pass owned rendering. Actual rendered recovery states and full phone journeys remain pending. Direct draft-to-expense confirmation now has native source and focused Mac/database verification; both required workflows and actual fictional keyboard/review/cancel rendering pass at direct-confirmation source `4759e124`. Private confirmation review/recovery now has native source with focused Mac/backend and actual fictional alert verification; both focused native offline discovery/isolation checks pass; exact-source CI passes at `886773cc` (463 Foundation/41 explicit skips and344 signed-native/nine explicit skips, zero failures). Direct rule adoption source `e3e6b1ef` now has explicit fresh terms, prospective coverage/member/day preflight and exact recovery; focused Mac/backend and actual fictional variable-form checks pass. Nest37142967731 passes and SwiftUI37142967820 also passes:468 Foundation/41 explicit skips and357 signed-native/10 explicit skips, zero failures, strict formatting/source limits and actual signing. Private adoption now has source and focused Mac/backend/fictional-form verification; native CI at `1151caad` and corrected routine CI at `83a5a015` pass; hosted/provider/phone acceptance and recovery rendering remain pending. [Source coverage](native-rewrite/action-inventory.md#swiftui-financial-approval-coverage-1-october-2026) records the exact gaps. Ordinary expense/settlement and refund/correction staging now require fresh scoped domain reads before new intent; both slices pass exact-source Foundation/native and routine CI. Recurring create/edit/state/resume/variable staging now has fresh membership/revision/server-day/uncovered-cycle checks,23 focused local integration cases passing and exact-source Foundation/native/routine CI passing. Expense/refund/correction/settlement/rule approval staging now has fresh exact private pending/unexpired reads, with all six new native cases and ten existing exact-recovery cases passing current-source CI; existing account checks and later online retries do not prove that offline initiation is blocked. All approval/recurring variants, full history reconciliation and native/two-phone acceptance remain. Production posting is inactive.
-- [ ] **M8 — Renewals, reminders and push.** Renewal CRUD, recipient reminder editors, saved summaries, direct APNs transport, registration/outcomes, bounded worker and protected routes exist with fixture/native/selected hosted evidence. One fictional renewal now completes Alex create, Sam edit and Alex remove through the native UI, with matching canonical reads and retained removal history for both members. See the bounded CRUD checkpoint below. Read-only list/detail snapshots now persist across offline store restart, with separate controlled-failure integration evidence. Wider linked/pagination/conflict cases, populated summaries, provider credentials, worker activation, real hardware enrollment and all six delivery kinds on both phones remain. Push is disabled in the current build19.
+- [ ] **M8 — Renewals, reminders and push.** Renewal CRUD, recipient reminder editors, saved summaries, direct APNs transport, registration/outcomes, bounded worker and protected routes exist with fixture/native/selected hosted evidence. One fictional renewal now completes Alex create, Sam edit and Alex remove through the native UI, with matching canonical reads and retained removal history for both members. See the bounded CRUD checkpoint below. Read-only list/detail snapshots now persist across offline store restart, with separate controlled-failure integration evidence. Wider linked/pagination/conflict cases, populated summaries, provider credentials, worker activation, real hardware enrollment and all six delivery kinds on both phones remain. Push is disabled in the current build21.
 - [ ] **M9 — Migration and release rehearsal.** Safe synthetic reconciliation/recovery exists; the latest54-legacy/257-Nest fixture passes with explicit infrastructure exclusions. Local signed binary/internal TestFlight packaging passes. Hosted current-chain reconciliation, external-writer/old-intent drainage, final release source and both-member usability remain. Production cutover, old-app retirement, purchases and public release are separately gated.
 
 ## Latest native receipt recovery
@@ -297,7 +292,7 @@ Earlier source-specific test totals and result-link checks are preserved in [the
 
 - **Worker credential transfer:** automatic approval review rejected exporting the test Supabase server key and scheduler token to Vercel because prior test-deployment authorization did not explicitly cover that transfer. A specific owner approval question is already pending. No transfer, alternate path, schedules or worker activation occurred.
 - **APNs:** server-side provider `.p8`, key ID/team/configuration, worker activation and real hardware token/enrollment/six-kind delivery on both phones remain needed. App Store Connect signing credentials are not an APNs provider key. Push stays disabled.
-- **Phones:** both partners need the identified build20 installation, Apple sign-in and [phone checklist](native-rewrite/swiftui-phone-acceptance.md), followed by complete weekly/financial-approval/offline-conflict/calendar/privacy/accessibility acceptance. Actual partner tester access is still unverified. Pending phone-feedback questions should not be duplicated.
+- **Phones:** both partners need the identified build21 installation, Apple sign-in and [phone checklist](native-rewrite/swiftui-phone-acceptance.md), followed by complete weekly/financial-approval/offline-conflict/calendar/privacy/accessibility acceptance. Actual partner tester access is still unverified. Pending phone-feedback questions should not be duplicated.
 - **Merge:** [PR85](https://github.com/drrius/nest/pull/85) is freshly read6 October as OPEN/CLEAN at `1c00a089`, with all four checks successful and zero review conversations. The sole latest-commit Greptile response reports the50-credit trial limit, so it supplies no approval. The specific recorded automatic-review exception remains; the Sol waiver is respected and no local/main bypass, purchase or duplicate unchanged-commit request occurs. New source stays on feature branches with CI.
 - **Cutover:** existing-data/current-chain reconciliation and external-writer/old-intent drainage precede any production migration, retirement or public release. Safe fixtures and private testing do not authorize these actions.
 
@@ -825,3 +820,9 @@ signing/guarded UI compilation. One authorized private submission
 76186aef-2b60-4248-be9d-39f38301af32 is queued after exact IPA/source gates. No
 second attempt, cloud build, invitations, public release or production change
 occurs. Apple processing/availability21 is not yet verified;20 remains available.
+
+Build21 submission is FINISHED and Apple availability is now VALID/IN_BETA_TESTING/
+unexpired. The same upload was observed through completion without replay. Owner
+notification delivered; installation/partner access and phone acceptance remain
+unverified. Use the build21 checklist; pending earlier20 availability states above
+are dated history. No public release or production cutover occurs.

@@ -14,15 +14,17 @@ Routine CI37594517335/native CI37594517196 pass this same source:509 Foundation
 cases/41 skips,480 signed-app cases/41 skips, zero failures.
 Shipping API/contracts/domain/AI/migration inputs match the earlier passing deep
 source018578ef; later receipt-boundary assertions have focused disposable and full
-rehearsal evidence. This does not make the new native binary CI- or device-verified.
+rehearsal evidence. Current native source checks pass. The exported release binary has not run on
+a physical phone.
 
 Read-only supported Apple status confirms the expected existing app, build20 VALID,
 and no build21 before submission. Exactly one authorized private submission
-76186aef-2b60-4248-be9d-39f38301af32 is now queued; Apple availability is pending. The candidate uses nest-test
+76186aef-2b60-4248-be9d-39f38301af32 finished successfully. Apple now confirms21 VALID/IN_BETA_TESTING/unexpired.
+Actual tester installation and both-phone acceptance remain unverified. The candidate uses nest-test
 and keeps push disabled. It consolidates financial review/status/header fixes and
 grocery headings/spoken details since20. Live AI, full accessibility, physical push,
 both-phone acceptance and production cutover remain open.
 
-Next steps inspect the same submission and supported Apple status; do not
-repeat upload because processing is pending. No cloud build, purchase, invitations, public release
+Next steps are the [short phone pass](../../../docs/native-rewrite/build21-first-phone-pass.md)
+and full two-member acceptance. Do not repeat this finished upload. No cloud build, purchase, invitations, public release
 or production change occurs.
