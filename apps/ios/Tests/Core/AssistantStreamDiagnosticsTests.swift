@@ -23,9 +23,9 @@ final class AssistantStreamDiagnosticsTests: XCTestCase {
             "data: {\"type\":\"text-delta\",\"id\":\"private-segment\",\"delta\":\"private-reply\"}\n\ndata: [DONE]\n\n"
         let bytes = stream(payload)
         let response = httpResponse(request)
-        try await api.streamResponse(request: request, trace: trace, connect: { _ in (bytes, response) }) { _ in
-            XCTAssertTrue(diagnostics.snapshot().isEmpty)
-        }
+        try await api.streamResponse(
+            request: request, trace: trace, connect: { _ in (bytes, response) },
+            receive: { _ in XCTAssertTrue(diagnostics.snapshot().isEmpty) })
         let record = try XCTUnwrap(diagnostics.snapshot().first)
         XCTAssertEqual(record.requestId, trace.requestId)
         XCTAssertEqual(record.traceparent, trace.traceparent)

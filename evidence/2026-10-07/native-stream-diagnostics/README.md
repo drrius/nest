@@ -16,3 +16,8 @@ in-process byte transport, not a hosted provider stream or iPhone journey. Stric
 Swift formatting, source limits and diff checks pass. Build25's source/IPA is
 unchanged. This patch is for the next planned beta, without another upload solely
 for telemetry. Auth transport remains a separately documented gap.
+
+Native CI2374827d failed before test execution because a new test call used a
+trailing receiver closure alongside an explicit connect closure. The receiver
+is now explicitly labelled; strict Mac swift-format lint passes all eight changed
+stream/auth files. The runtime test behavior is unchanged.
