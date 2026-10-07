@@ -4,6 +4,20 @@ Updated 7 October 2026. **The goal is active and incomplete. M0’s native-execu
 
 ## Current delivery checkpoint
 
+The native offline-completion/reschedule journey now passes eight focused methods
+with zero failures or skips. Actual Today queues one fictional chore during a
+controlled API outage, retains its exact operation across restart, explains the
+409 after the partner moves its date, and explicitly discards only that completion.
+The partner's native SDK still reads the moved occurrence open; ordinary archive
+cleans up the owned fixture. Original chore/activity rows and all eight financial/
+meal/grocery fingerprints remain exact. Both clients restore their64 empty
+journals, identities, stable origins and local choices. Signed preparation and
+1,167 source hashes match; current-source CI is pending. Controller encoding/scope/
+archive-observer failures are retained separately from the eight passing native
+methods. This closes one schedule race, not phone radio loss, other race variants
+or full M4. Shipping UI is unchanged from build21; no new beta is needed.
+[Schedule conflict evidence](../evidence/2026-10-07/swiftui-chore-schedule-conflict/README.md).
+
 Receipt access now has two focused API/PostgREST/PostgreSQL checks passing with
 zero failures or skips. Removing an unposted uploader blocks metadata and link
 requests using both retained tokens, while direct SQL authorization also refuses.

@@ -1,0 +1,8 @@
+{
+  "success": true,
+  "inspectBeforeResuming": false,
+  "relayStopped": true,
+  "privateKeyRemoved": true,
+  "restored": true,
+  "initialEncodingObserverFailureRetained": true
+}
