@@ -55,8 +55,14 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
         field.tap()
         let previous = field.value as? String ?? ""
         let placeholder = field.placeholderValue ?? ""
-        let count = previous == placeholder ? 0 : previous.count
-        field.typeText(String(repeating: XCUIKeyboardKey.delete.rawValue, count: count) + text)
+        if !previous.isEmpty && previous != placeholder {
+            field.press(forDuration: 1.2)
+            let select = app.descendants(matching: .any).matching(identifier: "Select All").firstMatch
+            XCTAssertTrue(select.waitForExistence(timeout: 15))
+            XCTAssertTrue(select.isHittable && app.frame.contains(select.frame))
+            select.tap()
+        }
+        field.typeText(text)
         XCTAssertEqual(field.value as? String, text)
     }
 
