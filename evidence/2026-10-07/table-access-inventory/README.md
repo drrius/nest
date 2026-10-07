@@ -59,3 +59,7 @@ refused INSERT/UPDATE/DELETE/TRUNCATE on both public/private RLS-enabled tables.
 Unfreeze restores writes. The selected test passes with zero failures/skips and
 is added to fast CI. This establishes the trigger boundary under broad grants,
 not hosted freeze activation, Storage control or live external-writer drainage.
+
+Routine CI37572407700 passes source d8c8c2ed, including the new table inventory
+and selected broad-service-role freeze test. The stored metadata records that
+source; it does not establish hosted cutover activation or future-source CI.

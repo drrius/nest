@@ -447,7 +447,12 @@ then normal restoration to1 and restart/readback. Five original food receipts ar
 retained. The two Save/restart/readbacks complete, but the final Back label observer fails.
 Fresh metadata confirms revision7/portion1, exactly new receipts6/7, unchanged
 five original receipts and other preferences, Sam absent and eight protected
-digests exact. Full scopes/64 journals/settings/local semantics restore. A
-zero-Save readback/return method is prepared; the two-save invocation is consumed
-and will not be repeated. This is
+digests exact. Full scopes/64 journals/settings/local semantics restore. The
+zero-Save readback/return method now passes in32.063s with complete restoration.
+Both restart portion screenshots are directly reviewed. The two-save invocation
+is consumed and is not repeated; its final-navigation failure remains retained. This is
 private nest-test fixture work, not production or live AI planning acceptance.
+
+The broad-service-role barrier regression and table-access inventory now pass
+routine CI37572407700 atd8c8c2ed. This CI does not run hosted/profile or native
+UI actions. Current saved-portion source21b41f37 routine/native CI remains running.

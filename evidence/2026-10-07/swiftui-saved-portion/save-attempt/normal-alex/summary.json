@@ -1,0 +1,46 @@
+{
+  "devicesAndConfigurations": [
+    {
+      "device": {
+        "architecture": "arm64",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "modelName": "iPhone SE (3rd generation)",
+        "osBuildNumber": "23D8133",
+        "osVersion": "26.3.1",
+        "platform": "iOS Simulator"
+      },
+      "expectedFailures": 0,
+      "failedTests": 1,
+      "passedTests": 0,
+      "skippedTests": 0,
+      "testPlanConfiguration": {
+        "configurationId": "1",
+        "configurationName": "Test Scheme Action"
+      }
+    }
+  ],
+  "environmentDescription": "NestAccessibility \u00b7 Built with macOS 26.6.2",
+  "expectedFailures": 0,
+  "failedTests": 1,
+  "finishTime": 1791348265.865,
+  "passedTests": 0,
+  "result": "Failed",
+  "runtimeWarnings": [],
+  "skippedTests": 0,
+  "startTime": 1791348111.449,
+  "statistics": [],
+  "testFailures": [
+    {
+      "failureText": "Failed to tap \"Back\" Button: No matches found for Elements matching predicate '\"Back\" IN identifiers' from input {(\n    Button, identifier: 'BackButton', label: 'Profile',\n    Button, label: 'Save'\n)}",
+      "targetName": "NestAccessibilityTests",
+      "testIdentifier": 1,
+      "testIdentifierString": "NativePortionSaveTests/testOwnedVariedPortionPersistsAcrossRestartAndRestoresThroughSave()",
+      "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativePortionSaveTests/testOwnedVariedPortionPersistsAcrossRestartAndRestoresThroughSave",
+      "testName": "testOwnedVariedPortionPersistsAcrossRestartAndRestoresThroughSave()"
+    }
+  ],
+  "title": "Test - NestAccessibility",
+  "topInsights": [],
+  "totalTestCount": 1
+}

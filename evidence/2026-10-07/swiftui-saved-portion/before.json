@@ -1,0 +1,57 @@
+{
+  "profile": [
+    {
+      "actor_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "revision": "5",
+      "restrictions": ["Vegetarian"],
+      "dislikes": [],
+      "calorie_goal": null,
+      "portions": "1"
+    }
+  ],
+  "foodReceipts": [
+    {
+      "count": 5,
+      "md5": "0e54d35ab9ca92638c518d942f7e9f15"
+    }
+  ],
+  "protected": [
+    {
+      "protected_rows": {
+        "ledger": {
+          "md5": "1a5226df5b754743fd4aedc6c2dc6760",
+          "count": 124
+        },
+        "additions": {
+          "md5": "d644d5f8f123183b2b6beb45f74355aa",
+          "count": 6
+        },
+        "groceries": {
+          "md5": "e8062796fcffe016eb46dc58d1662f97",
+          "count": 30
+        },
+        "templates": {
+          "md5": "5d73d9806575e36a7359a5c3649b39d9",
+          "count": 13
+        },
+        "sourceWeek": {
+          "md5": "a7a4d32eb07bae8f788b63bd086819c0",
+          "count": 7
+        },
+        "allocations": {
+          "md5": "a54f487eb8e29f3b51ca34a9198d0d71",
+          "count": 104
+        },
+        "definitions": {
+          "md5": "da20b79e069dc6f29640563e721d5c56",
+          "count": 8
+        },
+        "financialEvents": {
+          "md5": "ad230373d9e4773aa38fc781b4194054",
+          "count": 62
+        }
+      }
+    }
+  ],
+  "privilegedMetadataNotAuthorizationProof": true
+}

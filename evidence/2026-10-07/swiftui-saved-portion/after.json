@@ -1,0 +1,25 @@
+{
+  "metadata": [
+    {
+      "result": {
+        "profiles": [
+          {
+            "actor_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+            "dislikes": [],
+            "portions": "1",
+            "revision": "7",
+            "calorie_goal": null,
+            "restrictions": ["Vegetarian"]
+          }
+        ],
+        "newRevisions": ["6", "7"],
+        "receiptCount": 7,
+        "originalReceipts": {
+          "md5": "0e54d35ab9ca92638c518d942f7e9f15",
+          "count": 5
+        }
+      }
+    }
+  ],
+  "privilegedReadNotNativeAuthorization": true
+}

@@ -1,0 +1,13 @@
+{
+  "profile": [
+    {
+      "actor_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200",
+      "revision": "6",
+      "restrictions": ["Vegetarian"],
+      "dislikes": [],
+      "calorie_goal": null,
+      "portions": "1.5"
+    }
+  ],
+  "readOnlyPrivilegedMetadata": true
+}
