@@ -143,3 +143,8 @@ does not authorize purchases, production mutation, new invitations or previously
 rejected secret transfers. The removed continuation automation stays removed.
 
 Earlier dated checkpoints are preserved in [remaining-work history](remaining-work-history-2026-10-07.md). Their candidate numbers and pending states are historical.
+
+Payroll source is now identified in the separate household-payroll repository.
+Three bodies match production; its guard differs from the only returned Git
+revision. Preserve this independent app rather than importing payroll into Nest.
+[Read-only identity evidence](../../evidence/2026-10-07/payroll-source-identity/README.md).

@@ -1,0 +1,57 @@
+{
+  "readOnly": true,
+  "repository": "drrius/household-payroll",
+  "sourceCommit": "6d2b1ec20bd66e9f6e92426e2ae889f8d529cefa",
+  "migrationPath": "supabase/migrations/20260930060000_payroll.sql",
+  "migrationSha256": "0858bd7ffaf68e19c196a9dad63386e64733afd50614bc3d96704ad8c6009d40",
+  "matchingBodies": 3,
+  "differentBodies": 1,
+  "productionFunctionBodiesExported": false,
+  "dataRowsRead": false,
+  "functions": [
+    {
+      "function": "payroll_is_member",
+      "sourceSha256": "4200425a04e3fd804c9dc9c13ce9c97989ff222de1034476628f2e659b77c2e2",
+      "productionSourceSha256": "4200425a04e3fd804c9dc9c13ce9c97989ff222de1034476628f2e659b77c2e2",
+      "bodyMatches": true,
+      "signatureMatches": true,
+      "languageMatches": true,
+      "volatilityMatches": true,
+      "securityDefinerMatches": true,
+      "emptySearchPathMatches": true
+    },
+    {
+      "function": "payroll_payslip_guard",
+      "sourceSha256": "8c338d65203a0e4465cafc47b2b9b838f4ad07d1231cc8b6745a514b86776ded",
+      "productionSourceSha256": "d6e718dea2e68695e25ab8189138d70861aad22d934766e7ed4dc62ea3c84e78",
+      "bodyMatches": false,
+      "signatureMatches": true,
+      "languageMatches": true,
+      "volatilityMatches": true,
+      "securityDefinerMatches": true,
+      "emptySearchPathMatches": true
+    },
+    {
+      "function": "payroll_payslip_supersede",
+      "sourceSha256": "2c363270ee75b6b35d86524992c311e5cef5152701b880ba969c916dbe727ce1",
+      "productionSourceSha256": "2c363270ee75b6b35d86524992c311e5cef5152701b880ba969c916dbe727ce1",
+      "bodyMatches": true,
+      "signatureMatches": true,
+      "languageMatches": true,
+      "volatilityMatches": true,
+      "securityDefinerMatches": true,
+      "emptySearchPathMatches": true
+    },
+    {
+      "function": "payroll_restore",
+      "sourceSha256": "c48f798c47567e7390981981a0e6fcda7232eaf755f938b025b4ac5f0d10ee05",
+      "productionSourceSha256": "c48f798c47567e7390981981a0e6fcda7232eaf755f938b025b4ac5f0d10ee05",
+      "bodyMatches": true,
+      "signatureMatches": true,
+      "languageMatches": true,
+      "volatilityMatches": true,
+      "securityDefinerMatches": true,
+      "emptySearchPathMatches": true
+    }
+  ]
+}

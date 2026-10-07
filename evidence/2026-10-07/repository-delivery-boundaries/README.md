@@ -14,9 +14,18 @@ Vercel team projects, with no next page. None is Git-linked to drrius/nest. The
 nest-test-api project has no Git link and uses apps/api; household-os and
 household-payroll are linked to their separate repositories. No project or Git
 settings changed, environment values or deploy-hook URLs were exported, or
-production endpoint was called. Supabase Git automation still needs its own check.
+production endpoint was called. [Supabase branch metadata](supabase-branches.json)
+shows no test branches and one legacy default main branch. It does not expose
+the repository or production auto-deploy setting. The owner configuration
+question is pending; a remote main push remains gated on that setting.
 
 The owner authorized local merge/direct-main delivery and later waived extra Sol
 verification. Latest-source CI and direct verification remain necessary. No merge
 or main update is performed by this audit, and production migration, purchases,
 public publication and new tester invitations remain separately gated.
+
+Supabase documents production Git auto-deployment as an opt-in integration setting.
+The existing connector does not expose the
+[organization GitHub connections endpoint](https://supabase.com/docs/reference/api/v2-list-organization-github-connections),
+and no CLI management login is available. No new credential, token, connection or
+production setting was created to fill this read-only gap.
