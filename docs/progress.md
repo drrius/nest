@@ -310,6 +310,15 @@ interfaces, remaining grants, private semantics, external writers and production
 rehearsal remain open. Build 23 is unchanged; current-source routine CI is pending.
 [Evidence](../evidence/2026-10-07/migration-managed-ownership/README.md).
 
+Managed-ownership source `e0e037b1` passes
+[routine CI 37667651167](https://github.com/drrius/nest/actions/runs/37667651167).
+A read-only test-project Edge inventory/source retrieval now confirms the single
+active native receipt writer's JWT gate and matches all 15 returned source and
+import-map files with local audited code. No redeployment, endpoint call or
+unchanged test rerun occurs. Resolved third-party dependencies, production legacy
+writers and in-flight external drainage remain unverified. Build 23 stays stable.
+[Source comparison](../evidence/2026-10-07/deployed-native-receipt-source/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
