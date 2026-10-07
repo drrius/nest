@@ -274,6 +274,24 @@ recorded. The owned clone is deleted and original scope/64 journals match.
 Editing/resumption, manual linkage, actual scheduling, AI and phones remain open.
 [Evidence](../evidence/2026-10-07/swiftui-recurring-lifecycle/README.md).
 
+Recurring-control source `d565cbb1` passes both
+[routine CI 37656565916](https://github.com/drrius/nest/actions/runs/37656565916)
+and [native CI 37656566076](https://github.com/drrius/nest/actions/runs/37656566076).
+A direct variable-rule journey now records exactly five revisions through native
+UI: creation, note edit, pause, explicit prospective resume and cancellation.
+Earlier observer failures are retained; completed writes are resumed rather than
+replayed. The final cancellation suffix passes one signed native test with no
+failures or skips. All eleven older rule hashes and every financial row match;
+both balances remain zero and cron registrations remain zero. The owned clone
+is deleted after all 64 journals are empty; original scope/journals and source
+hashes match. Current-head CI for the new guarded test remains pending.
+[Evidence](../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md).
+
+The remaining-work list now preserves earlier direct manual-link and retained
+confirmation/dismissal/adoption evidence instead of scheduling repeated writes.
+Later Quiet presentation, private live approvals, scheduling and phones retain
+their separate acceptance requirements.
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.

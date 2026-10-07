@@ -1,0 +1,1277 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "1B7727F0-2C9B-4291-B770-C05BC033FF3F.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Required action did not become enabled accessibility tree_0_AE53C937-D883-460C-9991-C4E96B6AA35C.txt",
+        "timestamp": 1791394396.097
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "A535BBD6-FFDB-49FE-A14A-940FCC831FCD.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Required action did not become enabled_0_05C6ED3E-796A-4B60-9ABA-8A8EAA546E14.png",
+        "timestamp": 1791394395.828
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CB113D73-CBF0-4801-89B2-79793458E387.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Required action did not become enabled_0_C896DA44-34A5-4E7E-80AB-6EC461A7EB7D.json",
+        "timestamp": 1791394395.757
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CC8A46BB-3D51-43C1-9A9B-85581012624D",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.44 PM",
+        "timestamp": 1791394364.545
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "67BFE632-2CBF-41EB-AB34-3BA33D5E05A3",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.44 PM",
+        "timestamp": 1791394364.842
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "2724DFB3-DF5C-4F0F-B4F7-1163FD0EB79E",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.43 PM",
+        "timestamp": 1791394363.619
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "EFEBFEB1-C8B5-4053-ADBF-409884F06799",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.43 PM",
+        "timestamp": 1791394363.914
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "6A9AA318-2454-4F19-A27C-09626EB6E910.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Explicit variable-rule resumption recorded accessibility tree_0_F466EC43-DAB2-42EA-8849-F1B3A7D3675A.txt",
+        "timestamp": 1791394361.774
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "F1225114-97F2-47AF-A02F-E0DE40C09F98.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Explicit variable-rule resumption recorded_0_2D7F3E03-3471-4AD8-B64E-9DA84034277F.png",
+        "timestamp": 1791394361.454
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CDA9BD55-47D1-4A6B-A6B1-E10CB7503F0E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Explicit variable-rule resumption recorded_0_C28E7C9E-FAC9-4434-9A4E-E6B4D1814E4D.json",
+        "timestamp": 1791394361.375
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "2177E9FD-ED00-4E85-ACF2-9A65E4E03CDC.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `\"Rule resumed.\" StaticText`_0_9715A0CA-05CA-49AB-A928-CA39D21C01A7.txt",
+        "timestamp": 1791394359.706
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "6CFB346A-5273-4CDB-BAE0-D6E705B1B4B8.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `\"Rule resumed.\" StaticText`_0_6AAFB7CC-FA78-4BAB-8E1C-9D64664505AE.txt",
+        "timestamp": 1791394358.702
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FBF579DC-CAAC-46DB-99BD-50B95519319F",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.37 PM",
+        "timestamp": 1791394357.076
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E321C02A-1E97-4707-948B-C2558599EC8F",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.37 PM",
+        "timestamp": 1791394357.371
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "00BA70AE-6950-4DE9-A7B0-CEA5B882F9CA",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.32 PM",
+        "timestamp": 1791394352.965
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "158B5F87-E255-4D00-A0DF-7835B9A97BC0",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.33 PM",
+        "timestamp": 1791394353.25
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "52EABB10-88BA-4296-AAED-75308EC02B15",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.28 PM",
+        "timestamp": 1791394348.31
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "579A9B73-CDC1-463E-99B2-2BA1758B952F",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.29 PM",
+        "timestamp": 1791394349.974
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "C75191B4-7745-407F-8017-09F28EEBACC0.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_85E2D0A9-8CEE-4FBE-A09E-8DE1ABC6CA5D.json",
+        "timestamp": 1791394348.245
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "D47BD39B-9336-4E1B-B142-9819C16BA59F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_B702FA8A-99D4-44F3-A3EB-BF5FDAE47393.json",
+        "timestamp": 1791394347.776
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "F0CEDB44-0CD1-486C-A6C3-083D901EE371.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_C4B923FB-340F-4B07-A6A1-16E980D37533.json",
+        "timestamp": 1791394347.643
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "538C4F69-B834-4F80-92C7-44AC57C19EFA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_88D40A2C-8BC7-4A8C-9608-331CA16DCF7A.json",
+        "timestamp": 1791394347.281
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "7ED5E1E2-B2E3-41ED-A234-A06FB0F890C8",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.25 PM",
+        "timestamp": 1791394345.709
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "AD474C63-AA2A-4A02-9D20-649420BB5B92",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.26 PM",
+        "timestamp": 1791394346
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "18DFDB14-C677-4063-8618-8EAF7B05325E",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.21 PM",
+        "timestamp": 1791394341.672
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "7CC01340-82F7-45D5-8480-2FDC67C3C4F1",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.23 PM",
+        "timestamp": 1791394343.348
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "24DF2645-96B9-4530-889A-F575B7B42D7D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_01473D00-9AF4-4C39-B1CC-5F3213F00364.json",
+        "timestamp": 1791394341.603
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "1EEC9602-BD67-4ADF-AAA4-9A7A9CD1A027.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_13E654D6-5600-4B39-9A87-893727180472.json",
+        "timestamp": 1791394341.299
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "42965D2F-1476-4808-B1AF-A6E04EFCBDC6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_D751BC9F-B692-4770-9CFD-066A7045EA15.json",
+        "timestamp": 1791394341.153
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "99A4898C-4FBF-4979-BFF9-840FD0AA900F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_D19C738D-5DBA-4F80-814A-80996C77A0F8.json",
+        "timestamp": 1791394340.607
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "27CDA87D-AABB-47E7-AC4D-AA3E06303C1C",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.18 PM",
+        "timestamp": 1791394338.585
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8AA0C95A-007A-4875-BD37-BB08D81749A7",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.18 PM",
+        "timestamp": 1791394338.883
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "BFE8F3F8-C70B-489F-8BAC-C45A4CBE1E3F",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.17 PM",
+        "timestamp": 1791394337.927
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CE0D3123-543E-4D6F-AE40-567AF1A94A9E",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.18 PM",
+        "timestamp": 1791394338.223
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "4767012E-DA44-44BB-9F37-D35801AC1A86.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `\"Rule paused.\" StaticText`_0_266600BC-995F-4FD2-9B63-5298B01DF59D.txt",
+        "timestamp": 1791394335.145
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E24F0BEA-D9AA-4E09-BAB9-5B3B255A6199.txt",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Debug description for `\"Rule paused.\" StaticText`_0_9A7A31B7-20EB-4271-A997-07EBF2AA8B60.txt",
+        "timestamp": 1791394334.176
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "48C2B524-4A13-4C4C-A7D1-35089F7F4983",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.12 PM",
+        "timestamp": 1791394332.42
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "738E227F-8DC7-4CF1-95C9-D8A0A59E23ED",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.12 PM",
+        "timestamp": 1791394332.713
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "9195126A-35CC-4A7A-9E5F-A14E1BF14E17",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.10 PM",
+        "timestamp": 1791394330.495
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E3663B1C-13A1-4D52-BCDC-4B22F9FCE09E",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.10 PM",
+        "timestamp": 1791394330.785
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "AA8B6E72-29DB-47AF-8F16-BA5A8AC5464D",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.06 PM",
+        "timestamp": 1791394326.442
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "90516175-34CE-4CB7-AE46-FFE22B39CB05",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.08 PM",
+        "timestamp": 1791394328.103
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "1971376F-70FE-4CBB-BCF8-FBCCDB9B70F5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_276D7364-671E-432E-8899-116074FF8519.json",
+        "timestamp": 1791394326.379
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "657224C8-F0CC-4F4F-84F4-8AA5EBBA1AF5.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_FC3AD941-185C-4D1C-8586-4D2D10D54580.json",
+        "timestamp": 1791394326.11
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "64C784D6-D6D8-4DB6-AC10-4B9CFF971526.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_343F3DF2-AD7A-4E28-902E-58F87BEE698E.json",
+        "timestamp": 1791394325.979
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "4FD9D8E6-6122-4F52-9546-6B528DDDBE4A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_C71AD781-3D2F-4B8C-B2DC-0B6593ECCEEC.json",
+        "timestamp": 1791394325.611
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "7589BB73-CC93-4BC2-95D3-0557638339FC",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.04 PM",
+        "timestamp": 1791394324.164
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "B697A91C-0DF8-40FD-9358-C669883F081B",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.04 PM",
+        "timestamp": 1791394324.449
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "A6E65DD5-B91F-4B2D-85E3-6CAA5043612F",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.32.01 PM",
+        "timestamp": 1791394321.177
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FD10A2CA-4D3D-4C4E-A995-341C45C91C0C",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.32.02 PM",
+        "timestamp": 1791394322.401
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8E865D79-5073-4E2C-97A6-9E441220F436.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_095C2825-B00E-4847-9441-80DE7E3E7890.json",
+        "timestamp": 1791394321.097
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CF812DB9-4E75-4410-9E79-31A562944870.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_FED91928-FE9B-466D-B788-3CB10976D757.json",
+        "timestamp": 1791394320.745
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "0EF43B71-2087-4B40-8906-DE61478D4311.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_0EE8883E-E892-4567-9FE8-66B821F83678.json",
+        "timestamp": 1791394320.561
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "448C5BCA-E01B-4C61-A887-0311C2797DE4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_3FE17EC1-D736-4FB2-8D50-FD4EE15E50A7.json",
+        "timestamp": 1791394319.724
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "0C57508F-2CF6-44D7-B660-76D7230FD641",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.56 PM",
+        "timestamp": 1791394316.691
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "0055FB42-486C-480F-B841-6C65A93B8424",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.57 PM",
+        "timestamp": 1791394317.916
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "B1A9FB87-C203-40DD-B6FF-50D45E2CF005.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_E8911F47-5E21-40B7-BDC7-1FA12564E9A0.json",
+        "timestamp": 1791394316.608
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "72276BE3-0063-406A-8BA7-95E0A1B068E8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_1572C0D2-823C-4089-A45A-B195FE87F6FD.json",
+        "timestamp": 1791394316.369
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E25EF752-FA11-46B3-BC8D-CA9C89470078.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_F1CBF5A0-2161-470D-BAC6-4E920F0A2172.json",
+        "timestamp": 1791394316.183
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8D851094-833E-455F-B950-6DE85FCB3394.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_FA219321-92F2-4B9A-9079-3F9A19276611.json",
+        "timestamp": 1791394315.469
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "32EEB91C-E458-4D83-8A3B-625E1030BCD6",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.52 PM",
+        "timestamp": 1791394312.596
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "17B50742-FD07-4ECE-9C58-19357CC69C87",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.53 PM",
+        "timestamp": 1791394313.809
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "2C66AD8B-47B8-425F-B108-12F23C02707D.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_17FA1474-6808-4DD6-8BFF-CDA9B0254146.json",
+        "timestamp": 1791394312.506
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "4BD5DDEF-76B6-48B1-9CE9-E2EBF8D1F53B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_F49F2F0F-55C4-4229-BA1B-9C12A52D5D63.json",
+        "timestamp": 1791394312.283
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "9E7D36F6-F18F-4FDA-9C31-C12F98349F40.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_EE891962-F190-43B0-A2F6-48D29E0255D3.json",
+        "timestamp": 1791394312.096
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E3D4097C-50F6-4668-B0BE-6315F482633C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_CF4788F9-D9BF-49B3-96B5-B09FB160A3F6.json",
+        "timestamp": 1791394311.513
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8C22C1DD-1D58-4F2E-8BA2-65D329BA0499",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.48 PM",
+        "timestamp": 1791394308.24
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "07A110B9-5324-496E-88EC-082A816620FE",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.49 PM",
+        "timestamp": 1791394309.469
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "339B7E46-6B8D-45A5-937B-88F9D3693645.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_86E66EC4-FC60-4640-9E62-CD5F86614784.json",
+        "timestamp": 1791394308.159
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E19B079D-342B-4446-B3F0-394DCF80F6BA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_94C40116-CE60-4AF4-A45A-59D0814FBFBB.json",
+        "timestamp": 1791394307.94
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8C8C40FF-D602-4CF6-B813-E8F595724B3C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_FE311828-BAF0-41A1-97E0-62873C7F3389.json",
+        "timestamp": 1791394307.765
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "0A50F026-F63D-438F-976E-C30B0BDFDC77.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_C559D9A7-C960-4C2A-88E2-27931112CDBD.json",
+        "timestamp": 1791394307.17
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "F180F773-5EDA-4F42-8B7D-A03380416659",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.42 PM",
+        "timestamp": 1791394302.802
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "10C052A8-1676-43CC-8A67-122B693CC0A3",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.44 PM",
+        "timestamp": 1791394304.503
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "1712B3E5-C1EF-4743-B92B-4E85EF2647DA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_16980B81-9E94-41BD-B60A-7692C158FB1E.json",
+        "timestamp": 1791394302.726
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "A07CBFC1-F6AD-4636-8959-BFF4ECF5378A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_DCF7441C-F373-49F4-8E12-49689EAC5051.json",
+        "timestamp": 1791394302.361
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "897B250C-0DAD-431B-AD37-6CFCCE68E3E0.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_0601FFF6-AFF4-49D4-9649-33B6ABA1C0F7.json",
+        "timestamp": 1791394302.17
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "2475083C-8FF0-4AC3-8B68-693A7D119CEF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_0310EEDE-4BAC-482F-8981-9558C87A815F.json",
+        "timestamp": 1791394301.488
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8BAF9720-E706-42DB-BCDB-3D2938E40857",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.38 PM",
+        "timestamp": 1791394298.124
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CD92F63D-04C0-479A-95AB-B6AB7FBD72A4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.39 PM",
+        "timestamp": 1791394299.807
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FF488F61-9AB6-4B23-B230-F608CFBDC4A8.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_0F78D2BD-FF8F-4DAF-80A1-15E02EA3AAE5.json",
+        "timestamp": 1791394298.049
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E77FB8CD-21B0-473B-9042-4E571E9C11F4.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_A50C0491-9E03-48A4-B0DC-CBFCAEB605F9.json",
+        "timestamp": 1791394297.691
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "54ED5B2B-A822-46FC-9BB9-0954CD0D2060.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_432A2700-E3E1-4528-966C-8190F91B816B.json",
+        "timestamp": 1791394297.523
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "73F32EC9-744B-447C-8A21-BF3BBAFAA9CF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_356792AB-9F1E-44AF-9A4B-39730909EBD2.json",
+        "timestamp": 1791394296.842
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "5EF0B235-D15B-4783-B97C-25DD8548B464",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.32 PM",
+        "timestamp": 1791394292.916
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "285ECC71-896C-47B1-960C-73A6E5CA3DF1",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.34 PM",
+        "timestamp": 1791394294.596
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "69AFFB33-93B6-4706-9C3D-04FF01CB378F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_BC9BB8A8-4452-4551-B170-8103E370DE64.json",
+        "timestamp": 1791394292.85
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "049E9DBB-7D9A-4427-9A6A-DAE2043D65B3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_F28E2CAD-5F16-4F0F-B047-DACC3261ECD9.json",
+        "timestamp": 1791394292.542
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "B5D566FD-2788-4F40-BB81-F0B647B0D6E6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_682D4395-0617-4FFD-970B-7147C4864F8B.json",
+        "timestamp": 1791394292.379
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "BD4008A0-90B1-43C2-90A3-1EB6DEC7A72A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_1CD2BA7B-5A2F-47EB-882B-8066A21CE2ED.json",
+        "timestamp": 1791394291.818
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "DCF64963-9489-40C8-9FB4-C97F64567D21",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.28 PM",
+        "timestamp": 1791394288.153
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "99288057-B8DC-41AF-A933-7251CBEF99F4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.29 PM",
+        "timestamp": 1791394289.334
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "75BBF05E-0466-45F5-BB38-34E20980D303.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_084549D0-FDBC-4324-B4C4-75726AFA915F.json",
+        "timestamp": 1791394288.088
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "5A91B50F-A9E1-4623-9E1E-ECDF23DB46CB.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_C8D6A375-1B2C-44F7-AC3F-CD3E74DACCF0.json",
+        "timestamp": 1791394287.594
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "4FF08AB2-9CFA-4204-9039-699B04C8D626.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_6F68BB54-AD5D-43A3-8589-67AAECF8A76C.json",
+        "timestamp": 1791394287.452
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "CEBC5BDD-D993-41E4-920F-5DEAE2F2A4BA.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_F8984397-5575-47E7-A7B6-A150362C49FC.json",
+        "timestamp": 1791394287.016
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FF46C61D-D74F-4091-9BD1-73C5F449A4A4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.25 PM",
+        "timestamp": 1791394285.6
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "665F8007-50D0-4F02-88B3-EF8CA7D32FBA",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.25 PM",
+        "timestamp": 1791394285.887
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "74D9143C-B503-4C02-9782-FAC9EBC40D47",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.22 PM",
+        "timestamp": 1791394282.985
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "D2BAFB52-F21A-41E6-922C-760A75CBEC8B",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.24 PM",
+        "timestamp": 1791394284.683
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FE10D89A-76F7-4BD8-824C-E359D55BA27B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_B223B5D7-47F3-4C97-B17C-68AC6514B1DB.json",
+        "timestamp": 1791394282.908
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "C6CE0208-9714-4B8C-928A-72FE1D8D389B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_80996349-630A-4F3E-8066-6303AD41725A.json",
+        "timestamp": 1791394282.355
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "093BE02C-30E3-486C-B487-FAEB21DAC927.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_88D49A2A-99A3-486F-894C-426C4212E830.json",
+        "timestamp": 1791394282.176
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "968C2273-925C-44B8-9155-04DF6C12736F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_C6BD63B7-8AC5-4978-8E2C-928F2A5E918F.json",
+        "timestamp": 1791394281.439
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "60169A4E-5EF6-4F51-97D3-45BA7260C6B0",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.17 PM",
+        "timestamp": 1791394277.249
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "8B0B5FA6-7F74-4628-B187-CCCB8223CCBD",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.18 PM",
+        "timestamp": 1791394278.937
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FBD33FE9-EFB1-40DD-8B8A-5F1B71941395.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_220F6478-702F-43A0-9F55-27CA5A22C119.json",
+        "timestamp": 1791394277.176
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "F3A593DB-2407-4E6A-A57A-DD49B41EE0BF.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_428EDB17-631D-46EC-8071-0463EFA03C39.json",
+        "timestamp": 1791394276.824
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "6ECA48BE-E6CB-4E2F-8B03-DDD2BA91C320.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_BC882ABB-02A1-4FA2-A942-AAC05C67C93C.json",
+        "timestamp": 1791394276.659
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "788673DA-19B1-439D-AB9A-5BDB7EED4AD6.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_51B3F3B5-55BA-4591-9507-ABDB0E6627D6.json",
+        "timestamp": 1791394275.975
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "536B9A95-F598-4AD1-B7C5-39180B3C7154",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.12 PM",
+        "timestamp": 1791394272.544
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "6A8C45AC-638F-4FF7-BE22-EA81AF7EB80C",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.14 PM",
+        "timestamp": 1791394274.228
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "D0D904BF-6D72-4179-85E7-44A49860C09B.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_4A9A3381-5B87-4961-B072-838E87E83822.json",
+        "timestamp": 1791394272.472
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "5F3B831F-7297-4288-A944-757989943EA1.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_BEFDA596-C4ED-4A67-B852-91C4E40917FC.json",
+        "timestamp": 1791394272.114
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "739F40AA-A58A-4F95-99C0-9A72D24EA299.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_22C05E0D-D4FC-45A8-9CD3-97187C29EBB4.json",
+        "timestamp": 1791394271.899
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "13C45689-4D22-4EF2-8AB2-C323B41D570A.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_18B70AD7-0B23-4688-BAE3-D9D46FD78DC8.json",
+        "timestamp": 1791394271.219
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "A4200C7D-5BBB-4892-8CBC-1B3E6A3D2010",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.09 PM",
+        "timestamp": 1791394269.062
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "EFC9320F-E190-4CB3-BB51-A5DE4E78396C",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.09 PM",
+        "timestamp": 1791394269.35
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "70DA3D7D-CAD3-4D84-9744-54577F83C948",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.05 PM",
+        "timestamp": 1791394265.731
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "016B3310-1A5F-454E-B22D-A1A6835354F8",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.07 PM",
+        "timestamp": 1791394267.375
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "B54189B9-0FF1-4F81-B451-BC8D93205123.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_E8FA44EC-827A-445C-9C33-3DACF35F9154.json",
+        "timestamp": 1791394265.675
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "63F6D2CA-8345-436E-AE1A-C7776035FE6C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_29633C1E-12B8-4A1A-9199-6D7F277BF188.json",
+        "timestamp": 1791394265.368
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "DE449300-271A-455A-928F-D42DDB09D65F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_56AA37F7-16EB-40BF-88BA-287001A8BF7E.json",
+        "timestamp": 1791394265.232
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "B188D110-50D1-4604-86CD-4BED0D774A20.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_CC6744D5-94B9-4BE7-BD16-DDCA57CECC5A.json",
+        "timestamp": 1791394264.388
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "DF139A24-79E2-4700-A42A-FF6CD1BC9F0A",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.31.00 PM",
+        "timestamp": 1791394260.631
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "514E5734-6C24-46E2-981D-56B523ACB90C",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.31.02 PM",
+        "timestamp": 1791394262.276
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "EC31D4BF-9795-46BB-B356-CF949514E783.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_57BED10C-5E78-492C-B3C4-0D63C094E647.json",
+        "timestamp": 1791394260.575
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "1E4BBBD3-8253-432A-BAF1-253BDBF4F558.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_4124A3F6-391A-48C8-A082-1CD8E4CC321A.json",
+        "timestamp": 1791394260.274
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "68136A08-13BF-4E6F-84FA-8D4C463BDD6E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_2B3E2F4A-4E8E-4674-AFF2-A321A5A3E03A.json",
+        "timestamp": 1791394260.151
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "E5675390-1778-4A8B-A180-3370A4A5189F.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_051316E5-C292-4956-BFE0-84D71B0AC3C3.json",
+        "timestamp": 1791394259.267
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "81A34933-B274-4EFC-A50B-6C94615F8E57",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "UI Snapshot 2026-10-07 at 07.30.55 PM",
+        "timestamp": 1791394255.245
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "BFFB30C3-B1C4-49FA-A8DB-338BFC60B3E7",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.30.56 PM",
+        "timestamp": 1791394256.886
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "FDB7EA13-04F0-4134-A227-06A449798117.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Maximum recorded history finite left-padding pan_0_AE546A06-8EB8-460A-9FCF-4FE98C51B5F2.json",
+        "timestamp": 1791394255.192
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "AEDC635C-C7BD-467B-828F-2CE97F278BB3.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw scroll-indicator geometry before recorded-history pan_0_E64B9520-038B-47B9-8B55-F6357FD21C3C.json",
+        "timestamp": 1791394254.915
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "7EDA7976-7A3E-474E-A4CE-8D09347C4A55.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Finite foreground scroller observation_0_139A3D43-064B-49E8-BE72-A50BC8BAAC13.json",
+        "timestamp": 1791394254.801
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "0D577E35-1F14-472B-A3A7-A96A06A8429E.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Raw action-region geometry before recorded-history pan_0_08D91547-5A76-41DD-9B9C-E04A10B38352.json",
+        "timestamp": 1791394254.051
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "F0AE46E9-EA34-4F34-AF07-C12F162E9718",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.30.50 PM",
+        "timestamp": 1791394250.646
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "79763786-0BDD-4B82-ADCA-129DB066C409",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.30.49 PM",
+        "timestamp": 1791394249.438
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "EBB2734D-119B-47F0-B8BF-CFA3D69A3ED6",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.30.47 PM",
+        "timestamp": 1791394247.481
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "6EC0DAFE-B87D-4415-B565-2715825853A8",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Synthesized Event 2026-10-07 at 07.30.45 PM",
+        "timestamp": 1791394245.586
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "3B8966A3-CD2E-4B0B-AA18-1A43C69C30A2",
+        "deviceName": "Nest owned variable resume 20261007",
+        "exportedFileName": "7CE15369-FBBE-4685-91EC-6FAB4194FDB3.mp4",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Screen Recording 2026-10-07 at 07.30.41 PM.mp4",
+        "timestamp": 1791394241.357
+      }
+    ],
+    "testIdentifier": "NativeRecurringEditResumeTests/testOwnedVariableRuleEditPauseResumeCancelPreservesFinancialHistory()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/NativeRecurringEditResumeTests/testOwnedVariableRuleEditPauseResumeCancelPreservesFinancialHistory"
+  }
+]

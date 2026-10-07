@@ -26,6 +26,24 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Variable-rule edit and resumption](../../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md)
+  now record creation, a note edit, pause, explicit prospective resume and
+  cancellation through the real hosted native client. The final resumed suffix
+  passes; earlier observer failures stay recorded. All eleven older rule hashes
+  and the full financial snapshot match, with no scheduler activated. Live AI,
+  actual scheduling and phones remain open.
+
+- [Direct manual cycle linkage](../../evidence/2026-10-04/swiftui-native-manual-cycle-link/README.md)
+  already proves one explicit native link, both authenticated members' unchanged
+  financial reads and recorded-receipt recovery after restart. The existing
+  [retained confirmation](../../evidence/2026-10-04/swiftui-retained-confirmation-recovery/README.md),
+  [dismissal](../../evidence/2026-10-04/swiftui-retained-dismissal-recovery/README.md)
+  and [adoption](../../evidence/2026-10-04/swiftui-retained-adoption-recovery/README.md)
+  also have hosted native decisions and interrupted-save recovery. Preserve this
+  bounded evidence. Later Quiet section/value styling still needs current UI
+  acceptance; it does not erase these financial outcomes or justify replaying
+  completed writes. Private live approvals and phones remain open.
+
 - [Fixed-rule lifecycle](../../evidence/2026-10-07/swiftui-recurring-lifecycle/README.md) now passes direct native creation, explicit automatic mandate, pause and cancellation against the hosted test API. Earlier rules and all financial history remain unchanged, with no scheduler activated. Editing, resumption, manual linkage, actual scheduling, AI and phones stay open.
 
 - [Direct correction/refund posting](../../evidence/2026-10-07/swiftui-correction-refund/README.md) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendered readback now passes separately without any financial change. Physical phones, live AI, other variants and the retained writer warning remain open.
@@ -52,12 +70,13 @@ Evidence reconciliation7 October:
 
 Work order:
 
-1. Complete the remaining named native Money journeys: recurring configuration
-   edits/resumption, manual cycle linkage and retained-rule decisions. Direct
-   fixed-rule creation/pause/cancel now has bounded native/hosted evidence. Existing
-   model/database evidence stays valid. Direct correction/refund and full/partial
-   settlement journeys already have their bounded evidence; repeat only for an
-   affected change or failure. The action inventory distinguishes those flows.
+1. Preserve the bounded native evidence for recurring configuration
+   edits/resumption, direct manual linkage, retained-rule decisions,
+   fixed-rule creation/pause/cancel, correction/refund and full/partial
+   settlements. Verify remaining presentation gaps in the consolidated UI/phone
+   pass rather than posting again solely to refresh evidence. Existing
+   model/database evidence stays valid. Private live approvals and scheduled
+   posting still require their separate integration proof.
 2. Keep one source candidate stable until its CI finishes. Batch necessary shipping
    fixes for a consolidated beta. Test-only/evidence changes do not need another
    beta. Build 22 remains the available owner candidate; later fixes are separate.

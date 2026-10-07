@@ -1,0 +1,20 @@
+{
+  "olderRulesUnchanged": 11,
+  "financialSnapshotUnchanged": true,
+  "events": 71,
+  "allocations": 116,
+  "ledger": 142,
+  "balances": [
+    {
+      "cents": "0",
+      "member_id": "791f7261-6c9d-4061-9c8a-57aa6e0b0200"
+    },
+    {
+      "cents": "0",
+      "member_id": "e5f80cfd-b69a-4aa0-a267-75784e943676"
+    }
+  ],
+  "exactRevisionSequence": ["configuration", "configuration", "pause", "resume", "cancel"],
+  "finalStatus": "cancelled",
+  "registeredCronJobs": 0
+}
