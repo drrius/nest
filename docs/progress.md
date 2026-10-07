@@ -811,3 +811,10 @@ retained. Initial tool workspace mutation is removed and package content restore
 Hosted deployment identity, destination behavior, in-flight uploads/deliveries and
 external drainage remain open. No legacy endpoint is invoked or source migrated.
 [Writer boundaries](native-rewrite/legacy-edge-writer-boundaries.md).
+
+Receipt membership gates now pass three focused real-PG tests, including explicit
+service_role/BYPASSRLS refusal after revocation and observed lock ordering between
+an authorized object insert and concurrent member deletion. The authorized metadata
+row survives when insertion wins; a revoked writer creates none. This bounds one
+trusted insertion path, not managed Storage bytes/HTTP or all service writers.
+No shipping migration or hosted write occurs. [Privileged writer check](../evidence/2026-10-07/receipt-service-writer-membership/README.md).
