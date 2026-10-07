@@ -1,0 +1,6 @@
+{
+  "apps/ios/AppTests/EventKitPermissionRevocationTests.swift": "33aac4a8cb7b56d4efadc232963448acb70d4291820ed1ecd7e2feedebf42e53",
+  "apps/ios/Nest/Calendar/CalendarModel.swift": "e8746daa5adbf54ef40c9a3682b0ef06bb3277decde5f2c43a7c0cfe7c66d7d6",
+  "apps/ios/Nest/Calendar/EventKitCalendarReader.swift": "936130d757541b5b27b6867ff7885a91b45262243bdb6436f66d806f41f64ef4",
+  "apps/ios/Nest/Core/CalendarSelectionStore.swift": "1043a7edbba7a0e221cf172215acf826a03bef3df78d0d863cf207fca63458a5"
+}

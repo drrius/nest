@@ -1,0 +1,16 @@
+[
+  {
+    "phase": "allowed",
+    "exit": 0,
+    "passedTests": 1,
+    "failedTests": 0,
+    "skippedTests": 0
+  },
+  {
+    "phase": "denied",
+    "exit": 0,
+    "passedTests": 1,
+    "failedTests": 0,
+    "skippedTests": 0
+  }
+]

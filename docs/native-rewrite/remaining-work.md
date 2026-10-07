@@ -26,6 +26,8 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
+- [Actual EventKit revocation](../../evidence/2026-10-07/swiftui-eventkit-revocation/README.md) now verifies OS-denied reads and persisted-selection clearing across test-host restart in two signed native checks. It uses a fresh simulator and one synthetic event. Physical phones, rendered privacy behavior and live busy sharing remain open.
+
 - [Remaining meal read callers](../../evidence/2026-10-07/swiftui-meal-read-callers/README.md) now use one fenced week-read command. Held proposal/preflight replies and invalidated ingredient updates are rejected; existing choices, pending requests and approvals retain their behavior in 32 native app and nine SQLite checks. Hosted permissions, live AI and phone acceptance remain open.
 
 - [Planned detail/preparation denial](../../evidence/2026-10-07/swiftui-meal-detail-denial/README.md) now removes denied read copies and rejects a held old detail reply, preserving pending commands. Fourteen signed app and fourteen SQLite checks pass locally. Hosted permissions, proposal/ingredient read paths and phone rendering remain open.

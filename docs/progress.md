@@ -215,6 +215,16 @@ at this checkpoint. No unchanged native run is restarted. The phone acceptance
 guide now identifies build 22's actual frozen source and working short-checklist
 link, and separates later history/cache fixes from that available candidate.
 
+Actual EventKit permission revocation/restart now has two signed app-hosted
+checks passing without failures or skips on a fresh simulator. A synthetic local
+event reads with granted access; denied access clears saved selection and refuses
+event/busy reads after a separate launch. The fixture explicitly flushes its
+marker after an initial transport failure, retained in evidence. Both owned
+simulators are deleted. Shipping Calendar code and build 22 stay unchanged.
+The test and corrected phone guide are committed locally; their push waits for
+the existing CI runs so it cannot cancel the current client check. Rendered UI,
+initial permission prompts, live sharing and both phones remain open. [Evidence](../evidence/2026-10-07/swiftui-eventkit-revocation/README.md).
+
 ## Exact blockers and owner inputs
 
 - **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The specific approval question remains pending. No token, model call, purchase or billing change followed.
