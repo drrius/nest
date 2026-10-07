@@ -45,6 +45,7 @@ struct CorrectionScreen: View {
                 }
             }
         }
+        .id(saved != nil ? "saved" : reviewed != nil ? "review" : "draft")
         .disabled(working)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .scrollContentBackground(.hidden).background(QuietPalette.background)

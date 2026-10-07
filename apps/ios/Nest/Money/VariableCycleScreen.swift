@@ -40,6 +40,7 @@ struct VariableCycleScreen: View {
                 Button("Refresh bill") { Task { await load() } }
             }
         }
+        .id(saved != nil ? "saved" : reviewed != nil ? "review" : "draft")
         .disabled(working)
         .overlay { if working { ProgressView().padding().background(.regularMaterial, in: Capsule()) } }
         .navigationTitle("Confirm bill")

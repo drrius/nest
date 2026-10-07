@@ -49,6 +49,7 @@ struct RecurringResumeScreen: View {
                 Button("Refresh rule") { Task { await load() } }
             }
         }
+        .id(saved != nil ? "saved" : reviewed != nil ? "review" : "draft")
         .disabled(working)
         .navigationTitle("Resume rule")
         .scrollContentBackground(.hidden).background(QuietPalette.background)

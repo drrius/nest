@@ -57,6 +57,7 @@ struct RecurringEditorScreen: View {
             }
             if working { ProgressView("Checking rule…") }
         }
+        .id(saved != nil ? "saved" : reviewed != nil ? "review" : "draft")
         .disabled(working)
         .navigationTitle(ruleId == nil ? "New recurring expense" : "Edit recurring expense")
         .modifier(MoneyDraftKeyboard(focus: $focusedField))
