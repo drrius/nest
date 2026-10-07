@@ -5,7 +5,12 @@ import XCTest
 
 @MainActor
 final class HostedVariableBillLostReplyTests: XCTestCase {
-    private let title = "Nest lost-reply variable bill 20261007"
+    private var cancellationVariant: Bool {
+        ProcessInfo.processInfo.environment["NEST_QA_VARIABLE_REPLY_KIND"] == "cancellation"
+    }
+    private var title: String {
+        cancellationVariant ? "Nest cancelled variable bill 20261007" : "Nest lost-reply variable bill 20261007"
+    }
     private let alex = UUID(uuidString: "791f7261-6c9d-4061-9c8a-57aa6e0b0200")!
     private let sam = UUID(uuidString: "e5f80cfd-b69a-4aa0-a267-75784e943676")!
     private let household = UUID(uuidString: "be772ffd-3ab5-41d5-8438-647a79a553da")!
@@ -55,6 +60,18 @@ final class HostedVariableBillLostReplyTests: XCTestCase {
             "rule": id.uuidString.lowercased(), "event": event.uuidString.lowercased(),
             "covered": rule.rule.coveredThrough?.value ?? "", "title": title,
         ])
+    }
+
+    func testPartnerReadsUnconsumedRuleAndUnchangedMoney() async throws {
+        let (api, member, token) = try await context("read", actor: sam)
+        XCTAssertTrue(cancellationVariant)
+        let rule = try await api.recurringRule(token: token, member: member, ruleId: identifier("NEST_QA_RULE"))
+        XCTAssertEqual(rule.rule.configuration.description, title)
+        XCTAssertTrue(rule.rule.isDue(on: rule.today))
+        XCTAssertNil(rule.rule.coveredThrough)
+        let balance = try await api.balance(token: token, member: member)
+        XCTAssertEqual(balance.eventCount, ProcessInfo.processInfo.environment["NEST_QA_EVENT_COUNT"])
+        XCTAssertTrue(balance.members.allSatisfy { $0.centimes.value == 0 })
     }
 
     func testCancelOnlyOwnedRuleKeepingRecordedHistory() async throws {

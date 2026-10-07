@@ -2,7 +2,12 @@ import XCTest
 
 @MainActor
 final class NativeVariableBillLostReplyTests: XCTestCase {
-    private let title = "Nest lost-reply variable bill 20261007"
+    private var cancellationVariant: Bool {
+        ProcessInfo.processInfo.environment["NEST_QA_VARIABLE_REPLY_KIND"] == "cancellation"
+    }
+    private var title: String {
+        cancellationVariant ? "Nest cancelled variable bill 20261007" : "Nest lost-reply variable bill 20261007"
+    }
 
     override func setUp() {
         super.setUp()
@@ -37,7 +42,7 @@ final class NativeVariableBillLostReplyTests: XCTestCase {
             app.staticTexts["Not confirmed yet. Resolve this saved entry before confirming another bill."]
                 .waitForExistence(timeout: 15))
         XCTAssertFalse(app.buttons["Record bill"].exists)
-        let retry = app.buttons["Check and retry"]
+        let retry = app.buttons[cancellationVariant ? "Retry cancellation" : "Check and retry"]
         try reader(app).reveal(retry)
         reader(app).capture(retry, name: "Saved bill discovered without live recurring-rule read")
     }
@@ -55,6 +60,40 @@ final class NativeVariableBillLostReplyTests: XCTestCase {
         try tap(app.navigationBars.buttons.element(boundBy: 0), app: app, keyboard: true)
         try tap(app.buttons["Done"], app: app)
         XCTAssertTrue(app.staticTexts["No bill is due for confirmation on this rule."].waitForExistence(timeout: 20))
+        app.tabBars.firstMatch.buttons["Today"].tap()
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
+    }
+
+    func testCancelPendingEntryRetainsUncertaintyAfterLostReply() throws {
+        XCTAssertTrue(cancellationVariant)
+        let app = try open("cancel_entry")
+        try openSaved(app)
+        try tap(app.buttons["Cancel pending entry"], app: app)
+        let confirm = app.sheets.buttons["Cancel pending entry"].firstMatch
+        XCTAssertTrue(confirm.waitForExistence(timeout: 10))
+        try tap(confirm, app: app, keyboard: true)
+        let retry = app.buttons["Retry cancellation"]
+        XCTAssertTrue(retry.waitForExistence(timeout: 25))
+        try reader(app).reveal(retry)
+        reader(app).capture(retry, name: "Cancellation reply lost, exact request remains unresolved")
+        XCTAssertFalse(app.staticTexts["Pending entry cancelled."].exists)
+        XCTAssertFalse(app.buttons["Record bill"].exists)
+    }
+
+    func testRecoverCancellationAndContinueWithoutRecordingBill() throws {
+        XCTAssertTrue(cancellationVariant)
+        let app = try open("recover_cancel")
+        try openSaved(app)
+        try tap(app.buttons["Retry cancellation"], app: app)
+        let cancelled = app.staticTexts["Pending entry cancelled."]
+        XCTAssertTrue(cancelled.waitForExistence(timeout: 20))
+        try reader(app).reveal(cancelled)
+        reader(app).capture(cancelled, name: "Recovered cancelled entry without an expense")
+        XCTAssertFalse(app.buttons["View recorded expense"].exists)
+        try tap(app.buttons["Continue"], app: app)
+        XCTAssertTrue(app.staticTexts[title].waitForExistence(timeout: 20))
+        XCTAssertFalse(cancelled.exists)
+        XCTAssertTrue(app.buttons["Review bill"].exists)
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
@@ -101,7 +140,7 @@ final class NativeVariableBillLostReplyTests: XCTestCase {
         #else
             throw XCTSkip("Fictional financial UI fixtures are forbidden on phones")
         #endif
-        XCTAssertEqual(env["NEST_QA_POSITIVE_BUDGET"], action == "record" ? "1" : "0")
+        XCTAssertEqual(env["NEST_QA_POSITIVE_BUDGET"], ["record", "cancel_entry"].contains(action) ? "1" : "0")
         XCTAssertEqual(env["NEST_QA_API_ORIGIN"], "https://localhost:4667")
         let app = XCUIApplication(bundleIdentifier: "ch.drrius.nest")
         app.launch()

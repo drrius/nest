@@ -994,3 +994,16 @@ Candidatea00fdad3 now passes routine37608862949/native37608863001. The locally
 verified Today token, queued-chore revocation, guarded failed-motion diagnostic
 and new repair-test increments are being pushed together; their exact-head CI
 remains pending. No beta, source merge, hosted scheduler or production change.
+
+Hosted variable-bill cancellation now has seven passing actual native methods:
+variable-only fixture, Save refused before backend, one cancellation reply dropped,
+offline restart with exact command/flag, exact cancellation retry/Continue, partner
+SDK due-rule/zero-balance read and ordinary owned-rule cleanup. No financial Save
+reaches the backend. One tombstone/zero cycles/zero expenses; all eight protected
+fingerprints preserve67 events/110 allocations/134 ledger rows exactly. An initial
+recovery failure came from a relay forbidding legitimate cancellation retry; it is
+retained, and only recovery resumes after transport correction. All1174 source
+inputs match; signed builds/format/limits pass. Original clients/64 journals/settings/
+privacy restore, relay stops/key removed. Current-source CI, phones, live AI and
+Save/cancel races remain open.
+[Hosted cancellation](../evidence/2026-10-07/swiftui-variable-bill-cancel-reply/README.md).
