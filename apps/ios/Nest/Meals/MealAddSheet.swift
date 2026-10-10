@@ -173,22 +173,23 @@ struct MealAddSheet: View {
         }
     }
 
-    /// The selected recipe couldn't be read, so Save stays off; say why and offer a way back.
+    /// The selected recipe couldn't be read, so Save stays off. The library may have changed since it was listed,
+    /// so the way back is a fresh library, then picking again.
     @ViewBuilder
     private var recipeProblem: some View {
-        if useSaved, let selectedId {
-            switch model.savedRecipe {
-            case .missing:
-                TodayForYouRetry(text: "This meal is no longer saved.") {
-                    self.selectedId = nil
-                    Task { await model.refreshMealLibrary() }
-                }
-            case .failed, .idle:
-                TodayForYouRetry(text: "Couldn’t load this meal.") {
-                    Task { await model.loadSavedRecipe(selectedId) }
-                }
-            default: EmptyView()
+        if useSaved, selectedId != nil, let text = recipeProblemText {
+            TodayForYouRetry(text: text) {
+                selectedId = nil
+                Task { await model.refreshMealLibrary() }
             }
+        }
+    }
+
+    private var recipeProblemText: String? {
+        switch model.savedRecipe {
+        case .missing: "This meal is no longer saved."
+        case .failed, .idle: "Couldn’t load this meal. Refresh and pick it again."
+        default: nil
         }
     }
 
