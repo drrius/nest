@@ -114,7 +114,7 @@ struct TodayChoresSection: View {
 
     private func saved(_ id: UUID) -> Bool {
         guard case .loaded(let state) = model.today else { return false }
-        return state.chores.contains { $0.id == id && $0.state != .open }
+        return state.chores.contains { $0.id == id && ($0.state == .pending || $0.state == .completed) }
     }
 }
 
