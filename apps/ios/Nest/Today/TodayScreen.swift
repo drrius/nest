@@ -10,6 +10,7 @@ struct TodayScreen: View {
     @State private var everyone = false
     @State private var todayRefresh = UUID()
     @State private var clockStart = Date()
+    @State private var shownDate = Date()
     @State private var adding = false
     @State private var route: TodayRoute?
 
@@ -31,6 +32,7 @@ struct TodayScreen: View {
                     .padding(.bottom, 32)
                 }
                 .onChange(of: moment.day) { _, _ in
+                    shownDate = clock.date
                     todayRefresh = UUID()
                     Task { await model.refreshToday() }
                 }
@@ -39,7 +41,7 @@ struct TodayScreen: View {
             }
         }
         .nestRootChrome(
-            "Today", subtitle: (try? TodayMoment(now: clockStart))?.header, session: model, member: member
+            "Today", subtitle: (try? TodayMoment(now: shownDate))?.header, session: model, member: member
         ) {
             Button {
                 adding = true

@@ -9,6 +9,21 @@ struct AppleSignInView: View {
     @State private var message: String?
 
     var body: some View {
+        // Scrolls only when the content can't fit: small phones, large text or a long error.
+        ViewThatFits(in: .vertical) {
+            content
+            ScrollView { content }
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background(
+            RadialGradient(
+                colors: [NestColor.card.opacity(0.7), NestColor.background], center: .init(x: 0.5, y: 0.3),
+                startRadius: 20, endRadius: 420
+            )
+            .ignoresSafeArea())
+    }
+
+    private var content: some View {
         VStack(spacing: 0) {
             Spacer(minLength: 40)
             NestArt(width: 250, left: MemberColor.lake.color, right: MemberColor.clay.color)
@@ -37,13 +52,6 @@ struct AppleSignInView: View {
         .multilineTextAlignment(.center)
         .padding(.horizontal, 24)
         .padding(.bottom, 24)
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(
-            RadialGradient(
-                colors: [NestColor.card.opacity(0.7), NestColor.background], center: .init(x: 0.5, y: 0.3),
-                startRadius: 20, endRadius: 420
-            )
-            .ignoresSafeArea())
     }
 
     private func prepare(_ request: ASAuthorizationAppleIDRequest) {

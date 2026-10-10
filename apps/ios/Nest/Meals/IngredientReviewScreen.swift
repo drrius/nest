@@ -41,7 +41,7 @@ struct IngredientReviewScreen: View {
         .scrollDismissesKeyboard(.interactively)
         .nestScreen()
         .tint(NestColor.accent)
-        .navigationTitle("")
+        .navigationTitle("Review ingredients")
         .navigationBarTitleDisplayMode(.inline)
         .safeAreaInset(edge: .bottom) { bottomBar }
         .toolbar {

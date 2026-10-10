@@ -127,6 +127,30 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertFalse(colours.saving)
     }
 
+    func testASaveWhoseResponseWasLostIsConfirmedByTheNextRead() async throws {
+        var saved: MemberColor?
+        let colours = try model(
+            read: { self.envelope([self.member.userId: (saved ?? .clay, saved == nil ? "1" : "2")]) },
+            save: { colour, _ in
+                saved = colour
+                throw NestAPIFailure.unavailable
+            })
+        await colours.refresh()
+        await colours.choose(.teal)?.value
+        XCTAssertEqual(colours.choice, .teal)
+        XCTAssertNil(colours.notice, "The save landed, so nothing failed")
+    }
+
+    func testThePaletteKnowsYourPartnerBeforeTodayLoads() async throws {
+        let colours = try model(
+            read: { self.envelope([self.partner: (.teal, "1")]) },
+            save: { _, _ in throw NestAPIFailure.unavailable })
+        await colours.refresh()
+        let palette = colours.palette(members: [])
+        XCTAssertEqual(palette.partner, partner)
+        XCTAssertEqual(palette.color(partner), .teal, "The picker can mark Teal as taken")
+    }
+
     func testOfflineSavesRollBackWithoutClaimingAChange() async throws {
         let colours = try model(
             read: { self.envelope([self.member.userId: (.clay, "1")]) },

@@ -194,7 +194,7 @@ struct CalendarScreen: View {
                     "person.2", .groceries, "Busy times only, if you choose", "Sharing is a separate, optional step.")
                 bullet(
                     "calendar.badge.checkmark", .calendar, "Nest never changes your calendar",
-                    "It only reads the calendars you pick.")
+                    "Nest reads the calendars you choose. It does not create, change or delete events.")
             }
             switch model.access {
             case .notRequested:
@@ -204,8 +204,9 @@ struct CalendarScreen: View {
                 .buttonStyle(NestButtonStyle(kind: .primary, fullWidth: true))
                 .disabled(model.requesting)
                 .accessibilityLabel("Allow calendar access")
-                Text("iOS calls this Full Access. Nest uses it only to read.").font(.footnote).foregroundStyle(
-                    NestColor.ink3)
+                Text("iOS calls this Full Access. Nest uses it only to read your calendars.").font(.footnote)
+                    .foregroundStyle(
+                        NestColor.ink3)
             case .denied:
                 Text("Calendar access is off. Meals, chores and money work without it.").foregroundStyle(NestColor.ink2)
                 Button("Open Settings") {

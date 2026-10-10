@@ -167,6 +167,9 @@ struct GroceriesScreen: View {
         }
     }
 
+    /// One saved edit or removal at a time; it must sync or be reviewed before another starts.
+    private var changeSaved: Bool { model.groceryEdit != nil || model.groceryRemove != nil }
+
     private func row(_ local: LocalGrocery) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Button {
@@ -191,17 +194,21 @@ struct GroceriesScreen: View {
                     removalCandidate = local.item
                     showingRemoveConfirmation = true
                 }
+                .disabled(changeSaved)
                 Button("Edit", systemImage: "pencil") { editingItem = local.item }.tint(NestColor.ink2)
+                    .disabled(changeSaved)
             }
         }
         .contextMenu {
             if local.state == .open {
                 Button("Edit", systemImage: "pencil") { editingItem = local.item }
+                    .disabled(changeSaved)
                 Button("Reminder choices", systemImage: "bell") { remindingItem = local.item }
                 Button("Remove", systemImage: "trash", role: .destructive) {
                     removalCandidate = local.item
                     showingRemoveConfirmation = true
                 }
+                .disabled(changeSaved)
             }
         }
     }

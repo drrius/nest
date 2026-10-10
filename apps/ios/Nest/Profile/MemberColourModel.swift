@@ -70,7 +70,8 @@ final class MemberColourModel: ObservableObject {
     func palette(members: [NestMember]) -> MemberPalette {
         var names = [member.userId: member.displayName]
         for other in members { names[other.actorId] = other.displayName }
-        let colors = MemberColorAssignment.resolve(members: Array(names.keys), choices: choices)
+        let ids = Set(names.keys).union(choices.keys)
+        let colors = MemberColorAssignment.resolve(members: Array(ids), choices: choices)
         return MemberPalette(me: member.userId, colors: colors, names: names)
     }
 
@@ -83,13 +84,12 @@ final class MemberColourModel: ObservableObject {
         } catch {
             choices = previous
             saving = false
-            guard (error as? NestAPIFailure) == .conflict else {
-                notice = .failed
-                return
-            }
             await refresh()
+            // A lost response can hide a save that landed; the fresh read is the truth.
+            if choice == colour { return }
             let taken = choices.contains { $0.key != member.userId && $0.value == colour }
-            notice = taken ? .taken : .changedElsewhere
+            let conflict = (error as? NestAPIFailure) == .conflict
+            notice = conflict ? (taken ? .taken : .changedElsewhere) : .failed
         }
     }
 

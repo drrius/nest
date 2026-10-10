@@ -24,7 +24,7 @@ struct MemberPalette: Equatable, Sendable {
         return String(first).uppercased()
     }
 
-    var partner: UUID? { names.keys.first { $0 != me } }
+    var partner: UUID? { colors.keys.first { $0 != me } }
     var partnerName: String { partner.flatMap { names[$0] } ?? "your partner" }
 }
 

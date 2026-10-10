@@ -15,10 +15,12 @@ struct MealWeekDays: View {
     var body: some View {
         let today = (try? TodayMoment(now: .now))?.day
         let days = week.weekStart.days
-        let past = days.filter { today != nil && $0.value < today!.value }
+        let earlier = days.filter { today != nil && $0.value < today!.value }
+        let pastWeek = !days.isEmpty && earlier.count == days.count
+        let past = pastWeek ? [] : earlier
         let upcoming = days.filter { !past.contains($0) }
         VStack(alignment: .leading, spacing: 12) {
-            if openSlots(in: upcoming) > 0 {
+            if !pastWeek && openSlots(in: upcoming) > 0 {
                 NavigationLink {
                     MealProposalScreen(model: model, week: week).id(model.generation)
                 } label: {
