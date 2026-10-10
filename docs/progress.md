@@ -370,7 +370,9 @@ case ran separately on the owned Mac simulator without skips; its CI skip does
 not replace that proof. Hosted session-schema source `72c930fa` passes
 [routine CI 37677592966](https://github.com/drrius/nest/actions/runs/37677592966).
 
-The agent verification skill `.agents/skills/verify-nest/` was added on 10 October and is
+The agent verification skill `.agents/skills/verify-nest/` was merged on 10 October in
+PR #87 (`32fe8198`). A separate agent that did not write the code verified it first and
+posted PASS+NOTES (run `20261010-151836-01fe`). The skill is
 linked from `.claude/skills/`. It builds the working `apps/ios` tree on the Mac in a fresh
 `Nest Verify <run>` simulator that it owns, and drives the app with the pinned
 agent-device 0.21.15 over SSH. It then pulls evidence into the ignored
