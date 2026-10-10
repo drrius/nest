@@ -21,16 +21,16 @@ Money shows the household's CHF balance between the two partners and their recen
 
 Preconditions:
 
-- The baseline preconditions hold, and `nest-verify signin $RUN member` has printed `SIGNED-IN`. The synthetic household has both members, so Money is available.
+- The baseline preconditions hold, and `$V signin $RUN member` has printed `SIGNED-IN`. The synthetic household has both members, so Money is available.
 - Postings are permanent. Post only when the change under test needs it, at CHF 1.00 or less, with a run-prefixed description. Read-only recipes have no such limit.
 
-- **Balance.** Open Money. Run `nest-verify ad $RUN press 'role=button label="Money"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-money"'`. The snapshot shows `All square, without the guesswork.`, a balance headline such as `You’re settled up` with a `CHF` amount, and `Across your shared expenses`. Wait for that last text, because the balance loads from the network.
-- **History.** Run `press 'label="View full history"' --settle`. Rows carry identifiers of the form `money-event-<uuid>`. Back out with `back --settle`.
-- **Expense, review only.** Run `press 'label="Add expense"' --settle`, fill the amount and description by their refs, run `keyboard dismiss`, then run `press 'label="Review expense"' --settle`. The review shows `expense-review-amount`, `expense-review-payer` and one `expense-share-<member uuid>` per member. Stop here, and leave through `Edit` and Back, unless the change needs a posting.
-- **Expense, posting.** Only when the change needs a posting. Run `press 'label="Save expense"' --settle`, then `wait text "Expense recorded."`. Prove it with a second read: the new row in `View full history` and the changed balance.
-- **Payment, review only.** Run `press 'label="Record a payment"' --settle`, fill the amount, then `press 'label="Review payment"' --settle`. Stop before `Record payment` unless the change needs a payment.
-- **Approvals.** Run `press 'label="Your financial approvals"' --settle`. The screen lists `Waiting for your review` or `No pending financial approvals.` Opening an item is read-only. The decision buttons are not.
-- **Proof.** Run `nest-verify ad $RUN snapshot > evidence/verify-nest/$RUN/money.snapshot.txt` and `nest-verify ad $RUN screenshot money.png`, then `nest-verify pull $RUN`.
+- **Balance.** Open Money. Run `$V ad $RUN press 'role=button label="Money"' --settle` and then `$V ad $RUN wait 'id="tab-header-money"'`. The snapshot shows `All square, without the guesswork.`, a balance headline such as `You’re settled up` with a `CHF` amount, and `Across your shared expenses`. Wait for that last text, because the balance loads from the network.
+- **History.** Run `$V ad $RUN press 'label="View full history"' --settle`. Rows carry identifiers of the form `money-event-<uuid>`. Back out with `$V ad $RUN back --settle`.
+- **Expense, review only.** Run `$V ad $RUN press 'label="Add expense"' --settle`, fill the amount and description by their refs, run `$V ad $RUN keyboard dismiss`, then run `$V ad $RUN press 'label="Review expense"' --settle`. The review shows `expense-review-amount`, `expense-review-payer` and one `expense-share-<member uuid>` per member. Stop here, and leave through `Edit` and Back, unless the change needs a posting.
+- **Expense, posting.** Only when the change needs a posting. Run `$V ad $RUN press 'label="Save expense"' --settle`, then `$V ad $RUN wait text "Expense recorded."`. Prove it with a second read: the new row in `View full history` and the changed balance.
+- **Payment, review only.** Run `$V ad $RUN press 'label="Record a payment"' --settle`, fill the amount, then `$V ad $RUN press 'label="Review payment"' --settle`. Stop before `Record payment` unless the change needs a payment.
+- **Approvals.** Run `$V ad $RUN press 'label="Your financial approvals"' --settle`. The screen lists `Waiting for your review` or `No pending financial approvals.` Opening an item is read-only. The decision buttons are not.
+- **Proof.** Run `$V ad $RUN snapshot > evidence/verify-nest/$RUN/money.snapshot.txt` and `$V ad $RUN screenshot money.png`, then `$V pull $RUN`.
 
 ## Gotchas
 

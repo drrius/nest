@@ -1,0 +1,8 @@
+{
+  "name": "nest-verify-tools",
+  "private": true,
+  "description": "Pinned Mac-side driver for the verify-nest skill. Installed with npm ci from package-lock.json.",
+  "dependencies": {
+    "agent-device": "0.21.15"
+  }
+}

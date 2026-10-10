@@ -21,22 +21,22 @@ Calendar shows the member's own iPhone calendars for a chosen day, after they gr
 
 Preconditions:
 
-- The baseline preconditions hold, and `nest-verify signin $RUN member` has printed `SIGNED-IN`.
-- The simulator's calendar permission is in the state under test. A fresh simulator starts unrequested. Grant it ahead of time with `ssh` to the Mac and `xcrun simctl privacy <udid> grant calendar ch.drrius.nest`, or revoke it with `revoke`. Use the `sim=` UDID from `nest-verify doctor $RUN`.
+- The baseline preconditions hold, and `$V signin $RUN member` has printed `SIGNED-IN`.
+- The simulator's calendar permission is in the state under test. A fresh simulator starts unrequested. Grant it ahead of time with `ssh` to the Mac and `xcrun simctl privacy <udid> grant calendar ch.drrius.nest`, or revoke it with `revoke`. Use the `sim=` UDID from `$V doctor $RUN`.
 - Busy sharing publishes the synthetic member's busy times to the backend. Turn it off again before cleanup.
 
-- **Root.** Open Calendar. Run `nest-verify ad $RUN press 'role=button label="Calendar"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-calendar"'`. The snapshot shows `Your day, with room for everything.`
-- **Access.** From the unrequested state, run `nest-verify ad $RUN press 'label="Allow calendar access"' --settle`. iOS shows its calendar permission alert. Run `nest-verify ad $RUN alert accept`. The card `Your day, in one place` is replaced by `On your calendar` and `Choose calendars`.
-- **Denied.** After a revoke, relaunch with `nest-verify ad $RUN open ch.drrius.nest --relaunch`. The card reads `Calendar access is off` and offers `Open Settings`.
-- **Choose calendars.** Run `press 'label="Choose calendars"' --settle`. The `Your calendars` sheet lists per-calendar toggles. Toggle one, then press `Done`. Only events from the selected calendars appear under `On your calendar`.
-- **Day.** Run `press 'label="Choose day"' --settle`, pick a date, then press `Done`. The day card's events follow the chosen day.
-- **Layers.** Run `press 'label="Show household chores"' --settle`. The toggle's value flips. Relaunch to confirm it stayed.
-- **Busy sharing.** Run `press 'label="Busy sharing"' --settle`, then `press 'label="Enable busy sharing"'` and `press 'label="Enable sharing"'`. Afterwards `Publish selected busy times` and `Turn off and remove shared busy times` are offered.
-- **Proof.** Run `nest-verify ad $RUN snapshot > evidence/verify-nest/$RUN/calendar.snapshot.txt` and `nest-verify ad $RUN screenshot calendar.png`, then `nest-verify pull $RUN`.
+- **Root.** Open Calendar. Run `$V ad $RUN press 'role=button label="Calendar"' --settle` and then `$V ad $RUN wait 'id="tab-header-calendar"'`. The snapshot shows `Your day, with room for everything.`
+- **Access.** From the unrequested state, run `$V ad $RUN press 'label="Allow calendar access"' --settle`. iOS shows its calendar permission alert. Run `$V ad $RUN alert accept`. The card `Your day, in one place` is replaced by `On your calendar` and `Choose calendars`.
+- **Denied.** After a revoke, relaunch with `$V ad $RUN open ch.drrius.nest --relaunch`. The card reads `Calendar access is off` and offers `Open Settings`.
+- **Choose calendars.** Run `$V ad $RUN press 'label="Choose calendars"' --settle`. The `Your calendars` sheet lists per-calendar toggles. Toggle one, then press `Done`. Only events from the selected calendars appear under `On your calendar`.
+- **Day.** Run `$V ad $RUN press 'label="Choose day"' --settle`, pick a date, then press `Done`. The day card's events follow the chosen day.
+- **Layers.** Run `$V ad $RUN press 'label="Show household chores"' --settle`. The toggle's value flips. Relaunch to confirm it stayed.
+- **Busy sharing.** Run `$V ad $RUN press 'label="Busy sharing"' --settle`, then `$V ad $RUN press 'label="Enable busy sharing"'` and `$V ad $RUN press 'label="Enable sharing"'`. Afterwards `Publish selected busy times` and `Turn off and remove shared busy times` are offered.
+- **Proof.** Run `$V ad $RUN snapshot > evidence/verify-nest/$RUN/calendar.snapshot.txt` and `$V ad $RUN screenshot calendar.png`, then `$V pull $RUN`.
 
 ## Gotchas
 
 - A fresh simulator has no user calendars, so `No events in your selected calendars for this day.` is expected. Add events in the simulator's Calendar app if the proof needs them.
-- The permission alert belongs to iOS, not Nest. Use `alert accept` or `alert dismiss`, not a label press.
+- The permission alert belongs to iOS, not Nest. Use `$V ad $RUN alert accept` or `$V ad $RUN alert dismiss`, not a label press.
 - Simulator calendar checks are not acceptance for real calendars on both phones. Record them as simulator evidence only.
 - Partner availability shows `Availability is unknown` until Test Sam shares busy times. To change that, sign in as `partner` on a run, enable busy sharing and publish. Turn it off again afterwards.

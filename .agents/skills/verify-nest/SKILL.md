@@ -31,7 +31,7 @@ RUN=$($V new)               # e.g. 20261010-121615-5ace
 $V launch "$RUN"            # about 2 min. Allow 15 for a slow first build.
 ```
 
-`launch` does six things. It records the local `HEAD` and a digest of the exact `apps/ios` tree, including uncommitted and untracked files. It creates and boots an iPhone 17 Pro simulator on iOS 26.3. It streams the tree to the Mac. It builds the `Nest` scheme, Debug, ad hoc signed, against the public test config `~/Nest/nest-local.xcconfig`. It installs the app. Finally it opens the app in agent-device session `nest-verify-<run>`.
+`launch` does six things. It takes one snapshot of the exact `apps/ios` tree, including uncommitted and untracked files. It records the local `HEAD` and the snapshot's digest, and creates the local `evidence/verify-nest/<run>/`. It creates and boots an iPhone 17 Pro simulator on iOS 26.3. It streams that same snapshot to the Mac. It builds the `Nest` scheme, Debug, ad hoc signed, against the public test config `~/Nest/nest-local.xcconfig`. It installs the app. Finally it opens the app in agent-device session `nest-verify-<run>`.
 
 It is ready when the last line reads `READY run=<run> sim=<udid>`. A build failure exits `4` and prints the compiler errors. The full log is `evidence/build.log` on the Mac, and it survives cleanup. Run the tool call in the background or with a long timeout.
 
@@ -94,7 +94,7 @@ $V ad "$RUN" open ch.drrius.nest --relaunch               # cold relaunch, same 
 $V ad "$RUN" help workflow                                # the driver's full reference
 ```
 
-`ad` runs the pinned agent-device `0.21.15` on the Mac with the run's session. It adds `--platform ios --udid <sim>` to `open`. It runs from the Mac evidence directory, so `screenshot name.png` lands in the evidence. It also appends the command and its output to `drive.log`.
+`ad` runs agent-device `0.21.15` on the Mac with the run's session. The Mac installs it with `npm ci` from the committed [tools/package-lock.json](tools/package-lock.json), into a cache keyed by that lockfile's hash. It adds `--platform ios --udid <sim>` to `open`. It runs from the Mac evidence directory, so `screenshot name.png` lands in the evidence. It also appends the command and its output to `drive.log`.
 
 Use selectors such as `label="Meals"`, `id="tab-header-meals"` and `role=button label="Save"`, or the `@e` refs from the latest snapshot. Do not use coordinates. System alerts, such as Apple's sign-in alert, appear in snapshots. `alert` reads one, and `alert accept` or `alert dismiss` answers it. The handles for each tab are in the feature files.
 
@@ -127,8 +127,8 @@ $V list                    # expect: no run directories, no Nest Verify simulato
 
 Cleanup works in this order:
 
-1. It pulls the evidence first.
-2. It closes the run's agent-device session and stops the daemon bound to the run's state directory.
+1. It pulls the evidence first. If the copy fails, cleanup stops, keeps the Mac run and exits nonzero. Rerun cleanup once the cause is fixed.
+2. It closes the run's agent-device session and stops the daemon bound to the run's state directory. If the daemon does not stop, cleanup stops and keeps the run with its daemon state.
 3. It shuts down and deletes the simulator, but only if it is named `Nest Verify <run>`. An adopted simulator is shut down and kept.
 4. It removes `/private/tmp/nest-verify-<run>/`.
 5. It lists the evidence that remains.

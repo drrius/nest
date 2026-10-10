@@ -37,7 +37,9 @@ async function request(url, { method = "GET", body, headers }) {
   const response = await fetch(url, init);
   const text = await response.text();
   if (!response.ok) {
-    throw new Error(`${method} ${new URL(url).pathname}: HTTP ${response.status} ${text.slice(0, 200)}`);
+    throw new Error(
+      `${method} ${new URL(url).pathname}: HTTP ${response.status} ${text.slice(0, 200)}`,
+    );
   }
   return text ? JSON.parse(text) : null;
 }
@@ -81,9 +83,12 @@ async function ensureHousehold(userIds) {
         body: { name: HOUSEHOLD, timezone: "Europe/Zurich", currency: "CHF" },
       })
     )[0];
-  const members = await admin(`/rest/v1/household_members?household_id=eq.${household.id}&select=user_id`);
+  const members = await admin(
+    `/rest/v1/household_members?household_id=eq.${household.id}&select=user_id`,
+  );
   const strangers = members.filter((row) => !userIds.includes(row.user_id));
-  if (strangers.length) throw new Error(`${HOUSEHOLD} has members outside the verification accounts`);
+  if (strangers.length)
+    throw new Error(`${HOUSEHOLD} has members outside the verification accounts`);
   return household.id;
 }
 
@@ -112,7 +117,8 @@ async function verifySignIn(account) {
   if (member.userId !== account.actorId || member.householdId !== account.householdId) {
     throw new Error(`${account.name}: /v1/session returned a different member`);
   }
-  if (member.displayName !== account.name) throw new Error(`${account.name}: unexpected display name`);
+  if (member.displayName !== account.name)
+    throw new Error(`${account.name}: unexpected display name`);
 }
 
 const passwords = savedPasswords();
@@ -136,6 +142,8 @@ chmodSync(output, 0o600);
 for (const account of Object.values(accounts)) await verifySignIn(account);
 console.log(`household ${householdId} (${HOUSEHOLD})`);
 for (const [role, account] of Object.entries(accounts)) {
-  console.log(`${role} ${account.actorId} ${account.name} <${account.email}> signs in and verifies`);
+  console.log(
+    `${role} ${account.actorId} ${account.name} <${account.email}> signs in and verifies`,
+  );
 }
 console.log(`credentials: ${output} (mode 600)`);

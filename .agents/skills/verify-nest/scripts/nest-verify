@@ -5,15 +5,16 @@ set -euo pipefail
 
 MAC=${NEST_MAC:-dariussibarium@dariuss-macbook-pro.tail2aa91d.ts.net}
 ROOT=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
-AGENT_DEVICE_VERSION=0.21.15
+TOOLS=$(cd "$(dirname "$0")/../tools" && pwd)
+TOOLS_LOCK=$(sha256sum "$TOOLS/package-lock.json" | cut -c1-12)
 
 usage() {
   cat <<'EOF'
 usage: nest-verify <command> [run-id] [args]
   new                      print a fresh run id
-  launch <run> [--sim UDID] build the working tree, install it, open the app (5-10 min)
+  launch <run> [--sim UDID] build the working tree, install it, open the app (about 2 min)
   doctor <run>             read-only health check of a run
-  signin <run> <role>      sign the app in as the synthetic member or partner (2-4 min)
+  signin <run> <role>      sign the app in as the synthetic member or partner (under 1 min)
   ad <run> <args...>       run agent-device against the run's simulator session
   shot <run> <name>        simctl screenshot into the run's evidence/<name>.png
   data <run> [label]       list the app's data container and offline SQLite row counts
@@ -34,7 +35,8 @@ export PATH="$(ls -d "$HOME"/.nvm/versions/node/v22.*/bin 2>/dev/null | tail -1)
 export AGENT_DEVICE_STATE_DIR=$R/agent-device AGENT_DEVICE_NO_UPDATE_NOTIFIER=1
 export AGENT_DEVICE_IOS_RUNNER_DERIVED_PATH=$CACHE/agent-device-runner
 export AGENT_DEVICE_DAEMON_IDLE_TIMEOUT_MS=1800000
-AD_BIN=$CACHE/tools/node_modules/agent-device/bin/agent-device.mjs
+AD_HOME=$CACHE/agent-device-$AD_LOCK
+AD_BIN=$AD_HOME/node_modules/agent-device/bin/agent-device.mjs
 load() {
   [[ -f $R/run.env ]] || { echo "no run $RUN on $(hostname)" >&2; exit 3; }
   source "$R/run.env"
@@ -60,7 +62,7 @@ forward_env() { # local overrides that the Mac-side scripts read
 }
 
 remote() { # remote <run> <script>; staged to a file so no step can swallow the script from stdin
-  { printf 'set -euo pipefail\nRUN=%q\n%s\n%s\n%s\n' "$1" "$(forward_env)" "$REMOTE_LIB" "$2"; } |
+  { printf 'set -euo pipefail\nRUN=%q\nAD_LOCK=%q\n%s\n%s\n%s\n' "$1" "$TOOLS_LOCK" "$(forward_env)" "$REMOTE_LIB" "$2"; } |
     ssh -o BatchMode=yes -o ConnectTimeout=10 "$MAC" \
       'f=$(mktemp -t nest-verify); cat > "$f"; bash "$f" < /dev/null; s=$?; rm -f "$f"; exit $s'
 }
@@ -80,19 +82,31 @@ source_tar() {
 
 source_digest() { source_tar | sha256sum | cut -c1-64; }
 
+tools_script() { # npm ci from the committed lockfile, once per lockfile revision
+  printf '%s\n' '[[ -f $AD_HOME/.installed ]] && exit 0' 'mkdir -p "$AD_HOME"'
+  printf "cat > \"\$AD_HOME/package.json\" <<'NEST_TOOLS'\n%s\nNEST_TOOLS\n" "$(cat "$TOOLS/package.json")"
+  printf "cat > \"\$AD_HOME/package-lock.json\" <<'NEST_TOOLS'\n%s\nNEST_TOOLS\n" "$(cat "$TOOLS/package-lock.json")"
+  printf '%s\n' 'npm ci --prefix "$AD_HOME" --no-audit --no-fund --silent > /dev/null' 'touch "$AD_HOME/.installed"'
+}
+
 cmd_new() { printf '%s-%04x\n' "$(date +%Y%m%d-%H%M%S)" "$RANDOM"; }
 
 cmd_launch() {
   local run=$1 sim=""
   shift
   [[ ${1:-} == --sim ]] && sim=${2:?--sim needs a simulator UDID}
+  mkdir -p "$(local_evidence "$run")"
+  SNAPSHOT=$(mktemp)
+  trap 'rm -f "$SNAPSHOT"' EXIT
+  source_tar > "$SNAPSHOT"
   echo "preparing run $run on $MAC"
+  remote tools "$(tools_script)"
   remote "$run" "SIM_ARG=$(printf %q "$sim")
-COMMIT=$(git -C "$ROOT" rev-parse HEAD) SOURCE_DIGEST=$(source_digest) AD_VERSION=$AGENT_DEVICE_VERSION
+COMMIT=$(git -C "$ROOT" rev-parse HEAD) SOURCE_DIGEST=$(sha256sum < "$SNAPSHOT" | cut -c1-64)
 $PREPARE_SCRIPT"
   echo "transferring apps/ios ($(git -C "$ROOT" status --porcelain -- apps/ios | wc -l) uncommitted paths)"
-  source_tar | ssh -o BatchMode=yes "$MAC" "tar -xf - -C /private/tmp/nest-verify-$run/src"
-  echo "building (fresh DerivedData, several minutes)"
+  ssh -o BatchMode=yes "$MAC" "tar -xf - -C /private/tmp/nest-verify-$run/src" < "$SNAPSHOT"
+  echo "building (fresh DerivedData)"
   remote "$run" "$BUILD_SCRIPT"
 }
 
@@ -111,9 +125,6 @@ fi
 printf 'SIM=%q\nOWNED=%q\nCOMMIT=%q\nSOURCE_DIGEST=%q\nSTARTED=%q\n' \
   "$SIM" "$OWNED" "$COMMIT" "$SOURCE_DIGEST" "$(date -u +%FT%TZ)" > "$R/run.env"
 cp "$R/run.env" "$R/evidence/run.env"
-if [[ ! -f $AD_BIN ]] || [[ $(node -p "require('$CACHE/tools/node_modules/agent-device/package.json').version") != "$AD_VERSION" ]]; then
-  npm install --prefix "$CACHE/tools" --no-audit --no-fund --silent "agent-device@$AD_VERSION" > /dev/null
-fi
 echo "simulator $SIM (owned=$OWNED)"
 EOF
 
@@ -262,17 +273,16 @@ cmd_data() {
 $DATA_SCRIPT"
 }
 
-cmd_pull() {
-  local run=$1 dest
+cmd_pull() { # 0 copied, 3 nothing on the Mac to copy, 1 the copy failed
+  local run=$1 dest found=0
   dest=$(local_evidence "$run")
+  ssh -o BatchMode=yes -o ConnectTimeout=10 "$MAC" "test -d /private/tmp/nest-verify-$run/evidence" || found=$?
+  [[ $found != 1 ]] || { echo "no Mac evidence for $run"; return 3; }
+  [[ $found == 0 ]] || { echo "cannot reach $MAC" >&2; return 1; }
   mkdir -p "$dest"
-  if ! ssh -o BatchMode=yes -o ConnectTimeout=10 "$MAC" \
-    "test -d /private/tmp/nest-verify-$run/evidence &&
-      COPYFILE_DISABLE=1 tar --no-mac-metadata --no-xattrs -C /private/tmp/nest-verify-$run/evidence -cf - ." |
-    tar -xf - -C "$dest" 2> /dev/null; then
-    rmdir "$dest" 2> /dev/null || true
-    return 1
-  fi
+  ssh -o BatchMode=yes -o ConnectTimeout=10 "$MAC" \
+    "COPYFILE_DISABLE=1 tar --no-mac-metadata --no-xattrs -C /private/tmp/nest-verify-$run/evidence -cf - ." |
+    tar -xf - -C "$dest" || { echo "pull failed for $run" >&2; return 1; }
   echo "evidence: $dest"
 }
 
@@ -285,7 +295,11 @@ fi
 load
 if [[ -f $AD_BIN ]]; then
   node "$AD_BIN" close --session "nest-verify-$RUN" > /dev/null 2>&1 || true
-  node "$AD_BIN" daemon stop --state-dir "$R/agent-device" --clean > /dev/null 2>&1 || true
+  if ! node "$AD_BIN" daemon stop --state-dir "$R/agent-device" --clean > "$R/daemon-stop.txt" 2>&1; then
+    cat "$R/daemon-stop.txt" >&2
+    echo "kept $R: the run's agent-device daemon did not stop" >&2
+    exit 7
+  fi
 fi
 name=$(sim_field "$SIM" name)
 if [[ $OWNED == 1 && $name == "Nest Verify $RUN" ]]; then
@@ -302,8 +316,12 @@ echo "removed $R"
 EOF
 
 cmd_cleanup() {
-  local run=$1
-  cmd_pull "$run" || echo "warning: no evidence pulled for $run" >&2
+  local run=$1 pulled=0
+  cmd_pull "$run" || pulled=$?
+  if [[ $pulled == 1 ]]; then
+    echo "kept the Mac run because its evidence was not copied; fix the cause and rerun cleanup" >&2
+    return 1
+  fi
   remote "$run" "$CLEANUP_SCRIPT"
   if [[ -d $(local_evidence "$run") ]]; then
     echo "kept evidence:"
@@ -320,7 +338,7 @@ NEST_ACCOUNTS_JS"
 cmd_list() {
   remote list 'ls -d /private/tmp/nest-verify-* 2>/dev/null || echo "no run directories"
 xcrun simctl list devices | grep "Nest Verify" || echo "no Nest Verify simulators"
-pgrep -fl "nest-verify/tools/node_modules/agent-device" | cut -c1-160 || echo "no run daemons"'
+pgrep -fl "nest-verify/agent-device-" | cut -c1-160 || echo "no run daemons"'
 }
 
 main() {
