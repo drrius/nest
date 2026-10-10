@@ -33,7 +33,7 @@ $V launch "$RUN"            # about 2 min. Allow 15 for a slow first build.
 
 `launch` does six things. It takes one snapshot of the exact `apps/ios` tree, including uncommitted and untracked files. It records the local `HEAD` and the snapshot's digest, and creates the local `evidence/verify-nest/<run>/`. It creates and boots an iPhone 17 Pro simulator on iOS 26.3. It streams that same snapshot to the Mac. It builds the `Nest` scheme, Debug, ad hoc signed, against the public test config `~/Nest/nest-local.xcconfig`. It installs the app. Finally it opens the app in agent-device session `nest-verify-<run>`.
 
-It is ready when the last line reads `READY run=<run> sim=<udid>`. A build failure exits `4` and prints the compiler errors. The full log is `evidence/build.log` on the Mac, and it survives cleanup. Run the tool call in the background or with a long timeout.
+It is ready when the last line reads `READY run=<run> sim=<udid>`. A build failure exits `4` and prints the compiler errors. The full log is `evidence/build.log` in the run. Cleanup copies it to `evidence/verify-nest/<run>/` before it deletes the Mac run. Run the tool call in the background or with a long timeout.
 
 Options:
 
@@ -80,7 +80,7 @@ $V signin "$RUN" member      # Test Alex. Use partner for Test Sam. Under a minu
 
 A fresh simulator then shows the first-use sheet. `Get started` dismisses it, and that choice is saved on the device only. Switching roles on the same simulator works: run `signin` again with the other role. The fixture refuses a simulator whose saved session belongs to anyone other than the two verification accounts.
 
-The credentials live only on the Mac, in `~/Library/Application Support/nest-verify/accounts.json` with mode 600. They are never printed, committed or put in evidence. `$V accounts` creates or refreshes the household and both users through the Supabase admin API. It reads the server key from `~/Nest/supabase-secret.txt`, writes the credentials file, and proves that each account signs in and that `/v1/session` returns it as a member. It is safe to rerun: existing users and the household are reused, and passwords change only when the credentials file is missing. It refuses to continue if the household contains anyone else. You only need it if `signin` reports that no accounts exist. Never delete the household or its users during a run. Removing them takes an owner-approved, guarded deletion like `tools/maintenance/remove-fictional-household.sql`.
+The credentials live only on the Mac, in `~/Library/Application Support/nest-verify/accounts.json` with mode 600. They are never printed, committed or put in evidence. `$V accounts` creates or refreshes the household and both users through the Supabase admin API. It reads the server key from `~/Nest/supabase-secret.txt`, writes the credentials file, and proves that each account signs in and that `/v1/session` returns it as a member. It is safe to rerun: existing users and the household are reused. A saved password is kept while it still signs in, and a missing or rejected one is replaced. It refuses to continue if the household contains anyone else. You only need it if `signin` reports that no accounts exist. Never delete the household or its users during a run. Removing them takes an owner-approved, guarded deletion like `tools/maintenance/remove-fictional-household.sql`.
 
 ## Drive
 
@@ -111,7 +111,7 @@ $V pull "$RUN"                                # copy Mac evidence to evidence/ve
 
 A proof meets these standards:
 
-- **Real user path.** Drive the shipping app through its UI. Do not use test-only hooks, injected sessions or database edits. There are no mocks. The app talks to the hosted backend.
+- **Real user path.** Drive the shipping app through its UI. The one exception is `$V signin`, which installs a synthetic account's session before driving starts. Everything after it goes through the UI. Do not use any other test-only hook, injected session or database edit. There are no mocks. The app talks to the hosted backend.
 - **Action and result.** `drive.log` records every action with its diff. Capture the state before and after, not only the final screen.
 - **Side effects.** For local effects, run `$V data` before and after. Journal tables print their rows by status, such as `chore_operations 3 acknowledged=1 pending=2`, which separates queued, synced and conflicting changes. Some commands delete their row once synced, as grocery adds do, so an empty journal also means synced. For backend effects, take a second read in the app: reopen, refresh or relaunch. Without the owner's go-ahead for a mutation, stop at the review step and say so.
 - **Identity.** `run.env` in the evidence records the source commit, the tree digest and the simulator. Quote them with the result.
