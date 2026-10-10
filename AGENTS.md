@@ -17,3 +17,17 @@ Read docs/native-rewrite/product-and-design.md, architecture-audit.md and implem
 ## Native implementation and distribution
 
 Use SwiftUI, Apple's native controls, semantic accessibility and the repository's Swift formatting/source-limit checks. Expo/React Native packages and React AI wrappers are forbidden in the server and test fixtures. Native builds, signing and simulator checks run on the authorized Mac. tools/distribution contains only the existing EAS project/IPA-submission metadata; it has no SDK, runtime dependencies or cloud-build profile. Existing EAS service skills may be used for authorized credential reads and private IPA submissions, never to restore an Expo client. Current user authorization and scope take precedence over historical instructions.
+
+## Cursor Cloud specific instructions
+
+Node.js 24, pnpm 11.21.0, PostgreSQL 18.6, PostgREST 16.3, and Deno 2.9.6 are installed on the default PATH. Repository bootstrap is `pnpm install --frozen-lockfile`. Xcode and the iOS Simulator are not available here, so `apps/ios` SwiftUI checks stay on macOS CI.
+
+Disposable database and HTTP journeys create their own cluster. They do not use a running Postgres service:
+
+```sh
+export NEST_TEST_PG_BIN="$(pg_config --bindir)"
+export NEST_TEST_POSTGREST_BIN="$(command -v postgrest)"
+pnpm test:integration:core
+```
+
+`pnpm --filter @nest/api dev` reads `apps/api/.env` and exits unless that file has an isolated Supabase URL and publishable key. Do not point it at production.
