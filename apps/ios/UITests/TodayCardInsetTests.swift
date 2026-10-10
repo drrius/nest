@@ -26,7 +26,8 @@ final class TodayCardInsetTests: XCTestCase {
         reader.capture(link, name: "Today meal card shared20pt page and20pt inner insets")
         link.tap()
         XCTAssertTrue(app.navigationBars["Meals"].waitForExistence(timeout: 15))
-        app.navigationBars.buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(app.tabBars.firstMatch.buttons["Meals"].isSelected)
+        app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
 }

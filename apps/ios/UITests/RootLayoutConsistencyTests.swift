@@ -26,8 +26,13 @@ final class RootLayoutConsistencyTests: XCTestCase {
         done.tap()
         XCTAssertTrue(choose.waitForExistence(timeout: 15))
         XCTAssertEqual(choose.value as? String, day)
+        let layers = app.buttons["Calendars and layers"]
+        XCTAssertTrue(layers.isHittable)
+        layers.tap()
+        let layerNavigation = app.navigationBars["Calendars and layers"]
+        XCTAssertTrue(layerNavigation.waitForExistence(timeout: 15))
         let calendars = app.buttons["Choose calendars"].firstMatch
-        if calendars.exists {
+        if calendars.isEnabled {
             XCTAssertTrue(calendars.isHittable)
             XCTAssertGreaterThanOrEqual(calendars.frame.height + 0.000_001, 44)
             calendars.tap()
@@ -36,6 +41,8 @@ final class RootLayoutConsistencyTests: XCTestCase {
             XCTAssertTrue(close.isHittable)
             XCTAssertGreaterThanOrEqual(close.frame.height + 0.000_001, 44)
             close.tap()
+        } else {
+            layerNavigation.buttons["Done"].tap()
         }
         let capture = XCTAttachment(screenshot: app.screenshot())
         capture.name = "Calendar after unchanged picker review"

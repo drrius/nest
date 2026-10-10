@@ -39,7 +39,7 @@ final class NativePausedRecurringReminderTests: XCTestCase {
         app.launch()
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
-        if app.staticTexts["Welcome, Test Alex."].exists { app.buttons["Get started"].tap() }
+        if app.staticTexts["Hi Test Alex. How do you want to start?"].exists { app.buttons["Get started"].tap() }
         tabs.buttons["Today"].tap()
         app.buttons["Profile and preferences"].tap()
         XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 15))

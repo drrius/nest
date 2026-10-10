@@ -14,9 +14,9 @@ final class FictionalAccountSignOutTests: XCTestCase {
         app.launch()
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
-        if app.staticTexts["Welcome, Test Sam."].waitForExistence(timeout: 10) {
+        if app.staticTexts["Hi Test Sam. How do you want to start?"].waitForExistence(timeout: 10) {
             app.buttons["Get started"].tap()
-            XCTAssertFalse(app.staticTexts["Welcome, Test Sam."].exists)
+            XCTAssertFalse(app.staticTexts["Hi Test Sam. How do you want to start?"].exists)
         }
         tabs.buttons["Today"].tap()
         app.buttons["Profile and preferences"].tap()

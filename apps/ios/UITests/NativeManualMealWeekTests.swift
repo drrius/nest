@@ -38,29 +38,35 @@ final class NativeManualMealWeekTests: XCTestCase {
         revealOnBoard(add, in: app)
         XCTAssertTrue(add.isHittable)
         add.tap()
-        XCTAssertTrue(app.navigationBars["Add meal"].waitForExistence(timeout: 15))
+        let input = app.textFields["Search or type a meal"]
+        XCTAssertTrue(input.waitForExistence(timeout: 15))
+        let navigation = app.navigationBars.matching(NSPredicate(format: "identifier ENDSWITH %@", " dinner"))
+            .firstMatch
+        XCTAssertTrue(navigation.waitForExistence(timeout: 15))
         let title = date == "2026-10-19" ? fixture.title : "\(fixture.title) · \(date)"
+        input.tap()
+        input.typeText(title)
+        XCTAssertEqual(input.value as? String, title)
         if date == "2026-10-19" {
-            app.segmentedControls.buttons["Saved meal"].tap()
-            let recipe = app.buttons[fixture.title]
+            let recipe = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", fixture.title)).firstMatch
             XCTAssertTrue(recipe.waitForExistence(timeout: 30))
             recipe.tap()
-            let instructions = app.staticTexts["Simmer the fictional ingredients."]
-            revealInSheet(instructions, in: app)
-            XCTAssertTrue(instructions.isHittable)
+            let selected = XCTNSPredicateExpectation(
+                predicate: NSPredicate(format: "value == %@", "Selected"), object: recipe)
+            XCTAssertEqual(XCTWaiter.wait(for: [selected], timeout: 30), .completed)
         } else {
-            let input = app.textFields["What are you having?"]
-            XCTAssertTrue(input.isHittable)
-            input.tap()
-            input.typeText(title)
-            XCTAssertEqual(input.value as? String, title)
+            let add = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Add “\(title)”")).firstMatch
+            XCTAssertTrue(add.waitForExistence(timeout: 15))
+            add.tap()
         }
-        let save = app.navigationBars["Add meal"].buttons["Save"]
+        let save = navigation.buttons["Save"]
+        let ready = XCTNSPredicateExpectation(predicate: NSPredicate(format: "enabled == true"), object: save)
+        XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 30), .completed)
         XCTAssertTrue(save.isEnabled && save.isHittable)
         XCTAssertGreaterThanOrEqual(save.frame.height + 0.000_001, 44)
         save.tap()
         let dismissed = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "exists == false"), object: app.navigationBars["Add meal"])
+            predicate: NSPredicate(format: "exists == false"), object: input)
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
         let meal = app.buttons["\(date), Dinner: \(title), recipe details"]
         revealOnBoard(meal, in: app)
@@ -80,13 +86,13 @@ final class NativeManualMealWeekTests: XCTestCase {
     }
 
     private func openOwnedWeek(in app: XCUIApplication) {
-        let heading = app.staticTexts["19 Oct – 25 Oct"]
+        let heading = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "19 Oct – 25 Oct")).firstMatch
         for _ in 0..<4 {
             if heading.exists { return }
             let next = app.buttons["Next week"]
             XCTAssertTrue(next.isHittable)
             let previous = app.staticTexts.matching(
-                NSPredicate(format: "label MATCHES %@", "[0-9]+ Oct – [0-9]+ Oct")
+                NSPredicate(format: "label MATCHES %@", ".*[0-9]+ Oct – [0-9]+ Oct.*")
             ).firstMatch.label
             next.tap()
             let changed = XCTNSPredicateExpectation(
@@ -108,15 +114,5 @@ final class NativeManualMealWeekTests: XCTestCase {
             }
         }
         XCTFail("The exact fixture meal control is not visible")
-    }
-
-    private func revealInSheet(_ element: XCUIElement, in app: XCUIApplication) {
-        for _ in 0..<20 {
-            if element.isHittable && element.frame.minY >= 80 && element.frame.maxY <= app.frame.maxY - 60 { return }
-            let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.65))
-            let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.35))
-            start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
-        }
-        XCTFail("Saved recipe instructions are not readable before confirming the meal")
     }
 }

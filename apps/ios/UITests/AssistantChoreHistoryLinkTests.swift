@@ -31,7 +31,7 @@ final class AssistantChoreHistoryLinkTests: XCTestCase {
         try reading.requireTarget(row)
         row.tap()
         XCTAssertTrue(app.navigationBars["Conversation"].waitForExistence(timeout: 20))
-        try reading.read("Private to you")
+        try reading.read("Only you can see this chat")
         try reading.read(provenance)
         try reading.read(imported)
         try reading.read("This chore was already completed.")

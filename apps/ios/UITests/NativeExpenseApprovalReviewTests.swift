@@ -67,6 +67,11 @@ final class NativeExpenseApprovalReviewTests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.tabBars.firstMatch.buttons["Money"].tap()
         let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
+        let more = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Older saved changes")).firstMatch
+        try reader.reveal(more)
+        try reader.requireTarget(more)
+        more.tap()
+        XCTAssertTrue(app.navigationBars["Older saved changes"].waitForExistence(timeout: 15))
         let approvals = app.buttons["Your financial approvals"]
         try reader.reveal(approvals)
         try reader.requireTarget(approvals)
@@ -92,6 +97,11 @@ final class NativeExpenseApprovalReviewTests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.tabBars.firstMatch.buttons["Money"].tap()
         let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
+        let more = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Older saved changes")).firstMatch
+        try reader.reveal(more)
+        try reader.requireTarget(more)
+        more.tap()
+        XCTAssertTrue(app.navigationBars["Older saved changes"].waitForExistence(timeout: 15))
         let approvals = app.buttons["Your financial approvals"]
         try reader.reveal(approvals)
         try reader.requireTarget(approvals)

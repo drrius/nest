@@ -5,7 +5,7 @@ final class NativeLiveTypographyTests: XCTestCase {
     private let directory = URL(fileURLWithPath: "/private/tmp/nest-live-typography-control-after1-20261006")
     private let labels = [
         "iOS calls this Full Access. Nest uses it only to read your calendars.",
-        "Allow calendar access", "Your partner’s availability",
+        "Allow calendar access", "Test Sam’s busy times",
     ]
 
     func testCalendarTextRespondsWithoutRelaunch() throws {

@@ -26,7 +26,7 @@ final class NativeSettlementReviewTests: XCTestCase {
         try reader.reveal(edit)
         try reader.requireTarget(edit)
         edit.tap()
-        let fullBalance = reader.element("CHF 0.01")
+        let fullBalance = reader.element("Test Sam pays you, CHF 0.01")
         XCTAssertTrue(fullBalance.waitForExistence(timeout: 15))
         reader.capture(fullBalance, name: "Payment edit current balance before scrolling")
         XCTAssertTrue(try reader.viewport().contains(fullBalance.frame), "Edit starts at its current balance")

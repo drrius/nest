@@ -14,11 +14,13 @@ struct NativeOwnedMealWeek {
             app.scrollViews.firstMatch.swipeDown(velocity: .slow)
         }
         for _ in 0..<4 {
-            if app.staticTexts["19 Oct – 25 Oct"].exists { return }
+            if app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "19 Oct – 25 Oct")).firstMatch.exists {
+                return
+            }
             let next = app.buttons["Next week"]
             XCTAssertTrue(next.isHittable)
             let previous = app.staticTexts.matching(
-                NSPredicate(format: "label MATCHES %@", "[0-9]+ Oct – [0-9]+ Oct")
+                NSPredicate(format: "label MATCHES %@", ".*[0-9]+ Oct – [0-9]+ Oct.*")
             ).firstMatch.label
             next.tap()
             let changed = XCTNSPredicateExpectation(
@@ -52,7 +54,7 @@ struct NativeOwnedMealWeek {
         reveal(review)
         review.tap()
         XCTAssertTrue(app.navigationBars["Review ingredients"].waitForExistence(timeout: 15))
-        XCTAssertTrue(app.staticTexts["Week of 2026-10-19"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.staticTexts["What do you need?"].waitForExistence(timeout: 30))
     }
 
     func finishIngredientReview() {
