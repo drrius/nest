@@ -38,9 +38,9 @@ while read -r key expected; do
 done <<'EXPECTATIONS'
 NEST_PUSH_ENABLED true
 NEST_APNS_ENVIRONMENT production
-NEST_API_URL https://*
-NEST_SUPABASE_URL https://*
-NEST_SUPABASE_PUBLISHABLE_KEY sb_publishable_*
+NEST_API_URL https://?*
+NEST_SUPABASE_URL https://?*
+NEST_SUPABASE_PUBLISHABLE_KEY sb_publishable_?*
 EXPECTATIONS
 
-python3 "$CI_PRIMARY_REPOSITORY_PATH/scripts/verify-native-push-signing.py" "$app" --testflight
+python3 "$(dirname "$0")/verify-native-push-signing.py" "$app" --testflight
