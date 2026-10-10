@@ -51,7 +51,6 @@ test("household colours are read for the caller's household only and returned wi
 test("colour reads reject foreign, duplicate, unknown or incomplete rows", async () => {
   const cases = [
     [[{ ...mine, householdId: id(20) }], "0-0/1"],
-    [[mine, { ...partner, colour: "plum" }], "0-1/2"],
     [[mine, { ...mine, colour: "teal" }], "0-1/2"],
     [[{ ...mine, colour: "green" }], "0-0/1"],
     [[{ ...mine, revision: "0" }], "0-0/1"],
@@ -66,6 +65,16 @@ test("colour reads reject foreign, duplicate, unknown or incomplete rows", async
       execute(service.read(), () => Promise.resolve(response(rows, range))),
       { code: "unavailable" },
     );
+});
+
+test("a colour shared after a member is restored is returned for the app to resolve", async () => {
+  const shared = await execute(service.read(), () =>
+    Promise.resolve(response([mine, { ...partner, colour: "plum" }], "0-1/2")),
+  );
+  assert.deepEqual(
+    shared.map((row) => row.colour),
+    ["plum", "plum"],
+  );
 });
 
 test("saves send only the caller's household and reject a mismatched receipt", async () => {

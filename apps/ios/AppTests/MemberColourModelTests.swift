@@ -60,6 +60,31 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertEqual(relaunched.choices[partner], .teal)
     }
 
+    func testARefreshThatStartedBeforeASaveCannotUndoIt() async throws {
+        var reads = 0
+        var release: CheckedContinuation<Void, Never>?
+        var expected: [String] = []
+        let colours = try model(
+            read: {
+                reads += 1
+                if reads == 2 { await withCheckedContinuation { release = $0 } }
+                return self.envelope([self.member.userId: (.plum, "1")])
+            },
+            save: { colour, revision in
+                expected.append(revision)
+                return self.receipt(colour, revision: String(Int(revision)! + 1))
+            })
+        await colours.refresh()
+        let stale = Task { await colours.refresh() }
+        while release == nil { await Task.yield() }
+        await colours.choose(.rose)?.value
+        release?.resume()
+        await stale.value
+        XCTAssertEqual(colours.choice, .rose, "The older read lands after the save and is ignored")
+        await colours.choose(.slate)?.value
+        XCTAssertEqual(expected, ["1", "2"], "The next save uses the saved revision, not the stale one")
+    }
+
     func testAColourYourPartnerJustTookRollsBackAndSaysSo() async throws {
         var partnerColour = MemberColor.teal
         let colours = try model(

@@ -72,6 +72,7 @@ struct TodayHandoverCard: View {
         guard working == nil else { return }
         working = transfer.requestId
         defer { working = nil }
+        var staged = false
         do {
             let context = try model.routineCreateContext()
             guard try await model.savedChoreTransfer(context) == nil else {
@@ -79,6 +80,7 @@ struct TodayHandoverCard: View {
                 return
             }
             try await model.stageTransferResponse(transfer, action: action, context: context)
+            staged = true
             let saved = try await model.retryChoreTransfer(context)
             guard saved.receipt != nil, !saved.conflicted else {
                 notice = "Couldn’t finish this handover · review it"
@@ -87,7 +89,7 @@ struct TodayHandoverCard: View {
             withAnimation(.spring(response: 0.4, dampingFraction: 0.85)) { notice = nil }
             try await model.finishChoreTransfer(context, operation: saved.command.operationId)
         } catch {
-            notice = "Saved on this iPhone · review to retry"
+            notice = staged ? "Saved on this iPhone · review to retry" : "Couldn’t respond · refresh and try again"
         }
     }
 }

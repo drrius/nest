@@ -39,7 +39,6 @@ export function memberColours(config: IdentityConfig, caller: AuthorizedCaller) 
         if (
           document.range !== range ||
           new Set(rows.map((row) => row.actorId)).size !== rows.length ||
-          new Set(rows.map((row) => row.colour)).size !== rows.length ||
           rows.some((row) => row.householdId !== householdId)
         )
           return yield* new ApiFailure({ code: "unavailable" });

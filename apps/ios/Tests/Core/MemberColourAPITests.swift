@@ -47,17 +47,11 @@ final class MemberColourAPITests: XCTestCase {
         XCTAssertEqual(result.revision(of: UUID()), "0")
     }
 
-    func testForeignDuplicateOrUnknownColoursAreRejected() async throws {
+    func testForeignDuplicateActorOrUnknownColoursAreRejected() async throws {
         let me = member.userId.uuidString
         let partner = partner.uuidString
         let cases: [(colours: [[String: String]], actor: UUID?)] = [
             ([["actorId": me, "colour": "plum", "revision": "1"]], UUID()),
-            (
-                [
-                    ["actorId": me, "colour": "plum", "revision": "1"],
-                    ["actorId": partner, "colour": "plum", "revision": "1"],
-                ], nil
-            ),
             (
                 [
                     ["actorId": me, "colour": "plum", "revision": "1"],
@@ -74,6 +68,16 @@ final class MemberColourAPITests: XCTestCase {
                 XCTFail("Accepted \(colours)")
             } catch {}
         }
+        let shared = try api { [member = self.member] _ in
+            try Self.envelope(
+                [
+                    ["actorId": me, "colour": "plum", "revision": "1"],
+                    ["actorId": partner, "colour": "plum", "revision": "1"],
+                ], member: member)
+        }
+        let restored = try await shared.memberColours(token: "token", member: member)
+        let shown = MemberColorAssignment.resolve(members: [member.userId, self.partner], choices: restored.choices)
+        XCTAssertEqual(Set(shown.values).count, 2, "A colour shared after a member is restored still shows distinct")
     }
 
     func testSaveSendsOnlyTheColourAndChecksTheReceipt() async throws {

@@ -27,7 +27,7 @@ const read = (actor) =>
 const member = (actor) => `household_id='${id(10)}' and user_id='${id(actor)}'`;
 const rejoin = (actor) =>
   db.sql(
-    `insert into public.household_members(household_id,user_id,display_name) values('${id(10)}','${id(actor)}','Fixture') on conflict do nothing`,
+    `insert into public.household_members(household_id,user_id,display_name) select '${id(10)}','${id(actor)}','Fixture' where not exists(select 1 from public.household_members where ${member(actor)})`,
   );
 
 test("a member's save and exact retry commit once and both partners read it", () => {
@@ -122,6 +122,16 @@ test("a revoked member's colour is hidden, frees the colour and cannot be replay
   assert.throws(() => save(2, { colour: "'indigo'" }), /Not authorized/);
   assert.equal(save(1, { colour: "'indigo'" }).colour, "indigo");
   assert.equal(db.sql("select count(*) from public.nest_member_colours"), "2");
+  rejoin(2);
+  assert.equal(
+    read(1),
+    `${id(1)}:indigo,${id(2)}:indigo`,
+    "restored members may share; the app resolves it",
+  );
+  assert.throws(
+    () => save(2, { operation: 101, expected: 1, colour: "'indigo'" }),
+    /Member colour taken/,
+  );
 });
 
 test("partners racing for the same colour: exactly one wins", async () => {

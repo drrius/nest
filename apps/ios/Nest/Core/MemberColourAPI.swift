@@ -14,13 +14,14 @@ struct MemberColoursEnvelope: Codable, Equatable, Sendable {
 
     func validated(member: VerifiedMember) throws -> Self {
         guard version == 1, actorId == member.userId, householdId == member.householdId, colours.count <= 2,
-            Set(colours.map(\.actorId)).count == colours.count, Set(colours.map(\.colour)).count == colours.count,
+            Set(colours.map(\.actorId)).count == colours.count,
             colours.allSatisfy({ MealRevision.valid($0.revision) && $0.revision != "0" })
         else { throw NestAPIFailure.contract }
         return self
     }
 
-    /// Each member's saved choice; anyone missing keeps the shared default.
+    /// Each member's saved choice; anyone missing keeps the shared default. Two members can share a saved colour
+    /// after one is removed and restored, so display goes through `MemberColorAssignment`, which keeps them distinct.
     var choices: [UUID: MemberColor] {
         Dictionary(uniqueKeysWithValues: colours.map { ($0.actorId, $0.colour) })
     }
