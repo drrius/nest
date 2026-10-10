@@ -47,6 +47,12 @@ test("actual scheduler HTTP requires its separate secret and returns aggregate-o
     400,
   );
   assert.equal(calls, 0);
+  const emptyObject = await fetch(url, {
+    method: "POST",
+    headers: { Authorization: `Bearer ${secret}` },
+    body: "{}",
+  });
+  assert.equal(emptyObject.status, 200);
   const response = await fetch(url, {
     method: "POST",
     headers: { Authorization: `Bearer ${secret}` },
@@ -72,7 +78,7 @@ test("actual scheduler HTTP requires its separate secret and returns aggregate-o
     failed: 0,
     complete: true,
   });
-  assert.equal(calls, 1);
+  assert.equal(calls, 2);
 });
 
 test("failed cycles and individual failures return finite unavailable responses", async () => {

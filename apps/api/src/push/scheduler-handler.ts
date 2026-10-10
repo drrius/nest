@@ -79,7 +79,15 @@ function emptyBody(request: Request) {
     if (request.body === null) return true;
     const reader = request.body.getReader();
     try {
-      return (await reader.read()).done === true;
+      const bytes: number[] = [];
+      while (bytes.length <= 2) {
+        const chunk = await reader.read();
+        if (chunk.done)
+          return bytes.length === 0 || (bytes.length === 2 && bytes[0] === 123 && bytes[1] === 125);
+        if (chunk.value.length + bytes.length > 2) return false;
+        bytes.push(...chunk.value);
+      }
+      return false;
     } finally {
       await reader.cancel();
       reader.releaseLock();
