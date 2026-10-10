@@ -61,12 +61,12 @@ struct CheckCircle: View {
         ZStack {
             shape.strokeBorder(NestColor.fill2, lineWidth: 2)
             shape.fill(NestColor.accent)
-                .scaleEffect(isOn ? 1 : 0.2)
+                .scaleEffect(isOn || reduceMotion ? 1 : 0.2)
                 .opacity(isOn ? 1 : 0)
             Image(systemName: pending ? "clock" : "checkmark")
                 .font(.system(size: size * 0.5, weight: .bold))
                 .foregroundStyle(NestColor.onAccent)
-                .scaleEffect(isOn ? 1 : 0.4)
+                .scaleEffect(isOn || reduceMotion ? 1 : 0.4)
                 .opacity(isOn ? 1 : 0)
         }
         .frame(width: size, height: size)

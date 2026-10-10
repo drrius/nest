@@ -234,5 +234,7 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertEqual(colours.choice, .clay)
         XCTAssertEqual(colours.notice, .failed)
         XCTAssertNil(colours.choose(.clay), "Choosing the current colour does nothing")
+        await colours.refresh()
+        XCTAssertNil(colours.notice, "A successful read clears the earlier error")
     }
 }

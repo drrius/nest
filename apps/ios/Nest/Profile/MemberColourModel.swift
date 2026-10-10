@@ -61,6 +61,7 @@ final class MemberColourModel: ObservableObject {
         latest += 1
         let ticket = latest
         guard let sync, !saving, let envelope = try? await sync.read(), latest == ticket else { return }
+        notice = nil
         choices = envelope.choices
         revision = envelope.revision(of: member.userId)
         store()

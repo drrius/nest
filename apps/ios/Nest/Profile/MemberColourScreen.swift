@@ -6,6 +6,7 @@ struct MemberColourScreen: View {
     @Environment(\.memberPalette) private var palette
     @State private var ticks = 0
     @Environment(\.dynamicTypeSize) private var textSize
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         ScrollView {
@@ -87,7 +88,9 @@ struct MemberColourScreen: View {
         let taken = colour == partnerColour
         let selected = colour == mine
         return Button {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) { _ = colours.choose(colour) }
+            withAnimation(reduceMotion ? .easeOut(duration: 0.15) : .spring(response: 0.35, dampingFraction: 0.6)) {
+                _ = colours.choose(colour)
+            }
             ticks += 1
         } label: {
             VStack(spacing: 6) {
@@ -95,7 +98,7 @@ struct MemberColourScreen: View {
                     Circle().fill(colour.color).frame(width: 56, height: 56)
                     if selected {
                         Image(systemName: "checkmark").font(.title3.weight(.bold)).foregroundStyle(colour.onColor)
-                            .transition(.scale.combined(with: .opacity))
+                            .transition(reduceMotion ? .opacity : .scale.combined(with: .opacity))
                     } else if taken {
                         Text(palette.initial(palette.partner)).font(.system(.title3, design: .rounded, weight: .bold))
                             .foregroundStyle(colour.onColor)
