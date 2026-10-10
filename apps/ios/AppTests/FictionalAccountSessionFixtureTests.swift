@@ -5,48 +5,51 @@ import XCTest
 @testable import Nest
 
 /// Operator fixture login, never a shipping password-sign-in feature or Apple-auth evidence.
+/// Installs a synthetic `example.invalid` member's session in this simulator's Keychain so the
+/// app opens signed in. Agent verification runs drive it through `nest-verify signin`.
 @MainActor
 final class FictionalAccountSessionFixtureTests: XCTestCase {
-    private let household = UUID(uuidString: "be772ffd-3ab5-41d5-8438-647a79a553da")!
-    private let actor = UUID(uuidString: "791f7261-6c9d-4061-9c8a-57aa6e0b0200")!
-    private let partner = UUID(uuidString: "e5f80cfd-b69a-4aa0-a267-75784e943676")!
-
     func testInstallFictionalPartnerSession() async throws {
-        try await install(role: "partner", expectedActor: partner, name: "Test Sam")
+        try await install(role: "partner")
     }
 
-    func testRestoreFictionalMemberSession() async throws {
-        try await install(role: "member", expectedActor: actor, name: "Test Alex")
+    func testInstallFictionalMemberSession() async throws {
+        try await install(role: "member")
     }
 
-    private func install(role: String, expectedActor: UUID, name: String) async throws {
+    private func install(role: String) async throws {
         let configuration = try requireFixture(role)
         let path = try XCTUnwrap(ProcessInfo.processInfo.environment["NEST_TEST_FICTIONAL_LOGIN_FILE"])
-        let credentials = try JSONDecoder().decode(
+        let accounts = try JSONDecoder().decode(
             [String: Credentials].self, from: Data(contentsOf: URL(filePath: path)))
-        let credential = try XCTUnwrap(credentials[role])
-        guard credential.actorId == expectedActor, credential.householdId == household,
-            !credential.email.isEmpty, !credential.password.isEmpty
+        let credential = try XCTUnwrap(accounts[role])
+        guard accounts.values.allSatisfy({ $0.email.hasSuffix("@example.invalid") }),
+            Set(accounts.values.map(\.householdId)) == [credential.householdId],
+            !credential.password.isEmpty
         else { throw FixtureFailure.identity }
         let directory = FileManager.default.temporaryDirectory.appendingPathComponent(UUID().uuidString)
         try FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
         addTeardownBlock { [directory] in try FileManager.default.removeItem(at: directory) }
         let offline = try ChoreOfflineStore(url: directory.appendingPathComponent("fixture.sqlite"))
         let auth = try NestAuth(configuration: configuration, offline: offline)
-        if let previous = await auth.cachedSession(), previous.userId != actor && previous.userId != partner {
+        let fixtureActors = Set(accounts.values.map(\.actorId))
+        if let previous = await auth.cachedSession(), !fixtureActors.contains(previous.userId) {
             throw FixtureFailure.nonFixtureSession
         }
         do {
             let result = try await auth.client.signIn(email: credential.email, password: credential.password)
-            guard result.user.id == expectedActor else { throw FixtureFailure.identity }
+            guard result.user.id == credential.actorId else { throw FixtureFailure.identity }
             try requireSavedSession(result, configuration: configuration, stage: .persistenceAfterSignIn)
             let http = try NestHTTP(baseURL: configuration.apiURL)
-            let member = try await MealAPI(http: http).verify(token: result.accessToken, expectedActor: expectedActor)
-            guard member.householdId == household, member.displayName == name else { throw FixtureFailure.identity }
+            let member = try await MealAPI(http: http).verify(
+                token: result.accessToken, expectedActor: credential.actorId)
+            guard member.householdId == credential.householdId, member.displayName == credential.name else {
+                throw FixtureFailure.identity
+            }
             try requireSavedSession(result, configuration: configuration, stage: .persistenceAfterVerification)
             let restored = try NestAuth(configuration: configuration, offline: offline)
             let recovered = try await restored.session()
-            XCTAssertEqual(recovered.userId, expectedActor)
+            XCTAssertEqual(recovered.userId, credential.actorId)
             XCTAssertTrue(recovered.accessToken == result.accessToken, "Reopening must retain the verified session.")
         } catch let failure as FixtureFailure {
             throw failure
@@ -66,6 +69,7 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
         else { throw stage }
     }
 
+    /// Runs only on the one simulator the operator names, against the hosted test origins.
     private func requireFixture(_ role: String) throws -> NestConfiguration {
         #if targetEnvironment(simulator)
             let environment = ProcessInfo.processInfo.environment
@@ -73,12 +77,8 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
                 throw XCTSkip("Requires explicit fictional-account fixture setup.")
             }
             let configuration = try NestConfiguration.fromBundle()
-            let ownedSimulators = [
-                "EE945B62-C56C-4AB9-A09E-C4B44F9CF03C",
-                "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
-                "CA0BCEDE-A297-493A-8921-9E31F8B65783",
-            ]
-            guard let simulator = environment["SIMULATOR_UDID"], ownedSimulators.contains(simulator),
+            guard let simulator = environment["SIMULATOR_UDID"],
+                simulator == environment["NEST_TEST_FICTIONAL_SIMULATOR"],
                 configuration.apiURL.absoluteString == "https://nest-test-api-drrius-projects.vercel.app",
                 configuration.supabaseURL.absoluteString == "https://tkjixmujjoustdiedfmw.supabase.co",
                 !configuration.pushEnabled
@@ -94,6 +94,7 @@ final class FictionalAccountSessionFixtureTests: XCTestCase {
         let householdId: UUID
         let email: String
         let password: String
+        let name: String
     }
 
     private enum FixtureFailure: Error {
