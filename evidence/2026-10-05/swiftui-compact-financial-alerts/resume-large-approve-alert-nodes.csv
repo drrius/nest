@@ -1,5 +1,0 @@
-ref,type,label,value,x,y,width,height,hittable,enabled
-e9,StaticText,"""Resume rule?""",null,57.5,289.5,260,20.5,True,True
-e10,StaticText,"""No backfill. No payment.""",null,57.5,317,260,18,True,True
-e16,Button,"""Cancel""",null,43.5,355.5,140,48,True,True
-e17,Button,"""Resume""",null,191.5,355.5,140,48,True,True

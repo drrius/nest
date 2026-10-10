@@ -20,3 +20,4 @@ credentials.json
 *.mobileprovision
 *.p8
 __pycache__/
+/evidence/

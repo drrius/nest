@@ -1,7 +1,0 @@
-{
-  "count": 811,
-  "sha256": "f90a14bf0a8ef7315a522f3a2eef49270bf3145321766c3e1d211c0c13f88b4c",
-  "allInputsMatchAfterExecution": true,
-  "inventoryParts": ["source-inputs-1.csv", "source-inputs-2.csv", "source-inputs-3.csv"],
-  "sourceState": "e3d644e5 plus test-only Form navigation corrections; shipping client unchanged from frozen build18"
-}

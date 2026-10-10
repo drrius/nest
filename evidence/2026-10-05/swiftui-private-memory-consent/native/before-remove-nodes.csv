@@ -1,5 +1,0 @@
-ref,type,label,value,x,y,width,height,enabled,hittable
-e9,StaticText,Remove memory?,,48,112,279,125.5,True,True
-e10,StaticText,History is kept.,,48,234.5,279,116.5,True,True
-e16,Button,Remove,,34,378,307,125.5,True,True
-e17,Button,Cancel,,34,511.5,307,125.5,True,True

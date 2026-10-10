@@ -1,6 +1,0 @@
-{
-  "allBodiesMatchOriginalCommand": true,
-  "onlyOriginalOperation": true,
-  "forwardedStatuses": [409],
-  "pendingClearedByUI": true
-}

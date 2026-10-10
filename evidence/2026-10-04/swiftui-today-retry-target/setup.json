@@ -1,9 +1,0 @@
-{
-  "nativeInputs": 1039,
-  "sourceMismatches": 0,
-  "strictFormatPassed": true,
-  "actualSigningPassed": true,
-  "focusedNativeTestsPassed": true,
-  "onlyReadOnlySnapshotCanBeForwarded": true,
-  "dataAndKeychainPreserved": true
-}

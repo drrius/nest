@@ -4,7 +4,7 @@ The available private candidate is **0.1.0/build 23**, frozen source
 `9ecfdca2c66c98dae0df9d906a088c56a42580dc`. Its exact-source routine and native CI,
 signed Mac archive/export and copied IPA hash checks pass. One private submission
 finished on 7 October; Apple confirms build 23 VALID, IN_BETA_TESTING and unexpired.
-[Release evidence](../../evidence/2026-10-07/swiftui-build23/README.md).
+Release evidence (historical artifact removed).
 Partner tester access and physical-phone acceptance remain unverified. It uses
 **nest-test**, separate from Household OS production. Production balances/history
 are not copied into this app.

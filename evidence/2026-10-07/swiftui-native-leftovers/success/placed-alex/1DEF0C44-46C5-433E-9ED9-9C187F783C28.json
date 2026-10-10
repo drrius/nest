@@ -1,7 +1,0 @@
-[
-  { "status": 200, "path": "\/v1\/session" },
-  { "status": 200, "path": "\/v1\/meals\/week" },
-  { "status": 200, "path": "\/v1\/meals\/week" },
-  { "status": 200, "path": "\/v1\/meals\/planned-recipe" },
-  { "status": 200, "path": "\/v1\/meals\/planned-recipe" }
-]

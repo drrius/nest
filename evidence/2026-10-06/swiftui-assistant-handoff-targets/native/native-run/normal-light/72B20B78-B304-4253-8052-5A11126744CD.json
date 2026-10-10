@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [36, 312, 303, 58],
-  "hittable": true,
-  "label": "Review ingredients",
-  "viewport": [0, 74, 375, 510]
-}

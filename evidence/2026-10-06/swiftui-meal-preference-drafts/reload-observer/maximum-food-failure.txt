@@ -1,1 +1,0 @@
-773:/tmp/nest-current-qa-82a/apps/ios/UITests/MealPreferenceDraftTests.swift:142: error: -[NestAccessibilityTests.MealPreferenceDraftTests testFoodBackProtectsAnInvalidUnsentDraft] : failed - Meal preference control is not fully visible

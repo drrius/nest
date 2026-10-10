@@ -24,7 +24,7 @@ Earlier dated entries below retain their historical counts and verification boun
 
 ## Live AI check and rollback — 30 September 2026
 
-Temporary nonsecret Preview settings selected `google/gemini-3-flash` with explicit `vercel-oidc`. Two real Swift read-only assistant checks failed with interrupted turns and no tool results; sanitized diagnostics report Gateway HTTP403. A separate synthetic 32-token/no-retry probe confirms valid-card eligibility is still required, with credits/usage 0/0. Temporary capped keys were revoked and existing key IDs preserved. See [sanitized evidence](../../evidence/2026-09-30/swiftui-live-assistant/README.md).
+Temporary nonsecret Preview settings selected `google/gemini-3-flash` with explicit `vercel-oidc`. Two real Swift read-only assistant checks failed with interrupted turns and no tool results; sanitized diagnostics report Gateway HTTP403. A separate synthetic 32-token/no-retry probe confirms valid-card eligibility is still required, with credits/usage 0/0. Temporary capped keys were revoked and existing key IDs preserved. See sanitized evidence (historical artifact removed).
 
 The stable API now again points to the prior working `dpl_AXFV8bWxhygAfd7D3QQyi65hXtrZ` Preview. `NEST_AI_AUTH` was removed from Preview; the selected model remains but cannot enable AI alone. Both temporary AI-enabled Previews were removed after restoring the alias. A real member read verifies assistant `available:false`; financial history/hash remain unchanged. Live AI and planning are unverified. No secret download, purchase, production change or top-up occurred.
 
@@ -34,7 +34,7 @@ The stable API now again points to the prior working `dpl_AXFV8bWxhygAfd7D3QQyi6
 (`native_receipt_legacy_cleanup_owner`) applies source
 `20261004134604_native_receipt_legacy_cleanup_owner.sql` only to `nest-test`.
 The source checksum is recorded in the manifest; hosted function bodies/ACLs match
-and complete financial/attachment digests remain unchanged. [Evidence](../../evidence/2026-10-04/legacy-receipt-cleanup/README.md).
+and complete financial/attachment digests remain unchanged. Evidence (historical artifact removed).
 The current source manifest contains55 legacy and249 native inputs. Historical
 batch counts below describe the earlier installation.
 
@@ -145,7 +145,7 @@ receipts and history are retained. Seven focused local tests,21 full-chain paren
 checks and ten real Auth/PostgREST negative probes pass, with complete52-event
 finance, attachments and routine-history digests unchanged. Exact-source routine
 and deep CI pass c5469baf; hosted advisors remain61 INFO/81 privileged WARN/one
-leaked-password WARN. [Evidence and remediation links](../../evidence/2026-10-04/legacy-completion-date-boundaries/README.md).
+leaked-password WARN. Evidence and remediation links (historical artifact removed).
 No successful hosted completion, native run or production change is claimed here.
 
 The adjacent retained reschedule RPC is now guarded by source migration
@@ -153,6 +153,6 @@ The adjacent retained reschedule RPC is now guarded by source migration
 version20261004151736. Manifest55/251,11 focused database tests,305-migration
 rehearsal/31 parent-date checks and ten live negative Auth/PostgREST probes pass,
 with exact body/ACL and unchanged full finance/attachments/routine-history digests.
-Valid future reschedules and old replies remain supported. [Evidence](../../evidence/2026-10-04/legacy-reschedule-date-boundaries/README.md).
+Valid future reschedules and old replies remain supported. Evidence (historical artifact removed).
 Corrected routine37212616501 and source deep37212413167 pass, with23 core/50
 conflicts/1,239 database cases and no failures/skips. No native or production change.

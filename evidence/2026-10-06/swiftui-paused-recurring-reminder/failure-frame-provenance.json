@@ -1,9 +1,0 @@
-{
-  "sourceRecording": "7C0439A2-694A-4017-B9EA-6FB42CC47889.mp4",
-  "privateRecordingSha256": "cad7a65995fdd2c7a1a4d40f974fdce4c7f07e9597ef8c2ea884aa5c2d3acbf8",
-  "recordingDurationSeconds": 76.458333,
-  "extractedFrameSeconds": 75,
-  "artifact": "initial/maximum_dark/failure-video-75s.png",
-  "diagnosis": "The opening viewport is occupied by the introductory paragraph. The rule row is not yet revealed; the original observer waits for its virtualized accessibility node before scrolling. No reminder control was exercised in this MAX attempt.",
-  "originalFailure": "NativePausedRecurringReminderTests.swift:54 row.waitForExistence(timeout:30)"
-}

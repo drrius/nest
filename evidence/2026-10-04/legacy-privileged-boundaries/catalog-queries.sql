@@ -1,3 +1,0 @@
-select n.nspname as schema,p.proname as name,p.oid::regprocedure::text as signature,pg_get_functiondef(p.oid) as definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname in ('public','private') and p.prosecdef and has_function_privilege('authenticated',p.oid,'EXECUTE') order by n.nspname,p.proname,p.oid::regprocedure::text;
-
-select n.nspname as schema,p.proname as name,p.oid::regprocedure::text as signature,pg_get_functiondef(p.oid) as definition from pg_proc p join pg_namespace n on n.oid=p.pronamespace where n.nspname='private' and p.proname='require_calendar_lease';

@@ -1,8 +1,0 @@
-{
-  "source": "apps/ios/UITests/AssistantFinancialHistoryMaximumReading.swift",
-  "sourceSha256": "73ab3acb3891fc07e1ca35faa13bed775dbad76026f2f69e1e40a889d4671bf7",
-  "exactExtractedMethodsSha256": "977523f550c0fff9597f0b180166f5ba60957df481187b4a730d354813c7c8b4",
-  "methodBodiesCopiedWithoutReimplementation": true,
-  "nativeUIExecuted": false,
-  "SDKOrAPIExecuted": false
-}

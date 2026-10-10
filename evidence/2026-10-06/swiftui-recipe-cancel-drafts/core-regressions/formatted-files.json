@@ -1,7 +1,0 @@
-[
-  "Nest/Meals/RecipeCreateSheet.swift",
-  "Nest/Meals/RecipeEditSheet.swift",
-  "Nest/Meals/MealLibraryScreen.swift",
-  "Nest/Core/RecipeEditDraft.swift",
-  "Tests/Core/RecipeEditDraftTests.swift"
-]

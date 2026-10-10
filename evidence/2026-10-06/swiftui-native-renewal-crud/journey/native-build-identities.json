@@ -1,9 +1,0 @@
-{
-  "xcode": "Xcode 27.0\nBuild version 27A266a",
-  "binarySHA256": {
-    "sdk/Nest.app/Nest": "6160d6cd1ae593de1289395d2314ec973adf44e1a2d0cc9ce7e8abba6cd80489",
-    "ui/Nest.app/Nest": "377b562b76722f7a6ee942d3f7e22b875a3f5ad9c5965726538026ebc9f75cc5",
-    "ui/NestAccessibilityTests-Runner.app/PlugIns/NestAccessibilityTests.xctest/NestAccessibilityTests": "7ecbd4bf7af7c64aeaa289e6ebb9b389f2a19ea3c67f22302ce6500965c9e963"
-  },
-  "sdkNestAndAppTestSourcesUnchangedSince479410ce": true
-}

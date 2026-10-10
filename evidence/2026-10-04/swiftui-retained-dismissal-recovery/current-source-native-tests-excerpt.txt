@@ -1,3 +1,0 @@
-	 Executed 403 tests, with 11 tests skipped and 0 failures (0 unexpected) in 39.440 (39.590) seconds
-	 Executed 403 tests, with 11 tests skipped and 0 failures (0 unexpected) in 39.440 (39.591) seconds
-** TEST SUCCEEDED **

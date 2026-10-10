@@ -1,6 +1,0 @@
-{
-  "count": 818,
-  "inventoryParts": ["source-inputs-1.csv", "source-inputs-2.csv", "source-inputs-3.csv"],
-  "allInputsMatchAfterExecution": true,
-  "sourceCommit": "99ca6898223e1d988847b4d2f509a2cca5e548b4"
-}

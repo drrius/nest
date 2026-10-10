@@ -1,8 +1,0 @@
-{
-  "detail": "Contrast failed for SwiftUI.AccessibilityNode",
-  "frame": [38, 584.5, 299, 44],
-  "label": "Open Calendar",
-  "summary": "Contrast failed",
-  "tabBarFrame": [0, 584, 375, 83],
-  "type": "Optional(__C.XCUIElementType)"
-}

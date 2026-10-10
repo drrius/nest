@@ -1,9 +1,0 @@
-# Retained recurring empty-state acceptance
-
-Verified4 October2026 at native source `428135952af6c35bbd3794e28b661710fb0fad3a`, using the existing fictional separate-test household and stable test API. The exact native source inputs are recorded in the neighboring [saved-meal evidence](../swiftui-saved-meal-offline-reads/final-native-inputs.json); no application source changed during this check.
-
-Both regular members read the same retained recurring inventory: zero rules and zero drafts. Outsider access returns403 and anonymous access401. Both complete financial histories/balances remain unchanged against the existing51-event baseline. `hosted.json` records this bounded read-only proof; no fixtures or financial events were created.
-
-The actual signed375×667 iPhone simulator navigates Money → Recurring expenses → Retained recurring expenses. It shows the no-retained-expenses state at ordinary text and, with scrolling, maximum text/dark. Screenshots and actual accessibility trees are in `native.json`. The first observer stopped after one scroll at maximum text; inspection established a three-page list, and a bounded eight-scroll continuation reached the existing empty state without replaying navigation or changing source. The initial `largest.png` was captured before appearance settled and is retained only as diagnostic evidence, not dark-mode proof. Use `largest-empty-state.png` for that check.
-
-Ordinary text/light and Today are restored; native data/Keychain remain preserved and all recorded expense/grocery journals stay empty. No positive financial action, release, deployment, worker, model call or production access occurred. This check proves the real empty-state read/navigation, not populated retained history, draft confirmation/adoption/dismissal, pagination, uncertain recovery, offline viewing, VoiceOver or either physical phone. Populated safe retained fixtures and those journeys remain necessary.

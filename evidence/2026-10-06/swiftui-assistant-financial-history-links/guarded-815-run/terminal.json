@@ -1,9 +1,0 @@
-{
-  "ResultNavigationMethodPassed": false,
-  "BothFinalReadsPassed": false,
-  "UIDomainMutationBudget": 0,
-  "LiveModelInvocations": 0,
-  "SDKAuthSetupMayPOSTLogin": true,
-  "WirePOSTCountMeasured": false,
-  "NoRepeatedUI": true
-}

@@ -1,8 +1,0 @@
-{
-  "operation": "9b843109-2f42-4daa-b26e-add12254d1ab",
-  "target": "676cb38e-af5f-4f11-8957-9a391de0cc1d",
-  "status": "pending",
-  "bodySHA256": "15a6bbc12a4e81c88f4a647bc5d10889dc26f6fc189356fba2dd29db84e3aabe",
-  "canonicalHTTPBodySHA256": "74f0ada8a0caa3b23c240edbeef4e1aae360b7936aeadfb130a10b3e904bf794",
-  "choreSHA256": "3841f96cb9a97398bc4bf2139b69b600800e8da7534a720ad5d2870861414b3f"
-}

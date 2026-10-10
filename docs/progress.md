@@ -10,7 +10,7 @@ and privacy rules remain authoritative.
 **SwiftUI 0.1.0, build 26 is available for internal TestFlight testing.** Its frozen
 source is `559ee9ab43f9ce8e1cf3f3226d8201f8b68e61c6`. Apple reports VALID,
 IN_BETA_TESTING and unexpired. One private submission finished; no further upload
-is needed. [Build and availability evidence](../evidence/2026-10-10/live-services/README.md).
+is needed. See the [current live-service status](native-rewrite/live-service-checklist.md).
 
 It uses the permanent Nest Supabase/API and enables signed APNs push. It includes
 the earlier layout/privacy fixes, Money's missing-partner explanation and
@@ -29,11 +29,11 @@ local journals and settings are preserved. The complete implementation is consol
 The owner approved a fresh start on the renamed `nest` database, keeping real accounts and excluding Household OS migration. Follow the [current five-step checklist](native-rewrite/live-service-checklist.md); historical migration blockers below no longer gate this path.
 
 Owner requests practical diagnostics and focused simulator checks, without expanding
-unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagnostics/README.md)
+unchanged QA variants. Money failure (historical artifact removed)
 is confirmed: the owner test household has one member. Verified partner linking
 remains needed. Native/server diagnostics and clear setup errors pass focused checks. Server
 traces and private AI timing are deployed; native diagnostics ship in build25.
-Next beta: [stream diagnostics](../evidence/2026-10-07/native-stream-diagnostics/README.md) pass ten Mac checks; [Auth diagnostics](../evidence/2026-10-07/native-auth-diagnostics/README.md) pass four Mac/two simulator checks.
+Next beta: stream diagnostics (historical artifact removed) pass ten Mac checks; Auth diagnostics (historical artifact removed) pass four Mac/two simulator checks.
 
 ## Milestone checklist
 
@@ -42,7 +42,7 @@ are credited without claiming live-provider or physical-device verification.
 The [remaining acceptance list](native-rewrite/remaining-work.md) links detailed
 journey evidence and identifies the uncovered requirements.
 
-- [x] **M0, decisions and native execution.** ADRs, action inventory, signed execution, source/build identity and scoped four-tab smoke pass. [Foundation audit](../evidence/2026-10-04/swiftui-m0-foundation/README.md).
+- [x] **M0, decisions and native execution.** ADRs, action inventory, signed execution, source/build identity and scoped four-tab smoke pass. Foundation audit (historical artifact removed).
 - [ ] **M1, Quiet UI.** Shared tab headers/insets and real screens exist. Selected light/dark and Dynamic Type journeys pass. Contrast reports, populated/error/keyboard usability, VoiceOver, Reduce Motion and owner acceptance remain open.
 - [ ] **M2, authenticated offline and AI slice.** Keychain, scoped SQLite, authorization, operation receipts and tested recovery exist. Successful live streaming/tools/approval and phone offline acceptance remain open.
 - [ ] **M3, identity and setup.** Apple sign-in, independent onboarding, editable preferences and private memory exist with account/privacy tests. Both-phone sign-in, interruption/recovery and complete setup acceptance remain open.
@@ -77,7 +77,7 @@ unfiltered simulator audits retain three failures; they are diagnostic evidence,
 not passing Nest tests. All paragraph coordinates match the no-tab control.
 Both owned simulators are deleted and original scopes, 64 journals per client,
 display/private choices and application paths match exactly.
-[Probe and limits](../evidence/2026-10-07/swiftui-native-contrast-probe/README.md).
+Probe and limits (historical artifact removed).
 The current Nest full audit remains failed. Fully visible contrast, VoiceOver,
 Reduce Motion, phone readability and owner acceptance stay open. No palette or
 navigation workaround is added for this diagnosis.
@@ -89,7 +89,7 @@ migrations. Local/hosted owner identities differ and remain recorded. The new
 source-parity comparison uses a disposable 54-legacy/257-native compilation;
 production, private dependency semantics, owner capability equivalence and
 external drainage remain open. No job is run or changed.
-[Hosted checkpoint](../evidence/2026-10-07/hosted-test-scheduled-writers/README.md).
+Hosted checkpoint (historical artifact removed).
 The native diagnosis source `240ed33b` passes routine
 [CI 37619852843](https://github.com/drrius/nest/actions/runs/37619852843); the hosted
 inventory/source-parity source `971b2069` passes
@@ -108,7 +108,7 @@ shipping UI fix after build 22; no new beta is submitted. Source `7f5d1bd3` pass
 [Native CI 37632180145](https://github.com/drrius/nest/actions/runs/37632180145)
 also passes with 498 app tests, 56 guarded skips and zero failures. The two local
 UI journeys ran separately without skips. Keep their passing evidence unless an
-affected change or failure requires another run. [Evidence](../evidence/2026-10-07/swiftui-money-history-spacing/README.md).
+affected change or failure requires another run. Evidence (historical artifact removed).
 
 Today now shows its scoped saved meals before the network reply and preserves
 them during refresh/unavailability. The card labels saved data, clears on
@@ -120,7 +120,7 @@ capture method passes without skips; both screenshots are inspected. Source
 [Native CI 37635279186](https://github.com/drrius/nest/actions/runs/37635279186)
 also passes, with 502 app tests, 57 guarded skips and zero failures. This is local native proof with controlled
 HTTP, not hosted/phone acceptance. Build 22 stays unchanged.
-[Evidence](../evidence/2026-10-07/swiftui-today-meals-cache/README.md).
+Evidence (historical artifact removed).
 
 A known forbidden meal-week read now removes that actor/household/week's local
 read snapshot in Today and Meals. The baseline exposes the denied cache; four
@@ -131,7 +131,7 @@ pending for later source. The sequential-denial source `bb3d93a5` is pushed and
 passes [routine CI 37637534983](https://github.com/drrius/nest/actions/runs/37637534983).
 [Native CI 37637535002](https://github.com/drrius/nest/actions/runs/37637535002)
 also passes, with 504 app tests, 57 guarded skips and zero failures.
-[Evidence](../evidence/2026-10-07/swiftui-meal-cache-denial/README.md).
+Evidence (historical artifact removed).
 
 Late meal-week replies now pass through one scoped SQLite read epoch. A denial
 atomically invalidates older replies and deletes the snapshot; every shipping
@@ -144,7 +144,7 @@ other read-only-path revocation remain open. Race source `4192478a` is pushed in
 and [native CI 37639324200](https://github.com/drrius/nest/actions/runs/37639324200)
 pass. Their exact source is `f3931206`; the separate local controlled race cases
 remain the direct late-reply proof.
-[Evidence](../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md).
+Evidence (historical artifact removed).
 
 Planned recipe and preparation read copies now share the scoped week fence.
 Known denial removes the copies and selected detail; old replies cannot restore
@@ -155,7 +155,7 @@ rendered-phone and other read-only-path acceptance remain open. Current-source C
 is pending for later source. Detail source `91c06917` passes
 [routine CI 37641010696](https://github.com/drrius/nest/actions/runs/37641010696);
 [native CI 37641010744](https://github.com/drrius/nest/actions/runs/37641010744)
-also passes, with 508 app tests, 57 guarded skips and zero failures. [Evidence](../evidence/2026-10-07/swiftui-meal-detail-denial/README.md).
+also passes, with 508 app tests, 57 guarded skips and zero failures. Evidence (historical artifact removed).
 
 All remaining shipping week reads now use the shared fenced command, including
 proposal preview, ingredient refresh and mutation preflight. Ingredient read
@@ -164,7 +164,7 @@ exclusions and pending additions remain intact. A held proposal reply fails
 before the fix. Thirty-two corrected signed app cases and nine SQLite cases pass
 without skips, including existing approval/retry/offline behavior. Hosted, live-AI
 and phone acceptance remain open. Current-source CI is pending.
-[Evidence](../evidence/2026-10-07/swiftui-meal-read-callers/README.md).
+Evidence (historical artifact removed).
 
 Audited writer owner attributes are now measured from nest-test catalog metadata.
 Its postgres owner is non-superuser with BYPASSRLS; the fresh disposable fixture
@@ -173,7 +173,7 @@ confirms a real privilege-fidelity gap instead of assuming equivalent owners;
 effective table/function grants, private dependencies and production remain open.
 No roles, data or schedules change. The small fixture is stopped and the completed
 311-migration rehearsal is not repeated.
-[Evidence](../evidence/2026-10-07/migration-owner-roles/README.md).
+Evidence (historical artifact removed).
 
 The disposable migration rehearsal now uses a distinct owner, lowered from
 superuser before runtime checks. All 311 migrations apply and both financial
@@ -182,7 +182,7 @@ lifecycle tests pass without failures or skips. Measured role flags match nest-t
 Auth/Storage grants and API-role membership remain simulated, so full hosted
 permission equivalence and production readiness remain open. The earlier public
 schema permission failure is retained. This closes a local rehearsal gap without
-another native build. [Evidence](../evidence/2026-10-07/migration-runtime-owner/README.md).
+another native build. Evidence (historical artifact removed).
 
 Runtime-owner source `f1cff427` is delivered on the feature branch. Its routine
 [CI 37644412576](https://github.com/drrius/nest/actions/runs/37644412576) passes.
@@ -199,14 +199,14 @@ event/busy reads after a separate launch. The fixture explicitly flushes its
 marker after an initial transport failure, retained in evidence. Both owned
 simulators are deleted. Shipping Calendar code and build 22 stay unchanged.
 The EventKit test and corrected phone guide are delivered in `93e59c04`. Rendered UI,
-initial permission prompts, live sharing and both phones remain open. [Evidence](../evidence/2026-10-07/swiftui-eventkit-revocation/README.md).
+initial permission prompts, live sharing and both phones remain open. Evidence (historical artifact removed).
 
 The failed ingredient account-switch contract now rechecks caller context when
 the shared week read throws. The exact failed method and affected library,
 ingredient and denial-race cases pass in 21 signed app tests, without failures or
 skips. The original CI failure remains recorded; current-head CI is pending for
 this correction. No test expectation is relaxed, hosted data is untouched and
-build 22 stays unchanged. [Evidence](../evidence/2026-10-07/swiftui-ingredient-context-ci/README.md).
+build 22 stays unchanged. Evidence (historical artifact removed).
 
 Source `93e59c04` now passes [routine CI 37646179922](https://github.com/drrius/nest/actions/runs/37646179922)
 and [native CI 37646179888](https://github.com/drrius/nest/actions/runs/37646179888).
@@ -223,7 +223,7 @@ initial observer/target failures remain retained. The correction picker target i
 now 44 points high. Original scope and all 64 command journals match; the owned
 clone is deleted. A reported invalid-frame runtime warning remains open. Partner
 rendering is verified below; phones, live AI and broader variants remain open. Build 22 stays
-unchanged. [Evidence](../evidence/2026-10-07/swiftui-correction-refund/README.md).
+unchanged. Evidence (historical artifact removed).
 
 The second fictional member now reads the four exact correction/refund-chain
 entries through native Financial history and the hosted test API. The read-only
@@ -233,7 +233,7 @@ journals match; its owned clone is deleted. The earlier standalone keyboard
 warning diagnosis already reproduces the writer's warning message on this runtime;
 current writer stack identity is unavailable, so phone/runtime acceptance stays
 open. No new probe or financial posting is used for that diagnosis.
-[Evidence](../evidence/2026-10-07/swiftui-correction-refund/README.md).
+Evidence (historical artifact removed).
 
 Picker/posting source `50276391` passes [routine CI 37651420402](https://github.com/drrius/nest/actions/runs/37651420402)
 and [native CI 37651420448](https://github.com/drrius/nest/actions/runs/37651420448).
@@ -249,7 +249,7 @@ pg_cron has zero registrations at both checkpoints. The recurring pickers now
 use 44-point targets. Its original observer failure and runtime warning remain
 recorded. The owned clone is deleted and original scope/64 journals match.
 Editing/resumption, manual linkage, actual scheduling, AI and phones remain open.
-[Evidence](../evidence/2026-10-07/swiftui-recurring-lifecycle/README.md).
+Evidence (historical artifact removed).
 
 Recurring-control source `d565cbb1` passes both
 [routine CI 37656565916](https://github.com/drrius/nest/actions/runs/37656565916)
@@ -262,7 +262,7 @@ failures or skips. All eleven older rule hashes and every financial row match;
 both balances remain zero and cron registrations remain zero. The owned clone
 is deleted after all 64 journals are empty; original scope/journals and source
 hashes match. The new guarded test source passes the exact-source CI recorded above.
-[Evidence](../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md).
+Evidence (historical artifact removed).
 
 The remaining-work list now preserves earlier direct manual-link and retained
 confirmation/dismissal/adoption evidence instead of scheduling repeated writes.
@@ -277,7 +277,7 @@ receipt reconciliations passing. Local managed-DDL/role refusal is verified, but
 hosted administrative hooks and full permission parity are not claimed. Provider
 interfaces, remaining grants, private semantics, external writers and production
 rehearsal remain open. Build 23 is unchanged; current-source routine CI is pending.
-[Evidence](../evidence/2026-10-07/migration-managed-ownership/README.md).
+Evidence (historical artifact removed).
 
 Managed-ownership source `e0e037b1` passes
 [routine CI 37667651167](https://github.com/drrius/nest/actions/runs/37667651167).
@@ -286,7 +286,7 @@ active native receipt writer's JWT gate and matches all 15 returned source and
 import-map files with local audited code. No redeployment, endpoint call or
 unchanged test rerun occurs. Resolved third-party dependencies, production legacy
 writers and in-flight external drainage remain unverified. Build 23 stays stable.
-[Source comparison](../evidence/2026-10-07/deployed-native-receipt-source/README.md).
+Source comparison (historical artifact removed).
 
 The unqueued chore/grocery read-revocation gap now has a reproduced failure and
 shipping fix. HTTP 403 reads reverify the actor/household before retaining saved
@@ -296,7 +296,7 @@ handled groceries and the companion chore test while the primary agent handled
 chore sync and the shared Mac verification. All 25 focused signed app-hosted
 checks pass with zero failures, skips or runtime warnings. Hosted revocation,
 rendered phone acceptance and CI for this source remain open. Build 23 stays
-unchanged. [Evidence](../evidence/2026-10-07/swiftui-household-read-revocation/README.md).
+unchanged. Evidence (historical artifact removed).
 
 Receipt-source audit `05a05085` passes
 [routine CI 37669881172](https://github.com/drrius/nest/actions/runs/37669881172).
@@ -307,7 +307,7 @@ and foreground refresh rereads changed events without another permission request
 The controlled reader isolates native model behavior; inspected scene hooks are
 not counted as rendered execution. Real EventKit changes/backgrounding and both
 phones remain open. Build 23 is unchanged; no release is needed for this test.
-[Evidence](../evidence/2026-10-07/swiftui-calendar-foreground/README.md).
+Evidence (historical artifact removed).
 
 Household-read fix `41e1f316` passes
 [routine CI 37672466304](https://github.com/drrius/nest/actions/runs/37672466304).
@@ -333,7 +333,7 @@ payroll functions absent from legacy migrations plus the referenced platform
 RLS event-trigger helper. Two payroll triggers bind to `payroll_payslips`.
 Three focused comparison tests pass; source clarification for payroll is pending.
 Owner/capability/runtime equivalence and data/drainage remain unverified.
-[Evidence](../evidence/2026-10-07/production-catalog-inventory/README.md).
+Evidence (historical artifact removed).
 
 Calendar/push-documentation source `2670d1c7` passes
 [routine CI 37674049755](https://github.com/drrius/nest/actions/runs/37674049755).
@@ -353,14 +353,14 @@ refresh, then shows the exact new title/location/time and preserved selection.
 Only the owned calendar/preferences and simulator are removed. All four executed
 source hashes match. Model lifecycle calls are direct; rendered background/scene
 hooks, initial prompt, Apple sync and both-phone privacy remain open. No shipping
-source or build 23 changes. [Evidence](../evidence/2026-10-07/swiftui-eventkit-foreground/README.md).
+source or build 23 changes. Evidence (historical artifact removed).
 
 A read-only nest-test catalog check confirms the three Auth session columns
 used by push authorization match the fixture assumptions: non-null UUID ID/user
 and nullable timestamptz expiry, with query-role SELECT permissions. No Auth rows
 or tokens are read. This closes column-shape uncertainty only; Auth policy/runtime,
 worker credentials/APNs and actual phone delivery remain open. Build 23 stays
-unchanged. [Evidence](../evidence/2026-10-07/hosted-test-push-session-schema/README.md).
+unchanged. Evidence (historical artifact removed).
 
 EventKit integration source `c0c0cf95` passes routine
 [CI 37676884490](https://github.com/drrius/nest/actions/runs/37676884490) and native
@@ -380,6 +380,8 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 - **Phones:** build26 was archived, signed, validated and submitted once; Apple reports VALID / IN_BETA_TESTING; it is available to existing internal testers. Both-phone use, notification display and real Calendar behavior still require the owners. Leah has not appeared in Nest Auth yet and must attempt Apple sign-in before verified household linkage.
 - **Delivery, 10 October:** the complete implementation is consolidated into `main` after the owner requested it. PR [#85](https://github.com/drrius/nest/pull/85) was squash-merged as `53e5dd34`; its tree exactly matched the original grocery commit. The history-only integration preserves the verified source tree. Routine CI `38041245834` and native CI `38039500471` passed; no additional review is required under the owner's waiver. Current API deployment remains `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB`, serving the existing client alias. Git integration does not publish an iPhone build or apply production migrations.
 - **Fresh-start cleanup:** the synthetic-household removal script passed a full transaction rehearsal followed by rollback, preserving real household rows and trigger settings. Final deletion removed the fictional household, three synthetic Auth users and two storage objects; real data remained unchanged. Household OS migration, payroll drift and old-writer cutover do not apply to the owner's new fresh-start decision; the old project remains untouched.
+
+- **Repository cleanup, 10 October:** removed the generated root `evidence/` directory at the owner's request and ignored future outputs there. Historical references are marked as removed; regression tests and application assets remain. Older Git commits still retain the files.
 
 ## Work order
 

@@ -1,7 +1,0 @@
-{
-  "Info.plist": "fe796e7649b904e7c751f98ce22390c65c68b9da822821ca4f147305adb49ffa",
-  "UITests/ProbeTests.swift": "841331c44e1e9141cd2c08978c5cbf7153983679d5630ed8ec0d6ff182c9ce31",
-  "ContrastProbe.xcodeproj/project.pbxproj": "c5528f2c94c5328ede98d5cf71dae853d8ef1d18315d662cd66d28fa1dfa276e",
-  "ContrastProbe.xcodeproj/xcshareddata/xcschemes/ContrastProbeAccessibility.xcscheme": "da78f88e232be038c3b29213f29b6103601917e355736e2839afb84286613590",
-  "ContrastProbe/Probe.swift": "854ebf11d82f06c8c3b9156905cc6db5945f752a979fdcd5b007d01fd38f4cfd"
-}

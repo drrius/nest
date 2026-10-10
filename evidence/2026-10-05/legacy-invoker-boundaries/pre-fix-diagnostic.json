@@ -1,8 +1,0 @@
-{
-  "reason": "A retained near-minimum renewal date minus its cancellation lead time causes date overflow in the actual legacy attention read.",
-  "errorTail": "_on - c.notice_days <= p_today + 30\n      and strpos(lower(c.title), lower(left(coalesce(p_query, ''), 160))) > 0\n  ), page_rows as (\n    select * from candidates order by deadline, id limit 20 offset p_page * 20\n  )\n  select jsonb_build_object(\n    'rows', coalesce((select jsonb_agg(payload order by deadline, id) from page_rows), '[]'::jsonb),\n    'count', (select count(*) from candidates)\n  )\"\nPL/pgSQL function public.list_home_attention_records(text,text,integer,date) line 8 at SQL statement\n",
-  "appliedMigrations": 306,
-  "reportSha256": "a84c99d4f11db5044fa0226071511e9c06eae5a2ccbba9be02e7bd2ed9bae7b9",
-  "hostedProbeCorrection": "Initial arbitrary-household selector refused before INSERT because the test project contains other fixture households. The corrected selector chooses an existing two-member household; the initial checkpoint remained exact.",
-  "grantComparisonCorrection": "One existing trusted service EXECUTE differs from the standalone fixture. Hosted default privileges independently explain it; client grants and public grants are unchanged. No ACL was changed to conceal the difference."
-}

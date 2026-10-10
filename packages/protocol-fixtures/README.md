@@ -1,6 +1,6 @@
 # Protocol verification fixtures
 
-This private, unexported package retains the framework-independent adapters and meaningful tests audited during removal of the React Native client. Its source is reachable from retained tests or backend integration fixtures; the original paths and hashes are recorded in the [file audit](../../evidence/2026-09-30/react-native-removal/tracked-file-audit.csv). Unreachable screen code, hooks, routes and artwork were removed.
+This private, unexported package retains the framework-independent adapters and meaningful tests audited during removal of the React Native client. Its source is reachable from retained tests or backend integration fixtures; the original paths and hashes are recorded in the file audit (historical artifact removed). Unreachable screen code, hooks, routes and artwork were removed.
 
 These checks exercise authorized HTTP/Effect contracts, integer financial allocations, private approvals, account isolation, durable retry/cancellation and offline conflicts. They do not establish SwiftUI rendering, EventKit, Keychain, notification delivery or phone acceptance. Historical test names containing “native” describe the earlier protocol adapter; actual iOS checks live under `apps/ios`.
 

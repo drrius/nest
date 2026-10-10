@@ -1,9 +1,0 @@
-{
-  "count": 823,
-  "inventoryParts": ["source-inputs-1.csv", "source-inputs-2.csv", "source-inputs-3.csv"],
-  "sourceCommit": "dea7682d",
-  "shippingSourceCommit": "dea7682d",
-  "allInputsMatchAfterExecution": true,
-  "allEightScreenshotsInspected": true,
-  "maximumNativeNavigationTitleEllipsisRemains": true
-}

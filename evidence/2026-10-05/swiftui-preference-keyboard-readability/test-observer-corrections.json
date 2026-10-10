@@ -1,8 +1,0 @@
-{
-  "defaultUIKitTest": "Two methods, one synchronous scroll-position assertion failure; not reliable layout regression proof.",
-  "firstClassicTest": "Seven methods, same synchronous assertion failure; no install or input performed.",
-  "revisedClassicTest": "Eight methods, immediate nonanimated scroll assertion failed; awaiting settled native state and diagnostic bounds.",
-  "renderedRootCause": "Actual default TextKit2 content height1585 cannot cover end caret bottom1635.5 at53pt body. Diagnostic TextKit1 content1787 covers end caret bottom1779.5. This was debugger evidence only; final build must still prove actual typing.",
-  "settledClassicTest": "Eight methods, one failure: a scene-less hosted window never scrolled despite sufficient content height. No shipping UI installation/input repeated.",
-  "correctedNativeTest": "Use a connected UIWindowScene and keyboard first responder. Eight methods, zero failures, strict formatting/source/signing. Native content covers final caret and full caret becomes visible; no narrower assertion substituted."
-}

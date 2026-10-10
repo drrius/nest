@@ -1,5 +1,0 @@
-Test Case '-[NestAppTests.FinancialCategoryPreflightTests testApprovalRequiresCurrentCategoryButDeclineDoesNot]' passed (0.763 seconds).
-Test Case '-[NestAppTests.FinancialCategoryPreflightTests testDelayedCategoryReplyCannotJournalAfterAccountSwitch]' passed (0.124 seconds).
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.887 (0.888) seconds
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.887 (0.889) seconds
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.887 (0.889) seconds

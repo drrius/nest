@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [16, 328.5, 343, 72.5],
-  "hittable": true,
-  "label": "Fictional private approval QA; no payment or actual transfer.",
-  "viewport": [0, 74, 375, 510]
-}

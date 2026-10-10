@@ -1,5 +1,0 @@
-ref,type,label,value,x,y,width,height,hittable,enabled
-e9,StaticText,"""Record expense?""",null,57.5,289.5,260,20.5,True,True
-e10,StaticText,"""No bank transfer.""",null,57.5,317,260,18,True,True
-e16,Button,"""Cancel""",null,43.5,355.5,140,48,True,True
-e17,Button,"""Record""",null,191.5,355.5,140,48,True,True

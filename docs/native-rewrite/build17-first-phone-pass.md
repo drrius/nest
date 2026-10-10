@@ -1,6 +1,6 @@
 # Build 17 first phone pass
 
-Private candidate: SwiftUI **0.1.0/build17**, separate **nest-test** environment. Apple reports 17 VALID/IN_BETA_TESTING internally and unexpired. [Release evidence](../../evidence/2026-10-05/swiftui-build17/README.md). Particular partner access and installation remain unverified; confirm the build number in TestFlight.
+Private candidate: SwiftUI **0.1.0/build17**, separate **nest-test** environment. Apple reports 17 VALID/IN_BETA_TESTING internally and unexpired. Release evidence (historical artifact removed). Particular partner access and installation remain unverified; confirm the build number in TestFlight.
 
 This batch improves keyboard and large-text controls in meals, preferences, private memory and the assistant, financial review/cancellation controls, and chore conflict recovery. It retains build16's saved Money/history/detail and recipe reads. Live AI, scheduled bill posting/reminders and push delivery remain inactive while their integration gates are open. Production data is separate.
 

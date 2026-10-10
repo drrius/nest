@@ -1,8 +1,0 @@
-ref,type,label,value,x,y,width,height,enabled,hittable
-e2,NavigationBar,,,0,46,375,54,True,True
-e4,Button,Cancel,,20,46.00000000000001,80,43.99999999999999,True,True
-e5,StaticText,Edit memory,,126.5,55,121.5,26,True,True
-e7,Cell,,,16,135,343,280,True,True
-e8,TextField,Memory text,Fictional updated memory check,32,150,311,250,True,True
-e10,Cell,,,16,415,343,239,True,True
-e11,StaticText,Private to you. You’ll review the exact text before saving.,,16,415,343,239,True,True

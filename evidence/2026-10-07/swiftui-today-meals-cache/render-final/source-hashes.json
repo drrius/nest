@@ -1,6 +1,0 @@
-{
-  "Nest/Session/SessionModel+TodayMeals.swift": "3b6e5b35254c4c145382955d7486b91df91f307455f14a95893c013b49b61504",
-  "Nest/Today/TodayMealsSection.swift": "6d791a5cc37af6a9c56a0fdea9b3d0a4742b793824307f4e42f20cce30b7d397",
-  "Nest/Today/TodayScreen.swift": "03e3db4f7384fd0736d08cb196d1e4b8abf633b517495026c2addcbd12ad577c",
-  "AppTests/TodayMealsCacheRenderingTests.swift": "db04d6f658147ead73ce1f0b7382ccf17dcd94113d1d2dbde38394a6be1846a1"
-}

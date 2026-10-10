@@ -1,9 +1,0 @@
-{
-  "baseNativeSource": "177d0a70",
-  "parentCommit": "d6f2b3c6b1f597d023a6c995fb0e60100ca0f885",
-  "nativeInputs": 1041,
-  "onlyChangedNativeFile": "apps/ios/Nest/Money/MoneyDetailScreen.swift",
-  "changedFileSHA256": "a7454f7c33b4a6e8bd672c6331b429c4c8321da643c21763933052c1dbd2b719",
-  "other1040InputsMatchOriginalManifest": true,
-  "noDomainOrMoneyCommandChange": true
-}

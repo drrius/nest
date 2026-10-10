@@ -1,7 +1,0 @@
-{
-  "status": 401,
-  "requestIdSent": "27edede7-9a8b-411d-a738-074e88e76cc6",
-  "requestIdReturned": "27edede7-9a8b-411d-a738-074e88e76cc6",
-  "traceparent": "00-ab79c8d7857eba8a2f7a3e02b5a0fe3f-abbe292e6b4f0118-01",
-  "body": "{\"error\":{\"code\":\"unauthenticated\"}}"
-}

@@ -34,7 +34,7 @@ passes routine37602114726/native37602114700:509 Foundation/41 skips,488 signed-a
 49 skips, zero failures, strict format/limits/signing and guarded UI compilation.
 Membership variants, hardware and full M4 remain open. Shipping app
 source remains build21; no beta, production change, provider call or merge occurs.
-[Grouped conflict evidence](../evidence/2026-10-07/swiftui-chore-terminal-conflicts/README.md).
+Grouped conflict evidence (historical artifact removed).
 
 The native offline-completion/reschedule journey now passes eight focused methods
 with zero failures or skips. Actual Today queues one fictional chore during a
@@ -50,7 +50,7 @@ strict format/limits/signing and guarded UI compilation. Controller encoding/sco
 archive-observer failures are retained separately from the eight passing native
 methods. This closes one schedule race, not phone radio loss, other race variants
 or full M4. Shipping UI is unchanged from build21; no new beta is needed.
-[Schedule conflict evidence](../evidence/2026-10-07/swiftui-chore-schedule-conflict/README.md).
+Schedule conflict evidence (historical artifact removed).
 
 Receipt access now has two focused API/PostgREST/PostgreSQL checks passing with
 zero failures or skips. Removing an unposted uploader blocks metadata and link
@@ -59,7 +59,7 @@ A financial author's deletion remains blocked by the existing foreign key; both
 partners retain claimed-receipt access and exact history. Routine37597088358 passes
 at e3c7bb63, including both receipt cases with zero failures or skips. Managed Storage bytes,
 real Auth-session revocation and existing signed-link expiry remain separate gaps.
-[Receipt evidence](../evidence/2026-10-07/receipt-read-membership/README.md).
+Receipt evidence (historical artifact removed).
 The full phone checklist now consistently identifies available build21 and its
 included fixes, rather than directing testers to the older build19.
 
@@ -79,7 +79,7 @@ and keeps push disabled. All1,165 frozen native inputs and the copied13,676,426-
 IPA hash match. Local archive/export, configuration/privacy/signing/dSYM/package
 checks pass. Temporary signing keychain/certificate/password copies are removed
 on both hosts; original credentials/search list remain intact.
-[Release evidence](../evidence/2026-10-07/swiftui-build21/README.md).
+Release evidence (historical artifact removed).
 
 Exact candidate routine37594517335/native37594517196 pass. Native CI reports509
 Foundation cases/41 skips,480 signed-app cases/41 skips, zero failures, strict
@@ -115,7 +115,7 @@ one decline budget is consumed. Eight protected fingerprints including all62
 financial events remain exact; both controllers restore original scopes,64 empty
 journals, settings and device-only local choices. Fixture setup used the audited
 private command with fixture auth claims, not model generation or auth proof.
-[Category review evidence](../evidence/2026-10-07/swiftui-expense-approval-category/README.md).
+Category review evidence (historical artifact removed).
 
 Category preflight now also belongs to the shared native decision commands, before
 durable expense/correction approval staging. Missing/offline/foreign metadata
@@ -124,7 +124,7 @@ Eight focused signed-app methods pass without skips, including ten new category
 cases with real isolated SQLite journals. Two setup/fixture failures are retained;
 the successful run corrects only target selection and synthetic wire timestamps.
 Rendered category outage/retry and latest-source CI remain open.
-[Preflight evidence](../evidence/2026-10-07/swiftui-financial-category-preflight/README.md).
+Preflight evidence (historical artifact removed).
 
 The new category network boundary now also passes delayed-reply/account-switch
 checks for expense and correction. Old-account replies fail signedOut and cannot
@@ -148,7 +148,7 @@ approvals and saved changes. A real normal-size Alex simulator method passes
 return. Signed compile/format/limits pass; both original scopes,64 empty journals,
 settings/local selections restore. Maximum text/full accessibility/disclosure and
 phone acceptance remain; this is later than build19 and current CI is pending.
-[Money grouping evidence](../evidence/2026-10-07/swiftui-money-root-grouping/README.md).
+Money grouping evidence (historical artifact removed).
 
 Money grouping also passes one largest-text/dark disclosure check: matching40pt
 action insets, complete44pt approvals and three saved-change links, real expansion
@@ -162,7 +162,7 @@ Calendar/Money. A real normal-size Today meal-card method passes40pt action
 alignment, full44pt target, Meals navigation and return; signed compile passes and
 both original scopes/64 journals/settings/local choices restore. Conditional cards,
 largest-text meal-day width, full accessibility and phones remain unverified.
-[Shared inset evidence](../evidence/2026-10-07/swiftui-shared-card-insets/README.md).
+Shared inset evidence (historical artifact removed).
 
 The shared meal-card width now also passes an actual largest-text/dark empty-slot
 check:40pt content bounds, complete44pt target, Add meal and native Cancel without
@@ -174,7 +174,7 @@ and largest-text checks remain valid within their recorded scope; do not repeat
 those decisions or call those whole families untested. The new category behavior
 still needs metadata failure/retry and correction-category rendering evidence.
 Full settlement/manual-cycle/legacy rendering, hosted uncertain replies/races,
-VoiceOver, both phones and live AI remain open. [Earlier consent evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md).
+VoiceOver, both phones and live AI remain open. Earlier consent evidence (historical artifact removed).
 
 Financial Forms now reset their viewport when changing between draft, review and
 saved-result phases, following the expense-screen behavior. Settlement, refund,
@@ -189,7 +189,7 @@ financial confirmation occurs. Eight post-check fingerprints remain exact,
 including 62 financial events, 104 allocations and 124 ledger rows. Form/picker source `dbc1f236` now passes routine37582173064 and native37582173046:
 509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases, zero
 failures. Runtime frame warnings and full accessibility remain open. These changes follow build20 and have not been submitted as a new beta.
-[Financial review evidence](../evidence/2026-10-07/swiftui-financial-review-position/README.md).
+Financial review evidence (historical artifact removed).
 
 Financial value rows now share explicit Quiet foreground colors and combined
 native accessibility semantics:118 rows across25 Money files. Light and dark
@@ -208,7 +208,7 @@ complete 161pt amount row inside the measured viewport and full restoration. The
 initial observer assumes immediate visibility of an offscreen row; its failure
 is retained. The correction scrolls before observing that row and eliminates
 unrelated scrollbar scans without removing geometry guards.
-[Value contrast evidence](../evidence/2026-10-07/swiftui-financial-value-contrast/README.md).
+Value contrast evidence (historical artifact removed).
 
 M9's full 311-migration fixture now passes six expired legacy push retry checks:
 stale finalization refuses, failed attempts count once, paused retries remain
@@ -217,7 +217,7 @@ claim/subscription snapshots roll back exactly, and retained financial/receipt
 reconciliation passes. The first synthetic lease fails the real claimed_at/expiry
 constraint and is corrected without weakening it. No hosted/production/network
 operation occurs. Edge delivery, external requests and actual writer drainage
-remain open. [Retry evidence](../evidence/2026-10-07/legacy-push-retry/README.md).
+remain open. Retry evidence (historical artifact removed).
 
 Observer/rehearsal source `9809b6f0` now passes routine37585042267/native37585042284:
 509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases and zero
@@ -233,7 +233,7 @@ All callers compile; a real no-save partial entry/review/discard method passes,
 zero skips, with full restoration and eight unchanged protected fingerprints.
 Full-page contrast/blur, runtime frame warnings, largest-text header checks,
 VoiceOver and phones remain open. No new beta is submitted.
-[Header/audit evidence](../evidence/2026-10-07/swiftui-payment-contrast-audit/README.md).
+Header/audit evidence (historical artifact removed).
 
 Shared-header source `d6279529` passes routine37586433686/native37586433639:
 509 Foundation/41 skips,478 signed-app/41 skips,four Swift Testing cases, zero
@@ -254,8 +254,8 @@ do not rerun them or delete their history. Source `d4f838e9` passes routine
 CI37588357919/native CI37588357855 with509 Foundation/41 skips,478 signed-app/41
 skips,four Swift Testing cases and zero failures. Broader financial
 recovery/phone/accessibility acceptance remains open.
-[Full posting](../evidence/2026-10-07/swiftui-money-roundtrip/README.md),
-[visible partial results](../evidence/2026-10-07/swiftui-money-result-feedback/README.md).
+Full posting (historical artifact removed),
+visible partial results (historical artifact removed).
 
 Expense API-outage initiation now passes one real authenticated native read-only
 journey at `458e45ed`,66.714 seconds with zero failures/skips. A controlled503
@@ -266,7 +266,7 @@ Original simulator state restores; the owned clone/trust store, relay and privat
 control configuration are removed. This does not prove physical radio loss,
 post-commit lost-reply recovery or full financial acceptance. Routine CI37590324711
 and native CI37590324662 pass source `eafc296d`. The existing frame
-runtime warning remains. [Outage evidence](../evidence/2026-10-07/swiftui-expense-api-outage/README.md).
+runtime warning remains. Outage evidence (historical artifact removed).
 
 The captured outage diagnostic now resolves all five frame-warning backtraces
 against matching simulator framework UUIDs. SwiftUI InputAccessoryBar.body
@@ -280,7 +280,7 @@ reports zero warnings and removes its separate simulator. The warning follows
 standard native keyboard ToolbarItemGroup on iOS26.3.1; shipping keyboard controls
 remain intact. This does not justify palette/financial-layout edits, clear device
 keyboard/accessibility acceptance or prove all runtime versions behave the same.
-[Isolated diagnosis](../evidence/2026-10-07/swiftui-keyboard-toolbar-probe/README.md).
+Isolated diagnosis (historical artifact removed).
 
 Settlement cancellation/restart now has seven focused real disposable
 PostgreSQL/PostgREST/API cases passing, zero failures/skips. Protocol-fixture
@@ -290,7 +290,7 @@ the exact command and bound Save sends; both signed SE3 cases now pass with zero
 failures/skips. The separate simulator is removed and original clients remain
 untouched. Controlled native HTTP/store evidence does not establish rendered
 recovery or M7 completion. Routine
-CI37590324711 and native CI37590324662 both pass `eafc296d`. [Recovery work](../evidence/2026-10-07/swiftui-settlement-cancellation-restart/README.md).
+CI37590324711 and native CI37590324662 both pass `eafc296d`. Recovery work (historical artifact removed).
 
 Guarded rendered settlement recovery runs once at `d91953b2`: payment Save is
 refused before upstream and the same unresolved request survives restart. The
@@ -307,7 +307,7 @@ stays failed and is not repeated. The relay refuses all payment
 Saves and permits one explicit cancellation bound to the refused operation.
 Fresh eight protected fingerprints still match66 events/108 allocations/132
 ledger rows and existing household data. A failed pending journal must be retained
-for exact recovery, not erased. [Preparation](../evidence/2026-10-07/swiftui-settlement-cancellation-rendering/README.md).
+for exact recovery, not erased. Preparation (historical artifact removed).
 
 The [remaining acceptance list](native-rewrite/remaining-work.md) now owns
 next-work sequencing. Historical checks below remain evidence, not instructions
@@ -319,7 +319,7 @@ fixes need one consolidated signed candidate after its required checks pass.
 **Latest private candidate: SwiftUI0.1.0/build21**, exact `5d609069`.
 Candidate routine/native CI, unchanged-backend deep integration, signed local
 archive/export/package audits and Apple VALID/IN_BETA_TESTING/unexpired checks pass.
-[Release evidence](../evidence/2026-10-07/swiftui-build21/README.md).
+Release evidence (historical artifact removed).
 Update Nest to **21** in TestFlight and try the
 [short phone pass](native-rewrite/build21-first-phone-pass.md). It includes the
 layout/card/form/approval changes since19. Partner tester access, installation,
@@ -332,11 +332,11 @@ The preceding build18 includes the shared four-tab header/20pt side/14pt top ins
 
 Unchecked means complete acceptance is outstanding, even where implementation and bounded verification exist.
 
-- [x] **M0 — Decisions and native execution.** Approved ADRs/action inventory, source/build/environment identity, repeatable signed local Xcode/native CI execution and internally available build19 installation path are verified. Current source-matched clean signed-out cold launch and real scoped-session four-tab smoke pass. [Criterion-by-criterion audit](../evidence/2026-10-04/swiftui-m0-foundation/README.md). The plan explicitly separates physical permission/calendar/push acceptance; both-phone installation/sign-in remain M3/M6/M8/M9 gates. Full M1–M9 acceptance stays open.
+- [x] **M0 — Decisions and native execution.** Approved ADRs/action inventory, source/build/environment identity, repeatable signed local Xcode/native CI execution and internally available build19 installation path are verified. Current source-matched clean signed-out cold launch and real scoped-session four-tab smoke pass. Criterion-by-criterion audit (historical artifact removed). The plan explicitly separates physical permission/calendar/push acceptance; both-phone installation/sign-in remain M3/M6/M8/M9 gates. Full M1–M9 acceptance stays open.
 - [ ] **M1 — Quiet native interactions.** Four SwiftUI tabs and real-data surfaces exist, with selected rendered and large-text simulator evidence. The [artwork inventory](native-rewrite/artwork-inventory.md) now audits the single generated-icon source, native symbols and build13 packaging. Full populated/error/keyboard/VoiceOver/Reduce Motion review and owner design acceptance remain.
 - [ ] **M2 — Authenticated offline/AI slice.** Keychain, verified sessions, scoped SQLite and limited exact replay are implemented and tested. Private chat, streaming/interruption/cancellation and honest handoffs exist. Live AI still fails Gateway eligibility403; successful live tool/stream behavior and both-member phone/offline acceptance remain.
 - [ ] **M3 — Identity, onboarding and settings.** Quick/comprehensive setup, progressive entry, food/cooking/notification preferences and private-memory consent/recovery exist. New online preflight, canonical settings-result links and account/read fences pass CI. Normal-text owned native saves/lost-reply recovery/stale-form refusal and hosted populated-goal privacy pass. Private-memory pending restart, explicit save/edit/decline/removal, populated RLS and non-resurrecting old-consent replay now pass; Both-member unsaved portion forms now pass normal/maximal text with exact saved-profile isolation; broader setup/private settings, saved variants, accessibility and hardware enrollment remain.
-- [ ] **M4 — Today, chores and groceries.** Today filters, ordinary/alternating chore commands, handovers, grocery CRUD/checking, exact scoped SQLite retry/conflicts and corresponding AI commands exist. Source/native/property/RLS checks and selected hosted/owned flows pass. Current grocery edit preflight, retained fields, explicit latest-item reload, committed lost-response restart/update/exact retry, precise removed-intent copy/discard and normal/large-text touch targets now pass owned test-API execution with normal cleanup and unchanged money. Earlier checkbox compatibility/opposing-intent cases and grocery→expense switch/back also pass. Both required grocery-source CI workflows pass. Two independent fictional native clients now verify compatible queue/restart/replay, opposing intent/explicit discard and committed lost-reply/exact retry, then normal removal/Today/stable-origin restoration with64 empty journals and six unchanged hosted fingerprints. The49 executions retain46 passes/three observer failures/zero skips; corrected row observation passes, while whole Add is not rerun. The final observer passes Nest37341752813/SwiftUI37341753014 at head2267bfa4:496 Foundation/41 skips,423 signed-native/14 skips, zero failures; CI does not run the hosted pair fixture. [Pair evidence](../evidence/2026-10-05/swiftui-native-grocery-pair/README.md). The later two-native-client chore pass verifies handover accept/decline, lost reply/exact retry, offline/partner completion convergence and normal archive with retained history; broader membership/schedule conflicts, settings/navigation, VoiceOver/haptics/radio loss, both phones and complete daily-use acceptance remain open; full M4 is not closed.
+- [ ] **M4 — Today, chores and groceries.** Today filters, ordinary/alternating chore commands, handovers, grocery CRUD/checking, exact scoped SQLite retry/conflicts and corresponding AI commands exist. Source/native/property/RLS checks and selected hosted/owned flows pass. Current grocery edit preflight, retained fields, explicit latest-item reload, committed lost-response restart/update/exact retry, precise removed-intent copy/discard and normal/large-text touch targets now pass owned test-API execution with normal cleanup and unchanged money. Earlier checkbox compatibility/opposing-intent cases and grocery→expense switch/back also pass. Both required grocery-source CI workflows pass. Two independent fictional native clients now verify compatible queue/restart/replay, opposing intent/explicit discard and committed lost-reply/exact retry, then normal removal/Today/stable-origin restoration with64 empty journals and six unchanged hosted fingerprints. The49 executions retain46 passes/three observer failures/zero skips; corrected row observation passes, while whole Add is not rerun. The final observer passes Nest37341752813/SwiftUI37341753014 at head2267bfa4:496 Foundation/41 skips,423 signed-native/14 skips, zero failures; CI does not run the hosted pair fixture. Pair evidence (historical artifact removed). The later two-native-client chore pass verifies handover accept/decline, lost reply/exact retry, offline/partner completion convergence and normal archive with retained history; broader membership/schedule conflicts, settings/navigation, VoiceOver/haptics/radio loss, both phones and complete daily-use acceptance remain open; full M4 is not closed.
 - [ ] **M5 — Meals and planning.** Week/library/recipe CRUD, saved/one-off placement, move/replacement/removal, proposals, ingredients and preparation exist. A manual seven-day saved-recipe cycle, preparation, replacement and cross-week leftovers copy/read/removal have bounded real native/two-member evidence with normal cleanup. Both-member unsaved varied portions/discard pass normal/maximal text; saved portion planning beyond the bounded projection, live generation/replacement and full phone/UI acceptance remain.
 - [ ] **M6 — Read-only Calendar.** EventKit, permission/selection, agenda/layers and explicit numeric-only busy sharing exist. Selected real timed/all-day/DST, both-member sharing, outsider denial and online cleanup pass; durable offline removal and races have focused tests. Hardware offline/reconnection, long background periods, complex calendars and full accessibility/privacy journeys remain. Personal event text stays on-device.
 - [ ] **M7 — Money.** Actual fictional native full/partial settlement and ordinary expense posting now pass with exact retained-history/balance reconciliation and visible canonical feedback. Native balance/history/detail, financial commands/private approvals, receipt storage, recurring controls/variable bills and exact recovery exist over append-only CHF-centime history. Selected arithmetic/isolation/lost-response/hosted checks pass. Pause/cancel proposal review and exact recovery pass focused native CI; resumption proposal review/recovery passes current-source native CI; variable-cycle proposal review/decision/recovery is implemented with local wire/database checks and exact-source Foundation/native/routine CI passing; manual-cycle selection/review/command recovery passes local checks and exact-source Foundation/native/routine CI; private manual-cycle approvals and retained legacy inventory/draft history pass exact-source native/routine CI. Direct legacy dismissal passes local checks and exact-source native/routine CI; its original-term review/navigation/alert cancellation now pass owned rendering. Private dismissal approval/withdrawal passes local and exact-source native/routine CI; original-term review/navigation/alert cancellation now pass owned rendering. Actual rendered recovery states and full phone journeys remain pending. Direct draft-to-expense confirmation now has native source and focused Mac/database verification; both required workflows and actual fictional keyboard/review/cancel rendering pass at direct-confirmation source `4759e124`. Private confirmation review/recovery now has native source with focused Mac/backend and actual fictional alert verification; both focused native offline discovery/isolation checks pass; exact-source CI passes at `886773cc` (463 Foundation/41 explicit skips and344 signed-native/nine explicit skips, zero failures). Direct rule adoption source `e3e6b1ef` now has explicit fresh terms, prospective coverage/member/day preflight and exact recovery; focused Mac/backend and actual fictional variable-form checks pass. Nest37142967731 passes and SwiftUI37142967820 also passes:468 Foundation/41 explicit skips and357 signed-native/10 explicit skips, zero failures, strict formatting/source limits and actual signing. Private adoption now has source and focused Mac/backend/fictional-form verification; native CI at `1151caad` and corrected routine CI at `83a5a015` pass; hosted/provider/phone acceptance and recovery rendering remain pending. [Source coverage](native-rewrite/action-inventory.md#swiftui-financial-approval-coverage-1-october-2026) records the exact gaps. Ordinary expense/settlement and refund/correction staging now require fresh scoped domain reads before new intent; both slices pass exact-source Foundation/native and routine CI. Recurring create/edit/state/resume/variable staging now has fresh membership/revision/server-day/uncovered-cycle checks,23 focused local integration cases passing and exact-source Foundation/native/routine CI passing. Expense/refund/correction/settlement/rule approval staging now has fresh exact private pending/unexpired reads, with all six new native cases and ten existing exact-recovery cases passing current-source CI; existing account checks and later online retries do not prove that offline initiation is blocked. All approval/recurring variants, full history reconciliation and native/two-phone acceptance remain. Production posting is inactive.
@@ -345,7 +345,7 @@ Unchecked means complete acceptance is outstanding, even where implementation an
 
 ## Latest native receipt recovery
 
-The actual native Photos picker now uploads an audited synthetic fixture to private nest-test Storage. Its exact1,476 normalized JPEG bytes/hash match independent uploader reads; partner, outsider and anonymous requests are denied while unposted. The same native reservation/bytes survive restart and a signed client update. One native Remove deletes only this object, with a deliberately lost reply retaining the scoped cleanup intent; reopening emits no write. Two explicit largest-text corner retries return the same deletion result, one also losing its reply, then normally clear the slot. A misleading smaller-photo error is corrected to removal-specific guidance. Nine focused Foundation/three signed native tests pass with no failures/skips, strict formatting/source limits and1,039-input matching. Both full52-event histories/balances and the existing claimed receipt remain intact; pending inventories are restored. Ordinary Today/stable signed test origins, empty31+7+receipt slots, preserved data/Keychain and owned relay/key teardown pass. [Evidence](../evidence/2026-10-04/swiftui-native-receipt-recovery/README.md). Exact source `a0458304` now passes Nest37195153704/SwiftUI37195153685:490 Foundation cases/41 explicit skips and409 signed-native cases/11 explicit skips, zero failures, strict format/limits and actual signing. The existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry; both complete histories/Storage remain unchanged. [Viewer evidence](../evidence/2026-10-04/swiftui-claimed-receipt-viewer/README.md) records corrected offscreen/close-icon observer assumptions without repeated opens or signed-URL exports. The later [posted-PDF checkpoint](../evidence/2026-10-05/swiftui-posted-pdf/README.md) supersedes the earlier pending byte/posting/partner-viewer statements: one native PDF expense, both identities' exact downloads and partner native browser return are verified within that checkpoint's scope. Full accessibility, live AI handoff and both phones remain open. This paragraph's4 October run created no expense, beta, production action or merge; the separately gated5 October post retains its one synthetic append-only entry. M7 remains incomplete.
+The actual native Photos picker now uploads an audited synthetic fixture to private nest-test Storage. Its exact1,476 normalized JPEG bytes/hash match independent uploader reads; partner, outsider and anonymous requests are denied while unposted. The same native reservation/bytes survive restart and a signed client update. One native Remove deletes only this object, with a deliberately lost reply retaining the scoped cleanup intent; reopening emits no write. Two explicit largest-text corner retries return the same deletion result, one also losing its reply, then normally clear the slot. A misleading smaller-photo error is corrected to removal-specific guidance. Nine focused Foundation/three signed native tests pass with no failures/skips, strict formatting/source limits and1,039-input matching. Both full52-event histories/balances and the existing claimed receipt remain intact; pending inventories are restored. Ordinary Today/stable signed test origins, empty31+7+receipt slots, preserved data/Keychain and owned relay/key teardown pass. Evidence (historical artifact removed). Exact source `a0458304` now passes Nest37195153704/SwiftUI37195153685:490 Foundation cases/41 explicit skips and409 signed-native cases/11 explicit skips, zero failures, strict format/limits and actual signing. The existing claimed receipt also renders through native history/detail/browser navigation and returns to the same entry; both complete histories/Storage remain unchanged. Viewer evidence (historical artifact removed) records corrected offscreen/close-icon observer assumptions without repeated opens or signed-URL exports. The later posted-PDF checkpoint (historical artifact removed) supersedes the earlier pending byte/posting/partner-viewer statements: one native PDF expense, both identities' exact downloads and partner native browser return are verified within that checkpoint's scope. Full accessibility, live AI handoff and both phones remain open. This paragraph's4 October run created no expense, beta, production action or merge; the separately gated5 October post retains its one synthetic append-only entry. M7 remains incomplete.
 
 ## Earlier verification
 
@@ -353,9 +353,9 @@ Earlier source-specific test totals and result-link checks are preserved in [the
 
 ## Exact blockers and owner inputs
 
-- **Native QA:** bounded grocery, receipt/history and ordinary expense recovery checks pass. The two-client chore pass verifies one native creation, committed lost-reply handover/exact retry, sender403, recipient accept/decline, offline restart and partner completion convergence, one current/preview and original rotation, then ordinary archive. Setup has ten passes; handover30 passes; completion12 executions retain11 passes/one archived-list observer failure, followed by four successful read-only corrected checks. Both clients finish on Today/stable test origins with64 empty journals. Relays/private keys/configs are removed; all original chore/activity rows, finance and Storage remain exact. Native Done/Return keyboard-source b4dd8494 passes Nest37348042463/SwiftUI37348042498:496 Foundation/41 skips,425 signed-app/16 skips, zero failures, format/limits/signing and guarded UI compilation. The archived-list assertion correction f9ec8792 also passes Nest37350253862/SwiftUI37350254016 with those same counts and gates. CI does not execute hosted pair actions. [Native pair evidence](../evidence/2026-10-05/swiftui-native-chore-pair/README.md) preserves earlier failures and exact gaps. Broader financial/meal/settings/membership conflicts, full accessibility, physical radio loss and both phones remain open; M4 is not closed.
+- **Native QA:** bounded grocery, receipt/history and ordinary expense recovery checks pass. The two-client chore pass verifies one native creation, committed lost-reply handover/exact retry, sender403, recipient accept/decline, offline restart and partner completion convergence, one current/preview and original rotation, then ordinary archive. Setup has ten passes; handover30 passes; completion12 executions retain11 passes/one archived-list observer failure, followed by four successful read-only corrected checks. Both clients finish on Today/stable test origins with64 empty journals. Relays/private keys/configs are removed; all original chore/activity rows, finance and Storage remain exact. Native Done/Return keyboard-source b4dd8494 passes Nest37348042463/SwiftUI37348042498:496 Foundation/41 skips,425 signed-app/16 skips, zero failures, format/limits/signing and guarded UI compilation. The archived-list assertion correction f9ec8792 also passes Nest37350253862/SwiftUI37350254016 with those same counts and gates. CI does not execute hosted pair actions. Native pair evidence (historical artifact removed) preserves earlier failures and exact gaps. Broader financial/meal/settings/membership conflicts, full accessibility, physical radio loss and both phones remain open; M4 is not closed.
 
-- **AI eligibility:** the last real Swift/provider checks returned Gateway403 `customer_verification_required`; credits/usage0/0. Owner: check the existing valid card on [drrius-projects billing](https://vercel.com/drrius-projects/~/settings/billing), finish any verification prompt and report the changed eligibility. No credits purchase/upgrade is requested. Existing project-only USD1 nonrefreshing cap stays unchanged; then perform one bounded live recheck. The CHF20/month ceiling remains. Two fresh read-only connector checks confirm the correct test-project/team identity, but expose no eligibility or balance. [Context evidence](../evidence/2026-10-06/gateway-read-only-context/README.md). No inference or billing change occurs.
+- **AI eligibility:** the last real Swift/provider checks returned Gateway403 `customer_verification_required`; credits/usage0/0. Owner: check the existing valid card on [drrius-projects billing](https://vercel.com/drrius-projects/~/settings/billing), finish any verification prompt and report the changed eligibility. No credits purchase/upgrade is requested. Existing project-only USD1 nonrefreshing cap stays unchanged; then perform one bounded live recheck. The CHF20/month ceiling remains. Two fresh read-only connector checks confirm the correct test-project/team identity, but expose no eligibility or balance. Context evidence (historical artifact removed). No inference or billing change occurs.
 - **Test API:** preview `nest-test-kjn4mw4di-drrius-projects.vercel.app`, backend source `83a5a015`, is READY and now serves the already-authorized stable test API alias. Seventeen read-only checks pass on the preview and again on the stable address: both members see the expected test household, an outsider gets403, anonymous money access gets401 and the recurring worker returns404 while disabled. Existing preview configuration was reused; no server secret was transferred, scheduler activated, financial write/model call sent or production data touched. Hosted populated legacy/approval/provider journeys remain unverified.
 
 - **Worker credential transfer:** automatic approval review rejected exporting the test Supabase server key and scheduler token to Vercel because prior test-deployment authorization did not explicitly cover that transfer. A specific owner approval question is already pending. No transfer, alternate path, schedules or worker activation occurred.
@@ -372,7 +372,7 @@ Handover, offline reads, retained confirmations, preferences and manual-meal che
 
 The latest unique-signature inventory has bounded SQL evidence for all 60 retained
 legacy public definers and two invokers. Earlier counts of 49–53 pending entries
-are historical, not current work. [Public entry review](../evidence/2026-10-05/legacy-invoker-boundaries/README.md).
+are historical, not current work. Public entry review (historical artifact removed).
 Full private call chains, direct table/Storage policies, trusted service writers,
 external old-client intent drainage, actual Auth/Storage migration and cutover remain open.
 
@@ -384,7 +384,7 @@ two anonymous EXECUTE entries have no schema USAGE. This is catalog evidence, no
 of function semantics or safe indirect invocation. Hosted-only legacy differences are
 two service-executable wrappers and two service-writable tables; client access is denied.
 Six focused inventory/API-fence tests pass, including actual inherited calls and revocation.
-[Current inventory](../evidence/2026-10-07/private-function-inventory/README.md).
+Current inventory (historical artifact removed).
 No hosted mutation, production migration, worker activation, release or merge occurs.
 
 Two retained private calendar triggers now pass 27 real full-chain cases, covering
@@ -393,7 +393,7 @@ updates excluded by RLS, ordinary trigger-call rejection and anonymous schema de
 Both exact hosted body hashes match the sole source definitions; original calendar
 and full financial reconciliation remain unchanged. This is disposable SQL plus
 hosted read-only metadata, not live CalDAV or native EventKit evidence.
-[Trigger evidence](../evidence/2026-10-07/legacy-calendar-trigger-boundaries/README.md).
+Trigger evidence (historical artifact removed).
 
 ## Current native verification
 
@@ -407,7 +407,7 @@ local semantics restore. Final privileged metadata matches all eight protected
 digests. Source00d65b11 passes both CI workflows; the evidence-format repair also
 passes routine CI. No financial Save, inference, release or merge occurs.
 Broader financial variants, full accessibility, both phones and M7 remain open.
-[Split evidence](../evidence/2026-10-07/swiftui-expense-splits/README.md).
+Split evidence (historical artifact removed).
 
 The rendered split pass exposes a review usability issue: transitioning from a
 scrolled form retains its lower offset. Candidated097752d gives draft/review/saved
@@ -439,7 +439,7 @@ all1,139 frozen inputs and passes routine37557131439/native37557131449:506 Found
 41 skips,473 signed-app /41 skips,four Swift Testing cases,zero failures.
 No record/confirm action,release,merge or production operation occurs. Replacement
 editing,date/amount/payer variants,VoiceOver and phone/full M7 acceptance remain open.
-[Payment/adjustment Back evidence](../evidence/2026-10-07/swiftui-money-draft-back/README.md).
+Payment/adjustment Back evidence (historical artifact removed).
 
 Expense Back now protects unsent fields and reviewed drafts using Keep editing /
 Discard edits. Blank/invalid raw fields and date changes count as edits. Attached
@@ -456,7 +456,7 @@ and product/signing checks match each source. Source57404b37 passes routine37554
 native37554215393; corrected observerbca5f94e passes routine37555574332 /
 native37555574402. No financial save, release or merge occurs. Receipt-bearing
 Back/date/split variants, VoiceOver and phone acceptance remain open.
-[Expense Back evidence](../evidence/2026-10-07/swiftui-expense-draft-back/README.md).
+Expense Back evidence (historical artifact removed).
 
 The latest header and padding report is addressed by the shared four-tab layout
 already available in private build 19. Root rechecks all eight current layout
@@ -464,7 +464,7 @@ files against the reviewed layout and build 19, and directly inspects all four
 retained normal-dark root captures together. The header, 20-point horizontal and 14-point top
 insets, and 24-point section spacing match. This recheck compares source and existing images,
 not a new simulator run or phone acceptance.
-[Current layout comparison](../evidence/2026-10-05/swiftui-root-layout/current-layout-revalidation-20261007.json).
+Current layout comparison (historical artifact removed).
 
 The fresh preparation at `55d25d94` fails during Swift compilation of
 three diagnostic dictionaries before any SDK, API or UI execution. The 1,127-input
@@ -515,9 +515,9 @@ CI compiles this guarded journey; the separate owned Mac execution supplies its
 UI proof. Full accessibility and both-phone acceptance remain open.
 Evidence checkpoint `053edd86` also passes routine CI 37528059941; its native
 source is identical to the tested commit and the default tracked verifier passes.
-[Passing maximum-text evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/native/README.md).
-[Failed-source CI evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/source-ci-55d25.json).
-[Correction evidence](../evidence/2026-10-06/swiftui-assistant-financial-history-maximum/finite-geometry-correction/type-boundary-correction/readiness.json).
+Passing maximum-text evidence (historical artifact removed).
+Failed-source CI evidence (historical artifact removed).
+Correction evidence (historical artifact removed).
 
 ## Recorded chore result navigation
 
@@ -580,7 +580,7 @@ limits, signing and guarded UI compilation pass. The hosted diagnostic is a
 separate owned-Mac execution; CI skips its opt-in method.
 The sealed 28-artifact diagnostic verifier passes, including source identity,
 the actual safe trace, raw-log hash and restoration records.
-[Passing membership diagnostic](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-71629/README.md).
+Passing membership diagnostic (historical artifact removed).
 The next execution uses the verified current membership and those focused
 receipt/domain comparisons. Repeating the unrelated full recurring-bill reader
 is unnecessary for this read-only chore navigation. Its earlier failure remains
@@ -604,12 +604,12 @@ acknowledgment image precedes tab-bar appearance; later current-work and restore
 Today images contain it. No financial SDK reader, diagnostic replay, domain
 command or model invocation occurs. Evidence checkpoint `50f120ed` passes routine
 CI 37533838086; shipping native source is unchanged from the tested commits.
-[Passing chore-result navigation](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/ui-only-4740/README.md).
-[Preserved failure diagnosis](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/baseline-failure-9410/diagnosis.json).
-[Diagnostic source readiness](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/native/auth-diagnostic-source/readiness.json).
+Passing chore-result navigation (historical artifact removed).
+Preserved failure diagnosis (historical artifact removed).
+Diagnostic source readiness (historical artifact removed).
 This verifies native result navigation, not live AI execution. Both-phone,
 full accessibility, provider, worker/APNs and cutover gates remain open.
-[Prepared receipt provenance](../evidence/2026-10-06/swiftui-assistant-chore-completion-result/receipt-provenance-prepared.json).
+Prepared receipt provenance (historical artifact removed).
 
 ## Next work
 
@@ -624,7 +624,7 @@ pass with zero skips, including the two retained SDK preflight reads. Eleven
 isolated PostgreSQL/PostgREST cases pass. Actual products/source, six directly
 reviewed action images, raw-log hashes, canonical pair equality and restored
 original scopes/64 journals/settings/local semantics are retained in
-[the leftovers evidence](../evidence/2026-10-07/swiftui-native-leftovers/README.md).
+the leftovers evidence (historical artifact removed).
 Plain native meal action dialogs and navigation-link destination pickers fix the
 observed undersized targets. Eight pre-save native failures and three tooling
 errors are preserved; no committed Add is repeated. Their dated sequence is in
@@ -648,7 +648,7 @@ full audits. Eight screenshots/crops are directly reviewed; original scopes,
 64 journals, settings and local semantics restore. No finding is suppressed or
 full acceptance claimed. Configured formatting/source limits pass; candidate
 routine CI 37544880908/native CI 37544880800 are running.
-[Bottom-effect evidence](../evidence/2026-10-07/swiftui-bottom-fade/README.md).
+Bottom-effect evidence (historical artifact removed).
 
 The preceding leftovers source `a4739172` now passes SwiftUI CI 37543536999:
 506 Foundation tests/41 explicit skips, 471 signed-app tests/39 explicit skips
@@ -667,7 +667,7 @@ all preference receipts and eight protected source/library/grocery/financial
 fingerprints are exact. The 42-point menu choice is replaced by a native
 navigation picker. Thirteen isolated food-profile/PostgREST cases pass. Failed
 compilation/three UI methods remain preserved; no Save or model call occurs.
-[Portion evidence](../evidence/2026-10-07/swiftui-native-portions/README.md).
+Portion evidence (historical artifact removed).
 Both source-specific CI workflows pass: routine 37547556252/native 37547556372,
 506 Foundation tests/41 explicit skips, 472 signed-app tests/40 explicit skips,
 four Swift Testing cases and zero failures. Strict format/limits/signing and
@@ -684,7 +684,7 @@ facts without revealing raw preferences. Food/cooking/notification receipts and
 eight protected household/financial fingerprints are captured. The focused setup
 service test passes configured-only output, actor/tenant filters and unknown
 incomplete reads. Two opt-in native sources pass configured formatting/limits;
-no native method has run. [Preparation](../evidence/2026-10-07/swiftui-native-setup/prepared.json).
+no native method has run. Preparation (historical artifact removed).
 Fresh source `b7aea8ba` compiles 1,136 frozen inputs. Both native GET-only
 setup-status reads pass. Both complete largest-text/dark setup journeys now pass,
 including food, cooking, Calendar, notifications, Get started and return to Today.
@@ -693,7 +693,7 @@ Both revised normal-text journeys and final canonical native reads pass. All eig
 methods have zero failures/skips. Canonical statuses and independently read preference
 records/receipts plus eight protected fingerprints remain exact. Routine37551574018
 and native37551574034 pass at this source, with zero failures.
-[Setup evidence](../evidence/2026-10-07/swiftui-native-setup/README.md).
+Setup evidence (historical artifact removed).
 Each completed method restores both original scopes, 64 empty journals, display
 settings and local privacy/first-use choices. No Save or permission grant occurs.
 Earlier failures remain in [7 October history](progress-history-2026-10-07.md).
@@ -702,8 +702,8 @@ The corrected fixed Calendar card supports continuous largest-text reading with
 fully visible permission controls. Seven current root contrast reports remain,
 including four anonymous findings; all four full root audits fail. No reports
 are suppressed, and full forms/VoiceOver/phone acceptance remain open.
-[Calendar reading](../evidence/2026-10-06/swiftui-fixed-card-measurement/README.md),
-[root contrast](../evidence/2026-10-07/swiftui-bottom-fade/README.md).
+Calendar reading (historical artifact removed),
+root contrast (historical artifact removed).
 Earlier attempts and source-specific CI outcomes remain in
 [7 October history](progress-history-2026-10-07.md).
 
@@ -724,7 +724,7 @@ reports intersect the native tab-bar region, while four reports lack usable
 element/frame identity. This is retained geometry, not a fresh audit or finding
 closure. Further palette changes are not justified by this census; anonymous
 identity and fully visible text comparison remain required.
-[Audit census](../evidence/2026-10-07/swiftui-root-audit-census/README.md).
+Audit census (historical artifact removed).
 
 The existing failure screenshots now bound all four anonymous contrast reports
 to highlighted regions behind the native tab bar: Tuesday breakfast/Add meal in
@@ -732,7 +732,7 @@ Meals and the second recent-activity row in Money. This visual region evidence
 does not establish exact accessibility-node identity or clear any finding.
 Complete descriptions contain no further identity. Fully visible highlighted-row
 comparison remains the useful next check; palette changes are unjustified by
-obscured captures. No audit is rerun. [Overlay inspection](../evidence/2026-10-07/swiftui-anonymous-audit-overlays/README.md).
+obscured captures. No audit is rerun. Overlay inspection (historical artifact removed).
 
 M9 now includes an effective table-access inventory with seven focused real-PG
 tests passing. The complete311-migration rehearsal preserves financial history
@@ -742,7 +742,7 @@ six managed Storage-only relations. RLS/policy counts match for shared rows; no
 client-accessible base table lacks RLS. Managed Storage client TRUNCATE grants and
 broader service grants require execution-path review; no destructive probe or
 grant change occurs. This is inventory, not policy-semantic/Storage/cutover proof.
-[Table inventory](../evidence/2026-10-07/table-access-inventory/README.md).
+Table inventory (historical artifact removed).
 
 Fresh public-key-only zero-row GET probes reject both storage and private REST
 profiles with406/PGRST106. This bounds direct Data API profile exposure while
@@ -761,7 +761,7 @@ object/finance/registry preservation. The final311-migration rehearsal passes22
 attachment boundary cases, including six new native/legacy mutation probes, and
 exact financial/receipt reconciliation. The helper extraction satisfies function
 limits. Managed Storage bytes, privileged writers and production remain open.
-[Mutation boundary](../evidence/2026-10-07/receipt-object-mutation-boundary/README.md).
+Mutation boundary (historical artifact removed).
 
 Current hosted table metadata also confirms no public/private/storage views and
 no direct client SELECT grant on any private table. Private function semantics
@@ -800,7 +800,7 @@ in the provider member projection. Unknown availability stays unknown. Both new
 and existing auth/isolation context cases pass, zero skips/provider calls. Fast
 CI adds this pair. This is context/preparation proof, not successful live model
 generation, rendered estimates or full M5 acceptance.
-[Planning projection](../evidence/2026-10-07/saved-portion-planning/README.md).
+Planning projection (historical artifact removed).
 
 The planning setup gate now has a focused real API/PostgREST regression: missing
 partner food setup returns409/conflict before any proposal/receipt/job or provider
@@ -820,7 +820,7 @@ and absent from three reports on the PDF expense title/amount/date at602.5/651,
 behind/below the584pt tab bar. Both audits remain failed; all reports and the first
 observer failure are retained. Original clients/64 journals/settings/local choices
 restore. Meals is not repeated. Full accessibility remains
-open. [Visible-row comparison](../evidence/2026-10-07/swiftui-visible-root-contrast/README.md).
+open. Visible-row comparison (historical artifact removed).
 
 Grocery spoken details now include quantity/unit/category, pickup state and clear
 sync descriptions instead of hiding visible detail behind the item-name override.
@@ -830,7 +830,7 @@ Original scopes/64 journals/settings/local choices restore. Existing guarded
 rice/reminder/conflict assertions follow the changed value. Strict native format,
 source limits and compilation pass. Actual VoiceOver speech/traversal, other
 states, both phones and full accessibility remain open. This is later thanbuild20.
-[Grocery spoken detail](../evidence/2026-10-07/swiftui-grocery-spoken-detail/README.md).
+Grocery spoken detail (historical artifact removed).
 
 Grocery headings now reuse QuietFormSection across12 sections. Source `6e1a09ed`
 passes signed compilation and one actual read-only checklist method, zero failures/
@@ -838,7 +838,7 @@ skips, with preserved100g accessible value and56pt target. Inspected heading pix
 change from system gray136/136/139 to Quiet ink39/58/49 over250/251/247; sampled
 contrast is retained. Original scopes/64 journals/settings/local choices restore.
 Other migrated headings compile but are not individually rendered; full accessibility
-and phones remain open. [Heading evidence](../evidence/2026-10-07/swiftui-grocery-headings/README.md).
+and phones remain open. Heading evidence (historical artifact removed).
 
 Both routine37592497160/native37592497181 now pass consolidated source `a746e703`.
 Native CI reports509 Foundation/41 skips,480 signed-app/41 skips, zero failures,
@@ -854,7 +854,7 @@ keychain operations restore the original user search list. Archive handle40743 i
 running; export/package/cleanup remain pending. Routine37594517335/native37594517196
 are running on the same commit. Read-only Apple preflight confirms build21 absent
 and20 VALID. No upload intent, cloud build, purchase or production change occurs.
-[Candidate preparation](../evidence/2026-10-07/swiftui-build21/README.md).
+Candidate preparation (historical artifact removed).
 
 Build21 archive/export/package now pass at the frozen source. The copied IPA is
 13,676,426 bytes with exact hash43c623c254d98ececff1b270b01b13d3c7d9a70c17df13d660ed9d256ea0738f.
@@ -880,7 +880,7 @@ service_role/BYPASSRLS refusal after revocation and observed lock ordering betwe
 an authorized object insert and concurrent member deletion. The authorized metadata
 row survives when insertion wins; a revoked writer creates none. This bounds one
 trusted insertion path, not managed Storage bytes/HTTP or all service writers.
-No shipping migration or hosted write occurs. [Privileged writer check](../evidence/2026-10-07/receipt-service-writer-membership/README.md).
+No shipping migration or hosted write occurs. Privileged writer check (historical artifact removed).
 
 Build21 exact candidate now passes routine37594517335/native37594517196:509
 Foundation/41 skips,480 signed-app/41 skips, zero failures, formatting/limits/
@@ -908,7 +908,7 @@ two controlled model cases separately pass. Original 66 events/108 allocations/
 and two shares/ledger rows are added. Both clients/settings/privacy/64 journals
 restore; relay stops and key is destroyed. Format/limits/signed builds pass;
 current-source CI and phones remain open. This shipping fix is after build21.
-[Bill recovery](../evidence/2026-10-07/swiftui-variable-bill-lost-reply/README.md).
+Bill recovery (historical artifact removed).
 
 Two controlled signed-native variable-bill cancellation restart cases now pass,
 zero failures/skips: a lost cancellation reply keeps its cancellation flag and
@@ -920,7 +920,7 @@ Shipping code is unchanged; original clients/64 journals/settings/privacy restor
 Actual hosted cancellation/dialog/phones remain unverified. Recurring-money audit
 now credits implemented worker/manual-link evidence instead of stale future-work
 claims; active hosted execution/credentials/timer acceptance remain pending.
-[Cancellation tests](../evidence/2026-10-07/swiftui-variable-bill-cancellation/README.md).
+Cancellation tests (historical artifact removed).
 
 A current full Calendar initial-viewport accessibility audit now runs against
 the shared-card SwiftUI root at large/light with unrequested permission. It fails
@@ -930,14 +930,14 @@ run; the older 5 October report predates the root layout rewrite. Both the full
 viewport and issue crop are inspected, failure retained, originals/64 journals/
 settings/privacy restored. Other sizes/states, VoiceOver/Reduce Motion and phones
 remain open; no full accessibility approval is claimed.
-[Current Calendar audit](../evidence/2026-10-07/swiftui-current-calendar-audit/README.md).
+Current Calendar audit (historical artifact removed).
 
 A rerunnable contrast-position census now compares retained audit records. All
 eight recent identified Calendar/Meals/Money reports lie below the native tab bar;
 older source reports include above-bar/unidentified nodes. This narrows the current
 root-cause investigation and avoids repeating failed color/fade/background fixes.
 It suppresses no issue and does not clear full accessibility or hardware gates.
-[Census](../evidence/2026-10-07/swiftui-current-calendar-audit/contrast-census.json).
+Census (historical artifact removed).
 
 The distinct Calendar viewport-clipping experiment reproduces the same single
 under-tab-bar contrast finding. It is removed from both source copies and the
@@ -949,7 +949,7 @@ Supported read-only EAS TestFlight feedback/crash queries succeed for the existi
 Nest profile, each with zero records/no next page. No invitations, assignment,
 upload or credential export occurs. Empty reports do not prove installation,
 tester access, crash-free behavior or phone acceptance; those gaps remain.
-[TestFlight reports](../evidence/2026-10-07/testflight-reported-feedback/README.md).
+TestFlight reports (historical artifact removed).
 
 The saved-variable-bill shipping fix at4d0c0d09 now passes both exact-source
 required workflows: routine37607214163 and native37607214035, including strict
@@ -964,7 +964,7 @@ Actual signed normal-text light/dark checks pass, two methods/zero failures/skip
 44pt hittable action, native Chore/Grocery/Expense menu and no-action dismissal.
 Screenshots inspected; originals/64 journals/settings/privacy restored. No hosted
 write/AI/permission/beta occurs. Full audits/phones and current-source CI remain
-open. [Add reading](../evidence/2026-10-07/swiftui-today-add-reading/README.md).
+open. Add reading (historical artifact removed).
 
 A controlled signed-native queued-chore membership-loss/restart case passes:
 queued completion receives forbidden, fresh membership receives not_a_member,
@@ -973,7 +973,7 @@ command bytes remain in scoped SQLite. No completion reaches the controlled serv
 Initial compile-only Equatable mismatch is retained and corrected via payload
 comparison, not shipping-type changes. Originals/64 journals/settings/privacy
 restore. Hosted revocation/rendered guidance/phones and current-head CI remain
-open. [Revocation](../evidence/2026-10-07/swiftui-queued-chore-revocation/README.md).
+open. Revocation (historical artifact removed).
 
 The guarded native Reduce Motion journey compiles but remains unverified. The
 first Settings selector fails before a setting tap; the corrected lookup reaches
@@ -982,7 +982,7 @@ Accessibility/Motion/REDUCE_MOTION but the enabled value stays0, including a fin
 animation acceptance is claimed. Original switch-value restoration has no failure
 in the final result; original scopes/64 journals/settings/privacy restore each
 time. Further unchanged retries stop. Hardware Reduce Motion acceptance remains.
-[Attempt evidence](../evidence/2026-10-07/swiftui-reduce-motion-attempt/README.md).
+Attempt evidence (historical artifact removed).
 
 Six focused disposable PostgreSQL retained-window repair cases pass in0.8s:
 ordinary/leap February31 clamping, original biweekly anchor after reschedule,
@@ -992,7 +992,7 @@ fixture only; shipping SQL unchanged. Format/scoped lint pass after replacing
 ambiguous test tuples with named fields. Focused routine CI adds the six cases;
 full-chain/hosted identity, scheduled preview selection, active bounds/transfer
 semantics and cutover remain open.
-[Repair evidence](../evidence/2026-10-07/routine-repair-history/README.md).
+Repair evidence (historical artifact removed).
 
 Candidatea00fdad3 now passes routine37608862949/native37608863001. The locally
 verified Today token, queued-chore revocation, guarded failed-motion diagnostic
@@ -1010,7 +1010,7 @@ retained, and only recovery resumes after transport correction. All1174 source
 inputs match; signed builds/format/limits pass. Original clients/64 journals/settings/
 privacy restore, relay stops/key removed. Current-source CI, phones, live AI and
 Save/cancel races remain open.
-[Hosted cancellation](../evidence/2026-10-07/swiftui-variable-bill-cancel-reply/README.md).
+Hosted cancellation (historical artifact removed).
 
 Actual managed receipt expiry now passes one signed-native read-only method, zero
 failures/skips: existing640-byte PDF returns200, actual token interval60s, sameURL
@@ -1020,7 +1020,7 @@ assertion failure are retained, not counted. Original scopes/64 journals/setting
 privacy restore. No signedURL/token export or hosted mutation. This bounds the
 current object/cache path; Smart CDN/legacy caches, immediate revocation and phone
 browser behavior remain open. Format/limits/native execution pass; exact-head CI
-pending. [Managed expiry](../evidence/2026-10-07/managed-receipt-expiry/README.md).
+pending. Managed expiry (historical artifact removed).
 
 Preceding21be1712 passes routine37610326123/native37610326037:509 Foundation/41
 skips,494 signed-app/52 skips, zero failures, strict format/limits/signing and
@@ -1038,7 +1038,7 @@ absent/21 valid. Routine37612410978 passes; native37612410354 still active.
 One-use submission remains uninvoked until exact-source CI passes. Build21
 remains available;22/device acceptance is not claimed. No cloud build, purchase,
 invitation, public release, source merge or production change.
-[Build22 preparation](../evidence/2026-10-07/swiftui-build22/README.md).
+Build22 preparation (historical artifact removed).
 
 Build22 frozenf324c905 now passes both exact-source workflows37612410978/
 37612410354:509 Foundation/41 skips,496 signed-app/54 skips, zero failures,
@@ -1056,4 +1056,4 @@ replay. Installation, partner tester access and full hardware/owner acceptance
 remain unverified. It uses nest-test/push disabled; live AI, APNs delivery, merge
 exception and production cutover gates remain open. No cloud build, invitations,
 purchase, public release or production change.
-[Build22 availability](../evidence/2026-10-07/swiftui-build22/apple-availability.json).
+Build22 availability (historical artifact removed).

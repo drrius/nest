@@ -1,9 +1,0 @@
-{
-  "financialSaveForwarded": false,
-  "cancellationPosts": 2,
-  "sameOperationAndBody": true,
-  "lostFirstCancellationReply": true,
-  "originalOperation": "26b33547-2f00-45dc-8e4d-69cdabc245d5",
-  "sameCommandAndFlagAfterRestart": true,
-  "pendingClearedAfterCancelledReceipt": true
-}

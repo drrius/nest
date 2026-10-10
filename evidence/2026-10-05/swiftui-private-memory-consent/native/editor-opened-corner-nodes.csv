@@ -1,9 +1,0 @@
-ref,type,label,value,x,y,width,height,enabled,hittable
-e3,NavigationBar,Cancel,,0,46,375,54,True,True
-e5,Button,Cancel,,20,46.00000000000001,80,43.99999999999999,True,True
-e6,StaticText,New memory,,134.5,57.5,105.5,21,True,True
-e9,Cell,Memory text,,16,135,343,116.5,True,True
-e11,TextField,Memory text,,32,150,311,86.5,True,True
-e13,Cell,Private to you. You’ll review the exact text before saving.,,16,251.5,343,64,True,True
-e15,StaticText,,,16,251.5,343,64,True,True
-e16,Cell,Review text,,16,350.5,343,74,True,True

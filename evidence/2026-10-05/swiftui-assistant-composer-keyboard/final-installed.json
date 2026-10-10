@@ -1,9 +1,0 @@
-{
-  "all1045InputsMatch": true,
-  "signedCandidateMatchesInstalled": true,
-  "executableSHA256": "5618cef407b484a93295f35379825bfac045cdf7ff9257e350df44b967ac5c54",
-  "stableTestOrigins": true,
-  "pushDisabled": true,
-  "originalProfilesAnd64EmptyJournalsRetained": true,
-  "dataAndKeychainNotRemoved": true
-}

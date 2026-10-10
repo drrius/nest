@@ -1,7 +1,0 @@
-{
-  "originalScreenshotsReviewed": 10,
-  "allSafeFictionalScope": true,
-  "unmodifiedOriginalScreenshots": true,
-  "renewalScreens": "Both real empty-list loads, unavailable Refresh and cold restart, same dated notice after failure and restart.",
-  "todayScreens": "Both return-to-Today and both stable restored Today, large/light."
-}

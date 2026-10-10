@@ -1,5 +1,0 @@
-swiftui	Test Foundation domain and offline rules	2026-10-06T04:36:24.2024900Z 	 Executed 502 tests, with 41 tests skipped and 0 failures (0 unexpected) in 12.060 (12.137) seconds
-swiftui	Test Foundation domain and offline rules	2026-10-06T04:36:24.2025650Z 	 Executed 502 tests, with 41 tests skipped and 0 failures (0 unexpected) in 12.060 (12.138) seconds
-swiftui	Test Foundation domain and offline rules	2026-10-06T04:36:24.2031380Z ✔ Test run with 4 tests in 1 suite passed after 0.002 seconds.
-swiftui	Test iPhone session and account boundaries	2026-10-06T04:42:48.5598190Z 	 Executed 454 tests, with 22 tests skipped and 0 failures (0 unexpected) in 77.794 (92.656) seconds
-swiftui	Test iPhone session and account boundaries	2026-10-06T04:42:48.6079930Z 	 Executed 454 tests, with 22 tests skipped and 0 failures (0 unexpected) in 77.794 (92.659) seconds

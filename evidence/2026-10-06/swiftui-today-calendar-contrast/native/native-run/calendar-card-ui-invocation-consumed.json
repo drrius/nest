@@ -1,8 +1,0 @@
-{
-  "ConsumedBeforeInvocation": true,
-  "MaximumUIInvocations": 1,
-  "UnfilteredContrastAuditInvocations": 1,
-  "Source": "abc39697678bddd92a5c8ec1f16355826acab902",
-  "time": 1791313977.81855,
-  "DomainMutationBudget": 0
-}

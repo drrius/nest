@@ -1,6 +1,0 @@
-{
-  "cause": "The root-only navigation observer could not find Add expense after explicit Start another expense. It was corrected to inspect the current expense title or root Add expense action before entering fields.",
-  "ownedIncorrectSearchStopped": false,
-  "financialWritesFromIncorrectSearch": 0,
-  "sourceChanged": false
-}

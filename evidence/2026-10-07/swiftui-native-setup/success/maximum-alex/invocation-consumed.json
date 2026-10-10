@@ -1,8 +1,0 @@
-{
-  "source": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
-  "testBuiltSource": "b7aea8ba4912efdf15420926c3f615d474bdc5c8",
-  "actor": "alex",
-  "step": "maximum",
-  "method": "NativeSetupJourneyTests/testOwnedOptionalSetupNavigationAndStart",
-  "positiveBudget": 0
-}

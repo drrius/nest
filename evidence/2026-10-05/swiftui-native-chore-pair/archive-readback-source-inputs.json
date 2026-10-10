@@ -1,8 +1,0 @@
-{
-  "parentCommit": "b4dd8494db15cc9677fc3eefda2faa3c55b22fd2",
-  "additionalSourceChange": "HostedNativePairChoreTests.swift: archived active-list read asserts absence",
-  "matchedInputCount": 798,
-  "allCompiledInputsMatchLinux": true,
-  "sourceMapSHA256": "7d464c1f4f66fb643259398fc1a264dbf95903472ab9c03be58ddc03e5165376",
-  "phoneOrTestFlightBuild": false
-}

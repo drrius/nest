@@ -1,8 +1,0 @@
-{
-  "sourceCommit": "b4dd8494db15cc9677fc3eefda2faa3c55b22fd2",
-  "matchedInputCount": 798,
-  "allCompiledInputsMatchLinux": true,
-  "sourceMapSHA256": "bd04c6b8bb744aca2ab4f052585ed2220d4672c1f5ea6ff80c6a4742976e0209",
-  "includesNativeCreateDoneAndEditReturn": true,
-  "phoneOrTestFlightBuild": false
-}

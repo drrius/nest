@@ -1,8 +1,0 @@
-{
-  "detail": "User will not be able to change the font size of this SwiftUI.AccessibilityNode",
-  "frame": [20, 550, 182, 18],
-  "label": "Your partner’s availability",
-  "summary": "Dynamic Type font sizes are partially unsupported",
-  "tabBarFrame": [0, 584, 375, 83],
-  "type": "Optional(__C.XCUIElementType)"
-}

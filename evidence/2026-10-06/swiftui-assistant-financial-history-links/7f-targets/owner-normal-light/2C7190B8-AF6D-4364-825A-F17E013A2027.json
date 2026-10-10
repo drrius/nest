@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [32, 377.5, 213.5, 20.5],
-  "hittable": true,
-  "label": "Balance change: −CHF 0.01",
-  "viewport": [0, 74, 375, 510]
-}

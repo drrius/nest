@@ -1,4 +1,0 @@
-ref,type,label,value,x,y,width,height,enabled,hittable
-e9,StaticText,Discard text?,,57.5,302.5,260,20.5,True,True
-e15,Button,Cancel,,43.5,342.5,140,48,True,True
-e16,Button,Discard,,191.5,342.5,140,48,True,True

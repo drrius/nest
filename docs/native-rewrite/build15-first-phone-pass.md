@@ -1,6 +1,6 @@
 # Build15: first phone pass
 
-Nest0.1.0/build15 is valid and internally available in TestFlight. [Availability evidence](../../evidence/2026-10-04/swiftui-build15/apple-availability.json) records the supported Apple read. Partner access and actual installation are still unverified. This uses the separate nest-test environment; Household OS production stays unchanged.
+Nest0.1.0/build15 is valid and internally available in TestFlight. Availability evidence (historical artifact removed) records the supported Apple read. Partner access and actual installation are still unverified. This uses the separate nest-test environment; Household OS production stays unchanged.
 
 Before updating, reconnect the installed app and let pending grocery/chore checks synchronize. Report unresolved changes; do not delete the app to clear them.
 

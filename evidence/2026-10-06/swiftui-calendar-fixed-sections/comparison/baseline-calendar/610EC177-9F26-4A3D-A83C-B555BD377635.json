@@ -1,8 +1,0 @@
-{
-  "detail": "User will not be able to change the font size of this element",
-  "frame": [0, 0, 0, 0],
-  "label": "",
-  "summary": "Dynamic Type font sizes are partially unsupported",
-  "tabBarFrame": [0, 584, 375, 83],
-  "type": "nil"
-}

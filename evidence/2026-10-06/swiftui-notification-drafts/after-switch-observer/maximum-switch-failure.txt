@@ -1,1 +1,0 @@
-915:/tmp/nest-current-qa-82a/apps/ios/UITests/NotificationDraftNavigationTests.swift:126: error: -[NestAccessibilityTests.NotificationDraftNavigationTests testDeviceConnectionRoundTripPreservesUnsentChoices] : failed - Required notification control is not fully visible

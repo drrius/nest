@@ -1,8 +1,0 @@
-{
-  "parentCommit": "80447fed219bab0444f1d175cd8a87ab2b0499b3",
-  "changedFiles": [
-    "apps/ios/Nest/Meals/CookingPreferencesScreen.swift",
-    "apps/ios/Nest/Meals/CookingNotesEditor.swift",
-    "apps/ios/AppTests/CookingNotesEditorTests.swift"
-  ]
-}

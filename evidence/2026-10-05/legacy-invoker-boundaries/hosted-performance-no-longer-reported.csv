@@ -1,2 +1,0 @@
-kind,priorFinding
-performance,"{""detail"": ""Index \\`commitments_renewal_idx\\` on table \\`public.household_commitments\\` has not been used"", ""metadata"": {""name"": ""household_commitments"", ""schema"": ""public"", ""type"": ""table""}}"

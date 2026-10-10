@@ -1,8 +1,0 @@
-{
-  "operation": "26b33547-2f00-45dc-8e4d-69cdabc245d5",
-  "bodySHA256": "f85d3e1d4003d8e5e45c782627eaa37da1ac3deaba4db76ab0b43555f61dd1be",
-  "commandSHA256": "9faea31a1a7ad08c82551eadfab3c4593d60226432fc9e7be1f815dc7a0feb83",
-  "status": "unresolved",
-  "event": null,
-  "cancellationRequested": true
-}

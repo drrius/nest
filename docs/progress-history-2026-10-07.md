@@ -36,7 +36,7 @@ fingerprints unchanged; scopes/settings/local state restore. Both destination
 picker labels now request a 44-point minimum height. Strict configured Mac
 formatting and source limits pass; actual native picker verification is pending.
 The failed invocation and products are retained in
-[picker target evidence](../evidence/2026-10-07/swiftui-native-leftovers/picker-target-failure/).
+picker target evidence (historical artifact removed).
 No Remove has run.
 The custom picker label does not enlarge the underlying menu button: the
 `c3f1a8b9` native run still measures 34.5 points and stops before saving. Fixture
@@ -69,7 +69,7 @@ Mac formatting pass; fresh native execution is pending.
 Initial preparation source `55baa7c5` fails routine CI
 37540272006 only on metadata formatting; the formatted successor is locally
 clean and its CI is running.
-[Prepared leftovers checkpoint](../evidence/2026-10-07/swiftui-native-leftovers/prepared.json).
+Prepared leftovers checkpoint (historical artifact removed).
 
 ## Portion draft preparation and failure history
 
@@ -81,7 +81,7 @@ food/cooking receipts are captured, alongside eight protected household/financia
 fingerprints. Thirteen isolated food-profile/database/PostgREST cases pass with
 zero failures/skips. Two guarded native test sources pass formatting/source
 limits; no Save, profile insertion or native invocation has run at preparation.
-[Portion preparation](../evidence/2026-10-07/swiftui-native-portions/prepared.json).
+Portion preparation (historical artifact removed).
 Preparation at `293549f6` freezes 1,134 inputs and builds the guarded UI products,
 but the new SDK test fails compilation because it names a nonexistent SessionAPI.
 The existing MealAPI verifier replaces that type; configured Mac formatting and
@@ -133,12 +133,12 @@ failed method is retained; corrected complete/maximal journeys are still pending
 
 ## Historical legacy checkpoints
 
-- **Legacy completion boundary:** a direct legacy RPC could write a future completion date. New commands now reject future/nonfinite/unsupported dates while preserving historical exact replies. Seven focused database tests and the304-migration rehearsal pass, including21 document/profile/completion-photo/date probes and existing real database AI/epoch dispatch. Manifest55/250 and all four manifest tests pass. Applied only to nest-test (hosted20261004144314): exact body/ACLs, ten real Auth/PostgREST negative probes and unchanged complete finance/attachments/routine history pass. Routine37210225147 and Deep37210426388 pass exact source c5469baf (23 core,50 conflicts,1,235 database/RLS, zero failures/skips). No new native execution claimed;49 other legacy public functions/deeper private paths remain. [Evidence](../evidence/2026-10-04/legacy-completion-date-boundaries/README.md). Prior receipt cleanup checkpoint1d67f235 now passes Nest37208513631. M9 stays open.
-- **Receipt cleanup:** two retained legacy cleanup RPCs could invalidate another member's old private native receipt intent. The uploader guard now passes17 focused database tests and the303-migration disposable rehearsal, with16 new attachment boundary probes and exact retained finance/receipt reconciliation. Applied only to `nest-test`: hosted bodies/ACLs match, all52 financial events plus allocation/ledger/upload/intent/Storage digests stay unchanged. Source956cd927 routine CI37207407493 caught the omitted migration checksum entry; it is corrected and four local manifest tests pass. Corrected source3b141cc5 passes routine CI37207727428; deep37207534599 passes unchanged SQL/tests with23 core,50 conflicts and1,231 database/RLS cases, zero failures/skips. [Evidence](../evidence/2026-10-04/legacy-receipt-cleanup/README.md). Existing81 privileged-function warnings remain; ten legacy public RPCs now have bounded reviews, with50 others/deeper private paths open. M9 stays open.
+- **Legacy completion boundary:** a direct legacy RPC could write a future completion date. New commands now reject future/nonfinite/unsupported dates while preserving historical exact replies. Seven focused database tests and the304-migration rehearsal pass, including21 document/profile/completion-photo/date probes and existing real database AI/epoch dispatch. Manifest55/250 and all four manifest tests pass. Applied only to nest-test (hosted20261004144314): exact body/ACLs, ten real Auth/PostgREST negative probes and unchanged complete finance/attachments/routine history pass. Routine37210225147 and Deep37210426388 pass exact source c5469baf (23 core,50 conflicts,1,235 database/RLS, zero failures/skips). No new native execution claimed;49 other legacy public functions/deeper private paths remain. Evidence (historical artifact removed). Prior receipt cleanup checkpoint1d67f235 now passes Nest37208513631. M9 stays open.
+- **Receipt cleanup:** two retained legacy cleanup RPCs could invalidate another member's old private native receipt intent. The uploader guard now passes17 focused database tests and the303-migration disposable rehearsal, with16 new attachment boundary probes and exact retained finance/receipt reconciliation. Applied only to `nest-test`: hosted bodies/ACLs match, all52 financial events plus allocation/ledger/upload/intent/Storage digests stay unchanged. Source956cd927 routine CI37207407493 caught the omitted migration checksum entry; it is corrected and four local manifest tests pass. Corrected source3b141cc5 passes routine CI37207727428; deep37207534599 passes unchanged SQL/tests with23 core,50 conflicts and1,231 database/RLS cases, zero failures/skips. Evidence (historical artifact removed). Existing81 privileged-function warnings remain; ten legacy public RPCs now have bounded reviews, with50 others/deeper private paths open. M9 stays open.
 
 ## Broader privileged-function source parity and bounded legacy guards
 
-Fresh hosted reads and a disposable302-migration compilation now match all221 authenticated privileged function bodies (81 public/140 private), plus the delegated calendar-lease helper:222 exact-signature body matches. This is provenance, not a semantic safety claim. Seven legacy public access paths now have an actual guard trace,36 two-tenant/unauthorized/lease/rollback SQL checks in the populated rehearsal and eight actual hosted read-only probes. Search and Storage metadata usage remain tenant bound; known connections/tokens do not authorize another household; expired/mismatched/reentrant leases and foreign event IDs are rejected. Authorized partner calls succeed in rolled-back fixtures. Original calendar/Storage metadata/tenancy and full financial/receipt reconciliation remain unchanged. Fixture reservation/output errors were corrected without bypassing the real trigger; only the final complete run counts. [Evidence](../evidence/2026-10-04/legacy-privileged-boundaries/README.md). Focused formatting/lint and exact-head Nest37198811574 pass at `c73117e3`; native shipping source is unchanged. The remaining53 legacy public functions, deeper private semantics, real hosted Auth/Storage migration, workers/APNs, signup/provider decisions, external writers and complete M9 remain open. No hosted calendar/Storage/schema mutation, secret transfer, inference, beta, purchase, production action or merge occurred.
+Fresh hosted reads and a disposable302-migration compilation now match all221 authenticated privileged function bodies (81 public/140 private), plus the delegated calendar-lease helper:222 exact-signature body matches. This is provenance, not a semantic safety claim. Seven legacy public access paths now have an actual guard trace,36 two-tenant/unauthorized/lease/rollback SQL checks in the populated rehearsal and eight actual hosted read-only probes. Search and Storage metadata usage remain tenant bound; known connections/tokens do not authorize another household; expired/mismatched/reentrant leases and foreign event IDs are rejected. Authorized partner calls succeed in rolled-back fixtures. Original calendar/Storage metadata/tenancy and full financial/receipt reconciliation remain unchanged. Fixture reservation/output errors were corrected without bypassing the real trigger; only the final complete run counts. Evidence (historical artifact removed). Focused formatting/lint and exact-head Nest37198811574 pass at `c73117e3`; native shipping source is unchanged. The remaining53 legacy public functions, deeper private semantics, real hosted Auth/Storage migration, workers/APNs, signup/provider decisions, external writers and complete M9 remain open. No hosted calendar/Storage/schema mutation, secret transfer, inference, beta, purchase, production action or merge occurred.
 
 ## Earlier Calendar card and viewport investigations
 
@@ -169,7 +169,7 @@ overlap cover the entire 559.5-point paragraph; the other paragraph and
 295×187.5-point access button are fully visible. Eight measured pans avoid
 actions and scroll bars. All seven images are directly reviewed. Both original
 scopes, 64 empty journals, settings and local semantics restore. No permission
-is granted or font shrunk. [Native evidence](../evidence/2026-10-06/swiftui-fixed-card-measurement/README.md).
+is granted or font shrunk. Native evidence (historical artifact removed).
 
 Routine CI 37535583085 catches eleven chore-evidence JSON formatting issues;
 Oxfmt corrects them with every value unchanged against Git. Corrected evidence

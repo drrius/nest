@@ -1,8 +1,0 @@
-{
-  "source": "21b41f370d7faffc2f3ec316a016f92acf86b129",
-  "testBuiltSource": "21b41f370d7faffc2f3ec316a016f92acf86b129",
-  "actor": "alex",
-  "step": "normal",
-  "methods": ["NativePortionSaveTests/testOwnedRestoredPortionReadbackAndReturnWithoutSaving"],
-  "positiveBudget": 0
-}

@@ -1,9 +1,0 @@
-{
-  "matchedInputs": 639,
-  "excludedFromCompiledComparison": ["UITests/README.md"],
-  "sha256OfSortedPathAndHashRecords": "ab82a8f403ac49a4d74cd6ae3cb52c7ba97a8eebfc05258a59411bed54f93666",
-  "mismatches": [],
-  "scope": ["Nest", "UITests", "Nest.xcodeproj"],
-  "sourcePredecessor": "480404dc98c86140997f02b683e0722dddb5681f",
-  "sourceChanges": "This commit contains the Calendar font/header and diagnostic test additions; no distribution binary is updated."
-}

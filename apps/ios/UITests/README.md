@@ -44,7 +44,7 @@ paragraph can be taller than the usable screen; the test requires both boundarie
 and continuous coverage through scrolling rather than demanding a single viewport.
 It requires the authorized fixture to have unknown partner availability.
 
-The 5 October full audit remains failing. See the [recorded findings](../../../evidence/2026-10-05/swiftui-accessibility-audit/README.md).
+The 5 October full audit remains failing. See the recorded findings (historical artifact removed).
 Do not use a successful focused reading check as approval of the full audit.
 
 `testVisibleUnknownAvailabilityContrast` requires the entire unknown-availability

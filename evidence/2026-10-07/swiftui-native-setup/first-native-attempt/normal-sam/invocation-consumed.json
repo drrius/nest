@@ -1,7 +1,0 @@
-{
-  "source": "dad2f4be2032c4806bbc3ff1b203fbdc5eb8d0e2",
-  "actor": "sam",
-  "step": "normal",
-  "method": "NativeSetupJourneyTests/testOwnedOptionalSetupNavigationAndStart",
-  "positiveBudget": 0
-}

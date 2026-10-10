@@ -1,1 +1,0 @@
-147:/tmp/nest-current-qa-82a/apps/ios/UITests/MealPreferenceDraftTests.swift:21: error: -[NestAccessibilityTests.MealPreferenceDraftTests testFoodBackProtectsAnInvalidUnsentDraft] : XCTAssertTrue failed

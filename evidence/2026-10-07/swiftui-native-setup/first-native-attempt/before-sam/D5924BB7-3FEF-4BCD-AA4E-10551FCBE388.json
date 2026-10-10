@@ -1,4 +1,0 @@
-[
-  { "path": "\/v1\/session", "status": 200 },
-  { "path": "\/v1\/setup\/status", "status": 200 }
-]

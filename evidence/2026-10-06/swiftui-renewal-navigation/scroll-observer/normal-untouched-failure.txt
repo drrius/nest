@@ -1,5 +1,0 @@
-    t =    94.14s         Find the Target Application 'ch.drrius.nest'
-    t =    94.84s     Wait for ch.drrius.nest to idle
-/tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift:142: error: -[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable] : failed - Renewal navigation control is not fully visible
-    t =    95.23s Tear Down
-Test Case '-[NestAccessibilityTests.RenewalNavigationTests testUntouchedRenewalCancelRemainsReadable]' failed (95.546 seconds).

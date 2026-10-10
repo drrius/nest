@@ -1,9 +1,0 @@
-{
-  "passed": false,
-  "reason": "renewal_read_snapshots was counted as a command table",
-  "observedScopedTables": 65,
-  "allRowsZero": true,
-  "nativeExecutionStarted": false,
-  "financialCommands": 0,
-  "simulatorCloned": false
-}

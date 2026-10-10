@@ -1,5 +1,0 @@
-    t =   114.77s     Synthesize event
-    t =   115.26s     Wait for ch.drrius.nest to idle
-/tmp/nest-current-qa-82a/apps/ios/UITests/MealPreferenceDraftTests.swift:194: error: -[NestAccessibilityTests.MealPreferenceDraftTests testInvalidCalorieKeyboardInputSurvivesCancelledBack] : failed - Meal preference control is not fully visible
-    t =   115.76s Tear Down
-Test Case '-[NestAccessibilityTests.MealPreferenceDraftTests testInvalidCalorieKeyboardInputSurvivesCancelledBack]' failed (116.064 seconds).

@@ -1,7 +1,0 @@
-{
-  "newOfflineSaveRefused": true,
-  "noJournal": true,
-  "noPost": true,
-  "reviewRetained": true,
-  "observerCorrection": "The original observer stopped after seeing the refusal because it searched only the viewport for Save. Inspected the retained review and scrolled to the existing Save without selecting it again."
-}

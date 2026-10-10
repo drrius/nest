@@ -1,9 +1,0 @@
-{
-  "candidate": "Refresh busy times foregroundStyle(QuietPalette.ink)",
-  "resultBundle": "/private/tmp/nest-calendar-refresh-ink-20261005/large/reading.xcresult",
-  "testExitCode": 65,
-  "passed": false,
-  "retainedInApp": false,
-  "observer": "Original contrast observer stopped at the first failure; no claim of exhaustive issue count.",
-  "emptyCommandSlotsBeforeAndAfter": 64
-}

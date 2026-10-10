@@ -1,8 +1,0 @@
-{
-  "action": "read",
-  "actor": "alex",
-  "source": "a4739172c6491b514ed8cdb84d340c84f763cdc0",
-  "method": "NativeMealLeftoversJourneyTests/testReadOwnedLeftoverRecipe",
-  "testBuiltSource": "a4739172c6491b514ed8cdb84d340c84f763cdc0",
-  "positiveBudget": 0
-}

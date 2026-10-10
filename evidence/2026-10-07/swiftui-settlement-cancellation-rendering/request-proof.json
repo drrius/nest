@@ -1,8 +1,0 @@
-{
-  "forwardedPaymentSaves": 0,
-  "refusedPaymentSaves": 1,
-  "forwardedExactCancellations": 1,
-  "cancelledWithoutReceipt": true,
-  "operationId": "ced3e49f-7cba-47ed-9ecf-3094a492c017",
-  "cloneJournalsEmpty": true
-}

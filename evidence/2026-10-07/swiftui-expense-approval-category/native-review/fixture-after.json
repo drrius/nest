@@ -1,9 +1,0 @@
-{
-  "approvalId": "a1393d72-9a34-4648-a298-edb0d31751c6",
-  "operationId": "3e701007-18c0-4c44-8e4f-b880bf91fa73",
-  "status": "pending",
-  "decidedAt": null,
-  "consumedAt": null,
-  "privilegedObservation": true,
-  "existingProtectedFingerprintsUnchanged": true
-}

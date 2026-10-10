@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [40, 515.5, 295, 44],
-  "hittable": true,
-  "label": "Allow calendar access",
-  "viewport": [0, 74, 375, 510]
-}

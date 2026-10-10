@@ -1,9 +1,0 @@
-{
-  "CandidateSource": "e528ab3291d5a7030e24b23b5d452d3991f15cf1",
-  "CandidateInputs": 1123,
-  "BaselineUIAndSDKSource": "6997138485f3f8088fc03682432de74879e19659",
-  "RetainedInputs": 1122,
-  "UnfilteredAuditInvocations": 2,
-  "NoAuditFilters": true,
-  "SaveInvocations": 0
-}

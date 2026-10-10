@@ -17,7 +17,7 @@ Seven registrations appear in legacy `20260812090000_notifications_realtime.sql`
 
 ## Required hosted evidence
 
-The 7 October [authorized test-project checkpoint](../../evidence/2026-10-07/hosted-test-scheduled-writers/README.md)
+The 7 October authorized test-project checkpoint (historical artifact removed)
 now verifies installed pg_cron, its readable/unfiltered extension-owned catalog,
 zero registered jobs at the recorded time and all eight known entry-point
 definition hashes matching current compiled migration source. Owner names differ
@@ -37,7 +37,7 @@ Missing extension/catalog, an unsupported catalog, insufficient privileges,
 RLS-filtered visibility or more than 1,000 jobs cannot yield a complete catalog
 snapshot. Unknown and inactive job names are retained. A complete catalog snapshot
 still does not establish external invokers, in-flight drainage or cutover acceptance.
-[Fixture verification and limits](../../evidence/2026-10-07/scheduled-writer-inventory/README.md).
+Fixture verification and limits (historical artifact removed).
 
 The visibility check matters because [pg_cron uses row-level security](https://github.com/citusdata/pg_cron)
 to limit ordinary users to their own jobs. Hashes use PostgreSQL's built-in
@@ -57,10 +57,10 @@ Reconcile financial events, ledger entries, receipt references, retained drafts 
 
 ## Remaining implementation and environment work
 
-- All seven supported schedule kinds (including both after-completion units) crossed with shared/assigned/alternating policies now pass 24 full-schema synthetic repair cases, including exact window comparison and retry/no-op behavior. [Six focused history/preview cases](../../evidence/2026-10-07/routine-repair-history/README.md) now verify ordinary/leap month-end reconstruction, biweekly original anchors, after-completion days/weeks, alternating turns, unchanged closed history and retry identity. The isolated helper repairs a missing preview without altering current. The retained scheduler selects missing-current routines, so these cases do not establish scheduled preview repair. Active-window/parameter edges, transfer interactions, full-chain/hosted identity and the replacement/retention decision remain.
-- The current full-schema synthetic rehearsal now verifies due reminder and recurring draft producers plus the pending push-outbox database consumer before and after pause, including a preserved live claim. [Evidence](../../evidence/2026-10-04/current-chain-pending-job-rehearsal/README.md). The7 October disposable full-schema expired-claim/retry probe now passes stale
+- All seven supported schedule kinds (including both after-completion units) crossed with shared/assigned/alternating policies now pass 24 full-schema synthetic repair cases, including exact window comparison and retry/no-op behavior. Six focused history/preview cases (historical artifact removed) now verify ordinary/leap month-end reconstruction, biweekly original anchors, after-completion days/weeks, alternating turns, unchanged closed history and retry identity. The isolated helper repairs a missing preview without altering current. The retained scheduler selects missing-current routines, so these cases do not establish scheduled preview repair. Active-window/parameter edges, transfer interactions, full-chain/hosted identity and the replacement/retention decision remain.
+- The current full-schema synthetic rehearsal now verifies due reminder and recurring draft producers plus the pending push-outbox database consumer before and after pause, including a preserved live claim. Evidence (historical artifact removed). The7 October disposable full-schema expired-claim/retry probe now passes stale
   finalization refusal, one-time failure counting, paused preservation and disabled
-  subscription skipping. [Retry evidence](../../evidence/2026-10-07/legacy-push-retry/README.md).
+  subscription skipping. Retry evidence (historical artifact removed).
   Actual Edge delivery and hosted/external drainage remain open.
 - Complete pending native command reconciliation and the cutover epoch decision.
 - Obtain authorized hosted job/function inventory and delivery state; the local fixture lacks real `pg_cron`, `pg_net`, Edge delivery and production data.

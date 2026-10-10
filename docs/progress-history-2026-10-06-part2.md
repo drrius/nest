@@ -12,7 +12,7 @@ only the exact pg_net declaration excluded; original finance/receipts/metadata
 remain unchanged. Four fresh hosted bodies/client grants match the compiled
 chain; eight verified outsider/anonymous RPC refusals return401/403+42501 with
 all58 hosted financial/ledger/allocation/claimed Storage digests unchanged.
-[Evidence](../evidence/2026-10-04/legacy-financial-boundaries/README.md).
+Evidence (historical artifact removed).
 Final focused lint/format/limits pass without exceptions; earlier helper-size/
 parameter errors were corrected. Exact-source80909db7 passes routine CI37233023935;
 the52 full-chain cases ran locally, not in that routine workflow. All1041 native
@@ -26,7 +26,7 @@ Seven retained meal commands now pass 130 full-chain PostgreSQL authorization,
 reference and retry cases, including populated library/leftover side effects.
 Their hosted bodies/grants match; fourteen real outsider/anonymous requests
 are refused, with meals, groceries, routines and all 58 financial events unchanged.
-[Evidence](../evidence/2026-10-04/legacy-meal-boundaries/README.md) distinguishes
+Evidence (historical artifact removed) distinguishes
 legacy automatic groceries/source-link retries from native approval semantics.
 Exact source `3abe3df7` passes routine CI37234581666; the 130 cases ran locally. Thirty other legacy public entries
 and deeper private paths remain. M9 stays open; no native/provider/schema change,
@@ -49,7 +49,7 @@ update retain the exact command/receipt; reopening, native detail and Done work.
 Same58-ID raw financial/allocation/ledger/claimed Storage metadata digests match.
 Only the fictional rule is normally paused;59 events and other rules remain.
 Ordinary/light Today, stable test origins, data/Keychain and64 empty journals are
-restored. [Evidence](../evidence/2026-10-04/swiftui-native-variable-bill/README.md)
+restored. Evidence (historical artifact removed)
 distinguishes first-source keyboard/Save from final-source recovery. Exact-source3e0d377b passes Nest37237659698/SwiftUI37237659725:491 Foundation/41
 explicit skips and409 signed-native/11 explicit skips, zero failures, strict
 format/limits and actual signing. A read-only real-midnight snapshot shows
@@ -86,7 +86,7 @@ and claimed Storage metadata hashes stay exact. Owner-private consumed approval,
 shared expense visibility, normal native Done/zero balance/ordinary Today and64
 empty journals pass. The direct-Save receipt probe correctly returns400 for an
 AI operation; the verifier uses the private approval envelope. No save was repeated.
-[Evidence](../evidence/2026-10-05/swiftui-private-variable-bill/README.md) separates
+Evidence (historical artifact removed) separates
 candidate failures, synthetic command proof and actual native/hosted execution.
 Final source36e6fb73 passes Nest37241219456 and SwiftUI37241219530:491 Foundation/41
 explicit skips,409 signed-native/11 explicit skips, zero failures, strict format/limits
@@ -96,11 +96,11 @@ Other timed financial consent rows need the same isolation/cancellation audit;
 hosted lost-reply/declined variants, VoiceOver/races/both phones/live AI stay open.
 Documentation checkpoint21550910 passes Nest37238842339. No beta/merge occurs; M7 remains open.
 
-The six-family isolation, explicit cancellation and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#financial-consent-row-isolation) and [source evidence](../evidence/2026-10-05/swiftui-financial-consent-controls/README.md). The later readability checks below supersede its clipped-message and navigation-observer findings.
+The six-family isolation, explicit cancellation and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#financial-consent-row-isolation) and source evidence (historical artifact removed). The later readability checks below supersede its clipped-message and navigation-observer findings.
 
 The compact financial alerts and final resumption-title proof, exact source CI and preserved61-event baseline are recorded in [the 5 October history](progress-history-2026-10-05.md#readable-financial-confirmations). All original evidence remains linked there.
 
 Earlier native preference input/reload controls remain in the
 [5 October archive](progress-history-2026-10-05.md#native-preferences-input-and-reload-controls--5-october)
-and [native evidence](../evidence/2026-10-05/swiftui-preferences-input-reload/README.md).
+and native evidence (historical artifact removed).
 Broader accessibility, phone and live-AI acceptance remain open.

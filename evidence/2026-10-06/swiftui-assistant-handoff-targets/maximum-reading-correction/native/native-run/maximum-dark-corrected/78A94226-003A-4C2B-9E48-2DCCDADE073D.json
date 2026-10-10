@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [36, 370.5, 303, 119],
-  "hittable": true,
-  "label": "Review notifications",
-  "viewport": [0, 74, 375, 510]
-}

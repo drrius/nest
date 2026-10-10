@@ -1,9 +1,0 @@
-{
-  "count": 822,
-  "inventoryParts": ["source-inputs-1.csv", "source-inputs-2.csv", "source-inputs-3.csv"],
-  "shippingSourceCommit": "38cfed7b",
-  "sourceCommit": "5694a7ab",
-  "allInputsMatchAfterExecution": true,
-  "fourRepresentativeModalImagesInspected": true,
-  "modalImagesRetained": 8
-}

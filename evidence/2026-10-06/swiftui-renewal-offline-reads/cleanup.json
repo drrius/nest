@@ -1,9 +1,0 @@
-{
-  "removedOwnedTemporaryPrivateFiles": 6,
-  "originalSigningAndLoginFilesUntouched": true,
-  "originalKeychainNotClearedOrReplaced": true,
-  "ephemeralIntegrationStoresRemovedByTestTeardown": true,
-  "scopedCaffeinateEndedInFinally": true,
-  "nativeFullResultStoresRetainedPrivate": true,
-  "exclusiveLockAvailable": true
-}

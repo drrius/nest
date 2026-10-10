@@ -1,7 +1,7 @@
 # Legacy Edge writer boundaries
 
 Audited from the local Household OS source on7 October2026. File hashes and three
-focused local results are retained in [evidence](../../evidence/2026-10-07/legacy-edge-writer-source/).
+focused local results are retained in evidence (historical artifact removed).
 No hosted code, credentials, jobs or provider endpoints are inspected or changed.
 This complements the [scheduled writer audit](scheduled-writer-audit.md).
 

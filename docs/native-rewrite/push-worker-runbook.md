@@ -29,7 +29,7 @@ Before hosted activation, verify the actual Auth session schema and migrations i
 The three Auth session column assumptions are now confirmed by a read-only
 nest-test catalog query on 7 October: non-null UUID `id`/`user_id` and nullable
 `timestamptz` `not_after`, with query-role SELECT privileges. No session or token
-rows are read. [Metadata evidence](../../evidence/2026-10-07/hosted-test-push-session-schema/README.md).
+rows are read. Metadata evidence (historical artifact removed).
 This verifies column shape, not complete Auth policies, refresh/expiry behavior
 or actual delivery. Server credentials/APNs configuration and activation remain open.
 

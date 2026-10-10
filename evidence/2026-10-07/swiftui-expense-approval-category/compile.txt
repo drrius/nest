@@ -1,4 +1,0 @@
-PruneExplicitPrecompiledModules /tmp/nest-native-saved-portion-readback-ui-20261007/Build/Intermediates.noindex/ExplicitPrecompiledModules
-
-** TEST BUILD SUCCEEDED **
-

@@ -1,5 +1,0 @@
-Test Case '-[NestAppTests.ProposalApprovalModelTests testLostApprovalReplyRetriesExactOperationAndReconciles]' passed (0.216 seconds).
-Test Case '-[NestAppTests.ProposalApprovalModelTests testOfflineOrChangedPreviewCannotStageNewApproval]' passed (0.215 seconds).
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.431 (0.432) seconds
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.431 (0.432) seconds
-	 Executed 2 tests, with 0 failures (0 unexpected) in 0.431 (0.433) seconds

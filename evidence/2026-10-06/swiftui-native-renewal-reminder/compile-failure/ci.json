@@ -1,9 +1,0 @@
-{
-  "sourceCommit": "3dfcd521483eaa83058f62da93ad1cdc3c079a1b",
-  "routineRun": 37451555189,
-  "routineConclusion": "success",
-  "nativeRun": 37451555182,
-  "nativeConclusion": "failure",
-  "error": "Non-Sendable XCTestCase self captured in Sendable teardown closure",
-  "shippingCause": false
-}

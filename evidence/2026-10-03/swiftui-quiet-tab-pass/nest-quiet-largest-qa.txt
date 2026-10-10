@@ -1,9 +1,0 @@
-Today tap sent
-Meals tap sent
-Calendar tap sent
-Choose day tap sent
-Money tap sent
-Add expense tap sent
-Record a payment tap sent
-Today tap sent
-Quiet root/corner navigation pass

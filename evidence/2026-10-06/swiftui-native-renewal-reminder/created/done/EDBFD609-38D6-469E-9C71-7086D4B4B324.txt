@@ -1,4 +1,0 @@
-Query chain:
- →Find: Target Application 'ch.drrius.nest'
-  ↪︎Find: Descendants matching type Button
-    ↪︎Find: Elements matching predicate '"Refresh" IN identifiers'

@@ -1,4 +1,0 @@
-ref,type,label,value,x,y,width,height,hittable,enabled
-e4,StaticText,null,null,48,44.5,279,249.5,True,True
-e11,Button,"""Confirm resumption""",null,34,359.5,307,187.5,True,True
-e12,Button,"""Cancel""",null,34,555,307,98,True,True

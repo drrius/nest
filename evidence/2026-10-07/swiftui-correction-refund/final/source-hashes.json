@@ -1,6 +1,0 @@
-{
-  "apps/ios/UITests/NativeCorrectionRefundPostingTests.swift": "5c136c7aa57af04dd5ec7fae0a2ed9bd1ab2d5b050d389f9b8aa9e651b13106f",
-  "apps/ios/Nest/Money/CorrectionScreen.swift": "73eedbf95fe941c0ab32db077481671d3e4ef840688ecdc931648e1e43eff581",
-  "apps/ios/Nest/Money/RefundScreen.swift": "e0406bc319b436ff385505681d49e3e3880395aa2b9218a9c9e090662dc47604",
-  "apps/ios/Nest/Money/MoneyDetailScreen.swift": "9b888cc160194fd7561e4d55f76d6c864ee8ffa2242012afc59c491967843c09"
-}

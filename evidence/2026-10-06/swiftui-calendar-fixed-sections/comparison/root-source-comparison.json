@@ -1,9 +1,0 @@
-{
-  "baselineUI": "310524b183cf48810e1447196fa7dab38509a6bc",
-  "candidateParent": "6eed48bdb00664947c160a14807cdff8f77c8704",
-  "calendarPath": "Nest/Calendar/CalendarScreen.swift",
-  "baselineSha256": "5638986674a107c5d28187475f11bdf6f68cbef219ac22526d0ea50c130f7883",
-  "candidateParentSha256": "5638986674a107c5d28187475f11bdf6f68cbef219ac22526d0ea50c130f7883",
-  "candidateSha256": "defc40a5f65bed554227c148bde6f066e4e44f2f2b1cbac4a52e883e192fcafe",
-  "change": "Outer fixed-section LazyVStack to VStack only; inner QuietSectionCard data-list LazyVStack unchanged"
-}

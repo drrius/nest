@@ -1,2 +1,0 @@
-683f6aefa5a72ace01c9d9419867985fd5f5bfc7fe7d358080d3bbb3b296f99f  apps/ios/Nest/Session/SessionModel+ProposalApproval.swift
-150f7a60640e41d51fb315a39de234e99e3c55d2bf6f88ac12c9a2fcc2ee04f4  apps/ios/AppTests/ProposalApprovalModelTests.swift

@@ -1,3 +1,0 @@
-ref,type,label,value,x,y,width,height,hittable,enabled
-e9,StaticText,null,null,97,467.5,180,108.5,True,True
-e15,Button,"""Decline""",null,83,593.5,208,48,True,True

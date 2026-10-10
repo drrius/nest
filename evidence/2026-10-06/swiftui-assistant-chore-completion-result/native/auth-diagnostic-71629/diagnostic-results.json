@@ -1,9 +1,0 @@
-{
-  "method": "HostedChoreHistoryAuthDiagnosticTests/testExistingOwnerSessionAndTracedMembershipReadOnly",
-  "source": "587a2349de1ed7c1ddf4d8c619c51dd8db683529",
-  "exitCode": 0,
-  "passed": 1,
-  "failed": 0,
-  "skipped": 0,
-  "seconds": 4.954
-}

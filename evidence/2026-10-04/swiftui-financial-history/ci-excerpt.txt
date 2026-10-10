@@ -1,9 +1,0 @@
-swiftui	Verify Swift source limits	2026-10-03T23:48:20.0626040Z Swift source limits: passed
-swiftui	Test Foundation domain and offline rules	2026-10-03T23:49:56.6425980Z Test Suite 'MoneyHistoryTests' started at 2026-10-03 23:49:56.623.
-swiftui	Test Foundation domain and offline rules	2026-10-03T23:49:56.6428070Z Test Suite 'MoneyHistoryTests' passed at 2026-10-03 23:49:56.623.
-swiftui	Test Foundation domain and offline rules	2026-10-03T23:50:00.7277900Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 11.126 (11.215) seconds
-swiftui	Test Foundation domain and offline rules	2026-10-03T23:50:00.7278790Z 	 Executed 478 tests, with 41 tests skipped and 0 failures (0 unexpected) in 11.126 (11.217) seconds
-swiftui	Test iPhone session and account boundaries	2026-10-03T23:57:17.8097970Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 67.336 (75.756) seconds
-swiftui	Test iPhone session and account boundaries	2026-10-03T23:57:17.8704720Z 	 Executed 389 tests, with 11 tests skipped and 0 failures (0 unexpected) in 67.336 (75.760) seconds
-swiftui	Test iPhone session and account boundaries	2026-10-03T23:57:19.2525750Z ** TEST SUCCEEDED **
-swiftui	Verify actual app push signing	2026-10-03T23:57:27.0324570Z Native push signing: passed (disabled; local build)

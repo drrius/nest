@@ -1,9 +1,0 @@
-{
-  "standalone": true,
-  "networkRequests": 0,
-  "nestDataAccess": false,
-  "runtime": "iOS26.3.1",
-  "warningEmissions": 0,
-  "keyboardFocusedAndDismissed": true,
-  "warnings": []
-}

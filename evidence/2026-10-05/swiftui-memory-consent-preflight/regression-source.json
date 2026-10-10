@@ -1,7 +1,0 @@
-{
-  "parentCommit": "57a237f833994479433de986648342e151b1509c",
-  "changedFiles": ["apps/ios/AppTests/MemoryDecisionPreflightTests.swift"],
-  "inputCount": 1042,
-  "shippingCommit": "57a237f833994479433de986648342e151b1509c",
-  "manifestSHA256": "662e92416adf1687615500fe69ef8f31f3ebeca7a25b890f6ca8744114f434d5"
-}

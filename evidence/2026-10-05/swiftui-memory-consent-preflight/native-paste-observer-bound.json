@@ -1,8 +1,0 @@
-{
-  "observedPrefixLength": 512,
-  "exactExpectedPrefix": true,
-  "exactClipboardLength": 1000,
-  "noPasteRepeated": true,
-  "fullCommandMustBeVerifiedAfterReview": true,
-  "time": 1791172222.549897
-}

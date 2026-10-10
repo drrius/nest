@@ -1,9 +1,0 @@
-{
-  "passed": 0,
-  "failed": 1,
-  "skipped": 0,
-  "exitCode": 65,
-  "controlledTransport": false,
-  "realManagedStorage": true,
-  "hostedWrites": 0
-}

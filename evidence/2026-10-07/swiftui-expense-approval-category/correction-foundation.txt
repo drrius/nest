@@ -1,9 +1,0 @@
-Test Suite 'CorrectionApprovalTests' started at 2026-10-07 07:09:19.284.
-Test Case '-[NestCoreTests.CorrectionApprovalTests testConsumedApprovalRequiresExactBoundReceipt]' started.
-Test Case '-[NestCoreTests.CorrectionApprovalTests testConsumedApprovalRequiresExactBoundReceipt]' passed (0.005 seconds).
-Test Suite 'CorrectionApprovalTests' passed at 2026-10-07 07:09:19.289.
-	 Executed 1 test, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
-Test Suite 'NestCoreTests.xctest' passed at 2026-10-07 07:09:19.289.
-	 Executed 1 test, with 0 failures (0 unexpected) in 0.005 (0.005) seconds
-Test Suite 'Selected tests' passed at 2026-10-07 07:09:19.289.
-	 Executed 1 test, with 0 failures (0 unexpected) in 0.005 (0.006) seconds

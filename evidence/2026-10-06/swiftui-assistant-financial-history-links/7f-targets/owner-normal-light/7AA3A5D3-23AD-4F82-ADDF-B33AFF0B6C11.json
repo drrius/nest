@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [32, 478.5, 308.5, 44],
-  "hittable": true,
-  "label": "View recorded expense",
-  "viewport": [0, 74, 375, 510]
-}

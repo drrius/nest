@@ -1,5 +1,0 @@
-ref,type,label,value,rect,enabled,hittable
-"""e9""","""StaticText""","""Discard edits?""",null,"{""height"": 20.5, ""x"": 57.5, ""width"": 260, ""y"": 289.5}",true,true
-"""e10""","""StaticText""","""Use saved values.""",null,"{""y"": 317, ""width"": 260, ""height"": 18, ""x"": 57.5}",true,true
-"""e16""","""Button""","""Cancel""",null,"{""width"": 140, ""height"": 48, ""y"": 355.5, ""x"": 43.5}",true,true
-"""e17""","""Button""","""Reload""",null,"{""width"": 140, ""height"": 48, ""x"": 191.5, ""y"": 355.5}",true,true

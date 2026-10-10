@@ -1,5 +1,0 @@
-    t =    24.76s Find the "renewal-title" TextField
-    t =    24.82s Find the "renewal-title" TextField
-/tmp/nest-current-qa-82a/apps/ios/UITests/RenewalNavigationTests.swift:136: error: -[NestAccessibilityTests.RenewalNavigationTests testEditedRenewalCancelPreservesOrDiscardsOnlyLocalInput] : XCTAssertGreaterThanOrEqual failed: ("22.0") is less than ("43.999999999")
-    t =    24.90s Tear Down
-Test Case '-[NestAccessibilityTests.RenewalNavigationTests testEditedRenewalCancelPreservesOrDiscardsOnlyLocalInput]' failed (25.154 seconds).

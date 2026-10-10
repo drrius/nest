@@ -1,9 +1,0 @@
-{
-  "ExecutedSourceCommit": "aab9b37d276affa267d78949c1496648761ca03d",
-  "AllNativeInputs": 1104,
-  "SDKAndUIRebuilt": false,
-  "UIRebuilt": true,
-  "SDKBinarySourceCommit": "a4afc4a029c7b1fa35a6a83f1bc33d7ce6d1c3a4",
-  "ShippingBaseCommit": "a4afc4a029c7b1fa35a6a83f1bc33d7ce6d1c3a4",
-  "OnlyUIOverride": true
-}

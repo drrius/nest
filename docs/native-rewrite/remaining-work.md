@@ -8,7 +8,7 @@ a new failure or an uncovered requirement. M1 through M9 remain open.
 The owner prioritizes usable daily flows and safe diagnostics over further expansion
 of unchanged QA variants. Money currently fails in the owner test household because
 only Darius is linked; the two-member simulator fixture hid that setup issue.
-[Diagnosis and focused fixes](../../evidence/2026-10-07/money-setup-diagnostics/README.md).
+Diagnosis and focused fixes (historical artifact removed).
 Verified partner linking is required; client diagnostics and clear setup errors
 are implemented, locally checked and included in internally available build25.
 
@@ -33,14 +33,14 @@ acceptance remain. These bounded results do not close the full daily-use or M4 g
 
 Evidence reconciliation7 October:
 
-- [Actual EventKit foreground refresh](../../evidence/2026-10-07/swiftui-eventkit-foreground/README.md)
+- Actual EventKit foreground refresh (historical artifact removed)
   passes one signed app-hosted integration with a synthetic local event changed
   through a separate real EventKit store. Private presentation stays cleared until
   refresh, then shows exact updated fields with preserved selection. Model
   lifecycle is called directly; rendered scene hooks, Apple sync and phones remain
   unverified. Only the owned fixture/simulator is removed; shipping source is unchanged.
 
-- [Read-only production writer inventory](../../evidence/2026-10-07/production-catalog-inventory/README.md)
+- Read-only production writer inventory (historical artifact removed)
   identifies eight active legacy cron registrations, 153 public/private functions
   and two active Edge writers. All nine returned Edge application files match
   audited legacy source. Catalog queries confirm read-only scope and exclude
@@ -48,13 +48,13 @@ Evidence reconciliation7 October:
   semantics, existing-data reconciliation, writer decisions and drainage remain
   open; no production mutation or cutover occurs.
 
-- [Calendar foreground model](../../evidence/2026-10-07/swiftui-calendar-foreground/README.md)
+- Calendar foreground model (historical artifact removed)
   now passes one signed app-hosted check with a controlled local reader. Visible
   details clear while inactive, selection persists, and refresh reads changed
   events without another permission request. Screen hooks are inspected only;
   real EventKit background changes, radios and phone privacy acceptance remain open.
 
-- [Unqueued household read revocation](../../evidence/2026-10-07/swiftui-household-read-revocation/README.md)
+- Unqueued household read revocation (historical artifact removed)
   now has failing-before evidence and a shipping correction. Twenty-five signed
   native checks pass: read 403 reverifies membership, revoked access hides cached
   household presentation and removes the active offline scope, valid members keep
@@ -62,47 +62,47 @@ Evidence reconciliation7 October:
   revocation, physical radios and uncoached daily use remain open. This fix is included in internally available build24; phone installation
   remains unverified.
 
-- [Variable-rule edit and resumption](../../evidence/2026-10-07/swiftui-recurring-edit-resume/README.md)
+- Variable-rule edit and resumption (historical artifact removed)
   now record creation, a note edit, pause, explicit prospective resume and
   cancellation through the real hosted native client. The final resumed suffix
   passes; earlier observer failures stay recorded. All eleven older rule hashes
   and the full financial snapshot match, with no scheduler activated. Live AI,
   actual scheduling and phones remain open.
 
-- [Direct manual cycle linkage](../../evidence/2026-10-04/swiftui-native-manual-cycle-link/README.md)
+- Direct manual cycle linkage (historical artifact removed)
   already proves one explicit native link, both authenticated members' unchanged
   financial reads and recorded-receipt recovery after restart. The existing
-  [retained confirmation](../../evidence/2026-10-04/swiftui-retained-confirmation-recovery/README.md),
-  [dismissal](../../evidence/2026-10-04/swiftui-retained-dismissal-recovery/README.md)
-  and [adoption](../../evidence/2026-10-04/swiftui-retained-adoption-recovery/README.md)
+  retained confirmation (historical artifact removed),
+  dismissal (historical artifact removed)
+  and adoption (historical artifact removed)
   also have hosted native decisions and interrupted-save recovery. Preserve this
   bounded evidence. Later Quiet section/value styling still needs current UI
   acceptance; it does not erase these financial outcomes or justify replaying
   completed writes. Private live approvals and phones remain open.
 
-- [Fixed-rule lifecycle](../../evidence/2026-10-07/swiftui-recurring-lifecycle/README.md) now passes direct native creation, explicit automatic mandate, pause and cancellation against the hosted test API. Earlier rules and all financial history remain unchanged, with no scheduler activated. Editing, resumption, manual linkage, actual scheduling, AI and phones stay open.
+- Fixed-rule lifecycle (historical artifact removed) now passes direct native creation, explicit automatic mandate, pause and cancellation against the hosted test API. Earlier rules and all financial history remain unchanged, with no scheduler activated. Editing, resumption, manual linkage, actual scheduling, AI and phones stay open.
 
-- [Direct correction/refund posting](../../evidence/2026-10-07/swiftui-correction-refund/README.md) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendered readback now passes separately without any financial change. Physical phones, live AI, other variants and the retained writer warning remain open.
+- Direct correction/refund posting (historical artifact removed) now records and reads back the expense/reversal/replacement/refund chain through native UI and the hosted test API. Three commands restore both balances while preserving all earlier financial hashes. The correction picker target is enlarged to 44 points. Partner rendered readback now passes separately without any financial change. Physical phones, live AI, other variants and the retained writer warning remain open.
 
-- [Actual EventKit revocation](../../evidence/2026-10-07/swiftui-eventkit-revocation/README.md) now verifies OS-denied reads and persisted-selection clearing across test-host restart in two signed native checks. It uses a fresh simulator and one synthetic event. Physical phones, rendered privacy behavior and live busy sharing remain open.
+- Actual EventKit revocation (historical artifact removed) now verifies OS-denied reads and persisted-selection clearing across test-host restart in two signed native checks. It uses a fresh simulator and one synthetic event. Physical phones, rendered privacy behavior and live busy sharing remain open.
 
-- [Remaining meal read callers](../../evidence/2026-10-07/swiftui-meal-read-callers/README.md) now use one fenced week-read command. Held proposal/preflight replies and invalidated ingredient updates are rejected; existing choices, pending requests and approvals retain their behavior in 32 native app and nine SQLite checks. Hosted permissions, live AI and phone acceptance remain open.
+- Remaining meal read callers (historical artifact removed) now use one fenced week-read command. Held proposal/preflight replies and invalidated ingredient updates are rejected; existing choices, pending requests and approvals retain their behavior in 32 native app and nine SQLite checks. Hosted permissions, live AI and phone acceptance remain open.
 
-- [Planned detail/preparation denial](../../evidence/2026-10-07/swiftui-meal-detail-denial/README.md) now removes denied read copies and rejects a held old detail reply, preserving pending commands. Fourteen signed app and fourteen SQLite checks pass locally. Hosted permissions, proposal/ingredient read paths and phone rendering remain open.
+- Planned detail/preparation denial (historical artifact removed) now removes denied read copies and rejects a held old detail reply, preserving pending commands. Fourteen signed app and fourteen SQLite checks pass locally. Hosted permissions, proposal/ingredient read paths and phone rendering remain open.
 
-- [Meal read denial races](../../evidence/2026-10-07/swiftui-meal-read-denial-races/README.md) close both controlled late-success/denial orders for week-cache writes. Final native recovery cases and SQLite restart/fresh-read checks pass. Hosted revocation, other recipe/proposal read-only paths and phones remain separate gaps. This shipping change is newer than build 22.
+- Meal read denial races (historical artifact removed) close both controlled late-success/denial orders for week-cache writes. Final native recovery cases and SQLite restart/fresh-read checks pass. Hosted revocation, other recipe/proposal read-only paths and phones remain separate gaps. This shipping change is newer than build 22.
 
-- [Today saved meals](../../evidence/2026-10-07/swiftui-today-meals-cache/README.md) now appear before the network reply and remain visible during refresh/unavailability. Five signed session/SQLite checks and one final controlled SwiftUI capture pass without skips; both screenshots are inspected. Rendered hosted interruption, larger text, day rollover and phones remain unverified. This shipping change is newer than build 22.
+- Today saved meals (historical artifact removed) now appear before the network reply and remain visible during refresh/unavailability. Five signed session/SQLite checks and one final controlled SwiftUI capture pass without skips; both screenshots are inspected. Rendered hosted interruption, larger text, day rollover and phones remain unverified. This shipping change is newer than build 22.
 
-- [Money history spacing](../../evidence/2026-10-07/swiftui-money-history-spacing/README.md) reproduces an actual 24-point gap between populated rows and verifies its removal in two signed native journeys. Preview and full history retain complete visible targets; screenshots are inspected. This shipping fix is newer than TestFlight build 22. Full accessibility and phone acceptance remain.
+- Money history spacing (historical artifact removed) reproduces an actual 24-point gap between populated rows and verifies its removal in two signed native journeys. Preview and full history retain complete visible targets; screenshots are inspected. This shipping fix is newer than TestFlight build 22. Full accessibility and phone acceptance remain.
 
-- [Standalone native contrast diagnosis](../../evidence/2026-10-07/swiftui-native-contrast-probe/README.md) reproduces strict below-bar contrast reports with standard SwiftUI colors, including Nest's hidden bottom fade. The no-tab control keeps identical paragraph frames and removes strict failures. All three diagnostic audits still fail on retained contrast findings. This guides the remaining investigation without clearing Nest's audit, historical above-bar reports, accessibility or phone gates. Do not repeat palette/fade/clipping workarounds for this already reproduced case.
+- Standalone native contrast diagnosis (historical artifact removed) reproduces strict below-bar contrast reports with standard SwiftUI colors, including Nest's hidden bottom fade. The no-tab control keeps identical paragraph frames and removes strict failures. All three diagnostic audits still fail on retained contrast findings. This guides the remaining investigation without clearing Nest's audit, historical above-bar reports, accessibility or phone gates. Do not repeat palette/fade/clipping workarounds for this already reproduced case.
 
-- [Posted PDF and partner browser/download](../../evidence/2026-10-05/swiftui-posted-pdf/README.md#partner-receipt-and-account-boundaries) already establish both fictional identities on one simulator, exact640-byte download and native browser return. Physical phones, live AI handoff and full accessibility remain; do not repeat upload/posting/account switches to clear an obsolete pending statement.
-- [Saved portions](../../evidence/2026-10-07/swiftui-saved-portion/README.md) and [planning projection](../../evidence/2026-10-07/saved-portion-planning/README.md) establish actual saved variation/restart/restoration and authorized inputs. Live generated estimates and phones remain.
-- [Manual week](../../evidence/2026-10-05/swiftui-native-manual-week/README.md), [ingredient review](../../evidence/2026-10-05/swiftui-native-ingredient-review/README.md), [preparation](../../evidence/2026-10-06/swiftui-native-preparation/README.md) and [completion](../../evidence/2026-10-06/swiftui-native-preparation-completion/README.md) supersede those records' earlier pending move/edit/preparation notes within their stated scope. Live proposals, complete losses/conflicts, accessibility and phones remain.
-- [Direct variable bill](../../evidence/2026-10-04/swiftui-native-variable-bill/README.md) already proves native posting and recorded restart/client-update recovery. [Hosted lost-reply recovery](../../evidence/2026-10-07/swiftui-variable-bill-lost-reply/README.md) now proves one committed POST, offline restart/local discovery, receipt-only recovery, Done, partner SDK read and retained history. [Controlled native cancellation restart](../../evidence/2026-10-07/swiftui-variable-bill-cancellation/README.md) proves local command/flag preservation and recorded-versus-cancelled recovery. [Hosted cancellation reply recovery](../../evidence/2026-10-07/swiftui-variable-bill-cancel-reply/README.md) now proves the real dialog, lost cancellation reply, exact restart/retry, Continue and no financial posting. [Ordered local native/API races](../../evidence/2026-10-07/swiftui-variable-bill-ordered-races/README.md) now force both database commit orders with native SQLite reopening and no write replay. Hosted/UI races, live AI handoffs and phones remain uncovered; the distinct retained-draft journey does not prove those variants.
-- [Keyboard diagnosis](../../evidence/2026-10-07/swiftui-keyboard-toolbar-probe/README.md) attributes the warning to native InputAccessoryBar on the tested runtime. Actual keyboard usability/phone acceptance remains; removing useful controls merely to suppress that warning is not a requirement.
+- Posted PDF and partner browser/download (historical artifact removed) already establish both fictional identities on one simulator, exact640-byte download and native browser return. Physical phones, live AI handoff and full accessibility remain; do not repeat upload/posting/account switches to clear an obsolete pending statement.
+- Saved portions (historical artifact removed) and planning projection (historical artifact removed) establish actual saved variation/restart/restoration and authorized inputs. Live generated estimates and phones remain.
+- Manual week (historical artifact removed), ingredient review (historical artifact removed), preparation (historical artifact removed) and completion (historical artifact removed) supersede those records' earlier pending move/edit/preparation notes within their stated scope. Live proposals, complete losses/conflicts, accessibility and phones remain.
+- Direct variable bill (historical artifact removed) already proves native posting and recorded restart/client-update recovery. Hosted lost-reply recovery (historical artifact removed) now proves one committed POST, offline restart/local discovery, receipt-only recovery, Done, partner SDK read and retained history. Controlled native cancellation restart (historical artifact removed) proves local command/flag preservation and recorded-versus-cancelled recovery. Hosted cancellation reply recovery (historical artifact removed) now proves the real dialog, lost cancellation reply, exact restart/retry, Continue and no financial posting. Ordered local native/API races (historical artifact removed) now force both database commit orders with native SQLite reopening and no write replay. Hosted/UI races, live AI handoffs and phones remain uncovered; the distinct retained-draft journey does not prove those variants.
+- Keyboard diagnosis (historical artifact removed) attributes the warning to native InputAccessoryBar on the tested runtime. Actual keyboard usability/phone acceptance remains; removing useful controls merely to suppress that warning is not a requirement.
 
 Work order:
 
@@ -147,4 +147,4 @@ Earlier dated checkpoints are preserved in [remaining-work history](remaining-wo
 Payroll source is now identified in the separate household-payroll repository.
 Three bodies match production; its guard differs from the only returned Git
 revision. Preserve this independent app rather than importing payroll into Nest.
-[Read-only identity evidence](../../evidence/2026-10-07/payroll-source-identity/README.md).
+Read-only identity evidence (historical artifact removed).

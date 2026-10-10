@@ -1,7 +1,0 @@
-{
-  "reason": "Positive area-order fixture assumed there were only two active areas. Legacy household initialization creates additional defaults; the corrected client submits the complete authorized active list.",
-  "errorTail": "(r)::text),'[]') from storage.buckets r where true)) from excluded_boundary_finance)); rollback;\nERROR:  area list has changed; refresh before reordering\nCONTEXT:  PL/pgSQL function public.reorder_household_areas(uuid[]) line 22 at RAISE\nSQL statement \"SELECT public.reorder_household_areas(array['00000000-0000-4000-8000-000000010004','00000000-0000-4000-8000-000000001200']::uuid[])\"\nPL/pgSQL function inline_code_block line 1 at PERFORM\n",
-  "appliedMigrations": 306,
-  "reportSha256": "9b0bbd171689e8d0ef24a8aa16b05a4f0633760e45901bf568dc591646a922f3",
-  "hostedObserverCorrection": "The bounded MCP-result parser initially matched introductory boundary text; it was corrected without repeating the SELECT."
-}

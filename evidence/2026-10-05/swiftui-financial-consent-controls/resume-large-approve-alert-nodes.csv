@@ -1,5 +1,0 @@
-ref,type,label,value,x,y,width,height,hittable,enabled
-e9,StaticText,null,null,57.5,231.5,260,20.5,True,True
-e10,StaticText,"""This authorizes future recording using the exact amount, payer, split and dates reviewed. Skipped cycles and existing history stay unchanged.""",null,57.5,259,260,78,True,True
-e16,Button,"""Confirm resumption""",null,43.5,357.5,288,48,True,True
-e17,Button,"""Cancel""",null,43.5,413.5,288,48,True,True

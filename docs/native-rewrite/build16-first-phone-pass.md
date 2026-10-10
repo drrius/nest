@@ -1,6 +1,6 @@
 # Build 16 first phone pass
 
-Available private candidate: SwiftUI **0.1.0/build16**, separate **nest-test** environment. Apple reports it VALID/IN_BETA_TESTING internally and unexpired. [Release evidence](../../evidence/2026-10-04/swiftui-build16/README.md). Particular partner access and installation remain unverified; check the build number in TestFlight before testing.
+Available private candidate: SwiftUI **0.1.0/build16**, separate **nest-test** environment. Apple reports it VALID/IN_BETA_TESTING internally and unexpired. Release evidence (historical artifact removed). Particular partner access and installation remain unverified; check the build number in TestFlight before testing.
 
 This batch adds durable saved Money/history/detail and recipe reads, clearer saved-information notices, retained-bill confirmation recovery, and accessible review controls. It does not enable live AI, scheduled bill posting or push notifications; those integration gates remain open.
 

@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [36, 338, 303, 58],
-  "hittable": true,
-  "label": "Review your setup",
-  "viewport": [0, 74, 375, 510]
-}

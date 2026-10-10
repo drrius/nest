@@ -1,7 +1,0 @@
-{
-  "initialInstallObserverFailed": true,
-  "cause": "Test relay wrongly required household header for the existing authenticated /v1/session read.",
-  "correction": "Permit authenticated session GET; financial write restrictions unchanged.",
-  "financialWritesBeforeCorrection": 0,
-  "reinstalled": false
-}

@@ -1,1 +1,0 @@
-User will not be able to change the font size of this SwiftUI.AccessibilityNode

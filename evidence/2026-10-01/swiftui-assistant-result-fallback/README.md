@@ -1,7 +1,0 @@
-# Reject generic success after typed result validation fails
-
-Exact source `d28a7423d57010120e13a05a0adea87aa69f1ec7` removes the older generic grocery success fallback. Previously a correctly shaped raw output paired with missing/mismatched input or a model-injected nonce could fail the canonical validator but still display a success notice. Successful commands now render only through the command-bound typed rows. Error/conflict/permission notices remain.
-
-[Nest36833495327](https://github.com/drrius/nest/actions/runs/36833495327) and [SwiftUI36833495278](https://github.com/drrius/nest/actions/runs/36833495278) pass:404 Foundation cases/41 explicit skips and245 signed native cases/six explicit skips, zero failures. Strict formatting/source limits/actual app signing pass. Three focused Foundation cases using the actual six strict grocery fixtures prove canonical positive routes, nonce/missing/target-input rejection without fallback success, and retained failure notices; zero failures/skips.
-
-This source includes the preference/read regression slices. Owned rendered transcript inspection, live provider/hosted transcript and phone acceptance remain pending. Public source synchronization to the intermittently reachable Mac completed, but the860-input hash comparison and selected owned native command did not execute. No new beta, hosted mutation, deployment, production action, purchase, PR or merge.

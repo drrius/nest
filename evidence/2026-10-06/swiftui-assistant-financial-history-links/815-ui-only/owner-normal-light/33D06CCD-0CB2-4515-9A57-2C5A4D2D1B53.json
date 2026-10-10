@@ -1,8 +1,0 @@
-{
-  "enabled": true,
-  "exists": true,
-  "frame": [36, 310, 181, 39],
-  "hittable": true,
-  "label": "Record recurring bill, Expires Oct 5, 2026 at 12:57 AM",
-  "viewport": [0, 74, 375, 510]
-}

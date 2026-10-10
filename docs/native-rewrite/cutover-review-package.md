@@ -15,9 +15,9 @@ Updated 7 October 2026; originally prepared 4 October. This is the review plan f
 | Integrations       | Test API and bounded authorized/isolation checks pass                                                                             | Live AI eligibility, worker credential configuration, APNs provider and real deliveries                   |
 | Test security      | Fresh hosted public RLS, private-schema API rejection, worker client-denial grants, zero database cron jobs and advisor inventory | Privileged-function semantic review, signup/provider decisions, external writers and production inventory |
 
-The [current rehearsal](../../evidence/2026-10-04/current-chain-pending-job-rehearsal/README.md), [migration limits](migration-rehearsal.md), [scheduled writer audit](scheduled-writer-audit.md), [remaining checklist](remaining-work.md) and [phone checklist](swiftui-phone-acceptance.md) contain the supporting records. The local rehearsal's `complete:true` describes its diagnostic; it explicitly reports simulated Auth/Storage, excluded pg_net, unverified external drainage and incomplete recovery.
+The current rehearsal (historical artifact removed), [migration limits](migration-rehearsal.md), [scheduled writer audit](scheduled-writer-audit.md), [remaining checklist](remaining-work.md) and [phone checklist](swiftui-phone-acceptance.md) contain the supporting records. The local rehearsal's `complete:true` describes its diagnostic; it explicitly reports simulated Auth/Storage, excluded pg_net, unverified external drainage and incomplete recovery.
 
-The [hosted test inventory](../../evidence/2026-10-04/test-environment-security-inventory/README.md) now adds actual test-project advisor, Auth/provider, schema-exposure, migration/Edge and worker privilege observations. It does not close the rehearsal's Auth/Storage simulation gaps or establish production safety. The81 public privileged-function warnings require semantic review, and live non-cron writers still need inspection; no test warning has been cleared by weakening access.
+The hosted test inventory (historical artifact removed) now adds actual test-project advisor, Auth/provider, schema-exposure, migration/Edge and worker privilege observations. It does not close the rehearsal's Auth/Storage simulation gaps or establish production safety. The81 public privileged-function warnings require semantic review, and live non-cron writers still need inspection; no test warning has been cleared by weakening access.
 
 ## Approval packet to assemble
 
@@ -51,7 +51,7 @@ Resuming a barrier does not restore revoked grants or restart jobs. The packet m
 Production has not been inspected or changed for this package. It still needs separately authorized live inventory/representative data handling, both clients' pending-intent outcomes, stored bytes/access and a final owner-approved transition window. AI eligibility and the already pending specific test-worker secret-transfer approval, APNs provider setup, both-phone acceptance and passing final-source checks remain prerequisites. No production activation is currently scheduled.
 
 The 7 October chain checkpoint is recorded in
-[the private privilege inventory](../../evidence/2026-10-07/private-function-inventory/README.md).
+the private privilege inventory (historical artifact removed).
 It covers 60 public definers, two invokers and catalog parity for 219 private
 privilege signatures. Catalog parity does not prove private-function semantics,
 direct table/Storage policy completeness or live writer drainage. Those gates

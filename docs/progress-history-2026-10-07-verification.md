@@ -10,7 +10,7 @@ with no failures or skips across the new inventory and existing privilege/fence
 checks. They cover missing/restricted/unsupported/truncated catalogs, unknown and
 inactive jobs, hashed commands/functions without exported bodies, unchanged rows
 and refusal of an already writable transaction.
-[Evidence](../evidence/2026-10-07/scheduled-writer-inventory/README.md).
+Evidence (historical artifact removed).
 Real pg_cron execution, hosted identity and drainage remain unverified.
 This change does not require another phone build. Source `e724fe87` passes routine
 [CI 37615820449](https://github.com/drrius/nest/actions/runs/37615820449).
@@ -33,7 +33,7 @@ Two API and two signed native cases pass without skips. Actual database lock wai
 force each order; recorded outcomes retain one expense and cancelled outcomes
 retain none. Terminal replay sends no second write. Authentication/session entry
 is controlled, so hosted/Apple/phone/UI-race and live-AI acceptance remain open.
-[Ordered race evidence](../evidence/2026-10-07/swiftui-variable-bill-ordered-races/README.md).
+Ordered race evidence (historical artifact removed).
 Shipping runtime/configuration remains unchanged. Source `a1aa923d` passes routine
 [CI 37627414604](https://github.com/drrius/nest/actions/runs/37627414604) and native
 [CI 37627414734](https://github.com/drrius/nest/actions/runs/37627414734). Native CI
