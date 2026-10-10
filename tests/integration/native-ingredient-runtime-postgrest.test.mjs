@@ -2,10 +2,12 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
 import { fixture, id } from "./meal-ingredient-api-fixture.mjs";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { IngredientRuntime } from "../../apps/mobile/src/meals/ingredient-runtime.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { IngredientRuntime } from "../../packages/protocol-fixtures/src/meals/ingredient-runtime.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 test("ingredient controller restores a lost-confirmation request after restart and reconciles partner edits", async (t) => {
   const f = await fixture(t, true),

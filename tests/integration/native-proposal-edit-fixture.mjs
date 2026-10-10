@@ -2,13 +2,15 @@ import { createRequire } from "node:module";
 import { fixture as remoteFixture, Redacted, id } from "./meal-proposal-api-fixture.mjs";
 import { model } from "../api/single-meal-generation-fixture.mjs";
 import { draft } from "./meal-proposal-edit-api-fixture.mjs";
-import { fixture as sqliteFixture } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { fixture as sqliteFixture } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { MealProposalRuntime } from "../../apps/mobile/src/meals/proposal-runtime.ts";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { MealProposalRuntime } from "../../packages/protocol-fixtures/src/meals/proposal-runtime.ts";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   run = Effect.runPromise;
 export { id };

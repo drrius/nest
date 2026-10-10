@@ -3,9 +3,11 @@ import { fixture as database, id } from "../database/recurring-reminder-fixture.
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { recurringReminderClient } from "../../apps/mobile/src/recurring-reminders/client.ts";
+import { recurringReminderClient } from "../../packages/protocol-fixtures/src/recurring-reminders/client.ts";
 export { id };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export const run = (effect) =>

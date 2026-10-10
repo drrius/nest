@@ -14,6 +14,16 @@ test("deployment identity alone cannot enable AI; a model and explicit auth are 
   assert.equal(runtimeModel({ ...model, NEST_AI_AUTH: "typo" }), undefined);
   assert.equal(runtimeModel({ ...model, NEST_AI_AUTH: "vercel-oidc" }).modelId, "fixture/model");
   assert.equal(
+    runtimeModel({ ...model, NEST_AI_AUTH: "vercel-oidc", NEST_AI_REASONING_EFFORT: "high" })
+      .modelId,
+    "fixture/model",
+  );
+  assert.throws(
+    () =>
+      runtimeModel({ ...model, NEST_AI_AUTH: "vercel-oidc", NEST_AI_REASONING_EFFORT: "unknown" }),
+    /reasoning effort/,
+  );
+  assert.equal(
     runtimeModel({ ...model, AI_GATEWAY_API_KEY: "fixture-key" }).modelId,
     "fixture/model",
   );

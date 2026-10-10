@@ -6,7 +6,7 @@ import {
   matchesAdoptionContext,
   legacyAdoptionApprovalActions,
   legacyAdoptionApprovalText,
-} from "../../apps/mobile/src/money/legacy-adoption-approval-display.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-adoption-approval-display.ts";
 const actions = (runtime) => legacyAdoptionApprovalActions(runtime.getSnapshot(), Date.now());
 test("private native card stages before dispatch and recovers a committed adoption after write suspension and SQLite restart without replay", async (t) => {
   const f = await fixture(t),

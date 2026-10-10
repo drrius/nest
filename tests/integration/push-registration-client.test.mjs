@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
+import { pushDeviceClient } from "../../packages/protocol-fixtures/src/push/client.ts";
 import { fixture, id, Effect, Fetch, run } from "./renewal-fixture.mjs";
 test("native registration recovers lost acknowledgment and rejects forged receipt context", async (t) => {
   const f = await fixture(t, [

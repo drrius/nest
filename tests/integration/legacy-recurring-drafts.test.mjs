@@ -1,13 +1,13 @@
 import { createRequire } from "node:module";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { recurringReadOperations } from "../../apps/mobile/src/money/recurring-read-operations.ts";
-import { RecurringReadRuntime } from "../../apps/mobile/src/money/recurring-read-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { recurringReadOperations } from "../../packages/protocol-fixtures/src/money/recurring-read-operations.ts";
+import { RecurringReadRuntime } from "../../packages/protocol-fixtures/src/money/recurring-read-runtime.ts";
 import {
   legacyDraftPage,
   legacyDraftWarning,
-} from "../../apps/mobile/src/money/legacy-draft-display.ts";
-import { cycleExpenseTarget } from "../../apps/mobile/src/money/recurring-history-display.ts";
-import { PreferenceFailure } from "../../apps/mobile/src/preferences/client.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-draft-display.ts";
+import { cycleExpenseTarget } from "../../packages/protocol-fixtures/src/money/recurring-history-display.ts";
+import { PreferenceFailure } from "../../packages/protocol-fixtures/src/preferences/client.ts";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { fixture as worker, id, run } from "./recurring-worker-fixture.mjs";
@@ -65,7 +65,9 @@ test("draft HTTP denies malformed queries and unauthorized households without co
   assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
 });
 
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url)),
+const require = createRequire(
+    new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+  ),
   Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 test("native draft review binds original event links and hides rows after errors, inactivity and account replacement", async (t) => {

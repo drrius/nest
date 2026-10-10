@@ -2,6 +2,8 @@ import {
   ToolLoopAgent,
   createAgentUIStreamResponse,
   createGateway,
+  defaultSettingsMiddleware,
+  wrapLanguageModel,
   stepCountIs,
   validateUIMessages,
   type LanguageModel,
@@ -10,11 +12,27 @@ import {
   type UIMessage,
   type StopCondition,
 } from "ai";
+import { assistantFailureDiagnostic } from "./failure-diagnostic.ts";
+import { privateTelemetry, type GenerationTelemetry } from "./telemetry.ts";
+export type { GenerationTelemetry } from "./telemetry.ts";
 export type AssistantModel = LanguageModel;
 export type AssistantTools = ToolSet;
 export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssistantAgent>>;
-export const gatewayModel = (apiKey: string | undefined, model: string) =>
-  createGateway({ apiKey })(model);
+export const gatewayModel = (
+  apiKey: string | undefined,
+  model: string,
+  reasoningEffort?: "high",
+) => {
+  const provider = createGateway({ apiKey })(model);
+  return reasoningEffort
+    ? wrapLanguageModel({
+        model: provider,
+        middleware: defaultSettingsMiddleware({
+          settings: { providerOptions: { openai: { reasoningEffort } } },
+        }),
+      })
+    : provider;
+};
 const writeNames = new Set([
   "saveGroceryReminder",
   "saveRecurringReminder",
@@ -128,16 +146,19 @@ export function assistantStream({
   signal,
   finish,
   onInvalidToolCall,
+  telemetry,
 }: {
   model: LanguageModel;
   onInvalidToolCall?: () => void;
+  telemetry?: GenerationTelemetry;
   tools: ToolSet;
   messages: UIMessage[];
   assistantId: string;
   signal: AbortSignal;
   finish: (response: UIMessage, completed: boolean) => Promise<void>;
 }) {
-  const agent = createAssistantAgent(model, tools, onInvalidToolCall);
+  const agent = createAssistantAgent(model, tools, onInvalidToolCall, telemetry);
+  let failureReported = false;
   return createAgentUIStreamResponse({
     agent,
     uiMessages: modelHistory(messages),
@@ -147,7 +168,13 @@ export function assistantStream({
     sendReasoning: false,
     sendSources: false,
     headers: { "Cache-Control": "no-store", "X-Nest-Assistant-Id": assistantId },
-    onError: () => "Could not finish this response. Reload the conversation before trying again.",
+    onError: (error) => {
+      if (!failureReported) {
+        failureReported = true;
+        console.warn("Nest assistant stream failed", assistantFailureDiagnostic(error));
+      }
+      return "Could not finish this response. Reload the conversation before trying again.";
+    },
     onEnd: ({ responseMessage, outcome, finishReason }) =>
       finish(
         withoutUnknownFailures(responseMessage, tools),
@@ -167,10 +194,12 @@ export function createAssistantAgent(
   model: LanguageModel,
   tools: ToolSet,
   onInvalidToolCall?: () => void,
+  telemetry?: GenerationTelemetry,
 ) {
   return new ToolLoopAgent({
     model,
     tools,
+    telemetry: privateTelemetry(telemetry),
     maxRetries: 0,
     maxOutputTokens: 2048,
     stopWhen: [stepCountIs(5), failedTool],

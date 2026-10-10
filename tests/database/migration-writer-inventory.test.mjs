@@ -96,3 +96,55 @@ test("writer inventory includes inherited view column grants without base-table 
   assert.deepEqual(captureLegacyWriterInventory(db).legacyWritableTables, []);
   assert.equal(before.cutoverVerified, false);
 });
+
+test("private helper inventory separates inherited execute from schema access", (t) => {
+  const db = startFixturePostgres();
+  t.after(() => db.stop());
+  db.sql(`create role anon; create role authenticated; create role service_role;
+    create role helper_reader; grant helper_reader to authenticated;
+    create schema private;
+    create function private.shared_helper() returns integer language sql security definer as $$select 7$$;
+    create function private.service_helper() returns integer language sql as $$select 9$$;
+    create function private.inaccessible_helper() returns integer language sql as $$select 11$$;
+    revoke all on all functions in schema private from public;
+    grant execute on function private.shared_helper() to helper_reader;
+    grant execute on function private.service_helper() to service_role;`);
+  const before = captureLegacyWriterInventory(db).privateFunctionPrivileges;
+  assert.deepEqual(before, [
+    {
+      signature: "private.service_helper()",
+      securityDefiner: false,
+      anonymousExecute: false,
+      authenticatedExecute: false,
+      serviceRoleExecute: true,
+      anonymousSchemaUsage: false,
+      authenticatedSchemaUsage: false,
+      serviceRoleSchemaUsage: false,
+    },
+    {
+      signature: "private.shared_helper()",
+      securityDefiner: true,
+      anonymousExecute: false,
+      authenticatedExecute: true,
+      serviceRoleExecute: false,
+      anonymousSchemaUsage: false,
+      authenticatedSchemaUsage: false,
+      serviceRoleSchemaUsage: false,
+    },
+  ]);
+  assert.throws(
+    () => db.sql("set role authenticated; select private.shared_helper()"),
+    /permission denied for schema private/,
+  );
+  db.sql("grant usage on schema private to helper_reader");
+  assert.equal(db.sql("set role authenticated; select private.shared_helper()"), "7");
+  const after = captureLegacyWriterInventory(db).privateFunctionPrivileges;
+  assert.equal(after[1].authenticatedSchemaUsage, true);
+  assert.equal(after[0].authenticatedSchemaUsage, true);
+  assert.throws(
+    () => db.sql("set role authenticated; select private.service_helper()"),
+    /permission denied for function service_helper/,
+  );
+  db.sql("revoke execute on function private.shared_helper() from helper_reader");
+  assert.deepEqual(captureLegacyWriterInventory(db).privateFunctionPrivileges, [after[0]]);
+});

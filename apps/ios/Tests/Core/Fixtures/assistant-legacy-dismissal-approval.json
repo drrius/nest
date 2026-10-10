@@ -1,0 +1,156 @@
+{
+  "envelope": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000001",
+    "householdId": "00000000-0000-4000-8000-000000000010",
+    "approval": {
+      "id": "00000000-0000-4000-8000-000000000990",
+      "operationId": "00000000-0000-4000-8000-000000000980",
+      "input": {
+        "draftId": "00000000-0000-4000-8000-000000000900",
+        "ruleId": "00000000-0000-4000-8000-000000000800",
+        "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+      },
+      "status": "pending",
+      "expiresAt": "2099-12-31T00:00:00.000000Z",
+      "receipt": null
+    }
+  },
+  "context": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000001",
+    "householdId": "00000000-0000-4000-8000-000000000010",
+    "approvalId": "00000000-0000-4000-8000-000000000990",
+    "input": {
+      "draftId": "00000000-0000-4000-8000-000000000900",
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    "review": {
+      "version": 1,
+      "householdId": "00000000-0000-4000-8000-000000000010",
+      "draft": {
+        "draftId": "00000000-0000-4000-8000-000000000900",
+        "ruleId": "00000000-0000-4000-8000-000000000800",
+        "description": "Original draft",
+        "amountCentimes": "9007199254740991",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "allocations": {
+          "kind": "valid",
+          "shares": [
+            {
+              "memberId": "00000000-0000-4000-8000-000000000001",
+              "centimes": "4503599627370495"
+            },
+            {
+              "memberId": "00000000-0000-4000-8000-000000000002",
+              "centimes": "4503599627370496"
+            }
+          ]
+        },
+        "categoryId": null,
+        "sourceKind": "recurring",
+        "shoppingSessionId": null,
+        "occurredOn": {
+          "kind": "date",
+          "value": "2026-01-05"
+        },
+        "status": "pending",
+        "updatedAt": {
+          "kind": "timestamp",
+          "value": "2026-01-01T10:00:00.123456Z"
+        },
+        "eventId": null
+      },
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    }
+  },
+  "decision": {
+    "operationId": "00000000-0000-4000-8000-000000000980",
+    "approvalId": "00000000-0000-4000-8000-000000000990",
+    "input": {
+      "draftId": "00000000-0000-4000-8000-000000000900",
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    "approved": true
+  },
+  "receipt": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000001",
+    "householdId": "00000000-0000-4000-8000-000000000010",
+    "operationId": "00000000-0000-4000-8000-000000000980",
+    "approvalId": "00000000-0000-4000-8000-000000000990",
+    "input": {
+      "draftId": "00000000-0000-4000-8000-000000000900",
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    "reviewed": {
+      "version": 1,
+      "householdId": "00000000-0000-4000-8000-000000000010",
+      "draft": {
+        "draftId": "00000000-0000-4000-8000-000000000900",
+        "ruleId": "00000000-0000-4000-8000-000000000800",
+        "description": "Original draft",
+        "amountCentimes": "9007199254740991",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "allocations": {
+          "kind": "valid",
+          "shares": [
+            {
+              "memberId": "00000000-0000-4000-8000-000000000001",
+              "centimes": "4503599627370495"
+            },
+            {
+              "memberId": "00000000-0000-4000-8000-000000000002",
+              "centimes": "4503599627370496"
+            }
+          ]
+        },
+        "categoryId": null,
+        "sourceKind": "recurring",
+        "shoppingSessionId": null,
+        "occurredOn": {
+          "kind": "date",
+          "value": "2026-01-05"
+        },
+        "status": "pending",
+        "updatedAt": {
+          "kind": "timestamp",
+          "value": "2026-01-01T10:00:00.123456Z"
+        },
+        "eventId": null
+      },
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+    },
+    "status": "dismissed"
+  },
+  "assistant": {
+    "type": "tool-proposeLegacyDismissal",
+    "state": "output-available",
+    "input": {
+      "draftId": "00000000-0000-4000-8000-000000000900"
+    },
+    "output": {
+      "ok": true,
+      "value": {
+        "version": 1,
+        "actorId": "00000000-0000-4000-8000-000000000001",
+        "householdId": "00000000-0000-4000-8000-000000000010",
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000990",
+          "operationId": "00000000-0000-4000-8000-000000000980",
+          "input": {
+            "draftId": "00000000-0000-4000-8000-000000000900",
+            "ruleId": "00000000-0000-4000-8000-000000000800",
+            "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef"
+          },
+          "status": "pending",
+          "expiresAt": "2099-12-31T00:00:00.000000Z",
+          "receipt": null
+        }
+      }
+    }
+  }
+}

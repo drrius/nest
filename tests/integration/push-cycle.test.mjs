@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import * as Effect from "../../apps/api/node_modules/effect/dist/Effect.js";
 import { summaryWorkerFixture } from "./summary-worker-fixture.mjs";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 import { runPushCycle } from "../../apps/api/src/push/cycle.ts";
 import { ApiFailure } from "../../apps/api/src/errors.ts";
 test("bounded cycle materializes real reminders, sends once and settles a later receipt", async (t) => {
@@ -42,7 +42,10 @@ test("maintenance failure skips new sends but still attempts due receipt reads",
       : Effect.succeed({ scanned: 0, claims: [] });
   };
   const result = await Effect.runPromise(
-    runPushCycle(rpc, { send: () => assert.fail("unexpected send") }),
+    runPushCycle(rpc, {
+      send: () => assert.fail("unexpected send"),
+      receipt: () => assert.fail("unexpected receipt"),
+    }),
   );
   assert.deepEqual(methods, [
     "maintain",

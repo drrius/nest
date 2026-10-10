@@ -1,7 +1,7 @@
 import Foundation
 
 public struct ChoreAPI: Sendable {
-    private let http: NestHTTP
+    let http: NestHTTP
 
     public init(http: NestHTTP) { self.http = http }
 

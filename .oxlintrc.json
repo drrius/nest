@@ -1,12 +1,11 @@
 {
   "$schema": "./node_modules/@effect/tsgo/oxlint-schema.json",
-  "plugins": ["typescript", "react", "import", "unicorn", "oxc", "effecttsgo"],
+  "plugins": ["typescript", "import", "unicorn", "oxc", "effecttsgo"],
   "categories": {
     "correctness": "error"
   },
   "ignorePatterns": [
     "**/node_modules/**",
-    "**/.expo/**",
     "**/dist/**",
     "**/database.types.ts",
     "**/*.gen.ts",
@@ -38,8 +37,6 @@
     ],
     "max-depth": ["error", 4],
     "max-params": ["error", 4],
-    "react/rules-of-hooks": "error",
-    "react/exhaustive-deps": "error",
     "no-restricted-imports": [
       "error",
       {
@@ -47,6 +44,12 @@
           {
             "name": "effect",
             "message": "Use deep Effect imports, such as effect/Effect, for native tree shaking."
+          }
+        ],
+        "patterns": [
+          {
+            "regex": "^(?:react(?:/|$)|react-native(?:/|$)|expo(?:$|[-/])|@expo/|@react-native/|@ai-sdk/react(?:/|$))",
+            "message": "Nest ships SwiftUI. Keep framework packages out of the backend and protocol fixtures."
           }
         ]
       }

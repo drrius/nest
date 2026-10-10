@@ -1,0 +1,192 @@
+[
+  {
+    "type": "tool-placeMeal",
+    "input": {
+      "weekStart": "2026-09-28",
+      "expectedRevision": "7",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "title": "Fixture supper"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "weekStart": "2026-09-28",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "revision": "8"
+    }
+  },
+  {
+    "type": "tool-placeRecipe",
+    "input": {
+      "weekStart": "2026-09-28",
+      "expectedRevision": "7",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "definitionId": "00000000-0000-4000-8000-000000000005",
+      "expectedLibraryRevision": "4"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "weekStart": "2026-09-28",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "revision": "8",
+      "definitionId": "00000000-0000-4000-8000-000000000005",
+      "libraryRevision": "4"
+    }
+  },
+  {
+    "type": "tool-replaceMeal",
+    "input": {
+      "weekStart": "2026-09-28",
+      "expectedRevision": "7",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "entryId": "00000000-0000-4000-8000-000000000006",
+      "title": "Fixture replacement"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "weekStart": "2026-09-28",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "revision": "9",
+      "previousEntryId": "00000000-0000-4000-8000-000000000006",
+      "skippedPreparationId": null
+    }
+  },
+  {
+    "type": "tool-removeMeal",
+    "input": {
+      "weekStart": "2026-09-28",
+      "expectedRevision": "7",
+      "entryId": "00000000-0000-4000-8000-000000000004"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "weekStart": "2026-09-28",
+      "revision": "8",
+      "removed": true,
+      "skippedPreparationId": null
+    }
+  },
+  {
+    "type": "tool-moveMeal",
+    "input": {
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "sourceWeekStart": "2026-09-28",
+      "expectedSourceRevision": "7",
+      "targetWeekStart": "2026-10-05",
+      "expectedTargetRevision": "3",
+      "date": "2026-10-06",
+      "slot": "lunch"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "sourceWeekStart": "2026-09-28",
+      "targetWeekStart": "2026-10-05",
+      "sourceRevision": "8",
+      "targetRevision": "4",
+      "date": "2026-10-06",
+      "slot": "lunch"
+    }
+  },
+  {
+    "type": "tool-moveMeal",
+    "input": {
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "sourceWeekStart": "2026-09-28",
+      "expectedSourceRevision": "7",
+      "targetWeekStart": "2026-09-28",
+      "expectedTargetRevision": "7",
+      "date": "2026-09-30",
+      "slot": "lunch"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "sourceWeekStart": "2026-09-28",
+      "targetWeekStart": "2026-09-28",
+      "sourceRevision": "8",
+      "targetRevision": "8",
+      "date": "2026-09-30",
+      "slot": "lunch"
+    }
+  },
+  {
+    "type": "tool-placeLeftovers",
+    "input": {
+      "entryId": "00000000-0000-4000-8000-000000000006",
+      "sourceWeekStart": "2026-09-28",
+      "expectedSourceRevision": "7",
+      "targetWeekStart": "2026-10-05",
+      "expectedTargetRevision": "3",
+      "date": "2026-10-06",
+      "slot": "lunch"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "sourceWeekStart": "2026-09-28",
+      "targetWeekStart": "2026-10-05",
+      "sourceRevision": "7",
+      "targetRevision": "4",
+      "date": "2026-10-06",
+      "slot": "lunch",
+      "sourceEntryId": "00000000-0000-4000-8000-000000000006"
+    }
+  },
+  {
+    "type": "tool-placeLeftovers",
+    "input": {
+      "entryId": "00000000-0000-4000-8000-000000000006",
+      "sourceWeekStart": "2026-09-28",
+      "expectedSourceRevision": "7",
+      "targetWeekStart": "2026-09-28",
+      "expectedTargetRevision": "7",
+      "date": "2026-09-30",
+      "slot": "lunch"
+    },
+    "receipt": {
+      "version": 1,
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "entryId": "00000000-0000-4000-8000-000000000004",
+      "sourceWeekStart": "2026-09-28",
+      "targetWeekStart": "2026-09-28",
+      "sourceRevision": "8",
+      "targetRevision": "8",
+      "date": "2026-09-30",
+      "slot": "lunch",
+      "sourceEntryId": "00000000-0000-4000-8000-000000000006"
+    }
+  }
+]

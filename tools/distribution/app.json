@@ -1,0 +1,17 @@
+{
+  "expo": {
+    "name": "Nest",
+    "slug": "nest",
+    "version": "0.1.0",
+    "owner": "drrius-dev",
+    "ios": {
+      "bundleIdentifier": "ch.drrius.nest",
+      "buildNumber": "13"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "aca37c4f-1bcd-4e9a-a695-37e794f97933"
+      }
+    }
+  }
+}

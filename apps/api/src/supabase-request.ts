@@ -3,7 +3,9 @@ import * as Schema from "effect/Schema";
 import * as HttpClient from "effect/unstable/http/HttpClient";
 import * as FetchHttpClient from "effect/unstable/http/FetchHttpClient";
 import * as HttpBody from "effect/unstable/http/HttpBody";
+import * as Exit from "effect/Exit";
 import { ApiFailure } from "./errors.ts";
+import { backendTrace } from "./telemetry.ts";
 import type { IdentityConfig } from "./supabase-identity.ts";
 
 export function requestDocument(
@@ -12,33 +14,61 @@ export function requestDocument(
   path: string,
   body?: unknown,
 ) {
-  const headers = { apikey: config.publishableKey, Authorization: `Bearer ${token}` };
-  return Effect.gen(function* () {
-    const url = new URL(path, config.url);
-    const response = yield* body === undefined
-      ? HttpClient.get(url, { headers: { ...headers, Prefer: "count=exact" } })
-      : HttpClient.post(url, { headers, body: yield* HttpBody.json(body) });
-    if (response.status === 401) return yield* new ApiFailure({ code: "unauthenticated" });
-    if (response.status === 403) {
-      const denied = yield* response.json.pipe(Effect.orElseSucceed(() => null));
-      return yield* new ApiFailure({ code: deniedCode(denied) });
-    }
-    const value = yield* response.json;
-    if (response.status < 200 || response.status >= 300) {
-      const error = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
-        value,
-      );
-      return yield* new ApiFailure({ code: responseCode(response.status, error.code) });
-    }
-    return { value, range: response.headers["content-range"] };
-  }).pipe(
-    Effect.timeout("10 seconds"),
-    Effect.mapError((cause) =>
-      Schema.is(ApiFailure)(cause) ? cause : new ApiFailure({ code: "unavailable" }),
-    ),
-    Effect.provide(FetchHttpClient.layer),
-    Effect.provideService(FetchHttpClient.RequestInit, { redirect: "error" }),
-  );
+  return Effect.suspend(() => {
+    const diagnostic = backendTrace(path);
+    const headers = {
+      apikey: config.publishableKey,
+      Authorization: `Bearer ${token}`,
+      ...diagnostic.headers,
+    };
+    diagnostic.stage("transport");
+    return Effect.gen(function* () {
+      const url = new URL(path, config.url);
+      const response = yield* body === undefined
+        ? HttpClient.get(url, { headers: { ...headers, Prefer: "count=exact" } })
+        : HttpClient.post(url, { headers, body: yield* HttpBody.json(body) });
+      diagnostic.status(response.status);
+      diagnostic.stage("response");
+      if (response.status === 401) return yield* new ApiFailure({ code: "unauthenticated" });
+      if (response.status === 403) {
+        diagnostic.stage("decode");
+        const denied = yield* response.json.pipe(Effect.orElseSucceed(() => null));
+        if (Schema.is(Schema.Struct({ code: Schema.String }))(denied)) diagnostic.code(denied.code);
+        diagnostic.stage("response");
+        return yield* new ApiFailure({ code: deniedCode(denied) });
+      }
+      diagnostic.stage("decode");
+      const value = yield* response.json;
+      diagnostic.stage("response");
+      if (response.status < 200 || response.status >= 300) {
+        const error = yield* Schema.decodeUnknownEffect(Schema.Struct({ code: Schema.String }))(
+          value,
+        );
+        diagnostic.code(error.code);
+        if (incompleteHousehold(path, response.status, value))
+          return yield* new ApiFailure({ code: "household_incomplete" });
+        return yield* new ApiFailure({ code: responseCode(response.status, error.code) });
+      }
+      return { value, range: response.headers["content-range"] };
+    }).pipe(
+      Effect.timeout("10 seconds"),
+      Effect.mapError((cause) =>
+        Schema.is(ApiFailure)(cause) ? cause : new ApiFailure({ code: "unavailable" }),
+      ),
+      Effect.provide(FetchHttpClient.layer),
+      Effect.provideService(FetchHttpClient.RequestInit, { redirect: "error" }),
+      Effect.provideService(HttpClient.TracerDisabledWhen, () => true),
+      Effect.onExit((exit) => Effect.sync(() => diagnostic.end(Exit.isFailure(exit)))),
+    );
+  });
+}
+
+function incompleteHousehold(path: string, status: number, value: unknown) {
+  const schema = Schema.Struct({
+    code: Schema.Literal("22023"),
+    message: Schema.Literal("Money requires two household members"),
+  });
+  return path === "rest/v1/rpc/nest_money_balance" && status === 400 && Schema.is(schema)(value);
 }
 
 export function requestJson(config: IdentityConfig, token: string, path: string, body?: unknown) {

@@ -2,8 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import * as Effect from "../../apps/api/node_modules/effect/dist/Effect.js";
 import { ApiFailure } from "../../apps/api/src/errors.ts";
-import { pushDeliveryWorker } from "../../apps/api/src/push/delivery-worker.ts";
-import { expoPushTransport } from "../../apps/api/src/push/expo-transport.ts";
+import { pushDeliveryWorker } from "../../packages/protocol-fixtures/src/legacy-push/delivery-worker.ts";
+import { expoPushTransport } from "../../packages/protocol-fixtures/src/legacy-push/expo-transport.ts";
 import { deliveryFixture, json } from "./push-delivery-fixture.mjs";
 function setup(t, lostMethod) {
   const f = deliveryFixture(t);

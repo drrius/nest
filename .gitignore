@@ -15,3 +15,9 @@ apps/ios/DerivedData/
 *.xcuserstate
 *.xcuserdata/
 *.xcresult/
+credentials.json
+*.p12
+*.mobileprovision
+*.p8
+__pycache__/
+/evidence/

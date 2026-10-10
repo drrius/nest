@@ -4,9 +4,46 @@ Created 26 September 2026 with owner authorization in `drrius's Org` on the Free
 
 Production `household-os` (`fdtqmcfwhbddswdpnmcq`) was not modified. This project contains fictional data only.
 
+## Current APNs test installation — 30 September 2026
+
+After the complete 54-legacy/244-native fixture rehearsal and passing source/deep CI, the following unchanged, hash-checked sources were applied only to nest-test:
+
+| Source migration                                          | Hosted version   |
+| --------------------------------------------------------- | ---------------- |
+| `20260929220335_native_apns_registration.sql`             | `20260930014440` |
+| `20260929221917_native_apns_delivery_outcomes.sql`        | `20260930014449` |
+| `20260930012204_native_recent_journal_write_barriers.sql` | `20260930014455` |
+
+Full financial-row and original device-operation projections had identical before/after hashes, preserving 13 events and two operations. No write freeze, worker or schedule was activated. The hosted barrier assertion passes; all three newly guarded private journals have RLS and ALWAYS statement triggers. Current advisors report 61 policy-absence INFO, 81 callable-definer WARN and one leaked-password-protection WARN. These remain separate from the clean local fixture advisor report.
+
+The API at `https://nest-test-api-drrius-projects.vercel.app` now aliases verified preview deployment `dpl_AXFV8bWxhygAfd7D3QQyi65hXtrZ` (`https://nest-test-85rurh9o7-drrius-projects.vercel.app`), built from server source `8fbe67d8`. This project configures its isolated backend in Preview only. Deploy from the repository root using the exact test project ID, without `--prod`; verify the immutable deployment before assigning the stable alias. `.vercelignore` excludes local credentials, workspace metadata and non-runtime artifacts. A failed production-target test deployment had no backend configuration; its stable alias was restored before retrying in Preview. No environment secrets were copied. The subsequent bounded nonsecret AI configuration and rollback are recorded below.
+
+The real Swift registration test passes (one case, no failures/skips, 14.157 seconds): outsider denial, register/exact replay/read/recovery, stale-revision refusal, cancellation enforcement, exact disable/replay and retained historical registration receipt. It uses random synthetic sandbox token bytes, not an Apple token. Final catalog: one inactive APNs fixture device, zero retained token/hash, four total device operations (two preexisting plus registration/disable), zero APNs attempts, zero cron jobs and 13 financial events. The full event/allocation/ledger fingerprint still equals the pre-migration baseline `7c5dd62f66b723e089f44a9917b10e063790b5bd1482ac19d7c84514be9796a8`. Cancellation is retained in its separate journal. No Apple send occurred. This is hosted contract/authorization evidence, not native permission, hardware enrollment or delivery acceptance.
+
+Earlier dated entries below retain their historical counts and verification boundaries; they do not describe the current deployment.
+
+## Live AI check and rollback — 30 September 2026
+
+Temporary nonsecret Preview settings selected `google/gemini-3-flash` with explicit `vercel-oidc`. Two real Swift read-only assistant checks failed with interrupted turns and no tool results; sanitized diagnostics report Gateway HTTP403. A separate synthetic 32-token/no-retry probe confirms valid-card eligibility is still required, with credits/usage 0/0. Temporary capped keys were revoked and existing key IDs preserved. See sanitized evidence (historical artifact removed).
+
+The stable API now again points to the prior working `dpl_AXFV8bWxhygAfd7D3QQyi65hXtrZ` Preview. `NEST_AI_AUTH` was removed from Preview; the selected model remains but cannot enable AI alone. Both temporary AI-enabled Previews were removed after restoring the alias. A real member read verifies assistant `available:false`; financial history/hash remain unchanged. Live AI and planning are unverified. No secret download, purchase, production change or top-up occurred.
+
 ## Installed schema
 
-The initial 55 legacy and 204 native source migrations were installed in batches. Thirty-three subsequent conflict-handling and Storage-privacy migrations are installed, individually recorded in the manifest (292 source migrations total). [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
+4 October receipt cleanup update: hosted migration `20261004135633`
+(`native_receipt_legacy_cleanup_owner`) applies source
+`20261004134604_native_receipt_legacy_cleanup_owner.sql` only to `nest-test`.
+The source checksum is recorded in the manifest; hosted function bodies/ACLs match
+and complete financial/attachment digests remain unchanged. Evidence (historical artifact removed).
+The current source manifest contains55 legacy and249 native inputs. Historical
+batch counts below describe the earlier installation.
+
+For every new migration, record its exact source checksum in
+`nest-test-migration-manifest.csv` and run
+`node tools/migration/verify-test-manifest.mjs` before pushing or applying it.
+The checksum gate remains required alongside meaningful database verification.
+
+The initial 55 legacy and 204 native source migrations were installed in batches. Forty subsequent native migrations are installed, individually recorded in the manifest (299 source inputs: 55 legacy and 244 native). The read-only `node tools/migration/verify-test-manifest.mjs` gate checks every current native file and its exact SHA-256; it does not prove hosted runtime equality, legacy-source hashes or data reconciliation. [Source hashes and test-only adjustments](nest-test-migration-manifest.csv) record each input. Hosted migration batches cover these zero-based, end-exclusive slices:
 
 | Hosted migration | Source slice                         |
 | ---------------- | ------------------------------------ |
@@ -98,3 +135,24 @@ Previously authorized object URLs returned Cloudflare cache hits after policy ch
 Receipt claim review fix: migration `20260926103844` requires the native uploader for the first claim under the existing attachment row lock. A partner claim is rejected without changing financial events, ledger, upload state or byte visibility; the uploader can then post normally. The local receipt RLS regression and three push conflict cases pass (4/4). Installed only on nest-test; exact-commit review and CI remain pending. Hosted push checkpoint probes returned 412 for all six stale revisions in 0.115–0.163 seconds with unchanged checkpoints; no notifications were sent.
 
 Subsequent hosted signing/claim verification: the actual local API signed the pending uploader receipt and returned exact JPEG bytes while rejecting the partner/outsider. A partner first-claim attempt returned 403; the owner then saved and exactly replayed one fictional CHF 1.01 expense. Both household members could obtain signed bytes after claim; the outsider remained denied. Catalog reconciliation found one event, one stored object, one claimed upload and net ledger delta zero. These test records remain as append-only history. Earlier zero-object/zero-event counts describe prior cleanup probes. Harnesses: `/tmp/nest-hosted-receipt-signing.mjs` and `/tmp/nest-hosted-claimed-receipt.mjs`. These do not prove iPhone execution.
+
+## Latest retained completion-date guard
+
+Manifest provenance now covers55 legacy and250 native sources. Migration
+`20261004143015_native_legacy_completion_dates.sql` is installed only here under
+hosted version `20261004144314`. New invalid/future dates are denied; old exact
+receipts and history are retained. Seven focused local tests,21 full-chain parent
+checks and ten real Auth/PostgREST negative probes pass, with complete52-event
+finance, attachments and routine-history digests unchanged. Exact-source routine
+and deep CI pass c5469baf; hosted advisors remain61 INFO/81 privileged WARN/one
+leaked-password WARN. Evidence and remediation links (historical artifact removed).
+No successful hosted completion, native run or production change is claimed here.
+
+The adjacent retained reschedule RPC is now guarded by source migration
+`20261004151358_native_legacy_reschedule_dates.sql`, installed here under hosted
+version20261004151736. Manifest55/251,11 focused database tests,305-migration
+rehearsal/31 parent-date checks and ten live negative Auth/PostgREST probes pass,
+with exact body/ACL and unchanged full finance/attachments/routine-history digests.
+Valid future reschedules and old replies remain supported. Evidence (historical artifact removed).
+Corrected routine37212616501 and source deep37212413167 pass, with23 core/50
+conflicts/1,239 database cases and no failures/skips. No native or production change.

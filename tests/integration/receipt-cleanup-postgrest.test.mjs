@@ -2,18 +2,20 @@ import {
   installFixtureWriteBarrier,
   setFixtureWritesFrozen,
 } from "../../tools/migration/write-barrier-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { ReceiptRecoveryRuntime } from "../../apps/mobile/src/money/receipt-recovery-runtime.ts";
-import { receiptRecoveryOperations } from "../../apps/mobile/src/money/receipt-recovery-operations.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { ReceiptRecoveryRuntime } from "../../packages/protocol-fixtures/src/money/receipt-recovery-runtime.ts";
+import { receiptRecoveryOperations } from "../../packages/protocol-fixtures/src/money/receipt-recovery-operations.ts";
 import { createRequire } from "node:module";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { files, id } from "../database/expense-receipt-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 test("actual cleanup HTTP API enforces RLS, tombstones absent uploads and never fakes unavailable Storage deletion", async (t) => {

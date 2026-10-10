@@ -1,0 +1,127 @@
+[
+  {
+    "type": "tool-completeChore",
+    "input": {
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "expectedDueDate": "2026-10-01",
+      "completedOn": "2026-10-01"
+    },
+    "receipt": {
+      "version": 1,
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "completedBy": "00000000-0000-4000-8000-000000000001",
+      "completedOn": "2026-10-01",
+      "outcome": "completed"
+    }
+  },
+  {
+    "type": "tool-completeChore",
+    "input": {
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "expectedDueDate": "2026-10-01",
+      "completedOn": "2026-10-01"
+    },
+    "receipt": {
+      "version": 1,
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "completedBy": "00000000-0000-4000-8000-000000000006",
+      "completedOn": "2026-09-30",
+      "outcome": "already_completed"
+    }
+  },
+  {
+    "type": "tool-skipChore",
+    "input": {
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "expectedDueDate": "2026-10-01"
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "previousDueDate": "2026-10-01",
+      "dueDate": "2026-10-01",
+      "action": "skip",
+      "status": "skipped"
+    }
+  },
+  {
+    "type": "tool-rescheduleChore",
+    "input": {
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "expectedDueDate": "2026-10-01",
+      "newDueDate": "2026-10-02"
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "previousDueDate": "2026-10-01",
+      "dueDate": "2026-10-02",
+      "action": "reschedule",
+      "status": "open"
+    }
+  },
+  {
+    "type": "tool-requestChoreTransfer",
+    "input": {
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "expectedDueDate": "2026-10-01",
+      "recipientId": "00000000-0000-4000-8000-000000000006"
+    },
+    "receipt": {
+      "requestId": "00000000-0000-4000-8000-000000000005",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "dueDate": "2026-10-01",
+      "fromMemberId": "00000000-0000-4000-8000-000000000001",
+      "toMemberId": "00000000-0000-4000-8000-000000000006",
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "action": "request",
+      "state": "pending"
+    }
+  },
+  {
+    "type": "tool-respondChoreTransfer",
+    "input": {
+      "requestId": "00000000-0000-4000-8000-000000000005",
+      "action": "accept"
+    },
+    "receipt": {
+      "requestId": "00000000-0000-4000-8000-000000000005",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "dueDate": "2026-10-01",
+      "fromMemberId": "00000000-0000-4000-8000-000000000006",
+      "toMemberId": "00000000-0000-4000-8000-000000000001",
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "action": "accept",
+      "state": "accepted"
+    }
+  },
+  {
+    "type": "tool-respondChoreTransfer",
+    "input": {
+      "requestId": "00000000-0000-4000-8000-000000000005",
+      "action": "decline"
+    },
+    "receipt": {
+      "requestId": "00000000-0000-4000-8000-000000000005",
+      "occurrenceId": "00000000-0000-4000-8000-000000000004",
+      "dueDate": "2026-10-01",
+      "fromMemberId": "00000000-0000-4000-8000-000000000006",
+      "toMemberId": "00000000-0000-4000-8000-000000000001",
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "action": "decline",
+      "state": "declined"
+    }
+  }
+]

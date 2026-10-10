@@ -56,3 +56,15 @@ test("withdrawal revokes expired and separately approved consent without reveali
   for (const role of ["anon", "service_role"])
     assert.throws(() => f.db.sql(`set role ${role}; ${f.decide(false)}`), /permission denied/);
 });
+
+test("a missing retained draft cannot execute but its exact owner can still decline the private proposal", (t) => {
+  const f = fixture(t);
+  f.db.sql("delete from public.expense_drafts");
+  assert.throws(() =>
+    f.record(`select public.nest_read_legacy_dismissal_context('${id(10)}','${f.approvalId}')`),
+  );
+  assert.throws(() => f.record(f.decide(true)));
+  for (const actor of [2, 3]) assert.throws(() => f.record(f.decide(false), actor));
+  assert.equal(f.record(f.decide(false)).approval.status, "denied");
+  assert.equal(f.db.sql("select count(*) from public.financial_events"), "0");
+});

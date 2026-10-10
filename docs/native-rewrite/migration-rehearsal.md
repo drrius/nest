@@ -14,6 +14,10 @@ For an explicitly partial schema diagnostic, append `--without-pg-net`. That opt
 
 The partial run applies **54 legacy migrations and all 195 native migrations**, with one legacy extension declaration excluded. Auth users/sessions/UID and Storage metadata tables are simulated infrastructure interfaces, not implementations of Supabase Auth, object bytes or Storage HTTP. No application migration functions are stubbed. All records are synthetic; the runner never connects to production.
 
+## Current-chain rerun — 4 October2026
+
+The current runner applies54 legacy and all248 Nest migrations and passes retained financial/receipt/domain reconciliation. A new rollback-only pending-job probe now demonstrates actual unpaused reminder/draft/outbox work, then proves three paused producer/consumer entry points preserve the complete pending backlog, live claim, attempts and recurring cursor. All eight pause guards and the committed recovery of24 new financial events also pass. Durable report and limits (historical artifact removed). Auth/Storage are simulated, pg_net is explicitly excluded, security advisors were not configured, live scheduler/external drainage and complete recovery remain unverified. The counts below retain their historical context; this rerun supplies current-chain evidence.
+
 ## Current populated coverage
 
 | Domain            | Evidence required by the diagnostic                                                                                                                                                                                                                                                                                             |
@@ -119,3 +123,9 @@ After rotation, an authorized exact historical receipt remains recoverable. A ne
 The final candidate rehearsal applies 54 legacy and 204 native migrations with empty security-advisor findings (`/tmp/nest-epoch-final-rehearsal.json`). It verifies post-rotation AI command execution and exact journal replay. Focused database races verify coherent snapshots across rotation; HTTP/PostgREST/SQLite journeys verify old receipt recovery, stale intent refusal, restart and explicit new-action success for both queues. Exact CI/review status belongs in the progress checklist. These are synthetic local results, not device or hosted acceptance.
 
 Rotation is one part of cutover. It does not stop legacy alternate writers, pause external workers, drain already dispatched HTTP/Storage work, or reconcile every online pending command. The final recovery freeze retains both authorized epoch snapshot RPCs. The full 54/204 rehearsal verifies identical nonempty snapshots for both members and outsider/API-role denial, with financial reconciliation afterward (`/tmp/nest-epoch-snapshot-recovery.json`). This SQL proof does not establish a fully usable native screen during that freeze. No production activation sequence is approved or claimed complete by this candidate.
+
+## Current SwiftUI/APNs chain, 30 September 2026
+
+The latest full-chain fixture applies 54 legacy and all 244 current native migrations, with the same explicit `pg_net` exclusion. It initially reproduced a refused freeze because three later journals lacked the statement barrier. The additive repair `20260930012204_native_recent_journal_write_barriers.sql` covers routine creation cancellations, unstarted AI cancellations and APNs attempts, enables cancellation-journal RLS and revokes direct API-role access without activating maintenance.
+
+All reconciliation/committed-recovery checks now pass and local CLI 2.113.0 security advisors return zero findings. Six focused PostgreSQL barrier tests pass, including the regression, all statement mutations/replica mode, retained rows and explicit resume; eleven affected HTTP/PostgREST/loopback APNs cases pass. The durable report and reproduction (historical artifact removed) contain current source hashes and precise bounds. This replaces earlier migration counts only for the latest local diagnostic; it does not claim hosted activation, external drainage, Storage bytes, full recovery, phone delivery or production acceptance.

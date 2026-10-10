@@ -1,8 +1,8 @@
 import { createRequire } from "node:module";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { RecipeSelectionRuntime } from "../../apps/mobile/src/meals/selection-runtime.ts";
-import { PlannedRecipeRuntime } from "../../apps/mobile/src/meals/planned-recipe-runtime.ts";
-import { fixture as sqliteFixture } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { RecipeSelectionRuntime } from "../../packages/protocol-fixtures/src/meals/selection-runtime.ts";
+import { PlannedRecipeRuntime } from "../../packages/protocol-fixtures/src/meals/planned-recipe-runtime.ts";
+import { fixture as sqliteFixture } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { nodeServer } from "../../apps/api/node-server.mjs";
@@ -121,7 +121,9 @@ test("HTTP replacement recovers its original receipt, keeps old history and neve
   );
 });
 
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 function nativeClient(f) {
   return mealClient(

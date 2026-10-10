@@ -13,9 +13,8 @@ extension SessionModel {
         let attempt = generation
         grocerySyncingGeneration = attempt
         defer { finishGroceryRefresh(attempt: attempt) }
-        let saved: GroceryOfflineState?
         do {
-            saved = try await offline.readGroceries(lease)
+            try await showSavedGroceries(offline: offline, lease: lease, member: member, attempt: attempt)
         } catch {
             guard generation == attempt, status == .ready(member) else { return }
             groceries = .failed
@@ -23,7 +22,6 @@ extension SessionModel {
             return
         }
         guard generation == attempt, status == .ready(member) else { return }
-        groceries = saved.map(GroceryStatus.loaded) ?? .loading
         do {
             try await syncGroceries(
                 auth: auth, api: groceryAPI, offline: offline,
@@ -31,6 +29,21 @@ extension SessionModel {
         } catch {
             await handleGroceryFailure(error, member: member, attempt: attempt)
         }
+    }
+
+    private func showSavedGroceries(
+        offline: ChoreOfflineStore, lease: OfflineLease,
+        member: VerifiedMember, attempt: Int
+    ) async throws {
+        let saved = try await offline.readGroceries(lease)
+        let savedAdd = try await offline.readGroceryAdd(lease)
+        let savedEdit = try await offline.readGroceryEdit(lease)
+        let savedRemove = try await offline.readGroceryRemove(lease)
+        guard generation == attempt, status == .ready(member) else { return }
+        groceries = saved.map(GroceryStatus.loaded) ?? .loading
+        groceryAdd = savedAdd
+        groceryEdit = savedEdit
+        groceryRemove = savedRemove
     }
 
     func checkGrocery(_ item: GroceryItem, checked: Bool) async {
@@ -102,6 +115,13 @@ extension SessionModel {
             generation == attempt, status == .ready(member)
         else { return }
         groceries = .loaded(saved)
+        let savedAdd = try await offline.readGroceryAdd(lease)
+        let savedEdit = try await offline.readGroceryEdit(lease)
+        let savedRemove = try await offline.readGroceryRemove(lease)
+        guard generation == attempt, status == .ready(member) else { return }
+        groceryAdd = savedAdd
+        groceryEdit = savedEdit
+        groceryRemove = savedRemove
         groceryNotice = conflicted ? "A saved grocery change needs review." : nil
     }
 

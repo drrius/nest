@@ -4,11 +4,13 @@ import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import { aiChoreTransferFiles } from "../database/ai-chore-transfer-files.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
+import { choreEpochFiles } from "./offline-epoch-files.mjs";
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 async function setup(t) {
   const remote = await postgrestFixture(t, [
     ...aiChoreTransferFiles,
     "tests/integration/food-postgrest.sql",
+    ...choreEpochFiles,
   ]);
   const as = (sql, actor = 1) =>
     `set role authenticated; set request.jwt.claims='${JSON.stringify({ sub: id(actor) })}'; ${sql}`;
@@ -57,11 +59,15 @@ async function setup(t) {
 const options = (toolCallId) => ({ toolCallId, messages: [] });
 async function readRequest(f) {
   const read = await f.connect(1).readChoreTransfers.execute({}, options("read"));
-  assert.equal(read.ok, true);
+  assert.equal(read.ok, true, JSON.stringify(read));
   assert.equal(read.value.actorId, id(1));
   assert.equal(read.value.members.length, 2);
   const chore = read.value.chores[0];
   assert.equal(chore.assigneeId, id(1));
+  assert.equal(
+    chore.offlineEpoch,
+    f.remote.db.sql("select offline_epoch from private.nest_household_write_control"),
+  );
   return { occurrenceId: chore.occurrenceId, expectedDueDate: chore.dueDate, recipientId: id(2) };
 }
 test("SDK lost handover request replays its pending receipt after the recipient has accepted", async (t) => {

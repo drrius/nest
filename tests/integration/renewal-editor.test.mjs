@@ -1,11 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect } from "./renewal-native-fixture.mjs";
-import { recurringClient } from "../../apps/mobile/src/money/recurring-client.ts";
-import { routineClient } from "../../apps/mobile/src/routines/client.ts";
-import { renewalEditorContext } from "../../apps/mobile/src/renewals/editor-context.ts";
-import { renewalDraft, parseRenewalDraft } from "../../apps/mobile/src/renewals/form.ts";
-import { renewalConfirmation } from "../../apps/mobile/src/renewals/confirmation.ts";
+import { recurringClient } from "../../packages/protocol-fixtures/src/money/recurring-client.ts";
+import { routineClient } from "../../packages/protocol-fixtures/src/routines/client.ts";
+import { renewalEditorContext } from "../../packages/protocol-fixtures/src/renewals/editor-context.ts";
+import {
+  renewalDraft,
+  parseRenewalDraft,
+} from "../../packages/protocol-fixtures/src/renewals/form.ts";
+import { renewalConfirmation } from "../../packages/protocol-fixtures/src/renewals/confirmation.ts";
 function clients(f) {
   const account = { actor: id(1), household: id(10) };
   const credentials = Effect.succeed({ user: { id: id(1) }, access_token: f.bearer });

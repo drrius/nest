@@ -1,0 +1,93 @@
+import SwiftUI
+
+struct MemoryRequestSection: View {
+    @ObservedObject var model: PrivateMemoryModel
+    @ObservedObject var session: SessionModel
+    let member: VerifiedMember
+    let saved: SavedMemoryRequest
+    @State private var now = Date.now
+
+    private var expiresAt: String? {
+        if case .proposal(let envelope) = saved.response { return envelope.approval.expiresAt }
+        return nil
+    }
+
+    var body: some View {
+        Section("Your memory request") {
+            if saved.rejected {
+                Text(
+                    "This request was rejected. The memory or approval may have changed or expired. Reload before editing."
+                )
+                Button {
+                    Task { await model.finish(session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Dismiss rejected request")
+                }
+            } else if let response = saved.response {
+                result(response)
+            } else {
+                Text("The result is not confirmed. Retrying sends the same request.")
+                Button {
+                    Task { await model.retry(session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Retry saved request")
+                }
+            }
+        }
+        .task(id: expiresAt) { await updateOnExpiry() }
+    }
+
+    @ViewBuilder private func result(_ response: MemoryResponse) -> some View {
+        switch response {
+        case .proposal(let envelope):
+            if [.denied, .consumed].contains(envelope.approval.status) {
+                Text("This proposal has already been decided. Reload to see your current memory.")
+                done
+            } else if envelope.approval.isExpired(at: now) {
+                Text("This proposal has expired. Discard it and reload your current memories.")
+                Text(envelope.approval.change.content).textSelection(.enabled)
+                Button {
+                    Task { await model.finish(session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Discard expired proposal")
+                }
+            } else {
+                Text("Review the exact text before saving it to your private memory.")
+                Text(envelope.approval.change.content).textSelection(.enabled)
+                Button {
+                    Task { await model.decide(true, session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Save this memory")
+                }
+                Button(role: .cancel) {
+                    Task { await model.decide(false, session: session, member: member) }
+                } label: {
+                    QuietActionLabel("Don’t save")
+                }
+            }
+        case .decision(let envelope):
+            Text(envelope.decision.status == "consumed" ? "Memory saved." : "Memory was not saved.")
+            done
+        case .removal:
+            Text("Memory removed. Your separate conversation and approval history remains.")
+            done
+        }
+    }
+
+    private var done: some View {
+        Button {
+            Task { await model.finish(session: session, member: member) }
+        } label: {
+            QuietActionLabel("Done")
+        }
+    }
+
+    private func updateOnExpiry() async {
+        now = .now
+        guard let expiresAt, let deadline = AssistantTimestamp.date(expiresAt) else { return }
+        let delay = deadline.timeIntervalSinceNow
+        guard delay > 0 else { return }
+        do { try await Task.sleep(for: .seconds(delay)) } catch { return }
+        now = .now
+    }
+}

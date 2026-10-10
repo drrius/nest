@@ -11,6 +11,17 @@ export function captureLegacyWriterInventory(db) {
       from pg_proc p join pg_namespace n on n.oid=p.pronamespace
       where n.nspname='public' and p.proname not like 'nest\\_%' escape '\\'
         and (has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE') or has_function_privilege('service_role',p.oid,'EXECUTE'))),
+    'privateFunctionPrivileges',(select coalesce(jsonb_agg(jsonb_build_object(
+      'signature',p.oid::regprocedure::text,'securityDefiner',p.prosecdef,
+      'anonymousExecute',has_function_privilege('anon',p.oid,'EXECUTE'),
+      'authenticatedExecute',has_function_privilege('authenticated',p.oid,'EXECUTE'),
+      'serviceRoleExecute',has_function_privilege('service_role',p.oid,'EXECUTE'),
+      'anonymousSchemaUsage',has_schema_privilege('anon',n.oid,'USAGE'),
+      'authenticatedSchemaUsage',has_schema_privilege('authenticated',n.oid,'USAGE'),
+      'serviceRoleSchemaUsage',has_schema_privilege('service_role',n.oid,'USAGE')) order by p.oid::regprocedure::text),'[]')
+      from pg_proc p join pg_namespace n on n.oid=p.pronamespace
+      where n.nspname='private'
+        and (has_function_privilege('anon',p.oid,'EXECUTE') or has_function_privilege('authenticated',p.oid,'EXECUTE') or has_function_privilege('service_role',p.oid,'EXECUTE'))),
     'legacyWritableTables',(select coalesce(jsonb_agg(jsonb_build_object(
       'table',c.relname,'rls',c.relrowsecurity,
       'anonymous',has_any_column_privilege('anon',c.oid,'INSERT,UPDATE') or has_table_privilege('anon',c.oid,'DELETE,TRUNCATE'),

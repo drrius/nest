@@ -1,23 +1,23 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import { fixture, id, run, Effect } from "./legacy-adoption-native-fixture.mjs";
-import { RecurringReadRuntime } from "../../apps/mobile/src/money/recurring-read-runtime.ts";
-import { recurringReadOperations } from "../../apps/mobile/src/money/recurring-read-operations.ts";
+import { RecurringReadRuntime } from "../../packages/protocol-fixtures/src/money/recurring-read-runtime.ts";
+import { recurringReadOperations } from "../../packages/protocol-fixtures/src/money/recurring-read-operations.ts";
 import {
   initialLegacyAdoption,
   prepareLegacyAdoption,
   legacyAdoptionGuard,
-} from "../../apps/mobile/src/money/legacy-adoption-draft.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-adoption-draft.ts";
 import {
   adoptionFormContext,
   adoptionPreviewCurrent,
-} from "../../apps/mobile/src/money/legacy-adoption-context.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-adoption-context.ts";
 import {
   adoptionConfirmationText,
   adoptionSourceText,
   adoptionReviewText,
-} from "../../apps/mobile/src/money/legacy-adoption-summary.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-adoption-summary.ts";
 async function choices(f) {
   const client = moneyClient(
     f.url,

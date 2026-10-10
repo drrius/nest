@@ -77,9 +77,71 @@ final class GroceryOfflineStoreTests: XCTestCase {
         let conflicted = try await store.readGroceries(lease)
         XCTAssertEqual(conflicted?.items[0].state, .conflict)
         XCTAssertEqual(conflicted?.items[0].checked, false)
+        XCTAssertEqual(conflicted?.items[0].requestedChecked, true)
+        XCTAssertEqual(conflicted?.items[0].conflictReason, .changed)
+        XCTAssertEqual(conflicted?.items[0].operationId, operation)
+        XCTAssertEqual(conflicted?.items[0].item.version, "43")
         try await store.discardGroceryCheck(operation, lease: lease)
         let discarded = try await store.readGroceries(lease)
         XCTAssertEqual(discarded?.items[0].state, .open)
+        XCTAssertNil(discarded?.items[0].conflictReason)
+    }
+
+    func testRemovedConflictSurvivesReopenWithoutRecreationOrAutomaticRetry() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "grocery-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        let operation = UUID()
+        do {
+            let store = try ChoreOfflineStore(url: url)
+            let lease = try await store.activate(member)
+            let list = try sampleList(version: "42", checked: false)
+            try await store.saveGroceries(list, lease: lease)
+            try await store.enqueueGroceryCheck(list.groceries[0], checked: true, operation: operation, lease: lease)
+            try await store.conflictGroceryCheck(operation, reason: "removed", lease: lease)
+            let empty = GroceryList(version: 1, householdId: household, groceries: [])
+            try await store.saveGroceries(empty, lease: lease)
+        }
+        do {
+            let store = try ChoreOfflineStore(url: url)
+            let other = VerifiedMember(userId: UUID(), householdId: household, displayName: "Sam")
+            let otherLease = try await store.activate(other)
+            let otherList = try await store.readGroceries(otherLease)
+            XCTAssertNil(otherList)
+            let lease = try await store.activate(member)
+            let restored = try await store.readGroceries(lease)
+            let next = try await store.nextGroceryCheck(lease)
+            XCTAssertNil(next)
+            XCTAssertEqual(restored?.snapshot.groceries, [])
+            XCTAssertEqual(restored?.items.count, 1)
+            XCTAssertEqual(restored?.items.first?.conflictReason, .removed)
+            XCTAssertEqual(restored?.items.first?.operationId, operation)
+            XCTAssertEqual(restored?.items.first?.requestedChecked, true)
+            XCTAssertEqual(restored?.items.first?.item.name, "Oat milk")
+            try await store.discardGroceryCheck(operation, lease: lease)
+            let discarded = try await store.readGroceries(lease)
+            XCTAssertEqual(discarded?.items, [])
+        }
+    }
+
+    func testUnknownConflictReasonUsesSafeFallbackAndRetainsOriginalIntent() async throws {
+        let url = FileManager.default.temporaryDirectory.appending(path: "grocery-\(UUID()).sqlite")
+        defer { try? FileManager.default.removeItem(at: url) }
+        do {
+            let store = try ChoreOfflineStore(url: url)
+            let lease = try await store.activate(member)
+            let list = try sampleList(version: "42", checked: false)
+            let operation = UUID()
+            try await store.saveGroceries(list, lease: lease)
+            try await store.enqueueGroceryCheck(list.groceries[0], checked: true, operation: operation, lease: lease)
+            try await store.conflictGroceryCheck(operation, reason: "unrecognized-private-detail", lease: lease)
+            let current = try await store.readGroceries(lease)
+            XCTAssertEqual(current?.items.first?.state, .conflict)
+            XCTAssertEqual(current?.items.first?.conflictReason, .unknown)
+            XCTAssertEqual(current?.items.first?.operationId, operation)
+            XCTAssertEqual(current?.items.first?.requestedChecked, true)
+            let next = try await store.nextGroceryCheck(lease)
+            XCTAssertNil(next)
+        }
     }
 
     private func sampleList(version: String, checked: Bool) throws -> GroceryList {

@@ -2,10 +2,12 @@ import Foundation
 
 struct LocalGrocery: Identifiable, Equatable, Sendable {
     enum State: String, Sendable { case open, pending, acknowledged, conflict }
+    enum ConflictReason: String, Sendable { case changed, removed, forbidden, cutover, unknown }
     let item: GroceryItem
     let state: State
     let operationId: UUID?
     let requestedChecked: Bool?
+    let conflictReason: ConflictReason?
     var id: UUID { item.id }
     var checked: Bool { state == .pending || state == .acknowledged ? requestedChecked ?? item.checked : item.checked }
 }
@@ -19,6 +21,7 @@ private struct SavedGroceryCheck {
     let item: GroceryItem
     let command: CheckGrocery
     let state: LocalGrocery.State
+    let reason: LocalGrocery.ConflictReason?
 }
 
 extension ChoreOfflineStore {
@@ -34,7 +37,7 @@ extension ChoreOfflineStore {
             return LocalGrocery(
                 item: item, state: saved?.state ?? .open,
                 operationId: saved?.command.operationId,
-                requestedChecked: saved?.command.checked)
+                requestedChecked: saved?.command.checked, conflictReason: saved?.reason)
         }
         let current = Set(snapshot.groceries.map(\.id))
         let missing = operations.filter { !current.contains($0.key) && $0.value.state != .acknowledged }
@@ -42,7 +45,7 @@ extension ChoreOfflineStore {
                 LocalGrocery(
                     item: saved.value.item, state: saved.value.state,
                     operationId: saved.value.command.operationId,
-                    requestedChecked: saved.value.command.checked)
+                    requestedChecked: saved.value.command.checked, conflictReason: saved.value.reason)
             }
             .sorted { $0.item.name < $1.item.name }
         return GroceryOfflineState(snapshot: snapshot, items: items + missing)
@@ -57,6 +60,9 @@ extension ChoreOfflineStore {
                 "INSERT INTO grocery_snapshots(actor,household,body) VALUES(?,?,?) ON CONFLICT(actor,household) DO UPDATE SET body=excluded.body",
                 lease.scope + [body])
             try clearObservedGroceryChecks(snapshot, lease: lease)
+            try clearConfirmedGroceryAdd(lease)
+            try clearConfirmedGroceryEdit(snapshot, lease: lease)
+            try clearConfirmedGroceryRemove(snapshot, lease: lease)
         }
     }
 
@@ -64,6 +70,9 @@ extension ChoreOfflineStore {
         _ item: GroceryItem, checked: Bool, operation: UUID, lease: OfflineLease
     ) throws {
         try authorize(lease)
+        guard try readGroceryRemove(lease)?.item.id != item.id else {
+            throw OfflineFailure.alreadyQueued
+        }
         guard item.offlineEpoch != nil, checked != item.checked,
             let snapshot = try readGroceries(lease), snapshot.snapshot.groceries.contains(item)
         else { throw OfflineFailure.missingSnapshot }
@@ -130,7 +139,7 @@ extension ChoreOfflineStore {
 
     private func savedGroceryChecks(_ lease: OfflineLease) throws -> [UUID: SavedGroceryCheck] {
         let rows = try db.rows(
-            "SELECT target,status,operation,item,body FROM grocery_checks WHERE actor=? AND household=? ORDER BY sequence",
+            "SELECT target,status,operation,item,body,COALESCE(reason,'') FROM grocery_checks WHERE actor=? AND household=? ORDER BY sequence",
             lease.scope)
         var saved: [UUID: SavedGroceryCheck] = [:]
         for row in rows {
@@ -144,7 +153,8 @@ extension ChoreOfflineStore {
                 command.expectedVersion == item.version, command.offlineEpoch == item.offlineEpoch,
                 let state = LocalGrocery.State(rawValue: row[1]), saved[target] == nil
             else { throw OfflineFailure.storage }
-            saved[target] = SavedGroceryCheck(item: item, command: command, state: state)
+            let reason = state == .conflict ? LocalGrocery.ConflictReason(rawValue: row[5]) ?? .unknown : nil
+            saved[target] = SavedGroceryCheck(item: item, command: command, state: state, reason: reason)
         }
         return saved
     }

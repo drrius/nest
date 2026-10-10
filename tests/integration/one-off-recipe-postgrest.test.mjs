@@ -3,9 +3,9 @@ import { test } from "node:test";
 import { createRequire } from "node:module";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { PlannedRecipeRuntime } from "../../apps/mobile/src/meals/planned-recipe-runtime.ts";
-import { fixture as sqliteFixture } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { PlannedRecipeRuntime } from "../../packages/protocol-fixtures/src/meals/planned-recipe-runtime.ts";
+import { fixture as sqliteFixture } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import {
   oneOffFiles,
@@ -14,7 +14,9 @@ import {
   id,
   week,
 } from "../database/one-off-recipe-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect");
 async function backend(t) {
   const remote = await postgrestFixture(t, [

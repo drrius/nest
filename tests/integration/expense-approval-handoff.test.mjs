@@ -7,16 +7,18 @@ import { payload } from "../database/native-expense-helpers.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { expenseApprovalOperations } from "../../apps/mobile/src/money/approval-operations.ts";
-import { expenseApprovalOwner } from "../../apps/mobile/src/money/approval-owner.ts";
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { expenseApprovalOperations } from "../../packages/protocol-fixtures/src/money/approval-operations.ts";
+import { expenseApprovalOwner } from "../../packages/protocol-fixtures/src/money/approval-owner.ts";
 import {
   approvalActions,
   expenseConfirmation,
-} from "../../apps/mobile/src/money/approval-display.ts";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+} from "../../packages/protocol-fixtures/src/money/approval-display.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 async function api(t, config) {
@@ -56,7 +58,7 @@ async function proposal(f, config) {
     messages: [],
   });
 }
-test("real AI proposal card opens native review with category and records only after exact explicit confirmation", async (t) => {
+test("SDK proposal passes category and exact confirmation through the test-only protocol adapter", async (t) => {
   const f = await postgrestFixture(t, [
     ...files,
     "tests/integration/food-postgrest.sql",

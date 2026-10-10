@@ -8,6 +8,12 @@ import { fixtureLifecycle } from "./fixture-lifecycle.mjs";
 
 const execute = promisify(execFile);
 
+function sessionArguments(role) {
+  if (role === undefined) return [];
+  if (!/^[a-z][a-z0-9_]*$/u.test(role)) throw new Error("Invalid disposable fixture role");
+  return ["-c", `set session authorization "${role}"`];
+}
+
 export function startFixturePostgres() {
   const bin = process.env.NEST_TEST_PG_BIN;
   if (!bin)
@@ -50,20 +56,23 @@ export function startFixturePostgres() {
       "-qAt",
     ];
     return {
-      sql: (sql) =>
-        execFileSync(join(bin, "psql"), [...args, "-c", sql], {
+      sql: (sql, role) =>
+        execFileSync(join(bin, "psql"), [...args, ...sessionArguments(role), "-c", sql], {
           encoding: "utf8",
           timeout: 10000,
           stdio: ["pipe", "pipe", "pipe"],
         }).trim(),
-      file: (file) =>
-        execFileSync(join(bin, "psql"), [...args, "-f", file], {
+      file: (file, role) =>
+        execFileSync(join(bin, "psql"), [...args, ...sessionArguments(role), "-f", file], {
           encoding: "utf8",
           timeout: 10000,
           stdio: ["pipe", "pipe", "pipe"],
         }),
-      concurrent: (sql) =>
-        execute(join(bin, "psql"), [...args, "-c", sql], { encoding: "utf8", timeout: 10000 }),
+      concurrent: (sql, role) =>
+        execute(join(bin, "psql"), [...args, ...sessionArguments(role), "-c", sql], {
+          encoding: "utf8",
+          timeout: 10000,
+        }),
       stop: lifecycle.stop,
     };
   } catch (error) {

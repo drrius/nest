@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
 import { recurringSaveRecovery } from "../../apps/api/src/money/recurring-save-read.ts";
-import { recurringRecoveryClient } from "../../apps/mobile/src/money/recurring-recovery-client.ts";
+import { recurringRecoveryClient } from "../../packages/protocol-fixtures/src/money/recurring-recovery-client.ts";
 import { id, input, receipt } from "./recurring-transport-fixture.mjs";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));
 const Effect = require("effect/Effect"),

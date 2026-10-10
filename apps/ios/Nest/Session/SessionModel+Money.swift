@@ -1,0 +1,73 @@
+import Foundation
+
+extension SessionModel {
+    func readMoneyBalance(member: VerifiedMember, generation expected: Int) async throws -> MoneyBalance {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth, let moneyAPI else { throw NestAPIFailure.configuration }
+        let session = try await auth.session()
+        try requireMoneyAccount(member, generation: expected)
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let result = try await moneyAPI.balance(token: session.accessToken, member: member)
+        try requireMoneyAccount(member, generation: expected)
+        return result
+    }
+
+    func readMoneyHistory(member: VerifiedMember, generation expected: Int, before: UUID?) async throws -> MoneyHistory
+    {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth, let moneyAPI else { throw NestAPIFailure.configuration }
+        let session = try await auth.session()
+        try requireMoneyAccount(member, generation: expected)
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let result = try await moneyAPI.history(token: session.accessToken, member: member, before: before)
+        try requireMoneyAccount(member, generation: expected)
+        return result
+    }
+
+    func readMoneyDetail(member: VerifiedMember, generation expected: Int, eventId: UUID) async throws -> MoneyDetail {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth, let moneyAPI else { throw NestAPIFailure.configuration }
+        let session = try await auth.session()
+        try requireMoneyAccount(member, generation: expected)
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let result = try await moneyAPI.detail(token: session.accessToken, member: member, eventId: eventId)
+        try requireMoneyAccount(member, generation: expected)
+        return result
+    }
+
+    func readMoneyCategories(member: VerifiedMember, generation expected: Int, after: UUID?) async throws
+        -> MoneyCategories
+    {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth, let moneyAPI else { throw NestAPIFailure.configuration }
+        let session = try await auth.session()
+        try requireMoneyAccount(member, generation: expected)
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let result = try await moneyAPI.categories(token: session.accessToken, member: member, after: after)
+        try requireMoneyAccount(member, generation: expected)
+        return result
+    }
+
+    func readReceiptLink(member: VerifiedMember, generation expected: Int, eventId: UUID) async throws -> URL {
+        try requireMoneyAccount(member, generation: expected)
+        guard let auth, let moneyAPI else { throw NestAPIFailure.configuration }
+        let session = try await auth.session()
+        try requireMoneyAccount(member, generation: expected)
+        guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+        let result = try await moneyAPI.receiptLink(token: session.accessToken, member: member, eventId: eventId)
+        try requireMoneyAccount(member, generation: expected)
+        return result
+    }
+
+    func readMoneyCategory(_ context: ExpenseContext, categoryId: UUID) async throws -> MoneyCategoryEnvelope {
+        let token = try await expenseToken(context)
+        guard let moneyAPI else { throw NestAPIFailure.configuration }
+        let result = try await moneyAPI.category(token: token, member: context.member, categoryId: categoryId)
+        try requireMoneyAccount(context.member, generation: context.generation)
+        return result
+    }
+
+    func requireMoneyAccount(_ member: VerifiedMember, generation expected: Int) throws {
+        guard generation == expected, status == .ready(member) else { throw NestAPIFailure.signedOut }
+    }
+}

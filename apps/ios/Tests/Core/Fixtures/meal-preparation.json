@@ -1,0 +1,213 @@
+{
+  "create": {
+    "operationId": "00000000-0000-4000-8000-00000000000F",
+    "entryId": "00000000-0000-4000-8000-00000000000C",
+    "weekStart": "2030-01-07",
+    "expectedRevision": "9007199254740993",
+    "preparation": {
+      "title": "Soak lentils",
+      "instructions": null,
+      "dueOn": "2030-01-06",
+      "assignment": {
+        "policy": "shared"
+      }
+    }
+  },
+  "edit": {
+    "operationId": "00000000-0000-4000-8000-00000000000F",
+    "entryId": "00000000-0000-4000-8000-00000000000C",
+    "weekStart": "2030-01-07",
+    "expectedRevision": "9007199254740993",
+    "routineId": "00000000-0000-4000-8000-00000000000D",
+    "expectedRoutineVersion": "2030-01-07T12:00:00.000001Z",
+    "patch": {
+      "instructions": null
+    }
+  },
+  "titleOnly": {
+    "operationId": "00000000-0000-4000-8000-00000000000F",
+    "entryId": "00000000-0000-4000-8000-00000000000C",
+    "weekStart": "2030-01-07",
+    "expectedRevision": "9007199254740993",
+    "routineId": "00000000-0000-4000-8000-00000000000D",
+    "expectedRoutineVersion": "2030-01-07T12:00:00.000001Z",
+    "patch": {
+      "title": "Rinse lentils"
+    }
+  },
+  "createReceipt": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-00000000000A",
+    "householdId": "00000000-0000-4000-8000-00000000000B",
+    "operationId": "00000000-0000-4000-8000-00000000000F",
+    "entryId": "00000000-0000-4000-8000-00000000000C",
+    "weekStart": "2030-01-07",
+    "revision": "9007199254740993",
+    "routineId": "00000000-0000-4000-8000-00000000000D",
+    "occurrenceId": "00000000-0000-4000-8000-00000000000E",
+    "routineVersion": "2030-01-07T12:00:00.000002Z",
+    "dueOn": "2030-01-06"
+  },
+  "editReceipt": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-00000000000A",
+    "householdId": "00000000-0000-4000-8000-00000000000B",
+    "operationId": "00000000-0000-4000-8000-00000000000F",
+    "entryId": "00000000-0000-4000-8000-00000000000C",
+    "weekStart": "2030-01-07",
+    "revision": "9007199254740993",
+    "routineId": "00000000-0000-4000-8000-00000000000D",
+    "occurrenceId": "00000000-0000-4000-8000-00000000000E",
+    "routineVersion": "2030-01-07T12:00:00.000002Z",
+    "dueOn": "2030-01-06",
+    "previousRoutineVersion": "2030-01-07T12:00:00.000001Z"
+  },
+  "read": {
+    "version": 1,
+    "householdId": "00000000-0000-4000-8000-00000000000B",
+    "weekStart": "2030-01-07",
+    "revision": "9007199254740993",
+    "entryId": "00000000-0000-4000-8000-00000000000C",
+    "entry": {
+      "entryId": "00000000-0000-4000-8000-00000000000C",
+      "date": "2030-01-07",
+      "title": "Lentil soup"
+    },
+    "preparation": {
+      "routineId": "00000000-0000-4000-8000-00000000000D",
+      "occurrenceId": "00000000-0000-4000-8000-00000000000E",
+      "routineVersion": "2030-01-07T12:00:00.000001Z",
+      "title": "Soak lentils",
+      "instructions": "Use cold water.",
+      "dueOn": "2030-01-06",
+      "assignment": {
+        "policy": "shared"
+      },
+      "plannedAssigneeId": null,
+      "status": "open",
+      "state": "active"
+    }
+  },
+  "titles": [
+    {
+      "title": "\t",
+      "valid": false
+    },
+    {
+      "title": "\n",
+      "valid": false
+    },
+    {
+      "title": "\u000b",
+      "valid": false
+    },
+    {
+      "title": "\f",
+      "valid": false
+    },
+    {
+      "title": "\r",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": " ",
+      "valid": false
+    },
+    {
+      "title": "　",
+      "valid": false
+    },
+    {
+      "title": "﻿",
+      "valid": false
+    },
+    {
+      "title": "",
+      "valid": true
+    },
+    {
+      "title": "🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲",
+      "valid": true
+    },
+    {
+      "title": "🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲🍲",
+      "valid": false
+    },
+    {
+      "title": " x ",
+      "valid": true
+    },
+    {
+      "title": "x\u0000",
+      "valid": false
+    }
+  ]
+}

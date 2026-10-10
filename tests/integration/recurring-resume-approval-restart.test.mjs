@@ -1,13 +1,15 @@
-import { recurringStateApprovalActions } from "../../apps/mobile/src/money/recurring-state-approval-display.ts";
+import { recurringStateApprovalActions } from "../../packages/protocol-fixtures/src/money/recurring-state-approval-display.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { recurringStateApprovalOperations } from "../../apps/mobile/src/money/recurring-state-approval-operations.ts";
-import { RecurringStateApprovalRuntime } from "../../apps/mobile/src/money/recurring-state-approval-runtime.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { recurringStateApprovalOperations } from "../../packages/protocol-fixtures/src/money/recurring-state-approval-operations.ts";
+import { RecurringStateApprovalRuntime } from "../../packages/protocol-fixtures/src/money/recurring-state-approval-runtime.ts";
 import { fixture, id, run } from "./recurring-resume-approval-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 for (const approved of [true, false]) {

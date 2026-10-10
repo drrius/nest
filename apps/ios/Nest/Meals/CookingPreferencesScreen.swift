@@ -1,0 +1,180 @@
+import SwiftUI
+
+struct CookingPreferencesScreen: View {
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var dynamicTypeSize
+    @ObservedObject var model: SessionModel
+    @State private var context: CookingEditContext?
+    @State private var notes = ""
+    @State private var slots = Set(MealSlot.allCases)
+    @State private var loading = false
+    @State private var submitting = false
+    @State private var confirmReload = false
+    @State private var leaving = false
+
+    var body: some View {
+        Form {
+            if let pending = model.cookingPending {
+                Section("Saved change") {
+                    Text(pending.command.preferences.mealSlots.map(\.label).joined(separator: ", "))
+                    Text(pending.command.preferences.cookingNotes).font(.subheadline)
+                    switch pending.state {
+                    case .pending:
+                        Text("Waiting for confirmation. Retry this saved request when connected.")
+                        Button {
+                            Task { await model.retryCookingPreferences() }
+                        } label: {
+                            QuietActionLabel("Retry save")
+                        }
+                    case .acknowledged:
+                        Text("Saved. Refresh to see the confirmed household preferences.")
+                        Button {
+                            Task { await reload() }
+                        } label: {
+                            QuietActionLabel("Refresh")
+                        }
+                    case .conflict:
+                        Text(
+                            "Someone changed these preferences. Discard this rejected change and review the current settings."
+                        )
+                        Button {
+                            Task {
+                                await model.discardCookingConflict()
+                                await reload()
+                            }
+                        } label: {
+                            QuietActionLabel("Discard rejected change")
+                        }
+                    }
+                }.disabled(model.cookingSaving || loading)
+            }
+            if let context, context.generation == model.generation, model.status == .ready(context.member) {
+                preferenceFields
+            }
+            if let notice = model.cookingNotice { Text(notice).foregroundStyle(QuietPalette.muted) }
+            if loading { ProgressView("Loading preferences…") }
+            if context == nil && !loading {
+                Button {
+                    Task { await reload() }
+                } label: {
+                    QuietActionLabel("Load current preferences")
+                }
+            }
+            if context != nil && model.cookingPending == nil {
+                Button {
+                    leaving = false
+                    confirmReload = true
+                } label: {
+                    QuietActionLabel("Reload current preferences")
+                }
+                .disabled(loading || submitting || model.cookingSaving)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .scrollDismissesKeyboard(.interactively)
+        .background(QuietPalette.background)
+        .navigationTitle("Cooking preferences")
+        .navigationBarTitleDisplayMode(.inline)
+        .modifier(
+            QuietDraftBack(hasChanges: hasUnsavedChanges, busy: loading || submitting || model.cookingSaving) {
+                leaving = true
+                confirmReload = true
+            }
+        )
+        .toolbar {
+            ToolbarItem(placement: .confirmationAction) {
+                Button {
+                    Task { await save() }
+                } label: {
+                    Text(submitting ? "Saving…" : "Save")
+                        .frame(minWidth: 44, minHeight: 44).contentShape(Rectangle())
+                }.buttonStyle(.plain).disabled(!editable || !valid)
+            }
+        }
+        .task(id: model.generation) { if !hasUnsavedChanges { await reload() } }
+        .alert("Discard edits?", isPresented: $confirmReload) {
+            Button("Discard edits", role: .destructive) {
+                if leaving { dismiss() } else { Task { await reload() } }
+            }
+            Button("Keep editing", role: .cancel) {}
+        }
+    }
+
+    @ViewBuilder
+    private var preferenceFields: some View {
+        Section("Show in your week") {
+            ForEach(MealSlot.allCases, id: \.self) { slot in
+                Toggle(
+                    slot.label,
+                    isOn: Binding(
+                        get: { slots.contains(slot) },
+                        set: { enabled in
+                            if enabled { slots.insert(slot) } else { slots.remove(slot) }
+                        }))
+            }
+            Text("Already-planned meals stay visible even when their slot is hidden.")
+                .font(.footnote).foregroundStyle(QuietPalette.muted)
+        }.disabled(!editable)
+        Section("Cooking notes") {
+            QuietTextEditor(text: $notes, label: "Cooking notes")
+                .frame(height: dynamicTypeSize.isAccessibilitySize ? 240 : 180)
+                .overlay(alignment: .topLeading) {
+                    if notes.isEmpty {
+                        Text("What helps you cook?")
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 8).padding(.leading, 5)
+                            .allowsHitTesting(false).accessibilityHidden(true)
+                    }
+                }
+                .accessibilityLabel("Cooking notes")
+            Text("Shared with your household and used for meal planning.")
+                .font(.footnote).foregroundStyle(QuietPalette.muted)
+        }.disabled(!editable)
+        if slots.isEmpty { Text("Keep at least one meal slot.") }
+        if notes.utf16.count > 2_000 { Text("Keep cooking notes under 2,000 characters.") }
+    }
+
+    private var editable: Bool {
+        guard let context else { return false }
+        return !loading && !submitting && !model.cookingSaving && model.cookingPending == nil
+            && model.generation == context.generation && model.status == .ready(context.member)
+    }
+
+    private var hasUnsavedChanges: Bool {
+        guard let context, model.cookingPending == nil, context.generation == model.generation,
+            model.status == .ready(context.member)
+        else { return false }
+        let baseline = context.profile.profile?.preferences
+        return notes != (baseline?.cookingNotes ?? "") || slots != Set(baseline?.mealSlots ?? MealSlot.allCases)
+    }
+
+    private var valid: Bool {
+        guard let context else { return false }
+        return
+            (try? SaveCookingProfile(
+                operationId: UUID(), expectedRevision: context.profile.profile?.revision ?? "0",
+                notes: notes, slots: MealSlot.allCases.filter { slots.contains($0) })) != nil
+    }
+
+    private func reload() async {
+        guard !loading else { return }
+        loading = true
+        defer { loading = false }
+        context = await model.loadCookingPreferences()
+        if let profile = context?.profile {
+            notes = profile.profile?.preferences.cookingNotes ?? ""
+            slots = Set(profile.profile?.preferences.mealSlots ?? MealSlot.allCases)
+        }
+    }
+
+    private func save() async {
+        guard editable, valid, let context else { return }
+        submitting = true
+        defer { submitting = false }
+        if await model.saveCookingPreferences(
+            context, notes: notes, slots: MealSlot.allCases.filter { slots.contains($0) })
+        {
+            await reload()
+        }
+    }
+}

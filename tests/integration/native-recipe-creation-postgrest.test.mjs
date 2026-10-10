@@ -3,12 +3,14 @@ import { test } from "node:test";
 import { createRequire } from "node:module";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { RecipeCreationRuntime } from "../../apps/mobile/src/meals/recipe-creation-runtime.ts";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { RecipeCreationRuntime } from "../../packages/protocol-fixtures/src/meals/recipe-creation-runtime.ts";
 import { recipeCreationFiles, input, id } from "../database/recipe-creation-fixture.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 async function backend(t, lost = false) {
   const remote = await postgrestFixture(t, [

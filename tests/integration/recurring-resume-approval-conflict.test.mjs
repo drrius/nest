@@ -2,13 +2,15 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
 import { fixture, id, run } from "./recurring-resume-approval-fixture.mjs";
-import { recurringStateApprovalOperations } from "../../apps/mobile/src/money/recurring-state-approval-operations.ts";
-import { RecurringStateApprovalRuntime } from "../../apps/mobile/src/money/recurring-state-approval-runtime.ts";
+import { recurringStateApprovalOperations } from "../../packages/protocol-fixtures/src/money/recurring-state-approval-operations.ts";
+import { RecurringStateApprovalRuntime } from "../../packages/protocol-fixtures/src/money/recurring-state-approval-runtime.ts";
 import {
   recurringStateApprovalActions,
   recurringStateApprovalText,
-} from "../../apps/mobile/src/money/recurring-state-approval-display.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+} from "../../packages/protocol-fixtures/src/money/recurring-state-approval-display.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 function operations(f, local, session) {

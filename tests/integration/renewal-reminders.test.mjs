@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect, Fetch } from "./renewal-fixture.mjs";
-import { renewalReminderClient } from "../../apps/mobile/src/renewal-reminders/client.ts";
+import { renewalReminderClient } from "../../packages/protocol-fixtures/src/renewal-reminders/client.ts";
 async function setup(t) {
   const f = await fixture(t, [
     "supabase/migrations/20260922213246_native_renewal_reminder_storage.sql",

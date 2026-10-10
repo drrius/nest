@@ -1,0 +1,179 @@
+import Foundation
+
+extension SessionModel {
+    func openCurrentMealWeek() async {
+        do { await selectMealWeek(try MealWeekStart.current()) } catch {
+            mealStatus = .failed
+            mealNotice = "Could not choose this week."
+        }
+    }
+
+    func selectMealWeek(_ start: MealWeekStart) async {
+        mealSelection = start
+        mealStatus = .loading
+        mealNotice = nil
+        mealPlacement = nil
+        mealRemoval = nil
+        mealRecipePlacement = nil
+        await refreshMealWeek()
+    }
+
+    func refreshMealWeek() async {
+        guard let start = mealSelection, let auth, let api = mealAPI,
+            let offline, let lease, case .ready(let member) = status
+        else { return }
+        let attempt = generation
+        let request = UUID()
+        mealLoadingRequest = request
+        do {
+            let cached = try await offline.readMealWeek(start, lease: lease)
+            let pendingSavedReplacement = try await offline.readMealRecipeReplacement(lease: lease)
+            let pendingReplacement = try await offline.readMealReplacement(lease: lease)
+            let pendingLeftovers = try await offline.readMealLeftovers(lease: lease)
+            let pendingMove = try await offline.readMealMove(lease: lease)
+            let pending = try await offline.readMealPlacement(start, lease: lease)
+            let pendingRemoval = try await offline.readMealRemoval(start, lease: lease)
+            let pendingRecipe = try await offline.readMealRecipePlacement(start, lease: lease)
+            guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
+            else { return }
+            mealStatus = cached.map(MealStatus.loaded) ?? .loading
+            mealRecipeReplacement = pendingSavedReplacement
+            mealReplacement = pendingReplacement
+            mealLeftovers = pendingLeftovers
+            mealMove = pendingMove
+            mealPlacement = pending
+            mealRemoval = pendingRemoval
+            mealRecipePlacement = pendingRecipe
+            let session = try await auth.session()
+            guard session.userId == member.userId else { throw NestAPIFailure.signedOut }
+            let fresh = try await readAndCacheMealWeek(
+                start, token: session.accessToken, member: member, generation: attempt)
+            guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
+            else { return }
+            let visible = try await offline.readMealWeek(start, lease: lease)
+            let savedRecipeReplacement = try await offline.readMealRecipeReplacement(lease: lease)
+            let savedReplacement = try await offline.readMealReplacement(lease: lease)
+            let savedLeftovers = try await offline.readMealLeftovers(lease: lease)
+            let savedMove = try await offline.readMealMove(lease: lease)
+            let saved = try await offline.readMealPlacement(start, lease: lease)
+            let savedRemoval = try await offline.readMealRemoval(start, lease: lease)
+            let savedRecipePlacement = try await offline.readMealRecipePlacement(start, lease: lease)
+            guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
+            else { return }
+            mealStatus = visible.map(MealStatus.loaded) ?? .loaded(fresh)
+            mealRecipeReplacement = savedRecipeReplacement
+            mealReplacement = savedReplacement
+            mealLeftovers = savedLeftovers
+            mealMove = savedMove
+            mealPlacement = saved
+            mealRemoval = savedRemoval
+            mealRecipePlacement = savedRecipePlacement
+            mealNotice = refreshNotice(
+                placement: saved, removal: savedRemoval, recipe: savedRecipePlacement)
+        } catch {
+            await handleMealReadFailure(
+                error, api: api, auth: auth, member: member, attempt: attempt,
+                request: request, start: start)
+        }
+    }
+
+    private func refreshNotice(
+        placement: SavedMealPlacement?, removal: SavedMealRemoval?,
+        recipe: SavedMealRecipePlacement?
+    ) -> String? {
+        if removal?.state == .acknowledged { return "Meal removed. Refreshing the shared week…" }
+        if placement?.state == .acknowledged { return "Meal saved. Refreshing the shared week…" }
+        if recipe?.state == .acknowledged { return "Saved meal added. Refreshing the shared week…" }
+        return nil
+    }
+
+    private func isCurrentMealRequest(
+        _ request: UUID, start: MealWeekStart, member: VerifiedMember, attempt: Int
+    ) -> Bool {
+        generation == attempt && status == .ready(member)
+            && mealSelection == start && mealLoadingRequest == request
+    }
+
+    private func handleMealReadFailure(
+        _ error: Error, api: MealAPI, auth: any NestAuthentication,
+        member: VerifiedMember, attempt: Int, request: UUID, start: MealWeekStart
+    ) async {
+        guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
+        else { return }
+        if (error as? NestAPIFailure) == .forbidden {
+            await handleDeniedMealWeek(
+                api: api, auth: auth, member: member, attempt: attempt, request: request, start: start)
+            return
+        }
+        let mapped = state(for: error)
+        if mapped == .signedOut || mapped == .notMember {
+            await leaveMealAccount(mapped)
+            return
+        }
+        guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt)
+        else { return }
+        if case .loaded = mealStatus {
+            mealNotice = "Showing saved meals. Connect and refresh before changing the week."
+        } else {
+            mealStatus = .failed
+            mealNotice = "Could not load this week. Try again online."
+        }
+    }
+
+    private func handleDeniedMealWeek(
+        api: MealAPI, auth: any NestAuthentication, member: VerifiedMember,
+        attempt: Int, request: UUID, start: MealWeekStart
+    ) async {
+        guard isCurrentMealRequest(request, start: start, member: member, attempt: attempt) else { return }
+        mealStatus = .failed
+        mealNotice = "Could not load this week. Try again online."
+        _ = await reverifyMealMembership(api: api, auth: auth, member: member, attempt: attempt)
+    }
+
+    func reverifyMealMembership(
+        api: MealAPI, auth: any NestAuthentication,
+        member: VerifiedMember, attempt: Int
+    ) async -> Bool {
+        do {
+            let session = try await auth.session()
+            guard generation == attempt, status == .ready(member) else { return true }
+            guard session.userId == member.userId else {
+                await leaveMealAccount(.signedOut)
+                return true
+            }
+            let verified = try await api.verify(token: session.accessToken, expectedActor: member.userId)
+            guard generation == attempt, status == .ready(member) else { return true }
+            guard verified.householdId == member.householdId else {
+                await leaveMealAccount(.notMember)
+                return true
+            }
+        } catch {
+            guard generation == attempt, status == .ready(member) else { return true }
+            let mapped = state(for: error)
+            if mapped == .notMember || mapped == .signedOut {
+                await leaveMealAccount(mapped)
+                return true
+            }
+        }
+        return false
+    }
+
+    func leaveMealAccount(_ next: Status) async {
+        let previousLease = lease
+        generation += 1
+        let current = generation
+        if next == .notMember, let offline, let previousLease {
+            try? await offline.revokeMoneyMembership(lease: previousLease)
+            guard generation == current else { return }
+        }
+        await clearPresentation()
+        if generation == current { status = next }
+    }
+
+    func refreshMealVisibleSlots() async {
+        let attempt = generation
+        _ = await loadCookingPreferences()
+        guard generation == attempt else { return }
+        mealSlotNotice = cookingNotice
+    }
+}

@@ -1,17 +1,15 @@
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { ApiFailure } from "../errors.ts";
-import { ReceiptClaim, type pushDeliveryWorker } from "./delivery-worker.ts";
+import { ReceiptClaim } from "./legacy-receipt-claim.ts";
+import type { PushReceiptReader } from "./delivery-contract.ts";
 import type { pushWorkerRpc } from "./worker-rpc.ts";
 const Claims = Schema.Struct({
   scanned: Schema.Int.check(Schema.isBetween({ minimum: 0, maximum: 100 })),
   claims: Schema.Array(ReceiptClaim).check(Schema.isMaxLength(100)),
 });
 /** Poll claims are already durably delayed by the database, including on crash. */
-export function runPushReceipts(
-  rpc: ReturnType<typeof pushWorkerRpc>,
-  worker: ReturnType<typeof pushDeliveryWorker>,
-) {
+export function runPushReceipts(rpc: ReturnType<typeof pushWorkerRpc>, worker: PushReceiptReader) {
   return Effect.gen(function* () {
     const page = yield* Schema.decodeUnknownEffect(Claims)(yield* rpc("claimReceipts", {}));
     if (

@@ -5,6 +5,7 @@ const db = startFixturePostgres();
 after(() => db.stop());
 db.file("tests/database/busy-fixture.sql");
 db.file("supabase/migrations/20260919214955_native_busy_snapshots.sql");
+db.file("supabase/migrations/20260926094310_native_calendar_nonretryable_conflicts.sql");
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 const actor = id(1),
   partner = id(2),
@@ -153,6 +154,30 @@ test("consent retries preserve revision and changed-payload reuse is rejected", 
     () => db.sql(as(actor, consent(expected, false, operation))),
     /Consent operation changed/,
   );
+});
+
+test("an off revision fences a delayed enable whether it was unsent or already committed", () => {
+  for (const committed of [false, true]) {
+    db.sql(as(actor, consent(current(), false)));
+    const baseline = state();
+    const delayed = consent(baseline.version, true, next(), baseline.incarnation);
+    if (committed) {
+      const enabled = db.sql(as(actor, delayed));
+      db.sql(as(actor, publish(begin(enabled))));
+      assert.equal(visible(partner), "1");
+    }
+    const observed = state();
+    const removal = consent(observed.version, false, next(), observed.incarnation);
+    const removed = db.sql(as(actor, removal));
+    assert.equal(BigInt(removed), BigInt(observed.version) + 1n);
+    assert.equal(db.sql(as(actor, removal)), removed);
+    assert.equal(state().enabled, false);
+    assert.equal(visible(partner), "0");
+    assert.throws(() => db.sql(as(actor, delayed)), /Consent changed/);
+    assert.equal(state().version, removed);
+    assert.equal(state().enabled, false);
+    assert.equal(visible(partner), "0");
+  }
 });
 
 test("publisher membership revocation removes consent and cannot revive sharing after rejoining", () => {

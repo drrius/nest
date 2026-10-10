@@ -1,11 +1,13 @@
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import { fixture as server, id, run } from "./legacy-dismissal-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { legacyDismissalApprovalOperations } from "../../apps/mobile/src/money/legacy-dismissal-approval-operations.ts";
-import { LegacyDismissalApprovalRuntime } from "../../apps/mobile/src/money/legacy-dismissal-approval-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { legacyDismissalApprovalOperations } from "../../packages/protocol-fixtures/src/money/legacy-dismissal-approval-operations.ts";
+import { LegacyDismissalApprovalRuntime } from "../../packages/protocol-fixtures/src/money/legacy-dismissal-approval-runtime.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t) {

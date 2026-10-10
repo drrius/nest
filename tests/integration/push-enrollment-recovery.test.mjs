@@ -1,10 +1,10 @@
-import { pushEnrollmentActions } from "../../apps/mobile/src/push/enrollment-actions.ts";
+import { pushEnrollmentActions } from "../../packages/protocol-fixtures/src/push/enrollment-actions.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
-import { protectedPushAttempts } from "../../apps/mobile/src/push/protected-attempt.ts";
-import { pushEnrollmentOperations } from "../../apps/mobile/src/push/operations.ts";
+import { pushDeviceClient } from "../../packages/protocol-fixtures/src/push/client.ts";
+import { protectedPushAttempts } from "../../packages/protocol-fixtures/src/push/protected-attempt.ts";
+import { pushEnrollmentOperations } from "../../packages/protocol-fixtures/src/push/operations.ts";
 import { fixture, id, Effect, Fetch, run } from "./renewal-fixture.mjs";
 test("enrollment stages before HTTP and reconstruction recovers a lost commit without posting again", async (t) => {
   const f = await fixture(t, [

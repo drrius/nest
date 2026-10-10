@@ -21,7 +21,18 @@ struct ChoreSync: Sendable {
             }
             return (snapshot, true)
         }
-        return (try await api.snapshot(token: token, member: member), conflicted)
+        return (try await read(token: token, member: member), conflicted)
+    }
+
+    private func read(token: String, member: VerifiedMember) async throws -> ChoreSnapshot {
+        do {
+            return try await api.snapshot(token: token, member: member)
+        } catch NestAPIFailure.forbidden {
+            let verified = try await api.verify(token: token, expectedActor: member.userId)
+            guard verified.userId == member.userId, verified.householdId == member.householdId
+            else { throw NestAPIFailure.notMember }
+            throw NestAPIFailure.forbidden
+        }
     }
 
     func replay(token: String, member: VerifiedMember, lease: OfflineLease) async throws -> Bool {

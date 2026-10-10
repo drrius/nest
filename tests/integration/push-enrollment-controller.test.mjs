@@ -1,9 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { PushEnrollmentRuntime } from "../../apps/mobile/src/push/enrollment-runtime.ts";
-import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
-import { protectedPushAttempts } from "../../apps/mobile/src/push/protected-attempt.ts";
+import { PushEnrollmentRuntime } from "../../packages/protocol-fixtures/src/push/enrollment-runtime.ts";
+import { pushDeviceClient } from "../../packages/protocol-fixtures/src/push/client.ts";
+import { protectedPushAttempts } from "../../packages/protocol-fixtures/src/push/protected-attempt.ts";
 import { fixture, id, Effect, Fetch } from "./renewal-fixture.mjs";
 
 test("settings controller reads and changes real authorized registration through HTTP", async (t) => {

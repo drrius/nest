@@ -1,0 +1,64 @@
+[
+  {
+    "type": "tool-proposeRecurringState",
+    "state": "output-available",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000100",
+      "expectedRevision": "00000000-0000-4000-8000-000000000101",
+      "expectedStatus": "active",
+      "action": "pause"
+    },
+    "output": {
+      "ok": true,
+      "value": {
+        "version": 1,
+        "actorId": "00000000-0000-4000-8000-000000000001",
+        "householdId": "00000000-0000-4000-8000-000000000002",
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000200",
+          "operationId": "00000000-0000-4000-8000-000000000300",
+          "change": {
+            "ruleId": "00000000-0000-4000-8000-000000000100",
+            "expectedRevision": "00000000-0000-4000-8000-000000000101",
+            "expectedStatus": "active",
+            "action": "pause"
+          },
+          "status": "pending",
+          "expiresAt": "2099-01-01T00:00:00.000000Z",
+          "receipt": null
+        }
+      }
+    }
+  },
+  {
+    "type": "tool-proposeRecurringState",
+    "state": "output-available",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000100",
+      "expectedRevision": "00000000-0000-4000-8000-000000000101",
+      "expectedStatus": "paused",
+      "action": "cancel"
+    },
+    "output": {
+      "ok": true,
+      "value": {
+        "version": 1,
+        "actorId": "00000000-0000-4000-8000-000000000001",
+        "householdId": "00000000-0000-4000-8000-000000000002",
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000201",
+          "operationId": "00000000-0000-4000-8000-000000000301",
+          "change": {
+            "ruleId": "00000000-0000-4000-8000-000000000100",
+            "expectedRevision": "00000000-0000-4000-8000-000000000101",
+            "expectedStatus": "paused",
+            "action": "cancel"
+          },
+          "status": "pending",
+          "expiresAt": "2099-01-01T00:00:00.000000Z",
+          "receipt": null
+        }
+      }
+    }
+  }
+]

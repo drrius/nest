@@ -1,5 +1,7 @@
 # Quiet UI correction audit — 27 September 2026
 
+Historical Expo/React Native correction notes. The later [SwiftUI decision](../adr/0002-swiftui-client.md) supersedes client-specific implementation/tooling details here. Current native evidence, remaining visual gates and build identity are in [progress](../progress.md) and the [artwork inventory](artwork-inventory.md). The owner’s design acceptance remains open; the old Linux/EAS limitations below do not describe current SwiftUI CI or prior owned Mac execution.
+
 Status: **native visual acceptance failed and remains open**. The owner rejected Today and then the welcome/account screen on a physical iPhone. Neither the previous source review nor a successful build establishes design fidelity.
 
 ## Baseline and evidence

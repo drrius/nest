@@ -3,9 +3,11 @@ import { fixture as database, id } from "../database/grocery-reminder-fixture.mj
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { groceryReminderClient } from "../../apps/mobile/src/grocery-reminders/client.ts";
+import { groceryReminderClient } from "../../packages/protocol-fixtures/src/grocery-reminders/client.ts";
 export { id };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export const run = (effect) =>

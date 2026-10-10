@@ -78,3 +78,42 @@ test("Money read validates exact household, caller, two unique members and zero 
     true,
   );
 });
+
+test("Money reports an incomplete household without treating it as a network failure", async () => {
+  await assert.rejects(
+    Effect.runPromise(
+      readMoneyBalance(config, caller).pipe(
+        Effect.provideService(FetchHttpClient.Fetch, async () =>
+          Response.json(
+            {
+              code: "22023",
+              message: "Money requires two household members",
+              details: null,
+              hint: null,
+            },
+            { status: 400 },
+          ),
+        ),
+      ),
+    ),
+    { code: "household_incomplete" },
+  );
+  await assert.rejects(
+    Effect.runPromise(
+      readMoneyBalance(config, caller).pipe(
+        Effect.provideService(FetchHttpClient.Fetch, async () =>
+          Response.json(
+            {
+              code: "22023",
+              message: "Incomplete or unbalanced ledger",
+              details: null,
+              hint: null,
+            },
+            { status: 400 },
+          ),
+        ),
+      ),
+    ),
+    { code: "unavailable" },
+  );
+});

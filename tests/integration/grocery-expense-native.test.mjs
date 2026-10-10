@@ -8,15 +8,17 @@ import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { expenseSaveOperations } from "../../apps/mobile/src/money/save-operations.ts";
-import { ExpenseSaveRuntime } from "../../apps/mobile/src/money/save-runtime.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { expenseSaveOperations } from "../../packages/protocol-fixtures/src/money/save-operations.ts";
+import { ExpenseSaveRuntime } from "../../packages/protocol-fixtures/src/money/save-runtime.ts";
 import {
   initialExpenseDraft,
   parseExpenseDraft,
-} from "../../apps/mobile/src/money/expense-draft.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+} from "../../packages/protocol-fixtures/src/money/expense-draft.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect")),
   Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 async function fixture(t) {

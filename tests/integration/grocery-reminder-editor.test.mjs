@@ -1,10 +1,13 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run, Effect } from "./grocery-reminder-native-fixture.mjs";
-import { routineClient } from "../../apps/mobile/src/routines/client.ts";
-import { reminderEditorContext } from "../../apps/mobile/src/grocery-reminders/editor-context.ts";
-import { reminderDraft, parseReminderDraft } from "../../apps/mobile/src/grocery-reminders/form.ts";
-import { reminderConfirmation } from "../../apps/mobile/src/grocery-reminders/confirmation.ts";
+import { routineClient } from "../../packages/protocol-fixtures/src/routines/client.ts";
+import { reminderEditorContext } from "../../packages/protocol-fixtures/src/grocery-reminders/editor-context.ts";
+import {
+  reminderDraft,
+  parseReminderDraft,
+} from "../../packages/protocol-fixtures/src/grocery-reminders/form.ts";
+import { reminderConfirmation } from "../../packages/protocol-fixtures/src/grocery-reminders/confirmation.ts";
 function clients(f) {
   const account = { actor: id(1), household: id(10) };
   const credentials = Effect.succeed({ user: { id: id(1) }, access_token: f.bearer });

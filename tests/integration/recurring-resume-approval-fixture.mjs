@@ -1,4 +1,4 @@
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
 import { recurringApiFixture, id, run } from "./recurring-api-fixture.mjs";
 export { id, run };
 export async function fixture(t, patch = {}) {

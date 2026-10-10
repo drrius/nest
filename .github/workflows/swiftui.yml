@@ -5,11 +5,13 @@ on:
       - "apps/ios/**"
       - ".github/workflows/swiftui.yml"
       - "scripts/check-swift-limits.py"
+      - "scripts/*native-push-signing.py"
   pull_request:
     paths:
       - "apps/ios/**"
       - ".github/workflows/swiftui.yml"
       - "scripts/check-swift-limits.py"
+      - "scripts/*native-push-signing.py"
   workflow_dispatch:
 permissions:
   contents: read
@@ -22,10 +24,16 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            apps/ios
+            scripts
       - name: Verify Swift source limits
         run: python3 scripts/check-swift-limits.py
+      - name: Test native push signing gates
+        run: python3 scripts/test-native-push-signing.py
       - name: Verify Swift formatting
-        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests apps/ios/AppTests
+        run: xcrun swift-format lint --strict --recursive --configuration apps/ios/.swift-format apps/ios/Nest apps/ios/Tests apps/ios/AppTests apps/ios/UITests
       - name: Test Foundation domain and offline rules
         run: swift test --package-path apps/ios
       - name: Test iPhone session and account boundaries
@@ -33,4 +41,14 @@ jobs:
           SIMULATOR_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; data=json.load(sys.stdin); print(next(device["udid"] for devices in data["devices"].values() for device in devices if device["name"].startswith("iPhone")))')
           xcodebuild -project apps/ios/Nest.xcodeproj -scheme Nest \
             -configuration Debug -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+            -derivedDataPath /tmp/nest-swiftui-ci \
             -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- test
+      - name: Verify actual app push signing
+        run: python3 scripts/verify-native-push-signing.py /tmp/nest-swiftui-ci/Build/Products/Debug-iphonesimulator/Nest.app
+      - name: Compile guarded native UI checks
+        run: |
+          SIMULATOR_ID=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; data=json.load(sys.stdin); print(next(device["udid"] for devices in data["devices"].values() for device in devices if device["name"].startswith("iPhone")))')
+          xcodebuild -project apps/ios/Nest.xcodeproj -scheme NestAccessibility \
+            -configuration Debug -destination "platform=iOS Simulator,id=$SIMULATOR_ID" \
+            -derivedDataPath /tmp/nest-swiftui-ci \
+            -parallel-testing-enabled NO CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build-for-testing

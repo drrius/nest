@@ -1,0 +1,106 @@
+[
+  {
+    "type": "tool-createRoutine",
+    "input": {
+      "definition": {
+        "title": "Fixture dishes",
+        "schedule": {
+          "kind": "daily"
+        },
+        "assignment": {
+          "policy": "shared"
+        }
+      }
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "version": "2026-10-01T06:00:00.000002Z",
+      "action": "create"
+    }
+  },
+  {
+    "type": "tool-editRoutine",
+    "input": {
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "2026-10-01T06:00:00.000001Z",
+      "patch": {
+        "title": "Fixture dishes updated"
+      }
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "version": "2026-10-01T06:00:00.000002Z",
+      "action": "edit"
+    }
+  },
+  {
+    "type": "tool-setRoutineState",
+    "input": {
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "2026-10-01T06:00:00.000001Z",
+      "action": "pause"
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "version": "2026-10-01T06:00:00.000002Z",
+      "action": "pause"
+    }
+  },
+  {
+    "type": "tool-setRoutineState",
+    "input": {
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "2026-10-01T06:00:00.000001Z",
+      "action": "resume"
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "version": "2026-10-01T06:00:00.000002Z",
+      "action": "resume"
+    }
+  },
+  {
+    "type": "tool-setRoutineState",
+    "input": {
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "2026-10-01T06:00:00.000001Z",
+      "action": "archive"
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "version": "2026-10-01T06:00:00.000002Z",
+      "action": "archive"
+    }
+  },
+  {
+    "type": "tool-setRoutineState",
+    "input": {
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "expectedVersion": "2026-10-01T06:00:00.000001Z",
+      "action": "pause"
+    },
+    "receipt": {
+      "actorId": "00000000-0000-4000-8000-000000000001",
+      "householdId": "00000000-0000-4000-8000-000000000002",
+      "operationId": "00000000-0000-4000-8000-000000000003",
+      "routineId": "00000000-0000-4000-8000-000000000004",
+      "version": "2026-10-01T06:00:00.000001Z",
+      "action": "pause"
+    }
+  }
+]

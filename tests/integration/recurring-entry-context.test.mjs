@@ -1,16 +1,18 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { recurringEntryContext } from "../../apps/mobile/src/money/recurring-entry-context.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { recurringEntryContext } from "../../packages/protocol-fixtures/src/money/recurring-entry-context.ts";
 import {
   initialRecurringDraft,
   editRecurringDraft,
-} from "../../apps/mobile/src/money/recurring-draft.ts";
-import { prepareRecurringConfirmation } from "../../apps/mobile/src/money/recurring-confirmation.ts";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+} from "../../packages/protocol-fixtures/src/money/recurring-draft.ts";
+import { prepareRecurringConfirmation } from "../../packages/protocol-fixtures/src/money/recurring-confirmation.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import { recurringApiFixture, id, run } from "./recurring-api-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect");
 test("native entry context and previews save prospective exact configurations through the actual API", async (t) => {
   const f = await recurringApiFixture(t),

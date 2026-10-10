@@ -1,10 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
-import { SummaryReadRuntime } from "../../apps/mobile/src/notifications/summary-runtime.ts";
-import { summaryHandoff } from "../../apps/mobile/src/assistant/summary-handoff.ts";
-import { PreferenceFailure } from "../../apps/mobile/src/preferences/client.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { SummaryReadRuntime } from "../../packages/protocol-fixtures/src/notifications/summary-runtime.ts";
+import { summaryHandoff } from "../../packages/protocol-fixtures/src/assistant/summary-handoff.ts";
+import { PreferenceFailure } from "../../packages/protocol-fixtures/src/preferences/client.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect");
 const id = "00000000-0000-4000-8000-000000000001";
 const snapshot = {

@@ -147,3 +147,22 @@ export const RoutineCreateEnvelope = Schema.Struct({
   version: Schema.Literal(1),
   receipt: RoutineReceipt,
 });
+
+export const RoutineCancellation = Schema.Struct({
+  version: Schema.Literal(1),
+  actorId: Uuid,
+  householdId: Uuid,
+  operationId: Uuid,
+  status: Schema.Literals(["recorded", "cancelled"]),
+  receipt: Schema.NullOr(RoutineReceipt),
+}).check(
+  Schema.makeFilter((value) =>
+    value.status === "cancelled"
+      ? value.receipt === null
+      : value.receipt !== null &&
+        value.receipt.action === "create" &&
+        value.receipt.actorId === value.actorId &&
+        value.receipt.householdId === value.householdId &&
+        value.receipt.operationId === value.operationId,
+  ),
+);

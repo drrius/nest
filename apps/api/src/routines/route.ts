@@ -1,3 +1,4 @@
+import { cancelRoutineCreation } from "./cancel.ts";
 import { routineRoster } from "./roster.ts";
 import * as Effect from "effect/Effect";
 import type { AuthorizedCaller } from "../chores/service.ts";
@@ -13,6 +14,8 @@ export function routineRoute(request: Request, config: IdentityConfig, caller: A
       return { version: 1, householdId: caller.member.householdId, ...(yield* commands.list()) };
     const input = yield* commandBody(request, 8192);
     const path = new URL(request.url).pathname;
+    if (path === "/v1/routines/cancel-create")
+      return yield* cancelRoutineCreation(config, caller, input);
     const execute =
       path === "/v1/routines/state"
         ? commands.setState

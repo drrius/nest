@@ -1,10 +1,12 @@
 import { createRequire } from "node:module";
 import { fixture as server, id, run } from "./renewal-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { renewalSaveOperations } from "../../apps/mobile/src/renewals/save-operations.ts";
-import { RenewalSaveRuntime } from "../../apps/mobile/src/renewals/save-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { renewalSaveOperations } from "../../packages/protocol-fixtures/src/renewals/save-operations.ts";
+import { RenewalSaveRuntime } from "../../packages/protocol-fixtures/src/renewals/save-runtime.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t) {

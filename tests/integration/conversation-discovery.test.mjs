@@ -29,7 +29,14 @@ async function setup(t) {
 test("private conversation discovery pages exact timestamp ties without transcript content or duplicate pages", async (t) => {
   const f = await setup(t);
   for (let n = 800; n < 826; n++) f.seed(n);
+  for (let n = 950; n < 975; n++) {
+    f.seed(n, 1, 10, "2026-09-22T01:00:00Z");
+    f.db.sql(
+      `update public.nest_ai_conversations set revision=0,transcript='[]' where id='${id(n)}'`,
+    );
+  }
   f.seed(799, 1, 10, "2026-09-20T01:00:00.123455Z");
+  assert.equal((await f.read(id(950))).status, 410);
   const response = await f.read();
   assert.equal(response.status, 200);
   assert.equal(response.headers.get("cache-control"), "no-store");

@@ -1,0 +1,138 @@
+import SwiftUI
+
+struct MoneyScreen: View {
+    @ObservedObject var session: SessionModel
+    let member: VerifiedMember
+    @State private var balance: MoneyBalance?
+    @State private var loading = false
+    @State private var notice: String?
+    @State private var request = UUID()
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
+                QuietTabHeader(
+                    title: "Money", subtitle: "All square, without the guesswork.",
+                    session: session, member: member)
+                balanceCard
+                MoneyQuickActions(session: session, member: member)
+                MoneyHistorySection(session: session, member: member, previewCount: 5)
+                QuietSectionCard(title: "Bills and approvals") {
+                    NavigationLink {
+                        RecurringRulesScreen(session: session, member: member, dueOnly: true).id(session.generation)
+                    } label: {
+                        QuietActionLabel("Bills to confirm")
+                    }
+                    NavigationLink {
+                        FinancialApprovalsScreen(session: session, member: member).id(session.generation)
+                    } label: {
+                        QuietActionLabel("Your financial approvals")
+                    }
+                    NavigationLink {
+                        RecurringRulesScreen(session: session, member: member, dueOnly: false).id(session.generation)
+                    } label: {
+                        QuietActionLabel("Recurring expenses")
+                    }
+                }
+                QuietSectionCard {
+                    DisclosureGroup {
+                        SavedVariableBillLink(session: session, member: member)
+                        NavigationLink {
+                            LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
+                        } label: {
+                            QuietActionLabel("Draft dismissal")
+                        }
+                        NavigationLink {
+                            LegacyConfirmationScreen(session: session, member: member, draftId: nil).id(
+                                session.generation)
+                        } label: {
+                            QuietActionLabel("Draft confirmation")
+                        }
+                        NavigationLink {
+                            LegacyAdoptionScreen(session: session, member: member, ruleId: nil).id(session.generation)
+                        } label: {
+                            QuietActionLabel("Rule adoption")
+                        }
+                    } label: {
+                        Text("Saved changes").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }
+                    Button {
+                        Task { await load() }
+                    } label: {
+                        Text("Refresh balance").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                            .contentShape(Rectangle())
+                    }.disabled(loading)
+                }
+            }
+            .modifier(QuietTabContentInsets())
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(QuietPalette.ink)
+        .navigationTitle("")
+        .background(QuietPalette.background)
+        .modifier(QuietTabScrollEdges())
+        .task { await load() }
+        .refreshable { await load() }
+    }
+
+    private var balanceCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            if let own = balance?.members.first(where: { $0.actorId == member.userId }) {
+                Text(
+                    own.centimes.value == 0
+                        ? "You’re settled up"
+                        : own.centimes.value > 0 ? "Your partner owes you" : "You owe your partner"
+                )
+                .font(.subheadline)
+                Text(own.centimes.absoluteCHF).font(.largeTitle.weight(.semibold)).monospacedDigit()
+                    .fixedSize(horizontal: false, vertical: true)
+                Text("Across your shared expenses").font(.subheadline).foregroundStyle(QuietPalette.muted)
+            } else if loading {
+                ProgressView("Loading balance…")
+            }
+            if let notice {
+                Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                Button {
+                    Task { await load() }
+                } label: {
+                    Text("Try again").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                        .contentShape(Rectangle())
+                }.disabled(loading)
+            }
+        }
+        .padding(QuietTabLayout.cardInset).frame(maxWidth: .infinity, alignment: .leading)
+        .background(QuietPalette.soft, in: RoundedRectangle(cornerRadius: 24))
+    }
+
+    private func load() async {
+        let attempt = UUID()
+        request = attempt
+        loading = true
+        notice = nil
+        defer { if request == attempt { loading = false } }
+        do {
+            if balance == nil,
+                let saved = try? await session.cachedMoneyRead(.balance(member), generation: session.generation)
+            {
+                guard request == attempt, !Task.isCancelled else { return }
+                balance = saved.value
+                notice = saved.notice
+            }
+            let result = try await session.loadMoneyBalance(member: member, generation: session.generation)
+            try Task.checkCancellation()
+            guard request == attempt else { return }
+            balance = result.value
+            notice = result.notice
+        } catch {
+            guard request == attempt, !Task.isCancelled else { return }
+            if (error as? NestAPIFailure) != .unavailable && !(error is URLError) { balance = nil }
+            notice =
+                (error as? NestAPIFailure) == .householdIncomplete
+                ? "Money will be ready when your partner’s verified account is linked to your household."
+                : balance == nil
+                    ? "Could not confirm your balance. Try again online."
+                    : "Showing your previous balance. Connect and refresh for updates."
+        }
+    }
+}

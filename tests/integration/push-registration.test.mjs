@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { pushDeviceClient } from "../../apps/mobile/src/push/client.ts";
+import { pushDeviceClient } from "../../packages/protocol-fixtures/src/push/client.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, Effect, run } from "./renewal-fixture.mjs";

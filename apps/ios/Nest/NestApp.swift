@@ -2,6 +2,7 @@ import SwiftUI
 
 @main
 struct NestApp: App {
+    @UIApplicationDelegateAdaptor(PushApplicationDelegate.self) private var pushDelegate
     @StateObject private var model = SessionModel()
 
     var body: some Scene {
@@ -28,10 +29,14 @@ struct NestApp: App {
                         Button("Sign out on this device") { Task { await model.signOut() } }
                     }
                 case .ready(let member):
-                    NavigationStack { TodayScreen(model: model, member: member) }
+                    HouseholdTabs(model: model, member: member).id(model.generation)
                 }
             }
             .task { await model.restore() }
+            .modifier(OfflineResume(session: model))
+            .modifier(CalendarPrivacyRecovery(session: model))
+            .modifier(NotificationOpening(session: model, inbox: pushDelegate.inbox))
+            .environmentObject(pushDelegate.hardware)
             .tint(QuietPalette.accent)
         }
     }

@@ -1,3 +1,4 @@
+import { financialApprovalExpiryRoute } from "./approval-expiry.ts";
 import { pendingFinancialApprovalRoute } from "./pending-approvals.ts";
 import { recurringRoute } from "./recurring-route.ts";
 import { receiptRoute } from "./receipt-route.ts";
@@ -69,6 +70,8 @@ function approvalRoute(request: Request, config: IdentityConfig, caller: Authori
   return Effect.gen(function* () {
     const url = new URL(request.url),
       commands = expenseApprovals(config, caller);
+    if (url.pathname === "/v1/money/approval-expiry")
+      return yield* financialApprovalExpiryRoute(url, config, caller);
     if (url.pathname === "/v1/money/approval") {
       if (url.searchParams.size !== 1 || !url.searchParams.has("approvalId"))
         return yield* new ApiFailure({ code: "invalid_request" });

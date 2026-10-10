@@ -1,11 +1,13 @@
-import { renewalReminderClient } from "../../apps/mobile/src/renewal-reminders/client.ts";
+import { renewalReminderClient } from "../../packages/protocol-fixtures/src/renewal-reminders/client.ts";
 import { createRequire } from "node:module";
 import { fixture as server, id, run } from "./renewal-fixture.mjs";
-import { fixture as sqlite } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { renewalReminderSaveOperations } from "../../apps/mobile/src/renewal-reminders/save-operations.ts";
-import { RenewalReminderSaveRuntime } from "../../apps/mobile/src/renewal-reminders/save-runtime.ts";
+import { fixture as sqlite } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { renewalReminderSaveOperations } from "../../packages/protocol-fixtures/src/renewal-reminders/save-operations.ts";
+import { RenewalReminderSaveRuntime } from "../../packages/protocol-fixtures/src/renewal-reminders/save-runtime.ts";
 export { id, run };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 export const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export async function fixture(t) {

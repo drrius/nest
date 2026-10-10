@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { files, id, json } from "../database/ai-renewal-fixture.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
 test("registered SDK renewal actions retain exact retries and produce truthful native cards", async (t) => {
   const f = await postgrestFixture(t, [...files, "tests/integration/food-postgrest.sql"]);
   const turn = {

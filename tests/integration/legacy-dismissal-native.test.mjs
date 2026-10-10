@@ -1,14 +1,14 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { fixture, id, run } from "./legacy-dismissal-native-fixture.mjs";
-import { recurringReadOperations } from "../../apps/mobile/src/money/recurring-read-operations.ts";
-import { RecurringReadRuntime } from "../../apps/mobile/src/money/recurring-read-runtime.ts";
+import { recurringReadOperations } from "../../packages/protocol-fixtures/src/money/recurring-read-operations.ts";
+import { RecurringReadRuntime } from "../../packages/protocol-fixtures/src/money/recurring-read-runtime.ts";
 import {
   dismissalContext,
   prepareDismissal,
   dismissalConfirmationCurrent,
   dismissalText,
-} from "../../apps/mobile/src/money/legacy-dismissal-confirmation.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-dismissal-confirmation.ts";
 test("native dismissal stages before dispatch and recovers a lost committed response after write suspension and SQLite restart without resending", async (t) => {
   const f = await fixture(t),
     runtime = await f.mount();

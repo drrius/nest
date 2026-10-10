@@ -13,6 +13,7 @@ struct LocalChore: Identifiable, Equatable, Sendable {
     let chore: NestChore
     let state: State
     let operationId: UUID?
+    var conflictReason: ChoreConflictReason? = nil
     var id: UUID { chore.id }
 }
 
@@ -36,6 +37,7 @@ actor ChoreOfflineStore {
             "CREATE TABLE IF NOT EXISTS chore_operations (sequence INTEGER PRIMARY KEY AUTOINCREMENT, actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, chore TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), reason TEXT)"
         )
         try db.run("CREATE INDEX IF NOT EXISTS chore_operations_scope ON chore_operations(actor, household, sequence)")
+        try Self.createMealPreparationTables(db)
         try db.run(
             "CREATE TABLE IF NOT EXISTS grocery_snapshots (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor, household))"
         )
@@ -43,6 +45,100 @@ actor ChoreOfflineStore {
             "CREATE TABLE IF NOT EXISTS grocery_checks (sequence INTEGER PRIMARY KEY AUTOINCREMENT, actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, item TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, UNIQUE(actor,household,target))"
         )
         try db.run("CREATE INDEX IF NOT EXISTS grocery_checks_scope ON grocery_checks(actor, household, sequence)")
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS grocery_adds (actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS grocery_edits (actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, item TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS grocery_removes (actor TEXT NOT NULL, household TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, target TEXT NOT NULL, item TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_version TEXT, reason TEXT, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_weeks (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household,week_start))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_placements (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, week TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_revision TEXT, entry_id TEXT, reason TEXT, PRIMARY KEY(actor,household,week_start))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_removals (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, week TEXT NOT NULL, meal TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_revision TEXT, reason TEXT, PRIMARY KEY(actor,household,week_start))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_recipe_placements (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, operation TEXT NOT NULL UNIQUE, week TEXT NOT NULL, recipe TEXT NOT NULL, body TEXT NOT NULL, status TEXT NOT NULL CHECK(status IN ('pending','acknowledged','conflict')), confirmed_revision TEXT, entry_id TEXT, reason TEXT, PRIMARY KEY(actor,household,week_start))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS planned_recipes (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, entry_id TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household,week_start,entry_id))"
+        )
+        try Self.createMealReplacementTables(db)
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS cooking_profiles (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS cooking_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS food_profiles (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS food_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS ingredient_reviews (actor TEXT NOT NULL, household TEXT NOT NULL, week_start TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household,week_start))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS recipe_edits (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS recipe_archives (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS recipe_creations (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_leftovers (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS receipt_uploads (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try Self.createDecisionRecoveryTables(db)
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS recurring_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS recurring_resume_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS recurring_state_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS correction_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS refund_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS settlement_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS expense_commands (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try CalendarPrivacySchema.create(db)
+        try Self.createReadTables(db)
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS proposal_edits (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS proposal_discards (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS proposal_approvals (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS proposal_generations (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
+        try db.run(
+            "CREATE TABLE IF NOT EXISTS meal_moves (actor TEXT NOT NULL, household TEXT NOT NULL, body TEXT NOT NULL, PRIMARY KEY(actor,household))"
+        )
     }
 
     static func application(environment: URL) throws -> ChoreOfflineStore {
@@ -101,9 +197,9 @@ actor ChoreOfflineStore {
         let snapshot = try JSONDecoder().decode(ChoreSnapshot.self, from: data)
             .validated(household: lease.household, actor: lease.actor)
         let operations = try db.rows(
-            "SELECT target,status,operation,chore FROM chore_operations WHERE actor=? AND household=? ORDER BY sequence",
+            "SELECT target,status,operation,chore,reason FROM chore_operations WHERE actor=? AND household=? ORDER BY sequence",
             lease.scope)
-        var states: [UUID: (LocalChore.State, UUID, NestChore)] = [:]
+        var states: [UUID: (LocalChore.State, UUID, NestChore, ChoreConflictReason?)] = [:]
         for row in operations {
             guard let target = UUID(uuidString: row[0]),
                 let operation = UUID(uuidString: row[2]),
@@ -117,16 +213,20 @@ actor ChoreOfflineStore {
                 case "conflict": .conflict
                 default: throw OfflineFailure.storage
                 }
-            states[target] = (state, operation, chore)
+            states[target] = (state, operation, chore, ChoreConflictReason(rawValue: row[4]))
         }
         let current = snapshot.chores.map {
             LocalChore(
-                chore: $0, state: states[$0.id]?.0 ?? .open,
-                operationId: states[$0.id]?.1)
+                chore: states[$0.id]?.2 ?? $0, state: states[$0.id]?.0 ?? .open,
+                operationId: states[$0.id]?.1, conflictReason: states[$0.id]?.3)
         }
         let currentIDs = Set(snapshot.chores.map(\.id))
         let removed = states.filter { !currentIDs.contains($0.key) && $0.value.0 != .completed }
-            .map { LocalChore(chore: $0.value.2, state: $0.value.0, operationId: $0.value.1) }
+            .map {
+                LocalChore(
+                    chore: $0.value.2, state: $0.value.0,
+                    operationId: $0.value.1, conflictReason: $0.value.3)
+            }
             .sorted { $0.chore.dueDate.value < $1.chore.dueDate.value }
         return ChoreOfflineState(snapshot: snapshot, chores: current + removed)
     }

@@ -8,16 +8,18 @@ import { expense } from "../database/money-expense-helpers.mjs";
 import { householdTools } from "../../apps/api/src/assistant/tools.ts";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { correctionApprovalOperations } from "../../apps/mobile/src/money/correction-approval-operations.ts";
-import { correctionApprovalOwner } from "../../apps/mobile/src/money/correction-approval-owner.ts";
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { correctionApprovalOperations } from "../../packages/protocol-fixtures/src/money/correction-approval-operations.ts";
+import { correctionApprovalOwner } from "../../packages/protocol-fixtures/src/money/correction-approval-owner.ts";
 import {
   approvalActions,
   correctionConfirmation,
-} from "../../apps/mobile/src/money/correction-approval-display.ts";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+} from "../../packages/protocol-fixtures/src/money/correction-approval-display.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 async function api(t, config) {

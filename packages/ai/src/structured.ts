@@ -2,6 +2,7 @@ import { generateText, Output, type LanguageModel } from "ai";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
 import { effectSchema } from "./schema.ts";
+import { privateTelemetry, type GenerationTelemetry } from "./telemetry.ts";
 export class StructuredGenerationFailure extends Schema.TaggedError<StructuredGenerationFailure>()(
   "StructuredGenerationFailure",
   { reason: Schema.Literal("unavailable") },
@@ -9,24 +10,37 @@ export class StructuredGenerationFailure extends Schema.TaggedError<StructuredGe
 // Server-only adapter. Raw provider errors can contain private prompt/response text.
 export function structuredGeneration<
   S extends Schema.ConstraintCodec<unknown, unknown, never, never>,
->(options: { model: LanguageModel; schema: S; instructions: string; data: unknown }) {
+>(options: {
+  model: LanguageModel;
+  schema: S;
+  instructions: string;
+  data: unknown;
+  telemetry?: GenerationTelemetry;
+}): Effect.Effect<S["Type"], StructuredGenerationFailure> {
   return Effect.tryPromise({
     try: async (signal) => {
       const prompt = JSON.stringify(options.data);
       if (new TextEncoder().encode(prompt).length > 131072) throw new Error("Input too large");
+      const schema = await effectSchema(options.schema).jsonSchema;
       const result = await generateText({
         model: options.model,
-        output: Output.object({ schema: effectSchema(options.schema) }),
-        system: options.instructions,
+        telemetry: privateTelemetry(options.telemetry),
+        output: Output.json(),
+        system: `${options.instructions}\nReturn only JSON matching this schema: ${JSON.stringify(schema)}`,
         prompt,
         maxRetries: 0,
         maxOutputTokens: 16384,
-        timeout: 30000,
+        timeout: 90000,
         abortSignal: signal,
       });
       if (result.finishReason !== "stop") throw new Error("Incomplete generation");
       return result.output;
     },
     catch: () => new StructuredGenerationFailure({ reason: "unavailable" }),
-  });
+  }).pipe(
+    Effect.flatMap(
+      Schema.decodeUnknownEffect(Schema.toCodecJson(options.schema), { onExcessProperty: "error" }),
+    ),
+    Effect.mapError(() => new StructuredGenerationFailure({ reason: "unavailable" })),
+  );
 }

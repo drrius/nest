@@ -1,9 +1,11 @@
 import { createRequire } from "node:module";
 import { expenseApiFixture } from "./expense-api-fixture.mjs";
-import { recurringClient } from "../../apps/mobile/src/money/recurring-client.ts";
+import { recurringClient } from "../../packages/protocol-fixtures/src/money/recurring-client.ts";
 import { id, input } from "../api/recurring-transport-fixture.mjs";
 export { id };
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect"),
   Fetch = require("effect/unstable/http/FetchHttpClient");
 export const run = (effect) =>

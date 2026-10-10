@@ -1,0 +1,65 @@
+{
+  "command": {
+    "operationId": "00000000-0000-4000-8000-000000000001",
+    "entryId": "00000000-0000-4000-8000-000000000002",
+    "weekStart": "2026-09-28",
+    "expectedRevision": "7",
+    "date": "2026-09-30",
+    "slot": "dinner",
+    "definitionId": "00000000-0000-4000-8000-000000000003",
+    "expectedLibraryRevision": "4"
+  },
+  "receipt": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000004",
+    "householdId": "00000000-0000-4000-8000-000000000005",
+    "operationId": "00000000-0000-4000-8000-000000000001",
+    "previousEntryId": "00000000-0000-4000-8000-000000000002",
+    "entryId": "00000000-0000-4000-8000-000000000006",
+    "weekStart": "2026-09-28",
+    "date": "2026-09-30",
+    "slot": "dinner",
+    "revision": "9",
+    "definitionId": "00000000-0000-4000-8000-000000000003",
+    "libraryRevision": "4",
+    "skippedPreparationId": null
+  },
+  "retained": {
+    "version": 1,
+    "householdId": "00000000-0000-4000-8000-000000000005",
+    "weekStart": "2026-09-28",
+    "revision": "9",
+    "entry": {
+      "entryId": "00000000-0000-4000-8000-000000000006",
+      "date": "2026-09-30",
+      "slot": "dinner",
+      "title": "Fixture soup",
+      "recipeUrl": null,
+      "notes": "Fixture note",
+      "definitionId": "00000000-0000-4000-8000-000000000003",
+      "leftoverSourceId": null
+    },
+    "snapshot": {
+      "libraryRevision": "4",
+      "recipe": {
+        "definitionId": "00000000-0000-4000-8000-000000000003",
+        "title": "Fixture soup",
+        "servings": 2,
+        "recipeUrl": null,
+        "notes": "Fixture note",
+        "instructions": "Simmer",
+        "ingredients": [
+          {
+            "ingredientId": "00000000-0000-4000-8000-000000000007",
+            "name": "Lentils",
+            "quantity": "100",
+            "unit": "g",
+            "categoryId": null,
+            "note": null,
+            "order": 0
+          }
+        ]
+      }
+    }
+  }
+}

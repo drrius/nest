@@ -1,14 +1,16 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { moneyReadOperations } from "../../apps/mobile/src/money/read-operations.ts";
-import { MoneyReadRuntime } from "../../apps/mobile/src/money/read-runtime.ts";
-import { fixture, run } from "../../apps/mobile/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { moneyReadOperations } from "../../packages/protocol-fixtures/src/money/read-operations.ts";
+import { MoneyReadRuntime } from "../../packages/protocol-fixtures/src/money/read-runtime.ts";
+import { fixture, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 test("Money runtime persists actual API reads, restores after process reopen/offline and clears on denied credentials", async (t) => {

@@ -76,6 +76,33 @@ test("API roles cannot change the freeze and missing control fails closed", (t) 
   assert.throws(() => setFixtureWritesFrozen(db, false), /Household write control missing/);
 });
 
+test("broad service-role grants and BYPASSRLS cannot bypass a committed write freeze", (t) => {
+  const db = fixture(t);
+  db.sql(`grant usage on schema private to service_role;
+    grant select,insert,update,delete,truncate on public.fixture_history,private.fixture_receipts to service_role;
+    alter table public.fixture_history enable row level security;
+    alter table private.fixture_receipts enable row level security;
+    set role service_role;
+    insert into public.fixture_history values(1);
+    insert into private.fixture_receipts values(1); reset role;`);
+  setFixtureWritesFrozen(db, true);
+  for (const table of ["public.fixture_history", "private.fixture_receipts"]) {
+    assert.equal(db.sql(`set role service_role; select array_agg(id) from ${table}`), "{1}");
+    for (const sql of [
+      `insert into ${table} values(2)`,
+      `update ${table} set id=2`,
+      `delete from ${table}`,
+      `truncate ${table}`,
+    ]) {
+      assert.throws(() => db.sql(`set role service_role; ${sql}`), /Household writes suspended/);
+    }
+    assert.equal(db.sql(`select array_agg(id) from ${table}`), "{1}");
+  }
+  setFixtureWritesFrozen(db, false);
+  db.sql("set role service_role; insert into public.fixture_history values(2)");
+  assert.equal(db.sql("select array_agg(id order by id) from public.fixture_history"), "{1,2}");
+});
+
 for (const isolation of ["read committed", "repeatable read"]) {
   test(`a previously started ${isolation} transaction cannot begin writing after freeze`, async (t) => {
     const db = fixture(t);
@@ -111,4 +138,54 @@ test("fixture coverage check rejects newly added tables and disabled guards", (t
   assert.throws(() => verifyFixtureWriteBarrier(db), /fixture_history/);
   db.sql("alter table public.fixture_history enable always trigger nest_household_write_barrier");
   verifyFixtureWriteBarrier(db);
+});
+
+test("recent private journals join the freeze without granting direct access or changing retained rows", (t) => {
+  const db = fixture(t);
+  const tables = [
+    "private.nest_routine_creation_cancellations",
+    "private.nest_ai_cancelled_turns",
+    "private.nest_apns_delivery_attempts",
+  ];
+  // Minimal journal rows exercise the statement barrier independent of each
+  // command schema. The complete-chain rehearsal uses the actual journal DDL.
+  for (const table of tables)
+    db.sql(`create table ${table}(id integer primary key);
+      insert into ${table} values(1);
+      grant all on ${table} to anon,authenticated,service_role;`);
+  db.sql("alter table private.nest_apns_delivery_attempts enable row level security");
+  assert.throws(() => setFixtureWritesFrozen(db, true), /write barrier missing or changed/);
+  assert.equal(db.sql("select frozen from private.nest_household_write_control"), "f");
+  db.file("supabase/migrations/20260930012204_native_recent_journal_write_barriers.sql");
+  verifyFixtureWriteBarrier(db);
+  for (const table of tables) {
+    assert.equal(db.sql(`select relrowsecurity from pg_class where oid='${table}'::regclass`), "t");
+    for (const role of ["anon", "authenticated", "service_role"])
+      for (const privilege of ["SELECT", "INSERT", "UPDATE", "DELETE", "TRUNCATE"])
+        assert.equal(
+          db.sql(`select has_table_privilege('${role}','${table}','${privilege}')`),
+          "f",
+        );
+  }
+  setFixtureWritesFrozen(db, true);
+  for (const table of tables) {
+    for (const sql of [
+      `insert into ${table} values(2)`,
+      `update ${table} set id=2`,
+      `delete from ${table}`,
+      `truncate ${table}`,
+    ]) {
+      assert.throws(() => db.sql(sql), /Household writes suspended/);
+      assert.throws(
+        () => db.sql(`set session_replication_role=replica; ${sql}`),
+        /Household writes suspended/,
+      );
+    }
+    assert.equal(db.sql(`select array_agg(id) from ${table}`), "{1}");
+  }
+  setFixtureWritesFrozen(db, false);
+  for (const table of tables) {
+    db.sql(`insert into ${table} values(2)`);
+    assert.equal(db.sql(`select array_agg(id order by id) from ${table}`), "{1,2}");
+  }
 });

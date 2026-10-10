@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "actorId": "00000000-0000-4000-8000-000000000001",
+  "householdId": "00000000-0000-4000-8000-000000000002",
+  "operationId": "00000000-0000-4000-8000-000000000006",
+  "approvalId": null,
+  "source": "manual",
+  "eventId": "00000000-0000-4000-8000-000000000008",
+  "input": {
+    "ruleId": "00000000-0000-4000-8000-000000000004",
+    "expectedRevision": "00000000-0000-4000-8000-000000000005",
+    "dueOn": "2026-10-01",
+    "sourceEventId": "00000000-0000-4000-8000-000000000008"
+  },
+  "cycle": {
+    "key": "monthly:2026-10-01",
+    "dueOn": "2026-10-01",
+    "startsOn": "2026-10-01",
+    "through": "2026-10-31"
+  },
+  "configuration": {
+    "description": "Synthetic fixed bill",
+    "payerId": "00000000-0000-4000-8000-000000000003",
+    "categoryId": null,
+    "note": "Retained rule note",
+    "startDate": "2026-10-01",
+    "schedule": {
+      "kind": "monthly",
+      "dayOfMonth": 1
+    },
+    "mode": "fixed",
+    "amountCentimes": "990",
+    "allocations": [
+      {
+        "memberId": "00000000-0000-4000-8000-000000000001",
+        "centimes": "495"
+      },
+      {
+        "memberId": "00000000-0000-4000-8000-000000000003",
+        "centimes": "495"
+      }
+    ]
+  },
+  "linkedExpense": {
+    "version": 1,
+    "householdId": "00000000-0000-4000-8000-000000000002",
+    "event": {
+      "eventId": "00000000-0000-4000-8000-000000000008",
+      "kind": "expense",
+      "occurredOn": "2026-10-02",
+      "createdAt": "2026-10-02T00:00:00.000000Z",
+      "occurredOrder": "1790899200000000",
+      "createdOrder": "1790899200000000",
+      "description": "Synthetic existing expense",
+      "amountCentimes": "101",
+      "createdBy": "00000000-0000-4000-8000-000000000001",
+      "payerId": "00000000-0000-4000-8000-000000000001",
+      "relatedEventId": null,
+      "hasReceipt": false
+    },
+    "receiptTotalCentimes": null,
+    "note": "Existing note",
+    "category": null,
+    "reversedById": null,
+    "shares": [
+      {
+        "memberId": "00000000-0000-4000-8000-000000000001",
+        "allocatedCentimes": "51",
+        "deltaCentimes": "50"
+      },
+      {
+        "memberId": "00000000-0000-4000-8000-000000000003",
+        "allocatedCentimes": "50",
+        "deltaCentimes": "-50"
+      }
+    ]
+  }
+}

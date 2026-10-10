@@ -47,6 +47,7 @@ test("discovery rejects truncated, duplicate, unscoped or malformed upstream pag
     [[{ ...row, householdId: id(20) }], "0-0/1"],
     [[{ ...row, createdAt: "now()),actor_id.eq.other" }], "0-0/1"],
     [[{ ...row, revision: Number.MAX_SAFE_INTEGER + 1 }], "0-0/1"],
+    [[{ ...row, revision: "0" }], "0-0/1"],
   ])
     await assert.rejects(read(rows, range), { code: "unavailable" });
 });

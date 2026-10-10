@@ -1,6 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { expoTicketResult, expoReceiptResult } from "../../apps/api/src/push/provider-results.ts";
+import {
+  expoTicketResult,
+  expoReceiptResult,
+} from "../../packages/protocol-fixtures/src/legacy-push/provider-results.ts";
 
 test("Expo ticket decoding preserves uncertainty and never retains provider messages", () => {
   assert.deepEqual(expoTicketResult({ data: { status: "ok", id: "ticket-1" } }), {

@@ -17,6 +17,38 @@ Seven registrations appear in legacy `20260812090000_notifications_realtime.sql`
 
 ## Required hosted evidence
 
+The 7 October authorized test-project checkpoint (historical artifact removed)
+now verifies installed pg_cron, its readable/unfiltered extension-owned catalog,
+zero registered jobs at the recorded time and all eight known entry-point
+definition hashes matching current compiled migration source. Owner names differ
+between local and hosted databases and are retained. This is nest-test evidence;
+production, owner capabilities, private dependencies, external invokers and
+drainage remain unverified. No function is invoked or scheduler changed.
+
+The read-only `tools/migration/scheduled-writer-inventory.mjs` helper is now wired
+into the disposable schema report. It records job identity, active state,
+database role and schedule, with SHA-256 command and audited-function definition
+hashes computed inside PostgreSQL. It never returns command or function bodies,
+starts a job, pauses scheduling or opens a database connection. Its caller must
+provide an authorized executor using a fresh session per SQL call; each observation
+runs in a read-only repeatable-read transaction ending in rollback.
+
+Missing extension/catalog, an unsupported catalog, insufficient privileges,
+RLS-filtered visibility or more than 1,000 jobs cannot yield a complete catalog
+snapshot. Unknown and inactive job names are retained. A complete catalog snapshot
+still does not establish external invokers, in-flight drainage or cutover acceptance.
+Fixture verification and limits (historical artifact removed).
+
+The visibility check matters because [pg_cron uses row-level security](https://github.com/citusdata/pg_cron)
+to limit ordinary users to their own jobs. Hashes use PostgreSQL's built-in
+[SHA-256 binary function](https://www.postgresql.org/docs/16/functions-binarystring.html).
+These references establish the catalog behavior, not any Nest hosted configuration.
+
+The [legacy Edge writer source audit](legacy-edge-writer-boundaries.md) now records
+attachment insertion and Web Push dispatch effects, exact source hashes and three
+focused local tests. It does not establish hosted deployment identity, actual
+delivery or external request drainage.
+
 Under separately approved access, inventory every actual scheduled job, including unknown names and non-cron invokers. Record job identity, active state, database role, schedule and a digest of the command; inspect command contents securely without copying embedded credentials into progress logs. Compare the live function definitions with the audited migrations. An absent extension or suppressed migration exception is missing evidence, not proof that scheduling is disabled.
 
 For each selected job, record the approved retain/replace/stop decision, owner, affected tables/outboxes, replacement behavior and unresolved records. Stop future scheduling only after authorization. Then establish that running transactions, claimed work and externally dispatched requests have completed or have an explicit reconciliation outcome. A job being inactive does not prove drainage. Do not delete history or mark uncertain delivery successful to clear this gate.
@@ -25,8 +57,11 @@ Reconcile financial events, ledger entries, receipt references, retained drafts 
 
 ## Remaining implementation and environment work
 
-- All seven supported schedule kinds (including both after-completion units) crossed with shared/assigned/alternating policies now pass 24 full-schema synthetic repair cases, including exact window comparison and retry/no-op behavior. Verify parameter/calendar edges, historical-completion reconstruction, missing-preview-only cases and transfer/reschedule interactions before deciding the complete replacement/retention path.
-- Rehearse legacy draft-generation and notification producer/consumer shutdown with pending work, alongside the existing grocery-retention probe.
+- All seven supported schedule kinds (including both after-completion units) crossed with shared/assigned/alternating policies now pass 24 full-schema synthetic repair cases, including exact window comparison and retry/no-op behavior. Six focused history/preview cases (historical artifact removed) now verify ordinary/leap month-end reconstruction, biweekly original anchors, after-completion days/weeks, alternating turns, unchanged closed history and retry identity. The isolated helper repairs a missing preview without altering current. The retained scheduler selects missing-current routines, so these cases do not establish scheduled preview repair. Active-window/parameter edges, transfer interactions, full-chain/hosted identity and the replacement/retention decision remain.
+- The current full-schema synthetic rehearsal now verifies due reminder and recurring draft producers plus the pending push-outbox database consumer before and after pause, including a preserved live claim. Evidence (historical artifact removed). The7 October disposable full-schema expired-claim/retry probe now passes stale
+  finalization refusal, one-time failure counting, paused preservation and disabled
+  subscription skipping. Retry evidence (historical artifact removed).
+  Actual Edge delivery and hosted/external drainage remain open.
 - Complete pending native command reconciliation and the cutover epoch decision.
 - Obtain authorized hosted job/function inventory and delivery state; the local fixture lacks real `pg_cron`, `pg_net`, Edge delivery and production data.
 - Exercise the approved plan on an isolated representative backend before asking for production cutover approval.

@@ -129,19 +129,7 @@ actor FakeChoreServer {
         if isA && denyA && path == "/v1/chores/snapshot" {
             return answer(request, status: 401, data: Data())
         }
-        if !isA && pauseB && path == "/v1/chores/snapshot" {
-            bWaiting = true
-            bStarted?.resume()
-            bStarted = nil
-            await withCheckedContinuation { bResume = $0 }
-        }
-        if isA && pauseASession && path == "/v1/session" {
-            pauseASession = false
-            aSessionWaiting = true
-            aSessionStarted?.resume()
-            aSessionStarted = nil
-            await withCheckedContinuation { aSessionResume = $0 }
-        }
+        await pauseRequest(path: path, isA: isA)
         if path == "/v1/session" {
             let name = isA ? "Alex" : "Sam"
             let body =
@@ -173,6 +161,22 @@ actor FakeChoreServer {
             url: request.url!, statusCode: status, httpVersion: nil, headerFields: nil)!
         return (data, response)
     }
+    private func pauseRequest(path: String, isA: Bool) async {
+        if !isA && pauseB && path == "/v1/chores/snapshot" {
+            bWaiting = true
+            bStarted?.resume()
+            bStarted = nil
+            await withCheckedContinuation { bResume = $0 }
+        }
+        if isA && pauseASession && path == "/v1/session" {
+            pauseASession = false
+            aSessionWaiting = true
+            aSessionStarted?.resume()
+            aSessionStarted = nil
+            await withCheckedContinuation { aSessionResume = $0 }
+        }
+    }
+
 }
 
 actor PausedSavedRead {
@@ -232,4 +236,5 @@ actor PausedDeactivation {
         started = nil
         await withCheckedContinuation { resume = $0 }
     }
+
 }

@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { createRequire } from "node:module";
 import { recurringCommands } from "../../apps/api/src/money/recurring.ts";
 import { recurringReads } from "../../apps/api/src/money/recurring-read.ts";
-import { recurringClient } from "../../apps/mobile/src/money/recurring-client.ts";
+import { recurringClient } from "../../packages/protocol-fixtures/src/money/recurring-client.ts";
 import { id, input, receipt, row, list, detail } from "./recurring-transport-fixture.mjs";
 import { canonicalRecurring } from "../../packages/contracts/src/recurring.ts";
 const require = createRequire(new URL("../../apps/api/package.json", import.meta.url));

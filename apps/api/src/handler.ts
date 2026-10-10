@@ -73,6 +73,8 @@ export function createHandler(config: IdentityConfig, options: MealPlanningOptio
   return (request: Request): Promise<Response> => {
     const path = new URL(request.url).pathname;
     if (
+      path === "/v1/assistant/cancel" ||
+      path === "/v1/assistant/availability" ||
       path === "/v1/assistant/turn" ||
       path === "/v1/assistant/conversation" ||
       path === "/v1/assistant/conversations" ||
@@ -280,6 +282,7 @@ const methods: Record<string, string> = {
   "/v1/money/receipt/cleanup": "POST",
   "/v1/money/receipt/uploads": "GET",
   "/v1/money/pending-approvals": "GET",
+  "/v1/money/approval-expiry": "GET",
   "/v1/money/balance": "GET",
   "/v1/money/history": "GET",
   "/v1/money/detail": "GET",
@@ -317,6 +320,7 @@ const methods: Record<string, string> = {
   "/v1/routines": "GET",
   "/v1/routines/roster": "GET",
   "/v1/routines/create": "POST",
+  "/v1/routines/cancel-create": "POST",
   "/v1/routines/edit": "POST",
   "/v1/routines/state": "POST",
   "/v1/setup/status": "GET",

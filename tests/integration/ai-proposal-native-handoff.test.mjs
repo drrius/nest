@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { fixture, input, id, options } from "./ai-proposal-tools-fixture.mjs";
-import { fixture as sqliteFixture } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { actionResult } from "../../apps/mobile/src/assistant/action-result.ts";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { MealProposalRuntime } from "../../apps/mobile/src/meals/proposal-runtime.ts";
+import { fixture as sqliteFixture } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { actionResult } from "../../packages/protocol-fixtures/src/assistant/action-result.ts";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { MealProposalRuntime } from "../../packages/protocol-fixtures/src/meals/proposal-runtime.ts";
 import { createHandler } from "../../apps/api/src/handler.ts";
 import { nodeServer } from "../../apps/api/node-server.mjs";
 import { Effect, run } from "./native-proposal-edit-fixture.mjs";

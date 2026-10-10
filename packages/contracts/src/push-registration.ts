@@ -1,5 +1,9 @@
 import * as Schema from "effect/Schema";
 const Uuid = Schema.String.check(Schema.isUUID());
+export const ApnsEnvironment = Schema.Literals(["sandbox", "production"]);
+export const ApnsPushToken = Schema.String.check(
+  Schema.isPattern(/^(?:[0-9a-f]{2}){1,2048}$(?![\s\S])/),
+);
 export const PushSessionRevocation = Schema.Struct({
   version: Schema.Literal(1),
   actorId: Uuid,
@@ -22,11 +26,22 @@ export const RegisterPushDevice = Schema.Struct({
   action: Schema.Literal("register"),
   token: PushToken,
 });
+export const RegisterApnsDevice = Schema.Struct({
+  ...Identity,
+  action: Schema.Literal("register"),
+  provider: Schema.Literal("apns"),
+  environment: ApnsEnvironment,
+  token: ApnsPushToken,
+});
 export const DisablePushDevice = Schema.Struct({
   ...Identity,
   action: Schema.Literal("disable"),
 });
-export const PushDeviceCommand = Schema.Union([RegisterPushDevice, DisablePushDevice]);
+export const PushDeviceCommand = Schema.Union([
+  RegisterPushDevice,
+  RegisterApnsDevice,
+  DisablePushDevice,
+]);
 export type PushDeviceCommand = typeof PushDeviceCommand.Type;
 export function canonicalPushDevice(command: PushDeviceCommand): PushDeviceCommand {
   return {
@@ -55,14 +70,22 @@ export const PushDeviceReceipt = Schema.Struct({
 );
 export const PushDeviceQuery = Schema.Struct({ installationId: Uuid });
 export const PushDeviceOperationQuery = Schema.Struct({ operationId: Uuid });
-export const PushDeviceState = Schema.Struct({
+const DeviceStateFields = {
   version: Schema.Literal(1),
   actorId: Uuid,
   householdId: Uuid,
   installationId: Uuid,
   revision: Schema.NullOr(Uuid),
   enabled: Schema.Boolean,
-}).check(Schema.makeFilter((value) => !value.enabled || value.revision !== null));
+};
+export const PushDeviceState = Schema.Union([
+  Schema.Struct(DeviceStateFields),
+  Schema.Struct({
+    ...DeviceStateFields,
+    provider: Schema.Literal("apns"),
+    environment: ApnsEnvironment,
+  }),
+]).check(Schema.makeFilter((value) => !value.enabled || value.revision !== null));
 
 // SHA-256 UTF-8 input shared with the server. Tokens cannot contain whitespace,
 // so newline-delimited fields have no ambiguous boundaries. Never log this value.
@@ -72,8 +95,9 @@ export function pushDeviceDigestInput(
   householdId: string,
 ): string {
   const value = canonicalPushDevice(command);
+  const apns = value.action === "register" && "provider" in value;
   return [
-    "nest-push-device/v1",
+    apns ? "nest-push-device/apns-v1" : "nest-push-device/v1",
     actorId.toLowerCase(),
     householdId.toLowerCase(),
     value.operationId,
@@ -81,6 +105,7 @@ export function pushDeviceDigestInput(
     value.expectedRevision ?? "",
     value.action,
     value.action === "register" ? value.token : "",
+    ...(apns ? [value.provider, value.environment] : []),
   ].join("\n");
 }
 export function matchesPushDeviceReceipt(

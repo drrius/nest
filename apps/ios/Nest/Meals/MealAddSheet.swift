@@ -1,0 +1,119 @@
+import SwiftUI
+
+struct MealAddSheet: View {
+    @ObservedObject var model: SessionModel
+    let target: MealSlotTarget
+    @Environment(\.dismiss) private var dismiss
+    @Environment(\.dynamicTypeSize) private var textSize
+    @State private var title = ""
+    @State private var useSaved = false
+    @State private var selectedId: UUID?
+    @State private var saving = false
+    @State private var errorText: String?
+    @FocusState private var editingTitle: Bool
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section {
+                    sourcePicker
+                } header: {
+                    VStack(alignment: .leading, spacing: 4) {
+                        Text(target.slot.label)
+                        Text(target.date.localDay()?.formatted(date: .abbreviated, time: .omitted) ?? target.date.value)
+                    }
+                    .font(.caption).foregroundStyle(QuietPalette.muted)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                if useSaved {
+                    MealSavedChoice(model: model, selectedId: $selectedId)
+                } else {
+                    Section {
+                        TextField("What are you having?", text: $title)
+                            .textInputAutocapitalization(.sentences)
+                            .submitLabel(.done)
+                            .focused($editingTitle)
+                    } footer: {
+                        Text("Shared with your household · up to 120 characters.")
+                    }
+                }
+                if let day = target.date.localDay() { SchedulingWarningSection(session: model, day: day) }
+                if let errorText {
+                    Section { Text(errorText).foregroundStyle(QuietPalette.muted) }
+                }
+            }
+            .scrollDismissesKeyboard(.interactively)
+            .scrollContentBackground(.hidden)
+            .background(QuietPalette.background)
+            .navigationTitle("Add meal")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    QuietToolbarButton("Cancel", systemImage: "xmark") { dismiss() }
+                }
+                ToolbarItem(placement: .confirmationAction) {
+                    QuietToolbarButton("Save", systemImage: "checkmark") {
+                        editingTitle = false
+                        saving = true
+                        Task {
+                            let accepted = await save()
+                            if accepted {
+                                dismiss()
+                            } else {
+                                errorText = model.mealNotice ?? "Could not save this meal. Try again."
+                                saving = false
+                            }
+                        }
+                    }
+                    .disabled(
+                        saving || model.mealPlacement != nil || model.mealRemoval != nil
+                            || model.mealRecipePlacement != nil || !validInput)
+                }
+            }
+            .task(id: useSaved) {
+                if useSaved {
+                    selectedId = nil
+                    await model.refreshMealLibrary()
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
+    private var sourcePicker: some View {
+        if textSize.isAccessibilitySize {
+            Picker("Meal source", selection: $useSaved) {
+                Text("One-off").tag(false)
+                Text("Saved meal").tag(true)
+            }.pickerStyle(.inline)
+        } else {
+            Picker("Meal source", selection: $useSaved) {
+                Text("One-off").tag(false)
+                Text("Saved meal").tag(true)
+            }.pickerStyle(.segmented)
+        }
+    }
+
+    private var validInput: Bool {
+        if useSaved {
+            guard let selectedId, case .loaded(let recipe) = model.savedRecipe,
+                case .loaded(let listing) = model.mealLibrary,
+                model.savedRecipeRevision == listing.revision
+            else { return false }
+            return recipe.id == selectedId
+        }
+        let trimmed = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        return !trimmed.isEmpty && trimmed.unicodeScalars.count <= 120
+    }
+
+    private func save() async -> Bool {
+        if useSaved {
+            guard let selectedId, case .loaded(let recipe) = model.savedRecipe,
+                recipe.id == selectedId
+            else { return false }
+            return await model.placeSavedRecipe(
+                date: target.date, slot: target.slot, recipe: recipe)
+        }
+        return await model.placeMeal(date: target.date, slot: target.slot, title: title)
+    }
+}

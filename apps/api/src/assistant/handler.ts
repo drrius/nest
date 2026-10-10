@@ -1,3 +1,4 @@
+import { cancelUnstartedTurn } from "./cancel.ts";
 import type { MealPlanningOptions } from "../meal-planning/route.ts";
 import * as Effect from "effect/Effect";
 import * as Schema from "effect/Schema";
@@ -9,6 +10,7 @@ import {
 } from "@nest/ai/chat";
 import { StartTurn } from "@nest/contracts/conversations";
 import { ApiFailure, failureResponse } from "../errors.ts";
+import { aiTelemetry } from "../ai-telemetry.ts";
 import { bearerToken, currentMember } from "../identity.ts";
 import { supabaseIdentity, type IdentityConfig } from "../supabase-identity.ts";
 import { commandBody } from "../request-body.ts";
@@ -32,7 +34,7 @@ export function assistantHandler(
     const allowed =
       path === "/v1/assistant/turn"
         ? ["GET", "POST"]
-        : [path === "/v1/assistant/interrupt" ? "POST" : "GET"];
+        : [["/v1/assistant/interrupt", "/v1/assistant/cancel"].includes(path) ? "POST" : "GET"];
     if (!allowed.includes(request.method))
       return Promise.resolve(
         new Response(null, { status: 405, headers: { Allow: allowed.join(", ") } }),
@@ -40,6 +42,18 @@ export function assistantHandler(
     const effect = Effect.gen(function* () {
       const member = yield* currentMember(request),
         token = yield* bearerToken(request);
+      if (path === "/v1/assistant/availability")
+        return Response.json(
+          {
+            version: 1,
+            actorId: member.userId,
+            householdId: member.householdId,
+            available: Boolean(model),
+          },
+          { headers: noStore },
+        );
+      if (path === "/v1/assistant/cancel")
+        return yield* cancelUnstartedTurn(request, config, { member, token });
       const store = conversationStore(config, { member, token });
       if (path === "/v1/assistant/conversations")
         return Response.json(yield* discoverConversations(request, config, { member, token }), {
@@ -110,6 +124,7 @@ function startResponse(
           return await assistantStream({
             model,
             tools,
+            telemetry: aiTelemetry("assistant", model, Object.keys(tools)),
             onInvalidToolCall: rejectInvalidCall,
             messages,
             assistantId: turn.assistantId,

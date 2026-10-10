@@ -1,14 +1,16 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { createRequire } from "node:module";
-import { fixture as sqlite, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { correctionApprovalOperations } from "../../apps/mobile/src/money/correction-approval-operations.ts";
-import { CorrectionApprovalRuntime } from "../../apps/mobile/src/money/correction-approval-runtime.ts";
+import { fixture as sqlite, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { correctionApprovalOperations } from "../../packages/protocol-fixtures/src/money/correction-approval-operations.ts";
+import { CorrectionApprovalRuntime } from "../../packages/protocol-fixtures/src/money/correction-approval-runtime.ts";
 import { correctionApiFixture, correction } from "./correction-api-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
 import { id } from "../database/native-expense-helpers.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const Fetch = await import(require.resolve("effect/unstable/http/FetchHttpClient"));
 for (const approved of [true, false]) {

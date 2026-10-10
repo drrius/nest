@@ -5,6 +5,7 @@ concurrency:
   cancel-in-progress: true
 permissions:
   contents: read
+  actions: read
 jobs:
   foundation:
     runs-on: ubuntu-latest
@@ -17,29 +18,65 @@ jobs:
           cache: pnpm
       - run: pnpm install --frozen-lockfile
       - run: pnpm format:check
+      - name: Determine changed source and check documentation links
+        id: scope
+        env:
+          NEST_CI_DIFF_BASE: ${{ github.event.pull_request.base.sha || github.event.before }}
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          export NEST_CI_BASE_VERIFIED=false
+          if [[ "$NEST_CI_DIFF_BASE" =~ ^[a-fA-F0-9]{40}$ ]] && [[ ! "$NEST_CI_DIFF_BASE" =~ ^0+$ ]]; then
+            git cat-file -e "$NEST_CI_DIFF_BASE^{commit}" 2>/dev/null || git fetch --no-tags --depth=1 origin "$NEST_CI_DIFF_BASE" || true
+            NEST_CI_BASE_VERIFIED="$(gh api "repos/$GITHUB_REPOSITORY/actions/workflows/ci.yml/runs?head_sha=$NEST_CI_DIFF_BASE&event=push&per_page=1" --jq '.workflow_runs[0] | if .status == "completed" and .conclusion == "success" then "true" else "false" end' 2>/dev/null || printf false)"
+          fi
+          node scripts/ci-change-scope.mjs >> "$GITHUB_OUTPUT"
+      - name: Test conservative CI scope rules
+        run: node --test tests/tooling/ci-change-scope.test.mjs
       - run: pnpm lint
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm typecheck
+        if: steps.scope.outputs.source == 'true'
       - uses: denoland/setup-deno@v2
+        if: steps.scope.outputs.source == 'true'
         with:
           deno-version: v2.9.6
       - name: Check pinned receipt Edge entry point
+        if: steps.scope.outputs.source == 'true'
         run: deno check --frozen-lockfile --config supabase/functions/nest-receipt-upload/deno.json supabase/functions/nest-receipt-upload/index.ts
       - run: pnpm test:tooling
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:calendar
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:assistant
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:food
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:cooking
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:setup
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:routines
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:meals
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:money
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:notifications
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:memory
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:session
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:checklist
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:chores
+        if: steps.scope.outputs.source == 'true'
       - run: pnpm test:offline
+        if: steps.scope.outputs.source == 'true'
       - name: Install pinned PostgREST integration fixture
+        if: steps.scope.outputs.source == 'true'
         shell: bash
         run: |
           set -euo pipefail
@@ -50,5 +87,39 @@ jobs:
           tar --extract --xz --file "$fixture_dir/postgrest.tar.xz" --directory "$fixture_dir" postgrest
           "$fixture_dir/postgrest" --version
       - name: Test core native HTTP and database journeys
+        if: steps.scope.outputs.source == 'true'
         run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" pnpm test:integration:core
+      - name: Test grocery reminder receipt isolation
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/grocery-reminders.test.mjs
+      - name: Test receipt access and retained financial history
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/receipt-read-postgrest.test.mjs
+      - name: Test planning preference privacy and setup
+        if: steps.scope.outputs.source == 'true'
+        run: |
+          NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/meal-planning-context-postgrest.test.mjs
+          NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test --test-name-pattern='unconfigured partner' tests/integration/meal-proposal-api-postgrest.test.mjs
+      - name: Test retained attention date handling
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/legacy-attention-dates.test.mjs
+      - name: Test migration writer privileges and reversible API fences
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/migration-writer-inventory.test.mjs tests/database/migration-api-fence.test.mjs tests/database/table-access-inventory.test.mjs tests/database/scheduled-writer-inventory.test.mjs tests/database/fixture-runtime-owner.test.mjs
+      - name: Test service-role write freeze
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test --test-name-pattern='broad service-role' tests/database/cutover-write-barrier.test.mjs
+      - name: Test retained routine schedule validation and history repair
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/routine-schedule-validation.test.mjs tests/database/routine-repair-history.test.mjs
+      - name: Test complete append-only ledger events
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/complete-ledger-events.test.mjs
+      - name: Test financial allocation consistency
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" node --test tests/database/financial-allocation-consistency.test.mjs
+      - name: Test ordered variable bill cancellation races
+        if: steps.scope.outputs.source == 'true'
+        run: NEST_TEST_PG_BIN="$(pg_config --bindir)" NEST_TEST_POSTGREST_BIN="$RUNNER_TEMP/nest-postgrest/postgrest" node --test tests/integration/variable-cycle-ordered-races.test.mjs
       - run: pnpm test
+        if: steps.scope.outputs.source == 'true'

@@ -1,10 +1,12 @@
 import { createRequire } from "node:module";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
 import { moneyTools } from "../../apps/api/src/money/tools.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { expenseApiFixture } from "./expense-api-fixture.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 test("HTTP pending approvals preserve private pagination through real PostgREST", async (t) => {

@@ -1,0 +1,327 @@
+{
+  "envelope": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000001",
+    "householdId": "00000000-0000-4000-8000-000000000010",
+    "approval": {
+      "id": "00000000-0000-4000-8000-000000000990",
+      "operationId": "00000000-0000-4000-8000-000000000980",
+      "input": {
+        "ruleId": "00000000-0000-4000-8000-000000000800",
+        "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+        "configuration": {
+          "description": "New explicit rule",
+          "payerId": "00000000-0000-4000-8000-000000000001",
+          "categoryId": null,
+          "note": null,
+          "startDate": "2026-10-03",
+          "schedule": {
+            "kind": "monthly",
+            "dayOfMonth": 5
+          },
+          "mode": "fixed",
+          "amountCentimes": "101",
+          "allocations": [
+            {
+              "memberId": "00000000-0000-4000-8000-000000000001",
+              "centimes": "51"
+            },
+            {
+              "memberId": "00000000-0000-4000-8000-000000000002",
+              "centimes": "50"
+            }
+          ]
+        },
+        "firstDueOn": "2026-10-05"
+      },
+      "status": "pending",
+      "expiresAt": "2099-12-31T00:00:00.000000Z",
+      "receipt": null
+    }
+  },
+  "context": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000001",
+    "householdId": "00000000-0000-4000-8000-000000000010",
+    "approvalId": "00000000-0000-4000-8000-000000000990",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "configuration": {
+        "description": "New explicit rule",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "categoryId": null,
+        "note": null,
+        "startDate": "2026-10-03",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "fixed",
+        "amountCentimes": "101",
+        "allocations": [
+          {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "centimes": "51"
+          },
+          {
+            "memberId": "00000000-0000-4000-8000-000000000002",
+            "centimes": "50"
+          }
+        ]
+      },
+      "firstDueOn": "2026-10-05"
+    },
+    "review": {
+      "version": 1,
+      "householdId": "00000000-0000-4000-8000-000000000010",
+      "rule": {
+        "ruleId": "00000000-0000-4000-8000-000000000800",
+        "mode": "legacy_draft_only",
+        "description": "Retained rule",
+        "amountCentimes": "9007199254740991",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "allocations": {
+          "kind": "valid",
+          "shares": [
+            {
+              "memberId": "00000000-0000-4000-8000-000000000001",
+              "centimes": "4503599627370495"
+            },
+            {
+              "memberId": "00000000-0000-4000-8000-000000000002",
+              "centimes": "4503599627370496"
+            }
+          ]
+        },
+        "categoryId": null,
+        "active": true,
+        "nextOccurrenceOn": {
+          "kind": "date",
+          "value": "2026-01-05"
+        },
+        "updatedAt": {
+          "kind": "timestamp",
+          "value": "2026-01-01T10:00:00.123456Z"
+        },
+        "schedule": {
+          "kind": "weekly",
+          "weekday": 1
+        },
+        "drafts": {
+          "pending": "0",
+          "posted": "0",
+          "dismissed": "1",
+          "postedWithoutEvent": "0",
+          "unpostedWithEvent": "0",
+          "unsupportedDates": "0",
+          "latestDraftOn": {
+            "kind": "date",
+            "value": "2026-01-05"
+          }
+        }
+      },
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "coveredThrough": "2026-01-31",
+      "blockers": [],
+      "adoption": null
+    }
+  },
+  "decision": {
+    "operationId": "00000000-0000-4000-8000-000000000980",
+    "approvalId": "00000000-0000-4000-8000-000000000990",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "configuration": {
+        "description": "New explicit rule",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "categoryId": null,
+        "note": null,
+        "startDate": "2026-10-03",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "fixed",
+        "amountCentimes": "101",
+        "allocations": [
+          {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "centimes": "51"
+          },
+          {
+            "memberId": "00000000-0000-4000-8000-000000000002",
+            "centimes": "50"
+          }
+        ]
+      },
+      "firstDueOn": "2026-10-05"
+    },
+    "approved": true
+  },
+  "receipt": {
+    "version": 1,
+    "actorId": "00000000-0000-4000-8000-000000000001",
+    "householdId": "00000000-0000-4000-8000-000000000010",
+    "operationId": "00000000-0000-4000-8000-000000000980",
+    "approvalId": "00000000-0000-4000-8000-000000000990",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "configuration": {
+        "description": "New explicit rule",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "categoryId": null,
+        "note": null,
+        "startDate": "2026-10-03",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "fixed",
+        "amountCentimes": "101",
+        "allocations": [
+          {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "centimes": "51"
+          },
+          {
+            "memberId": "00000000-0000-4000-8000-000000000002",
+            "centimes": "50"
+          }
+        ]
+      },
+      "firstDueOn": "2026-10-05"
+    },
+    "reviewed": {
+      "version": 1,
+      "householdId": "00000000-0000-4000-8000-000000000010",
+      "rule": {
+        "ruleId": "00000000-0000-4000-8000-000000000800",
+        "mode": "legacy_draft_only",
+        "description": "Retained rule",
+        "amountCentimes": "9007199254740991",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "allocations": {
+          "kind": "valid",
+          "shares": [
+            {
+              "memberId": "00000000-0000-4000-8000-000000000001",
+              "centimes": "4503599627370495"
+            },
+            {
+              "memberId": "00000000-0000-4000-8000-000000000002",
+              "centimes": "4503599627370496"
+            }
+          ]
+        },
+        "categoryId": null,
+        "active": true,
+        "nextOccurrenceOn": {
+          "kind": "date",
+          "value": "2026-01-05"
+        },
+        "updatedAt": {
+          "kind": "timestamp",
+          "value": "2026-01-01T10:00:00.123456Z"
+        },
+        "schedule": {
+          "kind": "weekly",
+          "weekday": 1
+        },
+        "drafts": {
+          "pending": "0",
+          "posted": "0",
+          "dismissed": "1",
+          "postedWithoutEvent": "0",
+          "unpostedWithEvent": "0",
+          "unsupportedDates": "0",
+          "latestDraftOn": {
+            "kind": "date",
+            "value": "2026-01-05"
+          }
+        }
+      },
+      "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+      "coveredThrough": "2026-01-31",
+      "blockers": [],
+      "adoption": null
+    },
+    "revision": "00000000-0000-4000-8000-000000000851",
+    "status": "active"
+  },
+  "assistant": {
+    "type": "tool-proposeLegacyAdoption",
+    "state": "output-available",
+    "input": {
+      "ruleId": "00000000-0000-4000-8000-000000000800",
+      "configuration": {
+        "description": "New explicit rule",
+        "payerId": "00000000-0000-4000-8000-000000000001",
+        "categoryId": null,
+        "note": null,
+        "startDate": "2026-10-03",
+        "schedule": {
+          "kind": "monthly",
+          "dayOfMonth": 5
+        },
+        "mode": "fixed",
+        "amountCentimes": "101",
+        "allocations": [
+          {
+            "memberId": "00000000-0000-4000-8000-000000000001",
+            "centimes": "51"
+          },
+          {
+            "memberId": "00000000-0000-4000-8000-000000000002",
+            "centimes": "50"
+          }
+        ]
+      }
+    },
+    "output": {
+      "ok": true,
+      "value": {
+        "version": 1,
+        "actorId": "00000000-0000-4000-8000-000000000001",
+        "householdId": "00000000-0000-4000-8000-000000000010",
+        "approval": {
+          "id": "00000000-0000-4000-8000-000000000990",
+          "operationId": "00000000-0000-4000-8000-000000000980",
+          "input": {
+            "ruleId": "00000000-0000-4000-8000-000000000800",
+            "reviewToken": "0123456789abcdef0123456789abcdef0123456789abcdef0123456789abcdef",
+            "configuration": {
+              "description": "New explicit rule",
+              "payerId": "00000000-0000-4000-8000-000000000001",
+              "categoryId": null,
+              "note": null,
+              "startDate": "2026-10-03",
+              "schedule": {
+                "kind": "monthly",
+                "dayOfMonth": 5
+              },
+              "mode": "fixed",
+              "amountCentimes": "101",
+              "allocations": [
+                {
+                  "memberId": "00000000-0000-4000-8000-000000000001",
+                  "centimes": "51"
+                },
+                {
+                  "memberId": "00000000-0000-4000-8000-000000000002",
+                  "centimes": "50"
+                }
+              ]
+            },
+            "firstDueOn": "2026-10-05"
+          },
+          "status": "pending",
+          "expiresAt": "2099-12-31T00:00:00.000000Z",
+          "receipt": null
+        }
+      }
+    }
+  }
+}

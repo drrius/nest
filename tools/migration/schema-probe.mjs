@@ -1,4 +1,20 @@
 import { verifyLegacyJobPause } from "./legacy-job-pause-rehearsal.mjs";
+import { verifyLegacyBoundaries } from "./legacy-boundary-rehearsal.mjs";
+import { verifyLegacyCalendarTriggerBoundaries } from "./legacy-calendar-trigger-boundaries.mjs";
+import { verifyLegacyAttachmentBoundaries } from "./legacy-attachment-boundaries.mjs";
+import { verifyLegacyReceiptParents } from "./legacy-receipt-parent-boundaries.mjs";
+import { verifyLegacyRoutineBoundaries } from "./legacy-routine-boundaries.mjs";
+import { verifyLegacyRoutineDefinitions } from "./legacy-routine-definition-boundaries.mjs";
+import { verifyLegacyFinancialBoundaries } from "./legacy-financial-boundaries.mjs";
+import { verifyLegacyMealBoundaries } from "./legacy-meal-boundaries.mjs";
+import { verifyLegacyShoppingBoundaries } from "./legacy-shopping-boundaries.mjs";
+import { verifyLegacyContextBoundaries } from "./legacy-context-boundaries.mjs";
+import { verifyLegacyRecurringBoundaries } from "./legacy-recurring-boundaries.mjs";
+import { verifyLegacyNotificationBoundaries } from "./legacy-notification-boundaries.mjs";
+import { verifyLegacyExcludedBoundaries } from "./legacy-excluded-boundaries.mjs";
+import { verifyLegacyInvokerBoundaries } from "./legacy-invoker-boundaries.mjs";
+import { verifyLegacyCalendarBoundaries } from "./legacy-calendar-boundaries.mjs";
+import { verifyPendingLegacyJobs } from "./pending-legacy-jobs-rehearsal.mjs";
 import { verifyOfflineEpochAi } from "./offline-epoch-ai-rehearsal.mjs";
 import { verifyRoutineRepair } from "./routine-repair-rehearsal.mjs";
 import { verifyCommittedFinancialRecovery } from "./committed-financial-recovery.mjs";
@@ -6,6 +22,9 @@ import { verifyFinancialEntryCutover } from "./financial-entry-cutover.mjs";
 import { verifyGroceryRetentionCutover } from "./grocery-retention-cutover.mjs";
 import { verifyShoppingCutover } from "./shopping-cutover.mjs";
 import { captureLegacyWriterInventory } from "./writer-inventory.mjs";
+import { captureScheduledWriterInventory } from "./scheduled-writer-inventory.mjs";
+import { captureTableAccessInventory } from "./table-access-inventory.mjs";
+import { verifyInternalTableRLS } from "./internal-table-rls.mjs";
 import { runFixtureAdvisors } from "./security-advisors.mjs";
 import {
   seedExcludedRehearsal,
@@ -49,6 +68,10 @@ import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import { startFixturePostgres } from "../../tests/database/fixture-postgres.mjs";
+import {
+  createFixtureMigrationOwner,
+  configureFixtureRuntimeOwner,
+} from "./fixture-runtime-owner.mjs";
 const root = fileURLToPath(new URL("../../", import.meta.url));
 const [legacy, mode] = process.argv.slice(2);
 if (!legacy || (mode && mode !== "--without-pg-net"))
@@ -64,7 +87,8 @@ report.infrastructure = {
   schedulingVerified: false,
   storageBytesVerified: false,
 };
-const db = startFixturePostgres();
+const bootstrap = startFixturePostgres();
+let db;
 function apply(directory, source) {
   for (const name of readdirSync(directory)
     .filter((n) => n.endsWith(".sql"))
@@ -88,6 +112,7 @@ function apply(directory, source) {
   }
 }
 try {
+  db = createFixtureMigrationOwner(bootstrap);
   db.sql(`create schema auth; create schema extensions;
     create role anon nologin; create role authenticated nologin; create role service_role nologin bypassrls;
     create table auth.users(id uuid primary key);
@@ -114,6 +139,8 @@ try {
   const groceriesBefore = captureGroceryHistory(db);
   const before = captureRehearsal(db);
   apply(resolve(root, "supabase/migrations"), "native");
+  report.runtimeOwner = configureFixtureRuntimeOwner(db);
+  report.tableAccessBeforeCutoverFixture = captureTableAccessInventory(db);
   report.excluded = verifyExcludedRehearsal(db, excludedBefore);
   report.routines = verifyRoutineRehearsal(db, routinesBefore);
   report.renewals = await verifyRenewalPlan(db, renewalsBefore);
@@ -123,8 +150,24 @@ try {
   report.groceries = verifyGroceryRehearsal(db, groceriesBefore);
   report.reconciliation = compareRehearsal(before, captureRehearsal(db));
   if (!report.reconciliation.passed) throw new Error("Financial fixture reconciliation failed");
+  report.legacyBoundaries = verifyLegacyBoundaries(db);
+  report.legacyAttachmentBoundaries = verifyLegacyAttachmentBoundaries(db);
+  report.legacyReceiptParents = verifyLegacyReceiptParents(db);
+  report.legacyRoutineBoundaries = verifyLegacyRoutineBoundaries(db);
+  report.legacyRoutineDefinitions = verifyLegacyRoutineDefinitions(db);
+  report.legacyFinancialBoundaries = verifyLegacyFinancialBoundaries(db);
+  report.legacyMealBoundaries = verifyLegacyMealBoundaries(db);
+  report.legacyShoppingBoundaries = verifyLegacyShoppingBoundaries(db);
+  report.legacyCalendarBoundaries = verifyLegacyCalendarBoundaries(db);
+  report.legacyCalendarTriggerBoundaries = verifyLegacyCalendarTriggerBoundaries(db);
+  report.legacyContextBoundaries = verifyLegacyContextBoundaries(db);
+  report.legacyRecurringBoundaries = verifyLegacyRecurringBoundaries(db);
+  report.legacyNotificationBoundaries = verifyLegacyNotificationBoundaries(db);
+  report.legacyExcludedBoundaries = verifyLegacyExcludedBoundaries(db);
+  report.legacyInvokerBoundaries = verifyLegacyInvokerBoundaries(db);
   report.routineRepair = verifyRoutineRepair(db);
   report.legacyJobPause = verifyLegacyJobPause(db);
+  report.pendingLegacyJobs = verifyPendingLegacyJobs(db);
   report.shoppingCutover = verifyShoppingCutover(db);
   report.groceryRetentionCutover = verifyGroceryRetentionCutover(db);
   report.financialEntryCutover = verifyFinancialEntryCutover(db);
@@ -135,6 +178,9 @@ try {
   if (!report.cutoverFinancialReconciliation.passed)
     throw new Error("Cutover rehearsal changed financial history or receipt references");
   report.legacyWriters = captureLegacyWriterInventory(db);
+  report.scheduledWriters = captureScheduledWriterInventory(db);
+  report.tableAccessAfterCutoverFixture = captureTableAccessInventory(db);
+  report.internalTableRLS = verifyInternalTableRLS(db);
   report.offlineEpochAi = verifyOfflineEpochAi(db);
   report.securityAdvisors = runFixtureAdvisors(db, process.env.NEST_TEST_SUPABASE_BIN);
   report.committedFinancialRecovery = verifyCommittedFinancialRecovery(db);
@@ -143,6 +189,6 @@ try {
   report.error = error.message;
   process.exitCode = 1;
 } finally {
-  db.stop();
+  bootstrap.stop();
   process.stdout.write(`${JSON.stringify(report, null, 2)}\n`);
 }

@@ -5,7 +5,7 @@ import { fixture, id, run } from "./legacy-dismissal-card-fixture.mjs";
 import {
   legacyDismissalApprovalActions,
   legacyDismissalApprovalText,
-} from "../../apps/mobile/src/money/legacy-dismissal-approval-display.ts";
+} from "../../packages/protocol-fixtures/src/money/legacy-dismissal-approval-display.ts";
 const actions = (runtime) => legacyDismissalApprovalActions(runtime.getSnapshot(), Date.now());
 test("private native card stages before dispatch and recovers a committed dismissal after write suspension and SQLite restart without replay", async (t) => {
   const f = await fixture(t),

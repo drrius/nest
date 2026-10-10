@@ -1,6 +1,6 @@
 import { createRequire } from "node:module";
-import { mealClient } from "../../apps/mobile/src/meals/client.ts";
-import { MealLeftoversRuntime } from "../../apps/mobile/src/meals/leftovers-runtime.ts";
+import { mealClient } from "../../packages/protocol-fixtures/src/meals/client.ts";
+import { MealLeftoversRuntime } from "../../packages/protocol-fixtures/src/meals/leftovers-runtime.ts";
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { nodeServer } from "../../apps/api/node-server.mjs";
@@ -8,7 +8,9 @@ import { createHandler } from "../../apps/api/src/handler.ts";
 import { recipeSelectionFiles, id, input, week } from "../database/recipe-selection-fixture.mjs";
 import { postgrestFixture } from "./postgrest-fixture.mjs";
 import { lostResponseProxy } from "./lost-response-proxy.mjs";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = require("effect/Effect");
 async function backend(t, rpc) {
   const remote = await postgrestFixture(t, [

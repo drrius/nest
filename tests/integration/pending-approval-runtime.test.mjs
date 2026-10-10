@@ -2,11 +2,13 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { createRequire } from "node:module";
 import { expenseApiFixture } from "./expense-api-fixture.mjs";
-import { fixture, run } from "../../apps/mobile/tests/offline-fixture.mjs";
-import { moneyClient } from "../../apps/mobile/src/money/client.ts";
-import { pendingApprovalOperations } from "../../apps/mobile/src/money/pending-approval-operations.ts";
-import { PendingApprovalRuntime } from "../../apps/mobile/src/money/pending-approval-runtime.ts";
-const require = createRequire(new URL("../../apps/mobile/package.json", import.meta.url));
+import { fixture, run } from "../../packages/protocol-fixtures/tests/offline-fixture.mjs";
+import { moneyClient } from "../../packages/protocol-fixtures/src/money/client.ts";
+import { pendingApprovalOperations } from "../../packages/protocol-fixtures/src/money/pending-approval-operations.ts";
+import { PendingApprovalRuntime } from "../../packages/protocol-fixtures/src/money/pending-approval-runtime.ts";
+const require = createRequire(
+  new URL("../../packages/protocol-fixtures/package.json", import.meta.url),
+);
 const Effect = await import(require.resolve("effect/Effect"));
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, "0")}`;
 async function setup(t) {
