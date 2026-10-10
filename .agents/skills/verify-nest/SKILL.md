@@ -39,7 +39,6 @@ Options:
 
 - `NEST_MAC=user@host`: a different SSH target. The default is `dariussibarium@dariuss-macbook-pro.tail2aa91d.ts.net`.
 - `NEST_VERIFY_XCCONFIG`, `NEST_VERIFY_DEVICE_TYPE`, `NEST_VERIFY_RUNTIME`: a Mac-side xcconfig path, a simctl device type id or a runtime id. They are forwarded to the Mac.
-- `--sim <udid>` adopts an existing simulator instead of creating one, for example one the owner signed in on. The simulator must be `Shutdown`. Adopting it replaces its installed Nest binary but keeps its data. Cleanup terminates the app and shuts the simulator down, but never deletes it.
 
 The run id is single-use. To build a newer tree, clean up and launch a new run.
 
@@ -103,7 +102,7 @@ Use selectors such as `label="Meals"`, `id="tab-header-meals"` and `role=button 
 ## Evidence
 
 ```sh
-$V ad "$RUN" screenshot today.png             # driver screenshot into the run's evidence
+$V ad "$RUN" screenshot today-root.png        # driver screenshot; use a distinct name per step
 $V shot "$RUN" apple-alert                    # simctl screenshot, system UI included
 $V ad "$RUN" snapshot > evidence/verify-nest/$RUN/today.snapshot.txt
 $V data "$RUN" after-save                     # data container listing and offline SQLite row counts
@@ -114,7 +113,7 @@ A proof meets these standards:
 
 - **Real user path.** Drive the shipping app through its UI. Do not use test-only hooks, injected sessions or database edits. There are no mocks. The app talks to the hosted backend.
 - **Action and result.** `drive.log` records every action with its diff. Capture the state before and after, not only the final screen.
-- **Side effects.** For local effects, run `$V data` before and after. The offline journal rows show whether a change was queued or synced. For backend effects, take a second read in the app: reopen, refresh or relaunch. Without the owner's go-ahead for a mutation, stop at the review step and say so.
+- **Side effects.** For local effects, run `$V data` before and after. Journal tables print their rows by status, such as `chore_operations 3 acknowledged=1 pending=2`, which separates queued, synced and conflicting changes. Some commands delete their row once synced, as grocery adds do, so an empty journal also means synced. For backend effects, take a second read in the app: reopen, refresh or relaunch. Without the owner's go-ahead for a mutation, stop at the review step and say so.
 - **Identity.** `run.env` in the evidence records the source commit, the tree digest and the simulator. Quote them with the result.
 - **Scope.** Simulator evidence is not phone, push, real-calendar, live-AI or two-phone acceptance. Report it separately, as `AGENTS.md` and `docs/progress.md` require.
 
@@ -129,7 +128,7 @@ Cleanup works in this order:
 
 1. It pulls the evidence first. If the copy fails, cleanup stops, keeps the Mac run and exits nonzero. Rerun cleanup once the cause is fixed.
 2. It closes the run's agent-device session and stops the daemon bound to the run's state directory. If the daemon does not stop, cleanup stops and keeps the run with its daemon state.
-3. It shuts down and deletes the simulator, but only if it is named `Nest Verify <run>`. An adopted simulator is shut down and kept.
+3. It shuts down and deletes the simulator, but only if it is named `Nest Verify <run>`. Every run creates its own simulator; there is no way to point a run at an existing one.
 4. It removes `/private/tmp/nest-verify-<run>/`.
 5. It lists the evidence that remains.
 

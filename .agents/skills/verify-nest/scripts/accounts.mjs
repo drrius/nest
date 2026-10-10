@@ -56,10 +56,29 @@ function savedPasswords() {
   return Object.fromEntries(Object.values(saved).map((entry) => [entry.email, entry.password]));
 }
 
+const signIn = (email, password) =>
+  request(`${SUPABASE}/auth/v1/token?grant_type=password`, {
+    method: "POST",
+    headers: { apikey: publishable },
+    body: { email, password },
+  });
+
+async function stillSignsIn(email, password) {
+  try {
+    await signIn(email, password);
+    return true;
+  } catch (error) {
+    if (/: HTTP 400 /.test(error.message)) return false;
+    throw error;
+  }
+}
+
 async function ensureUser({ email }, passwords) {
   const { users } = await admin("/auth/v1/admin/users?page=1&per_page=1000");
   const existing = users.find((user) => user.email === email);
-  if (existing && passwords[email]) return { id: existing.id, password: passwords[email] };
+  const saved = passwords[email];
+  if (existing && saved && (await stillSignsIn(email, saved)))
+    return { id: existing.id, password: saved };
   const password = randomBytes(24).toString("base64url");
   if (existing) {
     await admin(`/auth/v1/admin/users/${existing.id}`, { method: "PUT", body: { password } });
@@ -105,11 +124,7 @@ async function ensureMembership(householdId, userId, name) {
 }
 
 async function verifySignIn(account) {
-  const session = await request(`${SUPABASE}/auth/v1/token?grant_type=password`, {
-    method: "POST",
-    headers: { apikey: publishable },
-    body: { email: account.email, password: account.password },
-  });
+  const session = await signIn(account.email, account.password);
   const reply = await request(`${API}/v1/session`, {
     headers: { Authorization: `Bearer ${session.access_token}` },
   });

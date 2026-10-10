@@ -12,7 +12,7 @@ usage() {
   cat <<'EOF'
 usage: nest-verify <command> [run-id] [args]
   new                      print a fresh run id
-  launch <run> [--sim UDID] build the working tree, install it, open the app (about 2 min)
+  launch <run>             build the working tree, install it, open the app (about 2 min)
   doctor <run>             read-only health check of a run
   signin <run> <role>      sign the app in as the synthetic member or partner (under 1 min)
   ad <run> <args...>       run agent-device against the run's simulator session
@@ -31,7 +31,7 @@ read -r -d '' REMOTE_LIB <<'EOF' || true
 R=/private/tmp/nest-verify-$RUN
 CACHE=$HOME/Library/Caches/nest-verify
 BUNDLE=ch.drrius.nest
-export PATH="$(ls -d "$HOME"/.nvm/versions/node/v22.*/bin 2>/dev/null | tail -1):$PATH"
+export PATH="$(ls -d "$HOME"/.nvm/versions/node/v22.*/bin 2>/dev/null | sort -V | tail -1):$PATH"
 export AGENT_DEVICE_STATE_DIR=$R/agent-device AGENT_DEVICE_NO_UPDATE_NOTIFIER=1
 export AGENT_DEVICE_IOS_RUNNER_DERIVED_PATH=$CACHE/agent-device-runner
 export AGENT_DEVICE_DAEMON_IDLE_TIMEOUT_MS=1800000
@@ -92,17 +92,14 @@ tools_script() { # npm ci from the committed lockfile, once per lockfile revisio
 cmd_new() { printf '%s-%04x\n' "$(date +%Y%m%d-%H%M%S)" "$RANDOM"; }
 
 cmd_launch() {
-  local run=$1 sim=""
-  shift
-  [[ ${1:-} == --sim ]] && sim=${2:?--sim needs a simulator UDID}
+  local run=$1
   mkdir -p "$(local_evidence "$run")"
   SNAPSHOT=$(mktemp)
   trap 'rm -f "$SNAPSHOT"' EXIT
   source_tar > "$SNAPSHOT"
   echo "preparing run $run on $MAC"
   remote tools "$(tools_script)"
-  remote "$run" "SIM_ARG=$(printf %q "$sim")
-COMMIT=$(git -C "$ROOT" rev-parse HEAD) SOURCE_DIGEST=$(sha256sum < "$SNAPSHOT" | cut -c1-64)
+  remote "$run" "COMMIT=$(git -C "$ROOT" rev-parse HEAD) SOURCE_DIGEST=$(sha256sum < "$SNAPSHOT" | cut -c1-64)
 $PREPARE_SCRIPT"
   echo "transferring apps/ios ($(git -C "$ROOT" status --porcelain -- apps/ios | wc -l) uncommitted paths)"
   ssh -o BatchMode=yes "$MAC" "tar -xf - -C /private/tmp/nest-verify-$run/src" < "$SNAPSHOT"
@@ -113,19 +110,12 @@ $PREPARE_SCRIPT"
 read -r -d '' PREPARE_SCRIPT <<'EOF' || true
 [[ ! -e $R ]] || { echo "run $RUN already exists on the Mac; use a new run id" >&2; exit 3; }
 mkdir -p "$R/src" "$R/evidence" "$CACHE"
-if [[ -n $SIM_ARG ]]; then
-  state=$(sim_field "$SIM_ARG" state)
-  [[ $state == Shutdown ]] || { echo "refusing to adopt $SIM_ARG: state '${state:-missing}'" >&2; rm -rf -- "$R"; exit 3; }
-  SIM=$SIM_ARG OWNED=0
-else
-  SIM=$(xcrun simctl create "Nest Verify $RUN" "${NEST_VERIFY_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro}" \
-    "${NEST_VERIFY_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-3}")
-  OWNED=1
-fi
-printf 'SIM=%q\nOWNED=%q\nCOMMIT=%q\nSOURCE_DIGEST=%q\nSTARTED=%q\n' \
-  "$SIM" "$OWNED" "$COMMIT" "$SOURCE_DIGEST" "$(date -u +%FT%TZ)" > "$R/run.env"
+SIM=$(xcrun simctl create "Nest Verify $RUN" "${NEST_VERIFY_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro}" \
+  "${NEST_VERIFY_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-3}")
+printf 'SIM=%q\nCOMMIT=%q\nSOURCE_DIGEST=%q\nSTARTED=%q\n' \
+  "$SIM" "$COMMIT" "$SOURCE_DIGEST" "$(date -u +%FT%TZ)" > "$R/run.env"
 cp "$R/run.env" "$R/evidence/run.env"
-echo "simulator $SIM (owned=$OWNED)"
+echo "simulator $SIM"
 EOF
 
 read -r -d '' BUILD_SCRIPT <<'EOF' || true
@@ -156,9 +146,9 @@ failed=0
 check() { local what=$1; shift; if "$@" > /dev/null 2>&1; then echo "ok   $what"; else echo "FAIL $what"; failed=1; fi; }
 echo "mac  $(hostname) / $(xcodebuild -version | head -1)"
 name=$(sim_field "$SIM" name); state=$(sim_field "$SIM" state)
-echo "sim  $SIM '$name' $state owned=$OWNED"
+echo "sim  $SIM '$name' $state"
 check "simulator is booted" test "$state" = Booted
-[[ $OWNED == 1 ]] && check "simulator belongs to this run" test "$name" = "Nest Verify $RUN"
+check "simulator belongs to this run" test "$name" = "Nest Verify $RUN"
 app=$(xcrun simctl get_app_container "$SIM" "$BUNDLE" app 2>/dev/null || true)
 check "Nest is installed" test -n "$app"
 check "installed binary is this run's build" cmp -s "$app/Nest" "$R/build/Build/Products/Debug-iphonesimulator/Nest.app/Nest"
@@ -259,7 +249,10 @@ out=$R/evidence/data-$LABEL.txt
     for table in $(sqlite3 -readonly "$db" "select name from sqlite_master where type='table' order by name"); do
       rows=$(sqlite3 -readonly "$db" "select count(*) from \"$table\"")
       total=$((total + rows))
-      [[ $rows == 0 ]] || echo "$table $rows"
+      [[ $rows == 0 ]] && continue
+      states=$(sqlite3 -readonly "$db" "select group_concat(status || '=' || n, ' ') from
+        (select status, count(*) n from \"$table\" group by status order by status)" 2> /dev/null || true)
+      echo "$table $rows${states:+ $states}"
     done
     echo "total rows: $total"
   done
@@ -302,14 +295,13 @@ if [[ -f $AD_BIN ]]; then
   fi
 fi
 name=$(sim_field "$SIM" name)
-if [[ $OWNED == 1 && $name == "Nest Verify $RUN" ]]; then
+if [[ $name == "Nest Verify $RUN" ]]; then
   xcrun simctl shutdown "$SIM" > /dev/null 2>&1 || true
   xcrun simctl delete "$SIM"
   echo "deleted simulator $SIM ($name)"
 elif [[ -n $name ]]; then
-  xcrun simctl terminate "$SIM" "$BUNDLE" > /dev/null 2>&1 || true
-  xcrun simctl shutdown "$SIM" > /dev/null 2>&1 || true
-  echo "left adopted simulator $SIM ($name) installed and shut down"
+  echo "kept $R: simulator $SIM is named '$name', not this run's" >&2
+  exit 8
 fi
 rm -rf -- "$R"
 echo "removed $R"

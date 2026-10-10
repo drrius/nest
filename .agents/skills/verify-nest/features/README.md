@@ -9,7 +9,7 @@ This directory is the maintained source for verifying Nest's user-facing behavio
 - A fresh owned simulator has no account. It reaches only the signed-out screen, which [Launch and sign-in](./sign-in.md) covers.
 - Every other feature starts with `$V signin $RUN member`, which signs in as Test Alex. Use `partner` to sign in as Test Sam. Both belong to the synthetic `Nest verification household` and nothing else. The run is signed in once the command prints `SIGNED-IN`. Dismiss the first-use sheet with `$V ad $RUN press 'label="Get started"' --settle`.
 - Never sign in as the owner or touch the owner's real household.
-- Never drive a simulator that this run did not create or explicitly adopt with `--sim`.
+- Never drive a simulator that this run did not create.
 
 ## Driving conventions
 
