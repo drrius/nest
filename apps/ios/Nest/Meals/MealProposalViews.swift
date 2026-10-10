@@ -115,7 +115,7 @@ struct ProposalMealRow: View {
             Text(entry.slot.rawValue.capitalized)
             Text("·")
             if case .saved = entry.source {
-                Text("♥ Favourite").foregroundStyle(NestColor.tint(.bill))
+                Text("♥ Favourite").foregroundStyle(NestColor.ink2)
             } else {
                 Text("✦ New").foregroundStyle(NestColor.accentInk)
             }

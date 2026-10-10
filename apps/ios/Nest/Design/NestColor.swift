@@ -16,9 +16,9 @@ enum NestColor {
     static let accentInk = adaptive(0x2D5A43, 0x9FD4B3)
     static let onAccent = adaptive(0xF7F5EF, 0x0F1A14)
 
-    static let good = adaptive(0x3B8A5A, 0x79C495)
+    static let good = adaptive(0x2F7549, 0x79C495)
     static let goodSoft = adaptive(0xDFEEE4, 0x1B3324)
-    static let warn = adaptive(0xB5671A, 0xEBA65A)
+    static let warn = adaptive(0x9A5612, 0xEBA65A)
     static let warnSoft = adaptive(0xF9EADA, 0x3A2A17)
     static let bad = adaptive(0xC8463A, 0xF08A7E)
 

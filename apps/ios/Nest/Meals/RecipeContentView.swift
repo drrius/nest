@@ -18,7 +18,7 @@ struct RecipeContentView: View {
             VStack(alignment: .leading, spacing: 8) {
                 if let context {
                     Text(context.uppercased())
-                        .font(.caption.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.tint(.meal))
+                        .font(.caption.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.ink2)
                 }
                 Text(recipe.title)
                     .font(.largeTitle.weight(.bold))
@@ -103,7 +103,7 @@ struct RecipeContentView: View {
                 HStack(alignment: .firstTextBaseline, spacing: 14) {
                     Text("\(index + 1)")
                         .font(.system(.subheadline, design: .rounded, weight: .bold))
-                        .foregroundStyle(NestColor.tint(.meal))
+                        .foregroundStyle(NestColor.ink)
                         .frame(width: 28, height: 28)
                         .background(NestColor.tintSoft(.meal), in: Circle())
                     Text(step).foregroundStyle(NestColor.ink).fixedSize(horizontal: false, vertical: true)

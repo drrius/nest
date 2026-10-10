@@ -67,7 +67,7 @@ struct MealDayView<Detail: View>: View {
                     .font(.subheadline.weight(.medium))
                     .foregroundStyle(NestColor.ink2)
                     .padding(.horizontal, 12)
-                    .frame(minHeight: 40)
+                    .frame(minHeight: 44)
                     .background(NestColor.fill, in: Capsule())
             }
             .buttonStyle(NestPressStyle())

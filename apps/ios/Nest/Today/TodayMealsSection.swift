@@ -72,7 +72,7 @@ struct TodayMealsSection: View {
                     EmojiTile(emoji: MealEmoji.emoji(for: meal.title), size: 56)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(meal.slot.label.uppercased())
-                            .font(.caption2.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.tint(.meal))
+                            .font(.caption2.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.ink2)
                         Text(meal.title).font(.title3.weight(.semibold)).foregroundStyle(NestColor.ink)
                             .multilineTextAlignment(.leading)
                     }

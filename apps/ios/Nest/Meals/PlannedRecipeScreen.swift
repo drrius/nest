@@ -72,7 +72,7 @@ struct PlannedRecipeScreen: View {
         Text(MealEmoji.emoji(for: entry.title)).font(.system(size: 96))
             .frame(maxWidth: .infinity, minHeight: 170)
             .background(NestColor.tintSoft(.meal), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
-        Text(context.uppercased()).font(.caption.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.tint(.meal))
+        Text(context.uppercased()).font(.caption.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.ink2)
         Text(entry.title).font(.largeTitle.weight(.bold)).foregroundStyle(NestColor.ink)
         if let notes = entry.notes, !notes.isEmpty { Text(notes).foregroundStyle(NestColor.ink2) }
         Text("No ingredients or method were saved for this meal.").font(.subheadline).foregroundStyle(NestColor.ink3)

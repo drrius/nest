@@ -13,6 +13,8 @@ struct MealProposalScreen: View {
     @State private var revealed = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    @Environment(\.dynamicTypeSize) private var textSize
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
@@ -127,7 +129,7 @@ struct MealProposalScreen: View {
                 Text("A few new ideas").tag(false)
                 Text("Saved meals only").tag(true)
             }
-            .pickerStyle(.segmented)
+            .segmentedUnlessLarge(textSize.isAccessibilitySize)
             VStack(spacing: 0) {
                 NavigationLink {
                     FoodPreferencesScreen(model: model).id(model.generation)
