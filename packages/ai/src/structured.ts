@@ -16,7 +16,7 @@ export function structuredGeneration<
   instructions: string;
   data: unknown;
   telemetry?: GenerationTelemetry;
-}) {
+}): Effect.Effect<S["Type"], StructuredGenerationFailure> {
   return Effect.tryPromise({
     try: async (signal) => {
       const prompt = JSON.stringify(options.data);
