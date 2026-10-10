@@ -30,7 +30,7 @@ export function structuredGeneration<
         prompt,
         maxRetries: 0,
         maxOutputTokens: 16384,
-        timeout: 30000,
+        timeout: 90000,
         abortSignal: signal,
       });
       if (result.finishReason !== "stop") throw new Error("Incomplete generation");
