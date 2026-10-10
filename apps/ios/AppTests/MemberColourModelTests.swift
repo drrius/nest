@@ -151,6 +151,31 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertEqual(palette.color(partner), .teal, "The picker can mark Teal as taken")
     }
 
+    func testAFailureSettlingLateLeavesANewerChoiceAlone() async throws {
+        var reads = 0
+        var release: CheckedContinuation<Void, Never>?
+        var saves = 0
+        let colours = try model(
+            read: {
+                reads += 1
+                if reads == 2 { await withCheckedContinuation { release = $0 } }
+                return self.envelope([self.member.userId: (.clay, "1")])
+            },
+            save: { colour, _ in
+                saves += 1
+                if saves == 1 { throw NestAPIFailure.unavailable }
+                return self.receipt(colour, revision: "2")
+            })
+        await colours.refresh()
+        let failing = colours.choose(.slate)
+        while release == nil { await Task.yield() }
+        await colours.choose(.rose)?.value
+        release?.resume()
+        await failing?.value
+        XCTAssertEqual(colours.choice, .rose)
+        XCTAssertNil(colours.notice, "The older failure must not report on the newer save")
+    }
+
     func testOfflineSavesRollBackWithoutClaimingAChange() async throws {
         let colours = try model(
             read: { self.envelope([self.member.userId: (.clay, "1")]) },

@@ -28,6 +28,8 @@ final class MemberColourModel: ObservableObject {
     private var revision: String
     /// Bumped by every refresh and every local choice. Only the newest may apply, so late reads can't go backwards.
     private var latest = 0
+    /// Bumped by every local choice, so a slow failure can't put its notice on a newer choice.
+    private var picks = 0
     private let member: VerifiedMember
     private let sync: MemberColourSync?
     private let defaults: UserDefaults
@@ -61,10 +63,12 @@ final class MemberColourModel: ObservableObject {
         let previous = choices
         choices[member.userId] = colour
         latest += 1
+        picks += 1
         notice = nil
         guard let sync else { return nil }
         saving = true
-        return Task { await commit(colour, previous: previous, sync: sync) }
+        let pick = picks
+        return Task { await commit(colour, previous: previous, sync: sync, pick: pick) }
     }
 
     func palette(members: [NestMember]) -> MemberPalette {
@@ -75,7 +79,9 @@ final class MemberColourModel: ObservableObject {
         return MemberPalette(me: member.userId, colors: colors, names: names)
     }
 
-    private func commit(_ colour: MemberColor, previous: [UUID: MemberColor], sync: MemberColourSync) async {
+    private func commit(
+        _ colour: MemberColor, previous: [UUID: MemberColor], sync: MemberColourSync, pick: Int
+    ) async {
         do {
             let receipt = try await sync.save(colour, revision)
             revision = receipt.revision
@@ -86,7 +92,7 @@ final class MemberColourModel: ObservableObject {
             saving = false
             await refresh()
             // A lost response can hide a save that landed; the fresh read is the truth.
-            if choice == colour { return }
+            guard picks == pick, choice != colour else { return }
             let taken = choices.contains { $0.key != member.userId && $0.value == colour }
             let conflict = (error as? NestAPIFailure) == .conflict
             notice = conflict ? (taken ? .taken : .changedElsewhere) : .failed
