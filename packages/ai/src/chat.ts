@@ -2,6 +2,8 @@ import {
   ToolLoopAgent,
   createAgentUIStreamResponse,
   createGateway,
+  defaultSettingsMiddleware,
+  wrapLanguageModel,
   stepCountIs,
   validateUIMessages,
   type LanguageModel,
@@ -16,8 +18,21 @@ export type { GenerationTelemetry } from "./telemetry.ts";
 export type AssistantModel = LanguageModel;
 export type AssistantTools = ToolSet;
 export type AssistantMessage = InferAgentUIMessage<ReturnType<typeof createAssistantAgent>>;
-export const gatewayModel = (apiKey: string | undefined, model: string) =>
-  createGateway({ apiKey })(model);
+export const gatewayModel = (
+  apiKey: string | undefined,
+  model: string,
+  reasoningEffort?: "high",
+) => {
+  const provider = createGateway({ apiKey })(model);
+  return reasoningEffort
+    ? wrapLanguageModel({
+        model: provider,
+        middleware: defaultSettingsMiddleware({
+          settings: { providerOptions: { openai: { reasoningEffort } } },
+        }),
+      })
+    : provider;
+};
 const writeNames = new Set([
   "saveGroceryReminder",
   "saveRecurringReminder",

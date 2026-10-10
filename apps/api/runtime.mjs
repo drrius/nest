@@ -7,7 +7,13 @@ export function runtimeModel(environment) {
   if (!environment.NEST_AI_MODEL) return undefined;
   if (!environment.AI_GATEWAY_API_KEY && environment.NEST_AI_AUTH !== "vercel-oidc")
     return undefined;
-  return gatewayModel(environment.AI_GATEWAY_API_KEY || undefined, environment.NEST_AI_MODEL);
+  if (environment.NEST_AI_REASONING_EFFORT && environment.NEST_AI_REASONING_EFFORT !== "high")
+    throw new Error("Unsupported AI reasoning effort");
+  return gatewayModel(
+    environment.AI_GATEWAY_API_KEY || undefined,
+    environment.NEST_AI_MODEL,
+    environment.NEST_AI_REASONING_EFFORT,
+  );
 }
 
 export function runtimeHandler(environment) {
