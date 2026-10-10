@@ -193,6 +193,38 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertNotEqual(palette.color(partner), palette.color(member.userId))
     }
 
+    func testAnUnsavedChoiceIsNeverCachedForTheNextLaunch() async throws {
+        var reads = 0
+        var rosters = 0
+        var release: CheckedContinuation<Void, Never>?
+        let sync = MemberColourSync(
+            read: {
+                reads += 1
+                guard reads == 1 else { throw NestAPIFailure.unavailable }
+                return self.envelope([self.member.userId: (.clay, "1")])
+            },
+            save: { _, _ in
+                await withCheckedContinuation { release = $0 }
+                throw NestAPIFailure.unavailable
+            },
+            roster: {
+                rosters += 1
+                guard rosters < 3 else { throw NestAPIFailure.unavailable }
+                return [NestMember(actorId: self.member.userId, displayName: "Alex")]
+            })
+        let defaults = try XCTUnwrap(UserDefaults(suiteName: suite))
+        let colours = MemberColourModel(member: member, sync: sync, defaults: defaults)
+        await colours.refresh()
+        let saving = colours.choose(.slate)
+        while release == nil { await Task.yield() }
+        await colours.refresh()
+        release?.resume()
+        await saving?.value
+        XCTAssertEqual(colours.choice, .clay)
+        let relaunched = MemberColourModel(member: member, sync: nil, defaults: defaults)
+        XCTAssertEqual(relaunched.choice, .clay, "Only confirmed colours survive a relaunch")
+    }
+
     func testOfflineSavesRollBackWithoutClaimingAChange() async throws {
         let colours = try model(
             read: { self.envelope([self.member.userId: (.clay, "1")]) },

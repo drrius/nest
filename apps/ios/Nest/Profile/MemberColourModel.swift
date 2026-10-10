@@ -55,7 +55,8 @@ final class MemberColourModel: ObservableObject {
     func refresh() async {
         if let sync, let members = try? await sync.roster(), !members.isEmpty {
             roster = members
-            store()
+            // The cache holds confirmed colours only, never a choice that is still saving.
+            if !saving { store() }
         }
         latest += 1
         let ticket = latest
@@ -99,6 +100,7 @@ final class MemberColourModel: ObservableObject {
         } catch {
             choices = previous
             saving = false
+            store()
             await refresh()
             // A lost response can hide a save that landed; the fresh read is the truth.
             guard picks == pick, choice != colour else { return }
