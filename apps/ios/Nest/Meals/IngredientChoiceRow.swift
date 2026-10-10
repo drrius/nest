@@ -30,6 +30,7 @@ struct IngredientChoiceRow: View {
                 .disabled(row.groceryItemId != nil)
                 .accessibilityElement(children: .ignore)
                 .accessibilityLabel("\(row.name), \(occurrence)")
+                .accessibilityValue(row.groceryItemId != nil ? "Already on the list" : "")
                 .accessibilityHint(row.mealTitle)
                 .accessibilityAddTraits(choice.selected ? [.isButton, .isSelected] : .isButton)
             }

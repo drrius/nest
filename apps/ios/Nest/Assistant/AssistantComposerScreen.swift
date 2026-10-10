@@ -149,8 +149,10 @@ struct AssistantTypingDots: View {
             ForEach(0..<3, id: \.self) { index in
                 Circle().fill(NestColor.ink3).frame(width: 8, height: 8)
                     .offset(y: phase && !reduceMotion ? -3 : 0)
-                    .opacity(phase ? 1 : 0.35)
-                    .animation(.easeInOut(duration: 0.45).repeatForever().delay(Double(index) * 0.15), value: phase)
+                    .opacity(phase || reduceMotion ? 1 : 0.35)
+                    .animation(
+                        reduceMotion ? nil : .easeInOut(duration: 0.45).repeatForever().delay(Double(index) * 0.15),
+                        value: phase)
             }
         }
         .padding(.vertical, 8)

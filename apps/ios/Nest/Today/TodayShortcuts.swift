@@ -6,6 +6,7 @@ struct TodayShortcuts: View {
     let member: VerifiedMember
     let refresh: UUID
     @State private var balance: MoneyBalance?
+    @State private var balanceNotice: String?
     @Environment(\.switchTab) private var switchTab
     @Environment(\.memberPalette) private var palette
 
@@ -32,6 +33,10 @@ struct TodayShortcuts: View {
                 switchTab(.money)
             } label: {
                 card(icon: "wallet.bifold", domain: .money, title: balanceTitle) {
+                    if let balanceNotice {
+                        Label(balanceNotice, systemImage: "exclamationmark.circle")
+                            .font(.caption).foregroundStyle(NestColor.warn)
+                    }
                     if own == 0 {
                         Label("Nothing owed", systemImage: "checkmark.circle.fill")
                             .font(.subheadline).foregroundStyle(NestColor.good)
@@ -100,8 +105,12 @@ struct TodayShortcuts: View {
         {
             balance = saved.value
         }
-        if let fresh = try? await model.loadMoneyBalance(member: member, generation: model.generation) {
+        do {
+            let fresh = try await model.loadMoneyBalance(member: member, generation: model.generation)
             balance = fresh.value
+            balanceNotice = fresh.notice == nil ? nil : "Not up to date"
+        } catch {
+            balanceNotice = balance == nil ? "Couldn’t load" : "Not up to date"
         }
     }
 }

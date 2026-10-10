@@ -46,7 +46,9 @@ struct ProfileScreen: View {
             } header: {
                 Text("You")
             } footer: {
-                Text("Only you see these. Calendar details stay on this iPhone; busy sharing is optional.")
+                Text(
+                    "Your preferences and memory are private. Your colour is shown to your partner. Calendar details stay on this iPhone; if you turn on busy sharing, your partner sees busy times only."
+                )
             }
             Section("Household") {
                 link("frying.pan.fill", .groceries, "Household cooking preferences") {

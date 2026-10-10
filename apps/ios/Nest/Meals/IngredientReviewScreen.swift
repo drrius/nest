@@ -71,13 +71,14 @@ struct IngredientReviewScreen: View {
             HStack(spacing: 10) {
                 Button("Save for later") { Task { await saveChoices() } }
                     .buttonStyle(NestButtonStyle(kind: .plain))
+                    .disabled(busy)
                 Button {
                     confirm = true
                 } label: {
                     Label("Add \(selectedCount) to Groceries", systemImage: "basket")
                 }
                 .buttonStyle(NestButtonStyle(kind: .primary, fullWidth: true))
-                .disabled(selectedCount == 0 || !validSelection(context))
+                .disabled(busy || selectedCount == 0 || !validSelection(context))
             }
             .padding(.horizontal, 20).padding(.bottom, 8)
         }

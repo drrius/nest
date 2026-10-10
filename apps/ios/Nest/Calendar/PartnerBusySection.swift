@@ -53,9 +53,13 @@ struct PartnerBusySection: View {
             }
             Text(updated(snapshot)).font(.caption).foregroundStyle(NestColor.ink3)
                 .padding(.horizontal, 16).padding(.bottom, 12).padding(.top, 4)
+        } else if envelope?.snapshots.contains(where: { $0.actorId != actor }) == true {
+            note(
+                "\(palette.partnerName.capitalizedFirst)’s shared busy times don’t cover this day yet, so it’s unknown.",
+                icon: "clock")
         } else {
             note(
-                "\(palette.partnerName.capitalizedFirst) isn’t sharing busy times for this day. Details are never shared.",
+                "\(palette.partnerName.capitalizedFirst) hasn’t shared busy times for this day. Details are never shared.",
                 icon: "lock")
         }
     }

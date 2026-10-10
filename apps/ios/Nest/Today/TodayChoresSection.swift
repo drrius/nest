@@ -116,6 +116,8 @@ struct TodayChoreRow: View {
     let complete: () -> Void
     let discard: (UUID) -> Void
 
+    @Environment(\.memberPalette) private var palette
+
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             Button(action: complete) {
@@ -140,7 +142,7 @@ struct TodayChoreRow: View {
             .disabled(item.state != .open || ticked)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(item.chore.title)
-            .accessibilityValue(detail)
+            .accessibilityValue("\(detail), \(assignee)")
             .accessibilityHint(item.state == .open ? "Marks it done" : "")
             if item.state == .conflict, let operation = item.operationId {
                 Button("Discard saved change") { discard(operation) }
@@ -150,6 +152,11 @@ struct TodayChoreRow: View {
                     .frame(minHeight: 44)
             }
         }
+    }
+
+    private var assignee: String {
+        guard let id = item.chore.assigneeId else { return "Shared" }
+        return id == palette.me ? "Yours" : "\(palette.name(id))’s"
     }
 
     private var detail: String {

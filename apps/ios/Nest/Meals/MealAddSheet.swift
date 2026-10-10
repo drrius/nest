@@ -121,6 +121,7 @@ struct MealAddSheet: View {
                 }
                 .nestCard(padding: 0, radius: 20)
             }
+            recipeProblem
             if listing.nextAfterId != nil {
                 Button(loadingMore ? "Loading…" : "Load more saved meals") {
                     loadingMore = true
@@ -153,19 +154,42 @@ struct MealAddSheet: View {
                     }
                 }
                 Spacer()
-                if useSaved && selectedId == meal.id {
-                    if case .loading = model.savedRecipe {
-                        ProgressView()
-                    } else {
-                        Image(systemName: "checkmark").foregroundStyle(NestColor.accentInk)
-                    }
-                }
+                if useSaved && selectedId == meal.id { selectionMark(meal.id) }
             }
             .padding(.horizontal, 14).padding(.vertical, 10)
             .contentShape(Rectangle())
         }
         .buttonStyle(NestPressStyle())
         .accessibilityValue(useSaved && selectedId == meal.id ? "Selected" : "")
+    }
+
+    @ViewBuilder
+    private func selectionMark(_ id: UUID) -> some View {
+        switch model.savedRecipe {
+        case .loading: ProgressView()
+        case .loaded(let recipe) where recipe.id == id:
+            Image(systemName: "checkmark").foregroundStyle(NestColor.accentInk)
+        default: Image(systemName: "exclamationmark.circle").foregroundStyle(NestColor.warn)
+        }
+    }
+
+    /// The selected recipe couldn't be read, so Save stays off; say why and offer a way back.
+    @ViewBuilder
+    private var recipeProblem: some View {
+        if useSaved, let selectedId {
+            switch model.savedRecipe {
+            case .missing:
+                TodayForYouRetry(text: "This meal is no longer saved.") {
+                    self.selectedId = nil
+                    Task { await model.refreshMealLibrary() }
+                }
+            case .failed, .idle:
+                TodayForYouRetry(text: "Couldn’t load this meal.") {
+                    Task { await model.loadSavedRecipe(selectedId) }
+                }
+            default: EmptyView()
+            }
+        }
     }
 
     private func submit() {
