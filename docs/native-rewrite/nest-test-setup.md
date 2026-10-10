@@ -39,6 +39,9 @@ callers have no access and the advisors report no finding for the new objects (t
 the synthetic verification household confirmed a save, partner read, own-only receipts, PT412 for
 the partner's colour and outsider denial; afterwards both tables were empty. No real member's
 colour was written. The current source manifest contains 55 legacy and 258 native inputs.
+API deployment `dpl_2wSEK6tT7SnQT2zhsEbQzYJx9wR3` (built from `10dd4f3a`) serves the
+stable API alias from 10 October. The previous deployment, `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB`,
+is the rollback target.
 
 4 October receipt cleanup update: hosted migration `20261004135633`
 (`native_receipt_legacy_cleanup_owner`) applies source

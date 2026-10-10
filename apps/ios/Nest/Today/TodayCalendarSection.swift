@@ -19,7 +19,6 @@ struct TodayCalendarSection: View {
     }
 
     @Environment(\.switchTab) private var switchTab
-    @Environment(\.memberPalette) private var palette
 
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -65,25 +64,7 @@ struct TodayCalendarSection: View {
             }
             ForEach(Array(upcoming.prefix(3).enumerated()), id: \.element.id) { index, event in
                 if index > 0 { NestRowDivider(leading: 78) }
-                HStack(spacing: 12) {
-                    VStack(alignment: .leading, spacing: 1) {
-                        Text(event.allDay ? "All day" : event.start.formatted(date: .omitted, time: .shortened))
-                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                            .foregroundStyle(NestColor.ink)
-                        if !event.allDay {
-                            Text(event.end.formatted(date: .omitted, time: .shortened))
-                                .font(.system(.caption, design: .rounded)).foregroundStyle(NestColor.ink3)
-                        }
-                    }
-                    .monospacedDigit()
-                    .frame(width: 50, alignment: .leading)
-                    RoundedRectangle(cornerRadius: 2).fill(palette.color(palette.me).color).frame(width: 4)
-                    Text(event.title).foregroundStyle(NestColor.ink).lineLimit(2)
-                    Spacer(minLength: 0)
-                }
-                .padding(.horizontal, 16)
-                .padding(.vertical, 12)
-                .accessibilityElement(children: .combine)
+                CalendarEventRow(event: event, day: now, titleLines: 2)
             }
         }
     }

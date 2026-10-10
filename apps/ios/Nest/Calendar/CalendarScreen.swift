@@ -164,38 +164,10 @@ struct CalendarScreen: View {
             .frame(maxWidth: .infinity, alignment: .leading).padding(16)
     }
 
-    /// A time on the selected day, or date and time when an event runs past it.
-    private func time(_ date: Date) -> String {
-        Calendar.current.isDate(date, inSameDayAs: day)
-            ? date.formatted(date: .omitted, time: .shortened)
-            : date.formatted(.dateTime.day().month(.abbreviated).hour().minute())
-    }
-
     private func eventRow(_ event: DeviceCalendarEvent) -> some View {
-        HStack(alignment: .top, spacing: 12) {
-            VStack(alignment: .leading, spacing: 1) {
-                Text(event.allDay ? "All day" : time(event.start))
-                    .font(.system(.subheadline, design: .rounded, weight: .semibold))
-                if !event.allDay {
-                    Text(time(event.end))
-                        .font(.system(.caption, design: .rounded)).foregroundStyle(NestColor.ink3)
-                }
-            }
-            .monospacedDigit()
-            .frame(width: 58, alignment: .leading)
-            RoundedRectangle(cornerRadius: 2).fill(palette.color(palette.me).color).frame(width: 4)
-            VStack(alignment: .leading, spacing: 2) {
-                Text(event.title).font(.body.weight(.medium)).foregroundStyle(NestColor.ink)
-                Text(
-                    [event.calendar, event.location].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " · ")
-                )
-                .font(.footnote).foregroundStyle(NestColor.ink2)
-            }
-            Spacer(minLength: 0)
-        }
-        .padding(.horizontal, 16)
-        .padding(.vertical, 12)
-        .accessibilityElement(children: .combine)
+        CalendarEventRow(
+            event: event, day: day,
+            detail: [event.calendar, event.location].compactMap { $0 }.filter { !$0.isEmpty }.joined(separator: " · "))
     }
 
     private var permission: some View {

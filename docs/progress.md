@@ -10,7 +10,8 @@ and privacy rules remain authoritative.
 10 October 2026: TestFlight releases move to Xcode Cloud from the `testflight`
 branch. Expo distribution tooling and vendored Expo agent skills are removed.
 Build 26 remains the latest TestFlight build until the first Xcode Cloud build
-is verified. Legacy Expo push code in the backend remains, pending a separate
+is verified. `testflight` was pushed to `10dd4f3a` (the redesign) on 10 October
+to start that first build. Legacy Expo push code in the backend remains, pending a separate
 migration.
 
 The unsigned Release build passes on the Mac. The post-build check accepts signed
@@ -45,22 +46,14 @@ remains needed. Native/server diagnostics and clear setup errors pass focused ch
 traces and private AI timing are deployed; native diagnostics ship in build25.
 Next beta: stream diagnostics (historical artifact removed) pass ten Mac checks; Auth diagnostics (historical artifact removed) pass four Mac/two simulator checks.
 
-## Redesign in progress
+## Redesign
 
-The owner approved the [redesign](native-rewrite/product-and-design.md#redesign-approved-10-october-2026) on 10 October and asked for it in SwiftUI. Work runs on branch `claude/nest-redesign-ui`, one verifiable slice at a time, without changing commands, recovery or financial rules:
+The owner approved the [redesign](native-rewrite/product-and-design.md#redesign-approved-10-october-2026) on 10 October. It merged as [#88](https://github.com/drrius/nest/pull/88) (`10dd4f3a`) after Codex and an independent verifier reviewed it over 16 rounds: Codex approved the final head `52c46c7`, the verifier passed it, and CI was green.
 
-1. Design system, member colours and app shell (Ask Nest beside the tab bar): done, simulator-verified.
-2. Today and chores: done, simulator-verified with the synthetic household.
-3. Meals, planning with Nest, ingredients and Groceries: done, simulator-verified (no AI generation was run).
-4. Money (see-saw balance, expense form with live split, settle up, activity): done, simulator-verified.
-5. Calendar (week strip, agenda, partner busy times, layers sheet): done, simulator-verified (no calendar access granted).
-6. Ask Nest (home, chat composer, transcript bubbles): done, simulator-verified without sending AI messages; hosted UI tests updated for the tab.
-7. Sign-in, first use, colour picker, setup and Profile: done, simulator-verified on iOS 27 (picking a colour recolours avatars, art and previews).
-8. Member colours sync through the household: migration applied to the `nest` project (see [installed schema](native-rewrite/nest-test-setup.md#installed-schema)); `/v1/member-colours` read/save and the `openMemberColour` Ask Nest handoff are implemented and tested locally. The API is not yet deployed, so the app shows "Couldn’t save your colour" and keeps the previous colour until it is.
-
-Screens not listed keep their structure and pick up the new palette (forms for chores, recurring bills, renewals, reminders, preferences). On the Mac: `swift test` for the new Core rules passes, the app and accessibility test bundles build, and all 523 app tests pass (62 hosted tests skip without credentials, as before). Simulator checks used the synthetic household on iOS 26.3 and iOS 27 (iPhone 18 Pro); the fresh iOS 26.3 simulator showed missing-glyph boxes for emoji, which render on iOS 27.
-
-New Core rules have tests: distinct member colours (property test), title-to-emoji mapping and grocery quick entry. Hosted UI tests now find Ask Nest in the tab bar, tab titles in the native navigation bar and renewals under Money; they still need a hosted run. Colour sync has database (10), API (5), HTTP journey (1), handoff (3), Swift API (3) and app model (3) tests. Phone acceptance, VoiceOver, large text and dark mode for the rebuilt screens remain open.
+- Today, Meals, Groceries, Money, Calendar and Ask Nest are rebuilt on a shared design system. Commands, offline recovery and financial rules are unchanged. The two-birds mark is image-generated artwork.
+- Member colours sync through the household. Migration `20261010131500_native_member_colours.sql` is applied to the `nest` project (see [installed schema](native-rewrite/nest-test-setup.md#installed-schema)). API deployment `dpl_2wSEK6tT7SnQT2zhsEbQzYJx9wR3`, built from `10dd4f3a`, serves `nest-test-api-drrius-projects.vercel.app`. Before the switch, two synthetic members on that preview confirmed a saved colour persisted and showed as taken on the partner's phone.
+- Verification on the Mac: `swift test` 539 passed (41 skipped) and app tests 531 passed (62 hosted skips), 0 failures. Database, API and HTTP-journey tests pass.
+- Open: a hosted UI test run (some tests depend on fixture data removed on 10 October), phone acceptance and a full VoiceOver review. In the synthetic household, Test Alex's colour is Plum.
 
 ## Milestone checklist
 
