@@ -114,13 +114,7 @@ struct RecipeContentView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var steps: [String] {
-        (recipe.instructions ?? "")
-            .split(whereSeparator: \.isNewline)
-            .map { $0.trimmingCharacters(in: .whitespaces) }
-            .map { $0.replacing(/^\d+[.)]\s*/, with: "") }
-            .filter { !$0.isEmpty }
-    }
+    private var steps: [String] { RecipeSteps.split(recipe.instructions) }
 
     private func amount(_ ingredient: SavedIngredient) -> String {
         [ingredient.quantity, ingredient.unit]

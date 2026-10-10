@@ -7,6 +7,7 @@ struct TodayChoresSection: View {
     let moment: TodayMoment
     @Binding var everyone: Bool
     @State private var ticked: Set<UUID> = []
+    @State private var saving: Set<UUID> = []
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -69,7 +70,7 @@ struct TodayChoresSection: View {
                 ForEach(Array(open.enumerated()), id: \.element.id) { index, item in
                     if index > 0 { NestRowDivider(leading: 58) }
                     TodayChoreRow(
-                        item: item, moment: moment, ticked: ticked.contains(item.id),
+                        item: item, moment: moment, ticked: ticked.contains(item.id), busy: saving.contains(item.id),
                         complete: { tick(item.chore) },
                         discard: { operation in Task { await model.discard(operation) } }
                     )
@@ -97,16 +98,17 @@ struct TodayChoresSection: View {
         .background(NestColor.fill, in: Capsule())
     }
 
-    /// The tick holds while the change is queued, lingers a beat only if it was saved, and clears at once if not.
+    /// The row is held while the change is queued. Only a saved change ticks, lingers a beat, then tucks away.
     private func tick(_ chore: NestChore) {
-        ticked.insert(chore.id)
-        let linger = ContinuousClock.now + .milliseconds(reduceMotion ? 300 : 900)
+        guard saving.insert(chore.id).inserted else { return }
+        let motion: Animation? = reduceMotion ? nil : .spring(response: 0.45, dampingFraction: 0.86)
         Task {
             await model.complete(chore)
-            if saved(chore.id) { try? await Task.sleep(until: linger, clock: .continuous) }
-            withAnimation(reduceMotion ? nil : .spring(response: 0.45, dampingFraction: 0.86)) {
-                _ = ticked.remove(chore.id)
-            }
+            saving.remove(chore.id)
+            guard saved(chore.id) else { return }
+            withAnimation(motion) { _ = ticked.insert(chore.id) }
+            try? await Task.sleep(for: .milliseconds(reduceMotion ? 300 : 900))
+            withAnimation(motion) { _ = ticked.remove(chore.id) }
         }
     }
 
@@ -120,6 +122,7 @@ struct TodayChoreRow: View {
     let item: LocalChore
     let moment: TodayMoment
     let ticked: Bool
+    var busy = false
     let complete: () -> Void
     let discard: (UUID) -> Void
 
@@ -146,7 +149,7 @@ struct TodayChoreRow: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(NestPressStyle())
-            .disabled(item.state != .open || ticked)
+            .disabled(item.state != .open || ticked || busy)
             .accessibilityElement(children: .ignore)
             .accessibilityLabel(item.chore.title)
             .accessibilityValue("\(detail), \(assignee)")
