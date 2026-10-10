@@ -6,8 +6,6 @@
 .vercel/
 node_modules/
 **/node_modules/
-.expo/
-**/.expo/
 dist/
 **/dist/
 coverage/
@@ -26,6 +24,5 @@ docs/
 evidence/
 supabase/
 tests/
-tools/distribution/
 packages/protocol-fixtures/src/
 packages/protocol-fixtures/tests/

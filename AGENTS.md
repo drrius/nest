@@ -16,7 +16,7 @@ Read docs/native-rewrite/product-and-design.md, architecture-audit.md and implem
 
 ## Native implementation and distribution
 
-Use SwiftUI, Apple's native controls, semantic accessibility and the repository's Swift formatting/source-limit checks. Expo/React Native packages and React AI wrappers are forbidden in the server and test fixtures. Native builds, signing and simulator checks run on the authorized Mac. tools/distribution contains only the existing EAS project/IPA-submission metadata; it has no SDK, runtime dependencies or cloud-build profile. Existing EAS service skills may be used for authorized credential reads and private IPA submissions, never to restore an Expo client. Current user authorization and scope take precedence over historical instructions.
+Use SwiftUI, Apple's native controls, semantic accessibility and the repository's Swift formatting/source-limit checks. Expo/React Native packages and React AI wrappers are forbidden in the server and test fixtures. Native builds and simulator checks run on the authorized Mac. Xcode Cloud archives, signs and uploads TestFlight builds from the `testflight` branch. Pushing to `testflight` is a release and requires the owner's authorization and passing GitHub CI on that commit. Current user authorization and scope take precedence over historical instructions.
 
 ## Cursor Cloud specific instructions
 
