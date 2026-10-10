@@ -5,6 +5,42 @@ import XCTest
 
 @MainActor
 final class HostedLiveAssistantTests: XCTestCase {
+    func testLiveMealProposalDoesNotSaveTheWeekWithoutApproval() async throws {
+        guard ProcessInfo.processInfo.environment["NEST_QA_LIVE_AI"] == "1",
+            ProcessInfo.processInfo.environment["SIMULATOR_UDID"] == "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A"
+        else { throw XCTSkip("Requires the fictional-member simulator and explicit live spend opt-in.") }
+        let configuration = try NestConfiguration.fromBundle()
+        guard configuration.supabaseURL.host == "tkjixmujjoustdiedfmw.supabase.co" else {
+            throw NestAPIFailure.forbidden
+        }
+        let store = try ChoreOfflineStore.application(environment: configuration.supabaseURL)
+        let session = try await NestAuth(configuration: configuration, offline: store).session()
+        guard session.userId.uuidString.lowercased() == "791f7261-6c9d-4061-9c8a-57aa6e0b0200" else {
+            throw NestAPIFailure.forbidden
+        }
+        let http = try NestHTTP(baseURL: configuration.apiURL)
+        let meals = MealAPI(http: http)
+        let member = try await meals.verify(token: session.accessToken, expectedActor: session.userId)
+        let start = try MealWeekStart("2035-06-04")
+        let before = try await meals.week(token: session.accessToken, member: member, start: start)
+        let api = MealProposalAPI(http: http)
+        let command = GenerateMealProposal(
+            operationId: UUID(), weekStart: start, expectedWeekRevision: before.revision, familiarOnly: false)
+        let generated = try await api.generate(token: session.accessToken, member: member, command: command)
+        var proposal = generated.envelope.proposal
+        for _ in 0..<30 where proposal.status == .generating {
+            try await Task.sleep(for: .seconds(2))
+            proposal = try await api.open(token: session.accessToken, member: member, id: proposal.id).envelope.proposal
+        }
+        XCTAssertEqual(proposal.status, .ready)
+        XCTAssertFalse(proposal.entries?.isEmpty ?? true)
+        let after = try await meals.week(token: session.accessToken, member: member, start: start)
+        XCTAssertEqual(after, before)
+        _ = try await api.discard(
+            token: session.accessToken, member: member,
+            command: DiscardMealProposal(proposal: proposal, operation: UUID()))
+    }
+
     func testExistingFictionalMemberUsesLiveReadTool() async throws {
         guard ProcessInfo.processInfo.environment["NEST_QA_LIVE_AI"] == "1",
             ProcessInfo.processInfo.environment["SIMULATOR_UDID"] == "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A"

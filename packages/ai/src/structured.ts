@@ -21,11 +21,12 @@ export function structuredGeneration<
     try: async (signal) => {
       const prompt = JSON.stringify(options.data);
       if (new TextEncoder().encode(prompt).length > 131072) throw new Error("Input too large");
+      const schema = await effectSchema(options.schema).jsonSchema;
       const result = await generateText({
         model: options.model,
         telemetry: privateTelemetry(options.telemetry),
-        output: Output.object({ schema: effectSchema(options.schema) }),
-        system: options.instructions,
+        output: Output.json(),
+        system: `${options.instructions}\nReturn only JSON matching this schema: ${JSON.stringify(schema)}`,
         prompt,
         maxRetries: 0,
         maxOutputTokens: 16384,
@@ -36,5 +37,10 @@ export function structuredGeneration<
       return result.output;
     },
     catch: () => new StructuredGenerationFailure({ reason: "unavailable" }),
-  });
+  }).pipe(
+    Effect.flatMap(
+      Schema.decodeUnknownEffect(Schema.toCodecJson(options.schema), { onExcessProperty: "error" }),
+    ),
+    Effect.mapError(() => new StructuredGenerationFailure({ reason: "unavailable" })),
+  );
 }
