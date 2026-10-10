@@ -7,6 +7,7 @@ struct TodayShortcuts: View {
     let refresh: UUID
     @State private var balance: MoneyBalance?
     @State private var balanceNotice: String?
+    @State private var balanceRequest = UUID()
     @Environment(\.switchTab) private var switchTab
     @Environment(\.memberPalette) private var palette
 
@@ -74,7 +75,11 @@ struct TodayShortcuts: View {
         switch model.groceries {
         case .idle, .loading: return "Loading…"
         case .failed: return "Couldn’t load"
-        case .loaded:
+        case .loaded(let state):
+            let conflicts = state.items.filter { $0.state == .conflict }.count
+            if conflicts > 0 { return conflicts == 1 ? "1 change needs review" : "\(conflicts) changes need review" }
+            let pending = state.items.filter { $0.state == .pending || $0.state == .acknowledged }.count
+            if pending > 0 { return pending == 1 ? "1 change syncing" : "\(pending) changes syncing" }
             let count = openGroceries.count
             return count == 0 ? "All got" : count == 1 ? "1 to get" : "\(count) to get"
         }
@@ -100,6 +105,8 @@ struct TodayShortcuts: View {
     }
 
     private func loadBalance() async {
+        let attempt = UUID()
+        balanceRequest = attempt
         if balance == nil,
             let saved = try? await model.cachedMoneyRead(.balance(member), generation: model.generation)
         {
@@ -107,9 +114,11 @@ struct TodayShortcuts: View {
         }
         do {
             let fresh = try await model.loadMoneyBalance(member: member, generation: model.generation)
+            guard balanceRequest == attempt else { return }
             balance = fresh.value
             balanceNotice = fresh.notice == nil ? nil : "Not up to date"
         } catch {
+            guard !Task.isCancelled, balanceRequest == attempt else { return }
             balanceNotice = balance == nil ? "Couldn’t load" : "Not up to date"
         }
     }

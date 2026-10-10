@@ -124,6 +124,8 @@ struct ExpenseSplitPreview: View {
     let allocations: [ExpenseAllocation]?
     @Environment(\.memberPalette) private var palette
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
         VStack(spacing: 8) {
             GeometryReader { proxy in
@@ -137,14 +139,20 @@ struct ExpenseSplitPreview: View {
             .frame(height: 10)
             HStack {
                 ForEach(members) { person in
-                    Text("\(person.actorId == palette.me ? "You" : person.displayName) \(share(person.actorId))")
-                        .font(.footnote.weight(.semibold)).monospacedDigit()
-                        .foregroundStyle(palette.color(person.actorId).color)
+                    HStack(spacing: 5) {
+                        Circle().fill(palette.color(person.actorId).color).frame(width: 8, height: 8)
+                        Text("\(person.actorId == palette.me ? "You" : person.displayName) \(share(person.actorId))")
+                            .font(.footnote.weight(.semibold)).monospacedDigit()
+                            .foregroundStyle(NestColor.ink)
+                    }
                     if person.id == members.first?.id { Spacer() }
                 }
             }
         }
-        .animation(.spring(response: 0.4, dampingFraction: 0.8), value: allocations.map { $0.map(\.centimes.value) })
+        .animation(
+            reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.8),
+            value: allocations.map { $0.map(\.centimes.value) }
+        )
         .accessibilityElement(children: .combine)
         .padding(.vertical, 4)
     }

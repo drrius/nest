@@ -92,11 +92,11 @@ struct MemberColourScreen: View {
                 ZStack {
                     Circle().fill(colour.color).frame(width: 56, height: 56)
                     if selected {
-                        Image(systemName: "checkmark").font(.title3.weight(.bold)).foregroundStyle(.white)
+                        Image(systemName: "checkmark").font(.title3.weight(.bold)).foregroundStyle(colour.onColor)
                             .transition(.scale.combined(with: .opacity))
                     } else if taken {
                         Text(palette.initial(palette.partner)).font(.system(.title3, design: .rounded, weight: .bold))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(colour.onColor)
                     }
                 }
                 .overlay(Circle().stroke(NestColor.ink, lineWidth: 2.5).padding(-5).opacity(selected ? 1 : 0))
