@@ -12,12 +12,16 @@ struct IngredientReviewScreen: View {
     @State private var request = UUID()
     @FocusState private var focusedField: String?
 
+    /// The week being approved, shown in the header and the confirmation so it can't be mistaken.
+    private var weekLabel: String { "Week of \(MealWeekScreen.label(week.date))" }
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 18) {
                 VStack(alignment: .leading, spacing: 6) {
                     Text("What do you need?").font(.largeTitle.weight(.bold)).foregroundStyle(NestColor.ink)
                         .accessibilityAddTraits(.isHeader)
+                    Text(weekLabel).font(.subheadline.weight(.semibold)).foregroundStyle(NestColor.ink)
                     Text("Untick anything you already have. The rest goes on the shared list.")
                         .font(.subheadline).foregroundStyle(NestColor.ink2)
                 }
@@ -58,7 +62,7 @@ struct IngredientReviewScreen: View {
             Button("Add to groceries") { Task { await add() } }
             Button("Cancel", role: .cancel) {}
         } message: {
-            Text("Only checked ingredients will be added, with the quantities and units shown.")
+            Text("\(weekLabel). Only checked ingredients will be added, with the quantities and units shown.")
         }
         .confirmationDialog("Discard the rejected request?", isPresented: $discard) {
             Button("Discard request", role: .destructive) { Task { await recover() } }

@@ -225,6 +225,32 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertEqual(relaunched.choice, .clay, "Only confirmed colours survive a relaunch")
     }
 
+    func testAnOlderRosterLandingLateDoesNotReplaceANewerOne() async throws {
+        var calls = 0
+        var release: CheckedContinuation<Void, Never>?
+        let sync = MemberColourSync(
+            read: { self.envelope([:]) }, save: { _, _ in throw NestAPIFailure.unavailable },
+            roster: {
+                calls += 1
+                guard calls == 1 else {
+                    return [
+                        NestMember(actorId: self.member.userId, displayName: "Alex"),
+                        NestMember(actorId: self.partner, displayName: "Leah"),
+                    ]
+                }
+                await withCheckedContinuation { release = $0 }
+                return [NestMember(actorId: self.member.userId, displayName: "Alex")]
+            })
+        let colours = MemberColourModel(
+            member: member, sync: sync, defaults: try XCTUnwrap(UserDefaults(suiteName: suite)))
+        let older = Task { await colours.refresh() }
+        while release == nil { await Task.yield() }
+        await colours.refresh()
+        release?.resume()
+        await older.value
+        XCTAssertEqual(colours.palette(members: []).partnerName, "Leah")
+    }
+
     func testOfflineSavesRollBackWithoutClaimingAChange() async throws {
         let colours = try model(
             read: { self.envelope([self.member.userId: (.clay, "1")]) },

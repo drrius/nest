@@ -58,14 +58,15 @@ final class MemberColourModel: ObservableObject {
     var choice: MemberColor? { choices[member.userId] }
 
     func refresh() async {
-        if let sync, let members = try? await sync.roster(), !members.isEmpty {
+        latest += 1
+        let ticket = latest
+        guard let sync else { return }
+        if let members = try? await sync.roster(), !members.isEmpty, latest == ticket {
             roster = members
             // The cache holds confirmed colours only, never a choice that is still saving.
             if !saving { store() }
         }
-        latest += 1
-        let ticket = latest
-        guard let sync, !saving, let envelope = try? await sync.read(), latest == ticket else { return }
+        guard !saving, latest == ticket, let envelope = try? await sync.read(), latest == ticket else { return }
         notice = nil
         choices = envelope.choices
         revision = envelope.revision(of: member.userId)
