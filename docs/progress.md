@@ -21,8 +21,8 @@ and [full acceptance checklist](native-rewrite/swiftui-phone-acceptance.md).
 
 Source work runs on Linux at `/home/drrius/Work/nest`; signed Xcode builds and
 simulator journeys run on the authorized Mac. The original clients, credentials,
-local journals and settings are preserved. New source remains on
-`codex/nest-live-services`; no old-database cutover or public release occurs.
+local journals and settings are preserved. The complete implementation is consolidated on
+`main`; no old-database cutover or public release occurs.
 
 ## Current priority
 
@@ -378,7 +378,7 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 - **Scheduled workers:** authorized server secrets and separate Vault-backed tokens are configured. Push runs every minute; recurring processing runs hourly. Both initial live cycles and subsequent push invocations returned 200 with zero failures. No eligible notifications or financial cycles were processed in the initial runs.
 - **APNs:** the owner-supplied provider key is configured server-side. Apple rejected a deliberately invalid synthetic device token as expected. Real device enrollment/delivery remains unverified. No server key is bundled in the app.
 - **Phones:** build26 was archived, signed, validated and submitted once; Apple reports VALID / IN_BETA_TESTING; it is available to existing internal testers. Both-phone use, notification display and real Calendar behavior still require the owners. Leah has not appeared in Nest Auth yet and must attempt Apple sign-in before verified household linkage.
-- **Delivery:** branch `codex/nest-live-services` is pushed. Routine CI for `7df6121e` passed; the native job for the unchanged iOS source is still running. PR [#85](https://github.com/drrius/nest/pull/85) was squash-merged on 10 October as `53e5dd34`, with all four head checks passing and no unresolved conversations; the owner waived the extra review requirement after Greptile exhausted its trial. Later work remains on the feature branch. Current API deployment is `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB`, serving the existing client alias.
+- **Delivery, 10 October:** the complete implementation is consolidated into `main` after the owner requested it. PR [#85](https://github.com/drrius/nest/pull/85) was squash-merged as `53e5dd34`; its tree exactly matched the original grocery commit. The history-only integration preserves the verified source tree. Routine CI `38041245834` and native CI `38039500471` passed; no additional review is required under the owner's waiver. Current API deployment remains `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB`, serving the existing client alias. Git integration does not publish an iPhone build or apply production migrations.
 - **Fresh-start cleanup:** the synthetic-household removal script passed a full transaction rehearsal followed by rollback, preserving real household rows and trigger settings. Final deletion removed the fictional household, three synthetic Auth users and two storage objects; real data remained unchanged. Household OS migration, payroll drift and old-writer cutover do not apply to the owner's new fresh-start decision; the old project remains untouched.
 
 ## Work order
