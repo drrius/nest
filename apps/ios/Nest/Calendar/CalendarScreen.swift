@@ -27,6 +27,8 @@ struct CalendarScreen: View {
     }
 
     @State private var showingLayers = false
+    /// Set when the layers sheet asks for the picker; it opens once that sheet has finished closing.
+    @State private var pickAfterLayers = false
     @Environment(\.memberPalette) private var palette
 
     var body: some View {
@@ -47,7 +49,15 @@ struct CalendarScreen: View {
             .accessibilityLabel("Calendars and layers")
         }
         .sheet(isPresented: $picking) { calendarPicker }
-        .sheet(isPresented: $showingLayers) { layersSheet }
+        .sheet(
+            isPresented: $showingLayers,
+            onDismiss: {
+                if pickAfterLayers {
+                    pickAfterLayers = false
+                    picking = true
+                }
+            }
+        ) { layersSheet }
         .task { model.refresh(day: day) }
         .onChange(of: day) { model.refresh(day: day) }
         .onChange(of: showChores) { saveLayers() }
@@ -82,8 +92,8 @@ struct CalendarScreen: View {
             List {
                 Section {
                     Button("Choose calendars") {
+                        pickAfterLayers = true
                         showingLayers = false
-                        picking = true
                     }
                     .disabled(model.access != .allowed)
                 } footer: {
