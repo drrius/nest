@@ -11,33 +11,34 @@ struct AssistantHistoryScreen: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 20) {
-                Text("Private to you").font(.caption).foregroundStyle(QuietPalette.muted)
+            LazyVStack(alignment: .leading, spacing: 16) {
+                NestPill(text: "Only you can see this chat", systemImage: "lock.fill")
+                    .frame(maxWidth: .infinity)
                 if let transcript {
                     ForEach(transcript.messages) { message in
-                        VStack(alignment: .leading, spacing: 10) {
-                            Text(message.role == .user ? "You" : "Nest")
-                                .font(.caption.weight(.semibold)).foregroundStyle(QuietPalette.muted)
-                            ForEach(Array(message.parts.enumerated()), id: \.offset) { _, part in
-                                messagePart(part)
+                        if message.role == .user {
+                            AssistantUserBubble(text: userText(message))
+                        } else {
+                            VStack(alignment: .leading, spacing: 10) {
+                                ForEach(Array(message.parts.enumerated()), id: \.offset) { _, part in
+                                    assistantPart(part)
+                                }
                             }
+                            .frame(maxWidth: .infinity, alignment: .leading)
                         }
-                        .frame(maxWidth: .infinity, alignment: .leading).padding(16)
-                        .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 16))
                     }
                     if transcript.messages.isEmpty { Text("This conversation has no saved messages.") }
                 } else if loaded {
                     Text("This conversation is no longer available.")
                 } else if notice == nil {
-                    ProgressView("Loading conversation…")
+                    ProgressView().frame(maxWidth: .infinity, minHeight: 120)
                 }
                 if let notice {
-                    Text(notice).foregroundStyle(QuietPalette.muted)
-                    Button("Try again") { Task { await load() } }.frame(minHeight: 44)
+                    TodayForYouRetry(text: notice) { Task { await load() } }
                 }
             }.padding(20)
         }
-        .background(QuietPalette.background).navigationTitle("Conversation")
+        .nestScreen().navigationTitle("Conversation").navigationBarTitleDisplayMode(.inline)
         .toolbar {
             NavigationLink("Reply") {
                 AssistantComposerScreen(session: session, member: member, conversation: conversationId)
@@ -51,10 +52,23 @@ struct AssistantHistoryScreen: View {
         }
     }
 
+    private func userText(_ message: AssistantMessage) -> String {
+        message.parts.compactMap { $0["type"] == .string("text") ? $0["text"]?.string : nil }.joined(separator: "\n")
+    }
+
+    @ViewBuilder
+    private func assistantPart(_ part: [String: AssistantJSON]) -> some View {
+        if part["type"] == .string("text"), let text = part["text"]?.string {
+            Text(text).textSelection(.enabled).foregroundStyle(NestColor.ink).font(.body)
+        } else {
+            messagePart(part).nestCard(padding: 14, radius: 20)
+        }
+    }
+
     @ViewBuilder
     private func messagePart(_ part: [String: AssistantJSON]) -> some View {
         if part["type"] == .string("text"), let text = part["text"]?.string {
-            Text(text).textSelection(.enabled).foregroundStyle(QuietPalette.ink)
+            Text(text).textSelection(.enabled).foregroundStyle(NestColor.ink)
         } else if let approval = PendingFinancialApproval.assistantLink(part, member: member) {
             FinancialApprovalRow(session: session, member: member, row: approval)
         } else if let id = AssistantMemoryLink.approvalId(part, member: member) {
@@ -133,7 +147,7 @@ struct AssistantHistoryScreen: View {
                 QuietActionLabel("View current meal reminder choices")
             }
         } else if let notice = AssistantActionNotice.text(part) {
-            Text(notice).font(.footnote).foregroundStyle(QuietPalette.ink)
+            Text(notice).font(.footnote).foregroundStyle(NestColor.ink)
         } else if let receipt = AssistantGroceryReminderLink.receipt(part, member: member) {
             Text("Grocery reminder choices saved. This does not confirm delivery.")
             NavigationLink {
@@ -152,7 +166,7 @@ struct AssistantHistoryScreen: View {
             }
         } else if part["type"] != .string("step-start") {
             Text("This message includes an action result that this view cannot display yet.")
-                .font(.footnote).foregroundStyle(QuietPalette.muted)
+                .font(.footnote).foregroundStyle(NestColor.ink2)
         }
     }
 

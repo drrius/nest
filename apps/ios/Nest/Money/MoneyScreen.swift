@@ -10,99 +10,62 @@ struct MoneyScreen: View {
 
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: QuietTabLayout.sectionSpacing) {
-                QuietTabHeader(
-                    title: "Money", subtitle: "All square, without the guesswork.",
-                    session: session, member: member)
-                balanceCard
-                MoneyQuickActions(session: session, member: member)
-                MoneyHistorySection(session: session, member: member, previewCount: 5)
-                QuietSectionCard(title: "Bills and approvals") {
-                    NavigationLink {
-                        RecurringRulesScreen(session: session, member: member, dueOnly: true).id(session.generation)
-                    } label: {
-                        QuietActionLabel("Bills to confirm")
-                    }
-                    NavigationLink {
-                        FinancialApprovalsScreen(session: session, member: member).id(session.generation)
-                    } label: {
-                        QuietActionLabel("Your financial approvals")
-                    }
-                    NavigationLink {
-                        RecurringRulesScreen(session: session, member: member, dueOnly: false).id(session.generation)
-                    } label: {
-                        QuietActionLabel("Recurring expenses")
-                    }
+            VStack(alignment: .leading, spacing: 24) {
+                MoneyBalanceCard(
+                    session: session, member: member, balance: balance, loading: loading, notice: notice,
+                    retry: { Task { await load() } })
+                VStack(spacing: 12) {
+                    TodayBillsSection(session: session, member: member, refresh: refresh).id(member.userId)
+                    TodayApprovalsSection(model: session, member: member, refresh: refresh).id(member.userId)
                 }
-                QuietSectionCard {
-                    DisclosureGroup {
-                        SavedVariableBillLink(session: session, member: member)
-                        NavigationLink {
-                            LegacyDismissalScreen(session: session, member: member, draftId: nil).id(session.generation)
-                        } label: {
-                            QuietActionLabel("Draft dismissal")
-                        }
-                        NavigationLink {
-                            LegacyConfirmationScreen(session: session, member: member, draftId: nil).id(
-                                session.generation)
-                        } label: {
-                            QuietActionLabel("Draft confirmation")
-                        }
-                        NavigationLink {
-                            LegacyAdoptionScreen(session: session, member: member, ruleId: nil).id(session.generation)
-                        } label: {
-                            QuietActionLabel("Rule adoption")
-                        }
-                    } label: {
-                        Text("Saved changes").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                            .contentShape(Rectangle())
-                    }
-                    Button {
-                        Task { await load() }
-                    } label: {
-                        Text("Refresh balance").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                            .contentShape(Rectangle())
-                    }.disabled(loading)
-                }
+                billsCard
+                MoneyHistorySection(session: session, member: member, previewCount: 6)
             }
-            .modifier(QuietTabContentInsets())
+            .padding(.horizontal, 20)
+            .padding(.top, 6)
+            .padding(.bottom, 32)
         }
-        .buttonStyle(.plain)
-        .foregroundStyle(QuietPalette.ink)
-        .navigationTitle("")
-        .background(QuietPalette.background)
-        .modifier(QuietTabScrollEdges())
+        .nestRootChrome("Money", session: session, member: member)
         .task { await load() }
-        .refreshable { await load() }
+        .refreshable {
+            refresh = UUID()
+            await load()
+        }
     }
 
-    private var balanceCard: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            if let own = balance?.members.first(where: { $0.actorId == member.userId }) {
-                Text(
-                    own.centimes.value == 0
-                        ? "You’re settled up"
-                        : own.centimes.value > 0 ? "Your partner owes you" : "You owe your partner"
-                )
-                .font(.subheadline)
-                Text(own.centimes.absoluteCHF).font(.largeTitle.weight(.semibold)).monospacedDigit()
-                    .fixedSize(horizontal: false, vertical: true)
-                Text("Across your shared expenses").font(.subheadline).foregroundStyle(QuietPalette.muted)
-            } else if loading {
-                ProgressView("Loading balance…")
+    @State private var refresh = UUID()
+
+    private var billsCard: some View {
+        VStack(spacing: 0) {
+            NavigationLink {
+                RecurringRulesScreen(session: session, member: member, dueOnly: false).id(session.generation)
+            } label: {
+                TodayForYouRow(
+                    icon: "repeat", domain: .money, title: "Recurring expenses",
+                    detail: "Bills that add themselves, and ones you confirm")
             }
-            if let notice {
-                Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)
-                Button {
-                    Task { await load() }
-                } label: {
-                    Text("Try again").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                        .contentShape(Rectangle())
-                }.disabled(loading)
+            .buttonStyle(NestPressStyle())
+            NestRowDivider(leading: 64)
+            NavigationLink {
+                RenewalsScreen(session: session, member: member).id(session.generation)
+            } label: {
+                TodayForYouRow(
+                    icon: "calendar.badge.clock", domain: .bill, title: "Renewals",
+                    detail: "Renewal dates and when to cancel by")
             }
+            .buttonStyle(NestPressStyle())
+            .accessibilityLabel("Manage renewals")
+            NestRowDivider(leading: 64)
+            NavigationLink {
+                MoneyMoreScreen(session: session, member: member)
+            } label: {
+                TodayForYouRow(
+                    icon: "tray.full", domain: .neutral, title: "Older saved changes",
+                    detail: "Approvals and drafts from earlier versions")
+            }
+            .buttonStyle(NestPressStyle())
         }
-        .padding(QuietTabLayout.cardInset).frame(maxWidth: .infinity, alignment: .leading)
-        .background(QuietPalette.soft, in: RoundedRectangle(cornerRadius: 24))
+        .nestCard(padding: 0)
     }
 
     private func load() async {

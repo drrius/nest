@@ -124,6 +124,7 @@ final class RenewalNavigationTests: XCTestCase {
     private func openRenewals(fixture: NativeMealWeekFixture) -> XCUIApplication {
         let app = fixture.openMeals()
         app.tabBars.firstMatch.buttons["Today"].tap()
+        app.tabBars.firstMatch.buttons["Money"].tap()  // Renewals live under Money → Bills & renewals.
         let link = app.buttons["Manage renewals"]
         reveal(link, in: app)
         link.tap()

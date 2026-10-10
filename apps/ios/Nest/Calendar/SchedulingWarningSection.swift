@@ -9,15 +9,17 @@ struct SchedulingWarningSection: View {
     @State private var availability = SchedulingAvailability()
     @State private var actor: UUID?
 
+    @Environment(\.memberPalette) private var palette
+    var plain = false
+
     var body: some View {
-        Section("Calendar check") {
-            Text(message(availability.local, partner: false))
-            TimelineView(.periodic(from: .now, by: 30)) { timeline in
-                Text(message(partnerState(now: timeline.date), partner: true))
+        TimelineView(.periodic(from: .now, by: 30)) { timeline in
+            let hint = hint(now: timeline.date)
+            if plain {
+                hintRow(hint)
+            } else if hint != nil {
+                Section { hintRow(hint) }
             }
-            Text("This is a day-level check of selected calendars. You can still save this date.")
-                .font(.footnote).foregroundStyle(QuietPalette.muted)
-            Button("Refresh availability") { Task { await refresh() } }.disabled(availability.loading)
         }
         .task(id: day) { await refresh() }
         .onDisappear { availability.clear() }
@@ -33,6 +35,31 @@ struct SchedulingWarningSection: View {
         }
     }
 
+    /// One calm line: who is busy that day, or that you're both free. Nothing when nothing is known.
+    private func hint(now: Date) -> (text: String, busy: Bool)? {
+        let mine = availability.local
+        let theirs = partnerState(now: now)
+        let partner = palette.partnerName
+        switch (mine, theirs) {
+        case (.busy, .busy): return ("You both have plans that day", true)
+        case (.busy, _): return ("You have plans that day", true)
+        case (_, .busy): return ("\(partner.capitalizedFirst) has busy time that day", true)
+        case (.free, .free): return ("You’re both free that day", false)
+        case (.free, .unknown): return ("You’re free that day", false)
+        default: return nil
+        }
+    }
+
+    @ViewBuilder
+    private func hintRow(_ hint: (text: String, busy: Bool)?) -> some View {
+        if let hint {
+            Label(hint.text, systemImage: hint.busy ? "calendar.badge.exclamationmark" : "calendar.badge.checkmark")
+                .font(.footnote)
+                .foregroundStyle(hint.busy ? NestColor.warn : NestColor.good)
+                .accessibilityHint("A hint only. You can still save this date.")
+        }
+    }
+
     private var interval: BusyInterval? {
         guard let window = Calendar.current.dateInterval(of: .day, for: day) else { return nil }
         return EventKitBusyMapping.interval(start: window.start, end: window.end)
@@ -43,20 +70,6 @@ struct SchedulingWarningSection: View {
             let partner = availability.snapshots?.snapshots.first(where: { $0.actorId != actor })
         else { return .unknown }
         return partner.state(for: interval, now: now)
-    }
-
-    private func message(_ state: BusyState, partner: Bool) -> String {
-        switch state {
-        case .busy:
-            return partner
-                ? "Your partner has shared busy time on this day." : "You have calendar commitments on this day."
-        case .free:
-            return partner
-                ? "No busy time in your partner’s shared calendars for this day."
-                : "No busy time in your selected calendars for this day."
-        case .unknown:
-            return partner ? "Your partner’s availability is unknown." : "Your calendar availability is unknown."
-        }
     }
 
     private func refresh() async {
@@ -78,4 +91,8 @@ struct SchedulingWarningSection: View {
             availability.setSnapshots(value, request: request)
         } catch { availability.setSnapshots(nil, request: request) }
     }
+}
+
+extension String {
+    var capitalizedFirst: String { prefix(1).uppercased() + dropFirst() }
 }

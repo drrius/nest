@@ -1,34 +1,62 @@
 import SwiftUI
 
+enum HouseholdTab: Hashable, Sendable {
+    case today, meals, calendar, money, assistant
+}
+
+@MainActor
+final class TabRouter: ObservableObject {
+    @Published var selection: HouseholdTab = .today
+}
+
 struct HouseholdTabs: View {
     @ObservedObject var model: SessionModel
     let member: VerifiedMember
     @StateObject private var firstUse = FirstUseModel()
+    @StateObject private var colours: MemberColourModel
+    @StateObject private var router = TabRouter()
+
+    init(model: SessionModel, member: VerifiedMember) {
+        self.model = model
+        self.member = member
+        _colours = StateObject(wrappedValue: MemberColourModel(member: member))
+    }
 
     var body: some View {
-        TabView {
-            NavigationStack {
-                TodayScreen(model: model, member: member)
+        TabView(selection: $router.selection) {
+            Tab("Today", systemImage: "house", value: HouseholdTab.today) {
+                NavigationStack { TodayScreen(model: model, member: member) }
             }
-            .tabItem { Label("Today", systemImage: "house") }
-            NavigationStack {
-                MealWeekScreen(model: model)
+            Tab("Meals", systemImage: "fork.knife", value: HouseholdTab.meals) {
+                NavigationStack { MealWeekScreen(model: model) }
             }
-            .tabItem { Label("Meals", systemImage: "fork.knife") }
-            NavigationStack {
-                CalendarScreen(member: member, session: model)
+            Tab("Calendar", systemImage: "calendar", value: HouseholdTab.calendar) {
+                NavigationStack { CalendarScreen(member: member, session: model) }
             }
-            .tabItem { Label("Calendar", systemImage: "calendar") }
-            NavigationStack {
-                MoneyScreen(session: model, member: member)
+            Tab("Money", systemImage: "creditcard", value: HouseholdTab.money) {
+                NavigationStack { MoneyScreen(session: model, member: member) }
             }
-            .tabItem { Label("Money", systemImage: "creditcard") }
+            // On iOS 26 this becomes the separate glass button beside the tab bar.
+            Tab("Ask Nest", systemImage: "sparkles", value: HouseholdTab.assistant, role: .search) {
+                NavigationStack {
+                    AssistantConversationsScreen(session: model, member: member).id(model.generation)
+                }
+            }
         }
-        .tint(QuietPalette.accent)
+        .tint(NestColor.accent)
         .task { firstUse.load(session: model, member: member) }
         .sheet(isPresented: $firstUse.presented) {
             FirstUseScreen(session: model, member: member, entry: firstUse)
         }
         .onChange(of: model.generation) { firstUse.clear() }
+        .environment(\.memberPalette, palette)
+        .environment(\.switchTab, TabSwitchAction { [router] tab in router.selection = tab })
+        .environmentObject(colours)
+    }
+
+    private var palette: MemberPalette {
+        var members: [NestMember] = []
+        if case .loaded(let state) = model.today { members = state.snapshot.members }
+        return colours.palette(member: member, members: members)
     }
 }

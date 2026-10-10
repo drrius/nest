@@ -3,6 +3,9 @@ import SwiftUI
 struct RecipeContentView: View {
     let recipe: RecipeContent
     let context: String?
+    @State private var showingMethod = false
+    @State private var appeared = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     init(recipe: RecipeContent, context: String? = nil) {
         self.recipe = recipe
@@ -11,50 +14,116 @@ struct RecipeContentView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
-            Text(recipe.title)
-                .font(.largeTitle.weight(.semibold))
-                .foregroundStyle(QuietPalette.ink)
-            if let context {
-                Text(context).font(.subheadline).foregroundStyle(QuietPalette.muted)
-            }
-            if let servings = recipe.servings {
-                Text("Serves \(servings)").font(.subheadline).foregroundStyle(QuietPalette.muted)
+            hero
+            VStack(alignment: .leading, spacing: 8) {
+                if let context {
+                    Text(context.uppercased())
+                        .font(.caption.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.tint(.meal))
+                }
+                Text(recipe.title)
+                    .font(.largeTitle.weight(.bold))
+                    .foregroundStyle(NestColor.ink)
+                    .accessibilityAddTraits(.isHeader)
+                if let servings = recipe.servings {
+                    NestPill(text: "Serves \(servings)", systemImage: "person.2", tone: .neutral)
+                }
             }
             if let notes = recipe.notes, !notes.isEmpty {
-                Text(notes).foregroundStyle(QuietPalette.muted)
+                Text(notes).foregroundStyle(NestColor.ink2)
             }
-            VStack(alignment: .leading, spacing: 12) {
-                Text("Ingredients").font(.title3.weight(.semibold)).foregroundStyle(QuietPalette.ink)
-                if recipe.ingredients.isEmpty {
-                    Text("No ingredients saved.").foregroundStyle(QuietPalette.muted)
+            Picker("Show", selection: $showingMethod) {
+                Text("Ingredients").tag(false)
+                Text("Method").tag(true)
+            }
+            .pickerStyle(.segmented)
+            if showingMethod { method } else { ingredients }
+            if let link = MealLibraryText.openableURL(recipe.recipeUrl) {
+                Link(destination: link) {
+                    Label("Open recipe link", systemImage: "safari")
                 }
-                ForEach(recipe.ingredients) { ingredient in
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(ingredientLine(ingredient)).foregroundStyle(QuietPalette.ink)
+                .buttonStyle(NestButtonStyle(kind: .secondary, fullWidth: true))
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .animation(reduceMotion ? nil : .easeInOut(duration: 0.2), value: showingMethod)
+    }
+
+    private var hero: some View {
+        Text(MealEmoji.emoji(for: recipe.title))
+            .font(.system(size: 104))
+            .scaleEffect(appeared || reduceMotion ? 1 : 0.6)
+            .rotationEffect(.degrees(appeared || reduceMotion ? 0 : -12))
+            .frame(maxWidth: .infinity, minHeight: 190)
+            .background(
+                RadialGradient(
+                    colors: [NestColor.card.opacity(0.8), NestColor.tintSoft(.meal)], center: .top, startRadius: 10,
+                    endRadius: 260),
+                in: RoundedRectangle(cornerRadius: 28, style: .continuous)
+            )
+            .accessibilityHidden(true)
+            .onAppear {
+                withAnimation(.spring(response: 0.55, dampingFraction: 0.6).delay(0.05)) { appeared = true }
+            }
+    }
+
+    private var ingredients: some View {
+        VStack(spacing: 0) {
+            if recipe.ingredients.isEmpty {
+                Text("No ingredients saved.").foregroundStyle(NestColor.ink2)
+                    .frame(maxWidth: .infinity, alignment: .leading).padding(16)
+            }
+            ForEach(Array(recipe.ingredients.enumerated()), id: \.element.id) { index, ingredient in
+                if index > 0 { NestRowDivider(leading: 16) }
+                HStack(alignment: .firstTextBaseline, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(ingredient.name).foregroundStyle(NestColor.ink)
                         if let note = ingredient.note, !note.isEmpty {
-                            Text(note).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                            Text(note).font(.footnote).foregroundStyle(NestColor.ink2)
                         }
                     }
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    Spacer(minLength: 8)
+                    Text(amount(ingredient))
+                        .font(.system(.subheadline, design: .rounded)).monospacedDigit()
+                        .foregroundStyle(NestColor.ink2)
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 13)
+                .accessibilityElement(children: .combine)
             }
-            VStack(alignment: .leading, spacing: 12) {
-                Text("How to make it").font(.title3.weight(.semibold)).foregroundStyle(QuietPalette.ink)
-                if let instructions = recipe.instructions, !instructions.isEmpty {
-                    Text(instructions).foregroundStyle(QuietPalette.ink)
-                } else {
-                    Text("No cooking instructions saved.").foregroundStyle(QuietPalette.muted)
+        }
+        .nestCard(padding: 0)
+    }
+
+    private var method: some View {
+        VStack(alignment: .leading, spacing: 14) {
+            if steps.isEmpty {
+                Text("No cooking instructions saved.").foregroundStyle(NestColor.ink2)
+            }
+            ForEach(Array(steps.enumerated()), id: \.offset) { index, step in
+                HStack(alignment: .firstTextBaseline, spacing: 14) {
+                    Text("\(index + 1)")
+                        .font(.system(.subheadline, design: .rounded, weight: .bold))
+                        .foregroundStyle(NestColor.tint(.meal))
+                        .frame(width: 28, height: 28)
+                        .background(NestColor.tintSoft(.meal), in: Circle())
+                    Text(step).foregroundStyle(NestColor.ink).fixedSize(horizontal: false, vertical: true)
                 }
-            }
-            if let link = MealLibraryText.openableURL(recipe.recipeUrl) {
-                Link("Open recipe link", destination: link).frame(minHeight: 52, alignment: .leading)
+                .accessibilityElement(children: .combine)
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private func ingredientLine(_ ingredient: SavedIngredient) -> String {
-        [ingredient.quantity, ingredient.unit, ingredient.name]
+    private var steps: [String] {
+        (recipe.instructions ?? "")
+            .split(whereSeparator: \.isNewline)
+            .map { $0.trimmingCharacters(in: .whitespaces) }
+            .map { $0.replacing(/^\d+[.)]\s*/, with: "") }
+            .filter { !$0.isEmpty }
+    }
+
+    private func amount(_ ingredient: SavedIngredient) -> String {
+        [ingredient.quantity, ingredient.unit]
             .compactMap { $0?.trimmingCharacters(in: .whitespacesAndNewlines) }
             .filter { !$0.isEmpty }.joined(separator: " ")
     }

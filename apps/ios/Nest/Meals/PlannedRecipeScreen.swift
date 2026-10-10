@@ -9,7 +9,7 @@ struct PlannedRecipeScreen: View {
             VStack(alignment: .leading, spacing: 22) {
                 if model.plannedRecipeTarget == target {
                     if let notice = model.plannedRecipeNotice {
-                        Text(notice).font(.subheadline).foregroundStyle(QuietPalette.muted)
+                        Text(notice).font(.subheadline).foregroundStyle(NestColor.ink2)
                     }
                     content
                 } else {
@@ -19,7 +19,7 @@ struct PlannedRecipeScreen: View {
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(20)
         }
-        .background(QuietPalette.background)
+        .nestScreen()
         .navigationTitle("Planned meal")
         .navigationBarTitleDisplayMode(.inline)
         .task(id: target) { await model.loadPlannedRecipe(target) }
@@ -46,37 +46,16 @@ struct PlannedRecipeScreen: View {
     @ViewBuilder
     private func detail(_ value: PlannedRecipeEnvelope) -> some View {
         if let entry = value.entry {
-            NavigationLink {
-                MealPreparationScreen(model: model, target: target).id(model.generation)
-            } label: {
-                Text("Meal preparation").frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-                    .contentShape(Rectangle())
-            }
-            if case .ready(let member) = model.status {
-                NavigationLink("Reminder choices") {
-                    MealReminderScreen(session: model, member: member, entryId: entry.id).id(model.generation)
-                }.frame(minHeight: 44, alignment: .leading)
-            }
             let context = "\(MealWeekScreen.label(entry.date)) · \(entry.slot.label)"
             if let snapshot = value.snapshot {
                 RecipeContentView(recipe: snapshot.recipe.content, context: context)
-                Text(
-                    snapshot.recipe.definitionId == nil
-                        ? "Saved with this plan. This recipe has not been added to saved meals."
-                        : "Saved with this plan. Later library edits leave this recipe unchanged."
-                )
-                .font(.footnote).foregroundStyle(QuietPalette.muted)
             } else {
-                Text(entry.title).font(.largeTitle.weight(.semibold)).foregroundStyle(QuietPalette.ink)
-                Text(context).font(.subheadline).foregroundStyle(QuietPalette.muted)
-                Text("Ingredients, servings and cooking instructions were not retained for this meal.")
-                    .foregroundStyle(QuietPalette.muted)
-                if let notes = entry.notes, !notes.isEmpty {
-                    Text(notes).foregroundStyle(QuietPalette.ink)
-                }
-                if let link = MealLibraryText.openableURL(entry.recipeUrl) {
-                    Link("Open recipe link", destination: link).frame(minHeight: 52, alignment: .leading)
-                }
+                retainedOnly(entry, context: context)
+            }
+            planCard(entry)
+            if value.snapshot?.recipe.definitionId == nil, value.snapshot != nil {
+                Text("Saved with this plan only. Add it to saved meals to reuse it.")
+                    .font(.footnote).foregroundStyle(NestColor.ink3)
             }
         } else {
             Text(
@@ -84,7 +63,46 @@ struct PlannedRecipeScreen: View {
                     ? "This meal is no longer in this week."
                     : "This saved copy does not contain the meal. Refresh to check the current week."
             )
-            .foregroundStyle(QuietPalette.muted)
+            .foregroundStyle(NestColor.ink2)
         }
+    }
+
+    @ViewBuilder
+    private func retainedOnly(_ entry: PlannedMeal, context: String) -> some View {
+        Text(MealEmoji.emoji(for: entry.title)).font(.system(size: 96))
+            .frame(maxWidth: .infinity, minHeight: 170)
+            .background(NestColor.tintSoft(.meal), in: RoundedRectangle(cornerRadius: 28, style: .continuous))
+        Text(context.uppercased()).font(.caption.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.tint(.meal))
+        Text(entry.title).font(.largeTitle.weight(.bold)).foregroundStyle(NestColor.ink)
+        if let notes = entry.notes, !notes.isEmpty { Text(notes).foregroundStyle(NestColor.ink2) }
+        Text("No ingredients or method were saved for this meal.").font(.subheadline).foregroundStyle(NestColor.ink3)
+        if let link = MealLibraryText.openableURL(entry.recipeUrl) {
+            Link(destination: link) { Label("Open recipe link", systemImage: "safari") }
+                .buttonStyle(NestButtonStyle(kind: .secondary, fullWidth: true))
+        }
+    }
+
+    private func planCard(_ entry: PlannedMeal) -> some View {
+        VStack(spacing: 0) {
+            NavigationLink {
+                MealPreparationScreen(model: model, target: target).id(model.generation)
+            } label: {
+                TodayForYouRow(
+                    icon: "frying.pan", domain: .meal, title: "Meal preparation",
+                    detail: "A prep task for one of you, if it needs one")
+            }
+            .buttonStyle(NestPressStyle())
+            if case .ready(let member) = model.status {
+                NestRowDivider(leading: 64)
+                NavigationLink {
+                    MealReminderScreen(session: model, member: member, entryId: entry.id).id(model.generation)
+                } label: {
+                    TodayForYouRow(
+                        icon: "bell", domain: .bill, title: "Reminder choices", detail: "Who gets a nudge, and when")
+                }
+                .buttonStyle(NestPressStyle())
+            }
+        }
+        .nestCard(padding: 0)
     }
 }

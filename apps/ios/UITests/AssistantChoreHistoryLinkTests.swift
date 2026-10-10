@@ -55,8 +55,8 @@ final class AssistantChoreHistoryLinkTests: XCTestCase {
         reading.capture(
             reading.element("Hosted smoke tidy kitchen"), name: "Current work retained after measured refresh")
         try reading.back(from: "Scheduled chores", to: "Conversation")
-        try reading.back(from: "Conversation", to: "Private conversations")
-        let back = app.navigationBars["Private conversations"].buttons.element(boundBy: 0)
+        try reading.back(from: "Conversation", to: "Ask Nest")
+        let back = app.navigationBars["Ask Nest"].buttons.element(boundBy: 0)
         try reading.requireTarget(back, bounds: app.frame)
         back.tap()
         try restoreToday(app, reading: reading)
@@ -100,14 +100,14 @@ final class AssistantChoreHistoryLinkTests: XCTestCase {
         let back = app.navigationBars.buttons.element(boundBy: 0)
         try reading.requireTarget(back, bounds: app.frame)
         back.tap()
-        let history = app.buttons["tab-assistant-action"]
+        let history = app.tabBars.buttons["Ask Nest"]
         try reading.requireTarget(history)
         history.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 20))
     }
 
     private func restoreToday(_ app: XCUIApplication, reading: AssistantFinancialHistoryMaximumReading) throws {
-        let known = ["Scheduled chores", "Conversation", "Private conversations", "Profile"]
+        let known = ["Scheduled chores", "Conversation", "Ask Nest", "Profile"]
         for _ in 0..<4 {
             let navigation = app.navigationBars.firstMatch
             if !navigation.exists { break }

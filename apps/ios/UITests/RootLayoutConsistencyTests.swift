@@ -61,16 +61,16 @@ final class RootLayoutConsistencyTests: XCTestCase {
             capture.name = "\(tab) root layout"
             capture.lifetime = .keepAlways
             add(capture)
-            let title = app.descendants(matching: .any)["tab-header-\(tab.lowercased())"]
+            let title = app.navigationBars[tab].staticTexts[tab]
             let profile = app.buttons["tab-profile-action"]
             XCTAssertTrue(title.exists && profile.isHittable)
             frames.append((tab, title.frame, profile.frame))
             profile.tap()
             XCTAssertTrue(app.staticTexts[fixture.name].waitForExistence(timeout: 15))
             app.navigationBars.buttons.element(boundBy: 0).tap()
-            app.buttons["tab-assistant-action"].tap()
-            XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.tabBars.buttons["Ask Nest"].tap()
+            XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+            app.tabBars.firstMatch.buttons[tab].tap()
         }
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)

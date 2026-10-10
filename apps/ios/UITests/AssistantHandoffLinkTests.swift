@@ -49,8 +49,8 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let back = app.navigationBars["Conversation"].buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-        let close = app.navigationBars["Private conversations"].buttons.element(boundBy: 0)
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+        let close = app.navigationBars["Ask Nest"].buttons.element(boundBy: 0)
         requireTarget(close, in: app)
         close.tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -104,8 +104,8 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let back = app.navigationBars["Conversation"].buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-        let close = app.navigationBars["Private conversations"].buttons.element(boundBy: 0)
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+        let close = app.navigationBars["Ask Nest"].buttons.element(boundBy: 0)
         requireTarget(close, in: app)
         close.tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -151,17 +151,17 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let back = app.navigationBars.firstMatch.buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
-        let history = app.buttons["tab-assistant-action"]
+        let history = app.tabBars.buttons["Ask Nest"]
         requireTarget(history, in: app)
         history.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 20))
         return app
     }
 
     private func assertDestination(_ label: String, in app: XCUIApplication) {
         switch label {
         case "Open Calendar":
-            let header = app.staticTexts["tab-header-calendar"]
+            let header = app.navigationBars["Calendar"]
             reveal(header, in: app)
             XCTAssertTrue(header.exists && viewport(in: app).contains(header.frame))
             read("Your day, with room for everything.", in: app)

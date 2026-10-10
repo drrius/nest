@@ -16,6 +16,19 @@ The owner selected **Quiet** on 19 September 2026. Use the [interactive prototyp
 
 Preserve the four-tab structure and the emphasis on quick, obvious household actions. Native implementation should adapt controls to iOS, Dynamic Type, VoiceOver and Reduce Motion, with subtle completion haptics and purposeful motion. The HTML's simulated phone chrome and scripted demo behavior are not production implementation requirements. This approval settles the visual direction; it does not certify unimplemented flows or data behavior.
 
+## Redesign approved, 10 October 2026
+
+The owner reviewed an interactive HTML prototype of the redesign on the Mac simulator and approved it as the evolution of Quiet. The prototype stays outside the repository; the SwiftUI app on branch `claude/nest-redesign-ui` is now the reference. It keeps Quiet's warm paper, forest green and open spacing, and changes hierarchy, flows and motion:
+
+- Each tab answers one question (Today: what needs us; Meals: what we're eating; Calendar: when we're both free; Money: who owes whom). Empty sections, refresh buttons and "unknown" cards are not shown; failures stay visible.
+- **Member colours:** each member picks their own colour (Lake, Clay, Plum, Rose, Marigold, Teal, Indigo or Slate; greens stay reserved for actions and chores). Partners never share a colour. Until syncing is approved as a gated migration, the choice is stored on each iPhone and defaults agree across both phones.
+- **Meals use emoji** derived from the meal title, with no schema change.
+- **Money's balance is a see-saw** that tips towards whoever is owed and levels when settled.
+- **Ask Nest** has its own Liquid Glass button beside the tab bar on iOS 26 (a regular tab on iOS 18). Each tab keeps a native large title, a profile avatar and an optional + action.
+- Native SwiftUI controls throughout: large titles, glass toolbars, sheets with detents, context menus with visible alternatives, segmented pickers, haptics on completion, and Reduce Motion fallbacks.
+
+The two-birds mark is a vector placeholder drawn in code with each member's colour; final artwork still follows the image-generation rule above.
+
 ## Purpose
 
 Help two partners decide and remember what their household needs, coordinate meals and chores, and maintain a clear shared-expense balance. Organize decisions they have made first; provide concrete suggestions when requested.

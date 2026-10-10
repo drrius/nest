@@ -41,8 +41,8 @@ final class AssistantFinancialHistoryLinkTests: XCTestCase {
         assertRecordedEntry(in: app)
         back(in: app, from: "Entry details", to: "Review bill")
         back(in: app, from: "Review bill", to: "Conversation")
-        back(in: app, from: "Conversation", to: "Private conversations")
-        let back = app.navigationBars["Private conversations"].buttons.element(boundBy: 0)
+        back(in: app, from: "Conversation", to: "Ask Nest")
+        let back = app.navigationBars["Ask Nest"].buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -98,7 +98,7 @@ final class AssistantFinancialHistoryLinkTests: XCTestCase {
         try assertMaximumRecordedEntry(reading)
         try reading.back(from: "Entry details", to: "Review bill")
         try reading.back(from: "Review bill", to: "Conversation")
-        try reading.back(from: "Conversation", to: "Private conversations")
+        try reading.back(from: "Conversation", to: "Ask Nest")
     }
 
     private func openMaximumOwnerHistory(_ reading: AssistantFinancialHistoryMaximumReading) throws {
@@ -113,10 +113,10 @@ final class AssistantFinancialHistoryLinkTests: XCTestCase {
         let close = app.navigationBars.firstMatch.buttons.element(boundBy: 0)
         try reading.requireTarget(close, bounds: app.navigationBars.firstMatch.frame)
         close.tap()
-        let history = app.buttons["tab-assistant-action"]
+        let history = app.tabBars.buttons["Ask Nest"]
         try reading.requireTarget(history)
         history.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 20))
     }
 
     private func assertMaximumRecordedBill(_ reading: AssistantFinancialHistoryMaximumReading) throws {
@@ -171,10 +171,10 @@ final class AssistantFinancialHistoryLinkTests: XCTestCase {
         profile.tap()
         XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 20))
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        let history = app.buttons["tab-assistant-action"]
+        let history = app.tabBars.buttons["Ask Nest"]
         requireTarget(history, in: app)
         history.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 20))
         return app
     }
 

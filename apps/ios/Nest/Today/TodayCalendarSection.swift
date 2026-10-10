@@ -18,22 +18,24 @@ struct TodayCalendarSection: View {
             wrappedValue: CalendarModel(selectionStore: CalendarSelectionStore(member: member)))
     }
 
+    @Environment(\.switchTab) private var switchTab
+    @Environment(\.memberPalette) private var palette
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("On your calendar").font(.headline).foregroundStyle(QuietPalette.ink)
+        VStack(alignment: .leading, spacing: 12) {
+            Button {
+                switchTab(.calendar)
+            } label: {
+                NestSectionHeader(title: "Coming up", chevron: true)
+            }
+            .buttonStyle(.plain)
+            .accessibilityLabel("Open Calendar")
             TimelineView(.periodic(from: clockStart, by: 60)) { clock in
                 content(now: clock.date)
                     .onChange(of: clock.date) { _, now in update(now) }
             }
-            NavigationLink {
-                CalendarScreen(member: member, session: session)
-            } label: {
-                QuietActionLabel("Open Calendar").font(.subheadline.weight(.medium))
-            }
+            .nestCard(padding: 0)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(QuietTabLayout.cardInset)
-        .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
         .task(id: refresh) {
             visible = true
             update(.now)
@@ -49,30 +51,57 @@ struct TodayCalendarSection: View {
     @ViewBuilder
     private func content(now: Date) -> some View {
         if scenePhase != .active {
-            Text("Calendar details are hidden while Nest is inactive.")
-                .foregroundStyle(QuietPalette.muted)
+            message("Calendar details are hidden while Nest is inactive.", icon: "eye.slash")
         } else if calendar.access != .allowed {
-            Text("Open Calendar to review access. Your personal details stay on this device.")
-                .foregroundStyle(QuietPalette.muted)
+            message("See your day here. Your event details stay on this iPhone.", icon: "calendar.badge.plus")
         } else if calendar.calendars.isEmpty {
-            Text("No calendars are available on this device.").foregroundStyle(QuietPalette.muted)
+            message("No calendars are available on this device.", icon: "calendar")
         } else if calendar.selected.isEmpty {
-            Text("Choose which calendars to display in Calendar.").foregroundStyle(QuietPalette.muted)
+            message("Choose which calendars to show.", icon: "calendar")
         } else {
             let upcoming = calendar.events.filter { $0.end > now }
             if upcoming.isEmpty {
-                Text("No more events today in your selected calendars.").foregroundStyle(QuietPalette.muted)
+                message("Nothing else on your calendar today.", icon: "sun.max")
             }
-            ForEach(Array(upcoming.prefix(3))) { event in
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(event.title).foregroundStyle(QuietPalette.ink)
-                    Text(event.allDay ? "All day" : event.start.formatted(date: .omitted, time: .shortened))
-                        .font(.caption).foregroundStyle(QuietPalette.muted)
+            ForEach(Array(upcoming.prefix(3).enumerated()), id: \.element.id) { index, event in
+                if index > 0 { NestRowDivider(leading: 78) }
+                HStack(spacing: 12) {
+                    VStack(alignment: .leading, spacing: 1) {
+                        Text(event.allDay ? "All day" : event.start.formatted(date: .omitted, time: .shortened))
+                            .font(.system(.subheadline, design: .rounded, weight: .semibold))
+                            .foregroundStyle(NestColor.ink)
+                        if !event.allDay {
+                            Text(event.end.formatted(date: .omitted, time: .shortened))
+                                .font(.system(.caption, design: .rounded)).foregroundStyle(NestColor.ink3)
+                        }
+                    }
+                    .monospacedDigit()
+                    .frame(width: 50, alignment: .leading)
+                    RoundedRectangle(cornerRadius: 2).fill(palette.color(palette.me).color).frame(width: 4)
+                    Text(event.title).foregroundStyle(NestColor.ink).lineLimit(2)
+                    Spacer(minLength: 0)
                 }
+                .padding(.horizontal, 16)
+                .padding(.vertical, 12)
+                .accessibilityElement(children: .combine)
             }
-            Text("Only your selected calendars · details stay on this device")
-                .font(.caption).foregroundStyle(QuietPalette.muted)
         }
+    }
+
+    private func message(_ text: String, icon: String) -> some View {
+        Button {
+            switchTab(.calendar)
+        } label: {
+            HStack(spacing: 12) {
+                IconTile(systemName: icon, domain: .calendar, size: 34)
+                Text(text).font(.subheadline).foregroundStyle(NestColor.ink2).multilineTextAlignment(.leading)
+                Spacer(minLength: 4)
+                Image(systemName: "chevron.right").font(.footnote.weight(.semibold)).foregroundStyle(NestColor.ink3)
+            }
+            .padding(16)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(NestPressStyle())
     }
 
     private func update(_ now: Date) {
