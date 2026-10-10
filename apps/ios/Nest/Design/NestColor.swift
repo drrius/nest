@@ -6,7 +6,7 @@ enum NestColor {
     static let card = adaptive(0xFFFFFF, 0x1B201C)
     static let ink = adaptive(0x1C2520, 0xEDF0EA)
     static let ink2 = adaptive(0x5F675F, 0xA2AAA2)
-    static let ink3 = adaptive(0x8E948C, 0x7A827A)
+    static let ink3 = adaptive(0x6B7269, 0x8C948C)
     static let line = adaptive(0x1C2520, 0xEDF0EA, lightAlpha: 0.085, darkAlpha: 0.09)
     static let fill = adaptive(0x1C2520, 0xEDF0EA, lightAlpha: 0.05, darkAlpha: 0.07)
     static let fill2 = adaptive(0x1C2520, 0xEDF0EA, lightAlpha: 0.085, darkAlpha: 0.12)

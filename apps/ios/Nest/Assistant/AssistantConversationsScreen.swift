@@ -23,7 +23,7 @@ struct AssistantConversationsScreen: View {
                 }
                 .frame(maxWidth: .infinity)
                 Button {
-                    route = .compose(nil)
+                    startChat(nil)
                 } label: {
                     HStack {
                         Text("Ask Nest anything").foregroundStyle(NestColor.ink3)
@@ -46,8 +46,7 @@ struct AssistantConversationsScreen: View {
             .padding(.bottom, 32)
         }
         .nestScreen()
-        .navigationTitle("Ask Nest")
-        .navigationBarTitleDisplayMode(.inline)
+        .nestRootChrome("Ask Nest", session: session, member: member)
         .navigationDestination(item: $route) { route in
             switch route {
             case .compose(let prompt):
@@ -57,6 +56,12 @@ struct AssistantConversationsScreen: View {
         }
         .task { await load(more: false) }
         .refreshable { await load(more: false) }
+    }
+
+    /// Every new ask is its own conversation.
+    private func startChat(_ prompt: String?) {
+        newConversation = UUID()
+        route = .compose(prompt)
     }
 
     private var suggestions: some View {
@@ -70,7 +75,7 @@ struct AssistantConversationsScreen: View {
 
     private func suggestion(_ emoji: String, _ domain: NestDomain, _ text: String) -> some View {
         Button {
-            route = .compose(text)
+            startChat(text)
         } label: {
             HStack(spacing: 12) {
                 EmojiTile(emoji: emoji, size: 38, domain: domain)

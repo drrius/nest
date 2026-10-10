@@ -7,8 +7,21 @@ struct TodayAddSheet: View {
     @Environment(\.dismiss) private var dismiss
     @State private var appeared = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
+        // At accessibility text sizes the tiles stack in one column and the sheet scrolls from full height.
+        ScrollView {
+            content
+        }
+        .scrollBounceBehavior(.basedOnSize)
+        .background(NestColor.background.ignoresSafeArea())
+        .presentationDetents(textSize.isAccessibilitySize ? [.large] : [.height(470), .large])
+        .presentationDragIndicator(.visible)
+        .onAppear { appeared = true }
+    }
+
+    private var content: some View {
         VStack(alignment: .leading, spacing: 18) {
             HStack {
                 Text("Add to Nest").font(.title2.weight(.bold)).foregroundStyle(NestColor.ink)
@@ -23,7 +36,11 @@ struct TodayAddSheet: View {
                 .background(NestColor.fill, in: Circle())
                 .accessibilityLabel("Close")
             }
-            LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible())], spacing: 12) {
+            LazyVGrid(
+                columns: Array(
+                    repeating: GridItem(.flexible(), spacing: 12), count: textSize.isAccessibilitySize ? 1 : 2),
+                spacing: 12
+            ) {
                 tile(0, "checkmark", .house, "Chore", "Once or repeating", .newChore)
                 tile(1, "basket", .groceries, "Groceries", "Add to the list", .addGrocery)
                 tile(2, "banknote", .money, "Expense", "Split it fairly", .expense)
@@ -47,11 +64,7 @@ struct TodayAddSheet: View {
         }
         .padding(.horizontal, 20)
         .padding(.top, 22)
-        .frame(maxHeight: .infinity, alignment: .top)
-        .background(NestColor.background.ignoresSafeArea())
-        .presentationDetents([.height(470), .large])
-        .presentationDragIndicator(.visible)
-        .onAppear { appeared = true }
+        .padding(.bottom, 20)
     }
 
     private func tile(

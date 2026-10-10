@@ -6,11 +6,15 @@ struct IngredientChoiceRow: View {
     let row: MealIngredient
     let focus: FocusState<String?>.Binding
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 12) {
                 Button {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) { choice.selected.toggle() }
+                    withAnimation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.7)) {
+                        choice.selected.toggle()
+                    }
                 } label: {
                     HStack(spacing: 12) {
                         CheckCircle(isOn: choice.selected || row.groceryItemId != nil, square: true, size: 26)
