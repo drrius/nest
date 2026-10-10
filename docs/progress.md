@@ -7,12 +7,12 @@ and privacy rules remain authoritative.
 
 ## Current build
 
-**SwiftUI 0.1.0, build 25 is available for internal TestFlight testing.** Its frozen
-source is `e6e808437bb225b2f9944ac355160985ebee15d7`. Apple reports VALID,
+**SwiftUI 0.1.0, build 26 is available for internal TestFlight testing.** Its frozen
+source is `559ee9ab43f9ce8e1cf3f3226d8201f8b68e61c6`. Apple reports VALID,
 IN_BETA_TESTING and unexpired. One private submission finished; no further upload
-is needed. [Build and availability evidence](../evidence/2026-10-07/swiftui-build25/README.md).
+is needed. [Build and availability evidence](../evidence/2026-10-10/live-services/README.md).
 
-It uses the separate test Supabase/API and keeps push disabled. It includes
+It uses the permanent Nest Supabase/API and enables signed APNs push. It includes
 the earlier layout/privacy fixes, Money's missing-partner explanation and
 Profile → Diagnostics. [Debugging guide](native-rewrite/diagnostics.md).
 Installation of this version, partner tester access and full phone acceptance
@@ -22,7 +22,7 @@ and [full acceptance checklist](native-rewrite/swiftui-phone-acceptance.md).
 Source work runs on Linux at `/home/drrius/Work/nest`; signed Xcode builds and
 simulator journeys run on the authorized Mac. The original clients, credentials,
 local journals and settings are preserved. New source remains on
-`codex/swiftui-renewal-navigation`; no production cutover or public release occurs.
+`codex/nest-live-services`; no old-database cutover or public release occurs.
 
 ## Current priority
 
@@ -373,15 +373,13 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 ## Exact blockers and owner inputs
 
 - **Backend naming, 10 October:** Supabase confirms project `tkjixmujjoustdiedfmw` is named `nest`. Vercel project `prj_yN4ZNro5utMbzmyrSC3xgPZka67G` was renamed in place to `nest-api`, retaining its project ID. The installed app's `nest-test-api-drrius-projects.vercel.app` alias still points to deployment `dpl_9MBuwADAyheonsgQTzUvSRcmUcY1`; unauthenticated Money requests returned the same expected 401 JSON before and after the rename. Local Vercel link metadata was updated. No redeployment, credentials, data or app endpoint changed.
-- **Fresh-start decision, 10 October:** owner chose the existing Nest Supabase project (`tkjixmujjoustdiedfmw`) as the permanent backend, retaining real accounts and clearing only test/demo household data after identifying it. Household OS data will not be imported; its project stays untouched. Owner requested renaming `nest-test` to `Nest`. Rename is pending because the available Supabase connector exposes no project-update action and no CLI management token is configured. No data cleanup has run yet. Historical migration/cutover requirements below are superseded for this fresh-start path.
-- **Live AI:** owner reports adding $20 to Vercel AI Gateway on 10 October. The earlier `customer_verification_required` result is historical; successful live authentication/generation remains unverified. No new API key has been created.
-- **Scheduled workers:** on 10 October the owner explicitly authorized storing the test Supabase server key and a new scheduler token in Vercel's `nest-test-api` and enabling test scheduled workers. This resolves the missing user authorization behind the earlier automatic-review rejection; transfer and activation have not yet occurred. APNs provider configuration remains missing. Production worker activation is not authorized by this test-only permission.
-- **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
-- **Phones:** both partners need build 25 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
-- **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) later ended cancelled with the account-switch failure recorded above. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
-- **Delivery:** [PR 85](https://github.com/drrius/nest/pull/85) is stale at `1c00a089`. Later authorization permits local/direct-main delivery with direct verification, without extra Sol. Current CI must pass; [deployment audit](../evidence/2026-10-07/repository-delivery-boundaries/README.md) leaves Supabase production Git settings awaiting owner confirmation. Local main is fast-forwarded to verified `e1cca0a0`; remote main remains `f6264642`. No main push occurs.
-- **Production source difference:** [separate payroll source](../evidence/2026-10-07/payroll-source-identity/README.md) is found. Three function bodies match; the guard differs from Git. Preserve independent payroll objects; automatic review requires explicit approval for the one full guard-source read, with defer/approve question pending. Resolve drift before cutover. Exact parity remains false; the platform auto-RLS hook is absent from the fixture.
-- **Production:** read-only catalog/Edge identity is now recorded. Existing-data reconciliation, writer decisions and pending-intent/external-work drainage must still precede cutover. Production migration, retirement and public release remain separately gated. Fixture success is not authorization.
+- **Fresh-start decision, 10 October:** owner chose the existing Nest Supabase project (`tkjixmujjoustdiedfmw`) as the permanent backend, retaining real accounts and clearing only test/demo household data after identifying it. Household OS data will not be imported; its project stays untouched. Owner requested renaming `nest-test` to `Nest`. The owner renamed the project to `nest`. Fictional data cleanup is complete, preserving real accounts and household rows. Historical migration/cutover requirements below are superseded for this fresh-start path.
+- **Live AI:** `openai/gpt-6-luna` with high reasoning is deployed. A real Swift read/tool stream passes. Provider tuple schemas and meal JSON validation are fixed; the final clean-dinner generation check passed without saving a plan before approval. No Gemini fallback. The owner funded Gateway with $20; setup spend was about $0.07 before the latest checks.
+- **Scheduled workers:** authorized server secrets and separate Vault-backed tokens are configured. Push runs every minute; recurring processing runs hourly. Both initial live cycles and subsequent push invocations returned 200 with zero failures. No eligible notifications or financial cycles were processed in the initial runs.
+- **APNs:** the owner-supplied provider key is configured server-side. Apple rejected a deliberately invalid synthetic device token as expected. Real device enrollment/delivery remains unverified. No server key is bundled in the app.
+- **Phones:** build26 was archived, signed, validated and submitted once; Apple reports VALID / IN_BETA_TESTING; it is available to existing internal testers. Both-phone use, notification display and real Calendar behavior still require the owners. Leah has not appeared in Nest Auth yet and must attempt Apple sign-in before verified household linkage.
+- **Delivery:** branch `codex/nest-live-services` is pushed. Routine CI for `7df6121e` passed; the native job for the unchanged iOS source is still running. No main push or PR merge is claimed. Current API deployment is `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB`, serving the existing client alias.
+- **Fresh-start cleanup:** the synthetic-household removal script passed a full transaction rehearsal followed by rollback, preserving real household rows and trigger settings. Final deletion removed the fictional household, three synthetic Auth users and two storage objects; real data remained unchanged. Household OS migration, payroll drift and old-writer cutover do not apply to the owner's new fresh-start decision; the old project remains untouched.
 
 ## Work order
 

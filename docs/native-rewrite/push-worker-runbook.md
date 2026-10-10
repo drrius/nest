@@ -1,5 +1,14 @@
 # Push worker activation and acceptance
 
+Current hosting (10 October): `nest-api` exposes `/internal/push/run` as a bounded
+Vercel function. Supabase cron calls it every minute with the dedicated token
+read from Vault; recurring processing uses `/internal/recurring/run` hourly.
+Both first live runs returned 200 with zero failures and zero eligible work.
+The push endpoint accepts an empty body or exactly `{}` for pg_net compatibility.
+APNs credentials remain server-only. Build26 enables the production APNs
+entitlement; actual device enrollment and delivery still need verification.
+The standalone process instructions below remain available for local development.
+
 The worker source is available at `apps/api/push-worker.mjs`. It is disabled unless `NEST_PUSH_WORKER_ENABLED=true`. Source merges do not install a schedule, apply migrations or start this process.
 
 Use an isolated development backend first, with separately approved additive migrations. Required server-only configuration:

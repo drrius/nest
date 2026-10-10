@@ -1,0 +1,68 @@
+[
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "3F603C74-05EB-4F56-9A0E-5AAE2DB8C72B.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Calendar after unchanged picker review_0_2FA7385A-50C5-4733-9E30-2D1FAC69878D.png",
+        "timestamp": 1791622719.412
+      }
+    ],
+    "testIdentifier": "RootLayoutConsistencyTests/testCalendarCardsKeepNativePickers()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootLayoutConsistencyTests/testCalendarCardsKeepNativePickers"
+  },
+  {
+    "attachments": [
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "9608BE8E-B212-48F3-93C6-11D0CDD0C72C.json",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Four-tab native header frames_0_BC4F851C-DE31-4380-B771-54F53AEE3B3D.json",
+        "timestamp": 1791622764.218
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "8321EB57-B911-4351-BACF-7700616D5CB9.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Money root layout_0_87580A3C-6154-4AC0-A416-986DC40BC248.png",
+        "timestamp": 1791622756.078
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "D0645AA1-39E5-4BE3-98C3-2D925D51805F.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Calendar root layout_0_4561046E-F481-4D18-8A32-952B112986F3.png",
+        "timestamp": 1791622747.976
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "B6E30060-AF68-4E87-B472-B58C924D17B5.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Meals root layout_0_782A7649-435B-4B54-BF5B-0151243074FD.png",
+        "timestamp": 1791622739.775
+      },
+      {
+        "configurationName": "Test Scheme Action",
+        "deviceId": "C3ABC0D4-CFD4-4F23-8CC3-0E542014803A",
+        "deviceName": "Nest Smallest QA 20260930",
+        "exportedFileName": "F5E646A8-BDC2-44DC-8760-E20E158C2A25.png",
+        "isAssociatedWithFailure": false,
+        "suggestedHumanReadableName": "Today root layout_0_D980C2C9-5851-4CE7-B972-09364E476966.png",
+        "timestamp": 1791622731.527
+      }
+    ],
+    "testIdentifier": "RootLayoutConsistencyTests/testFourTabsShareHeaderAlignment()",
+    "testIdentifierURL": "test://com.apple.xcode/Nest/NestAccessibilityTests/RootLayoutConsistencyTests/testFourTabsShareHeaderAlignment"
+  }
+]

@@ -9,16 +9,17 @@ this fresh-start path. The old database stays untouched.
 - Supabase project `tkjixmujjoustdiedfmw` is now named `nest` and is the permanent backend.
 - Real household `c24c01d9-cc89-42db-88aa-16f9ceebbb82` is now named `Nest`.
 - Preserve real accounts. Leah must first sign in with Apple; her account was not present at the latest check. Match verified identity before adding membership.
-- Three synthetic accounts and their separate fictional household remain for the bounded live checks. Remove identified fixtures after those checks; do not delete or repurpose real identity rows.
+- The fictional household, three synthetic accounts and two storage objects were removed after live checks. The guarded transaction preserved real-household row hashes and trigger settings.
 - Verify Money from both real accounts after linking. The existing one-member household is why Money is unavailable.
 
 ## 2. Live AI
 
 - Owner added $20 to AI Gateway. The existing $1 non-renewing project budget remains in place during setup.
+- The owner reaffirmed `openai/gpt-6-luna` with high reasoning. Gemini was an inherited configuration mistake; the new runtime applies high reasoning to assistant and meal calls. No Gemini fallback is configured.
 - OIDC is enabled via `NEST_AI_AUTH=vercel-oidc`; no permanent Gateway key was created.
-- Deployment `dpl_BVdLUBioYGQnC3FgDDKVcs4wQCJs` serves the existing app alias. Its first real Swift assistant call reached the provider but failed.
+- Deployment `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB` serves the existing app alias with Luna high.
 - Root cause: Gemini rejects draft-07 tuple-array `items` in financial tool schemas. The adapter now converts only homogeneous tuples into bounded homogeneous arrays. Effect still validates exact tuple length and payloads before execution. Heterogeneous tuples fail explicitly.
-- The owner-supplied meal-planning secret is stored server-side. Live assistant and generated meal/approval verification remain pending deployment of the fix.
+- The owner-supplied meal-planning secret is stored server-side. Live Swift assistant and seven-dinner proposal checks passed; no plan was saved without approval. An earlier synthetic-library case returned `no_suitable_meals`.
 
 ## 3. Scheduling and push
 
@@ -28,14 +29,14 @@ this fresh-start path. The old database stays untouched.
 - Supabase server-key authentication passed a bounded read. TextEdit RTF formatting was removed before storing the corrected key.
 - Separate push/recurring scheduler tokens are stored in Supabase Vault and Vercel, without printing their values.
 - A serverless push entry point now reuses the existing bounded worker and closes its HTTP/2 client after each invocation. Push and recurring request traces use safe worker categories.
-- Worker enablement, first live cycles, cron installation and physical delivery remain pending. The app's current build25 still has push disabled.
+- Both workers completed a live cycle with zero failures. Supabase cron now invokes push every minute and recurring processing hourly, using Vault-held tokens. Physical delivery remains pending. Build26 enables push with production APNs entitlements.
 
 ## 4. Native acceptance and beta
 
 - Mac SSH and Xcode are available. Current source builds successfully for the simulator.
-- The initial live AI smoke correctly failed on the provider schema defect; it is not counted as a pass.
-- Run the fixed live read, generated meal/approval and a short four-tab/UI/offline pass. Do not repeat the historic QA matrix.
-- Consolidate fixes and push enablement into one new private TestFlight build. Build25 remains the latest confirmed available build.
+- The initial provider failure was fixed; actual hosted Luna assistant and meal checks now pass.
+- Two rendered simulator cases passed for four-tab header consistency and the native Calendar picker. Phone acceptance is separate.
+- Build26 was built locally, submitted once and is available to existing internal testers (Apple VALID / IN_BETA_TESTING). No cloud-build credit was used.
 - Both owners must verify ordinary use, actual calendars and notification presentation on their phones.
 
 ## 5. Diagnostics and delivery
