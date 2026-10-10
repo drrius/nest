@@ -22,15 +22,16 @@ Meals shows the household's week of planned meals by day and slot. A member can 
 
 Preconditions:
 
-- The baseline preconditions hold, and an owner-authorized member is signed in on the run's simulator.
-- The owner has named the week, slot and meal titles this run may change. AI planning also needs the owner's go-ahead, because it spends the AI Gateway budget.
+- The baseline preconditions hold, and `nest-verify signin $RUN member` has printed `SIGNED-IN`.
+- Meal titles you create start with the run id. Prefer a week other people's runs are unlikely to use, such as one several weeks ahead.
+- AI planning spends the owner's AI Gateway budget. Run it only when the change under test touches AI planning.
 
-- **Week.** Open Meals. Run `nest-verify ad $RUN press 'label="Meals"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-meals"'`. The snapshot shows `Good food. One less daily decision.`, a week title in the form `d MMM – d MMM` and day cards titled `EEEE · d MMM`.
+- **Week.** Open Meals. Run `nest-verify ad $RUN press 'role=button label="Meals"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-meals"'`. The snapshot shows `Good food. One less daily decision.`, a week title in the form `d MMM – d MMM` and day cards titled `EEEE · d MMM`.
 - **Navigate.** Run `nest-verify ad $RUN press 'label="Next week"' --settle`. The week title advances seven days. Run `press 'label="Previous week"' --settle` to return.
-- **Add meal.** Press an empty slot labeled `<yyyy-MM-dd>, <slot>: Add meal`. Run `nest-verify ad $RUN press 'label="2026-10-12, dinner: Add meal"' --settle` with the authorized date and slot. The `Add meal` sheet appears with `One-off` / `Saved meal`. Fill `What are you having?` with the authorized title, then run `press 'role=button label="Save"' --settle`. The slot's label becomes `<date>, <slot>: <title>, recipe details`.
+- **Add meal.** Press an empty slot labeled `<yyyy-MM-dd>, <slot>: Add meal`. Run `nest-verify ad $RUN press 'label="2026-10-12, dinner: Add meal"' --settle` with an empty slot from the snapshot. The `Add meal` sheet appears with `One-off` / `Saved meal`. Fill the `What are you having?` field by its ref with a run-prefixed title, run `keyboard dismiss`, then run `press 'role=button label="Save"' --settle`. The slot's label becomes `<date>, <slot>: <title>, recipe details`.
 - **Options.** Run `nest-verify ad $RUN press 'label="2026-10-12, dinner: More options for <title>"' --settle`. A `Meal options` dialog offers `Replace`, `Plan leftovers`, `Move` and `Remove`. Each opens a sheet with `Cancel` and its confirm button. `Remove` asks `Remove <title>` again.
 - **Ingredients.** Run `press 'label="Review ingredients"' --settle`. The screen offers `Save choices for later` and `Add <n> to groceries`. Confirming `Add to groceries` writes grocery items.
-- **AI plan.** Only with the owner's go-ahead. Run `press 'label="Plan the week with AI"' --settle`, then `press 'label="Suggest a plan"'`, then `wait text "Approve plan"`. Before approval the week is unchanged. Prove that with a second read of the week. `Approve and save meals` is the only step that saves.
+- **AI plan.** Only when the change touches AI planning. Run `press 'label="Plan the week with AI"' --settle`, then `press 'label="Suggest a plan"'`, then `wait text "Approve plan"`. Before approval the week is unchanged. Prove that with a second read of the week. `Approve and save meals` is the only step that saves.
 - **Persistence.** Relaunch with `nest-verify ad $RUN open ch.drrius.nest --relaunch` and return to the same week. Changed slots keep their titles.
 - **Proof.** Run `nest-verify ad $RUN snapshot > evidence/verify-nest/$RUN/meals.snapshot.txt` and `nest-verify ad $RUN screenshot meals.png`, then `nest-verify pull $RUN`.
 

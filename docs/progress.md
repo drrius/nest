@@ -371,15 +371,27 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 [routine CI 37677592966](https://github.com/drrius/nest/actions/runs/37677592966).
 
 The agent verification skill `.agents/skills/verify-nest/` was added on 10 October and is
-linked from `.claude/skills/`. It builds the working `apps/ios` tree on the Mac in a
-fresh `Nest Verify <run>` simulator that it owns, and drives the app with the pinned
+linked from `.claude/skills/`. It builds the working `apps/ios` tree on the Mac in a fresh
+`Nest Verify <run>` simulator that it owns, and drives the app with the pinned
 agent-device 0.21.15 over SSH. It then pulls evidence into the ignored
-`evidence/verify-nest/<run>/`. Three runs from `d52bec08` each passed launch, doctor and
-cleanup, and the first two also drove the sign-in recipe. Signed out, the offline
-store holds zero rows. With no Apple Account on the simulator, closing Apple's alert
-shows "Sign-in could not be verified." The Today, Meals, Calendar and Money recipes
-are written but have not been run. They need the owner to sign in with Apple,
-because the fixture accounts are deleted. All of this is simulator evidence only.
+`evidence/verify-nest/<run>/`.
+
+At the owner's request, `nest-verify accounts` created a synthetic
+`Nest verification household` (`b717d595-4a32-40de-b3df-43de73757b44`). It has two
+members: Test Alex (`f858a81c-06dd-41b6-a62d-ec4ba7696f92`) and Test Sam
+(`786d207b-2f99-44c3-b7fc-14a9cb0c1b91`). Both use confirmed `example.invalid` password
+accounts, created through the admin API. Their credentials exist only on the Mac, with
+mode 600. Both accounts pass `/v1/session`, and the real household still has one member.
+`nest-verify signin` runs the generalized `FictionalAccountSessionFixtureTests` on
+the simulator that the run names. In a signed-in run, Test Alex added and completed a
+run-prefixed chore. The hosted rows show one occurrence and one completion in the
+synthetic household, and the chore stayed done after a relaunch. Money showed
+`You're settled up`. Switching the run to Test Sam worked.
+
+Signed-out sign-in, launch, doctor and cleanup were proven in earlier runs. With no
+Apple Account on the simulator, closing Apple's alert shows "Sign-in could not be
+verified." The Meals and Calendar recipes have not been run yet. All of this is
+simulator evidence, not phone or Apple sign-in acceptance.
 
 ## Exact blockers and owner inputs
 

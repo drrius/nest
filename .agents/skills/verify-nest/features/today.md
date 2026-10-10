@@ -23,17 +23,18 @@ Today is the first tab a signed-in member sees. It shows the household's chores,
 
 Preconditions:
 
-- The baseline preconditions hold, and an owner-authorized member is signed in on the run's simulator.
-- The owner has said which chores and grocery items this run may create or change.
+- The baseline preconditions hold, and `nest-verify signin $RUN member` has printed `SIGNED-IN`.
+- Titles you create start with the run id, for example `$RUN chore`.
 - The first-use sheet is dismissed. If `wait text "Welcome,"` matches, press `label="Get started"`. That choice is saved on the device only.
 
-- **Root.** Open Today. Run `nest-verify ad $RUN press 'label="Today"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-today"'`. The snapshot shows `A good day to keep it simple.` and the section headings above.
-- **Filter.** Switch views. Run `nest-verify ad $RUN press 'label="Everyone"' --settle`. The `Everyone` control carries the selected trait, and the chore list changes or reads `Nothing due in this view.`
-- **Add chore.** Run `nest-verify ad $RUN press 'label="Add to your household"' --settle`, then `nest-verify ad $RUN press 'label="Chore"' --settle`. The `Add chore` form appears. Fill the title field from the snapshot ref with the authorized title, then run `nest-verify ad $RUN press 'role=button label="Add chore"' --settle`. A `Done` button appears. Back on Today, the chore row is labeled with the title.
-- **Complete chore.** Only for an authorized chore. Run `nest-verify ad $RUN press 'label="<chore title>"' --settle`. The row's accessibility value becomes `Done`, or `Saved · waiting to sync` when offline.
-- **Groceries.** Run `nest-verify ad $RUN press 'label="Groceries"' --settle`. The `Groceries` screen lists `To pick up` or `Nothing on the list right now.` To add an item, run `press 'label="Add grocery"'`, fill the name, then `press 'label="Add"'`. Tapping the item's row toggles it. The section changes between `To pick up` and `Picked up · <n>`.
-- **Persistence.** Relaunch with `nest-verify ad $RUN open ch.drrius.nest --relaunch`, then return to Today. The completed chore and the grocery item keep their state.
-- **Proof.** Run `nest-verify ad $RUN snapshot > evidence/verify-nest/$RUN/today.snapshot.txt` and `nest-verify ad $RUN screenshot today.png`, then `nest-verify pull $RUN`.
+- **Root.** Open Today. Run `nest-verify ad $RUN press 'role=button label="Today"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-today"'`. The snapshot shows `A good day to keep it simple.`, `Around the house`, `On the menu` and `On your calendar`.
+- **Filter.** Switch views. Run `nest-verify ad $RUN press 'role=button label="Everyone"' --settle`. The `Everyone` control carries the selected trait, and the chore list changes or reads `Nothing due in this view.`
+- **Add chore.** Run `nest-verify ad $RUN press 'label="Add to your household"' --settle`, then `nest-verify ad $RUN press 'label="Chore"' --settle`. The `Add chore` form shows a `[text-field] "What needs doing?"` row. Fill it by its ref, which was `@e9` in the proving run: `nest-verify ad $RUN fill <ref> "$RUN chore" --settle`. Run `nest-verify ad $RUN keyboard dismiss`, then `nest-verify ad $RUN press 'role=button label="Add chore"' --settle`, then `nest-verify ad $RUN wait 'role=button label="Done"' 20000`. The form shows `Chore added`, the title and `Your household chore was saved.`
+- **Back on Today.** Run `nest-verify ad $RUN press 'role=button label="Done"' --settle` and `nest-verify ad $RUN wait text "$RUN chore" 20000`. `Around the house` lists a button labeled with the title. `nest-verify ad $RUN get attrs <ref>` reports its value as `Due today`.
+- **Complete chore.** Only for a chore this run created. Press the row's ref: `nest-verify ad $RUN press <ref> --settle`. The row briefly shows `Saved. This will sync when online.` with `Retry sync`. After the sync it leaves the due list. A snapshot then shows `Nothing due in this view.` or the remaining chores, and `nest-verify data $RUN after-complete` lists no pending chore commands.
+- **Persistence.** Relaunch with `nest-verify ad $RUN open ch.drrius.nest --relaunch`, then run `wait text "Around the house" 20000`. The completed chore stays off the due list in both `Me + shared` and `Everyone`.
+- **Groceries.** Run `nest-verify ad $RUN press 'label="Groceries"' --settle`. The `Groceries` screen lists `To pick up` or `Nothing on the list right now.` To add an item, run `press 'label="Add grocery"'`, fill the name by ref, then `press 'label="Add"'`. Tapping the item's row toggles it. The section changes between `To pick up` and `Picked up · <n>`.
+- **Proof.** Run `nest-verify ad $RUN screenshot today.png` after each step above and `nest-verify ad $RUN snapshot > evidence/verify-nest/$RUN/today.snapshot.txt`, then `nest-verify pull $RUN`.
 
 ## Gotchas
 
@@ -42,3 +43,7 @@ Preconditions:
 - `Open meal plan` and `Open Calendar` push a full Meals or Calendar screen inside the Today stack. Afterwards `tab-header-meals` and `tab-header-calendar` match twice.
 - `For your review` holds the member's private financial proposals. Its approval buttons post money. Treat them as described in [Money](./money.md).
 - The date caption above `Today` follows the simulator's clock and time zone. Assert section content, not the caption.
+- Label selectors did not match rows whose titles contain the run id, even though `get attrs` reports that exact label. Act on such rows by the ref from a fresh `snapshot -i`.
+- Text fields are named by their placeholder, so `label=` stops matching once the field has text. Fill by ref.
+- The keyboard covers `Add chore`. Run `keyboard dismiss` before pressing it.
+- `Saved. This will sync when online.` appears for a moment on every completion, even when online. Wait for the row to leave the due list before treating it as offline.

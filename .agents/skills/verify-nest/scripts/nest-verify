@@ -13,12 +13,14 @@ usage: nest-verify <command> [run-id] [args]
   new                      print a fresh run id
   launch <run> [--sim UDID] build the working tree, install it, open the app (5-10 min)
   doctor <run>             read-only health check of a run
+  signin <run> <role>      sign the app in as the synthetic member or partner (2-4 min)
   ad <run> <args...>       run agent-device against the run's simulator session
   shot <run> <name>        simctl screenshot into the run's evidence/<name>.png
   data <run> [label]       list the app's data container and offline SQLite row counts
   pull <run>               copy Mac evidence to evidence/verify-nest/<run>/
   cleanup <run>            pull evidence, delete the run's simulator and Mac scratch
   list                     show verification runs and simulators on the Mac
+  accounts                 create or refresh the synthetic verification household (Mac-side)
 EOF
   exit 2
 }
@@ -53,7 +55,7 @@ EOF
 forward_env() { # local overrides that the Mac-side scripts read
   local name
   for name in NEST_VERIFY_XCCONFIG NEST_VERIFY_DEVICE_TYPE NEST_VERIFY_RUNTIME; do
-    if [[ -n ${!name:-} ]]; then printf '%s=%q\n' "$name" "${!name}"; fi
+    if [[ -n ${!name:-} ]]; then printf 'export %s=%q\n' "$name" "${!name}"; fi
   done
 }
 
@@ -158,6 +160,44 @@ check "agent-device session is open (else: nest-verify ad $RUN open $BUNDLE)" ba
 echo "src  $COMMIT $SOURCE_DIGEST"
 exit $failed
 EOF
+
+read -r -d '' SIGNIN_SCRIPT <<'EOF' || true
+load
+accounts="$HOME/Library/Application Support/nest-verify/accounts.json"
+[[ -f $accounts ]] || { echo "no verification accounts on the Mac; run: nest-verify accounts" >&2; exit 3; }
+cd "$R/src/apps/ios"
+xcode=(-project Nest.xcodeproj -scheme Nest -configuration Debug -destination "platform=iOS Simulator,id=$SIM"
+  -derivedDataPath "$R/build" -clonedSourcePackagesDirPath "$CACHE/SourcePackages")
+if ! xcodebuild "${xcode[@]}" -xcconfig "${NEST_VERIFY_XCCONFIG:-$HOME/Nest/nest-local.xcconfig}" \
+  CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build-for-testing > "$R/evidence/build-for-testing.log" 2>&1; then
+  grep -E "error:|FAILED" "$R/evidence/build-for-testing.log" | tail -20
+  exit 4
+fi
+install -m 600 "$accounts" "$R/accounts.json"
+ad close > /dev/null 2>&1 || true
+method=testInstallFictional$([[ $ROLE == member ]] && echo Member || echo Partner)Session
+log=$R/evidence/signin-$ROLE.log
+status=0
+TEST_RUNNER_NEST_TEST_FICTIONAL_ACCOUNT=$ROLE TEST_RUNNER_NEST_TEST_FICTIONAL_SIMULATOR=$SIM \
+  TEST_RUNNER_NEST_TEST_FICTIONAL_LOGIN_FILE=$R/accounts.json \
+  xcodebuild "${xcode[@]}" -parallel-testing-enabled NO -resultBundlePath "$R/signin-$ROLE-$(date +%s).xcresult" \
+  -only-testing:"NestAppTests/FictionalAccountSessionFixtureTests/$method" test-without-building > "$log" 2>&1 || status=$?
+rm -f "$R/accounts.json"
+if [[ $status != 0 ]] || grep -q "skipped" "$log" || ! grep -q "Executed 1 test, with 0 failures" "$log"; then
+  grep -E "error|failed|skipped|Executed" "$log" | tail -10
+  exit 6
+fi
+cd "$R/evidence"
+ad open "$BUNDLE" --platform ios --udid "$SIM" --relaunch
+echo "SIGNED-IN run=$RUN role=$ROLE"
+EOF
+
+cmd_signin() {
+  local run=$1 role=${2:-}
+  [[ $role == member || $role == partner ]] || { echo "signin needs a role: member or partner" >&2; exit 2; }
+  remote "$run" "ROLE=$role
+$SIGNIN_SCRIPT"
+}
 
 cmd_doctor() {
   local run=$1 output status=0
@@ -271,6 +311,12 @@ cmd_cleanup() {
   fi
 }
 
+cmd_accounts() {
+  remote accounts "node --input-type=module - <<'NEST_ACCOUNTS_JS'
+$(cat "$(dirname "$0")/accounts.mjs")
+NEST_ACCOUNTS_JS"
+}
+
 cmd_list() {
   remote list 'ls -d /private/tmp/nest-verify-* 2>/dev/null || echo "no run directories"
 xcrun simctl list devices | grep "Nest Verify" || echo "no Nest Verify simulators"
@@ -284,7 +330,8 @@ main() {
   case $command in
     new) cmd_new ;;
     list) cmd_list ;;
-    launch | doctor | ad | shot | data | pull | cleanup)
+    accounts) cmd_accounts ;;
+    launch | doctor | signin | ad | shot | data | pull | cleanup)
       require_run "${1:-}"
       "cmd_$command" "$@"
       ;;

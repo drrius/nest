@@ -18,8 +18,11 @@ Read [features/README.md](features/README.md) before driving anything. It holds 
 ## What you can reach
 
 - **Signed out (always).** A fresh owned simulator has no Apple Account and no Nest session. It reaches the sign-in screen, Apple's sign-in alert, the failure message and the empty offline store. See [features/sign-in.md](features/sign-in.md).
-- **Signed in (owner only).** The four tabs need a member who is signed in with Apple and linked to a household. The synthetic fixture accounts on the permanent `nest` backend were deleted on 10 October 2026. Do not recreate accounts, sign in on the owner's behalf, or edit the database to make a path reachable. Ask the owner to sign in on the run's simulator in Simulator.app on the Mac. If they don't, report signed-in features as unreachable and name that precondition.
-- **Backend writes.** Once a member is signed in, every save, completion, posting and approval hits the permanent backend and the real household. Money history is append-only. Take only the mutations the owner authorized for this run. Never repeat a financial action because a wait timed out.
+- **Signed in (synthetic household).** Run `$V signin "$RUN" member` to sign in as Test Alex, or `partner` for Test Sam. Afterwards the app opens on the four tabs. Both are `example.invalid` accounts, and `Nest verification household` holds only the two of them. It lives on the permanent `nest` backend, separate from the owner's real household. This is the default for every signed-in recipe, and it needs no owner input.
+- **Writes in the synthetic household.** Saving, completing, posting and approving there are allowed when the change under test needs them. These writes are permanent: Money history is append-only. Prefix every title or description you create with the run id, use CHF amounts of 1.00 or less, and never repeat a financial action because a wait timed out.
+- **Shared household.** Concurrent runs share it, so don't assume empty lists. Assert on your own run-prefixed items.
+- **AI.** AI planning and the assistant spend the owner's AI Gateway budget. Use them only when the change under test touches AI.
+- **The owner's real household is off limits.** Never sign in as the owner, use their Apple Account, or edit the database to make a path reachable.
 
 ## Launch
 
@@ -61,6 +64,24 @@ The `cfg` lines show the bundled API and Supabase origins. They must be `https:/
 - **`app process is running` fails.** The app crashed or was closed. Run `$V ad "$RUN" open ch.drrius.nest`, and keep the crash in mind as a finding.
 - **`agent-device session is open` fails.** The daemon idled out. The run asks for a 30-minute idle timeout. Run `$V ad "$RUN" open ch.drrius.nest`.
 - **`no run <id>`.** The run was never launched, or it was cleaned up already.
+
+## Sign in
+
+```sh
+$V signin "$RUN" member      # Test Alex. Use partner for Test Sam. Under a minute after launch.
+```
+
+`signin` does five things:
+
+1. It builds the test bundle for this run with `build-for-testing`.
+2. It copies the Mac's verification credentials into the run for the length of one test.
+3. It runs `NestAppTests/FictionalAccountSessionFixtureTests` on this run's simulator only. The test signs in with the account's password, checks `/v1/session` for the expected member and household, and saves the session in the app's Keychain.
+4. It deletes the copied credentials.
+5. It relaunches the app. The run is signed in when the last line reads `SIGNED-IN run=<run> role=<role>`.
+
+A fresh simulator then shows the first-use sheet. `Get started` dismisses it, and that choice is saved on the device only. Switching roles on the same simulator works: run `signin` again with the other role. The fixture refuses a simulator whose saved session belongs to anyone other than the two verification accounts.
+
+The credentials live only on the Mac, in `~/Library/Application Support/nest-verify/accounts.json` with mode 600. They are never printed, committed or put in evidence. `$V accounts` creates or refreshes the household and both users through the Supabase admin API. It reads the server key from `~/Nest/supabase-secret.txt`, writes the credentials file, and proves that each account signs in and that `/v1/session` returns it as a member. It is safe to rerun: existing users and the household are reused, and passwords change only when the credentials file is missing. It refuses to continue if the household contains anyone else. You only need it if `signin` reports that no accounts exist. Never delete the household or its users during a run. Removing them takes an owner-approved, guarded deletion like `tools/maintenance/remove-fictional-household.sql`.
 
 ## Drive
 

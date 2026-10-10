@@ -6,18 +6,21 @@ This directory is the maintained source for verifying Nest's user-facing behavio
 
 - `nest-verify launch $RUN` has printed `READY run=$RUN sim=<udid>` for a run id from `nest-verify new`.
 - `nest-verify doctor $RUN` shows no `FAIL` lines, and its `cfg` lines name the hosted Nest origins with `NEST_PUSH_ENABLED=false`.
-- A fresh owned simulator has no account. It reaches only the signed-out screen. That makes [Launch and sign-in](./sign-in.md) the only feature you can drive without help.
-- Every other feature needs a signed-in, linked household member on the run's simulator. Today that means the owner signs in with Apple on that simulator. Their real household is on the permanent `nest` backend. The synthetic fixture accounts were deleted on 10 October 2026. Do not recreate them or sign in on the owner's behalf. Without a signed-in member, report the feature as unreachable and name this precondition.
+- A fresh owned simulator has no account. It reaches only the signed-out screen, which [Launch and sign-in](./sign-in.md) covers.
+- Every other feature starts with `nest-verify signin $RUN member`, which signs in as Test Alex. Use `partner` to sign in as Test Sam. Both belong to the synthetic `Nest verification household` and nothing else. The run is signed in once the command prints `SIGNED-IN`. Dismiss the first-use sheet with `nest-verify ad $RUN press 'label="Get started"' --settle`.
+- Never sign in as the owner or touch the owner's real household.
 - Never drive a simulator that this run did not create or explicitly adopt with `--sim`.
 
 ## Driving conventions
 
 - Drive through `nest-verify ad $RUN <agent-device args>`. The wrapper pins the run's session and simulator. It runs from the run's Mac evidence directory, so relative screenshot paths land in the evidence.
 - Start each recipe with `nest-verify ad $RUN snapshot -i`. Act on the printed `@e` refs or on selectors.
-- Selectors look like `label="Meals"`, `id="tab-header-meals"` or `role=button label="Save"`. Prefer the identifiers listed in a feature file over visible text.
+- Selectors look like `id="tab-header-meals"` or `role=button label="Save"`. Prefer identifiers over visible text. Tab names also appear as headers, so select tabs with `role=button label="Today"`.
+- Text fields are named by their placeholder. Fill them by the ref from `snapshot -i`, then run `keyboard dismiss` before pressing a button the keyboard may cover.
 - Use `--settle` on `press`, `fill` and `scroll`, then read the diff. Use `wait text "..."` for results that depend on the network. Do not use fixed sleeps.
 - Many labels are shared. The Today stack can contain a second Meals or Calendar header after `Open meal plan` or `Open Calendar`. Narrow an `AMBIGUOUS_MATCH` with `role=` or with a ref from the latest snapshot.
-- Mutations hit the permanent backend once a member is signed in. Take only the mutations the owner authorized for this run. Never retry a financial action because its UI observation failed. Read the state again instead.
+- Mutations go to the synthetic household on the permanent backend, and they cannot be undone. Make only the ones the change under test needs. Prefix every title or description you create with the run id. Keep amounts at CHF 1.00 or less. Other runs share the household, so assert on your own prefixed items. Never retry a financial action because its UI observation failed. Read the state again instead.
+- AI planning and the assistant spend the owner's AI Gateway budget. Use them only when the change touches AI.
 
 ## Proof and skip reporting
 
@@ -41,10 +44,10 @@ Keep implementation details out of the map. Name only user paths, stable handles
 
 ## Features
 
-- [Launch and sign-in](./sign-in.md) covers a fresh install, the signed-out screen, Apple's sign-in sheet and the account states. It can be driven without an account.
-- [Today](./today.md) covers chores, groceries, today's meals, bills to confirm, proposals and the add menu. Needs a signed-in member.
-- [Meals](./meals.md) covers the week plan, adding, replacing, moving and removing meals, leftovers, ingredients and AI planning. Needs a signed-in member.
-- [Calendar](./calendar.md) covers calendar access, choosing calendars, day selection, household layers and busy sharing. Needs a signed-in member.
-- [Money](./money.md) covers the balance, expenses, payments, history, bills and financial approvals. Needs a signed-in member and a linked partner.
+- [Launch and sign-in](./sign-in.md) covers a fresh install, the signed-out screen, Apple's sign-in sheet, the account states, and the synthetic sign-in that every other feature starts from.
+- [Today](./today.md) covers chores, groceries, today's meals, bills to confirm, proposals and the add menu.
+- [Meals](./meals.md) covers the week plan, adding, replacing, moving and removing meals, leftovers, ingredients and AI planning.
+- [Calendar](./calendar.md) covers calendar access, choosing calendars, day selection, household layers and busy sharing.
+- [Money](./money.md) covers the balance, expenses, payments, history, bills and financial approvals.
 
 Not yet mapped: the header's Assistant (`Private conversations`, `Ask Nest`), Profile (preferences, notifications, Diagnostics, sign-out), the first-use setup sheet and Renewals. Add a file here before claiming verification of those paths.

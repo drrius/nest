@@ -21,15 +21,14 @@ Money shows the household's CHF balance between the two partners and their recen
 
 Preconditions:
 
-- The baseline preconditions hold, and an owner-authorized member is signed in on the run's simulator.
-- The household has a verified, linked partner. A one-member household shows `Money will be ready when your partner's verified account is linked` and nothing else.
-- Any expense, payment or approval decision needs the owner's explicit go-ahead for that exact amount, because history cannot be deleted. Read-only recipes need no go-ahead.
+- The baseline preconditions hold, and `nest-verify signin $RUN member` has printed `SIGNED-IN`. The synthetic household has both members, so Money is available.
+- Postings are permanent. Post only when the change under test needs it, at CHF 1.00 or less, with a run-prefixed description. Read-only recipes have no such limit.
 
-- **Balance.** Open Money. Run `nest-verify ad $RUN press 'label="Money"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-money"'`. The snapshot shows `All square, without the guesswork.` and either a balance headline with a `CHF` amount or one of the unavailable messages.
+- **Balance.** Open Money. Run `nest-verify ad $RUN press 'role=button label="Money"' --settle` and then `nest-verify ad $RUN wait 'id="tab-header-money"'`. The snapshot shows `All square, without the guesswork.`, a balance headline such as `You’re settled up` with a `CHF` amount, and `Across your shared expenses`. Wait for that last text, because the balance loads from the network.
 - **History.** Run `press 'label="View full history"' --settle`. Rows carry identifiers of the form `money-event-<uuid>`. Back out with `back --settle`.
-- **Expense, review only.** Run `press 'label="Add expense"' --settle`, fill the amount and description from the snapshot refs, then run `press 'label="Review expense"' --settle`. The review shows `expense-review-amount`, `expense-review-payer` and one `expense-share-<member uuid>` per member. Stop here, and leave through `Edit` and Back, unless the owner authorized the posting.
-- **Expense, posting.** Only with the owner's go-ahead. Run `press 'label="Save expense"' --settle`, then `wait text "Expense recorded."`. Prove it with a second read: the new row in `View full history` and the changed balance.
-- **Payment, review only.** Run `press 'label="Record a payment"' --settle`, fill the amount, then `press 'label="Review payment"' --settle`. Stop before `Record payment` unless authorized.
+- **Expense, review only.** Run `press 'label="Add expense"' --settle`, fill the amount and description by their refs, run `keyboard dismiss`, then run `press 'label="Review expense"' --settle`. The review shows `expense-review-amount`, `expense-review-payer` and one `expense-share-<member uuid>` per member. Stop here, and leave through `Edit` and Back, unless the change needs a posting.
+- **Expense, posting.** Only when the change needs a posting. Run `press 'label="Save expense"' --settle`, then `wait text "Expense recorded."`. Prove it with a second read: the new row in `View full history` and the changed balance.
+- **Payment, review only.** Run `press 'label="Record a payment"' --settle`, fill the amount, then `press 'label="Review payment"' --settle`. Stop before `Record payment` unless the change needs a payment.
 - **Approvals.** Run `press 'label="Your financial approvals"' --settle`. The screen lists `Waiting for your review` or `No pending financial approvals.` Opening an item is read-only. The decision buttons are not.
 - **Proof.** Run `nest-verify ad $RUN snapshot > evidence/verify-nest/$RUN/money.snapshot.txt` and `nest-verify ad $RUN screenshot money.png`, then `nest-verify pull $RUN`.
 
