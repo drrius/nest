@@ -7,6 +7,16 @@ and privacy rules remain authoritative.
 
 ## Current build
 
+10 October 2026: TestFlight releases move to Xcode Cloud from the `testflight`
+branch. Expo distribution tooling and vendored Expo agent skills are removed.
+Build 26 remains the latest TestFlight build until the first Xcode Cloud build
+is verified. Legacy Expo push code in the backend remains, pending a separate
+migration.
+
+The unsigned Release build passes on the Mac. The post-build check accepts signed
+build 26 and rejects the unsigned app. The first Xcode Cloud archive remains
+unverified.
+
 **SwiftUI 0.1.0, build 26 is available for internal TestFlight testing.** Its frozen
 source is `559ee9ab43f9ce8e1cf3f3226d8201f8b68e61c6`. Apple reports VALID,
 IN_BETA_TESTING and unexpired. One private submission finished; no further upload

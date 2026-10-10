@@ -1,16 +1,26 @@
 # SwiftUI packaging
 
-The client lives in `apps/ios`. Local Xcode compilation, archive and export use the owner's Mac and do not start an Expo cloud build. The earlier Expo binaries remain historical TestFlight builds; an archive is not an uploaded, processed or installable beta.
+The SwiftUI iPhone client lives in `apps/ios`. Native builds and simulator checks run on the authorized Mac. Xcode Cloud archives, signs and uploads TestFlight builds.
 
-## Identity and signing
+## Releasing to TestFlight
 
-Nest uses bundle `ch.drrius.nest`, Apple team `5ZKB6XKYFX`, and existing App Store Connect app `6814119349`. The supported EAS credentials manager can download the existing app-specific App Store profile/certificate; it requires no replacement certificate or new Apple account login when the saved credentials are sufficient. Credential JSON, `.p12`, `.mobileprovision` and `.p8` files are ignored by Git. Keep them in protected temporary storage; never upload them with API sources or print their contents.
+Nest uses bundle `ch.drrius.nest`, Apple team `5ZKB6XKYFX`, and App Store Connect app `6814119349`. Configure the Xcode Cloud workflow in App Store Connect or Xcode. The workflow configuration is not stored in this repository.
 
-Release signing is scoped to the Nest app target, with `Apple Distribution` and a caller-supplied `NEST_DISTRIBUTION_PROFILE`. Do not pass `PROVISIONING_PROFILE_SPECIFIER` as a project-wide xcodebuild override: Swift package resource bundles must not receive the app's profile. For an isolated signing keychain, preserve the owner's exact search list, add the temporary keychain for the build, then restore the list in a finally block. No login-keychain or certificate revocation is required.
+- Start on pushes to the `testflight` branch.
+- Archive for iOS with scheme `Nest` and the Release configuration.
+- Use TestFlight internal testing only, with a post-action that distributes to the internal testing group.
 
-Before archive, validate the actual profile's application/team identity, Apple Sign In, production APNs, non-debug status, expiry and certificate match. Before private TestFlight submission, verify the exported **app's** signature using `scripts/verify-native-push-signing.py --testflight`, which rejects another Apple team even if its bundle/application suffix matches Nest. Confirm the resolved version/build number against existing App Store Connect builds. A supported `eas submit:status --profile testflight --json` read on 1 October confirms SwiftUI **0.1.0/build13** is VALID and in internal beta testing. Exact source `f4a4eb4b` includes payment/recurring keyboard and ingredient-crash fixes, recipe-editor corrections, linked preparation and assistant recipe-result links. Artifact and availability evidence (historical artifact removed) records the local Mac archive, signed export, exact-source CI and single private submission. Actual tester installation and physical-phone acceptance remain unverified.
+Release uses automatic signing with Apple's cloud-managed certificate. No signing certificate, provisioning profile or App Store Connect API key is stored in the repository or GitHub. Xcode Cloud owns release build numbers. Set the next build number in App Store Connect, initially 27 after build 26. `CURRENT_PROJECT_VERSION` is not used for releases.
 
-No production Supabase configuration belongs in this test artifact. The local public xcconfig supplies only nest-test origins/publishable key. Release uses production APNs because that is Apple's distribution environment; Nest push remains explicitly disabled until provider, schedule and physical-device acceptance are verified. Replacing the old app on a phone must wait for its pending offline changes to synchronize.
+The Release configuration carries the public backend origins and Supabase publishable key, enables push, and uses production APNs. Debug takes its backend settings from a local xcconfig. `apps/ios/ci_scripts/ci_post_xcodebuild.sh` checks the signed TestFlight export after archive. It reruns `scripts/verify-native-push-signing.py --testflight` and validates the public configuration. A signing or configuration mismatch fails the build.
+
+To ship a commit, obtain the owner's release authorization and confirm that GitHub CI passed on that exact commit. Then push it to the release branch:
+
+```sh
+git push origin <commit>:testflight
+```
+
+Confirm that the new build appears in TestFlight for the internal testing group. An archive alone does not establish that a build is uploaded, processed or available to testers. Replacing the old app on a phone must wait for its pending offline changes to synchronize.
 
 ## Privacy resource
 
