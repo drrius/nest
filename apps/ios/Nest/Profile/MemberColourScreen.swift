@@ -13,17 +13,36 @@ struct MemberColourScreen: View {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 16) {
                     ForEach(MemberColor.allCases, id: \.self) { swatch($0) }
                 }
+                if let notice = colours.notice {
+                    Label(message(notice), systemImage: "exclamationmark.circle")
+                        .font(.footnote.weight(.medium)).foregroundStyle(NestColor.warn)
+                        .transition(.opacity)
+                }
                 Text(
-                    "Saved on this iPhone. \(palette.partnerName.capitalizedFirst) picks theirs in their own settings, and you can’t both have the same one."
+                    "\(palette.partnerName.capitalizedFirst) sees your colour too and picks their own, so you’re never the same."
                 )
                 .font(.footnote).foregroundStyle(NestColor.ink3)
             }
             .padding(20)
+            .animation(.easeInOut(duration: 0.25), value: colours.notice)
         }
         .nestScreen()
         .navigationTitle("Your colour")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            if colours.saving { ToolbarItem(placement: .topBarTrailing) { ProgressView() } }
+        }
         .sensoryFeedback(.selection, trigger: ticks)
+        .sensoryFeedback(.warning, trigger: colours.notice) { _, notice in notice != nil }
+        .task { await colours.refresh() }
+    }
+
+    private func message(_ notice: MemberColourModel.Notice) -> String {
+        switch notice {
+        case .taken: "\(palette.partnerName.capitalizedFirst) just took that colour. Pick another."
+        case .changedElsewhere: "Your colour changed on another device. Pick again if you like."
+        case .failed: "Couldn’t save your colour. Try again when you’re online."
+        }
     }
 
     private var mine: MemberColor { palette.color(palette.me) }
@@ -66,7 +85,7 @@ struct MemberColourScreen: View {
         let taken = colour == partnerColour
         let selected = colour == mine
         return Button {
-            withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) { colours.choose(colour) }
+            withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) { _ = colours.choose(colour) }
             ticks += 1
         } label: {
             VStack(spacing: 6) {
@@ -89,7 +108,7 @@ struct MemberColourScreen: View {
             .opacity(taken ? 0.45 : 1)
         }
         .buttonStyle(NestPressStyle())
-        .disabled(taken)
+        .disabled(taken || colours.saving)
         .accessibilityLabel(taken ? "\(colour.displayName), \(palette.partnerName)’s colour" : colour.displayName)
         .accessibilityAddTraits(selected ? .isSelected : [])
     }

@@ -38,30 +38,3 @@ extension EnvironmentValues {
         set { self[MemberPaletteKey.self] = newValue }
     }
 }
-
-/// This member's colour choice. Stored on this iPhone only until colour sync is approved for the backend.
-@MainActor
-final class MemberColourModel: ObservableObject {
-    @Published private(set) var choice: MemberColor?
-    private let defaults: UserDefaults
-    private let key: String
-
-    init(member: VerifiedMember, defaults: UserDefaults = .standard) {
-        self.defaults = defaults
-        key = "nest.member-colour.v1.\(member.householdId.uuidString).\(member.userId.uuidString)"
-        choice = defaults.string(forKey: key).flatMap(MemberColor.init(rawValue:))
-    }
-
-    func choose(_ color: MemberColor) {
-        defaults.set(color.rawValue, forKey: key)
-        choice = color
-    }
-
-    func palette(member: VerifiedMember, members: [NestMember]) -> MemberPalette {
-        var names = [member.userId: member.displayName]
-        for other in members { names[other.actorId] = other.displayName }
-        let choices = choice.map { [member.userId: $0] } ?? [:]
-        let colors = MemberColorAssignment.resolve(members: Array(names.keys), choices: choices)
-        return MemberPalette(me: member.userId, colors: colors, names: names)
-    }
-}

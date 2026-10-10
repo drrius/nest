@@ -21,7 +21,7 @@ Preserve the four-tab structure and the emphasis on quick, obvious household act
 The owner reviewed an interactive HTML prototype of the redesign on the Mac simulator and approved it as the evolution of Quiet. The prototype stays outside the repository; the SwiftUI app on branch `claude/nest-redesign-ui` is now the reference. It keeps Quiet's warm paper, forest green and open spacing, and changes hierarchy, flows and motion:
 
 - Each tab answers one question (Today: what needs us; Meals: what we're eating; Calendar: when we're both free; Money: who owes whom). Empty sections, refresh buttons and "unknown" cards are not shown; failures stay visible.
-- **Member colours:** each member picks their own colour (Lake, Clay, Plum, Rose, Marigold, Teal, Indigo or Slate; greens stay reserved for actions and chores). Partners never share a colour. Until syncing is approved as a gated migration, the choice is stored on each iPhone and defaults agree across both phones.
+- **Member colours:** each member picks their own colour (Lake, Clay, Plum, Rose, Marigold, Teal, Indigo or Slate; greens stay reserved for actions and chores). Partners never share a colour. Choices sync through the household (`20261010131500_native_member_colours.sql`); the server refuses a colour the partner already holds, and members without a saved choice get matching defaults on both phones.
 - **Meals use emoji** derived from the meal title, with no schema change.
 - **Money's balance is a see-saw** that tips towards whoever is owed and levels when settled.
 - **Ask Nest** has its own Liquid Glass button beside the tab bar on iOS 26 (a regular tab on iOS 18). Each tab keeps a native large title, a profile avatar and an optional + action.

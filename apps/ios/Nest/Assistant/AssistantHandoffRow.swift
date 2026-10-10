@@ -58,6 +58,14 @@ struct AssistantHandoffRow: View {
                         .foregroundStyle(QuietPalette.accent)
                 }
                 Text("Your account has not changed. Sign-out requires the explicit native control.")
+            case .memberColour:
+                NavigationLink {
+                    MemberColourScreen()
+                } label: {
+                    QuietActionLabel("Choose your colour")
+                        .foregroundStyle(QuietPalette.accent)
+                }
+                Text("Your colour has not changed. Pick one your partner isn’t using.")
             }
         }
         .font(.footnote)

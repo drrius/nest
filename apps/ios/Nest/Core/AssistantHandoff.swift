@@ -6,6 +6,7 @@ enum AssistantHandoff: Equatable {
     case notifications
     case setup
     case settings
+    case memberColour
     case ingredients(MealWeekStart)
 
     static func read(_ part: [String: AssistantJSON], member: VerifiedMember) -> Self? {
@@ -13,22 +14,21 @@ enum AssistantHandoff: Equatable {
             case .object(let output) = part["output"], output["ok"] == .bool(true),
             case .object(let value) = output["value"], value["kind"] == .string("device_handoff")
         else { return nil }
-        switch part["type"]?.string {
-        case "tool-openCalendarAgenda" where value["screen"] == .string("calendar"):
-            return .calendar
-        case "tool-openCalendarSettings" where value["screen"] == .string("calendar-sharing"):
-            return .calendarSharing
-        case "tool-openMealIngredientReview":
-            return ingredients(value, member: member)
-        case "tool-openNotificationSetup" where value["screen"] == .string("notification-preferences"):
-            return .notifications
-        case "tool-openSetup" where value["screen"] == .string("setup"):
-            return .setup
-        case "tool-openAccountSettings" where value["screen"] == .string("settings"):
-            return .settings
-        default: return nil
-        }
+        let type = part["type"]?.string ?? ""
+        if type == "tool-openMealIngredientReview" { return ingredients(value, member: member) }
+        guard let simple = screens[type], value["screen"] == .string(simple.screen) else { return nil }
+        return simple.handoff
     }
+
+    /// Navigation-only tools and the one screen each may open.
+    private static let screens: [String: (screen: String, handoff: Self)] = [
+        "tool-openCalendarAgenda": ("calendar", .calendar),
+        "tool-openCalendarSettings": ("calendar-sharing", .calendarSharing),
+        "tool-openNotificationSetup": ("notification-preferences", .notifications),
+        "tool-openSetup": ("setup", .setup),
+        "tool-openAccountSettings": ("settings", .settings),
+        "tool-openMemberColour": ("member-colour", .memberColour),
+    ]
 
     private static func ingredients(_ value: [String: AssistantJSON], member: VerifiedMember) -> Self? {
         guard value["screen"] == .string("meal-ingredients"),

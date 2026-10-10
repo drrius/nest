@@ -6,6 +6,7 @@ import { setupTools } from "../../apps/api/src/setup/tools.ts";
 for (const [name, screen] of [
   ["openNotificationSetup", "notification-preferences"],
   ["openAccountSettings", "settings"],
+  ["openMemberColour", "member-colour"],
 ])
   test(`${name} reauthorizes and makes no writes`, async (t) => {
     const user = "00000000-0000-4000-8000-000000000001";

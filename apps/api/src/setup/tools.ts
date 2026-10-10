@@ -34,6 +34,17 @@ export function setupTools(request: Request, config: IdentityConfig) {
           Effect.mapError(failure),
         ),
     }),
+    openMemberColour: effectTool({
+      description:
+        "Open your colour picker on this iPhone when you ask to change the colour that marks you across Nest. Navigation only: does not choose or save a colour. Each member picks only their own colour, and a colour the partner already uses is unavailable. Never change or claim to change a partner's colour.",
+      input: Schema.Struct({}),
+      execute: () =>
+        currentMember(request).pipe(
+          Effect.as({ kind: "device_handoff" as const, screen: "member-colour" as const }),
+          Effect.provide(supabaseIdentity(config)),
+          Effect.mapError(failure),
+        ),
+    }),
     readSetupStatus: effectTool({
       description:
         "Read whether your own food and notification choices and shared household cooking preferences have been saved. These are configuration facts, not overall setup completion or evidence of iPhone permissions, push delivery or meal readiness. A failed read is unknown. Do not infer consent from missing setup. Every person may skip optional setup and return later.",

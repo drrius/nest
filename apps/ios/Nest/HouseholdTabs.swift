@@ -15,11 +15,13 @@ struct HouseholdTabs: View {
     @StateObject private var firstUse = FirstUseModel()
     @StateObject private var colours: MemberColourModel
     @StateObject private var router = TabRouter()
+    @Environment(\.scenePhase) private var scenePhase
 
     init(model: SessionModel, member: VerifiedMember) {
         self.model = model
         self.member = member
-        _colours = StateObject(wrappedValue: MemberColourModel(member: member))
+        _colours = StateObject(
+            wrappedValue: MemberColourModel(member: member, sync: .session(model, member: member)))
     }
 
     var body: some View {
@@ -45,6 +47,10 @@ struct HouseholdTabs: View {
         }
         .tint(NestColor.accent)
         .task { firstUse.load(session: model, member: member) }
+        .task { await colours.refresh() }
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { Task { await colours.refresh() } }
+        }
         .sheet(isPresented: $firstUse.presented) {
             FirstUseScreen(session: model, member: member, entry: firstUse)
         }
@@ -57,6 +63,6 @@ struct HouseholdTabs: View {
     private var palette: MemberPalette {
         var members: [NestMember] = []
         if case .loaded(let state) = model.today { members = state.snapshot.members }
-        return colours.palette(member: member, members: members)
+        return colours.palette(members: members)
     }
 }
