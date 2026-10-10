@@ -26,7 +26,7 @@ struct AppleSignInView: View {
     private var content: some View {
         VStack(spacing: 0) {
             Spacer(minLength: 40)
-            NestArt(width: 250, left: MemberColor.lake.color, right: MemberColor.clay.color)
+            NestArt(width: 250)
             Text("nest")
                 .font(.system(size: 54, weight: .heavy, design: .rounded))
                 .foregroundStyle(NestColor.accent)

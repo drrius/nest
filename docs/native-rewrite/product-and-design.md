@@ -27,7 +27,7 @@ The owner reviewed an interactive HTML prototype of the redesign on the Mac simu
 - **Ask Nest** has its own Liquid Glass button beside the tab bar on iOS 26 (a regular tab on iOS 18). Each tab keeps a native large title, a profile avatar and an optional + action.
 - Native SwiftUI controls throughout: large titles, glass toolbars, sheets with detents, context menus with visible alternatives, segmented pickers, haptics on completion, and Reduce Motion fallbacks.
 
-The two-birds mark is a vector placeholder drawn in code with each member's colour; final artwork still follows the image-generation rule above.
+The two-birds mark is image-generated artwork (`NestMark` in the asset catalog), drawn in the default Lake and Clay colours.
 
 ## Purpose
 
