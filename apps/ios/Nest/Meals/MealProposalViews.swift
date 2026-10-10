@@ -100,6 +100,7 @@ struct ProposalMealRow: View {
                             .foregroundStyle(NestColor.ink2)
                             .frame(width: 40, height: 40)
                             .background(NestColor.fill, in: Circle())
+                            .frame(width: 44, height: 44)
                     }
                     .buttonStyle(NestPressStyle())
                     .accessibilityLabel("Change suggestion")

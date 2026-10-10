@@ -112,7 +112,7 @@ struct MealPastDaysRow: View {
                 }
                 VStack(alignment: .leading, spacing: 1) {
                     Text(rangeLabel).font(.subheadline.weight(.medium)).foregroundStyle(NestColor.ink)
-                    Text(meals.count == 1 ? "1 meal" : "\(meals.count) meals")
+                    Text(meals.isEmpty ? "Nothing planned" : meals.count == 1 ? "1 meal" : "\(meals.count) meals")
                         .font(.footnote).foregroundStyle(NestColor.ink2)
                 }
                 Spacer()
@@ -124,7 +124,7 @@ struct MealPastDaysRow: View {
             .nestCard(padding: 0, radius: 20)
         }
         .buttonStyle(NestPressStyle())
-        .accessibilityLabel("Earlier this week, \(meals.count) meals")
+        .accessibilityLabel("Earlier this week, \(meals.isEmpty ? "nothing planned" : "\(meals.count) meals")")
         .accessibilityHint(expanded ? "Hides earlier days" : "Shows earlier days")
     }
 

@@ -30,7 +30,7 @@ struct MealWeekDays: View {
                 }
                 .buttonStyle(NestPressStyle())
             }
-            if !past.isEmpty && !meals(on: past).isEmpty {
+            if !past.isEmpty {
                 MealPastDaysRow(days: past, meals: meals(on: past), expanded: $showPast)
                 if showPast {
                     ForEach(past, id: \.value) { day($0, today: today) }

@@ -57,8 +57,8 @@ struct IngredientChoiceRow: View {
         TextField(placeholder, text: text)
             .font(.system(.subheadline, design: .rounded))
             .multilineTextAlignment(.center)
-            .frame(width: width, height: 34)
-            .background(NestColor.fill, in: Capsule())
+            .frame(width: width, height: 44)
+            .background(Capsule().fill(NestColor.fill).frame(height: 34))
             .focused(focus, equals: "\(row.entryId):\(row.ingredientId):\(id)")
             .onSubmit { focus.wrappedValue = nil }
             .accessibilityLabel("\(label) for \(row.name), \(occurrence)")
