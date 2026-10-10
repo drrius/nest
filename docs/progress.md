@@ -370,6 +370,17 @@ case ran separately on the owned Mac simulator without skips; its CI skip does
 not replace that proof. Hosted session-schema source `72c930fa` passes
 [routine CI 37677592966](https://github.com/drrius/nest/actions/runs/37677592966).
 
+The agent verification skill `.agents/skills/verify-nest/` was added on 10 October and is
+linked from `.claude/skills/`. It builds the working `apps/ios` tree on the Mac in a
+fresh `Nest Verify <run>` simulator that it owns, and drives the app with the pinned
+agent-device 0.21.15 over SSH. It then pulls evidence into the ignored
+`evidence/verify-nest/<run>/`. Three runs from `d52bec08` each passed launch, doctor and
+cleanup, and the first two also drove the sign-in recipe. Signed out, the offline
+store holds zero rows. With no Apple Account on the simulator, closing Apple's alert
+shows "Sign-in could not be verified." The Today, Meals, Calendar and Money recipes
+are written but have not been run. They need the owner to sign in with Apple,
+because the fixture accounts are deleted. All of this is simulator evidence only.
+
 ## Exact blockers and owner inputs
 
 - **Backend naming, 10 October:** Supabase confirms project `tkjixmujjoustdiedfmw` is named `nest`. Vercel project `prj_yN4ZNro5utMbzmyrSC3xgPZka67G` was renamed in place to `nest-api`, retaining its project ID. The installed app's `nest-test-api-drrius-projects.vercel.app` alias still points to deployment `dpl_9MBuwADAyheonsgQTzUvSRcmUcY1`; unauthenticated Money requests returned the same expected 401 JSON before and after the rename. Local Vercel link metadata was updated. No redeployment, credentials, data or app endpoint changed.

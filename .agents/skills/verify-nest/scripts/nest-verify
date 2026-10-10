@@ -1,0 +1,295 @@
+#!/usr/bin/env bash
+# Build, launch and drive Nest's SwiftUI app in an iOS simulator on the authorized Mac.
+# Runs on the Linux checkout; every Mac-side step goes over SSH. See ../SKILL.md.
+set -euo pipefail
+
+MAC=${NEST_MAC:-dariussibarium@dariuss-macbook-pro.tail2aa91d.ts.net}
+ROOT=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
+AGENT_DEVICE_VERSION=0.21.15
+
+usage() {
+  cat <<'EOF'
+usage: nest-verify <command> [run-id] [args]
+  new                      print a fresh run id
+  launch <run> [--sim UDID] build the working tree, install it, open the app (5-10 min)
+  doctor <run>             read-only health check of a run
+  ad <run> <args...>       run agent-device against the run's simulator session
+  shot <run> <name>        simctl screenshot into the run's evidence/<name>.png
+  data <run> [label]       list the app's data container and offline SQLite row counts
+  pull <run>               copy Mac evidence to evidence/verify-nest/<run>/
+  cleanup <run>            pull evidence, delete the run's simulator and Mac scratch
+  list                     show verification runs and simulators on the Mac
+EOF
+  exit 2
+}
+
+# Prepended to every Mac-side script. RUN is set before this runs.
+read -r -d '' REMOTE_LIB <<'EOF' || true
+R=/private/tmp/nest-verify-$RUN
+CACHE=$HOME/Library/Caches/nest-verify
+BUNDLE=ch.drrius.nest
+export PATH="$(ls -d "$HOME"/.nvm/versions/node/v22.*/bin 2>/dev/null | tail -1):$PATH"
+export AGENT_DEVICE_STATE_DIR=$R/agent-device AGENT_DEVICE_NO_UPDATE_NOTIFIER=1
+export AGENT_DEVICE_IOS_RUNNER_DERIVED_PATH=$CACHE/agent-device-runner
+export AGENT_DEVICE_DAEMON_IDLE_TIMEOUT_MS=1800000
+AD_BIN=$CACHE/tools/node_modules/agent-device/bin/agent-device.mjs
+load() {
+  [[ -f $R/run.env ]] || { echo "no run $RUN on $(hostname)" >&2; exit 3; }
+  source "$R/run.env"
+}
+ad() {
+  if [[ $1 == help ]]; then node "$AD_BIN" "$@"; else node "$AD_BIN" "$@" --session "nest-verify-$RUN"; fi
+}
+sim_field() {
+  xcrun simctl list devices -j | python3 -c '
+import json, sys
+udid, field = sys.argv[1:]
+for devices in json.load(sys.stdin)["devices"].values():
+    for d in devices:
+        if d["udid"] == udid: print(d[field])' "$1" "$2"
+}
+EOF
+
+forward_env() { # local overrides that the Mac-side scripts read
+  local name
+  for name in NEST_VERIFY_XCCONFIG NEST_VERIFY_DEVICE_TYPE NEST_VERIFY_RUNTIME; do
+    if [[ -n ${!name:-} ]]; then printf '%s=%q\n' "$name" "${!name}"; fi
+  done
+}
+
+remote() { # remote <run> <script>; staged to a file so no step can swallow the script from stdin
+  { printf 'set -euo pipefail\nRUN=%q\n%s\n%s\n%s\n' "$1" "$(forward_env)" "$REMOTE_LIB" "$2"; } |
+    ssh -o BatchMode=yes -o ConnectTimeout=10 "$MAC" \
+      'f=$(mktemp -t nest-verify); cat > "$f"; bash "$f" < /dev/null; s=$?; rm -f "$f"; exit $s'
+}
+
+require_run() {
+  [[ ${1:-} =~ ^[A-Za-z0-9][A-Za-z0-9._-]{0,63}$ ]] || { echo "invalid run id: ${1:-<missing>}" >&2; exit 2; }
+}
+
+local_evidence() { echo "$ROOT/evidence/verify-nest/$1"; }
+
+# The exact apps/ios tree that gets built: tracked plus untracked, minus ignored files.
+source_tar() {
+  git -C "$ROOT" ls-files -z -co --exclude-standard -- apps/ios |
+    while IFS= read -r -d '' path; do if [[ -e $ROOT/$path ]]; then printf '%s\0' "$path"; fi; done |
+    tar -C "$ROOT" --null -T - --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner -cf -
+}
+
+source_digest() { source_tar | sha256sum | cut -c1-64; }
+
+cmd_new() { printf '%s-%04x\n' "$(date +%Y%m%d-%H%M%S)" "$RANDOM"; }
+
+cmd_launch() {
+  local run=$1 sim=""
+  shift
+  [[ ${1:-} == --sim ]] && sim=${2:?--sim needs a simulator UDID}
+  echo "preparing run $run on $MAC"
+  remote "$run" "SIM_ARG=$(printf %q "$sim")
+COMMIT=$(git -C "$ROOT" rev-parse HEAD) SOURCE_DIGEST=$(source_digest) AD_VERSION=$AGENT_DEVICE_VERSION
+$PREPARE_SCRIPT"
+  echo "transferring apps/ios ($(git -C "$ROOT" status --porcelain -- apps/ios | wc -l) uncommitted paths)"
+  source_tar | ssh -o BatchMode=yes "$MAC" "tar -xf - -C /private/tmp/nest-verify-$run/src"
+  echo "building (fresh DerivedData, several minutes)"
+  remote "$run" "$BUILD_SCRIPT"
+}
+
+read -r -d '' PREPARE_SCRIPT <<'EOF' || true
+[[ ! -e $R ]] || { echo "run $RUN already exists on the Mac; use a new run id" >&2; exit 3; }
+mkdir -p "$R/src" "$R/evidence" "$CACHE"
+if [[ -n $SIM_ARG ]]; then
+  state=$(sim_field "$SIM_ARG" state)
+  [[ $state == Shutdown ]] || { echo "refusing to adopt $SIM_ARG: state '${state:-missing}'" >&2; rm -rf -- "$R"; exit 3; }
+  SIM=$SIM_ARG OWNED=0
+else
+  SIM=$(xcrun simctl create "Nest Verify $RUN" "${NEST_VERIFY_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro}" \
+    "${NEST_VERIFY_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-3}")
+  OWNED=1
+fi
+printf 'SIM=%q\nOWNED=%q\nCOMMIT=%q\nSOURCE_DIGEST=%q\nSTARTED=%q\n' \
+  "$SIM" "$OWNED" "$COMMIT" "$SOURCE_DIGEST" "$(date -u +%FT%TZ)" > "$R/run.env"
+cp "$R/run.env" "$R/evidence/run.env"
+if [[ ! -f $AD_BIN ]] || [[ $(node -p "require('$CACHE/tools/node_modules/agent-device/package.json').version") != "$AD_VERSION" ]]; then
+  npm install --prefix "$CACHE/tools" --no-audit --no-fund --silent "agent-device@$AD_VERSION" > /dev/null
+fi
+echo "simulator $SIM (owned=$OWNED)"
+EOF
+
+read -r -d '' BUILD_SCRIPT <<'EOF' || true
+load
+xcrun simctl bootstatus "$SIM" -b > "$R/evidence/boot.log" 2>&1
+cd "$R/src/apps/ios"
+if ! xcodebuild -project Nest.xcodeproj -scheme Nest -configuration Debug \
+  -destination "platform=iOS Simulator,id=$SIM" -derivedDataPath "$R/build" \
+  -clonedSourcePackagesDirPath "$CACHE/SourcePackages" \
+  -xcconfig "${NEST_VERIFY_XCCONFIG:-$HOME/Nest/nest-local.xcconfig}" \
+  CODE_SIGNING_ALLOWED=YES CODE_SIGN_IDENTITY=- build > "$R/evidence/build.log" 2>&1; then
+  grep -E "error:|BUILD FAILED" "$R/evidence/build.log" | tail -20
+  exit 4
+fi
+xcrun simctl install "$SIM" "$R/build/Build/Products/Debug-iphonesimulator/Nest.app"
+cd "$R/evidence"
+if ! ad open "$BUNDLE" --platform ios --udid "$SIM" --relaunch > open.txt 2>&1; then
+  cat open.txt
+  exit 5
+fi
+cat open.txt
+echo "READY run=$RUN sim=$SIM"
+EOF
+
+read -r -d '' DOCTOR_SCRIPT <<'EOF' || true
+load
+failed=0
+check() { local what=$1; shift; if "$@" > /dev/null 2>&1; then echo "ok   $what"; else echo "FAIL $what"; failed=1; fi; }
+echo "mac  $(hostname) / $(xcodebuild -version | head -1)"
+name=$(sim_field "$SIM" name); state=$(sim_field "$SIM" state)
+echo "sim  $SIM '$name' $state owned=$OWNED"
+check "simulator is booted" test "$state" = Booted
+[[ $OWNED == 1 ]] && check "simulator belongs to this run" test "$name" = "Nest Verify $RUN"
+app=$(xcrun simctl get_app_container "$SIM" "$BUNDLE" app 2>/dev/null || true)
+check "Nest is installed" test -n "$app"
+check "installed binary is this run's build" cmp -s "$app/Nest" "$R/build/Build/Products/Debug-iphonesimulator/Nest.app/Nest"
+for key in NEST_API_URL NEST_SUPABASE_URL NEST_PUSH_ENABLED; do
+  echo "cfg  $key=$(/usr/libexec/PlistBuddy -c "Print :$key" "$app/Info.plist" 2>/dev/null || echo '<missing>')"
+done
+check "push is disabled" test "$(/usr/libexec/PlistBuddy -c 'Print :NEST_PUSH_ENABLED' "$app/Info.plist")" = false
+check "app process is running" bash -c "xcrun simctl spawn $SIM launchctl list | grep -q UIKitApplication:$BUNDLE"
+check "agent-device session is open (else: nest-verify ad $RUN open $BUNDLE)" bash -c "node '$AD_BIN' session list --json | grep -q nest-verify-$RUN"
+echo "src  $COMMIT $SOURCE_DIGEST"
+exit $failed
+EOF
+
+cmd_doctor() {
+  local run=$1 output status=0
+  output=$(remote "$run" "$DOCTOR_SCRIPT") || status=$?
+  echo "$output"
+  local built
+  built=$(sed -n 's/^src  [0-9a-f]* //p' <<< "$output")
+  if [[ -n $built ]]; then
+    [[ $built == "$(source_digest)" ]] && echo "ok   build matches the local apps/ios tree" ||
+      { echo "FAIL build is stale: apps/ios changed since launch (relaunch with a new run id)"; status=1; }
+  fi
+  return "$status"
+}
+
+cmd_ad() {
+  local run=$1
+  shift
+  [[ $# -gt 0 ]] || usage
+  local args
+  args=$(printf ' %q' "$@")
+  [[ $1 == open ]] && args+=' --platform ios --udid "$SIM"'
+  remote "$run" "load
+cd \"\$R/evidence\"
+printf '\$ agent-device%s\n' $(printf %q "$args") >> drive.log
+ad $args 2>&1 | tee -a drive.log"
+}
+
+cmd_shot() {
+  local run=$1 name=${2:?shot needs a name}
+  [[ $name =~ ^[A-Za-z0-9._-]+$ ]] || { echo "invalid screenshot name: $name" >&2; exit 2; }
+  remote "$run" "load
+mkdir -p \"\$R/evidence\"
+xcrun simctl io \"\$SIM\" screenshot \"\$R/evidence/$name.png\" > /dev/null 2>&1
+echo \"\$R/evidence/$name.png\""
+}
+
+read -r -d '' DATA_SCRIPT <<'EOF' || true
+load
+data=$(xcrun simctl get_app_container "$SIM" "$BUNDLE" data)
+out=$R/evidence/data-$LABEL.txt
+{
+  echo "# $BUNDLE data container on $SIM at $(date -u +%FT%TZ)"
+  (cd "$data" && find . -type f -print0 | xargs -0 stat -f '%z %N' | sort -k2)
+  for db in "$data"/Library/Application\ Support/*.sqlite; do
+    [[ -f $db ]] || continue
+    echo "# $(basename "$db"): tables with rows"
+    total=0
+    for table in $(sqlite3 -readonly "$db" "select name from sqlite_master where type='table' order by name"); do
+      rows=$(sqlite3 -readonly "$db" "select count(*) from \"$table\"")
+      total=$((total + rows))
+      [[ $rows == 0 ]] || echo "$table $rows"
+    done
+    echo "total rows: $total"
+  done
+} | tee "$out"
+EOF
+
+cmd_data() {
+  local run=$1 label=${2:-$(date -u +%H%M%S)}
+  [[ $label =~ ^[A-Za-z0-9._-]+$ ]] || { echo "invalid label: $label" >&2; exit 2; }
+  remote "$run" "LABEL=$label
+$DATA_SCRIPT"
+}
+
+cmd_pull() {
+  local run=$1 dest
+  dest=$(local_evidence "$run")
+  mkdir -p "$dest"
+  if ! ssh -o BatchMode=yes -o ConnectTimeout=10 "$MAC" \
+    "test -d /private/tmp/nest-verify-$run/evidence &&
+      COPYFILE_DISABLE=1 tar --no-mac-metadata --no-xattrs -C /private/tmp/nest-verify-$run/evidence -cf - ." |
+    tar -xf - -C "$dest" 2> /dev/null; then
+    rmdir "$dest" 2> /dev/null || true
+    return 1
+  fi
+  echo "evidence: $dest"
+}
+
+read -r -d '' CLEANUP_SCRIPT <<'EOF' || true
+if [[ ! -f $R/run.env ]]; then
+  [[ -d $R ]] && rm -rf -- "$R" && echo "removed partial $R"
+  echo "no simulator recorded for $RUN"
+  exit 0
+fi
+load
+if [[ -f $AD_BIN ]]; then
+  node "$AD_BIN" close --session "nest-verify-$RUN" > /dev/null 2>&1 || true
+  node "$AD_BIN" daemon stop --state-dir "$R/agent-device" --clean > /dev/null 2>&1 || true
+fi
+name=$(sim_field "$SIM" name)
+if [[ $OWNED == 1 && $name == "Nest Verify $RUN" ]]; then
+  xcrun simctl shutdown "$SIM" > /dev/null 2>&1 || true
+  xcrun simctl delete "$SIM"
+  echo "deleted simulator $SIM ($name)"
+elif [[ -n $name ]]; then
+  xcrun simctl terminate "$SIM" "$BUNDLE" > /dev/null 2>&1 || true
+  xcrun simctl shutdown "$SIM" > /dev/null 2>&1 || true
+  echo "left adopted simulator $SIM ($name) installed and shut down"
+fi
+rm -rf -- "$R"
+echo "removed $R"
+EOF
+
+cmd_cleanup() {
+  local run=$1
+  cmd_pull "$run" || echo "warning: no evidence pulled for $run" >&2
+  remote "$run" "$CLEANUP_SCRIPT"
+  if [[ -d $(local_evidence "$run") ]]; then
+    echo "kept evidence:"
+    ls -la "$(local_evidence "$run")"
+  fi
+}
+
+cmd_list() {
+  remote list 'ls -d /private/tmp/nest-verify-* 2>/dev/null || echo "no run directories"
+xcrun simctl list devices | grep "Nest Verify" || echo "no Nest Verify simulators"
+pgrep -fl "nest-verify/tools/node_modules/agent-device" | cut -c1-160 || echo "no run daemons"'
+}
+
+main() {
+  local command=${1:-}
+  [[ -n $command ]] || usage
+  shift
+  case $command in
+    new) cmd_new ;;
+    list) cmd_list ;;
+    launch | doctor | ad | shot | data | pull | cleanup)
+      require_run "${1:-}"
+      "cmd_$command" "$@"
+      ;;
+    *) usage ;;
+  esac
+}
+
+main "$@"
