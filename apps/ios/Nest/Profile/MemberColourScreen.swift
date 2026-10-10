@@ -5,12 +5,17 @@ struct MemberColourScreen: View {
     @EnvironmentObject private var colours: MemberColourModel
     @Environment(\.memberPalette) private var palette
     @State private var ticks = 0
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 22) {
                 preview
-                LazyVGrid(columns: Array(repeating: GridItem(.flexible(), spacing: 8), count: 4), spacing: 16) {
+                LazyVGrid(
+                    columns: Array(
+                        repeating: GridItem(.flexible(), spacing: 8), count: textSize.isAccessibilitySize ? 2 : 4),
+                    spacing: 16
+                ) {
                     ForEach(MemberColor.allCases, id: \.self) { swatch($0) }
                 }
                 if let notice = colours.notice {
@@ -59,16 +64,13 @@ struct MemberColourScreen: View {
                 Spacer()
                 if palette.partner != nil { MemberAvatar(id: palette.partner, size: 36) }
             }
-            HStack {
-                Text("Yoga").fontWeight(.semibold)
-                Text("· Personal").foregroundStyle(NestColor.ink2)
-                Spacer()
-            }
-            .font(.subheadline)
-            .padding(.horizontal, 12).frame(minHeight: 40)
-            .background(mine.soft, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-            .overlay(alignment: .leading) { Rectangle().fill(mine.color).frame(width: 3) }
-            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            (Text("Yoga").fontWeight(.semibold) + Text(" · Personal").foregroundStyle(NestColor.ink2))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .font(.subheadline)
+                .padding(.horizontal, 12).frame(minHeight: 40)
+                .background(mine.soft, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .overlay(alignment: .leading) { Rectangle().fill(mine.color).frame(width: 3) }
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
             HStack(spacing: 3) {
                 Capsule().fill(mine.color)
                 Capsule().fill(partnerColour?.color ?? NestColor.fill2)

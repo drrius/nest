@@ -11,6 +11,7 @@ struct MoneyHistorySection: View {
     @State private var notice: String?
     @State private var savedNotice: String?
     @State private var request = UUID()
+    @State private var loadedFor: UUID?
 
     @Environment(\.memberPalette) private var palette
     @Environment(\.dynamicTypeSize) private var textSize
@@ -48,7 +49,10 @@ struct MoneyHistorySection: View {
         }
         .frame(maxWidth: .infinity, alignment: .leading)
         .task(id: refresh) {
-            if previewCount != nil || events.isEmpty { await load(more: false) }
+            // Reload on a new refresh, but keep loaded pages when returning from an entry's details.
+            guard previewCount != nil || events.isEmpty || loadedFor != refresh else { return }
+            loadedFor = refresh
+            await load(more: false)
         }
     }
 

@@ -80,7 +80,7 @@ struct PartnerBusySection: View {
                     Text("until \(end.formatted(date: .omitted, time: .shortened))").font(.footnote)
                 }
             }
-            .foregroundStyle(color)
+            .foregroundStyle(NestColor.ink)
             .padding(.horizontal, 12)
             .frame(minHeight: 40)
             .background(HatchFill(color: color))

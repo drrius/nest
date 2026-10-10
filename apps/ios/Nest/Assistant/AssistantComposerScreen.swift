@@ -76,6 +76,7 @@ struct AssistantComposerScreen: View {
                 } label: {
                     Image(systemName: "arrow.up").font(.body.weight(.bold)).foregroundStyle(NestColor.onAccent)
                         .frame(width: 38, height: 38).background(NestColor.accent, in: Circle())
+                        .frame(width: 44, height: 44)
                 }
                 .buttonStyle(NestPressStyle())
                 .accessibilityLabel("Send")
