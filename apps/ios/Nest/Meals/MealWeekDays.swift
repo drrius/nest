@@ -36,6 +36,19 @@ struct MealWeekDays: View {
                 }
             }
             ForEach(upcoming, id: \.value) { day($0, today: today) }
+            if pastWeek || openSlots(in: upcoming) == 0 {
+                // A full or past week still reaches planning, so an unfinished approval can always be recovered.
+                NavigationLink {
+                    MealProposalScreen(model: model, week: week).id(model.generation)
+                } label: {
+                    TodayForYouRow(
+                        icon: "sparkles", domain: .meal, title: "Plan with Nest",
+                        detail: "Review a plan or start a new one"
+                    )
+                    .nestCard(padding: 0, radius: 20)
+                }
+                .buttonStyle(NestPressStyle())
+            }
         }
     }
 
