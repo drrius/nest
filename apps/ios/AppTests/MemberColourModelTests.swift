@@ -85,6 +85,31 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertEqual(expected, ["1", "2"], "The next save uses the saved revision, not the stale one")
     }
 
+    func testOverlappingRefreshesKeepTheNewestRead() async throws {
+        var reads = 0
+        var release: CheckedContinuation<Void, Never>?
+        var expected: [String] = []
+        let colours = try model(
+            read: {
+                reads += 1
+                guard reads == 1 else { return self.envelope([self.member.userId: (.rose, "2")]) }
+                await withCheckedContinuation { release = $0 }
+                return self.envelope([self.member.userId: (.plum, "1")])
+            },
+            save: { colour, revision in
+                expected.append(revision)
+                return self.receipt(colour, revision: "3")
+            })
+        let older = Task { await colours.refresh() }
+        while release == nil { await Task.yield() }
+        await colours.refresh()
+        release?.resume()
+        await older.value
+        XCTAssertEqual(colours.choice, .rose, "The read that started first and landed last is ignored")
+        await colours.choose(.slate)?.value
+        XCTAssertEqual(expected, ["2"])
+    }
+
     func testAColourYourPartnerJustTookRollsBackAndSaysSo() async throws {
         var partnerColour = MemberColor.teal
         let colours = try model(

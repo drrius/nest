@@ -26,8 +26,8 @@ final class MemberColourModel: ObservableObject {
     @Published private(set) var saving = false
     @Published var notice: Notice?
     private var revision: String
-    /// Bumped on every local choice so a refresh that started earlier can't undo it.
-    private var changes = 0
+    /// Bumped by every refresh and every local choice. Only the newest may apply, so late reads can't go backwards.
+    private var latest = 0
     private let member: VerifiedMember
     private let sync: MemberColourSync?
     private let defaults: UserDefaults
@@ -46,8 +46,9 @@ final class MemberColourModel: ObservableObject {
     var choice: MemberColor? { choices[member.userId] }
 
     func refresh() async {
-        let seen = changes
-        guard let sync, !saving, let envelope = try? await sync.read(), changes == seen else { return }
+        latest += 1
+        let ticket = latest
+        guard let sync, !saving, let envelope = try? await sync.read(), latest == ticket else { return }
         choices = envelope.choices
         revision = envelope.revision(of: member.userId)
         store()
@@ -59,7 +60,7 @@ final class MemberColourModel: ObservableObject {
         guard colour != choice, !saving else { return nil }
         let previous = choices
         choices[member.userId] = colour
-        changes += 1
+        latest += 1
         notice = nil
         guard let sync else { return nil }
         saving = true

@@ -14,6 +14,7 @@ struct MealWeekScreen: View {
     @State private var showingRemovalConfirmation = false
     @State private var showPast = false
     @State private var route: MealRoute?
+    @State private var ingredientsPending = false
 
     var body: some View {
         ScrollView {
@@ -26,15 +27,16 @@ struct MealWeekScreen: View {
                     move: { offset in Task { await moveWeek(offset) } })
                 MealWeekStatuses(model: model)
                 content
-                if let week = model.mealSelection, case .loaded(let snapshot) = model.mealStatus,
-                    !snapshot.entries.isEmpty
-                {
+                if let week = model.mealSelection, hasMeals || ingredientsPending {
                     NavigationLink {
                         IngredientReviewScreen(model: model, week: week).id(model.generation)
                     } label: {
                         TodayForYouRow(
-                            icon: "checklist", domain: .groceries, title: "Review ingredients",
-                            detail: "Untick what you have, add the rest to Groceries"
+                            icon: "checklist", domain: .groceries,
+                            title: ingredientsPending ? "Finish adding ingredients" : "Review ingredients",
+                            detail: ingredientsPending
+                                ? "Your request is saved on this iPhone"
+                                : "Untick what you have, add the rest to Groceries"
                         )
                         .nestCard(padding: 0, radius: 20)
                     }
@@ -64,11 +66,24 @@ struct MealWeekScreen: View {
             await model.refreshMealWeek()
             await model.refreshMealVisibleSlots()
         }
+        .task(id: model.mealSelection) { await checkPendingIngredients() }
+        .onAppear { Task { await checkPendingIngredients() } }
         .task {
             await model.restorePreparationRecovery()
             if model.mealSelection == nil { await model.openCurrentMealWeek() }
             await model.refreshMealVisibleSlots()
         }
+    }
+
+    private var hasMeals: Bool {
+        guard case .loaded(let snapshot) = model.mealStatus else { return false }
+        return !snapshot.entries.isEmpty
+    }
+
+    /// A saved ingredient request keeps its way back even when the week has since emptied.
+    private func checkPendingIngredients() async {
+        guard let week = model.mealSelection else { return }
+        ingredientsPending = (try? await model.ingredientReviewContext(week: week))?.saved?.pending != nil
     }
 
     @ViewBuilder

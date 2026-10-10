@@ -35,7 +35,7 @@ struct SchedulingWarningSection: View {
         }
     }
 
-    /// One calm line: who is busy that day, or that you're both free. Nothing when nothing is known.
+    /// One calm line about the selected and shared calendars only, never a claim that someone is free.
     private func hint(now: Date) -> (text: String, busy: Bool)? {
         let mine = availability.local
         let theirs = partnerState(now: now)
@@ -44,8 +44,8 @@ struct SchedulingWarningSection: View {
         case (.busy, .busy): return ("You both have plans that day", true)
         case (.busy, _): return ("You have plans that day", true)
         case (_, .busy): return ("\(partner.capitalizedFirst) has busy time that day", true)
-        case (.free, .free): return ("You’re both free that day", false)
-        case (.free, .unknown): return ("You’re free that day", false)
+        case (.free, .free): return ("No busy time on either of your shared calendars", false)
+        case (.free, .unknown): return ("No busy time on your selected calendars", false)
         default: return nil
         }
     }
@@ -56,7 +56,7 @@ struct SchedulingWarningSection: View {
             Label(hint.text, systemImage: hint.busy ? "calendar.badge.exclamationmark" : "calendar.badge.checkmark")
                 .font(.footnote)
                 .foregroundStyle(hint.busy ? NestColor.warn : NestColor.good)
-                .accessibilityHint("A hint only. You can still save this date.")
+                .accessibilityHint("Based on selected calendars only. You can still save this date.")
         }
     }
 
