@@ -111,22 +111,13 @@ struct ProposalMealRow: View {
         }
     }
 
+    /// One text so it wraps at large sizes instead of squeezing.
     private var meta: some View {
-        HStack(spacing: 4) {
-            Text(entry.slot.rawValue.capitalized)
-            Text("·")
-            if case .saved = entry.source {
-                Text("♥ Favourite").foregroundStyle(NestColor.ink2)
-            } else {
-                Text("✦ New").foregroundStyle(NestColor.accentInk)
-            }
-            if let calories = entry.estimatedCaloriesPerServing {
-                Text("· ~\(calories) kcal")
-            }
-        }
-        .font(.footnote)
-        .foregroundStyle(NestColor.ink2)
-        .lineLimit(1)
+        let source = if case .saved = entry.source { "♥ Favourite" } else { "✦ New" }
+        let calories = entry.estimatedCaloriesPerServing.map { " · ~\($0) kcal" } ?? ""
+        return Text("\(entry.slot.rawValue.capitalized) · \(source)\(calories)")
+            .font(.footnote)
+            .foregroundStyle(NestColor.ink2)
     }
 
     private var title: String {

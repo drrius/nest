@@ -127,8 +127,8 @@ struct NestPill: View {
         case .accent: (NestColor.accentInk, NestColor.accentSoft)
         case .warn: (NestColor.warn, NestColor.warnSoft)
         case .good: (NestColor.good, NestColor.goodSoft)
-        case .meal: (NestColor.tint(.meal), NestColor.tintSoft(.meal))
-        case .member(let color): (color.color, color.soft)
+        case .meal: (NestColor.ink, NestColor.tintSoft(.meal))
+        case .member(let color): (NestColor.ink, color.soft)
         }
     }
 }

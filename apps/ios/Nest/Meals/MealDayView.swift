@@ -154,6 +154,8 @@ struct MealDayLabel: View {
     let date: CivilDate
     let isToday: Bool
 
+    @Environment(\.dynamicTypeSize) private var textSize
+
     var body: some View {
         VStack(spacing: 2) {
             Text(parts.weekday.uppercased())
@@ -162,10 +164,11 @@ struct MealDayLabel: View {
             Text(parts.day)
                 .font(.system(isToday ? .body : .title3, design: .rounded, weight: .semibold))
                 .foregroundStyle(isToday ? NestColor.onAccent : NestColor.ink)
-                .frame(width: 36, height: 36)
+                .frame(minWidth: 36, minHeight: 36)
+                .padding(textSize.isAccessibilitySize ? 6 : 0)
                 .background(isToday ? NestColor.accent : Color.clear, in: Circle())
         }
-        .frame(width: 44)
+        .frame(minWidth: 44)
         .padding(.top, 6)
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(isToday ? "Today, \(parts.long)" : parts.long)
