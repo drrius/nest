@@ -12,7 +12,12 @@ struct MemberColourSync {
         Self(
             read: { try await model.readMemberColours(member: member) },
             save: { colour, expected in try await model.saveMemberColour(colour, expected: expected, member: member) },
-            roster: { try await model.readRoutineRoster(model.routineCreateContext()).members }
+            roster: {
+                // Only this member's household: after an account switch an old model must not read the new one.
+                let context = try model.routineCreateContext()
+                guard context.member == member else { throw NestAPIFailure.signedOut }
+                return try await model.readRoutineRoster(context).members
+            }
         )
     }
 }
