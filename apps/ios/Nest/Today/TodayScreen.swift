@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum TodayRoute: Hashable {
-    case newChore, groceries, addGrocery, expense, chores
+    case newChore, groceries, addGrocery, expense, chores, renewals
 }
 
 struct TodayScreen: View {
@@ -26,6 +26,17 @@ struct TodayScreen: View {
                         TodayCalendarSection(session: model, member: member, refresh: todayRefresh)
                             .id(member.userId)
                         TodayShortcuts(model: model, member: member, refresh: todayRefresh)
+                        Button {
+                            route = .renewals
+                        } label: {
+                            TodayForYouRow(
+                                icon: "calendar.badge.clock", domain: .bill, title: "Renewals",
+                                detail: "Renewal dates and when to cancel by"
+                            )
+                            .nestCard(padding: 0, radius: 20)
+                        }
+                        .buttonStyle(NestPressStyle())
+                        .accessibilityLabel("Manage renewals")
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 6)
@@ -82,6 +93,7 @@ struct TodayScreen: View {
         case .addGrocery: GroceriesScreen(model: model, initiallyAdding: true)
         case .expense: ExpenseScreen(session: model, member: member)
         case .chores: RoutinesScreen(model: model)
+        case .renewals: RenewalsScreen(session: model, member: member).id(model.generation)
         }
     }
 }

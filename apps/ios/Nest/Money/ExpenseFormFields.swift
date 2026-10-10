@@ -60,16 +60,21 @@ struct ExpenseFormFields: View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
             Text("CHF").font(.system(.title2, design: .rounded, weight: .semibold)).foregroundStyle(NestColor.ink2)
             TextField("0.00", text: $draft.amount)
-                .font(.system(size: 52, weight: .bold, design: .rounded))
+                .font(.system(size: amountSize, weight: .bold, design: .rounded))
                 .monospacedDigit()
                 .keyboardType(.decimalPad)
-                .fixedSize()
+                // Short amounts hug their width so the hero stays centred; long ones fill the row and scroll.
+                .fixedSize(horizontal: draft.amount.count <= 7, vertical: false)
                 .focused(focus, equals: .amount)
                 .accessibilityLabel("Shared amount (CHF)")
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 6)
         .onAppear { if draft.amount.isEmpty { focus.wrappedValue = .amount } }
+    }
+
+    private var amountSize: CGFloat {
+        draft.amount.count <= 7 ? 52 : draft.amount.count <= 10 ? 40 : 32
     }
 
     @ViewBuilder private var splitInputs: some View {

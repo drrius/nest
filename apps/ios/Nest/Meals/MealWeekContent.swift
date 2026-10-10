@@ -97,9 +97,11 @@ struct MealPastDaysRow: View {
     let meals: [PlannedMeal]
     @Binding var expanded: Bool
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
         Button {
-            withAnimation(.spring(response: 0.4, dampingFraction: 0.85)) { expanded.toggle() }
+            withAnimation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.85)) { expanded.toggle() }
         } label: {
             HStack(spacing: 12) {
                 HStack(spacing: -10) {

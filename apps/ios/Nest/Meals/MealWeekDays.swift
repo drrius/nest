@@ -12,6 +12,8 @@ struct MealWeekDays: View {
     let leftovers: (PlannedMeal) -> Void
     let move: (PlannedMeal) -> Void
 
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
     var body: some View {
         let today = (try? TodayMoment(now: .now))?.day
         let days = week.weekStart.days
@@ -32,7 +34,7 @@ struct MealWeekDays: View {
                 MealPastDaysRow(days: past, meals: meals(on: past), expanded: $showPast)
                 if showPast {
                     ForEach(past, id: \.value) { day($0, today: today) }
-                        .transition(.opacity.combined(with: .move(edge: .top)))
+                        .transition(reduceMotion ? .opacity : .opacity.combined(with: .move(edge: .top)))
                 }
             }
             ForEach(upcoming, id: \.value) { day($0, today: today) }

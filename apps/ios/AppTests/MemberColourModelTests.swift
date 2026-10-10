@@ -176,6 +176,23 @@ final class MemberColourModelTests: XCTestCase {
         XCTAssertNil(colours.notice, "The older failure must not report on the newer save")
     }
 
+    func testTheRosterGivesBothMembersDistinctDefaultsBeforeToday() async throws {
+        let sync = MemberColourSync(
+            read: { self.envelope([:]) }, save: { _, _ in throw NestAPIFailure.unavailable },
+            roster: {
+                [
+                    NestMember(actorId: self.member.userId, displayName: "Alex"),
+                    NestMember(actorId: self.partner, displayName: "Leah"),
+                ]
+            })
+        let colours = MemberColourModel(
+            member: member, sync: sync, defaults: try XCTUnwrap(UserDefaults(suiteName: suite)))
+        await colours.refresh()
+        let palette = colours.palette(members: [])
+        XCTAssertEqual(palette.partnerName, "Leah")
+        XCTAssertNotEqual(palette.color(partner), palette.color(member.userId))
+    }
+
     func testOfflineSavesRollBackWithoutClaimingAChange() async throws {
         let colours = try model(
             read: { self.envelope([self.member.userId: (.clay, "1")]) },

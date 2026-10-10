@@ -197,6 +197,11 @@ struct GroceriesScreen: View {
                     .disabled(changeSaved)
             }
         }
+        .swipeActions(edge: .leading) {
+            if local.state == .open {
+                Button("Reminder", systemImage: "bell") { remindingItem = local.item }.tint(NestColor.accent)
+            }
+        }
         .contextMenu {
             if local.state == .open {
                 Button("Edit", systemImage: "pencil") { editingItem = local.item }

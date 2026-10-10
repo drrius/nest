@@ -4,12 +4,15 @@ import Foundation
 struct MemberColourSync {
     let read: @MainActor () async throws -> MemberColoursEnvelope
     let save: @MainActor (MemberColor, String) async throws -> MemberColourReceipt
+    /// The household's members, so both default colours and names resolve without waiting for Today.
+    var roster: @MainActor () async throws -> [NestMember] = { [] }
 
     @MainActor
     static func session(_ model: SessionModel, member: VerifiedMember) -> Self {
         Self(
             read: { try await model.readMemberColours(member: member) },
-            save: { colour, expected in try await model.saveMemberColour(colour, expected: expected, member: member) }
+            save: { colour, expected in try await model.saveMemberColour(colour, expected: expected, member: member) },
+            roster: { try await model.readRoutineRoster(model.routineCreateContext()).members }
         )
     }
 }
@@ -23,6 +26,7 @@ final class MemberColourModel: ObservableObject {
     }
 
     @Published private(set) var choices: [UUID: MemberColor]
+    @Published private(set) var roster: [NestMember]
     @Published private(set) var saving = false
     @Published var notice: Notice?
     private var revision: String
@@ -43,11 +47,16 @@ final class MemberColourModel: ObservableObject {
         let cached = defaults.data(forKey: key).flatMap { try? JSONDecoder().decode(Cache.self, from: $0) }
         choices = cached?.choices ?? [:]
         revision = cached?.revision ?? "0"
+        roster = cached?.roster ?? []
     }
 
     var choice: MemberColor? { choices[member.userId] }
 
     func refresh() async {
+        if let sync, let members = try? await sync.roster(), !members.isEmpty {
+            roster = members
+            store()
+        }
         latest += 1
         let ticket = latest
         guard let sync, !saving, let envelope = try? await sync.read(), latest == ticket else { return }
@@ -73,7 +82,7 @@ final class MemberColourModel: ObservableObject {
 
     func palette(members: [NestMember]) -> MemberPalette {
         var names = [member.userId: member.displayName]
-        for other in members { names[other.actorId] = other.displayName }
+        for other in roster + members { names[other.actorId] = other.displayName }
         let ids = Set(names.keys).union(choices.keys)
         let colors = MemberColorAssignment.resolve(members: Array(ids), choices: choices)
         return MemberPalette(me: member.userId, colors: colors, names: names)
@@ -100,11 +109,13 @@ final class MemberColourModel: ObservableObject {
     }
 
     private func store() {
-        defaults.set(try? JSONEncoder().encode(Cache(choices: choices, revision: revision)), forKey: key)
+        defaults.set(
+            try? JSONEncoder().encode(Cache(choices: choices, revision: revision, roster: roster)), forKey: key)
     }
 
     private struct Cache: Codable {
         let choices: [UUID: MemberColor]
         let revision: String
+        var roster: [NestMember]?
     }
 }
