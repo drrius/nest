@@ -13,6 +13,8 @@ struct TodayMealsSection: View {
 
     @Environment(\.switchTab) private var switchTab
 
+    @Environment(\.dynamicTypeSize) private var textSize
+
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             NestSectionHeader(title: "On the menu")
@@ -87,13 +89,16 @@ struct TodayMealsSection: View {
         Button {
             switchTab(.meals)
         } label: {
-            HStack(spacing: 12) {
+            let layout =
+                textSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: 6)) : AnyLayout(HStackLayout(spacing: 12))
+            layout {
                 Image(systemName: entries.isEmpty ? "plus" : "calendar")
                     .font(.body.weight(.semibold)).foregroundStyle(NestColor.accentInk)
                     .frame(width: 30)
                 Text(entries.isEmpty ? "Nothing planned yet" : "This week’s meals")
                     .foregroundStyle(NestColor.ink2)
-                Spacer()
+                if !textSize.isAccessibilitySize { Spacer() }
                 Text(entries.isEmpty ? "Plan" : "Open").fontWeight(.semibold).foregroundStyle(NestColor.accentInk)
             }
             .font(.subheadline)

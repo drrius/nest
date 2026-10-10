@@ -49,7 +49,7 @@ struct TodayForYouRow: View {
         .contentShape(Rectangle())
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(title)
-        .accessibilityHint(detail)
+        .accessibilityValue(detail)
     }
 }
 

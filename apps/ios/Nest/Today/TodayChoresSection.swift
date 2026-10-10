@@ -97,15 +97,22 @@ struct TodayChoresSection: View {
         .background(NestColor.fill, in: Capsule())
     }
 
+    /// The tick holds while the change is queued, lingers a beat only if it was saved, and clears at once if not.
     private func tick(_ chore: NestChore) {
         ticked.insert(chore.id)
-        Task { await model.complete(chore) }
+        let linger = ContinuousClock.now + .milliseconds(reduceMotion ? 300 : 900)
         Task {
-            try? await Task.sleep(for: .milliseconds(reduceMotion ? 300 : 900))
+            await model.complete(chore)
+            if saved(chore.id) { try? await Task.sleep(until: linger, clock: .continuous) }
             withAnimation(reduceMotion ? nil : .spring(response: 0.45, dampingFraction: 0.86)) {
                 _ = ticked.remove(chore.id)
             }
         }
+    }
+
+    private func saved(_ id: UUID) -> Bool {
+        guard case .loaded(let state) = model.today else { return false }
+        return state.chores.contains { $0.id == id && $0.state != .open }
     }
 }
 

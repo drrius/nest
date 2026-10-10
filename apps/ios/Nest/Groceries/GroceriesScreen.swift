@@ -3,6 +3,7 @@ import SwiftUI
 struct GroceriesScreen: View {
     @ObservedObject var model: SessionModel
     let refreshOnOpen: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showChecked = false
     @State private var showingAdd = false
     @State private var editingItem: GroceryItem?
@@ -34,7 +35,7 @@ struct GroceriesScreen: View {
         .listSectionSpacing(14)
         .scrollContentBackground(.hidden)
         .nestScreen()
-        .animation(.spring(response: 0.4, dampingFraction: 0.86), value: model.groceries)
+        .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.86), value: model.groceries)
         .navigationTitle("Groceries")
         .navigationBarTitleDisplayMode(.large)
         .toolbar { toolbar }
