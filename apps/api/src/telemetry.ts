@@ -76,6 +76,8 @@ function writeSpan(span: ReadableSpan, write: LogWriter, environment: Environmen
 
 function routeCategory(request: Request) {
   const path = new URL(request.url).pathname;
+  if (path === "/internal/push/run") return "worker.push";
+  if (path === "/internal/recurring/run") return "worker.recurring";
   const money = new Set([
     "balance",
     "history",

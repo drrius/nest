@@ -1,6 +1,6 @@
 # Nest progress
 
-Updated 7 October 2026. The goal remains active and incomplete. SwiftUI is the
+Updated 10 October 2026. The goal remains active and incomplete. SwiftUI is the
 shipping iPhone client under [ADR 0002](adr/0002-swiftui-client.md). Expo and React
 Native are removed. The agreed product scope, Effect backend, financial history
 and privacy rules remain authoritative.
@@ -25,6 +25,8 @@ local journals and settings are preserved. New source remains on
 `codex/swiftui-renewal-navigation`; no production cutover or public release occurs.
 
 ## Current priority
+
+The owner approved a fresh start on the renamed `nest` database, keeping real accounts and excluding Household OS migration. Follow the [current five-step checklist](native-rewrite/live-service-checklist.md); historical migration blockers below no longer gate this path.
 
 Owner requests practical diagnostics and focused simulator checks, without expanding
 unchanged QA variants. [Money failure](../evidence/2026-10-07/money-setup-diagnostics/README.md)
@@ -370,8 +372,10 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 
 ## Exact blockers and owner inputs
 
-- **Live AI:** the last provider result was `customer_verification_required` with zero credits; this is historical, not current eligibility. Automatic approval review blocked generating a short-lived `nest-test-api` OIDC token for a read-only credits check. The owner check of current credits/verification remains pending. No token, model call, purchase or billing change followed.
-- **Scheduled workers:** automatic approval review blocked transferring the test Supabase server key and scheduler token to Vercel. The specific transfer approval remains pending; no alternate transfer or worker activation occurred.
+- **Backend naming, 10 October:** Supabase confirms project `tkjixmujjoustdiedfmw` is named `nest`. Vercel project `prj_yN4ZNro5utMbzmyrSC3xgPZka67G` was renamed in place to `nest-api`, retaining its project ID. The installed app's `nest-test-api-drrius-projects.vercel.app` alias still points to deployment `dpl_9MBuwADAyheonsgQTzUvSRcmUcY1`; unauthenticated Money requests returned the same expected 401 JSON before and after the rename. Local Vercel link metadata was updated. No redeployment, credentials, data or app endpoint changed.
+- **Fresh-start decision, 10 October:** owner chose the existing Nest Supabase project (`tkjixmujjoustdiedfmw`) as the permanent backend, retaining real accounts and clearing only test/demo household data after identifying it. Household OS data will not be imported; its project stays untouched. Owner requested renaming `nest-test` to `Nest`. Rename is pending because the available Supabase connector exposes no project-update action and no CLI management token is configured. No data cleanup has run yet. Historical migration/cutover requirements below are superseded for this fresh-start path.
+- **Live AI:** owner reports adding $20 to Vercel AI Gateway on 10 October. The earlier `customer_verification_required` result is historical; successful live authentication/generation remains unverified. No new API key has been created.
+- **Scheduled workers:** on 10 October the owner explicitly authorized storing the test Supabase server key and a new scheduler token in Vercel's `nest-test-api` and enabling test scheduled workers. This resolves the missing user authorization behind the earlier automatic-review rejection; transfer and activation have not yet occurred. APNs provider configuration remains missing. Production worker activation is not authorized by this test-only permission.
 - **APNs:** server-side provider `.p8`, key ID, team/configuration and physical token/delivery verification are missing. App Store signing credentials do not supply that provider key. Push stays disabled.
 - **Phones:** both partners need build 25 installation and acceptance of ordinary daily, weekly, financial and Calendar tasks. VoiceOver, Reduce Motion, real radio interruptions and push require hardware evidence. Partner tester access remains unverified; existing feedback requests should not be duplicated.
 - **Branch delivery resolved:** a non-force complete-pack push delivered `aa4df4ee` after three normal pushes returned GitHub Internal Server Error. The exact remote branch is verified. Routine [CI 37642938829](https://github.com/drrius/nest/actions/runs/37642938829) passes; native [CI 37642938666](https://github.com/drrius/nest/actions/runs/37642938666) later ended cancelled with the account-switch failure recorded above. No force push, main update or history rewrite occurred. The cause of the remote errors is not proven.
@@ -381,10 +385,7 @@ not replace that proof. Hosted session-schema source `72c930fa` passes
 
 ## Work order
 
-Keep build 25 stable for phone testing. Batch necessary shipping fixes, preserve
-completed evidence and repeat checks only for affected changes, failures or uncovered
-requirements. Finish concrete local gaps while provider/worker/device blockers
-remain. Reconcile all milestone exits before declaring completion.
+Batch shipping fixes for one beta and verify the five current steps. Preserve prior evidence; repeat only affected checks.
 
 The owner removed the continuation automation; it remains removed. No extra Sol
 verification is required. Purchases and new tester invitations are not implied.

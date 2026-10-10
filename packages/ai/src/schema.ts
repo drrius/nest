@@ -2,6 +2,7 @@ import { jsonSchema } from "ai";
 import * as Effect from "effect/Effect";
 import * as JsonSchema from "effect/JsonSchema";
 import * as Schema from "effect/Schema";
+import { providerSchema } from "./provider-schema.ts";
 
 // Emit and validate the same canonical JSON codec; no independently maintained Zod schema.
 export function effectSchema<S extends Schema.ConstraintCodec<unknown, unknown, never, never>>(
@@ -12,7 +13,7 @@ export function effectSchema<S extends Schema.ConstraintCodec<unknown, unknown, 
     Schema.toJsonSchemaDocument(codec, { onExcessProperty: "error" }),
   );
   return jsonSchema<S["Type"]>(
-    { ...document.schema, definitions: document.definitions },
+    providerSchema({ ...document.schema, definitions: document.definitions }),
     {
       validate: (input) =>
         Schema.decodeUnknownEffect(codec, { onExcessProperty: "error" })(input).pipe(

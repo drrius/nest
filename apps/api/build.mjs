@@ -21,4 +21,9 @@ if (!process.argv[2]) {
     entryPoints: ["recurring-runtime.mjs"],
     outfile: "dist/recurring-runtime.mjs",
   });
+  await build({
+    ...options,
+    entryPoints: ["push-runtime.mjs"],
+    outfile: "dist/push-runtime.mjs",
+  });
 }

@@ -2,6 +2,10 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "routes": [
     {
+      "src": "^/internal/push/run$",
+      "dest": "/api/push"
+    },
+    {
       "src": "^/internal/recurring/run$",
       "dest": "/api/recurring"
     },
@@ -11,6 +15,9 @@
     }
   ],
   "functions": {
+    "api/push.mjs": {
+      "maxDuration": 300
+    },
     "api/recurring.mjs": {
       "maxDuration": 300
     },
