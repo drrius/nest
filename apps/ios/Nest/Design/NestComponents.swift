@@ -153,6 +153,7 @@ struct NestButtonStyle: ButtonStyle {
             .foregroundStyle(foreground)
             .background(background, in: Capsule())
             .opacity(enabled ? 1 : 0.45)
+            .frame(minHeight: 44)
             .scaleEffect(configuration.isPressed && !reduceMotion ? 0.96 : 1)
             .animation(
                 reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.6), value: configuration.isPressed

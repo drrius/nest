@@ -66,7 +66,10 @@ struct MealWeekScreen: View {
             await model.refreshMealWeek()
             await model.refreshMealVisibleSlots()
         }
-        .task(id: model.mealSelection) { await checkPendingIngredients() }
+        .task(id: model.mealSelection) {
+            ingredientsPending = false
+            await checkPendingIngredients()
+        }
         .onAppear { Task { await checkPendingIngredients() } }
         .task {
             await model.restorePreparationRecovery()
@@ -83,7 +86,9 @@ struct MealWeekScreen: View {
     /// A saved ingredient request keeps its way back even when the week has since emptied.
     private func checkPendingIngredients() async {
         guard let week = model.mealSelection else { return }
-        ingredientsPending = (try? await model.ingredientReviewContext(week: week))?.saved?.pending != nil
+        let pending = (try? await model.ingredientReviewContext(week: week))?.saved?.pending != nil
+        guard model.mealSelection == week else { return }
+        ingredientsPending = pending
     }
 
     @ViewBuilder

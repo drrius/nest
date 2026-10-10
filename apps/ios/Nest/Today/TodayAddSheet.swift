@@ -6,6 +6,7 @@ struct TodayAddSheet: View {
     @Environment(\.switchTab) private var switchTab
     @Environment(\.dismiss) private var dismiss
     @State private var appeared = false
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         VStack(alignment: .leading, spacing: 18) {
@@ -71,8 +72,12 @@ struct TodayAddSheet: View {
         }
         .buttonStyle(NestPressStyle())
         .opacity(appeared ? 1 : 0)
-        .offset(y: appeared ? 0 : 14)
-        .animation(.spring(response: 0.45, dampingFraction: 0.8).delay(Double(index) * 0.04), value: appeared)
+        .offset(y: appeared || reduceMotion ? 0 : 14)
+        .animation(
+            reduceMotion
+                ? .easeOut(duration: 0.2) : .spring(response: 0.45, dampingFraction: 0.8).delay(Double(index) * 0.04),
+            value: appeared
+        )
         .accessibilityLabel(title)
         .accessibilityHint(subtitle)
     }

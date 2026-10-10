@@ -135,6 +135,10 @@ struct MealAddSheet: View {
             }
         } else if case .loading = model.mealLibrary {
             ProgressView().frame(maxWidth: .infinity)
+        } else if case .failed = model.mealLibrary {
+            TodayForYouRetry(text: model.mealLibraryNotice ?? "Couldn’t load your saved meals.") {
+                Task { await model.refreshMealLibrary() }
+            }
         }
     }
 

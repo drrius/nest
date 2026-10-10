@@ -7,6 +7,7 @@ struct PartnerBusySection: View {
     @State private var actor: UUID?
     @State private var notice: String?
     @State private var loading = false
+    @State private var request = UUID()
 
     @Environment(\.memberPalette) private var palette
 
@@ -100,20 +101,24 @@ struct PartnerBusySection: View {
         return "Busy times only · updated \(captured.formatted(.relative(presentation: .named)))"
     }
 
+    /// Each load supersedes the previous one, so changing day mid-request still ends with this day's answer.
     private func load() async {
-        guard !loading else { return }
+        let attempt = UUID()
+        request = attempt
         loading = true
         envelope = nil
-        defer { loading = false }
+        defer { if request == attempt { loading = false } }
         do {
             let context = try await session.calendarConsentContext()
             let value = try await session.readBusySnapshots(context)
             try Task.checkCancellation()
+            guard request == attempt else { return }
             actor = context.member.userId
             envelope = value
             notice = nil
         } catch {
-            if !Task.isCancelled { notice = "Could not check busy times. Availability is unknown; try again online." }
+            guard !Task.isCancelled, request == attempt else { return }
+            notice = "Could not check busy times. Availability is unknown; try again online."
         }
     }
 }

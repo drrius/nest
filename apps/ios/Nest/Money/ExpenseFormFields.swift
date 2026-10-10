@@ -11,6 +11,7 @@ struct ExpenseFormFields: View {
     let focus: FocusState<Field?>.Binding
     var allowsReceiptTotal = true
     @Environment(\.memberPalette) private var palette
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
         Section {
@@ -25,7 +26,7 @@ struct ExpenseFormFields: View {
                         Text(name(person)).tag(person.id)
                     }
                 }
-                .pickerStyle(.segmented)
+                .segmentedUnlessLarge(textSize.isAccessibilitySize)
                 .listRowSeparator(.hidden)
             }
             DatePicker("Date", selection: $date, displayedComponents: .date)
@@ -34,7 +35,7 @@ struct ExpenseFormFields: View {
             Picker("Split", selection: $draft.split) {
                 ForEach(ExpenseDraft.Split.allCases, id: \.self) { Text(splitLabel($0)).tag($0) }
             }
-            .pickerStyle(.segmented)
+            .segmentedUnlessLarge(textSize.isAccessibilitySize)
             splitInputs
             ExpenseSplitPreview(members: members, allocations: preview)
         } header: {
@@ -159,5 +160,17 @@ struct ExpenseSplitPreview: View {
     private func share(_ id: UUID) -> String {
         guard let value = allocations?.first(where: { $0.memberId == id })?.centimes.value else { return "–" }
         return Centimes.chf(value).replacingOccurrences(of: "CHF ", with: "")
+    }
+}
+
+extension View {
+    /// Segmented when the labels fit; an inline list of choices at accessibility text sizes.
+    @ViewBuilder
+    func segmentedUnlessLarge(_ large: Bool) -> some View {
+        if large {
+            pickerStyle(.inline)
+        } else {
+            pickerStyle(.segmented)
+        }
     }
 }
