@@ -4,6 +4,7 @@ struct MoneyHistorySection: View {
     @ObservedObject var session: SessionModel
     let member: VerifiedMember
     var previewCount: Int? = nil
+    var refresh: UUID?
     @State private var events: [MoneyEventSummary] = []
     @State private var next: UUID?
     @State private var loading = false
@@ -12,6 +13,7 @@ struct MoneyHistorySection: View {
     @State private var request = UUID()
 
     @Environment(\.memberPalette) private var palette
+    @Environment(\.dynamicTypeSize) private var textSize
 
     var body: some View {
         VStack(alignment: .leading, spacing: 10) {
@@ -45,7 +47,7 @@ struct MoneyHistorySection: View {
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
-        .task {
+        .task(id: refresh) {
             if previewCount != nil || events.isEmpty { await load(more: false) }
         }
     }
@@ -74,17 +76,21 @@ struct MoneyHistorySection: View {
         NavigationLink {
             MoneyDetailScreen(session: session, member: member, eventId: event.id)
         } label: {
-            HStack(spacing: 12) {
+            let layout =
+                textSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: 8)) : AnyLayout(HStackLayout(spacing: 12))
+            layout {
                 IconTile(systemName: symbol(event.kind), domain: domain(event.kind), size: 40)
                 VStack(alignment: .leading, spacing: 2) {
-                    Text(event.description).foregroundStyle(NestColor.ink).lineLimit(2)
+                    Text(event.description).foregroundStyle(NestColor.ink)
+                        .lineLimit(textSize.isAccessibilitySize ? nil : 2)
                     HStack(spacing: 4) {
                         Text(meta(event))
                         if event.hasReceipt { Image(systemName: "paperclip").accessibilityLabel("Receipt attached") }
                     }
                     .font(.footnote).foregroundStyle(NestColor.ink2)
                 }
-                Spacer(minLength: 8)
+                if !textSize.isAccessibilitySize { Spacer(minLength: 8) }
                 Text(Centimes.chf(abs(event.amountCentimes.value)).replacingOccurrences(of: "CHF ", with: ""))
                     .font(.system(.body, design: .rounded, weight: .semibold)).monospacedDigit()
                     .foregroundStyle(NestColor.ink)

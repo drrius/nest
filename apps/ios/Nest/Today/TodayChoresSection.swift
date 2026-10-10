@@ -7,7 +7,6 @@ struct TodayChoresSection: View {
     let moment: TodayMoment
     @Binding var everyone: Bool
     @State private var ticked: Set<UUID> = []
-    @State private var ticks = 0
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -26,7 +25,6 @@ struct TodayChoresSection: View {
             if let notice = model.todayNotice { noticeRow(notice) }
             content
         }
-        .sensoryFeedback(.success, trigger: ticks)
     }
 
     private var header: some View {
@@ -101,7 +99,6 @@ struct TodayChoresSection: View {
 
     private func tick(_ chore: NestChore) {
         ticked.insert(chore.id)
-        ticks += 1
         Task { await model.complete(chore) }
         Task {
             try? await Task.sleep(for: .milliseconds(reduceMotion ? 300 : 900))

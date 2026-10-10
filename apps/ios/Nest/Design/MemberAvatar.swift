@@ -9,7 +9,7 @@ struct MemberAvatar: View {
     var body: some View {
         Text(palette.initial(id))
             .font(.system(size: size * 0.44, weight: .semibold, design: .rounded))
-            .foregroundStyle(Color.white)
+            .foregroundStyle(palette.color(id).onColor)
             .frame(width: size, height: size)
             .background(palette.color(id).color, in: Circle())
             .accessibilityLabel(palette.name(id))

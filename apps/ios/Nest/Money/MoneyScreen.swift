@@ -19,7 +19,7 @@ struct MoneyScreen: View {
                     TodayApprovalsSection(model: session, member: member, refresh: refresh).id(member.userId)
                 }
                 billsCard
-                MoneyHistorySection(session: session, member: member, previewCount: 6)
+                MoneyHistorySection(session: session, member: member, previewCount: 6, refresh: refresh)
             }
             .padding(.horizontal, 20)
             .padding(.top, 6)

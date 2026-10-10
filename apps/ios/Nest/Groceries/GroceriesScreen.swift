@@ -17,7 +17,6 @@ struct GroceriesScreen: View {
     }
 
     @State private var quickText = ""
-    @State private var ticks = 0
     @FocusState private var quickFocused: Bool
 
     var body: some View {
@@ -36,7 +35,6 @@ struct GroceriesScreen: View {
         .scrollContentBackground(.hidden)
         .nestScreen()
         .animation(.spring(response: 0.4, dampingFraction: 0.86), value: model.groceries)
-        .sensoryFeedback(.selection, trigger: ticks)
         .navigationTitle("Groceries")
         .navigationBarTitleDisplayMode(.large)
         .toolbar { toolbar }
@@ -173,7 +171,6 @@ struct GroceriesScreen: View {
     private func row(_ local: LocalGrocery) -> some View {
         VStack(alignment: .leading, spacing: 2) {
             Button {
-                ticks += 1
                 Task { await model.checkGrocery(local.item, checked: !local.checked) }
             } label: {
                 GroceryRowLabel(local: local)

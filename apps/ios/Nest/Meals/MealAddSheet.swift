@@ -5,6 +5,7 @@ struct MealAddSheet: View {
     let target: MealSlotTarget
     @Environment(\.dismiss) private var dismiss
     @State private var title = ""
+    @State private var loadingMore = false
     @State private var useSaved = false
     @State private var selectedId: UUID?
     @State private var saving = false
@@ -113,12 +114,23 @@ struct MealAddSheet: View {
                 Text(query.isEmpty ? "Your saved meals" : "From your saved meals")
                     .font(.footnote.weight(.semibold)).foregroundStyle(NestColor.ink2).padding(.top, 4)
                 VStack(spacing: 0) {
-                    ForEach(Array(matches.prefix(20).enumerated()), id: \.element.id) { index, meal in
+                    ForEach(Array(matches.enumerated()), id: \.element.id) { index, meal in
                         if index > 0 { NestRowDivider(leading: 70) }
                         savedRow(meal)
                     }
                 }
                 .nestCard(padding: 0, radius: 20)
+            }
+            if listing.nextAfterId != nil {
+                Button(loadingMore ? "Loading…" : "Load more saved meals") {
+                    loadingMore = true
+                    Task {
+                        await model.loadNextMealLibraryPage()
+                        loadingMore = false
+                    }
+                }
+                .buttonStyle(NestButtonStyle(kind: .plain, small: true))
+                .disabled(loadingMore)
             }
         } else if case .loading = model.mealLibrary {
             ProgressView().frame(maxWidth: .infinity)

@@ -81,6 +81,13 @@ extension MemberColor {
         return NestColor.adaptive(light, dark)
     }
 
+    /// Text on the colour: white where it reads at 3:1 or better, otherwise dark ink. Dark tones are all light.
+    var onColor: Color {
+        let ink: UInt32 = 0x1C2520
+        let light: UInt32 = self == .clay || self == .marigold ? ink : 0xFFFFFF
+        return NestColor.adaptive(light, ink)
+    }
+
     private var tones: (UInt32, UInt32) {
         switch self {
         case .lake: (0x4A80BD, 0x7FB0E6)
