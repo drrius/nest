@@ -59,13 +59,13 @@ final class NativeManualMealMoveTests: XCTestCase {
     }
 
     private func openOwnedWeek(in app: XCUIApplication) {
-        let heading = app.staticTexts["19 Oct – 25 Oct"]
+        let heading = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "19 Oct – 25 Oct")).firstMatch
         for _ in 0..<4 {
             if heading.exists { return }
             let next = app.buttons["Next week"]
             XCTAssertTrue(next.isHittable)
             let previous = app.staticTexts.matching(
-                NSPredicate(format: "label MATCHES %@", "[0-9]+ Oct – [0-9]+ Oct")
+                NSPredicate(format: "label MATCHES %@", ".*[0-9]+ Oct – [0-9]+ Oct.*")
             ).firstMatch.label
             next.tap()
             let changed = XCTNSPredicateExpectation(

@@ -57,7 +57,7 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
         add.tap()
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: navigation)
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
-        try reading.read("Monday · 19 Oct")
+        try reading.read("Monday, October 19")
         let source = app.buttons["2026-10-19, Dinner: \(title), recipe details"]
         try reading.reveal(source)
         try reading.requireTarget(source)
@@ -74,12 +74,23 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
         try reading.requireTarget(meal)
         meal.tap()
         XCTAssertTrue(app.navigationBars["Planned meal"].waitForExistence(timeout: 20))
-        try reading.read("Simmer the fictional ingredients.")
         try reading.read("Serves 2")
-        try reading.read("200 g QA lentils")
-        try reading.read("100 g QA rice")
-        reading.capture(
-            reading.element("Simmer the fictional ingredients."), name: "Leftover retained recipe instructions")
+        for (name, amount) in [("QA lentils", "200 g"), ("QA rice", "100 g")] {
+            let row = app.staticTexts.matching(
+                NSPredicate(format: "label CONTAINS %@ AND label CONTAINS %@", name, amount)
+            ).firstMatch
+            try reading.reveal(row)
+            XCTAssertTrue(row.isHittable)
+        }
+        let method = app.segmentedControls["Show"].buttons["Method"]
+        try reading.reveal(method, searchEarlier: true)
+        method.tap()
+        let instructions = app.staticTexts.matching(
+            NSPredicate(format: "label CONTAINS %@", "Simmer the fictional ingredients.")
+        ).firstMatch
+        try reading.reveal(instructions)
+        XCTAssertTrue(instructions.isHittable)
+        reading.capture(instructions, name: "Leftover retained recipe instructions")
         let back = app.navigationBars["Planned meal"].buttons.element(boundBy: 0)
         try reading.requireTarget(back, bounds: app.frame)
         back.tap()
@@ -124,12 +135,14 @@ final class NativeMealLeftoversJourneyTests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         tabs.buttons["Meals"].tap()
         for _ in 0..<4 {
-            if app.staticTexts[heading].exists { return app }
+            if app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", heading)).firstMatch.exists {
+                return app
+            }
             let next = app.buttons["Next week"]
             try reading.reveal(next)
             try reading.requireTarget(next)
             let old = app.staticTexts.matching(
-                NSPredicate(format: "label MATCHES %@", "[0-9]+ [A-Za-z]+ – [0-9]+ [A-Za-z]+")
+                NSPredicate(format: "label MATCHES %@", ".*[0-9]+ [A-Za-z]+ – [0-9]+ [A-Za-z]+.*")
             ).firstMatch
             let previous = try XCTUnwrap(old.exists ? old.label : nil)
             next.tap()

@@ -10,7 +10,7 @@ final class NativeSettlementPostingTests: XCTestCase {
         try reader.requireTarget(payment)
         payment.tap()
         XCTAssertTrue(app.navigationBars["Record payment"].waitForExistence(timeout: 20))
-        try reader.read("CHF 0.01")
+        try reader.read("Test Sam pays you, CHF 0.01")
         let note = app.textFields["Note (optional)"]
         try reader.reveal(note)
         note.tap()
@@ -54,7 +54,7 @@ final class NativeSettlementPostingTests: XCTestCase {
         reader.capture(app.staticTexts["Expense recorded."], name: "Canonical balancing fixture expense recorded")
         try tap("Start another expense", app: app, reader: reader)
         XCTAssertTrue(description.waitForExistence(timeout: 30))
-        XCTAssertTrue(["", "Description"].contains(description.value as? String ?? "unexpected value"))
+        XCTAssertTrue(["", "What was it for?"].contains(description.value as? String ?? "unexpected value"))
         app.navigationBars["Add expense"].buttons.element(boundBy: 0).tap()
         XCTAssertFalse(app.alerts["Discard edits?"].exists)
     }

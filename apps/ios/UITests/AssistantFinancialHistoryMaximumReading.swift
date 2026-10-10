@@ -252,7 +252,7 @@ struct AssistantFinancialHistoryMaximumReading {
     }
 
     func restoreToday() throws {
-        let known = ["Entry details", "Review bill", "Conversation", "Private conversations", "Profile"]
+        let known = ["Entry details", "Review bill", "Conversation", "Ask Nest", "Profile"]
         for _ in 0..<4 {
             let navigation = app.navigationBars.firstMatch
             if !navigation.exists { break }

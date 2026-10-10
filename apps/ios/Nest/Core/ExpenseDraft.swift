@@ -20,30 +20,9 @@ struct ExpenseDraft: Equatable {
     var receiptPath: String?
 
     func reviewed(member: VerifiedMember, members: [UUID], date: CivilDate) throws -> ExpenseInput {
-        guard members.count == 2, Set(members).count == 2, members.contains(payer), members.contains(member.userId)
-        else {
-            throw NestAPIFailure.invalid
-        }
+        guard members.contains(member.userId) else { throw NestAPIFailure.invalid }
         let total = try ExpenseSplit.parseCHF(amount)
-        let other = members.first(where: { $0 != payer })!
-        let allocations: [ExpenseAllocation]
-        switch split {
-        case .equal:
-            allocations = try ExpenseSplit.equal(total, payer: payer, other: other)
-        case .exact:
-            allocations = try ExpenseSplit.exact(
-                total, members: members,
-                shares: [
-                    .init(memberId: members[0], centimes: try ExpenseSplit.parseCHF(firstExact)),
-                    .init(memberId: members[1], centimes: try ExpenseSplit.parseCHF(secondExact)),
-                ])
-        case .percentage:
-            let points = try ExpenseSplit.parseCHF(firstPercentage).value
-            guard points <= 10000 else { throw NestAPIFailure.invalid }
-            allocations = try ExpenseSplit.percentage(
-                total, payer: payer, other: other,
-                payerBasisPoints: Int(members[0] == payer ? points : 10000 - points))
-        }
+        let allocations = try allocations(members: members)
         let trimmedNote = note.trimmingCharacters(in: .whitespacesAndNewlines)
         return try ExpenseInput(
             description: description.trimmingCharacters(in: .whitespacesAndNewlines), amountCentimes: total,
@@ -52,5 +31,31 @@ struct ExpenseDraft: Equatable {
             payerId: payer, allocations: allocations, date: date, note: trimmedNote.isEmpty ? nil : trimmedNote,
             categoryId: categoryId
         ).validated(member: member)
+    }
+
+    /// Each member's share of the amount under the chosen split. The same rule the review step uses.
+    func allocations(members: [UUID]) throws -> [ExpenseAllocation] {
+        guard members.count == 2, Set(members).count == 2, members.contains(payer) else {
+            throw NestAPIFailure.invalid
+        }
+        let total = try ExpenseSplit.parseCHF(amount)
+        let other = members.first(where: { $0 != payer })!
+        switch split {
+        case .equal:
+            return try ExpenseSplit.equal(total, payer: payer, other: other)
+        case .exact:
+            return try ExpenseSplit.exact(
+                total, members: members,
+                shares: [
+                    .init(memberId: members[0], centimes: try ExpenseSplit.parseCHF(firstExact)),
+                    .init(memberId: members[1], centimes: try ExpenseSplit.parseCHF(secondExact)),
+                ])
+        case .percentage:
+            let points = try ExpenseSplit.parseCHF(firstPercentage).value
+            guard points <= 10000 else { throw NestAPIFailure.invalid }
+            return try ExpenseSplit.percentage(
+                total, payer: payer, other: other,
+                payerBasisPoints: Int(members[0] == payer ? points : 10000 - points))
+        }
     }
 }

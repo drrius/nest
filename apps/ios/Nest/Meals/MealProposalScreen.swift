@@ -10,40 +10,52 @@ struct MealProposalScreen: View {
     @State private var confirming = false
     @State private var editing: ProposedMeal?
 
+    @State private var revealed = 0
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
+
+    @Environment(\.dynamicTypeSize) private var textSize
+
     var body: some View {
-        List {
-            Section {
-                Text("A little help with the week.").font(.title2.weight(.semibold))
-                Text("Suggestions stay private until you approve them. Ingredients are reviewed separately.")
-                    .foregroundStyle(QuietPalette.muted)
-            }
-            if let context, model.generation == context.generation, model.status == .ready(context.member) {
-                content(context)
-            }
-            Section("Planning preferences") {
-                NavigationLink("Your food preferences") {
-                    FoodPreferencesScreen(model: model).id(model.generation)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 20) {
+                ProposalHeader(stage: stage)
+                if let context, model.generation == context.generation, model.status == .ready(context.member) {
+                    content(context)
+                } else if busy {
+                    ProposalThinkingRows()
                 }
-                NavigationLink("Household cooking preferences") {
-                    CookingPreferencesScreen(model: model).id(model.generation)
+                if let notice {
+                    Label(notice, systemImage: "exclamationmark.circle").font(.footnote).foregroundStyle(NestColor.warn)
                 }
-                Text("Each household member needs to save their own food preferences before planning can start.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
             }
-            if let notice { Section { Text(notice).foregroundStyle(QuietPalette.muted) } }
-            if busy { ProgressView("Checking your plan…") }
+            .padding(.horizontal, 20)
+            .padding(.top, 8)
+            .padding(.bottom, 120)
+            .disabled(busy)
         }
-        .scrollContentBackground(.hidden)
-        .background(QuietPalette.background)
-        .tint(QuietPalette.accent)
-        .navigationTitle("Plan meals")
+        .nestScreen()
+        .tint(NestColor.accent)
+        .navigationTitle("")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    Task { await perform(.refresh) }
+                } label: {
+                    Image(systemName: "arrow.clockwise")
+                }
+                .accessibilityLabel("Refresh plan")
+                .disabled(busy || context?.saved == nil)
+            }
+        }
+        .safeAreaInset(edge: .bottom) { bottomBar }
         .sheet(item: $editing) { entry in
             if let context {
                 ProposalMealEditSheet(model: model, context: context, entry: entry) { self.context = $0 }
             }
         }
         .task(id: model.generation) { await perform(.load) }
+        .onChange(of: entryCount) { _, count in Task { await reveal(count) } }
         .confirmationDialog("Save these meals to your household week?", isPresented: $confirming) {
             Button("Approve and save meals") { Task { await perform(.approve) } }
             Button("Cancel", role: .cancel) {}
@@ -52,52 +64,123 @@ struct MealProposalScreen: View {
         }
     }
 
-    @ViewBuilder private func content(_ context: ProposalContext) -> some View {
-        if let saved = context.saved {
-            Section("Week of \(MealWeekScreen.label(saved.command.weekStart.date))") {
-                if let proposal = saved.envelope?.proposal {
-                    Text(statusLabel(proposal.status)).font(.headline)
-                    if let entries = proposal.entries {
-                        ForEach(entries, id: \.id) { entry in
-                            NavigationLink {
-                                ProposalRecipeScreen(entry: entry)
-                            } label: {
-                                ProposalMealRow(entry: entry)
-                            }
-                            if proposal.status == .ready, context.edit == nil, context.approval == nil,
-                                context.discard == nil
-                            {
-                                Button("Change suggestion") { editing = entry }
-                            }
-                        }
-                    }
-                    if context.edit != nil {
-                        ProposalEditRecovery(model: model, context: context, busy: busy) { self.context = $0 }
-                    } else if context.discard == nil {
-                        actions(context, proposal: proposal)
-                    }
-                    ProposalDiscardControls(model: model, context: context, busy: busy) { updated in
-                        self.context = updated
-                    }
-                } else if saved.rejected == true {
-                    Text(
-                        "Planning could not start. Check household food and cooking setup, then refresh the week before trying again."
-                    )
-                    Button("Clear rejected request") { Task { await perform(.clearGeneration) } }
-                } else {
-                    Text("Your request is saved. Continue with the same request when connected.")
-                    Button("Continue planning") { Task { await perform(.generate) } }
-                }
-            }.disabled(busy)
-        } else {
-            Section("Week of \(MealWeekScreen.label(week.weekStart.date))") {
-                Toggle("Use saved meals only", isOn: $familiarOnly)
-                Button("Suggest a plan") { Task { await perform(.generate) } }
-            }.disabled(busy)
+    private var proposal: MealProposal? { context?.saved?.envelope?.proposal }
+    private var entryCount: Int { proposal?.entries?.count ?? 0 }
+
+    private var stage: ProposalStage {
+        guard let saved = context?.saved else { return busy ? .thinking : .ask }
+        guard let proposal = saved.envelope?.proposal else { return saved.rejected == true ? .failed : .thinking }
+        switch proposal.status {
+        case .generating: return .thinking
+        case .ready: return .draft
+        case .approved: return .saved
+        case .failed: return .failed
+        case .discarded: return .discarded
         }
     }
 
-    @ViewBuilder private func actions(_ context: ProposalContext, proposal: MealProposal) -> some View {
+    @ViewBuilder private func content(_ context: ProposalContext) -> some View {
+        if let saved = context.saved {
+            if let proposal = saved.envelope?.proposal {
+                if let entries = proposal.entries {
+                    ForEach(Array(entries.enumerated()), id: \.element.id) { index, entry in
+                        if index < revealed || reduceMotion {
+                            ProposalMealRow(
+                                entry: entry,
+                                canSwap: proposal.status == .ready && context.edit == nil && context.approval == nil
+                                    && context.discard == nil,
+                                swap: { editing = entry }
+                            )
+                            .transition(
+                                .asymmetric(
+                                    insertion: .move(edge: .trailing).combined(with: .opacity), removal: .opacity))
+                        }
+                    }
+                } else if proposal.status == .generating {
+                    ProposalThinkingRows()
+                }
+                VStack(alignment: .leading, spacing: 10) {
+                    if context.edit != nil {
+                        ProposalEditRecovery(model: model, context: context, busy: busy) { self.context = $0 }
+                    } else if context.discard == nil {
+                        statusNotes(context, proposal: proposal)
+                    }
+                    ProposalDiscardControls(model: model, context: context, busy: busy) { self.context = $0 }
+                }
+                .font(.subheadline)
+            } else if saved.rejected == true {
+                Text("Planning couldn’t start. Check food and cooking setup, then try again.")
+                    .foregroundStyle(NestColor.ink2)
+                Button("Clear rejected request") { Task { await perform(.clearGeneration) } }
+                    .buttonStyle(NestButtonStyle(kind: .secondary))
+            } else {
+                ProposalThinkingRows()
+                Button("Continue planning") { Task { await perform(.generate) } }
+                    .buttonStyle(NestButtonStyle(kind: .secondary))
+            }
+        } else {
+            askCard
+        }
+    }
+
+    private var askCard: some View {
+        VStack(alignment: .leading, spacing: 16) {
+            Picker("Suggestions", selection: $familiarOnly) {
+                Text("A few new ideas").tag(false)
+                Text("Saved meals only").tag(true)
+            }
+            .segmentedUnlessLarge(textSize.isAccessibilitySize)
+            VStack(spacing: 0) {
+                NavigationLink {
+                    FoodPreferencesScreen(model: model).id(model.generation)
+                } label: {
+                    TodayForYouRow(
+                        icon: "checkmark.shield", domain: .house, title: "Your food preferences",
+                        detail: "What you each avoid is respected. Private notes stay private.")
+                }
+                .buttonStyle(NestPressStyle())
+                NestRowDivider(leading: 64)
+                NavigationLink {
+                    CookingPreferencesScreen(model: model).id(model.generation)
+                } label: {
+                    TodayForYouRow(
+                        icon: "frying.pan", domain: .meal, title: "Household cooking preferences",
+                        detail: "Meal slots, effort and notes for you both")
+                }
+                .buttonStyle(NestPressStyle())
+            }
+            .nestCard(padding: 0)
+            Text("Each of you needs to save food preferences before planning can start.")
+                .font(.footnote).foregroundStyle(NestColor.ink3)
+        }
+    }
+
+    @ViewBuilder private var bottomBar: some View {
+        if stage == .ask, context != nil {
+            Button {
+                Task { await perform(.generate) }
+            } label: {
+                Label("Suggest a week", systemImage: "sparkles")
+            }
+            .buttonStyle(NestButtonStyle(kind: .primary, fullWidth: true))
+            .disabled(busy)
+            .padding(.horizontal, 20).padding(.bottom, 8)
+        } else if let proposal, proposal.status == .ready, context?.approval == nil, context?.edit == nil,
+            context?.discard == nil
+        {
+            Button {
+                confirming = true
+            } label: {
+                Label("Save to the week", systemImage: "checkmark")
+            }
+            .buttonStyle(NestButtonStyle(kind: .primary, fullWidth: true))
+            .disabled(busy || Double(proposal.expiresAt) <= Date.now.timeIntervalSince1970 * 1000)
+            .accessibilityLabel("Approve plan")
+            .padding(.horizontal, 20).padding(.bottom, 8)
+        }
+    }
+
+    @ViewBuilder private func statusNotes(_ context: ProposalContext, proposal: MealProposal) -> some View {
         if let approval = context.approval {
             switch approval.state {
             case .pending, .acknowledged:
@@ -107,17 +190,24 @@ struct MealProposalScreen: View {
                 Text("This approval was rejected. Review the current plan before approving again.")
                 Button("Clear rejected approval") { Task { await perform(.clearConflict) } }
             }
-        } else if proposal.status == .ready {
-            Button("Approve plan") { confirming = true }
-                .disabled(Double(proposal.expiresAt) <= Date.now.timeIntervalSince1970 * 1000)
         } else if proposal.status == .generating {
             Button("Continue planning") { Task { await perform(.generate) } }
-        } else if proposal.status == .failed {
-            Text("A plan could not be prepared. Your household week has not changed.")
+                .buttonStyle(NestButtonStyle(kind: .secondary))
         } else if proposal.status == .approved {
-            Text("Meals saved. Review ingredients from the Meals screen when you’re ready.")
+            Text("Meals saved. Review ingredients from Meals when you’re ready.").foregroundStyle(NestColor.ink2)
         }
-        Button("Refresh plan") { Task { await perform(.refresh) } }
+    }
+
+    private func reveal(_ count: Int) async {
+        guard !reduceMotion else {
+            revealed = count
+            return
+        }
+        while revealed < count {
+            try? await Task.sleep(for: .milliseconds(revealed == 0 ? 150 : 110))
+            withAnimation(.spring(response: 0.45, dampingFraction: 0.8)) { revealed += 1 }
+        }
+        if revealed > count { revealed = count }
     }
 
     private enum Action { case load, generate, refresh, approve, retryApproval, clearConflict, clearGeneration }
@@ -169,33 +259,4 @@ struct MealProposalScreen: View {
         context = try await model.retryProposalGeneration(current)
     }
 
-    private func statusLabel(_ status: MealProposal.Status) -> String {
-        switch status {
-        case .generating: "Preparing your plan"
-        case .ready: "Your suggested meals"
-        case .failed: "Planning unavailable"
-        case .approved: "Plan saved"
-        case .discarded: "Plan discarded"
-        }
-    }
-}
-
-private struct ProposalMealRow: View {
-    let entry: ProposedMeal
-    var body: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            Text("\(MealWeekScreen.label(entry.date)) · \(entry.slot.rawValue.capitalized)")
-                .font(.caption).foregroundStyle(QuietPalette.muted)
-            Text(title).font(.headline)
-            if let calories = entry.estimatedCaloriesPerServing {
-                Text("About \(calories) kcal per serving").font(.caption).foregroundStyle(QuietPalette.muted)
-            }
-        }.padding(.vertical, 6)
-    }
-    private var title: String {
-        switch entry.source {
-        case .saved(_, let recipe): recipe.title
-        case .suggested(let recipe): recipe.title
-        }
-    }
 }

@@ -49,8 +49,8 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let back = app.navigationBars["Conversation"].buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-        let close = app.navigationBars["Private conversations"].buttons.element(boundBy: 0)
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+        let close = app.navigationBars["Ask Nest"].buttons.element(boundBy: 0)
         requireTarget(close, in: app)
         close.tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -72,7 +72,7 @@ final class AssistantHandoffLinkTests: XCTestCase {
         XCTAssertTrue(viewport(in: app).contains(row.frame))
         row.tap()
         XCTAssertTrue(app.navigationBars["Conversation"].waitForExistence(timeout: 20))
-        read("Private to you", in: app)
+        read("Only you can see this chat", in: app)
         var calendarNotRequested = false
         for label in links {
             let candidates = app.buttons.matching(NSPredicate(format: "label == %@", label))
@@ -104,8 +104,8 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let back = app.navigationBars["Conversation"].buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-        let close = app.navigationBars["Private conversations"].buttons.element(boundBy: 0)
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+        let close = app.navigationBars["Ask Nest"].buttons.element(boundBy: 0)
         requireTarget(close, in: app)
         close.tap()
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -151,20 +151,20 @@ final class AssistantHandoffLinkTests: XCTestCase {
         let back = app.navigationBars.firstMatch.buttons.element(boundBy: 0)
         requireTarget(back, in: app)
         back.tap()
-        let history = app.buttons["tab-assistant-action"]
+        let history = app.tabBars.buttons["Ask Nest"]
         requireTarget(history, in: app)
         history.tap()
-        XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 20))
         return app
     }
 
     private func assertDestination(_ label: String, in app: XCUIApplication) {
         switch label {
         case "Open Calendar":
-            let header = app.staticTexts["tab-header-calendar"]
+            let header = app.navigationBars["Calendar"]
             reveal(header, in: app)
             XCTAssertTrue(header.exists && viewport(in: app).contains(header.frame))
-            read("Your day, with room for everything.", in: app)
+            read("Choose day", in: app)
         case "Review busy sharing":
             XCTAssertTrue(app.navigationBars["Busy sharing"].waitForExistence(timeout: 20))
             read("Busy sharing is off", in: app)
@@ -173,8 +173,8 @@ final class AssistantHandoffLinkTests: XCTestCase {
             XCTAssertFalse(app.buttons["Retry saved change"].exists)
         case "Review ingredients":
             XCTAssertTrue(app.navigationBars["Review ingredients"].waitForExistence(timeout: 20))
-            read("Week of \(week)", in: app)
-            read("Choose what you need. Leave pantry items unchecked. Quantities stay separate for each meal.", in: app)
+            read("What do you need?", in: app)
+            read("Untick anything you already have. The rest goes on the shared list.", in: app)
         case "Review notifications":
             XCTAssertTrue(app.navigationBars["Notifications"].waitForExistence(timeout: 20))
             read("Choose what Nest may send to you. Your partner has separate choices.", in: app)
@@ -185,7 +185,7 @@ final class AssistantHandoffLinkTests: XCTestCase {
         case "Open Profile":
             XCTAssertTrue(app.navigationBars["Profile"].waitForExistence(timeout: 20))
             read("Test Alex", in: app)
-            read("Your verified household account", in: app)
+            read("Nest household with", in: app)
         default:
             XCTFail("Unapproved handoff destination")
         }
@@ -283,7 +283,7 @@ final class AssistantHandoffLinkTests: XCTestCase {
     private func establishUnrequestedCalendar(in app: XCUIApplication) -> Bool {
         let permission = app.buttons["Allow calendar access"]
         let restricted = app.staticTexts[
-            "This device restricts calendar access. A work or device policy may prevent it."]
+            "This iPhone restricts calendar access, perhaps by a work policy."]
         for attempt in 0..<24 {
             if app.buttons["Open Settings"].exists || restricted.exists {
                 attach(

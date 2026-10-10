@@ -33,16 +33,16 @@ final class ReduceMotionNavigationTests: XCTestCase {
         for tab in ["Today", "Meals", "Calendar", "Money"] {
             app.tabBars.firstMatch.buttons[tab].tap()
             XCTAssertTrue(app.tabBars.firstMatch.buttons[tab].isSelected)
-            let title = app.descendants(matching: .any)["tab-header-\(tab.lowercased())"]
+            let title = app.navigationBars[tab].staticTexts[tab]
             XCTAssertTrue(title.waitForExistence(timeout: 15))
             let profile = app.buttons["tab-profile-action"]
             XCTAssertTrue(profile.isHittable)
             profile.tap()
             XCTAssertTrue(app.staticTexts[fixture.name].waitForExistence(timeout: 15))
             app.navigationBars.buttons.element(boundBy: 0).tap()
-            app.buttons["tab-assistant-action"].tap()
-            XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.tabBars.buttons["Ask Nest"].tap()
+            XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+            app.tabBars.firstMatch.buttons[tab].tap()
             XCTAssertTrue(title.waitForExistence(timeout: 15))
         }
         app.tabBars.firstMatch.buttons["Today"].tap()

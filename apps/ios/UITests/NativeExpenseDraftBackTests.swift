@@ -17,7 +17,7 @@ final class NativeExpenseDraftBackTests: XCTestCase {
         try protectedBack(app, reading: reading, keep: true)
         XCTAssertEqual(description.value as? String, "Unsent expense draft QA")
         try protectedBack(app, reading: reading, keep: false)
-        XCTAssertTrue(app.buttons["tab-header-money"].exists || app.staticTexts["tab-header-money"].exists)
+        XCTAssertTrue(app.navigationBars["Money"].exists)
         try openForm(app)
         let blank = input("Description", app: app)
         try reading.reveal(blank)

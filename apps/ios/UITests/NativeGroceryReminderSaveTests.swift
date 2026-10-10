@@ -144,7 +144,7 @@ final class NativeGroceryReminderSaveTests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
         XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
-        app.buttons["More options for QA rice"].tap()
+        app.buttons["QA rice"].press(forDuration: 1.0)
         XCTAssertTrue(app.buttons["Reminder choices"].waitForExistence(timeout: 15))
         app.buttons["Reminder choices"].tap()
         let ready = XCTNSPredicateExpectation(

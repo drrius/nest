@@ -18,10 +18,10 @@ final class TodayQuickAddReadingTests: XCTestCase {
         screenshot.lifetime = .keepAlways
         self.add(screenshot)
         add.tap()
-        for label in ["Chore", "Grocery", "Expense"] {
+        for label in ["Chore", "Groceries", "Expense", "All chores"] {
             XCTAssertTrue(app.buttons[label].waitForExistence(timeout: 10))
         }
-        app.tap()
+        app.buttons["Close"].tap()
         XCTAssertTrue(add.waitForExistence(timeout: 10))
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }

@@ -8,7 +8,7 @@ final class NativePaymentResultFeedbackTests: XCTestCase {
         try recordExpense(app, reader: reader)
         try tap("Record a payment", app: app, reader: reader)
         XCTAssertTrue(app.navigationBars["Record payment"].waitForExistence(timeout: 20))
-        try reader.read("CHF 0.02")
+        try reader.read("Test Sam pays you, CHF 0.02")
         try tap("Partial amount", app: app, reader: reader)
         let amount = app.textFields["Amount (CHF)"]
         try reader.reveal(amount)
@@ -20,7 +20,7 @@ final class NativePaymentResultFeedbackTests: XCTestCase {
         try tap("Record payment", app: app, reader: reader)
         try requireVisibleResult("Payment recorded.", app: app, reader: reader)
         try tap("Done", app: app, reader: reader)
-        try reader.read("CHF 0.01")
+        try reader.read("Test Sam pays you, CHF 0.01")
         app.navigationBars["Record payment"].buttons.element(boundBy: 0).tap()
         XCTAssertFalse(app.alerts["Discard edits?"].exists)
         app.tabBars.firstMatch.buttons["Today"].tap()
@@ -44,7 +44,7 @@ final class NativePaymentResultFeedbackTests: XCTestCase {
         try requireVisibleResult("Expense recorded.", app: app, reader: reader)
         try tap("Start another expense", app: app, reader: reader)
         XCTAssertTrue(description.waitForExistence(timeout: 30))
-        XCTAssertTrue(["", "Description"].contains(description.value as? String ?? "unexpected value"))
+        XCTAssertTrue(["", "What was it for?"].contains(description.value as? String ?? "unexpected value"))
         app.navigationBars["Add expense"].buttons.element(boundBy: 0).tap()
         XCTAssertFalse(app.alerts["Discard edits?"].exists)
     }

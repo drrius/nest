@@ -63,7 +63,10 @@ final class NativeManualRecipeEditTests: XCTestCase {
         save.tap()
         let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: navigation)
         XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 30), .completed)
-        let instructions = app.staticTexts[after]
+        let method = app.segmentedControls["Show"].buttons["Method"]
+        fixture.reveal(method, in: app)
+        method.tap()
+        let instructions = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", after)).firstMatch
         XCTAssertTrue(instructions.waitForExistence(timeout: 30))
         fixture.reveal(instructions, in: app)
         XCTAssertTrue(instructions.isHittable)
@@ -82,11 +85,14 @@ final class NativeManualRecipeEditTests: XCTestCase {
         week.reveal(meal)
         meal.tap()
         XCTAssertTrue(app.navigationBars["Planned meal"].waitForExistence(timeout: 15))
-        let instructions = app.staticTexts[original]
+        let method = app.segmentedControls["Show"].buttons["Method"]
+        week.reveal(method)
+        method.tap()
+        let instructions = app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", original)).firstMatch
         XCTAssertTrue(instructions.waitForExistence(timeout: 30))
         week.reveal(instructions)
         XCTAssertTrue(instructions.isHittable)
-        XCTAssertFalse(app.staticTexts[edited].exists)
+        XCTAssertFalse(app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", edited)).firstMatch.exists)
         let image = XCTAttachment(screenshot: app.screenshot())
         image.name = week.fixture.name + " reads unchanged planned instructions"
         image.lifetime = .keepAlways

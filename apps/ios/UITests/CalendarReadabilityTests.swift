@@ -41,7 +41,7 @@ final class CalendarReadabilityTests: XCTestCase {
     func testUnknownPartnerAvailabilityCanBeReadAcrossScrolling() throws {
         let app = openCalendar()
         let text = app.staticTexts[
-            "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day."
+            "Test Sam isn’t sharing busy times for this day. Details are never shared."
         ]
         revealBoundary(text, in: app, start: true)
         let first = text.frame
@@ -82,7 +82,7 @@ final class CalendarReadabilityTests: XCTestCase {
             XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
         }
         let text = app.staticTexts[
-            "Availability is unknown. Your partner may not be sharing, or their snapshot may be stale or outside this day."
+            "Test Sam isn’t sharing busy times for this day. Details are never shared."
         ]
         reveal(text, in: app)
         let frame = text.frame
@@ -112,7 +112,7 @@ final class CalendarReadabilityTests: XCTestCase {
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30), "Requires an authorized test-member session")
         tabs.buttons["Calendar"].tap()
-        XCTAssertTrue(app.staticTexts["Our household"].waitForExistence(timeout: 30))
+        XCTAssertTrue(app.navigationBars["Calendar"].waitForExistence(timeout: 30))
         return app
     }
 

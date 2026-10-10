@@ -18,7 +18,7 @@ final class NativeContrastViewportTests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         defer { restoreToday(app) }
         let meal = app.buttons["Open meal plan"]
-        let calendar = app.staticTexts["On your calendar"]
+        let calendar = app.buttons["Open Calendar"]
         XCTAssertTrue(meal.waitForExistence(timeout: 30))
         XCTAssertTrue(calendar.waitForExistence(timeout: 30))
         try position(meal, calendar, in: app)
@@ -41,10 +41,12 @@ final class NativeContrastViewportTests: XCTestCase {
         app.buttons["Profile and preferences"].tap()
         XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 15))
         app.navigationBars.buttons.element(boundBy: 0).tap()
-        let heading = app.staticTexts["On your calendar"]
+        let heading = app.buttons["Open Calendar"]
         let explanation = app.staticTexts[
-            "Open Calendar to review access. Your personal details stay on this device."]
-        let action = app.buttons["Open Calendar"]
+            "See your day here. Your event details stay on this iPhone."]
+        let action = app.buttons.containing(
+            .staticText, identifier: "See your day here. Your event details stay on this iPhone."
+        ).firstMatch
         try positionCalendarCard([heading, explanation, action], action: action, in: app)
         XCTAssertTrue(action.isEnabled && action.isHittable)
         XCTAssertGreaterThanOrEqual(action.frame.width, 44)
@@ -224,7 +226,7 @@ final class NativeContrastViewportTests: XCTestCase {
     private func restoreToday(_ app: XCUIApplication) {
         app.tabBars.firstMatch.buttons["Today"].tap()
         for _ in 0..<12 {
-            if app.staticTexts["Around the house"].isHittable && app.staticTexts["Today"].firstMatch.frame.minY < 180 {
+            if app.buttons["Manage chores"].isHittable && app.staticTexts["Today"].firstMatch.frame.minY < 180 {
                 break
             }
             app.swipeDown(velocity: .fast)

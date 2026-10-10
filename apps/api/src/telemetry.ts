@@ -104,6 +104,7 @@ function routeCategory(request: Request) {
     "cooking-preferences",
     "memories",
     "notification-preferences",
+    "member-colours",
     "push-devices",
     "latest-daily-summary",
     "daily-summary",

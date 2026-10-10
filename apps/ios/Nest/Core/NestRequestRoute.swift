@@ -18,7 +18,7 @@ public enum NestRequestRoute: String, Codable, Sendable {
     private static let families: [String: Self] = [
         "session": .session, "assistant": .assistant, "meals": .meals, "groceries": .groceries, "chores": .chores,
         "renewals": .renewals, "availability": .availability, "food-preferences": .preferences,
-        "cooking-preferences": .preferences, "notification-preferences": .notifications,
+        "cooking-preferences": .preferences, "member-colours": .preferences, "notification-preferences": .notifications,
         "push-devices": .notifications, "memories": .memories,
         "meal-reminders": .reminders, "chore-reminders": .reminders, "grocery-reminders": .reminders,
         "renewal-reminders": .reminders, "recurring-reminders": .reminders,

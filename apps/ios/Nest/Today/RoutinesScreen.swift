@@ -10,8 +10,26 @@ struct RoutinesScreen: View {
 
     var body: some View {
         List {
-            NavigationLink("Scheduled chores") { ChoreOccurrencesScreen(model: model) }
-            NavigationLink("Chore handovers") { ChoreHandoversScreen(model: model) }
+            Section {
+                NavigationLink {
+                    ChoreOccurrencesScreen(model: model)
+                } label: {
+                    Label {
+                        Text("Scheduled chores")
+                    } icon: {
+                        IconTile(systemName: "calendar", domain: .house, solid: true)
+                    }
+                }
+                NavigationLink {
+                    ChoreHandoversScreen(model: model)
+                } label: {
+                    Label {
+                        Text("Chore handovers")
+                    } icon: {
+                        IconTile(systemName: "hand.raised", domain: .bill, solid: true)
+                    }
+                }
+            }
             if let notice {
                 Section {
                     Text(notice)
@@ -30,27 +48,16 @@ struct RoutinesScreen: View {
                         "No chores yet", systemImage: "checklist",
                         description: Text("Add a chore to share what needs doing."))
                 }
-                ForEach(list.routines) { routine in
-                    NavigationLink {
-                        RoutineStateScreen(model: model, routine: routine)
-                    } label: {
-                        VStack(alignment: .leading, spacing: 6) {
-                            Text(routine.definition.title).font(.headline).foregroundStyle(QuietPalette.ink)
-                            Text(schedule(routine.definition.schedule)).font(.subheadline)
-                            Text(assignment(routine.definition.assignment, members: list.members)).font(.subheadline)
-                            if routine.state != .active { Text(routine.state.rawValue.capitalized).font(.caption) }
-                        }
-                        .foregroundStyle(QuietPalette.muted)
-                        .padding(.vertical, 6)
-                    }
-                    .listRowBackground(QuietPalette.surface)
-                }
+                let active = list.routines.filter { $0.state == .active }
+                let other = list.routines.filter { $0.state != .active }
+                if !active.isEmpty { Section("Chores") { ForEach(active) { row($0, members: list.members) } } }
+                if !other.isEmpty { Section("Paused or ended") { ForEach(other) { row($0, members: list.members) } } }
             } else if working {
-                ProgressView("Loading chores…")
+                ProgressView("Loading chores…").frame(maxWidth: .infinity)
             }
         }
         .scrollContentBackground(.hidden)
-        .background(QuietPalette.background)
+        .nestScreen()
         .navigationTitle("Household chores")
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
@@ -76,6 +83,35 @@ struct RoutinesScreen: View {
             list = try await model.readRoutines(context)
             notice = nil
         } catch { notice = "Could not refresh chores. Connect and try again." }
+    }
+
+    private func row(_ routine: HouseholdRoutine, members: [NestMember]) -> some View {
+        NavigationLink {
+            RoutineStateScreen(model: model, routine: routine)
+        } label: {
+            HStack(spacing: 12) {
+                AssigneeBadge(kind: badge(routine.definition.assignment), size: 30)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(routine.definition.title).font(.body.weight(.medium)).foregroundStyle(NestColor.ink)
+                    Text(
+                        schedule(routine.definition.schedule) + " · "
+                            + assignment(routine.definition.assignment, members: members)
+                    )
+                    .font(.footnote).foregroundStyle(NestColor.ink2)
+                }
+                Spacer(minLength: 4)
+                if routine.state != .active { NestPill(text: routine.state.rawValue.capitalized) }
+            }
+            .padding(.vertical, 2)
+        }
+    }
+
+    private func badge(_ value: RoutineAssignment) -> AssigneeBadge.Kind {
+        switch value {
+        case .shared: .shared
+        case .assigned(let id): .person(id)
+        case .alternating: .turns
+        }
     }
 
     private func assignment(_ value: RoutineAssignment, members: [NestMember]) -> String {

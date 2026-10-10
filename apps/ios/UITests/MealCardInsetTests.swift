@@ -24,12 +24,15 @@ final class MealCardInsetTests: XCTestCase {
         XCTAssertEqual(slot.frame.maxX, app.frame.maxX - 40, accuracy: 0.5)
         reader.capture(slot, name: "Largest text meal slot shared card insets")
         slot.tap()
-        XCTAssertTrue(app.navigationBars["Add meal"].waitForExistence(timeout: 15))
-        let cancel = app.navigationBars["Add meal"].buttons["Cancel"]
+        let search = app.textFields["Search or type a meal"]
+        XCTAssertTrue(search.waitForExistence(timeout: 15))
+        let navigation = app.navigationBars.matching(NSPredicate(format: "identifier ENDSWITH %@", " dinner"))
+            .firstMatch
+        let cancel = navigation.buttons["Cancel"]
         try reader.requireTarget(cancel, bounds: app.frame)
         cancel.tap()
         XCTAssertFalse(app.alerts["Discard edits?"].exists)
-        XCTAssertFalse(app.navigationBars["Add meal"].exists)
+        XCTAssertFalse(search.exists)
         XCTAssertTrue(slot.exists)
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)

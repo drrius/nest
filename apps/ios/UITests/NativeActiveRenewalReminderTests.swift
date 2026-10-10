@@ -116,6 +116,7 @@ final class NativeActiveRenewalReminderTests: XCTestCase {
         app.buttons["Profile and preferences"].tap()
         XCTAssertTrue(app.staticTexts["Test Alex"].waitForExistence(timeout: 15))
         app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tabBars.firstMatch.buttons["Money"].tap()  // Renewals live under Money → Bills & renewals.
         let renewals = app.buttons["Manage renewals"]
         reveal(renewals, in: app)
         XCTAssertTrue(renewals.isEnabled && renewals.isHittable)

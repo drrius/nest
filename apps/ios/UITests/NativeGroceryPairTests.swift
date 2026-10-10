@@ -91,10 +91,10 @@ final class NativeGroceryPairTests: XCTestCase {
         try requireMutation("remove")
         let app = try openGroceries()
         _ = revealFixture(in: app)
-        let more = app.buttons["More options for \(fixture)"]
+        let more = app.buttons[fixture]
         reveal(more, in: app)
         XCTAssertTrue(more.isHittable)
-        more.tap()
+        more.press(forDuration: 1.0)
         let remove = app.buttons["Remove"]
         XCTAssertTrue(remove.waitForExistence(timeout: 15))
         remove.tap()
@@ -114,7 +114,7 @@ final class NativeGroceryPairTests: XCTestCase {
         app.launch()
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
-        if app.staticTexts["Welcome, \(name)."].waitForExistence(timeout: 5) {
+        if app.staticTexts["Hi \(name). How do you want to start?"].waitForExistence(timeout: 5) {
             app.buttons["Get started"].tap()
         }
         tabs.buttons["Today"].tap()

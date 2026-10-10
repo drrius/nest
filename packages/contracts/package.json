@@ -17,6 +17,7 @@
     "./calendar": "./src/calendar.ts",
     "./calendar-chores": "./src/calendar-chores.ts",
     "./notifications": "./src/notifications.ts",
+    "./member-colours": "./src/member-colours.ts",
     "./setup": "./src/setup.ts",
     "./routines": "./src/routines.ts",
     "./chore-changes": "./src/chore-changes.ts",

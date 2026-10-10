@@ -21,7 +21,7 @@ final class NativeChorePairCompletionTests: XCTestCase {
         item.tap()
         if state == "pending" {
             let retained = app.descendants(matching: .any).matching(identifier: fixture.title).firstMatch
-            fixture.waitForValue(retained, "Saved · waiting to sync")
+            fixture.waitForValue(retained, "Saved on this iPhone · syncs when online")
         } else {
             let settled = XCTNSPredicateExpectation(
                 predicate: NSPredicate(format: "exists == false"), object: app.buttons[fixture.title])
@@ -36,8 +36,8 @@ final class NativeChorePairCompletionTests: XCTestCase {
         app.buttons["Everyone"].tap()
         let retained = app.descendants(matching: .any).matching(identifier: fixture.title).firstMatch
         fixture.reveal(retained, in: app)
-        XCTAssertEqual(retained.value as? String, "Saved · waiting to sync")
-        XCTAssertFalse(app.buttons[fixture.title].exists)
+        XCTAssertEqual(retained.value as? String, "Saved on this iPhone · syncs when online")
+        XCTAssertFalse(app.buttons[fixture.title].isEnabled)
         fixture.finish(app, backs: 0)
     }
 

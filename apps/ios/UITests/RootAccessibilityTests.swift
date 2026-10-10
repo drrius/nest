@@ -8,7 +8,7 @@ final class RootAccessibilityTests: XCTestCase {
     }
 
     func testTodayAccessibility() throws {
-        try audit(tab: "Today", ready: "Around the house")
+        try audit(tab: "Today", ready: "Manage chores")
     }
 
     func testMealsAccessibility() throws {

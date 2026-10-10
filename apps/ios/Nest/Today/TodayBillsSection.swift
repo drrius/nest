@@ -11,43 +11,29 @@ struct TodayBillsSection: View {
 
     var body: some View {
         Group {
-            if page?.rules.isEmpty != true {
-                VStack(alignment: .leading, spacing: 14) {
-                    Text("Bills to confirm").font(.headline).foregroundStyle(QuietPalette.ink)
-                    if let page {
-                        Text("Review the amount and split before recording each bill.")
-                            .font(.subheadline).foregroundStyle(QuietPalette.muted)
-                        ForEach(Array(page.rules.prefix(3))) { rule in
-                            NavigationLink {
-                                VariableCycleScreen(session: session, member: member, ruleId: rule.id)
-                                    .id(session.generation)
-                            } label: {
-                                VStack(alignment: .leading, spacing: 4) {
-                                    Text(rule.configuration.description)
-                                    if let due = rule.nextDueOn {
-                                        Text("Due \(due.value)").font(.caption).foregroundStyle(QuietPalette.muted)
-                                    }
-                                }
-                                .frame(minHeight: 44, alignment: .leading)
-                                .contentShape(Rectangle())
-                            }
-                        }
-                    } else if failed {
-                        Text("Could not check due bills. Try again online.").foregroundStyle(QuietPalette.muted)
-                        Button("Try again") { Task { await load() } }.frame(minHeight: 44)
-                    } else {
-                        ProgressView("Checking due bills…")
-                    }
-                    NavigationLink {
+            if let page, !page.rules.isEmpty {
+                TodayForYouCard(title: "Bills to confirm") {
+                    NavigationLink("All") {
                         RecurringRulesScreen(session: session, member: member, dueOnly: true)
-                    } label: {
-                        QuietActionLabel("View all due bills").font(.subheadline.weight(.medium))
+                    }
+                    .accessibilityLabel("View all due bills")
+                } content: {
+                    ForEach(Array(page.rules.prefix(3).enumerated()), id: \.element.id) { index, rule in
+                        if index > 0 { NestRowDivider(leading: 64) }
+                        NavigationLink {
+                            VariableCycleScreen(session: session, member: member, ruleId: rule.id)
+                                .id(session.generation)
+                        } label: {
+                            TodayForYouRow(
+                                icon: "bolt.fill", domain: .bill, title: rule.configuration.description,
+                                detail: rule.nextDueOn.map { "Enter the amount · due \($0.value)" }
+                                    ?? "Enter the amount")
+                        }
+                        .buttonStyle(NestPressStyle())
                     }
                 }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(QuietTabLayout.cardInset)
-                .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
-                .padding(.top, 24)
+            } else if failed {
+                TodayForYouRetry(text: "Couldn’t check due bills") { Task { await load() } }
             }
         }
         .task(id: refresh) { await load() }

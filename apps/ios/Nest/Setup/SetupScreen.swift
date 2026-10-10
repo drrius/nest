@@ -12,11 +12,22 @@ struct SetupScreen: View {
         List {
             Section {
                 Text("Choose what helps you. Each part is optional, and you can return from Profile whenever you like.")
-                    .foregroundStyle(QuietPalette.muted)
+                    .foregroundStyle(NestColor.ink2)
                 Text(
                     "You and your partner have separate personal preferences. Cooking choices are shared."
                 )
-                .font(.footnote).foregroundStyle(QuietPalette.muted)
+                .font(.footnote).foregroundStyle(NestColor.ink2)
+            }
+            Section {
+                NavigationLink {
+                    MemberColourScreen()
+                } label: {
+                    MemberColourRow()
+                }
+            } header: {
+                Text("You")
+            } footer: {
+                Text("It marks your chores, your calendar and your side of the balance. Your partner sees it too.")
             }
             Section {
                 NavigationLink {
@@ -54,7 +65,7 @@ struct SetupScreen: View {
                     }.padding(.vertical, 4)
                 }
                 Text("Choose calendars on this iPhone. Personal details stay here; busy sharing is a separate opt-in.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
+                    .font(.footnote).foregroundStyle(NestColor.ink2)
                 NavigationLink {
                     NotificationPreferencesScreen(session: session, member: member).id(session.generation)
                 } label: {
@@ -63,17 +74,17 @@ struct SetupScreen: View {
                     )
                 }
                 Text("Your daily summary and item reminders. Connect this iPhone separately if delivery is available.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
+                    .font(.footnote).foregroundStyle(NestColor.ink2)
             }
             Section {
                 if model.loading { ProgressView("Checking saved choices…") }
-                if let notice = model.notice { Text(notice).foregroundStyle(QuietPalette.muted) }
+                if let notice = model.notice { Text(notice).foregroundStyle(NestColor.ink2) }
                 Button("Reload saved choices") { load() }.disabled(model.loading)
                 Button("Get started") {
                     if let getStarted { getStarted() } else { dismiss() }
                 }
                 Text("You can finish any of these later from Profile.")
-                    .font(.footnote).foregroundStyle(QuietPalette.muted)
+                    .font(.footnote).foregroundStyle(NestColor.ink2)
             }
         }
         .scrollContentBackground(.hidden).background(QuietPalette.background).tint(QuietPalette.accent)

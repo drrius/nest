@@ -30,6 +30,16 @@ The stable API now again points to the prior working `dpl_AXFV8bWxhygAfd7D3QQyi6
 
 ## Installed schema
 
+10 October member colours: with the owner's authorization, hosted migration `20261010133938`
+(`native_member_colours`) applies source `20261010131500_native_member_colours.sql` to the
+permanent `nest` project. It is additive: two new tables with RLS, one private SECURITY DEFINER
+save function and its invoker wrapper. The hosted function body matches the source, anonymous
+callers have no access and the advisors report no finding for the new objects (totals unchanged:
+71 policy-absence INFO, 81 callable-definer WARN, one leaked-password WARN). A rolled-back probe in
+the synthetic verification household confirmed a save, partner read, own-only receipts, PT412 for
+the partner's colour and outsider denial; afterwards both tables were empty. No real member's
+colour was written. The current source manifest contains 55 legacy and 258 native inputs.
+
 4 October receipt cleanup update: hosted migration `20261004135633`
 (`native_receipt_legacy_cleanup_owner`) applies source
 `20261004134604_native_receipt_legacy_cleanup_owner.sql` only to `nest-test`.

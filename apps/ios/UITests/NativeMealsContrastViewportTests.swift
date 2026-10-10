@@ -18,11 +18,13 @@ final class NativeMealsContrastViewportTests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         defer { restoreToday(app) }
         app.tabBars.firstMatch.buttons["Meals"].tap()
-        XCTAssertTrue(app.staticTexts["5 Oct – 11 Oct"].waitForExistence(timeout: 30))
-        let heading = app.staticTexts["Tuesday · 6 Oct"]
+        XCTAssertTrue(
+            app.staticTexts.matching(NSPredicate(format: "label CONTAINS %@", "5 Oct – 11 Oct")).firstMatch
+                .waitForExistence(timeout: 30))
+        let heading = app.staticTexts["Today, Tuesday, October 6"]
         try position(heading, in: app)
-        XCTAssertEqual(app.staticTexts.matching(identifier: "Tuesday · 6 Oct").count, 1)
-        XCTAssertEqual(heading.label, "Tuesday · 6 Oct")
+        XCTAssertEqual(app.staticTexts.matching(identifier: "Today, Tuesday, October 6").count, 1)
+        XCTAssertEqual(heading.label, "Today, Tuesday, October 6")
         capture(app, name: "Exact Tuesday heading fully visible eighty points above tab bar")
         attach(
             ["auditType": "contrast", "auditInvocations": 1, "filteredFindings": 0, "hostedCommands": 0],
@@ -42,7 +44,8 @@ final class NativeMealsContrastViewportTests: XCTestCase {
             let point = CGPoint(x: app.frame.width * 0.04, y: app.frame.height * 0.65)
             XCTAssertTrue(scroll.frame.contains(point))
             frames.append([
-                "label": "Tuesday · 6 Oct", "exists": heading.exists, "frame": rect(frame), "tabBar": rect(bar),
+                "label": "Today, Tuesday, October 6", "exists": heading.exists, "frame": rect(frame),
+                "tabBar": rect(bar),
                 "hittable": heading.isHittable, "scroll": rect(scroll.frame), "gestureStart": [point.x, point.y],
             ])
             if heading.exists && heading.isHittable && app.frame.contains(frame) && frame.minY >= 80
@@ -87,7 +90,7 @@ final class NativeMealsContrastViewportTests: XCTestCase {
     private func restoreToday(_ app: XCUIApplication) {
         app.tabBars.firstMatch.buttons["Today"].tap()
         for _ in 0..<12 {
-            if app.staticTexts["Around the house"].isHittable && app.staticTexts["Today"].firstMatch.frame.minY < 180 {
+            if app.buttons["Manage chores"].isHittable && app.staticTexts["Today"].firstMatch.frame.minY < 180 {
                 break
             }
             app.swipeDown(velocity: .fast)

@@ -2,7 +2,7 @@ import XCTest
 
 @MainActor
 final class MoneyRootGroupingTests: XCTestCase {
-    func testLargestTextSavedChangesDisclosureKeepsLinksReadable() throws {
+    func testLargestTextSavedChangesKeepsLinksReadable() throws {
         let env = ProcessInfo.processInfo.environment
         guard env["NEST_QA_MONEY_GROUPING_MAX"] == "20261007-alex-read-only" else {
             throw XCTSkip("Requires owned largest-text Money disclosure check")
@@ -15,31 +15,25 @@ final class MoneyRootGroupingTests: XCTestCase {
         XCTAssertTrue(app.tabBars.firstMatch.waitForExistence(timeout: 30))
         app.tabBars.firstMatch.buttons["Money"].tap()
         let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
-        let approvals = app.buttons["Your financial approvals"]
-        try reader.reveal(approvals)
-        try reader.requireTarget(approvals)
-        XCTAssertEqual(approvals.frame.minX, 40, accuracy: 0.5)
-        XCTAssertEqual(approvals.frame.maxX, app.frame.maxX - 40, accuracy: 0.5)
-        reader.capture(approvals, name: "Largest text Money shared card insets")
-        let disclosure = app.buttons["Saved changes"]
-        try reader.reveal(disclosure)
-        try reader.requireTarget(disclosure)
-        disclosure.tap()
+        let more = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Older saved changes")).firstMatch
+        try reader.reveal(more)
+        try reader.requireTarget(more)
+        more.tap()
+        XCTAssertTrue(app.navigationBars["Older saved changes"].waitForExistence(timeout: 15))
+        try reader.read("Saved changes")
         for label in ["Draft dismissal", "Draft confirmation", "Rule adoption"] {
             let link = app.buttons[label]
             try reader.reveal(link)
             try reader.requireTarget(link)
             reader.capture(link, name: "Largest text saved change \(label)")
         }
-        try reader.reveal(disclosure, searchEarlier: true)
-        try reader.requireTarget(disclosure)
-        disclosure.tap()
-        XCTAssertFalse(app.buttons["Draft dismissal"].exists)
+        app.navigationBars["Older saved changes"].buttons.element(boundBy: 0).tap()
+        XCTAssertTrue(app.navigationBars["Money"].waitForExistence(timeout: 15))
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }
 
-    func testBillsCardUsesSharedInsetsAndOpensApprovals() throws {
+    func testSavedChangesCardUsesSharedInsetsAndOpensApprovals() throws {
         let env = ProcessInfo.processInfo.environment
         guard env["NEST_QA_MONEY_GROUPING"] == "20261007-alex-read-only" else {
             throw XCTSkip("Requires owned fictional Money layout check")
@@ -56,12 +50,17 @@ final class MoneyRootGroupingTests: XCTestCase {
         app.navigationBars.buttons.element(boundBy: 0).tap()
         app.tabBars.firstMatch.buttons["Money"].tap()
         let reader = AssistantFinancialHistoryMaximumReading(app: app, test: self, minimumContentY: 40)
+        let more = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Older saved changes")).firstMatch
+        try reader.reveal(more)
+        try reader.requireTarget(more)
+        XCTAssertEqual(more.frame.minX, 20, accuracy: 0.5)
+        XCTAssertEqual(more.frame.maxX, app.frame.maxX - 20, accuracy: 0.5)
+        reader.capture(more, name: "Money saved changes card page insets")
+        more.tap()
+        XCTAssertTrue(app.navigationBars["Older saved changes"].waitForExistence(timeout: 15))
         let approvals = app.buttons["Your financial approvals"]
         try reader.reveal(approvals)
         try reader.requireTarget(approvals)
-        XCTAssertEqual(approvals.frame.minX, 40, accuracy: 0.5)
-        XCTAssertEqual(approvals.frame.maxX, app.frame.maxX - 40, accuracy: 0.5)
-        reader.capture(approvals, name: "Money bills card shared page and inner insets")
         approvals.tap()
         XCTAssertTrue(app.navigationBars["Your approvals"].waitForExistence(timeout: 15))
         XCTAssertTrue(app.staticTexts["No pending financial approvals."].waitForExistence(timeout: 20))

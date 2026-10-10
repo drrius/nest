@@ -26,8 +26,13 @@ final class RootLayoutConsistencyTests: XCTestCase {
         done.tap()
         XCTAssertTrue(choose.waitForExistence(timeout: 15))
         XCTAssertEqual(choose.value as? String, day)
+        let layers = app.buttons["Calendars and layers"]
+        XCTAssertTrue(layers.isHittable)
+        layers.tap()
+        let layerNavigation = app.navigationBars["Calendars and layers"]
+        XCTAssertTrue(layerNavigation.waitForExistence(timeout: 15))
         let calendars = app.buttons["Choose calendars"].firstMatch
-        if calendars.exists {
+        if calendars.isEnabled {
             XCTAssertTrue(calendars.isHittable)
             XCTAssertGreaterThanOrEqual(calendars.frame.height + 0.000_001, 44)
             calendars.tap()
@@ -36,6 +41,8 @@ final class RootLayoutConsistencyTests: XCTestCase {
             XCTAssertTrue(close.isHittable)
             XCTAssertGreaterThanOrEqual(close.frame.height + 0.000_001, 44)
             close.tap()
+        } else {
+            layerNavigation.buttons["Done"].tap()
         }
         let capture = XCTAttachment(screenshot: app.screenshot())
         capture.name = "Calendar after unchanged picker review"
@@ -61,16 +68,16 @@ final class RootLayoutConsistencyTests: XCTestCase {
             capture.name = "\(tab) root layout"
             capture.lifetime = .keepAlways
             add(capture)
-            let title = app.descendants(matching: .any)["tab-header-\(tab.lowercased())"]
+            let title = app.navigationBars[tab].staticTexts[tab]
             let profile = app.buttons["tab-profile-action"]
             XCTAssertTrue(title.exists && profile.isHittable)
             frames.append((tab, title.frame, profile.frame))
             profile.tap()
             XCTAssertTrue(app.staticTexts[fixture.name].waitForExistence(timeout: 15))
             app.navigationBars.buttons.element(boundBy: 0).tap()
-            app.buttons["tab-assistant-action"].tap()
-            XCTAssertTrue(app.navigationBars["Private conversations"].waitForExistence(timeout: 15))
-            app.navigationBars.buttons.element(boundBy: 0).tap()
+            app.tabBars.buttons["Ask Nest"].tap()
+            XCTAssertTrue(app.navigationBars["Ask Nest"].waitForExistence(timeout: 15))
+            app.tabBars.firstMatch.buttons[tab].tap()
         }
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)

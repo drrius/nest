@@ -27,7 +27,7 @@ struct NativeMealWeekFixture {
         app.launch()
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
-        if app.staticTexts["Welcome, \(name)."].exists { app.buttons["Get started"].tap() }
+        if app.staticTexts["Hi \(name). How do you want to start?"].exists { app.buttons["Get started"].tap() }
         tabs.buttons["Today"].tap()
         app.buttons["Profile and preferences"].tap()
         XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 15))
@@ -38,26 +38,14 @@ struct NativeMealWeekFixture {
 
     func openLibrary() -> XCUIApplication {
         let app = openMeals()
+        let options = app.buttons["More meal options"]
+        XCTAssertTrue(options.waitForExistence(timeout: 15))
+        options.tap()
         let library = app.buttons["Saved meals"]
-        revealLibrary(library, in: app)
-        XCTAssertTrue(library.isHittable)
+        XCTAssertTrue(library.waitForExistence(timeout: 15) && library.isHittable)
         library.tap()
         XCTAssertTrue(app.navigationBars["Saved meals"].waitForExistence(timeout: 15))
         return app
-    }
-
-    private func revealLibrary(_ library: XCUIElement, in app: XCUIApplication) {
-        for _ in 0..<60 {
-            if library.isHittable && library.frame.minY >= 80
-                && library.frame.maxY <= app.tabBars.firstMatch.frame.minY
-            {
-                return
-            }
-            let start = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.8))
-            let end = app.coordinate(withNormalizedOffset: CGVector(dx: 0.96, dy: 0.3))
-            start.press(forDuration: 0.1, thenDragTo: end, withVelocity: .slow, thenHoldForDuration: 0.2)
-        }
-        XCTFail("The bottom-of-week saved-meal library is not visible")
     }
 
     func reveal(_ element: XCUIElement, in app: XCUIApplication) {

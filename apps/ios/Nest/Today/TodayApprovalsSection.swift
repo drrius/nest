@@ -10,35 +10,25 @@ struct TodayApprovalsSection: View {
     @State private var request = UUID()
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("For your review").font(.headline).foregroundStyle(QuietPalette.ink)
-            Text("Financial proposals · private to you")
-                .font(.caption).foregroundStyle(QuietPalette.muted)
-            if let page {
-                if page.approvals.isEmpty {
-                    Text("No pending proposals.").foregroundStyle(QuietPalette.muted)
-                }
-                ForEach(Array(page.approvals.prefix(3))) { row in
-                    FinancialApprovalRow(session: model, member: member, row: row)
-                        .frame(minHeight: 44, alignment: .leading)
+        Group {
+            if let page, !page.approvals.isEmpty {
+                TodayForYouCard(title: "Waiting for your OK", systemImage: "lock.fill") {
+                    NavigationLink("All") {
+                        FinancialApprovalsScreen(session: model, member: member)
+                    }
+                    .accessibilityLabel("All proposals and saved decisions")
+                } content: {
+                    ForEach(Array(page.approvals.prefix(3).enumerated()), id: \.element.id) { index, row in
+                        if index > 0 { NestRowDivider(leading: 16) }
+                        FinancialApprovalRow(session: model, member: member, row: row)
+                            .frame(maxWidth: .infinity, minHeight: 52, alignment: .leading)
+                            .padding(.horizontal, 16)
+                    }
                 }
             } else if failed {
-                Text("Could not check your proposals. Try again online.")
-                    .foregroundStyle(QuietPalette.muted)
-                Button("Try again") { Task { await load() } }.frame(minHeight: 44)
-            } else {
-                ProgressView("Checking proposals…")
-            }
-            NavigationLink {
-                FinancialApprovalsScreen(session: model, member: member)
-            } label: {
-                QuietActionLabel("All proposals and saved decisions")
-                    .font(.subheadline.weight(.medium))
+                TodayForYouRetry(text: "Couldn’t check your proposals") { Task { await load() } }
             }
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(QuietTabLayout.cardInset)
-        .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
         .task(id: refresh) { await load() }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await load() } }
