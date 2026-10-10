@@ -54,15 +54,21 @@ struct PartnerBusySection: View {
             }
             Text(updated(snapshot)).font(.caption).foregroundStyle(NestColor.ink3)
                 .padding(.horizontal, 16).padding(.bottom, 12).padding(.top, 4)
-        } else if envelope?.snapshots.contains(where: { $0.actorId != actor }) == true {
+        } else if let shared = envelope?.snapshots.first(where: { $0.actorId != actor }) {
             note(
-                "\(palette.partnerName.capitalizedFirst)’s shared busy times don’t cover this day yet, so it’s unknown.",
+                expired(shared, now: now)
+                    ? "\(palette.partnerName.capitalizedFirst)’s busy times are out of date, so this day is unknown."
+                    : "\(palette.partnerName.capitalizedFirst)’s shared busy times don’t cover this day yet, so it’s unknown.",
                 icon: "clock")
         } else {
             note(
                 "\(palette.partnerName.capitalizedFirst) hasn’t shared busy times for this day. Details are never shared.",
                 icon: "lock")
         }
+    }
+
+    private func expired(_ snapshot: BusySnapshot, now: Date) -> Bool {
+        (try? BusyCapture.timestamp(snapshot.expiresAt)).map { now >= $0 } ?? true
     }
 
     private func busyRow(_ interval: BusyInterval, query: BusyInterval, color: Color) -> some View {

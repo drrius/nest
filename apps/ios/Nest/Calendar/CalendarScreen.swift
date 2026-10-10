@@ -154,13 +154,20 @@ struct CalendarScreen: View {
             .frame(maxWidth: .infinity, alignment: .leading).padding(16)
     }
 
+    /// A time on the selected day, or date and time when an event runs past it.
+    private func time(_ date: Date) -> String {
+        Calendar.current.isDate(date, inSameDayAs: day)
+            ? date.formatted(date: .omitted, time: .shortened)
+            : date.formatted(.dateTime.day().month(.abbreviated).hour().minute())
+    }
+
     private func eventRow(_ event: DeviceCalendarEvent) -> some View {
         HStack(alignment: .top, spacing: 12) {
             VStack(alignment: .leading, spacing: 1) {
-                Text(event.allDay ? "All day" : event.start.formatted(date: .omitted, time: .shortened))
+                Text(event.allDay ? "All day" : time(event.start))
                     .font(.system(.subheadline, design: .rounded, weight: .semibold))
                 if !event.allDay {
-                    Text(event.end.formatted(date: .omitted, time: .shortened))
+                    Text(time(event.end))
                         .font(.system(.caption, design: .rounded)).foregroundStyle(NestColor.ink3)
                 }
             }

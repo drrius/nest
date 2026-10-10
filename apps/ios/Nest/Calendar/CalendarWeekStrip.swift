@@ -4,6 +4,7 @@ import SwiftUI
 struct CalendarWeekStrip: View {
     @Binding var day: Date
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
+    @Environment(\.dynamicTypeSize) private var textSize
     private let calendar: Calendar = {
         var value = Calendar(identifier: .gregorian)
         value.firstWeekday = 2
@@ -19,8 +20,17 @@ struct CalendarWeekStrip: View {
                 arrow("chevron.right", label: "Next week", weeks: 1)
                 CalendarDayPicker(day: $day)
             }
-            HStack(spacing: 2) {
-                ForEach(week, id: \.self) { date in dayButton(date) }
+            if textSize.isAccessibilitySize {
+                // Large dates can't share one screen width, so the week scrolls sideways instead of clipping.
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 6) {
+                        ForEach(week, id: \.self) { date in dayButton(date) }
+                    }
+                }
+            } else {
+                HStack(spacing: 2) {
+                    ForEach(week, id: \.self) { date in dayButton(date) }
+                }
             }
         }
     }
@@ -42,10 +52,11 @@ struct CalendarWeekStrip: View {
                 Text(date.formatted(.dateTime.day()))
                     .font(.system(.body, design: .rounded, weight: .semibold))
                     .foregroundStyle(selected ? NestColor.onAccent : today ? NestColor.accentInk : NestColor.ink)
-                    .frame(width: 38, height: 38)
+                    .frame(minWidth: 38, minHeight: 38)
+                    .padding(textSize.isAccessibilitySize ? 8 : 0)
                     .background(selected ? NestColor.accent : Color.clear, in: Circle())
             }
-            .frame(maxWidth: .infinity, minHeight: 64)
+            .frame(maxWidth: textSize.isAccessibilitySize ? nil : .infinity, minHeight: 64)
             .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
@@ -57,7 +68,8 @@ struct CalendarWeekStrip: View {
         Button {
             if let next = calendar.date(byAdding: .day, value: 7 * weeks, to: day) { day = next }
         } label: {
-            Image(systemName: symbol).font(.subheadline.weight(.semibold)).frame(width: 36, height: 44)
+            Image(systemName: symbol).font(.subheadline.weight(.semibold)).frame(width: 44, height: 44)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
         .foregroundStyle(NestColor.ink2)

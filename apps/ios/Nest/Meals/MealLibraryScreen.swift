@@ -6,6 +6,8 @@ struct MealLibraryScreen: View {
     @State private var loadingMore = false
     @State private var query = ""
 
+    @Environment(\.dynamicTypeSize) private var textSize
+
     var body: some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 16) {
@@ -66,7 +68,11 @@ struct MealLibraryScreen: View {
                 .foregroundStyle(NestColor.ink2)
                 .frame(maxWidth: .infinity, minHeight: 120, alignment: .leading)
             } else {
-                LazyVGrid(columns: [GridItem(.flexible(), spacing: 12), GridItem(.flexible())], spacing: 12) {
+                LazyVGrid(
+                    columns: Array(
+                        repeating: GridItem(.flexible(), spacing: 12), count: textSize.isAccessibilitySize ? 1 : 2),
+                    spacing: 12
+                ) {
                     ForEach(listing.meals.filter(matches)) { meal in
                         NavigationLink {
                             SavedRecipeScreen(model: model, id: meal.id)

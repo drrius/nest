@@ -58,7 +58,7 @@ struct MoneyBalanceCard: View {
                     .contentTransition(.numericText())
                     .foregroundStyle(NestColor.ink)
             }
-            .minimumScaleFactor(0.6)
+            .minimumScaleFactor(0.25)
             .lineLimit(1)
             .accessibilityElement(children: .combine)
         } else if own == 0 {
