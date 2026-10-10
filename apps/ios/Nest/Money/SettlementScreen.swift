@@ -17,10 +17,6 @@ struct SettlementScreen: View {
 
     var body: some View {
         Form {
-            Section {
-                Text("Record a payment you’ve already made outside Nest. Nest does not transfer money.")
-                    .foregroundStyle(QuietPalette.muted)
-            }
             if let notice, !editingDraft { Section { Text(notice) } }
             if let saved {
                 recovery(saved)
@@ -68,11 +64,13 @@ struct SettlementScreen: View {
         if let recipient = balance.members.first(where: { $0.centimes.value > 0 }),
             let payer = balance.members.first(where: { $0.centimes.value < 0 })
         {
-            QuietFormSection("Current balance") {
-                Text("\(payer.displayName) owes \(recipient.displayName)")
-                Text(recipient.centimes.absoluteCHF).font(.title2).monospacedDigit()
-                Button("Reload balance") { Task { await load() } }
+            Section {
+                SettleHero(payer: payer.actorId, recipient: recipient.actorId, amount: recipient.centimes.value)
+            } footer: {
+                Text("Record a payment you’ve already made. Nest only records it and never moves money.")
+                    .frame(maxWidth: .infinity, alignment: .center).multilineTextAlignment(.center)
             }
+            .listRowBackground(Color.clear)
             QuietFormSection("Payment already made") {
                 Picker("Amount", selection: $draft.mode) {
                     Text("Full balance").tag(SettlementInput.Mode.full)

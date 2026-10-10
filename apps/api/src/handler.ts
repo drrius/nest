@@ -13,6 +13,7 @@ import { mealRoute } from "./meals/route.ts";
 import { routineRoute } from "./routines/route.ts";
 import { setupStatus } from "./setup/service.ts";
 import { notificationRoute } from "./notifications/route.ts";
+import { memberColourRoute } from "./member-colours/route.ts";
 import { calendarRoute } from "./calendar/route.ts";
 import { memoryRoute } from "./memory/route.ts";
 import { foodPreferences } from "./food/service.ts";
@@ -44,6 +45,7 @@ function route(
       "daily-summary": () => dailySummaryRoute(request, config, caller),
       setup: () => setupStatus(config, caller),
       "notification-preferences": () => notificationRoute(request, config, caller),
+      "member-colours": () => memberColourRoute(request, config, caller),
       calendar: () => calendarRoute(request, config, caller),
       memories: () => memoryRoute(request, config, caller),
       "cooking-preferences": () => preferenceRoute(request, config, caller),
@@ -326,6 +328,8 @@ const methods: Record<string, string> = {
   "/v1/setup/status": "GET",
   "/v1/notification-preferences": "GET",
   "/v1/notification-preferences/save": "POST",
+  "/v1/member-colours": "GET",
+  "/v1/member-colours/save": "POST",
   "/v1/calendar/consent": "GET",
   "/v1/calendar/busy": "GET",
   "/v1/calendar/chores": "GET",

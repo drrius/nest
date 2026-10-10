@@ -12,7 +12,7 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
 
     func testOwnedPercentageBelongsToDisplayedPersonWithoutSaving() throws {
         let (app, name) = try openDraft()
-        try select("Split", choice: "Percentage", app: app)
+        try select("Split", choice: "Percent", app: app)
         try select("Paid by", choice: "Test Sam", app: app)
         let field = app.textFields.matching(NSPredicate(format: "label ENDSWITH %@", "’s percentage")).firstMatch
         try reader(app).reveal(field)
@@ -29,7 +29,7 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
 
     func testOwnedExactSharesRejectMismatchAndReviewLiteralCentimesWithoutSaving() throws {
         let (app, _) = try openDraft()
-        try select("Split", choice: "Exact", app: app)
+        try select("Split", choice: "Amounts", app: app)
         try select("Paid by", choice: "Test Sam", app: app)
         try enter(app.textFields["Test Alex’s share (CHF)"], text: "0.25", app: app)
         try keyboardReview(app)
@@ -78,23 +78,16 @@ final class NativeExpenseSplitReviewTests: XCTestCase {
     }
 
     private func select(_ title: String, choice: String, app: XCUIApplication) throws {
-        let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", title)).firstMatch
-        try reader(app).reveal(picker, searchEarlier: title == "Paid by")
+        let label =
+            title == "Paid by" && choice == ProcessInfo.processInfo.environment["NEST_QA_NAME"] ? "You" : choice
+        let option = app.segmentedControls[title].buttons[label]
+        try reader(app).reveal(option, searchEarlier: title == "Paid by")
         let ready = XCTNSPredicateExpectation(
-            predicate: NSPredicate(format: "enabled == true AND hittable == true"), object: picker)
+            predicate: NSPredicate(format: "enabled == true AND hittable == true"), object: option)
         XCTAssertEqual(XCTWaiter.wait(for: [ready], timeout: 15), .completed)
-        try reader(app).reveal(picker, searchEarlier: title == "Paid by")
-        try reader(app).requireTarget(picker)
-        picker.tap()
-        let option = app.buttons[choice]
-        XCTAssertTrue(option.waitForExistence(timeout: 10))
-        try reader(app).requireTarget(option, bounds: app.frame)
+        try reader(app).requireTarget(option)
         option.tap()
-        if app.navigationBars[title].exists {
-            let back = app.navigationBars[title].buttons.element(boundBy: 0)
-            try reader(app).requireTarget(back, bounds: app.frame)
-            back.tap()
-        }
+        XCTAssertTrue(option.isSelected)
         XCTAssertTrue(app.navigationBars["Add expense"].waitForExistence(timeout: 15))
     }
 

@@ -8,14 +8,11 @@ struct CalendarDayPicker: View {
         Button {
             presented = true
         } label: {
-            HStack(spacing: 12) {
-                Text("Day").foregroundStyle(QuietPalette.ink)
-                Spacer(minLength: 8)
-                Text(day.formatted(date: .abbreviated, time: .omitted)).foregroundStyle(QuietPalette.accent)
-                Image(systemName: "calendar").foregroundStyle(QuietPalette.accent)
-            }
-            .frame(minHeight: 44).contentShape(Rectangle())
+            Image(systemName: "calendar").font(.body.weight(.semibold))
+                .frame(width: 40, height: 44).contentShape(Rectangle())
         }
+        .buttonStyle(.plain)
+        .foregroundStyle(NestColor.accentInk)
         .accessibilityLabel("Choose day")
         .accessibilityValue(day.formatted(date: .complete, time: .omitted))
         .sheet(isPresented: $presented) {

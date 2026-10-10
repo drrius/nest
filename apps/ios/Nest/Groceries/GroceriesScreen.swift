@@ -3,6 +3,7 @@ import SwiftUI
 struct GroceriesScreen: View {
     @ObservedObject var model: SessionModel
     let refreshOnOpen: Bool
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @State private var showChecked = false
     @State private var showingAdd = false
     @State private var editingItem: GroceryItem?
@@ -16,49 +17,28 @@ struct GroceriesScreen: View {
         _showingAdd = State(initialValue: initiallyAdding && model.groceryAdd == nil)
     }
 
+    @State private var quickText = ""
+    @FocusState private var quickFocused: Bool
+
     var body: some View {
         List {
             Section {
-                Text("Things to pick up, all in one place.")
-                    .font(.subheadline)
-                    .foregroundStyle(QuietPalette.muted)
-                    .listRowSeparator(.hidden)
+                quickAdd
                 if let notice = model.groceryNotice { noticeRow(notice) }
-            }
-            .listRowBackground(QuietPalette.background)
-            if case .ready(let member) = model.status {
-                Section {
-                    NavigationLink {
-                        ExpenseScreen(session: model, member: member)
-                    } label: {
-                        Label("Record grocery expense", systemImage: "creditcard")
-                            .frame(minHeight: 44, alignment: .leading)
-                    }
-                    .accessibilityHint("Enter the receipt total, shared amount, payer and split.")
-                }
-                .listRowBackground(QuietPalette.background)
             }
             if let pending = model.groceryAdd { addStatus(pending) }
             if let pending = model.groceryEdit { editStatus(pending) }
             if let pending = model.groceryRemove { removeStatus(pending) }
             content
         }
-        .listStyle(.plain)
-        .listSectionSpacing(.compact)
+        .listStyle(.insetGrouped)
+        .listSectionSpacing(14)
         .scrollContentBackground(.hidden)
-        .background(QuietPalette.background)
+        .nestScreen()
+        .animation(reduceMotion ? nil : .spring(response: 0.4, dampingFraction: 0.86), value: model.groceries)
         .navigationTitle("Groceries")
-        .navigationBarTitleDisplayMode(.inline)
-        .toolbar {
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    showingAdd = true
-                } label: {
-                    Label("Add grocery", systemImage: "plus")
-                }
-                .disabled(model.groceryAdd != nil)
-            }
-        }
+        .navigationBarTitleDisplayMode(.large)
+        .toolbar { toolbar }
         .sheet(isPresented: $showingAdd) { GroceryAddSheet(model: model) }
         .sheet(item: $editingItem) { item in GroceryEditSheet(model: model, item: item) }
         .sheet(item: $remindingItem) { item in
@@ -82,118 +62,157 @@ struct GroceriesScreen: View {
         .task { if refreshOnOpen || model.groceries == .idle { await model.refreshGroceries() } }
     }
 
+    @ToolbarContentBuilder
+    private var toolbar: some ToolbarContent {
+        if case .ready(let member) = model.status {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    ExpenseScreen(session: model, member: member)
+                } label: {
+                    Label("Record grocery expense", systemImage: "receipt")
+                }
+                .accessibilityHint("Enter the receipt total, shared amount, payer and split.")
+            }
+        }
+        ToolbarItem(placement: .topBarTrailing) {
+            Button {
+                showingAdd = true
+            } label: {
+                Label("Add grocery", systemImage: "plus")
+            }
+            .disabled(model.groceryAdd != nil)
+        }
+    }
+
+    private var quickAdd: some View {
+        HStack(spacing: 12) {
+            Image(systemName: "plus").font(.subheadline.weight(.bold)).foregroundStyle(NestColor.onAccent)
+                .frame(width: 28, height: 28).background(NestColor.accent, in: Circle())
+                .accessibilityHidden(true)
+            TextField("Add an item", text: $quickText)
+                .submitLabel(.done)
+                .focused($quickFocused)
+                .onSubmit { Task { await quickSubmit() } }
+                .disabled(model.groceryAdd != nil || model.groceryAddSaving)
+                .accessibilityLabel("Add a grocery item")
+                .accessibilityHint("Type a name, like 2 avocados, then press return.")
+        }
+        .frame(minHeight: 48)
+    }
+
+    private func quickSubmit() async {
+        guard let entry = GroceryQuickEntry.parse(quickText) else { return }
+        let confirmed = await model.addGrocery(name: entry.name, quantity: entry.quantity, unit: entry.unit)
+        if confirmed || model.groceryAdd != nil { quickText = "" }
+        quickFocused = true
+    }
+
     @ViewBuilder
     private var content: some View {
         switch model.groceries {
         case .idle, .loading:
-            Section { ProgressView("Loading groceries…") }
-                .listRowBackground(QuietPalette.background)
+            Section { ProgressView("Loading groceries…").frame(maxWidth: .infinity) }
         case .failed:
             Section {
-                Text("Could not load groceries. Try again online.")
-                    .foregroundStyle(QuietPalette.muted)
-                Button {
-                    Task { await model.refreshGroceries() }
-                } label: {
-                    QuietActionLabel("Retry")
-                }
-                .buttonStyle(.plain)
+                Text("Couldn’t load groceries.").foregroundStyle(NestColor.ink)
+                Button("Try again") { Task { await model.refreshGroceries() } }
             }
-            .listRowBackground(QuietPalette.background)
         case .loaded(let state):
-            let saved = state.items.filter { $0.state != .open }
-            let open = state.items.filter { $0.state == .open && !$0.checked }
-            let checked = state.items.filter { $0.state == .open && $0.checked }
-            if !saved.isEmpty {
-                QuietFormSection("Saved changes") {
-                    ForEach(saved) { row($0) }
-                }
-                .listRowBackground(QuietPalette.background)
+            loaded(state)
+        }
+    }
+
+    @ViewBuilder
+    private func loaded(_ state: GroceryOfflineState) -> some View {
+        let saved = state.items.filter { $0.state != .open }
+        let open = state.items.filter { $0.state == .open && !$0.checked }
+        let checked = state.items.filter { $0.state == .open && $0.checked }
+        if !saved.isEmpty {
+            Section("Saved on this iPhone") { ForEach(saved) { row($0) } }
+        }
+        if open.isEmpty {
+            Section {
+                Label("Nothing left to get", systemImage: "checkmark.circle")
+                    .foregroundStyle(NestColor.good)
             }
-            QuietFormSection("To pick up") {
-                if open.isEmpty {
-                    Text("Nothing on the list right now.")
-                        .foregroundStyle(QuietPalette.muted)
-                }
-                ForEach(open) { row($0) }
+        }
+        let aisles = GroceryAisles.group(open)
+        ForEach(aisles, id: \.name) { aisle in
+            Section(aisles.count == 1 && aisle.name == "Other" ? "To get" : aisle.name) {
+                ForEach(aisle.items) { row($0) }
             }
-            .listRowBackground(QuietPalette.background)
-            if !checked.isEmpty {
-                Section {
-                    DisclosureGroup("Picked up · \(checked.count)", isExpanded: $showChecked) {
-                        ForEach(checked) { row($0) }
-                    }
-                    .foregroundStyle(QuietPalette.ink)
+        }
+        if !checked.isEmpty {
+            Section {
+                DisclosureGroup(isExpanded: $showChecked) {
+                    ForEach(checked) { row($0) }
+                } label: {
+                    Label("In the basket · \(checked.count)", systemImage: "basket")
+                        .foregroundStyle(NestColor.ink)
                 }
-                .listRowBackground(QuietPalette.background)
+                .accessibilityLabel("Picked up · \(checked.count)")
             }
         }
     }
 
     private func noticeRow(_ notice: String) -> some View {
-        VStack(alignment: .leading, spacing: 10) {
-            Text(notice)
-                .font(.subheadline)
-                .foregroundStyle(QuietPalette.muted)
-            Button {
-                Task { await model.refreshGroceries() }
-            } label: {
-                Text("Retry sync").frame(minHeight: 44, alignment: .leading).contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            .font(.subheadline.weight(.medium))
+        HStack(spacing: 10) {
+            Image(systemName: "icloud.slash").foregroundStyle(NestColor.ink2)
+            Text(notice).font(.footnote).foregroundStyle(NestColor.ink2)
+            Spacer(minLength: 4)
+            Button("Retry") { Task { await model.refreshGroceries() } }
+                .font(.footnote.weight(.semibold))
+                .accessibilityLabel("Retry sync")
         }
-        .listRowSeparator(.hidden)
     }
+
+    /// One saved edit or removal at a time; it must sync or be reviewed before another starts.
+    private var changeSaved: Bool { model.groceryEdit != nil || model.groceryRemove != nil }
 
     private func row(_ local: LocalGrocery) -> some View {
         VStack(alignment: .leading, spacing: 2) {
-            HStack(spacing: 8) {
-                Button {
-                    Task { await model.checkGrocery(local.item, checked: !local.checked) }
-                } label: {
-                    HStack(spacing: 14) {
-                        Image(systemName: local.checked ? "checkmark.circle.fill" : "circle")
-                            .font(.title3)
-                            .foregroundStyle(QuietPalette.accent)
-                        VStack(alignment: .leading, spacing: 3) {
-                            Text(local.item.name)
-                                .foregroundStyle(QuietPalette.ink)
-                            if let detail = itemDetail(local.item) {
-                                Text(detail).font(.caption).foregroundStyle(QuietPalette.muted)
-                            }
-                        }
-                        Spacer(minLength: 8)
-                    }
-                    .frame(minHeight: 56)
-                    .contentShape(Rectangle())
-                }
-                .buttonStyle(.plain)
-                .disabled(
-                    local.state != .open || model.groceryEdit?.item.id == local.id
-                        || model.groceryRemove?.item.id == local.id
-                )
-                .accessibilityLabel(local.item.name)
-                .accessibilityValue(accessibilityValue(local))
-                .accessibilityHint(local.checked ? "Mark as still to pick up." : "Mark as picked up.")
-                if local.state == .open {
-                    Menu {
-                        Button("Edit", systemImage: "pencil") { editingItem = local.item }
-                        Button("Reminder choices", systemImage: "bell") { remindingItem = local.item }
-                        Button("Remove", systemImage: "trash", role: .destructive) {
-                            removalCandidate = local.item
-                            showingRemoveConfirmation = true
-                        }
-                    } label: {
-                        Image(systemName: "ellipsis")
-                            .foregroundStyle(QuietPalette.accent)
-                            .frame(width: 44, height: 44)
-                    }
-                    .disabled(model.groceryEdit != nil || model.groceryRemove != nil)
-                    .accessibilityLabel("More options for \(local.item.name)")
-                }
+            Button {
+                Task { await model.checkGrocery(local.item, checked: !local.checked) }
+            } label: {
+                GroceryRowLabel(local: local)
             }
+            .buttonStyle(.plain)
+            .disabled(
+                local.state != .open || model.groceryEdit?.item.id == local.id
+                    || model.groceryRemove?.item.id == local.id
+            )
+            .accessibilityLabel(local.item.name)
+            .accessibilityValue(accessibilityValue(local))
+            .accessibilityHint(local.checked ? "Mark as still to pick up." : "Mark as picked up.")
             if local.state != .open { savedState(local) }
+        }
+        .swipeActions(edge: .trailing) {
+            if local.state == .open {
+                Button("Remove", systemImage: "trash", role: .destructive) {
+                    removalCandidate = local.item
+                    showingRemoveConfirmation = true
+                }
+                .disabled(changeSaved)
+                Button("Edit", systemImage: "pencil") { editingItem = local.item }.tint(NestColor.ink2)
+                    .disabled(changeSaved)
+            }
+        }
+        .swipeActions(edge: .leading) {
+            if local.state == .open {
+                Button("Reminder", systemImage: "bell") { remindingItem = local.item }.tint(NestColor.accent)
+            }
+        }
+        .contextMenu {
+            if local.state == .open {
+                Button("Edit", systemImage: "pencil") { editingItem = local.item }
+                    .disabled(changeSaved)
+                Button("Reminder choices", systemImage: "bell") { remindingItem = local.item }
+                Button("Remove", systemImage: "trash", role: .destructive) {
+                    removalCandidate = local.item
+                    showingRemoveConfirmation = true
+                }
+                .disabled(changeSaved)
+            }
         }
     }
 
@@ -202,19 +221,19 @@ struct GroceriesScreen: View {
         switch local.state {
         case .pending:
             Text("Saved on device · waiting to sync")
-                .font(.caption).foregroundStyle(QuietPalette.muted)
+                .font(.caption).foregroundStyle(NestColor.ink2)
         case .acknowledged:
             Text("Confirmed · refreshing list")
-                .font(.caption).foregroundStyle(QuietPalette.muted)
+                .font(.caption).foregroundStyle(NestColor.ink2)
         case .conflict:
             Text("Needs review")
-                .font(.caption.weight(.medium)).foregroundStyle(QuietPalette.ink)
+                .font(.caption.weight(.medium)).foregroundStyle(NestColor.ink)
             if let requested = local.requestedChecked {
                 Text("Saved change: \(requested ? "Picked up" : "To pick up")")
-                    .font(.caption).foregroundStyle(QuietPalette.muted)
+                    .font(.caption).foregroundStyle(NestColor.ink2)
             }
             Text(conflictExplanation(local))
-                .font(.caption).foregroundStyle(QuietPalette.muted)
+                .font(.caption).foregroundStyle(NestColor.ink2)
             Button {
                 Task { await model.refreshGroceries() }
             } label: {

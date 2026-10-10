@@ -13,25 +13,37 @@ struct IngredientReviewScreen: View {
     @FocusState private var focusedField: String?
 
     var body: some View {
-        Form {
-            Section {
-                Text("Choose what you need. Leave pantry items unchecked. Quantities stay separate for each meal.")
-                Text("Week of \(week.date.value)").font(.caption).foregroundStyle(QuietPalette.muted)
+        ScrollView {
+            VStack(alignment: .leading, spacing: 18) {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("What do you need?").font(.largeTitle.weight(.bold)).foregroundStyle(NestColor.ink)
+                        .accessibilityAddTraits(.isHeader)
+                    Text("Untick anything you already have. The rest goes on the shared list.")
+                        .font(.subheadline).foregroundStyle(NestColor.ink2)
+                }
+                if let context, model.generation == context.generation, model.status == .ready(context.member) {
+                    review(context)
+                }
+                if let notice {
+                    Label(notice, systemImage: "info.circle").font(.footnote).foregroundStyle(NestColor.ink2)
+                }
+                if busy { ProgressView().frame(maxWidth: .infinity) }
+                if context == nil && !busy {
+                    Button("Try again") { Task { await load() } }
+                        .buttonStyle(NestButtonStyle(kind: .secondary, small: true))
+                }
             }
-            if let context, model.generation == context.generation, model.status == .ready(context.member) {
-                review(context)
-            }
-            if let notice { Section { Text(notice).foregroundStyle(QuietPalette.muted) } }
-            if busy { ProgressView("Checking ingredients…") }
-            if context == nil && !busy { Button("Try again") { Task { await load() } } }
+            .padding(.horizontal, 20)
+            .padding(.top, 8)
+            .padding(.bottom, 120)
         }
         .disabled(busy)
-        .scrollContentBackground(.hidden)
         .scrollDismissesKeyboard(.interactively)
-        .background(QuietPalette.background)
-        .tint(QuietPalette.accent)
+        .nestScreen()
+        .tint(NestColor.accent)
         .navigationTitle("Review ingredients")
         .navigationBarTitleDisplayMode(.inline)
+        .safeAreaInset(edge: .bottom) { bottomBar }
         .toolbar {
             ToolbarItemGroup(placement: .keyboard) {
                 Spacer()
@@ -54,54 +66,81 @@ struct IngredientReviewScreen: View {
         }
     }
 
+    @ViewBuilder private var bottomBar: some View {
+        if let context, context.saved?.pending == nil, context.saved?.receipt == nil, context.listing != nil {
+            HStack(spacing: 10) {
+                Button("Save for later") { Task { await saveChoices() } }
+                    .buttonStyle(NestButtonStyle(kind: .plain))
+                    .disabled(busy)
+                Button {
+                    confirm = true
+                } label: {
+                    Label("Add \(selectedCount) to Groceries", systemImage: "basket")
+                }
+                .buttonStyle(NestButtonStyle(kind: .primary, fullWidth: true))
+                .disabled(busy || selectedCount == 0 || !validSelection(context))
+            }
+            .padding(.horizontal, 20).padding(.bottom, 8)
+        }
+    }
+
     @ViewBuilder private func review(_ context: IngredientReviewContext) -> some View {
         if let saved = context.saved, saved.pending != nil {
-            Section(saved.conflicted ? "Review needed" : "Saved request") {
+            VStack(alignment: .leading, spacing: 12) {
+                Text(saved.conflicted ? "Review needed" : "Saved request").font(.headline)
                 Text(
                     saved.conflicted
                         ? "The meal plan changed or this request was rejected. Discard it, then review the current ingredients."
-                        : "The result is not confirmed. Retry this exact request when online.")
-                Text("\(saved.pending?.selected.count ?? 0) selected ingredients")
+                        : "The result isn’t confirmed yet. Retry this exact request when online."
+                ).foregroundStyle(NestColor.ink2)
+                Text("\(saved.pending?.selected.count ?? 0) selected ingredients").font(.footnote)
                 if saved.conflicted {
                     Button("Discard rejected request") { discard = true }
+                        .buttonStyle(NestButtonStyle(kind: .plain, small: true))
                 } else {
                     Button("Retry addition") { Task { await retry() } }
+                        .buttonStyle(NestButtonStyle(kind: .secondary, small: true))
                 }
             }
+            .nestCard()
         } else if let receipt = context.saved?.receipt {
-            Section("Added to groceries") {
+            VStack(alignment: .leading, spacing: 12) {
+                Label("Added to Groceries", systemImage: "checkmark.circle.fill")
+                    .font(.headline).foregroundStyle(NestColor.good)
                 Text(
-                    "\(receipt.ingredients.count) \(receipt.ingredients.count == 1 ? "ingredient" : "ingredients") confirmed. Items already added were not duplicated."
-                )
-                NavigationLink("Open groceries") { GroceriesScreen(model: model) }
-                Button("Review current ingredients") { Task { await refresh(context) } }
+                    "\(receipt.ingredients.count) \(receipt.ingredients.count == 1 ? "ingredient" : "ingredients") added. Anything already there wasn’t duplicated."
+                ).foregroundStyle(NestColor.ink2)
+                HStack(spacing: 10) {
+                    NavigationLink("Open groceries") { GroceriesScreen(model: model) }
+                        .buttonStyle(NestButtonStyle(kind: .primary, small: true))
+                    Button("Review current ingredients") { Task { await refresh(context) } }
+                        .buttonStyle(NestButtonStyle(kind: .plain, small: true))
+                }
             }
+            .nestCard()
         } else if let listing = context.listing {
-            Section("Ingredients") {
-                if listing.ingredients.isEmpty { Text("No ingredients to add for this week.") }
-                ForEach(choices) { choice in
+            VStack(spacing: 0) {
+                if listing.ingredients.isEmpty {
+                    Text("No ingredients to add for this week.").foregroundStyle(NestColor.ink2)
+                        .frame(maxWidth: .infinity, alignment: .leading).padding(16)
+                }
+                ForEach(Array(choices.enumerated()), id: \.element.id) { index, choice in
                     if let row = listing.ingredients.first(where: { $0.id == choice.id }) {
+                        if index > 0 { NestRowDivider(leading: 54) }
                         IngredientChoiceRow(
                             choice: identifiedDraftBinding(for: choice, in: $choices), row: row,
                             focus: $focusedField)
                     }
                 }
             }
+            .nestCard(padding: 0)
             if !listing.skipped.isEmpty {
-                Section {
-                    Text(
-                        "\(listing.skipped.count) meals have no ingredient list or are leftovers. They add no groceries."
-                    ).font(.footnote)
-                }
-            }
-            Section {
-                Button("Save choices for later") { Task { await saveChoices() } }
-                Text("Save choices before leaving if you want to finish this review later.").font(.footnote)
-                Button("Add \(selectedCount) to groceries") { confirm = true }
-                    .disabled(selectedCount == 0 || !validSelection(context))
+                Text("\(listing.skipped.count) meals have no ingredient list or are leftovers, so they add nothing.")
+                    .font(.footnote).foregroundStyle(NestColor.ink3)
             }
         } else {
             Button("Load current ingredients") { Task { await refresh(context) } }
+                .buttonStyle(NestButtonStyle(kind: .secondary, small: true))
         }
     }
 

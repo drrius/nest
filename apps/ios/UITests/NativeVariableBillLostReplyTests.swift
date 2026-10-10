@@ -16,6 +16,9 @@ final class NativeVariableBillLostReplyTests: XCTestCase {
 
     func testRecordOneBillAndRetainUnconfirmedEntry() throws {
         let app = try open("record")
+        try tap(
+            app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Older saved changes")).firstMatch,
+            app: app)
         try tap(app.buttons["Bills to confirm"], app: app)
         let row = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", title)).firstMatch
         try tap(row, app: app)
@@ -99,7 +102,9 @@ final class NativeVariableBillLostReplyTests: XCTestCase {
     }
 
     private func openSaved(_ app: XCUIApplication) throws {
-        try tap(app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Saved changes")).firstMatch, app: app)
+        try tap(
+            app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Older saved changes")).firstMatch, app: app
+        )
         let link = app.buttons["Bill confirmation"]
         XCTAssertTrue(link.waitForExistence(timeout: 15))
         try tap(link, app: app)

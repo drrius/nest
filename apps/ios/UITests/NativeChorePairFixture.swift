@@ -33,7 +33,7 @@ struct NativeChorePairFixture {
         app.launch()
         let tabs = app.tabBars.firstMatch
         XCTAssertTrue(tabs.waitForExistence(timeout: 30))
-        if app.staticTexts["Welcome, \(name)."].exists {
+        if app.staticTexts["Hi \(name). How do you want to start?"].exists {
             app.buttons["Get started"].tap()
         }
         tabs.buttons["Today"].tap()

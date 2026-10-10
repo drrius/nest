@@ -29,15 +29,10 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
         try reading.requireTarget(add)
         add.tap()
         XCTAssertTrue(app.navigationBars["Add expense"].waitForExistence(timeout: 20))
-        for choice in ["Percentage", "Exact", "Equal"] {
-            let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Split")).firstMatch
-            try reading.reveal(picker)
-            try waitForPicker(picker)
-            try reading.reveal(picker)
-            try reading.requireTarget(picker)
-            picker.tap()
-            let option = app.buttons[choice]
-            XCTAssertTrue(option.waitForExistence(timeout: 10))
+        for choice in ["Percent", "Amounts", "Equally"] {
+            let option = app.segmentedControls["Split"].buttons[choice]
+            try reading.reveal(option)
+            try waitForPicker(option)
             reading.capture(option, name: "Owned expense \(choice) split option before selection")
             try reading.requireTarget(option, bounds: app.frame)
             option.tap()
@@ -45,15 +40,10 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
         }
         let name = try XCTUnwrap(env["NEST_QA_NAME"])
         XCTAssertTrue(["Test Alex", "Test Sam"].contains(name))
-        for choice in [name == "Test Alex" ? "Test Sam" : "Test Alex", name] {
-            let picker = app.buttons.matching(NSPredicate(format: "label BEGINSWITH %@", "Paid by")).firstMatch
-            try reading.reveal(picker, searchEarlier: true)
-            try waitForPicker(picker)
-            try reading.reveal(picker, searchEarlier: true)
-            try reading.requireTarget(picker)
-            picker.tap()
-            let option = app.buttons[choice]
-            XCTAssertTrue(option.waitForExistence(timeout: 10))
+        for choice in [name == "Test Alex" ? "Test Sam" : "Test Alex", "You"] {
+            let option = app.segmentedControls["Paid by"].buttons[choice]
+            try reading.reveal(option, searchEarlier: true)
+            try waitForPicker(option)
             reading.capture(option, name: "Owned expense payer option before selection")
             try reading.requireTarget(option, bounds: app.frame)
             option.tap()
@@ -63,7 +53,7 @@ final class NativeExpenseSplitPickerTests: XCTestCase {
         try reading.requireTarget(back, bounds: app.frame)
         back.tap()
         XCTAssertFalse(
-            app.alerts["Discard edits?"].exists, "Returning to untouched Equal should restore the raw baseline")
+            app.alerts["Discard edits?"].exists, "Returning to untouched Equally should restore the raw baseline")
         app.tabBars.firstMatch.buttons["Today"].tap()
         XCTAssertTrue(app.tabBars.firstMatch.buttons["Today"].isSelected)
     }

@@ -25,16 +25,16 @@ final class NativeChoreScheduleConflictTests: XCTestCase {
         try reader(app).requireTarget(chore)
         XCTAssertEqual(chore.value as? String, "Due today")
         chore.tap()
-        try expectValue("Saved · waiting to sync", app: app)
-        XCTAssertFalse(app.buttons[title].exists)
+        try expectValue("Saved on this iPhone · syncs when online", app: app)
+        XCTAssertFalse(app.buttons[title].isEnabled)
     }
 
     func testQueuedCompletionSurvivesRestart() throws {
         let app = try open("restart")
         app.terminate()
         app.launch()
-        try expectValue("Saved · waiting to sync", app: app)
-        XCTAssertFalse(app.buttons[title].exists)
+        try expectValue("Saved on this iPhone · syncs when online", app: app)
+        XCTAssertFalse(app.buttons[title].isEnabled)
     }
 
     func testReconnectExplainsConflictThenDiscardsOnlySavedCompletion() throws {

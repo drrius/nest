@@ -23,9 +23,9 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
         XCTAssertTrue(app.navigationBars["Groceries"].waitForExistence(timeout: 15))
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
         XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
-        let more = app.buttons["More options for QA rice"]
+        let more = app.buttons["QA rice"]
         reveal(more, in: app)
-        more.tap()
+        more.press(forDuration: 1.0)
         let reminder = app.buttons["Reminder choices"]
         XCTAssertTrue(reminder.waitForExistence(timeout: 15))
         reminder.tap()
@@ -170,11 +170,11 @@ final class NativeGroceryReminderNavigationTests: XCTestCase {
 
     private func openEditor(_ app: XCUIApplication) {
         XCTAssertFalse(app.navigationBars["Grocery reminder"].exists)
-        let more = app.buttons["More options for QA rice"]
+        let more = app.buttons["QA rice"]
         reveal(more, in: app)
         XCTAssertEqual(app.buttons.matching(identifier: "QA rice").count, 1)
         XCTAssertEqual(app.buttons["QA rice"].value as? String, "100 g, To pick up")
-        more.tap()
+        more.press(forDuration: 1.0)
         XCTAssertTrue(app.buttons["Reminder choices"].waitForExistence(timeout: 15))
         app.buttons["Reminder choices"].tap()
         XCTAssertTrue(app.navigationBars["Grocery reminder"].waitForExistence(timeout: 15))

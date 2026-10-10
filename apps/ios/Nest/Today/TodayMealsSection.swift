@@ -11,34 +11,38 @@ struct TodayMealsSection: View {
     @State private var loading = false
     @State private var request = UUID()
 
+    @Environment(\.switchTab) private var switchTab
+
+    @Environment(\.dynamicTypeSize) private var textSize
+
     var body: some View {
-        VStack(alignment: .leading, spacing: 14) {
-            Text("On the menu").font(.headline).foregroundStyle(QuietPalette.ink)
-            if let result {
-                meals(result.week)
-                if loading || result.saved {
-                    Text(
-                        loading
-                            ? "Showing saved meals while refreshing…"
-                            : "Showing saved meals. Refresh when you’re online."
-                    )
-                    .font(.caption).foregroundStyle(QuietPalette.muted)
+        VStack(alignment: .leading, spacing: 12) {
+            NestSectionHeader(title: "On the menu")
+            VStack(alignment: .leading, spacing: 0) {
+                if let result {
+                    meals(result.week)
+                    if loading || result.saved {
+                        Text(loading ? "Showing saved meals while refreshing…" : "Showing saved meals")
+                            .font(.caption).foregroundStyle(NestColor.ink3)
+                            .padding(.horizontal, 16).padding(.bottom, 12)
+                    }
+                    if failed { retry }
+                } else if failed {
+                    Text("Couldn’t load today’s meals.").foregroundStyle(NestColor.ink)
+                        .padding(.horizontal, 16).padding(.top, 16)
+                    retry
+                } else {
+                    HStack(spacing: 14) {
+                        RoundedRectangle(cornerRadius: 16).fill(NestColor.fill2).frame(width: 56, height: 56)
+                        RoundedRectangle(cornerRadius: 6).fill(NestColor.fill2).frame(width: 160, height: 16)
+                    }
+                    .padding(16)
+                    .accessibilityLabel("Loading meals")
                 }
-                if failed {
-                    Button("Try again") { Task { await load() } }.frame(minHeight: 44)
-                        .disabled(loading)
-                }
-            } else if failed {
-                Text("Could not load today’s meals.").foregroundStyle(QuietPalette.muted)
-                Button("Try again") { Task { await load() } }.frame(minHeight: 44)
-            } else {
-                ProgressView("Loading meals…")
             }
+            .nestCard(padding: 0)
         }
-        .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(QuietTabLayout.cardInset)
-        .background(QuietPalette.surface, in: RoundedRectangle(cornerRadius: 18))
-        .tint(QuietPalette.accent)
+        .tint(NestColor.accent)
         .task(id: refresh) { await load() }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active { Task { await load() } }
@@ -46,37 +50,64 @@ struct TodayMealsSection: View {
         .onDisappear { request = UUID() }
     }
 
+    private var retry: some View {
+        Button("Try again") { Task { await load() } }
+            .buttonStyle(NestButtonStyle(kind: .secondary, small: true))
+            .disabled(loading)
+            .padding(16)
+    }
+
     @ViewBuilder
     private func meals(_ week: MealWeekSnapshot) -> some View {
         let entries = MealSlot.allCases.flatMap { slot in
             week.entries.filter { $0.date == day && $0.slot == slot }
         }
-        if entries.isEmpty {
-            Text("Nothing planned for today.").foregroundStyle(QuietPalette.muted)
-        }
-        ForEach(entries) { meal in
+        ForEach(Array(entries.enumerated()), id: \.element.id) { index, meal in
+            if index > 0 { NestRowDivider(leading: 86) }
             NavigationLink {
                 PlannedRecipeScreen(
                     model: model, target: PlannedRecipeTarget(start: week.weekStart, id: meal.id))
             } label: {
-                HStack(spacing: 12) {
-                    VStack(alignment: .leading, spacing: 4) {
-                        Text(meal.slot.label).font(.caption).foregroundStyle(QuietPalette.muted)
-                        Text(meal.title).foregroundStyle(QuietPalette.ink)
+                HStack(spacing: 14) {
+                    EmojiTile(emoji: MealEmoji.emoji(for: meal.title), size: 56)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(meal.slot.label.uppercased())
+                            .font(.caption2.weight(.bold)).tracking(0.4).foregroundStyle(NestColor.ink2)
+                        Text(meal.title).font(.title3.weight(.semibold)).foregroundStyle(NestColor.ink)
+                            .multilineTextAlignment(.leading)
                     }
-                    Spacer()
-                    Image(systemName: "chevron.right").font(.caption).foregroundStyle(QuietPalette.muted)
+                    Spacer(minLength: 8)
+                    Image(systemName: "chevron.right").font(.footnote.weight(.semibold))
+                        .foregroundStyle(NestColor.ink3).accessibilityHidden(true)
                 }
-                .frame(minHeight: 44)
+                .padding(.horizontal, 16).padding(.vertical, 12)
                 .contentShape(Rectangle())
             }
-            .buttonStyle(.plain)
+            .buttonStyle(NestPressStyle())
         }
-        NavigationLink {
-            MealWeekScreen(model: model)
+        if !entries.isEmpty { NestRowDivider(leading: 16) }
+        Button {
+            switchTab(.meals)
         } label: {
-            QuietActionLabel("Open meal plan").font(.subheadline.weight(.medium))
+            let layout =
+                textSize.isAccessibilitySize
+                ? AnyLayout(VStackLayout(alignment: .leading, spacing: 6)) : AnyLayout(HStackLayout(spacing: 12))
+            layout {
+                Image(systemName: entries.isEmpty ? "plus" : "calendar")
+                    .font(.body.weight(.semibold)).foregroundStyle(NestColor.accentInk)
+                    .frame(width: 30)
+                Text(entries.isEmpty ? "Nothing planned yet" : "This week’s meals")
+                    .foregroundStyle(NestColor.ink2)
+                if !textSize.isAccessibilitySize { Spacer() }
+                Text(entries.isEmpty ? "Plan" : "Open").fontWeight(.semibold).foregroundStyle(NestColor.accentInk)
+            }
+            .font(.subheadline)
+            .padding(.horizontal, 16)
+            .frame(minHeight: 52)
+            .contentShape(Rectangle())
         }
+        .buttonStyle(NestPressStyle())
+        .accessibilityLabel("Open meal plan")
     }
 
     private func load() async {

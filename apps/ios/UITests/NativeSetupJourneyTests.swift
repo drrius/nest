@@ -36,7 +36,7 @@ final class NativeSetupJourneyTests: XCTestCase {
         try reading.requireTarget(calendar)
         reading.capture(calendar, name: "Owned setup Calendar handoff before read-only opening")
         calendar.tap()
-        XCTAssertTrue(app.staticTexts["tab-header-calendar"].waitForExistence(timeout: 20))
+        XCTAssertTrue(app.navigationBars["Calendar"].waitForExistence(timeout: 20))
         try reading.read("Nest reads the calendars you choose. It does not create, change or delete events.")
         try reading.read("iOS calls this Full Access. Nest uses it only to read your calendars.")
         try returnSetup(app)

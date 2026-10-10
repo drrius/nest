@@ -64,6 +64,7 @@ final class NativeRenewalOfflineViewTests: XCTestCase {
         app.buttons["Profile and preferences"].tap()
         XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 15))
         app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tabBars.firstMatch.buttons["Money"].tap()  // Renewals live under Money → Bills & renewals.
         let link = app.buttons["Manage renewals"]
         for _ in 0..<12 {
             if link.isHittable && link.frame.maxY < app.tabBars.firstMatch.frame.minY { break }

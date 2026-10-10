@@ -74,6 +74,7 @@ final class AssistantHandoffTests: XCTestCase {
         for (tool, screen, expected) in [
             ("openSetup", "setup", AssistantHandoff.setup),
             ("openAccountSettings", "settings", AssistantHandoff.settings),
+            ("openMemberColour", "member-colour", AssistantHandoff.memberColour),
         ] {
             let value: [String: AssistantJSON] = ["kind": .string("device_handoff"), "screen": .string(screen)]
             let output = part(tool, value: value)

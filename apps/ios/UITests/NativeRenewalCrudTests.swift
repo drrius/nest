@@ -119,6 +119,7 @@ final class NativeRenewalCrudTests: XCTestCase {
         app.buttons["Profile and preferences"].tap()
         XCTAssertTrue(app.staticTexts[name].waitForExistence(timeout: 15))
         app.navigationBars.buttons.element(boundBy: 0).tap()
+        app.tabBars.firstMatch.buttons["Money"].tap()  // Renewals live under Money → Bills & renewals.
         let link = app.buttons["Manage renewals"]
         reveal(link, in: app)
         link.tap()
