@@ -1,6 +1,6 @@
 # Nest progress
 
-Updated 10 October 2026. The goal remains active and incomplete. SwiftUI is the
+Updated 11 October 2026. The goal remains active and incomplete. SwiftUI is the
 shipping iPhone client under [ADR 0002](adr/0002-swiftui-client.md). Expo and React
 Native are removed. The agreed product scope, Effect backend, financial history
 and privacy rules remain authoritative.
@@ -415,6 +415,16 @@ Apple Account on the simulator, closing Apple's alert shows "Sign-in could not b
 verified." The Meals and Calendar recipes have not been run yet. All of this is
 simulator evidence, not phone or Apple sign-in acceptance.
 
+On 11 October the owner moved all simulator testing to a Mac mini. The MacBook Pro
+is no longer used. `nest-verify` now defaults to `drrius@dariuss-mac-mini` and
+creates each simulator on the Mac's newest installed iOS runtime, iOS 27.0 there,
+instead of the pinned iOS 26.3. The mini runs agent-device on Node 22 from nvm.
+Its first runner build outlasted agent-device's 90-second request limit, so
+`launch` now retries the open once. Signed-out run `20261011-093043-0d67` built,
+opened the sign-in screen, passed the doctor and cleaned up on the mini.
+A fresh run, `20261011-094306-05b7`, with the patched script reached READY in
+260 seconds, passed the doctor and left no runs, simulators or daemons behind.
+
 ## Exact blockers and owner inputs
 
 - **Backend naming, 10 October:** Supabase confirms project `tkjixmujjoustdiedfmw` is named `nest`. Vercel project `prj_yN4ZNro5utMbzmyrSC3xgPZka67G` was renamed in place to `nest-api`, retaining its project ID. The installed app's `nest-test-api-drrius-projects.vercel.app` alias still points to deployment `dpl_9MBuwADAyheonsgQTzUvSRcmUcY1`; unauthenticated Money requests returned the same expected 401 JSON before and after the rename. Local Vercel link metadata was updated. No redeployment, credentials, data or app endpoint changed.
@@ -425,6 +435,8 @@ simulator evidence, not phone or Apple sign-in acceptance.
 - **Phones:** build26 was archived, signed, validated and submitted once; Apple reports VALID / IN_BETA_TESTING; it is available to existing internal testers. Both-phone use, notification display and real Calendar behavior still require the owners. Leah has not appeared in Nest Auth yet and must attempt Apple sign-in before verified household linkage.
 - **Delivery, 10 October:** the complete implementation is consolidated into `main` after the owner requested it. PR [#85](https://github.com/drrius/nest/pull/85) was squash-merged as `53e5dd34`; its tree exactly matched the original grocery commit. The history-only integration preserves the verified source tree. Routine CI `38041245834` and native CI `38039500471` passed; no additional review is required under the owner's waiver. Current API deployment remains `dpl_E3vL88e2rGfgaVCPnZDszXKSSCNB`, serving the existing client alias. Git integration does not publish an iPhone build or apply production migrations.
 - **Fresh-start cleanup:** the synthetic-household removal script passed a full transaction rehearsal followed by rollback, preserving real household rows and trigger settings. Final deletion removed the fictional household, three synthetic Auth users and two storage objects; real data remained unchanged. Household OS migration, payroll drift and old-writer cutover do not apply to the owner's new fresh-start decision; the old project remains untouched.
+
+- **Simulator Mac, 11 October:** the synthetic accounts' credentials are still only on the retired MacBook, so `nest-verify signin` cannot run on the Mac mini yet. The owner places the Supabase `sb_secret_` key at `~/Nest/supabase-secret.txt` on the mini with mode 600, then `nest-verify accounts` recreates the credentials file.
 
 - **Repository cleanup, 10 October:** removed the generated root `evidence/` directory at the owner's request and ignored future outputs there. Historical references are marked as removed; regression tests and application assets remain. Older Git commits still retain the files.
 

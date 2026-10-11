@@ -5,13 +5,13 @@ description: Build, launch and drive Nest's SwiftUI iPhone app in an owned iOS s
 
 # Verify Nest in the simulator
 
-Nest's user surface is the SwiftUI iPhone app in `apps/ios`. It talks to the hosted Nest API and Supabase. This checkout is on Linux. Xcode, simulators and signing exist only on the owner's authorized Mac, which is reachable over SSH on Tailscale. Everything here runs from the Linux checkout root through one helper:
+Nest's user surface is the SwiftUI iPhone app in `apps/ios`. It talks to the hosted Nest API and Supabase. This checkout is on Linux. Xcode and simulators exist only on the owner's authorized Mac mini, which is reachable over SSH on Tailscale. Everything here runs from the Linux checkout root through one helper:
 
 ```sh
 V=.agents/skills/verify-nest/scripts/nest-verify
 ```
 
-`$V` with no arguments prints its commands. Each run gets its own simulator named `Nest Verify <run>`, its own DerivedData, its own agent-device daemon and session, and a Mac scratch directory `/private/tmp/nest-verify-<run>/`. Two runs can therefore go side by side. Evidence ends up in `evidence/verify-nest/<run>/` in this checkout. Git ignores that path, and cleanup never removes it.
+`$V` with no arguments prints its commands. Each run gets its own simulator named `Nest Verify <run>`, its own DerivedData, its own agent-device daemon and session, and a Mac scratch directory `/private/tmp/nest-verify-<run>/`. Two runs can therefore go side by side, but the Mac mini has 8 GB of memory, so prefer one at a time. Evidence ends up in `evidence/verify-nest/<run>/` in this checkout. Git ignores that path, and cleanup never removes it.
 
 Read [features/README.md](features/README.md) before driving anything. It holds the baseline preconditions, driving conventions, proof standards and one recipe per feature.
 
@@ -28,17 +28,17 @@ Read [features/README.md](features/README.md) before driving anything. It holds 
 
 ```sh
 RUN=$($V new)               # e.g. 20261010-121615-5ace
-$V launch "$RUN"            # about 2 min. Allow 15 for a slow first build.
+$V launch "$RUN"            # about 5 min. Allow 15 for a slow first build.
 ```
 
-`launch` does six things. It takes one snapshot of the exact `apps/ios` tree, including uncommitted and untracked files. It records the local `HEAD` and the snapshot's digest, and creates the local `evidence/verify-nest/<run>/`. It creates and boots an iPhone 17 Pro simulator on iOS 26.3. It streams that same snapshot to the Mac. It builds the `Nest` scheme, Debug, ad hoc signed, against the public test config `~/Nest/nest-local.xcconfig`. It installs the app. Finally it opens the app in agent-device session `nest-verify-<run>`.
+`launch` does six things. It takes one snapshot of the exact `apps/ios` tree, including uncommitted and untracked files. It records the local `HEAD` and the snapshot's digest, and creates the local `evidence/verify-nest/<run>/`. It creates and boots an iPhone 17 Pro simulator on the newest iOS runtime installed on the Mac, and records that runtime in `run.env`. It streams that same snapshot to the Mac. It builds the `Nest` scheme, Debug, ad hoc signed, against the public test config `~/Nest/nest-local.xcconfig`. It installs the app. Finally it opens the app in agent-device session `nest-verify-<run>`.
 
 It is ready when the last line reads `READY run=<run> sim=<udid>`. A build failure exits `4` and prints the compiler errors. The full log is `evidence/build.log` in the run. Cleanup copies it to `evidence/verify-nest/<run>/` before it deletes the Mac run. Run the tool call in the background or with a long timeout.
 
 Options:
 
-- `NEST_MAC=user@host`: a different SSH target. The default is `dariussibarium@dariuss-macbook-pro.tail2aa91d.ts.net`.
-- `NEST_VERIFY_XCCONFIG`, `NEST_VERIFY_DEVICE_TYPE`, `NEST_VERIFY_RUNTIME`: a Mac-side xcconfig path, a simctl device type id or a runtime id. They are forwarded to the Mac.
+- `NEST_MAC=user@host`: a different SSH target. The default is `drrius@dariuss-mac-mini.tail2aa91d.ts.net`.
+- `NEST_VERIFY_XCCONFIG`, `NEST_VERIFY_DEVICE_TYPE`, `NEST_VERIFY_RUNTIME`: a Mac-side xcconfig path, a simctl device type id or a runtime id, such as `com.apple.CoreSimulator.SimRuntime.iOS-27-0`. They are forwarded to the Mac.
 
 The run id is single-use. To build a newer tree, clean up and launch a new run.
 
@@ -136,7 +136,17 @@ Run cleanup after failed launches too. A run that has no recorded simulator stil
 
 Shared caches under `~/Library/Caches/nest-verify/` on the Mac stay in place: the pinned agent-device install, Swift packages and the runner build. They are not run state.
 
-Never kill processes by name, and never delete or drive simulators you did not create. The Mac also holds older QA simulators with preserved sessions and journals, such as `Nest Smallest QA`, `Nest partner QA` and `Nest UI Review`. Another tool's device panel may hold a booted simulator. Leave them alone. For a stray `Nest Verify <run>` simulator that `list` shows, run `$V cleanup <run>` with that run id.
+Never kill processes by name, and never delete or drive simulators you did not create. Another tool's device panel may hold a booted simulator. Leave them alone. For a stray `Nest Verify <run>` simulator that `list` shows, run `$V cleanup <run>` with that run id.
+
+## Setting up the Mac
+
+The Mac needs these once. Only `signin` needs the last two.
+
+- **Xcode 27 as the active developer directory.** Run `sudo xcode-select -s /Applications/Xcode.app/Contents/Developer`. At least one iOS simulator runtime must be installed.
+- **Node 22 from nvm.** The helper puts `~/.nvm/versions/node/v22.*/bin` first on `PATH`, because SSH commands do not load shell profiles. agent-device needs Node 22.12 or newer. Install nvm with `PROFILE=/dev/null` so interactive shells keep their own Node.
+- **Remote Login, no sleep.** Turn on Remote Login, turn off automatic sleep, and authorize the Linux checkout's SSH key for the default user.
+- **`~/Nest/nest-local.xcconfig`.** It holds `NEST_API_URL`, `NEST_SUPABASE_URL` and `NEST_SUPABASE_PUBLISHABLE_KEY` with the Release values from `project.pbxproj`. Write URLs as `https:/$()/host`.
+- **`~/Nest/supabase-secret.txt`,** mode 600, holding the project's `sb_secret_` key. Then run `$V accounts` to create the verification credentials file.
 
 ## Related surfaces
 
