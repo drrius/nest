@@ -3,7 +3,7 @@
 # Runs on the Linux checkout; every Mac-side step goes over SSH. See ../SKILL.md.
 set -euo pipefail
 
-MAC=${NEST_MAC:-dariussibarium@dariuss-macbook-pro.tail2aa91d.ts.net}
+MAC=${NEST_MAC:-drrius@dariuss-mac-mini.tail2aa91d.ts.net}
 ROOT=$(git -C "$(dirname "$0")" rev-parse --show-toplevel)
 TOOLS=$(cd "$(dirname "$0")/../tools" && pwd)
 TOOLS_LOCK=$(sha256sum "$TOOLS/package-lock.json" | cut -c1-12)
@@ -12,7 +12,7 @@ usage() {
   cat <<'EOF'
 usage: nest-verify <command> [run-id] [args]
   new                      print a fresh run id
-  launch <run>             build the working tree, install it, open the app (about 2 min)
+  launch <run>             build the working tree, install it, open the app (about 5 min)
   doctor <run>             read-only health check of a run
   signin <run> <role>      sign the app in as the synthetic member or partner (under 1 min)
   ad <run> <args...>       run agent-device against the run's simulator session
@@ -110,12 +110,15 @@ $PREPARE_SCRIPT"
 read -r -d '' PREPARE_SCRIPT <<'EOF' || true
 [[ ! -e $R ]] || { echo "run $RUN already exists on the Mac; use a new run id" >&2; exit 3; }
 mkdir -p "$R/src" "$R/evidence" "$CACHE"
-SIM=$(xcrun simctl create "Nest Verify $RUN" "${NEST_VERIFY_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro}" \
-  "${NEST_VERIFY_RUNTIME:-com.apple.CoreSimulator.SimRuntime.iOS-26-3}")
-printf 'SIM=%q\nCOMMIT=%q\nSOURCE_DIGEST=%q\nSTARTED=%q\n' \
-  "$SIM" "$COMMIT" "$SOURCE_DIGEST" "$(date -u +%FT%TZ)" > "$R/run.env"
+RUNTIME=${NEST_VERIFY_RUNTIME:-$(xcrun simctl list -j runtimes available | python3 -c '
+import json, sys
+ios = [r for r in json.load(sys.stdin)["runtimes"] if r["platform"] == "iOS"]
+print(max(ios, key=lambda r: [int(part) for part in r["version"].split(".")])["identifier"])')}
+SIM=$(xcrun simctl create "Nest Verify $RUN" "${NEST_VERIFY_DEVICE_TYPE:-com.apple.CoreSimulator.SimDeviceType.iPhone-17-Pro}" "$RUNTIME")
+printf 'SIM=%q\nRUNTIME=%q\nCOMMIT=%q\nSOURCE_DIGEST=%q\nSTARTED=%q\n' \
+  "$SIM" "$RUNTIME" "$COMMIT" "$SOURCE_DIGEST" "$(date -u +%FT%TZ)" > "$R/run.env"
 cp "$R/run.env" "$R/evidence/run.env"
-echo "simulator $SIM"
+echo "simulator $SIM ($RUNTIME)"
 EOF
 
 read -r -d '' BUILD_SCRIPT <<'EOF' || true
@@ -132,7 +135,9 @@ if ! xcodebuild -project Nest.xcodeproj -scheme Nest -configuration Debug \
 fi
 xcrun simctl install "$SIM" "$R/build/Build/Products/Debug-iphonesimulator/Nest.app"
 cd "$R/evidence"
-if ! ad open "$BUNDLE" --platform ios --udid "$SIM" --relaunch > open.txt 2>&1; then
+# A Mac's first runner build outlasts agent-device's 90 s request limit but still finishes, so retry once.
+if ! ad open "$BUNDLE" --platform ios --udid "$SIM" --relaunch > open.txt 2>&1 &&
+  ! ad open "$BUNDLE" --platform ios --udid "$SIM" --relaunch >> open.txt 2>&1; then
   cat open.txt
   exit 5
 fi

@@ -11,6 +11,7 @@ supabase/.temp/
 .vercel/
 apps/ios/.build/
 apps/ios/DerivedData/
+apps/ios/.swiftpm/
 *.xcuserstate
 *.xcuserdata/
 *.xcresult/
